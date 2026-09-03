@@ -6,7 +6,7 @@ In this guide, we will see how to manage your Space runtime
 
 ## Search for Spaces
 
-You can search for Spaces on the Hub using semantic search with [search_spaces()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.search_spaces). This uses embedding-based search for multi-word queries and full-text search for single-word queries.
+You can search for Spaces on the Hub using semantic search with [search_spaces()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.search_spaces). This uses embedding-based search for multi-word queries and full-text search for single-word queries.
 
 ```py
 >>> from huggingface_hub import search_spaces
@@ -45,7 +45,7 @@ Here is an end-to-end example to create and set up a Space on the Hub.
 
 ### Create a Space from a template
 
-Instead of starting from an empty Space, you can seed a new Space from one of the official templates offered on the Hub (e.g. JupyterLab, a Gradio chatbot, a Streamlit app, etc.). List the available templates with [list_space_templates()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_space_templates), then pass a template's `repo_id` (or its short `name`) as `space_template` to [create_repo()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo). Note that `space_sdk` is still required: the template seeds the files while the SDK sets the card metadata.
+Instead of starting from an empty Space, you can seed a new Space from one of the official templates offered on the Hub (e.g. JupyterLab, a Gradio chatbot, a Streamlit app, etc.). List the available templates with [list_space_templates()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_space_templates), then pass a template's `repo_id` (or its short `name`) as `space_template` to [create_repo()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo). Note that `space_sdk` is still required: the template seeds the files while the SDK sets the card metadata.
 
 ```py
 >>> from huggingface_hub import HfApi
@@ -86,7 +86,7 @@ Livebook        livebook-dev/livebook                          docker
 ### Duplicate a Space
 
 This can prove useful if you want to build up from an existing Space instead of starting from scratch.
-It is also useful is you want control over the configuration/settings of a public Space. See [duplicate_repo()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.duplicate_repo) for more details.
+It is also useful is you want control over the configuration/settings of a public Space. See [duplicate_repo()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.duplicate_repo) for more details.
 
 ```py
 >>> api.duplicate_repo("multimodalart/dreambooth-training", repo_type="space")
@@ -216,8 +216,8 @@ Upgraded hardware will be automatically assigned to your Space once it's built.
 ### Pause and restart your Space
 
 By default if your Space is running on an upgraded hardware, it will never be stopped. However to avoid getting billed,
-you might want to pause it when you are not using it. This is possible using [pause_space()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_space). A paused Space will be
-inactive until the owner of the Space restarts it, either with the UI or via API using [restart_space()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.restart_space).
+you might want to pause it when you are not using it. This is possible using [pause_space()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_space). A paused Space will be
+inactive until the owner of the Space restarts it, either with the UI or via API using [restart_space()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.restart_space).
 For more details about paused mode, please refer to [this section](https://huggingface.co/docs/hub/spaces-gpus#pause)
 
 ```py
@@ -230,7 +230,7 @@ For more details about paused mode, please refer to [this section](https://huggi
 
 Another possibility is to set a timeout for your Space. If your Space is inactive for more than the timeout duration,
 it will go to sleep. Any visitor landing on your Space will start it back up. You can set a timeout using
-[set_space_sleep_time()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.set_space_sleep_time). For more details about sleeping mode, please refer to [this section](https://huggingface.co/docs/hub/spaces-gpus#sleep-time).
+[set_space_sleep_time()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.set_space_sleep_time). For more details about sleeping mode, please refer to [this section](https://huggingface.co/docs/hub/spaces-gpus#sleep-time).
 
 ```py
 # Put your Space to sleep after 1h of inactivity
@@ -270,7 +270,7 @@ Upgraded hardware will be automatically assigned to your Space once it's built.
 
 ### Debug a failing Space by reading its logs
 
-When a Space fails to build or crashes at runtime, the logs you normally view in the browser are also available programmatically via [fetch_space_logs()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_space_logs). This is particularly useful from scripts or agentic workflows where opening a browser is not an option.
+When a Space fails to build or crashes at runtime, the logs you normally view in the browser are also available programmatically via [fetch_space_logs()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_space_logs). This is particularly useful from scripts or agentic workflows where opening a browser is not an option.
 
 ```py
 # Drain the currently available run logs and return immediately (like `docker logs`)
@@ -356,7 +356,7 @@ You can check which volumes are currently mounted via the Space runtime:
 [Volume(type='model', source='username/my-model', mount_path='/models', read_only=True), ...]
 ```
 
-If you need to update volumes on an existing Space, use [set_space_volumes()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.set_space_volumes). Note that this replaces all previously mounted volumes.
+If you need to update volumes on an existing Space, use [set_space_volumes()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.set_space_volumes). Note that this replaces all previously mounted volumes.
 
 ```py
 >>> api.set_space_volumes(
@@ -523,4 +523,4 @@ def mark_as_done(task):
 ```
 
 ### Search the Hub
-https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/search.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/guides/search.md

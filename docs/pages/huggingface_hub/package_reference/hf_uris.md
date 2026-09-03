@@ -8,9 +8,9 @@ A *HF URI* is a URI-like string that identifies a location on the Hugging Face H
 
 A *HF mount* wraps a HF URI with a local mount path and an optional `:ro` / `:rw` flag, used by [Spaces](../guides/manage-spaces) and [Jobs](../guides/jobs) volumes.
 
-This page documents the canonical syntax of HF URIs and HF mounts. The same parser is used everywhere in the library, so a URI that is valid in one context (e.g. [HfFileSystem](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem)) is parsed identically in another.
+This page documents the canonical syntax of HF URIs and HF mounts. The same parser is used everywhere in the library, so a URI that is valid in one context (e.g. [HfFileSystem](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem)) is parsed identically in another.
 
-[parse_hf_uri()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.parse_hf_uri) also accepts Hugging Face **web URLs** (e.g. `https://huggingface.co/datasets/my-org/my-dataset/blob/main/train.csv`) so you can copy-paste a link from the website. See [Web URLs](#web-urls) below.
+[parse_hf_uri()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.parse_hf_uri) also accepts Hugging Face **web URLs** (e.g. `https://huggingface.co/datasets/my-org/my-dataset/blob/main/train.csv`) so you can copy-paste a link from the website. See [Web URLs](#web-urls) below.
 
 ## HF URI syntax
 
@@ -92,7 +92,7 @@ The parser is strict on purpose. The following are **rejected**:
 
 ## Web URLs
 
-For convenience, [parse_hf_uri()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.parse_hf_uri) also accepts Hugging Face web URLs that you copy-paste from your browser. They are normalized to the canonical `hf://` form, so you can paste a URL straight into the CLI or the library and "it just works":
+For convenience, [parse_hf_uri()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.parse_hf_uri) also accepts Hugging Face web URLs that you copy-paste from your browser. They are normalized to the canonical `hf://` form, so you can paste a URL straight into the CLI or the library and "it just works":
 
 ```python
 >>> from huggingface_hub import parse_hf_uri
@@ -145,7 +145,7 @@ Paths below are again shown without the host, except for the last row where the 
 
 ## Rendering a web URL
 
-[HfUri.to_url()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.HfUri.to_url) is the inverse of parsing a URL: it renders the browsable web URL for a HF URI.
+[HfUri.to_url()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.HfUri.to_url) is the inverse of parsing a URL: it renders the browsable web URL for a HF URI.
 
 ```python
 >>> uri = parse_hf_uri("hf://datasets/my-org/my-dataset@v1/train.csv")
@@ -159,7 +159,7 @@ It points at the repository / bucket landing page when no path or revision is se
 
 ### Parsing URIs
 
-[parse_hf_uri()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.parse_hf_uri) is the centralized URI parser. It is a pure string parser (no network calls) and returns a frozen [HfUri](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.HfUri) dataclass.
+[parse_hf_uri()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.parse_hf_uri) is the centralized URI parser. It is a pure string parser (no network calls) and returns a frozen [HfUri](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.HfUri) dataclass.
 
 ```python
 >>> from huggingface_hub import parse_hf_uri
@@ -167,7 +167,7 @@ It points at the repository / bucket landing page when no path or revision is se
 HfUri(type='dataset', id='my-org/my-dataset', revision='refs/pr/3', path_in_repo='train.json')
 ```
 
-[HfUri](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.HfUri) is round-trippable via [HfUri.to_uri()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.HfUri.to_uri), which always emits the canonical form (with an explicit type prefix):
+[HfUri](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.HfUri) is round-trippable via [HfUri.to_uri()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.HfUri.to_uri), which always emits the canonical form (with an explicit type prefix):
 
 ```python
 >>> uri = parse_hf_uri("hf://my-org/my-model@v1/config.json")
@@ -179,7 +179,7 @@ Use the `type` and `id` fields directly. The boolean properties `is_repo` and `i
 
 ### Parsing mounts
 
-`parse_hf_mount` parses a mount specification (a HF URI with a local mount path and optional `:ro`/`:rw` flag) and returns a frozen `HfMount` dataclass. It uses [parse_hf_uri()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.parse_hf_uri) under the hood.
+`parse_hf_mount` parses a mount specification (a HF URI with a local mount path and optional `:ro`/`:rw` flag) and returns a frozen `HfMount` dataclass. It uses [parse_hf_uri()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.parse_hf_uri) under the hood.
 
 ```python
 >>> from huggingface_hub.utils import parse_hf_mount
@@ -203,7 +203,7 @@ HfMount(source=HfUri(type='bucket', id='my-org/my-bucket', revision=None, path_i
 huggingface_hub.HfUri(type: typing.Literal['model', 'dataset', 'space', 'kernel', 'bucket'], id: str, revision: str | None = None, path_in_repo: str = '', _raw: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_hf_uris.py#L79)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_hf_uris.py#L79)
 
 **Parameters:**
 
@@ -223,7 +223,7 @@ Parsed representation of a Hugging Face Hub URI ('hf://...').
 to_uri()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_hf_uris.py#L137)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_hf_uris.py#L137)
 
 Render the URI as a canonical 'hf://' string.
 
@@ -235,7 +235,7 @@ The type prefix is always written explicitly (e.g. 'hf://models/my-org/my-model'
 to_url(endpoint: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_hf_uris.py#L155)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_hf_uris.py#L155)
 
 **Parameters:**
 
@@ -247,7 +247,7 @@ the web URL.
 
 Render the URI as a Hugging Face **web URL** (the kind you open in a browser).
 
-This is the inverse of parsing a URL with [parse_hf_uri()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.parse_hf_uri). The returned URL points at:
+This is the inverse of parsing a URL with [parse_hf_uri()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.parse_hf_uri). The returned URL points at:
 
 - the repository / bucket landing page when no path or revision is set;
 - the folder viewer ('/tree/') when only a revision is set;
@@ -273,7 +273,7 @@ uri (`str`) : The URI to parse. Must start with 'hf://', or be a Hugging Face UR
 
 endpoint (`str`, *optional*) : A custom Hub endpoint (e.g. a self-hosted or proxied Hub like 'https://hub.my-company.com' or 'http://localhost:8080/hf'). When provided, web URLs on that endpoint are recognized in addition to the default Hugging Face hosts. Has no effect on 'hf://' URIs.
 
-**Returns:** [HfUri](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.HfUri)
+**Returns:** [HfUri](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.HfUri)
 
 the parsed URI.
 
@@ -314,11 +314,11 @@ HfUri(type='dataset', id='my-org/my-dataset', revision='main', path_in_repo='tra
 huggingface_hub.utils.HfMount(source: HfUri, mount_path: str, read_only: bool | None = None, _raw: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_hf_uris.py#L207)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_hf_uris.py#L207)
 
 **Parameters:**
 
-source ([HfUri](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.HfUri)) : The parsed HF URI identifying the Hub resource to mount.
+source ([HfUri](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.HfUri)) : The parsed HF URI identifying the Hub resource to mount.
 
 mount_path (`str`) : The local mount path (always starts with '/').
 
@@ -338,7 +338,7 @@ hf://[<TYPE>/]<ID>[@<REVISION>][/<PATH>]:<MOUNT_PATH>[:ro|:rw]
 to_uri()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_hf_uris.py#L238)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_hf_uris.py#L238)
 
 Render the mount as a canonical 'hf://' string.
 
@@ -350,7 +350,7 @@ Example: 'hf://models/my-org/my-model:/data:ro'
 huggingface_hub.utils.parse_hf_mount(mount_str: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_hf_uris.py#L443)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_hf_uris.py#L443)
 
 **Parameters:**
 
@@ -387,4 +387,4 @@ HfMount(source=HfUri(type='bucket', id='my-org/my-bucket', revision=None, path_i
 ```
 
 ### Inference
-https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/inference_client.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/inference_client.md

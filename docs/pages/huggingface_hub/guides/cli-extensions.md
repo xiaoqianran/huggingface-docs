@@ -262,4 +262,4 @@ Here are some community extensions you can use as reference:
 | [alvarobartt/hf-mem](https://github.com/alvarobartt/hf-mem) | Python | Estimate inference memory requirements for HF models |
 
 ### Understand caching
-https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/manage-cache.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/guides/manage-cache.md

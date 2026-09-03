@@ -14,7 +14,7 @@ how to integrate any ML framework with the Hub.
 huggingface_hub.ModelHubMixin(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/hub_mixin.py#L77)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/hub_mixin.py#L77)
 
 **Parameters:**
 
@@ -45,12 +45,12 @@ coders (`dict[Type, tuple[Callable, Callable]]`, *optional*) : Dictionary of cus
 A generic mixin to integrate ANY machine learning framework with the Hub.
 
 To integrate your framework, your model class must inherit from this class. Custom logic for saving/loading models
-have to be overwritten in  `_from_pretrained` and `_save_pretrained`. [PyTorchModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.PyTorchModelHubMixin) is a good example
+have to be overwritten in  `_from_pretrained` and `_save_pretrained`. [PyTorchModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.PyTorchModelHubMixin) is a good example
 of mixin integration with the Hub. Check out our [integration guide](../guides/integrations) for more instructions.
 
-When inheriting from [ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin), you can define class-level attributes. These attributes are not passed to
+When inheriting from [ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin), you can define class-level attributes. These attributes are not passed to
 `__init__` but to the class definition itself. This is useful to define metadata about the library integrating
-[ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin).
+[ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin).
 
 For more details on how to integrate the mixin with your library, checkout the [integration guide](../guides/integrations).
 
@@ -121,7 +121,7 @@ Example:
 _save_pretrained(save_directory: Path)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/hub_mixin.py#L451)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/hub_mixin.py#L451)
 
 **Parameters:**
 
@@ -136,7 +136,7 @@ Check out our [integration guide](../guides/integrations) for instructions.
 _from_pretrained(model_id: str, revision: str | None, cache_dir: str | pathlib.Path | None, force_download: bool, local_files_only: bool, token: str | bool | None, **model_kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/hub_mixin.py#L578)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/hub_mixin.py#L578)
 
 **Parameters:**
 
@@ -152,11 +152,11 @@ cache_dir (`str`, `Path`, *optional*) : Path to the folder where cached files ar
 
 local_files_only (`bool`, *optional*, defaults to `False`) : If `True`, avoid downloading the file and return the path to the local cached file if it exists.
 
-model_kwargs : Additional keyword arguments passed along to the [_from_pretrained()](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin._from_pretrained) method.
+model_kwargs : Additional keyword arguments passed along to the [_from_pretrained()](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin._from_pretrained) method.
 
 Overwrite this method in subclass to define how to load your model from pretrained.
 
-Use [hf_hub_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) or [snapshot_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.snapshot_download) to download files from the Hub before loading them. Most
+Use [hf_hub_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) or [snapshot_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download) to download files from the Hub before loading them. Most
 args taken as input can be directly passed to those 2 methods. If needed, you can add more arguments to this
 method using "model_kwargs". For example `PyTorchModelHubMixin._from_pretrained()` takes as input a `map_location`
 parameter to set on which device the model should be loaded.
@@ -169,7 +169,7 @@ Check out our [integration guide](../guides/integrations) for more instructions.
 from_pretrained(pretrained_model_name_or_path: str | pathlib.Path, force_download: bool = False, token: str | bool | None = None, cache_dir: str | pathlib.Path | None = None, local_files_only: bool = False, revision: str | None = None, **model_kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/hub_mixin.py#L462)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/hub_mixin.py#L462)
 
 **Parameters:**
 
@@ -195,7 +195,7 @@ Download a model from the Huggingface Hub and instantiate it.
 push_to_hub(repo_id: str, config: dict | huggingface_hub.hub_mixin.DataclassInstance | None = None, commit_message: str = 'Push model using huggingface_hub.', private: bool | None = None, token: str | None = None, branch: str | None = None, create_pr: bool | None = None, allow_patterns: list[str] | str | None = None, ignore_patterns: list[str] | str | None = None, delete_patterns: list[str] | str | None = None, model_card_kwargs: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/hub_mixin.py#L620)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/hub_mixin.py#L620)
 
 **Parameters:**
 
@@ -228,7 +228,7 @@ The url of the commit of your model in the given repository.
 Upload model checkpoint to the Hub.
 
 Use `allow_patterns` and `ignore_patterns` to precisely filter which files should be pushed to the hub. Use
-`delete_patterns` to delete existing remote files in the same commit. See [upload_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) reference for more
+`delete_patterns` to delete existing remote files in the same commit. See [upload_folder()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) reference for more
 details.
 
 #### save_pretrained[[huggingface_hub.ModelHubMixin.save_pretrained]]
@@ -237,7 +237,7 @@ details.
 save_pretrained(save_directory: str | pathlib.Path, config: dict | huggingface_hub.hub_mixin.DataclassInstance | None = None, repo_id: str | None = None, push_to_hub: bool = False, model_card_kwargs: dict[str, typing.Any] | None = None, **push_to_hub_kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/hub_mixin.py#L383)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/hub_mixin.py#L383)
 
 **Parameters:**
 
@@ -251,7 +251,7 @@ repo_id (`str`, *optional*) : ID of your repository on the Hub. Used only if `pu
 
 model_card_kwargs (`dict[str, Any]`, *optional*) : Additional arguments passed to the model card template to customize the model card.
 
-push_to_hub_kwargs : Additional key word arguments passed along to the [push_to_hub()](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin.push_to_hub) method.
+push_to_hub_kwargs : Additional key word arguments passed along to the [push_to_hub()](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin.push_to_hub) method.
 
 **Returns:** `str` or `None`
 
@@ -267,13 +267,13 @@ Save weights in local directory.
 huggingface_hub.PyTorchModelHubMixin(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/hub_mixin.py#L703)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/hub_mixin.py#L703)
 
-Implementation of [ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) to provide model Hub upload/download capabilities to PyTorch models. The model
+Implementation of [ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) to provide model Hub upload/download capabilities to PyTorch models. The model
 is set in evaluation mode by default using `model.eval()` (dropout modules are deactivated). To train the model,
 you should first set it back in training mode with `model.train()`.
 
-See [ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) for more details on how to use the mixin.
+See [ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) for more details on how to use the mixin.
 
 Example:
 
@@ -320,7 +320,7 @@ Example:
 huggingface_hub.from_pretrained_fastai(repo_id: str, revision: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/fastai_utils.py#L289)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/fastai_utils.py#L289)
 
 **Parameters:**
 
@@ -340,7 +340,7 @@ Load pretrained fastai model from the Hub or from a local directory.
 huggingface_hub.push_to_hub_fastai(learner, repo_id: str, commit_message: str = 'Push FastAI model using huggingface_hub.', private: bool | None = None, token: str | None = None, config: dict | None = None, branch: str | None = None, create_pr: bool | None = None, allow_patterns: list[str] | str | None = None, ignore_patterns: list[str] | str | None = None, delete_patterns: list[str] | str | None = None, api_endpoint: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/fastai_utils.py#L334)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/fastai_utils.py#L334)
 
 **Parameters:**
 
@@ -385,4 +385,4 @@ details.
 >       if the user is not log on to the Hugging Face Hub.
 
 ### Utilities
-https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/utilities.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/utilities.md

@@ -10,10 +10,10 @@ text(s) go through the following pipeline:
 -   `post-processing`
 
 We'll see in details what happens during each of those steps in detail,
-as well as when you want to `decode ` some token ids, and how the 🤗 Tokenizers library allows you
+as well as when you want to `decode <decoding>` some token ids, and how the 🤗 Tokenizers library allows you
 to customize each of those steps to your needs. If you're already
 familiar with those steps and want to learn by seeing some code, jump to
-`our BERT from scratch example `.
+`our BERT from scratch example <example>`.
 
 For the examples that require a `Tokenizer` we will use the tokenizer we trained in the
 `quicktour`, which you can load with:
@@ -520,5 +520,5 @@ var decoded = await bertTokenizer.decode(output.getIds(), true);
 // "welcome to the tokenizers library."
 ```
 
-### Quicktour
-https://huggingface.co/docs/tokenizers/v0.23.1/quicktour.md
+### Tokenizer
+https://huggingface.co/docs/tokenizers/v0.23.2/api/tokenizer.md

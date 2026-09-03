@@ -27,8 +27,8 @@ In both cases, you can reach out to us if you are integrating a library with the
 The first approach to integrate a library to the Hub is to actually implement the `push_to_hub` and `from_pretrained`
 methods by yourself. This gives you full flexibility on which files you need to upload/download and how to handle inputs
 specific to your framework. You can refer to the two [upload files](./upload) and [download files](./download) guides
-to learn more about how to do that. This is, for example how the FastAI integration is implemented (see [push_to_hub_fastai()](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.push_to_hub_fastai)
-and [from_pretrained_fastai()](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.from_pretrained_fastai)).
+to learn more about how to do that. This is, for example how the FastAI integration is implemented (see [push_to_hub_fastai()](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.push_to_hub_fastai)
+and [from_pretrained_fastai()](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.from_pretrained_fastai)).
 
 Implementation can differ between libraries, but the workflow is often similar.
 
@@ -120,29 +120,29 @@ In a lot of cases, a library already implements its model using a Python class. 
 the model and methods to load, run, train, and evaluate it. Our approach is to extend this class to include upload and
 download features using mixins. A [Mixin](https://stackoverflow.com/a/547714) is a class that is meant to extend an
 existing class with a set of specific features using multiple inheritance. `huggingface_hub` provides its own mixin,
-the [ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin). The key here is to understand its behavior and how to customize it.
+the [ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin). The key here is to understand its behavior and how to customize it.
 
-The [ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) class implements 3 *public* methods (`push_to_hub`, `save_pretrained` and `from_pretrained`). Those
-are the methods that your users will call to load/save models with your library. [ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) also defines 2
+The [ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) class implements 3 *public* methods (`push_to_hub`, `save_pretrained` and `from_pretrained`). Those
+are the methods that your users will call to load/save models with your library. [ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) also defines 2
 *private* methods (`_save_pretrained` and `_from_pretrained`). Those are the ones you must implement. So to integrate
 your library, you should:
 
-1. Make your Model class inherit from [ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin).
+1. Make your Model class inherit from [ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin).
 2. Implement the private methods:
-    - [_save_pretrained()](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin._save_pretrained): method taking as input a path to a directory and saving the model to it.
+    - [_save_pretrained()](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin._save_pretrained): method taking as input a path to a directory and saving the model to it.
     You must write all the logic to dump your model in this method: model card, model weights, configuration files,
     training logs, and figures. Any relevant information for this model must be handled by this method.
     [Model Cards](https://huggingface.co/docs/hub/model-cards) are particularly important to describe your model. Check
     out [our implementation guide](./model-cards) for more details.
-    - [_from_pretrained()](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin._from_pretrained): **class method** taking as input a `model_id` and returning an instantiated
+    - [_from_pretrained()](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin._from_pretrained): **class method** taking as input a `model_id` and returning an instantiated
     model. The method must download the relevant files and load them.
 3. You are done!
 
-The advantage of using [ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) is that once you take care of the serialization/loading of the files, you are ready to go. You don't need to worry about stuff like repo creation, commits, PRs, or revisions. The [ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) also ensures public methods are documented and type annotated, and you'll be able to view your model's download count on the Hub. All of this is handled by the [ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) and available to your users.
+The advantage of using [ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) is that once you take care of the serialization/loading of the files, you are ready to go. You don't need to worry about stuff like repo creation, commits, PRs, or revisions. The [ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) also ensures public methods are documented and type annotated, and you'll be able to view your model's download count on the Hub. All of this is handled by the [ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) and available to your users.
 
 ### A concrete example: PyTorch
 
-A good example of what we saw above is [PyTorchModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.PyTorchModelHubMixin), our integration for the PyTorch framework. This is a ready-to-use integration.
+A good example of what we saw above is [PyTorchModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.PyTorchModelHubMixin), our integration for the PyTorch framework. This is a ready-to-use integration.
 
 #### How to use it?
 
@@ -268,13 +268,13 @@ And that's it! Your library now enables users to upload and download files to an
 
 ### Advanced usage
 
-In the section above, we quickly discussed how the [ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) works. In this section, we will see some of its more advanced features to improve your library integration with the Hugging Face Hub.
+In the section above, we quickly discussed how the [ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) works. In this section, we will see some of its more advanced features to improve your library integration with the Hugging Face Hub.
 
 #### Model card
 
-[ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) generates the model card for you. Model cards are files that accompany the models and provide important information about them. Under the hood, model cards are simple Markdown files with additional metadata. Model cards are essential for discoverability, reproducibility, and sharing! Check out the [Model Cards guide](https://huggingface.co/docs/hub/model-cards) for more details.
+[ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) generates the model card for you. Model cards are files that accompany the models and provide important information about them. Under the hood, model cards are simple Markdown files with additional metadata. Model cards are essential for discoverability, reproducibility, and sharing! Check out the [Model Cards guide](https://huggingface.co/docs/hub/model-cards) for more details.
 
-Generating model cards semi-automatically is a good way to ensure that all models pushed with your library will share common metadata: `library_name`, `tags`, `license`, `pipeline_tag`, etc. This makes all models backed by your library easily searchable on the Hub and provides some resource links for users landing on the Hub. You can define the metadata directly when inheriting from [ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin):
+Generating model cards semi-automatically is a good way to ensure that all models pushed with your library will share common metadata: `library_name`, `tags`, `license`, `pipeline_tag`, etc. This makes all models backed by your library easily searchable on the Hub and provides some resource links for users landing on the Hub. You can define the metadata directly when inheriting from [ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin):
 
 ```py
 class UniDepthV1(
@@ -341,7 +341,7 @@ class UniDepthV1(nn.Module, PyTorchModelHubMixin, ...):
 
 #### Config
 
-[ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) handles the model configuration for you. It automatically checks the input values when you instantiate the model and serializes them in a `config.json` file. This provides 2 benefits:
+[ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) handles the model configuration for you. It automatically checks the input values when you instantiate the model and serializes them in a `config.json` file. This provides 2 benefits:
 1. Users will be able to reload the model with the exact same parameters as you.
 2. Having a `config.json` file automatically enables analytics on the Hub (i.e. the "downloads" count).
 
@@ -367,7 +367,7 @@ model.save_pretrained(...)
 {"value": "my_value", "size": 3}
 ```
 
-But what if a value cannot be serialized as JSON? By default, the value will be ignored when saving the config file. However, in some cases your library already expects a custom object as input that cannot be serialized, and you don't want to update your internal logic to update its type. No worries! You can pass custom encoders/decoders for any type when inheriting from [ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin). This is a bit more work but ensures your internal logic is untouched when integrating your library with the Hub.
+But what if a value cannot be serialized as JSON? By default, the value will be ignored when saving the config file. However, in some cases your library already expects a custom object as input that cannot be serialized, and you don't want to update your internal logic to update its type. No worries! You can pass custom encoders/decoders for any type when inheriting from [ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin). This is a bit more work but ensures your internal logic is untouched when integrating your library with the Hub.
 
 Here is a concrete example where a class expects a `argparse.Namespace` config as input:
 
@@ -417,7 +417,7 @@ Let's quickly sum up the two approaches we saw with their advantages and drawbac
 Your framework might have some specificities that you need to address. This guide is only here to give guidelines and
 ideas on how to handle integration. In any case, feel free to contact us if you have any questions!
 
-|           Integration           |                                                      Using helpers                                                       |                                     Using [ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin)                                     |
+|           Integration           |                                                      Using helpers                                                       |                                     Using [ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin)                                     |
 | :-----------------------------: | :----------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------: |
 |         User experience         |                                `model = load_from_hub(...)``push_to_hub(model, ...)`                                 |               `model = MyModel.from_pretrained(...)``model.push_to_hub(...)`                |
 |           Flexibility           |                                 Very flexible.You fully control the implementation.                                  |                    Less flexible.Your framework must have a model class.                    |
@@ -427,4 +427,4 @@ ideas on how to handle integration. In any case, feel free to contact us if you 
 |           Model card            |                                                  To be handled manually                                                  |                       Generated by default with library_name, tags, etc.                        |
 
 ### Manage your Space
-https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/manage-spaces.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/guides/manage-spaces.md

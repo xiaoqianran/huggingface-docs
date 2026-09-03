@@ -51,7 +51,7 @@ Run compute Jobs defined with a command and a Docker Image on Hugging Face infra
 You can only manage Jobs that you own (under your username namespace) or from organizations in which you have write permissions.
 This feature is pay-as-you-go: you only pay for the seconds you use.
 
-[run_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job) lets you run any command on Hugging Face's infrastructure:
+[run_job()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job) lets you run any command on Hugging Face's infrastructure:
 
 ```python
 # Directly run Python code
@@ -89,8 +89,8 @@ This feature is pay-as-you-go: you only pay for the seconds you use.
 > [!WARNING]
 > **Important**: Jobs have a default timeout (30 minutes), after which they will automatically stop. For long-running tasks like model training, make sure to set a custom timeout using the `timeout` parameter. See [Configure Job Timeout](#configure-job-timeout) for details.
 
-[run_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job) returns the [JobInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/jobs#huggingface_hub.JobInfo) which has the URL of the Job on Hugging Face, where you can see the Job status and the logs.
-Save the Job ID from [JobInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/jobs#huggingface_hub.JobInfo) to manage the job:
+[run_job()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job) returns the [JobInfo](/docs/huggingface_hub/v1.30.0/en/package_reference/jobs#huggingface_hub.JobInfo) which has the URL of the Job on Hugging Face, where you can see the Job status and the logs.
+Save the Job ID from [JobInfo](/docs/huggingface_hub/v1.30.0/en/package_reference/jobs#huggingface_hub.JobInfo) to manage the job:
 
 ```python
 >>> from huggingface_hub import run_job
@@ -104,7 +104,7 @@ https://huggingface.co/jobs/lhoestq/687f911eaea852de79c4a50a
 687f911eaea852de79c4a50a
 ```
 
-Jobs run in the background. The next section guides you through [inspect_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.inspect_job) to know a jobs' status, [fetch_job_logs()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_job_logs) to view the logs and [fetch_job_metrics()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_job_metrics) to monitor resources usage.
+Jobs run in the background. The next section guides you through [inspect_job()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.inspect_job) to know a jobs' status, [fetch_job_logs()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_job_logs) to view the logs and [fetch_job_metrics()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_job_metrics) to monitor resources usage.
 
 ## Check Job status
 
@@ -157,7 +157,7 @@ Hello from the cloud!
 
 ## Wait until Jobs finish
 
-Use [wait_for_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.wait_for_job) to block until a Job reaches a terminal stage (`COMPLETED`, `CANCELED`, `ERROR` or `DELETED`). The final [JobInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/jobs#huggingface_hub.JobInfo) is always returned — a failed Job does not raise an exception — so check `job.status.stage` to act on the outcome. Pass a list of Job IDs to wait on a whole batch at once.
+Use [wait_for_job()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.wait_for_job) to block until a Job reaches a terminal stage (`COMPLETED`, `CANCELED`, `ERROR` or `DELETED`). The final [JobInfo](/docs/huggingface_hub/v1.30.0/en/package_reference/jobs#huggingface_hub.JobInfo) is always returned — a failed Job does not raise an exception — so check `job.status.stage` to act on the outcome. Pass a list of Job IDs to wait on a whole batch at once.
 
 ```python
 >>> from huggingface_hub import run_job, wait_for_job
@@ -275,7 +275,7 @@ That's it! You're now running code on Hugging Face's infrastructure.
 
 ## Mount a volume
 
-Mount a volume on the Jobs's disk using a list of [Volume](/docs/huggingface_hub/v1.29.0/en/package_reference/jobs#huggingface_hub.Volume).
+Mount a volume on the Jobs's disk using a list of [Volume](/docs/huggingface_hub/v1.30.0/en/package_reference/jobs#huggingface_hub.Volume).
 
 You can mount any Hugging Face Repository (model/dataset/space) or [Storage Bucket](/docs/hub/storage-buckets). For example:
 
@@ -311,7 +311,7 @@ Use `read_only=True` to enable read-only: `Volume(type="bucket", read_only=True,
 
 ### Mount local data
 
-To run a Job against data on your machine, use [sync_job_volume()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_job_volume): it syncs a local directory to your `jobs-artifacts` [Storage Bucket](https://huggingface.co/docs/hub/storage-buckets) (created automatically if needed) and returns a ready-to-mount [Volume](/docs/huggingface_hub/v1.29.0/en/package_reference/jobs#huggingface_hub.Volume):
+To run a Job against data on your machine, use [sync_job_volume()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_job_volume): it syncs a local directory to your `jobs-artifacts` [Storage Bucket](https://huggingface.co/docs/hub/storage-buckets) (created automatically if needed) and returns a ready-to-mount [Volume](/docs/huggingface_hub/v1.30.0/en/package_reference/jobs#huggingface_hub.Volume):
 
 ```python
 >>> from huggingface_hub import run_uv_job, sync_job_volume
@@ -324,7 +324,7 @@ To run a Job against data on your machine, use [sync_job_volume()](/docs/hugging
 >>> run_uv_job("train.py", script_args=["--learning-rate", "0.05"], volumes=[volume])
 ```
 
-Each directory gets its own stable folder in the bucket: re-running [sync_job_volume()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_job_volume) on the same directory only uploads new or modified files. The volume is mounted read-only by default.
+Each directory gets its own stable folder in the bucket: re-running [sync_job_volume()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_job_volume) on the same directory only uploads new or modified files. The volume is mounted read-only by default.
 
 To retrieve files written by a Job, mount a read-write volume (an empty output directory works too) and sync it back once the Job is over:
 
@@ -346,7 +346,7 @@ In the CLI, simply pass a local directory as the source side of `-v`:
 
 ## SSH into a Job
 
-Pass `ssh=True` to [run_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job) (or [run_uv_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_uv_job)) to make the Job's container reachable over SSH. The SSH endpoint is available in the Job status:
+Pass `ssh=True` to [run_job()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job) (or [run_uv_job()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_uv_job)) to make the Job's container reachable over SSH. The SSH endpoint is available in the Job status:
 
 ```python
 >>> from huggingface_hub import run_job
@@ -535,14 +535,14 @@ If you don't pass `--name`, a name is derived automatically from the Docker imag
 
 ### Update labels
 
-Use [update_job_labels()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_job_labels) to replace labels on an existing job. This replaces all existing user-provided labels:
+Use [update_job_labels()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_job_labels) to replace labels on an existing job. This replaces all existing user-provided labels:
 
 ```python
 >>> from huggingface_hub import update_job_labels
 >>> update_job_labels(job_id, labels={"env": "prod", "team": "ml"})
 ```
 
-This also works for scheduled jobs with [update_scheduled_job_labels()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_scheduled_job_labels):
+This also works for scheduled jobs with [update_scheduled_job_labels()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_scheduled_job_labels):
 
 ```python
 >>> from huggingface_hub import update_scheduled_job_labels
@@ -613,7 +613,7 @@ The above command will run using the `vllm/vllm-openai:latest` image. This appro
 
 Schedule and manage jobs that will run on HF infrastructure.
 
-Use [create_scheduled_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_scheduled_job) or [create_scheduled_uv_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_scheduled_uv_job) with a schedule of `@annually`, `@yearly`, `@monthly`, `@weekly`, `@daily`, `@hourly`, or a CRON schedule expression (e.g., `"0 9 * * 1"` for 9 AM every Monday):
+Use [create_scheduled_job()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_scheduled_job) or [create_scheduled_uv_job()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_scheduled_uv_job) with a schedule of `@annually`, `@yearly`, `@monthly`, `@weekly`, `@daily`, `@hourly`, or a CRON schedule expression (e.g., `"0 9 * * 1"` for 9 AM every Monday):
 
 ```python
 # Schedule a job that runs every hour
@@ -644,14 +644,17 @@ Use [create_scheduled_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/
 >>> create_scheduled_uv_job("my_script.py", schedule="@hourly")
 ```
 
-Use the same parameters as [run_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job) and [run_uv_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_uv_job) to pass environment variables, secrets, timeout, etc.
+Use the same parameters as [run_job()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job) and [run_uv_job()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_uv_job) to pass environment variables, secrets, timeout, etc.
 
-Manage scheduled jobs using `list_scheduled_jobs`, [inspect_scheduled_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.inspect_scheduled_job), [suspend_scheduled_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.suspend_scheduled_job), [resume_scheduled_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.resume_scheduled_job), [trigger_scheduled_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.trigger_scheduled_job), and [delete_scheduled_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_scheduled_job):
+Manage scheduled jobs using `list_scheduled_jobs`, [inspect_scheduled_job()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.inspect_scheduled_job), [suspend_scheduled_job()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.suspend_scheduled_job), [resume_scheduled_job()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.resume_scheduled_job), [trigger_scheduled_job()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.trigger_scheduled_job), and [delete_scheduled_job()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_scheduled_job):
 
 ```python
 # List your active scheduled jobs
 >>> from huggingface_hub import list_scheduled_jobs
 >>> list_scheduled_jobs()
+
+# Only list scheduled jobs with the given labels
+>>> list_scheduled_jobs(labels={"env": "prod"})
 
 # Inspect the status of a job
 >>> from huggingface_hub import inspect_scheduled_job
@@ -679,7 +682,7 @@ Manage scheduled jobs using `list_scheduled_jobs`, [inspect_scheduled_job()](/do
 
 Webhooks allow you to listen for new changes on specific repos or to all repos belonging to particular set of users/organizations (not just your repos, but any repo).
 
-Use [create_webhook()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_webhook) to create a webhook that triggers a Job when a change happens in a Hugging Face repository:
+Use [create_webhook()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_webhook) to create a webhook that triggers a Job when a change happens in a Hugging Face repository:
 
 ```python
 from huggingface_hub import create_webhook
@@ -697,4 +700,4 @@ The webhook triggers the Job with the webhook payload in the environment variabl
 You can find more information on webhooks in the [Webhooks documentation](./webhooks).
 
 ### Integrate any ML framework with the Hub
-https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/integrations.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/guides/integrations.md

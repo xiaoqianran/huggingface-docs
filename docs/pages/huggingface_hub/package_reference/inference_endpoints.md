@@ -5,21 +5,21 @@ Inference Endpoints provides a secure production solution to easily deploy model
 > [!TIP]
 > Check out the [related guide](../guides/inference_endpoints) to learn how to use `huggingface_hub` to manage your Inference Endpoints programmatically.
 
-Inference Endpoints can be fully managed via API. The endpoints are documented with [Swagger](https://api.endpoints.huggingface.cloud/). The [InferenceEndpoint](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) class is a simple wrapper built on top on this API.
+Inference Endpoints can be fully managed via API. The endpoints are documented with [Swagger](https://api.endpoints.huggingface.cloud/). The [InferenceEndpoint](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) class is a simple wrapper built on top on this API.
 
 ## Methods
 
-A subset of the Inference Endpoint features are implemented in [HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi):
+A subset of the Inference Endpoint features are implemented in [HfApi](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi):
 
-- [get_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_inference_endpoint) and [list_inference_endpoints()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_endpoints) to get information about your Inference Endpoints
-- [list_inference_endpoints_hardware()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_endpoints_hardware) to list the hardware you can deploy an Inference Endpoint on
-- [create_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint), [update_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_inference_endpoint) and [delete_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_inference_endpoint) to deploy and manage Inference Endpoints
-- [pause_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_inference_endpoint) and [resume_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.resume_inference_endpoint) to pause and resume an Inference Endpoint
-- [scale_to_zero_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.scale_to_zero_inference_endpoint) to manually scale an Endpoint to 0 replicas
+- [get_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_inference_endpoint) and [list_inference_endpoints()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_endpoints) to get information about your Inference Endpoints
+- [list_inference_endpoints_hardware()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_endpoints_hardware) to list the hardware you can deploy an Inference Endpoint on
+- [create_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint), [update_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_inference_endpoint) and [delete_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_inference_endpoint) to deploy and manage Inference Endpoints
+- [pause_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_inference_endpoint) and [resume_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.resume_inference_endpoint) to pause and resume an Inference Endpoint
+- [scale_to_zero_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.scale_to_zero_inference_endpoint) to manually scale an Endpoint to 0 replicas
 
 ## InferenceEndpoint[[huggingface_hub.InferenceEndpoint]]
 
-The main dataclass is [InferenceEndpoint](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint). It contains information about a deployed `InferenceEndpoint`, including its configuration and current state. Once deployed, you can run inference on the Endpoint using the  [InferenceEndpoint.client](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.client) and [InferenceEndpoint.async_client](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.async_client) properties that respectively return an [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) and an [AsyncInferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient) object.
+The main dataclass is [InferenceEndpoint](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint). It contains information about a deployed `InferenceEndpoint`, including its configuration and current state. Once deployed, you can run inference on the Endpoint using the  [InferenceEndpoint.client](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.client) and [InferenceEndpoint.async_client](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.async_client) properties that respectively return an [InferenceClient](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) and an [AsyncInferenceClient](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient) object.
 
 #### huggingface_hub.InferenceEndpoint[[huggingface_hub.InferenceEndpoint]]
 
@@ -27,7 +27,7 @@ The main dataclass is [InferenceEndpoint](/docs/huggingface_hub/v1.29.0/en/packa
 huggingface_hub.InferenceEndpoint(namespace: str, raw: dict, _token: str | bool | None, _api: HfApi)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_inference_endpoints.py#L99)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_inference_endpoints.py#L99)
 
 **Parameters:**
 
@@ -37,7 +37,7 @@ namespace (`str`) : The namespace where the Inference Endpoint is located.
 
 repository (`str`) : The name of the model repository deployed on this Inference Endpoint.
 
-status ([InferenceEndpointStatus](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointStatus)) : The current status of the Inference Endpoint.
+status ([InferenceEndpointStatus](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointStatus)) : The current status of the Inference Endpoint.
 
 url (`str`, *optional*) : The URL of the Inference Endpoint, if available. Only a deployed Inference Endpoint will have a URL.
 
@@ -51,7 +51,7 @@ created_at (`datetime.datetime`) : The timestamp when the Inference Endpoint was
 
 updated_at (`datetime.datetime`) : The timestamp of the last update of the Inference Endpoint.
 
-type ([InferenceEndpointType](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointType)) : The type of the Inference Endpoint (public, authenticated, private).
+type ([InferenceEndpointType](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointType)) : The type of the Inference Endpoint (public, authenticated, private).
 
 raw (`dict`) : The raw dictionary data returned from the API.
 
@@ -91,7 +91,7 @@ InferenceEndpoint(name='my-text-to-image', ...)
 from_raw(raw: dict, namespace: str, token: str | bool | None = None, api: typing.Optional[ForwardRef('HfApi')] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_inference_endpoints.py#L182)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_inference_endpoints.py#L182)
 
 Initialize object from raw dictionary.
 
@@ -101,15 +101,15 @@ Initialize object from raw dictionary.
 client()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_inference_endpoints.py#L201)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_inference_endpoints.py#L201)
 
-**Returns:** [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)
+**Returns:** [InferenceClient](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)
 
 an inference client pointing to the deployed endpoint.
 
-**Raises:** [InferenceEndpointError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError)
+**Raises:** [InferenceEndpointError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError)
 
-- [InferenceEndpointError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) -- If the Inference Endpoint is not yet deployed.
+- [InferenceEndpointError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) -- If the Inference Endpoint is not yet deployed.
 
 Returns a client to make predictions on this Inference Endpoint.
 
@@ -119,15 +119,15 @@ Returns a client to make predictions on this Inference Endpoint.
 async_client()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_inference_endpoints.py#L223)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_inference_endpoints.py#L223)
 
-**Returns:** [AsyncInferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient)
+**Returns:** [AsyncInferenceClient](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient)
 
 an asyncio-compatible inference client pointing to the deployed endpoint.
 
-**Raises:** [InferenceEndpointError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError)
+**Raises:** [InferenceEndpointError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError)
 
-- [InferenceEndpointError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) -- If the Inference Endpoint is not yet deployed.
+- [InferenceEndpointError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) -- If the Inference Endpoint is not yet deployed.
 
 Returns a client to make predictions on this Inference Endpoint.
 
@@ -137,14 +137,14 @@ Returns a client to make predictions on this Inference Endpoint.
 delete()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_inference_endpoints.py#L468)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_inference_endpoints.py#L468)
 
 Delete the Inference Endpoint.
 
 This operation is not reversible. If you don't want to be charged for an Inference Endpoint, it is preferable
-to pause it with [InferenceEndpoint.pause()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.pause) or scale it to zero with [InferenceEndpoint.scale_to_zero()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.scale_to_zero).
+to pause it with [InferenceEndpoint.pause()](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.pause) or scale it to zero with [InferenceEndpoint.scale_to_zero()](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.scale_to_zero).
 
-This is an alias for [HfApi.delete_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_inference_endpoint).
+This is an alias for [HfApi.delete_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_inference_endpoint).
 
 #### fetch[[huggingface_hub.InferenceEndpoint.fetch]]
 
@@ -152,9 +152,9 @@ This is an alias for [HfApi.delete_inference_endpoint()](/docs/huggingface_hub/v
 fetch()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_inference_endpoints.py#L298)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_inference_endpoints.py#L298)
 
-**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
 
 the same Inference Endpoint, mutated in place with the latest data.
 
@@ -166,19 +166,19 @@ Fetch latest information about the Inference Endpoint.
 pause()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_inference_endpoints.py#L411)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_inference_endpoints.py#L411)
 
-**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
 
 the same Inference Endpoint, mutated in place with the latest data.
 
 Pause the Inference Endpoint.
 
-A paused Inference Endpoint will not be charged. It can be resumed at any time using [InferenceEndpoint.resume()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.resume).
-This is different from scaling the Inference Endpoint to zero with [InferenceEndpoint.scale_to_zero()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.scale_to_zero), which
+A paused Inference Endpoint will not be charged. It can be resumed at any time using [InferenceEndpoint.resume()](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.resume).
+This is different from scaling the Inference Endpoint to zero with [InferenceEndpoint.scale_to_zero()](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.scale_to_zero), which
 would be automatically restarted when a request is made to it.
 
-This is an alias for [HfApi.pause_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_inference_endpoint). The current object is mutated in place with the
+This is an alias for [HfApi.pause_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_inference_endpoint). The current object is mutated in place with the
 latest data from the server.
 
 #### resume[[huggingface_hub.InferenceEndpoint.resume]]
@@ -187,19 +187,19 @@ latest data from the server.
 resume(running_ok: bool = True)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_inference_endpoints.py#L429)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_inference_endpoints.py#L429)
 
 **Parameters:**
 
 running_ok (`bool`, *optional*) : If `True`, the method will not raise an error if the Inference Endpoint is already running. Defaults to `True`.
 
-**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
 
 the same Inference Endpoint, mutated in place with the latest data.
 
 Resume the Inference Endpoint.
 
-This is an alias for [HfApi.resume_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.resume_inference_endpoint). The current object is mutated in place with the
+This is an alias for [HfApi.resume_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.resume_inference_endpoint). The current object is mutated in place with the
 latest data from the server.
 
 #### scale_to_zero[[huggingface_hub.InferenceEndpoint.scale_to_zero]]
@@ -208,19 +208,19 @@ latest data from the server.
 scale_to_zero()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_inference_endpoints.py#L450)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_inference_endpoints.py#L450)
 
-**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
 
 the same Inference Endpoint, mutated in place with the latest data.
 
 Scale Inference Endpoint to zero.
 
 An Inference Endpoint scaled to zero will not be charged. It will be resumed on the next request to it, with a
-cold start delay. This is different from pausing the Inference Endpoint with [InferenceEndpoint.pause()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.pause), which
-would require a manual resume with [InferenceEndpoint.resume()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.resume).
+cold start delay. This is different from pausing the Inference Endpoint with [InferenceEndpoint.pause()](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.pause), which
+would require a manual resume with [InferenceEndpoint.resume()](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.resume).
 
-This is an alias for [HfApi.scale_to_zero_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.scale_to_zero_inference_endpoint). The current object is mutated in place with the
+This is an alias for [HfApi.scale_to_zero_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.scale_to_zero_inference_endpoint). The current object is mutated in place with the
 latest data from the server.
 
 #### update[[huggingface_hub.InferenceEndpoint.update]]
@@ -229,7 +229,7 @@ latest data from the server.
 update(accelerator: str | None = None, instance_size: str | None = None, instance_type: str | None = None, min_replica: int | None = None, max_replica: int | None = None, scale_to_zero_timeout: int | None = None, repository: str | None = None, framework: str | None = None, revision: str | None = None, task: str | None = None, custom_image: dict | None = None, container_command: list[str] | None = None, container_args: list[str] | None = None, tensor_parallel_size: int | None = None, data_parallel_size: int | None = None, secrets: dict[str, str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_inference_endpoints.py#L309)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_inference_endpoints.py#L309)
 
 **Parameters:**
 
@@ -265,7 +265,7 @@ data_parallel_size (`int`, *optional*) : Number of model copies to run, one per 
 
 secrets (`dict[str, str]`, *optional*) : Secret values to inject in the container environment.
 
-**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
 
 the same Inference Endpoint, mutated in place with the latest data.
 
@@ -274,7 +274,7 @@ Update the Inference Endpoint.
 This method allows the update of either the compute configuration, the deployed model, or both. All arguments are
 optional but at least one must be provided.
 
-This is an alias for [HfApi.update_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_inference_endpoint). The current object is mutated in place with the
+This is an alias for [HfApi.update_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_inference_endpoint). The current object is mutated in place with the
 latest data from the server.
 
 #### wait[[huggingface_hub.InferenceEndpoint.wait]]
@@ -283,7 +283,7 @@ latest data from the server.
 wait(timeout: int | None = None, refresh_every: int = 5)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_inference_endpoints.py#L245)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_inference_endpoints.py#L245)
 
 **Parameters:**
 
@@ -291,13 +291,13 @@ timeout (`int`, *optional*) : The maximum time to wait for the Inference Endpoin
 
 refresh_every (`int`, *optional*) : The time to wait between each fetch of the Inference Endpoint status, in seconds. Defaults to 5s.
 
-**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
 
 the same Inference Endpoint, mutated in place with the latest data.
 
-**Raises:** [InferenceEndpointError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) or `InferenceEndpointTimeoutError`
+**Raises:** [InferenceEndpointError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) or `InferenceEndpointTimeoutError`
 
-- [InferenceEndpointError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) -- 
+- [InferenceEndpointError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) -- 
   If the Inference Endpoint ended up in a failed state.
 - `InferenceEndpointTimeoutError` -- 
   If the Inference Endpoint is not deployed after `timeout` seconds.
@@ -305,7 +305,7 @@ the same Inference Endpoint, mutated in place with the latest data.
 Wait for the Inference Endpoint to be deployed.
 
 Information from the server will be fetched every 1s. If the Inference Endpoint is not deployed after `timeout`
-seconds, a `InferenceEndpointTimeoutError` will be raised. The [InferenceEndpoint](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) will be mutated in place with the latest
+seconds, a `InferenceEndpointTimeoutError` will be raised. The [InferenceEndpoint](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) will be mutated in place with the latest
 data.
 
 ## InferenceEndpointHardware[[huggingface_hub.InferenceEndpointHardware]]
@@ -316,7 +316,7 @@ data.
 huggingface_hub.InferenceEndpointHardware(id: str, vendor: str, region: str, accelerator: str, instance_type: str, instance_size: str, architecture: str, num_accelerators: int, num_cpus: int | None, memory_gb: float, gpu_memory_gb: int | None, price_per_hour: float, status: str, max_accelerators: int, used_accelerators: int)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_inference_endpoints.py#L500)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_inference_endpoints.py#L500)
 
 **Parameters:**
 
@@ -353,7 +353,7 @@ used_accelerators (`int`) : Number of accelerators of this type currently used b
 Contains information about a hardware configuration available for Inference Endpoints.
 
 The `vendor`, `region`, `accelerator`, `instance_type` and `instance_size` fields are exactly the values to pass to
-[create_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint) (or `hf endpoints deploy`) to deploy on this hardware.
+[create_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint) (or `hf endpoints deploy`) to deploy on this hardware.
 
 Example:
 ```python
@@ -369,7 +369,7 @@ InferenceEndpointHardware(id='aws-us-east-1-nvidia-l4-x1', vendor='aws', region=
 from_raw(raw: dict, vendor: str, region: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_inference_endpoints.py#L565)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_inference_endpoints.py#L565)
 
 Initialize object from a raw compute dictionary, nested under a vendor and a region in the API response.
 
@@ -381,7 +381,7 @@ Initialize object from a raw compute dictionary, nested under a vendor and a reg
 huggingface_hub.InferenceEndpointStatus(value, names = None, module = None, qualname = None, type = None, start = 1)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_inference_endpoints.py#L75)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_inference_endpoints.py#L75)
 
 An enumeration.
 
@@ -393,7 +393,7 @@ An enumeration.
 huggingface_hub.InferenceEndpointType(value, names = None, module = None, qualname = None, type = None, start = 1)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_inference_endpoints.py#L86)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_inference_endpoints.py#L86)
 
 An enumeration.
 
@@ -401,9 +401,9 @@ An enumeration.
 
 #### huggingface_hub.InferenceEndpointError[[huggingface_hub.InferenceEndpointError]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L162)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L162)
 
 Generic exception when dealing with Inference Endpoints.
 
 ### Managing your Space runtime
-https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/space_runtime.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/space_runtime.md

@@ -11,7 +11,7 @@ guide will show you how to:
 
 ## Download a single file
 
-The [hf_hub_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) function is the main function for downloading files from the Hub.
+The [hf_hub_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) function is the main function for downloading files from the Hub.
 It downloads the remote file, caches it on disk (in a version-aware way), and returns its local file path.
 
 > [!TIP]
@@ -58,12 +58,12 @@ To do so, use the `revision` parameter:
 
 ### Construct a download URL
 
-In case you want to construct the URL used to download a file from a repo, you can use [hf_hub_url()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.hf_hub_url) which returns a URL.
-Note that it is used internally by [hf_hub_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.hf_hub_download).
+In case you want to construct the URL used to download a file from a repo, you can use [hf_hub_url()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.hf_hub_url) which returns a URL.
+Note that it is used internally by [hf_hub_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.hf_hub_download).
 
 ## Download an entire repository
 
-[snapshot_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.snapshot_download) downloads an entire repository at a given revision. It uses internally [hf_hub_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) which
+[snapshot_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download) downloads an entire repository at a given revision. It uses internally [hf_hub_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) which
 means all downloaded files are also cached on your local disk. Downloads are made concurrently to speed up the process.
 
 To download a whole repository, just pass the `repo_id` and `repo_type`:
@@ -78,7 +78,7 @@ To download a whole repository, just pass the `repo_id` and `repo_type`:
 '/home/lysandre/.cache/huggingface/hub/datasets--google--fleurs/snapshots/199e4ae37915137c555b1765c01477c216287d34'
 ```
 
-[snapshot_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.snapshot_download) downloads the latest revision by default. If you want a specific repository revision, use the
+[snapshot_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download) downloads the latest revision by default. If you want a specific repository revision, use the
 `revision` parameter:
 
 ```python
@@ -88,7 +88,7 @@ To download a whole repository, just pass the `repo_id` and `repo_type`:
 
 ### Filter files to download
 
-[snapshot_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.snapshot_download) provides an easy way to download a repository. However, you don't always want to download the
+[snapshot_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download) provides an easy way to download a repository. However, you don't always want to download the
 entire content of a repository. For example, you might want to prevent downloading all `.bin` files if you know you'll
 only use the `.safetensors` weights. You can do that using `allow_patterns` and `ignore_patterns` parameters.
 
@@ -121,7 +121,7 @@ files except `vocab.json`.
 
 ## Download file(s) to a local folder
 
-By default, we recommend using the [cache system](./manage-cache) to download files from the Hub. You can specify a custom cache location using the `cache_dir` parameter in [hf_hub_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) and [snapshot_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.snapshot_download), or by setting the [`HF_HOME`](../package_reference/environment_variables#hf_home) environment variable.
+By default, we recommend using the [cache system](./manage-cache) to download files from the Hub. You can specify a custom cache location using the `cache_dir` parameter in [hf_hub_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) and [snapshot_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download), or by setting the [`HF_HOME`](../package_reference/environment_variables#hf_home) environment variable.
 
 However, if you need to download files to a specific folder, you can pass a `local_dir` parameter to the download function. This is useful to get a workflow closer to what the `git` command offers. The downloaded files will maintain their original file structure within the specified folder. For example, if `filename="data/train.csv"` and `local_dir="path/to/folder"`, the resulting filepath will be `"path/to/folder/data/train.csv"`.
 
@@ -130,12 +130,12 @@ A `.cache/huggingface/` folder is created at the root of your local directory co
 After completing the download, you can safely remove the `.cache/huggingface/` folder if you no longer need it. However, be aware that re-running your script without this folder may result in longer recovery times, as metadata will be lost. Rest assured that your local data will remain intact and unaffected.
 
 > [!TIP]
-> Don't worry about the `.cache/huggingface/` folder when committing changes to the Hub! This folder is automatically ignored by both `git` and [upload_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder).
+> Don't worry about the `.cache/huggingface/` folder when committing changes to the Hub! This folder is automatically ignored by both `git` and [upload_folder()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder).
 
 ## Download from the CLI
 
 You can use the `hf download` command from the terminal to directly download files from the Hub.
-Internally, it uses the same [hf_hub_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) and [snapshot_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.snapshot_download) helpers described above and prints the
+Internally, it uses the same [hf_hub_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) and [snapshot_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download) helpers described above and prints the
 returned path to the terminal.
 
 ```bash
@@ -248,7 +248,7 @@ tokenizer_config.json        -
 vocab.json                   -
 ```
 
-Finally, you can also make a dry-run programmatically by passing `dry_run=True` to [hf_hub_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) and [snapshot_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.snapshot_download). It will return a [DryRunFileInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo) (respectively a list of [DryRunFileInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo)) with for each file, their commit hash, file name and file size, whether the file is cached and whether the file would be downloaded. In practice, the file will be downloaded if not cached or if `force_download=True` is passed.
+Finally, you can also make a dry-run programmatically by passing `dry_run=True` to [hf_hub_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) and [snapshot_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download). It will return a [DryRunFileInfo](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo) (respectively a list of [DryRunFileInfo](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo)) with for each file, their commit hash, file name and file size, whether the file is cached and whether the file would be downloaded. In practice, the file will be downloaded if not cached or if `force_download=True` is passed.
 
 ## Faster downloads
 
@@ -270,4 +270,4 @@ All other `huggingface_hub` APIs will continue to work without any modification.
 Note: `hf_transfer` was formerly used with the LFS storage backend and is now deprecated; use `hf_xet` instead.
 
 ### How-to guides
-https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/overview.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/guides/overview.md

@@ -41,7 +41,13 @@ tokenizer = Tokenizer(BPE(unk_token="[UNK]"))
 
 ```rust
 use tokenizers::models::bpe::BPE;
-let mut tokenizer: TokenizerImpl = TokenizerImpl::new(
+let mut tokenizer: TokenizerImpl<
+    BPE,
+    NormalizerWrapper,
+    PreTokenizerWrapper,
+    PostProcessorWrapper,
+    DecoderWrapper,
+> = TokenizerImpl::new(
     BPE::builder()
         .unk_token("[UNK]".to_string())
         .build()
@@ -568,5 +574,5 @@ as long as you have downloaded the file `bert-base-uncased-vocab.txt` with
 wget https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt
 ```
 
-### Trainers
-https://huggingface.co/docs/tokenizers/v0.23.1/api/trainers.md
+### Components
+https://huggingface.co/docs/tokenizers/v0.23.2/components.md

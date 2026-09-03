@@ -16,7 +16,7 @@ This part of the lib is still under development and will be improved in future r
 huggingface_hub.AudioClassificationInput(inputs: str, parameters: huggingface_hub.inference._generated.types.audio_classification.AudioClassificationParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/audio_classification.py#L25)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/audio_classification.py#L25)
 
 Inputs for Audio Classification inference
 
@@ -26,7 +26,7 @@ Inputs for Audio Classification inference
 huggingface_hub.AudioClassificationOutputElement(label: str, score: float)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/audio_classification.py#L37)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/audio_classification.py#L37)
 
 Outputs for Audio Classification inference
 
@@ -36,7 +36,7 @@ Outputs for Audio Classification inference
 huggingface_hub.AudioClassificationParameters(function_to_apply: typing.Optional[ForwardRef('AudioClassificationOutputTransform')] = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/audio_classification.py#L15)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/audio_classification.py#L15)
 
 Additional inference parameters for Audio Classification
 
@@ -48,7 +48,7 @@ Additional inference parameters for Audio Classification
 huggingface_hub.AudioToAudioInput(inputs: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/audio_to_audio.py#L12)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/audio_to_audio.py#L12)
 
 Inputs for Audio to Audio inference
 
@@ -58,7 +58,7 @@ Inputs for Audio to Audio inference
 huggingface_hub.AudioToAudioOutputElement(blob: typing.Any, content_type: str, label: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/audio_to_audio.py#L20)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/audio_to_audio.py#L20)
 
 Outputs of inference for the Audio To Audio task
 A generated audio file with its label.
@@ -71,7 +71,7 @@ A generated audio file with its label.
 huggingface_hub.AutomaticSpeechRecognitionGenerationParameters(do_sample: bool | None = None, early_stopping: typing.Union[bool, ForwardRef('AutomaticSpeechRecognitionEarlyStoppingEnum'), NoneType] = None, epsilon_cutoff: float | None = None, eta_cutoff: float | None = None, max_length: int | None = None, max_new_tokens: int | None = None, min_length: int | None = None, min_new_tokens: int | None = None, num_beam_groups: int | None = None, num_beams: int | None = None, penalty_alpha: float | None = None, temperature: float | None = None, top_k: int | None = None, top_p: float | None = None, typical_p: float | None = None, use_cache: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/automatic_speech_recognition.py#L15)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/automatic_speech_recognition.py#L15)
 
 Parametrization of the text generation process
 
@@ -81,7 +81,7 @@ Parametrization of the text generation process
 huggingface_hub.AutomaticSpeechRecognitionInput(inputs: str, parameters: huggingface_hub.inference._generated.types.automatic_speech_recognition.AutomaticSpeechRecognitionParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/automatic_speech_recognition.py#L85)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/automatic_speech_recognition.py#L85)
 
 Inputs for Automatic Speech Recognition inference
 
@@ -91,7 +91,7 @@ Inputs for Automatic Speech Recognition inference
 huggingface_hub.AutomaticSpeechRecognitionOutput(text: str, chunks: list[huggingface_hub.inference._generated.types.automatic_speech_recognition.AutomaticSpeechRecognitionOutputChunk] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/automatic_speech_recognition.py#L105)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/automatic_speech_recognition.py#L105)
 
 Outputs of inference for the Automatic Speech Recognition task
 
@@ -101,7 +101,7 @@ Outputs of inference for the Automatic Speech Recognition task
 huggingface_hub.AutomaticSpeechRecognitionOutputChunk(text: str, timestamp: list)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/automatic_speech_recognition.py#L97)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/automatic_speech_recognition.py#L97)
 
 #### huggingface_hub.AutomaticSpeechRecognitionParameters[[huggingface_hub.AutomaticSpeechRecognitionParameters]]
 
@@ -109,7 +109,7 @@ huggingface_hub.AutomaticSpeechRecognitionOutputChunk(text: str, timestamp: list
 huggingface_hub.AutomaticSpeechRecognitionParameters(generation_parameters: huggingface_hub.inference._generated.types.automatic_speech_recognition.AutomaticSpeechRecognitionGenerationParameters | None = None, return_timestamps: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/automatic_speech_recognition.py#L75)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/automatic_speech_recognition.py#L75)
 
 Additional inference parameters for Automatic Speech Recognition
 
@@ -121,7 +121,7 @@ Additional inference parameters for Automatic Speech Recognition
 huggingface_hub.ChatCompletionInput(messages: list, frequency_penalty: float | None = None, logit_bias: list[float] | None = None, logprobs: bool | None = None, max_tokens: int | None = None, model: str | None = None, n: int | None = None, presence_penalty: float | None = None, response_format: typing.Union[huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputResponseFormatText, huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputResponseFormatJSONSchema, huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputResponseFormatJSONObject, NoneType] = None, seed: int | None = None, stop: list[str] | None = None, stream: bool | None = None, stream_options: huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputStreamOptions | None = None, temperature: float | None = None, tool_choice: typing.Union[huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputToolChoiceClass, ForwardRef('ChatCompletionInputToolChoiceEnum'), NoneType] = None, tool_prompt: str | None = None, tools: list[huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputTool] | None = None, top_logprobs: int | None = None, top_p: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L125)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L125)
 
 Chat Completion Input.
 Auto-generated from TGI specs.
@@ -134,7 +134,7 @@ https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/scripts/i
 huggingface_hub.ChatCompletionInputFunctionDefinition(name: str, parameters: typing.Any, description: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L27)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L27)
 
 #### huggingface_hub.ChatCompletionInputFunctionName[[huggingface_hub.ChatCompletionInputFunctionName]]
 
@@ -142,7 +142,7 @@ huggingface_hub.ChatCompletionInputFunctionDefinition(name: str, parameters: typ
 huggingface_hub.ChatCompletionInputFunctionName(name: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L106)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L106)
 
 #### huggingface_hub.ChatCompletionInputJSONSchema[[huggingface_hub.ChatCompletionInputJSONSchema]]
 
@@ -150,7 +150,7 @@ huggingface_hub.ChatCompletionInputFunctionName(name: str)
 huggingface_hub.ChatCompletionInputJSONSchema(name: str, description: str | None = None, schema: dict[str, object] | None = None, strict: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L49)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L49)
 
 #### huggingface_hub.ChatCompletionInputMessage[[huggingface_hub.ChatCompletionInputMessage]]
 
@@ -158,7 +158,7 @@ huggingface_hub.ChatCompletionInputJSONSchema(name: str, description: str | None
 huggingface_hub.ChatCompletionInputMessage(role: str, content: list[huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputMessageChunk] | str | None = None, name: str | None = None, tool_calls: list[huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputToolCall] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L41)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L41)
 
 #### huggingface_hub.ChatCompletionInputMessageChunk[[huggingface_hub.ChatCompletionInputMessageChunk]]
 
@@ -166,7 +166,7 @@ huggingface_hub.ChatCompletionInputMessage(role: str, content: list[huggingface_
 huggingface_hub.ChatCompletionInputMessageChunk(type: ChatCompletionInputMessageChunkType, image_url: huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputURL | None = None, text: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L20)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L20)
 
 #### huggingface_hub.ChatCompletionInputResponseFormatJSONObject[[huggingface_hub.ChatCompletionInputResponseFormatJSONObject]]
 
@@ -174,7 +174,7 @@ huggingface_hub.ChatCompletionInputMessageChunk(type: ChatCompletionInputMessage
 huggingface_hub.ChatCompletionInputResponseFormatJSONObject(type: typing.Literal['json_object'])
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L84)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L84)
 
 #### huggingface_hub.ChatCompletionInputResponseFormatJSONSchema[[huggingface_hub.ChatCompletionInputResponseFormatJSONSchema]]
 
@@ -182,7 +182,7 @@ huggingface_hub.ChatCompletionInputResponseFormatJSONObject(type: typing.Literal
 huggingface_hub.ChatCompletionInputResponseFormatJSONSchema(type: typing.Literal['json_schema'], json_schema: ChatCompletionInputJSONSchema)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L78)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L78)
 
 #### huggingface_hub.ChatCompletionInputResponseFormatText[[huggingface_hub.ChatCompletionInputResponseFormatText]]
 
@@ -190,7 +190,7 @@ huggingface_hub.ChatCompletionInputResponseFormatJSONSchema(type: typing.Literal
 huggingface_hub.ChatCompletionInputResponseFormatText(type: typing.Literal['text'])
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L73)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L73)
 
 #### huggingface_hub.ChatCompletionInputStreamOptions[[huggingface_hub.ChatCompletionInputStreamOptions]]
 
@@ -198,7 +198,7 @@ huggingface_hub.ChatCompletionInputResponseFormatText(type: typing.Literal['text
 huggingface_hub.ChatCompletionInputStreamOptions(include_usage: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L96)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L96)
 
 #### huggingface_hub.ChatCompletionInputTool[[huggingface_hub.ChatCompletionInputTool]]
 
@@ -206,7 +206,7 @@ huggingface_hub.ChatCompletionInputStreamOptions(include_usage: bool | None = No
 huggingface_hub.ChatCompletionInputTool(function: ChatCompletionInputFunctionDefinition, type: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L119)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L119)
 
 #### huggingface_hub.ChatCompletionInputToolCall[[huggingface_hub.ChatCompletionInputToolCall]]
 
@@ -214,7 +214,7 @@ huggingface_hub.ChatCompletionInputTool(function: ChatCompletionInputFunctionDef
 huggingface_hub.ChatCompletionInputToolCall(function: ChatCompletionInputFunctionDefinition, id: str, type: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L34)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L34)
 
 #### huggingface_hub.ChatCompletionInputToolChoiceClass[[huggingface_hub.ChatCompletionInputToolChoiceClass]]
 
@@ -222,7 +222,7 @@ huggingface_hub.ChatCompletionInputToolCall(function: ChatCompletionInputFunctio
 huggingface_hub.ChatCompletionInputToolChoiceClass(function: ChatCompletionInputFunctionName)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L111)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L111)
 
 #### huggingface_hub.ChatCompletionInputURL[[huggingface_hub.ChatCompletionInputURL]]
 
@@ -230,7 +230,7 @@ huggingface_hub.ChatCompletionInputToolChoiceClass(function: ChatCompletionInput
 huggingface_hub.ChatCompletionInputURL(url: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L12)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L12)
 
 #### huggingface_hub.ChatCompletionOutput[[huggingface_hub.ChatCompletionOutput]]
 
@@ -238,7 +238,7 @@ huggingface_hub.ChatCompletionInputURL(url: str)
 huggingface_hub.ChatCompletionOutput(choices: list, created: int, id: str, model: str, system_fingerprint: str, usage: ChatCompletionOutputUsage)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L263)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L263)
 
 Chat Completion Output.
 Auto-generated from TGI specs.
@@ -251,7 +251,7 @@ https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/scripts/i
 huggingface_hub.ChatCompletionOutputComplete(finish_reason: str, index: int, message: ChatCompletionOutputMessage, logprobs: huggingface_hub.inference._generated.types.chat_completion.ChatCompletionOutputLogprobs | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L248)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L248)
 
 #### huggingface_hub.ChatCompletionOutputFunctionDefinition[[huggingface_hub.ChatCompletionOutputFunctionDefinition]]
 
@@ -259,7 +259,7 @@ huggingface_hub.ChatCompletionOutputComplete(finish_reason: str, index: int, mes
 huggingface_hub.ChatCompletionOutputFunctionDefinition(arguments: str, name: str, description: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L225)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L225)
 
 #### huggingface_hub.ChatCompletionOutputLogprob[[huggingface_hub.ChatCompletionOutputLogprob]]
 
@@ -267,7 +267,7 @@ huggingface_hub.ChatCompletionOutputFunctionDefinition(arguments: str, name: str
 huggingface_hub.ChatCompletionOutputLogprob(logprob: float, token: str, top_logprobs: list)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L213)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L213)
 
 #### huggingface_hub.ChatCompletionOutputLogprobs[[huggingface_hub.ChatCompletionOutputLogprobs]]
 
@@ -275,7 +275,7 @@ huggingface_hub.ChatCompletionOutputLogprob(logprob: float, token: str, top_logp
 huggingface_hub.ChatCompletionOutputLogprobs(content: list)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L220)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L220)
 
 #### huggingface_hub.ChatCompletionOutputMessage[[huggingface_hub.ChatCompletionOutputMessage]]
 
@@ -283,7 +283,7 @@ huggingface_hub.ChatCompletionOutputLogprobs(content: list)
 huggingface_hub.ChatCompletionOutputMessage(role: str, content: str | None = None, reasoning: str | None = None, tool_call_id: str | None = None, tool_calls: list[huggingface_hub.inference._generated.types.chat_completion.ChatCompletionOutputToolCall] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L239)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L239)
 
 #### huggingface_hub.ChatCompletionOutputToolCall[[huggingface_hub.ChatCompletionOutputToolCall]]
 
@@ -291,7 +291,7 @@ huggingface_hub.ChatCompletionOutputMessage(role: str, content: str | None = Non
 huggingface_hub.ChatCompletionOutputToolCall(function: ChatCompletionOutputFunctionDefinition, id: str, type: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L232)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L232)
 
 #### huggingface_hub.ChatCompletionOutputTopLogprob[[huggingface_hub.ChatCompletionOutputTopLogprob]]
 
@@ -299,7 +299,7 @@ huggingface_hub.ChatCompletionOutputToolCall(function: ChatCompletionOutputFunct
 huggingface_hub.ChatCompletionOutputTopLogprob(logprob: float, token: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L207)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L207)
 
 #### huggingface_hub.ChatCompletionOutputUsage[[huggingface_hub.ChatCompletionOutputUsage]]
 
@@ -307,7 +307,7 @@ huggingface_hub.ChatCompletionOutputTopLogprob(logprob: float, token: str)
 huggingface_hub.ChatCompletionOutputUsage(completion_tokens: int, prompt_tokens: int, total_tokens: int)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L256)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L256)
 
 #### huggingface_hub.ChatCompletionStreamOutput[[huggingface_hub.ChatCompletionStreamOutput]]
 
@@ -315,7 +315,7 @@ huggingface_hub.ChatCompletionOutputUsage(completion_tokens: int, prompt_tokens:
 huggingface_hub.ChatCompletionStreamOutput(choices: list, created: int, id: str, model: str, system_fingerprint: str, usage: huggingface_hub.inference._generated.types.chat_completion.ChatCompletionStreamOutputUsage | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L335)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L335)
 
 Chat Completion Stream Output.
 Auto-generated from TGI specs.
@@ -328,7 +328,7 @@ https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/scripts/i
 huggingface_hub.ChatCompletionStreamOutputChoice(delta: ChatCompletionStreamOutputDelta, index: int, finish_reason: str | None = None, logprobs: huggingface_hub.inference._generated.types.chat_completion.ChatCompletionStreamOutputLogprobs | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L320)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L320)
 
 #### huggingface_hub.ChatCompletionStreamOutputDelta[[huggingface_hub.ChatCompletionStreamOutputDelta]]
 
@@ -336,7 +336,7 @@ huggingface_hub.ChatCompletionStreamOutputChoice(delta: ChatCompletionStreamOutp
 huggingface_hub.ChatCompletionStreamOutputDelta(role: str, content: str | None = None, reasoning: str | None = None, tool_call_id: str | None = None, tool_calls: list[huggingface_hub.inference._generated.types.chat_completion.ChatCompletionStreamOutputDeltaToolCall] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L293)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L293)
 
 #### huggingface_hub.ChatCompletionStreamOutputDeltaToolCall[[huggingface_hub.ChatCompletionStreamOutputDeltaToolCall]]
 
@@ -344,7 +344,7 @@ huggingface_hub.ChatCompletionStreamOutputDelta(role: str, content: str | None =
 huggingface_hub.ChatCompletionStreamOutputDeltaToolCall(function: ChatCompletionStreamOutputFunction, id: str, index: int, type: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L285)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L285)
 
 #### huggingface_hub.ChatCompletionStreamOutputFunction[[huggingface_hub.ChatCompletionStreamOutputFunction]]
 
@@ -352,7 +352,7 @@ huggingface_hub.ChatCompletionStreamOutputDeltaToolCall(function: ChatCompletion
 huggingface_hub.ChatCompletionStreamOutputFunction(arguments: str, name: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L279)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L279)
 
 #### huggingface_hub.ChatCompletionStreamOutputLogprob[[huggingface_hub.ChatCompletionStreamOutputLogprob]]
 
@@ -360,7 +360,7 @@ huggingface_hub.ChatCompletionStreamOutputFunction(arguments: str, name: str | N
 huggingface_hub.ChatCompletionStreamOutputLogprob(logprob: float, token: str, top_logprobs: list)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L308)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L308)
 
 #### huggingface_hub.ChatCompletionStreamOutputLogprobs[[huggingface_hub.ChatCompletionStreamOutputLogprobs]]
 
@@ -368,7 +368,7 @@ huggingface_hub.ChatCompletionStreamOutputLogprob(logprob: float, token: str, to
 huggingface_hub.ChatCompletionStreamOutputLogprobs(content: list)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L315)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L315)
 
 #### huggingface_hub.ChatCompletionStreamOutputTopLogprob[[huggingface_hub.ChatCompletionStreamOutputTopLogprob]]
 
@@ -376,7 +376,7 @@ huggingface_hub.ChatCompletionStreamOutputLogprobs(content: list)
 huggingface_hub.ChatCompletionStreamOutputTopLogprob(logprob: float, token: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L302)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L302)
 
 #### huggingface_hub.ChatCompletionStreamOutputUsage[[huggingface_hub.ChatCompletionStreamOutputUsage]]
 
@@ -384,7 +384,7 @@ huggingface_hub.ChatCompletionStreamOutputTopLogprob(logprob: float, token: str)
 huggingface_hub.ChatCompletionStreamOutputUsage(completion_tokens: int, prompt_tokens: int, total_tokens: int)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L328)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/chat_completion.py#L328)
 
 ## depth_estimation[[huggingface_hub.DepthEstimationInput]]
 
@@ -394,7 +394,7 @@ huggingface_hub.ChatCompletionStreamOutputUsage(completion_tokens: int, prompt_t
 huggingface_hub.DepthEstimationInput(inputs: typing.Any, parameters: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/depth_estimation.py#L12)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/depth_estimation.py#L12)
 
 Inputs for Depth Estimation inference
 
@@ -404,7 +404,7 @@ Inputs for Depth Estimation inference
 huggingface_hub.DepthEstimationOutput(depth: typing.Any, predicted_depth: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/depth_estimation.py#L22)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/depth_estimation.py#L22)
 
 Outputs of inference for the Depth Estimation task
 
@@ -416,7 +416,7 @@ Outputs of inference for the Depth Estimation task
 huggingface_hub.DocumentQuestionAnsweringInput(inputs: DocumentQuestionAnsweringInputData, parameters: huggingface_hub.inference._generated.types.document_question_answering.DocumentQuestionAnsweringParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/document_question_answering.py#L56)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/document_question_answering.py#L56)
 
 Inputs for Document Question Answering inference
 
@@ -426,7 +426,7 @@ Inputs for Document Question Answering inference
 huggingface_hub.DocumentQuestionAnsweringInputData(image: typing.Any, question: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/document_question_answering.py#L12)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/document_question_answering.py#L12)
 
 One (document, question) pair to answer
 
@@ -436,7 +436,7 @@ One (document, question) pair to answer
 huggingface_hub.DocumentQuestionAnsweringOutputElement(answer: str, end: int, score: float, start: int)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/document_question_answering.py#L66)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/document_question_answering.py#L66)
 
 Outputs of inference for the Document Question Answering task
 
@@ -446,7 +446,7 @@ Outputs of inference for the Document Question Answering task
 huggingface_hub.DocumentQuestionAnsweringParameters(doc_stride: int | None = None, handle_impossible_answer: bool | None = None, lang: str | None = None, max_answer_len: int | None = None, max_question_len: int | None = None, max_seq_len: int | None = None, top_k: int | None = None, word_boxes: list[list[float] | str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/document_question_answering.py#L22)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/document_question_answering.py#L22)
 
 Additional inference parameters for Document Question Answering
 
@@ -458,7 +458,7 @@ Additional inference parameters for Document Question Answering
 huggingface_hub.FeatureExtractionInput(inputs: list[str] | str, normalize: bool | None = None, prompt_name: str | None = None, truncate: bool | None = None, truncation_direction: typing.Optional[ForwardRef('FeatureExtractionInputTruncationDirection')] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/feature_extraction.py#L15)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/feature_extraction.py#L15)
 
 Feature Extraction Input.
 Auto-generated from TEI specs.
@@ -473,7 +473,7 @@ https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/scripts/i
 huggingface_hub.FillMaskInput(inputs: str, parameters: huggingface_hub.inference._generated.types.fill_mask.FillMaskParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/fill_mask.py#L26)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/fill_mask.py#L26)
 
 Inputs for Fill Mask inference
 
@@ -483,7 +483,7 @@ Inputs for Fill Mask inference
 huggingface_hub.FillMaskOutputElement(score: float, sequence: str, token: int, token_str: typing.Any, fill_mask_output_token_str: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/fill_mask.py#L36)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/fill_mask.py#L36)
 
 Outputs of inference for the Fill Mask task
 
@@ -493,7 +493,7 @@ Outputs of inference for the Fill Mask task
 huggingface_hub.FillMaskParameters(targets: list[str] | None = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/fill_mask.py#L12)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/fill_mask.py#L12)
 
 Additional inference parameters for Fill Mask
 
@@ -505,7 +505,7 @@ Additional inference parameters for Fill Mask
 huggingface_hub.ImageClassificationInput(inputs: str, parameters: huggingface_hub.inference._generated.types.image_classification.ImageClassificationParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_classification.py#L25)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_classification.py#L25)
 
 Inputs for Image Classification inference
 
@@ -515,7 +515,7 @@ Inputs for Image Classification inference
 huggingface_hub.ImageClassificationOutputElement(label: str, score: float)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_classification.py#L37)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_classification.py#L37)
 
 Outputs of inference for the Image Classification task
 
@@ -525,7 +525,7 @@ Outputs of inference for the Image Classification task
 huggingface_hub.ImageClassificationParameters(function_to_apply: typing.Optional[ForwardRef('ImageClassificationOutputTransform')] = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_classification.py#L15)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_classification.py#L15)
 
 Additional inference parameters for Image Classification
 
@@ -537,7 +537,7 @@ Additional inference parameters for Image Classification
 huggingface_hub.ImageSegmentationInput(inputs: str, parameters: huggingface_hub.inference._generated.types.image_segmentation.ImageSegmentationParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_segmentation.py#L29)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_segmentation.py#L29)
 
 Inputs for Image Segmentation inference
 
@@ -547,7 +547,7 @@ Inputs for Image Segmentation inference
 huggingface_hub.ImageSegmentationOutputElement(label: str, mask: str, score: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_segmentation.py#L41)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_segmentation.py#L41)
 
 Outputs of inference for the Image Segmentation task
 A predicted mask / segment
@@ -558,7 +558,7 @@ A predicted mask / segment
 huggingface_hub.ImageSegmentationParameters(mask_threshold: float | None = None, overlap_mask_area_threshold: float | None = None, subtask: typing.Optional[ForwardRef('ImageSegmentationSubtask')] = None, threshold: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_segmentation.py#L15)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_segmentation.py#L15)
 
 Additional inference parameters for Image Segmentation
 
@@ -570,7 +570,7 @@ Additional inference parameters for Image Segmentation
 huggingface_hub.ImageTextToImageInput(inputs: str | None = None, parameters: huggingface_hub.inference._generated.types.image_text_to_image.ImageTextToImageParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_text_to_image.py#L48)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_text_to_image.py#L48)
 
 Inputs for Image Text To Image inference. Either inputs (image) or prompt (in parameters)
 must be provided, or both.
@@ -581,7 +581,7 @@ must be provided, or both.
 huggingface_hub.ImageTextToImageOutput(image: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_text_to_image.py#L63)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_text_to_image.py#L63)
 
 Outputs of inference for the Image Text To Image task
 
@@ -591,7 +591,7 @@ Outputs of inference for the Image Text To Image task
 huggingface_hub.ImageTextToImageParameters(guidance_scale: float | None = None, negative_prompt: str | None = None, num_inference_steps: int | None = None, prompt: str | None = None, seed: int | None = None, target_size: huggingface_hub.inference._generated.types.image_text_to_image.ImageTextToImageTargetSize | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_text_to_image.py#L22)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_text_to_image.py#L22)
 
 Additional inference parameters for Image Text To Image
 
@@ -601,7 +601,7 @@ Additional inference parameters for Image Text To Image
 huggingface_hub.ImageTextToImageTargetSize(height: int, width: int)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_text_to_image.py#L12)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_text_to_image.py#L12)
 
 The size in pixels of the output image. This parameter is only supported by some
 providers and for specific models. It will be ignored when unsupported.
@@ -614,7 +614,7 @@ providers and for specific models. It will be ignored when unsupported.
 huggingface_hub.ImageTextToVideoInput(inputs: str | None = None, parameters: huggingface_hub.inference._generated.types.image_text_to_video.ImageTextToVideoParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_text_to_video.py#L46)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_text_to_video.py#L46)
 
 Inputs for Image Text To Video inference. Either inputs (image) or prompt (in parameters)
 must be provided, or both.
@@ -625,7 +625,7 @@ must be provided, or both.
 huggingface_hub.ImageTextToVideoOutput(video: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_text_to_video.py#L61)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_text_to_video.py#L61)
 
 Outputs of inference for the Image Text To Video task
 
@@ -635,7 +635,7 @@ Outputs of inference for the Image Text To Video task
 huggingface_hub.ImageTextToVideoParameters(guidance_scale: float | None = None, negative_prompt: str | None = None, num_frames: float | None = None, num_inference_steps: int | None = None, prompt: str | None = None, seed: int | None = None, target_size: huggingface_hub.inference._generated.types.image_text_to_video.ImageTextToVideoTargetSize | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_text_to_video.py#L20)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_text_to_video.py#L20)
 
 Additional inference parameters for Image Text To Video
 
@@ -645,7 +645,7 @@ Additional inference parameters for Image Text To Video
 huggingface_hub.ImageTextToVideoTargetSize(height: int, width: int)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_text_to_video.py#L12)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_text_to_video.py#L12)
 
 The size in pixel of the output video frames.
 
@@ -657,7 +657,7 @@ The size in pixel of the output video frames.
 huggingface_hub.ImageToImageInput(inputs: str, parameters: huggingface_hub.inference._generated.types.image_to_image.ImageToImageParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_to_image.py#L44)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_to_image.py#L44)
 
 Inputs for Image To Image inference
 
@@ -667,7 +667,7 @@ Inputs for Image To Image inference
 huggingface_hub.ImageToImageOutput(image: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_to_image.py#L56)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_to_image.py#L56)
 
 Outputs of inference for the Image To Image task
 
@@ -677,7 +677,7 @@ Outputs of inference for the Image To Image task
 huggingface_hub.ImageToImageParameters(guidance_scale: float | None = None, negative_prompt: str | None = None, num_inference_steps: int | None = None, prompt: str | None = None, target_size: huggingface_hub.inference._generated.types.image_to_image.ImageToImageTargetSize | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_to_image.py#L22)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_to_image.py#L22)
 
 Additional inference parameters for Image To Image
 
@@ -687,7 +687,7 @@ Additional inference parameters for Image To Image
 huggingface_hub.ImageToImageTargetSize(height: int, width: int)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_to_image.py#L12)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_to_image.py#L12)
 
 The size in pixels of the output image. This parameter is only supported by some
 providers and for specific models. It will be ignored when unsupported.
@@ -700,7 +700,7 @@ providers and for specific models. It will be ignored when unsupported.
 huggingface_hub.ImageToTextGenerationParameters(do_sample: bool | None = None, early_stopping: typing.Union[bool, ForwardRef('ImageToTextEarlyStoppingEnum'), NoneType] = None, epsilon_cutoff: float | None = None, eta_cutoff: float | None = None, max_length: int | None = None, max_new_tokens: int | None = None, min_length: int | None = None, min_new_tokens: int | None = None, num_beam_groups: int | None = None, num_beams: int | None = None, penalty_alpha: float | None = None, temperature: float | None = None, top_k: int | None = None, top_p: float | None = None, typical_p: float | None = None, use_cache: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_to_text.py#L15)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_to_text.py#L15)
 
 Parametrization of the text generation process
 
@@ -710,7 +710,7 @@ Parametrization of the text generation process
 huggingface_hub.ImageToTextInput(inputs: typing.Any, parameters: huggingface_hub.inference._generated.types.image_to_text.ImageToTextParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_to_text.py#L85)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_to_text.py#L85)
 
 Inputs for Image To Text inference
 
@@ -720,7 +720,7 @@ Inputs for Image To Text inference
 huggingface_hub.ImageToTextOutput(generated_text: typing.Any, image_to_text_output_generated_text: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_to_text.py#L95)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_to_text.py#L95)
 
 Outputs of inference for the Image To Text task
 
@@ -730,7 +730,7 @@ Outputs of inference for the Image To Text task
 huggingface_hub.ImageToTextParameters(generation_parameters: huggingface_hub.inference._generated.types.image_to_text.ImageToTextGenerationParameters | None = None, max_new_tokens: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_to_text.py#L75)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_to_text.py#L75)
 
 Additional inference parameters for Image To Text
 
@@ -742,7 +742,7 @@ Additional inference parameters for Image To Text
 huggingface_hub.ImageToVideoInput(inputs: str, parameters: huggingface_hub.inference._generated.types.image_to_video.ImageToVideoParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_to_video.py#L44)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_to_video.py#L44)
 
 Inputs for Image To Video inference
 
@@ -752,7 +752,7 @@ Inputs for Image To Video inference
 huggingface_hub.ImageToVideoOutput(video: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_to_video.py#L56)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_to_video.py#L56)
 
 Outputs of inference for the Image To Video task
 
@@ -762,7 +762,7 @@ Outputs of inference for the Image To Video task
 huggingface_hub.ImageToVideoParameters(guidance_scale: float | None = None, negative_prompt: str | None = None, num_frames: float | None = None, num_inference_steps: int | None = None, prompt: str | None = None, seed: int | None = None, target_size: huggingface_hub.inference._generated.types.image_to_video.ImageToVideoTargetSize | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_to_video.py#L20)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_to_video.py#L20)
 
 Additional inference parameters for Image To Video
 
@@ -772,7 +772,7 @@ Additional inference parameters for Image To Video
 huggingface_hub.ImageToVideoTargetSize(height: int, width: int)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/image_to_video.py#L12)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/image_to_video.py#L12)
 
 The size in pixel of the output video frames.
 
@@ -784,7 +784,7 @@ The size in pixel of the output video frames.
 huggingface_hub.ObjectDetectionBoundingBox(xmax: int, xmin: int, ymax: int, ymin: int)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/object_detection.py#L30)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/object_detection.py#L30)
 
 The predicted bounding box. Coordinates are relative to the top left corner of the input
 image.
@@ -795,7 +795,7 @@ image.
 huggingface_hub.ObjectDetectionInput(inputs: str, parameters: huggingface_hub.inference._generated.types.object_detection.ObjectDetectionParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/object_detection.py#L18)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/object_detection.py#L18)
 
 Inputs for Object Detection inference
 
@@ -805,7 +805,7 @@ Inputs for Object Detection inference
 huggingface_hub.ObjectDetectionOutputElement(box: ObjectDetectionBoundingBox, label: str, score: float)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/object_detection.py#L46)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/object_detection.py#L46)
 
 Outputs of inference for the Object Detection task
 
@@ -815,7 +815,7 @@ Outputs of inference for the Object Detection task
 huggingface_hub.ObjectDetectionParameters(threshold: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/object_detection.py#L10)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/object_detection.py#L10)
 
 Additional inference parameters for Object Detection
 
@@ -827,7 +827,7 @@ Additional inference parameters for Object Detection
 huggingface_hub.QuestionAnsweringInput(inputs: QuestionAnsweringInputData, parameters: huggingface_hub.inference._generated.types.question_answering.QuestionAnsweringParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/question_answering.py#L52)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/question_answering.py#L52)
 
 Inputs for Question Answering inference
 
@@ -837,7 +837,7 @@ Inputs for Question Answering inference
 huggingface_hub.QuestionAnsweringInputData(context: str, question: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/question_answering.py#L10)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/question_answering.py#L10)
 
 One (context, question) pair to answer
 
@@ -847,7 +847,7 @@ One (context, question) pair to answer
 huggingface_hub.QuestionAnsweringOutputElement(answer: str, end: int, score: float, start: int)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/question_answering.py#L62)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/question_answering.py#L62)
 
 Outputs of inference for the Question Answering task
 
@@ -857,7 +857,7 @@ Outputs of inference for the Question Answering task
 huggingface_hub.QuestionAnsweringParameters(align_to_words: bool | None = None, doc_stride: int | None = None, handle_impossible_answer: bool | None = None, max_answer_len: int | None = None, max_question_len: int | None = None, max_seq_len: int | None = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/question_answering.py#L20)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/question_answering.py#L20)
 
 Additional inference parameters for Question Answering
 
@@ -869,7 +869,7 @@ Additional inference parameters for Question Answering
 huggingface_hub.SentenceSimilarityInput(inputs: SentenceSimilarityInputData, parameters: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/sentence_similarity.py#L22)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/sentence_similarity.py#L22)
 
 Inputs for Sentence similarity inference
 
@@ -879,7 +879,7 @@ Inputs for Sentence similarity inference
 huggingface_hub.SentenceSimilarityInputData(sentences: list, source_sentence: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/sentence_similarity.py#L12)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/sentence_similarity.py#L12)
 
 ## summarization[[huggingface_hub.SummarizationInput]]
 
@@ -889,7 +889,7 @@ huggingface_hub.SentenceSimilarityInputData(sentences: list, source_sentence: st
 huggingface_hub.SummarizationInput(inputs: str, parameters: huggingface_hub.inference._generated.types.summarization.SummarizationParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/summarization.py#L27)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/summarization.py#L27)
 
 Inputs for Summarization inference
 
@@ -899,7 +899,7 @@ Inputs for Summarization inference
 huggingface_hub.SummarizationOutput(summary_text: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/summarization.py#L37)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/summarization.py#L37)
 
 Outputs of inference for the Summarization task
 
@@ -909,7 +909,7 @@ Outputs of inference for the Summarization task
 huggingface_hub.SummarizationParameters(clean_up_tokenization_spaces: bool | None = None, generate_parameters: dict[str, typing.Any] | None = None, truncation: typing.Optional[ForwardRef('SummarizationTruncationStrategy')] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/summarization.py#L15)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/summarization.py#L15)
 
 Additional inference parameters for summarization.
 
@@ -921,7 +921,7 @@ Additional inference parameters for summarization.
 huggingface_hub.TableQuestionAnsweringInput(inputs: TableQuestionAnsweringInputData, parameters: huggingface_hub.inference._generated.types.table_question_answering.TableQuestionAnsweringParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/table_question_answering.py#L40)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/table_question_answering.py#L40)
 
 Inputs for Table Question Answering inference
 
@@ -931,7 +931,7 @@ Inputs for Table Question Answering inference
 huggingface_hub.TableQuestionAnsweringInputData(question: str, table: dict)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/table_question_answering.py#L12)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/table_question_answering.py#L12)
 
 One (table, question) pair to answer
 
@@ -941,7 +941,7 @@ One (table, question) pair to answer
 huggingface_hub.TableQuestionAnsweringOutputElement(answer: str, cells: list, coordinates: list, aggregator: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/table_question_answering.py#L50)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/table_question_answering.py#L50)
 
 Outputs of inference for the Table Question Answering task
 
@@ -951,7 +951,7 @@ Outputs of inference for the Table Question Answering task
 huggingface_hub.TableQuestionAnsweringParameters(padding: typing.Optional[ForwardRef('Padding')] = None, sequential: bool | None = None, truncation: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/table_question_answering.py#L25)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/table_question_answering.py#L25)
 
 Additional inference parameters for Table Question Answering
 
@@ -963,7 +963,7 @@ Additional inference parameters for Table Question Answering
 huggingface_hub.Text2TextGenerationInput(inputs: str, parameters: huggingface_hub.inference._generated.types.text2text_generation.Text2TextGenerationParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text2text_generation.py#L27)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text2text_generation.py#L27)
 
 Inputs for Text2text Generation inference
 
@@ -973,7 +973,7 @@ Inputs for Text2text Generation inference
 huggingface_hub.Text2TextGenerationOutput(generated_text: typing.Any, text2_text_generation_output_generated_text: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text2text_generation.py#L37)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text2text_generation.py#L37)
 
 Outputs of inference for the Text2text Generation task
 
@@ -983,7 +983,7 @@ Outputs of inference for the Text2text Generation task
 huggingface_hub.Text2TextGenerationParameters(clean_up_tokenization_spaces: bool | None = None, generate_parameters: dict[str, typing.Any] | None = None, truncation: typing.Optional[ForwardRef('Text2TextGenerationTruncationStrategy')] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text2text_generation.py#L15)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text2text_generation.py#L15)
 
 Additional inference parameters for Text2text Generation
 
@@ -995,7 +995,7 @@ Additional inference parameters for Text2text Generation
 huggingface_hub.TextClassificationInput(inputs: str, parameters: huggingface_hub.inference._generated.types.text_classification.TextClassificationParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_classification.py#L25)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_classification.py#L25)
 
 Inputs for Text Classification inference
 
@@ -1005,7 +1005,7 @@ Inputs for Text Classification inference
 huggingface_hub.TextClassificationOutputElement(label: str, score: float)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_classification.py#L35)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_classification.py#L35)
 
 Outputs of inference for the Text Classification task
 
@@ -1015,7 +1015,7 @@ Outputs of inference for the Text Classification task
 huggingface_hub.TextClassificationParameters(function_to_apply: typing.Optional[ForwardRef('TextClassificationOutputTransform')] = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_classification.py#L15)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_classification.py#L15)
 
 Additional inference parameters for Text Classification
 
@@ -1027,7 +1027,7 @@ Additional inference parameters for Text Classification
 huggingface_hub.TextGenerationInput(inputs: str, parameters: huggingface_hub.inference._generated.types.text_generation.TextGenerationInputGenerateParameters | None = None, stream: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L76)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L76)
 
 Text Generation Input.
 Auto-generated from TGI specs.
@@ -1040,7 +1040,7 @@ https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/scripts/i
 huggingface_hub.TextGenerationInputGenerateParameters(adapter_id: str | None = None, best_of: int | None = None, decoder_input_details: bool | None = None, details: bool | None = None, do_sample: bool | None = None, frequency_penalty: float | None = None, grammar: huggingface_hub.inference._generated.types.text_generation.TextGenerationInputGrammarType | None = None, max_new_tokens: int | None = None, repetition_penalty: float | None = None, return_full_text: bool | None = None, seed: int | None = None, stop: list[str] | None = None, temperature: float | None = None, top_k: int | None = None, top_n_tokens: int | None = None, top_p: float | None = None, truncate: int | None = None, typical_p: float | None = None, watermark: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L25)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L25)
 
 #### huggingface_hub.TextGenerationInputGrammarType[[huggingface_hub.TextGenerationInputGrammarType]]
 
@@ -1048,7 +1048,7 @@ huggingface_hub.TextGenerationInputGenerateParameters(adapter_id: str | None = N
 huggingface_hub.TextGenerationInputGrammarType(type: TypeEnum, value: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L15)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L15)
 
 #### huggingface_hub.TextGenerationOutput[[huggingface_hub.TextGenerationOutput]]
 
@@ -1056,7 +1056,7 @@ huggingface_hub.TextGenerationInputGrammarType(type: TypeEnum, value: typing.Any
 huggingface_hub.TextGenerationOutput(generated_text: str, details: huggingface_hub.inference._generated.types.text_generation.TextGenerationOutputDetails | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L129)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L129)
 
 Text Generation Output.
 Auto-generated from TGI specs.
@@ -1069,7 +1069,7 @@ https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/scripts/i
 huggingface_hub.TextGenerationOutputBestOfSequence(finish_reason: TextGenerationOutputFinishReason, generated_text: str, generated_tokens: int, prefill: list, tokens: list, seed: int | None = None, top_tokens: list[list[huggingface_hub.inference._generated.types.text_generation.TextGenerationOutputToken]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L107)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L107)
 
 #### huggingface_hub.TextGenerationOutputDetails[[huggingface_hub.TextGenerationOutputDetails]]
 
@@ -1077,7 +1077,7 @@ huggingface_hub.TextGenerationOutputBestOfSequence(finish_reason: TextGeneration
 huggingface_hub.TextGenerationOutputDetails(finish_reason: TextGenerationOutputFinishReason, generated_tokens: int, prefill: list, tokens: list, best_of_sequences: list[huggingface_hub.inference._generated.types.text_generation.TextGenerationOutputBestOfSequence] | None = None, seed: int | None = None, top_tokens: list[list[huggingface_hub.inference._generated.types.text_generation.TextGenerationOutputToken]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L118)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L118)
 
 #### huggingface_hub.TextGenerationOutputPrefillToken[[huggingface_hub.TextGenerationOutputPrefillToken]]
 
@@ -1085,7 +1085,7 @@ huggingface_hub.TextGenerationOutputDetails(finish_reason: TextGenerationOutputF
 huggingface_hub.TextGenerationOutputPrefillToken(id: int, logprob: float, text: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L92)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L92)
 
 #### huggingface_hub.TextGenerationOutputToken[[huggingface_hub.TextGenerationOutputToken]]
 
@@ -1093,7 +1093,7 @@ huggingface_hub.TextGenerationOutputPrefillToken(id: int, logprob: float, text: 
 huggingface_hub.TextGenerationOutputToken(id: int, logprob: float, special: bool, text: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L99)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L99)
 
 #### huggingface_hub.TextGenerationStreamOutput[[huggingface_hub.TextGenerationStreamOutput]]
 
@@ -1101,7 +1101,7 @@ huggingface_hub.TextGenerationOutputToken(id: int, logprob: float, special: bool
 huggingface_hub.TextGenerationStreamOutput(index: int, token: REDACTED, details: huggingface_hub.inference._generated.types.text_generation.TextGenerationStreamOutputStreamDetails | None = None, generated_text: str | None = None, top_tokens: list[huggingface_hub.inference._generated.types.text_generation.TextGenerationStreamOutputToken] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L157)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L157)
 
 Text Generation Stream Output.
 Auto-generated from TGI specs.
@@ -1114,7 +1114,7 @@ https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/scripts/i
 huggingface_hub.TextGenerationStreamOutputStreamDetails(finish_reason: TextGenerationOutputFinishReason, generated_tokens: int, input_length: int, seed: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L141)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L141)
 
 #### huggingface_hub.TextGenerationStreamOutputToken[[huggingface_hub.TextGenerationStreamOutputToken]]
 
@@ -1122,7 +1122,7 @@ huggingface_hub.TextGenerationStreamOutputStreamDetails(finish_reason: TextGener
 huggingface_hub.TextGenerationStreamOutputToken(id: int, logprob: float, special: bool, text: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L149)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L149)
 
 ## text_to_audio[[huggingface_hub.TextToAudioGenerationParameters]]
 
@@ -1132,7 +1132,7 @@ huggingface_hub.TextGenerationStreamOutputToken(id: int, logprob: float, special
 huggingface_hub.TextToAudioGenerationParameters(do_sample: bool | None = None, early_stopping: typing.Union[bool, ForwardRef('TextToAudioEarlyStoppingEnum'), NoneType] = None, epsilon_cutoff: float | None = None, eta_cutoff: float | None = None, max_length: int | None = None, max_new_tokens: int | None = None, min_length: int | None = None, min_new_tokens: int | None = None, num_beam_groups: int | None = None, num_beams: int | None = None, penalty_alpha: float | None = None, temperature: float | None = None, top_k: int | None = None, top_p: float | None = None, typical_p: float | None = None, use_cache: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_to_audio.py#L15)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_to_audio.py#L15)
 
 Parametrization of the text generation process
 
@@ -1142,7 +1142,7 @@ Parametrization of the text generation process
 huggingface_hub.TextToAudioInput(inputs: str, parameters: huggingface_hub.inference._generated.types.text_to_audio.TextToAudioParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_to_audio.py#L83)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_to_audio.py#L83)
 
 Inputs for Text To Audio inference
 
@@ -1152,7 +1152,7 @@ Inputs for Text To Audio inference
 huggingface_hub.TextToAudioOutput(audio: typing.Any, sampling_rate: float)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_to_audio.py#L93)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_to_audio.py#L93)
 
 Outputs of inference for the Text To Audio task
 
@@ -1162,7 +1162,7 @@ Outputs of inference for the Text To Audio task
 huggingface_hub.TextToAudioParameters(generation_parameters: huggingface_hub.inference._generated.types.text_to_audio.TextToAudioGenerationParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_to_audio.py#L75)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_to_audio.py#L75)
 
 Additional inference parameters for Text To Audio
 
@@ -1174,7 +1174,7 @@ Additional inference parameters for Text To Audio
 huggingface_hub.TextToImageInput(inputs: str, parameters: huggingface_hub.inference._generated.types.text_to_image.TextToImageParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_to_image.py#L36)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_to_image.py#L36)
 
 Inputs for Text To Image inference
 
@@ -1184,7 +1184,7 @@ Inputs for Text To Image inference
 huggingface_hub.TextToImageOutput(image: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_to_image.py#L46)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_to_image.py#L46)
 
 Outputs of inference for the Text To Image task
 
@@ -1194,7 +1194,7 @@ Outputs of inference for the Text To Image task
 huggingface_hub.TextToImageParameters(guidance_scale: float | None = None, height: int | None = None, negative_prompt: str | None = None, num_inference_steps: int | None = None, scheduler: str | None = None, seed: int | None = None, width: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_to_image.py#L12)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_to_image.py#L12)
 
 Additional inference parameters for Text To Image
 
@@ -1206,7 +1206,7 @@ Additional inference parameters for Text To Image
 huggingface_hub.TextToSpeechGenerationParameters(do_sample: bool | None = None, early_stopping: typing.Union[bool, ForwardRef('TextToSpeechEarlyStoppingEnum'), NoneType] = None, epsilon_cutoff: float | None = None, eta_cutoff: float | None = None, max_length: int | None = None, max_new_tokens: int | None = None, min_length: int | None = None, min_new_tokens: int | None = None, num_beam_groups: int | None = None, num_beams: int | None = None, penalty_alpha: float | None = None, temperature: float | None = None, top_k: int | None = None, top_p: float | None = None, typical_p: float | None = None, use_cache: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_to_speech.py#L15)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_to_speech.py#L15)
 
 Parametrization of the text generation process
 
@@ -1216,7 +1216,7 @@ Parametrization of the text generation process
 huggingface_hub.TextToSpeechInput(inputs: str, parameters: huggingface_hub.inference._generated.types.text_to_speech.TextToSpeechParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_to_speech.py#L83)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_to_speech.py#L83)
 
 Inputs for Text To Speech inference
 
@@ -1226,7 +1226,7 @@ Inputs for Text To Speech inference
 huggingface_hub.TextToSpeechOutput(audio: typing.Any, sampling_rate: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_to_speech.py#L93)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_to_speech.py#L93)
 
 Outputs of inference for the Text To Speech task
 
@@ -1236,7 +1236,7 @@ Outputs of inference for the Text To Speech task
 huggingface_hub.TextToSpeechParameters(generation_parameters: huggingface_hub.inference._generated.types.text_to_speech.TextToSpeechGenerationParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_to_speech.py#L75)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_to_speech.py#L75)
 
 Additional inference parameters for Text To Speech
 
@@ -1248,7 +1248,7 @@ Additional inference parameters for Text To Speech
 huggingface_hub.TextToVideoInput(inputs: str, parameters: huggingface_hub.inference._generated.types.text_to_video.TextToVideoParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_to_video.py#L32)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_to_video.py#L32)
 
 Inputs for Text To Video inference
 
@@ -1258,7 +1258,7 @@ Inputs for Text To Video inference
 huggingface_hub.TextToVideoOutput(video: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_to_video.py#L42)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_to_video.py#L42)
 
 Outputs of inference for the Text To Video task
 
@@ -1268,7 +1268,7 @@ Outputs of inference for the Text To Video task
 huggingface_hub.TextToVideoParameters(guidance_scale: float | None = None, negative_prompt: list[str] | None = None, num_frames: float | None = None, num_inference_steps: int | None = None, seed: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/text_to_video.py#L12)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/text_to_video.py#L12)
 
 Additional inference parameters for Text To Video
 
@@ -1280,7 +1280,7 @@ Additional inference parameters for Text To Video
 huggingface_hub.TokenClassificationInput(inputs: str, parameters: huggingface_hub.inference._generated.types.token_classification.TokenClassificationParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/token_classification.py#L27)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/token_classification.py#L27)
 
 Inputs for Token Classification inference
 
@@ -1290,7 +1290,7 @@ Inputs for Token Classification inference
 huggingface_hub.TokenClassificationOutputElement(end: int, score: float, start: int, word: str, entity: str | None = None, entity_group: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/token_classification.py#L37)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/token_classification.py#L37)
 
 Outputs of inference for the Token Classification task
 
@@ -1300,7 +1300,7 @@ Outputs of inference for the Token Classification task
 huggingface_hub.TokenClassificationParameters(aggregation_strategy: typing.Optional[ForwardRef('TokenClassificationAggregationStrategy')] = None, ignore_labels: list[str] | None = None, stride: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/token_classification.py#L15)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/token_classification.py#L15)
 
 Additional inference parameters for Token Classification
 
@@ -1312,7 +1312,7 @@ Additional inference parameters for Token Classification
 huggingface_hub.TranslationInput(inputs: str, parameters: huggingface_hub.inference._generated.types.translation.TranslationParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/translation.py#L35)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/translation.py#L35)
 
 Inputs for Translation inference
 
@@ -1322,7 +1322,7 @@ Inputs for Translation inference
 huggingface_hub.TranslationOutput(translation_text: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/translation.py#L45)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/translation.py#L45)
 
 Outputs of inference for the Translation task
 
@@ -1332,7 +1332,7 @@ Outputs of inference for the Translation task
 huggingface_hub.TranslationParameters(clean_up_tokenization_spaces: bool | None = None, generate_parameters: dict[str, typing.Any] | None = None, src_lang: str | None = None, tgt_lang: str | None = None, truncation: typing.Optional[ForwardRef('TranslationTruncationStrategy')] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/translation.py#L15)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/translation.py#L15)
 
 Additional inference parameters for Translation
 
@@ -1344,7 +1344,7 @@ Additional inference parameters for Translation
 huggingface_hub.VideoClassificationInput(inputs: typing.Any, parameters: huggingface_hub.inference._generated.types.video_classification.VideoClassificationParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/video_classification.py#L29)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/video_classification.py#L29)
 
 Inputs for Video Classification inference
 
@@ -1354,7 +1354,7 @@ Inputs for Video Classification inference
 huggingface_hub.VideoClassificationOutputElement(label: str, score: float)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/video_classification.py#L39)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/video_classification.py#L39)
 
 Outputs of inference for the Video Classification task
 
@@ -1364,7 +1364,7 @@ Outputs of inference for the Video Classification task
 huggingface_hub.VideoClassificationParameters(frame_sampling_rate: int | None = None, function_to_apply: typing.Optional[ForwardRef('VideoClassificationOutputTransform')] = None, num_frames: int | None = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/video_classification.py#L15)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/video_classification.py#L15)
 
 Additional inference parameters for Video Classification
 
@@ -1376,7 +1376,7 @@ Additional inference parameters for Video Classification
 huggingface_hub.VisualQuestionAnsweringInput(inputs: VisualQuestionAnsweringInputData, parameters: huggingface_hub.inference._generated.types.visual_question_answering.VisualQuestionAnsweringParameters | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/visual_question_answering.py#L33)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/visual_question_answering.py#L33)
 
 Inputs for Visual Question Answering inference
 
@@ -1386,7 +1386,7 @@ Inputs for Visual Question Answering inference
 huggingface_hub.VisualQuestionAnsweringInputData(image: typing.Any, question: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/visual_question_answering.py#L12)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/visual_question_answering.py#L12)
 
 One (image, question) pair to answer
 
@@ -1396,7 +1396,7 @@ One (image, question) pair to answer
 huggingface_hub.VisualQuestionAnsweringOutputElement(score: float, answer: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/visual_question_answering.py#L43)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/visual_question_answering.py#L43)
 
 Outputs of inference for the Visual Question Answering task
 
@@ -1406,7 +1406,7 @@ Outputs of inference for the Visual Question Answering task
 huggingface_hub.VisualQuestionAnsweringParameters(top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/visual_question_answering.py#L22)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/visual_question_answering.py#L22)
 
 Additional inference parameters for Visual Question Answering
 
@@ -1418,7 +1418,7 @@ Additional inference parameters for Visual Question Answering
 huggingface_hub.ZeroShotClassificationInput(inputs: str, parameters: ZeroShotClassificationParameters)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/zero_shot_classification.py#L27)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/zero_shot_classification.py#L27)
 
 Inputs for Zero Shot Classification inference
 
@@ -1428,7 +1428,7 @@ Inputs for Zero Shot Classification inference
 huggingface_hub.ZeroShotClassificationOutputElement(label: str, score: float)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/zero_shot_classification.py#L37)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/zero_shot_classification.py#L37)
 
 Outputs of inference for the Zero Shot Classification task
 
@@ -1438,7 +1438,7 @@ Outputs of inference for the Zero Shot Classification task
 huggingface_hub.ZeroShotClassificationParameters(candidate_labels: list, hypothesis_template: str | None = None, multi_label: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/zero_shot_classification.py#L10)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/zero_shot_classification.py#L10)
 
 Additional inference parameters for Zero Shot Classification
 
@@ -1450,7 +1450,7 @@ Additional inference parameters for Zero Shot Classification
 huggingface_hub.ZeroShotImageClassificationInput(inputs: str, parameters: ZeroShotImageClassificationParameters)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/zero_shot_image_classification.py#L22)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/zero_shot_image_classification.py#L22)
 
 Inputs for Zero Shot Image Classification inference
 
@@ -1460,7 +1460,7 @@ Inputs for Zero Shot Image Classification inference
 huggingface_hub.ZeroShotImageClassificationOutputElement(label: str, score: float)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/zero_shot_image_classification.py#L32)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/zero_shot_image_classification.py#L32)
 
 Outputs of inference for the Zero Shot Image Classification task
 
@@ -1470,7 +1470,7 @@ Outputs of inference for the Zero Shot Image Classification task
 huggingface_hub.ZeroShotImageClassificationParameters(candidate_labels: list, hypothesis_template: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/zero_shot_image_classification.py#L10)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/zero_shot_image_classification.py#L10)
 
 Additional inference parameters for Zero Shot Image Classification
 
@@ -1482,7 +1482,7 @@ Additional inference parameters for Zero Shot Image Classification
 huggingface_hub.ZeroShotObjectDetectionBoundingBox(xmax: int, xmin: int, ymax: int, ymin: int)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/zero_shot_object_detection.py#L28)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/zero_shot_object_detection.py#L28)
 
 The predicted bounding box. Coordinates are relative to the top left corner of the input
 image.
@@ -1493,7 +1493,7 @@ image.
 huggingface_hub.ZeroShotObjectDetectionInput(inputs: str, parameters: ZeroShotObjectDetectionParameters)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/zero_shot_object_detection.py#L18)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/zero_shot_object_detection.py#L18)
 
 Inputs for Zero Shot Object Detection inference
 
@@ -1503,7 +1503,7 @@ Inputs for Zero Shot Object Detection inference
 huggingface_hub.ZeroShotObjectDetectionOutputElement(box: ZeroShotObjectDetectionBoundingBox, label: str, score: float)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/zero_shot_object_detection.py#L40)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/zero_shot_object_detection.py#L40)
 
 Outputs of inference for the Zero Shot Object Detection task
 
@@ -1513,9 +1513,9 @@ Outputs of inference for the Zero Shot Object Detection task
 huggingface_hub.ZeroShotObjectDetectionParameters(candidate_labels: list)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/types/zero_shot_object_detection.py#L10)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/types/zero_shot_object_detection.py#L10)
 
 Additional inference parameters for Zero Shot Object Detection
 
 ### Strict Dataclasses
-https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/dataclasses.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/dataclasses.md

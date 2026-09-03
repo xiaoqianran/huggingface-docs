@@ -139,5 +139,5 @@ special characters or identifiers that need to be reverted for example.
 | Metaspace | Reverts the Metaspace PreTokenizer. This PreTokenizer uses a special identifier `▁` to identify whitespaces, and so this Decoder helps with decoding these. |
 | WordPiece | Reverts the WordPiece Model. This model uses a special identifier `##` for continuing subwords, and so this Decoder helps with decoding these. |
 
-### The tokenization pipeline
-https://huggingface.co/docs/tokenizers/v0.23.1/pipeline.md
+### Installation
+https://huggingface.co/docs/tokenizers/v0.23.2/installation.md

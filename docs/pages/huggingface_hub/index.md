@@ -47,4 +47,4 @@ conduct](https://github.com/huggingface/huggingface_hub/blob/main/CODE_OF_CONDUC
 create an inclusive and welcoming collaborative space for everyone.
 
 ### Cache-system reference
-https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/cache.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/cache.md

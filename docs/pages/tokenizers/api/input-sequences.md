@@ -34,5 +34,5 @@ The Rust API Reference is available directly on the [Docs.rs](https://docs.rs/to
 
 The node API has not been documented yet.
 
-### Decoders
-https://huggingface.co/docs/tokenizers/v0.23.1/api/decoders.md
+### Pre-tokenizers
+https://huggingface.co/docs/tokenizers/v0.23.2/api/pre-tokenizers.md

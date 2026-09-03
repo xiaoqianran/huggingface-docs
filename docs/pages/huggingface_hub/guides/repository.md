@@ -24,7 +24,7 @@ If you want to create and manage a repository on the Hub, your machine must be l
 
 ## List your repositories
 
-You can list all repositories (models, datasets, spaces, and buckets) for your account or an organization using [list_user_repos()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_user_repos). Results include storage information and are sorted by storage usage.
+You can list all repositories (models, datasets, spaces, and buckets) for your account or an organization using [list_user_repos()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_user_repos). Results include storage information and are sorted by storage usage.
 
 ```py
 >>> from huggingface_hub import list_user_repos
@@ -56,7 +56,7 @@ your username namespace) or from organizations in which you have write permissio
 
 ### Create a repository
 
-Create an empty repository with [create_repo()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo) and give it a name with the `repo_id` parameter. The `repo_id` is your namespace followed by the repository name: `username_or_org/repo_name`.
+Create an empty repository with [create_repo()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo) and give it a name with the `repo_id` parameter. The `repo_id` is your namespace followed by the repository name: `username_or_org/repo_name`.
 
 ```py
 >>> from huggingface_hub import create_repo
@@ -72,7 +72,7 @@ Successfully created lysandre/test-model on the Hub.
 Your repo is now available at https://huggingface.co/lysandre/test-model
 ```
 
-By default, [create_repo()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo) creates a model repository. But you can use the `repo_type` parameter to specify another repository type. For example, if you want to create a dataset repository:
+By default, [create_repo()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo) creates a model repository. But you can use the `repo_type` parameter to specify another repository type. For example, if you want to create a dataset repository:
 
 ```py
 >>> from huggingface_hub import create_repo
@@ -99,10 +99,10 @@ Or via CLI:
 >>> hf repos create lysandre/test-private --private
 ```
 
-If you want to change the repository visibility at a later time, you can use the [update_repo_settings()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_repo_settings) function.
+If you want to change the repository visibility at a later time, you can use the [update_repo_settings()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_repo_settings) function.
 
 > [!TIP]
-> If you are part of an organization with an Enterprise plan, you can create a repo in a specific resource group by passing `resource_group_id` as parameter to [create_repo()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo). Resource groups are a security feature to control which members from your org can access a given resource. You can get the resource group ID by copying it from your org settings page url on the Hub (e.g. `"https://huggingface.co/organizations/huggingface/settings/resource-groups/66670e5163145ca562cb1988"` => `"66670e5163145ca562cb1988"`). For more details about resource group, check out this [guide](https://huggingface.co/docs/hub/en/security-resource-groups).
+> If you are part of an organization with an Enterprise plan, you can create a repo in a specific resource group by passing `resource_group_id` as parameter to [create_repo()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo). Resource groups are a security feature to control which members from your org can access a given resource. You can get the resource group ID by copying it from your org settings page url on the Hub (e.g. `"https://huggingface.co/organizations/huggingface/settings/resource-groups/66670e5163145ca562cb1988"` => `"66670e5163145ca562cb1988"`). For more details about resource group, check out this [guide](https://huggingface.co/docs/hub/en/security-resource-groups).
 
 You can also create a repo in a specific cloud region by passing `region` as parameter:
 
@@ -113,7 +113,7 @@ You can also create a repo in a specific cloud region by passing `region` as par
 
 ### Delete a repository
 
-Delete a repository with [delete_repo()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_repo). Make sure you want to delete a repository because this is an irreversible process!
+Delete a repository with [delete_repo()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_repo). Make sure you want to delete a repository because this is an irreversible process!
 
 Specify the `repo_id` of the repository you want to delete:
 
@@ -136,7 +136,7 @@ Or via CLI:
 ### Duplicate a repository
 
 In some cases, you want to copy someone else's repo to adapt it to your use case.
-This is possible using the [duplicate_repo()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.duplicate_repo) method. It will duplicate the whole repository, preserving the full git history.
+This is possible using the [duplicate_repo()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.duplicate_repo) method. It will duplicate the whole repository, preserving the full git history.
 This works for models, datasets, and Spaces. For Spaces, you will still need to configure your own settings (hardware, sleep-time, storage, variables and secrets). Check out our [Manage your Space](./manage-spaces) guide for more details.
 
 ```py
@@ -153,7 +153,7 @@ RepoUrl('https://huggingface.co/datasets/nateraw/gdpval',...)
 
 ## Search for Spaces
 
-The Hub provides a semantic search API for discovering Spaces. You can search using natural language queries with [search_spaces()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.search_spaces):
+The Hub provides a semantic search API for discovering Spaces. You can search using natural language queries with [search_spaces()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.search_spaces):
 
 ```py
 >>> from huggingface_hub import search_spaces
@@ -173,7 +173,7 @@ to learn how to use your repository.
 
 ## Copy files
 
-Use [copy_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.copy_files) to copy files that are already hosted on the Hub from one repository to another (or even within the same repository) without downloading and re-uploading them. Both individual files and entire folders are supported, and files tracked with Xet or LFS are copied server-side by hash.
+Use [copy_files()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.copy_files) to copy files that are already hosted on the Hub from one repository to another (or even within the same repository) without downloading and re-uploading them. Both individual files and entire folders are supported, and files tracked with Xet or LFS are copied server-side by hash.
 
 ```py
 >>> from huggingface_hub import copy_files
@@ -218,7 +218,7 @@ More generally, branches and tags are referred as [git references](https://git-s
 
 ### Create branches and tags
 
-You can create new branch and tags using [create_branch()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_branch) and [create_tag()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_tag):
+You can create new branch and tags using [create_branch()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_branch) and [create_tag()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_tag):
 
 ```py
 >>> from huggingface_hub import create_branch, create_tag
@@ -237,11 +237,11 @@ Or via CLI:
 >>> hf repos tag create bigcode/the-stack v0.1.1 --repo-type dataset --revision v0.1-release -m "Bump release version."
 ```
 
-You can use the [delete_branch()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_branch) and [delete_tag()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_tag) functions in the same way to delete a branch or a tag, or `hf repos branch delete` and `hf repos tag delete` respectively in CLI.
+You can use the [delete_branch()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_branch) and [delete_tag()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_tag) functions in the same way to delete a branch or a tag, or `hf repos branch delete` and `hf repos tag delete` respectively in CLI.
 
 ### List all branches and tags
 
-You can also list the existing git refs from a repository using [list_repo_refs()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_refs):
+You can also list the existing git refs from a repository using [list_repo_refs()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_refs):
 
 ```py
 >>> from huggingface_hub import list_repo_refs
@@ -285,7 +285,7 @@ Or via CLI:
 
 To give more control over how repos are used, the Hub allows repo authors to enable **access requests** for their repos. User must agree to share their contact information (username and email address) with the repo authors to access the files when enabled. A repo with access requests enabled is called a **gated repo**.
 
-You can set a repo as gated using [update_repo_settings()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_repo_settings):
+You can set a repo as gated using [update_repo_settings()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_repo_settings):
 
 ```py
 >>> from huggingface_hub import HfApi
@@ -302,7 +302,7 @@ Or via CLI:
 
 ### Rename your repository
 
-You can rename your repository on the Hub using [move_repo()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.move_repo). Using this method, you can also move the repo from a user to
+You can rename your repository on the Hub using [move_repo()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.move_repo). Using this method, you can also move the repo from a user to
 an organization. When doing so, there are a [few limitations](https://hf.cos/docs/hub/repositories-settings#renaming-or-transferring-a-repo)
 that you should be aware of. For example, you can't transfer your repo to another user.
 
@@ -321,16 +321,16 @@ Or via CLI:
 
 The Hub supports a `"kernel"` repository type for hosting compute kernels. This is **not** a fully-compatible repo type. Only a limited set of methods have been tested and are officially supported:
 
-- [kernel_info()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.kernel_info)
-- [hf_hub_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.hf_hub_download)
-- [snapshot_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.snapshot_download)
-- [list_repo_refs()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_refs)
-- [list_repo_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_files)
-- [list_repo_tree()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_tree)
+- [kernel_info()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.kernel_info)
+- [hf_hub_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.hf_hub_download)
+- [snapshot_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download)
+- [list_repo_refs()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_refs)
+- [list_repo_files()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_files)
+- [list_repo_tree()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_tree)
 
-Note that [create_repo()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo) and [delete_repo()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_repo) are also compatible but restricted to a small subset of allowed users and orgs on the Hub.
+Note that [create_repo()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo) and [delete_repo()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_repo) are also compatible but restricted to a small subset of allowed users and orgs on the Hub.
 
 For building, publishing, and using kernel repos, please use the dedicated [`kernels`](https://github.com/huggingface/kernels) package instead. Refer to the [Kernels documentation](https://huggingface.co/docs/kernels/index) for more details.
 
 ### Sandboxes
-https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/sandbox.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/guides/sandbox.md

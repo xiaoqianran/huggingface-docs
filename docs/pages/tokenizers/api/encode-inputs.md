@@ -1,6 +1,6 @@
 # Encode Inputs
 
-These types represent all the different kinds of input that a [Tokenizer](/docs/tokenizers/v0.23.1/en/api/tokenizer#tokenizers.Tokenizer) accepts
+These types represent all the different kinds of input that a [Tokenizer](/docs/tokenizers/v0.23.2/en/api/tokenizer#tokenizers.Tokenizer) accepts
 when using `encode_batch()`.
 
 ## TextEncodeInput[[[[tokenizers.TextEncodeInput]]]]
@@ -41,5 +41,5 @@ The Rust API Reference is available directly on the [Docs.rs](https://docs.rs/to
 
 The node API has not been documented yet.
 
-### Tokenizer
-https://huggingface.co/docs/tokenizers/v0.23.1/api/tokenizer.md
+### Normalizers
+https://huggingface.co/docs/tokenizers/v0.23.2/api/normalizers.md

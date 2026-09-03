@@ -238,7 +238,7 @@ This command will not log you out if you are logged in using the `HF_TOKEN` envi
 
 ## hf download
 
-Use the `hf download` command to download files from the Hub directly. Internally, it uses the same [hf_hub_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) and [snapshot_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.snapshot_download) helpers described in the [Download](./download) guide and prints the returned path to the terminal. In the examples below, we will walk through the most common use cases. For a full list of available options, you can run:
+Use the `hf download` command to download files from the Hub directly. Internally, it uses the same [hf_hub_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) and [snapshot_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download) helpers described in the [Download](./download) guide and prints the returned path to the terminal. In the examples below, we will walk through the most common use cases. For a full list of available options, you can run:
 
 ```bash
 hf download --help
@@ -443,7 +443,7 @@ For more details, check out the [environment variables reference](../package_ref
 
 ## hf upload
 
-Use the `hf upload` command to upload files to the Hub directly. Internally, it uses the same [upload_file()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and [upload_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) helpers described in the [Upload](./upload) guide. In the examples below, we will walk through the most common use cases. For a full list of available options, you can run:
+Use the `hf upload` command to upload files to the Hub directly. Internally, it uses the same [upload_file()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and [upload_folder()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) helpers described in the [Upload](./upload) guide. In the examples below, we will walk through the most common use cases. For a full list of available options, you can run:
 
 ```bash
 >>> hf upload --help
@@ -2166,6 +2166,11 @@ Manage scheduled jobs using
 # List your active scheduled jobs
 >>> hf jobs scheduled ls
 
+# Same filters as `hf jobs ls`: --status, --label and --name
+>>> hf jobs scheduled ls --all
+>>> hf jobs scheduled ls --status suspended
+>>> hf jobs scheduled ls --name hourly-task --label env=prod
+
 # Inspect the status of a job
 >>> hf jobs scheduled inspect <scheduled_job_id>
 
@@ -2185,6 +2190,10 @@ Manage scheduled jobs using
 ## hf sandbox
 
 `hf sandbox` spins up isolated cloud machines built on Jobs: create one, run commands with live-streamed output, and copy files in and out. Any Docker image with `/bin/sh` works. See the [Sandboxes guide](./sandbox) for the Python API, and the [conceptual guide](../concepts/sandbox) for how it works under the hood.
+
+> [!NOTE]
+> Sandboxes are experimental, and their API and behavior may change without notice. Shared sandboxes are intended for
+> workloads within the same trust boundary; use a dedicated sandbox for workloads that do not trust each other.
 
 ```bash
 # Create a sandbox (waits until it is ready, prints its id)

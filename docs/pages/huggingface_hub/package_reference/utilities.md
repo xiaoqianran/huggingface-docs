@@ -39,7 +39,7 @@ The levels should be understood as follows:
 huggingface_hub.utils.logging.get_verbosity()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/logging.py#L103)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/logging.py#L103)
 
 **Returns:**
 
@@ -63,7 +63,7 @@ Return the current level for the HuggingFace Hub's root logger.
 huggingface_hub.utils.logging.set_verbosity(verbosity: int)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/logging.py#L122)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/logging.py#L122)
 
 **Parameters:**
 
@@ -77,7 +77,7 @@ Sets the level for the HuggingFace Hub's root logger.
 huggingface_hub.utils.logging.set_verbosity_info()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/logging.py#L134)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/logging.py#L134)
 
 Sets the verbosity to `logging.INFO`.
 
@@ -87,7 +87,7 @@ Sets the verbosity to `logging.INFO`.
 huggingface_hub.utils.logging.set_verbosity_debug()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/logging.py#L148)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/logging.py#L148)
 
 Sets the verbosity to `logging.DEBUG`.
 
@@ -97,7 +97,7 @@ Sets the verbosity to `logging.DEBUG`.
 huggingface_hub.utils.logging.set_verbosity_warning()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/logging.py#L141)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/logging.py#L141)
 
 Sets the verbosity to `logging.WARNING`.
 
@@ -107,7 +107,7 @@ Sets the verbosity to `logging.WARNING`.
 huggingface_hub.utils.logging.set_verbosity_error()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/logging.py#L155)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/logging.py#L155)
 
 Sets the verbosity to `logging.ERROR`.
 
@@ -117,7 +117,7 @@ Sets the verbosity to `logging.ERROR`.
 huggingface_hub.utils.logging.disable_propagation()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/logging.py#L162)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/logging.py#L162)
 
 Disable propagation of the library log outputs. Note that log propagation is
 disabled by default.
@@ -128,7 +128,7 @@ disabled by default.
 huggingface_hub.utils.logging.enable_propagation()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/logging.py#L170)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/logging.py#L170)
 
 Enable propagation of the library log outputs. Please disable the
 HuggingFace Hub's default handler to prevent double logging if the root
@@ -145,7 +145,7 @@ Using these shouldn't be necessary if you use `huggingface_hub` and you don't mo
 huggingface_hub.utils.logging.get_logger(name: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/logging.py#L78)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/logging.py#L78)
 
 **Parameters:**
 
@@ -170,8 +170,8 @@ when downloading or uploading files). `huggingface_hub` exposes a `tqdm` wrapper
 consistent way across the library.
 
 By default, progress bars are enabled. You can disable them globally by setting `HF_HUB_DISABLE_PROGRESS_BARS`
-environment variable. You can also enable/disable them using [enable_progress_bars()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.utils.enable_progress_bars) and
-[disable_progress_bars](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.utils.disable_progress_bars). If set, the environment variable has priority on the helpers.
+environment variable. You can also enable/disable them using [enable_progress_bars()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.utils.enable_progress_bars) and
+[disable_progress_bars](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.utils.disable_progress_bars). If set, the environment variable has priority on the helpers.
 
 ```py
 >>> from huggingface_hub import snapshot_download
@@ -226,7 +226,7 @@ You can also enable or disable progress bars for specific groups. This allows yo
 huggingface_hub.utils.are_progress_bars_disabled(name: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/tqdm.py#L191)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/tqdm.py#L191)
 
 **Parameters:**
 
@@ -250,7 +250,7 @@ settings.
 huggingface_hub.utils.disable_progress_bars(name: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/tqdm.py#L109)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/tqdm.py#L109)
 
 **Parameters:**
 
@@ -279,7 +279,7 @@ with disable_progress_bars():     # disables for the block, re-enables on exit
 huggingface_hub.utils.enable_progress_bars(name: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/tqdm.py#L159)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/tqdm.py#L159)
 
 **Parameters:**
 
@@ -299,9 +299,9 @@ environment setting.
 
 In `huggingface_hub` v0.x, HTTP requests were handled with `requests`, and configuration was done via `configure_http_backend`. Since we now use `httpx`, configuration works differently: you must provide a factory function that takes no arguments and returns an `httpx.Client`. You can review the [default implementation here](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/utils/_http.py) to see which parameters are used by default.
 
-In some setups, you may need to control how HTTP requests are made, for example when working behind a proxy. The `huggingface_hub` library allows you to configure this globally with [set_client_factory()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.set_client_factory). After configuration, all requests to the Hub will use your custom settings. Since `huggingface_hub` relies on `httpx.Client` under the hood, you can check the [`httpx` documentation](https://www.python-httpx.org/advanced/clients/) for details on available parameters.
+In some setups, you may need to control how HTTP requests are made, for example when working behind a proxy. The `huggingface_hub` library allows you to configure this globally with [set_client_factory()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.set_client_factory). After configuration, all requests to the Hub will use your custom settings. Since `huggingface_hub` relies on `httpx.Client` under the hood, you can check the [`httpx` documentation](https://www.python-httpx.org/advanced/clients/) for details on available parameters.
 
-If you are building a third-party library and need to make direct requests to the Hub, use [get_session()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.get_session) to obtain a correctly configured `httpx` client. Replace any direct `httpx.get(...)` calls with `get_session().get(...)` to ensure proper behavior.
+If you are building a third-party library and need to make direct requests to the Hub, use [get_session()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.get_session) to obtain a correctly configured `httpx` client. Replace any direct `httpx.get(...)` calls with `get_session().get(...)` to ensure proper behavior.
 
 #### huggingface_hub.set_client_factory[[huggingface_hub.set_client_factory]]
 
@@ -309,16 +309,16 @@ If you are building a third-party library and need to make direct requests to th
 huggingface_hub.set_client_factory(client_factory: Callable)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_http.py#L335)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_http.py#L335)
 
 Set the HTTP client factory to be used by `huggingface_hub`.
 
-The client factory is a method that returns a `httpx.Client` object. On the first call to [get_session()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.get_session) the client factory
+The client factory is a method that returns a `httpx.Client` object. On the first call to [get_session()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.get_session) the client factory
 will be used to create a new `httpx.Client` object that will be shared between all calls made by `huggingface_hub`.
 
 This can be useful if you are running your scripts in a specific environment requiring custom configuration (e.g. custom proxy or certifications).
 
-Use [get_session()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.get_session) to get a correctly configured `httpx.Client`.
+Use [get_session()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.get_session) to get a correctly configured `httpx.Client`.
 
 #### huggingface_hub.get_session[[huggingface_hub.get_session]]
 
@@ -326,15 +326,15 @@ Use [get_session()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities
 huggingface_hub.get_session()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_http.py#L368)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_http.py#L368)
 
 Get a `httpx.Client` object, using the transport factory from the user.
 
 This client is shared between all calls made by `huggingface_hub`. Therefore you should not close it manually.
 
-Use [set_client_factory()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.set_client_factory) to customize the `httpx.Client`.
+Use [set_client_factory()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.set_client_factory) to customize the `httpx.Client`.
 
-In rare cases, you may want to manually close the current session (for example, after a transient `SSLError`). You can do this with [close_session()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.close_session). A new session will automatically be created on the next call to [get_session()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.get_session).
+In rare cases, you may want to manually close the current session (for example, after a transient `SSLError`). You can do this with [close_session()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.close_session). A new session will automatically be created on the next call to [get_session()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.get_session).
 
 Sessions are always closed automatically when the process exits.
 
@@ -344,15 +344,15 @@ Sessions are always closed automatically when the process exits.
 huggingface_hub.close_session()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_http.py#L396)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_http.py#L396)
 
 Close the global `httpx.Client` used by `huggingface_hub`.
 
-If a Client is closed, it will be recreated on the next call to [get_session()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.get_session).
+If a Client is closed, it will be recreated on the next call to [get_session()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.get_session).
 
 Can be useful if e.g. an SSL certificate has been updated.
 
-For async code, use [set_async_client_factory()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.set_async_client_factory) to configure an `httpx.AsyncClient` and [get_async_session()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.get_async_session) to retrieve one.
+For async code, use [set_async_client_factory()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.set_async_client_factory) to configure an `httpx.AsyncClient` and [get_async_session()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.get_async_session) to retrieve one.
 
 #### huggingface_hub.set_async_client_factory[[huggingface_hub.set_async_client_factory]]
 
@@ -360,7 +360,7 @@ For async code, use [set_async_client_factory()](/docs/huggingface_hub/v1.29.0/e
 huggingface_hub.set_async_client_factory(async_client_factory: Callable)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_http.py#L352)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_http.py#L352)
 
 Set the HTTP async client factory to be used by `huggingface_hub`.
 
@@ -378,11 +378,11 @@ Use `get_async_client` to get a correctly configured `httpx.AsyncClient`.
 huggingface_hub.get_async_session()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_http.py#L383)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_http.py#L383)
 
 Return a `httpx.AsyncClient` object, using the transport factory from the user.
 
-Use [set_async_client_factory()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.set_async_client_factory) to customize the `httpx.AsyncClient`.
+Use [set_async_client_factory()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.set_async_client_factory) to customize the `httpx.AsyncClient`.
 
 > [!WARNING]
 > Contrary to the `httpx.Client` that is shared between all calls made by `huggingface_hub`, the `httpx.AsyncClient` is not shared.
@@ -397,7 +397,7 @@ Unlike the synchronous client, the lifecycle of the async client is not managed 
 
 ### Raise for status[[huggingface_hub.hf_raise_for_status]]
 
-[hf_raise_for_status()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.hf_raise_for_status) is meant to be the central method to "raise for status" from any
+[hf_raise_for_status()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.hf_raise_for_status) is meant to be the central method to "raise for status" from any
 request made to the Hub. It wraps the base `httpx.Response.raise_for_status` to provide
 additional information. Any `HTTPError` thrown is converted into a `HfHubHTTPError`.
 
@@ -422,7 +422,7 @@ except HfHubHTTPError as e:
 huggingface_hub.hf_raise_for_status(response: Response, endpoint_name: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_http.py#L758)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_http.py#L768)
 
 **Parameters:**
 
@@ -431,28 +431,28 @@ response (`Response`) : Response from the server.
 endpoint_name (`str`, *optional*) : Name of the endpoint that has been called. If provided, the error message will be more complete.
 
 Internal version of `response.raise_for_status()` that will refine a potential HTTPError.
-Raised exception will be an instance of [HfHubHTTPError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError).
+Raised exception will be an instance of [HfHubHTTPError](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError).
 
 This helper is meant to be the unique method to raise_for_status when making a call to the Hugging Face Hub.
 
 > [!WARNING]
 > Raises when the request has failed:
 >
->     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+>     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 >         If the repository to download from cannot be found. This may be because it
 >         doesn't exist, because `repo_type` is not set correctly, or because the repo
 >         is `private` and you do not have access.
->     - [GatedRepoError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.GatedRepoError)
+>     - [GatedRepoError](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.errors.GatedRepoError)
 >         If the repository exists but is gated and the user is not on the authorized
 >         list.
->     - [RevisionNotFoundError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
+>     - [RevisionNotFoundError](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
 >         If the repository exists but the revision couldn't be found.
->     - [EntryNotFoundError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.EntryNotFoundError)
+>     - [EntryNotFoundError](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.errors.EntryNotFoundError)
 >         If the repository exists but the entry (e.g. the requested file) couldn't be
 >         find.
->     - [BadRequestError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError)
+>     - [BadRequestError](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError)
 >         If request failed with a HTTP 400 BadRequest error.
->     - [HfHubHTTPError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError)
+>     - [HfHubHTTPError](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError)
 >         If request failed for a reason not listed above.
 
 ### Check offline mode[[huggingface_hub.is_offline_mode]]
@@ -465,7 +465,7 @@ You can programmatically check if offline mode is enabled using `is_offline_mode
 huggingface_hub.is_offline_mode()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/constants.py#L195)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/constants.py#L195)
 
 Returns whether we are in offline mode for the Hub.
 
@@ -498,7 +498,7 @@ user as possible.
 huggingface_hub.errors.HfHubHTTPError(message: str, response: Response, server_message: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L90)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L90)
 
 HTTPError to inherit from for any custom HTTP Error raised in HF Hub.
 
@@ -534,7 +534,7 @@ ate_commit` expects the repository to exist.")
 append_to_message(additional_message: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L137)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L137)
 
 Append additional information to the `HfHubHTTPError` initial message.
 
@@ -546,7 +546,7 @@ Append additional information to the `HfHubHTTPError` initial message.
 huggingface_hub.errors.RepositoryNotFoundError(message: str, response: Response, server_message: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L301)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L301)
 
 **Parameters:**
 
@@ -579,7 +579,7 @@ Invalid username or password.
 huggingface_hub.errors.GatedRepoError(message: str, response: Response, server_message: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L331)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L331)
 
 Raised when trying to access a gated repository for which the user is not on the
 authorized list.
@@ -607,7 +607,7 @@ Visit https://huggingface.co/ardent-figment/gated-model to ask for access.
 huggingface_hub.errors.RevisionNotFoundError(message: str, response: Response, server_message: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L374)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L374)
 
 **Parameters:**
 
@@ -633,9 +633,9 @@ Revision Not Found for url: https://huggingface.co/bert-base-cased/resolve/%3Cno
 
 #### huggingface_hub.errors.RevisionResolutionError[[huggingface_hub.errors.RevisionResolutionError]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L401)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L401)
 
-Raised by [HfApi.resolve_revision()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision) when a revision cannot be resolved to a commit hash: the Hub could not be
+Raised by [HfApi.resolve_revision()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision) when a revision cannot be resolved to a commit hash: the Hub could not be
 reached (offline mode, connection error, timeout, Hub downtime, ...) and no matching entry was found in the
 local cache.
 
@@ -647,7 +647,7 @@ local cache.
 huggingface_hub.errors.BadRequestError(message: str, response: Response, server_message: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L492)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L492)
 
 Raised by `hf_raise_for_status` when the server returns a HTTP 400 error.
 
@@ -663,7 +663,7 @@ huggingface_hub.errors.BadRequestError: Bad request for check endpoint: {details
 
 #### huggingface_hub.errors.EntryNotFoundError[[huggingface_hub.errors.EntryNotFoundError]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L410)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L410)
 
 Raised when entry not found, either locally or remotely.
 
@@ -687,7 +687,7 @@ huggingface_hub.utils.errors.LocalEntryNotFoundError (...)
 huggingface_hub.errors.RemoteEntryNotFoundError(message: str, response: Response, server_message: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L428)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L428)
 
 **Parameters:**
 
@@ -717,7 +717,7 @@ Entry Not Found for url: https://huggingface.co/bert-base-cased/resolve/main/%3C
 huggingface_hub.errors.LocalEntryNotFoundError(message: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L455)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L455)
 
 Raised when trying to access a file or snapshot that is not on the disk when network is
 disabled or unavailable (connection issue). The entry may exist on the Hub.
@@ -739,9 +739,9 @@ huggingface_hub.errors.LocalEntryNotFoundError: Cannot find the requested files 
 huggingface_hub.errors.IncompleteSnapshotError(message: str, snapshot_path: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L474)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L474)
 
-Raised by [snapshot_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.snapshot_download) when the Hub cannot be reached (offline, connection issue, or
+Raised by [snapshot_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download) when the Hub cannot be reached (offline, connection issue, or
 `local_files_only=True`) and the cached snapshot is known to be incomplete: some files listed in
 the repository's cached tree listing are missing from the local snapshot.
 
@@ -754,17 +754,17 @@ the latest cached files even though they are known to be incomplete.
 
 #### huggingface_hub.errors.CachedRepoTreeNotFoundError[[huggingface_hub.errors.CachedRepoTreeNotFoundError]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L26)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L26)
 
-Raised by [get_cached_repo_tree()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.get_cached_repo_tree) when no tree listing is cached for the requested revision.
+Raised by [get_cached_repo_tree()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.get_cached_repo_tree) when no tree listing is cached for the requested revision.
 
-The tree listing is populated as a side effect of [snapshot_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.snapshot_download).
+The tree listing is populated as a side effect of [snapshot_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download).
 
 #### OfflineModeIsEnabled[[huggingface_hub.errors.OfflineModeIsEnabled]]
 
 #### huggingface_hub.errors.OfflineModeIsEnabled[[huggingface_hub.errors.OfflineModeIsEnabled]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L86)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L86)
 
 Raised when a request is made but `HF_HUB_OFFLINE=1` is set as environment variable.
 
@@ -783,7 +783,7 @@ Data is sent in a separate thread to reduce as much as possible the impact for u
 huggingface_hub.utils.send_telemetry(topic: str, library_name: str | None = None, library_version: str | None = None, user_agent: dict | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_telemetry.py#L19)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_telemetry.py#L19)
 
 **Parameters:**
 
@@ -831,11 +831,11 @@ to validate type hints but with more limited features.
 
 ### Generic decorator
 
-[validate_hf_hub_args()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.utils.validate_hf_hub_args) is a generic decorator to encapsulate
+[validate_hf_hub_args()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.utils.validate_hf_hub_args) is a generic decorator to encapsulate
 methods that have arguments following `huggingface_hub`'s naming. By default, all
 arguments that has a validator implemented will be validated.
 
-If an input is not valid, a [HFValidationError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.HFValidationError) is thrown. Only
+If an input is not valid, a [HFValidationError](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.errors.HFValidationError) is thrown. Only
 the first non-valid value throws an error and stops the validation process.
 
 Usage:
@@ -865,11 +865,11 @@ huggingface_hub.utils._validators.HFValidationError: Cannot have -- or .. in rep
 huggingface_hub.utils.validate_hf_hub_args(fn: ~CallableT)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_validators.py#L41)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_validators.py#L41)
 
-**Raises:** [HFValidationError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.HFValidationError)
+**Raises:** [HFValidationError](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.errors.HFValidationError)
 
-- [HFValidationError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.HFValidationError) -- 
+- [HFValidationError](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.errors.HFValidationError) -- 
   If an input is not valid.
 
 Validate values received as argument for any public method of `huggingface_hub`.
@@ -878,7 +878,7 @@ The goal of this decorator is to harmonize validation of arguments reused
 everywhere. By default, all defined validators are tested.
 
 Validators:
-- [validate_repo_id()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.utils.validate_repo_id): `repo_id` must be `"repo_name"`
+- [validate_repo_id()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.utils.validate_repo_id): `repo_id` must be `"repo_name"`
   or `"namespace/repo_name"`. Namespace is a username or an organization.
 - `~utils.smoothly_deprecate_legacy_arguments`: Ignore `proxies` when downloading files (should be set globally).
 
@@ -904,7 +904,7 @@ huggingface_hub.utils._validators.HFValidationError: Cannot have -- or .. in rep
 
 #### huggingface_hub.errors.HFValidationError[[huggingface_hub.errors.HFValidationError]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L217)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L217)
 
 Generic exception thrown by `huggingface_hub` validators.
 
@@ -923,7 +923,7 @@ validated.
 huggingface_hub.utils.validate_repo_id(repo_id: str | None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_validators.py#L93)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_validators.py#L93)
 
 Validate `repo_id` is valid.
 
@@ -964,7 +964,7 @@ Not exactly a validator, but ran as well.
 huggingface_hub.utils._validators.smoothly_deprecate_legacy_arguments(fn_name: str, kwargs: dict)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_validators.py#L151)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_validators.py#L151)
 
 Smoothly deprecate legacy arguments in the `huggingface_hub` codebase.
 
@@ -974,12 +974,12 @@ The goal is to avoid breaking existing code while guiding the user to the new wa
 List of deprecated arguments:
 - `proxies`:
   To set up proxies, user must either use the HTTP_PROXY environment variable or configure the `httpx.Client`
-  manually using the [set_client_factory()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.set_client_factory) function.
+  manually using the [set_client_factory()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.set_client_factory) function.
 
   In huggingface_hub 0.x, `proxies` was a dictionary directly passed to `requests.request`.
   In huggingface_hub 1.x, we migrated to `httpx` which does not support `proxies` the same way.
   In particular, it is not possible to configure proxies on a per-request basis. The solution is to configure
-  it globally using the [set_client_factory()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.set_client_factory) function or using the HTTP_PROXY environment variable.
+  it globally using the [set_client_factory()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.set_client_factory) function or using the HTTP_PROXY environment variable.
 
   For more details, see:
   - https://www.python-httpx.org/advanced/proxies/
@@ -990,4 +990,4 @@ List of deprecated arguments:
 - `local_dir_use_symlinks`: deprecated without replacement. Downloading to a local directory does not use symlinks anymore.
 
 ### Filesystem API
-https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/hf_file_system.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/hf_file_system.md

@@ -4,35 +4,9 @@
 
 #### tokenizers.models.BPE[[tokenizers.models.BPE]]
 
-An implementation of the BPE (Byte-Pair Encoding) algorithm
-
-Example:
-
 ```python
->>> from tokenizers.models import BPE
->>> # Build an empty model (to be trained)
->>> model = BPE(unk_token="REDACTED")
->>> # Load from vocabulary and merges files
->>> model = BPE.from_file("vocab.json", "merges.txt")
+tokenizers.models.BPE(vocab = None, merges = None, cache_capacity = None, dropout = None, unk_token = None, continuing_subword_prefix = None, end_of_word_suffix = None, fuse_unk = None, byte_fallback = False, ignore_merges = False)
 ```
-
-from_filetokenizers.models.BPE.from_file[{"name": "vocab", "val": ""}, {"name": "merges", "val": ""}, {"name": "**kwargs", "val": ""}]- **vocab** (`str`) --
-        The path to a `vocab.json` file
-
-- **merges** (`str`) --
-        The path to a `merges.txt` file0[BPE](/docs/tokenizers/v0.23.1/en/api/models#tokenizers.models.BPE)An instance of BPE loaded from these files
-Instantiate a BPE model from the given files.
-
-This method is roughly equivalent to doing:
-
-```python
-vocab, merges = BPE.read_file(vocab_filename, merges_filename)
-bpe = BPE(vocab, merges)
-```
-
-If you don't need to keep the `vocab, merges` values lying around,
-this method is more optimized than manually calling
-`read_file()` to initialize a [BPE](/docs/tokenizers/v0.23.1/en/api/models#tokenizers.models.BPE)
 
 **Parameters:**
 
@@ -56,18 +30,23 @@ byte_fallback (`bool`, *optional*) : Whether to use spm byte-fallback trick (def
 
 ignore_merges (`bool`, *optional*) : Whether or not to match tokens with the vocab before using merges.
 
-**Returns:**
+An implementation of the BPE (Byte-Pair Encoding) algorithm
 
-`[BPE](/docs/tokenizers/v0.23.1/en/api/models#tokenizers.models.BPE)`
+Example:
 
-An instance of BPE loaded from these files
-#### read_file[[tokenizers.models.BPE.read_file]]
+```python
+>>> from tokenizers.models import BPE
+>>> # Build an empty model (to be trained)
+>>> model = BPE(unk_token="REDACTED")
+>>> # Load from vocabulary and merges files
+>>> model = BPE.from_file("vocab.json", "merges.txt")
+```
 
-Read a `vocab.json` and a `merges.txt` files
+#### from_file[[tokenizers.models.BPE.from_file]]
 
-This method provides a way to read and parse the content of these files,
-returning the relevant data structures. If you want to instantiate some BPE models
-from memory, this method gives you the expected input from the standard files.
+```python
+from_file(vocab, merges, **kwargs)
+```
 
 **Parameters:**
 
@@ -75,15 +54,52 @@ vocab (`str`) : The path to a `vocab.json` file
 
 merges (`str`) : The path to a `merges.txt` file
 
-**Returns:**
+**Returns:** [BPE](/docs/tokenizers/v0.23.2/en/api/models#tokenizers.models.BPE)
 
-`A `Tuple` with the vocab and the merges`
+An instance of BPE loaded from these files
+
+Instantiate a BPE model from the given files.
+
+This method is roughly equivalent to doing:
+
+```python
+vocab, merges = BPE.read_file(vocab_filename, merges_filename)
+bpe = BPE(vocab, merges)
+```
+
+If you don't need to keep the `vocab, merges` values lying around,
+this method is more optimized than manually calling
+`read_file()` to initialize a [BPE](/docs/tokenizers/v0.23.2/en/api/models#tokenizers.models.BPE)
+
+#### read_file[[tokenizers.models.BPE.read_file]]
+
+```python
+read_file(vocab, merges)
+```
+
+**Parameters:**
+
+vocab (`str`) : The path to a `vocab.json` file 
+
+merges (`str`) : The path to a `merges.txt` file
+
+**Returns:** A `Tuple` with the vocab and the merges
 
 The vocabulary and merges loaded into memory
+
+Read a `vocab.json` and a `merges.txt` files
+
+This method provides a way to read and parse the content of these files,
+returning the relevant data structures. If you want to instantiate some BPE models
+from memory, this method gives you the expected input from the standard files.
 
 ## Model[[tokenizers.models.Model]]
 
 #### tokenizers.models.Model[[tokenizers.models.Model]]
+
+```python
+tokenizers.models.Model()
+```
 
 Base class for all models
 
@@ -92,37 +108,42 @@ will contain and manage the learned vocabulary.
 
 This class cannot be constructed directly. Please use one of the concrete models.
 
-get_trainertokenizers.models.Model.get_trainer[]`Trainer`The Trainer used to train this model
+#### get_trainer[[tokenizers.models.Model.get_trainer]]
+
+```python
+get_trainer()
+```
+
+**Returns:** `Trainer`
+
+The Trainer used to train this model
+
 Get the associated `Trainer`
 
 Retrieve the `Trainer` associated to this
-[Model](/docs/tokenizers/v0.23.1/en/api/models#tokenizers.models.Model).
+[Model](/docs/tokenizers/v0.23.2/en/api/models#tokenizers.models.Model).
 
-**Returns:**
-
-``Trainer``
-
-The Trainer used to train this model
 #### id_to_token[[tokenizers.models.Model.id_to_token]]
 
-Get the token associated to an ID
+```python
+id_to_token(id)
+```
 
 **Parameters:**
 
 id (`int`) : An ID to convert to a token
 
-**Returns:**
-
-``str``
+**Returns:** `str`
 
 The token associated to the ID
+
+Get the token associated to an ID
+
 #### save[[tokenizers.models.Model.save]]
 
-Save the current model
-
-Save the current model in the given folder, using the given prefix for the various
-files that will get created.
-Any file with the same name that already exists in this folder will be overwritten.
+```python
+save(folder, prefix)
+```
 
 **Parameters:**
 
@@ -130,41 +151,67 @@ folder (`str`) : The path to the target folder in which to save the various file
 
 prefix (`str`, *optional*) : An optional prefix, used to prefix each file name
 
-**Returns:**
-
-``List[str]``
+**Returns:** `List[str]`
 
 The list of saved files
+
+Save the current model
+
+Save the current model in the given folder, using the given prefix for the various
+files that will get created.
+Any file with the same name that already exists in this folder will be overwritten.
+
 #### token_to_id[[tokenizers.models.Model.token_to_id]]
 
-Get the ID associated to a token
+```python
+token_to_id(tokens)
+```
 
 **Parameters:**
 
 token (`str`) : A token to convert to an ID
 
-**Returns:**
-
-``int``
+**Returns:** `int`
 
 The ID associated to the token
+
+Get the ID associated to a token
+
 #### tokenize[[tokenizers.models.Model.tokenize]]
 
-Tokenize a sequence
+```python
+tokenize(sequence)
+```
 
 **Parameters:**
 
 sequence (`str`) : A sequence to tokenize
 
-**Returns:**
-
-`A `List` of `Token``
+**Returns:** A `List` of `Token`
 
 The generated tokens
+
+Tokenize a sequence
 
 ## Unigram[[tokenizers.models.Unigram]]
 
 #### tokenizers.models.Unigram[[tokenizers.models.Unigram]]
+
+```python
+tokenizers.models.Unigram(vocab = None, unk_id = None, byte_fallback = None, alpha = None, nbest_size = None)
+```
+
+**Parameters:**
+
+vocab (`List[Tuple[str, float]]`, *optional*) : A list of vocabulary items and their log-probability scores, e.g. `[("am", -0.2442), ...]`. If not provided, an empty model is created. 
+
+unk_id (`int`, *optional*) : The index of the unknown token in the vocabulary list. 
+
+byte_fallback (`bool`, *optional*, defaults to `False`) : Whether to use SentencePiece byte fallback for characters not in the vocabulary. 
+
+alpha (`float`, *optional*) : A float between 0 and 1 that represents the smoothing parameter (temperature) to use. 
+
+nbest_size (`int`, *optional*) : An integer greater than 0 that represents the maximum number of best paths to consider. If not set, it samples from the full lattice (i.e. all valid subword segmentations).
 
 An implementation of the Unigram algorithm
 
@@ -183,21 +230,19 @@ Example:
 >>> model = Unigram(vocab=vocab, unk_id=0)
 ```
 
-**Parameters:**
-
-vocab (`List[Tuple[str, float]]`, *optional*) : A list of vocabulary items and their log-probability scores, e.g. `[("am", -0.2442), ...]`. If not provided, an empty model is created. 
-
-unk_id (`int`, *optional*) : The index of the unknown token in the vocabulary list. 
-
-byte_fallback (`bool`, *optional*, defaults to `False`) : Whether to use SentencePiece byte fallback for characters not in the vocabulary. 
-
-alpha (`float`, *optional*) : A float between 0 and 1 that represents the smoothing parameter (temperature) to use. 
-
-nbest_size (`int`, *optional*) : An integer greater than 0 that represents the maximum number of best paths to consider. If not set, it samples from the full lattice (i.e. all valid subword segmentations).
-
 ## WordLevel[[tokenizers.models.WordLevel]]
 
 #### tokenizers.models.WordLevel[[tokenizers.models.WordLevel]]
+
+```python
+tokenizers.models.WordLevel(vocab = None, unk_token = None)
+```
+
+**Parameters:**
+
+vocab (`str`, *optional*) : A dictionary of string keys and their ids `&amp;lcub;"am": 0,...}` 
+
+unk_token (`str`, *optional*) : The unknown token to be used by the model.
 
 An implementation of the WordLevel algorithm
 
@@ -214,8 +259,20 @@ Example:
 >>> model = WordLevel.from_file("vocab.json", unk_token="REDACTED")
 ```
 
-from_filetokenizers.models.WordLevel.from_file[{"name": "vocab", "val": ""}, {"name": "unk_token", "val": " = None"}]- **vocab** (`str`) --
-        The path to a `vocab.json` file0[WordLevel](/docs/tokenizers/v0.23.1/en/api/models#tokenizers.models.WordLevel)An instance of WordLevel loaded from file
+#### from_file[[tokenizers.models.WordLevel.from_file]]
+
+```python
+from_file(vocab, unk_token = None)
+```
+
+**Parameters:**
+
+vocab (`str`) : The path to a `vocab.json` file
+
+**Returns:** [WordLevel](/docs/tokenizers/v0.23.2/en/api/models#tokenizers.models.WordLevel)
+
+An instance of WordLevel loaded from file
+
 Instantiate a WordLevel model from the given file
 
 This method is roughly equivalent to doing:
@@ -227,20 +284,21 @@ wordlevel = WordLevel(vocab)
 
 If you don't need to keep the `vocab` values lying around, this method is
 more optimized than manually calling `read_file()` to
-initialize a [WordLevel](/docs/tokenizers/v0.23.1/en/api/models#tokenizers.models.WordLevel)
+initialize a [WordLevel](/docs/tokenizers/v0.23.2/en/api/models#tokenizers.models.WordLevel)
+
+#### read_file[[tokenizers.models.WordLevel.read_file]]
+
+```python
+read_file(vocab)
+```
 
 **Parameters:**
 
-vocab (`str`, *optional*) : A dictionary of string keys and their ids `&amp;lcub;"am": 0,...}` 
+vocab (`str`) : The path to a `vocab.json` file
 
-unk_token (`str`, *optional*) : The unknown token to be used by the model.
+**Returns:** `Dict[str, int]`
 
-**Returns:**
-
-`[WordLevel](/docs/tokenizers/v0.23.1/en/api/models#tokenizers.models.WordLevel)`
-
-An instance of WordLevel loaded from file
-#### read_file[[tokenizers.models.WordLevel.read_file]]
+The vocabulary as a `dict`
 
 Read a `vocab.json`
 
@@ -248,19 +306,21 @@ This method provides a way to read and parse the content of a vocabulary file,
 returning the relevant data structures. If you want to instantiate some WordLevel models
 from memory, this method gives you the expected input from the standard files.
 
-**Parameters:**
-
-vocab (`str`) : The path to a `vocab.json` file
-
-**Returns:**
-
-``Dict[str, int]``
-
-The vocabulary as a `dict`
-
 ## WordPiece[[tokenizers.models.WordPiece]]
 
 #### tokenizers.models.WordPiece[[tokenizers.models.WordPiece]]
+
+```python
+tokenizers.models.WordPiece(vocab = None, unk_token = '[UNK]', max_input_chars_per_word = 100, continuing_subword_prefix = '##')
+```
+
+**Parameters:**
+
+vocab (`Dict[str, int]`, *optional*) : A dictionary of string keys and their ids `&amp;lcub;"am": 0,...}` 
+
+unk_token (`str`, *optional*) : The unknown token to be used by the model. 
+
+max_input_chars_per_word (`int`, *optional*) : The maximum number of characters to authorize in a single word.
 
 An implementation of the WordPiece algorithm
 
@@ -274,8 +334,20 @@ Example:
 >>> model = WordPiece.from_file("vocab.txt")
 ```
 
-from_filetokenizers.models.WordPiece.from_file[{"name": "vocab", "val": ""}, {"name": "**kwargs", "val": ""}]- **vocab** (`str`) --
-        The path to a `vocab.txt` file0[WordPiece](/docs/tokenizers/v0.23.1/en/api/models#tokenizers.models.WordPiece)An instance of WordPiece loaded from file
+#### from_file[[tokenizers.models.WordPiece.from_file]]
+
+```python
+from_file(vocab, **kwargs)
+```
+
+**Parameters:**
+
+vocab (`str`) : The path to a `vocab.txt` file
+
+**Returns:** [WordPiece](/docs/tokenizers/v0.23.2/en/api/models#tokenizers.models.WordPiece)
+
+An instance of WordPiece loaded from file
+
 Instantiate a WordPiece model from the given file
 
 This method is roughly equivalent to doing:
@@ -287,22 +359,21 @@ wordpiece = WordPiece(vocab)
 
 If you don't need to keep the `vocab` values lying around, this method is
 more optimized than manually calling `read_file()` to
-initialize a [WordPiece](/docs/tokenizers/v0.23.1/en/api/models#tokenizers.models.WordPiece)
+initialize a [WordPiece](/docs/tokenizers/v0.23.2/en/api/models#tokenizers.models.WordPiece)
+
+#### read_file[[tokenizers.models.WordPiece.read_file]]
+
+```python
+read_file(vocab)
+```
 
 **Parameters:**
 
-vocab (`Dict[str, int]`, *optional*) : A dictionary of string keys and their ids `&amp;lcub;"am": 0,...}` 
+vocab (`str`) : The path to a `vocab.txt` file
 
-unk_token (`str`, *optional*) : The unknown token to be used by the model. 
+**Returns:** `Dict[str, int]`
 
-max_input_chars_per_word (`int`, *optional*) : The maximum number of characters to authorize in a single word.
-
-**Returns:**
-
-`[WordPiece](/docs/tokenizers/v0.23.1/en/api/models#tokenizers.models.WordPiece)`
-
-An instance of WordPiece loaded from file
-#### read_file[[tokenizers.models.WordPiece.read_file]]
+The vocabulary as a `dict`
 
 Read a `vocab.txt` file
 
@@ -311,19 +382,9 @@ file as used by the WordPiece Model, returning the relevant data structures. If 
 want to instantiate some WordPiece models from memory, this method gives you the
 expected input from the standard files.
 
-**Parameters:**
-
-vocab (`str`) : The path to a `vocab.txt` file
-
-**Returns:**
-
-``Dict[str, int]``
-
-The vocabulary as a `dict`
-
 The Rust API Reference is available directly on the [Docs.rs](https://docs.rs/tokenizers/latest/tokenizers/) website.
 
 The node API has not been documented yet.
 
-### Visualizer
-https://huggingface.co/docs/tokenizers/v0.23.1/api/visualizer.md
+### Encode Inputs
+https://huggingface.co/docs/tokenizers/v0.23.2/api/encode-inputs.md

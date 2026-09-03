@@ -1,15 +1,15 @@
 # Managing collections
 
-Check out the [HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi) documentation page for the reference of methods to manage your Space on the Hub.
+Check out the [HfApi](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi) documentation page for the reference of methods to manage your Space on the Hub.
 
-- Get collection content: [get_collection()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_collection)
-- Create new collection: [create_collection()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_collection)
-- Update a collection: [update_collection_metadata()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_metadata)
-- Update a collection's resource group: [update_collection_resource_group()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_resource_group)
-- Delete a collection: [delete_collection()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_collection)
-- Add an item to a collection: [add_collection_item()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.add_collection_item)
-- Update an item in a collection: [update_collection_item()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_item)
-- Remove an item from a collection: [delete_collection_item()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_collection_item)
+- Get collection content: [get_collection()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_collection)
+- Create new collection: [create_collection()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_collection)
+- Update a collection: [update_collection_metadata()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_metadata)
+- Update a collection's resource group: [update_collection_resource_group()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_resource_group)
+- Delete a collection: [delete_collection()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_collection)
+- Add an item to a collection: [add_collection_item()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.add_collection_item)
+- Update an item in a collection: [update_collection_item()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_item)
+- Remove an item from a collection: [delete_collection_item()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_collection_item)
 
 ### Collection[[huggingface_hub.Collection]]
 
@@ -19,7 +19,7 @@ Check out the [HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#
 huggingface_hub.Collection(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/hf_api.py#L1498)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/hf_api.py#L1498)
 
 **Parameters:**
 
@@ -55,7 +55,7 @@ Contains information about a Collection on the Hub.
 huggingface_hub.CollectionItem(_id: str, id: str, type: CollectionItemType_T, position: int, note: dict | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/hf_api.py#L1450)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/hf_api.py#L1450)
 
 **Parameters:**
 
@@ -72,4 +72,4 @@ note (`str`, *optional*) : Note associated with the item, as plain text.
 Contains information about an item of a Collection (model, dataset, Space, paper, collection or bucket).
 
 ### OAuth and FastAPI
-https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/oauth.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/oauth.md

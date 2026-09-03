@@ -4,6 +4,12 @@
 
 #### tokenizers.processors.BertProcessing[[tokenizers.processors.BertProcessing]]
 
+**Parameters:**
+
+sep (`Tuple[str, int]`) : A tuple with the string representation of the SEP token, and its id 
+
+cls (`Tuple[str, int]`) : A tuple with the string representation of the CLS token, and its id
+
 This post-processor takes care of adding the special tokens needed by
 a Bert model:
 
@@ -19,15 +25,19 @@ Example:
 # Encoding with [CLS] at start and [SEP] at end
 ```
 
-**Parameters:**
-
-sep (`Tuple[str, int]`) : A tuple with the string representation of the SEP token, and its id 
-
-cls (`Tuple[str, int]`) : A tuple with the string representation of the CLS token, and its id
-
 ## ByteLevel[[tokenizers.processors.ByteLevel]]
 
 #### tokenizers.processors.ByteLevel[[tokenizers.processors.ByteLevel]]
+
+```python
+tokenizers.processors.ByteLevel(add_prefix_space = None, trim_offsets = None, use_regex = None)
+```
+
+**Parameters:**
+
+trim_offsets (`bool`) : Whether to trim the whitespaces from the produced offsets. 
+
+add_prefix_space (`bool`, *optional*, defaults to `True`) : If `True`, keeps the first token's offset as is. If `False`, increments the start of the first token's offset by 1. Only has an effect if `trim_offsets` is set to `True`.
 
 This post-processor takes care of trimming the offsets.
 
@@ -42,15 +52,23 @@ Example:
 >>> # Offsets will be trimmed to exclude leading whitespace bytes
 ```
 
-**Parameters:**
-
-trim_offsets (`bool`) : Whether to trim the whitespaces from the produced offsets. 
-
-add_prefix_space (`bool`, *optional*, defaults to `True`) : If `True`, keeps the first token's offset as is. If `False`, increments the start of the first token's offset by 1. Only has an effect if `trim_offsets` is set to `True`.
-
 ## RobertaProcessing[[tokenizers.processors.RobertaProcessing]]
 
 #### tokenizers.processors.RobertaProcessing[[tokenizers.processors.RobertaProcessing]]
+
+```python
+tokenizers.processors.RobertaProcessing(sep, cls_token, trim_offsets = True, add_prefix_space = True)
+```
+
+**Parameters:**
+
+sep (`Tuple[str, int]`) : A tuple with the string representation of the SEP token, and its id 
+
+cls (`Tuple[str, int]`) : A tuple with the string representation of the CLS token, and its id 
+
+trim_offsets (`bool`, *optional*, defaults to `True`) : Whether to trim the whitespaces from the produced offsets. 
+
+add_prefix_space (`bool`, *optional*, defaults to `True`) : Whether the add_prefix_space option was enabled during pre-tokenization. This is relevant because it defines the way the offsets are trimmed out.
 
 This post-processor takes care of adding the special tokens needed by
 a Roberta model:
@@ -67,24 +85,26 @@ Example:
 
 ```python
 >>> from tokenizers.processors import RobertaProcessing
->>> processor = RobertaProcessing(("&amp;lt;/s>", 2), ("", 0))
+>>> processor = RobertaProcessing(("&amp;lt;/s>", 2), ("<s>", 0))
 >>> processor.process(encoding)
-# Encoding with &amp;lt;s> at start and  at end
+# Encoding with &amp;lt;s> at start and </s> at end
 ```
-
-**Parameters:**
-
-sep (`Tuple[str, int]`) : A tuple with the string representation of the SEP token, and its id 
-
-cls (`Tuple[str, int]`) : A tuple with the string representation of the CLS token, and its id 
-
-trim_offsets (`bool`, *optional*, defaults to `True`) : Whether to trim the whitespaces from the produced offsets. 
-
-add_prefix_space (`bool`, *optional*, defaults to `True`) : Whether the add_prefix_space option was enabled during pre-tokenization. This is relevant because it defines the way the offsets are trimmed out.
 
 ## TemplateProcessing[[tokenizers.processors.TemplateProcessing]]
 
 #### tokenizers.processors.TemplateProcessing[[tokenizers.processors.TemplateProcessing]]
+
+```python
+tokenizers.processors.TemplateProcessing(single = None, pair = None, special_tokens = None)
+```
+
+**Parameters:**
+
+single (`Template`) : The template used for single sequences 
+
+pair (`Template`) : The template used when both sequences are specified 
+
+special_tokens (`Tokens`) : The list of special tokens used in each sequences
 
 Provides a way to specify templates in order to add the special tokens to each
 input sequence as relevant.
@@ -145,17 +165,9 @@ Tokens (`List[Union[Tuple[int, str], Tuple[str, int], dict]]`):
   The given dict expects the provided `ids` and `tokens` lists to have
   the same length.
 
-**Parameters:**
-
-single (`Template`) : The template used for single sequences 
-
-pair (`Template`) : The template used when both sequences are specified 
-
-special_tokens (`Tokens`) : The list of special tokens used in each sequences
-
 The Rust API Reference is available directly on the [Docs.rs](https://docs.rs/tokenizers/latest/tokenizers/) website.
 
 The node API has not been documented yet.
 
-### Models
-https://huggingface.co/docs/tokenizers/v0.23.1/api/models.md
+### Trainers
+https://huggingface.co/docs/tokenizers/v0.23.2/api/trainers.md

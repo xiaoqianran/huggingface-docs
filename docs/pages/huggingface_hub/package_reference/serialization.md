@@ -13,7 +13,7 @@ DDUF is a file format designed for diffusion models. It allows saving all the in
 
 ### How to write a DDUF file?
 
-Here is how to export a folder containing different parts of a diffusion model using [export_folder_as_dduf()](/docs/huggingface_hub/v1.29.0/en/package_reference/serialization#huggingface_hub.export_folder_as_dduf):
+Here is how to export a folder containing different parts of a diffusion model using [export_folder_as_dduf()](/docs/huggingface_hub/v1.30.0/en/package_reference/serialization#huggingface_hub.export_folder_as_dduf):
 
 ```python
 # Export a folder as a DDUF file
@@ -21,7 +21,7 @@ Here is how to export a folder containing different parts of a diffusion model u
 >>> export_folder_as_dduf("FLUX.1-dev.dduf", folder_path="path/to/FLUX.1-dev")
 ```
 
-For more flexibility, you can use [export_entries_as_dduf()](/docs/huggingface_hub/v1.29.0/en/package_reference/serialization#huggingface_hub.export_entries_as_dduf) and pass a list of files to include in the final DDUF file:
+For more flexibility, you can use [export_entries_as_dduf()](/docs/huggingface_hub/v1.30.0/en/package_reference/serialization#huggingface_hub.export_entries_as_dduf) and pass a list of files to include in the final DDUF file:
 
 ```python
 # Export specific files from the local disk.
@@ -96,7 +96,7 @@ DDUFEntry(filename='model_index.json', offset=66, length=587)
 huggingface_hub.export_entries_as_dduf(dduf_path: str | os.PathLike, entries: Iterable)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/serialization/_dduf.py#L160)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/serialization/_dduf.py#L160)
 
 **Parameters:**
 
@@ -110,7 +110,7 @@ entries (`Iterable[tuple[str, Union[str, Path, bytes]]]`) : An iterable of entri
 
 Write a DDUF file from an iterable of entries.
 
-This is a lower-level helper than [export_folder_as_dduf()](/docs/huggingface_hub/v1.29.0/en/package_reference/serialization#huggingface_hub.export_folder_as_dduf) that allows more flexibility when serializing data.
+This is a lower-level helper than [export_folder_as_dduf()](/docs/huggingface_hub/v1.30.0/en/package_reference/serialization#huggingface_hub.export_folder_as_dduf) that allows more flexibility when serializing data.
 In particular, you don't need to save the data on disk before exporting it in the DDUF file.
 
 Example:
@@ -158,7 +158,7 @@ Example:
 huggingface_hub.export_folder_as_dduf(dduf_path: str | os.PathLike, folder_path: str | os.PathLike)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/serialization/_dduf.py#L249)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/serialization/_dduf.py#L249)
 
 **Parameters:**
 
@@ -168,7 +168,7 @@ folder_path (`str` or `os.PathLike`) : The path to the folder containing the dif
 
 Export a folder as a DDUF file.
 
-AUses [export_entries_as_dduf()](/docs/huggingface_hub/v1.29.0/en/package_reference/serialization#huggingface_hub.export_entries_as_dduf) under the hood.
+AUses [export_entries_as_dduf()](/docs/huggingface_hub/v1.30.0/en/package_reference/serialization#huggingface_hub.export_entries_as_dduf) under the hood.
 
 Example:
 ```python
@@ -182,7 +182,7 @@ Example:
 huggingface_hub.read_dduf_file(dduf_path: os.PathLike | str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/serialization/_dduf.py#L91)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/serialization/_dduf.py#L91)
 
 **Parameters:**
 
@@ -190,7 +190,7 @@ dduf_path (`str` or `os.PathLike`) : The path to the DDUF file to read.
 
 **Returns:** `dict[str, DDUFEntry]`
 
-A dictionary of [DDUFEntry](/docs/huggingface_hub/v1.29.0/en/package_reference/serialization#huggingface_hub.DDUFEntry) indexed by filename.
+A dictionary of [DDUFEntry](/docs/huggingface_hub/v1.30.0/en/package_reference/serialization#huggingface_hub.DDUFEntry) indexed by filename.
 
 **Raises:** `-`
 
@@ -228,7 +228,7 @@ DDUFEntry(filename='model_index.json', offset=66, length=587)
 huggingface_hub.DDUFEntry(filename: str, length: int, offset: int, dduf_path: Path)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/serialization/_dduf.py#L36)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/serialization/_dduf.py#L36)
 
 **Parameters:**
 
@@ -242,7 +242,7 @@ dduf_path (str) : The path to the DDUF archive (for internal use).
 
 Object representing a file entry in a DDUF file.
 
-See [read_dduf_file()](/docs/huggingface_hub/v1.29.0/en/package_reference/serialization#huggingface_hub.read_dduf_file) for how to read a DDUF file.
+See [read_dduf_file()](/docs/huggingface_hub/v1.30.0/en/package_reference/serialization#huggingface_hub.read_dduf_file) for how to read a DDUF file.
 
 #### as_mmap[[huggingface_hub.DDUFEntry.as_mmap]]
 
@@ -250,7 +250,7 @@ See [read_dduf_file()](/docs/huggingface_hub/v1.29.0/en/package_reference/serial
 as_mmap()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/serialization/_dduf.py#L58)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/serialization/_dduf.py#L58)
 
 Open the file as a memory-mapped file.
 
@@ -269,7 +269,7 @@ Example:
 read_text(encoding: str = 'utf-8')
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/serialization/_dduf.py#L75)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/serialization/_dduf.py#L75)
 
 Read the file as text.
 
@@ -285,33 +285,33 @@ Example:
 
 #### huggingface_hub.errors.DDUFError[[huggingface_hub.errors.DDUFError]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L509)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L509)
 
 Base exception for errors related to the DDUF format.
 
 #### huggingface_hub.errors.DDUFCorruptedFileError[[huggingface_hub.errors.DDUFCorruptedFileError]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L513)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L513)
 
 Exception thrown when the DDUF file is corrupted.
 
 #### huggingface_hub.errors.DDUFExportError[[huggingface_hub.errors.DDUFExportError]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L517)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L517)
 
 Base exception for errors during DDUF export.
 
 #### huggingface_hub.errors.DDUFInvalidEntryNameError[[huggingface_hub.errors.DDUFInvalidEntryNameError]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L521)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L521)
 
 Exception thrown when the entry name is invalid.
 
 ## Saving tensors
 
-The main helper of the `serialization` module takes a torch `nn.Module` as input and saves it to disk. It handles the logic to save shared tensors (see [safetensors explanation](https://huggingface.co/docs/safetensors/torch_shared_tensors)) as well as logic to split the state dictionary into shards, using [split_torch_state_dict_into_shards()](/docs/huggingface_hub/v1.29.0/en/package_reference/serialization#huggingface_hub.split_torch_state_dict_into_shards) under the hood. At the moment, only `torch` framework is supported.
+The main helper of the `serialization` module takes a torch `nn.Module` as input and saves it to disk. It handles the logic to save shared tensors (see [safetensors explanation](https://huggingface.co/docs/safetensors/torch_shared_tensors)) as well as logic to split the state dictionary into shards, using [split_torch_state_dict_into_shards()](/docs/huggingface_hub/v1.30.0/en/package_reference/serialization#huggingface_hub.split_torch_state_dict_into_shards) under the hood. At the moment, only `torch` framework is supported.
 
-If you want to save a state dictionary (e.g. a mapping between layer names and related tensors) instead of a `nn.Module`, you can use [save_torch_state_dict()](/docs/huggingface_hub/v1.29.0/en/package_reference/serialization#huggingface_hub.save_torch_state_dict) which provides the same features. This is useful for example if you want to apply custom logic to the state dict before saving it.
+If you want to save a state dictionary (e.g. a mapping between layer names and related tensors) instead of a `nn.Module`, you can use [save_torch_state_dict()](/docs/huggingface_hub/v1.30.0/en/package_reference/serialization#huggingface_hub.save_torch_state_dict) which provides the same features. This is useful for example if you want to apply custom logic to the state dict before saving it.
 
 ### save_torch_model[[huggingface_hub.save_torch_model]]
 
@@ -321,7 +321,7 @@ If you want to save a state dictionary (e.g. a mapping between layer names and r
 huggingface_hub.save_torch_model(model: torch.nn.Module, save_directory: str | pathlib.Path, filename_pattern: str | None = None, force_contiguous: bool = True, max_shard_size: int | str = '5GB', metadata: dict[str, str] | None = None, safe_serialization: bool = True, is_main_process: bool = True, shared_tensors_to_discard: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/serialization/_torch.py#L43)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/serialization/_torch.py#L43)
 
 **Parameters:**
 
@@ -345,14 +345,14 @@ shared_tensors_to_discard (`list[str]`, *optional*) : List of tensor names to dr
 
 Saves a given torch model to disk, handling sharding and shared tensors issues.
 
-See also [save_torch_state_dict()](/docs/huggingface_hub/v1.29.0/en/package_reference/serialization#huggingface_hub.save_torch_state_dict) to save a state dict with more flexibility.
+See also [save_torch_state_dict()](/docs/huggingface_hub/v1.30.0/en/package_reference/serialization#huggingface_hub.save_torch_state_dict) to save a state dict with more flexibility.
 
 For more information about tensor sharing, check out [this guide](https://huggingface.co/docs/safetensors/torch_shared_tensors).
 
 The model state dictionary is split into shards so that each shard is smaller than a given size. The shards are
 saved in the `save_directory` with the given `filename_pattern`. If the model is too big to fit in a single shard,
 an index file is saved in the `save_directory` to indicate where each tensor is saved. This helper uses
-[split_torch_state_dict_into_shards()](/docs/huggingface_hub/v1.29.0/en/package_reference/serialization#huggingface_hub.split_torch_state_dict_into_shards) under the hood. If `safe_serialization` is `True`, the shards are saved as
+[split_torch_state_dict_into_shards()](/docs/huggingface_hub/v1.30.0/en/package_reference/serialization#huggingface_hub.split_torch_state_dict_into_shards) under the hood. If `safe_serialization` is `True`, the shards are saved as
 safetensors (the default). Otherwise, the shards are saved as pickle.
 
 Before saving the model, the `save_directory` is cleaned from any previous shard files.
@@ -387,7 +387,7 @@ Example:
 huggingface_hub.save_torch_state_dict(state_dict: dict, save_directory: str | pathlib.Path, filename_pattern: str | None = None, force_contiguous: bool = True, max_shard_size: int | str = '5GB', metadata: dict[str, str] | None = None, safe_serialization: bool = True, is_main_process: bool = True, shared_tensors_to_discard: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/serialization/_torch.py#L137)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/serialization/_torch.py#L137)
 
 **Parameters:**
 
@@ -411,14 +411,14 @@ shared_tensors_to_discard (`list[str]`, *optional*) : List of tensor names to dr
 
 Save a model state dictionary to the disk, handling sharding and shared tensors issues.
 
-See also [save_torch_model()](/docs/huggingface_hub/v1.29.0/en/package_reference/serialization#huggingface_hub.save_torch_model) to directly save a PyTorch model.
+See also [save_torch_model()](/docs/huggingface_hub/v1.30.0/en/package_reference/serialization#huggingface_hub.save_torch_model) to directly save a PyTorch model.
 
 For more information about tensor sharing, check out [this guide](https://huggingface.co/docs/safetensors/torch_shared_tensors).
 
 The model state dictionary is split into shards so that each shard is smaller than a given size. The shards are
 saved in the `save_directory` with the given `filename_pattern`. If the model is too big to fit in a single shard,
 an index file is saved in the `save_directory` to indicate where each tensor is saved. This helper uses
-[split_torch_state_dict_into_shards()](/docs/huggingface_hub/v1.29.0/en/package_reference/serialization#huggingface_hub.split_torch_state_dict_into_shards) under the hood. If `safe_serialization` is `True`, the shards are saved as
+[split_torch_state_dict_into_shards()](/docs/huggingface_hub/v1.30.0/en/package_reference/serialization#huggingface_hub.split_torch_state_dict_into_shards) under the hood. If `safe_serialization` is `True`, the shards are saved as
 safetensors (the default). Otherwise, the shards are saved as pickle.
 
 Before saving the model, the `save_directory` is cleaned from any previous shard files.
@@ -451,7 +451,7 @@ The `serialization` module also contains low-level helpers to split a state dict
 huggingface_hub.split_torch_state_dict_into_shards(state_dict: dict, filename_pattern: str = 'model{suffix}.safetensors', max_shard_size: int | str = '5GB')
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/serialization/_torch.py#L294)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/serialization/_torch.py#L294)
 
 **Parameters:**
 
@@ -473,7 +473,7 @@ have tensors of sizes [6GB, 6GB, 2GB, 6GB, 2GB, 2GB] they will get sharded as [6
 [6+2+2GB], [6+2GB], [6GB].
 
 > [!TIP]
-> To save a model state dictionary to the disk, see [save_torch_state_dict()](/docs/huggingface_hub/v1.29.0/en/package_reference/serialization#huggingface_hub.save_torch_state_dict). This helper uses
+> To save a model state dictionary to the disk, see [save_torch_state_dict()](/docs/huggingface_hub/v1.30.0/en/package_reference/serialization#huggingface_hub.save_torch_state_dict). This helper uses
 > `split_torch_state_dict_into_shards` under the hood.
 
 > [!WARNING]
@@ -512,10 +512,10 @@ This is the underlying factory from which each framework-specific helper is deri
 #### huggingface_hub.split_state_dict_into_shards_factory[[huggingface_hub.split_state_dict_into_shards_factory]]
 
 ```python
-huggingface_hub.split_state_dict_into_shards_factory(state_dict: dict, get_storage_size: Callable, filename_pattern: str, get_storage_id: Callable = <function <lambda> at 0x7fbf3023b400>, max_shard_size: int | str = '5GB')
+huggingface_hub.split_state_dict_into_shards_factory(state_dict: dict, get_storage_size: Callable, filename_pattern: str, get_storage_id: Callable = <function <lambda> at 0x7f9108f630a0>, max_shard_size: int | str = '5GB')
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/serialization/_base.py#L50)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/serialization/_base.py#L50)
 
 **Parameters:**
 
@@ -546,7 +546,7 @@ have tensors of sizes [6GB, 6GB, 2GB, 6GB, 2GB, 2GB] they will get sharded as [6
 
 ## Loading tensors
 
-The loading helpers support both single-file and sharded checkpoints in either safetensors or pickle format. [load_torch_model()](/docs/huggingface_hub/v1.29.0/en/package_reference/serialization#huggingface_hub.load_torch_model) takes a `nn.Module` and a checkpoint path (either a single file or a directory) as input and load the weights into the model.
+The loading helpers support both single-file and sharded checkpoints in either safetensors or pickle format. [load_torch_model()](/docs/huggingface_hub/v1.30.0/en/package_reference/serialization#huggingface_hub.load_torch_model) takes a `nn.Module` and a checkpoint path (either a single file or a directory) as input and load the weights into the model.
 
 ### load_torch_model[[huggingface_hub.load_torch_model]]
 
@@ -556,7 +556,7 @@ The loading helpers support both single-file and sharded checkpoints in either s
 huggingface_hub.load_torch_model(model: torch.nn.Module, checkpoint_path: str | os.PathLike, strict: bool = False, safe: bool = True, weights_only: bool = False, map_location: typing.Union[str, ForwardRef('torch.device'), NoneType] = None, mmap: bool = False, filename_pattern: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/serialization/_torch.py#L367)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/serialization/_torch.py#L367)
 
 **Parameters:**
 
@@ -608,7 +608,7 @@ Example:
 huggingface_hub.load_state_dict_from_file(checkpoint_file: str | os.PathLike, map_location: typing.Union[str, ForwardRef('torch.device'), NoneType] = None, weights_only: bool = False, mmap: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/serialization/_torch.py#L573)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/serialization/_torch.py#L573)
 
 **Parameters:**
 
@@ -663,7 +663,7 @@ Example:
 huggingface_hub.get_torch_storage_id(tensor: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/serialization/_torch.py#L764)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/serialization/_torch.py#L764)
 
 Return unique identifier to a tensor storage.
 
@@ -682,9 +682,9 @@ Taken from https://github.com/huggingface/transformers/blob/1ecf5f7c982d761b4daa
 huggingface_hub.get_torch_storage_size(tensor: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/serialization/_torch.py#L781)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/serialization/_torch.py#L781)
 
 Taken from https://github.com/huggingface/safetensors/blob/08db34094e9e59e2f9218f2df133b7b4aaff5a99/bindings/python/py_src/safetensors/torch.py#L31C1-L41C59
 
 ### Mixins & serialization methods
-https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/mixins.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/mixins.md

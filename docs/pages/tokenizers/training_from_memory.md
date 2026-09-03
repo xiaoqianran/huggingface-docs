@@ -5,7 +5,7 @@ tokenizer using text files, but we can actually use any Python Iterator.
 In this section we'll see a few different ways of training our
 tokenizer.
 
-For all the examples listed below, we'll use the same [Tokenizer](/docs/tokenizers/v0.23.1/en/api/tokenizer#tokenizers.Tokenizer) and
+For all the examples listed below, we'll use the same [Tokenizer](/docs/tokenizers/v0.23.2/en/api/tokenizer#tokenizers.Tokenizer) and
 `Trainer`, built as
 following:
 
@@ -18,13 +18,13 @@ tokenizer.decoder = decoders.ByteLevel()
 trainer = trainers.UnigramTrainer(
     vocab_size=20000,
     initial_alphabet=pre_tokenizers.ByteLevel.alphabet(),
-    special_tokens=["", "", ""],
+    special_tokens=["<PAD>", "<BOS>", "<EOS>"],
 )
 ```
 
-This tokenizer is based on the [Unigram](/docs/tokenizers/v0.23.1/en/api/models#tokenizers.models.Unigram) model. It
+This tokenizer is based on the [Unigram](/docs/tokenizers/v0.23.2/en/api/models#tokenizers.models.Unigram) model. It
 takes care of normalizing the input using the NFKC Unicode normalization
-method, and uses a [ByteLevel](/docs/tokenizers/v0.23.1/en/api/pre-tokenizers#tokenizers.pre_tokenizers.ByteLevel) pre-tokenizer with the corresponding decoder.
+method, and uses a [ByteLevel](/docs/tokenizers/v0.23.2/en/api/pre-tokenizers#tokenizers.pre_tokenizers.ByteLevel) pre-tokenizer with the corresponding decoder.
 
 For more information on the components used here, you can check
 [here](components).
@@ -64,7 +64,7 @@ Let's start by loading our dataset:
 
 ```python
 import datasets  # type: ignore[import-not-found]
-dataset = datasets.load_dataset("wikitext", "wikitext-103-raw-v1", split="train+test+validation")
+dataset = datasets.load_dataset("Salesforce/wikitext", "wikitext-103-raw-v1", split="train+test+validation")
 ```
 
 The next step is to build an iterator over this dataset. The easiest way
@@ -119,5 +119,26 @@ tokenizer.train_from_iterator(gzip_iterator(), trainer=trainer)
 
 And voilà!
 
-### Components
-https://huggingface.co/docs/tokenizers/v0.23.1/components.md
+### Tokenizers
+https://huggingface.co/docs/tokenizers/v0.23.2/index.md
+
+# Tokenizers
+
+Fast State-of-the-art tokenizers, optimized for both research and
+production
+
+[🤗 Tokenizers](https://github.com/huggingface/tokenizers) provides an
+implementation of today's most used tokenizers, with a focus on
+performance and versatility. These tokenizers are also used in [🤗 Transformers](https://github.com/huggingface/transformers).
+
+# Main features:
+
+- Train new vocabularies and tokenize, using today's most used tokenizers.
+- Extremely fast (both training and tokenization), thanks to the Rust implementation. Takes less than 20 seconds to tokenize a GB of text on a server's CPU.
+- Easy to use, but also extremely versatile.
+- Designed for both research and production.
+- Full alignment tracking. Even with destructive normalization, it's always possible to get the part of the original sentence that corresponds to any token.
+- Does all the pre-processing: Truncation, Padding, add the special tokens your model needs.
+
+### The tokenization pipeline
+https://huggingface.co/docs/tokenizers/v0.23.2/pipeline.md

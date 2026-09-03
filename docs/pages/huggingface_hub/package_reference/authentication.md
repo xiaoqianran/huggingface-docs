@@ -12,7 +12,7 @@ For more details about authentication, check out [this section](../quick-start#a
 huggingface_hub.login(token: str | None = None, add_to_git_credential: bool = False, skip_if_logged_in: bool = True)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_login.py#L57)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_login.py#L57)
 
 **Parameters:**
 
@@ -41,13 +41,13 @@ authenticate: open a URL, enter a short code, and the token is retrieved and sav
 In a terminal, you can also choose to paste an existing access token instead.
 
 To log in from outside of a script, one can also use `hf auth login` which is
-a cli command that wraps [login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.login).
+a cli command that wraps [login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.login).
 
 > [!TIP]
-> When the token is not passed, [login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.login) will automatically detect if the script runs
+> When the token is not passed, [login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.login) will automatically detect if the script runs
 > in a notebook or not. However, this detection might not be accurate due to the
 > variety of notebooks that exists nowadays. If that is the case, you can always force
-> the UI by using [notebook_login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.notebook_login) or [interpreter_login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.interpreter_login).
+> the UI by using [notebook_login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.notebook_login) or [interpreter_login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.interpreter_login).
 
 ## interpreter_login[[huggingface_hub.interpreter_login]]
 
@@ -57,7 +57,7 @@ a cli command that wraps [login()](/docs/huggingface_hub/v1.29.0/en/package_refe
 huggingface_hub.interpreter_login(skip_if_logged_in: bool = True)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_login.py#L284)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_login.py#L284)
 
 **Parameters:**
 
@@ -65,11 +65,11 @@ skip_if_logged_in (`bool`, defaults to `True`) : If `True`, do not prompt for to
 
 Displays a prompt to log in to the HF website and store the token.
 
-This is equivalent to [login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.login) without passing a token when not run in a notebook.
-[interpreter_login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.interpreter_login) is useful if you want to force the use of the terminal prompt
+This is equivalent to [login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.login) without passing a token when not run in a notebook.
+[interpreter_login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.interpreter_login) is useful if you want to force the use of the terminal prompt
 instead of a notebook flow.
 
-For more details, see [login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.login).
+For more details, see [login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.login).
 
 ## notebook_login[[huggingface_hub.notebook_login]]
 
@@ -79,7 +79,7 @@ For more details, see [login()](/docs/huggingface_hub/v1.29.0/en/package_referen
 huggingface_hub.notebook_login(skip_if_logged_in: bool = True)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_login.py#L335)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_login.py#L335)
 
 **Parameters:**
 
@@ -87,11 +87,11 @@ skip_if_logged_in (`bool`, defaults to `True`) : If `True`, do not prompt for to
 
 Displays a prompt to log in to the HF website and store the token.
 
-This is equivalent to [login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.login) without passing a token when run in a notebook.
-[notebook_login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.notebook_login) is useful if you want to force the use of the notebook flow
+This is equivalent to [login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.login) without passing a token when run in a notebook.
+[notebook_login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.notebook_login) is useful if you want to force the use of the notebook flow
 instead of a prompt in the terminal.
 
-For more details, see [login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.login).
+For more details, see [login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.login).
 
 ## logout[[huggingface_hub.logout]]
 
@@ -101,7 +101,7 @@ For more details, see [login()](/docs/huggingface_hub/v1.29.0/en/package_referen
 huggingface_hub.logout(token_name: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_login.py#L120)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_login.py#L120)
 
 **Parameters:**
 
@@ -124,7 +124,7 @@ Token is deleted from the machine and removed from git credential.
 huggingface_hub.auth_switch(token_name: str, add_to_git_credential: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_login.py#L162)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_login.py#L162)
 
 **Parameters:**
 
@@ -147,9 +147,9 @@ Switch to a different access token.
 huggingface_hub.auth_list()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_login.py#L191)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_login.py#L191)
 
 List all stored access tokens.
 
 ### Overview
-https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/overview.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/overview.md

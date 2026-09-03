@@ -1,14 +1,14 @@
 # Managing your Space runtime
 
-Check the [HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi) documentation page for the reference of methods to manage your Space on the Hub.
+Check the [HfApi](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi) documentation page for the reference of methods to manage your Space on the Hub.
 
-- Duplicate a Space: [duplicate_space()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.duplicate_space)
-- Fetch current runtime: [get_space_runtime()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_space_runtime)
-- Fetch build or run logs: [fetch_space_logs()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_space_logs)
-- Manage secrets: [add_space_secret()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.add_space_secret) and [delete_space_secret()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_space_secret)
-- Manage hardware: [request_space_hardware()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.request_space_hardware)
-- Manage state: [pause_space()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_space), [restart_space()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.restart_space), [set_space_sleep_time()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.set_space_sleep_time)
-- Wait until Space is ready: [wait_for_space()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.wait_for_space)
+- Duplicate a Space: [duplicate_space()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.duplicate_space)
+- Fetch current runtime: [get_space_runtime()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_space_runtime)
+- Fetch build or run logs: [fetch_space_logs()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_space_logs)
+- Manage secrets: [add_space_secret()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.add_space_secret) and [delete_space_secret()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_space_secret)
+- Manage hardware: [request_space_hardware()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.request_space_hardware)
+- Manage state: [pause_space()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_space), [restart_space()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.restart_space), [set_space_sleep_time()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.set_space_sleep_time)
+- Wait until Space is ready: [wait_for_space()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.wait_for_space)
 
 ## Data structures
 
@@ -20,7 +20,7 @@ Check the [HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#hugg
 huggingface_hub.SpaceRuntime(data: dict)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_space_api.py#L195)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_space_api.py#L195)
 
 **Parameters:**
 
@@ -32,7 +32,7 @@ requested_hardware (`str` or `None`) : Requested hardware. Can be different from
 
 sleep_time (`int` or `None`) : Number of seconds the Space will be kept alive after the last request. By default (if value is `None`), the Space will never go to sleep if it's running on an upgraded hardware, while it will go to sleep after 48 hours on a free 'cpu-basic' hardware. For more details, see https://huggingface.co/docs/hub/spaces-gpus#sleep-time.
 
-volumes (`list[Volume]` or `None`) : List of volumes mounted in the Space. Each volume is a [Volume](/docs/huggingface_hub/v1.29.0/en/package_reference/jobs#huggingface_hub.Volume) object describing its type, source, mount path, and optional settings. `None` if no volumes are attached.
+volumes (`list[Volume]` or `None`) : List of volumes mounted in the Space. Each volume is a [Volume](/docs/huggingface_hub/v1.30.0/en/package_reference/jobs#huggingface_hub.Volume) object describing its type, source, mount path, and optional settings. `None` if no volumes are attached.
 
 raw (`dict`) : Raw response from the server. Contains more information about the Space runtime like number of replicas, number of cpu, memory size,...
 
@@ -46,7 +46,7 @@ Contains information about the current runtime of a Space.
 huggingface_hub.SpaceHardware(value, names = None, module = None, qualname = None, type = None, start = 1)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_space_api.py#L68)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_space_api.py#L68)
 
 Enumeration of hardwares available to run your Space on the Hub.
 
@@ -65,7 +65,7 @@ Taken from https://github.com/huggingface-internal/moon-landing/blob/main/server
 huggingface_hub.SpaceStage(value, names = None, module = None, qualname = None, type = None, start = 1)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_space_api.py#L22)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_space_api.py#L22)
 
 Enumeration of possible stage of a Space on the Hub.
 
@@ -84,7 +84,7 @@ Taken from https://github.com/huggingface/moon-landing/blob/main/server/repo_typ
 huggingface_hub.SpaceStorage(value, names = None, module = None, qualname = None, type = None, start = 1)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_space_api.py#L104)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_space_api.py#L104)
 
 Enumeration of persistent storage available for your Space on the Hub.
 
@@ -103,7 +103,7 @@ Taken from https://github.com/huggingface/moon-landing/blob/main/server/repo_typ
 huggingface_hub.SpaceVariable(key: str, values: dict)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_space_api.py#L273)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_space_api.py#L273)
 
 **Parameters:**
 
@@ -125,7 +125,7 @@ Contains information about the current variables of a Space.
 huggingface_hub.SpaceTemplate(data: dict)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_space_api.py#L368)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_space_api.py#L368)
 
 **Parameters:**
 
@@ -139,8 +139,8 @@ preferred_private (`bool`) : Whether Spaces created from this template are recom
 
 Contains information about a Space template available on the Hub.
 
-Returned by [HfApi.list_space_templates()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_space_templates). The `repo_id` can be passed as `space_template`
-to [HfApi.create_repo()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo) to seed a new Space from that template.
+Returned by [HfApi.list_space_templates()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_space_templates). The `repo_id` can be passed as `space_template`
+to [HfApi.create_repo()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo) to seed a new Space from that template.
 
 ### TensorBoard logger
-https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/tensorboard.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/tensorboard.md

@@ -4,11 +4,9 @@
 
 #### tokenizers.AddedToken[[tokenizers.AddedToken]]
 
-Represents a token that can be be added to a [Tokenizer](/docs/tokenizers/v0.23.1/en/api/tokenizer#tokenizers.Tokenizer).
-It can have special options that defines the way it should behave.
-
-contenttokenizers.AddedToken.content[]
-Get the content of this `AddedToken`
+```python
+tokenizers.AddedToken(content = None, single_word = False, lstrip = False, rstrip = False, normalized = True, special = False)
+```
 
 **Parameters:**
 
@@ -23,15 +21,26 @@ rstrip (`bool`, defaults to `False`) : Defines whether this token should strip a
 normalized (`bool`, defaults to `True` with  --meth:*~tokenizers.Tokenizer.add_tokens* and `False` with `add_special_tokens()`): Defines whether this token should match against the normalized version of the input text. For example, with the added token `"yesterday"`, and a normalizer in charge of lowercasing the text, the token could be extract from the input `"I saw a lion Yesterday"`.
 
 special (`bool`, defaults to `False` with  --meth:*~tokenizers.Tokenizer.add_tokens* and `False` with `add_special_tokens()`): Defines whether this token should be skipped when decoding.
+
+Represents a token that can be be added to a [Tokenizer](/docs/tokenizers/v0.23.2/en/api/tokenizer#tokenizers.Tokenizer).
+It can have special options that defines the way it should behave.
+
+#### content[[tokenizers.AddedToken.content]]
+
+Get the content of this `AddedToken`
+
 #### lstrip[[tokenizers.AddedToken.lstrip]]
 
 Get the value of the `lstrip` option
+
 #### normalized[[tokenizers.AddedToken.normalized]]
 
 Get the value of the `normalized` option
+
 #### rstrip[[tokenizers.AddedToken.rstrip]]
 
 Get the value of the `rstrip` option
+
 #### single_word[[tokenizers.AddedToken.single_word]]
 
 Get the value of the `single_word` option
@@ -39,6 +48,3 @@ Get the value of the `single_word` option
 The Rust API Reference is available directly on the [Docs.rs](https://docs.rs/tokenizers/latest/tokenizers/) website.
 
 The node API has not been documented yet.
-
-### Encode Inputs
-https://huggingface.co/docs/tokenizers/v0.23.1/api/encode-inputs.md

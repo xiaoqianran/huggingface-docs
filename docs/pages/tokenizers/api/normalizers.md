@@ -4,6 +4,10 @@
 
 #### tokenizers.normalizers.ByteLevel[[tokenizers.normalizers.ByteLevel]]
 
+```python
+tokenizers.normalizers.ByteLevel()
+```
+
 Bytelevel Normalizer
 
 Converts all bytes in the input to their Unicode representation using the GPT-2
@@ -12,8 +16,8 @@ character so that any arbitrary binary input can be tokenized without needing a
 special unknown token.
 
 This normalizer is used together with the
-[ByteLevel](/docs/tokenizers/v0.23.1/en/api/pre-tokenizers#tokenizers.pre_tokenizers.ByteLevel) pre-tokenizer and
-[ByteLevel](/docs/tokenizers/v0.23.1/en/api/decoders#tokenizers.decoders.ByteLevel) decoder.
+[ByteLevel](/docs/tokenizers/v0.23.2/en/api/pre-tokenizers#tokenizers.pre_tokenizers.ByteLevel) pre-tokenizer and
+[ByteLevel](/docs/tokenizers/v0.23.2/en/api/decoders#tokenizers.decoders.ByteLevel) decoder.
 
 Example:
 
@@ -27,6 +31,10 @@ Example:
 ## Lowercase[[tokenizers.normalizers.Lowercase]]
 
 #### tokenizers.normalizers.Lowercase[[tokenizers.normalizers.Lowercase]]
+
+```python
+tokenizers.normalizers.Lowercase()
+```
 
 Lowercase Normalizer
 
@@ -45,6 +53,10 @@ Example:
 ## NFC[[tokenizers.normalizers.NFC]]
 
 #### tokenizers.normalizers.NFC[[tokenizers.normalizers.NFC]]
+
+```python
+tokenizers.normalizers.NFC()
+```
 
 NFC Unicode Normalizer
 
@@ -65,6 +77,10 @@ Example:
 
 #### tokenizers.normalizers.NFD[[tokenizers.normalizers.NFD]]
 
+```python
+tokenizers.normalizers.NFD()
+```
+
 NFD Unicode Normalizer
 
 Applies Unicode NFD (Canonical Decomposition) normalization. Decomposes characters into
@@ -72,7 +88,7 @@ their canonical components. For example, accented characters like `é` (U+00E9) 
 decomposed into `e` (U+0065) + combining accent (U+0301).
 
 This is often used as a first step before stripping accents with
-[StripAccents](/docs/tokenizers/v0.23.1/en/api/normalizers#tokenizers.normalizers.StripAccents).
+[StripAccents](/docs/tokenizers/v0.23.2/en/api/normalizers#tokenizers.normalizers.StripAccents).
 
 Example:
 
@@ -86,6 +102,10 @@ Example:
 ## NFKC[[tokenizers.normalizers.NFKC]]
 
 #### tokenizers.normalizers.NFKC[[tokenizers.normalizers.NFKC]]
+
+```python
+tokenizers.normalizers.NFKC()
+```
 
 NFKC Unicode Normalizer
 
@@ -107,6 +127,10 @@ Example:
 
 #### tokenizers.normalizers.NFKD[[tokenizers.normalizers.NFKD]]
 
+```python
+tokenizers.normalizers.NFKD()
+```
+
 NFKD Unicode Normalizer
 
 Applies Unicode NFKD (Compatibility Decomposition) normalization. Like NFD but also
@@ -125,6 +149,10 @@ Example:
 ## Nmt[[tokenizers.normalizers.Nmt]]
 
 #### tokenizers.normalizers.Nmt[[tokenizers.normalizers.Nmt]]
+
+```python
+tokenizers.normalizers.Nmt()
+```
 
 Nmt normalizer
 
@@ -146,14 +174,25 @@ Example:
 
 #### tokenizers.normalizers.Normalizer[[tokenizers.normalizers.Normalizer]]
 
+```python
+tokenizers.normalizers.Normalizer()
+```
+
 Base class for all normalizers
 
 This class is not supposed to be instantiated directly. Instead, any implementation of a
 Normalizer will return an instance of this class when instantiated.
 
-normalizetokenizers.normalizers.Normalizer.normalize[{"name": "normalized", "val": ""}]- **normalized** (`NormalizedString`) --
-  The normalized string on which to apply this
-  [Normalizer](/docs/tokenizers/v0.23.1/en/api/normalizers#tokenizers.normalizers.Normalizer)0
+#### normalize[[tokenizers.normalizers.Normalizer.normalize]]
+
+```python
+normalize(normalized)
+```
+
+**Parameters:**
+
+normalized (`NormalizedString`) : The normalized string on which to apply this [Normalizer](/docs/tokenizers/v0.23.2/en/api/normalizers#tokenizers.normalizers.Normalizer)
+
 Normalize a `NormalizedString` in-place
 
 This method allows to modify a `NormalizedString` to
@@ -161,31 +200,38 @@ keep track of the alignment information. If you just want to see the result
 of the normalization on a raw string, you can use
 `normalize_str()`
 
-**Parameters:**
-
-normalized (`NormalizedString`) : The normalized string on which to apply this [Normalizer](/docs/tokenizers/v0.23.1/en/api/normalizers#tokenizers.normalizers.Normalizer)
 #### normalize_str[[tokenizers.normalizers.Normalizer.normalize_str]]
 
-Normalize the given string
-
-This method provides a way to visualize the effect of a
-[Normalizer](/docs/tokenizers/v0.23.1/en/api/normalizers#tokenizers.normalizers.Normalizer) but it does not keep track of the alignment
-information. If you need to get/convert offsets, you can use
-`normalize()`
+```python
+normalize_str(sequence)
+```
 
 **Parameters:**
 
 sequence (`str`) : A string to normalize
 
-**Returns:**
-
-``str``
+**Returns:** `str`
 
 A string after normalization
+
+Normalize the given string
+
+This method provides a way to visualize the effect of a
+[Normalizer](/docs/tokenizers/v0.23.2/en/api/normalizers#tokenizers.normalizers.Normalizer) but it does not keep track of the alignment
+information. If you need to get/convert offsets, you can use
+`normalize()`
 
 ## Precompiled[[tokenizers.normalizers.Precompiled]]
 
 #### tokenizers.normalizers.Precompiled[[tokenizers.normalizers.Precompiled]]
+
+```python
+tokenizers.normalizers.Precompiled(precompiled_charsmap)
+```
+
+**Parameters:**
+
+precompiled_charsmap (`bytes`) : The raw bytes of the precompiled character map, as found inside a SentencePiece `.model` file.
 
 Precompiled normalizer
 
@@ -194,13 +240,19 @@ This normalizer is automatically extracted from SentencePiece `.model` files and
 should not be constructed manually — it is used internally for full compatibility
 with SentencePiece-based tokenizers.
 
-**Parameters:**
-
-precompiled_charsmap (`bytes`) : The raw bytes of the precompiled character map, as found inside a SentencePiece `.model` file.
-
 ## Replace[[tokenizers.normalizers.Replace]]
 
 #### tokenizers.normalizers.Replace[[tokenizers.normalizers.Replace]]
+
+```python
+tokenizers.normalizers.Replace(pattern, content)
+```
+
+**Parameters:**
+
+pattern (`str` or `Regex`) : The pattern to search for. Use a plain string for literal replacement, or wrap a regex pattern in `Regex` for regex replacement. 
+
+content (`str`) : The string to replace each match with.
 
 Replace normalizer
 
@@ -221,15 +273,17 @@ Example:
 'hello world'
 ```
 
-**Parameters:**
-
-pattern (`str` or `Regex`) : The pattern to search for. Use a plain string for literal replacement, or wrap a regex pattern in `Regex` for regex replacement. 
-
-content (`str`) : The string to replace each match with.
-
 ## Sequence[[tokenizers.normalizers.Sequence]]
 
 #### tokenizers.normalizers.Sequence[[tokenizers.normalizers.Sequence]]
+
+```python
+tokenizers.normalizers.Sequence(normalizers)
+```
+
+**Parameters:**
+
+normalizers (`List[Normalizer]`) : A list of Normalizer to be run as a sequence
 
 Allows concatenating multiple other Normalizer as a Sequence.
 All the normalizers run in sequence in the given order
@@ -243,13 +297,19 @@ Example:
 'hello world'
 ```
 
-**Parameters:**
-
-normalizers (`List[Normalizer]`) : A list of Normalizer to be run as a sequence
-
 ## Strip[[tokenizers.normalizers.Strip]]
 
 #### tokenizers.normalizers.Strip[[tokenizers.normalizers.Strip]]
+
+```python
+tokenizers.normalizers.Strip(left = True, right = True)
+```
+
+**Parameters:**
+
+left (`bool`, defaults to `True`) : Whether to strip leading (left) whitespace. 
+
+right (`bool`, defaults to `True`) : Whether to strip trailing (right) whitespace.
 
 Strip normalizer
 
@@ -266,21 +326,19 @@ Example:
 'hello  '
 ```
 
-**Parameters:**
-
-left (`bool`, defaults to `True`) : Whether to strip leading (left) whitespace. 
-
-right (`bool`, defaults to `True`) : Whether to strip trailing (right) whitespace.
-
 ## StripAccents[[tokenizers.normalizers.StripAccents]]
 
 #### tokenizers.normalizers.StripAccents[[tokenizers.normalizers.StripAccents]]
 
+```python
+tokenizers.normalizers.StripAccents()
+```
+
 StripAccents normalizer
 
 Strips all accent marks (combining diacritical characters) from the input. This
-normalizer should typically be used after applying [NFD](/docs/tokenizers/v0.23.1/en/api/normalizers#tokenizers.normalizers.NFD)
-or [NFKD](/docs/tokenizers/v0.23.1/en/api/normalizers#tokenizers.normalizers.NFKD) decomposition, which separates base
+normalizer should typically be used after applying [NFD](/docs/tokenizers/v0.23.2/en/api/normalizers#tokenizers.normalizers.NFD)
+or [NFKD](/docs/tokenizers/v0.23.2/en/api/normalizers#tokenizers.normalizers.NFKD) decomposition, which separates base
 characters from their combining accents.
 
 Example:
@@ -296,6 +354,20 @@ Example:
 
 #### tokenizers.normalizers.BertNormalizer[[tokenizers.normalizers.BertNormalizer]]
 
+```python
+tokenizers.normalizers.BertNormalizer(clean_text = True, handle_chinese_chars = True, strip_accents = None, lowercase = True)
+```
+
+**Parameters:**
+
+clean_text (`bool`, *optional*, defaults to `True`) : Whether to clean the text, by removing any control characters and replacing all whitespaces by the classic one. 
+
+handle_chinese_chars (`bool`, *optional*, defaults to `True`) : Whether to handle chinese chars by putting spaces around them. 
+
+strip_accents (`bool`, *optional*) : Whether to strip all accents. If this option is not specified (ie == None), then it will be determined by the value for *lowercase* (as in the original Bert). 
+
+lowercase (`bool`, *optional*, defaults to `True`) : Whether to lowercase.
+
 BertNormalizer
 
 Takes care of normalizing raw text before giving it to a Bert model.
@@ -310,16 +382,9 @@ Example:
 'hello world'
 ```
 
-**Parameters:**
-
-clean_text (`bool`, *optional*, defaults to `True`) : Whether to clean the text, by removing any control characters and replacing all whitespaces by the classic one. 
-
-handle_chinese_chars (`bool`, *optional*, defaults to `True`) : Whether to handle chinese chars by putting spaces around them. 
-
-strip_accents (`bool`, *optional*) : Whether to strip all accents. If this option is not specified (ie == None), then it will be determined by the value for *lowercase* (as in the original Bert). 
-
-lowercase (`bool`, *optional*, defaults to `True`) : Whether to lowercase.
-
 The Rust API Reference is available directly on the [Docs.rs](https://docs.rs/tokenizers/latest/tokenizers/) website.
 
 The node API has not been documented yet.
+
+### Input Sequences
+https://huggingface.co/docs/tokenizers/v0.23.2/api/input-sequences.md

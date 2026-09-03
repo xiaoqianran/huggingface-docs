@@ -6,7 +6,7 @@ for a deeper view of what Model Cards on the Hub are, and how they work under th
 
 ## Load a Model Card from the Hub
 
-To load an existing card from the Hub, you can use the [ModelCard.load()](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.RepoCard.load) function. Here, we'll load the card from [`nateraw/vit-base-beans`](https://huggingface.co/nateraw/vit-base-beans).
+To load an existing card from the Hub, you can use the [ModelCard.load()](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.RepoCard.load) function. Here, we'll load the card from [`nateraw/vit-base-beans`](https://huggingface.co/nateraw/vit-base-beans).
 
 ```python
 from huggingface_hub import ModelCard
@@ -15,7 +15,7 @@ card = ModelCard.load('nateraw/vit-base-beans')
 ```
 
 This card has some helpful attributes that you may want to access/leverage:
-  - `card.data`: Returns a [ModelCardData](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.ModelCardData) instance with the model card's metadata. Call `.to_dict()` on this instance to get the representation as a dictionary.
+  - `card.data`: Returns a [ModelCardData](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.ModelCardData) instance with the model card's metadata. Call `.to_dict()` on this instance to get the representation as a dictionary.
   - `card.text`: Returns the text of the card, *excluding the metadata header*.
   - `card.content`: Returns the text content of the card, *including the metadata header*.
 
@@ -41,7 +41,7 @@ card.data.to_dict() == {'language': 'en', 'license': 'mit'}  # True
 
 Another way you might want to do this is with f-strings. In the following example, we:
 
-- Use [ModelCardData.to_yaml()](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.CardData.to_yaml) to convert metadata we defined to YAML so we can use it to insert the YAML block in the model card.
+- Use [ModelCardData.to_yaml()](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.CardData.to_yaml) to convert metadata we defined to YAML so we can use it to insert the YAML block in the model card.
 - Show how you might use a template variable via Python f-strings.
 
 ```python
@@ -152,7 +152,7 @@ This model does this and that.
 This model was created by [@nateraw](https://hf.co/nateraw).
 ```
 
-As you update the card data, you can validate the card is still valid against the Hub by calling [ModelCard.validate()](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.RepoCard.validate). This ensures that the card passes any validation rules set up on the Hugging Face Hub.
+As you update the card data, you can validate the card is still valid against the Hub by calling [ModelCard.validate()](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.RepoCard.validate). This ensures that the card passes any validation rules set up on the Hugging Face Hub.
 
 ### From the Default Template
 
@@ -176,7 +176,7 @@ print(card)
 
 ## Share Model Cards
 
-If you're authenticated with the Hugging Face Hub (either by using `hf auth login` or [login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.login)), you can push cards to the Hub by simply calling [ModelCard.push_to_hub()](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.RepoCard.push_to_hub). Let's take a look at how to do that...
+If you're authenticated with the Hugging Face Hub (either by using `hf auth login` or [login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.login)), you can push cards to the Hub by simply calling [ModelCard.push_to_hub()](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.RepoCard.push_to_hub). Let's take a look at how to do that...
 
 First, we'll create a new repo called 'hf-hub-modelcards-pr-test' under the authenticated user's namespace:
 
@@ -252,10 +252,10 @@ review and merge your suggestions.
 
 ## Include Evaluation Results
 
-To include evaluation results in the metadata `model-index`, you can pass an [EvalResult](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.EvalResult) or a list of `EvalResult` with your associated evaluation results. Under the hood it'll create the `model-index` when you call `card.data.to_dict()`. For more information on how this works, you can check out [this section of the Hub docs](https://huggingface.co/docs/hub/models-cards#evaluation-results).
+To include evaluation results in the metadata `model-index`, you can pass an [EvalResult](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.EvalResult) or a list of `EvalResult` with your associated evaluation results. Under the hood it'll create the `model-index` when you call `card.data.to_dict()`. For more information on how this works, you can check out [this section of the Hub docs](https://huggingface.co/docs/hub/models-cards#evaluation-results).
 
 > [!TIP]
-> Note that using this function requires you to include the `model_name` attribute in [ModelCardData](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.ModelCardData).
+> Note that using this function requires you to include the `model_name` attribute in [ModelCardData](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.ModelCardData).
 
 ```python
 card_data = ModelCardData(
@@ -342,4 +342,4 @@ model-index:
 ```
 
 ### Inference Endpoints
-https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/inference_endpoints.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/guides/inference_endpoints.md

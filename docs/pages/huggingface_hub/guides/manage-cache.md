@@ -97,11 +97,11 @@ The `trees` folder caches the list of files that a repository contains at a give
 
 Each cached list is named after a commit hash and stored as a JSON file, for example `trees/aaaaaa.json`. For every file in the repository at that commit, it records what is needed to download the file: its path, its size and its hash. This is the same information the Hub would otherwise return, but it normally costs one network call per file to fetch it.
 
-This cache is written by [snapshot_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.snapshot_download). The first time you download a commit, the file list is fetched once and saved here. The next time you download the same commit, the list is read from disk instead of being fetched again. As a result, re-running a download when everything is already cached costs a single network call: the one needed to resolve the branch or tag name into a commit hash.
+This cache is written by [snapshot_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download). The first time you download a commit, the file list is fetched once and saved here. The next time you download the same commit, the list is read from disk instead of being fetched again. As a result, re-running a download when everything is already cached costs a single network call: the one needed to resolve the branch or tag name into a commit hash.
 
-Both [snapshot_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.snapshot_download) and [hf_hub_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) read this cache to avoid network calls. When you download a file with a commit hash as revision (this is exactly what [snapshot_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.snapshot_download) does internally for every file), the download metadata is read from the cached file list and the per-file network call is skipped. This means a [hf_hub_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) for a single file also benefits from a file list that an earlier [snapshot_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.snapshot_download) saved for the same commit.
+Both [snapshot_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download) and [hf_hub_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) read this cache to avoid network calls. When you download a file with a commit hash as revision (this is exactly what [snapshot_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download) does internally for every file), the download metadata is read from the cached file list and the per-file network call is skipped. This means a [hf_hub_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) for a single file also benefits from a file list that an earlier [snapshot_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download) saved for the same commit.
 
-Because the cached file list describes exactly what a commit should contain, [snapshot_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.snapshot_download) can also tell whether a local snapshot is complete. If the Hub cannot be reached (you are offline, the connection fails, or you passed `local_files_only=True`) and some expected files are missing from the local snapshot, [snapshot_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.snapshot_download) raises [IncompleteSnapshotError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.IncompleteSnapshotError) instead of returning a partial folder. Before this, an incomplete snapshot was returned silently, which could leave you working with missing files without knowing it. Files excluded by `allow_patterns` or `ignore_patterns` are not counted as missing. The exception exposes the path to the incomplete snapshot via its `snapshot_path` attribute, so you can still locate the partially cached files if needed.
+Because the cached file list describes exactly what a commit should contain, [snapshot_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download) can also tell whether a local snapshot is complete. If the Hub cannot be reached (you are offline, the connection fails, or you passed `local_files_only=True`) and some expected files are missing from the local snapshot, [snapshot_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download) raises [IncompleteSnapshotError](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.errors.IncompleteSnapshotError) instead of returning a partial folder. Before this, an incomplete snapshot was returned silently, which could leave you working with missing files without knowing it. Files excluded by `allow_patterns` or `ignore_patterns` are not counted as missing. The exception exposes the path to the incomplete snapshot via its `snapshot_path` attribute, so you can still locate the partially cached files if needed.
 
 ### .no_exist (advanced)
 
@@ -124,7 +124,7 @@ This is for example the case in `transformers` where each tokenizer can support 
 The first time you load the tokenizer on your machine, it will cache which optional files exist (and
 which doesn't) to make the loading time faster for the next initializations.
 
-To test if a file is cached locally (without making any HTTP request), you can use the [try_to_load_from_cache()](/docs/huggingface_hub/v1.29.0/en/package_reference/cache#huggingface_hub.try_to_load_from_cache)
+To test if a file is cached locally (without making any HTTP request), you can use the [try_to_load_from_cache()](/docs/huggingface_hub/v1.30.0/en/package_reference/cache#huggingface_hub.try_to_load_from_cache)
 helper. It will either return the filepath (if exists and cached), the object `_CACHED_NO_EXIST` (if non-existence
 is cached) or `None` (if we don't know).
 
@@ -202,11 +202,11 @@ by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable to true.
 ## Pin a revision (advanced)
 
 > [!TIP]
-> If you are integrating the Hub in an ML library, a single [snapshot_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.snapshot_download) call is still the recommended approach: it resolves the revision once, downloads everything in parallel and caches the file listing. What follows is only useful for complex libraries that download and load many components separately (config, weights, tokenizer, processor, adapters, ...) and cannot use a single call.
+> If you are integrating the Hub in an ML library, a single [snapshot_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download) call is still the recommended approach: it resolves the revision once, downloads everything in parallel and caches the file listing. What follows is only useful for complex libraries that download and load many components separately (config, weights, tokenizer, processor, adapters, ...) and cannot use a single call.
 
 When a library downloads several files one by one, each call has to resolve `revision="main"` into a commit hash again. This costs one HTTP call per file and, worse, two calls made a few seconds apart can land on two different commits if the repo is updated in between.
 
-[HfApi.resolve_revision()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision) resolves the revision once and returns a [ResolvedRevision](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision):
+[HfApi.resolve_revision()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision) resolves the revision once and returns a [ResolvedRevision](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision):
 
 ```py
 >>> from huggingface_hub import resolve_revision
@@ -215,7 +215,7 @@ When a library downloads several files one by one, each call has to resolve `rev
 ResolvedRevision(initial=None, resolved='607a30d783dfa663caf39e06633721c8d4cfcd7e')
 ```
 
-[ResolvedRevision](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision) is a `str` subclass, so it can be passed to any `huggingface_hub` method taking a `revision` argument. Its string value is what the user initially requested (`"main"` here, hence readable error messages), while `.resolved` holds the commit hash:
+[ResolvedRevision](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision) is a `str` subclass, so it can be passed to any `huggingface_hub` method taking a `revision` argument. Its string value is what the user initially requested (`"main"` here, hence readable error messages), while `.resolved` holds the commit hash:
 
 ```py
 >>> revision == "main"
@@ -224,7 +224,7 @@ True
 '607a30d783dfa663caf39e06633721c8d4cfcd7e'
 ```
 
-Download helpers ([hf_hub_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.hf_hub_download), [snapshot_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.snapshot_download), [get_cached_repo_tree()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.get_cached_repo_tree)) detect a [ResolvedRevision](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision) and use the commit hash directly. Every file is guaranteed to come from the same commit, and once the files are cached no HTTP call is needed at all:
+Download helpers ([hf_hub_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.hf_hub_download), [snapshot_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download), [get_cached_repo_tree()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.get_cached_repo_tree)) detect a [ResolvedRevision](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision) and use the commit hash directly. Every file is guaranteed to come from the same commit, and once the files are cached no HTTP call is needed at all:
 
 ```py
 >>> from huggingface_hub import hf_hub_download
@@ -232,7 +232,16 @@ Download helpers ([hf_hub_download()](/docs/huggingface_hub/v1.29.0/en/package_r
 >>> weights = hf_hub_download("openai-community/gpt2", "model.safetensors", revision=revision)
 ```
 
-The `revision` -> `commit hash` mapping is also written to the `refs/` folder of the cache (see [Refs](#refs)). This means that if the Hub cannot be reached later on (offline mode, connection error, timeout, Hub downtime), [HfApi.resolve_revision()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision) transparently falls back to the cached value. If nothing is cached either, a [RevisionResolutionError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.RevisionResolutionError) is raised.
+The `revision` -> `commit hash` mapping is also written to the `refs/` folder of the cache (see [Refs](#refs)). This means that if the Hub cannot be reached later on (offline mode, connection error, timeout, Hub downtime), [HfApi.resolve_revision()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision) transparently falls back to the cached value. If nothing is cached either, a [RevisionResolutionError](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.errors.RevisionResolutionError) is raised.
+
+A commit hash only means something for the repo it was resolved against, and download helpers use it as is. So a [ResolvedRevision](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision) must only be passed to the repo it was resolved for. If a library also downloads from another repo (a base model, an adapter, a component living in its own repo, ...), it needs a revision resolved for that repo. Just pass the [ResolvedRevision](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision) back to [HfApi.resolve_revision()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision): it remembers which repo it belongs to and resolves the revision initially requested (`"main"` here) again for the new repo.
+
+```py
+>>> other_revision = resolve_revision("openai-community/gpt2-medium", revision=revision)  # resolves "main" again
+>>> other_revision.resolved
+'6dcaa7a952f72f9298047fd5137cd6e4f05f41da'
+>>> config = hf_hub_download("openai-community/gpt2-medium", "config.json", revision=other_revision)
+```
 
 ## Chunk-based caching (Xet)
 
@@ -363,7 +372,7 @@ To learn more about Xet Storage, see this [section](https://huggingface.co/docs/
 In addition to caching files from the Hub, downstream libraries often requires to cache
 other files related to HF but not handled directly by `huggingface_hub` (example: file
 downloaded from GitHub, preprocessed data, logs,...). In order to cache those files,
-called `assets`, one can use [cached_assets_path()](/docs/huggingface_hub/v1.29.0/en/package_reference/cache#huggingface_hub.cached_assets_path). This small helper generates paths
+called `assets`, one can use [cached_assets_path()](/docs/huggingface_hub/v1.30.0/en/package_reference/cache#huggingface_hub.cached_assets_path). This small helper generates paths
 in the HF cache in a unified way based on the name of the library requesting it and
 optionally on a namespace and a subfolder name. The goal is to let every downstream
 libraries manage its assets its own way (e.g. no rule on the structure) as long as it
@@ -379,7 +388,7 @@ something_path = assets_path / "something.json" # Do anything you like in your a
 ```
 
 > [!TIP]
-> [cached_assets_path()](/docs/huggingface_hub/v1.29.0/en/package_reference/cache#huggingface_hub.cached_assets_path) is the recommended way to store assets but is not mandatory. If
+> [cached_assets_path()](/docs/huggingface_hub/v1.30.0/en/package_reference/cache#huggingface_hub.cached_assets_path) is the recommended way to store assets but is not mandatory. If
 > your library already uses its own cache, feel free to use it!
 
 ### Assets in practice
@@ -478,15 +487,15 @@ model/t5-small                       8f3ad1c90fed7a62    820.1M 2 weeks ago   re
 
 **Inspect cache from Python**
 
-For a more advanced usage, use [scan_cache_dir()](/docs/huggingface_hub/v1.29.0/en/package_reference/cache#huggingface_hub.scan_cache_dir) which is the python utility called by
+For a more advanced usage, use [scan_cache_dir()](/docs/huggingface_hub/v1.30.0/en/package_reference/cache#huggingface_hub.scan_cache_dir) which is the python utility called by
 the CLI tool.
 
 You can use it to get a detailed report structured around 4 dataclasses:
 
-- [HFCacheInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/cache#huggingface_hub.HFCacheInfo): complete report returned by [scan_cache_dir()](/docs/huggingface_hub/v1.29.0/en/package_reference/cache#huggingface_hub.scan_cache_dir)
-- [CachedRepoInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/cache#huggingface_hub.CachedRepoInfo): information about a cached repo
-- [CachedRevisionInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/cache#huggingface_hub.CachedRevisionInfo): information about a cached revision (e.g. "snapshot") inside a repo
-- [CachedFileInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/cache#huggingface_hub.CachedFileInfo): information about a cached file in a snapshot
+- [HFCacheInfo](/docs/huggingface_hub/v1.30.0/en/package_reference/cache#huggingface_hub.HFCacheInfo): complete report returned by [scan_cache_dir()](/docs/huggingface_hub/v1.30.0/en/package_reference/cache#huggingface_hub.scan_cache_dir)
+- [CachedRepoInfo](/docs/huggingface_hub/v1.30.0/en/package_reference/cache#huggingface_hub.CachedRepoInfo): information about a cached repo
+- [CachedRevisionInfo](/docs/huggingface_hub/v1.30.0/en/package_reference/cache#huggingface_hub.CachedRevisionInfo): information about a cached revision (e.g. "snapshot") inside a repo
+- [CachedFileInfo](/docs/huggingface_hub/v1.30.0/en/package_reference/cache#huggingface_hub.CachedFileInfo): information about a cached file in a snapshot
 
 Here is a simple usage example. See reference for details.
 
@@ -564,15 +573,15 @@ Verify a specific cached revision:
 Scanning your cache is interesting but what you really want to do next is usually to
 delete some portions to free up some space on your drive. This is possible using the
 `hf cache rm` and `hf cache prune` CLI commands. One can also programmatically use the
-[delete_revisions()](/docs/huggingface_hub/v1.29.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_revisions) helper from the [HFCacheInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/cache#huggingface_hub.HFCacheInfo) object returned when
+[delete_revisions()](/docs/huggingface_hub/v1.30.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_revisions) helper from the [HFCacheInfo](/docs/huggingface_hub/v1.30.0/en/package_reference/cache#huggingface_hub.HFCacheInfo) object returned when
 scanning the cache.
 
 **Delete strategy**
 
 To delete some cache, you need to pass a list of revisions to delete. The tool will
 define a strategy to free up the space based on this list. It returns a
-[DeleteCacheStrategy](/docs/huggingface_hub/v1.29.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) object that describes which files and folders will be deleted.
-The [DeleteCacheStrategy](/docs/huggingface_hub/v1.29.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) allows give you how much space is expected to be freed.
+[DeleteCacheStrategy](/docs/huggingface_hub/v1.30.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) object that describes which files and folders will be deleted.
+The [DeleteCacheStrategy](/docs/huggingface_hub/v1.30.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) allows give you how much space is expected to be freed.
 Once you agree with the deletion, you must execute it to make the deletion effective. In
 order to avoid discrepancies, you cannot edit a strategy object manually.
 
@@ -592,7 +601,7 @@ The strategy to delete revisions is the following:
 > If a revision is not found in the cache, it will be silently ignored. Besides, if a file
 > or folder cannot be found while trying to delete it, a warning will be logged but no
 > error is thrown. The deletion continues for other paths contained in the
-> [DeleteCacheStrategy](/docs/huggingface_hub/v1.29.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) object.
+> [DeleteCacheStrategy](/docs/huggingface_hub/v1.30.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) object.
 
 **Clean cache from the terminal**
 
@@ -660,7 +669,7 @@ and target alternate cache directories as needed.
 
 **Clean cache from Python**
 
-For more flexibility, you can also use the [delete_revisions()](/docs/huggingface_hub/v1.29.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_revisions) method
+For more flexibility, you can also use the [delete_revisions()](/docs/huggingface_hub/v1.30.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_revisions) method
 programmatically. Here is a simple example. See reference for details.
 
 ```py
@@ -679,4 +688,4 @@ Cache deletion done. Saved 8.6G.
 ```
 
 ### Create and share Model Cards
-https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/model-cards.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/guides/model-cards.md

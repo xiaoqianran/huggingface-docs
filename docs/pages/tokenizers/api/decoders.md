@@ -1,7 +1,16 @@
 # Decoders
 
 ## DecodeStream[[tokenizers.decoders.DecodeStream]]
+
 #### tokenizers.decoders.DecodeStream[[tokenizers.decoders.DecodeStream]]
+
+```python
+tokenizers.decoders.DecodeStream(ids = None, skip_special_tokens = False)
+```
+
+**Parameters:**
+
+skip_special_tokens (`bool`, defaults to `False`) : Whether to skip special tokens (e.g. `[CLS]`, `[SEP]`, `&amp;lt;s>`) when decoding.
 
 Provides incremental decoding of token IDs as they are generated, yielding
 decoded text chunks as soon as they are available.
@@ -32,12 +41,23 @@ Example:
 ...         print(chunk, end="", flush=True)
 ```
 
-steptokenizers.decoders.DecodeStream.step[{"name": "tokenizer", "val": ""}, {"name": "id", "val": ""}]- **tokenizer** ([Tokenizer](/docs/tokenizers/v0.23.1/en/api/tokenizer#tokenizers.Tokenizer)) --
-  The tokenizer whose decoder pipeline will be used.
+#### step[[tokenizers.decoders.DecodeStream.step]]
 
-- **id** (`int` or `List[int]`) --
-  The next token ID, or a list of token IDs to append to the stream.0`Optional[str]`The next decoded text chunk if enough tokens have
+```python
+step(tokenizer, id)
+```
+
+**Parameters:**
+
+tokenizer ([Tokenizer](/docs/tokenizers/v0.23.2/en/api/tokenizer#tokenizers.Tokenizer)) : The tokenizer whose decoder pipeline will be used. 
+
+id (`int` or `List[int]`) : The next token ID, or a list of token IDs to append to the stream.
+
+**Returns:** `Optional[str]`
+
+The next decoded text chunk if enough tokens have
 accumulated, or `None` if more tokens are still needed.
+
 Add the next token ID (or list of IDs) to the stream and return the next
 decoded text chunk if one is available.
 
@@ -47,20 +67,17 @@ when the provided token does not yet complete a decodable unit. Callers
 should simply continue feeding tokens until a non-`None` value is
 returned.
 
-**Parameters:**
-
-skip_special_tokens (`bool`, defaults to `False`) : Whether to skip special tokens (e.g. `[CLS]`, `[SEP]`, `&amp;lt;s>`) when decoding.
-
-**Returns:**
-
-``Optional[str]``
-
-The next decoded text chunk if enough tokens have
-accumulated, or `None` if more tokens are still needed.
-
 ## BPEDecoder[[tokenizers.decoders.BPEDecoder]]
 
 #### tokenizers.decoders.BPEDecoder[[tokenizers.decoders.BPEDecoder]]
+
+```python
+tokenizers.decoders.BPEDecoder(suffix = '</w>')
+```
+
+**Parameters:**
+
+suffix (`str`, *optional*, defaults to `&amp;lt;/w>`) : The suffix that was used to characterize an end-of-word. This suffix will be replaced by whitespaces during the decoding
 
 BPEDecoder Decoder
 
@@ -73,13 +90,13 @@ Example:
 'Hello world'
 ```
 
-**Parameters:**
-
-suffix (`str`, *optional*, defaults to `&amp;lt;/w>`) : The suffix that was used to characterize an end-of-word. This suffix will be replaced by whitespaces during the decoding
-
 ## ByteFallback[[tokenizers.decoders.ByteFallback]]
 
 #### tokenizers.decoders.ByteFallback[[tokenizers.decoders.ByteFallback]]
+
+```python
+tokenizers.decoders.ByteFallback()
+```
 
 ByteFallback Decoder
 
@@ -103,10 +120,14 @@ Example:
 
 #### tokenizers.decoders.ByteLevel[[tokenizers.decoders.ByteLevel]]
 
+```python
+tokenizers.decoders.ByteLevel()
+```
+
 ByteLevel Decoder
 
 This decoder is to be used in tandem with the
-[ByteLevel](/docs/tokenizers/v0.23.1/en/api/pre-tokenizers#tokenizers.pre_tokenizers.ByteLevel) pre-tokenizer. It reverses the
+[ByteLevel](/docs/tokenizers/v0.23.2/en/api/pre-tokenizers#tokenizers.pre_tokenizers.ByteLevel) pre-tokenizer. It reverses the
 byte-to-unicode mapping applied during pre-tokenization, converting the special
 Unicode characters back into the original bytes to reconstruct the original string.
 
@@ -123,6 +144,18 @@ Example:
 
 #### tokenizers.decoders.CTC[[tokenizers.decoders.CTC]]
 
+```python
+tokenizers.decoders.CTC(pad_token = '<pad>', word_delimiter_token = '|', cleanup = True)
+```
+
+**Parameters:**
+
+pad_token (`str`, *optional*, defaults to `&amp;lt;pad>`) : The pad token used by CTC to delimit a new token.
+
+word_delimiter_token (`str`, *optional*, defaults to `|`) : The word delimiter token. It will be replaced by a &amp;lt;space>
+
+cleanup (`bool`, *optional*, defaults to `True`) : Whether to cleanup some tokenization artifacts. Mainly spaces before punctuation, and some abbreviated english forms.
+
 CTC Decoder
 
 Example:
@@ -134,17 +167,13 @@ Example:
 'hello world'
 ```
 
-**Parameters:**
-
-pad_token (`str`, *optional*, defaults to `&amp;lt;pad>`) : The pad token used by CTC to delimit a new token.
-
-word_delimiter_token (`str`, *optional*, defaults to `|`) : The word delimiter token. It will be replaced by a &amp;lt;space>
-
-cleanup (`bool`, *optional*, defaults to `True`) : Whether to cleanup some tokenization artifacts. Mainly spaces before punctuation, and some abbreviated english forms.
-
 ## Fuse[[tokenizers.decoders.Fuse]]
 
 #### tokenizers.decoders.Fuse[[tokenizers.decoders.Fuse]]
+
+```python
+tokenizers.decoders.Fuse()
+```
 
 Fuse Decoder
 
@@ -165,6 +194,12 @@ Example:
 
 #### tokenizers.decoders.Metaspace[[tokenizers.decoders.Metaspace]]
 
+**Parameters:**
+
+replacement (`str`, *optional*, defaults to `▁`) : The replacement character. Must be exactly one character. By default we use the *▁* (U+2581) meta symbol (Same as in SentencePiece). 
+
+prepend_scheme (`str`, *optional*, defaults to `"always"`) : Whether to add a space to the first word if there isn't already one. This lets us treat *hello* exactly like *say hello*. Choices: "always", "never", "first". First means the space is only added on the first token (relevant when special tokens are used or other pre_tokenizer are used).
+
 Metaspace Decoder
 
 Example:
@@ -176,20 +211,24 @@ Example:
 'Hello my friend'
 ```
 
-**Parameters:**
-
-replacement (`str`, *optional*, defaults to `▁`) : The replacement character. Must be exactly one character. By default we use the *▁* (U+2581) meta symbol (Same as in SentencePiece). 
-
-prepend_scheme (`str`, *optional*, defaults to `"always"`) : Whether to add a space to the first word if there isn't already one. This lets us treat *hello* exactly like *say hello*. Choices: "always", "never", "first". First means the space is only added on the first token (relevant when special tokens are used or other pre_tokenizer are used).
-
 ## Replace[[tokenizers.decoders.Replace]]
 
 #### tokenizers.decoders.Replace[[tokenizers.decoders.Replace]]
 
+```python
+tokenizers.decoders.Replace(pattern, content)
+```
+
+**Parameters:**
+
+pattern (`str` or `Regex`) : The pattern that was used as the replacement target during encoding. 
+
+content (`str`) : The string to replace each match of the pattern with during decoding.
+
 Replace Decoder
 
 This decoder is to be used in tandem with the
-[Replace](/docs/tokenizers/v0.23.1/en/api/normalizers#tokenizers.normalizers.Replace) normalizer or a similar replace operation.
+[Replace](/docs/tokenizers/v0.23.2/en/api/normalizers#tokenizers.normalizers.Replace) normalizer or a similar replace operation.
 It reverses a string replacement by substituting the replacement content back
 with the original pattern.
 
@@ -202,15 +241,17 @@ Example:
 ' Hello world'
 ```
 
-**Parameters:**
-
-pattern (`str` or `Regex`) : The pattern that was used as the replacement target during encoding. 
-
-content (`str`) : The string to replace each match of the pattern with during decoding.
-
 ## Sequence[[tokenizers.decoders.Sequence]]
 
 #### tokenizers.decoders.Sequence[[tokenizers.decoders.Sequence]]
+
+```python
+tokenizers.decoders.Sequence(decoders)
+```
+
+**Parameters:**
+
+decoders (`List[Decoder]`) : The list of decoders to chain together.
 
 Sequence Decoder
 
@@ -227,13 +268,21 @@ Example:
 'Hello world'
 ```
 
-**Parameters:**
-
-decoders (`List[Decoder]`) : The list of decoders to chain together.
-
 ## Strip[[tokenizers.decoders.Strip]]
 
 #### tokenizers.decoders.Strip[[tokenizers.decoders.Strip]]
+
+```python
+tokenizers.decoders.Strip(content = ' ', left = 0, right = 0)
+```
+
+**Parameters:**
+
+content (`str`, defaults to `" "`) : The character to strip from each token. 
+
+left (`int`, defaults to `0`) : The number of occurrences of `content` to remove from the left side of each token. 
+
+right (`int`, defaults to `0`) : The number of occurrences of `content` to remove from the right side of each token.
 
 Strip Decoder
 
@@ -250,17 +299,19 @@ Example:
 'Hello world'
 ```
 
-**Parameters:**
-
-content (`str`, defaults to `" "`) : The character to strip from each token. 
-
-left (`int`, defaults to `0`) : The number of occurrences of `content` to remove from the left side of each token. 
-
-right (`int`, defaults to `0`) : The number of occurrences of `content` to remove from the right side of each token.
-
 ## WordPiece[[tokenizers.decoders.WordPiece]]
 
 #### tokenizers.decoders.WordPiece[[tokenizers.decoders.WordPiece]]
+
+```python
+tokenizers.decoders.WordPiece(prefix = '##', cleanup = True)
+```
+
+**Parameters:**
+
+prefix (`str`, *optional*, defaults to `##`) : The prefix to use for subwords that are not a beginning-of-word 
+
+cleanup (`bool`, *optional*, defaults to `True`) : Whether to cleanup some tokenization artifacts. Mainly spaces before punctuation, and some abbreviated english forms.
 
 WordPiece Decoder
 
@@ -273,15 +324,9 @@ Example:
 'Hello, world!'
 ```
 
-**Parameters:**
-
-prefix (`str`, *optional*, defaults to `##`) : The prefix to use for subwords that are not a beginning-of-word 
-
-cleanup (`bool`, *optional*, defaults to `True`) : Whether to cleanup some tokenization artifacts. Mainly spaces before punctuation, and some abbreviated english forms.
-
 The Rust API Reference is available directly on the [Docs.rs](https://docs.rs/tokenizers/latest/tokenizers/) website.
 
 The node API has not been documented yet.
 
-### Pre-tokenizers
-https://huggingface.co/docs/tokenizers/v0.23.1/api/pre-tokenizers.md
+### Post-processors
+https://huggingface.co/docs/tokenizers/v0.23.2/api/post-processors.md

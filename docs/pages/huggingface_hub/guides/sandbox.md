@@ -1,11 +1,10 @@
 # Sandboxes
 
-> [!WARNING]
-> Sandboxes are an **experimental** feature. The API, the defaults and the underlying implementation may change at any
-> time without notice, and the isolation guarantees are best-effort. In particular, do not rely on a sandbox to keep
-> secrets away from the code running inside it: a sandbox image you don't fully trust may be able to observe requests
-> made to the in-job server, including the credentials used to authenticate them. Treat any credential reachable by a
-> sandbox as potentially exposed to that sandbox, and prefer short-lived, narrowly-scoped tokens.
+> [!NOTE]
+> Sandboxes are an **experimental** feature. The API, defaults, and behavior may change without notice. Shared
+> sandboxes are intended for workloads within the same trust boundary; their isolation does not guarantee protection
+> from every cross-sandbox attack. Use dedicated sandboxes for workloads that do not trust each other, and avoid making
+> long-lived or broadly scoped credentials available to sandbox workloads.
 
 A sandbox is an isolated cloud machine you can spin up in seconds, run commands in with live-streamed output, and move files in and out of — all from Python or the CLI. Sandboxes are built on top of [Jobs](./jobs): under the hood, a sandbox is just a Job running a tiny server that exposes command execution and file transfer over HTTP.
 
@@ -22,9 +21,9 @@ Any Docker image with `/bin/sh` works — no Python, pip, or agent needs to be p
 
 ## The two kinds of sandbox
 
-There are two ways to get a sandbox. Both hand you the same [Sandbox](/docs/huggingface_hub/v1.29.0/en/package_reference/sandbox#huggingface_hub.Sandbox) object (same `run`, `files`, `connect`, `kill`); they differ only in how the underlying machine is allocated:
+There are two ways to get a sandbox. Both hand you the same [Sandbox](/docs/huggingface_hub/v1.30.0/en/package_reference/sandbox#huggingface_hub.Sandbox) object (same `run`, `files`, `connect`, `kill`); they differ only in how the underlying machine is allocated:
 
-|            | [Sandbox.create()](/docs/huggingface_hub/v1.29.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create) — **dedicated**              | [SandboxPool](/docs/huggingface_hub/v1.29.0/en/package_reference/sandbox#huggingface_hub.SandboxPool) — **shared / pool**                                                     |
+|            | [Sandbox.create()](/docs/huggingface_hub/v1.30.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create) — **dedicated**              | [SandboxPool](/docs/huggingface_hub/v1.30.0/en/package_reference/sandbox#huggingface_hub.SandboxPool) — **shared / pool**                                                     |
 | ---------- | ----------------------------------------------- | --------------------------------------------------------------------------------------- |
 | mapping    | one Job = **one sandbox** (a whole VM)          | one Job = **many sandboxes** (one VM, packed)                                           |
 | isolation  | full VM                                         | uid + [Landlock](https://docs.kernel.org/userspace-api/landlock.html) (same-user trust) |
@@ -55,7 +54,7 @@ Pick any image and hardware [flavor](./jobs#select-the-hardware):
 
 ## Running commands
 
-[Sandbox.run()](/docs/huggingface_hub/v1.29.0/en/package_reference/sandbox#huggingface_hub.Sandbox.run) executes a command and waits for it. Pass a shell string or an argv list:
+[Sandbox.run()](/docs/huggingface_hub/v1.30.0/en/package_reference/sandbox#huggingface_hub.Sandbox.run) executes a command and waits for it. Pass a shell string or an argv list:
 
 ```python
 >>> sbx.run("pip install -q numpy")                       # string  → runs through /bin/sh -c
@@ -74,7 +73,7 @@ By default the mode is inferred from the type (a string runs through `/bin/sh -c
 
 `shell=True` requires a string and `shell=False` requires a list; passing the wrong type raises a `ValueError`.
 
-A command that exits non-zero raises `SandboxCommandError` (with `stdout`, `stderr` and `exit_code` attached). Pass `check=False` to get the [SandboxCommandResult](/docs/huggingface_hub/v1.29.0/en/package_reference/sandbox#huggingface_hub.SandboxCommandResult) back instead of raising:
+A command that exits non-zero raises `SandboxCommandError` (with `stdout`, `stderr` and `exit_code` attached). Pass `check=False` to get the [SandboxCommandResult](/docs/huggingface_hub/v1.30.0/en/package_reference/sandbox#huggingface_hub.SandboxCommandResult) back instead of raising:
 
 ```python
 >>> result = sbx.run("test -f /tmp/missing", check=False)
@@ -84,7 +83,7 @@ A command that exits non-zero raises `SandboxCommandError` (with `stdout`, `stde
 
 ### Background processes
 
-Pass `background=True` to start a long-running process (a server, a watcher, a training run) without waiting for it. `run` returns a [SandboxProcess](/docs/huggingface_hub/v1.29.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess) right away instead of a [SandboxCommandResult](/docs/huggingface_hub/v1.29.0/en/package_reference/sandbox#huggingface_hub.SandboxCommandResult):
+Pass `background=True` to start a long-running process (a server, a watcher, a training run) without waiting for it. `run` returns a [SandboxProcess](/docs/huggingface_hub/v1.30.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess) right away instead of a [SandboxCommandResult](/docs/huggingface_hub/v1.30.0/en/package_reference/sandbox#huggingface_hub.SandboxCommandResult):
 
 ```python
 >>> proc = sbx.run("python -m http.server 8000", background=True)
@@ -118,7 +117,7 @@ Other helpers: `stat`, `exists`, `mkdir`, `delete`.
 
 ## Reaching a server inside a sandbox
 
-Start a server in the sandbox (in the background), then reach it from the outside with [Sandbox.proxy_url_for()](/docs/huggingface_hub/v1.29.0/en/package_reference/sandbox#huggingface_hub.Sandbox.proxy_url_for) — the request is forwarded by the in-job sandbox server to your inner server, so there's no extra public port to expose. It works for plain HTTP, Server-Sent Events and WebSocket. Pair the URL with `Sandbox.proxy_headers` for auth (your WebSocket/HTTP client must send them):
+Start a server in the sandbox (in the background), then reach it from the outside with [Sandbox.proxy_url_for()](/docs/huggingface_hub/v1.30.0/en/package_reference/sandbox#huggingface_hub.Sandbox.proxy_url_for) — the request is forwarded by the in-job sandbox server to your inner server, so there's no extra public port to expose. It works for plain HTTP, Server-Sent Events and WebSocket. Pair the URL with `Sandbox.proxy_headers` for auth (your WebSocket/HTTP client must send them):
 
 ```python
 >>> import httpx
@@ -133,8 +132,8 @@ Start a server in the sandbox (in the background), then reach it from the outsid
 
 How the inner server must listen depends on the sandbox kind:
 
-- **Dedicated** ([Sandbox.create()](/docs/huggingface_hub/v1.29.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create)): bind a normal TCP port on `127.0.0.1:<port>`.
-- **Pool / shared** ([SandboxPool](/docs/huggingface_hub/v1.29.0/en/package_reference/sandbox#huggingface_hub.SandboxPool)): pooled sandboxes can't bind a TCP port (Landlock), so listen on a **unix socket** at `$SBX_PROXY_DIR/<port>.sock` (that env var is set in every sandbox), e.g. `uvicorn app:app --uds $SBX_PROXY_DIR/8000.sock`. The client side (`proxy_url_for` / `proxy_headers`) is identical either way.
+- **Dedicated** ([Sandbox.create()](/docs/huggingface_hub/v1.30.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create)): bind a normal TCP port on `127.0.0.1:<port>`.
+- **Pool / shared** ([SandboxPool](/docs/huggingface_hub/v1.30.0/en/package_reference/sandbox#huggingface_hub.SandboxPool)): pooled sandboxes can't bind a TCP port (Landlock), so listen on a **unix socket** at `$SBX_PROXY_DIR/<port>.sock` (that env var is set in every sandbox), e.g. `uvicorn app:app --uds $SBX_PROXY_DIR/8000.sock`. The client side (`proxy_url_for` / `proxy_headers`) is identical either way.
 
 ## Lifecycle
 
@@ -156,7 +155,7 @@ A sandbox outlives the process that created it — you can create it now and rec
 
 ## Many sandboxes at once: SandboxPool
 
-When you need many sandboxes (parallel RL rollouts, fan-out evaluation, batch tool execution), one Job per sandbox is wasteful: each pays a full VM cold start and holds a whole machine for a workload that needs a few MB of RAM. [SandboxPool](/docs/huggingface_hub/v1.29.0/en/package_reference/sandbox#huggingface_hub.SandboxPool) packs many lightweight sandboxes into a few shared host Jobs instead — one billed VM serves dozens of sandboxes, so per-sandbox cost drops by that factor and per-sandbox cold start is ~one network round-trip.
+When you need many sandboxes (parallel RL rollouts, fan-out evaluation, batch tool execution), one Job per sandbox is wasteful: each pays a full VM cold start and holds a whole machine for a workload that needs a few MB of RAM. [SandboxPool](/docs/huggingface_hub/v1.30.0/en/package_reference/sandbox#huggingface_hub.SandboxPool) packs many lightweight sandboxes into a few shared host Jobs instead — one billed VM serves dozens of sandboxes, so per-sandbox cost drops by that factor and per-sandbox cold start is ~one network round-trip.
 
 ```python
 >>> from huggingface_hub import SandboxPool
@@ -167,7 +166,7 @@ When you need many sandboxes (parallel RL rollouts, fan-out evaluation, batch to
 hi
 ```
 
-Each `create()` returns one full [Sandbox](/docs/huggingface_hub/v1.29.0/en/package_reference/sandbox#huggingface_hub.Sandbox); call it repeatedly to fan out. The pool boots host Jobs as needed, packs `sandboxes_per_host` sandboxes per host, and terminates everything on `close()` (or when a host goes idle, as a billing backstop). The typical fan-out pattern:
+Each `create()` returns one full [Sandbox](/docs/huggingface_hub/v1.30.0/en/package_reference/sandbox#huggingface_hub.Sandbox); call it repeatedly to fan out. The pool boots host Jobs as needed, packs `sandboxes_per_host` sandboxes per host, and terminates everything on `close()` (or when a host goes idle, as a billing backstop). The typical fan-out pattern:
 
 ```python
 >>> from concurrent.futures import ThreadPoolExecutor
@@ -183,7 +182,7 @@ Env and `idle_timeout` are per-sandbox (they belong to `create()`, not the pool)
 >>> sbx = pool.create(env={"SEED": "42"}, idle_timeout="5m", forward_hf_token=True)
 ```
 
-A pooled sandbox is a full [Sandbox](/docs/huggingface_hub/v1.29.0/en/package_reference/sandbox#huggingface_hub.Sandbox), but a few inputs are fixed by the host instead of being per-sandbox — so [SandboxPool.create()](/docs/huggingface_hub/v1.29.0/en/package_reference/sandbox#huggingface_hub.SandboxPool.create) accepts a smaller set of arguments than [Sandbox.create()](/docs/huggingface_hub/v1.29.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create):
+A pooled sandbox is a full [Sandbox](/docs/huggingface_hub/v1.30.0/en/package_reference/sandbox#huggingface_hub.Sandbox), but a few inputs are fixed by the host instead of being per-sandbox — so [SandboxPool.create()](/docs/huggingface_hub/v1.30.0/en/package_reference/sandbox#huggingface_hub.SandboxPool.create) accepts a smaller set of arguments than [Sandbox.create()](/docs/huggingface_hub/v1.30.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create):
 
 | Input              | `Sandbox.create` (dedicated) | `SandboxPool.create` (pooled)            |
 | ------------------ | ---------------------------- | ---------------------------------------- |
@@ -211,17 +210,20 @@ To avoid the host cold start on the first few calls, pre-provision hosts with `w
 
 Warm hosts are discovered through job labels, so reuse works across processes: a brand-new `SandboxPool` with the same `image`/`flavor`/`name` attaches to hosts an earlier run left running instead of booting its own. Pass a `name=` to keep separate pools from sharing hosts.
 
-To reattach from another machine with no local state, reconnect by pool id with [SandboxPool.connect()](/docs/huggingface_hub/v1.29.0/en/package_reference/sandbox#huggingface_hub.SandboxPool.connect) — it finds a running host, rebuilds the pool's config (image, flavor, packing density) from that host job, and is ready to `create()` more:
+To reattach from another machine with no local state, reconnect by pool id with [SandboxPool.connect()](/docs/huggingface_hub/v1.30.0/en/package_reference/sandbox#huggingface_hub.SandboxPool.connect) — it finds a running host, rebuilds the pool's config (image, flavor, packing density) from that host job, and is ready to `create()` more:
 
 ```python
 >>> pool = SandboxPool.connect("pool-ae9f7efe0bc7")   # from anywhere, no config needed
 >>> sbx = pool.create()
 ```
 
-A `connect()`'d pool does not own the shared hosts (other clients may be using them), so — like [Sandbox.connect()](/docs/huggingface_hub/v1.29.0/en/package_reference/sandbox#huggingface_hub.Sandbox.connect) — leaving its `with` block (or calling `close()`) only releases the local HTTP clients and leaves the hosts running. Terminate a pool's hosts explicitly with `pool delete` / `hf sandbox pool delete <id>`.
+A `connect()`'d pool does not own the shared hosts (other clients may be using them), so — like [Sandbox.connect()](/docs/huggingface_hub/v1.30.0/en/package_reference/sandbox#huggingface_hub.Sandbox.connect) — leaving its `with` block (or calling `close()`) only releases the local HTTP clients and leaves the hosts running. Terminate a pool's hosts explicitly with `pool delete` / `hf sandbox pool delete <id>`.
 
-> [!WARNING]
-> Sandboxes within a host are isolated from each other by distinct uids plus a per-sandbox Landlock ruleset — they cannot read, signal, or write each other's files, and each is confined to its own private home. This is the right boundary for *one user's own* parallel workloads. For mutually-hostile untrusted code, or for GPU, use [Sandbox.create()](/docs/huggingface_hub/v1.29.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create) (a separate VM per sandbox). The trade-offs are detailed in the [conceptual guide](../concepts/sandbox#isolation-in-a-pool-uid--landlock).
+> [!NOTE]
+> Sandboxes within a host are separated by distinct uids and per-sandbox Landlock rulesets. Shared sandboxes are
+> intended for *one user's own* parallel workloads, and isolation from every cross-sandbox attack is not guaranteed.
+> For mutually untrusted code, or for GPU, use [Sandbox.create()](/docs/huggingface_hub/v1.30.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create) (a separate VM per sandbox). The trade-offs are
+> detailed in the [conceptual guide](../concepts/sandbox#isolation-in-a-pool-uid--landlock).
 
 ## From the CLI
 
@@ -277,4 +279,4 @@ For many cheap shared sandboxes, warm a pool once and then create into it on dem
 `hf sandbox create --pool` produces a shared sandbox; its id looks like `<host_job_id>.<local_id>` and works everywhere a dedicated id does (`exec`, `cp`, `kill`). A pool has no local state — it is just its running host VMs, found by the pool id — so it works from any machine and stops existing once all its hosts are gone (killed or idle-timed-out).
 
 ### Command Line Interface (CLI)
-https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/cli.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/guides/cli.md

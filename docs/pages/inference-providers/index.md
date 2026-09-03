@@ -1035,7 +1035,7 @@ Find out more about Chat Completion (LLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"novita":{"modelId":"deepseek-ai/DeepSeek-V4-Flash-0731","providerModelId":"deepseek/deepseek-v4-flash-0731"} } }
+    providersMapping={ {"novita":{"modelId":"zai-org/GLM-5.3","providerModelId":"zai-org/glm-5.3"} } }
 conversational />
 
 ### Chat Completion (VLM)
@@ -1153,7 +1153,7 @@ Find out more about Chat Completion (LLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"together":{"modelId":"deepseek-ai/DeepSeek-V4-Flash-0731","providerModelId":"deepseek-ai/DeepSeek-V4-Flash-0731"} } }
+    providersMapping={ {"together":{"modelId":"zai-org/GLM-5.3","providerModelId":"zai-org/GLM-5.3"} } }
 conversational />
 
 ### Chat Completion (VLM)
@@ -1273,7 +1273,7 @@ Find out more about Question Answering [here](../tasks/question-answering).
 
 <InferenceSnippet
     pipeline=question-answering
-    providersMapping={ {"hf-inference":{"modelId":"deepset/roberta-large-squad2","providerModelId":"deepset/roberta-large-squad2"} } }
+    providersMapping={ {"hf-inference":{"modelId":"deepset/roberta-base-squad2","providerModelId":"deepset/roberta-base-squad2"} } }
 />
 
 ### Summarization
@@ -1282,7 +1282,7 @@ Find out more about Summarization [here](../tasks/summarization).
 
 <InferenceSnippet
     pipeline=summarization
-    providersMapping={ {"hf-inference":{"modelId":"human-centered-summarization/financial-summarization-pegasus","providerModelId":"human-centered-summarization/financial-summarization-pegasus"} } }
+    providersMapping={ {"hf-inference":{"modelId":"facebook/bart-large-cnn","providerModelId":"facebook/bart-large-cnn"} } }
 />
 
 ### Table Question Answering
@@ -1443,7 +1443,7 @@ Find out more about Chat Completion (LLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"fireworks-ai":{"modelId":"deepseek-ai/DeepSeek-V4-Flash-0731","providerModelId":"accounts/fireworks/models/deepseek-v4-flash-0731"} } }
+    providersMapping={ {"fireworks-ai":{"modelId":"zai-org/GLM-5.3","providerModelId":"accounts/fireworks/models/glm-5p3"} } }
 conversational />
 
 ### Chat Completion (VLM)
@@ -1499,7 +1499,7 @@ Find out more about Chat Completion (LLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"publicai":{"modelId":"swiss-ai/Apertus-8B-Instruct-2509","providerModelId":"swiss-ai/apertus-8b-instruct"} } }
+    providersMapping={ {"publicai":{"modelId":"speakleash/Bielik-11B-v3.0-Instruct","providerModelId":"speakleash/Bielik-11B-v3.0-Instruct"} } }
 conversational />
 
 ### Chat Completion (VLM)
@@ -1638,7 +1638,7 @@ Find out more about Chat Completion (VLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=image-text-to-text
-    providersMapping={ {"ovhcloud":{"modelId":"Qwen/Qwen3.6-27B","providerModelId":"Qwen3.6-27B"} } }
+    providersMapping={ {"ovhcloud":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"Qwen3.8-27B"} } }
 conversational />
 
 ### Template
@@ -1683,7 +1683,7 @@ Find out more about Chat Completion (LLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"baseten":{"modelId":"deepseek-ai/DeepSeek-V4-Flash-0731","providerModelId":"deepseek-ai/DeepSeek-V4-Flash-0731"} } }
+    providersMapping={ {"baseten":{"modelId":"zai-org/GLM-5.3","providerModelId":"zai-org/GLM-5.3"} } }
 conversational />
 
 ### Chat Completion (VLM)
