@@ -10,15 +10,15 @@
 
 *HF 安装* 使用本地安装路径和可选的 `:ro` / `:rw` 标志包装 HF URI，由 [Spaces](../guides/manage-spaces) 和 [Jobs](../guides/jobs) 卷使用。
 
-本页记录了 HF URI 和 HF 安装的规范语法。库中的任何地方都使用相同的解析器，因此在一个上下文中有效的 URI（例如 [HfFileSystem](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem)）在另一个上下文中进行相同的解析。
+本页记录了 HF URI 和 HF 安装的规范语法。库中的任何地方都使用相同的解析器，因此在一个上下文中有效的 URI（例如 [HfFileSystem](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem)）在另一个上下文中进行相同的解析。
 
-[parse_hf_uri()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.parse_hf_uri) 还接受 Hugging Face **网络 URL**（例如 `https://huggingface.co/datasets/my-org/my-dataset/blob/main/train.csv`），因此您可以从网站复制粘贴链接。请参阅下面的[Web URLs](#web-urls)。
+[parse_hf_uri()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.parse_hf_uri) 还接受 Hugging Face **网络 URL**（例如 `https://huggingface.co/datasets/my-org/my-dataset/blob/main/train.csv`），因此您可以从网站复制粘贴链接。请参阅下面的[Web URLs](#web-urls)。
 
 ## HF URI 语法
 
 ```text
 hf://[<TYPE>/]<ID>[@<REVISION>][/<PATH>]
-```|组件|必填|允许值 |
+```|组件|必填 |允许值 |
 | ---------------- | -------- | ---------------------------------------------------------------------------------- |
 | `hf://` |是的 |文字协议前缀。                                            |
 | `<TYPE>/` |没有| `models/`、`datasets/`、`spaces/`、`kernels/`、`buckets/`（复数）。 |
@@ -34,7 +34,7 @@ hf://[<TYPE>/]<ID>[@<REVISION>][/<PATH>]:<MOUNT_PATH>[:ro|:rw]
 
 挂载是一个 HF URI，后跟 `:<MOUNT_PATH>` 和可选的 `:ro` / `:rw` 标志。
 
-|组件|必填|允许值 |
+|组件|必填 |允许值 |
 | ---------------- | -------- | ---------------------------------------------------------------------------------- |
 | `<MOUNT_PATH>` |是的 |绝对安装路径（必须以`/`开头）。                          |
 | `:ro` / `:rw` |没有|只读/读写标志。                                        |
@@ -89,7 +89,7 @@ hf://buckets/my-org/my-bucket:/storage:rw
 
 ## 网址
 
-为了方便起见，[parse_hf_uri()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.parse_hf_uri) 还接受您从浏览器复制粘贴的 Hugging Face Web URL。它们被标准化为规范的 `hf://` 形式，因此您可以将 URL 直接粘贴到 CLI 或库中，然后“它就可以工作”：
+为了方便起见，[parse_hf_uri()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.parse_hf_uri) 还接受您从浏览器复制粘贴的 Hugging Face Web URL。它们被标准化为规范的 `hf://` 形式，因此您可以将 URL 直接粘贴到 CLI 或库中，然后“它就可以工作”：
 
 ```python
 >>> from huggingface_hub import parse_hf_uri
@@ -136,7 +136,7 @@ HfUri(type='dataset', id='my-org/my-dataset', revision=None, path_in_repo='')
 
 ## 渲染 URL
 
-[HfUri.to_url()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.HfUri.to_url) 是解析 URL 的逆过程：它呈现 HF URI 的可浏览 Web URL。
+[HfUri.to_url()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.HfUri.to_url) 是解析 URL 的逆过程：它呈现 HF URI 的可浏览 Web URL。
 
 ```python
 >>> uri = parse_hf_uri("hf://datasets/my-org/my-dataset@v1/train.csv")
@@ -148,7 +148,7 @@ HfUri(type='dataset', id='my-org/my-dataset', revision=None, path_in_repo='')
 
 ### 解析 URI
 
-[parse_hf_uri()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.parse_hf_uri) 是集中式 URI 解析器。它是一个纯字符串解析器（无网络调用）并返回冻结的 [HfUri](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.HfUri) 数据类。
+[parse_hf_uri()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.parse_hf_uri) 是集中式 URI 解析器。它是一个纯字符串解析器（无网络调用）并返回冻结的 [HfUri](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.HfUri) 数据类。
 
 ```python
 >>> from huggingface_hub import parse_hf_uri
@@ -156,7 +156,7 @@ HfUri(type='dataset', id='my-org/my-dataset', revision=None, path_in_repo='')
 HfUri(type='dataset', id='my-org/my-dataset', revision='refs/pr/3', path_in_repo='train.json')
 ```
 
-[HfUri](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.HfUri) 可通过 [HfUri.to_uri()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.HfUri.to_uri) 进行往返，它始终发出规范形式（带有显式类型前缀）：
+[HfUri](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.HfUri) 可通过 [HfUri.to_uri()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.HfUri.to_uri) 进行往返，它始终发出规范形式（带有显式类型前缀）：
 
 ```python
 >>> uri = parse_hf_uri("hf://my-org/my-model@v1/config.json")
@@ -168,7 +168,7 @@ HfUri(type='dataset', id='my-org/my-dataset', revision='refs/pr/3', path_in_repo
 
 ### 解析挂载
 
-`parse_hf_mount` 解析挂载规范（具有本地挂载路径和可选 `:ro`/`:rw` 标志的 HF URI）并返回冻结的 `HfMount` 数据类。它在底层使用[parse_hf_uri()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.parse_hf_uri)。
+`parse_hf_mount` 解析挂载规范（具有本地挂载路径和可选 `:ro`/`:rw` 标志的 HF URI）并返回冻结的 `HfMount` 数据类。它在底层使用[parse_hf_uri()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.parse_hf_uri)。
 
 ```python
 >>> from huggingface_hub.utils import parse_hf_mount
@@ -192,7 +192,7 @@ HfMount(source=HfUri(type='bucket', id='my-org/my-bucket', revision=None, path_i
 huggingface_hub.HfUri(type: typing.Literal['model', 'dataset', 'space', 'kernel', 'bucket'], id: str, revision: str | None = None, path_in_repo: str = '', _raw: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_hf_uris.py#L79)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_hf_uris.py#L79)
 
 **参数：**type (`str`) ：“模型”、“数据集”、“空间”、“内核”或“存储桶”之一。
 
@@ -210,7 +210,7 @@ Hugging Face Hub URI 的解析表示（'hf://...'）。
 to_uri()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_hf_uris.py#L137)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_hf_uris.py#L137)
 
 将 URI 呈现为规范的“hf://”字符串。
 
@@ -222,7 +222,7 @@ to_uri()
 to_url(endpoint: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_hf_uris.py#L155)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_hf_uris.py#L155)
 
 **参数：**
 
@@ -232,7 +232,7 @@ to_url(endpoint: str | None = None)
 
 网址。
 
-将 URI 呈现为 Hugging Face **web URL**（您在浏览器中打开的那种）。这是使用 [parse_hf_uri()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.parse_hf_uri) 解析 URL 的逆过程。返回的 URL 指向：
+将 URI 呈现为 Hugging Face **web URL**（您在浏览器中打开的那种）。这是使用 [parse_hf_uri()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.parse_hf_uri) 解析 URL 的逆过程。返回的 URL 指向：
 
 - 未设置路径或修订时的存储库/存储桶登陆页面；
 - 仅设置修订版时的文件夹查看器（'/tree/'）；
@@ -258,7 +258,7 @@ uri (`str`) ：要解析的 URI。必须以“hf://”开头，或者是 Hugging
 
 端点（`str`，*可选*）：自定义集线器端点（例如自托管或代理集线器，如“https://hub.my-company.com”或“http://localhost:8080/hf”）。提供后，除了默认的 Hugging Face 主机之外，还会识别该端点上的 Web URL。对“hf://”URI 没有影响。
 
-**返回：** [HfUri](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.HfUri)
+**返回：** [HfUri](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.HfUri)
 
 解析后的 URI。
 
@@ -297,11 +297,11 @@ HfUri(type='dataset', id='my-org/my-dataset', revision='main', path_in_repo='tra
 huggingface_hub.utils.HfMount(source: HfUri, mount_path: str, read_only: bool | None = None, _raw: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_hf_uris.py#L207)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_hf_uris.py#L207)
 
 **参数：**
 
-source ([HfUri](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_uris#huggingface_hub.HfUri)) ：解析后的 HF URI，标识要挂载的集线器资源。
+source ([HfUri](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_uris#huggingface_hub.HfUri)) ：解析后的 HF URI，标识要挂载的集线器资源。
 
 mount_path (`str`) ：本地挂载路径（始终以“/”开头）。
 
@@ -321,7 +321,7 @@ hf://[<TYPE>/]<ID>[@<REVISION>][/<PATH>]:<MOUNT_PATH>[:ro|:rw]
 to_uri()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_hf_uris.py#L238)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_hf_uris.py#L238)
 
 将安装渲染为规范的“hf://”字符串。示例：'hf://models/my-org/my-model:/data:ro'
 
@@ -331,7 +331,7 @@ to_uri()
 huggingface_hub.utils.parse_hf_mount(mount_str: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/utils/_hf_uris.py#L443)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/utils/_hf_uris.py#L443)
 
 **参数：**
 
@@ -368,4 +368,4 @@ HfMount(source=HfUri(type='bucket', id='my-org/my-bucket', revision=None, path_i
 ```
 
 ### 推论
-https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/inference_client.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/inference_client.md

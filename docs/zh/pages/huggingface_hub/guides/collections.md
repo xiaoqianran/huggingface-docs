@@ -8,7 +8,7 @@
 
 ## 获取集合
 
-使用 [get_collection()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_collection) 获取您的收藏或任何公共收藏。您必须拥有集合的 *slug* 才能检索集合。 slug 是基于标题和唯一 ID 的集合的标识符。您可以在集合页面的 URL 中找到该 slug。
+使用 [get_collection()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_collection) 获取您的收藏或任何公共收藏。您必须拥有集合的 *slug* 才能检索集合。 slug 是基于标题和唯一 ID 的集合的标识符。您可以在集合页面的 URL 中找到该 slug。
 
     
 
@@ -40,13 +40,13 @@ CollectionItem(
 )
 ```
 
-[get_collection()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_collection)返回的[Collection](/docs/huggingface_hub/v1.29.0/en/package_reference/collections#huggingface_hub.Collection)对象包含：
+[get_collection()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_collection)返回的[Collection](/docs/huggingface_hub/v1.30.0/en/package_reference/collections#huggingface_hub.Collection)对象包含：
 - 高级元数据：`slug`、`owner`、`title`、`description`等。
-- [CollectionItem](/docs/huggingface_hub/v1.29.0/en/package_reference/collections#huggingface_hub.CollectionItem) 对象列表；每个项目代表一个模型、一个数据集、一个空间、一篇论文、一个集合或一个存储桶。所有收藏品保证具有：
+- [CollectionItem](/docs/huggingface_hub/v1.30.0/en/package_reference/collections#huggingface_hub.CollectionItem) 对象列表；每个项目代表一个模型、一个数据集、一个空间、一篇论文、一个集合或一个存储桶。所有收藏品保证具有：
 - 唯一的`item_object_id`：这是数据库中集合项的id
 - `item_id`：这是底层项目（模型、数据集、空间、论文、集合、存储桶）在 Hub 上的 id；它不一定是唯一的，只有`item_id`/`item_type`对是唯一的
 - `item_type`：模型、数据集、空间、论文、集合、桶
-- 集合中项目的`position`，可以更新以重新组织您的集合（请参阅下面的[update_collection_item()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_item)）
+- 集合中项目的`position`，可以更新以重新组织您的集合（请参阅下面的[update_collection_item()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_item)）
 
 `note` 也可以附加到该物品上。这对于添加有关该项目的附加信息（评论、博客文章的链接等）非常有用。如果项目没有注释，该属性仍然具有 `None` 值。
 
@@ -54,7 +54,7 @@ CollectionItem(
 
 ## 列出集合
 
-我们还可以使用[list_collections()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_collections)检索集合。可以使用一些参数来过滤集合。让我们列出用户[⟦T31⟧](https://huggingface.co/teknium)的所有收藏。
+我们还可以使用[list_collections()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_collections)检索集合。可以使用一些参数来过滤集合。让我们列出用户[⟦T31⟧](https://huggingface.co/teknium)的所有收藏。
 ```py
 >>> from huggingface_hub import list_collections
 
@@ -69,7 +69,7 @@ Number of upvotes: 5
 ```
 
 > [!警告]
-> 列出集合时，每个集合的项目列表将被截断为最多 4 个项目。要从集合中检索所有项目，您必须使用 [get_collection()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_collection)。
+> 列出集合时，每个集合的项目列表将被截断为最多 4 个项目。要从集合中检索所有项目，您必须使用[get_collection()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_collection)。
 
 可以进行更高级的过滤。让我们获取包含模型 [TheBloke/OpenHermes-2.5-Mistral-7B-GGUF](https://huggingface.co/TheBloke/OpenHermes-2.5-Mistral-7B-GGUF) 的所有集合，按趋势排序，并将计数限制为 5。
 ```py
@@ -90,11 +90,11 @@ Crataco/favorite-7b-models-651944072b4fffcb41f8b568
 * `"papers/2311.12983"`
 * `"buckets/namespace/bucket-name"`
 
-欲了解更多详情，请查看[list_collections()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_collections)参考资料。
+欲了解更多详情，请查看[list_collections()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_collections)参考资料。
 
 ## 创建一个新集合
 
-现在我们知道如何获得 [Collection](/docs/huggingface_hub/v1.29.0/en/package_reference/collections#huggingface_hub.Collection)，让我们创建自己的吧！使用 [create_collection()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_collection) 以及标题和描述。要在组织页面上创建集合，请在创建集合时传递 `namespace="my-cool-org"`。最后，您还可以通过传递`private=True`来创建私有集合。
+现在我们知道如何获得 [Collection](/docs/huggingface_hub/v1.30.0/en/package_reference/collections#huggingface_hub.Collection)，让我们创建自己的吧！使用 [create_collection()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_collection) 以及标题和描述。要在组织页面上创建集合，请在创建集合时传递 `namespace="my-cool-org"`。最后，您还可以通过传递`private=True`来创建私有集合。
 
 ```py
 >>> from huggingface_hub import create_collection
@@ -105,7 +105,7 @@ Crataco/favorite-7b-models-651944072b4fffcb41f8b568
 ... )
 ```
 
-它将返回一个 [Collection](/docs/huggingface_hub/v1.29.0/en/package_reference/collections#huggingface_hub.Collection) 对象，其中包含高级元数据（标题、描述、所有者等）和一个空的项目列表。您现在可以使用其 `slug` 来引用该集合。
+它将返回一个 [Collection](/docs/huggingface_hub/v1.30.0/en/package_reference/collections#huggingface_hub.Collection) 对象，其中包含高级元数据（标题、描述、所有者等）和一个空的项目列表。您现在可以使用其 `slug` 来引用该集合。
 
 ```py
 >>> collection.slug
@@ -118,11 +118,11 @@ Crataco/favorite-7b-models-651944072b4fffcb41f8b568
 'https://huggingface.co/collections/owner/iccv-2023-15e23b46cb98efca45'
 ```
 
-## 管理集合中的项目现在我们有了一个 [Collection](/docs/huggingface_hub/v1.29.0/en/package_reference/collections#huggingface_hub.Collection)，我们想要向其中添加项目并组织它们。
+## 管理集合中的项目现在我们有了一个 [Collection](/docs/huggingface_hub/v1.30.0/en/package_reference/collections#huggingface_hub.Collection)，我们想要向其中添加项目并组织它们。
 
 ### 添加项目
 
-必须使用[add_collection_item()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.add_collection_item)一项一项地添加项目。您只需要知道`collection_slug`、`item_id`和`item_type`即可。或者，您还可以向项目添加 `note`（最多 500 个字符）。
+必须使用[add_collection_item()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.add_collection_item)一项一项地添加项目。您只需要知道`collection_slug`、`item_id`和`item_type`即可。或者，您还可以向项目添加 `note`（最多 500 个字符）。
 
 ```py
 >>> from huggingface_hub import create_collection, add_collection_item
@@ -147,7 +147,7 @@ Crataco/favorite-7b-models-651944072b4fffcb41f8b568
 
 ### 为现有项目添加注释
 
-您可以使用 [update_collection_item()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_item) 修改现有项目以添加或修改附加到其的注释。让我们重用上面的例子：
+您可以使用 [update_collection_item()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_item) 修改现有项目以添加或修改附加到其的注释。让我们重用上面的例子：
 
 ```py
 >>> from huggingface_hub import get_collection, update_collection_item
@@ -166,7 +166,7 @@ Crataco/favorite-7b-models-651944072b4fffcb41f8b568
 
 ### 重新订购商品
 
-集合中的项目是有序的。顺序由每个项目的 `position` 属性决定。默认情况下，项目通过在集合末尾附加新项目来排序。您可以使用 [update_collection_item()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_item) 更新订单，就像添加注释一样。
+集合中的项目是有序的。顺序由每个项目的 `position` 属性决定。默认情况下，项目通过在集合末尾附加新项目来排序。您可以使用 [update_collection_item()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_item) 更新订单，就像添加注释一样。
 
 让我们重用上面的例子：
 
@@ -187,7 +187,7 @@ Crataco/favorite-7b-models-651944072b4fffcb41f8b568
 
 ### 删除项目
 
-最后，您还可以使用 [delete_collection_item()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_collection_item) 删除项目。
+最后，您还可以使用 [delete_collection_item()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_collection_item) 删除项目。
 
 ```py
 >>> from huggingface_hub import get_collection, update_collection_item
@@ -202,7 +202,7 @@ Crataco/favorite-7b-models-651944072b4fffcb41f8b568
 
 ## 删除集合
 
-可以使用[delete_collection()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_collection)删除集合。
+可以使用[delete_collection()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_collection)删除集合。
 
 > [!警告]
 > 这是不可恢复的操作。已删除的集合无法恢复。
@@ -211,4 +211,4 @@ Crataco/favorite-7b-models-651944072b4fffcb41f8b568
 >>> from huggingface_hub import delete_collection
 >>> collection = delete_collection("username/useless-collection-64f9a55bb3115b4f513ec026", missing_ok=True)
 ```### 创建和管理存储库
-https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/repository.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/guides/repository.md

@@ -20,7 +20,7 @@ Hub 上的集成，请查看 [this guide](https://huggingface.co/docs/hub/tensor
 huggingface_hub.HFSummaryWriter(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_tensorboard_logger.py#L45)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_tensorboard_logger.py#L45)
 
 **参数：**
 
@@ -34,7 +34,7 @@ repo_type (`str`, *可选*) ：日志将推送到的存储库的类型。默认�
 
 repo_revision (`str`, *可选*) ：日志将推送到的存储库的修订版本。默认为“主”。
 
-repo_private (`bool`, *可选*) ：是否将存储库设为私有。如果`None`（默认），则存储库将是公开的，除非组织默认为私有。如果存储库已存在，则忽略此值。
+repo_private (`bool`, *可选*) ：是否将存储库设为私有。如果`None`（默认），则存储库将是公开的，除非组织默认为私有。如果存储库已存在，则忽略该值。
 
 path_in_repo (`str`, *可选*) ：存储库中将推送日志的文件夹的路径。默认为“tensorboard/”。
 
@@ -82,4 +82,4 @@ for n_iter in range(100):
 ```
 
 ### 管理集合
-https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/collections.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/collections.md

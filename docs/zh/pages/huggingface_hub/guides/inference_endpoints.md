@@ -6,13 +6,13 @@ Inference Endpoints 提供了一个安全的生产解决方案，可以在 Huggi
 在本指南中，我们将学习如何使用 `huggingface_hub` 以编程方式管理推理端点。有关推理端点产品本身的更多信息，请查看其[official documentation](https://huggingface.co/docs/inference-endpoints/index)。
 
 本指南假设 `huggingface_hub` 已正确安装并且您的计算机已登录。如果情况尚未如此，请查看 [Quick Start guide](https://huggingface.co/docs/huggingface_hub/quick-start#quickstart)。支持推理端点 API 的最低版本是`v0.19.0`。> [!提示]
-> **新功能：** 现在可以通过简单的 API 调用从 [HF model catalog](https://endpoints.huggingface.co/catalog) 部署推理端点。该目录是精心策划的模型列表，可以使用优化设置进行部署。您无需配置任何东西，所有繁重的事情都由我们承担！所有型号和设置均保证经过测试，以提供最佳的成本/性能平衡。  [create_inference_endpoint_from_catalog()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint_from_catalog) 与 [create_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint) 工作方式相同，需要传递的参数少得多。您可以选择指定 `accelerator`（`"cpu"`、`"gpu"` 或 `"neuron"`）来覆盖默认硬件选择。您可以使用 [list_inference_catalog()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_catalog) 以编程方式检索目录。
+> **新功能：** 现在可以通过简单的 API 调用从 [HF model catalog](https://endpoints.huggingface.co/catalog) 部署推理端点。该目录是精心策划的模型列表，可以使用优化设置进行部署。您不需要配置任何东西，所有繁重的事情都由我们来承担！所有型号和设置均保证经过测试，以提供最佳的成本/性能平衡。  [create_inference_endpoint_from_catalog()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint_from_catalog) 与 [create_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint) 工作方式相同，需要传递的参数少得多。您可以选择指定 `accelerator`（`"cpu"`、`"gpu"` 或 `"neuron"`）来覆盖默认硬件选择。您可以使用 [list_inference_catalog()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_catalog) 以编程方式检索目录。
 >
 > 请注意，这仍然是一个实验性功能。如果您使用它，请告诉我们您的想法！
 
 ## 查找要部署的硬件
 
-[create_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint) 接受的 `accelerator`、`vendor`、`region`、`instance_type` 和 `instance_size` 值相互依赖。使用 [list_inference_endpoints_hardware()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_endpoints_hardware) 列出有效的组合，以及它们的每小时价格和命名空间的加速器配额：
+[create_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint) 接受的 `accelerator`、`vendor`、`region`、`instance_type` 和 `instance_size` 值相互依赖。使用 [list_inference_endpoints_hardware()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_endpoints_hardware) 列出有效的组合，以及它们的每小时价格和命名空间的加速器配额：
 
 ```py
 >>> from huggingface_hub import list_inference_endpoints_hardware
@@ -39,7 +39,7 @@ hf endpoints hardware --accelerator gpu
 
 ## 创建推理端点
 
-第一步是使用 [create_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint) 创建推理端点：
+第一步是使用 [create_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint) 创建推理端点：
 
 ```py
 >>> from huggingface_hub import create_inference_endpoint
@@ -70,7 +70,7 @@ hf endpoints catalog deploy --repo openai/gpt-oss-120b --accelerator gpu
 
 在此示例中，我们创建了一个名为 `"my-endpoint-name"` 的 `authenticated` 推理端点，为 `text-generation` 提供 [gpt2](https://huggingface.co/gpt2) 服务。 `authenticated` 推理端点意味着需要您的令牌才能访问 API。我们还需要提供其他信息来配置硬件要求，例如供应商、区域、加速器、实例类型和大小。您可以查看可用资源列表[here](https://api.endpoints.huggingface.cloud/#/v2%3A%3Aprovider/list_vendors)。或者，为了方便起见，您可以使用 [Web interface](https://ui.endpoints.huggingface.co) 手动创建推理端点。有关高级设置及其使用的详细信息，请参阅此[guide](https://huggingface.co/docs/inference-endpoints/guides/advanced)。
 
-[create_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint)返回的值是一个[InferenceEndpoint](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)对象：
+[create_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint)返回的值是一个[InferenceEndpoint](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)对象：
 
 ```py
 >>> endpoint
@@ -83,7 +83,7 @@ InferenceEndpoint(name='my-endpoint-name', namespace='Wauplin', repository='gpt2
 hf endpoints describe my-endpoint-name
 ```
 
-它是一个保存有关端点信息的数据类。您可以访问重要属性，例如`name`，`repository`，`status`，`task`，`created_at`，`updated_at`等。如果需要，您还可以使用`endpoint.raw`访问来自服务器的原始响应。
+它是一个保存有关端点信息的数据类。您可以访问重要属性，例如`name`，`repository`，`status`，`task`，`created_at`，`updated_at`等。如果需要，您还可以使用`endpoint.raw`访问服务器的原始响应。
 
 创建推理端点后，您可以在 [personal dashboard](https://ui.endpoints.huggingface.co/) 上找到它。
 
@@ -149,7 +149,7 @@ hf endpoints describe my-endpoint-name
 
 #### 多加速器实例上的并行性
 
-vLLM 和 SGLang 默认使用一个加速器，而端点分配到其实例的每个加速器，因此
+vLLM 和 SGLang 默认使用一个加速器，而端点分配了其实例的每个加速器，因此
 未设置并行性会将模型加载到一个模型上并闲置其余模型，同时仍然报告健康状况，因此您需要付费
 对于所有这些并获得其中一个的吞吐量。这就是 API 现在拒绝此类部署的原因。 （TGI 得出其
 设置 `tensorParallelSize` 以在整个实例中对一个模型副本进行分片
@@ -178,7 +178,7 @@ hf endpoints deploy gpt-oss-120b-vllm --repo openai/gpt-oss-120b --framework cus
   --engine vllm --custom-image vllm/vllm-openai:v0.23.0 --tensor-parallel-size 8
 ```
 
-要重新调整已部署的端点，请将 `tensor_parallel_size` 单独传递给 [update()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.update) 或
+要重新调整已部署的端点，请将 `tensor_parallel_size` 单独传递给 [update()](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.update) 或
 `hf endpoints update`。 `model.image`是整体发送的，需要`url`，所以获取的是端点当前的图像
 并就地更新：
 
@@ -190,7 +190,7 @@ hf endpoints deploy gpt-oss-120b-vllm --repo openai/gpt-oss-120b --framework cus
 
 ### 获取或列出现有的推理端点
 
-在某些情况下，您可能需要管理之前创建的推理端点。如果您知道名称，则可以使用 [get_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_inference_endpoint) 获取它，它返回一个 [InferenceEndpoint](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) 对象。或者，您可以使用 [list_inference_endpoints()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_endpoints) 检索所有推理端点的列表。两种方法都接受可选的 `namespace` 参数。您可以将 `namespace` 设置为您所属的任何组织。否则，它默认为您的用户名。
+在某些情况下，您可能需要管理之前创建的推理端点。如果您知道名称，则可以使用 [get_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_inference_endpoint) 获取它，它返回一个 [InferenceEndpoint](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) 对象。或者，您可以使用 [list_inference_endpoints()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_endpoints) 检索所有推理端点的列表。两种方法都接受可选的 `namespace` 参数。您可以将 `namespace` 设置为您所属的任何组织。否则，它默认为您的用户名。
 
 ```py
 >>> from huggingface_hub import get_inference_endpoint, list_inference_endpoints
@@ -218,12 +218,12 @@ hf endpoints ls --namespace '*'
 
 ## 检查部署状态
 
-在本指南的其余部分中，我们假设有一个名为 `endpoint` 的 [InferenceEndpoint](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) 对象。您可能已经注意到端点具有类型为 [InferenceEndpointStatus](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointStatus) 的 `status` 属性。当推理端点部署并可访问时，状态应为 `"running"` 并设置 `url` 属性：
+在本指南的其余部分中，我们假设有一个名为 `endpoint` 的 [InferenceEndpoint](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) 对象。您可能已经注意到端点具有类型为 [InferenceEndpointStatus](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointStatus) 的 `status` 属性。当推理端点部署并可访问时，状态应为 `"running"` 并设置 `url` 属性：
 
 ```py
 >>> endpoint
 InferenceEndpoint(name='my-endpoint-name', namespace='Wauplin', repository='gpt2', status='running', url='https://jpj7k2q4j805b727.us-east-1.aws.endpoints.huggingface.cloud')
-```在达到 `"running"` 状态之前，推理端点通常会经历 `"initializing"` 或 `"pending"` 阶段。您可以通过运行[fetch()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.fetch)来获取端点的新状态。与 [InferenceEndpoint](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) 中向服务器发出请求的所有其他方法一样，`endpoint` 的内部属性也发生了变化：
+```在达到 `"running"` 状态之前，推理端点通常会经历 `"initializing"` 或 `"pending"` 阶段。您可以通过运行[fetch()](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.fetch)来获取端点的新状态。与 [InferenceEndpoint](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) 中向服务器发出请求的所有其他方法一样，`endpoint` 的内部属性也发生了变化：
 
 ```py
 >>> endpoint.fetch()
@@ -236,7 +236,7 @@ InferenceEndpoint(name='my-endpoint-name', namespace='Wauplin', repository='gpt2
 hf endpoints describe my-endpoint-name
 ```
 
-您可以直接调用[wait()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.wait)，而不是在等待推理端点运行时获取推理端点状态。该助手将 `timeout` 和 `fetch_every` 参数（以秒为单位）作为输入，并将阻塞线程，直到部署推理端点。默认值分别为`None`（无超时）和`5`秒。
+您可以直接调用[wait()](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.wait)，而不是在等待推理端点运行时获取推理端点状态。该帮助器将 `timeout` 和 `fetch_every` 参数（以秒为单位）作为输入，并将阻塞线程，直到部署推理端点。默认值分别为`None`（无超时）和`5`秒。
 
 ```py
 # Pending endpoint
@@ -259,7 +259,7 @@ InferenceEndpoint(name='my-endpoint-name', namespace='Wauplin', repository='gpt2
 
 一旦您的推理端点启动并运行，您终于可以在其上运行推理了！
 
-[InferenceEndpoint](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) 有两个属性 `client` 和 `async_client` 分别返回一个 [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 和一个 [AsyncInferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient) 对象。
+[InferenceEndpoint](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) 有两个属性 `client` 和 `async_client` 分别返回一个 [InferenceClient](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 和一个 [AsyncInferenceClient](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient) 对象。
 
 ```py
 # Run text_generation task:
@@ -270,26 +270,26 @@ InferenceEndpoint(name='my-endpoint-name', namespace='Wauplin', repository='gpt2
 >>> await endpoint.async_client.text_generation("I am")
 ```
 
-如果推理端点未运行，则会引发 [InferenceEndpointError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) 异常：
+如果推理端点未运行，则会引发 [InferenceEndpointError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) 异常：
 
 ```py
 >>> endpoint.client
 huggingface_hub._inference_endpoints.InferenceEndpointError: Cannot create a client for this Inference Endpoint as it is not yet deployed. Please wait for the Inference Endpoint to be deployed using `endpoint.wait()` and try again.
 ```
 
-有关如何使用[InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)的更多详细信息，请查看[Inference guide](../guides/inference)。
+有关如何使用[InferenceClient](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)的更多详细信息，请查看[Inference guide](../guides/inference)。
 
 ## 管理生命周期现在我们已经了解了如何创建推理端点并在其上运行推理，接下来让我们看看如何管理其生命周期。
 
 > [!提示]
-> 在本节中，我们将看到 [pause()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.pause)、[resume()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.resume)、[scale_to_zero()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.scale_to_zero)、[update()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.update) 和 [delete()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.delete) 等方法。为了方便起见，所有这些方法都是添加到 [InferenceEndpoint](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) 的别名。如果您愿意，还可以使用`HfApi`中定义的通用方法：[pause_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_inference_endpoint)、[resume_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.resume_inference_endpoint)、[scale_to_zero_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.scale_to_zero_inference_endpoint)、[update_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_inference_endpoint)和[delete_inference_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_inference_endpoint)。
+> 在本节中，我们将看到 [pause()](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.pause)、[resume()](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.resume)、[scale_to_zero()](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.scale_to_zero)、[update()](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.update) 和 [delete()](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.delete) 等方法。为了方便起见，所有这些方法都是添加到 [InferenceEndpoint](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) 的别名。如果您愿意，还可以使用`HfApi`中定义的通用方法：[pause_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_inference_endpoint)、[resume_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.resume_inference_endpoint)、[scale_to_zero_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.scale_to_zero_inference_endpoint)、[update_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_inference_endpoint)和[delete_inference_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_inference_endpoint)。
 
 ### 暂停或缩放至零
 
-为了在推理端点未使用时降低成本，您可以选择使用 [pause()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.pause) 暂停它，或使用 [scale_to_zero()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.scale_to_zero) 将其缩放为零。
+为了在推理端点未使用时降低成本，您可以选择使用 [pause()](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.pause) 暂停它，或使用 [scale_to_zero()](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.scale_to_zero) 将其缩放为零。
 
 > [!提示]
-> *暂停*或*缩放至零*的推理端点不会产生任何费用。这两者之间的区别在于，“暂停”端点需要使用[resume()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.resume)显式“恢复”。相反，如果对其进行推理调用，“缩放为零”端点将自动启动，并具有额外的冷启动延迟。推理端点还可以配置为在闲置一段时间后自动缩放为零。
+> *暂停*或*缩放至零*的推理端点不会产生任何费用。这两者之间的区别在于，“暂停”端点需要使用[resume()](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.resume)显式“恢复”。相反，如果对其进行推理调用，“缩放至零”端点将自动启动，并具有额外的冷启动延迟。推理端点还可以配置为在闲置一段时间后自动缩放为零。
 
 ```py
 # Pause and resume endpoint
@@ -314,7 +314,7 @@ hf endpoints resume my-endpoint-name
 hf endpoints scale-to-zero my-endpoint-name
 ```
 
-### 更新型号或硬件要求在某些情况下，您可能还想更新推理端点而不创建新的推理端点。您可以更新托管模型或运行模型的硬件要求。您可以使用 [update()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.update) 来做到这一点：
+### 更新型号或硬件要求在某些情况下，您可能还想更新推理端点而不创建新的推理端点。您可以更新托管模型或运行模型的硬件要求。您可以使用 [update()](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.update) 来做到这一点：
 
 ```py
 # Change target model
@@ -357,7 +357,7 @@ hf endpoints update my-endpoint-name --engine vllm --custom-image vllm/vllm-open
 
 ## 一个端到端的例子
 
-推理端点的一个典型用例是一次处理一批作业以限制基础设施成本。您可以使用我们在本指南中看到的内容来自动化此过程：
+推理端点的一个典型用例是一次处理一批作业以限制基础设施成本。您可以使用我们在本指南中看到的内容自动执行此过程：
 
 ```py
 >>> import asyncio
@@ -396,4 +396,4 @@ hf endpoints update my-endpoint-name --engine vllm --custom-image vllm/vllm-open
 ```
 
 ### 收藏
-https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/collections.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/guides/collections.md

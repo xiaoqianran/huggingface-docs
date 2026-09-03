@@ -14,7 +14,7 @@
 huggingface_hub.login(token: str | None = None, add_to_git_credential: bool = False, skip_if_logged_in: bool = True)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_login.py#L57)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_login.py#L57)
 
 **参数：**
 
@@ -22,7 +22,7 @@ huggingface_hub.login(token: str | None = None, add_to_git_credential: bool = Fa
 
 add_to_git_credential (`bool`, 默认为`False`) : 如果`True`，token 将被设置为 git 凭证。如果没有配置 git credential helper，则会向用户显示警告。仅在提供`token`时使用；被基于浏览器的流程忽略。
 
-Skip_if_logged_in（`bool`，默认为`True`）：如果`True`，如果用户已经登录，则不提示输入令牌。设置为`False`强制重新登录。在 CLI 中，请改用 `--force`。
+Skip_if_logged_in (`bool`，默认为`True`)：如果`True`，如果用户已经登录，则不提示输入令牌。设置为`False`强制重新登录。在 CLI 中，请改用 `--force`。
 
 **提高：** ``ValueError`` or `DeviceCodeError`
 
@@ -41,13 +41,13 @@ Skip_if_logged_in（`bool`，默认为`True`）：如果`True`，如果用户已
 在终端中，您还可以选择粘贴现有的访问令牌。
 
 要从脚本外部登录，还可以使用 `hf auth login`，即
-包装 [login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.login) 的 cli 命令。
+包装 [login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.login) 的 cli 命令。
 
 > [!提示]
-> 当token不传递时，[login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.login)会自动检测脚本是否运行
-> 是否在笔记本中。但是，由于以下原因，此检测可能不准确
+> 当token不传递时，[login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.login)会自动检测脚本是否运行
+> 是否在笔记本中。然而，这种检测可能不准确，因为
 > 当今存在的各种笔记本电脑。如果是这种情况，您可以随时强制
-> 使用 [notebook_login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.notebook_login) 或 [interpreter_login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.interpreter_login) 的 UI。
+> 使用 [notebook_login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.notebook_login) 或 [interpreter_login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.interpreter_login) 的 UI。
 
 ##terpreter_login[[huggingface_hub.interpreter_login]]
 
@@ -57,17 +57,17 @@ Skip_if_logged_in（`bool`，默认为`True`）：如果`True`，如果用户已
 huggingface_hub.interpreter_login(skip_if_logged_in: bool = True)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_login.py#L284)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_login.py#L284)
 
 **参数：**
 
-Skip_if_logged_in（`bool`，默认为`True`）：如果`True`，如果用户已经登录，则不提示输入令牌。设置为`False`强制重新登录。在 CLI 中，请改用 `--force`。显示登录 HF 网站并存储令牌的提示。
+Skip_if_logged_in (`bool`，默认为`True`)：如果`True`，如果用户已经登录，则不提示输入令牌。设置为`False`强制重新登录。在 CLI 中，请改用 `--force`。显示登录 HF 网站并存储令牌的提示。
 
-这相当于不在笔记本中运行时不传递令牌的[login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.login)。
-如果你想强制使用终端提示符，[interpreter_login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.interpreter_login)很有用
+这相当于不在笔记本中运行时不传递令牌的[login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.login)。
+如果你想强制使用终端提示符，[interpreter_login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.interpreter_login)很有用
 而不是笔记本流程。
 
-欲了解更多详情，请参阅[login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.login)。
+欲了解更多详情，请参阅[login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.login)。
 
 ## 笔记本登录[[huggingface_hub.notebook_login]]
 
@@ -77,7 +77,7 @@ Skip_if_logged_in（`bool`，默认为`True`）：如果`True`，如果用户已
 huggingface_hub.notebook_login(skip_if_logged_in: bool = True)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_login.py#L335)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_login.py#L335)
 
 **参数：**
 
@@ -85,11 +85,11 @@ Skip_if_logged_in (`bool`，默认为`True`)：如果`True`，如果用户已经
 
 显示登录 HF 网站并存储令牌的提示。
 
-这相当于在笔记本中运行时不传递令牌的[login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.login)。
-如果你想强制使用笔记本流程，[notebook_login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.notebook_login)很有用
+这相当于在笔记本中运行时不传递令牌的[login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.login)。
+如果你想强制使用笔记本流程，[notebook_login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.notebook_login)很有用
 而不是终端中的提示。
 
-欲了解更多详情，请参阅[login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.login)。
+欲了解更多详情，请参阅[login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.login)。
 
 ## 注销[[huggingface_hub.logout]]
 
@@ -99,7 +99,7 @@ Skip_if_logged_in (`bool`，默认为`True`)：如果`True`，如果用户已经
 huggingface_hub.logout(token_name: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_login.py#L120)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_login.py#L120)
 
 **参数：**
 
@@ -120,7 +120,7 @@ token_name (`str`, *可选*) ：要注销的访问令牌的名称。如果`None`
 huggingface_hub.auth_switch(token_name: str, add_to_git_credential: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_login.py#L162)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_login.py#L162)
 
 **参数：**
 
@@ -143,9 +143,9 @@ add_to_git_credential (`bool`, 默认为`False`) : 如果`True`，token 将被�
 huggingface_hub.auth_list()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_login.py#L191)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_login.py#L191)
 
 列出所有存储的访问令牌。
 
 ### 概述
-https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/overview.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/overview.md

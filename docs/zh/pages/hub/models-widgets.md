@@ -4,7 +4,7 @@
 
 ## 什么是小部件？
 
-许多模型存储库都有一个小部件，允许任何人直接在浏览器中运行推理。这些小部件由 [Inference Providers](https://huggingface.co/docs/inference-providers) 提供支持，在我们的无服务器推理合作伙伴的支持下，它为开发人员提供了对数百种机器学习模型的简化、统一的访问。
+许多模型存储库都有一个小部件，允许任何人直接在浏览器中运行推理。这些小部件由 [Inference Providers](https://huggingface.co/docs/inference-providers) 提供支持，在我们的无服务器推理合作伙伴的支持下，它为开发人员提供了对数百种机器学习模型的简化、统一访问。
 
 以下是当前流行型号的一些示例：
 
@@ -17,11 +17,11 @@
 
 ## 启用小部件
 
-当模型由至少一个推理提供程序托管时，将显示小部件，以确保模型推理的最佳性能和可靠性。提供商自主选择和控制他们部署的模型。显示的小部件类型（文本生成、文本到图像等）是从模型的 `pipeline_tag` 推断出来的，这是 Hub 尝试为所有模型自动计算的特殊标签。唯一的例外是`conversational`小部件，它显示在`pipeline_tag`为`text-generation`或`image-text-to-text`的模型上，只要它们也被标记为`conversational`。为了简单起见，我们选择每个模型**仅公开一个**小部件。
+当模型由至少一个推理提供程序托管时，会显示小部件，以确保模型推理的最佳性能和可靠性。提供商自主选择和控制他们部署的模型。显示的小部件类型（文本到图像、自动语音识别等）是从模型的 `pipeline_tag` 推断出来的，这是 Hub 尝试为所有模型自动计算的特殊标签。唯一的例外是 `conversational` 小部件，它显示在 `pipeline_tag` 为 `text-generation` 或 `image-text-to-text` 的所有型号上。为了简单起见，我们选择每个模型**仅公开一个**小部件。
 
 对于某些库，例如`transformers`，可以根据配置文件（`config.json`）自动推断模型类型。架构可以确定类型：例如，`AutoModelForTokenClassification`对应于`token-classification`。如果您对此感兴趣，可以在[this gist](https://gist.github.com/julien-c/857ba86a6c6a895ecd90e7f7cab48046)中查看伪代码。
 
-对于大多数其他用例，我们使用模型标签来确定模型任务类型。例如，如果[model card metadata](./model-cards)中有`tag: text-classification`，则推断出的`pipeline_tag`将为`text-classification`。
+对于大多数其他用例，我们使用模型标签来确定模型任务类型。例如，如果[model card metadata](./model-cards)中有`tag: text-classification`，则推断的`pipeline_tag`将是`text-classification`。
 
 **您始终可以在 [model card metadata](./model-cards#model-card-metadata) 中使用 `pipeline_tag: xxx` 手动覆盖管道类型。**（您也可以使用元数据 GUI 编辑器来执行此操作）。
 

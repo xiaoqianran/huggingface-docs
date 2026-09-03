@@ -24,6 +24,7 @@ Webhook 使用以下环境变量触发作业：
 - `WEBHOOK_REPO_ID`：存储库名称（例如，`user/repo-name`）
 - `WEBHOOK_REPO_TYPE`：存储库类型（`model`、`dataset` 或 `space`）
 - `WEBHOOK_SECRET`：webhook 秘密（如果已配置）
+- `WEBHOOK_ID`：交付的唯一标识符，在该交付的重试中保持稳定
 
 Webhook 负载包含多个字段，以下是一些有用的字段：
 
@@ -38,7 +39,7 @@ Webhook 负载包含多个字段，以下是一些有用的字段：
   - type: one of "dataset", "model", "space"
 ```
 
-您可以在 [⟦T12⟧ Webhooks documentation](https://huggingface.co/docs/huggingface_hub/en/guides/webhooks) 中找到有关 webhooks 的更多信息。
+您可以在 [⟦T13⟧ Webhooks documentation](https://huggingface.co/docs/huggingface_hub/en/guides/webhooks) 中找到有关 webhooks 的更多信息。
 
 ### 如何使用 Okta 配置 OIDC SSO
 https://huggingface.co/docs/hub/security-sso-okta-oidc.md

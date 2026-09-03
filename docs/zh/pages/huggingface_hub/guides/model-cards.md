@@ -8,7 +8,7 @@
 
 ## 从集线器加载模型卡
 
-要从集线器加载现有卡，您可以使用[ModelCard.load()](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.RepoCard.load)功能。在这里，我们将从[⟦T21⟧](https://huggingface.co/nateraw/vit-base-beans)加载卡片。
+要从集线器加载现有卡，您可以使用[ModelCard.load()](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.RepoCard.load)功能。在这里，我们将从[⟦T21⟧](https://huggingface.co/nateraw/vit-base-beans)加载卡片。
 
 ```python
 from huggingface_hub import ModelCard
@@ -17,7 +17,7 @@ card = ModelCard.load('nateraw/vit-base-beans')
 ```
 
 这张卡有一些您可能想要访问/利用的有用属性：
-  - `card.data`：返回带有模型卡元数据的[ModelCardData](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.ModelCardData)实例。在此实例上调用`.to_dict()`以获取字典形式的表示。
+  - `card.data`：返回带有模型卡元数据的[ModelCardData](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.ModelCardData)实例。在此实例上调用`.to_dict()`以获取字典形式的表示。
   - `card.text`：返回卡片的文本，*不包括元数据标头*。
   - `card.content`：返回卡片的文本内容，*包括元数据标头*。
 
@@ -43,7 +43,7 @@ card.data.to_dict() == {'language': 'en', 'license': 'mit'}  # True
 
 您可能想要执行此操作的另一种方法是使用 f 字符串。在下面的例子中，我们：
 
-- 使用[ModelCardData.to_yaml()](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.CardData.to_yaml)将我们定义的元数据转换为YAML，以便我们可以使用它在模型卡中插入YAML块。
+- 使用[ModelCardData.to_yaml()](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.CardData.to_yaml)将我们定义的元数据转换为YAML，以便我们可以使用它在模型卡中插入YAML块。
 - 展示如何通过 Python f 字符串使用模板变量。
 
 ```python
@@ -152,7 +152,7 @@ This model does this and that.
 This model was created by [@nateraw](https://hf.co/nateraw).
 ```
 
-当您更新卡数据时，您可以通过调用[ModelCard.validate()](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.RepoCard.validate)来验证该卡对集线器是否仍然有效。这可确保该卡通过 Hugging Face Hub 上设置的任何验证规则。
+当您更新卡数据时，您可以通过调用[ModelCard.validate()](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.RepoCard.validate)来验证该卡对集线器是否仍然有效。这可确保该卡通过 Hugging Face Hub 上设置的任何验证规则。
 
 ### 来自默认模板
 
@@ -176,7 +176,7 @@ print(card)
 
 ## 分享模型卡
 
-如果您通过 Hugging Face Hub 进行身份验证（使用 `hf auth login` 或 [login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.login)），则只需调用 [ModelCard.push_to_hub()](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.RepoCard.push_to_hub) 即可将卡片推送到 Hub。让我们看看如何做到这一点......首先，我们将在经过身份验证的用户的命名空间下创建一个名为“hf-hub-modelcards-pr-test”的新存储库：
+如果您通过 Hugging Face Hub 进行身份验证（使用 `hf auth login` 或 [login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.login)），则只需调用 [ModelCard.push_to_hub()](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.RepoCard.push_to_hub) 即可将卡片推送到 Hub。让我们看看如何做到这一点......首先，我们将在经过身份验证的用户的命名空间下创建一个名为“hf-hub-modelcards-pr-test”的新存储库：
 
 ```python
 from huggingface_hub import whoami, create_repo
@@ -248,10 +248,10 @@ card.push_to_hub(repo_id, create_pr=True)
 
 ## 包括评估结果
 
-要将评估结果包含在元数据 `model-index` 中，您可以传递 [EvalResult](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.EvalResult) 或 `EvalResult` 列表以及关联的评估结果。当您调用 `card.data.to_dict()` 时，它会在底层创建 `model-index`。有关其工作原理的更多信息，您可以查看[this section of the Hub docs](https://huggingface.co/docs/hub/models-cards#evaluation-results)。
+要将评估结果包含在元数据 `model-index` 中，您可以传递 [EvalResult](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.EvalResult) 或 `EvalResult` 列表以及关联的评估结果。当您调用 `card.data.to_dict()` 时，它会在底层创建 `model-index`。有关其工作原理的更多信息，您可以查看[this section of the Hub docs](https://huggingface.co/docs/hub/models-cards#evaluation-results)。
 
 > [!提示]
-> 请注意，使用此功能需要您在 [ModelCardData](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.ModelCardData) 中包含 `model_name` 属性。
+> 请注意，使用此功能需要您在 [ModelCardData](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.ModelCardData) 中包含 `model_name` 属性。
 
 ```python
 card_data = ModelCardData(
@@ -338,4 +338,4 @@ model-index:
 ```
 
 ### 推理端点
-https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/inference_endpoints.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/guides/inference_endpoints.md

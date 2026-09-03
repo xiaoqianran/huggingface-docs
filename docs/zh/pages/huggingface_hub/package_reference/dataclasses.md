@@ -190,7 +190,7 @@ Config(foo="Bar", foo_length=3, upper_case=True) # Raises StrictDataclassFieldVa
 huggingface_hub.dataclasses.strict(accept_kwargs: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/dataclasses.py#L56)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/dataclasses.py#L56)
 
 **参数：**
 
@@ -256,7 +256,7 @@ huggingface_hub.errors.StrictDataclassFieldValidationError: Validation error for
 huggingface_hub.dataclasses.validate_typed_dict(schema: type, data: dict)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/dataclasses.py#L286)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/dataclasses.py#L286)
 
 **参数：**
 
@@ -308,13 +308,13 @@ huggingface_hub.errors.StrictDataclassFieldValidationError: Validation error for
 huggingface_hub.dataclasses.as_validated_field(validator: Callable)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/dataclasses.py#L426)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/dataclasses.py#L426)
 
 **参数：**
 
 validator (`Callable`) ：一种将值作为输入并在该值无效时引发 ValueError/TypeError 的方法。
 
-将验证器函数装饰为 `validated_field` （即具有自定义验证器的数据类字段）。
+将验证器函数装饰为`validated_field`（即具有自定义验证器的数据类字段）。
 
 ### `validated_field`[[huggingface_hub.dataclasses.validated_field]]
 
@@ -323,10 +323,10 @@ validator (`Callable`) ：一种将值作为输入并在该值无效时引发 Va
 #### Huggingface_hub.dataclasses.validated_field[[huggingface_hub.dataclasses.validated_field]]
 
 ```python
-huggingface_hub.dataclasses.validated_field(validator: list[collections.abc.Callable[[typing.Any], None]] | collections.abc.Callable[[typing.Any], None], default: typing.Any = <dataclasses._MISSING_TYPE object at 0x7fbf33a25480>, default_factory: typing.Any = <dataclasses._MISSING_TYPE object at 0x7fbf33a25480>, init: bool = True, repr: bool = True, hash: bool | None = None, compare: bool = True, metadata: dict | None = None, **kwargs: typing.Any)
+huggingface_hub.dataclasses.validated_field(validator: list[collections.abc.Callable[[typing.Any], None]] | collections.abc.Callable[[typing.Any], None], default: typing.Any = <dataclasses._MISSING_TYPE object at 0x7f910c5a5690>, default_factory: typing.Any = <dataclasses._MISSING_TYPE object at 0x7f910c5a5690>, init: bool = True, repr: bool = True, hash: bool | None = None, compare: bool = True, metadata: dict | None = None, **kwargs: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/dataclasses.py#L383)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/dataclasses.py#L383)
 
 **参数：**
 
@@ -344,13 +344,13 @@ huggingface_hub.dataclasses.validated_field(validator: list[collections.abc.Call
 
 ### 错误[[huggingface_hub.errors.StrictDataclassError]]#### Huggingface_hub.errors.StrictDataclassError[[huggingface_hub.errors.StrictDataclassError]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L528)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L528)
 
 严格数据类的基本异常。
 
 #### Huggingface_hub.errors.StrictDataclassDefinitionError[[huggingface_hub.errors.StrictDataclassDefinitionError]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L532)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L532)
 
 当严格数据类定义不正确时抛出异常。
 
@@ -360,7 +360,7 @@ huggingface_hub.dataclasses.validated_field(validator: list[collections.abc.Call
 huggingface_hub.errors.StrictDataclassFieldValidationError(field: str, cause: Exception)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L536)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L536)
 
 当严格数据类对给定字段的验证失败时抛出异常。
 
@@ -371,4 +371,4 @@ huggingface_hub.errors.StrictDataclassFieldValidationError(field: str, cause: Ex
 - 我们不需要极快的验证。 `@strict` 不适用于性能至关重要的重负载。常见用例涉及验证模型配置（执行一次，与运行模型相比可以忽略不计）。这使我们能够保持最少的代码。
 
 ### 警告
-https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/cli.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/cli.md

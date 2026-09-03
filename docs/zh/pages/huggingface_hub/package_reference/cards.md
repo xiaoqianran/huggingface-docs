@@ -9,7 +9,7 @@ Huggingface_hub 库提供了一个 Python 接口来创建、共享和更新模�
 
 ## 回购卡[[huggingface_hub.RepoCard]]
 
-`RepoCard`对象是[ModelCard](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.ModelCard)、[DatasetCard](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.DatasetCard)和`SpaceCard`的父类。
+`RepoCard`对象是[ModelCard](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.ModelCard)、[DatasetCard](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.DatasetCard)和`SpaceCard`的父类。
 
 #### Huggingface_hub.RepoCard[[huggingface_hub.RepoCard]]
 
@@ -17,7 +17,7 @@ Huggingface_hub 库提供了一个 Python 接口来创建、共享和更新模�
 huggingface_hub.RepoCard(content: str, ignore_metadata_errors: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L37)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard.py#L37)
 
 #### __init__[[huggingface_hub.RepoCard.__init__]]
 
@@ -25,7 +25,7 @@ huggingface_hub.RepoCard(content: str, ignore_metadata_errors: bool = False)
 __init__(content: str, ignore_metadata_errors: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L42)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard.py#L42)
 
 **参数：**
 
@@ -65,7 +65,7 @@ Markdown 文件，开头有一个 YAML 块，还有一个 Markdown 正文。
 from_template(card_data: CardData, template_path: str | None = None, template_str: str | None = None, **template_kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L289)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard.py#L289)
 
 **参数：**
 
@@ -73,7 +73,7 @@ card_data (`huggingface_hub.CardData`) ：huggingface_hub.CardData 实例，其�
 
 template_str (`str`, *可选*) ：带有可选变量的原始 Jinja 模板字符串。当 `template_path` 和默认模板都不合适时使用。如果还提供了`template_path`，则忽略。
 
-**返回：** [huggingface_hub.repocard.RepoCard](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.RepoCard)
+**返回：** [huggingface_hub.repocard.RepoCard](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.RepoCard)
 
 具有指定卡片数据和内容的 RepoCard 实例
 模板。
@@ -88,7 +88,7 @@ template_str (`str`, *可选*) ：带有可选变量的原始 Jinja 模板字符
 load(repo_id_or_path: str | pathlib.Path, repo_type: str | None = None, token: str | None = None, ignore_metadata_errors: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L135)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard.py#L135)
 
 **参数：**
 
@@ -98,7 +98,7 @@ repo_type (`str`, *可选*) ：要推送到的 Hugging Face 存储库的类型�
 
 ignore_metadata_errors (`str`) ：如果为 True，则解析元数据部分时的错误将被忽略。在此过程中可能会丢失一些信息。使用它的风险由您自行承担。
 
-**返回：** [huggingface_hub.repocard.RepoCard](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.RepoCard)
+**返回：** [huggingface_hub.repocard.RepoCard](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.RepoCard)
 
 从存储库初始化的 RepoCard（或子类）
 README.md 文件或文件路径。
@@ -119,7 +119,7 @@ README.md 文件或文件路径。
 push_to_hub(repo_id: str, token: str | None = None, repo_type: str | None = None, commit_message: str | None = None, commit_description: str | None = None, revision: str | None = None, create_pr: bool | None = None, parent_commit: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L226)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard.py#L226)
 
 **参数：**
 
@@ -149,7 +149,7 @@ Parent_commit (`str`, *可选*) ：父提交的 OID / SHA，作为十六进制�
 save(filepath: pathlib.Path | str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L115)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard.py#L115)
 
 **参数：**
 
@@ -171,13 +171,13 @@ filepath (`Union[Path, str]`) : 要保存的 markdown 文件的文件路径。
 validate(repo_type: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L189)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard.py#L189)
 
 **参数：**repo_type (`str`，*可选*，默认为“model”)：要推送到的 Hugging Face 存储库的类型。选项有“模型”、“数据集”和“空间”。如果从子类调用此函数，则默认值将是子类的`repo_type`。
 
 根据 Hugging Face Hub 的卡片验证逻辑验证卡片。
 使用该功能需要联网，所以只调用
-内部由[huggingface_hub.repocard.RepoCard.push_to_hub()](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.RepoCard.push_to_hub)。
+内部由[huggingface_hub.repocard.RepoCard.push_to_hub()](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.RepoCard.push_to_hub)。
 
 > [!提示]
 > 引发以下错误：
@@ -189,7 +189,7 @@ validate(repo_type: str | None = None)
 
 ## 卡片数据[[huggingface_hub.CardData]]
 
-[CardData](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.CardData)对象是[ModelCardData](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.ModelCardData)和[DatasetCardData](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.DatasetCardData)的父类。
+[CardData](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.CardData)对象是[ModelCardData](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.ModelCardData)和[DatasetCardData](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.DatasetCardData)的父类。
 
 #### Huggingface_hub.CardData[[huggingface_hub.CardData]]
 
@@ -197,11 +197,11 @@ validate(repo_type: str | None = None)
 huggingface_hub.CardData(ignore_metadata_errors: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L165)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard_data.py#L165)
 
 包含来自 RepoCard 的元数据的结构。
 
-[CardData](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.CardData)是[ModelCardData](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.ModelCardData)和[DatasetCardData](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.DatasetCardData)的父类。
+[CardData](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.CardData)是[ModelCardData](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.ModelCardData)和[DatasetCardData](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.DatasetCardData)的父类。
 
 元数据可以导出为字典或 YAML。可以自定义导出以更改数据的表示形式
 （示例：扁平化评估结果）。 `CardData` 表现为字典（可以获取、弹出、设置值），但不
@@ -213,7 +213,7 @@ huggingface_hub.CardData(ignore_metadata_errors: bool = False, **kwargs)
 get(key: str, default: typing.Any = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L228)获取给定元数据键的值。
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard_data.py#L228)获取给定元数据键的值。
 
 #### 弹出[[huggingface_hub.CardData.pop]]
 
@@ -221,7 +221,7 @@ get(key: str, default: typing.Any = None)
 pop(key: str, default: typing.Any = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L233)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard_data.py#L233)
 
 给定元数据键的 Pop 值。
 
@@ -231,7 +231,7 @@ pop(key: str, default: typing.Any = None)
 to_dict()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L178)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard_data.py#L178)
 
 **返回：** `dict`
 
@@ -246,7 +246,7 @@ CardData 表示为准备转储到 YAML 的字典
 to_yaml(line_break = None, original_order: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L198)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard_data.py#L198)
 
 **参数：**
 
@@ -270,7 +270,7 @@ CardData 表示为 YAML 块。
 huggingface_hub.ModelCard(content: str, ignore_metadata_errors: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L336)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard.py#L336)
 
 #### from_template[[huggingface_hub.ModelCard.from_template]]
 
@@ -278,7 +278,7 @@ huggingface_hub.ModelCard(content: str, ignore_metadata_errors: bool = False)
 from_template(card_data: ModelCardData, template_path: str | None = None, template_str: str | None = None, **template_kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L341)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard.py#L341)
 
 **参数：**card_data (`huggingface_hub.ModelCardData`) ：huggingface_hub.ModelCardData 实例，其中包含要包含在 Hugging Face Hub 上模型卡的 YAML 标头中的元数据。
 
@@ -286,7 +286,7 @@ template_path (`str`, *可选*) ：带有可选 Jinja 模板变量的 Markdown �
 
 template_str (`str`, *可选*) ：带有可选变量的原始 Jinja 模板字符串。当`template_path`和默认模板都不合适时使用。如果还提供了`template_path`，则忽略。
 
-**返回：** [huggingface_hub.ModelCard](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.ModelCard)
+**返回：** [huggingface_hub.ModelCard](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.ModelCard)
 
 具有指定卡片数据和内容的 ModelCard 实例
 模板。
@@ -352,9 +352,9 @@ https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/tem
 huggingface_hub.ModelCardData(base_model: str | list[str] | None = None, datasets: str | list[str] | None = None, eval_results: list[huggingface_hub.repocard_data.EvalResult] | None = None, language: str | list[str] | None = None, library_name: str | None = None, license: str | None = None, license_name: str | None = None, license_link: str | None = None, metrics: list[str] | None = None, model_name: str | None = None, pipeline_tag: str | None = None, tags: list[str] | None = None, ignore_metadata_errors: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L271)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard_data.py#L271)
 
-**参数：**base_model（`str`或`list[str]`，*可选*）：模型派生的基本模型的标识符。例如，如果您的模型是现有模型的微调或适配器，则这适用。该值必须是中心上模型的 ID（如果您的模型派生自多个模型，则为 ID 列表）。默认为无。
+**参数：**base_model（`str`或`list[str]`，*可选*）：模型派生的基本模型的标识符。例如，如果您的模型是现有模型的微调或适配器，则这适用。该值必须是 Hub 上模型的 ID（如果您的模型派生自多个模型，则为 ID 列表）。默认为无。
 
 数据集（`Union[str, list[str]]`，*可选*）：用于训练该模型的数据集或数据集列表。应该是在 https://hf.co/datasets 上找到的数据集 ID。默认为无。
 
@@ -406,7 +406,7 @@ Hugging Face Hub 使用的模型卡元数据包含在 README.md 顶部
 huggingface_hub.DatasetCard(content: str, ignore_metadata_errors: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L420)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard.py#L420)
 
 #### from_template[[huggingface_hub.DatasetCard.from_template]]
 
@@ -414,7 +414,7 @@ huggingface_hub.DatasetCard(content: str, ignore_metadata_errors: bool = False)
 from_template(card_data: DatasetCardData, template_path: str | None = None, template_str: str | None = None, **template_kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L425)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard.py#L425)
 
 **参数：**
 
@@ -422,7 +422,7 @@ card_data (`huggingface_hub.DatasetCardData`) ：huggingface_hub.DatasetCardData
 
 template_str (`str`, *可选*) ：带有可选变量的原始 Jinja 模板字符串。当`template_path`和默认模板都不合适时使用。如果还提供了`template_path`，则忽略。
 
-**返回：** [huggingface_hub.DatasetCard](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.DatasetCard)
+**返回：** [huggingface_hub.DatasetCard](/docs/huggingface_hub/v1.30.0/en/package_reference/cards#huggingface_hub.DatasetCard)
 
 具有指定卡片数据和内容的 DatasetCard 实例
 模板。
@@ -472,13 +472,13 @@ https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/tem
 huggingface_hub.DatasetCardData(language: str | list[str] | None = None, license: str | list[str] | None = None, annotations_creators: str | list[str] | None = None, language_creators: str | list[str] | None = None, multilinguality: str | list[str] | None = None, size_categories: str | list[str] | None = None, source_datasets: list[str] | None = None, task_categories: str | list[str] | None = None, task_ids: str | list[str] | None = None, paperswithcode_id: str | None = None, pretty_name: str | None = None, train_eval_index: dict | None = None, config_names: str | list[str] | None = None, ignore_metadata_errors: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L400)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard_data.py#L400)
 
 **参数：**
 
 语言（`list[str]`，*可选*）：数据集数据或元数据的语言。它必须是 ISO 639-1、639-2 或 639-3 代码（两个/三个字母），或特殊值，如“代码”、“多语言”。许可证（`Union[str, list[str]]`，*可选*）：该数据集的许可证。示例：apache-2.0 或 https://huggingface.co/docs/hub/repositories-licenses 中的任何许可证。
 
-annotations_creators（`Union[str, list[str]]`，*可选*）：如何创建数据集的注释。选项包括：“找到”、“众包”、“专家生成”、“机器生成”、“无注释”、“其他”。
+Comments_creators (`Union[str, list[str]]`, *可选*) ：如何创建数据集的注释。选项包括：“找到”、“众包”、“专家生成”、“机器生成”、“无注释”、“其他”。
 
 language_creators（`Union[str, list[str]]`，*可选*）：如何创建数据集中基于文本的数据。选项有：“找到”、“众包”、“专家生成”、“机器生成”、“其他”
 
@@ -510,7 +510,7 @@ Hugging Face Hub 使用的数据集卡元数据包含在 README.md 顶部
 huggingface_hub.SpaceCard(content: str, ignore_metadata_errors: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L488)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard.py#L488)
 
 ### SpaceCardData[[huggingface_hub.SpaceCardData]]
 
@@ -520,7 +520,7 @@ huggingface_hub.SpaceCard(content: str, ignore_metadata_errors: bool = False)
 huggingface_hub.SpaceCardData(title: str | None = None, sdk: str | None = None, sdk_version: str | None = None, python_version: str | None = None, app_file: str | None = None, app_port: int | None = None, license: str | None = None, duplicated_from: str | None = None, models: list[str] | None = None, datasets: list[str] | None = None, tags: list[str] | None = None, ignore_metadata_errors: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L480)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard_data.py#L480)
 
 **参数：**
 
@@ -528,13 +528,13 @@ title (`str`, *可选*) : 空间的标题。
 
 sdk（`str`，*可选*）：空间的 SDK（`gradio`、`streamlit`、`docker` 或 `static` 之一）。
 
-sdk_version (`str`, *可选*) ：所使用的 SDK 版本（如果是 Gradio/Streamlit sdk）。
+sdk_version (`str`, *可选*)：所使用的 SDK 版本（如果是 Gradio/Streamlit sdk）。
 
 python_version (`str`, *可选*) ：Space 中使用的 Python 版本（如果 Gradio/Streamlit sdk）。app_file（`str`，*可选*）：主应用程序文件的路径（包含gradio或streamlit Python代码，或静态html代码）。路径是相对于存储库的根目录的。
 
 app_port (`str`, *可选*) ：应用程序运行的端口。仅当 sdk 为 `docker` 时使用。
 
-许可证（`str`，*可选*）：该模型的许可证。示例：apache-2.0 或 https://huggingface.co/docs/hub/repositories-licenses 中的任何许可证。
+许可证（`str`，*可选*）：该型号的许可证。示例：apache-2.0 或 https://huggingface.co/docs/hub/repositories-licenses 中的任何许可证。
 
 重复的_from（`str`，*可选*）：原始空间的ID（如果这是重复的空间）。
 
@@ -573,7 +573,7 @@ kwargs（`dict`，*可选*）：将添加到空间卡的附加元数据。Huggin
 huggingface_hub.EvalResult(task_type: str, dataset_type: str, dataset_name: str, metric_type: str, metric_value: typing.Any, task_name: str | None = None, dataset_config: str | None = None, dataset_split: str | None = None, dataset_revision: str | None = None, dataset_args: dict[str, typing.Any] | None = None, metric_name: str | None = None, metric_config: str | None = None, metric_args: dict[str, typing.Any] | None = None, verified: bool | None = None, verify_token: str | None = None, source_name: str | None = None, source_url: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L13)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard_data.py#L13)
 
 **参数：**
 
@@ -617,7 +617,7 @@ source_url (`str`, *可选*) ：评估结果来源的URL。示例：“https://h
 is_equal_except_value(other: EvalResult)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L145)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard_data.py#L145)
 
 如果 `self` 和 `other` 描述完全相同的度量但具有
 不同的价值。
@@ -630,7 +630,7 @@ is_equal_except_value(other: EvalResult)
 huggingface_hub.repocard_data.model_index_to_eval_results(model_index: list)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L561)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard_data.py#L561)
 
 **参数：**model_index (`list[dict[str, Any]]`) ：模型索引数据结构，可能来自 Hugging Face Hub 上的 README.md 文件。
 
@@ -691,7 +691,7 @@ https://github.com/huggingface/hub-docs/blob/main/modelcard.md?plain=1
 huggingface_hub.repocard_data.eval_results_to_model_index(model_name: str, eval_results: list)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L677)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard_data.py#L677)
 
 **参数：**
 
@@ -731,7 +731,7 @@ eval_results 转换为模型索引。接受给定的模型名称和 `huggingface
 huggingface_hub.metadata_eval_result(model_pretty_name: str, task_pretty_name: str, task_id: str, metrics_pretty_name: str, metrics_id: str, metrics_value: typing.Any, dataset_pretty_name: str, dataset_id: str, metrics_config: str | None = None, metrics_verified: bool = False, dataset_config: str | None = None, dataset_split: str | None = None, dataset_revision: str | None = None, metrics_verification_token: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L560)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard.py#L560)
 
 **参数：**
 
@@ -823,7 +823,7 @@ True
 huggingface_hub.metadata_update(repo_id: str, metadata: dict, repo_type: str | None = None, overwrite: bool = False, token: str | None = None, commit_message: str | None = None, commit_description: str | None = None, revision: str | None = None, create_pr: bool = False, parent_commit: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L688)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/repocard.py#L688)
 
 **参数：**
 
@@ -868,4 +868,4 @@ create_pr (`boolean`, *可选*) ：是否使用该提交从 `revision` 创建拉
 ```
 
 ### 推理类型
-https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/inference_types.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/inference_types.md

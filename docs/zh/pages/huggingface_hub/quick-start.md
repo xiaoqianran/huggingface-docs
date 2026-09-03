@@ -32,7 +32,7 @@ pip install --upgrade huggingface_hub
 ## 下载文件
 
 Hub上的存储库是git版本控制的，用户可以下载单个文件
-或整个存储库。您可以使用[hf_hub_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.hf_hub_download)功能下载文件。
+或整个存储库。您可以使用[hf_hub_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.hf_hub_download)功能下载文件。
 此函数将下载文件并将其缓存到本地磁盘上。下次有需要的时候
 该文件，它将从您的缓存中加载，因此您无需重新下载它。您将需要存储库 ID 和要下载的文件的文件名。对于
 例如，下载 [Pegasus](https://huggingface.co/google/pegasus-xsum) 模型
@@ -56,7 +56,7 @@ Hub上的存储库是git版本控制的，用户可以下载单个文件
 ... )
 ```
 
-有关更多详细信息和选项，请参阅 [hf_hub_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) 的 API 参考。
+有关更多详细信息和选项，请参阅 [hf_hub_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) 的 API 参考。
 
  
 
@@ -68,7 +68,7 @@ Hub上的存储库是git版本控制的，用户可以下载单个文件
 
 ### 登录命令
 
-最简单的身份验证方法是使用 [login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.login) 命令：
+最简单的身份验证方法是使用 [login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.login) 命令：
 
 ```bash
 hf auth login
@@ -77,7 +77,7 @@ hf auth login
 > [!提示]
 > 用户访问令牌可以具有 `read` 或 `write` 权限。如果您想创建或编辑存储库，请确保拥有 `write` 访问令牌。否则，最好生成 `read` 代币，以降低代币无意泄露的风险。
 
-或者，您可以在笔记本或脚本中使用 [login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.login) 以编程方式登录：
+或者，您可以在笔记本或脚本中使用 [login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.login) 以编程方式登录：
 
 ```py
 >>> from huggingface_hub import login
@@ -89,7 +89,7 @@ hf auth login
 
 ### 在本地管理多个令牌
 
-您只需使用每个令牌使用 [login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.login) 命令登录即可在计算机上保存多个令牌。如果需要在本地切换这些令牌，可以使用 `auth switch` 命令：
+您只需使用每个令牌使用 [login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.login) 命令登录即可在计算机上保存多个令牌。如果需要在本地切换这些令牌，可以使用 `auth switch` 命令：
 
 ```bash
 hf auth switch
@@ -123,7 +123,7 @@ user = whoami(token=...)
 
 ## 创建存储库
 
-注册并登录后，使用 [create_repo()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo) 创建一个存储库
+注册并登录后，使用 [create_repo()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo) 创建一个存储库
 功能：
 
 ```py
@@ -140,14 +140,14 @@ user = whoami(token=...)
 >>> api.create_repo(repo_id="super-cool-model", private=True)
 ```
 
-除了您自己之外，私有存储库对任何人都不可见。
+除您自己之外，任何人都看不到私有存储库。
 
 > [!提示]
 > 要创建存储库或将内容推送到中心，您必须提供用户访问权限
 > 具有`write`权限的令牌。创建时可以选择权限
 > 您的 [Settings page](https://huggingface.co/settings/tokens) 中的代币。
 
-## 上传文件使用 [upload_file()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) 函数将文件添加到新创建的存储库中。你
+## 上传文件使用 [upload_file()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) 函数将文件添加到新创建的存储库中。你
 需要指定：
 
 1. 上传文件的路径。
@@ -180,4 +180,4 @@ Hub，我们建议您阅读我们的[how-to guides](./guides/overview)：
 - [Run Inference](./guides/inference) 跨 Hugging Face Hub 上托管的模型的多种服务。
 
 ### 安装
-https://huggingface.co/docs/huggingface_hub/v1.29.0/installation.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/installation.md

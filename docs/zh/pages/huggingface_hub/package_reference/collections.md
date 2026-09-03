@@ -2,16 +2,16 @@
 
 # 管理集合
 
-查看 [HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi) 文档页面，获取管理 Hub 上的空间的方法参考。
+查看 [HfApi](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi) 文档页面，获取管理 Hub 上的空间的方法参考。
 
-- 获取收藏内容：[get_collection()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_collection)
-- 创建新集合：[create_collection()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_collection)
-- 更新收藏：[update_collection_metadata()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_metadata)
-- 更新集合的资源组：[update_collection_resource_group()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_resource_group)
-- 删除收藏：[delete_collection()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_collection)
-- 将项目添加到集合中：[add_collection_item()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.add_collection_item)
-- 更新集合中的项目：[update_collection_item()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_item)
-- 从集合中删除项目：[delete_collection_item()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_collection_item)
+- 获取收藏内容：[get_collection()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_collection)
+- 创建新集合：[create_collection()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_collection)
+- 更新收藏：[update_collection_metadata()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_metadata)
+- 更新集合的资源组：[update_collection_resource_group()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_resource_group)
+- 删除收藏：[delete_collection()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_collection)
+- 将项目添加到集合中：[add_collection_item()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.add_collection_item)
+- 更新集合中的项目：[update_collection_item()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_item)
+- 从集合中删除项目：[delete_collection_item()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_collection_item)
 
 ### 集合[[huggingface_hub.Collection]]
 
@@ -21,7 +21,7 @@
 huggingface_hub.Collection(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/hf_api.py#L1498)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/hf_api.py#L1498)
 
 **参数：**
 
@@ -55,7 +55,7 @@ upvotes (`int`) : 集合的点赞数。
 huggingface_hub.CollectionItem(_id: str, id: str, type: CollectionItemType_T, position: int, note: dict | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/hf_api.py#L1450)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/hf_api.py#L1450)
 
 **参数：**
 
@@ -67,9 +67,9 @@ item_type (`str`) ：底层对象的类型。可以是 `"model"`、`"dataset"`�
 
 位置 (`int`) ：集合中项目的位置。
 
-note (`str`, *可选*) ：与项目关联的注释，作为纯文本。
+note (`str`, *可选*) ：与项目相关的注释，作为纯文本。
 
 包含有关集合（模型、数据集、空间、论文、集合或存储桶）的项目的信息。
 
 ### OAuth 和 FastAPI
-https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/oauth.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/oauth.md

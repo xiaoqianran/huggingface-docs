@@ -14,7 +14,7 @@ Webhooks 的文档如下 - 或者您也可以浏览我们的**指南**，其中�
 
 ## 创建您的 Webhook
 
-您可以创建新的 Webhooks 并编辑 Webhooks 中的现有 Webhooks [settings](https://huggingface.co/settings/webhooks)：
+您可以创建新的 Webhooks 并编辑 Webhooks 中的现有 Webhook [settings](https://huggingface.co/settings/webhooks)：
 
 ![Settings of an individual webhook](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/webhook-settings.png)
 
@@ -148,7 +148,7 @@ Webhooks 可以监视存储库更新、拉取请求、讨论和新评论。甚�
 
 [Buckets](./storage-buckets) 不是 Git 存储库：它们没有提交、分支或标签。生命周期事件（`create`、`delete`、`move`和可见性等配置更新）使用与其他存储库类型相同的`"repo"` / `"repo.config"`范围。
 
-文件更改使用`"repo.content"`，但有效负载具有`updatedFiles`属性而不是`updatedRefs`。覆盖现有文件会报告为 `"add"`。以下是添加一个文件并删除另一个文件后的有效负载示例：
+文件更改使用`"repo.content"`，但有效负载具有`updatedFiles`属性而不是`updatedRefs`。覆盖现有文件会报告为 `"add"`。以下是添加一个文件并删除另一个文件后的负载示例：
 
 ```json
 {
@@ -265,7 +265,9 @@ Webhooks 可以监视存储库更新、拉取请求、讨论和新评论。甚�
 
 ## 交付和重试
 
-Webhook 有效负载会在集线器上发生事件后不久异步传递。顺序无法保证：如果多个事件同时发生，它们可能会乱序到达。当向 Webhook 的传送持续失败时，Webhook 将自动暂停，并通过电子邮件通知其所有者。您可以对其进行故障排除并从 Webhooks [settings](https://huggingface.co/settings/webhooks) 重新启用它。
+Webhook 有效负载会在集线器上发生事件后不久异步传递。顺序无法保证：如果多个事件同时发生，它们可能会乱序到达。每个交付都有一个唯一的 `Webhook-Id` HTTP 标头。失败传递的重试会重用相同的 ID，因此您可以将其视为幂等键并处理每个事件一次。
+
+当向 Webhook 的传送持续失败时，Webhook 将自动暂停，并通过电子邮件通知其所有者。您可以对其进行故障排除并从 Webhooks [settings](https://huggingface.co/settings/webhooks) 重新启用它。
 
 ## 速率限制
 
@@ -273,19 +275,21 @@ Webhook 有效负载会在集线器上发生事件后不久异步传递。顺序
 
 如果您需要增加 Webhook 的触发器数量，请升级到 PRO、Team 或 Enterprise，并通过 website@huggingface.co 联系我们。
 
-## 开发您的 Webhook
+## 开发您的 Webhooks
 
-如果您没有 HTTPS 端点/URL，您可以尝试使用公共工具进行 Webhook 测试。这些工具充当发送给它们的包罗万象（捕获所有请求）并给出 200 OK 状态代码。 [Beeceptor](https://beeceptor.com/) 是一种可用于创建临时 HTTP 端点并检查传入负载的工具。另一个这样的工具是[Webhook.site](https://webhook.site/)。
+如果您没有 HTTPS 端点/URL，您可以尝试使用公共工具进行 Webhook 测试。这些工具充当发送给它们的包罗万象（捕获所有请求）并给出 200 OK 状态代码。 [Beeceptor](https://beeceptor.com/) 是一种可用于创建临时 HTTP 端点并检查传入负载的工具。另一个这样的工具是[Webhook.site](https://webhook.site/)。此外，您可以在开发过程中将真实的 Webhook 有效负载路由到计算机上本地运行的代码。这是测试和调试以实现更快集成的好方法。您可以通过将本地主机端口公开到互联网来完成此操作。为了能够走这条路，您可以使用[ngrok](https://ngrok.com/)或[localtunnel](https://theboroer.github.io/localtunnel-www/)。
 
-此外，您可以在开发过程中将真实的 Webhook 有效负载路由到计算机上本地运行的代码。这是测试和调试以实现更快集成的好方法。您可以通过将本地主机端口公开到互联网来完成此操作。为了能够走这条路，您可以使用[ngrok](https://ngrok.com/)或[localtunnel](https://theboroer.github.io/localtunnel-www/)。
+## 调试 Webhooks
 
-## 调试 Webhook您可以轻松找到最近为您的 webhook 生成的事件。打开 Webhook 的活动选项卡。在那里您将看到最近事件的列表。
+您可以轻松找到最近为您的 webhook 生成的事件。打开 Webhook 的活动选项卡。在那里您将看到最近事件的列表。
 
 ![image.png](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/webhook-payload.png)
  
 您可以在此处查看 HTTP 状态代码和生成的事件的负载。此外，您可以通过单击 `Replay` 按钮重播这些事件！ 
 
 注意：更改 Webhook 的目标 URL 或机密时，重播事件会将有效负载发送到更新的 URL。
+
+注意：重播事件使用与原始交付相同的 `Webhook-Id` 发送。
 
 ## 常见问题解答
 
@@ -295,7 +299,5 @@ Webhook 有效负载会在集线器上发生事件后不久异步传递。顺序
 
 ##### 我如何订阅 HF 上的所有事件（或跨整个存储库类型，如所有型号）？
 
-目前尚未向最终用户公开，但如果您发送电子邮件至 website@huggingface.co，我们可以为您切换此功能。
-
-### Xet 历史和概述
+目前尚未向最终用户公开，但如果您发送电子邮件至 website@huggingface.co，我们可以为您切换此功能。### Xet 历史和概述
 https://huggingface.co/docs/hub/xet/overview.md

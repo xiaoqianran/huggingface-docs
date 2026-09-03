@@ -9,7 +9,7 @@
 以及[Windows](https://phoenixnap.com/kb/windows-set-environment-variable)。
 
 此页面将引导您了解特定于 `huggingface_hub` 的所有环境变量
-以及它们的意义。
+以及它们的含义。
 
 > [!提示]
 > 所有环境变量均在`huggingface_hub` 导入时读取。任何修改
@@ -85,7 +85,7 @@
 * [⟦T24⟧](../package_reference/environment_variables#hfxethighperformance)
 * [⟦T25⟧](../package_reference/environment_variables#hfxetreconstructwritesequentially)
 
-### HF_XET_CHUNK_CACHE_SIZE_BYTES本地设置 Xet 块缓存的大小。默认情况下，块缓存是禁用的。如果您要生成现有模型或数据集的新修订，块缓存可能会很有用，因为它用于缓存从 S3 获取的术语/块。更大的缓存可以更好地利用跨存储库和文件的重复数据删除。要启用块缓存，请将环境变量设置为较大的数字 (10GB) 或更大。然而，在大多数情况下，当下载或上传新数据时，禁用块缓存会有更好的性能，这就是默认情况下禁用它的原因。
+### HF_XET_CHUNK_CACHE_SIZE_BYTES本地设置 Xet 块缓存的大小。默认情况下，块缓存是禁用的。如果您要生成现有模型或数据集的新修订，块缓存可能会很有用，因为它用于缓存从 S3 获取的术语/块。更大的缓存可以更好地利用跨存储库和文件的重复数据删除。要启用块缓存，请将环境变量设置为较大的数字 (10GB) 或更大。然而，在大多数情况下，当下载或上传新数据时，禁用块缓存将具有更好的性能，这就是默认情况下禁用它的原因。
 
 默认为`0`（0字节，表示块缓存被禁用）。
 
@@ -113,9 +113,9 @@
 
 如果设置，则不会对 Hugging Face Hub 进行 HTTP 调用。如果您尝试下载文件，则只会访问缓存的文件。如果未检测到缓存文件，则会引发错误。如果您的网络速度较慢并且您不关心文件的最新版本，这非常有用。
 
-如果`HF_HUB_OFFLINE=1`设置为环境变量，并且调用[HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi)的任何方法，都会引发[OfflineModeIsEnabled](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled)异常。**注意：** 即使缓存了文件的最新版本，调用 `hf_hub_download` 仍然会触发 HTTP 请求来检查新版本是否可用。设置 `HF_HUB_OFFLINE=1` 将跳过此调用，从而加快加载时间。
+如果`HF_HUB_OFFLINE=1`设置为环境变量，并且调用[HfApi](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi)的任何方法，都会引发[OfflineModeIsEnabled](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled)异常。**注意：** 即使缓存了文件的最新版本，调用 `hf_hub_download` 仍然会触发 HTTP 请求来检查新版本是否可用。设置 `HF_HUB_OFFLINE=1` 将跳过此调用，从而加快加载时间。
 
-如果你想检查离线模式是否启用，你可以使用[is_offline_mode()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.is_offline_mode)助手。
+如果你想检查离线模式是否启用，你可以使用[is_offline_mode()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.is_offline_mode)助手。
 
 ### HF_HUB_DISABLE_IMPLICIT_TOKEN
 
@@ -137,7 +137,7 @@
 
 如果设置，`huggingface_hub`将永远不会在缓存中创建符号链接。相反，文件将被复制或直接移动到快照目录中。这是一项高级用户功能，使缓存目录以降级模式运行，其中巨大的文件最终会在硬盘驱动器上重复。
 
-一个示例用例是当共享网络驱动器（例如 NAS）在运行不同操作系统的机器上用作 `HF_HUB_CACHE` 时
+一个示例用例是当共享网络驱动器（例如 NAS）在运行不同操作的计算机之间用作 `HF_HUB_CACHE` 时
 系统。在 Linux 上创建的符号链接并不总是可以在 Windows 上遍历，从而导致错误。设置`HF_HUB_DISABLE_SYMLINKS=1`可以避免此问题，但代价是磁盘空间重复数据删除。
 
 ### HF_HUB_DISABLE_SYMLINKS_WARNING如果您使用的是Windows机器，建议启用开发者模式或运行
@@ -158,7 +158,7 @@
 如果您正在使用实验性功能，请告诉我们！您的反馈可以帮助我们设计和改进它。
 
 ### HF_HUB_DISABLE_TELEMETRY默认情况下，HF 库（`transformers`、`datasets`、`gradio`、..）收集一些数据，以监控使用情况、调试问题并帮助确定功能的优先级。
-每个库定义了自己的策略（即要监视的使用情况），但核心实现发生在`huggingface_hub`（请参阅`send_telemetry`）。
+每个库定义了自己的策略（即监视哪些使用），但核心实现发生在`huggingface_hub`（请参阅`send_telemetry`）。
 
 您可以将 `HF_HUB_DISABLE_TELEMETRY=1` 设置为环境变量以全局禁用遥测。
 
@@ -170,7 +170,7 @@
 
 设置 `HF_HUB_DISABLE_UPDATE_CHECK=1` 跳过 PyPI 请求并完全静音两个提示。在离线 CI 环境中或当您喜欢更安静的 shell 输出时很有用。
 
-### HF_HUB_DISABLE_XET设置为禁用使用 `hf-xet`，即使它在您的 Python 环境中可用。这是因为如果找到`hf-xet`，它将自动使用，这允许显式禁用其使用。如果您要禁用 Xet，请考虑 [filing an issue and including the diagnostics](https://github.com/huggingface/xet-core?tab=readme-ov-file#issues-diagnostics--debugging) 信息，以帮助我们了解为什么 Xet 不适合您。
+### HF_HUB_DISABLE_XET设置为禁用使用 `hf-xet`，即使它在您的 Python 环境中可用。这是因为如果找到`hf-xet`，它将自动使用，这允许显式禁用其使用。如果您要禁用 Xet，请考虑 [filing an issue and including the diagnostics](https://github.com/huggingface/xet-core?tab=readme-ov-file#issues-diagnostics--debugging) 信息，以帮助我们了解 Xet 为何不适合您。
 
 ### HF_HUB_ENABLE_HF_TRANSFER
 
@@ -221,4 +221,4 @@
 `"~/.cache/huggingface"`。
 
 ### HfApi 客户端
-https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/hf_api.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/hf_api.md

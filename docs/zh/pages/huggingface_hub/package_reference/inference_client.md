@@ -7,9 +7,9 @@
 
 1. [Inference Providers](https://huggingface.co/docs/inference-providers/index)：对数百种机器学习模型的简化、统一访问，由我们的无服务器推理合作伙伴提供支持。这种新方法建立在我们之前的无服务器推理 API 的基础上，在世界一流的提供商的帮助下，提供了更多的模型、改进的性能和更高的可靠性。请参阅 [documentation](https://huggingface.co/docs/inference-providers/index#partners) 了解受支持的提供商列表。
 2. [Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index)：一款轻松将模型部署到生产环境的产品。推理由 Hugging Face 在您选择的云提供商的专用、完全托管的基础设施中运行。
-3. 本地端点：您还可以通过将客户端连接到这些本地端点，使用[llama.cpp](https://github.com/ggerganov/llama.cpp)、[Ollama](https://ollama.com/)、[vLLM](https://github.com/vllm-project/vllm)、[LiteLLM](https://docs.litellm.ai/docs/simple_proxy)或[Text Generation Inference (TGI)](https://github.com/huggingface/text-generation-inference)等本地推理服务器运行推理。
+3. 本地端点：您还可以通过将客户端连接到本地端点来使用[llama.cpp](https://github.com/ggerganov/llama.cpp)、[Ollama](https://ollama.com/)、[vLLM](https://github.com/vllm-project/vllm)、[LiteLLM](https://docs.litellm.ai/docs/simple_proxy)或[Text Generation Inference (TGI)](https://github.com/huggingface/text-generation-inference)等本地推理服务器运行推理。
 
-这些服务可以通过[InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)对象调用。请参考[this guide](../guides/inference)
+这些服务可以通过[InferenceClient](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)对象调用。请参考[this guide](../guides/inference)
 有关如何使用它的更多信息。## 推理客户端[[huggingface_hub.InferenceClient]]
 
 #### Huggingface_hub.InferenceClient[[huggingface_hub.InferenceClient]]
@@ -18,7 +18,7 @@
 huggingface_hub.InferenceClient(model: str | None = None, provider: typing.Union[typing.Literal['baseten', 'cerebras', 'cohere', 'deepinfra', 'fal-ai', 'featherless-ai', 'fireworks-ai', 'groq', 'hf-inference', 'novita', 'nscale', 'openai', 'ovhcloud', 'publicai', 'replicate', 'scaleway', 'together', 'wavespeed', 'zai-org'], typing.Literal['auto'], NoneType] = None, token: str | None = None, timeout: float | None = None, headers: dict[str, str] | None = None, cookies: dict[str, str] | None = None, bill_to: str | None = None, base_url: str | None = None, api_key: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L123)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L123)
 
 **参数：**
 
@@ -34,11 +34,11 @@ bill_to (`str`, `optional`) ：用于请求的计费帐户。默认情况下，�
 
 cookies (`dict[str, str]`, `optional`) ：发送到服务器的附加cookie。
 
-base_url (`str`, `optional`) ：运行推理的基本 URL。这是来自 `model` 的重复参数，以使 [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 遵循与 `openai.OpenAI` 客户端相同的模式。如果设置了`model`则无法使用。默认为无。api_key (`str`, `optional`) ：用于身份验证的令牌。这是来自 `token` 的重复参数，以使 [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 遵循与 `openai.OpenAI` 客户端相同的模式。如果设置了`token`则无法使用。默认为无。
+base_url (`str`, `optional`) ：运行推理的基本 URL。这是来自 `model` 的重复参数，以使 [InferenceClient](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 遵循与 `openai.OpenAI` 客户端相同的模式。如果设置了`model`则无法使用。默认为无。api_key (`str`, `optional`) ：用于身份验证的令牌。这是来自 `token` 的重复参数，以使 [InferenceClient](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 遵循与 `openai.OpenAI` 客户端相同的模式。如果设置了`token`则无法使用。默认为无。
 
 初始化一个新的推理客户端。
 
-[InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 旨在提供统一的推理体验。客户端可以使用
+[InferenceClient](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 旨在提供统一的推理体验。客户端可以使用
 与（免费）推理 API、自托管推理端点或第三方推理提供商无缝连接。
 
 #### audio_classification[[huggingface_hub.InferenceClient.audio_classification]]
@@ -47,7 +47,7 @@ base_url (`str`, `optional`) ：运行推理的基本 URL。这是来自 `model`
 audio_classification(audio: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, top_k: int | None = None, function_to_apply: typing.Optional[ForwardRef('AudioClassificationOutputTransform')] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L307)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L307)
 
 **参数：**
 
@@ -59,11 +59,11 @@ top_k (`int`, *可选*) ：指定后，将输出限制为前 K 个最可能的�
 
 function_to_apply (`"AudioClassificationOutputTransform"`, *可选*) ：应用于模型输出以检索分数的函数。**返回：** `list[AudioClassificationOutputElement]`
 
-包含预测标签及其置信度的[AudioClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.AudioClassificationOutputElement)项目列表。
+包含预测标签及其置信度的[AudioClassificationOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.AudioClassificationOutputElement)项目列表。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -88,7 +88,7 @@ function_to_apply (`"AudioClassificationOutputTransform"`, *可选*) ：应用�
 audio_to_audio(audio: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L364)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L364)
 
 **参数：**
 
@@ -98,7 +98,7 @@ model (`str`, *可选*) ：模型可以是任何接受一个音频文件并返�
 
 **返回：** `list[AudioToAudioOutputElement]`
 
-[AudioToAudioOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.AudioToAudioOutputElement) 项目列表，其中包含 blob 中的音频标签、内容类型和音频内容。
+[AudioToAudioOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.AudioToAudioOutputElement) 项目列表，其中包含 blob 中的音频标签、内容类型和音频内容。
 
 **提高：** ``InferenceTimeoutError`` or `HfHubHTTPError`- ``InferenceTimeoutError`` -- 
   如果模型不可用或请求超时。
@@ -123,7 +123,7 @@ model (`str`, *可选*) ：模型可以是任何接受一个音频文件并返�
 automatic_speech_recognition(audio: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, extra_body: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L416)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L416)
 
 **参数：**
 
@@ -133,11 +133,11 @@ model（`str`，*可选*）：用于 ASR 的模型。可以是 Hugging Face Hub 
 
 extra_body (`dict`, *可选*) ：传递给模型的其他特定于提供者的参数。有关支持的参数，请参阅提供商的文档。
 
-**退货：** [AutomaticSpeechRecognitionOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.AutomaticSpeechRecognitionOutput)
+**退货：** [AutomaticSpeechRecognitionOutput](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.AutomaticSpeechRecognitionOutput)
 
 包含转录文本和可选的时间戳块的项目。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -158,13 +158,13 @@ extra_body (`dict`, *可选*) ：传递给模型的其他特定于提供者的�
 chat_completion(messages: list, model: str | None = None, stream: bool = False, frequency_penalty: float | None = None, logit_bias: list[float] | None = None, logprobs: bool | None = None, max_tokens: int | None = None, n: int | None = None, presence_penalty: float | None = None, response_format: typing.Union[huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputResponseFormatText, huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputResponseFormatJSONSchema, huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputResponseFormatJSONObject, NoneType] = None, seed: int | None = None, stop: list[str] | None = None, stream_options: huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputStreamOptions | None = None, temperature: float | None = None, tool_choice: typing.Union[huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputToolChoiceClass, ForwardRef('ChatCompletionInputToolChoiceEnum'), NoneType] = None, tool_prompt: str | None = None, tools: list[huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputTool] | None = None, top_logprobs: int | None = None, top_p: float | None = None, extra_body: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L543)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L543)
 
 **参数：**
 
-消息（[ChatCompletionInputMessage](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputMessage)列表）：由角色和内容对组成的对话历史记录。
+消息（[ChatCompletionInputMessage](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputMessage)列表）：由角色和内容对组成的对话历史记录。
 
-model (`str`, *可选*) ：用于聊天完成的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。如果未提供，将使用基于聊天的文本生成的默认推荐模型。有关更多详细信息，请参阅 https://huggingface.co/tasks/text- Generation 。如果`model`是模型ID，它将作为`model`参数传递到服务器。如果您想在请求负载中设置`model`时定义自定义URL，则必须在初始化[InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)时设置`base_url`。
+model (`str`, *可选*) ：用于聊天完成的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。如果未提供，将使用基于聊天的文本生成的默认推荐模型。有关更多详细信息，请参阅 https://huggingface.co/tasks/text- Generation 。如果`model`是模型ID，它将作为`model`参数传递到服务器。如果您想在请求负载中设置`model`时定义自定义URL，则必须在初始化[InferenceClient](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)时设置`base_url`。
 
 Frequency_penalty (`float`, *可选*) ：根据迄今为止文本中的现有频率对新标记进行惩罚。范围：[-2.0，2.0]。默认为 0.0。logit_bias (`list[float]`, *可选*) ：调整特定标记出现在生成的输出中的可能性。
 
@@ -174,7 +174,7 @@ max_tokens (`int`, *可选*) ：响应中允许的最大令牌数。默认为 10
 
 n (`int`, *可选*) ：为每个提示生成的完成数。
 
-Presence_penalty (`float`, *可选*) ：-2.0 到 2.0 之间的数字。正值根据新标记是否出现在文本中来对其进行惩罚，从而增加模型谈论新主题的可能性。
+Presence_penalty (`float`, *可选*) ：-2.0 到 2.0 之间的数字。正值根据新标记目前是否出现在文本中来对其进行惩罚，从而增加模型讨论新主题的可能性。
 
 response_format (`ChatCompletionInputGrammarType()`, *可选*) ：语法约束。可以是 JSONSchema 或正则表达式。
 
@@ -184,27 +184,27 @@ stop (`list[str]`, *可选*) ：最多四个字符串，触发响应结束。默
 
 流（`bool`，*可选*）：启用实时响应流。默认为 False。
 
-Stream_options ([ChatCompletionInputStreamOptions](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputStreamOptions), *可选*) ：流式完成的选项。温度（`float`，*可选*）：控制生成的随机性。较低的值可确保较少的随机完成。范围：[0, 2]。默认为 1.0。
+Stream_options ([ChatCompletionInputStreamOptions](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputStreamOptions), *可选*) ：流式完成的选项。温度（`float`，*可选*）：控制生成的随机性。较低的值可确保较少的随机完成。范围：[0, 2]。默认为 1.0。
 
 top_logprobs (`int`, *可选*) ：0 到 5 之间的整数，指定每个标记位置最有可能返回的标记数量，每个标记都有一个关联的对数概率。如果使用此参数，则 logprobs 必须设置为 true。
 
 top_p (`float`, *可选*) ：最有可能进行采样的下一个单词的分数。必须介于 0 和 1 之间。默认为 1.0。
 
-tool_choice（[ChatCompletionInputToolChoiceClass](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputToolChoiceClass)或`ChatCompletionInputToolChoiceEnum()`，*可选*）：用于完成的工具。默认为“自动”。
+tool_choice（[ChatCompletionInputToolChoiceClass](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputToolChoiceClass)或`ChatCompletionInputToolChoiceEnum()`，*可选*）：用于完成的工具。默认为“自动”。
 
 tool_prompt (`str`, *可选*) ：附加在工具之前的提示。
 
-工具（[ChatCompletionInputTool](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputTool)列表，*可选*）：模型可能调用的工具列表。目前，仅支持函数作为工具。使用它来提供模型可以为其生成 JSON 输入的函数列表。
+工具（[ChatCompletionInputTool](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputTool)列表，*可选*）：模型可能调用的工具列表。目前，仅支持函数作为工具。使用它来提供模型可以为其生成 JSON 输入的函数列表。
 
 extra_body (`dict`, *可选*) ：传递给模型的其他特定于提供者的参数。有关支持的参数，请参阅提供商的文档。
 
-**返回：** [ChatCompletionOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionOutput) 或 [ChatCompletionStreamOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionStreamOutput) 的可迭代从服务器返回的生成文本：
-- 如果`stream=False`，生成的文本将作为[ChatCompletionOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionOutput)（默认）返回。
-- 如果`stream=True`，则生成的文本将作为[ChatCompletionStreamOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionStreamOutput) 的序列逐个令牌返回。
+**返回：** [ChatCompletionOutput](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionOutput) 或 [ChatCompletionStreamOutput](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionStreamOutput) 的可迭代从服务器返回的生成文本：
+- 如果 `stream=False`，生成的文本将作为 [ChatCompletionOutput](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionOutput) 返回（默认）。
+- 如果`stream=True`，则生成的文本将作为[ChatCompletionStreamOutput](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionStreamOutput) 的序列逐个令牌返回。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -478,7 +478,7 @@ n": "park"}'
 document_question_answering(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], question: str, model: str | None = None, doc_stride: int | None = None, handle_impossible_answer: bool | None = None, lang: str | None = None, max_answer_len: int | None = None, max_question_len: int | None = None, max_seq_len: int | None = None, top_k: int | None = None, word_boxes: list[list[float] | str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L945)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L945)
 
 **参数：**
 
@@ -504,11 +504,11 @@ word_boxes (`list[Union[list[float], str`, *可选*) ：单词和边界框的列
 
 **返回：** `list[DocumentQuestionAnsweringOutputElement]`
 
-包含预测标签、相关概率、单词 ID 和页码的[DocumentQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.DocumentQuestionAnsweringOutputElement) 项目列表。
+包含预测标签、相关概率、单词 ID 和页码的[DocumentQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.DocumentQuestionAnsweringOutputElement) 项目列表。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。回答有关文档图像的问题。
@@ -527,7 +527,7 @@ word_boxes (`list[Union[list[float], str`, *可选*) ：单词和边界框的列
 feature_extraction(text: str | list[str], normalize: bool | None = None, prompt_name: str | None = None, truncate: bool | None = None, truncation_direction: typing.Optional[typing.Literal['left', 'right']] = None, dimensions: int | None = None, encoding_format: typing.Optional[typing.Literal['float', 'base64']] = None, model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1032)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L1032)
 
 **参数：**
 
@@ -537,7 +537,7 @@ model (*str*, *可选*) ：用于特征提取任务的模型。可以是 Hugging
 
 规范化（*bool*，*可选*）：是否规范化嵌入。仅在由文本嵌入推理支持的服务器上可用。
 
-Prompt_name (*str*, *可选*) ：用于编码的提示的名称。如果未设置，则不会应用任何提示。必须是 *Sentence Transformers* 配置 *prompts* 字典中的键。例如，如果 `prompt_name` 是“query”并且 `prompts` 是 &lcub;"query": "query: ",...}，则句子“法国的首都是什么？”将被编码为“查询：法国的首都是哪里？”因为提示文本将被添加到任何要编码的文本之前。truncate (*bool*, *可选*) ：是否截断嵌入。仅在由文本嵌入推理支持的服务器上可用。
+Prompt_name (*str*, *可选*) ：用于编码的提示的名称。如果未设置，则不会应用任何提示。必须是 *Sentence Transformers* 配置 *prompts* 字典中的键。例如，如果 `prompt_name` 是“query”，`prompts` 是 &lcub;"query": "query: ",...}，则句子“法国的首都是什么？”将被编码为“查询：法国的首都是哪里？”因为提示文本将被添加到任何要编码的文本之前。truncate (*bool*, *可选*) ：是否截断嵌入。仅在由文本嵌入推理支持的服务器上可用。
 
 truncation_direction (*Literal["left", "right"]*, *可选*) ：当传递 *truncate=True* 时，应截断输入的哪一侧。
 
@@ -575,24 +575,24 @@ array([[ 2.424802  ,  2.93384   ,  1.1750331 , ...,  1.240499, -0.13776633, -0.7
 fill_mask(text: str, model: str | None = None, targets: list[str] | None = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1115)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L1115)
 
 **参数：**text (`str`) ：要填充的字符串，必须包含 [MASK] 标记（检查模型卡以获取掩码的确切名称）。
 
 model (`str`, *可选*) ：用于填充遮罩任务的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。如果未提供，将使用默认推荐的填充掩模模型。
 
-目标（`list[str`，*可选*）：通过时，模型会将分数限制为通过的目标，而不是在整个词汇表中查找。如果提供的目标不在模型词汇中，它们将被标记化，并且将使用第一个生成的标记（带有警告，并且可能会更慢）。
+目标（`list[str`，*可选*）：通过时，模型会将分数限制为通过的目标，而不是在整个词汇表中查找。如果提供的目标不在模型词汇中，它们将被标记，并且将使用第一个生成的标记（带有警告，并且可能会更慢）。
 
 top_k (`int`, *可选*) ：传递时，覆盖要返回的预测数。
 
 **返回：** `list[FillMaskOutputElement]`
 
-包含预测标签的[FillMaskOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.FillMaskOutputElement)项目列表，关联
+包含预测标签的[FillMaskOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.FillMaskOutputElement)项目列表，关联
 概率、标记参考和完整的文本。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -614,7 +614,7 @@ top_k (`int`, *可选*) ：传递时，覆盖要返回的预测数。
 get_endpoint_info(model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L3279)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L3279)
 
 **参数：**
 
@@ -663,7 +663,7 @@ model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub �
 health_check(model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L3337)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L3337)
 
 **参数：**
 
@@ -689,13 +689,13 @@ True
 image_classification(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, function_to_apply: typing.Optional[ForwardRef('ImageClassificationOutputTransform')] = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1171)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L1171)
 
 **参数：**
 
 image (`Union[str, Path, bytes, BinaryIO, PIL.Image.Image]`) ：要分类的图像。它可以是原始字节、图像文件、在线图像的 URL 或 PIL 图像。
 
-model（`str`，*可选*）：用于图像分类的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。如果未提供，将使用默认推荐的图像分类模型。
+model (`str`，*可选*)：用于图像分类的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。如果未提供，将使用默认推荐的图像分类模型。
 
 function_to_apply (`"ImageClassificationOutputTransform"`, *可选*) ：应用于模型输出以检索分数的函数。
 
@@ -703,11 +703,11 @@ top_k (`int`, *可选*) ：指定后，将输出限制为前 K 个最可能的�
 
 **返回：** `list[ImageClassificationOutputElement]`
 
-包含预测标签和相关概率的[ImageClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ImageClassificationOutputElement)项目列表。
+包含预测标签和相关概率的[ImageClassificationOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ImageClassificationOutputElement)项目列表。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -728,7 +728,7 @@ top_k (`int`, *可选*) ：指定后，将输出限制为前 K 个最可能的�
 image_segmentation(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, mask_threshold: float | None = None, overlap_mask_area_threshold: float | None = None, subtask: typing.Optional[ForwardRef('ImageSegmentationSubtask')] = None, threshold: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1221)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L1221)
 
 **参数：**image (`Union[str, Path, bytes, BinaryIO, PIL.Image.Image]`) ：要分割的图像。它可以是原始字节、图像文件、在线图像的 URL 或 PIL 图像。
 
@@ -736,7 +736,7 @@ model（`str`，*可选*）：用于图像分割的模型。可以是 Hugging Fa
 
 mask_threshold (`float`, *可选*) ：将预测掩码转换为二进制值时使用的阈值。
 
-overlap_mask_area_threshold (`float`, *可选*) ：掩码重叠阈值以消除小的、断开的段。
+overlap_mask_area_threshold (`float`, *可选*) ：掩码重叠阈值，以消除小的、断开的段。
 
 子任务（`"ImageSegmentationSubtask"`，*可选*）：要执行的分割任务，具体取决于模型功能。
 
@@ -744,11 +744,11 @@ overlap_mask_area_threshold (`float`, *可选*) ：掩码重叠阈值以消除�
 
 **退货：** `list[ImageSegmentationOutputElement]`
 
-包含分段掩码和关联属性的[ImageSegmentationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ImageSegmentationOutputElement)项目列表。
+包含分段掩码和关联属性的[ImageSegmentationOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ImageSegmentationOutputElement)项目列表。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -770,7 +770,7 @@ overlap_mask_area_threshold (`float`, *可选*) ：掩码重叠阈值以消除�
 image_to_image(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], prompt: str | None = None, negative_prompt: str | None = None, num_inference_steps: int | None = None, guidance_scale: float | None = None, model: str | None = None, target_size: huggingface_hub.inference._generated.types.image_to_image.ImageToImageTargetSize | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1289)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L1289)
 
 **参数：**
 
@@ -790,9 +790,9 @@ model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub �
 
 翻译后的图像。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -816,7 +816,7 @@ model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub �
 image_to_text(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1444)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L1444)
 
 **参数：**
 
@@ -824,11 +824,11 @@ image (`Union[str, Path, bytes, BinaryIO, PIL.Image.Image]`) ：标题的输入�
 
 model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。此参数覆盖在实例级别定义的模型。默认为无。
 
-**退货：** [ImageToTextOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ImageToTextOutput)
+**退货：** [ImageToTextOutput](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ImageToTextOutput)
 
 生成的文本。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -854,7 +854,7 @@ model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub �
 image_to_video(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, prompt: str | None = None, negative_prompt: str | None = None, num_frames: float | None = None, num_inference_steps: int | None = None, guidance_scale: float | None = None, seed: int | None = None, target_size: huggingface_hub.inference._generated.types.image_to_video.ImageToVideoTargetSize | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1365)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L1365)
 
 **参数：**
 
@@ -868,7 +868,7 @@ negative_prompt（`str`，*可选*）：一个提示，用于指导视频生成�
 
 num_inference_steps (`int`, *可选*) ：用于扩散模型。去噪步数。更多的去噪步骤通常会带来更高质量的图像，但代价是推理速度变慢。
 
-Guiding_scale (`float`, *可选*) ：用于扩散模型。较高的指导比例值会鼓励模型生成与文本提示紧密相关的视频，但代价是图像质量较低。
+Guiding_scale (`float`, *可选*) ：用于扩散模型。较高的指导比例值会鼓励模型生成与文本提示紧密相关的视频，但会降低图像质量。
 
 种子（`int`，*可选*）：用于视频生成的种子。
 
@@ -899,21 +899,21 @@ num_inference_steps (`int`, *可选*) ：去噪步骤的数量。更多的去噪
 object_detection(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, threshold: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1490)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L1490)
 
 **参数：**image (`Union[str, Path, bytes, BinaryIO, PIL.Image.Image]`) ：用于检测对象的图像。它可以是原始字节、图像文件、在线图像的 URL 或 PIL 图像。
 
-model (`str`，*可选*)：用于对象检测的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。如果未提供，将使用默认推荐的对象检测模型（DETR）。
+model (`str`, *可选*) ：用于对象检测的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。如果未提供，将使用默认推荐的对象检测模型（DETR）。
 
 阈值（`float`，*可选*）：进行预测所需的概率。
 
 **返回：** `list[ObjectDetectionOutputElement]`
 
-包含边界框和关联属性的[ObjectDetectionOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ObjectDetectionOutputElement)项目列表。
+包含边界框和关联属性的[ObjectDetectionOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ObjectDetectionOutputElement)项目列表。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError` 或 ``ValueError``
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError` 或 ``ValueError``
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -939,7 +939,7 @@ model (`str`，*可选*)：用于对象检测的模型。可以是 Hugging Face 
 question_answering(question: str, context: str, model: str | None = None, align_to_words: bool | None = None, doc_stride: int | None = None, handle_impossible_answer: bool | None = None, max_answer_len: int | None = None, max_question_len: int | None = None, max_seq_len: int | None = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1538)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L1538)
 
 **参数：**
 
@@ -959,14 +959,14 @@ max_question_len (`int`, *可选*) ：标记化后问题的最大长度。如果
 
 max_seq_len (`int`, *可选*) ：传递给模型的每个块的标记中总句子（上下文+问题）的最大长度。如果需要，上下文将被分割成几个块（使用 docStride 作为重叠）。top_k (`int`, *可选*) ：要返回的答案数量（将按可能性顺序选择）。请注意，如果上下文中没有足够的选项，我们将返回少于 topk 的答案。
 
-**返回：**联盟[⟦T353⟧, list[QuestionAnsweringOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.QuestionAnsweringOutputElement)]
+**返回：**联盟[⟦T353⟧, list[QuestionAnsweringOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.QuestionAnsweringOutputElement)]
 
 当top_k为1或未提供时，它返回单个`QuestionAnsweringOutputElement`。
 当top_k大于1时，返回`QuestionAnsweringOutputElement`的列表。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -987,7 +987,7 @@ QuestionAnsweringOutputElement(answer='Clara', end=16, score=0.9326565265655518,
 sentence_similarity(sentence: str, other_sentences: list, model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1622)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L1622)
 
 **参数：**
 
@@ -995,13 +995,13 @@ sentence_similarity(sentence: str, other_sentences: list, model: str | None = No
 
 other_sentences (`list[str]`) ：要比较的句子列表。
 
-model (`str`, *可选*) ：用于句子相似度任务的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。如果不提供，将使用默认推荐的句子相似度模型。默认为无。
+model (`str`, *可选*) ：用于句子相似性任务的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。如果不提供，将使用默认推荐的句子相似度模型。默认为无。
 
 **返回：** `list[float]`
 
-表示输入文本的嵌入。**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+表示输入文本的嵌入。**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -1029,7 +1029,7 @@ model (`str`, *可选*) ：用于句子相似度任务的模型。可以是 Hugg
 summarization(text: str, model: str | None = None, clean_up_tokenization_spaces: bool | None = None, generate_parameters: dict[str, typing.Any] | None = None, truncation: typing.Optional[ForwardRef('SummarizationTruncationStrategy')] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1675)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L1675)
 
 **参数：**
 
@@ -1043,11 +1043,11 @@ generate_parameters（`dict[str, Any]`，*可选*）：文本生成算法的附�
 
 截断（`"SummarizationTruncationStrategy"`，*可选*）：要使用的截断策略。
 
-**返回：** [SummarizationOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.SummarizationOutput)
+**返回：** [SummarizationOutput](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.SummarizationOutput)
 
 生成的摘要文本。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -1068,7 +1068,7 @@ SummarizationOutput(generated_text="The Eiffel tower is one of the most famous l
 table_question_answering(table: dict, query: str, model: str | None = None, padding: typing.Optional[ForwardRef('Padding')] = None, sequential: bool | None = None, truncation: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1733)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L1733)
 
 **参数：**
 
@@ -1084,11 +1084,11 @@ model (`str`) ：用于表格问答任务的模型。可以是 Hugging Face Hub 
 
 截断（`bool`，*可选*）：激活并控制截断。
 
-**返回：** [TableQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TableQuestionAnsweringOutputElement)包含答案、坐标、单元格和使用的聚合器的表格问答输出。
+**返回：** [TableQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.TableQuestionAnsweringOutputElement)包含答案、坐标、单元格和使用的聚合器的表格问答输出。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -1111,7 +1111,7 @@ TableQuestionAnsweringOutputElement(answer='36542', coordinates=[[0, 1]], cells=
 tabular_classification(table: dict, model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1795)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L1795)
 
 **参数：**
 
@@ -1123,9 +1123,9 @@ model (`str`，*可选*)：用于表格分类任务的模型。可以是 Hugging
 
 标签列表，初始表中每行一个。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -1157,7 +1157,7 @@ model (`str`，*可选*)：用于表格分类任务的模型。可以是 Hugging
 tabular_regression(table: dict, model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1850)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L1850)
 
 **参数：**
 
@@ -1169,9 +1169,9 @@ model (`str`, *可选*) ：用于表格回归任务的模型。可以是 Hugging
 
 预测数字目标值的列表。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -1200,7 +1200,7 @@ model (`str`, *可选*) ：用于表格回归任务的模型。可以是 Hugging
 text_classification(text: str, model: str | None = None, top_k: int | None = None, function_to_apply: typing.Optional[ForwardRef('TextClassificationOutputTransform')] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1900)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L1900)
 
 **参数：**
 
@@ -1212,11 +1212,11 @@ function_to_apply (`"TextClassificationOutputTransform"`, *可选*) ：应用于
 
 **返回：** `list[TextClassificationOutputElement]`
 
-包含预测标签和相关概率的[TextClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TextClassificationOutputElement)项目列表。
+包含预测标签和相关概率的[TextClassificationOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.TextClassificationOutputElement)项目列表。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -1240,7 +1240,7 @@ function_to_apply (`"TextClassificationOutputTransform"`, *可选*) ：应用于
 text_generation(prompt: str, details: bool | None = None, stream: bool | None = None, model: str | None = None, adapter_id: str | None = None, best_of: int | None = None, decoder_input_details: bool | None = None, do_sample: bool | None = None, frequency_penalty: float | None = None, grammar: huggingface_hub.inference._generated.types.text_generation.TextGenerationInputGrammarType | None = None, max_new_tokens: int | None = None, repetition_penalty: float | None = None, return_full_text: bool | None = None, seed: int | None = None, stop: list[str] | None = None, stop_sequences: list[str] | None = None, temperature: float | None = None, top_k: int | None = None, top_n_tokens: int | None = None, top_p: float | None = None, truncate: int | None = None, typical_p: float | None = None, watermark: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L2108)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L2108)
 
 **参数：**
 
@@ -1258,7 +1258,7 @@ Decoder_input_details (`bool`, *可选*) ：返回解码器输入令牌 logprobs
 
 do_sample (`bool`, *可选*) : 激活 logits 采样Frequency_penalty（`float`，*可选*）：-2.0 到 2.0 之间的数字。正值根据迄今为止文本中的现有频率对新标记进行惩罚，从而降低模型逐字重复同一行的可能性。
 
-语法（[TextGenerationInputGrammarType](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TextGenerationInputGrammarType)，*可选*）：语法约束。可以是 JSONSchema 或正则表达式。
+语法（[TextGenerationInputGrammarType](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.TextGenerationInputGrammarType)，*可选*）：语法约束。可以是 JSONSchema 或正则表达式。
 
 max_new_tokens (`int`, *可选*) : 生成的令牌的最大数量。默认为 100。
 
@@ -1268,7 +1268,7 @@ return_full_text (`bool`, *可选*) : 是否将提示添加到生成的文本中
 
 种子（`int`，*可选*）：随机采样种子
 
-stop (`list[str]`, *可选*) ：如果生成了 `stop` 的成员，则停止生成令牌。
+stop (`list[str]`, *可选*) : 如果生成了`stop`的成员，则停止生成令牌。
 
 stop_sequences (`list[str]`, *可选*) ：已弃用的参数。请使用 `stop` 代替。
 
@@ -1289,20 +1289,20 @@ truncate (`int`, *可选`) ：将输入标记截断为给定大小。
 从服务器返回的生成文本：
 - 如果`stream=False`和`details=False`，生成的文本将作为`str`返回（默认）
 - 如果`stream=True`和`details=False`，生成的文本将逐个标记作为`Iterable[str]`返回
-- 如果`stream=False`和`details=True`，则返回生成的文本，其中包含更多详细信息作为[TextGenerationOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TextGenerationOutput)
-- 如果`details=True`和`stream=True`，则生成的文本将作为[TextGenerationStreamOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TextGenerationStreamOutput)的可迭代对象逐个返回
+- 如果`stream=False`和`details=True`，则返回生成的文本，其中包含更多详细信息作为[TextGenerationOutput](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.TextGenerationOutput)
+- 如果`details=True`和`stream=True`，则生成的文本将作为[TextGenerationStreamOutput](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.TextGenerationStreamOutput)的可迭代对象逐个返回
 
-**提高：** ``ValidationError`` or [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**提高：** ``ValidationError`` or [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
 - ``ValidationError`` -- 
   如果输入值无效。不会对服务器进行 HTTP 调用。
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
 
 根据提示，生成以下文本。> [!提示]
-> 如果您想从聊天消息生成响应，您应该使用 [InferenceClient.chat_completion()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.chat_completion) 方法。
+> 如果您想从聊天消息生成响应，您应该使用 [InferenceClient.chat_completion()](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.chat_completion) 方法。
 > 它接受消息列表而不是单个文本提示，并为您处理聊天模板。
 
 示例：
@@ -1413,7 +1413,7 @@ TextGenerationStreamOutput(token=TokenElement(
 text_to_image(prompt: str, negative_prompt: str | None = None, height: int | None = None, width: int | None = None, num_inference_steps: int | None = None, guidance_scale: float | None = None, model: str | None = None, scheduler: str | None = None, seed: int | None = None, extra_body: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L2447)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L2447)
 
 **参数：**
 
@@ -1427,7 +1427,7 @@ width (`int`, *可选*) : 输出图像的宽度（以像素为单位）
 
 num_inference_steps (`int`, *可选*) ：去噪步骤的数量。更多的去噪步骤通常会带来更高质量的图像，但代价是推理速度变慢。
 
-Guiding_scale (`float`, *可选*) ：较高的引导比例值会鼓励模型生成与文本提示紧密相关的图像，但值太高可能会导致饱和度和其他伪影。model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。如果未提供，将使用默认推荐的文本到图像模型。默认为无。
+Guiding_scale (`float`, *可选*) ：较高的指导比例值会鼓励模型生成与文本提示紧密相关的图像，但值太高可能会导致饱和度和其他伪影。model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。如果未提供，将使用默认推荐的文本到图像模型。默认为无。
 
 调度程序（`str`，*可选*）：用兼容的调度程序覆盖调度程序。
 
@@ -1439,9 +1439,9 @@ extra_body (`dict[str, Any]`, *可选*) ：传递给模型的其他特定于提�
 
 生成的图像。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -1498,7 +1498,7 @@ extra_body (`dict[str, Any]`, *可选*) ：传递给模型的其他特定于提�
 >>> image.save("astronaut.png")
 ```
 
-使用具有额外参数的复制提供程序的示例
+使用带有额外参数的复制提供程序的示例
 
 ```py
 >>> from huggingface_hub import InferenceClient
@@ -1514,13 +1514,13 @@ extra_body (`dict[str, Any]`, *可选*) ：传递给模型的其他特定于提�
 >>> image.save("astronaut.png")
 ```
 
-#### text_to_speech[[huggingface_hub.InferenceClient.text_to_speech]]
+#### 文本到语音[[huggingface_hub.InferenceClient.text_to_speech]]
 
 ```python
 text_to_speech(text: str, model: str | None = None, do_sample: bool | None = None, early_stopping: typing.Union[bool, ForwardRef('TextToSpeechEarlyStoppingEnum'), NoneType] = None, epsilon_cutoff: float | None = None, eta_cutoff: float | None = None, max_length: int | None = None, max_new_tokens: int | None = None, min_length: int | None = None, min_new_tokens: int | None = None, num_beam_groups: int | None = None, num_beams: int | None = None, penalty_alpha: float | None = None, temperature: float | None = None, top_k: int | None = None, top_p: float | None = None, typical_p: float | None = None, use_cache: bool | None = None, extra_body: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L2684)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L2684)
 
 **参数：**
 
@@ -1614,7 +1614,7 @@ Synthesize an audio of a voice pronouncing a given text.
 >>> Path("hello_world.flac").write_bytes(audio)
 ```
 
-使用具有额外参数的复制提供程序的示例
+使用带有额外参数的复制提供程序的示例
 
 ```py
 >>> from huggingface_hub import InferenceClient
@@ -1668,7 +1668,7 @@ fal.ai 上使用“YuE-s1-7B-anneal-en-cot”的音乐生成示例
 text_to_video(prompt: str, model: str | None = None, guidance_scale: float | None = None, negative_prompt: list[str] | None = None, num_frames: float | None = None, num_inference_steps: int | None = None, seed: int | None = None, extra_body: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L2587)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L2587)
 
 **参数：**
 
@@ -1733,7 +1733,7 @@ extra_body (`dict[str, Any]`, *可选*) ：传递给模型的其他特定于提�
 token_classification(text: str, model: str | None = None, aggregation_strategy: typing.Optional[ForwardRef('TokenClassificationAggregationStrategy')] = None, ignore_labels: list[str] | None = None, stride: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L2892)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L2892)
 
 **参数：**
 
@@ -1749,9 +1749,9 @@ stride (`int`, *可选*) ：分割输入文本时块之间重叠标记的数量�
 
 **退货：** `list[TokenClassificationOutputElement]`
 
-[TokenClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TokenClassificationOutputElement) 项目列表，包含实体组、置信度得分、单词、开始和结束索引。
+[TokenClassificationOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.TokenClassificationOutputElement) 项目列表，包含实体组、置信度得分、单词、开始和结束索引。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -1788,7 +1788,7 @@ stride (`int`, *可选*) ：分割输入文本时块之间重叠标记的数量�
 translation(text: str, model: str | None = None, src_lang: str | None = None, tgt_lang: str | None = None, clean_up_tokenization_spaces: bool | None = None, truncation: typing.Optional[ForwardRef('TranslationTruncationStrategy')] = None, generate_parameters: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L2967)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L2967)
 
 **参数：**
 
@@ -1804,13 +1804,13 @@ clean_up_tokenization_spaces (`bool`, *可选*) ：是否清理文本输出中�
 
 generate_parameters（`dict[str, Any]`，*可选*）：文本生成算法的附加参数化。
 
-**返回：** [TranslationOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TranslationOutput)
+**返回：** [TranslationOutput](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.TranslationOutput)
 
 生成的翻译文本。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError` 或 ``ValueError``
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError` 或 ``ValueError``
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -1846,7 +1846,7 @@ TranslationOutput(translation_text='Je m'appelle Wolfgang et je vis à Berlin.')
 visual_question_answering(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], question: str, model: str | None = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L3056)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L3056)
 
 **参数：**image (`Union[str, Path, bytes, BinaryIO, PIL.Image.Image]`) ：上下文的输入图像。它可以是原始字节、图像文件、在线图像的 URL 或 PIL 图像。
 
@@ -1854,11 +1854,11 @@ visual_question_answering(image: typing.Union[bytes, typing.BinaryIO, str, pathl
 
 model (`str`, *可选*) ：用于视觉问答任务的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。如果未提供，将使用默认推荐的视觉问答模型。默认为无。
 
-top_k (`int`, *可选*) ：要返回的答案数量（将按可能性顺序选择）。请注意，如果上下文中没有足够的选项，我们将返回少于 topk 的答案。
+top_k (`int`, *可选*) ：返回的答案数量（将按可能性顺序选择）。请注意，如果上下文中没有足够的选项，我们将返回少于 topk 的答案。
 
 **返回：** `list[VisualQuestionAnsweringOutputElement]`
 
-包含预测标签和相关概率的[VisualQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.VisualQuestionAnsweringOutputElement)项目列表。
+包含预测标签和相关概率的[VisualQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.VisualQuestionAnsweringOutputElement)项目列表。
 
 **提高：** ``InferenceTimeoutError`` or `HfHubHTTPError`
 
@@ -1889,7 +1889,7 @@ top_k (`int`, *可选*) ：要返回的答案数量（将按可能性顺序选�
 zero_shot_classification(text: str, candidate_labels: list, multi_label: bool | None = False, hypothesis_template: str | None = None, model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L3115)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L3115)
 
 **参数：**text (`str`) ：要分类的输入文本。
 
@@ -1903,11 +1903,11 @@ model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub �
 
 **退货：** `list[ZeroShotClassificationOutputElement]`
 
-包含预测标签及其置信度的[ZeroShotClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ZeroShotClassificationOutputElement)项目列表。
+包含预测标签及其置信度的[ZeroShotClassificationOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ZeroShotClassificationOutputElement)项目列表。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。提供文本和一组候选标签作为输入，以对输入文本进行分类。
@@ -1964,7 +1964,7 @@ model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub �
 zero_shot_image_classification(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], candidate_labels: list, model: str | None = None, hypothesis_template: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L3216)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_client.py#L3216)
 
 **参数：**
 
@@ -1978,9 +1978,9 @@ model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub �
 
 **返回：** `list[ZeroShotImageClassificationOutputElement]`
 
-包含预测标签及其置信度的[ZeroShotImageClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ZeroShotImageClassificationOutputElement)项目列表。
+包含预测标签及其置信度的[ZeroShotImageClassificationOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ZeroShotImageClassificationOutputElement)项目列表。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -2009,7 +2009,7 @@ model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub �
 huggingface_hub.AsyncInferenceClient(model: str | None = None, provider: typing.Union[typing.Literal['baseten', 'cerebras', 'cohere', 'deepinfra', 'fal-ai', 'featherless-ai', 'fireworks-ai', 'groq', 'hf-inference', 'novita', 'nscale', 'openai', 'ovhcloud', 'publicai', 'replicate', 'scaleway', 'together', 'wavespeed', 'zai-org'], typing.Literal['auto'], NoneType] = None, token: str | None = None, timeout: float | None = None, headers: dict[str, str] | None = None, cookies: dict[str, str] | None = None, bill_to: str | None = None, base_url: str | None = None, api_key: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L113)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L113)
 
 **参数：**
 
@@ -2023,13 +2023,13 @@ headers (`dict[str, str]`, `optional`) ：发送到服务器的附加标头。�
 
 cookies (`dict[str, str]`, `optional`) ：发送到服务器的附加cookie。
 
-base_url (`str`, `optional`) ：运行推理的基本 URL。这是来自 `model` 的重复参数，以使 [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 遵循与 `openai.OpenAI` 客户端相同的模式。如果设置了`model`则无法使用。默认为无。
+base_url (`str`, `optional`) ：运行推理的基本 URL。这是来自 `model` 的重复参数，以使 [InferenceClient](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 遵循与 `openai.OpenAI` 客户端相同的模式。如果设置了`model`则无法使用。默认为无。
 
-api_key (`str`, `optional`) ：用于身份验证的令牌。这是来自 `token` 的重复参数，以使 [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 遵循与 `openai.OpenAI` 客户端相同的模式。如果设置了`token`则无法使用。默认为无。
+api_key (`str`, `optional`) ：用于身份验证的令牌。这是来自 `token` 的重复参数，以使 [InferenceClient](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 遵循与 `openai.OpenAI` 客户端相同的模式。如果设置了`token`则无法使用。默认为无。
 
 初始化一个新的推理客户端。
 
-[InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 旨在提供统一的推理体验。客户端可以使用
+[InferenceClient](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 旨在提供统一的推理体验。客户端可以使用
 与（免费）推理 API、自托管推理端点或第三方推理提供商无缝连接。
 
 #### audio_classification[[huggingface_hub.AsyncInferenceClient.audio_classification]]
@@ -2038,7 +2038,7 @@ api_key (`str`, `optional`) ：用于身份验证的令牌。这是来自 `token
 audio_classification(audio: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, top_k: int | None = None, function_to_apply: typing.Optional[ForwardRef('AudioClassificationOutputTransform')] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L327)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L327)
 
 **参数：**audio (Union[str, Path, bytes, BinaryIO]) ：要分类的音频内容。它可以是原始音频字节、本地音频文件或指向音频文件的 URL。
 
@@ -2050,11 +2050,11 @@ function_to_apply (`"AudioClassificationOutputTransform"`, *可选*) ：应用�
 
 **退货：** `list[AudioClassificationOutputElement]`
 
-包含预测标签及其置信度的[AudioClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.AudioClassificationOutputElement)项目列表。
+包含预测标签及其置信度的[AudioClassificationOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.AudioClassificationOutputElement)项目列表。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -2080,7 +2080,7 @@ function_to_apply (`"AudioClassificationOutputTransform"`, *可选*) ：应用�
 audio_to_audio(audio: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L385)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L385)
 
 **参数：**audio (Union[str, Path, bytes, BinaryIO]) ：模型的音频内容。它可以是原始音频字节、本地音频文件或指向音频文件的 URL。
 
@@ -2088,7 +2088,7 @@ model (`str`, *可选*) ：模型可以是任何接受一个音频文件并返�
 
 **返回：** `list[AudioToAudioOutputElement]`
 
-[AudioToAudioOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.AudioToAudioOutputElement) 项目列表，其中包含 blob 中的音频标签、内容类型和音频内容。
+[AudioToAudioOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.AudioToAudioOutputElement) 项目列表，其中包含 blob 中的音频标签、内容类型和音频内容。
 
 **提高：** ``InferenceTimeoutError`` or `HfHubHTTPError`
 
@@ -2116,7 +2116,7 @@ model (`str`, *可选*) ：模型可以是任何接受一个音频文件并返�
 automatic_speech_recognition(audio: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, extra_body: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L438)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L438)
 
 **参数：**
 
@@ -2124,13 +2124,13 @@ audio (Union[str, Path, bytes, BinaryIO]) ：要转录的内容。它可以是�
 
 extra_body (`dict`, *可选*) ：传递给模型的其他特定于提供者的参数。有关支持的参数，请参阅提供商的文档。
 
-**返回：** [AutomaticSpeechRecognitionOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.AutomaticSpeechRecognitionOutput)
+**返回：** [AutomaticSpeechRecognitionOutput](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.AutomaticSpeechRecognitionOutput)
 
 包含转录文本和可选的时间戳块的项目。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -2152,11 +2152,11 @@ extra_body (`dict`, *可选*) ：传递给模型的其他特定于提供者的�
 chat_completion(messages: list, model: str | None = None, stream: bool = False, frequency_penalty: float | None = None, logit_bias: list[float] | None = None, logprobs: bool | None = None, max_tokens: int | None = None, n: int | None = None, presence_penalty: float | None = None, response_format: typing.Union[huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputResponseFormatText, huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputResponseFormatJSONSchema, huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputResponseFormatJSONObject, NoneType] = None, seed: int | None = None, stop: list[str] | None = None, stream_options: huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputStreamOptions | None = None, temperature: float | None = None, tool_choice: typing.Union[huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputToolChoiceClass, ForwardRef('ChatCompletionInputToolChoiceEnum'), NoneType] = None, tool_prompt: str | None = None, tools: list[huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputTool] | None = None, top_logprobs: int | None = None, top_p: float | None = None, extra_body: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L566)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L566)
 
 **参数：**
 
-消息（[ChatCompletionInputMessage](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputMessage)列表）：由角色和内容对组成的对话历史记录。model (`str`, *可选*) ：用于聊天完成的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。如果未提供，将使用基于聊天的文本生成的默认推荐模型。有关更多详细信息，请参阅 https://huggingface.co/tasks/text- Generation 。如果`model`是模型ID，它将作为`model`参数传递到服务器。如果您想在请求负载中设置`model`时定义自定义URL，则必须在初始化[InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)时设置`base_url`。
+消息（[ChatCompletionInputMessage](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputMessage)列表）：由角色和内容对组成的对话历史记录。model (`str`, *可选*) ：用于聊天完成的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。如果未提供，将使用基于聊天的文本生成的默认推荐模型。有关更多详细信息，请参阅 https://huggingface.co/tasks/text- Generation 。如果`model`是模型ID，它将作为`model`参数传递到服务器。如果您想在请求负载中设置`model`时定义自定义URL，则必须在初始化[InferenceClient](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)时设置`base_url`。
 
 Frequency_penalty (`float`, *可选*) ：根据迄今为止文本中的现有频率对新标记进行惩罚。范围：[-2.0，2.0]。默认为 0.0。
 
@@ -2166,7 +2166,7 @@ logprobs (`bool`, *可选*) ：是否返回输出标记的对数概率。如果�
 
 max_tokens (`int`, *可选*) ：响应中允许的最大令牌数。默认为 100。
 
-n (`int`, *可选*) ：为每个提示生成的完成数。Presence_penalty (`float`, *可选*) ：-2.0 到 2.0 之间的数字。正值根据新标记是否出现在文本中来对其进行惩罚，从而增加模型谈论新主题的可能性。
+n (`int`, *可选*) ：为每个提示生成的完成数。Presence_penalty (`float`, *可选*) ：-2.0 到 2.0 之间的数字。正值根据新标记目前是否出现在文本中来对其进行惩罚，从而增加模型讨论新主题的可能性。
 
 response_format (`ChatCompletionInputGrammarType()`, *可选*) ：语法约束。可以是 JSONSchema 或正则表达式。
 
@@ -2176,35 +2176,35 @@ stop (`list[str]`, *可选*) ：最多四个字符串，触发响应结束。默
 
 流（`bool`，*可选*）：启用实时响应流。默认为 False。
 
-Stream_options ([ChatCompletionInputStreamOptions](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputStreamOptions), *可选*) ：流式完成的选项。
+Stream_options ([ChatCompletionInputStreamOptions](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputStreamOptions), *可选*) ：流式完成的选项。
 
 温度（`float`，*可选*）：控制生成的随机性。较低的值可确保较少的随机完成。范围：[0, 2]。默认为 1.0。
 
 top_logprobs (`int`, *可选*) ：0 到 5 之间的整数，指定每个标记位置最有可能返回的标记数量，每个标记都有一个关联的对数概率。如果使用此参数，则 logprobs 必须设置为 true。
 
-top_p (`float`, *可选*) ：最有可能进行采样的下一个单词的分数。必须介于 0 和 1 之间。默认为 1.0。tool_choice（[ChatCompletionInputToolChoiceClass](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputToolChoiceClass)或`ChatCompletionInputToolChoiceEnum()`，*可选*）：用于完成的工具。默认为“自动”。
+top_p (`float`, *可选*) ：最有可能进行采样的下一个单词的分数。必须介于 0 和 1 之间。默认为 1.0。tool_choice（[ChatCompletionInputToolChoiceClass](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputToolChoiceClass)或`ChatCompletionInputToolChoiceEnum()`，*可选*）：用于完成的工具。默认为“自动”。
 
 tool_prompt (`str`, *可选*) ：附加在工具之前的提示。
 
-工具（[ChatCompletionInputTool](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputTool)列表，*可选*）：模型可能调用的工具列表。目前，仅支持函数作为工具。使用它来提供模型可以为其生成 JSON 输入的函数列表。
+工具（[ChatCompletionInputTool](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputTool)列表，*可选*）：模型可能调用的工具列表。目前，仅支持函数作为工具。使用它来提供模型可以为其生成 JSON 输入的函数列表。
 
 extra_body (`dict`, *可选*) ：传递给模型的其他特定于提供者的参数。有关支持的参数，请参阅提供商的文档。
 
-**返回：** [ChatCompletionOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionOutput) 或 [ChatCompletionStreamOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionStreamOutput) 的可迭代
+**返回：** [ChatCompletionOutput](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionOutput) 或 [ChatCompletionStreamOutput](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionStreamOutput) 的可迭代
 
 从服务器返回的生成文本：
-- 如果`stream=False`，生成的文本将作为[ChatCompletionOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionOutput)（默认）返回。
-- 如果`stream=True`，则生成的文本将作为[ChatCompletionStreamOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionStreamOutput) 的序列逐个令牌返回。
+- 如果`stream=False`，生成的文本将作为[ChatCompletionOutput](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionOutput)（默认）返回。
+- 如果`stream=True`，则生成的文本将作为[ChatCompletionStreamOutput](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionStreamOutput) 的序列逐个令牌返回。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
 
 一种使用指定语言模型完成对话的方法。> [!提示]
-> 为了与 OpenAI 客户端兼容，`client.chat_completion` 方法别名为 `client.chat.completions.create`。
+> 为了与 OpenAI 的客户端兼容，`client.chat_completion` 方法别名为 `client.chat.completions.create`。
 > 输入和输出完全相同，使用任一语法都会产生相同的结果。
 > 查看[Inference guide](https://huggingface.co/docs/huggingface_hub/guides/inference#openai-compatibility)
 > 有关 OpenAI 兼容性的更多详细信息。
@@ -2478,7 +2478,7 @@ n": "park"}'
 close()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L240)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L240)
 
 关闭客户端。
 
@@ -2490,7 +2490,7 @@ close()
 document_question_answering(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], question: str, model: str | None = None, doc_stride: int | None = None, handle_impossible_answer: bool | None = None, lang: str | None = None, max_answer_len: int | None = None, max_question_len: int | None = None, max_seq_len: int | None = None, top_k: int | None = None, word_boxes: list[list[float] | str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L974)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L974)
 
 **参数：**image (`Union[str, Path, bytes, BinaryIO]`) ：上下文的输入图像。它可以是原始字节、图像文件或在线图像的 URL。
 
@@ -2514,11 +2514,11 @@ word_boxes (`list[Union[list[float], str`, *可选*) ：单词和边界框的列
 
 **返回：** `list[DocumentQuestionAnsweringOutputElement]`
 
-[DocumentQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.DocumentQuestionAnsweringOutputElement) 项目列表，其中包含预测标签、相关概率、单词 ID 和页码。
+[DocumentQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.DocumentQuestionAnsweringOutputElement) 项目列表，其中包含预测标签、相关概率、单词 ID 和页码。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -2540,7 +2540,7 @@ word_boxes (`list[Union[list[float], str`, *可选*) ：单词和边界框的列
 feature_extraction(text: str | list[str], normalize: bool | None = None, prompt_name: str | None = None, truncate: bool | None = None, truncation_direction: typing.Optional[typing.Literal['left', 'right']] = None, dimensions: int | None = None, encoding_format: typing.Optional[typing.Literal['float', 'base64']] = None, model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1062)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L1062)
 
 **参数：**
 
@@ -2587,24 +2587,24 @@ array([[ 2.424802  ,  2.93384   ,  1.1750331 , ...,  1.240499, -0.13776633, -0.7
 fill_mask(text: str, model: str | None = None, targets: list[str] | None = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1146)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L1146)
 
 **参数：**
 
 text (`str`) ：要填充的字符串，必须包含 [MASK] 标记（检查模型卡以获取掩码的确切名称）。model (`str`, *可选*) ：用于填充遮罩任务的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。如果未提供，将使用默认推荐的填充掩模模型。
 
-目标（`list[str`，*可选*）：通过时，模型会将分数限制为通过的目标，而不是在整个词汇表中查找。如果提供的目标不在模型词汇中，它们将被标记化，并且将使用第一个生成的标记（带有警告，并且可能会更慢）。
+目标（`list[str`，*可选*）：通过时，模型会将分数限制为通过的目标，而不是在整个词汇表中查找。如果提供的目标不在模型词汇中，它们将被标记，并且将使用第一个生成的标记（带有警告，并且可能会更慢）。
 
 top_k (`int`, *可选*) ：传递时，覆盖要返回的预测数。
 
 **返回：** `list[FillMaskOutputElement]`
 
-包含预测标签的[FillMaskOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.FillMaskOutputElement)项目列表，关联
+包含预测标签的[FillMaskOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.FillMaskOutputElement)项目列表，关联
 概率、标记参考和完整的文本。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -2629,7 +2629,7 @@ top_k (`int`, *可选*) ：传递时，覆盖要返回的预测数。
 get_endpoint_info(model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L3333)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L3333)
 
 **参数：**model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。此参数覆盖在实例级别定义的模型。默认为无。
 
@@ -2677,7 +2677,7 @@ get_endpoint_info(model: str | None = None)
 health_check(model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L3393)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L3393)
 
 **参数：**
 
@@ -2706,7 +2706,7 @@ True
 image_classification(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, function_to_apply: typing.Optional[ForwardRef('ImageClassificationOutputTransform')] = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1203)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L1203)
 
 **参数：**image (`Union[str, Path, bytes, BinaryIO, PIL.Image.Image]`) ：要分类的图像。它可以是原始字节、图像文件、在线图像的 URL 或 PIL 图像。
 
@@ -2718,11 +2718,11 @@ top_k (`int`, *可选*) ：指定后，将输出限制为前 K 个最可能的�
 
 **返回：** `list[ImageClassificationOutputElement]`
 
-包含预测标签和相关概率的[ImageClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ImageClassificationOutputElement)项目列表。
+包含预测标签和相关概率的[ImageClassificationOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ImageClassificationOutputElement)项目列表。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -2744,7 +2744,7 @@ top_k (`int`, *可选*) ：指定后，将输出限制为前 K 个最可能的�
 image_segmentation(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, mask_threshold: float | None = None, overlap_mask_area_threshold: float | None = None, subtask: typing.Optional[ForwardRef('ImageSegmentationSubtask')] = None, threshold: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1254)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L1254)
 
 **参数：**image (`Union[str, Path, bytes, BinaryIO, PIL.Image.Image]`) ：要分割的图像。它可以是原始字节、图像文件、在线图像的 URL 或 PIL 图像。
 
@@ -2760,11 +2760,11 @@ overlap_mask_area_threshold（`float`，*可选*）：掩码重叠阈值，以�
 
 **返回：** `list[ImageSegmentationOutputElement]`
 
-包含分段掩码和关联属性的[ImageSegmentationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ImageSegmentationOutputElement)项目列表。
+包含分段掩码和关联属性的[ImageSegmentationOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ImageSegmentationOutputElement)项目列表。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -2787,7 +2787,7 @@ overlap_mask_area_threshold（`float`，*可选*）：掩码重叠阈值，以�
 image_to_image(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], prompt: str | None = None, negative_prompt: str | None = None, num_inference_steps: int | None = None, guidance_scale: float | None = None, model: str | None = None, target_size: huggingface_hub.inference._generated.types.image_to_image.ImageToImageTargetSize | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1323)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L1323)
 
 **参数：**
 
@@ -2807,9 +2807,9 @@ model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub �
 
 翻译后的图像。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -2834,7 +2834,7 @@ model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub �
 image_to_text(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1480)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L1480)
 
 **参数：**
 
@@ -2842,11 +2842,11 @@ image (`Union[str, Path, bytes, BinaryIO, PIL.Image.Image]`) ：标题的输入�
 
 model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。此参数覆盖在实例级别定义的模型。默认为无。
 
-**返回：** [ImageToTextOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ImageToTextOutput)
+**返回：** [ImageToTextOutput](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ImageToTextOutput)
 
 生成的文本。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -2873,7 +2873,7 @@ model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub �
 image_to_video(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, prompt: str | None = None, negative_prompt: str | None = None, num_frames: float | None = None, num_inference_steps: int | None = None, guidance_scale: float | None = None, seed: int | None = None, target_size: huggingface_hub.inference._generated.types.image_to_video.ImageToVideoTargetSize | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1400)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L1400)
 
 **参数：**
 
@@ -2887,7 +2887,7 @@ negative_prompt（`str`，*可选*）：一个提示，指导视频生成中不�
 
 num_inference_steps (`int`, *可选*) ：用于扩散模型。去噪步数。更多的去噪步骤通常会带来更高质量的图像，但代价是推理速度变慢。
 
-guide_scale（`float`，*可选*）：用于扩散模型。较高的指导比例值会鼓励模型生成与文本提示紧密相关的视频，但代价是图像质量较低。
+guide_scale（`float`，*可选*）：用于扩散模型。较高的指导比例值会鼓励模型生成与文本提示紧密相关的视频，但会降低图像质量。
 
 种子（`int`，*可选*）：用于视频生成的种子。
 
@@ -2919,7 +2919,7 @@ num_inference_steps (`int`, *可选*) ：去噪步骤的数量。更多的去噪
 object_detection(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, threshold: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1527)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L1527)
 
 **参数：**image (`Union[str, Path, bytes, BinaryIO, PIL.Image.Image]`) ：用于检测物体的图像。它可以是原始字节、图像文件、在线图像的 URL 或 PIL 图像。
 
@@ -2929,11 +2929,11 @@ model（`str`，*可选*）：用于对象检测的模型。可以是 Hugging Fa
 
 **退货：** `list[ObjectDetectionOutputElement]`
 
-包含边界框和关联属性的[ObjectDetectionOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ObjectDetectionOutputElement)项目列表。
+包含边界框和关联属性的 [ObjectDetectionOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ObjectDetectionOutputElement) 项目列表。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError` 或 ``ValueError``
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError` 或 ``ValueError``
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -2960,7 +2960,7 @@ model（`str`，*可选*）：用于对象检测的模型。可以是 Hugging Fa
 question_answering(question: str, context: str, model: str | None = None, align_to_words: bool | None = None, doc_stride: int | None = None, handle_impossible_answer: bool | None = None, max_answer_len: int | None = None, max_question_len: int | None = None, max_seq_len: int | None = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1576)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L1576)
 
 **参数：**
 
@@ -2980,14 +2980,14 @@ max_question_len (`int`, *可选*) ：标记化后问题的最大长度。如果
 
 max_seq_len (`int`, *可选*) ：传递给模型的每个块的标记中总句子（上下文+问题）的最大长度。如果需要，上下文将被分割成几个块（使用 docStride 作为重叠）。top_k (`int`, *可选*) ：要返回的答案数量（将按可能性顺序选择）。请注意，如果上下文中没有足够的选项，我们将返回少于 topk 的答案。
 
-**返回：**联盟[⟦T736⟧, list[QuestionAnsweringOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.QuestionAnsweringOutputElement)]
+**返回：**联盟[⟦T736⟧, list[QuestionAnsweringOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.QuestionAnsweringOutputElement)]
 
 当top_k为1或未提供时，它返回单个`QuestionAnsweringOutputElement`。
 当top_k大于1时，返回`QuestionAnsweringOutputElement`的列表。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -3009,7 +3009,7 @@ QuestionAnsweringOutputElement(answer='Clara', end=16, score=0.9326565265655518,
 sentence_similarity(sentence: str, other_sentences: list, model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1661)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L1661)
 
 **参数：**
 
@@ -3021,9 +3021,9 @@ model (`str`, *可选*) ：用于句子相似性任务的模型。可以是 Hugg
 
 **返回：** `list[float]`表示输入文本的嵌入。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -3052,7 +3052,7 @@ model (`str`, *可选*) ：用于句子相似性任务的模型。可以是 Hugg
 summarization(text: str, model: str | None = None, clean_up_tokenization_spaces: bool | None = None, generate_parameters: dict[str, typing.Any] | None = None, truncation: typing.Optional[ForwardRef('SummarizationTruncationStrategy')] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1715)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L1715)
 
 **参数：**
 
@@ -3066,11 +3066,11 @@ generate_parameters（`dict[str, Any]`，*可选*）：文本生成算法的附�
 
 截断（`"SummarizationTruncationStrategy"`，*可选*）：要使用的截断策略。
 
-**返回：** [SummarizationOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.SummarizationOutput)
+**返回：** [SummarizationOutput](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.SummarizationOutput)
 
 生成的摘要文本。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -3092,7 +3092,7 @@ SummarizationOutput(generated_text="The Eiffel tower is one of the most famous l
 table_question_answering(table: dict, query: str, model: str | None = None, padding: typing.Optional[ForwardRef('Padding')] = None, sequential: bool | None = None, truncation: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1774)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L1774)
 
 **参数：**
 
@@ -3108,11 +3108,11 @@ model (`str`) ：用于表格问答任务的模型。可以是 Hugging Face Hub 
 
 截断（`bool`，*可选*）：激活并控制截断。
 
-**返回：** [TableQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TableQuestionAnsweringOutputElement)包含答案、坐标、单元格和使用的聚合器的表格问答输出。
+**返回：** [TableQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.TableQuestionAnsweringOutputElement)包含答案、坐标、单元格和使用的聚合器的表格问答输出。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -3136,7 +3136,7 @@ TableQuestionAnsweringOutputElement(answer='36542', coordinates=[[0, 1]], cells=
 tabular_classification(table: dict, model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1837)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L1837)
 
 **参数：**
 
@@ -3148,9 +3148,9 @@ model (`str`，*可选*)：用于表格分类任务的模型。可以是 Hugging
 
 标签列表，初始表中每行一个。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -3183,7 +3183,7 @@ model (`str`，*可选*)：用于表格分类任务的模型。可以是 Hugging
 tabular_regression(table: dict, model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1893)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L1893)
 
 **参数：**
 
@@ -3195,9 +3195,9 @@ model (`str`, *可选*) ：用于表格回归任务的模型。可以是 Hugging
 
 预测数字目标值的列表。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -3227,7 +3227,7 @@ model (`str`, *可选*) ：用于表格回归任务的模型。可以是 Hugging
 text_classification(text: str, model: str | None = None, top_k: int | None = None, function_to_apply: typing.Optional[ForwardRef('TextClassificationOutputTransform')] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1944)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L1944)
 
 **参数：**
 
@@ -3239,11 +3239,11 @@ function_to_apply (`"TextClassificationOutputTransform"`, *可选*) ：应用于
 
 **返回：** `list[TextClassificationOutputElement]`
 
-包含预测标签和相关概率的[TextClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TextClassificationOutputElement)项目列表。
+包含预测标签和相关概率的[TextClassificationOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.TextClassificationOutputElement)项目列表。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -3268,7 +3268,7 @@ function_to_apply (`"TextClassificationOutputTransform"`, *可选*) ：应用于
 text_generation(prompt: str, details: bool | None = None, stream: bool | None = None, model: str | None = None, adapter_id: str | None = None, best_of: int | None = None, decoder_input_details: bool | None = None, do_sample: bool | None = None, frequency_penalty: float | None = None, grammar: huggingface_hub.inference._generated.types.text_generation.TextGenerationInputGrammarType | None = None, max_new_tokens: int | None = None, repetition_penalty: float | None = None, return_full_text: bool | None = None, seed: int | None = None, stop: list[str] | None = None, stop_sequences: list[str] | None = None, temperature: float | None = None, top_k: int | None = None, top_n_tokens: int | None = None, top_p: float | None = None, truncate: int | None = None, typical_p: float | None = None, watermark: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L2153)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L2153)
 
 **参数：**
 
@@ -3286,17 +3286,17 @@ Decoder_input_details (`bool`, *可选*) ：返回解码器输入令牌 logprobs
 
 do_sample (`bool`, *可选*) : 激活 logits 采样Frequency_penalty（`float`，*可选*）：-2.0 到 2.0 之间的数字。正值根据迄今为止文本中的现有频率对新标记进行惩罚，从而降低模型逐字重复同一行的可能性。
 
-语法（[TextGenerationInputGrammarType](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TextGenerationInputGrammarType)，*可选*）：语法约束。可以是 JSONSchema 或正则表达式。
+语法（[TextGenerationInputGrammarType](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.TextGenerationInputGrammarType)，*可选*）：语法约束。可以是 JSONSchema 或正则表达式。
 
 max_new_tokens (`int`, *可选*) : 生成的令牌的最大数量。默认为 100。
 
-repetition_penalty (`float`, *可选*) ：重复惩罚的参数。 1.0 表示没有处罚。有关更多详细信息，请参阅[this paper](https://arxiv.org/pdf/1909.05858.pdf)。
+Repeat_penalty (`float`, *可选*) ：重复惩罚的参数。 1.0 表示没有处罚。有关更多详细信息，请参阅[this paper](https://arxiv.org/pdf/1909.05858.pdf)。
 
 return_full_text (`bool`, *可选*) : 是否将提示添加到生成的文本中
 
 种子（`int`，*可选*）：随机采样种子
 
-stop (`list[str]`, *可选*) : 如果生成了`stop`的成员，则停止生成令牌。
+stop (`list[str]`, *可选*) ：如果生成了`stop`的成员，则停止生成令牌。
 
 stop_sequences (`list[str]`, *可选*) ：已弃用的参数。请使用`stop`代替。
 
@@ -3317,20 +3317,20 @@ truncate (`int`, *可选`) ：将输入标记截断为给定大小。
 从服务器返回的生成文本：
 - 如果`stream=False`和`details=False`，生成的文本将作为`str`返回（默认）
 - 如果`stream=True`和`details=False`，生成的文本将逐个标记作为`AsyncIterable[str]`返回
-- 如果`stream=False`和`details=True`，生成的文本将返回更多详细信息作为[TextGenerationOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TextGenerationOutput)
-- 如果`details=True`和`stream=True`，生成的文本将作为[TextGenerationStreamOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TextGenerationStreamOutput)的可迭代对象逐个返回
+- 如果`stream=False`和`details=True`，则返回生成的文本，其中包含更多详细信息作为[TextGenerationOutput](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.TextGenerationOutput)
+- 如果`details=True`和`stream=True`，生成的文本将作为[TextGenerationStreamOutput](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.TextGenerationStreamOutput)的可迭代对象逐个返回
 
-**提高：** ``ValidationError`` or [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**提高：** ``ValidationError`` or [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
 - ``ValidationError`` -- 
   如果输入值无效。不会对服务器进行 HTTP 调用。
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
 
 根据提示，生成以下文本。> [!提示]
-> 如果您想从聊天消息生成响应，您应该使用 [InferenceClient.chat_completion()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.chat_completion) 方法。
+> 如果您想从聊天消息生成响应，您应该使用 [InferenceClient.chat_completion()](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.chat_completion) 方法。
 > 它接受消息列表而不是单个文本提示，并为您处理聊天模板。
 
 示例：
@@ -3442,7 +3442,7 @@ TextGenerationStreamOutput(token=TokenElement(
 text_to_image(prompt: str, negative_prompt: str | None = None, height: int | None = None, width: int | None = None, num_inference_steps: int | None = None, guidance_scale: float | None = None, model: str | None = None, scheduler: str | None = None, seed: int | None = None, extra_body: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L2493)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L2493)
 
 **参数：**
 
@@ -3468,9 +3468,9 @@ extra_body (`dict[str, Any]`, *可选*) ：传递给模型的其他特定于提�
 
 生成的图像。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -3528,7 +3528,7 @@ extra_body (`dict[str, Any]`, *可选*) ：传递给模型的其他特定于提�
 >>> image.save("astronaut.png")
 ```
 
-使用具有额外参数的复制提供程序的示例
+使用带有额外参数的复制提供程序的示例
 
 ```py
 >>> from huggingface_hub import InferenceClient
@@ -3550,7 +3550,7 @@ extra_body (`dict[str, Any]`, *可选*) ：传递给模型的其他特定于提�
 text_to_speech(text: str, model: str | None = None, do_sample: bool | None = None, early_stopping: typing.Union[bool, ForwardRef('TextToSpeechEarlyStoppingEnum'), NoneType] = None, epsilon_cutoff: float | None = None, eta_cutoff: float | None = None, max_length: int | None = None, max_new_tokens: int | None = None, min_length: int | None = None, min_new_tokens: int | None = None, num_beam_groups: int | None = None, num_beams: int | None = None, penalty_alpha: float | None = None, temperature: float | None = None, top_k: int | None = None, top_p: float | None = None, typical_p: float | None = None, use_cache: bool | None = None, extra_body: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L2731)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L2731)
 
 **参数：**
 
@@ -3645,7 +3645,7 @@ Synthesize an audio of a voice pronouncing a given text.
 >>> Path("hello_world.flac").write_bytes(audio)
 ```
 
-使用具有额外参数的复制提供程序的示例
+使用带有额外参数的复制提供程序的示例
 
 ```py
 >>> from huggingface_hub import InferenceClient
@@ -3699,7 +3699,7 @@ fal.ai 上使用“YuE-s1-7B-anneal-en-cot”的音乐生成示例
 text_to_video(prompt: str, model: str | None = None, guidance_scale: float | None = None, negative_prompt: list[str] | None = None, num_frames: float | None = None, num_inference_steps: int | None = None, seed: int | None = None, extra_body: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L2634)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L2634)
 
 **参数：**
 
@@ -3707,7 +3707,7 @@ text_to_video(prompt: str, model: str | None = None, guidance_scale: float | Non
 
 Guiding_scale (`float`, *可选*) ：较高的指导比例值会鼓励模型生成与文本提示紧密相关的视频，但值太高可能会导致饱和和其他伪影。
 
-negative_prompt（`list[str]`，*可选*）：一个或多个提示来指导视频生成中不包含的内容。
+negative_prompt（`list[str]`，*可选*）：一个或多个提示，指导视频生成中不包含哪些内容。
 
 num_frames (`float`, *可选*) ：num_frames 参数决定生成多少视频帧。
 
@@ -3764,7 +3764,7 @@ extra_body (`dict[str, Any]`, *可选*) ：传递给模型的其他特定于提�
 token_classification(text: str, model: str | None = None, aggregation_strategy: typing.Optional[ForwardRef('TokenClassificationAggregationStrategy')] = None, ignore_labels: list[str] | None = None, stride: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L2940)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L2940)
 
 **参数：**
 
@@ -3780,9 +3780,9 @@ stride (`int`, *可选*) ：分割输入文本时块之间重叠标记的数量�
 
 **退货：** `list[TokenClassificationOutputElement]`
 
-[TokenClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TokenClassificationOutputElement) 项目列表，包含实体组、置信度得分、单词、开始和结束索引。**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+[TokenClassificationOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.TokenClassificationOutputElement) 项目列表，包含实体组、置信度得分、单词、开始和结束索引。**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -3820,7 +3820,7 @@ stride (`int`, *可选*) ：分割输入文本时块之间重叠标记的数量�
 translation(text: str, model: str | None = None, src_lang: str | None = None, tgt_lang: str | None = None, clean_up_tokenization_spaces: bool | None = None, truncation: typing.Optional[ForwardRef('TranslationTruncationStrategy')] = None, generate_parameters: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L3016)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L3016)
 
 **参数：**
 
@@ -3836,13 +3836,13 @@ clean_up_tokenization_spaces (`bool`, *可选*) ：是否清理文本输出中�
 
 generate_parameters（`dict[str, Any]`，*可选*）：文本生成算法的附加参数化。
 
-**返回：** [TranslationOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TranslationOutput)
+**返回：** [TranslationOutput](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.TranslationOutput)
 
 生成的翻译文本。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError` 或 ``ValueError``
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError` 或 ``ValueError``
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -3879,7 +3879,7 @@ TranslationOutput(translation_text='Je m'appelle Wolfgang et je vis à Berlin.')
 visual_question_answering(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], question: str, model: str | None = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L3106)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L3106)
 
 **参数：**image (`Union[str, Path, bytes, BinaryIO, PIL.Image.Image]`) ：上下文的输入图像。它可以是原始字节、图像文件、在线图像的 URL 或 PIL 图像。
 
@@ -3891,7 +3891,7 @@ top_k (`int`, *可选*) ：要返回的答案数量（将按可能性顺序选�
 
 **退货：** `list[VisualQuestionAnsweringOutputElement]`
 
-包含预测标签和相关概率的[VisualQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.VisualQuestionAnsweringOutputElement)项目列表。
+包含预测标签和相关概率的[VisualQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.VisualQuestionAnsweringOutputElement)项目列表。
 
 **提高：** ``InferenceTimeoutError`` or `HfHubHTTPError`
 
@@ -3923,7 +3923,7 @@ top_k (`int`, *可选*) ：要返回的答案数量（将按可能性顺序选�
 zero_shot_classification(text: str, candidate_labels: list, multi_label: bool | None = False, hypothesis_template: str | None = None, model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L3166)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L3166)
 
 **参数：**text (`str`) ：要分类的输入文本。
 
@@ -3937,11 +3937,11 @@ model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub �
 
 **退货：** `list[ZeroShotClassificationOutputElement]`
 
-包含预测标签及其置信度的[ZeroShotClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ZeroShotClassificationOutputElement)项目列表。
+包含预测标签及其置信度的[ZeroShotClassificationOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ZeroShotClassificationOutputElement)项目列表。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。提供文本和一组候选标签作为输入，以对输入文本进行分类。
@@ -4000,7 +4000,7 @@ model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub �
 zero_shot_image_classification(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], candidate_labels: list, model: str | None = None, hypothesis_template: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L3269)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/inference/_generated/_async_client.py#L3269)
 
 **参数：**
 
@@ -4014,9 +4014,9 @@ model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub �
 
 **退货：** `list[ZeroShotImageClassificationOutputElement]`
 
-包含预测标签及其置信度的[ZeroShotImageClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ZeroShotImageClassificationOutputElement)项目列表。
+包含预测标签及其置信度的[ZeroShotImageClassificationOutputElement](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_types#huggingface_hub.ZeroShotImageClassificationOutputElement)项目列表。
 
-**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+**加薪：** [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) 或 `HfHubHTTPError`- [InferenceTimeoutError](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   如果模型不可用或请求超时。
 - `HfHubHTTPError` -- 
   如果请求失败并显示 HTTP 503 以外的 HTTP 错误状态代码。
@@ -4044,9 +4044,9 @@ model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub �
 huggingface_hub.InferenceTimeoutError(message: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L155)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/errors.py#L155)
 
 当模型不可用或请求超时时引发错误。
 
 ### 身份验证
-https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/authentication.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/authentication.md

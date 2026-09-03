@@ -17,11 +17,11 @@ v1.0 版本是 `huggingface_hub` 库的一个重要里程碑。它标志着我�
 ### 重大变更
 
 这是影响整个图书馆的重大变化。虽然我们尝试使此更改尽可能透明，但在某些情况下您可能需要更新代码。以下是在此过程中引入的重大更改的列表：- **代理配置**：不再支持“按方法”代理。必须使用 `HTTP_PROXY` 和 `HTTPS_PROXY` 环境变量全局配置代理。
-- **自定义 HTTP 后端**：`configure_http_backend` 功能已被删除。您现在应该使用 [set_client_factory()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.set_client_factory) 和 [set_async_client_factory()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.set_async_client_factory) 来配置 HTTP 客户端。
+- **自定义 HTTP 后端**：`configure_http_backend` 功能已被删除。您现在应该使用 [set_client_factory()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.set_client_factory) 和 [set_async_client_factory()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.set_async_client_factory) 来配置 HTTP 客户端。
 - **错误处理**：HTTP错误不再从`requests.HTTPError`继承，而是从`httpx.HTTPError`继承。我们建议捕获 `huggingface_hub.HfHubHttpError`，它是 v0.x 中 `requests.HTTPError` 和 v1.x 中 `httpx.HTTPError` 的子类。捕获 `huggingface_hub` 错误可确保您的代码与旧版本和新版本的库兼容。
 - **SSLError**：`httpx`没有`SSLError`的概念。现在它是通用的`httpx.ConnectError`。
 - **`LocalEntryNotFoundError`**：此错误不再继承自`HTTPError`。我们现在定义一个`EntryNotFoundError`（新），它由`LocalEntryNotFoundError`（如果在本地缓存中找不到文件）和`RemoteEntryNotFoundError`（如果在集线器上的存储库中找不到文件）继承。只有远程错误继承自`HTTPError`。
-- **`InferenceClient`**：`InferenceClient`现在可以用作上下文管理器。当从语言模型流式传输令牌以确保连接正确关闭时，这特别有用。- **`AsyncInferenceClient`**：`trust_env` 参数已从 `AsyncInferenceClient` 的构造函数中删除。 `httpx` 默认信任环境变量。如果您明确不想信任该环境，则必须使用[set_client_factory()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.set_client_factory)进行配置。
+- **`InferenceClient`**：`InferenceClient`现在可以用作上下文管理器。当从语言模型流式传输令牌以确保连接正确关闭时，这特别有用。- **`AsyncInferenceClient`**：`trust_env` 参数已从 `AsyncInferenceClient` 的构造函数中删除。 `httpx` 默认信任环境变量。如果您明确不想信任该环境，则必须使用[set_client_factory()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.set_client_factory)进行配置。
 
 更多详情可以查看[PR #3328](https://github.com/huggingface/huggingface_hub/pull/3328)介绍`httpx`。
 
@@ -50,17 +50,17 @@ v1.0 版本是 `huggingface_hub` 库的一个重要里程碑。它标志着我�
 以下是从旧 `Repository` 类到新 `HfApi` 类的映射：| `Repository` 方法 | `HfApi` 方法 |
 | ------------------------------------------------------ | ---------------------------------------------------------------- |
 | `repo.clone_from` | `snapshot_download` |
-| `repo.git_add` + `git_commit` + `git_push` | [upload_file()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file)、[upload_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder)、[create_commit()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) |
+| `repo.git_add` + `git_commit` + `git_push` | [upload_file()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file)、[upload_folder()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder)、[create_commit()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) |
 | `repo.git_tag` | `create_tag` |
 | `repo.git_branch` | `create_branch` |
 
 ## `HfFolder` 类
 
-`HfFolder` 用于管理用户访问令牌。使用[login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.login)保存新令牌，使用[logout()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.logout)删除它，使用[whoami()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.whoami)检查与当前令牌关联的用户。最后，使用 `get_token()` 在脚本中检索用户的令牌。
+`HfFolder` 用于管理用户访问令牌。使用[login()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.login)保存新令牌，使用[logout()](/docs/huggingface_hub/v1.30.0/en/package_reference/authentication#huggingface_hub.logout)删除它，使用[whoami()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.whoami)检查与当前令牌关联的用户。最后，使用 `get_token()` 在脚本中检索用户的令牌。
 
 ## `InferenceApi` 类
 
-`InferenceApi` 是一个与 Inference API 交互的类。现在建议使用 [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 类代替​​。
+`InferenceApi` 是一个与 Inference API 交互的类。现在建议使用 [InferenceClient](/docs/huggingface_hub/v1.30.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 类代替​​。
 
 ## 其他已弃用的功能
 
@@ -71,11 +71,11 @@ v1.0 中删除了一些方法和参数。下面列出的内容已在 v0.x 中被
 - `is_write_action` 参数已从`build_hf_headers` 中删除，`write_permission` 从`login` 中删除。 “写权限”的概念已被删除，并且不再相关，因为细粒度令牌是推荐的方法。
 - 为了更加清晰，`login`中的`new_session`参数已重命名为`skip_if_logged_in`。
 - `resume_download`、`force_filename`和`local_dir_use_symlinks`参数已从`hf_hub_download`和`snapshot_download`中删除。
-- `library`、`language`、`tags` 和 `task` 参数已从 `list_models` 中删除。
+- `library`、`language`、`tags` 和 `task` 参数已从`list_models` 中删除。
 
 ## CLI 缓存命令
 
-CLI 的缓存管理已重新设计，以遵循 Docker 启发的工作流程。已弃用的 `huggingface-cli` 已被删除，`hf`（在 v0.34 中引入）用更清晰的资源操作 CLI 取代它。
+CLI 的缓存管理已重新设计，以遵循受 Docker 启发的工作流程。已弃用的 `huggingface-cli` 已被删除，`hf`（在 v0.34 中引入）用更清晰的资源操作 CLI 取代它。
 旧版 `hf cache scan` 和 `hf cache delete` 命令也在 v1.0 中删除，并替换为以下新的三个命令：- `hf cache ls` 使用简洁的表格、JSON 或 CSV 输出列出缓存条目。使用 `--revisions` 检查各个修订版本，添加 `--filter` 表达式，例如 `size>1GB` 或 `accessed>30d`，并在仅需要标识符时将它们与 `--quiet` 组合。
 - `hf cache rm` 删除选定的缓存条目。传递一个或多个存储库 ID（例如 `model/bert-base-uncased`）或修订哈希值，并可选择添加 `--dry-run` 进行预览或 `--yes` 跳过确认提示。这取代了上一个命令中的交互式 TUI 和 `--disable-tui` 工作流程。
 - `hf cache prune` 执行一次性删除未引用修订版的常见清理任务。以与`hf cache rm`相同的方式添加`--dry-run`或`--yes`。
@@ -92,4 +92,4 @@ v1.0 中删除了所有与 TensorFlow 相关的代码和依赖项。这包括以
 
 ## `upload_file` 和 `upload_folder` 返回值
 
-[upload_file()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) 和 [upload_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) 函数现在返回在 Hub 上创建的提交的 URL。以前，它们返回文件或文件夹的 URL。这是为了与 [create_commit()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit)、[delete_file()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_file) 和 [delete_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_folder) 的返回值保持一致。
+[upload_file()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) 和 [upload_folder()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) 函数现在返回在 Hub 上创建的提交的 URL。以前，它们返回文件或文件夹的 URL。这是为了与 [create_commit()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit)、[delete_file()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_file) 和 [delete_folder()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_folder) 的返回值保持一致。

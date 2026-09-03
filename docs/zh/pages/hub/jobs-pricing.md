@@ -84,12 +84,12 @@ hf jobs run --namespace my-org-name ...
 如果您的组织设置了 [Resource Groups](./security-resource-groups)，您可以将作业成本归因于特定资源组。为此：
 
 1. 您必须是资源组的成员。
-2. 运行作业时将资源组的 ID 作为`namespace` 传递。
+2. 传递拥有资源组的组织作为`namespace`，以及资源组的ID 作为`resource_group_id`。两者都是必需的：资源组仅考虑向其组织计费的作业。
 
 您可以在组织的资源组设置页面中找到资源组的 ID。
 
 ```bash
-hf jobs run --namespace <resource-group-id> ...
+hf jobs run --namespace my-org-name --resource-group-id <resource-group-id> ...
 ```
 
 在Python中：
@@ -99,19 +99,20 @@ hf jobs run --namespace <resource-group-id> ...
 >>> run_job(
 ...     image="python:3.12",
 ...     command=["python", "-c", "print('Hello!')"],
-...     namespace="<resource-group-id>",
+...     namespace="my-org-name",
+...     resource_group_id="<resource-group-id>",
 ... )
 ```
 
-### 查看当前计算使用情况
-
-您可以在 [Billing](https://huggingface.co/settings/billing) 页面的“计算使用情况”部分下查看作业的当前账单信息：
+### 查看当前计算使用情况您可以在 [Billing](https://huggingface.co/settings/billing) 页面的“计算使用情况”部分下查看作业的当前账单信息：
 
 有关计费的更多信息可以在 [dedicated Hub documentation](https://huggingface.co/docs/hub/en/billing) 中找到。
 
 ### 建议
 
-#### 设置超时限制创建Job时设置一个`timeout`以确保它不能运行超过一定的持续时间。
+#### 设置超时限制
+
+创建作业时设置`timeout`，以确保其运行不会超过一定的持续时间。
 达到`timeout`持续时间的作业运行将自动停止，其计费也将自动停止。
 以下是使用 CLI 设置超时的方法：
 

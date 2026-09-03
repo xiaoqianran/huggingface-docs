@@ -5,4 +5,4 @@
 本节包含 `huggingface_hub` 类和方法的详尽技术描述。
 
 ### 工作
-https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/jobs.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/jobs.md

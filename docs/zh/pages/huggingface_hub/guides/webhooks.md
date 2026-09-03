@@ -2,17 +2,17 @@
 
 # 网络钩子
 
-Webhook 是 MLOps 相关功能的基础。它们允许您监听特定存储库或属于您感兴趣的特定用户/组织的所有存储库的新更改。本指南将首先解释如何以编程方式管理 Webhook。然后我们将了解如何利用 `huggingface_hub` 创建一个监听 webhook 的服务器并将其部署到空间。
+Webhook 是 MLOps 相关功能的基础。它们允许您监听特定存储库或属于您感兴趣的特定用户/组织的所有存储库的新更改。本指南将首先解释如何以编程方式管理 Webhooks。然后我们将了解如何利用 `huggingface_hub` 创建一个监听 webhook 的服务器并将其部署到空间。
 
 本指南假设您熟悉 Huggingface Hub 上的 Webhook 概念。要了解有关 webhooks 本身的更多信息，您应该首先阅读此 [guide](https://huggingface.co/docs/hub/webhooks)。
 
-## 管理 Webhook
+## 管理 Webhooks
 
 `huggingface_hub` 允许您以编程方式管理您的 webhook。您可以列出现有的 Webhook、创建新的 Webhook，以及更新、启用、禁用或删除它们。本节将指导您完成使用 Hugging Face Hub 的 API 函数的过程。
 
 ### 创建 Webhook
 
-要创建新的 Webhook，请使用 [create_webhook()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_webhook) 并指定应发送有效负载的 URL、应监视哪些事件，并可选择设置域和安全密钥。
+要创建新的 Webhook，请使用 [create_webhook()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_webhook) 并指定应发送有效负载的 URL、应监视哪些事件，并可选择设置域和安全密钥。
 
 ```python
 from huggingface_hub import create_webhook
@@ -44,7 +44,7 @@ Webhook 使用环境变量 `WEBHOOK_PAYLOAD` 中的 Webhook 负载触发作业�
 
 ### 列出 Webhooks
 
-要查看您已配置的所有 Webhook，您可以使用 [list_webhooks()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_webhooks) 列出它们。这对于查看其 ID、URL 和状态很有用。
+要查看您已配置的所有 Webhook，您可以使用 [list_webhooks()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_webhooks) 列出它们。这对于查看其 ID、URL 和状态很有用。
 
 ```python
 from huggingface_hub import list_webhooks
@@ -57,7 +57,7 @@ for webhook in webhooks:
 
 ### 更新 Webhook
 
-如果您需要更改现有 Webhook 的配置，例如 URL 或其监视的事件，您可以使用 [update_webhook()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_webhook) 进行更新。
+如果您需要更改现有 Webhook 的配置，例如 URL 或其监视的事件，您可以使用 [update_webhook()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_webhook) 进行更新。
 
 ```python
 from huggingface_hub import update_webhook
@@ -71,9 +71,9 @@ updated_webhook = update_webhook(
 )
 ```
 
-### 启用和禁用 Webhook
+### 启用和禁用 Webhooks
 
-您可能想要暂时禁用 Webhook 而不将其删除。这可以使用 [disable_webhook()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.disable_webhook) 来完成，并且稍后可以使用 [enable_webhook()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.enable_webhook) 重新启用 Webhook。
+您可能想要暂时禁用 Webhook 而不将其删除。这可以使用 [disable_webhook()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.disable_webhook) 来完成，并且稍后可以使用 [enable_webhook()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.enable_webhook) 重新启用 Webhook。
 
 ```python
 from huggingface_hub import enable_webhook, disable_webhook
@@ -89,7 +89,7 @@ print("Disabled:", disabled_webhook)
 
 ### 删除 Webhook
 
-当不再需要 Webhook 时，可以使用 [delete_webhook()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_webhook) 将其永久删除。
+当不再需要 Webhook 时，可以使用 [delete_webhook()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_webhook) 将其永久删除。
 
 ```python
 from huggingface_hub import delete_webhook
@@ -98,7 +98,7 @@ from huggingface_hub import delete_webhook
 delete_webhook("your-webhook-id")
 ```
 
-### 从 CLI 管理 Webhook
+### 从 CLI 管理 Webhooks
 
 上述所有操作也可以通过 `hf` 命令行界面进行。这对于脚本编写和代理工作流程特别有用。
 
@@ -128,9 +128,9 @@ delete_webhook("your-webhook-id")
 
 ## Webhook 服务器
 
-我们将在本指南部分中使用的基类是[WebhooksServer()](/docs/huggingface_hub/v1.29.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer)。这是一个用于轻松配置服务器的类
-可以从 Huggingface Hub 接收 webhook。该服务器基于 [Gradio](https://gradio.app/) 应用程序。它有一个用户界面
-为您或您的用户显示说明以及用于侦听网络钩子的 API。
+我们将在本指南部分中使用的基类是[WebhooksServer()](/docs/huggingface_hub/v1.30.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer)。这是一个用于轻松配置服务器的类
+可以从 Huggingface Hub 接收 webhooks。该服务器基于 [Gradio](https://gradio.app/) 应用程序。它有一个用户界面
+为您或您的用户显示说明以及用于侦听 Webhook 的 API。
 
 > [!提示]
 > 要查看 Webhook 服务器的运行示例，请查看 [Spaces CI Bot](https://huggingface.co/spaces/spaces-ci-bot/webhook)
@@ -174,12 +174,12 @@ Webhooks are correctly setup and ready to use:
 Go to https://huggingface.co/settings/webhooks to setup your webhooks.
 ```好工作！您刚刚启动了一个 Webhook 服务器！让我们来详细分析一下到底发生了什么：
 
-1. 通过用[webhook_endpoint()](/docs/huggingface_hub/v1.29.0/en/package_reference/webhooks_server#huggingface_hub.webhook_endpoint)修饰函数，在后台创建了一个[WebhooksServer()](/docs/huggingface_hub/v1.29.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer)对象。
+1. 通过用[webhook_endpoint()](/docs/huggingface_hub/v1.30.0/en/package_reference/webhooks_server#huggingface_hub.webhook_endpoint)修饰函数，在后台创建了一个[WebhooksServer()](/docs/huggingface_hub/v1.30.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer)对象。
 如您所见，该服务器是一个在 http://127.0.0.1:7860 上运行的 Gradio 应用程序。如果您在浏览器中打开此 URL，您
 将看到一个登陆页面，其中包含有关已注册 Webhook 的说明。
 2. Gradio 应用程序本质上是一个 FastAPI 服务器。已添加新的 POST 路由`/webhooks/trigger_training`。
 这是监听 webhook 并在触发时运行 `trigger_training` 函数的路由。 FastAPI 将
-自动解析有效负载并将其作为 [WebhookPayload](/docs/huggingface_hub/v1.29.0/en/package_reference/webhooks_server#huggingface_hub.WebhookPayload) 对象传递给函数。这是一个`pydantic`对象
+自动解析有效负载并将其作为 [WebhookPayload](/docs/huggingface_hub/v1.30.0/en/package_reference/webhooks_server#huggingface_hub.WebhookPayload) 对象传递给函数。这是一个`pydantic`对象
 其中包含有关触发 Webhook 的事件的所有信息。
 3. Gradio应用程序还打开了一个隧道来接收来自互联网的请求。这是有趣的部分：你可以
 在 https://huggingface.co/settings/webhooks 上配置指向本地计算机的 Webhook。这对于
@@ -218,7 +218,7 @@ webhook 配置中的秘密。现在，只有具有正确密钥的请求才会被
 
 ### 高级用法
 
-上面的指南解释了设置[WebhooksServer()](/docs/huggingface_hub/v1.29.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer)的最快方法。在本节中，我们将了解如何自定义
+上面的指南解释了设置[WebhooksServer()](/docs/huggingface_hub/v1.30.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer)的最快方法。在本节中，我们将了解如何自定义
 更进一步。
 
 #### 多个端点您可以在同一服务器上注册多个端点。例如，您可能希望触发一个端点
@@ -253,10 +253,10 @@ Webhooks are correctly setup and ready to use:
 
 #### 自定义服务器
 
-为了获得更大的灵活性，您还可以直接创建一个 [WebhooksServer()](/docs/huggingface_hub/v1.29.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer) 对象。如果您愿意，这很有用
+为了获得更大的灵活性，您还可以直接创建一个 [WebhooksServer()](/docs/huggingface_hub/v1.30.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer) 对象。如果您愿意，这很有用
 自定义服务器的登陆页面。您可以通过传递 [Gradio UI](https://gradio.app/docs/#blocks) 来做到这一点
 这将覆盖默认的。例如，您可以为用户添加说明或手动添加表单
-触发 webhook。创建 [WebhooksServer()](/docs/huggingface_hub/v1.29.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer) 时，您可以使用以下方法注册新的 webhooks
+触发 webhook。创建 [WebhooksServer()](/docs/huggingface_hub/v1.30.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer) 时，您可以使用以下方法注册新的 webhooks
 `add_webhook()` 装饰器。
 
 这是一个完整的例子：
@@ -286,11 +286,11 @@ async def goodbye(payload: WebhookPayload):
 # 5. Start server (optional)
 app.launch()
 ```1. 我们使用 Gradio 块定义自定义 UI。此 UI 将显示在服务器的登陆页面上。
-2. 我们创建一个具有自定义 UI 和密钥的 [WebhooksServer()](/docs/huggingface_hub/v1.29.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer) 对象。秘密是可选的，可以设置
+2. 我们创建一个具有自定义 UI 和密钥的 [WebhooksServer()](/docs/huggingface_hub/v1.30.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer) 对象。秘密是可选的，可以设置
 `WEBHOOK_SECRET` 环境变量。
 3. 我们注册一个具有显式名称的 Webhook。这将在`/webhooks/say_hello`处创建一个端点。
 4. 我们使用隐式名称注册一个 Webhook。这将在`/webhooks/goodbye`处创建一个端点。
 5.我们启动服务器。这是可选的，因为您的服务器将在脚本结束时自动启动。
 
 ### 引擎盖下的沙箱
-https://huggingface.co/docs/huggingface_hub/v1.29.0/concepts/sandbox.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/concepts/sandbox.md

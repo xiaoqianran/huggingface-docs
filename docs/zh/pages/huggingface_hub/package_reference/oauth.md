@@ -10,7 +10,7 @@ OAuth 是访问委托的开放标准，通常用于授予应用程序对用户�
 - 成功登录后，提供商会使用令牌重定向回来。
 - FastAPI 验证此令牌并使用它来授权用户或获取用户配置文件数据。
 
-这种方法有助于避免直接处理密码，并将身份管理工作转移给受信任的提供商。
+这种方法有助于避免直接处理密码，并将身份管理工作交给受信任的提供商。
 
 # FastAPI 中的 Hugging Face OAuth 集成
 
@@ -47,14 +47,14 @@ def greet_json(request: Request):
 huggingface_hub.attach_huggingface_oauth(app: fastapi.FastAPI, route_prefix: str = '/')
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_oauth.py#L124)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_oauth.py#L124)
 
 将 OAuth 端点添加到 FastAPI 应用程序以启用使用 Hugging Face 的 OAuth 登录。
 
 使用方法：
 - 在 FastAPI 应用程序上调用此方法以添加 OAuth 端点。
 - 在您的路由处理程序中，调用 `parse_huggingface_oauth(request)` 来检索 OAuth 信息。
-- 如果用户登录，则会返回一个包含用户信息的[OAuthInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/oauth#huggingface_hub.OAuthInfo)对象。如果不是，则返回`None`。
+- 如果用户登录，则会返回一个包含用户信息的[OAuthInfo](/docs/huggingface_hub/v1.30.0/en/package_reference/oauth#huggingface_hub.OAuthInfo)对象。如果不是，则返回`None`。
 - 在您的应用中，确保添加指向 `/oauth/huggingface/login` 和 `/oauth/huggingface/logout` 的链接，以便用户登录和退出。
 
 示例：
@@ -83,16 +83,16 @@ def greet_json(request: Request):
 huggingface_hub.parse_huggingface_oauth(request: fastapi.Request)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_oauth.py#L191)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_oauth.py#L191)
 
-以 [OAuthInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/oauth#huggingface_hub.OAuthInfo) 对象的形式返回登录用户的信息。
+以 [OAuthInfo](/docs/huggingface_hub/v1.30.0/en/package_reference/oauth#huggingface_hub.OAuthInfo) 对象的形式返回登录用户的信息。
 
 为了灵活性和面向未来，这种方法的解析非常宽松，不会引发错误。
 缺失字段设置为 `None`，且不发出警告。
 
 如果用户未登录（会话 cookie 中没有信息），则返回`None`。
 
-有关如何使用此方法的示例，请参阅[attach_huggingface_oauth()](/docs/huggingface_hub/v1.29.0/en/package_reference/oauth#huggingface_hub.attach_huggingface_oauth)。
+有关如何使用此方法的示例，请参阅[attach_huggingface_oauth()](/docs/huggingface_hub/v1.30.0/en/package_reference/oauth#huggingface_hub.attach_huggingface_oauth)。
 
 ### OAuthOrgInfo[[huggingface_hub.OAuthOrgInfo]]
 
@@ -102,7 +102,7 @@ huggingface_hub.parse_huggingface_oauth(request: fastapi.Request)
 huggingface_hub.OAuthOrgInfo(sub: str, name: str, preferred_username: str, picture: str, plan: str | None = None, can_pay: bool | None = None, role_in_org: str | None = None, security_restrictions: list[typing.Literal['ip', 'token-policy', 'mfa', 'sso']] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_oauth.py#L23)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_oauth.py#L23)
 
 **参数：**
 
@@ -130,7 +130,7 @@ role_in_org (`Optional[str]`, *可选*) ：用户在组织中的角色。拥抱�
 huggingface_hub.OAuthUserInfo(sub: str, name: str, preferred_username: str, email_verified: bool | None, email: str | None, picture: str, profile: str, website: str | None, is_pro: bool, can_pay: bool | None, orgs: list[huggingface_hub._oauth.OAuthOrgInfo] | None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_oauth.py#L57)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_oauth.py#L57)
 
 **参数：**
 
@@ -164,7 +164,7 @@ orgs（`Optional[list[OrgInfo]]`，*可选*）：用户所属的组织列表。�
 huggingface_hub.OAuthInfo(access_token: str, access_token_expires_at: datetime, user_info: OAuthUserInfo, state: str | None, scope: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_oauth.py#L100)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.30.0/src/huggingface_hub/_oauth.py#L100)
 
 **参数：**
 
@@ -172,7 +172,7 @@ access_token (`str`) ：访问令牌。
 
 access_token_expires_at (`datetime.datetime`) ：访问令牌的到期日期。
 
-user_info ([OAuthUserInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/oauth#huggingface_hub.OAuthUserInfo)) ：用户信息。
+user_info ([OAuthUserInfo](/docs/huggingface_hub/v1.30.0/en/package_reference/oauth#huggingface_hub.OAuthUserInfo)) ：用户信息。
 
 state (`str`, *可选*) ：在对 OAuth 提供者的原始请求中传递给 OAuth 提供者的状态。
 
@@ -181,4 +181,4 @@ state (`str`, *可选*) ：在对 OAuth 提供者的原始请求中传递给 OAu
 有关 OAuth 登录的信息。
 
 ### 沙箱
-https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/sandbox.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/sandbox.md

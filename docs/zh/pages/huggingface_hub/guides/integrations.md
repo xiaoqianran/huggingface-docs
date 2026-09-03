@@ -27,8 +27,8 @@ Hugging Face Hub 让社区托管和共享模型变得简单。它支持
 将库集成到 Hub 的第一种方法是实际实现 `push_to_hub` 和 `from_pretrained`
 自己的方法。这使您可以完全灵活地选择需要上传/下载的文件以及如何处理输入
 具体到您的框架。您可以参考[upload files](./upload)和[download files](./download)两个指南
-详细了解如何做到这一点。例如，这就是 FastAI 集成的实现方式（参见 [push_to_hub_fastai()](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.push_to_hub_fastai)
-和[from_pretrained_fastai()](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.from_pretrained_fastai)）。
+详细了解如何做到这一点。例如，这就是 FastAI 集成的实现方式（参见 [push_to_hub_fastai()](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.push_to_hub_fastai)
+和[from_pretrained_fastai()](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.from_pretrained_fastai)）。
 
 库之间的实现可能有所不同，但工作流程通常相似。
 
@@ -114,25 +114,25 @@ def push_to_hub(model: MyModelClass, repo_name: str) -> None:
 模型以及加载、运行、训练和评估它的方法。我们的方法是扩展此类以包括上传和
 使用 mixins 下载功能。 [Mixin](https://stackoverflow.com/a/547714) 是一个旨在扩展
 具有一组使用多重继承的特定功能的现有类。 `huggingface_hub`提供了自己的mixin，
-[ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin)。这里的关键是理解它的行为以及如何定制它。
+[ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin)。这里的关键是理解它的行为以及如何定制它。
 
-[ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) 类实现 3 个 *public* 方法（`push_to_hub`、`save_pretrained` 和 `from_pretrained`）。那些
-是您的用户将调用以使用您的库加载/保存模型的方法。 [ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin)也定义了2
+[ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) 类实现 3 个 *public* 方法（`push_to_hub`、`save_pretrained` 和 `from_pretrained`）。那些
+是您的用户将调用以使用您的库加载/保存模型的方法。 [ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin)也定义了2
 *私有*方法（`_save_pretrained`和`_from_pretrained`）。这些是您必须实施的。所以要整合
-您的图书馆，您应该：1. 让你的Model类继承[ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin)。
+您的图书馆，您应该：1. 让你的Model类继承[ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin)。
 2. 实现私有方法：
-    - [_save_pretrained()](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin._save_pretrained)：方法将目录路径作为输入并将模型保存到其中。
+    - [_save_pretrained()](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin._save_pretrained)：方法将目录路径作为输入并将模型保存到其中。
     您必须在此方法中编写转储模型的所有逻辑：模型卡、模型权重、配置文件、
     培训日志和数据。该模型的任何相关信息都必须通过该方法处理。
     [Model Cards](https://huggingface.co/docs/hub/model-cards) 对于描述您的模型特别重要。检查
     出[our implementation guide](./model-cards)了解更多详情。
-    - [_from_pretrained()](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin._from_pretrained)：**类方法** 将 `model_id` 作为输入并返回实例化
+    - [_from_pretrained()](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin._from_pretrained)：**类方法** 将 `model_id` 作为输入并返回实例化
     模型。该方法必须下载相关文件并加载它们。
 3. 你完成了！
 
-使用 [ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) 的优点是，一旦你处理好文件的序列化/加载，你就可以开始了。您无需担心存储库创建、提交、PR 或修订等问题。 [ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) 还确保公共方法被记录并带有类型注释，并且您将能够在 Hub 上查看模型的下载计数。所有这些都由 [ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) 处理并可供您的用户使用。
+使用 [ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) 的优点是，一旦你处理好文件的序列化/加载，你就可以开始了。您无需担心存储库创建、提交、PR 或修订等问题。 [ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) 还确保公共方法被记录并带有类型注释，并且您将能够在 Hub 上查看模型的下载计数。所有这些都由 [ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) 处理并可供您的用户使用。
 
-### 一个具体的例子：PyTorch我们上面看到的一个很好的例子是[PyTorchModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.PyTorchModelHubMixin)，我们对 PyTorch 框架的集成。这是一个即用型集成。
+### 一个具体的例子：PyTorch我们上面看到的一个很好的例子是[PyTorchModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.PyTorchModelHubMixin)，我们对 PyTorch 框架的集成。这是一个即用型集成。
 
 #### 如何使用它？
 
@@ -258,11 +258,11 @@ class PyTorchModelHubMixin(ModelHubMixin):
 
 ### 高级用法
 
-在上面的部分中，我们快速讨论了 [ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) 的工作原理。在本节中，我们将看到它的一些更高级的功能，以改善您的库与 Hugging Face Hub 的集成。
+在上面的部分中，我们快速讨论了 [ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) 的工作原理。在本节中，我们将看到它的一些更高级的功能，以改善您的库与 Hugging Face Hub 的集成。
 
 #### 模型卡
 
-[ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) 为您生成模型卡。模型卡是模型附带的文件，提供有关模型的重要信息。在底层，模型卡是带有附加元数据的简单 Markdown 文件。模型卡对于可发现性、可重复性和共享至关重要！查看[Model Cards guide](https://huggingface.co/docs/hub/model-cards)了解更多详情。半自动生成模型卡是确保您的库推送的所有模型共享通用元数据的好方法：`library_name`、`tags`、`license`、`pipeline_tag` 等。这使得您的库支持的所有模型都可以在 Hub 上轻松搜索，并为登录 Hub 的用户提供一些资源链接。继承[ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin)时可以直接定义元数据：
+[ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) 为您生成模型卡。模型卡是模型附带的文件，提供有关模型的重要信息。在底层，模型卡是带有附加元数据的简单 Markdown 文件。模型卡对于可发现性、可重复性和共享至关重要！查看[Model Cards guide](https://huggingface.co/docs/hub/model-cards)了解更多详情。半自动生成模型卡是确保您的库推送的所有模型共享通用元数据的好方法：`library_name`、`tags`、`license`、`pipeline_tag` 等。这使得您的库支持的所有模型都可以在 Hub 上轻松搜索，并为登录 Hub 的用户提供一些资源链接。继承[ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin)时可以直接定义元数据：
 
 ```py
 class UniDepthV1(
@@ -327,7 +327,7 @@ class UniDepthV1(nn.Module, PyTorchModelHubMixin, ...):
       return card
 ```
 
-#### 配置[ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) 为您处理模型配置。当您实例化模型并将其序列化到 `config.json` 文件中时，它会自动检查输入值。这有两个好处：
+#### 配置[ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin) 为您处理模型配置。当您实例化模型并将其序列化到 `config.json` 文件中时，它会自动检查输入值。这有两个好处：
 1. 用户将能够使用与您完全相同的参数重新加载模型。
 2. 拥有 `config.json` 文件会自动启用集线器上的分析（即“下载”计数）。
 
@@ -351,7 +351,7 @@ model.save_pretrained(...)
 
 # config.json contains passed and default values
 {"value": "my_value", "size": 3}
-```但是如果一个值无法序列化为 JSON 该怎么办？默认情况下，保存配置文件时将忽略该值。但是，在某些情况下，您的库已经期望自定义对象作为无法序列化的输入，并且您不希望更新内部逻辑来更新其类型。不用担心！当继承[ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin)时，您可以传递任何类型的自定义编码器/解码器。这需要更多的工作，但可以确保在将库与 Hub 集成时，内部逻辑不会受到影响。
+```但是如果一个值无法序列化为 JSON 该怎么办？默认情况下，保存配置文件时将忽略该值。但是，在某些情况下，您的库已经期望自定义对象作为无法序列化的输入，并且您不希望更新内部逻辑来更新其类型。不用担心！当继承[ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin)时，您可以传递任何类型的自定义编码器/解码器。这需要更多的工作，但可以确保在将库与 Hub 集成时，内部逻辑不会受到影响。
 
 这是一个具体示例，其中类需要 `argparse.Namespace` 配置作为输入：
 
@@ -397,12 +397,12 @@ class VoiceCraft(
 您的框架可能有一些需要解决的特殊性。本指南仅提供指导和
 关于如何处理集成的想法。无论如何，如果您有任何疑问，请随时与我们联系！
 
-|           整合|                                                      使用助手 |                                     使用[ModelHubMixin](/docs/huggingface_hub/v1.29.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin)|
+|           整合|                                                      使用助手|                                     使用[ModelHubMixin](/docs/huggingface_hub/v1.30.0/en/package_reference/mixins#huggingface_hub.ModelHubMixin)|
 | :--------------------------: | :--------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------: |
 |         用户体验 |                                `model = load_from_hub(...)``push_to_hub(model, ...)` |               `model = MyModel.from_pretrained(...)``model.push_to_hub(...)` ||           灵活性 |                                 非常灵活。您完全控制实施。                                  |                    灵活性较差。您的框架必须有一个模型类。                    |
-|           保养|更多维护以添加对配置和新功能的支持。可能还需要修复用户报告的问题。 |维护较少，因为与 Hub 的大部分交互都是在`huggingface_hub` 中实现的。 |
+|           保养|更多维护以添加对配置和新功能的支持。可能还需要修复用户报告的问题。 |维护较少，因为与 Hub 的大部分交互都是在 `huggingface_hub` 中实现的。 |
 |文档/类型注释 |                                                 需要手动编写。                                                  |                             部分由`huggingface_hub`处理。                             |
-|        下载计数器 |                                                 需手动处理。                                                  |                      如果类具有 `config` 属性，则默认启用。                      ||           型号卡|                                                  需要手动处理 |                       默认生成带有library_name、标签等。
+|        下载计数器|                                                 需手动处理。                                                  |                      如果类具有 `config` 属性，则默认启用。                      ||           型号卡|                                                  需要手动处理 |                       默认生成带有library_name、标签等。
 
 ### 管理您的空间
-https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/manage-spaces.md
+https://huggingface.co/docs/huggingface_hub/v1.30.0/guides/manage-spaces.md
