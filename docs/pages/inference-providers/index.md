@@ -844,7 +844,7 @@ Find out more about Image To Image [here](../tasks/image-to-image).
 
 <InferenceSnippet
     pipeline=image-to-image
-    providersMapping={ {"fal-ai":{"modelId":"black-forest-labs/FLUX.2-dev","providerModelId":"fal-ai/flux-2/edit"} } }
+    providersMapping={ {"fal-ai":{"modelId":"ScottzillaSystems/qwen-image-edit-plus-nsfw-lora","providerModelId":"fal-ai/qwen-image-edit-2511/lora"} } }
 />
 
 ### Text To Image
@@ -907,7 +907,7 @@ Find out more about Image To Image [here](../tasks/image-to-image).
 
 <InferenceSnippet
     pipeline=image-to-image
-    providersMapping={ {"wavespeed":{"modelId":"black-forest-labs/FLUX.2-dev","providerModelId":"wavespeed-ai/flux-2-dev/edit"} } }
+    providersMapping={ {"wavespeed":{"modelId":"ScottzillaSystems/qwen-image-edit-plus-nsfw-lora","providerModelId":"wavespeed-ai/qwen-image/edit-2511-lora"} } }
 />
 
 ### Text To Image
@@ -1228,7 +1228,7 @@ Find out more about Feature Extraction [here](../tasks/feature-extraction).
 
 <InferenceSnippet
     pipeline=feature-extraction
-    providersMapping={ {"hf-inference":{"modelId":"microsoft/harrier-oss-v1-0.6b","providerModelId":"microsoft/harrier-oss-v1-0.6b"} } }
+    providersMapping={ {"hf-inference":{"modelId":"BAAI/bge-small-en-v1.5","providerModelId":"BAAI/bge-small-en-v1.5"} } }
 />
 
 ### Fill Mask

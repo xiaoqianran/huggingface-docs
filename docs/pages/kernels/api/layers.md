@@ -10,7 +10,7 @@
 kernels.use_kernel_forward_from_hub(layer_name: str, condition: Callable[['nn.Module'], bool] | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L323)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L324)
 
 **Parameters:**
 
@@ -137,7 +137,7 @@ model = MyModel()
 kernels.use_kernelized_func(*args: Callable)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L400)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L401)
 
 **Parameters:**
 
@@ -185,7 +185,7 @@ model = LayerUsingIdentity()
 kernels.replace_kernel_forward_from_hub(layer_name: str, condition: Callable[['nn.Module'], bool] | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L291)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L292)
 
 **Parameters:**
 
@@ -580,7 +580,7 @@ are used for inference *with* `torch.compile`.
 kernels.FuncRepository(repo_id: str, func_name: str, revision: str | None = None, version: int | None = None, trust_remote_code: bool | list[str] = False)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L36)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L38)
 
 **Parameters:**
 
@@ -625,7 +625,7 @@ layer_repo_versioned = FuncRepository(
 kernels.LayerRepository(repo_id: str, layer_name: str, revision: str | None = None, version: int | None = None, trust_remote_code: bool | list[str] = False, user_agent: str | dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L43)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L44)
 
 **Parameters:**
 
@@ -663,7 +663,7 @@ layer_repo = LayerRepository(
 kernels.LocalFuncRepository(repo_path: Path, func_name: str)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L150)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L151)
 
 **Parameters:**
 
@@ -698,7 +698,7 @@ layer_repo = LocalFuncRepository(
 kernels.LocalLayerRepository(repo_path: Path, layer_name: str)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L150)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L151)
 
 **Parameters:**
 
@@ -729,7 +729,7 @@ layer_repo = LocalLayerRepository(
 kernels.LockedFuncRepository(repo_id: str, lockfile: pathlib.Path | None = None, func_name: str, trust_remote_code: bool | list[str] = False)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L270)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L269)
 
 **Parameters:**
 
@@ -758,7 +758,7 @@ are locked inside a project.
 kernels.LockedLayerRepository(repo_id: str, lockfile: Path | None = None, layer_name: str, trust_remote_code: bool | list[str] = False)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L201)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L202)
 
 Repository and name of a layer.
 

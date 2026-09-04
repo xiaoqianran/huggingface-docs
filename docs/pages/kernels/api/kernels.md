@@ -276,7 +276,7 @@ The metadata includes the following properties that describe a kernel:
 kernels.RepoInfo(repo_id: str, revision: str)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/hf_hub.py#L81)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/hf_hub.py#L83)
 
 This dataclass stores the origin of the kernel.
 
