@@ -393,16 +393,16 @@
       "translatedAt": "2026-08-14T08:24:20.458Z"
     },
     "hub/jobs-configuration.md": {
-      "hash": "843715ae129e54777c082b692c95cec01d2ea3d7",
-      "translatedAt": "2026-08-29T13:08:10.395Z"
+      "hash": "9849c7c0017b0b3c7c56b5a768965a63a826c981",
+      "translatedAt": "2026-09-05T11:14:37.980Z"
     },
     "hub/jobs-overview.md": {
       "hash": "7dcbb1065730d9c1ddae2f530033e938d988d5ac",
       "translatedAt": "2026-08-14T08:24:21.419Z"
     },
     "hub/jobs-popular-images.md": {
-      "hash": "c625f68f2829475ec345214db549e4dd57fee642",
-      "translatedAt": "2026-08-14T08:24:21.818Z"
+      "hash": "4e385e5cfd86d3f7fae38b67222da018ec57d8d5",
+      "translatedAt": "2026-09-05T11:14:34.432Z"
     },
     "hub/jobs-reference.md": {
       "hash": "6d80c485ccf8265d1ad373e820de3991c06b8f3d",
@@ -2001,10 +2001,10 @@
       "translatedAt": "2026-08-11T13:59:27.535Z"
     }
   },
-  "updatedAt": "2026-09-04T12:05:34.765Z",
+  "updatedAt": "2026-09-05T11:14:37.980Z",
   "stats": {
-    "translated": 0,
-    "skipped": 400,
+    "translated": 2,
+    "skipped": 398,
     "failed": 0,
     "total": 400
   }

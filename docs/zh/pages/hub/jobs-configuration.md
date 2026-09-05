@@ -8,6 +8,17 @@
 
 或者，使用 CLI 中的 `--token` 或 Python 中的 `token` 参数手动传递 Hugging Face 令牌。
 
+## 传递参数
+
+使用 `--` 将作业选项与命令或脚本及其参数分开。之后的选项
+`--`，例如`--help`或`--timeout`，是通过乔布斯传递的，而不是由乔布斯解释的。
+这适用于 UV 和 Docker 作业。
+
+```text
+hf jobs uv run --flavor t4-small -- script.py --early-stopping-patience 3
+               └─ Jobs option ┘    └─ script + arguments ─────────────┘
+```
+
 ## 紫外线工作
 
 指定要运行的 UV 脚本或 python 命令，就像使用 UV 一样：
@@ -27,7 +38,7 @@
 >>> hf jobs uv run --python 3.12 train.py
 ```
 
-命令（或脚本）后面的参数不会解释为 uv 的参数。 uv 的所有选项都必须在命令之前提供，例如 uv run --verbose foo。为了清晰起见，可以使用 `--` 将命令与 jobs/uv 选项分开，例如
+例如，使用 `--` 将参数传递给命令：
 
 ```bash
 >>> hf jobs uv run --with trl-jobs -- trl-jobs sft --model_name Qwen/Qwen3-0.6B --dataset_name trl-lib/Capybara
@@ -43,13 +54,13 @@
 
 ```bash
 >>> hf jobs run ubuntu echo "Hello from the cloud!"
-```作业的所有选项都必须在命令之前提供。为了清晰起见，可以使用 `--` 将命令与 jobs/uv 选项分开，例如
-
-```bash
->>> hf jobs run --token hf_xxx ubuntu -- echo "Hello from the cloud!"
 ```
 
-在 [CLI documentation](https://huggingface.co/docs/huggingface_hub/package_reference/cli#hf-jobs-run) 中找到所有参数的列表。
+在这里，`--help`到达Python而不是显示乔布斯帮助：
+
+```bash
+>>> hf jobs run --flavor cpu-basic python:3.12 -- python --help
+```在 [CLI documentation](https://huggingface.co/docs/huggingface_hub/package_reference/cli#hf-jobs-run) 中找到所有参数的列表。
 
 ## 环境变量和秘密
 
@@ -93,14 +104,14 @@
 ```bash
 # Pass secrets from a local .env.secrets file - they will be encrypted server side
 >>> hf jobs uv run --secrets-file .env.secrets python -c 'import os; print(os.environ["MY_SECRET"])'
-```> [!提示]
+```
+
+> [!提示]
 > 使用 `--secrets HF_TOKEN` 隐式传递您本地的 Hugging Face 令牌。
 > 使用此语法，可以从环境变量中检索机密。
 > 对于`HF_TOKEN`，如果未设置环境变量，它可能会读取位于 Hugging Face 主文件夹中的令牌文件。
 
-## 卷
-
-使用 `-v` 或 `--volume` 将 Hugging Face 存储库（模型、数据集）、[Storage Buckets](./storage-buckets) 或本地目录作为卷装载到作业容器中。 Hub 源使用 `hf://` URL 方案：`hf://[TYPE/]SOURCE:/MOUNT_PATH[:ro]`；本地目录直接作为源传递。
+## 卷使用 `-v` 或 `--volume` 将 Hugging Face 存储库（模型、数据集）、[Storage Buckets](./storage-buckets) 或本地目录作为卷安装在作业容器中。 Hub 源使用 `hf://` URL 方案：`hf://[TYPE/]SOURCE:/MOUNT_PATH[:ro]`；本地目录直接作为源传递。
 
 > [!提示]
 > 由于装载的文件是延迟获取的，因此装载可以让作业处理远大于其本地磁盘的数据集。有关在作业上安装、流式传输和处理大数据的信息，请参阅[Process Large Datasets](./jobs-large-datasets)。
@@ -112,8 +123,8 @@
 |模型仓库 | `-v hf://openai/gpt-oss-120b:/model` |
 |数据集存储库 | `-v hf://datasets/stanfordnlp/imdb:/data` |
 |储物桶| `-v hf://buckets/username/my-bucket:/mnt` |
-|子文件夹 | `-v hf://datasets/org/my-dataset/train:/data` |
-|本地目录 | `-v ./training-data:/data` |
+|子文件夹| `-v hf://datasets/org/my-dataset/train:/data` |
+|本地目录| `-v ./training-data:/data` |
 
 然后使用已安装的卷作为容器内的本地目录：
 
@@ -132,23 +143,23 @@
 ```bash
 >>> hf jobs run -v hf://datasets/username/my-dataset:/data -v hf://buckets/username/my-bucket:/output \
 ...     python:3.12 python script.py
-```模型和数据集始终以**只读**方式安装。默认情况下，存储桶是**读写**的，这对于保存输出、检查点或中间结果非常有用。使用 `:ro` 以只读模式挂载存储桶：
+```
+
+模型和数据集始终以**只读**方式安装。默认情况下，存储桶是**读写**的，这对于保存输出、检查点或中间结果非常有用。使用 `:ro` 以只读模式挂载存储桶：
 
 ```bash
 >>> hf jobs run -v hf://buckets/username/my-bucket:/mnt:ro python:3.12 ls /mnt
 ```
 
-### 本地目录
-
-在作业启动之前，传递本地目录作为源，将其同步到您的私有`jobs-artifacts`[Storage Bucket](./storage-buckets)（自动创建），然后将其安装到容器中。本地目录默认挂载为**只读**；使用 `:rw` 写入输出：
+### 本地目录传递本地目录作为源，在作业启动之前将其同步到您的私有`jobs-artifacts`[Storage Bucket](./storage-buckets)（自动创建），然后将其安装到容器中。本地目录默认以**只读**方式挂载；使用 `:rw` 写入输出：
 
 ```bash
 >>> hf jobs uv run -v ./pdfs:/input -v ./md-out:/output:rw ocr.py
 ```
 
-重新同步同一目录只会上传新的或修改的文件。要检索作业写入读写卷的文件，请在作业结束后同步其存储桶文件夹 — CLI 在作业启动时打印确切的 `hf buckets sync` 命令。计划作业也可以工作：创建计划时目录会同步一次，并且每个触发器都会安装相同的文件夹。在Python中，使用[⟦T74⟧](https://huggingface.co/docs/huggingface_hub/guides/jobs#mount-local-data)。
+重新同步同一目录只会上传新的或修改的文件。要检索作业写入读写卷的文件，请在作业结束后同步其存储桶文件夹 — CLI 在作业启动时打印确切的 `hf buckets sync` 命令。计划作业也可以工作：创建计划时目录会同步一次，并且每个触发器都会安装相同的文件夹。在Python中，使用[⟦T79⟧](https://huggingface.co/docs/huggingface_hub/guides/jobs#mount-local-data)。
 
-在 Python 中，使用 [⟦T75⟧](https://huggingface.co/docs/huggingface_hub/package_reference/jobs#huggingface_hub.Volume) 类：
+在 Python 中，使用 [⟦T80⟧](https://huggingface.co/docs/huggingface_hub/package_reference/jobs#huggingface_hub.Volume) 类：
 
 ```python
 from huggingface_hub import Volume, run_job
@@ -174,7 +185,9 @@ job = run_job(
 >>> hf jobs uv run --with torch --flavor a10g-small python -c "import torch; print(f'This code ran with the following GPU: {torch.cuda.get_device_name()}')"
 ```
 
-运行此命令将显示以下输出！```
+运行此命令将显示以下输出！
+
+```
 This code ran with the following GPU: NVIDIA A10G
 ```
 
@@ -182,9 +195,7 @@ This code ran with the following GPU: NVIDIA A10G
 
 ```bash
 >>> hf jobs uv run --with trl --flavor a10g-small -s HF_TOKEN -- sft.py --model_name_or_path Qwen/Qwen2-0.5B ...
-```
-
-> [!提示]
+```> [!提示]
 > 有关在 Hugging Face 基础设施上使用 TRL 运行模型训练作业的综合指南，请查看 [TRL Jobs Training documentation](https://huggingface.co/docs/trl/main/en/jobs_training)。它涵盖了微调配方、硬件选择以及有效训练模型的最佳实践。
 
 使用 `hf jobs hardware` 命令查看可用 `--flavor` 选项列表（默认为 `cpu-basic`）：
@@ -255,9 +266,9 @@ Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
 ['https://6a2ab384c4f53f9fc5aa4d4f--8000.hf.jobs']
 ```
 
-## SSH您可以在正在运行的作业中打开交互式 SSH 会话，以直接在容器内进行调试、检查或工作。在创建作业时使用 `--ssh` (CLI) 或 `ssh=True` (Python API) 启用它，然后与 `hf jobs ssh <job_id>` 连接。
+## SSH
 
-仅允许对作业的命名空间具有写入权限的用户（即作业创建者或具有写入权限的所有者组织的成员）。通过在 [https://huggingface.co/settings/keys](https://huggingface.co/settings/keys) 注册的 SSH 公钥执行身份验证。
+您可以在正在运行的作业中打开交互式 SSH 会话，以直接在容器内进行调试、检查或工作。在创建作业时使用 `--ssh` (CLI) 或 `ssh=True` (Python API) 启用它，然后与 `hf jobs ssh <job_id>` 连接。仅允许对作业的命名空间具有写入权限的用户（即作业创建者或具有写入权限的所有者组织的成员）。通过在 [https://huggingface.co/settings/keys](https://huggingface.co/settings/keys) 注册的 SSH 公钥执行身份验证。
 
 SSH 在 `hf jobs run` 和 `hf jobs uv run` 上可用。计划作业不支持它。
 
@@ -306,16 +317,16 @@ ssh 6a2bd1f1871c005b5352ad31@ssh.hf.jobs
 >>> ssh -L 6006:localhost:6006 6a2bd1f1871c005b5352ad31@ssh.hf.jobs
 ```
 
-然后在浏览器中打开[http://localhost:6006](http://localhost:6006)。使用`-R`（远程转发）让作业访问您机器上运行的服务。例如，要将本地数据库或 API 公开给作业：
+然后在浏览器中打开[http://localhost:6006](http://localhost:6006)。
+
+使用`-R`（远程转发）让作业访问您机器上运行的服务。例如，要将本地数据库或 API 公开给作业：
 
 ```bash
 # Make your local port 8080 reachable from inside the Job on port 8080
 >>> ssh -R 8080:localhost:8080 6a2bd1f1871c005b5352ad31@ssh.hf.jobs
 ```
 
-## 超时
-
-作业有默认超时（30 分钟），之后它们将自动停止。在运行模型训练等长时间运行的任务时，了解这一点很重要。
+## 超时作业有一个默认超时（30 分钟），之后它们将自动停止。在运行模型训练等长时间运行的任务时，了解这一点很重要。
 
 您可以在运行作业时使用 `--timeout` 参数指定自定义超时值。可以通过两种方式指定超时：
 
@@ -351,9 +362,11 @@ ssh 6a2bd1f1871c005b5352ad31@ssh.hf.jobs
 - `d` - 天
 
 > [!警告]
-> 如果您不指定超时，则默认超时将应用于您的作业。对于长时间运行的任务（例如可能需要数小时的模型训练），请确保设置适当的超时以避免作业意外终止。
+> 如果您不指定超时，则默认超时将应用于您的作业。对于模型训练等可能需要数小时的长时间运行的任务，请确保设置适当的超时以避免作业意外终止。
 
-## 命名空间使用 `--namespace` 参数在您的组织帐户下运行作业。确保您使用有权在您的组织帐户下启动和管理作业的令牌登录。
+## 命名空间
+
+使用 `--namespace` 参数在您的组织帐户下运行作业。确保您使用有权在您的组织帐户下启动和管理作业的令牌登录。
 
 ```bash
 >>> hf jobs uv run --namespace my-org-name python -c "print('Running in an org account')"
@@ -365,9 +378,7 @@ ssh 6a2bd1f1871c005b5352ad31@ssh.hf.jobs
 >>> hf jobs uv run --namespace my-org-name --token hf_xxx python -c "print('Running in an org account')"
 ```
 
-## 标签
-
-向作业添加一个或多个标签，以添加一些带有`-l`或`--label`的元数据。
+## 标签向作业添加一个或多个标签，以添加一些带有`-l`或`--label`的元数据。
 您可以稍后使用此类元数据来过滤网站上或 CLI 中的作业。
 
 添加带有 `--label my-label` 的标签或带有 `--label key=value` 的键值标签。键和值可以包含字母、数字、`-` 和 `_`。
@@ -377,7 +388,7 @@ ssh 6a2bd1f1871c005b5352ad31@ssh.hf.jobs
 hf jobs uv run --label fine-tuning --label model=Qwen3-06B --label dataset=Capybara ...
 ```
 
-请注意，多次使用相同的`key`会导致最后一个`key=value`覆盖并丢弃任何先前带有`key`的标签。
+请注意，多次使用相同的 `key` 会导致最后一个 `key=value` 覆盖并丢弃任何先前带有 `key` 的标签。
 
 ### 命名一个工作
 
@@ -387,9 +398,11 @@ hf jobs uv run --label fine-tuning --label model=Qwen3-06B --label dataset=Capyb
 hf jobs run --name daily-report python:3.12 python report.py
 ```
 
-如果您不通过 `--name`，作业将以其 Docker 映像或脚本加上命令的简短哈希值命名，因此同一命令的重新运行共享一个名称，而不同的命令会获得不同的名称（例如，`python-3-12-6b9d662c` 表示在 `python:3.12` 上运行的作业）。
+如果您未通过 `--name`，则作业将以其 Docker 映像或脚本加上命令的简短哈希值来命名，因此同一命令的重新运行共享一个名称，而不同的命令将获得不同的名称（例如，`python-3-12-6b9d662c` 表示在 `python:3.12` 上运行的作业）。
 
-### 更新标签使用 `hf jobs labels` 更新现有作业上的标签。通过`--label`将替换所有现有标签；单独通过 `--name` 可以保留它们：
+### 更新标签
+
+使用 `hf jobs labels` 更新现有作业上的标签。通过`--label`将替换所有现有标签；单独通过 `--name` 可以保留它们：
 
 ```bash
 # Replace the labels on a Job
