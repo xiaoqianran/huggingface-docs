@@ -1566,7 +1566,7 @@ Find out more about Chat Completion (LLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"deepinfra":{"modelId":"deepseek-ai/DeepSeek-V4-Flash-0731","providerModelId":"deepseek-ai/DeepSeek-V4-Flash-0731"} } }
+    providersMapping={ {"deepinfra":{"modelId":"zai-org/GLM-5.3","providerModelId":"zai-org/GLM-5.3"} } }
 conversational />
 
 ### Chat Completion (VLM)
@@ -1750,15 +1750,6 @@ Find out more about Chat Completion (VLM) [here](../tasks/chat-completion).
     pipeline=image-text-to-text
     providersMapping={ {"featherless-ai":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"Qwen/Qwen3.8-27B"} } }
 conversational />
-
-### Text Generation
-
-Find out more about Text Generation [here](../tasks/text-generation).
-
-<InferenceSnippet
-    pipeline=text-generation
-    providersMapping={ {"featherless-ai":{"modelId":"OBLITERATUS/Qwen3.8-27B-OBLITERATED","providerModelId":"OBLITERATUS/Qwen3.8-27B-OBLITERATED"} } }
-/>
 
 ### Function Calling with Inference Providers
 https://huggingface.co/docs/inference-providers/guides/function-calling.md

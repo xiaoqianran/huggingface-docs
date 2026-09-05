@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-04T12:05:34.588659+00:00",
+  "fetchedAt": "2026-09-05T11:14:30.280819+00:00",
   "method": "llms-full-split",
   "ok": 2158,
   "failed": 0,
@@ -5394,7 +5394,7 @@
     },
     {
       "rel": "hub/jobs-popular-images.md",
-      "bytes": 4905,
+      "bytes": 7215,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs-popular-images.md",
       "track": "Hub",
@@ -6690,7 +6690,7 @@
     },
     {
       "rel": "hub/jobs-configuration.md",
-      "bytes": 19194,
+      "bytes": 19361,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs-configuration.md",
       "track": "Hub",
@@ -8040,7 +8040,7 @@
     },
     {
       "rel": "inference-providers/index.md",
-      "bytes": 72120,
+      "bytes": 71788,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/index.md",
       "track": "Inference Providers",
@@ -8130,7 +8130,7 @@
     },
     {
       "rel": "inference-providers/guides/github-actions-code-review.md",
-      "bytes": 101044,
+      "bytes": 100912,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/github-actions-code-review.md",
       "track": "Inference Providers",
@@ -8445,7 +8445,7 @@
     },
     {
       "rel": "kernels/builder/build-variants.md",
-      "bytes": 2276,
+      "bytes": 1787,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/build-variants.md",
       "track": "Kernels",
@@ -19479,7 +19479,7 @@
       "toc": 270,
       "found": 269,
       "written": 269,
-      "full_bytes": 1448831
+      "full_bytes": 1451278
     },
     {
       "pkg": "huggingface_hub",
@@ -19500,14 +19500,14 @@
       "toc": 66,
       "found": 28,
       "written": 28,
-      "full_bytes": 416358
+      "full_bytes": 415894
     },
     {
       "pkg": "kernels",
       "toc": 37,
       "found": 37,
       "written": 37,
-      "full_bytes": 216337
+      "full_bytes": 215848
     },
     {
       "pkg": "lerobot",
