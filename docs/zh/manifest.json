@@ -993,8 +993,8 @@
       "translatedAt": "2026-08-14T08:26:10.778Z"
     },
     "hub/spaces-zerogpu.md": {
-      "hash": "f231a7bcfb41346c4e50a4c720e2a34ab99c2525",
-      "translatedAt": "2026-08-14T08:26:09.171Z"
+      "hash": "f8573b4ea91cf7a30d751368cf14b10ba62fb730",
+      "translatedAt": "2026-09-07T13:27:50.086Z"
     },
     "hub/storage-buckets-integrations.md": {
       "hash": "f1a0ea92a3877788eda77700d33ab6a6a8aa3850",
@@ -2001,10 +2001,10 @@
       "translatedAt": "2026-08-11T13:59:27.535Z"
     }
   },
-  "updatedAt": "2026-09-06T11:37:14.291Z",
+  "updatedAt": "2026-09-07T13:27:50.086Z",
   "stats": {
-    "translated": 0,
-    "skipped": 400,
+    "translated": 1,
+    "skipped": 399,
     "failed": 0,
     "total": 400
   }

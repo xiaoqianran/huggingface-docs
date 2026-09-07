@@ -11,7 +11,7 @@ ZeroGPU 是一个共享基础设施，可优化 AI 模型和 Hugging Face Spaces
 
 ## 使用和托管 ZeroGPU 空间- **使用现有的 ZeroGPU 空间**
   - ZeroGPU 空间可供所有用户免费使用。 （访问[the curated list](https://huggingface.co/spaces/enzostvs/zero-gpu-spaces)）。
-  - [PRO users](https://huggingface.co/subscribe/pro) 获得额外 8 倍的每日使用配额、GPU 队列中的最高优先级，并且在使用任何 ZeroGPU 空间时可以使用预付费积分超出每日配额。
+  - [PRO users](https://huggingface.co/subscribe/pro) 获得 x8 以上的每日使用配额、GPU 队列中的最高优先级，并且在使用任何 ZeroGPU 空间时可以使用预付费积分超出每日配额。
 - **托管您自己的 ZeroGPU 空间**
   - 免费个人帐户：信誉良好的帐户（经过验证的电子邮件、超过 30 天的帐户）可以免费托管最多 2 个 ZeroGPU 空间。
   - PRO 帐户：[Subscribe to PRO](https://huggingface.co/settings/billing/subscription) 在您的帐户下托管最多 10 个 ZeroGPU 空间。
@@ -46,6 +46,8 @@ ZeroGPU 支持两种 GPU 尺寸
     - 2.9.1  
     - 2.10.0  
     - 2.11.0  
+    - 2.12.1  
+    - 2.13.0  
 
   
 - **Python**：
@@ -65,9 +67,7 @@ ZeroGPU 支持两种 GPU 尺寸
 > [!注意]
 > `@spaces.GPU` 装饰器设计为在非 ZeroGPU 环境中无影响，确保不同设置之间的兼容性。
 
-### 用法示例
-
-```python
+### 用法示例```python
 import spaces
 from diffusers import DiffusionPipeline
 
@@ -85,7 +85,9 @@ gr.Interface(
 ).launch()
 ```
 
-### 模型加载尽管真正的 GPU 仅在 `@spaces.GPU` 函数中可用，但模型必须放置在根模块级别的 `cuda` 上（如上例所示）。
+### 模型加载
+
+尽管真正的 GPU 仅在 `@spaces.GPU` 函数中可用，但模型必须放置在根模块级别的 `cuda` 上（如上例所示）。
 
 不鼓励在`@spaces.GPU`内延迟加载或移动模型到 CUDA，因为它的效率明显较低（CUDA 传输针对启动期间完成的放置进行了优化）。
 
