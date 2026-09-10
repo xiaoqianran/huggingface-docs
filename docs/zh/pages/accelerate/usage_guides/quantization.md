@@ -32,7 +32,7 @@ pip install huggingface_hub
 
 ### 它是如何工作的
 
-首先，我们需要初始化我们的模型。为了节省内存，我们可以使用上下文管理器[init_empty_weights()](/docs/accelerate/v1.14.0/en/package_reference/big_modeling#accelerate.init_empty_weights)初始化一个空模型。 
+首先，我们需要初始化我们的模型。为了节省内存，我们可以使用上下文管理器[init_empty_weights()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.init_empty_weights)初始化一个空模型。 
 
 让我们从 minGPT 库中获取 GPT2 模型。
 ```py
@@ -55,7 +55,7 @@ from huggingface_hub import snapshot_download
 weights_location = snapshot_download(repo_id="marcsun13/gpt2-xl-linear-sharded")
 ```
 
-最后，您需要使用 [BnbQuantizationConfig](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.utils.BnbQuantizationConfig) 设置量化配置。
+最后，您需要使用 [BnbQuantizationConfig](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.BnbQuantizationConfig) 设置量化配置。
 
 以下是 8 位量化的示例：
 ```py
@@ -67,7 +67,7 @@ bnb_quantization_config = BnbQuantizationConfig(load_in_8bit=True, llm_int8_thre
 ```py
 from accelerate.utils import BnbQuantizationConfig
 bnb_quantization_config = BnbQuantizationConfig(load_in_4bit=True, bnb_4bit_compute_dtype=torch.bfloat16, bnb_4bit_use_double_quant=True, bnb_4bit_quant_type="nf4")
-```要使用所选配置量化空模型，您需要使用 [load_and_quantize_model()](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.utils.load_and_quantize_model)。 
+```要使用所选配置量化空模型，您需要使用 [load_and_quantize_model()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.load_and_quantize_model)。 
 
 ```py
 from accelerate.utils import load_and_quantize_model
@@ -76,7 +76,7 @@ quantized_model = load_and_quantize_model(empty_model, weights_location=weights_
 
 ### 保存和加载8位模型
 
-您可以使用 [save_model()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.save_model) 加速保存 8 位模型。 
+您可以使用 [save_model()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.save_model) 加速保存 8 位模型。 
 
 ```py
 from accelerate import Accelerator
@@ -112,13 +112,13 @@ device_map = {
 ```
 ### 微调量化模型无法在这些模型上执行纯 8 位或 4 位训练。但是，您可以利用参数高效微调方法 (PEFT) 来训练这些模型，并在其之上训练例如适配器。请查看 [peft](https://github.com/huggingface/peft) 库了解更多详细信息。
 
-目前，您无法在任何量化模型之上添加适配器。但是，借助 Transformers 模型适配器的官方支持，您可以对量化模型进行微调。如果您想微调 Transformers 模型，请按照此 [documentation](https://huggingface.co/docs/transformers/main_classes/quantization) 进行操作。查看此[demo](https://colab.research.google.com/drive/1VoYNfYDKcKRQRor98Zbf2-9VQTtGJ24k?usp=sharing)，了解如何微调 4 位 Transformers 模型。 
+目前，您无法在任何量化模型之上添加适配器。然而，有了 Transformers 模型适配器的官方支持，您可以对量化模型进行微调。如果您想微调 Transformers 模型，请按照此 [documentation](https://huggingface.co/docs/transformers/main_classes/quantization) 进行操作。查看此[demo](https://colab.research.google.com/drive/1VoYNfYDKcKRQRor98Zbf2-9VQTtGJ24k?usp=sharing)，了解如何微调 4 位 Transformers 模型。 
 
-请注意，加载模型进行训练时不需要传递`device_map`。它会自动将您的模型加载到 GPU 上。请注意，`device_map=auto` 只能用于推理。
+请注意，加载模型进行训练时不需要传递`device_map`。它会自动将您的模型加载到您的 GPU 上。请注意，`device_map=auto` 只能用于推理。
 
 ### 示例演示 - 在 Google Colab 上运行 GPT2 1.5b
 
 查看 Google Colab [demo](https://colab.research.google.com/drive/1T1pOgewAWVpR9gKpaEWw4orOrzPFb3yM?usp=sharing) 在 GPT2 模型上运行量化模型。 GPT2-1.5B模型检查点位于使用6GB内存的FP32中。量化后，8位模块使用1.6GB，4位模块使用1.2GB。
 
-### 将本地 SGD 与 Accelerate 结合使用
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/local_sgd.md
+### 英特尔高迪
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/gaudi.md

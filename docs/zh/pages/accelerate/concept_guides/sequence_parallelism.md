@@ -9,7 +9,7 @@
 ## 为什么要进行序列并行？
 
 随着大型语言模型和最近推理模型的出现，序列长度迅速增长。这与注意力的二次记忆复杂性相结合，导致需要更有效的方法来训练长序列模型。
-序列长度为 128k，对于 `bf16` 精度，注意矩阵的内存需求为 `128k * 128k * 2 bytes * num_heads = ~32 GB * num_heads`，考虑到普通的注意实现。诚然，使用 `flash attention` 或 `SDPA` 不会实现这些注意力权重，这会急剧下降，但内存需求的增长仍然相当可观。Ulysses 序列并行性允许我们沿着序列维度对注意力计算的输入进行分片并正常计算注意力，但在每个 GPU 上仅使用一部分注意力头。有了这个，我们可以使用更多工具训练具有长序列的模型，扩展到 15M+ 序列长度。要了解如何使用 TiledMLP、Liger-Kernel、激活检查点卸载到 cpu 以及其他一些技巧来增强 Ulysses SP，请参阅论文：[Arctic Long Sequence Training: Scalable And Efficient Training For Multi-Million Token Sequences](https://arxiv.org/abs/2506.13996)。
+序列长度为 128k，考虑到普通的注意实现，对于 `bf16` 精度，注意矩阵的内存要求是`128k * 128k * 2 bytes * num_heads = ~32 GB * num_heads`。诚然，使用 `flash attention` 或 `SDPA` 不会实现这些注意力权重，这会急剧下降，但内存需求的增长仍然相当可观。Ulysses 序列并行性允许我们沿着序列维度对注意力计算的输入进行分片并正常计算注意力，但在每个 GPU 上仅使用一部分注意力头。有了这个，我们可以使用更多工具训练具有长序列的模型，扩展到 15M+ 序列长度。要了解如何使用 TiledMLP、Liger-Kernel、激活检查点卸载到 cpu 以及其他一些技巧来增强 Ulysses SP，请参阅论文：[Arctic Long Sequence Training: Scalable And Efficient Training For Multi-Million Token Sequences](https://arxiv.org/abs/2506.13996)。
 
 ## Ulysses SP 与 FSDP CP 有何不同
 
@@ -18,14 +18,14 @@
 以下文章非常详细地解释了这两种技术之间的差异：
 - https://insujang.github.io/2024-01-11/tensor-parallelism-and-sequence-parallelism-detailed-analysis/
 - https://huggingface.co/blog/exploding-gradients/ulysses-ring-attention改编自其中一篇文章的快速摘要：
-- Ulysses SP 的通信开销相对较低，但受到 Attention Head 数量的限制，因此对网络拓扑有一定的要求（对于单个副本来说，Attention Head 的数量必须能被参与 GPU 的数量整除）。全方位通信对延迟很敏感，并且需要 Deepspeed。
+- Ulysses SP 的通信开销相对较低，但受到 Attention Head 数量的限制，因此对网络拓扑有一定的要求（对于单个副本来说，Attention Head 的数量必须能被参与 GPU 的数量整除）。多对多通信对延迟很敏感，并且需要 Deepspeed。
 - FSDP CP Ring-Attention的P2P环通信没有前述的可分性要求，但通信量较高。
 
 最后，应该可以按照论文[USP: A Unified Sequence Parallelism Approach for Long Context Generative AI](https://arxiv.org/abs/2405.07719)中的说明结合 SP + CP 以支持更长的序列长度，尽管这尚未集成到🤗`accelerate`中。
 
 ## 支持的序列并行后端
 
-目前唯一的序列并行后端是`deepspeed`，它来自现代化的Ulysses SP，它是[Arctic Long Sequence Training technology](https://arxiv.org/abs/2506.13996)的一部分。如果您想将其直接集成到您自己的代码中，还有一个[tutorial](https://www.deepspeed.ai/tutorials/ulysses-alst-sequence-parallelism/)。
+目前唯一的序列并行后端是`deepspeed`，它来自现代化的 Ulysses SP，它是[Arctic Long Sequence Training technology](https://arxiv.org/abs/2506.13996)的一部分。如果您想将其直接集成到您自己的代码中，还有一个[tutorial](https://www.deepspeed.ai/tutorials/ulysses-alst-sequence-parallelism/)。
 
 ## 如何使用序列并行性？
 
@@ -88,7 +88,7 @@ accelerator = Accelerator(
 )
 ```- `sp_backend`：此处设置为`deepspeed`
 - `sp_size` 是序列并行度 - 在上面的示例中为 4，因此将使用 4 个 GPU 来处理单个批次（同时在同一 GPU 上执行 DP=4）
-- `sp_seq_length`和`sp_seq_length_is_variable`用于处理序列长度。如果`sp_seq_length_is_variable=True`后端将使用可能在批次之间变化的序列长度，在这种情况下`sp_seq_length`值可以设置为可被序列并行度整除的任何值或根本不设置。在这种情况下，在每个`forward`上，序列变量将从输入中导出。如果`False`，则`seq_length`需要匹配批次的序列长度维度，然后必须对其进行填充以使其始终相同。默认为`True`。
+- `sp_seq_length`和`sp_seq_length_is_variable`用于处理序列长度。如果`sp_seq_length_is_variable=True`后端将使用可能在批次之间变化的序列长度，在这种情况下，`sp_seq_length`值可以设置为可被序列并行度整除的任何值或根本不设置。在这种情况下，在每个`forward`上，序列变量将从输入中导出。如果`False`，则`seq_length`需要匹配批次的序列长度维度，然后必须对其进行填充以使其始终相同。默认为`True`。
 - `sp_attn_implementation` 是 `sdpa`、`flash_attention_2` 或 `flash_attention_3` 之一。此序列并行实现使用`position_ids`而不是`attention_mask`，因此，`eager`不能在这里工作，直到它支持与`position_ids`一起使用。另请注意，`sdpa` 无法正确处理多个样本合并为一个的情况；它将把整个样本作为一个整体来处理。如果未合并样本，`sdpa` 将正常工作。因此，Flash Attention 应该是理想的选择，因为它始终有效。您也可以使用环境变量来完成相同的操作，而不是在 `DeepSpeedSequenceParallelConfig` 对象中设置这些值 - 这里它们对应于上面列表的末尾。
 - `PARALLELISM_CONFIG_SP_BACKEND`
 - `PARALLELISM_CONFIG_SP_SEQ_LENGTH`
@@ -114,7 +114,7 @@ parallelism_config:
 
 ```
 
-如前所述，Ulysses 序列并行性通常与数据并行性重叠 - 相同的等级用于提供唯一的数据流并执行 Ulysses 序列并行性。但您也可以像这样创建副本：
+如前所述，Ulysses 序列并行性通常与数据并行性重叠 - 相同的等级用于馈送唯一的数据流并执行 Ulysses 序列并行性。但您也可以像这样创建副本：
 
 ```python
 # Example: 4 GPUs with 2D parallelism (SP=2, DP=2)
@@ -129,7 +129,7 @@ parallelism_config = ParallelismConfig(
 ```
 这里我们使用 4 个 GPU，带有 2 个序列并行副本。 Deepspeed-ZeRO 是驱动数据并行性的因素。
 
-请注意，[UlyssesSPDataLoaderAdapter](https://github.com/deepspeedai/DeepSpeed/blob/64c0052fa08438b4ecf4cae30af15091a92d2108/deepspeed/runtime/sequence_parallel/ulysses_sp.py#L442)内部隐藏着很多魔法。它在幕后使用，包装您的原始 DataLoader 对象，但如果您遇到任何问题，您应该意识到它。在批次在参与的排名之间进行分片之前，它还会自动将正确的`shift_labels`注入批次字典中。现在，开始使用 ALST/UlyssesSP 的唯一剩余部分是使用可微分 `all_gather` 来汇总各个等级的损失，以获得正确的梯度。下面的代码可以做到这一点，同时还排除任何用 `-100` 标记屏蔽的内容，以获得正确的平均值：
+请注意，[UlyssesSPDataLoaderAdapter](https://github.com/deepspeedai/DeepSpeed/blob/64c0052fa08438b4ecf4cae30af15091a92d2108/deepspeed/runtime/sequence_parallel/ulysses_sp.py#L442)内部隐藏着很多魔法。它在幕后使用，包装您的原始 DataLoader 对象，但如果您遇到任何问题，您应该意识到它。在批次在参与的队列中进行分片之前，它还会自动将正确的`shift_labels`注入批次字典中。现在，开始使用 ALST/UlyssesSP 的唯一剩余部分是使用可微的 `all_gather` 来汇总各个等级的损失，以获得正确的梯度。下面的代码可以做到这一点，同时还排除任何用 `-100` 标记屏蔽的内容，以获得正确的平均值：
 
 ```python
 sp_size = parallelism_config.sp_size if parallelism_config is not None else 1
@@ -182,5 +182,5 @@ for iter, batch in enumerate(dl):
 [！警告]
 > 这个 API 相当新，仍处于实验阶段。虽然我们努力提供稳定的 API，但公共 API 的一些小部分将来可能会发生变化。由于这是 Deepspeed 后端，因此应用通常的 Deepspeed 配置，因此您可以将序列并行性与优化器状态和/或权重卸载相结合，以释放更多 GPU 内存并实现更长的序列长度。该技术已经过测试，可与 DeepSpeed ZeRO 第 2 阶段和第 3 阶段配合使用。
 
-### 🤗`accelerate` 中的上下文并行
-https://huggingface.co/docs/accelerate/v1.14.0/concept_guides/context_parallelism.md
+###加速内部机制
+https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/internal_mechanism.md

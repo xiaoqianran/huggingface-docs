@@ -58,11 +58,11 @@ use_cpu: false
 accelerate launch examples/nlp_example.py
 ```
 
-目前，`Accelerate`通过CLI支持以下配置：`fsdp_sharding_strategy`：[1] FULL_SHARD（分片优化器状态、梯度和参数）、[2] SHARD_GRAD_OP（分片优化器状态和梯度）、[3] NO_SHARD (DDP)、[4] HYBRID_SHARD（每个节点内的分片优化器状态、梯度和参数，每个节点都有完整副本）、[5] HYBRID_SHARD_ZERO2 （在每个节点内对优化器状态和梯度进行分片，同时每个节点都有完整副本）。更多信息请参考官方[PyTorch docs](https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.ShardingStrategy)。
+目前，`Accelerate`通过CLI支持以下配置：`fsdp_sharding_strategy`：[1] FULL_SHARD（分片优化器状态、梯度和参数）、[2] SHARD_GRAD_OP（分片优化器状态和梯度）、[3] NO_SHARD (DDP)、[4] HYBRID_SHARD（每个节点内的分片优化器状态、梯度和参数，每个节点都有完整副本）、[5] HYBRID_SHARD_ZERO2 （对每个节点内的分片优化器状态和梯度进行分片，同时每个节点都有完整副本）。更多信息请参考官方[PyTorch docs](https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.ShardingStrategy)。
 
 `fsdp_offload_params` : 决定是否将参数和梯度卸载到CPU
 
-`fsdp_auto_wrap_policy`：[1] TRANSFORMER_BASED_WRAP，[2] SIZE_BASED_WRAP，[3] NO_WRAP`fsdp_transformer_layer_cls_to_wrap`：仅适用于变形金刚。当使用`fsdp_auto_wrap_policy=TRANSFORMER_BASED_WRAP`时，用户可以提供以逗号分隔的变压器层类名称字符串（区分大小写）进行换行，例如`BertLayer`、`GPTJBlock`、`T5Block`、`BertLayer,BertEmbeddings,BertSelfOutput`。这很重要，因为共享权重的子模块（例如嵌入层）不应最终出现在不同的 FSDP 包装单元中。使用此策略，每个包含多头注意力的块都会发生包装，后跟几个 MLP 层。包括共享嵌入在内的其余层可以方便地包装在相同的最外层 FSDP 单元中。因此，将其用于基于变压器的模型。如果可能，您可以通过将 `yes` 回答为 `Do you want to use the model's `_no_split_modules` to wrap. It will try to use `model._no_split_modules`，将 `model._no_split_modules` 用于 Transformer 模型。
+`fsdp_auto_wrap_policy`：[1] TRANSFORMER_BASED_WRAP，[2] SIZE_BASED_WRAP，[3] NO_WRAP`fsdp_transformer_layer_cls_to_wrap`：仅适用于变形金刚。使用`fsdp_auto_wrap_policy=TRANSFORMER_BASED_WRAP`时，用户可以提供以逗号分隔的变压器层类名称字符串（区分大小写）进行换行，例如`BertLayer`、`GPTJBlock`、`T5Block`、`BertLayer,BertEmbeddings,BertSelfOutput`。这很重要，因为共享权重的子模块（例如嵌入层）不应最终出现在不同的 FSDP 包装单元中。使用此策略，每个包含多头注意力的块都会发生包装，后跟几个 MLP 层。包括共享嵌入在内的其余层可以方便地包装在相同的最外层 FSDP 单元中。因此，将其用于基于变压器的模型。如果可能，您可以通过将 `yes` 回答为 `Do you want to use the model's `_no_split_modules` to wrap. It will try to use `model._no_split_modules`，将 `model._no_split_modules` 用于 Transformer 模型。
 
 `fsdp_min_num_params`：使用`fsdp_auto_wrap_policy=SIZE_BASED_WRAP`时的最小参数数量。
 
@@ -72,7 +72,7 @@ accelerate launch examples/nlp_example.py
 
 `fsdp_use_orig_params`：如果为True，则在初始化期间允许非均匀`requires_grad`，这意味着支持散布的冻结和可训练参数。此设置在[this post](https://dev-discuss.pytorch.org/t/rethinking-pytorch-fully-sharded-data-parallel-fsdp-from-first-principles/1019)中讨论的参数高效微调等情况下非常有用。此选项还允许拥有多个优化器参数组。在使用 FSDP 准备/包装模型之前创建优化器时，这应该是`True`。
 
-`fsdp_cpu_ram_efficient_loading`：仅适用于变形金刚型号。如果为 True，则只有第一个进程加载预训练模型检查点，而所有其他进程都具有空权重。如果您在通过 `from_pretrained` 方法加载预训练的 Transformers 模型时遇到错误，则应将其设置为 False。当此设置为 True 时，`fsdp_sync_module_states` 也必须为 True，否则除主进程外的所有进程都会具有随机权重，导致训练期间出现意外行为。为此，请确保在调用 Transformers `from_pretrained` 方法之前初始化分布式进程组。使用 Trainer API 时，分布式进程组会在您创建 `TrainingArguments` 类的实例时初始化。`fsdp_sync_module_states`：如果为真，则每个独立包装的 FSDP 单元将广播 0 级的模块参数。
+`fsdp_cpu_ram_efficient_loading`：仅适用于变形金刚型号。如果为 True，则只有第一个进程加载预训练模型检查点，而所有其他进程都具有空权重。如果您在通过 `from_pretrained` 方法加载预训练的 Transformers 模型时遇到错误，则应将其设置为 False。当此设置为 True 时，`fsdp_sync_module_states` 也必须为 True，否则除主进程之外的所有进程都会具有随机权重，导致训练期间出现意外行为。为此，请确保在调用 Transformers `from_pretrained` 方法之前初始化分布式进程组。使用 Trainer API 时，分布式进程组会在您创建 `TrainingArguments` 类的实例时初始化。`fsdp_sync_module_states`：如果为真，则每个单独包装的 FSDP 单元将广播 0 级的模块参数。
 
 如需额外且更细致的控制，您可以通过 `FullyShardedDataParallelPlugin` 指定其他 FSDP 参数。
 创建 `FullyShardedDataParallelPlugin` 对象时，请向其传递不属于加速配置的参数，或者如果您想覆盖它们。
@@ -165,5 +165,5 @@ accelerate merge-weights pytorch_model_fsdp_0/ output_path
 为了获得更多控制，用户可以利用`FullyShardedDataParallelPlugin`。创建此类的实例后，用户可以将其传递给 Accelerator 类实例化。
 有关这些选项的更多信息，请参阅 PyTorch [FullyShardedDataParallel](https://github.com/pytorch/pytorch/blob/0df2e863fbd5993a7b9e652910792bd21a516ff3/torch/distributed/fsdp/fully_sharded_data_parallel.py#L236) 代码。
 
-    对 FSDP 和 DeepSpeed 的异同感兴趣的朋友，请查看[concept guide here](../concept_guides/fsdp_and_deepspeed)！### Mac 上的加速 PyTorch 训练
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/mps.md
+    对 FSDP 和 DeepSpeed 的异同感兴趣的朋友，请查看[concept guide here](../concept_guides/fsdp_and_deepspeed)！### 分布式推理
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/distributed_inference.md

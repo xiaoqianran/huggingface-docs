@@ -58,7 +58,7 @@ accelerate launch examples/nlp_example.py
 > `accelerator.prepare` 目前只能处理同时准备多个模型（并且没有优化器）或单个模型优化器对进行训练。其他尝试（例如，两个模型优化器对）将引发详细错误。要解决此限制，请考虑对每个模型优化器对单独使用`accelerator.prepare`。
 
 **场景2**：分布式CPU训练加速
-我们使用英特尔 oneCCL 进行通信，并与英特尔® MPI 库相结合，在英特尔® 架构上提供灵活、高效、可扩展的集群消息传递。安装指南可参考[here](https://huggingface.co/docs/transformers/perf_train_cpu_many)
+我们使用英特尔 oneCCL 进行通信，并结合英特尔® MPI 库，在英特尔® 架构上提供灵活、高效、可扩展的集群消息传递。安装指南可参考[here](https://huggingface.co/docs/transformers/perf_train_cpu_many)
 
 在你的机器（node0）上运行加速配置：```bash
 $ accelerate config
@@ -133,5 +133,5 @@ export MASTER_ADDR=xxx.xxx.xxx.xxx #node0 ip
 mpirun -f hostfile -n 16 -ppn 4 accelerate launch examples/nlp_example.py
 ```
 
-### 低精度训练方法
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/low_ precision_training.md
+### 使用 Accelerate 执行梯度累积
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/gradient_accumulation.md

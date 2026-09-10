@@ -7,7 +7,7 @@ Accelerate 提供了一个通用的跟踪 API，可用于通过 `Accelerator.log
 
 ## 集成追踪器
 
-目前`Accelerate`支持八个开箱即用的跟踪器：
+目前`Accelerate`支持八个开箱即用的追踪器：
 
 - 张量板
 - 旺德贝 
@@ -40,7 +40,7 @@ accelerator.init_trackers("my_project", config=hps)
 accelerator.log({"train_loss": 1.12, "valid_loss": 0.8}, step=1)
 ```
 
-完成训练后，请确保运行[Accelerator.end_training()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.end_training)，以便所有跟踪器都可以运行其完成功能（如果有）。
+完成训练后，请确保运行[Accelerator.end_training()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.end_training)，以便所有跟踪器都可以运行其完成功能（如果有）。
 ```python
 accelerator.end_training()
 ```
@@ -75,32 +75,32 @@ for iteration in range(config["num_iterations"]):
         accelerator.log({"training_loss": loss}, step=step)
 accelerator.end_training()
 ```如果跟踪器需要一个目录来保存数据，例如`TensorBoard`，则将目录路径传递给`project_dir`。 `project_dir`参数很有用 
-当[ProjectConfiguration](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.utils.ProjectConfiguration)数据类中有其他配置需要组合时。例如，如果记录器仅应在主进程上执行，您可以将 TensorBoard 数据保存到 `project_dir`，其他所有内容都可以记录在 [⟦T25⟧: 
+当[ProjectConfiguration](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.ProjectConfiguration)数据类中有其他配置需要组合时。例如，如果记录器仅应在主进程上执行，您可以将 TensorBoard 数据保存到 `project_dir`，其他所有内容都可以记录在 [⟦T26⟧: 
 
 ⟦T5⟧
 
 ## Implementing Custom Trackers
 
-To implement a new tracker to be used in ⟦T26⟧, a new one can be made through implementing the ⟦T27⟧ class.
+To implement a new tracker to be used in ⟦T27⟧, a new one can be made through implementing the ⟦T28⟧ class.
 Every tracker must implement three functions and have three properties:
-  - ⟦T28⟧: 
-    - Should store a ⟦T29⟧ and initialize the tracker API of the integrated library. 
-    - If a tracker stores their data locally (such as TensorBoard), a ⟦T30⟧ parameter can be added.
-  - ⟦T31⟧: 
-    - Should take in a ⟦T32⟧ dictionary and store them as a one-time experiment configuration
-  - ⟦T33⟧: 
-    - Should take in a ⟦T34⟧ dictionary and a ⟦T35⟧, and should log them to the run
+  - ⟦T29⟧: 
+    - Should store a ⟦T30⟧ and initialize the tracker API of the integrated library. 
+    - If a tracker stores their data locally (such as TensorBoard), a ⟦T31⟧ parameter can be added.
+  - ⟦T32⟧: 
+    - Should take in a ⟦T33⟧ dictionary and store them as a one-time experiment configuration
+  - ⟦T34⟧: 
+    - Should take in a ⟦T35⟧ dictionary and a ⟦T36⟧, and should log them to the run
 
-  - ⟦T36⟧ (⟦T37⟧):
-    - A unique string name for the tracker, such as ⟦T38⟧ for the wandb tracker. 
+  - ⟦T37⟧ (⟦T38⟧):
+    - A unique string name for the tracker, such as ⟦T39⟧ for the wandb tracker. 
     - This will be used for interacting with this tracker specifically
-  - ⟦T39⟧ (⟦T40⟧):
-    - Whether a ⟦T41⟧ is needed for this particular tracker and if it uses one.
-  - ⟦T42⟧: 
-    - This should be implemented as a ⟦T43⟧ function 
-    - Should return the internal tracking mechanism the library uses, such as the ⟦T44⟧ object for ⟦T45⟧.
+  - ⟦T40⟧ (⟦T41⟧):
+    - Whether a ⟦T42⟧ is needed for this particular tracker and if it uses one.
+  - ⟦T43⟧: 
+    - This should be implemented as a ⟦T44⟧ function 
+    - Should return the internal tracking mechanism the library uses, such as the ⟦T45⟧ object for ⟦T46⟧.
 
-Each method should also utilize the [state.PartialState](/docs/accelerate/v1.14.0/en/package_reference/state#accelerate.PartialState) 类的 `logging_dir` 参数中。
+Each method should also utilize the [state.PartialState](/docs/accelerate/v1.15.0/en/package_reference/state#accelerate.PartialState) 类的 `logging_dir` 参数中。
 
 下面是一个与权重和偏差集成的简短示例，仅包含相关信息并仅记录 
 主要流程：
@@ -147,17 +147,34 @@ tracker = MyCustomTracker("some_run_name")
 accelerator = Accelerator(log_with=[tracker, "all"])
 ```
 
-## 访问内部跟踪器 
+### 按名称注册自定义跟踪器
 
-如果可能需要直接与跟踪器进行一些自定义交互，您可以使用 
-[Accelerator.get_tracker()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.get_tracker)方法。只需传入与跟踪器的`.name`属性对应的字符串即可 
+您可以注册一个自定义跟踪器类，以便可以通过其 `name` 选择它，而不是传递实例，就像内置跟踪器一样。当从配置文件或命令行读取要使用的跟踪器时，这很方便：
+
+```python
+from accelerate import Accelerator
+from accelerate.tracking import GeneralTracker, register_tracker_class
+
+class MyCustomTracker(GeneralTracker):
+    name = "my_tracker"
+    requires_logging_directory = False
+    # ... implement the rest of the `GeneralTracker` interface
+
+register_tracker_class(MyCustomTracker)
+accelerator = Accelerator(log_with="my_tracker")
+```
+
+## 访问内部跟踪器如果可能需要直接与跟踪器进行一些自定义交互，您可以使用 
+[Accelerator.get_tracker()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.get_tracker)方法。只需传入与跟踪器的`.name`属性对应的字符串即可 
 它将在主进程上返回该跟踪器。
 
 此示例展示了使用 wandb 执行此操作：
 
 ```python
 wandb_tracker = accelerator.get_tracker("wandb")
-```从那里你可以像平常一样与 `wandb` 的 `run` 对象进行交互：
+```
+
+从那里你可以像平常一样与 `wandb` 的 `run` 对象进行交互：
 
 ```python
 wandb_tracker.log_artifact(some_artifact_to_log)
@@ -205,5 +222,5 @@ if accelerator.is_main_process:
 +             run["logs/training/batch/loss"].log(loss)
 ```
 
-### Intel CPU 训练
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/intel_cpu.md
+### 深速
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/deepspeed.md

@@ -18,7 +18,7 @@ Hugging Face 和 Amazon 推出新款 [Hugging Face Deep Learning Containers (DLC
 pip install "accelerate[sagemaker]" --upgrade
 ```
 
-Accelerate 目前使用 DLC，预装了`transformers`、`datasets` 和 `tokenizers`。 Accelerate 尚未包含在 DLC 中（很快就会添加！），因此要在 Amazon SageMaker 中使用它，您需要创建一个
+Accelerate 目前使用 DLC，预装了 `transformers`、`datasets` 和 `tokenizers`。 Accelerate 尚未包含在 DLC 中（很快就会添加！），因此要在 Amazon SageMaker 中使用它，您需要创建一个
 `requirements.txt` 位于训练脚本所在的同一目录中，并将其添加为依赖项：
 
 ```
@@ -55,7 +55,7 @@ Accelerate 将完成有关您的 Amazon SageMaker 设置的调查问卷，并创
 
 ### 启动培训
 
-您可以通过以下方式启动 Accelerate CLI 培训：
+您可以使用 Accelerate CLI 启动培训：
 
 ```
 accelerate launch path_to_script.py --args_to_the_script
@@ -144,7 +144,7 @@ ec2_instance_type: local
 ### 高级配置
 
 该配置允许您覆盖 [Estimator](https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html) 的参数。
-这些设置必须在配置文件中应用，并且不是`accelerate config`的一部分。您可以控制训练作业的许多其他方面，例如使用 Spot 实例、启用网络隔离等等。
+这些设置必须应用在配置文件中，并且不是`accelerate config`的一部分。您可以控制训练作业的许多其他方面，例如使用 Spot 实例、启用网络隔离等等。
 
 ```yaml
 additional_args:
@@ -169,5 +169,5 @@ additional_args:
 
 *尚未决定是否需要该功能。如果您需要此功能，请联系我们。*
 
-### 威震天-LM
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/megatron_lm.md
+### 检查点
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/checkpoint.md

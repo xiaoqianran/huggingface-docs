@@ -97,5 +97,5 @@ accelerate env
         - tpu_env: []
 ```
 
-### 启动加速脚本
-https://huggingface.co/docs/accelerate/v1.14.0/basic_tutorials/launch.md
+### TPU 训练
+https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/tpu.md

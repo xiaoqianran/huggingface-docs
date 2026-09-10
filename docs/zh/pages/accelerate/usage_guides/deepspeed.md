@@ -52,7 +52,7 @@ Accelerate 通过 2 个选项集成 [DeepSpeed](https://github.com/deepspeedai/D
 
 1. DeepSpeed ZeRO Inference 通过 ZeRO-Infinity 支持 ZeRO 第 3 阶段。它使用与训练相同的 ZeRO 协议，但是
    它不使用优化器和 lr 调度程序，并且只有第 3 阶段相关。欲了解更多详情，请参阅：
-   [deepspeed-zero-inference](#deepspeed-zero-inference)。
+   [ZeRO Inference](#zero-inference)。
 
 ## 它是如何工作的？
 
@@ -397,7 +397,7 @@ accelerate launch examples/by_feature/deepspeed_with_config_support.py \
    在上面的示例中，我们可以看到，如果 DeepSpeed 配置文件中不存在 `optimizer` 和 `scheduler` 键，则代码保持不变。
 
    c.自定义 Optim + DS Scheduler：DeepSpeed 配置文件中仅存在 `scheduler` 密钥的情况。
-   在这种情况下，用户必须使用 `accelerate.utils.DummyScheduler` 替换代码中的 PyTorch/Custom 调度程序。
+   在这种情况下，用户必须使用 `accelerate.utils.DummyScheduler` 来替换代码中的 PyTorch/Custom 调度程序。
 
    d. DS Optim + 自定义调度程序：DeepSpeed 配置文件中仅存在 `optimizer` 密钥的情况。
    这将导致错误，因为您只能在使用 DS Optim 时使用 DS Scheduler。2. 请注意上述示例 DeepSpeed 配置文件中的 `auto` 值。这些由`prepare`方法自动处理
@@ -598,14 +598,14 @@ ds_config: {'bf16': {'enabled': False}, 'zero_optimization': {'stage': 3, 'stage
 **注意**：
 1. 剩余的 `"auto"` 值在 `accelerator.prepare()` 调用中处理，如第 2 点所述
 `Important code changes when using DeepSpeed Config File`。
-2. 仅当`gradient_accumulation_steps`为`auto`时，才会使用通过`Accelerator(gradient_accumulation_steps=k)`创建`Accelerator`对象时传递的值。使用 DeepSpeed Plugin 时，将使用其中的值，并将覆盖创建 Accelerator 对象时传递的值。
+2. 仅当`gradient_accumulation_steps`为`auto`时，才会使用通过`Accelerator(gradient_accumulation_steps=k)`创建`Accelerator`对象时传递的值。使用 DeepSpeed 插件时，将使用其中的值，并将覆盖创建 Accelerator 对象时传递的值。
 
 ## 保存和加载
 
 1. ZeRO Stage-1 和 Stage-2 的模型保存和加载没有变化。
 
 2. 在 ZeRO Stage-3 下，`state_dict` 仅包含占位符，因为模型权重分布在多个 GPU 上。
-ZeRO Stage-3 有 2 个选项：一个。保存整个 16 位模型权重，以便稍后使用`model.load_state_dict(torch.load(pytorch_model.bin))`直接加载。
+ZeRO Stage-3 有 2 个选项：一个。保存整个 16 位模型权重，以便稍后使用 `model.load_state_dict(torch.load(pytorch_model.bin))` 直接加载。
    为此，请在 DeepSpeed 配置文件中将 `zero_optimization.stage3_gather_16bit_weights_on_model_save` 设置为 True 或设置
    DeepSpeed 插件中的`zero3_save_16bit_model` 为 True。
    **请注意，此选项需要将权重整合到一个 GPU 上，这可能会很慢并且需要内存，因此仅在需要时使用此功能。**
@@ -628,7 +628,7 @@ ZeRO Stage-3 有 2 个选项：一个。保存整个 16 位模型权重，以便
    ```
 
    b.要获得 32 位权重，首先使用 `model.save_checkpoint()` 保存模型。
-   以下是 `examples/by_feature/deepspeed_with_config_support.py` 的片段，显示了这一点：
+   下面是 `examples/by_feature/deepspeed_with_config_support.py` 的片段，显示了这一点：
    ```python
    success = model.save_checkpoint(PATH, ckpt_id, checkpoint_state_dict)
    status_msg = f"checkpointing: PATH={PATH}, ckpt_id={ckpt_id}"
@@ -701,5 +701,5 @@ DeepSpeed 支持通过各种不同的启动器进行多节点推理和训练。�
 
     对 FSDP 和 DeepSpeed 的异同感兴趣的朋友，请查看[concept guide here](../concept_guides/fsdp_and_deepspeed)！
 
-### 从这里开始！
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/explore.md
+### 编译
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/compilation.md

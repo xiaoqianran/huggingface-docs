@@ -2,11 +2,11 @@
 
 # 疑难解答
 
-本指南提供了使用 Accelerate 时可能遇到的一些问题的解决方案。并未涵盖所有错误，因为 Accelerate 是一个不断发展的活跃库，并且有许多不同的用例和分布式训练设置。如果此处描述的解决方案无法帮助解决您的特定错误，请查看 [Ask for help](#ask-for-help) 部分，了解在哪里以及如何获得帮助。
+本指南针对您在使用 Accelerate 时可能遇到的一些问题提供了解决方案。并未涵盖所有错误，因为 Accelerate 是一个不断发展的活跃库，并且有许多不同的用例和分布式训练设置。如果此处描述的解决方案无法帮助解决您的特定错误，请查看 [Ask for help](#ask-for-help) 部分，了解在哪里以及如何获得帮助。
 
 ## 日志记录
 
-日志记录可以帮助您确定错误来自何处。在具有多个进程的分布式设置中，日志记录可能是一个挑战，但 Accelerate 提供了 `logging()` 实用程序来确保日志同步。
+日志记录可以帮助您识别错误来自何处。在具有多个进程的分布式设置中，日志记录可能是一个挑战，但 Accelerate 提供了 `logging()` 实用程序来确保日志同步。
 
 要解决问题，请使用 `logging()` 而不是标准 Python [⟦T11⟧](https://docs.python.org/3/library/logging.html#module-logging) 模块。使用 `log_level` 参数设置详细级别（`INFO`、`DEBUG`、`WARNING`、`ERROR`、`CRITICAL`），然后您可以：
 
@@ -40,7 +40,7 @@ logger.debug("thing_to_log", main_process_only=False, in_order=True)
 
 张量形状不匹配是一个常见问题，可能会导致您的代码在分布式设置上挂起很长时间。
 
-在分布式设置中运行脚本时，需要使用 [Accelerator.gather()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.gather) 和 [Accelerator.reduce()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.reduce) 等函数来跨设备抓取张量，以便共同对它们执行操作。这些（和其他）函数依赖于 `torch.distributed` 来执行 `gather` 操作，这要求张量在所有进程中具有**完全相同的形状**。当张量形状不匹配时，您的代码将挂起，最终会遇到超时异常。
+在分布式设置中运行脚本时，需要使用 [Accelerator.gather()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.gather) 和 [Accelerator.reduce()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.reduce) 等函数来跨设备获取张量以共同对它们执行操作。这些（和其他）函数依赖于 `torch.distributed` 来执行 `gather` 操作，这要求张量在所有进程中具有**完全相同的形状**。当张量形状不匹配时，您的代码将挂起，最终会遇到超时异常。
 
 您可以使用 Accelerate 的操作调试模式立即捕获此问题。我们建议在 `accelerate config` 设置期间启用此模式，但您也可以从 CLI、作为环境变量或通过手动编辑 `config.yaml` 文件来启用它。
 
@@ -115,14 +115,14 @@ mpirun -f hostfile -n {number of nodes} -ppn 1 hostname
 
 ## 内存不足运行训练脚本时最令人沮丧的错误之一是在 CUDA、XPU 或 CPU 等设备上遇到“内存不足”。整个脚本需要重新启动，任何进度都会丢失。
 
-为了解决这个问题，Accelerate 提供了很大程度上基于 [toma](https://github.com/BlackHC/toma) 的[find_executable_batch_size()](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.find_executable_batch_size) 实用程序。
+为了解决这个问题，Accelerate 提供了很大程度上基于 [toma](https://github.com/BlackHC/toma) 的[find_executable_batch_size()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.find_executable_batch_size) 实用程序。
 该实用程序会重试因 OOM（内存不足）情况而失败的代码，并自动降低批处理大小。对于每个 OOM 条件，算法会将批大小减少一半并重试代码，直到成功。
 
-要使用 [find_executable_batch_size()](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.find_executable_batch_size)，请重构您的训练函数以包含带有 `find_executable_batch_size` 的内部函数，并在其中构建数据加载器。至少，这只需要 4 行新代码。
+要使用 [find_executable_batch_size()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.find_executable_batch_size)，请重构您的训练函数以包含带有 `find_executable_batch_size` 的内部函数，并在其中构建数据加载器。至少，这只需要 4 行新代码。
 
  
 
-内部函数**必须**将批量大小作为第一个参数，但我们在调用时不会向它传递一个参数。包装器将为您处理这个问题。任何消耗设备内存并传递给 [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) 的对象（模型、优化器）也**必须**在内部函数内声明。
+内部函数**必须**将批量大小作为第一个参数，但我们在调用时不会向它传递一个参数。包装器将为您处理这个问题。任何消耗设备内存并传递给 [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) 的对象（模型、优化器）也**必须**在内部函数内声明。
 
 ```diff
 def training_function(args):
@@ -148,9 +148,9 @@ def training_function(args):
 +   inner_training_loop()
 ```
 
-## 设备设置之间的不可重现结果如果您更改了设备设置并观察到不同的模型性能，则在从一种设置转移到另一种设置时，您很可能没有更新脚本。即使您使用具有相同批处理大小的相同脚本，TPU、多 GPU 和单 GPU 上的结果仍然会有所不同。
+## 设备设置之间的不可重现结果如果您更改了设备设置并观察到不同的模型性能，则从一种设置转移到另一种设置时，您可能没有更新脚本。即使您使用具有相同批处理大小的相同脚本，结果在 TPU、多 GPU 和单 GPU 上仍然会有所不同。
 
-例如，如果您在批量大小为 16 的单 GPU 上进行训练，然后转移到双 GPU 设置，则需要将批量大小更改为 8，以获得相同的有效批量大小。这是因为在使用 Accelerate 进行训练时，传递给数据加载器的批量大小是**每个 GPU 的批量大小**。
+例如，如果您在批量大小为 16 的单个 GPU 上进行训练，然后转移到双 GPU 设置，则需要将批量大小更改为 8，以获得相同的有效批量大小。这是因为在使用 Accelerate 进行训练时，传递给数据加载器的批量大小是**每个 GPU 的批量大小**。
 
 为了确保您可以在设置之间重现结果，请确保使用相同的种子，相应地调整批量大小，并考虑缩放学习率。
 
@@ -171,5 +171,5 @@ def training_function(args):
 
 - 在[Discord](http://hf.co/join/discord)上发布问题，让团队和社区帮助您。
 
-- 如果您认为发现了与该库相关的错误，请在 Accelerate [GitHub repository](https://github.com/huggingface/accelerate/issues) 上创建问题。包括有关错误的上下文和有关分布式设置的详细信息，以帮助我们更好地找出问题所在以及如何修复它。### 概述
-https://huggingface.co/docs/accelerate/v1.14.0/basic_tutorials/overview.md
+- 如果您认为发现了与该库相关的错误，请在 Accelerate [GitHub repository](https://github.com/huggingface/accelerate/issues) 上创建问题。包括有关错误的上下文和有关分布式设置的详细信息，以帮助我们更好地找出问题所在以及如何修复它。### 启动加速脚本
+https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/launch.md

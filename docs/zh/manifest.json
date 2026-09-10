@@ -1073,452 +1073,452 @@
       "translatedAt": "2026-08-14T08:26:29.160Z"
     },
     "huggingface_hub/guides/overview.md": {
-      "hash": "aaa1ebf641ee944a8f0fe6cfbd320bba1f44ccb7",
-      "translatedAt": "2026-09-03T12:03:28.289Z"
+      "hash": "00d603b53e3f264e18e7936f9e177433fcb87938",
+      "translatedAt": "2026-09-10T12:11:41.897Z"
     },
     "huggingface_hub/index.md": {
-      "hash": "d9a59220bad08a96d66e97044724487e948e9605",
-      "translatedAt": "2026-09-03T12:03:28.860Z"
+      "hash": "5ea2a64b3d5bbe28cb13fe4f29cd4b00548711fd",
+      "translatedAt": "2026-09-10T12:11:42.536Z"
     },
     "huggingface_hub/package_reference/overview.md": {
-      "hash": "044381c0d41cfa93f992eec92b14f59097ad00f1",
-      "translatedAt": "2026-09-03T12:03:29.011Z"
+      "hash": "187df4505785a16fe25328a62f8b98d2c5c7afbf",
+      "translatedAt": "2026-09-10T12:11:42.303Z"
     },
     "huggingface_hub/concepts/git_vs_http.md": {
-      "hash": "04b6f7282d0e355aef27a8e05c37ace962553c5d",
-      "translatedAt": "2026-09-03T12:03:30.509Z"
+      "hash": "e2f799f309c0c4c389f99c95fffad4782f123266",
+      "translatedAt": "2026-09-10T12:11:44.848Z"
     },
     "huggingface_hub/installation.md": {
-      "hash": "cffe9f8e098772e95c2830d51d153689959c091e",
-      "translatedAt": "2026-09-03T12:03:30.772Z"
+      "hash": "ba51e6e95ce1ccd30aaefd35f73b5151998c3846",
+      "translatedAt": "2026-09-10T12:11:44.103Z"
     },
     "hub/xet/using-xet-storage.md": {
       "hash": "aff872859fafdd0b2112b6fc1f686d456c962a27",
       "translatedAt": "2026-08-14T08:26:32.436Z"
     },
     "huggingface_hub/concepts/migration.md": {
-      "hash": "4ee8b66c8288b4d7cc1c6037fdbf2e1318a04938",
-      "translatedAt": "2026-09-03T12:03:34.268Z"
+      "hash": "57168f5780d8207701d9671a42b823f142a494f7",
+      "translatedAt": "2026-09-10T12:11:48.065Z"
     },
     "huggingface_hub/guides/buckets.md": {
-      "hash": "9318ea072e41de0b37e008906f3c060fb9878acb",
-      "translatedAt": "2026-09-03T12:03:35.104Z"
+      "hash": "6af9ab750cac2cea43dfc3f5c9f923e0274d8118",
+      "translatedAt": "2026-09-10T12:11:50.726Z"
     },
     "huggingface_hub/guides/cli-extensions.md": {
-      "hash": "547e61c589ae0f6580707ab16118240b0c44604d",
-      "translatedAt": "2026-09-03T12:03:38.164Z"
+      "hash": "c699f2df83c8c380d3734ec6fc74926090e334f1",
+      "translatedAt": "2026-09-10T12:11:50.640Z"
     },
     "huggingface_hub/guides/collections.md": {
-      "hash": "8ff9d9f747d568482efa458ccb4e7c3e4fd8c26f",
-      "translatedAt": "2026-09-03T12:03:40.189Z"
+      "hash": "18509cfbd1a8944a6d4b8bef5e919a894593997e",
+      "translatedAt": "2026-09-10T12:11:53.258Z"
     },
     "huggingface_hub/guides/community.md": {
-      "hash": "263fa7f6e974192c135b5ed98bb2756745b8f5e9",
-      "translatedAt": "2026-09-03T12:03:40.669Z"
+      "hash": "cd5c2d6c77c08f16b741be28fff0cf49207ce99a",
+      "translatedAt": "2026-09-10T12:11:55.134Z"
     },
     "huggingface_hub/guides/hf_file_system.md": {
-      "hash": "4ebb933f51d7088cccfa37633e6ba5e30bc4bad8",
-      "translatedAt": "2026-09-03T12:03:41.755Z"
+      "hash": "b6379a72bd1ea9efc2b54e10e12fed202fafb6a9",
+      "translatedAt": "2026-09-10T12:11:55.917Z"
     },
     "huggingface_hub/concepts/sandbox.md": {
-      "hash": "1ca1e89befe33dccdd72b48833a798c5482c3218",
-      "translatedAt": "2026-09-03T12:03:39.113Z"
+      "hash": "11d762274991dac7638caad842f9753edf4b80b7",
+      "translatedAt": "2026-09-10T12:11:53.760Z"
     },
     "huggingface_hub/guides/download.md": {
-      "hash": "e34eeb2c4b8e045f994d3b61d443357c10a66a26",
-      "translatedAt": "2026-09-03T12:03:43.128Z"
+      "hash": "4765bc5cfa76e630d5cf68f0a63b2e6a63421e51",
+      "translatedAt": "2026-09-10T12:11:58.136Z"
     },
     "huggingface_hub/guides/inference_endpoints.md": {
-      "hash": "a45f1a952a5f6f8b2bef4b3084ad11afee50c432",
-      "translatedAt": "2026-09-03T12:03:46.162Z"
+      "hash": "d8ff7766ea1a1800eca15ae0dfe59c0c401f2fc3",
+      "translatedAt": "2026-09-10T12:12:02.767Z"
     },
     "huggingface_hub/guides/integrations.md": {
-      "hash": "909b137237bcf4602451a2444bba0f1818fbc72c",
-      "translatedAt": "2026-09-03T12:03:53.633Z"
+      "hash": "e269f581c5b4484d114c03c9aa3a1ff49667814d",
+      "translatedAt": "2026-09-10T12:12:10.236Z"
     },
     "huggingface_hub/guides/inference.md": {
-      "hash": "a3164ad366f70c337d1d7d74e716f0dac221f711",
-      "translatedAt": "2026-09-03T12:03:54.271Z"
+      "hash": "32da4125bf3925bcbb24211a1b5151dfd33276ec",
+      "translatedAt": "2026-09-10T12:12:10.651Z"
     },
     "huggingface_hub/guides/jobs.md": {
-      "hash": "619019f66900887b249f13adf20350306f8ca18d",
-      "translatedAt": "2026-09-03T12:04:01.519Z"
+      "hash": "c9cd4f2f04929e5e77d005e0e0b391a872aed22e",
+      "translatedAt": "2026-09-10T12:12:17.998Z"
     },
     "huggingface_hub/guides/model-cards.md": {
-      "hash": "3cb62fd9baef84c5806087022b57028143f4630c",
-      "translatedAt": "2026-09-03T12:04:03.303Z"
+      "hash": "0685f46ba4afbff9aedf6aa2c58336fe4aaba7a1",
+      "translatedAt": "2026-09-10T12:12:20.176Z"
     },
     "huggingface_hub/guides/manage-spaces.md": {
-      "hash": "43001f73b38fd3f9f8d910ed941a6d2550514f9e",
-      "translatedAt": "2026-09-03T12:04:02.653Z"
+      "hash": "ac42221a96c3d03733d65b967117e643ededa26d",
+      "translatedAt": "2026-09-10T12:12:17.561Z"
     },
     "huggingface_hub/guides/cli.md": {
-      "hash": "c155c75cba37cdfe3d8214dbd2cb4352456ec458",
-      "translatedAt": "2026-09-03T12:03:58.500Z"
+      "hash": "cce36bb1f35bf9d698fe57e9b2f5b960b754374a",
+      "translatedAt": "2026-09-10T12:12:13.209Z"
     },
     "huggingface_hub/guides/search.md": {
-      "hash": "7e010b49d147b5d4810e48c6d18970fc567822c9",
-      "translatedAt": "2026-09-03T12:04:06.384Z"
+      "hash": "da4c2226f5bf1ff1dc2af6fefbbbbb9654a904de",
+      "translatedAt": "2026-09-10T12:12:24.489Z"
     },
     "huggingface_hub/guides/repository.md": {
-      "hash": "90cdce91c06dbf593d512bd4da54fa659850ab8a",
-      "translatedAt": "2026-09-03T12:04:06.625Z"
+      "hash": "e4a20369922815d2e333e3459d95b698ccf55e58",
+      "translatedAt": "2026-09-10T12:12:24.815Z"
     },
     "huggingface_hub/guides/sandbox.md": {
-      "hash": "55b12f9e41804acd9bc3fc1755f3acac8a0a3b5f",
-      "translatedAt": "2026-09-03T12:04:08.395Z"
+      "hash": "d2291e15f9024ee3c772a585837aa02e0e7e5b14",
+      "translatedAt": "2026-09-10T12:12:25.778Z"
     },
     "huggingface_hub/guides/manage-cache.md": {
-      "hash": "8a81d84dc61652085af408e9a1e802880bb5d37d",
-      "translatedAt": "2026-09-03T12:04:05.175Z"
+      "hash": "dd9439affe8c9befcbd2582410d27fd889bb99ac",
+      "translatedAt": "2026-09-10T12:12:23.790Z"
     },
     "huggingface_hub/package_reference/authentication.md": {
-      "hash": "8886794e9f1300844526140b4f2cee35bfa18666",
-      "translatedAt": "2026-09-03T12:04:10.756Z"
+      "hash": "84a3b188b3c30068b36ba04d4418ebc51854bb30",
+      "translatedAt": "2026-09-10T12:12:27.098Z"
     },
     "huggingface_hub/guides/webhooks.md": {
-      "hash": "e5139da011efc9c6ac0d29126137a7c2b086e3f9",
-      "translatedAt": "2026-09-03T12:04:10.450Z"
+      "hash": "b91ca6fa035aa9cdb2ffa52b74ed13e32d181000",
+      "translatedAt": "2026-09-10T12:12:28.701Z"
     },
     "huggingface_hub/guides/upload.md": {
-      "hash": "1af8234b57eeb7580e443ef2730c0b8eff19f346",
-      "translatedAt": "2026-09-03T12:04:18.786Z"
+      "hash": "6de22d99ca2d2f2f068903c1fba6c1b00237814a",
+      "translatedAt": "2026-09-10T12:12:37.061Z"
     },
     "huggingface_hub/package_reference/cache.md": {
-      "hash": "07e0287f6fdfd792721e38685971e89f6c9922a6",
-      "translatedAt": "2026-09-03T12:04:18.458Z"
+      "hash": "ece04eb7ceb677f994b1024fca3e2c5d3776ecdd",
+      "translatedAt": "2026-09-10T12:12:32.679Z"
     },
     "huggingface_hub/package_reference/collections.md": {
-      "hash": "8a469c0304d0381dcc62d54229041cdd8960a31d",
-      "translatedAt": "2026-09-03T12:04:20.289Z"
+      "hash": "0fcc0b5947877e0bcbab5a93ee45cddbf9e41a00",
+      "translatedAt": "2026-09-10T12:12:38.010Z"
     },
     "huggingface_hub/package_reference/community.md": {
-      "hash": "85acee2640d8c5529b1b6075c404ba047bdc5b84",
-      "translatedAt": "2026-09-03T12:04:23.661Z"
+      "hash": "4077a748e802b5cf9d72adfe192639edc3a4b05b",
+      "translatedAt": "2026-09-10T12:12:41.339Z"
     },
     "huggingface_hub/package_reference/dataclasses.md": {
-      "hash": "30eb28076df0267ad7a7aa12d1c8fafe093e284c",
-      "translatedAt": "2026-09-03T12:04:27.768Z"
+      "hash": "36c89d6628e3fb231c16fe8b37a54622beaefdcb",
+      "translatedAt": "2026-09-10T12:12:44.800Z"
     },
     "huggingface_hub/package_reference/cards.md": {
-      "hash": "a25bf50f153f62a357a31d32c15cca806ec856ac",
-      "translatedAt": "2026-09-03T12:04:27.657Z"
+      "hash": "48a545044056f50ba039ea16fa7774b6ab5c0283",
+      "translatedAt": "2026-09-10T12:12:42.196Z"
     },
     "huggingface_hub/package_reference/environment_variables.md": {
-      "hash": "3efe523f23f84bf77189f0bf15d7fe6d2dd0b02b",
-      "translatedAt": "2026-09-03T12:04:37.459Z"
+      "hash": "9642b65e8ac2ef0cfe63d8fe54d7f38152ff9f58",
+      "translatedAt": "2026-09-10T12:12:48.060Z"
     },
     "huggingface_hub/package_reference/file_download.md": {
-      "hash": "4b065c0d770a96029e7aac8e38904ed0ee7baa36",
-      "translatedAt": "2026-09-03T12:04:40.502Z"
+      "hash": "97ab083286a677b2ac8aa755764770a7d05892ef",
+      "translatedAt": "2026-09-10T12:12:56.458Z"
     },
     "huggingface_hub/package_reference/hf_file_system.md": {
-      "hash": "4aa82897c8b197a6029c9870c2832992442f1554",
-      "translatedAt": "2026-09-03T12:04:46.924Z"
+      "hash": "6c56d8d2c6b9881bd5a3526566d82663034dfcb1",
+      "translatedAt": "2026-09-10T12:13:01.642Z"
     },
     "huggingface_hub/package_reference/hf_uris.md": {
-      "hash": "c6599cd0ed7a09a8b43621baaed4f1d4c5425357",
-      "translatedAt": "2026-09-03T12:04:53.890Z"
+      "hash": "712a6d90708f32ebe1f6d4dede1e8987338c7f92",
+      "translatedAt": "2026-09-10T12:13:09.311Z"
     },
     "huggingface_hub/package_reference/inference_endpoints.md": {
-      "hash": "e10078deb0858674fc833ca5746e67db46df9891",
-      "translatedAt": "2026-09-03T12:05:55.133Z"
+      "hash": "0314b210be42dae8baf3d1aa1184e30d5559a3dd",
+      "translatedAt": "2026-09-10T12:14:09.151Z"
     },
     "huggingface_hub/package_reference/inference_types.md": {
-      "hash": "aa87026ab21fc634a2d89d3051a4a25a7f9adc55",
-      "translatedAt": "2026-09-03T12:06:06.655Z"
+      "hash": "5ee023d3a7b6823f2d94468b9ab68fe4b863b226",
+      "translatedAt": "2026-09-10T12:14:21.659Z"
     },
     "huggingface_hub/package_reference/jobs.md": {
-      "hash": "885f1aba10433ba49a546a3857d6f99ba10573c6",
-      "translatedAt": "2026-09-03T12:05:58.399Z"
+      "hash": "369bd2258a0b5bd0b02af4ead3e6672d17fc770b",
+      "translatedAt": "2026-09-10T12:14:13.022Z"
     },
     "huggingface_hub/package_reference/mcp.md": {
-      "hash": "cca0aeca13551a6ec621a5ac1a2b9ff2e941ca3f",
-      "translatedAt": "2026-09-03T12:06:01.868Z"
+      "hash": "673e0ca6d82429d39eb9c3330e41d0a4bfe40203",
+      "translatedAt": "2026-09-10T12:14:15.741Z"
     },
     "huggingface_hub/package_reference/mixins.md": {
-      "hash": "f68625a128e833b6a1fe424d5df82f8944178291",
-      "translatedAt": "2026-09-03T12:06:10.099Z"
+      "hash": "f2af2a5a52380bf8c15121e85eef3cca6aa30d70",
+      "translatedAt": "2026-09-10T12:14:23.590Z"
     },
     "huggingface_hub/package_reference/oauth.md": {
-      "hash": "eee60f3eefca6461e47997696457e52bfcd9f06e",
-      "translatedAt": "2026-09-03T12:06:10.751Z"
+      "hash": "c3d2eeb5bddbf186b6186a1f7b6bb741682a46c5",
+      "translatedAt": "2026-09-10T12:14:24.267Z"
     },
     "huggingface_hub/package_reference/sandbox.md": {
-      "hash": "251310d35b7a25ff4a5c555f3d57c16133e8bffb",
-      "translatedAt": "2026-09-03T12:06:18.604Z"
+      "hash": "b093b622d74359ba12d2ce1a004452509b1863a1",
+      "translatedAt": "2026-09-10T12:14:30.010Z"
     },
     "huggingface_hub/package_reference/inference_client.md": {
-      "hash": "4874413c322c0502c2d163a0f46fc6e9e4e6fee3",
-      "translatedAt": "2026-09-03T12:05:52.342Z"
+      "hash": "f2bd4a652774692f8d23d7431468ad45fdaef82f",
+      "translatedAt": "2026-09-10T12:14:05.806Z"
     },
     "huggingface_hub/package_reference/cli.md": {
-      "hash": "a832bf4c901406183257c9e5ec0e9cf8396a5b98",
-      "translatedAt": "2026-09-03T12:05:49.173Z"
+      "hash": "fa1e194665df31595c34d52a597d31aa60911eca",
+      "translatedAt": "2026-09-10T12:14:03.870Z"
     },
     "huggingface_hub/package_reference/space_runtime.md": {
-      "hash": "595af84ec3900fbba983a513843b2f7789a3b4cc",
-      "translatedAt": "2026-09-03T12:06:21.035Z"
+      "hash": "0a64d6febc794bc97235725b80e68b86ae623336",
+      "translatedAt": "2026-09-10T12:14:32.764Z"
     },
     "huggingface_hub/package_reference/serialization.md": {
-      "hash": "15af3de942e6c8ce2663ecd17cec77d5962c7865",
-      "translatedAt": "2026-09-03T12:06:22.990Z"
+      "hash": "d2db31f36de00804ababf9a53820465dbab3ff6c",
+      "translatedAt": "2026-09-10T12:14:35.201Z"
     },
     "huggingface_hub/package_reference/tensorboard.md": {
-      "hash": "de16937a30b57ec92f48b303ae18059e13d99a8a",
-      "translatedAt": "2026-09-03T12:06:22.520Z"
+      "hash": "3299ebfb56292aa603d9f8a424b7bb8c65f1ebf6",
+      "translatedAt": "2026-09-10T12:14:34.976Z"
     },
     "huggingface_hub/package_reference/webhooks_server.md": {
-      "hash": "8e23eeea11902a9ce131f212a870855ffdb03951",
-      "translatedAt": "2026-09-03T12:06:27.299Z"
+      "hash": "dbe97d9ad2b3332e3b8ef4b43e2db6f3e9bd71e5",
+      "translatedAt": "2026-09-10T12:14:36.936Z"
     },
     "huggingface_hub/quick-start.md": {
-      "hash": "3385f5762b510da6fe72b0dd8f4c192a076d9290",
-      "translatedAt": "2026-09-03T12:06:31.367Z"
+      "hash": "812dbf0729a4555edef9f11e905709bb8abb2f1b",
+      "translatedAt": "2026-09-10T12:14:40.263Z"
     },
     "accelerate/basic_tutorials/install.md": {
-      "hash": "21ae93a4d577732b2663b163abfdb38edb957768",
-      "translatedAt": "2026-08-11T13:57:21.634Z"
+      "hash": "b233b099a1a3f43817e911ed0709b6d6d78d141f",
+      "translatedAt": "2026-09-10T12:14:49.763Z"
     },
     "accelerate/basic_tutorials/overview.md": {
-      "hash": "1ed55fc2e03fb65f71d62795d107616f834acfc6",
-      "translatedAt": "2026-08-11T13:57:21.663Z"
+      "hash": "95b41be72a310a029cd2795f1c02d1176cb58aec",
+      "translatedAt": "2026-09-10T12:14:48.605Z"
     },
     "accelerate/index.md": {
-      "hash": "367ba12ecb734195d77a53ed14a29b18ffab87b1",
-      "translatedAt": "2026-08-11T13:57:21.774Z"
+      "hash": "32acaed1153364c64728df7022a26982ec4fdce0",
+      "translatedAt": "2026-09-10T12:14:49.143Z"
     },
     "accelerate/quicktour.md": {
-      "hash": "d542797c7da47b7563c831ab9dc40bf0f8b555a1",
-      "translatedAt": "2026-08-11T13:57:22.062Z"
+      "hash": "4c197a4fff01a8a3e126d6067f7a508d2ccc82d6",
+      "translatedAt": "2026-09-10T12:14:55.593Z"
     },
     "accelerate/basic_tutorials/execution.md": {
-      "hash": "37194fed96311b831d63f8af08643bdce2ed3bf1",
-      "translatedAt": "2026-08-11T13:57:22.152Z"
+      "hash": "6760660efdefc1284c7fcc6182a2257e8bdd30ff",
+      "translatedAt": "2026-09-10T12:14:51.281Z"
     },
     "cli/index.md": {
-      "hash": "26fa2d2292039152f6441092b329d9423a761b48",
-      "translatedAt": "2026-09-03T12:06:33.773Z"
+      "hash": "cd87e5e9e3c3eadabeb77a02078a066813821f7f",
+      "translatedAt": "2026-09-10T12:14:47.770Z"
     },
     "accelerate/basic_tutorials/migration.md": {
-      "hash": "5c37df7b57c65acea1df33ddce6ab9d4e3458b31",
-      "translatedAt": "2026-08-11T13:57:22.459Z"
+      "hash": "984715a729ba1901acec1c58c9f714a765926deb",
+      "translatedAt": "2026-09-10T12:14:57.891Z"
     },
     "accelerate/basic_tutorials/launch.md": {
-      "hash": "7b0926dfd92675b82c93815405a69639c6e6a181",
-      "translatedAt": "2026-08-11T13:57:22.499Z"
+      "hash": "30daa3e001a81106aa2d38d705a50fc5b72fbf12",
+      "translatedAt": "2026-09-10T12:14:55.605Z"
     },
     "accelerate/basic_tutorials/tpu.md": {
-      "hash": "ad6c18c06196aa2e0fc05d63e57a4b0c00bab89b",
-      "translatedAt": "2026-08-11T13:57:22.572Z"
+      "hash": "726e27bc76cb1c67bb2c5dba96f9f262501c97db",
+      "translatedAt": "2026-09-10T12:14:58.558Z"
     },
     "accelerate/basic_tutorials/notebook.md": {
-      "hash": "35c0a9c61ba3373ee6a5405c53151a5b64b8bbe2",
-      "translatedAt": "2026-08-11T13:57:22.721Z"
+      "hash": "87aa4276ac8f33e8141d379b0e23b1a52a75442d",
+      "translatedAt": "2026-09-10T12:15:00.204Z"
     },
     "accelerate/basic_tutorials/troubleshooting.md": {
-      "hash": "3e56c5dc3fcaa444e4635aaa6cf9b83707161a5a",
-      "translatedAt": "2026-08-11T13:57:22.803Z"
+      "hash": "70d0e682fc85b80da9fafe45796ede23eb9e110e",
+      "translatedAt": "2026-09-10T12:15:01.506Z"
     },
     "accelerate/concept_guides/big_model_inference.md": {
-      "hash": "6bf45c94f1a0c0db79b3d708569c6c81b6123c94",
-      "translatedAt": "2026-08-11T13:57:23.114Z"
+      "hash": "c77b69484711bdd0f53bbc0177fa9b48ab6f231c",
+      "translatedAt": "2026-09-10T12:15:08.714Z"
     },
     "accelerate/concept_guides/deferring_execution.md": {
-      "hash": "fdf48f4b188eb1817120d4b031aaa4e9f3e569f2",
-      "translatedAt": "2026-08-11T13:57:23.214Z"
+      "hash": "2b9163c7b90390de0c1d3b2932da82d626581c7c",
+      "translatedAt": "2026-09-10T12:15:09.996Z"
     },
     "accelerate/concept_guides/context_parallelism.md": {
-      "hash": "6b2e335eb9cce68bfdee6d69c26e6b03a0240162",
-      "translatedAt": "2026-08-11T13:57:23.416Z"
+      "hash": "4c493ff0c2dadc9f29dedeb58ac31b516149108e",
+      "translatedAt": "2026-09-10T12:15:08.717Z"
     },
     "accelerate/concept_guides/fsdp1_vs_fsdp2.md": {
-      "hash": "2ae9bd18597180fb1d93b82c4dd18bb19427e23d",
-      "translatedAt": "2026-08-11T13:57:23.671Z"
+      "hash": "3405936787c9212120ae84facfa69910e850f6c2",
+      "translatedAt": "2026-09-10T12:15:14.587Z"
     },
     "accelerate/concept_guides/fsdp_and_deepspeed.md": {
-      "hash": "90fe644a16fba317955f9f29302319debc106f6a",
-      "translatedAt": "2026-08-11T13:57:23.943Z"
+      "hash": "13e95bc2377f816e0508f62fd2755f8a0fc5cf9a",
+      "translatedAt": "2026-09-10T12:15:13.555Z"
     },
     "accelerate/concept_guides/gradient_synchronization.md": {
-      "hash": "c235300c9443b7ea41bb5156b52a53e37add65bf",
-      "translatedAt": "2026-08-11T13:57:24.042Z"
+      "hash": "57f4fc109813deff18a55c943bd7931ec3c4042d",
+      "translatedAt": "2026-09-10T12:15:16.913Z"
     },
     "accelerate/concept_guides/internal_mechanism.md": {
-      "hash": "913aeb20107e507d1beb4355838101e61a8b7bad",
-      "translatedAt": "2026-08-11T13:57:24.068Z"
+      "hash": "910db20afc298c3ae75b767ea65cb60c2f2dd6df",
+      "translatedAt": "2026-09-10T12:15:17.179Z"
     },
     "accelerate/concept_guides/performance.md": {
-      "hash": "36aac0445bdf0144986899a473009f8a4db6124e",
-      "translatedAt": "2026-08-11T13:57:24.171Z"
+      "hash": "ed59d8c72588c47e75c18c3fa69c392963b4b7f4",
+      "translatedAt": "2026-09-10T12:15:18.908Z"
     },
     "accelerate/concept_guides/sequence_parallelism.md": {
-      "hash": "c9a968715bbd924d8e1f56f1d502dafec9076398",
-      "translatedAt": "2026-08-11T13:57:24.458Z"
+      "hash": "54239d674d7e13cfbd1b880a176ef522e571a76b",
+      "translatedAt": "2026-09-10T12:15:24.384Z"
     },
     "accelerate/concept_guides/low_precision_training.md": {
-      "hash": "2da3992ac79bc451bcb8f16dcf50c466b52aa640",
-      "translatedAt": "2026-08-11T13:57:24.514Z"
+      "hash": "f268e166187225c57eb692d00acd17e0275a3d23",
+      "translatedAt": "2026-09-10T12:15:21.018Z"
     },
     "accelerate/concept_guides/training_tpu.md": {
-      "hash": "6d0aa325b37ae6baea62e9ba4aeffff60f40b766",
-      "translatedAt": "2026-08-11T13:57:24.631Z"
+      "hash": "7254b141cbc8618155ad9def5dc2d8e766e785be",
+      "translatedAt": "2026-09-10T12:15:20.860Z"
     },
     "accelerate/package_reference/big_modeling.md": {
-      "hash": "73dde09295bb81008a5fba29971d384f44863328",
-      "translatedAt": "2026-08-11T13:57:26.007Z"
+      "hash": "83827a175c5d7d723487b762fb69c940ae6e6672",
+      "translatedAt": "2026-09-10T12:15:41.163Z"
     },
     "accelerate/package_reference/cli.md": {
-      "hash": "1fa44aeb1e8e729dd2ff3d6e146ee0ca8aa05b38",
-      "translatedAt": "2026-08-11T13:57:26.527Z"
+      "hash": "1e2348f08288ef416bd5634173c0cb37382e9afc",
+      "translatedAt": "2026-09-10T12:15:32.433Z"
     },
     "huggingface_hub/package_reference/utilities.md": {
-      "hash": "2dc6e1ca43bbc894de03587557874f4cd3b49668",
-      "translatedAt": "2026-09-03T12:06:37.863Z"
+      "hash": "4691d2a5d07f2fcdc96976dcc225b184e9df8498",
+      "translatedAt": "2026-09-10T12:14:48.116Z"
     },
     "accelerate/package_reference/deepspeed.md": {
-      "hash": "06cfbee8627a2cce76b66ef650128c8be14b764c",
-      "translatedAt": "2026-08-11T13:57:26.716Z"
+      "hash": "2748ee93d997c90c194ad586fa54c799edf11552",
+      "translatedAt": "2026-09-10T12:15:34.999Z"
     },
     "accelerate/package_reference/fp8.md": {
-      "hash": "96e74ead93f3dab27212a9972deebd8677ef1539",
-      "translatedAt": "2026-08-11T13:57:26.776Z"
+      "hash": "f49725b19604eddb48e46d09e91c446f825a9ca5",
+      "translatedAt": "2026-09-10T12:15:34.734Z"
     },
     "accelerate/package_reference/inference.md": {
-      "hash": "099cc361b6053cdc28d07aacf72bf4655a858914",
-      "translatedAt": "2026-08-11T13:57:26.841Z"
+      "hash": "5b1de06607d5c870b8cdbf1f0f31a4513703a21f",
+      "translatedAt": "2026-09-10T12:15:35.770Z"
     },
     "accelerate/package_reference/fsdp.md": {
-      "hash": "1c9f6634f284944e12f07375c8b686a51dfd8d11",
-      "translatedAt": "2026-08-11T13:57:26.985Z"
+      "hash": "f5edae5ff980d4e6abf2e9b1adaa9ee70a70e014",
+      "translatedAt": "2026-09-10T12:15:39.058Z"
     },
     "accelerate/package_reference/launchers.md": {
-      "hash": "b7645762fdfeb00255aa752263c789492da7f4eb",
-      "translatedAt": "2026-08-11T13:57:27.082Z"
+      "hash": "bf471cd187f80302bf54ef5250f928772b477aec",
+      "translatedAt": "2026-09-10T12:15:40.949Z"
     },
     "accelerate/package_reference/logging.md": {
-      "hash": "d65c6d61ba2e6f71c840630e955d61aa4a031760",
-      "translatedAt": "2026-08-11T13:57:27.114Z"
+      "hash": "dcd1e7d697a63663bdfceefd2042e3e5981b3c3f",
+      "translatedAt": "2026-09-10T12:15:39.497Z"
     },
     "accelerate/package_reference/kwargs.md": {
-      "hash": "bcc8d410ce7ecdd1ab5ed7e4d66cf94a07ed8d83",
-      "translatedAt": "2026-08-11T13:57:27.210Z"
+      "hash": "c8b4c61f92408206a6fd5d0e185fffc4fb8ccf2f",
+      "translatedAt": "2026-09-10T12:15:37.742Z"
     },
     "accelerate/package_reference/megatron_lm.md": {
-      "hash": "37d62940ee906c25aaea4d8d3d1cd353cd9f5538",
-      "translatedAt": "2026-08-11T13:57:27.388Z"
+      "hash": "132048bc352f4a9a001ee368b9835a1ca54910f8",
+      "translatedAt": "2026-09-10T12:15:43.028Z"
     },
     "accelerate/package_reference/state.md": {
-      "hash": "3972eedae00078dca279eb7b452233f6510c0f97",
-      "translatedAt": "2026-08-11T13:57:27.877Z"
+      "hash": "1b74d04d708a67c5dae0ef0953e7d78f34907641",
+      "translatedAt": "2026-09-10T12:15:46.631Z"
     },
     "accelerate/package_reference/torch_wrappers.md": {
-      "hash": "42db4edb29d2534d8470c1af38461b6891e893a1",
-      "translatedAt": "2026-08-11T13:57:27.910Z"
+      "hash": "99b0654be5cd8b23f3afd01cc8a72951619cea43",
+      "translatedAt": "2026-09-10T12:15:50.187Z"
     },
     "accelerate/package_reference/tracking.md": {
-      "hash": "892217f944cdf9d3760de38ef5d5cbfcb78be6ae",
-      "translatedAt": "2026-08-11T13:57:28.220Z"
+      "hash": "d0695ca31450488a7c443b373d26174f0f74cfcf",
+      "translatedAt": "2026-09-10T12:15:46.635Z"
     },
     "accelerate/quickstart.md": {
-      "hash": "d542797c7da47b7563c831ab9dc40bf0f8b555a1",
-      "translatedAt": "2026-08-11T13:57:28.476Z"
+      "hash": "4c197a4fff01a8a3e126d6067f7a508d2ccc82d6",
+      "translatedAt": "2026-09-10T12:15:46.989Z"
     },
     "accelerate/usage_guides/big_modeling.md": {
-      "hash": "45945be7e0d51d41b4a6db89400e76c4bd30046e",
-      "translatedAt": "2026-08-11T13:57:28.578Z"
+      "hash": "15e75feed722545e31c8a30dd369c150688b340a",
+      "translatedAt": "2026-09-10T12:15:48.465Z"
     },
     "accelerate/usage_guides/checkpoint.md": {
-      "hash": "f066e42508c9b2681f85fd6ab06024518fc7b6ff",
-      "translatedAt": "2026-08-11T13:57:28.642Z"
+      "hash": "531bbb37adc3052a75815553071585b5cbbdddc8",
+      "translatedAt": "2026-09-10T12:15:50.188Z"
     },
     "accelerate/usage_guides/compilation.md": {
-      "hash": "928020c97a92f64d9b17991cde8e806c8109baec",
-      "translatedAt": "2026-08-11T13:57:28.734Z"
+      "hash": "1c223f390d380ca30d7c4887b85fe85ff042a6f0",
+      "translatedAt": "2026-09-10T12:15:51.782Z"
     },
     "accelerate/usage_guides/ddp_comm_hook.md": {
-      "hash": "68c5e2244e478b669fc8067aed9f7f70fa5ac2cc",
-      "translatedAt": "2026-08-11T13:57:28.822Z"
+      "hash": "97ce8c5e92c63f6e554de5682a61c93a84544ef2",
+      "translatedAt": "2026-09-10T12:15:53.102Z"
     },
     "accelerate/usage_guides/deepspeed_multiple_model.md": {
-      "hash": "7e1ec143586e172556945530aefb6bc6f7f06dfc",
-      "translatedAt": "2026-08-11T13:57:28.985Z"
+      "hash": "5c7a8b5bd875ee7515ba575ef881e8b151da9c24",
+      "translatedAt": "2026-09-10T12:15:54.162Z"
     },
     "accelerate/package_reference/accelerator.md": {
-      "hash": "f37eb507f351e5313b157cbd95b6fdb79495dd42",
-      "translatedAt": "2026-08-11T13:57:29.803Z"
+      "hash": "d50398601b7f6c088cd1e9420e6cafbebfb9d1d1",
+      "translatedAt": "2026-09-10T12:15:33.063Z"
     },
     "accelerate/usage_guides/distributed_inference.md": {
-      "hash": "475f2bd8e261600ae5ec71de3d0a3f11868b95ad",
-      "translatedAt": "2026-08-11T13:57:30.016Z"
+      "hash": "0854cbaffade3f1588e0a2434bd4732875211a33",
+      "translatedAt": "2026-09-10T12:15:57.139Z"
     },
     "accelerate/usage_guides/explore.md": {
-      "hash": "295ee070596fdedafe4d8ca30a768a4ee43d9684",
-      "translatedAt": "2026-08-11T13:57:30.049Z"
+      "hash": "8277f8239837f7c1c670c3968c9b94c29991ab07",
+      "translatedAt": "2026-09-10T12:15:57.490Z"
     },
     "accelerate/usage_guides/deepspeed.md": {
-      "hash": "8a0dad4c6d8a96d517f5c2836a62ce1ea7037892",
-      "translatedAt": "2026-08-11T13:57:30.185Z"
+      "hash": "5915027b1414a45aec81bd89c55b2ef5499d0694",
+      "translatedAt": "2026-09-10T12:15:58.766Z"
     },
     "accelerate/usage_guides/gaudi.md": {
-      "hash": "71276eeb87dae4590a79c73d97e1795aa1f0b19e",
-      "translatedAt": "2026-08-11T13:57:30.256Z"
+      "hash": "d5842918a9427d7a16dda5e847a34b89b02d95df",
+      "translatedAt": "2026-09-10T12:15:59.577Z"
     },
     "accelerate/usage_guides/gradient_accumulation.md": {
-      "hash": "7dd1347e1644d04a526e3618acbfa35db0c8b03a",
-      "translatedAt": "2026-08-11T13:57:30.431Z"
+      "hash": "ca06630598507a30ff877d27ac4d6b30053f846d",
+      "translatedAt": "2026-09-10T12:16:04.164Z"
     },
     "accelerate/usage_guides/intel_cpu.md": {
-      "hash": "3dfb5c1b90a2550dcacb6aad15612474cf6e2e20",
-      "translatedAt": "2026-08-11T13:57:30.513Z"
+      "hash": "cd9f19e49c853d7c65ee927b4f39f82e8e693b0b",
+      "translatedAt": "2026-09-10T12:16:02.602Z"
     },
     "accelerate/usage_guides/fsdp.md": {
-      "hash": "4f85f1e33ddb7d51f0c446df4367b92884ff4f8b",
-      "translatedAt": "2026-08-11T13:57:30.541Z"
+      "hash": "23ed3c6abf720f6c3cea49634b136c1b3827036e",
+      "translatedAt": "2026-09-10T12:16:01.176Z"
     },
     "accelerate/usage_guides/local_sgd.md": {
-      "hash": "b1b96ca5d223353cffe819741bdcd5cc8ceebda2",
-      "translatedAt": "2026-08-11T13:57:30.576Z"
+      "hash": "09f347f226b5ae91c449c34d2a177545fcfef4b1",
+      "translatedAt": "2026-09-10T12:16:03.280Z"
     },
     "accelerate/usage_guides/low_precision_training.md": {
-      "hash": "5e5e4c2b09397d12cc173bf9b4688dbe65a660f2",
-      "translatedAt": "2026-08-11T13:57:30.714Z"
+      "hash": "c29001993573511b3442cbc64c1c5178dbf914b7",
+      "translatedAt": "2026-09-10T12:16:05.752Z"
     },
     "accelerate/usage_guides/model_size_estimator.md": {
-      "hash": "29997e644ecaab7418467c78eab67f9391ada9c7",
-      "translatedAt": "2026-08-11T13:57:30.867Z"
+      "hash": "037ddbb7ceae97f0c707325630c238ab85b7a053",
+      "translatedAt": "2026-09-10T12:16:08.226Z"
     },
     "accelerate/usage_guides/mps.md": {
-      "hash": "4313525de757240e91c5dbdaa72ed2a7b4a366b4",
-      "translatedAt": "2026-08-11T13:57:30.933Z"
+      "hash": "a5fbb373739ec7d4426fd20188b7432e6dcd937c",
+      "translatedAt": "2026-09-10T12:16:10.011Z"
     },
     "accelerate/usage_guides/profiler.md": {
-      "hash": "d8d0ea1bb2ae0f36f4821e6366056088a193f014",
-      "translatedAt": "2026-08-11T13:57:31.060Z"
+      "hash": "094991bea4f654be1af66dee489410d3187c019e",
+      "translatedAt": "2026-09-10T12:16:12.263Z"
     },
     "accelerate/usage_guides/quantization.md": {
-      "hash": "f5b5c0bc1d5788ed0b98c1c65de600ed3669f459",
-      "translatedAt": "2026-08-11T13:57:31.155Z"
+      "hash": "9682830e6f482b067f28475f447050f75b6cabc0",
+      "translatedAt": "2026-09-10T12:16:11.231Z"
     },
     "accelerate/usage_guides/megatron_lm.md": {
-      "hash": "8772e36cac5e932aacd3bed89de6f9e33ebc08ed",
-      "translatedAt": "2026-08-11T13:57:31.165Z"
+      "hash": "0ccd3488374ba5a91131f12f35ea7260c0cad902",
+      "translatedAt": "2026-09-10T12:16:10.110Z"
     },
     "accelerate/usage_guides/tracking.md": {
-      "hash": "d5f3d20ef52fcfb00ec227308e28d8b0725385b7",
-      "translatedAt": "2026-08-11T13:57:31.263Z"
+      "hash": "5dca99cc17c621b03e42224d9d79270d7504cd47",
+      "translatedAt": "2026-09-10T12:16:14.355Z"
     },
     "accelerate/usage_guides/sagemaker.md": {
-      "hash": "15bfe9d900066c753dd3834e9337a7c31ee78882",
-      "translatedAt": "2026-08-11T13:57:31.574Z"
+      "hash": "fcaf9e20027c9a40db41404d6feb02d56ff85d1a",
+      "translatedAt": "2026-09-10T12:16:14.453Z"
     },
     "peft/index.md": {
       "hash": "e593c47aeb7d07016444dc18bd02c07f2965a825",
       "translatedAt": "2026-08-11T13:57:32.130Z"
     },
     "accelerate/usage_guides/training_zoo.md": {
-      "hash": "7b368a15b3a39a78df40ed39ddd0976d896b05a6",
-      "translatedAt": "2026-08-11T13:57:32.159Z"
+      "hash": "74a257f0f875be510330682a0a56db688caa8c05",
+      "translatedAt": "2026-09-10T12:16:17.470Z"
     },
     "peft/install.md": {
       "hash": "acd452bfec5c099f236bba0756af2b7c92ff2eef",
@@ -1541,8 +1541,8 @@
       "translatedAt": "2026-08-11T13:57:38.514Z"
     },
     "accelerate/package_reference/utilities.md": {
-      "hash": "e76e851f6d9dc22f59fb16cc1cadd7e4db807392",
-      "translatedAt": "2026-08-11T13:57:39.249Z"
+      "hash": "b27d4853972455719c7dfc91e8b56de6c660624e",
+      "translatedAt": "2026-09-10T12:16:20.320Z"
     },
     "peft/developer_guides/checkpoint.md": {
       "hash": "99cf1e1c3b3c59d629a4912db07ebf5e5143d369",
@@ -1713,8 +1713,8 @@
       "translatedAt": "2026-08-11T13:58:10.581Z"
     },
     "huggingface_hub/package_reference/hf_api.md": {
-      "hash": "ba4c0652f0dce0e053028f8b6a1fe5753661ee65",
-      "translatedAt": "2026-09-03T12:07:33.132Z"
+      "hash": "0ee354e2789e9d6a374b72c9b1f3bd1a98638bd2",
+      "translatedAt": "2026-09-10T12:15:18.037Z"
     },
     "peft/package_reference/merge_utils.md": {
       "hash": "cc7b2c3cad3295a209bab1d9c67c9ac5182eb876",
@@ -2001,10 +2001,10 @@
       "translatedAt": "2026-08-11T13:59:27.535Z"
     }
   },
-  "updatedAt": "2026-09-09T12:17:14.743Z",
+  "updatedAt": "2026-09-10T12:16:20.320Z",
   "stats": {
-    "translated": 0,
-    "skipped": 400,
+    "translated": 112,
+    "skipped": 288,
     "failed": 0,
     "total": 400
   }

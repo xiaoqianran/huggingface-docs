@@ -8,7 +8,7 @@
 
 首先，我们要了解`FSDP1`和`FSDP2`内部是如何工作的，以了解它们之间的差异。这也有助于我们理解`FSDP1`的局限性以及`FSDP2`如何解决它们。
 
-我们将讨论这样一个场景：我们有一个 `Layer`，其中包含 3 个 `Linear` 层，并使用 `FSDP` 进行包装，以便在 2 个 GPU 上进行分片。
+我们将讨论这样一个场景：我们有一个 `Layer`，其中包含 3 个`Linear` 层，并使用 `FSDP` 进行包装，以便在 2 个 GPU 上进行分片。
 
   
 
@@ -48,7 +48,7 @@
 `--fsdp_backward_prefetch` | \*\***已删除**\*\* | `FSDP2` 默认使用之前的 `BACKWARD_PRE` 选项，因为只有这样才允许通信和计算重叠
 `--fsdp_forward_prefetch` | \*\***尚未实施**\*\* |如何实现正在积极讨论中，目前`FSDP2`不支持
 `--fsdp_sync_module_states` | \*\***已删除**\*\* |使用`FSDP2`，此参数变得多余
-`--fsdp_cpu_ram_efficient_loading` | `--fsdp_cpu_ram_efficient_loading` |如果`true`、`FSDP2`同样只会在Rank 0上加载模型，然后参数会同步到其他Rank，这与`FSDP1`的行为相同，但是不再需要设置`--fsdp_sync_module_states``--fsdp_state_dict_type` | `--fsdp_state_dict_type` | `LOCAL_STATE_DICT` 已过时，`FSDP2` `SHARDED_STATE_DICT` 是默认选项，这会导致没有额外的通信，并且每个等级都会保存自己的分片，其他可能的选项是`FULL_STATE_DICT`，它会导致额外的通信和内存使用量激增，但会保存等级 0 的完整模型。
+`--fsdp_cpu_ram_efficient_loading` | `--fsdp_cpu_ram_efficient_loading` |如果`true`、`FSDP2`同样只会在rank 0上加载模型，然后参数会同步到其他rank，这与`FSDP1`的行为相同，但是不再需要设置`--fsdp_sync_module_states``--fsdp_state_dict_type` | `--fsdp_state_dict_type` | `LOCAL_STATE_DICT` 已过时，`FSDP2` `SHARDED_STATE_DICT` 是默认选项，这会导致没有额外的通信，并且每个等级都会保存自己的分片，其他可能的选项是`FULL_STATE_DICT`，它会导致额外的通信和内存使用量激增，但会保存等级 0 的完整模型。
 `--fsdp_use_orig_params` | \*\***已删除**\*\* | `FSDP2`在后台使用`DTensor`类，这意味着它*总是*默认使用原始参数
 \*\***新**\*\* | `--fsdp_version` | `1`是默认选项，为了不破坏现有代码，设置为`2`以使用`FSDP2`
 
@@ -77,5 +77,5 @@ accelerate to-fsdp2 --config_file config.yaml --output_file new_config.yaml
 
 这将自动将所有 FSDP1 设置转换为其 FSDP2 等效设置。使用 `--overwrite` 更新现有文件而不是创建新文件。
 
-### 执行和推迟作业
-https://huggingface.co/docs/accelerate/v1.14.0/concept_guides/deferring_execution.md
+### 比较分布式设置的性能
+https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/performance.md

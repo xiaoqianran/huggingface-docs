@@ -4,15 +4,15 @@
 
 使用 Accelerate 训练 PyTorch 模型时，您可能经常希望保存并继续训练状态。这样做需要
 保存和加载模型、优化器、RNG 生成器和 GradScaler。 Accelerate 内部有两个方便的功能可以快速实现这一目标：
-- 使用[save_state()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.save_state)将上述所有内容保存到文件夹位置
-- 使用[load_state()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.load_state)加载早期`save_state`存储的所有内容
+- 使用[save_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.save_state)将上述所有内容保存到文件夹位置
+- 使用[load_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.load_state)加载早期`save_state`存储的所有内容
 
-要进一步自定义通过 [save_state()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.save_state) 保存状态的位置和方式，可以使用 [ProjectConfiguration](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.utils.ProjectConfiguration) 类。例如 
+要进一步自定义通过 [save_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.save_state) 保存状态的位置和方式，可以使用 [ProjectConfiguration](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.ProjectConfiguration) 类。例如 
 如果启用`automatic_checkpoint_naming`，每个保存的检查点将位于`Accelerator.project_dir/checkpoints/checkpoint_{checkpoint_number}`。
 
 应该注意的是，期望这些状态来自相同的训练脚本，而不应该来自两个单独的脚本。
 
-- 通过使用[register_for_checkpointing()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.register_for_checkpointing)，您可以注册自定义对象以从前面的两个函数自动存储或加载，
+- 通过使用[register_for_checkpointing()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.register_for_checkpointing)，您可以注册自定义对象以从前面的两个函数自动存储或加载，
 只要该对象具有 `state_dict` **和** `load_state_dict` 功能。这可能包括诸如学习率调度程序之类的对象。 
 
 下面是一个在训练期间使用检查点保存和重新加载状态的简短示例：
@@ -53,7 +53,7 @@ accelerator.load_state("my/save/path/checkpointing/checkpoint_0")
 ```
 
 ## 恢复DataLoader的状态从检查点恢复后，还可能需要从活动`DataLoader`中的特定点恢复，如果 
-国家在一个时代的中期被拯救了。您可以使用 [skip_first_batches()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.skip_first_batches) 来执行此操作。 
+国家在一个时代的中期被拯救了。您可以使用 [skip_first_batches()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.skip_first_batches) 来执行此操作。 
 
 ```python
 from accelerate import Accelerator
@@ -79,5 +79,5 @@ for batch in train_dataloader:
     pass
 ```
 
-### 模型量化
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/quantization.md
+### 动物园示例
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/training_zoo.md

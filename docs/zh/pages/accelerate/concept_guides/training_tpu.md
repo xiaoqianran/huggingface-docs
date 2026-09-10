@@ -7,17 +7,17 @@
 
 ## 在笔记本中进行训练
 
-TPU 训练时的主要关注点来自[notebook_launcher()](/docs/accelerate/v1.14.0/en/package_reference/launchers#accelerate.notebook_launcher)。正如[notebook tutorial](../usage_guides/notebook)中提到的，您需要 
-将训练代码重组为可以传递给 [notebook_launcher()](/docs/accelerate/v1.14.0/en/package_reference/launchers#accelerate.notebook_launcher) 函数的函数，并注意不要在 GPU 上声明任何张量。
+TPU 训练时的主要关注点来自[notebook_launcher()](/docs/accelerate/v1.15.0/en/package_reference/launchers#accelerate.notebook_launcher)。正如[notebook tutorial](../usage_guides/notebook)中提到的，您需要 
+将训练代码重组为可以传递给 [notebook_launcher()](/docs/accelerate/v1.15.0/en/package_reference/launchers#accelerate.notebook_launcher) 函数的函数，并注意不要在 GPU 上声明任何张量。
 
 虽然在 TPU 上，最后一部分并不那么重要，但需要理解的一个关键部分是，当您从笔记本启动代码时，您是通过一个称为 **forking** 的过程来实现的。 
 从命令行启动时，您执行**生成**，其中 python 进程当前未运行，并且您*生成*一个新进程。因为您的 Jupyter 笔记本已经 
-使用 python 进程，您需要从中 *fork* 一个新进程来启动您的代码。这一点在声明模型时变得很重要。在分叉的 TPU 进程中，建议您实例化您的模型 *一次* 并将其传递到您的 
+使用 python 进程，您需要从中 *fork* 一个新进程来启动您的代码。这一点在声明模型时变得很重要。在分叉的 TPU 进程中，建议您实例化您的模型*一次*并将其传递到您的 
 训练功能。这与在 GPU 上进行训练不同，在 GPU 上创建 `n` 模型，使其梯度在某些时刻同步并反向传播。相反，一个 
 模型实例在所有节点之间共享，并且来回传递。这一点尤其重要，尤其是在低资源 TPU（例如 Kaggle 内核中提供的 TPU）上进行训练时
 在谷歌合作实验室上。 
 
-下面是在 CPU 或 GPU 上训练时传递给 [notebook_launcher()](/docs/accelerate/v1.14.0/en/package_reference/launchers#accelerate.notebook_launcher) 的训练函数示例：
+下面是在 CPU 或 GPU 上训练时传递给 [notebook_launcher()](/docs/accelerate/v1.15.0/en/package_reference/launchers#accelerate.notebook_launcher) 的训练函数示例：
 
     此代码片段基于 `simple_nlp_example` 笔记本中的代码片段，发现 [here](https://github.com/huggingface/notebooks/blob/main/examples/accelerate_examples/simple_nlp_example.ipynb) 有轻微的变化 
     为了简单起见进行修改
@@ -129,5 +129,5 @@ accelerator = Accelerator(mixed_precision="bf16", downcast_bf16=True)
 如果速度太慢，建议保持批量大小与训练数据相同。否则内存会重新分配给这个 
 前几次迭代后的新批量大小。 
 
-    仅仅因为分配了内存并不意味着它将被使用，也不意味着返回训练数据加载器时批处理大小会增加。### 将大模型加载到内存中
-https://huggingface.co/docs/accelerate/v1.14.0/concept_guides/big_model_inference.md
+    仅仅因为分配了内存并不意味着它将被使用或者返回到训练数据加载器时批处理大小将会增加。### FSDP1 与 FSDP2
+https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/fsdp1_vs_fsdp2.md

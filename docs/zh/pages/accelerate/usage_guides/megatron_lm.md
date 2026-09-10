@@ -12,7 +12,7 @@
 Accelerate 集成了 Megatron-LM 的以下功能，以实现大规模预训练/微调
 BERT（编码器）、GPT（解码器）或 T5 模型（编码器和解码器）：
 
-a. **张量并行性（TP）**：减少内存占用，而无需在节点内等级上进行太多额外的通信。
+a. **张量并行性 (TP)**：减少内存占用，而无需在节点内等级上进行太多额外的通信。
 每个张量被分成多个块，每个分片驻留在单独的 GPU 上。在每个步骤中，都会处理相同的小批量数据
 每个分片独立并行，然后在所有 GPU 之间同步（`all-reduce` 操作）。 
 在简单的转换器层中，这会导致前向路径中有 2 个`all-reduces`，后向路径中有 2 个`all-reduces`。
@@ -21,12 +21,12 @@ Model Parallelism](https://huggingface.co/papers/1909.08053)和
 博文的这一部分[The Technology Behind BLOOM Training](https://huggingface.co/blog/bloom-megatron-deepspeed#tensor-parallelism)。b. **管道并行性 (PP)**：减少内存占用并通过节点间并行化实现大规模训练。 
 通过 PipeDream-Flush 计划/1F1B 计划和 Interleaved 1F1B 计划减少幼稚 PP 的泡沫。 
 各层均匀分布在 PP 阶段。例如，如果模型有 `24` 层，而我们有 `4` GPU
-管道并行性，每个 GPU 将有 `6` 层 (24/4)。有关减少 PP 闲置时间的时间表的更多详细信息，
+管道并行性，每个 GPU 将具有 `6` 层 (24/4)。有关减少 PP 空闲时间的时间表的更多详细信息，
 请参阅研究论文[Efficient Large-Scale Language Model Training on GPU Clusters
 Using Megatron-LM](https://huggingface.co/papers/2104.04473)和 
-博文的这一部分[The Technology Behind BLOOM Training](https://huggingface.co/blog/bloom-megatron-deepspeed#pipeline-parallelism)。c. **序列并行性 (SP)**：减少内存占用，无需任何额外的通信。仅在使用 TP 时适用。
+博文的这一部分[The Technology Behind BLOOM Training](https://huggingface.co/blog/bloom-megatron-deepspeed#pipeline-parallelism)。c. **序列并行 (SP)**：减少内存占用，无需任何额外的通信。仅在使用 TP 时适用。
 它减少了所需的激活内存，因为它可以防止相同的副本出现在张量并行列上 
-将 `all-reduce` 替换为 `reduce-scatter` 后，`no-op` 操作将被 `all-gather` 替换。 
+将 `all-reduce` 替换为 `reduce-scatter` 后，`no-op` 操作将替换为 `all-gather`。 
 作为`all-reduce = reduce-scatter + all-gather`，这可以节省大量的激活内存，而无需增加通信成本。 
 简而言之，它沿着序列维度对每个 Transformer 层的输出进行分片，例如， 
 如果序列长度为`1024`并且TP大小为`4`，则每个GPU将为每个样本拥有`256`令牌（1024/4）。 
@@ -49,7 +49,7 @@ h. **支持索引数据集**：用于大规模训练的高效数据集二进制�
 
 我。 **检查点重塑和互操作性**：用于重塑变量 Megatron-LM 检查点的实用程序 
 张量和管道并行大小与深受喜爱的 Transformers 分片检查点相同，因为它拥有大量工具的大力支持
-例如加速大模型推理、威震天-DeepSpeed 推理等。 
+例如 Accelerate Big Model Inference、Megatron-DeepSpeed Inference 等。 
 还支持将 Transformers 分片检查点转换为可变张量和管道并行大小的 Megatron-LM 检查点
 用于大规模训练。  
 
@@ -241,7 +241,7 @@ examples/by_feature/megatron_lm_gpt_pretraining.py \
 --output_dir "awesome_model"
 ```
 
-以下是输出日志中的一些重要摘录：
+以下是输出日志的一些重要摘录：
 
 ```bash
 Loading extension module fused_dense_cuda...
@@ -378,7 +378,7 @@ model, optimizer, lr_scheduler, train_dataloader, eval_dataloader, _ = accelerat
 ```c.训练和评估循环的更改，因为数据加载器仅适用于张量并行等级 0
 因此，只有当数据加载器不是 `None` 时我们才需要迭代，否则提供空字典
 因此，我们使用 `while` 循环进行循环，并在 `completed_steps` 等于 `args.max_train_steps` 时中断
-这类似于 Megatron-LM 设置，其中用户在使用 Megaton-LM 索引数据集时必须提供`max_train_steps`。
+这类似于 Megatron-LM 设置，其中用户在使用 Megaton-LM 索引数据集时必须提供 `max_train_steps`。
 这显示了 Accelerate 的灵活性和可扩展性。
 
 ```python
@@ -508,7 +508,7 @@ accelerator.print(decoded_preds)
 3. 使用 `megatron_generate` 方法用于 Megatron-LM GPT 模型的端到端示例位于
 [megatron_gpt2_generation.py](https://github.com/pacman100/accelerate-megatron-test/blob/main/src/inference/megatron_gpt2_generation.py) 与 
 配置文件[megatron_lm_gpt_generate_config.yaml](https://github.com/pacman100/accelerate-megatron-test/blob/main/src/Configs/megatron_lm_gpt_generate_config.yaml).
-带有加速启动命令的 bash 脚本可在 [megatron_lm_gpt_generate.sh](https://github.com/pacman100/accelerate-megatron-test/blob/main/megatron_lm_gpt_generate.sh) 获得。
+带有加速启动命令的 bash 脚本可在 [megatron_lm_gpt_generate.sh](https://github.com/pacman100/accelerate-megatron-test/blob/main/megatron_lm_gpt_generate.sh) 获取。
 脚本的输出日志可在[megatron_lm_gpt_generate.log](https://github.com/pacman100/accelerate-megatron-test/blob/main/output_logs/megatron_lm_gpt_generate.log)获得。
 
 ## 支持 ROPE 和 ALiBi 位置嵌入和多查询注意力
@@ -567,5 +567,5 @@ c.威震天-LM [T5Model](https://github.com/NVIDIA/Megatron-LM/blob/main/megatro
 [T5](https://huggingface.co/docs/transformers/model_doc/t5) 和 
 [MT5](https://huggingface.co/docs/transformers/model_doc/mt5)
 
-### 英特尔高迪
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/gaudi.md
+### 通过 DeepSpeed 使用多个模型
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/deepspeed_multiple_model.md

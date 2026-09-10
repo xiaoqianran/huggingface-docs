@@ -15,7 +15,7 @@
 accelerate config
 ```
 
-但是，如果一般默认设置没问题，并且您*不*在 TPU 上运行，则 Accelerate 有一个实用程序可以通过 [utils.write_basic_config()](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.commands.config.default.write_basic_config) 将您的设备配置快速写入配置文件。
+但是，如果一般默认设置没问题，并且您*不*在 TPU 上运行，则 Accelerate 有一个实用程序可以通过 [utils.write_basic_config()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.commands.config.default.write_basic_config) 将您的设备配置快速写入配置文件。
 
 以下代码将在写入配置后重新启动 Jupyter，因为调用 CUDA 运行时或 XPU 运行时来执行此操作。CUDA 和 XPU 在多设备系统上只能初始化一次。可以在笔记本中进行调试并调用 CUDA/XPU，但为了最终训练，需要执行完整的清理和重新启动。
     
@@ -155,7 +155,7 @@ from torch.optim.lr_scheduler import CosineAnnealingLR
 
 ## 编写训练函数
 
-现在您可以构建训练循环。 [notebook_launcher()](/docs/accelerate/v1.14.0/en/package_reference/launchers#accelerate.notebook_launcher) 的工作原理是传入一个函数来调用，该函数将在分布式系统上运行。
+现在您可以构建训练循环。 [notebook_launcher()](/docs/accelerate/v1.15.0/en/package_reference/launchers#accelerate.notebook_launcher) 的工作原理是传入一个函数来调用，该函数将在分布式系统上运行。
 
 这是动物分类问题的基本训练循环：
 
@@ -167,7 +167,7 @@ def training_loop(mixed_precision="fp16", seed: int = 42, batch_size: int = 64):
     accelerator = Accelerator(mixed_precision=mixed_precision)
 ```
 
-首先，您应该在训练循环中尽早设置种子并创建一个 [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) 对象。如果在 TPU 上进行训练，您的训练循环应将模型作为参数，并且应将其实例化 
+首先，您应该在训练循环中尽早设置种子并创建一个 [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) 对象。如果在 TPU 上进行训练，您的训练循环应将模型作为参数，并且应将其实例化 
     在训练循环函数之外。参见[TPU best practices](../concept_guides/training_tpu) 
     了解原因
 
@@ -211,7 +211,7 @@ def training_loop(mixed_precision="fp16", seed: int = 42, batch_size: int = 64):
     lr_scheduler = OneCycleLR(optimizer=optimizer, max_lr=3e-2, epochs=5, steps_per_epoch=len(train_dataloader))
 ```
 
-在将所有内容传递给[prepare()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.prepare)之前。
+在将所有内容传递给[prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare)之前。
 
     没有需要记住的特定顺序，您只需按照提供给准备方法的顺序解压对象即可。
 
@@ -256,7 +256,7 @@ def training_loop(mixed_precision="fp16", seed: int = 42, batch_size: int = 64):
 最后一个主要区别之前。 
 
 进行分布式评估时，需要传递预测和标签 
-[gather()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.gather)，以便所有数据在当前设备上可用，并且可以实现正确计算的指标：
+[gather()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.gather)，以便所有数据在当前设备上可用，并且可以实现正确计算的指标：
 
 ```python
             accurate_preds = accelerator.gather(predictions) == accelerator.gather(batch["label"])
@@ -264,7 +264,7 @@ def training_loop(mixed_precision="fp16", seed: int = 42, batch_size: int = 64):
             accurate += accurate_preds.long().sum()
 ```
 
-现在你只需要计算这个问题的实际指标，你可以使用 [print()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.print) 在主进程上打印它：
+现在你只需要计算这个问题的实际指标，你可以使用 [print()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.print) 在主进程上打印它：
 
 ```python
         eval_metric = accurate.item() / num_elems
@@ -342,7 +342,7 @@ def training_loop(mixed_precision="fp16", seed: int = 42, batch_size: int = 64):
 
 ## 使用笔记本启动器
 
-剩下的就是使用[notebook_launcher()](/docs/accelerate/v1.14.0/en/package_reference/launchers#accelerate.notebook_launcher)。
+剩下的就是使用[notebook_launcher()](/docs/accelerate/v1.15.0/en/package_reference/launchers#accelerate.notebook_launcher)。
 
 您传入函数、参数（作为元组）以及要训练的进程数。 （更多信息请参见[documentation](../package_reference/launchers)）
 
@@ -402,7 +402,7 @@ epoch 4: 94.71
 
 就是这样！
 
-请注意，[notebook_launcher()](/docs/accelerate/v1.14.0/en/package_reference/launchers#accelerate.notebook_launcher)忽略加速配置文件，根据配置使用启动：
+请注意，[notebook_launcher()](/docs/accelerate/v1.15.0/en/package_reference/launchers#accelerate.notebook_launcher)忽略加速配置文件，根据配置使用启动：
 
 ```bash
 accelerate launch
@@ -417,9 +417,9 @@ accelerate launch
 
 ## 结论
 
-该笔记本展示了如何从 Jupyter Notebook 内部执行分布式训练。需要记住的一些要点：- 确保保存传递给 [notebook_launcher()](/docs/accelerate/v1.14.0/en/package_reference/launchers#accelerate.notebook_launcher) 的函数使用 CUDA/XPU（或 CUDA/XPU 导入）的所有代码
+该笔记本展示了如何从 Jupyter Notebook 内部执行分布式训练。需要记住的一些要点：- 确保保存传递给 [notebook_launcher()](/docs/accelerate/v1.15.0/en/package_reference/launchers#accelerate.notebook_launcher) 的函数使用 CUDA/XPU（或 CUDA/XPU 导入）的任何代码
 - 将`num_processes`设置为用于训练的设备数量（例如GPU、XPU、CPU、TPU等的数量）
 - 如果使用 TPU，请在训练循环函数之外声明您的模型
 
 ### 将 Accelerate 添加到您的代码中
-https://huggingface.co/docs/accelerate/v1.14.0/basic_tutorials/migration.md
+https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/migration.md

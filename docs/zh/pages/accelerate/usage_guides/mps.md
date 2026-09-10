@@ -34,5 +34,5 @@ accelerate launch /examples/cv_example.py --data_dir images
 最后，请记住，`Accelerate`仅集成了MPS后端，因此如果您
 对 MPS 后端使用有任何问题或疑问，请通过 [PyTorch GitHub](https://github.com/pytorch/pytorch/issues) 提出问题。
 
-### DDP 通信挂钩
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/ddp_comm_hook.md
+### 从这里开始！
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/explore.md

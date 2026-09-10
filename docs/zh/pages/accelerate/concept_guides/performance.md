@@ -16,7 +16,7 @@
 
 ## 设置种子 
 
-虽然这个问题还没有出现那么多，但请确保使用[utils.set_seed()](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.utils.set_seed)在所有分布式情况下完全设置种子，以便训练可以重现：
+虽然这个问题还没有出现那么多，但请确保使用[utils.set_seed()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.set_seed)在所有分布式情况下完全设置种子，以便训练可以重现：
 
 ```python
 from accelerate.utils import set_seed
@@ -78,5 +78,5 @@ optimizer = AdamW(params=model.parameters(), lr=learning_rate)
 预计性能会有所下降。在比较不同计算之间的批量损失时，可以清楚地看到这一点 
 设置。然而，训练结束时的总体损失、指标和总体表现应该大致相同。
 
-### TPU 培训
-https://huggingface.co/docs/accelerate/v1.14.0/concept_guides/training_tpu.md
+### FSDP 与 DeepSpeed
+https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/fsdp_and_deepspeed.md

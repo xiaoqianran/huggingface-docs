@@ -148,7 +148,7 @@ accelerate launch {script_name.py} {--arg1} {--arg2} ...
 此缓存文件夹位于（按优先级降序排列）：
 
 - 环境变量`HF_HOME`的内容，后缀为`accelerate`。
-- 如果不存在，则你的环境变量`XDG_CACHE_HOME`的内容后缀为
+- 如果不存在，则为你的环境变量`XDG_CACHE_HOME`的内容，后缀为
   `huggingface/accelerate`。
 - 如果也不存在，则文件夹`~/.cache/huggingface/accelerate`。
 
@@ -179,13 +179,13 @@ accelerate launch --config_file {path/to/config/my_config_file.yaml} {script_nam
 ## 多节点训练
 使用 Accelerate 进行多节点训练类似于[multi-node training with torchrun](https://pytorch.org/tutorials/intermediate/ddp_series_multinode.html)。启动多节点训练运行的最简单方法是执行以下操作：- 将您的代码库和数据复制到所有节点。 （或将它们放在共享文件系统上）
 - 在所有节点上设置 python 包。
-- 首先在主单节点上运行`accelerate config`。指定节点数量后，系统会要求您指定每个节点的等级（主节点为 0），以及主进程的 IP 地址和端口。这是工作节点与主进程通信所必需的。之后，您可以在所有节点上复制或发送此配置文件，将`machine_rank`更改为1、2、3等，以避免运行命令（或者直接按照他们的指示使用`torchrun`启动）
+- 首先在主单节点上运行`accelerate config`。指定节点数量后，系统会要求您指定每个节点的等级（主节点为 0），以及主进程的 IP 地址和端口。这是工作节点与主进程通信所必需的。之后，您可以在所有节点上复制或发送此配置文件，将`machine_rank`更改为1、2、3等，以避免必须运行命令（或者直接按照他们的指示使用`torchrun`启动）
 
 完成此操作后，您可以通过在所有节点上运行`accelerate launch`（或`torchrun`）来开始多节点训练运行。
 
-    需要在所有节点上运行该命令才能启动所有内容，而不仅仅是从主节点运行它。您可以使用 SLURM 或不同的流程执行器之类的工具来满足此要求并通过单个命令调用所有内容。建议使用主节点的内网 IP，而不是公网 IP，以获得更好的延迟。这是您在主节点上运行 `hostname -I` 时看到的 `192.168.x.x` 或 `172.x.x.x` 地址。
+    需要在所有节点上运行该命令才能启动所有内容，而不仅仅是从主节点运行它。您可以使用 SLURM 或不同的流程执行器之类的工具来满足此要求并从单个命令调用所有内容。建议使用主节点的内网 IP，而不是公网 IP，以获得更好的延迟。这是您在主节点上运行 `hostname -I` 时看到的 `192.168.x.x` 或 `172.x.x.x` 地址。
 
 要更好地了解多节点训练，请查看我们的 [multi-node training with FSDP](https://huggingface.co/blog/ram-efficient-pytorch-fsdp) 示例。
 
-### 从 Jupyter Notebooks 启动分布式训练
-https://huggingface.co/docs/accelerate/v1.14.0/basic_tutorials/notebook.md
+### 概述
+https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/overview.md

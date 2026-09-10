@@ -9,9 +9,9 @@
 ## 为什么要上下文并行？
 
 随着大型语言模型和最近推理模型的出现，序列长度迅速增长。这与注意力的二次记忆复杂性相结合，导致需要更有效的方法来训练长序列模型。
-序列长度为 128k，对于 `bf16` 精度，注意矩阵的内存需求为 `128k * 128k * 2 bytes * num_heads = ~32 GB * num_heads`，考虑到普通的注意实现。诚然，使用 `flash attention` 或 `SDPA` 不会实现这些注意力权重，这会急剧下降，但内存需求的增长仍然相当可观。
+序列长度为 128k，考虑到普通的注意实现，对于 `bf16` 精度，注意矩阵的内存要求是`128k * 128k * 2 bytes * num_heads = ~32 GB * num_heads`。诚然，使用 `flash attention` 或 `SDPA` 不会实现这些注意力权重，这会急剧下降，但内存需求的增长仍然相当可观。
 
-上下文并行性允许我们沿着序列维度分割注意力计算的输入，并在多个 GPU 上并行计算注意力。有了这个，我们可以训练具有长序列的模型，有可能扩展到 1M+ 序列长度。
+上下文并行允许我们沿着序列维度分割注意力计算的输入，并在多个 GPU 上并行计算注意力。有了这个，我们可以训练具有长序列的模型，有可能扩展到 1M+ 序列长度。
 
 ## 如何使用上下文并行？
 
@@ -50,7 +50,7 @@ accelerate launch --parallelism-config-cp-size 8 --parallelism-config-cp-comm-st
 > 计划。如果没有使用`FSDP2`，将会引发错误。> [!警告]
 > 上下文并行仅适用于 [SDPA](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html) 并且仅适用于没有掩码或因果掩码的情况。我们无法为您正确检测到这一点，因此您有责任确保您使用不带面罩或因果面罩的`SDPA`。如果您使用任何其他注意实现，则会引发错误。
 
-使用上述方法启用上下文并行性后，您可以将其应用到您的训练循环中。我们提供了一个围绕 [⟦T25⟧](https://docs.pytorch.org/docs/stable/distributed.tensor.html#torch.distributed.tensor.experimental.context_parallel) 的薄包装器，您可以在训练循环中使用它，它抽象了使用它的一些复杂性（稍后会详细介绍）。为了最大限度地减少您在训练循环中必须进行的更改，我们提供了一个上下文管理器，如果未启用上下文并行性，则该管理器是`noop`；如果启用了上下文并行性，则应用上下文并行性。这样，您就可以在训练循环中使用它，而无需根据并行配置更改任何代码。
+使用上述方法启用上下文并行性后，您可以将其应用到您的训练循环中。我们提供了一个围绕 [⟦T25⟧](https://docs.pytorch.org/docs/stable/distributed.tensor.html#torch.distributed.tensor.experimental.context_parallel) 的薄包装器，您可以在训练循环中使用它，它抽象了使用它的一些复杂性（稍后会详细介绍）。为了最大程度地减少您在训练循环中必须进行的更改，我们提供了一个上下文管理器，如果未启用上下文并行性，则该管理器是 `noop`；如果启用了上下文并行性，则应用上下文并行性。这样，您就可以在训练循环中使用它，而无需根据并行配置更改任何代码。
 您可以按如下方式使用它：
 
 ```python
@@ -72,7 +72,7 @@ for batch in dataloader:
   图 1：高达 256k 上下文大小的内存使用情况和上下文并行速度。
 
 > [!提示]
-> 这些示例是使用脚本创建的，您可以找到 [in the examples folder](https://github.com/huggingface/accelerate/blob/main/examples/fsdp2/nd_parallel.py)。要在 8 个 H100 GPU（128k 序列长度）上运行该示例，您可以使用以下命令：
+> 这些示例是使用您可以找到的脚本创建的 [in the examples folder](https://github.com/huggingface/accelerate/blob/main/examples/fsdp2/nd_parallel.py)。要在 8 个 H100 GPU（128k 序列长度）上运行该示例，您可以使用以下命令：
 > ```bash
 > accelerate launch --use-fsdp --fsdp-activation-checkpointing=TRUE examples/fsdp2/nd_parallel.py --cp-size=8 --sequence-length=128000
 > ```
@@ -80,7 +80,7 @@ for batch in dataloader:
 ## 加速的界面
 
 上下文管理器采用一些参数，用于配置上下文并行性。- `buffers`：这是要在序列维度上分片的张量列表。这些张量通常是输入 ID、标签和注意力掩码。
-- `buffer_seq_dims`：这是一个整数列表，按照`buffers`列表的顺序指定缓冲区的序列维度。如果您通过`buffers=[input_ids, shift_labels]`且两者都具有形状`[batch_size, sequence_length]`，则您将通过`buffer_seq_dims=[1, 1]`。
+- `buffer_seq_dims`：这是一个整数列表，按照`buffers`列表的顺序指定缓冲区的序列维度。如果您通过`buffers=[input_ids, shift_labels]`且两者都具有形状`[batch_size, sequence_length]`，您将通过`buffer_seq_dims=[1, 1]`。
                      因为序列维度是张量的第二个维度。这是正确计算模型输出所必需的。
 - `no_restore_buffers`：上下文并行性的实现就地修改缓冲区，将它们转换为`torch.distributed.tensor.Dtensor`。上下文管理器退出后，需要启动通信内核以将缓冲区恢复到原始状态（通常是全收集）。这需要一些时间，因此建议传递与 `buffers` 参数中相同的张量，以避免不必要的通信，除非您确定需要在上下文管理器退出后使用缓冲区。> [!警告]
 > 上下文并行性与 `labels` 不兼容，`input_ids` 是 `input_ids` 的副本，🤗 Transformer 中的模型可以转变以启用因果语言建模本身。
@@ -124,12 +124,12 @@ final_attn = combine(attn)
 ```
 
 ## 全部到全部 vs 全部聚集###全员齐聚
-那么all-to-all和all-gather有什么区别呢？通过all-gather，沟通变得非常简单。之后（好吧，之前，因为通常需要更长的时间）我们计算本地注意力`attn_i`，我们启动一个全收集来收集所有其他等级的所有其他`Ks`和`Vs`。当这种通信完成时，每个等级都拥有所有其他等级的所有`Ks`和`Vs`，并且可以用它们顺序计算注意力。
-在理想情况下，所有聚集在 `attn_i` 计算完成的同时完成。然而，这在实践中从未发生过，所以当完整的`attn_i`与通信的一部分重叠时，就实现了理想的真实重叠，然后用`K_j`和`V_j`开始计算，我们等待全收集完成。### 全部到全部
-All-to-all（有时称为`ring-rotation`）采用环形通信模式。完成`attn_i`计算后，启动全对所有，将`K_i`和`V_i`发送到相邻的队列。然后，我们重复此`context_parallel_size-1`次，以便每个等级都可以看到所有其他等级的`K`和`V`的所有分片。在理想情况下，我们从相邻等级预取分片`K_i+1`和`V_i+1`，并且此通信与当前`attn_i`的计算完全重叠。再说一次，实际上，这种完美的重叠永远不会发生。考虑到这种方法的性质，如果我们没有实现完美的重叠，那么惩罚会比全聚集要大得多。
+那么all-to-all和all-gather有什么区别呢？通过all-gather，沟通变得非常简单。之后（好吧，之前，因为通常需要更长的时间）我们计算本地注意力`attn_i`，我们启动一个全收集来收集所有其他等级的所有其他`Ks`和`Vs`。当这种通信完成时，每个等级都拥有来自所有其他等级的所有`Ks`和`Vs`，并且可以用它们顺序计算注意力。
+在理想情况下，所有聚集在`attn_i`计算完成的同时完成。然而，这在实践中从未发生过，所以当完整的`attn_i`与通信的一部分重叠时，就实现了理想的真实重叠，然后用`K_j`和`V_j`开始计算，我们等待全收集完成。### 全部到全部
+All-to-all（有时称为`ring-rotation`）采用环形通信模式。完成`attn_i`计算后，启动全对所有，将`K_i`和`V_i`发送到相邻的队列。然后，我们重复此`context_parallel_size-1`次，以便每个等级都可以看到所有其他等级的`K`和`V`的所有分片。在理想情况下，我们从相邻等级预取分片`K_i+1`和`V_i+1`，并且此通信与当前`attn_i`的计算完全重叠。再说一次，实际上，这种完美的重叠永远不会发生。考虑到这种方法的性质，如果我们没有实现完美的重叠，那么惩罚会比全聚集大得多。
 
 ## 如何选择正确的旋转方式？
-理论上来说，all-to-all应该是更好的选择。尽管在实践中，这种情况很少发生。因此，我们默认为全聚集，因为它更有可能获得更好的性能。来自 `torchtitan` 团队的广泛 [benchmarks](https://discuss.pytorch.org/t/distributed-w-torchtitan-breaking-barriers-training-long-context-llms-with-1m-sequence-length-in-pytorch-using-context-parallel/215082) 也表明，all-to-all 很少能优于 all-gather。不过，我们仍然提供这两种选项，因为您可能会发现其中一种更适合您的用例。
+理论上来说，all-to-all应该是更好的选择。尽管在实践中，这种情况很少发生。因此，我们默认为全聚集，因为它更有可能获得更好的性能。来自 `torchtitan` 团队的广泛 [benchmarks](https://discuss.pytorch.org/t/distributed-w-torchtitan-breaking-barriers-training-long-context-llms-with-1m-sequence-length-in-pytorch-using-context-parallel/215082) 也表明，all-to-all 很少能胜过 all-gather。不过，我们仍然提供这两种选项，因为您可能会发现其中一种更适合您的用例。
 
 您可以在下图中的探查器输出中直接看到此问题：图 1：在红色部分，您可以看到空闲时间，同时我们等待 all-to-all 内核完成。在第一个蓝色条中突出显示，您可以看到大约需要 250us 才能完成，每个注意力调用都会重复 N-1 次，其中 N 是上下文并行大小。
 
@@ -142,7 +142,7 @@ All-to-all（有时称为`ring-rotation`）采用环形通信模式。完成`att
 
   
   
-  图 2：在蓝色矩形（流 23）中，您可以看到 `FSDP` 分片的预取与注意力计算（流 7）完全重叠，而在红色矩形（流 24）中，您可以看到全收集内核导致空闲时间泡沫，其中我们的计算流（7）处于空闲状态。在上图中，您还可以注意到 all-to-all 和 all-gather 之间的区别。在 all-to-all 中（图 1），我们为每个注意力调用启动通信内核 N-1 次，而在 all-gather 中（图 2），我们仅启动一次通信内核。这会产生更大的泡沫，但每次注意力调用只会发生一次，而在所有情况下，它会发生 N-1 次。
+  图 2：在蓝色矩形（流 23）中，您可以看到 `FSDP` 分片的预取与注意力计算（流 7）完全重叠，而在红色矩形（流 24）中，您可以看到全收集内核导致空闲时间泡沫，其中我们的计算流（7）处于空闲状态。在上图中，您还可以注意到 all-to-all 和 all-gather 之间的区别。在 all-to-all 中（图 1），我们为每个注意力调用启动通信内核 N-1 次，而在 all-gather 中（图 2），我们仅启动一次通信内核。这会产生更大的泡沫，但每次注意力调用只发生一次，而在所有情况下，它会发生 N-1 次。
 
 ## 联合网格中的数据调度
 
@@ -157,5 +157,5 @@ All-to-all（有时称为`ring-rotation`）采用环形通信模式。完成`att
 ... and so on.
 ```
 
-### 比较分布式设置的性能
-https://huggingface.co/docs/accelerate/v1.14.0/concept_guides/performance.md
+### 低精度训练方法
+https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/low_ precision_training.md

@@ -62,8 +62,8 @@ for index, batch in enumerate(training_dataloader):
 
   在当前状态下，由于称为梯度同步的过程，该代码不会有效地执行梯度累积。在 [Concepts tutorial](../concept_guides/gradient_synchronization) 中了解更多相关信息！## 让 Accelerate 处理梯度累积
 
-现在剩下的就是让 Accelerate 为我们处理梯度累积。为此，您应该将 `gradient_accumulation_steps` 参数传递给 [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator)，指定数字 
-每次调用 `step()` 之前要执行的步骤以及如何在调用 [backward()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.backward) 期间自动调整损耗：
+现在剩下的就是让 Accelerate 为我们处理梯度累积。为此，您应该将 `gradient_accumulation_steps` 参数传递给 [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator)，指定数字 
+每次调用 `step()` 之前要执行的步骤以及如何在调用 [backward()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.backward) 期间自动调整损耗：
 
 ```diff
   from accelerate import Accelerator
@@ -71,10 +71,10 @@ for index, batch in enumerate(training_dataloader):
 + accelerator = Accelerator(gradient_accumulation_steps=2)
 ```
 
-或者，您可以将 `gradient_accumulation_plugin` 参数传递给 [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) 对象的 `__init__`，这将允许您进一步自定义梯度累积行为。 
+或者，您可以将 `gradient_accumulation_plugin` 参数传递给 [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) 对象的 `__init__`，这将允许您进一步自定义梯度累积行为。 
 在 [GradientAccumulationPlugin](../package_reference/accelerator#accelerate.utils.GradientAccumulationPlugin) 文档中了解更多相关信息。
 
-从这里，您可以在训练循环内部使用 [accumulate()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.accumulate) 上下文管理器来自动为您执行梯度累积！
+从这里，您可以在训练循环内部使用 [accumulate()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.accumulate) 上下文管理器来自动为您执行梯度累积！
 您只需将其包裹在我们代码的整个训练部分即可： 
 
 ```diff
@@ -96,10 +96,10 @@ for index, batch in enumerate(training_dataloader):
   optimizer.zero_grad()
 ```
 
-正如您所看到的，[Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator)能够跟踪您所在的批次号，并且它会自动知道是否单步执行准备好的优化器以及如何调整损失。通常，通过梯度累积，您需要调整步骤数以反映您所处理的总批次的变化 
+正如您所看到的，[Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator)能够跟踪您所在的批次号，并且它会自动知道是否单步执行准备好的优化器以及如何调整损失。通常，通过梯度累积，您需要调整步骤数以反映您所处理的总批次的变化 
 上的训练。默认情况下，加速会自动为您执行此操作。在幕后，我们实例化一个 `GradientAccumulationPlugin` 配置来执行此操作。
 
-[state.GradientState](/docs/accelerate/v1.14.0/en/package_reference/state#accelerate.state.GradientState) 与正在迭代的活动数据加载器同步。因此，它天真地假设当我们到达数据加载器的末尾时，所有内容都将同步并执行一个步骤。要禁用此功能，请将 `GradientAccumulationPlugin` 中的 `sync_with_dataloader` 设置为 `False`：
+[state.GradientState](/docs/accelerate/v1.15.0/en/package_reference/state#accelerate.state.GradientState) 与正在迭代的活动数据加载器同步。因此，它天真地假设当我们到达数据加载器的末尾时，所有内容都将同步并执行一个步骤。要禁用此功能，请将 `GradientAccumulationPlugin` 中的 `sync_with_dataloader` 设置为 `False`：
 
 ```{python}
 from accelerate import Accelerator
@@ -425,5 +425,5 @@ w/o accumulation, the final model weight is tensor([0.2117, 0.3172])
 
 在全局批量大小恒定为 32 的多个训练配置上运行它会得到下图：请注意，直到训练步骤 20，训练损失都是完全相同的。此训练步骤之后的小偏差发生在第一个 epoch 的最后，因为到 [default](https://huggingface.co/docs/accelerate/en/package_reference/torch_wrappers#accelerate.data_loader.prepare_data_loader.even_batches)，当总批量大小没有完全划分数据集时，数据加载器会在数据集开头复制样本。
 
-### 实验追踪器
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/tracking.md
+### 模型内存估计器
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/model_size_estimator.md

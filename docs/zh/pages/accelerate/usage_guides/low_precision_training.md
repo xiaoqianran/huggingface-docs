@@ -2,11 +2,11 @@
 
 # 低精度训练方法
 
-Accelerate 提供集成，通过 `TransformersEngine`、`MS-AMP` 和 `torchao` 包使用指定支持的硬件来训练较低精度的方法。本文档将帮助指导您了解支持哪些硬件、如何配置 [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) 以利用低精度方法，以及训练时可以期待什么。 
+Accelerate 提供集成，通过 `TransformersEngine`、`MS-AMP` 和 `torchao` 包使用指定支持的硬件来训练较低精度的方法。本文档将帮助指导您了解支持哪些硬件、如何配置 [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) 以利用低精度方法，以及训练时的期望。 
 
 ## FP8 训练意味着什么
 
-要探索使用 PyTorch 和 Accelerate 进行 FP8 训练的更多细节，请查看 [concept_guide](../concept_guides/low_precision_training) 了解为什么这会很困难。但本质上，训练模型的某些（或全部）方面可以使用 8 位而不是 16 位来执行，而不是在 BF16 中进行训练。挑战在于这样做不会降低最终性能。 
+要探索使用 PyTorch 和 Accelerate 进行 FP8 训练的更多细节，请查看 [concept_guide](../concept_guides/low_precision_training) 了解为什么这可能很困难。但本质上，训练模型的某些（或全部）方面可以使用 8 位而不是 16 位来执行，而不是在 BF16 中进行训练。挑战在于这样做不会降低最终性能。 
 
 这仅在特定 NVIDIA 硬件上启用，即：
 
@@ -17,7 +17,7 @@ Accelerate 提供集成，通过 `TransformersEngine`、`MS-AMP` 和 `torchao` �
 
 目前支持 FP8 的两个主动维护的后端（`TransformersEngine` 和 `torchao`），每个后端都有不同的功能和配置。旧版 `MS-AMP` 后端也存在，但不再推荐（有关详细信息，请参阅 [below](#configuring-ms-amp)）。
 
-要使用其中任何一个，都使用相同的核心 API。只需在 `accelerate config` 提示混合精度时将 `mixed_precision="fp8"` 传递给 [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator)，或者作为 `config.yaml` 文件的 `mixed_precision` 键中的一部分：
+要使用其中任何一个，都使用相同的核心 API。只需在 `accelerate config` 提示混合精度时将 `mixed_precision="fp8"` 传递给 [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator)，或者作为 `mixed_precision` 键中的 `config.yaml` 文件的一部分：
 
 ```{python}
 from accelerate import Accelerator
@@ -64,7 +64,7 @@ MS-AMP 后端保留在 Accelerate 中以实现旧版兼容性，但可能会在�
 目前 Accelerate 集成支持两个级别的优化：`"O1"` 和 `"O2"`（使用字母“o”，而不是零）。 
 
 * `"O1"` 会将权重梯度和 `all_reduce` 通信以 8 位进行，而其余的则以 16 位完成。这减少了一般 GPU 内存的使用并加快了通信带宽。
-* `"O2"` 还将一阶优化器状态转换为 8 位，而二阶优化器状态则为 FP16。 （目前仅支持`Adam`优化器）。这会尽力最大程度地减少最终精度的下降，并节省最大的潜在内存。
+* `"O2"` 还将一阶优化器状态转换为 8 位，而二阶优化器状态则为 FP16。 （目前仅支持`Adam`优化器）。这会尽力最大程度地减少最终精度的下降，并将节省最高的潜在内存。
 
 要指定优化级别，请通过设置 `optimization_level` 参数将其传递给 `FP8KwargsHandler`：
 
@@ -118,7 +118,7 @@ fp8_config:
 
 ## 配置`torchao`
 
-`torchao` 是 [PyTorch-driven](https://github.com/pytorch/ao/tree/main/torchao/float8) 可破解的 FP8 后端，旨在比前两个引擎更易于使用。与前两者相比，`ao` 的核心区别之一是，为了数值稳定性，通常最好将模型中的第一层和最后一层保持在常规精度（无论是 FP32 还是 BF16），然后将其他层量化为 FP8。因此，`ao` 的配置看起来有点不同：> 注意：此 API 是实验性的，可能会发生变化
+`torchao` 是一个 [PyTorch-driven](https://github.com/pytorch/ao/tree/main/torchao/float8) 可破解的 FP8 后端，旨在比前两个引擎更易于使用。与前两者相比，`ao` 的核心区别之一是，为了数值稳定性，通常最好将模型中的第一层和最后一层保持在常规精度（无论是 FP32 还是 BF16），然后将其他层量化为 FP8。因此，`ao`的配置看起来有点不同：> 注意：此 API 是实验性的，可能会发生变化
 
 ```{python}
 from accelerate import Accelerator
@@ -191,5 +191,5 @@ dynamo_config:
 * [The ⟦T60⟧ documentation](https://github.com/pytorch/ao/tree/main/torchao/float8)
 * [The ⟦T61⟧ documentation](https://azure.github.io/MS-AMP/docs/)（⚠️不再维护）
 
-### 分布式推理
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/distributed_inference.md
+### 亚马逊 SageMaker
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/sagemaker.md

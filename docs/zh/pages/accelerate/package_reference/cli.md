@@ -96,7 +96,7 @@ accelerate env [arguments]
 accelerate launch [arguments] {training_script} --{training_script-argument-1} --{training_script-argument-2} ...
 ```
 
-**立场论点**：
+**立场论据**：
 
 - `{training_script}` -- 并行启动脚本的完整路径
 - `--{training_script-argument-1}` -- 训练脚本的参数
@@ -167,10 +167,10 @@ accelerate launch [arguments] {training_script} --{training_script-argument-1} -
 * `--offload_optimizer_device` (`str`) -- 决定在何处 (none|cpu|nvme) 卸载优化器状态。
 * `--offload_param_device` (`str`) -- 决定在何处 (none|cpu|nvme) 卸载参数。
 * `--offload_optimizer_nvme_path` (`str`) -- 决定卸载优化器状态的 Nvme 路径。
-* `--gradient_accumulation_steps` (`int`) -- 训练脚本中没有使用gradient_accumulation_steps。
+* `--gradient_accumulation_steps` (`int`) -- 训练脚本中使用的gradient_accumulation_steps 数量。
 * `--gradient_clipping` (`float`) -- 训练脚本中使用的梯度裁剪值。
 * `--zero3_init_flag` (`str`) -- 决定是否(true|false)启用`deepspeed.zero.Init`来构建海量模型。仅适用于 DeepSpeed ZeRO Stage-3。
-* `--zero3_save_16bit_model` (`str`) -- 决定在使用 ZeRO Stage-3 时是否（true|false）保存 16 位模型权重。仅适用于 DeepSpeed ZeRO Stage-3。
+* `--zero3_save_16bit_model` (`str`) -- 决定在使用 ZeRO Stage-3 时是否保存 16 位模型权重（true|false）。仅适用于 DeepSpeed ZeRO Stage-3。
 * `--deepspeed_hostfile` (`str`) -- 用于配置多节点计算资源的 DeepSpeed 主机文件。
 * `--deepspeed_exclusion_filter` (`str`) -- 使用多节点设置时的 DeepSpeed 排除过滤器字符串。
 * `--deepspeed_inclusion_filter` (`str`) -- 使用多节点设置时的 DeepSpeed 包含过滤器字符串。
@@ -180,7 +180,7 @@ accelerate launch [arguments] {training_script} --{training_script-argument-1} -
 
 以下参数仅在传递 `use_fsdp` 或通过 `accelerate config` 配置完全分片数据并行性时有用：
 
-* `--fsdp_offload_params` (`str`) -- 决定是否（true|false）将参数和梯度卸载到CPU。
+* `--fsdp_offload_params` (`str`) -- 决定是否 (true|false) 将参数和梯度卸载到 CPU。
 * `--fsdp_min_num_params` (`int`) -- FSDP 默认自动换行的最小参数数量。
 * `--fsdp_sharding_strategy` (`int`) -- FSDP 的分片策略。
 * `--fsdp_auto_wrap_policy` (`str`) -- FSDP 的自动换行策略。
@@ -190,7 +190,7 @@ accelerate launch [arguments] {training_script} --{training_script-argument-1} -
 * `--fsdp_forward_prefetch` (`str`) -- FSDP 前向预取。
 * `--fsdp_use_orig_params` (`str`) -- 如果为 True，则允许在 FSDP 单元中混合非均匀 `requires_grad`。
 * `--fsdp_cpu_ram_efficient_loading` (`str`) -- 如果为 true，则只有第一个进程加载预训练模型检查点，而所有其他进程都具有空权重。使用此功能时，`--fsdp_sync_module_states` 需要为 True。
-* `--fsdp_sync_module_states` (`str`) -- 如果为 true，则每个独立包装的 FSDP 单元将从 0 级开始广播模块参数。* `--fsdp_activation_checkpointing` (`bool`) -- 决定前向传递过程中是否释放中间激活，并留下一个检查点作为占位符
+* `--fsdp_sync_module_states` (`str`) -- 如果为 true，则每个单独包装的 FSDP 单元将从 0 级开始广播模块参数。* `--fsdp_activation_checkpointing` (`bool`) -- 决定前向传递过程中是否释放中间激活，并留下一个检查点作为占位符
 
 **威震天-LM 参数**：
 
@@ -209,10 +209,10 @@ accelerate launch [arguments] {training_script} --{training_script-argument-1} -
 * `--fp8_margin` (`int`) -- 用于梯度缩放的边距（仅在传递 `--fp8_backend=te` 时有用）。
 * `--fp8_interval` (`int`) -- 重新计算缩放因子的频率的间隔（仅在传递 `--fp8_backend=te` 时有用）。
 * `--fp8_format` (`str`) -- 用于 FP8 配方的格式（仅在传递 `--fp8_backend=te` 时有用）。
-* `--fp8_amax_history_len` (`int`) -- 用于缩放因子计算的历史记录长度（仅在传递`--fp8_backend=te`时有用）。
+* `--fp8_amax_history_len` (`int`) -- 用于缩放因子计算的历史记录的长度（仅在传递`--fp8_backend=te`时有用）。
 * `--fp8_amax_compute_algo` (`str`) -- 用于计算缩放因子的算法。 （仅当`--fp8_backend=te`通过时才有用）。
 * `--fp8_override_linear_precision` (`Tuple[bool, bool, bool]`) -- 是否以更高精度执行`fprop`、`dgrad`、`wgrad` GEMMS。
-* `--fp8_opt_level` (`str`) -- MS-AMP 应该使用什么级别的 8 位集体通信（只有当`--fp8_backend=msamp` 通过时才有用）
+* `--fp8_opt_level` (`str`) -- MS-AMP 应该使用什么级别的 8 位集体通信（仅当`--fp8_backend=msamp` 通过时才有用）
 
 **AWS SageMaker 参数**：
 
@@ -241,7 +241,7 @@ accelerate estimate-memory {MODEL_NAME} --library_name {LIBRARY_NAME} --dtypes {
 
 **可选参数**：* `--library_name {timm,transformers}` (`str`) -- 与模型集成的库，例如 `transformers`，仅当此信息未存储在 Hub 上时才需要
 * `--dtypes {float32,float16,int8,int4}` (`[{float32,float16,int8,int4} ...]`) -- 用于模型的数据类型，必须是 `float32`、`float16`、`int8` 和 `int4` 中的一种（或多种）
-* `--trust_remote_code` (`bool`) -- 是否允许在 Hub 上在其自己的建模文件中定义自定义模型。仅应为您信任且已在其中读取代码的存储库传递此选项，因为它将执行本地计算机上的集线器上存在的代码。
+* `--trust_remote_code` (`bool`) -- 是否允许在 Hub 上定义自己的建模文件中的自定义模型。仅应为您信任且已在其中读取代码的存储库传递此选项，因为它将执行本地计算机上的集线器上存在的代码。
 
 ## 加速 tpu-config
 
@@ -288,5 +288,5 @@ accelerate test [arguments]
 * `--config_file CONFIG_FILE` (`str`) -- 用于存储配置文件的路径。会默认在缓存位置有一个名为default_config.yaml的文件，这是内容
                         环境`HF_HOME`后缀为“accelerate”，或者如果你没有这样的环境变量，则为你的缓存目录
                         （`~/.cache`或`XDG_CACHE_HOME`的内容）后缀为`huggingface`。
-* `-h`, `--help` (`bool`) -- 显示帮助信息并退出### 管道并行性
-https://huggingface.co/docs/accelerate/v1.14.0/package_reference/inference.md
+* `-h`, `--help` (`bool`) -- 显示帮助信息并退出### FP8
+https://huggingface.co/docs/accelerate/v1.15.0/package_reference/fp8.md

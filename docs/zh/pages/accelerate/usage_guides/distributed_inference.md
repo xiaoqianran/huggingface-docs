@@ -12,7 +12,7 @@
 
 ## 自动将批次的块发送到每个加载的模型
 
-这是内存最密集的解决方案，因为它要求每个 GPU 在给定时间在内存中保存模型的完整副本。 
+这是内存最密集的解决方案，因为它要求每个 GPU 在给定时间在内存中保留模型的完整副本。 
 
 通常，执行此操作时，用户将模型发送到特定设备以从 CPU 加载它，然后将每个提示移动到不同的设备。 
 
@@ -45,7 +45,7 @@ def run_inference(rank, world_size):
 
 能管得着吗？是的。但是它是否添加了不需要的额外代码：也是的。
 
-通过 Accelerate，我们可以通过使用 [Accelerator.split_between_processes()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.split_between_processes) 上下文管理器（`PartialState` 和 `AcceleratorState` 中也存在）来简化此过程。 
+通过 Accelerate，我们可以通过使用 [Accelerator.split_between_processes()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.split_between_processes) 上下文管理器（`PartialState` 和 `AcceleratorState` 中也存在）来简化此过程。 
 该函数将自动将您传递给它的任何数据（无论是提示、一组张量、先前数据的字典等）分割到所有进程（有可能
 待填充）供您立即使用。
 
@@ -158,7 +158,7 @@ input = torch.randint(
     requires_grad=False,
 )
 ```
-接下来我们需要实际执行跟踪并准备好模型。为此，请使用 [inference.prepare_pippy()](/docs/accelerate/v1.14.0/en/package_reference/inference#accelerate.prepare_pippy) 函数，它将自动完全包装模型以实现管道并行性：
+接下来我们需要实际执行跟踪并准备好模型。为此，请使用 [inference.prepare_pippy()](/docs/accelerate/v1.15.0/en/package_reference/inference#accelerate.prepare_pippy) 函数，它将自动完全包装模型以实现管道并行性：
 
 ```{python}
 from accelerate.inference import prepare_pippy
@@ -170,7 +170,7 @@ model = prepare_pippy(model, example_args=(input,))
     
     * `split_points` 可让您确定在哪些层分割模型。默认情况下，我们使用 `device_map="auto" declares, such as `fc` or `conv1`。
 
-    * `num_chunks` 确定如何分割批次并将其发送到模型本身（因此具有四个分割点/四个 GPU 的 `num_chunks=1` 将具有一个朴素的 MP，其中单个输入在四层分割点之间传递）
+    * `num_chunks` 确定如何分割批次并将其发送到模型本身（因此具有四个分割点/四个 GPU 的 `num_chunks=1` 将具有一个简单的 MP，其中单个输入在四层分割点之间传递）
 
 从这里开始，剩下的就是实际执行分布式推理！
 
@@ -188,12 +188,12 @@ with torch.no_grad():
 from accelerate import PartialState
 if PartialState().is_last_process:
     print(output)
-```如果将`gather_output=True`传入[inference.prepare_pippy()](/docs/accelerate/v1.14.0/en/package_reference/inference#accelerate.prepare_pippy)，输出将被发送
+```如果将`gather_output=True`传入[inference.prepare_pippy()](/docs/accelerate/v1.15.0/en/package_reference/inference#accelerate.prepare_pippy)，输出将被发送
     之后跨越所有 GPU，无需 `is_last_process` 检查。这是 
     默认为`False`，因为它会产生通信呼叫。
     
 
 就是这样！要探索更多信息，请查看 [Accelerate repo](https://github.com/huggingface/accelerate/tree/main/examples/inference/pippy) 和我们的 [documentation](../package_reference/inference) 中的推理示例，我们正在努力改进这种集成。
 
-### 通过 DeepSpeed 使用多个模型
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/deepspeed_multiple_model.md
+### 大模型推理
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/big_modeling.md

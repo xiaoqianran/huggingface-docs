@@ -8,9 +8,11 @@ Accelerate 支持使用 PyTorch [torch.distributed.pipelining](https://pytorch.o
 
 ####加速.prepare_pippy[[accelerate.prepare_pippy]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/inference.py#L126)
+```python
+accelerate.prepare_pippy(model, split_points: typing.Union[str, list[str], NoneType] = 'auto', no_split_module_classes: typing.Optional[list[str]] = None, example_args: typing.Optional[tuple[typing.Any]] = (), example_kwargs: typing.Optional[dict[str, typing.Any]] = None, num_chunks: typing.Optional[int] = None, gather_output: typing.Optional[bool] = False)
+```
 
-包装 `model` 以进行管道并行推理。
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/inference.py#L126)
 
 **参数：**
 
@@ -26,5 +28,7 @@ example_kwargs（模型输入的字典）：使用基于字典的输入进行*�
 
 Gather_output（`bool`，默认为`False`）：如果`True`，最后一个GPU（保存真实输出）的输出将发送到所有GPU。
 
-### 数据加载器、优化器和调度器
-https://huggingface.co/docs/accelerate/v1.14.0/package_reference/torch_wrappers.md
+包装 `model` 以进行管道并行推理。
+
+### 实验追踪器
+https://huggingface.co/docs/accelerate/v1.15.0/package_reference/tracking.md

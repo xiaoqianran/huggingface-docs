@@ -2,12 +2,22 @@
 
 # 日志记录[[accelerate.logging.get_logger]]
 
-参考[Troubleshooting guide](../usage_guides/troubleshooting#logging)或下面的例子来了解 
+参考[Troubleshooting guide](../basic_tutorials/troubleshooting#logging)或者下面的例子来学习 
 如何使用 Accelerate 的记录器。 
 
 ####加速.logging.get_logger[[accelerate.logging.get_logger]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/logging.py#L93)
+```python
+accelerate.logging.get_logger(name: str, log_level: str | None = None)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/logging.py#L93)
+
+**参数：**
+
+name (`str`) ：记录器的名称，例如`__file__`
+
+log_level (`str`, *可选*) ：要使用的日志级别。如果不传递，则默认为 `LOG_LEVEL` 环境变量，如果不传递则默认为 `INFO`
 
 返回可以处理多处理的 `name` 的 `logging.Logger`。
 
@@ -35,11 +45,5 @@
 >>> logger.info(letter_at_rank, in_order=True)
 ```
 
-**参数：**
-
-name (`str`) : 记录器的名称，例如`__file__`
-
-log_level (`str`, *可选*) ：要使用的日志级别。如果不传递，则默认为 `LOG_LEVEL` 环境变量，如果不传递则默认为 `INFO`
-
-### 完全分片数据并行实用程序
-https://huggingface.co/docs/accelerate/v1.14.0/package_reference/fsdp.md
+### Megatron-LM 实用程序
+https://huggingface.co/docs/accelerate/v1.15.0/package_reference/megatron_lm.md

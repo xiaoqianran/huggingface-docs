@@ -2,7 +2,7 @@
 
 # 分析器
 
-Profiler 是一种允许在训练和推理期间收集性能指标的工具。 Profiler 的上下文管理器 API 可用于更好地了解哪些模型运算符最昂贵、检查其输入形状和堆栈跟踪、研究设备内核活动以及可视化执行跟踪。它可以深入了解模型的性能，使您能够优化和改进模型。
+Profiler 是一个允许在训练和推理期间收集性能指标的工具。 Profiler 的上下文管理器 API 可用于更好地了解哪些模型运算符最昂贵、检查其输入形状和堆栈跟踪、研究设备内核活动以及可视化执行跟踪。它提供了对模型性能的深入了解，使您能够优化和改进模型。
 
 本指南介绍了如何使用 PyTorch Profiler 来测量模型运算符的时间和内存消耗以及如何将其与 Accelerate 集成。我们将介绍各种用例并为每个用例提供示例。
 
@@ -69,7 +69,7 @@ print(prof.key_averages().table(sort_by="cpu_time_total", row_limit=10))
 Self CPU time total: 67.016ms
 ```
 
-要获得更精细的结果粒度并包含操作员输入形状，请传递 `group_by_input_shape=True` （注意：这需要使用 `record_shapes=True` 运行分析器）：
+要获得更精细的结果粒度并包括操作员输入形状，请传递 `group_by_input_shape=True` （注意：这需要使用 `record_shapes=True` 运行探查器）：
 
 ```python
 print(prof.key_averages(group_by_input_shape=True).table(sort_by="cpu_time_total", row_limit=10))
@@ -131,28 +131,32 @@ Self CPU time total: 69.332ms
 
 ```python
 import torch
-from accelerate import Accelerator, ProfileKwargs
+from accelerate import Accelerator, PartialState, ProfileKwargs
+
+# Resolve the device type/module (cuda, xpu, ...) instead of hardcoding CUDA
+device_type = PartialState().device.type
+device_module = getattr(torch, device_type)
 
 def summarize_memory_stats():
     return {
-        "peak_allocated_mb": torch.cuda.max_memory_allocated() / 1024**2,
-        "peak_reserved_mb": torch.cuda.max_memory_reserved() / 1024**2,
+        "peak_allocated_mb": device_module.max_memory_allocated() / 1024**2,
+        "peak_reserved_mb": device_module.max_memory_reserved() / 1024**2,
     }
 
 profile_kwargs = ProfileKwargs(
-    activities=["cpu", "cuda"],
+    activities=["cpu", device_type],
     profile_memory=True,
     record_shapes=True,
 )
 
 accelerator = Accelerator(kwargs_handlers=[profile_kwargs])
 
-torch.cuda.reset_peak_memory_stats()
+device_module.reset_peak_memory_stats()
 
 with accelerator.profile() as prof:
     model(inputs)
 
-print(prof.key_averages().table(sort_by="self_cuda_memory_usage", row_limit=10))
+print(prof.key_averages().table(sort_by=f"self_{device_type}_memory_usage", row_limit=10))
 print(summarize_memory_stats())
 ```
 
@@ -165,10 +169,14 @@ print(summarize_memory_stats())
 ![profile_export](https://github.com/huggingface/accelerate/assets/100389977/5acb193f-6d11-4f7b-9873-c600c19e8172)
 
 ```python
-model = models.resnet18().cuda()
-inputs = torch.randn(5, 3, 224, 224).cuda()
+# Pick the available accelerator (cuda, xpu, ...) instead of hardcoding CUDA
+device = torch.accelerator.current_accelerator()
+device_activity = getattr(ProfilerActivity, device.type.upper())
 
-with profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA]) as prof:
+model = models.resnet18().to(device)
+inputs = torch.randn(5, 3, 224, 224).to(device)
+
+with profile(activities=[ProfilerActivity.CPU, device_activity]) as prof:
     model(inputs)
 
 prof.export_chrome_trace("trace.json")
@@ -176,25 +184,24 @@ prof.export_chrome_trace("trace.json")
 
 ```python
 model = models.resnet18()
-inputs = torch.randn(5, 3, 224, 224).cuda()
 profile_kwargs = ProfileKwargs(
-    activities=["cpu", "cuda"],
+    activities=["cpu", PartialState().device.type],
     output_trace_dir="trace"
 )
 
 accelerator = Accelerator(kwargs_handlers=[profile_kwargs])
 model = accelerator.prepare(model)
+inputs = torch.randn(5, 3, 224, 224).to(accelerator.device)
 
 with accelerator.profile() as prof:
     model(inputs)
 
 # The trace will be saved to the specified directory
 ```
-对于其他硬件加速器，例如XPU，您可以将上面示例代码中的`cuda`更改为`xpu`。
 
 ## 使用 Profiler 分析长时间运行的作业
 
-Profiler 提供了一个额外的 API 来处理长时间运行的作业（例如训练循环）。跟踪所有执行可能会很慢并且会产生非常大的跟踪文件。为了避免这种情况，请使用可选参数：- `schedule_option`：计划选项允许您控制分析何时处于活动状态。这对于长时间运行的作业非常有用，可以避免收集太多数据。可用键有 `wait`、`warmup`、`active`、`repeat` 和 `skip_first`。分析器将跳过前 `skip_first` 步骤，然后等待 `wait` 步骤，然后为接下来的 `warmup` 步骤进行预热，然后为接下来的 `active` 步骤进行活动记录，然后从 `wait` 步骤开始重复循环。可选的周期数由`repeat`参数指定，零值意味着周期将继续，直到分析完成。
+Profiler 提供了一个额外的 API 来处理长时间运行的作业（例如训练循环）。跟踪所有执行可能会很慢并导致跟踪文件非常大。为了避免这种情况，请使用可选参数：- `schedule_option`：计划选项允许您控制分析何时处于活动状态。这对于长时间运行的作业非常有用，可以避免收集太多数据。可用的键有 `wait`、`warmup`、`active`、`repeat` 和 `skip_first`。分析器将跳过前 `skip_first` 步骤，然后等待 `wait` 步骤，然后为接下来的 `warmup` 步骤进行预热，然后为接下来的 `active` 步骤进行活动记录，然后从 `wait` 步骤开始重复循环。可选的周期数由`repeat`参数指定，零值意味着周期将继续，直到分析完成。
 - `on_trace_ready`：指定一个函数，它将对探查器的引用作为输入，并在每次新跟踪准备就绪时由探查器调用。
 
 为了说明 API 的工作原理，请考虑以下示例：
@@ -211,12 +218,12 @@ my_schedule = schedule(
 )
 
 def trace_handler(p):
-    output = p.key_averages().table(sort_by="self_cuda_time_total", row_limit=10)
+    output = p.key_averages().table(sort_by=f"self_{device.type}_time_total", row_limit=10)
     print(output)
     p.export_chrome_trace("/tmp/trace_" + str(p.step_num) + ".json")
 
 with profile(
-    activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA],
+    activities=[ProfilerActivity.CPU, device_activity],
     schedule=my_schedule,
     on_trace_ready=trace_handler
 ) as p:
@@ -226,13 +233,15 @@ with profile(
 ```
 
 ```python
+device_type = PartialState().device.type
+
 def trace_handler(p):
-    output = p.key_averages().table(sort_by="self_cuda_time_total", row_limit=10)
+    output = p.key_averages().table(sort_by=f"self_{device_type}_time_total", row_limit=10)
     print(output)
     p.export_chrome_trace("/tmp/trace_" + str(p.step_num) + ".json")
 
 profile_kwargs = ProfileKwargs(
-    activities=["cpu", "cuda"],
+    activities=["cpu", device_type],
     schedule_option={"wait": 5, "warmup": 1, "active": 3, "repeat": 2, "skip_first": 1},
     on_trace_ready=trace_handler
 )
@@ -254,7 +263,7 @@ with accelerator.profile() as prof:
 
 ```python
 with profile(
-    activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA],
+    activities=[ProfilerActivity.CPU, device_activity],
     with_flops=True
 ) as prof:
     model(inputs)
@@ -299,5 +308,5 @@ Self CUDA time total: 4.165ms
 
 更详细的信息请参阅[PyTorch Profiler documentation](https://pytorch.org/docs/stable/profiler.html)。
 
-###执行过程
-https://huggingface.co/docs/accelerate/v1.14.0/basic_tutorials/execution.md
+### 将大模型加载到内存中
+https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/big_model_inference.md

@@ -10,5 +10,5 @@
 
 如果您对 Accelerate 有任何疑问，请随时加入我们的 [forum](https://discuss.huggingface.co/c/accelerate/18) 社区并提问。
 
-### 安装
-https://huggingface.co/docs/accelerate/v1.14.0/basic_tutorials/install.md
+### 从 Jupyter Notebooks 启动分布式训练
+https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/notebook.md

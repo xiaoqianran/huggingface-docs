@@ -4,7 +4,7 @@
 
 分布式数据并行（DDP）通信钩子提供了一个通用接口，通过覆盖 `DistributedDataParallel` 中的普通 allreduce 来控制如何在工作线程之间通信梯度。提供了一些内置的通信挂钩，用户可以轻松应用这些挂钩中的任何一个来优化通信。
 
-- **FP16 压缩挂钩**：通过将梯度转换为半精度浮点格式 (`torch.float16`) 来压缩梯度，从而减少通信开销。
+- **FP16 压缩挂钩**：通过将梯度转换为半精度浮点格式（`torch.float16`）来压缩梯度，从而减少通信开销。
 - **BF16 Compression Hook**：与 FP16 类似，但使用 Brain 浮点格式 (`torch.bfloat16`)，在某些硬件上可以更高效。
 - **PowerSGD Hook**：一种先进的梯度压缩算法，可提供高压缩率并可以加速带宽限制的分布式训练。
 
@@ -282,5 +282,5 @@ for data, targets in data_loader:
     optimizer.zero_grad()
 ```
 
-有关更高级的用法和附加挂钩，请参阅[PyTorch DDP Communication Hooks documentation](https://pytorch.org/docs/stable/ddp_comm_hooks.html)。### 分析器
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/profiler.md
+有关更高级的用法和附加挂钩，请参阅[PyTorch DDP Communication Hooks documentation](https://pytorch.org/docs/stable/ddp_comm_hooks.html)。### 威震天-LM
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/megatron_lm.md

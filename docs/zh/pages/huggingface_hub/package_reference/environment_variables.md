@@ -9,7 +9,7 @@
 以及[Windows](https://phoenixnap.com/kb/windows-set-environment-variable)。
 
 此页面将引导您了解特定于 `huggingface_hub` 的所有环境变量
-以及它们的含义。
+以及它们的意义。
 
 > [!提示]
 > 所有环境变量均在`huggingface_hub` 导入时读取。任何修改
@@ -71,7 +71,7 @@
 
 欲了解更多详情，请参阅[logging reference](../package_reference/utilities#huggingface_hub.utils.logging.get_verbosity)。
 
-### HF_HUB_ETAG_TIMEOUT整数值，用于定义在下载文件之前从存储库获取最新元数据时等待服务器响应的秒数。如果请求超时，`huggingface_hub`将默认使用本地缓存的文件。设置较低的值可以加快连接速度较慢且已缓存文件的计算机的工作流程。较高的值可保证元数据调用在更多情况下成功。默认为 10 秒。
+### HF_HUB_ETAG_TIMEOUT整数值，用于定义在下载文件之前从存储库获取最新元数据时等待服务器响应的秒数。如果请求超时，`huggingface_hub`将默认使用本地缓存的文件。设置较低的值可以加快连接速度较慢且已缓存文件的计算机的工作流程。较高的值可以保证元数据调用在更多情况下成功。默认为 10 秒。
 
 ### HF_HUB_DOWNLOAD_TIMEOUT
 
@@ -113,9 +113,9 @@
 
 如果设置，则不会对 Hugging Face Hub 进行 HTTP 调用。如果您尝试下载文件，则只会访问缓存的文件。如果未检测到缓存文件，则会引发错误。如果您的网络速度较慢并且您不关心文件的最新版本，这非常有用。
 
-如果`HF_HUB_OFFLINE=1`设置为环境变量，并且调用[HfApi](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi)的任何方法，都会引发[OfflineModeIsEnabled](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled)异常。**注意：** 即使缓存了文件的最新版本，调用 `hf_hub_download` 仍然会触发 HTTP 请求来检查新版本是否可用。设置 `HF_HUB_OFFLINE=1` 将跳过此调用，从而加快加载时间。
+如果`HF_HUB_OFFLINE=1`设置为环境变量，并且调用[HfApi](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi)的任何方法，都会引发[OfflineModeIsEnabled](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled)异常。**注意：** 即使缓存了文件的最新版本，调用 `hf_hub_download` 仍然会触发 HTTP 请求来检查新版本是否可用。设置 `HF_HUB_OFFLINE=1` 将跳过此调用，从而加快加载时间。
 
-如果你想检查离线模式是否启用，你可以使用[is_offline_mode()](/docs/huggingface_hub/v1.30.0/en/package_reference/utilities#huggingface_hub.is_offline_mode)助手。
+如果你想检查离线模式是否启用，你可以使用[is_offline_mode()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.is_offline_mode)助手。
 
 ### HF_HUB_DISABLE_IMPLICIT_TOKEN
 
@@ -170,7 +170,7 @@
 
 设置 `HF_HUB_DISABLE_UPDATE_CHECK=1` 跳过 PyPI 请求并完全静音两个提示。在离线 CI 环境中或当您喜欢更安静的 shell 输出时很有用。
 
-### HF_HUB_DISABLE_XET设置为禁用使用 `hf-xet`，即使它在您的 Python 环境中可用。这是因为如果找到`hf-xet`，它将自动使用，这允许显式禁用其使用。如果您要禁用 Xet，请考虑 [filing an issue and including the diagnostics](https://github.com/huggingface/xet-core?tab=readme-ov-file#issues-diagnostics--debugging) 信息，以帮助我们了解 Xet 为何不适合您。
+### HF_HUB_DISABLE_XET设置为禁用使用 `hf-xet`，即使它在您的 Python 环境中可用。这是因为如果找到`hf-xet`，它将自动使用，这允许显式禁用其使用。如果您要禁用 Xet，请考虑 [filing an issue and including the diagnostics](https://github.com/huggingface/xet-core?tab=readme-ov-file#issues-diagnostics--debugging) 信息，以帮助我们了解为什么 Xet 不适合您。
 
 ### HF_HUB_ENABLE_HF_TRANSFER
 
@@ -221,4 +221,4 @@
 `"~/.cache/huggingface"`。
 
 ### HfApi 客户端
-https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/hf_api.md
+https://huggingface.co/docs/huggingface_hub/v1.31.0.rc0/package_reference/hf_api.md

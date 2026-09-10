@@ -2,7 +2,7 @@
 
 # 将本地 SGD 与 Accelerate 结合使用
 
-局部 SGD 是一种分布式训练技术，其中梯度并非每一步都同步。因此，每个进程都会更新自己的模型权重版本，并且在给定数量的步骤之后，通过对所有进程进行平均来同步这些权重。这提高了通信效率，并且可以显着提高训练速度，特别是当计算机缺乏 NVLink 等更快的互连时。
+局部 SGD 是一种分布式训练技术，其中梯度并非每一步都同步。因此，每个进程都会更新自己的模型权重版本，并且在给定数量的步骤之后，通过对所有进程进行平均来同步这些权重。这提高了通信效率，并且可以显着提高训练速度，尤其是当计算机缺乏 NVLink 等更快的互连时。
 与梯度累积（提高通信效率需要增加有效批量大小）不同，本地 SGD 不需要更改批量大小或学习率/时间表。然而，如果有必要，局部 SGD 也可以与梯度累积相结合。
 
 在本教程中，您将了解如何快速设置 Local SGD Accelerate。与标准 Accelerate 设置相比，这仅需要两行额外的代码。
@@ -92,5 +92,5 @@ for index, batch in enumerate(training_dataloader):
     斯蒂奇，塞巴斯蒂安·厄本。 ["Local SGD Converges Fast and Communicates Little." ICLR 2019-International Conference on
     Learning Representations. No. CONF. 2019.](https://huggingface.co/papers/1805.09767)
 
-### 编译
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/compilation.md
+### 模型量化
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/quantization.md

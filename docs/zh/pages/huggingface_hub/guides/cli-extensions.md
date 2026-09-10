@@ -35,6 +35,10 @@
 shell 脚本扩展是最简单的类型。您只需要一个带有可执行文件的 GitHub 存储库
 根名为 `hf-<name>`。
 
+> [!警告]
+> Windows 不支持 Shell 脚本扩展。如果您的扩展必须在 Windows 上运行，请将其设为
+> 改为[Python extension](#create-a-python-extension)。
+
 ### 最小示例
 
 使用单个文件在 GitHub 上创建名为 `hf-hello` 的存储库：
@@ -58,15 +62,15 @@ Hello from hf-hello extension!
 Arguments:
 ```
 
-### shell 脚本扩展的技巧
-
-- 为了安全起见，始终从 shebang (`#!/usr/bin/env bash`) 和 `set -euo pipefail` 开始。
+### shell 脚本扩展的技巧- 为了安全起见，始终从 shebang (`#!/usr/bin/env bash`) 和 `set -euo pipefail` 开始。
 - 脚本接收用户传递的所有额外参数。例如，`hf hello --name world`
   将 `--name world` 传递给脚本。
 - 如果用户已登录，您可以通过 `HF_TOKEN` 环境变量访问用户的 Hugging Face 令牌。
 - 在存储库根添加`manifest.json`以提供描述（请参阅[Add a description](#add-a-description)）。
 - 外部依赖项（例如，`fzf`、`jq` 等）**不会**随您的扩展自动安装。检查
-  在脚本开始时查找所需的工具，如果缺少这些工具，则会优雅地失败并显示有用的错误消息。> [!提示]
+  在脚本开始时查找所需的工具，如果缺少这些工具，则会优雅地失败并显示有用的错误消息。
+
+> [!提示]
 > 有关真实世界的示例，请参阅 [hanouticelina/hf-claude](https://github.com/hanouticelina/hf-claude) —
 > 一个 shell 脚本扩展，可使用 HF 推理提供程序启动 Claude Code。
 
@@ -116,9 +120,7 @@ def main():
 
 if __name__ == "__main__":
     main()
-```
-
-关键部分是`[project.scripts]`入口点：它**必须**命名为`hf-<name>`（此处为`hf-hello`）。
+```关键部分是`[project.scripts]`入口点：它**必须**命名为`hf-<name>`（此处为`hf-hello`）。
 这就是`hf` CLI 发现并执行您的扩展的方式。
 
 用户安装并运行它的方式相同：
@@ -139,7 +141,9 @@ Arguments: []
 3. 系统验证 venv 中是否创建了`hf-<name>` 控制台脚本。
 
 这意味着您的扩展的依赖项是完全隔离的 - 它们不会与用户的依赖项发生冲突
-其他 Python 包。> [!提示]
+其他 Python 包。
+
+> [!提示]
 > 有关真实世界的示例，请参阅 [alvarobartt/hf-mem](https://github.com/alvarobartt/hf-mem) —
 > 一个 Python 扩展，用于估计 HF 模型的推理内存需求。
 
@@ -165,9 +169,7 @@ Arguments: []
 description = "A short description of what your extension does"
 ```
 
-3. **GitHub 存储库描述**（存储库页面上的“关于”字段）。
-
-对于Python扩展，在`pyproject.toml`中设置`description`是最自然的方法。
+3. **GitHub 存储库描述**（存储库页面上的“关于”字段）。对于Python扩展，在`pyproject.toml`中设置`description`是最自然的方法。
 对于 shell 脚本扩展，请使用 `manifest.json` 文件或设置 GitHub 存储库描述。
 
 ## 让你的扩展可被发现
@@ -190,7 +192,9 @@ NAME   REPO                    STARS DESCRIPTION                         INSTALL
 ------ ----------------------- ----- ----------------------------------- ---------
 claude hanouticelina/hf-claude     2 Extension for `hf` CLI to launch... yes
 agents hanouticelina/hf-agents       HF extension to run local coding...
-````INSTALLED` 列显示本地已安装哪些扩展。从那里，用户可以
+```
+
+`INSTALLED` 列显示本地已安装哪些扩展。从那里，用户可以
 使用 `hf extensions install <repo>` 安装任何列出的扩展。
 
 ## 测试你的扩展
@@ -218,7 +222,7 @@ agents hanouticelina/hf-agents       HF extension to run local coding...
 ```
 
 > [!提示]
-> 在测试更新时使用`--force`覆盖以前安装的版本。
+> 在测试更新时使用 `--force` 覆盖以前安装的版本。
 
 ## 更新已安装的扩展
 
@@ -230,9 +234,7 @@ agents hanouticelina/hf-agents       HF extension to run local coding...
 
 # Check every installed extension and update the outdated ones
 >>> hf extensions update
-```
-
-`hf extensions update` 仅更新已安装的扩展。如果未安装扩展，则会引发错误。已更新的扩展将被跳过。
+````hf extensions update` 仅更新已安装的扩展。如果未安装扩展，则会引发错误。已更新的扩展将被跳过。
 
 ## 命名规则
 
@@ -248,10 +250,12 @@ agents hanouticelina/hf-agents       HF extension to run local coding...
 
 ## 现有扩展
 
-以下是一些社区扩展，您可以作为参考：|扩展|类型 |描述 |
+以下是一些您可以用作参考的社区扩展：
+
+|扩展|类型 |描述 |
 |------------|------|-------------|
 | [hanouticelina/hf-claude](https://github.com/hanouticelina/hf-claude) |外壳脚本|与 HF 推理提供商一起启动 Claude Code |
 | [alvarobartt/hf-mem](https://github.com/alvarobartt/hf-mem) |蟒蛇 |估计 HF 模型的推理内存需求 |
 
 ### 了解缓存
-https://huggingface.co/docs/huggingface_hub/v1.30.0/guides/manage-cache.md
+https://huggingface.co/docs/huggingface_hub/v1.31.0.rc0/guides/manage-cache.md

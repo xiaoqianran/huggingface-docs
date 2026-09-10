@@ -34,5 +34,5 @@ for batch in dataloader:
         height="1600"
     >
 
-### 模型内存估计器
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/model_size_estimator.md
+### 低精度训练方法
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/low_ precision_training.md

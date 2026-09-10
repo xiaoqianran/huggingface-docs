@@ -33,7 +33,7 @@
 
 ## 命令
 
-使用`accelerate estimate-memory`时，需要传入你想要使用的模型名称，可能是框架
+使用`accelerate estimate-memory`时，需要传入想要使用的模型名称，可能是框架
 使用的模型（如果无法自动找到）以及您希望模型加载的数据类型。
 
 例如，以下是我们如何计算 `bert-base-cased` 的内存占用量：
@@ -109,5 +109,5 @@ accelerate estimate-memory bert-base-cased --dtypes float32 float16
 执行推理时，您预计会额外增加 20%，如[EleutherAI](https://blog.eleuther.ai/transformer-math/) 所示。我们将进行研究，寻找对这些值的更准确的估计，并将更新 
 这个计算器一旦完成。
 
-### 亚马逊 SageMaker
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/sagemaker.md
+### Mac 上的加速 PyTorch 训练
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/mps.md
