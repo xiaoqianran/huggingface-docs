@@ -55,10 +55,10 @@ print(f"Extracted features shape: {features.shape}")
 #### transformers.MLCDVisionConfig[[transformers.MLCDVisionConfig]]
 
 ```python
-transformers.MLCDVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 1664, intermediate_size: int = 8192, num_hidden_layers: int = 48, num_attention_heads: int = 16, num_key_value_groups: int = 1, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 336, patch_size: int | list[int] | tuple[int, int] = 14, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-05, attention_dropout: float | int = 0.0, initializer_range: float = 0.02, initializer_factor: float = 1.0)
+transformers.MLCDVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 1664, intermediate_size: int = 8192, num_hidden_layers: int = 48, num_attention_heads: int = 16, num_key_value_groups: int = 1, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 336, patch_size: int | list[int] | tuple[int, int] = 14, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-05, attention_dropout: float | int = 0.0, initializer_range: float = 0.02, initializer_factor: float = 1.0, rope_parameters: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mlcd/configuration_mlcd.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/mlcd/configuration_mlcd.py#L28)
 
 **Parameters:**
 
@@ -88,12 +88,14 @@ initializer_range (`float`, *optional*, defaults to `0.02`) : The standard devia
 
 initializer_factor (`float`, *optional*, defaults to `1.0`) : A factor for initializing all weight matrices (should be kept to 1, used internally for initialization testing).
 
+rope_parameters (`dict`, *optional*) : Dictionary containing the configuration parameters for the RoPE embeddings. The dictionary should contain a value for `rope_theta` and optionally parameters used for scaling in case you want to use RoPE with longer `max_position_embeddings`.
+
 This is the configuration class to store the configuration of a MLCDVisionModel. It is used to instantiate a Mlcd
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [DeepGlint-AI/mlcd-vit-bigG-patch14-336](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-336)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -118,15 +120,15 @@ Example:
 transformers.MLCDVisionModel(config: MLCDVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mlcd/modeling_mlcd.py#L422)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/mlcd/modeling_mlcd.py#L472)
 
 **Parameters:**
 
-config ([MLCDVisionConfig](/docs/transformers/v5.15.1/en/model_doc/mlcd#transformers.MLCDVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MLCDVisionConfig](/docs/transformers/v5.17.0/en/model_doc/mlcd#transformers.MLCDVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The vision model from M_L_C_D without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -140,19 +142,19 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mlcd/modeling_mlcd.py#L440)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/mlcd/modeling_mlcd.py#L490)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [CLIPImageProcessor](/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPImageProcessor). See `CLIPImageProcessor.__call__()` for details (`processor_class` uses [CLIPImageProcessor](/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [CLIPImageProcessor](/docs/transformers/v5.17.0/en/model_doc/clip#transformers.CLIPImageProcessor). See `CLIPImageProcessor.__call__()` for details (`processor_class` uses [CLIPImageProcessor](/docs/transformers/v5.17.0/en/model_doc/clip#transformers.CLIPImageProcessor) for processing images).
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MLCDVisionConfig](/docs/transformers/v5.15.1/en/model_doc/mlcd#transformers.MLCDVisionConfig)) and inputs.
+elements depending on the configuration ([MLCDVisionConfig](/docs/transformers/v5.17.0/en/model_doc/mlcd#transformers.MLCDVisionConfig)) and inputs.
 
-The [MLCDVisionModel](/docs/transformers/v5.15.1/en/model_doc/mlcd#transformers.MLCDVisionModel) forward method, overrides the `__call__` special method.
+The [MLCDVisionModel](/docs/transformers/v5.17.0/en/model_doc/mlcd#transformers.MLCDVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -197,5 +199,5 @@ Example:
 >>> print(f"Attention shape: {outputs.attentions[0].shape}")
 ```
 
-### RemBERT
-https://huggingface.co/docs/transformers/v5.15.1/model_doc/rembert.md
+### NeuCodec
+https://huggingface.co/docs/transformers/v5.17.0/model_doc/neucodec.md

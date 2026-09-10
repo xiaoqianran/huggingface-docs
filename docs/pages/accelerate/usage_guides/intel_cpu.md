@@ -133,5 +133,5 @@ export MASTER_ADDR=xxx.xxx.xxx.xxx #node0 ip
 mpirun -f hostfile -n 16 -ppn 4 accelerate launch examples/nlp_example.py
 ```
 
-### Low Precision Training Methods
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/low_precision_training.md
+### Performing gradient accumulation with Accelerate
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/gradient_accumulation.md

@@ -311,5 +311,5 @@ accelerate test [arguments]
                         (`~/.cache` or the content of `XDG_CACHE_HOME`) suffixed with `huggingface`.
 * `-h`, `--help` (`bool`) -- Show a help message and exit
 
-### Pipeline parallelism
-https://huggingface.co/docs/accelerate/v1.14.0/package_reference/inference.md
+### FP8
+https://huggingface.co/docs/accelerate/v1.15.0/package_reference/fp8.md

@@ -38,7 +38,7 @@ A `step` can also be passed in to correlate the data with a particular step in t
 accelerator.log({"train_loss": 1.12, "valid_loss": 0.8}, step=1)
 ```
 
-Once you've finished training, make sure to run [Accelerator.end_training()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.end_training) so that all the trackers can run their finish functionalities if they have any.
+Once you've finished training, make sure to run [Accelerator.end_training()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.end_training) so that all the trackers can run their finish functionalities if they have any.
 ```python
 accelerator.end_training()
 ```
@@ -75,7 +75,7 @@ accelerator.end_training()
 ```
 
 If a tracker requires a directory to save data to, such as `TensorBoard`, then pass the directory path to `project_dir`. The `project_dir` parameter is useful 
-when there are other configurations to be combined with in the [ProjectConfiguration](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.utils.ProjectConfiguration) data class. For example, you can save the TensorBoard data to `project_dir` and everything else can be logged in the `logging_dir` parameter of [`~utils.ProjectConfiguration`: 
+when there are other configurations to be combined with in the [ProjectConfiguration](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.ProjectConfiguration) data class. For example, you can save the TensorBoard data to `project_dir` and everything else can be logged in the `logging_dir` parameter of [`~utils.ProjectConfiguration`: 
 
 ```python
 accelerator = Accelerator(log_with="tensorboard", project_dir=".")
@@ -106,7 +106,7 @@ Every tracker must implement three functions and have three properties:
     - This should be implemented as a `@property` function 
     - Should return the internal tracking mechanism the library uses, such as the `run` object for `wandb`.
 
-Each method should also utilize the [state.PartialState](/docs/accelerate/v1.14.0/en/package_reference/state#accelerate.PartialState) class if the logger should only be executed on the main process for instance.
+Each method should also utilize the [state.PartialState](/docs/accelerate/v1.15.0/en/package_reference/state#accelerate.PartialState) class if the logger should only be executed on the main process for instance.
 
 A brief example can be seen below with an integration with Weights and Biases, containing only the relevant information and logging just on 
 the main process:
@@ -153,10 +153,27 @@ tracker = MyCustomTracker("some_run_name")
 accelerator = Accelerator(log_with=[tracker, "all"])
 ```
 
+### Registering a custom tracker by name
+
+Instead of passing an instance, you can register a custom tracker class so it can be selected by its `name`, just like the built-in trackers. This is handy when the trackers to use are read from a config file or the command line:
+
+```python
+from accelerate import Accelerator
+from accelerate.tracking import GeneralTracker, register_tracker_class
+
+class MyCustomTracker(GeneralTracker):
+    name = "my_tracker"
+    requires_logging_directory = False
+    # ... implement the rest of the `GeneralTracker` interface
+
+register_tracker_class(MyCustomTracker)
+accelerator = Accelerator(log_with="my_tracker")
+```
+
 ## Accessing the internal tracker 
 
 If some custom interactions with a tracker might be wanted directly, you can quickly access one using the 
-[Accelerator.get_tracker()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.get_tracker) method. Just pass in the string corresponding to a tracker's `.name` attribute 
+[Accelerator.get_tracker()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.get_tracker) method. Just pass in the string corresponding to a tracker's `.name` attribute 
 and it will return that tracker on the main process.
 
 This example shows doing so with wandb:
@@ -213,5 +230,5 @@ If a library has an API that does not follow a strict `.log` with an overall dic
 +             run["logs/training/batch/loss"].log(loss)
 ```
 
-### Training on Intel CPU
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/intel_cpu.md
+### DeepSpeed
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/deepspeed.md

@@ -8,7 +8,7 @@
 trl.is_conversational(example: dict)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/data_utils.py#L160)
+[Source](https://github.com/huggingface/trl/blob/v1.13.0/trl/data_utils.py#L160)
 
 **Parameters:**
 
@@ -40,7 +40,7 @@ False
 trl.maybe_convert_to_chatml(example: dict)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/data_utils.py#L975)
+[Source](https://github.com/huggingface/trl/blob/v1.13.0/trl/data_utils.py#L975)
 
 **Parameters:**
 
@@ -80,7 +80,7 @@ Example:
 trl.extract_prompt(example: dict)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/data_utils.py#L557)
+[Source](https://github.com/huggingface/trl/blob/v1.13.0/trl/data_utils.py#L557)
 
 **Parameters:**
 
@@ -163,7 +163,7 @@ Or, with the `map` method of [Dataset](https://huggingface.co/docs/datasets/v5.0
 trl.unpair_preference_dataset(dataset: typing.Union[~DatasetType, ~IterableDatasetType], **map_kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/data_utils.py#L454)
+[Source](https://github.com/huggingface/trl/blob/v1.13.0/trl/data_utils.py#L454)
 
 **Parameters:**
 
@@ -205,4 +205,4 @@ Dataset({
 ```
 
 ### Examples
-https://huggingface.co/docs/trl/v1.12.0/example_overview.md
+https://huggingface.co/docs/trl/v1.13.0/example_overview.md

@@ -7,7 +7,7 @@ You can find all the original Code Llama checkpoints under the [Code Llama](http
 > [!TIP]
 > Click on the Code Llama models in the right sidebar for more examples of how to apply Code Llama to different coding tasks.
 
-The example below demonstrates how to generate code with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline), or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel), and from the command line.
+The example below demonstrates how to generate code with [Pipeline](/docs/transformers/v5.17.0/en/main_classes/pipelines#transformers.Pipeline), or the [AutoModel](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModel), and from the command line.
 
 ```python
 from transformers import pipeline
@@ -127,7 +127,7 @@ visualizer("""def func(a, b):
 transformers.CodeLlamaTokenizer(vocab: str | dict[str, int] | None = None, merges: str | list[str] | None = None, clean_up_tokenization_spaces = False, unk_token = '<unk>', bos_token = '<s>', eos_token = '</s>', prefix_token = '▁<PRE>', middle_token = '▁<MID>', suffix_token = '▁<SUF>', eot_token = '▁<EOT>', fill_token = '<FILL_ME>', additional_special_tokens = None, use_default_system_prompt: bool = False, add_prefix_space: bool | None = True, add_bos_token: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/code_llama/tokenization_code_llama.py#L41)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/code_llama/tokenization_code_llama.py#L41)
 
 **Parameters:**
 
@@ -182,7 +182,7 @@ call `tokenizer.update_post_processor()` to make sure that the post-processing i
 values of the first token and final token of an encoded sequence will not be correct). For more details, checkout
 [post-processors] (https://huggingface.co/docs/tokenizers/api/post-processors) documentation.
 
-This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.17.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods. The default configuration match that of
 [meta-llama/CodeLlama-7b-Instruct-hf](https://huggingface.co/meta-llama/CodeLlama-7b-Instruct-hf/blob/main/tokenizer_config.json)
 which supports prompt infilling.
@@ -193,108 +193,7 @@ which supports prompt infilling.
 get_special_tokens_mask(token_ids_0: list[int], token_ids_1: list[int] | None = None, already_has_special_tokens: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_utils_base.py#L1311)
-
-**Parameters:**
-
-token_ids_0 : List of IDs for the (possibly already formatted) sequence.
-
-token_ids_1 : Unused when `already_has_special_tokens=True`. Must be None in that case.
-
-already_has_special_tokens : Whether the sequence is already formatted with special tokens.
-
-**Returns:** A list of integers in the range [0, 1]
-
-1 for a special token, 0 for a sequence token.
-
-Retrieve sequence ids from a token list that has no special tokens added.
-
-For fast tokenizers, data collators call this with `already_has_special_tokens=True` to build a mask over an
-already-formatted sequence. In that case, we compute the mask by checking membership in `all_special_ids`.
-
-#### save_vocabulary[[transformers.CodeLlamaTokenizer.save_vocabulary]]
-
-```python
-save_vocabulary(save_directory: str, filename_prefix: str | None = None)
-```
-
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_utils_tokenizers.py#L509)
-
-## CodeLlamaTokenizerFast[[transformers.CodeLlamaTokenizer]]
-
-#### transformers.CodeLlamaTokenizer[[transformers.CodeLlamaTokenizer]]
-
-```python
-transformers.CodeLlamaTokenizer(vocab: str | dict[str, int] | None = None, merges: str | list[str] | None = None, clean_up_tokenization_spaces = False, unk_token = '<unk>', bos_token = '<s>', eos_token = '</s>', prefix_token = '▁<PRE>', middle_token = '▁<MID>', suffix_token = '▁<SUF>', eot_token = '▁<EOT>', fill_token = '<FILL_ME>', additional_special_tokens = None, use_default_system_prompt: bool = False, add_prefix_space: bool | None = True, add_bos_token: bool = True, **kwargs)
-```
-
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/code_llama/tokenization_code_llama.py#L41)
-
-**Parameters:**
-
-clean_up_tokenization_spaces (`str`, *optional*, defaults to `False`) : Whether to cleanup spaces after decoding, cleanup consists in removing potential artifacts like extra spaces.
-
-unk_token (`str`, *optional*, defaults to `"<unk>"`) : The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this token instead.
-
-bos_token (`str`, *optional*, defaults to `"<s>"`) : The beginning of sequence token that was used during pretraining. Can be used a sequence classifier token.
-
-eos_token (`str`, *optional*, defaults to `"</s>"`) : The end of sequence token.
-
-prefix_token (`str`, *optional*, defaults to `"▁<PRE>"`) : Prefix token used for infilling.
-
-middle_token (`str`, *optional*, defaults to `"▁<MID>"`) : Middle token used for infilling.
-
-suffix_token (`str`, *optional*, defaults to `"▁<SUF>"`) : Suffix token used for infilling.
-
-eot_token (`str`, *optional*, defaults to `"▁<EOT>"`) : End of text token used for infilling.
-
-fill_token (`str`, *optional*, defaults to `"<FILL_ME>"`) : The token used to split the input between the prefix and suffix.
-
-additional_special_tokens (`list[str]`, *optional*) : Additional special tokens used by the tokenizer.
-
-add_bos_token (`bool`, *optional*, defaults to `True`) : Whether to add a beginning of sequence token at the start of sequences.
-
-add_eos_token (`bool`, *optional*, defaults to `False`) : Whether to add an end of sequence token at the end of sequences.
-
-use_default_system_prompt (`bool`, *optional*, defaults to `False`) : Whether or not the default system prompt for Llama should be used.
-
-add_prefix_space (`bool`, *optional*) : Whether or not to add an initial space to the input. This allows to treat the leading word just as any other word.
-
-vocab (`str`, `dict` or `list`, *optional*) : Custom vocabulary dictionary. If not provided, vocabulary is loaded from vocab_file.
-
-merges (`str` or `list`, *optional*) : Custom merges list. If not provided, merges are loaded from merges_file.
-
-vocab_file (`str`, *optional*) : [SentencePiece](https://github.com/google/sentencepiece) file (generally has a .model extension) that contains the vocabulary necessary to instantiate a tokenizer.
-
-Construct a Llama tokenizer. Based on byte-level Byte-Pair-Encoding.
-
-This uses notably ByteFallback and no normalization.
-
-```python
->>> from transformers import CodeLlamaTokenizer
-
->>> tokenizer = CodeLlamaTokenizer.from_pretrained("hf-internal-testing/llama-tokenizer")
->>> tokenizer.encode("Hello this is a test")
-[1, 15043, 445, 338, 263, 1243]
-```
-
-If you want to change the `bos_token` or the `eos_token`, make sure to specify them when initializing the model, or
-call `tokenizer.update_post_processor()` to make sure that the post-processing is correctly done (otherwise the
-values of the first token and final token of an encoded sequence will not be correct). For more details, checkout
-[post-processors] (https://huggingface.co/docs/tokenizers/api/post-processors) documentation.
-
-This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
-refer to this superclass for more information regarding those methods. The default configuration match that of
-[meta-llama/CodeLlama-7b-Instruct-hf](https://huggingface.co/meta-llama/CodeLlama-7b-Instruct-hf/blob/main/tokenizer_config.json)
-which supports prompt infilling.
-
-#### get_special_tokens_mask[[transformers.CodeLlamaTokenizer.get_special_tokens_mask]]
-
-```python
-get_special_tokens_mask(token_ids_0: list[int], token_ids_1: list[int] | None = None, already_has_special_tokens: bool = False)
-```
-
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_utils_base.py#L1311)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/tokenization_utils_base.py#L1311)
 
 **Parameters:**
 
@@ -319,7 +218,7 @@ already-formatted sequence. In that case, we compute the mask by checking member
 update_post_processor()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_utils_tokenizers.py#L590)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/tokenization_utils_tokenizers.py#L637)
 
 Updates the underlying post processor with the current `bos_token` and `eos_token`.
 
@@ -329,7 +228,92 @@ Updates the underlying post processor with the current `bos_token` and `eos_toke
 save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_utils_tokenizers.py#L509)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/tokenization_utils_tokenizers.py#L556)
+
+## CodeLlamaTokenizerFast[[transformers.CodeLlamaTokenizer]]
+
+#### transformers.CodeLlamaTokenizer[[transformers.CodeLlamaTokenizer]]
+
+```python
+transformers.CodeLlamaTokenizer(vocab: str | dict[str, int] | None = None, merges: str | list[str] | None = None, clean_up_tokenization_spaces = False, unk_token = '<unk>', bos_token = '<s>', eos_token = '</s>', prefix_token = '▁<PRE>', middle_token = '▁<MID>', suffix_token = '▁<SUF>', eot_token = '▁<EOT>', fill_token = '<FILL_ME>', additional_special_tokens = None, use_default_system_prompt: bool = False, add_prefix_space: bool | None = True, add_bos_token: bool = True, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/code_llama/tokenization_code_llama.py#L41)
+
+**Parameters:**
+
+clean_up_tokenization_spaces (`str`, *optional*, defaults to `False`) : Whether to cleanup spaces after decoding, cleanup consists in removing potential artifacts like extra spaces.
+
+unk_token (`str`, *optional*, defaults to `"<unk>"`) : The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this token instead.
+
+bos_token (`str`, *optional*, defaults to `"<s>"`) : The beginning of sequence token that was used during pretraining. Can be used a sequence classifier token.
+
+eos_token (`str`, *optional*, defaults to `"</s>"`) : The end of sequence token.
+
+prefix_token (`str`, *optional*, defaults to `"▁<PRE>"`) : Prefix token used for infilling.
+
+middle_token (`str`, *optional*, defaults to `"▁<MID>"`) : Middle token used for infilling.
+
+suffix_token (`str`, *optional*, defaults to `"▁<SUF>"`) : Suffix token used for infilling.
+
+eot_token (`str`, *optional*, defaults to `"▁<EOT>"`) : End of text token used for infilling.
+
+fill_token (`str`, *optional*, defaults to `"<FILL_ME>"`) : The token used to split the input between the prefix and suffix.
+
+additional_special_tokens (`list[str]`, *optional*) : Additional special tokens used by the tokenizer.
+
+add_bos_token (`bool`, *optional*, defaults to `True`) : Whether to add a beginning of sequence token at the start of sequences.
+
+add_eos_token (`bool`, *optional*, defaults to `False`) : Whether to add an end of sequence token at the end of sequences.
+
+use_default_system_prompt (`bool`, *optional*, defaults to `False`) : Whether or not the default system prompt for Llama should be used.
+
+add_prefix_space (`bool`, *optional*) : Whether or not to add an initial space to the input. This allows to treat the leading word just as any other word.
+
+vocab (`str`, `dict` or `list`, *optional*) : Custom vocabulary dictionary. If not provided, vocabulary is loaded from vocab_file.
+
+merges (`str` or `list`, *optional*) : Custom merges list. If not provided, merges are loaded from merges_file.
+
+vocab_file (`str`, *optional*) : [SentencePiece](https://github.com/google/sentencepiece) file (generally has a .model extension) that contains the vocabulary necessary to instantiate a tokenizer.
+
+Construct a Llama tokenizer. Based on byte-level Byte-Pair-Encoding.
+
+This uses notably ByteFallback and no normalization.
+
+```python
+>>> from transformers import CodeLlamaTokenizer
+
+>>> tokenizer = CodeLlamaTokenizer.from_pretrained("hf-internal-testing/llama-tokenizer")
+>>> tokenizer.encode("Hello this is a test")
+[1, 15043, 445, 338, 263, 1243]
+```
+
+If you want to change the `bos_token` or the `eos_token`, make sure to specify them when initializing the model, or
+call `tokenizer.update_post_processor()` to make sure that the post-processing is correctly done (otherwise the
+values of the first token and final token of an encoded sequence will not be correct). For more details, checkout
+[post-processors] (https://huggingface.co/docs/tokenizers/api/post-processors) documentation.
+
+This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.17.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+refer to this superclass for more information regarding those methods. The default configuration match that of
+[meta-llama/CodeLlama-7b-Instruct-hf](https://huggingface.co/meta-llama/CodeLlama-7b-Instruct-hf/blob/main/tokenizer_config.json)
+which supports prompt infilling.
+
+#### set_infilling_processor[[transformers.CodeLlamaTokenizer.set_infilling_processor]]
+
+```python
+set_infilling_processor(reset, suffix_first = False, add_special_tokens = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/code_llama/tokenization_code_llama.py#L229)
+
+Updates the normalizer to make sure the prompt format for `infilling` is respected. The infilling format is the
+following: if suffix_first
+"  {suf}  {pre}"
+else:
+"  {pre} {suf} "
+
+If `reset` is set to `True`, the `normalizer` and `post_processor` are reset to their "normal" behaviour, which
+is to add a prefix space for the normalizer, and add a `bos_token` to the input text for the `post_processor`.
 
 ### Ovis2
-https://huggingface.co/docs/transformers/v5.15.1/model_doc/ovis2.md
+https://huggingface.co/docs/transformers/v5.17.0/model_doc/ovis2.md

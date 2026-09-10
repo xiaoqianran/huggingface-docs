@@ -1,6 +1,6 @@
 # Optimizers and schedulers
 
-An optimizer updates model weights during training. The scheduler wraps the optimizer and adjusts the learning rate each training step. [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) creates both when it calls [create_optimizer_and_scheduler()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.create_optimizer_and_scheduler).
+An optimizer updates model weights during training. The scheduler wraps the optimizer and adjusts the learning rate each training step. [Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer) creates both when it calls [create_optimizer_and_scheduler()](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer.create_optimizer_and_scheduler).
 
 ```md
                                     ┌────────────┐         ┌──────────────┐
@@ -35,7 +35,7 @@ An optimizer updates model weights during training. The scheduler wraps the opti
   └───────────────────────────────────────────────────────────────────┘
 ```
 
-Configure optimizer and scheduler behavior, like `lr_scheduler_type()` and `optim()`, in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments). The defaults (`adamw_torch` optimizer and `linear` warmup scheduler) are a good starting point for most fine-tuning runs.
+Configure optimizer and scheduler behavior, like `lr_scheduler_type()` and `optim()`, in [TrainingArguments](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments). The defaults (`adamw_torch` optimizer and `linear` warmup scheduler) are a good starting point for most fine-tuning runs.
 
 ```py
 from transformers import TrainingArguments
@@ -60,9 +60,9 @@ args = TrainingArguments(
 
 Some schedulers adapt to training dynamics instead of following a fixed schedule.
 
-[GreedyLR](https://huggingface.co/papers/2512.14527) updates the learning rate from evaluation results. It raises the learning rate by dividing it by `factor` when the metric keeps improving, and lowers the learning rate by multiplying it by `factor` when the metric doesn't improve. When the learning rate stops at `min_lr` and doesn't improve after `reset_start` steps, [GreedyLR](/docs/transformers/v5.15.1/en/main_classes/optimizer_schedules#transformers.GreedyLR) resets to its initial state and starts a new cycle.
+[GreedyLR](https://huggingface.co/papers/2512.14527) updates the learning rate from evaluation results. It raises the learning rate by dividing it by `factor` when the metric keeps improving, and lowers the learning rate by multiplying it by `factor` when the metric doesn't improve. When the learning rate stops at `min_lr` and doesn't improve after `reset_start` steps, [GreedyLR](/docs/transformers/v5.17.0/en/main_classes/optimizer_schedules#transformers.GreedyLR) resets to its initial state and starts a new cycle.
 
-[GreedyLR](/docs/transformers/v5.15.1/en/main_classes/optimizer_schedules#transformers.GreedyLR) requires evaluation during training. Set `eval_strategy` to `"steps"` or `"epoch"`.
+[GreedyLR](/docs/transformers/v5.17.0/en/main_classes/optimizer_schedules#transformers.GreedyLR) requires evaluation during training. Set `eval_strategy` to `"steps"` or `"epoch"`.
 
 ```diff
 args = TrainingArguments(
@@ -77,7 +77,7 @@ args = TrainingArguments(
 > [!TIP]
 > The default `mode="min"` works for loss. If you're tracking a metric where a higher value is better, like accuracy, pass `"mode": "max"` in `lr_scheduler_kwargs`.
 
-See the [GreedyLR](/docs/transformers/v5.15.1/en/main_classes/optimizer_schedules#transformers.GreedyLR) class for the full list of configurable parameters.
+See the [GreedyLR](/docs/transformers/v5.17.0/en/main_classes/optimizer_schedules#transformers.GreedyLR) class for the full list of configurable parameters.
 
 ## Optimizer integrations
 
@@ -86,7 +86,6 @@ Transformers integrates third-party optimizers for specialized training scenario
 | Optimizer | Install | `optim="value"` | Description |
 |---|---|---|---|
 | APOLLO | `apollo-torch` | `apollo_adamw` | Memory-efficient full-param via random projections; rank-1 sufficient |
-| FlashOptim | `flashoptim` | `flash_adamw`, `flash_adam`, `flash_sgd`, `flash_sgdw`, `flash_lion` | Reduces optimizer memory with low-precision master weights |
 | GrokAdamW | `grokadamw` | `grokadamw` | Targets delayed generalization (grokking) |
 | LOMO / AdaLomo | `lomo-optim` | `lomo` / `adalomo` | Fuses gradient + update step for low-memory full-param fine-tuning |
 | Schedule Free | `schedulefree` | `schedule_free_adamw`, `schedule_free_radam`, `schedule_free_sgd` | Eliminates LR annealing; pair with `lr_scheduler_type="constant"` |
@@ -129,34 +128,6 @@ args = TrainingArguments(
     optim="apollo_adamw",
     optim_target_modules=[r".*.attn.*", r".*.mlp.*"],
     optim_args="proj=random,rank=1,scale=128.0,scale_type=tensor,update_proj_gap=200",
-    ...  # remaining args from the TrainingArguments intro config
-)
-```
-
-```bash
-pip install flashoptim
-```
-
-[FlashOptim](https://huggingface.co/papers/2602.23349) reduces optimizer memory by storing master weights in lower precision. It supports AdamW, Adam, SGD, SGDW, and Lion variants.
-
-> [!TIP]
-> FlashOptim requires bf16 or fp16 model weights. It automatically disables `master_weight_bits` and warns if your model uses fp32.
-
-```diff
-args = TrainingArguments(
-+   optim="flash_adamw",
-+   bf16=True,
-    ...  # remaining args from the TrainingArguments intro config
-)
-```
-
-`master_weight_bits` controls the precision of the optimizer's master weight copy. By default, it stores the master copy in 24 bits. Set it to `"None"` to remove the master copy entirely for maximum memory savings at the cost of a slightly higher loss.
-
-```diff
-args = TrainingArguments(
-+   optim="flash_adamw",
-+   optim_args="master_weight_bits=None",
-+   bf16=True,
     ...  # remaining args from the TrainingArguments intro config
 )
 ```
@@ -233,7 +204,7 @@ pip install galore-torch trl
 
 [Gradient Low-Rank Projection (GaLore)](https://hf.co/papers/2403.03507) reduces memory for training LLMs. Unlike low-rank adaptation methods like [LoRA](https://hf.co/papers/2106.09685), GaLore preserves *full-parameter* learning.
 
-Set `optim` in [trl.SFTConfig](https://huggingface.co/docs/trl/v1.10.0/en/sft_trainer#trl.SFTConfig) to a GaLore optimizer (`"galore_adamw"`, `"galore_adafactor"`, or `"galore_adamw_8bit"`). Specify target modules with `optim_target_modules` and GaLore-specific parameters (`rank`, `update_proj_gap`, `scale`) through `optim_args`.
+Set `optim` in [trl.SFTConfig](https://huggingface.co/docs/trl/v1.12.0/en/sft_trainer#trl.SFTConfig) to a GaLore optimizer (`"galore_adamw"`, `"galore_adafactor"`, or `"galore_adamw_8bit"`). Specify target modules with `optim_target_modules` and GaLore-specific parameters (`rank`, `update_proj_gap`, `scale`) through `optim_args`.
 
 ```py
 from trl import SFTConfig
@@ -269,9 +240,9 @@ Create a custom optimizer and scheduler to use an optimizer not yet integrated, 
 
 ### Pass a class and kwargs
 
-`~Trainer.optimizer_cls_and_kwargs` accepts a custom optimizer class while delegating parameter grouping and device placement to [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer).
+`~Trainer.optimizer_cls_and_kwargs` accepts a custom optimizer class while delegating parameter grouping and device placement to [Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer).
 
-[Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) defers building the optimizer until [create_optimizer()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.create_optimizer) runs, so the model is already on the correct device.
+[Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer) defers building the optimizer until [create_optimizer()](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer.create_optimizer) runs, so the model is already on the correct device.
 
 ```py
 import torch
@@ -287,7 +258,7 @@ trainer = Trainer(
 
 ### Pass prebuilt instances
 
-Pass a predefined optimizer and scheduler to `~Trainer.optimizers`. [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) skips [create_optimizer()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.create_optimizer) and [create_scheduler()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.create_scheduler) when prebuilt instances are provided. If you don't pass a scheduler, [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) automatically creates one.
+Pass a predefined optimizer and scheduler to `~Trainer.optimizers`. [Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer) skips [create_optimizer()](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer.create_optimizer) and [create_scheduler()](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer.create_scheduler) when prebuilt instances are provided. If you don't pass a scheduler, [Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer) automatically creates one.
 
 > [!WARNING]
 > Build the optimizer after placing your model on the correct device. Parameters are resolved at construction time, before `Trainer` moves the model. In distributed training, mismatched devices can silently cause incorrect behavior.
@@ -307,13 +278,13 @@ trainer = Trainer(
 )
 ```
 
-Prebuilt instances bypass [create_optimizer()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.create_optimizer) and [create_scheduler()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.create_scheduler), so you need to specify your own parameter groups.
+Prebuilt instances bypass [create_optimizer()](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer.create_optimizer) and [create_scheduler()](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer.create_scheduler), so you need to specify your own parameter groups.
 
 ### Override optimizer and scheduler methods
 
-Subclass [create_optimizer()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.create_optimizer) and [create_scheduler()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.create_scheduler) for full control. Both methods run *during* [train()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.train).
+Subclass [create_optimizer()](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer.create_optimizer) and [create_scheduler()](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer.create_scheduler) for full control. Both methods run *during* [train()](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer.train).
 
-Override [create_scheduler()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.create_scheduler) to use a scheduler like [OneCycleLR](https://docs.pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.OneCycleLR.html) that isn't available in [SchedulerType](/docs/transformers/v5.15.1/en/main_classes/optimizer_schedules#transformers.SchedulerType).
+Override [create_scheduler()](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer.create_scheduler) to use a scheduler like [OneCycleLR](https://docs.pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.OneCycleLR.html) that isn't available in [SchedulerType](/docs/transformers/v5.17.0/en/main_classes/optimizer_schedules#transformers.SchedulerType).
 
 For each method, make sure to assign to `self` and return it.
 
@@ -333,7 +304,7 @@ class MyTrainer(Trainer):
         return self.lr_scheduler
 ```
 
-You don't need to override [create_optimizer()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.create_optimizer) if the default optimizer works. Extending a method with `super()` is easier than replacing it entirely. For example, add an extra parameter group while keeping everything else the same.
+You don't need to override [create_optimizer()](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer.create_optimizer) if the default optimizer works. Extending a method with `super()` is easier than replacing it entirely. For example, add an extra parameter group while keeping everything else the same.
 
 ```py
 class MyTrainer(Trainer):
@@ -348,4 +319,4 @@ class MyTrainer(Trainer):
 ```
 
 ### Multimodal chat templates
-https://huggingface.co/docs/transformers/v5.15.1/chat_templating_multimodal.md
+https://huggingface.co/docs/transformers/v5.17.0/chat_templating_multimodal.md

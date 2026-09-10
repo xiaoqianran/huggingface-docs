@@ -3,16 +3,16 @@
 This document will guide you through the process of using vLLM with TRL for faster generation in online methods like GRPO and Online DPO. We first summarize a tl;dr on how to use vLLM with TRL, and then we will go into the details of how it works under the hood.
 
 > [!WARNING]
-> TRL currently only supports vLLM versions from `0.19.0` to `0.27.1`. Please ensure you have a version in this range installed to avoid compatibility issues.
+> TRL currently only supports vLLM versions from `0.19.1` to `0.28.0`. Please ensure you have a version in this range installed to avoid compatibility issues.
 
 > [!TIP]
 > The following trainers currently support generation with vLLM:
 >
-> - [GRPOTrainer](/docs/trl/v1.12.0/en/grpo_trainer#trl.GRPOTrainer)
-> - [RLOOTrainer](/docs/trl/v1.12.0/en/rloo_trainer#trl.RLOOTrainer)
-> - [experimental.nash_md.NashMDTrainer](/docs/trl/v1.12.0/en/nash_md_trainer#trl.experimental.nash_md.NashMDTrainer)
-> - [experimental.online_dpo.OnlineDPOTrainer](/docs/trl/v1.12.0/en/online_dpo_trainer#trl.experimental.online_dpo.OnlineDPOTrainer)
-> - [experimental.xpo.XPOTrainer](/docs/trl/v1.12.0/en/xpo_trainer#trl.experimental.xpo.XPOTrainer)
+> - [GRPOTrainer](/docs/trl/v1.13.0/en/grpo_trainer#trl.GRPOTrainer)
+> - [RLOOTrainer](/docs/trl/v1.13.0/en/rloo_trainer#trl.RLOOTrainer)
+> - [experimental.nash_md.NashMDTrainer](/docs/trl/v1.13.0/en/nash_md_trainer#trl.experimental.nash_md.NashMDTrainer)
+> - [experimental.online_dpo.OnlineDPOTrainer](/docs/trl/v1.13.0/en/online_dpo_trainer#trl.experimental.online_dpo.OnlineDPOTrainer)
+> - [experimental.xpo.XPOTrainer](/docs/trl/v1.13.0/en/xpo_trainer#trl.experimental.xpo.XPOTrainer)
 
 ## 🚀 How can I use vLLM with TRL to speed up training?
 
@@ -311,4 +311,4 @@ training_args = RLOOConfig(
 > To reduce GPU memory usage when running vLLM, consider [enabling vLLM sleep mode](reducing_memory_usage#vllm-sleep-mode).
 
 ### ORPO Trainer
-https://huggingface.co/docs/trl/v1.12.0/orpo_trainer.md
+https://huggingface.co/docs/trl/v1.13.0/orpo_trainer.md

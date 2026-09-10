@@ -113,7 +113,7 @@ Consider the quantization method below during fine-tuning to save memory.
 
 Other methods offer PEFT compatibility, though bitsandbytes is the most established and straightforward path for QLoRA.
 
-See the [bitsandbytes documentation](./bitsandbytes#qlora) and [PEFT Docs](https://huggingface.co/docs/peft/developer_guides/quantization#aqlm-quantization) for more details.
+See the [bitsandbytes documentation](./bitsandbytes#qlora) and [PEFT Docs](https://huggingface.co/docs/peft/developer_guides/quantization#quantize-a-model) for more details.
 
 ## Research
 
@@ -152,4 +152,4 @@ The key takeaways are:
 > Always benchmark the performance (accuracy and speed) of the quantized model on your specific task and hardware to ensure it meets your requirements. Refer to the individual documentation pages linked above for detailed usage instructions.
 
 ### FBGEMM
-https://huggingface.co/docs/transformers/v5.15.1/quantization/fbgemm_fp8.md
+https://huggingface.co/docs/transformers/v5.17.0/quantization/fbgemm_fp8.md

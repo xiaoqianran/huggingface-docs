@@ -8,6 +8,9 @@ The abstract from the paper is the following:
 
 *Driven by the simple and effective Dense O2O, DEIM demonstrates faster convergence and enhanced performance. In this work, we extend it with DINOv3 features, resulting in DEIMv2. DEIMv2 spans eight model sizes from X to Atto, covering GPU, edge, and mobile deployment. For the X, L, M, and S variants, we adopt DINOv3-pretrained / distilled backbones and introduce a Spatial Tuning Adapter (STA), which efficiently converts DINOv3's single-scale output into multi-scale features and complements strong semantics with fine-grained details to enhance detection. For ultra-lightweight models (Nano, Pico, Femto, and Atto), we employ HGNetv2 with depth and width pruning to meet strict resource budgets. Together with a simplified decoder and an upgraded Dense O2O, this unified design enables DEIMv2 to achieve a superior performance-cost trade-off across diverse scenarios, establishing new state-of-the-art results. Notably, our largest model, DEIMv2-X, achieves 57.8 AP with only 50.3M parameters, surpassing prior X-scale models that require over 60M parameters for just 56.5 AP. On the compact side, DEIMv2-S is the first sub-10M model (9.71M) to exceed the 50 AP milestone on COCO, reaching 50.9 AP. Even the ultra-lightweight DEIMv2-Pico, with just 1.5M parameters, delivers 38.5 AP-matching YOLOv10-Nano (2.3M) with ~50% fewer parameters.*
 
+This model was contributed by [Harshal Janjani](https://huggingface.co/harshaljanjani).
+The original code can be found [here](https://github.com/Intellindust-AI-Lab/DEIMv2).
+
 ## Usage
 
 ```python
@@ -41,7 +44,7 @@ for result in results:
 transformers.Deimv2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, is_encoder_decoder: bool = True, initializer_range: float = 0.01, initializer_bias_prior_prob: float | None = None, layer_norm_eps: float = 1e-05, batch_norm_eps: float = 1e-05, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, freeze_backbone_batch_norms: bool = True, encoder_hidden_dim: int = 256, encoder_in_channels: list[int] | tuple[int, ...] = (512, 1024, 2048), feat_strides: list[int] | tuple[int, ...] = (8, 16, 32), encoder_layers: int = 1, encoder_ffn_dim: int = 1024, encoder_attention_heads: int = 8, dropout: float | int = 0.0, activation_dropout: float | int = 0.0, encode_proj_layers: list[int] | tuple[int, ...] = (2,), positional_encoding_temperature: int = 10000, encoder_activation_function: str = 'gelu', activation_function: str = 'silu', eval_size: list[int] | tuple[int, int] | None = None, normalize_before: bool = False, hidden_expansion: float = 1.0, d_model: int = 256, num_queries: int = 300, decoder_in_channels: list[int] | tuple[int, ...] = (256, 256, 256), decoder_ffn_dim: int = 1024, num_feature_levels: int = 3, decoder_n_points: int | list[int] = 4, decoder_layers: int = 6, decoder_attention_heads: int = 8, decoder_activation_function: str = 'relu', attention_dropout: float | int = 0.0, num_denoising: int = 100, label_noise_ratio: float = 0.5, box_noise_scale: float = 1.0, learn_initial_query: bool = False, anchor_image_size: int | list[int] | None = None, with_box_refine: bool = True, matcher_alpha: float = 0.25, matcher_gamma: float = 2.0, matcher_class_cost: float = 2.0, matcher_bbox_cost: float = 5.0, matcher_giou_cost: float = 2.0, use_focal_loss: bool = True, auxiliary_loss: bool = True, focal_loss_alpha: float = 0.75, focal_loss_gamma: float = 2.0, weight_loss_vfl: float = 1.0, weight_loss_bbox: float = 5.0, weight_loss_giou: float = 2.0, weight_loss_fgl: float = 0.15, weight_loss_ddf: float = 1.5, eos_coefficient: float = 0.0001, eval_idx: int = -1, layer_scale: int | float = 1.0, max_num_bins: int = 32, reg_scale: float = 4.0, depth_mult: float = 1.0, top_prob_values: int = 4, lqe_hidden_dim: int = 64, lqe_layers: int = 2, decoder_offset_scale: float = 0.5, decoder_method: str = 'default', up: float = 0.5, tie_word_embeddings: bool = True, weight_loss_mal: float = 1.0, use_dense_one_to_one: bool = True, mal_alpha: float | None = None, encoder_fuse_op: str = 'sum', spatial_tuning_adapter_inplanes: int = 16, encoder_type: str = 'hybrid', use_gateway: bool = True, share_bbox_head: bool = False, encoder_has_trailing_conv: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deimv2/configuration_deimv2.py#L33)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/deimv2/configuration_deimv2.py#L33)
 
 **Parameters:**
 
@@ -197,8 +200,8 @@ This is the configuration class to store the configuration of a Deimv2Model. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [Intellindust/DEIMv2_HGNetv2_N_COCO](https://huggingface.co/Intellindust/DEIMv2_HGNetv2_N_COCO)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Deimv2Model[[transformers.Deimv2Model]]
 
@@ -208,15 +211,15 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes
 transformers.Deimv2Model(config: Deimv2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deimv2/modeling_deimv2.py#L1693)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/deimv2/modeling_deimv2.py#L1695)
 
 **Parameters:**
 
-config ([Deimv2Config](/docs/transformers/v5.15.1/en/model_doc/deimv2#transformers.Deimv2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Deimv2Config](/docs/transformers/v5.17.0/en/model_doc/deimv2#transformers.Deimv2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 RT-DETR Model (consisting of a backbone and encoder-decoder) outputting raw hidden states without any head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -230,7 +233,7 @@ and behavior.
 forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: list[dict] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deimv2/modeling_deimv2.py#L1787)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/deimv2/modeling_deimv2.py#L1789)
 
 **Parameters:**
 
@@ -250,7 +253,7 @@ A `Deimv2ModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [Deimv2Model](/docs/transformers/v5.15.1/en/model_doc/deimv2#transformers.Deimv2Model) forward method, overrides the `__call__` special method.
+The [Deimv2Model](/docs/transformers/v5.17.0/en/model_doc/deimv2#transformers.Deimv2Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -329,16 +332,16 @@ Examples:
 transformers.Deimv2ForObjectDetection(config: Deimv2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deimv2/modeling_deimv2.py#L2066)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/deimv2/modeling_deimv2.py#L2068)
 
 **Parameters:**
 
-config ([Deimv2Config](/docs/transformers/v5.15.1/en/model_doc/deimv2#transformers.Deimv2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Deimv2Config](/docs/transformers/v5.17.0/en/model_doc/deimv2#transformers.Deimv2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 RT-DETR Model (consisting of a backbone and encoder-decoder) outputting bounding boxes and logits to be further
 decoded into scores and classes.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -352,7 +355,7 @@ and behavior.
 forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: list[dict] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deimv2/modeling_deimv2.py#L2105)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/deimv2/modeling_deimv2.py#L2107)
 
 **Parameters:**
 
@@ -372,7 +375,7 @@ A `Deimv2ObjectDetectionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [Deimv2ForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/deimv2#transformers.Deimv2ForObjectDetection) forward method, overrides the `__call__` special method.
+The [Deimv2ForObjectDetection](/docs/transformers/v5.17.0/en/model_doc/deimv2#transformers.Deimv2ForObjectDetection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -470,4 +473,4 @@ Example:
 ```
 
 ### Mllama
-https://huggingface.co/docs/transformers/v5.15.1/model_doc/mllama.md
+https://huggingface.co/docs/transformers/v5.17.0/model_doc/mllama.md

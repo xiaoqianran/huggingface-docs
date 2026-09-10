@@ -2,11 +2,11 @@
 
 Video-text-to-text, also known as video language models are models that can process video and output text. These models can tackle various tasks, from video question answering to video captioning.
 
-These models have nearly the same architecture as [image-text-to-text](../image_text_to_text) models except for some changes to accept video data, since video data is essentially image frames with temporal dependencies. Some image-text-to-text models take in multiple images, but this alone is inadequate for a model to accept videos.
+These models have nearly the same architecture as [image-text-to-text](./image_text_to_text) models except for some changes to accept video data, since video data is essentially image frames with temporal dependencies. Some image-text-to-text models take in multiple images, but this alone is inadequate for a model to accept videos.
 
 Moreover, video-text-to-text models are often trained with all vision modalities. Each example might have videos, multiple videos, images and multiple images. Some of these models can also take interleaved inputs. For example, you can refer to a specific video inside a string of text by adding a video token in text like "What is happening in this video? `<video>`".
 
-Note that these models process videos with no audio. [Any-to-any](../any-to-any) models on the other hand can process videos with audio in them.
+Note that these models process videos with no audio. [Any-to-any](./any_to_any) models on the other hand can process videos with audio in them.
 
 In this guide, we provide a brief overview of video LMs and show how to use them with Transformers for inference.
 
@@ -53,7 +53,7 @@ We will infer with two videos, both have cats.
 
 Videos are series of image frames. Depending on the hardware limitations, downsampling is required. If the number of downsampled frames are too little, predictions will be low quality.
 
-Video-text-to-text models have processors with video processor abstracted in them. You can pass video inference related arguments to [apply_chat_template()](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) function.
+Video-text-to-text models have processors with video processor abstracted in them. You can pass video inference related arguments to [apply_chat_template()](/docs/transformers/v5.17.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) function.
 
 > [!WARNING]
 > You can learn more about video processors [here](../main_classes/video_processor).
@@ -146,4 +146,4 @@ print(output_text)
 ```
 
 ### Visual document retrieval
-https://huggingface.co/docs/transformers/v5.15.1/tasks/visual_document_retrieval.md
+https://huggingface.co/docs/transformers/v5.17.0/tasks/visual_document_retrieval.md

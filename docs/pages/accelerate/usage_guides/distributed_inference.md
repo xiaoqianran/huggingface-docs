@@ -45,7 +45,7 @@ a simple way to manage this. (To learn more, check out the relevant section in t
 
 Can it manage it? Yes. Does it add unneeded extra code however: also yes.
 
-With Accelerate, we can simplify this process by using the [Accelerator.split_between_processes()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.split_between_processes) context manager (which also exists in `PartialState` and `AcceleratorState`). 
+With Accelerate, we can simplify this process by using the [Accelerator.split_between_processes()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.split_between_processes) context manager (which also exists in `PartialState` and `AcceleratorState`). 
 This function will automatically split whatever data you pass to it (be it a prompt, a set of tensors, a dictionary of the prior data, etc.) across all the processes (with a potential
 to be padded) for you to use right away.
 
@@ -164,7 +164,7 @@ input = torch.randint(
     requires_grad=False,
 )
 ```
-Next we need to actually perform the tracing and get the model ready. To do so, use the [inference.prepare_pippy()](/docs/accelerate/v1.14.0/en/package_reference/inference#accelerate.prepare_pippy) function and it will fully wrap the model for pipeline parallelism automatically:
+Next we need to actually perform the tracing and get the model ready. To do so, use the [inference.prepare_pippy()](/docs/accelerate/v1.15.0/en/package_reference/inference#accelerate.prepare_pippy) function and it will fully wrap the model for pipeline parallelism automatically:
 
 ```{python}
 from accelerate.inference import prepare_pippy
@@ -196,12 +196,12 @@ if PartialState().is_last_process:
     print(output)
 ```
 
-    If you pass in `gather_output=True` to [inference.prepare_pippy()](/docs/accelerate/v1.14.0/en/package_reference/inference#accelerate.prepare_pippy), the output will be sent
+    If you pass in `gather_output=True` to [inference.prepare_pippy()](/docs/accelerate/v1.15.0/en/package_reference/inference#accelerate.prepare_pippy), the output will be sent
     across to all the GPUs afterwards without needing the `is_last_process` check. This is 
     `False` by default as it incurs a communication call.
     
 
 And that's it! To explore more, please check out the inference examples in the [Accelerate repo](https://github.com/huggingface/accelerate/tree/main/examples/inference/pippy) and our [documentation](../package_reference/inference) as we work to improving this integration.
 
-### Using multiple models with DeepSpeed
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/deepspeed_multiple_model.md
+### Big Model Inference
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/big_modeling.md

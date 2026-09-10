@@ -14,7 +14,7 @@ There are three reasons for this that this tutorial will cover:
 
 ## Setting the Seed 
 
-While this issue has not come up as much, make sure to use [utils.set_seed()](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.utils.set_seed) to fully set the seed in all distributed cases so training will be reproducible:
+While this issue has not come up as much, make sure to use [utils.set_seed()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.set_seed) to fully set the seed in all distributed cases so training will be reproducible:
 
 ```python
 from accelerate.utils import set_seed
@@ -80,5 +80,5 @@ When using gradient accumulation and mixed precision, due to how gradient averag
 some degradation in performance is expected. This will be explicitly seen when comparing the batch-wise loss between different compute 
 setups. However, the overall loss, metric, and general performance at the end of training should be _roughly_ the same.
 
-### Training on TPUs
-https://huggingface.co/docs/accelerate/v1.14.0/concept_guides/training_tpu.md
+### FSDP vs DeepSpeed
+https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/fsdp_and_deepspeed.md

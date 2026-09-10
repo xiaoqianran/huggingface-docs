@@ -13,7 +13,7 @@ Before any training can be performed, an Accelerate config file must exist in th
 accelerate config
 ```
 
-However, if general defaults are fine and you are *not* running on a TPU, Accelerate has a utility to quickly write your device configuration into a config file via [utils.write_basic_config()](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.commands.config.default.write_basic_config).
+However, if general defaults are fine and you are *not* running on a TPU, Accelerate has a utility to quickly write your device configuration into a config file via [utils.write_basic_config()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.commands.config.default.write_basic_config).
 
 The following code will restart Jupyter after writing the configuration, as CUDA runtime or XPU runtime was called to perform this. 
 
@@ -157,7 +157,7 @@ from torch.optim.lr_scheduler import CosineAnnealingLR
 
 ## Writing the Training Function
 
-Now you can build the training loop. [notebook_launcher()](/docs/accelerate/v1.14.0/en/package_reference/launchers#accelerate.notebook_launcher) works by passing in a function to call that will be ran across the distributed system.
+Now you can build the training loop. [notebook_launcher()](/docs/accelerate/v1.15.0/en/package_reference/launchers#accelerate.notebook_launcher) works by passing in a function to call that will be ran across the distributed system.
 
 Here is a basic training loop for the animal classification problem:
 
@@ -169,7 +169,7 @@ def training_loop(mixed_precision="fp16", seed: int = 42, batch_size: int = 64):
     accelerator = Accelerator(mixed_precision=mixed_precision)
 ```
 
-First you should set the seed and create an [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) object as early in the training loop as possible.
+First you should set the seed and create an [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) object as early in the training loop as possible.
 
     If training on the TPU, your training loop should take in the model as a parameter and it should be instantiated 
     outside of the training loop function. See the [TPU best practices](../concept_guides/training_tpu) 
@@ -215,7 +215,7 @@ Next instantiate the rest of the PyTorch classes used for training:
     lr_scheduler = OneCycleLR(optimizer=optimizer, max_lr=3e-2, epochs=5, steps_per_epoch=len(train_dataloader))
 ```
 
-Before passing everything to [prepare()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.prepare).
+Before passing everything to [prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare).
 
     There is no specific order to remember, you just need to unpack the objects in the same order you gave them to the prepare method.
 
@@ -262,7 +262,7 @@ Next you have the rest of your standard PyTorch loop:
 Before finally the last major difference. 
 
 When performing distributed evaluation, the predictions and labels need to be passed through 
-[gather()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.gather) so that all of the data is available on the current device and a properly calculated metric can be achieved:
+[gather()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.gather) so that all of the data is available on the current device and a properly calculated metric can be achieved:
 
 ```python
             accurate_preds = accelerator.gather(predictions) == accelerator.gather(batch["label"])
@@ -270,7 +270,7 @@ When performing distributed evaluation, the predictions and labels need to be pa
             accurate += accurate_preds.long().sum()
 ```
 
-Now you just need to calculate the actual metric for this problem, and you can print it on the main process using [print()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.print):
+Now you just need to calculate the actual metric for this problem, and you can print it on the main process using [print()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.print):
 
 ```python
         eval_metric = accurate.item() / num_elems
@@ -348,7 +348,7 @@ def training_loop(mixed_precision="fp16", seed: int = 42, batch_size: int = 64):
 
 ## Using the notebook_launcher
 
-All that's left is to use the [notebook_launcher()](/docs/accelerate/v1.14.0/en/package_reference/launchers#accelerate.notebook_launcher).
+All that's left is to use the [notebook_launcher()](/docs/accelerate/v1.15.0/en/package_reference/launchers#accelerate.notebook_launcher).
 
 You pass in the function, the arguments (as a tuple), and the number of processes to train on. (See the [documentation](../package_reference/launchers) for more information)
 
@@ -410,7 +410,7 @@ epoch 4: 94.71
 
 And that's it!
 
-Please note that [notebook_launcher()](/docs/accelerate/v1.14.0/en/package_reference/launchers#accelerate.notebook_launcher) ignores the Accelerate config file, to launch based on the config use:
+Please note that [notebook_launcher()](/docs/accelerate/v1.15.0/en/package_reference/launchers#accelerate.notebook_launcher) ignores the Accelerate config file, to launch based on the config use:
 
 ```bash
 accelerate launch
@@ -427,9 +427,9 @@ will be made when spawning that a regular process can be created and utilize CUD
 
 This notebook showed how to perform distributed training from inside of a Jupyter Notebook. Some key notes to remember:
 
-- Make sure to save any code that use CUDA/XPU (or CUDA/XPU imports) for the function passed to [notebook_launcher()](/docs/accelerate/v1.14.0/en/package_reference/launchers#accelerate.notebook_launcher)
+- Make sure to save any code that use CUDA/XPU (or CUDA/XPU imports) for the function passed to [notebook_launcher()](/docs/accelerate/v1.15.0/en/package_reference/launchers#accelerate.notebook_launcher)
 - Set the `num_processes` to be the number of devices used for training (such as number of GPUs, XPUs, CPUs, TPUs, etc)
 - If using the TPU, declare your model outside the training loop function
 
 ### Add Accelerate to your code
-https://huggingface.co/docs/accelerate/v1.14.0/basic_tutorials/migration.md
+https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/migration.md

@@ -5,7 +5,7 @@ Instance segmentation is the computer vision task of detecting objects in an ima
 In this guide, you will learn how to:
 
  1. Load an instance segmentation dataset from the Hugging Face Hub.
- 2. Fine-tune [RF-DETR-Seg](https://huggingface.co/Roboflow/rf-detr-seg-medium), a transformer-based instance segmentation model, using the Transformers [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer).
+ 2. Fine-tune [RF-DETR-Seg](https://huggingface.co/Roboflow/rf-detr-seg-medium), a transformer-based instance segmentation model, using the Transformers [Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer).
  3. Evaluate your model with mean IoU.
  4. Run inference and visualize predictions.
 
@@ -47,6 +47,8 @@ The [satellite-building-segmentation](https://huggingface.co/datasets/merve/sate
 >>> train_ds = ds["train"]
 >>> valid_ds = ds["validation"]
 >>> print(f"Train: {len(train_ds)} images, Valid: {len(valid_ds)} images")
+Train: 6764 images, Valid: 1934 images
+
 ```
 
 Inspect a single example. Each record has an `image`, an `image_id`, and an `objects` dict containing per-instance annotations. Each instance has a `bbox` in `[x, y, width, height]` format and a `segmentation` field with polygon coordinates:
@@ -54,11 +56,19 @@ Inspect a single example. Each record has an `image`, an `image_id`, and an `obj
 ```py
 >>> sample = train_ds[0]
 >>> print(f"Image ID: {sample['image_id']}")
+Image ID: 0
 >>> print(f"Image size: {sample['image'].size}")
+Image size: (512, 512)
 >>> print(f"Number of instances: {len(sample['objects']['id'])}")
+Number of instances: 7
 >>> print(f"\nObjects keys: {list(sample['objects'].keys())}")
+<BLANKLINE>
+Objects keys: ['id', 'area', 'bbox', 'segmentation', 'category', 'iscrowd']
 >>> print(f"First bbox: {sample['objects']['bbox'][0]}")
+First bbox: [80.0, 0.0, 51.0, 51.5]
 >>> print(f"First category: {sample['objects']['category'][0]}")
+First category: 0
+
 ```
 
 Visualize an example with its ground-truth masks:
@@ -72,9 +82,9 @@ Visualize an example with its ground-truth masks:
 >>> image = sample["image"].convert("RGB")
 
 >>> fig, axes = plt.subplots(1, 2, figsize=(14, 6))
->>> axes[0].imshow(image)
->>> axes[0].set_title("Original image")
->>> axes[0].axis("off")
+>>> _ = axes[0].imshow(image)
+>>> _ = axes[0].set_title("Original image")
+>>> _ = axes[0].axis("off")
 
 >>> overlay = image.copy()
 >>> draw = ImageDraw.Draw(overlay, "RGBA")
@@ -85,9 +95,9 @@ Visualize an example with its ground-truth masks:
 ...         color = tuple(np.random.randint(50, 255, 3)) + (100,)
 ...         draw.polygon(coords, fill=color, outline="red")
 
->>> axes[1].imshow(overlay)
->>> axes[1].set_title(f"Ground truth ({len(objects['id'])} buildings)")
->>> axes[1].axis("off")
+>>> _ = axes[1].imshow(overlay)
+>>> _ = axes[1].set_title(f"Ground truth ({len(objects['id'])} buildings)")
+>>> _ = axes[1].axis("off")
 >>> plt.tight_layout()
 >>> plt.show()
 ```
@@ -96,7 +106,7 @@ Visualize an example with its ground-truth masks:
 
 ## Load the model and image processor
 
-Use [AutoImageProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoImageProcessor) and [AutoModelForInstanceSegmentation](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModelForInstanceSegmentation) to load the RF-DETR-Seg model. When loading the model, pass `id2label` and `label2id` mappings to configure the classification head for the single "building" class. Since the pretrained model was trained on COCO (91 classes), set `ignore_mismatched_sizes=True` to reinitialize the classification head with the correct number of outputs.
+Use [AutoImageProcessor](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoImageProcessor) and [AutoModelForInstanceSegmentation](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModelForInstanceSegmentation) to load the RF-DETR-Seg model. When loading the model, pass `id2label` and `label2id` mappings to configure the classification head for the single "building" class. Since the pretrained model was trained on COCO (91 classes), set `ignore_mismatched_sizes=True` to reinitialize the classification head with the correct number of outputs.
 
 The image processor handles all the preprocessing: resizing images while maintaining aspect ratio, normalizing with ImageNet statistics, padding to a uniform size, and — crucially for instance segmentation — converting polygon annotations to binary masks, resizing those masks, and normalizing bounding boxes to the `[cx, cy, w, h]` format in `[0, 1]` range that the model expects.
 
@@ -179,11 +189,19 @@ Verify a preprocessed example. It contains `pixel_values` (the normalized image 
 ```py
 >>> example = train_ds[0]
 >>> print(f"pixel_values shape: {example['pixel_values'].shape}")
+pixel_values shape: torch.Size([3, 432, 432])
 >>> print(f"pixel_mask shape: {example['pixel_mask'].shape}")
+pixel_mask shape: torch.Size([432, 432])
 >>> print(f"labels keys: {list(example['labels'].keys())}")
+labels keys: ['size', 'image_id', 'class_labels', 'boxes', 'area', 'iscrowd', 'orig_size', 'masks']
 >>> print(f"  class_labels: {example['labels']['class_labels']}")
+  class_labels: tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0])
 >>> print(f"  boxes shape: {example['labels']['boxes'].shape}")
+  boxes shape: torch.Size([26, 4])
 >>> print(f"  masks shape: {example['labels']['masks'].shape}")
+  masks shape: torch.Size([26, 432, 432])
+
 ```
 
 ## Data collator
@@ -218,7 +236,7 @@ This gives a per-image metric of "how well does the model cover the buildings", 
 > [!TIP]
 > Instance segmentation benchmarks (such as COCO) usually report mask mean average precision (mAP), which scores each predicted instance mask against the ground truth across a range of IoU thresholds and therefore rewards correctly separating individual objects. The union-based mean IoU used here is a simpler, faster proxy: it measures overall pixel coverage rather than per-instance quality, which makes it convenient for tracking progress during training. For a standard, instance-aware evaluation, compute mask mAP instead, for example with `torchmetrics`' [`MeanAveragePrecision(iou_type="segm")`](https://lightning.ai/docs/torchmetrics/stable/detection/mean_average_precision.html).
 
-Pass this to the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) as a `compute_metrics` function instead of subclassing the trainer. With `eval_do_concat_batches=False` (set in the [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) below), the predictions and labels produced by the standard evaluation pass are handed to `compute_metrics` as a list of per-batch outputs, so the metric reuses those predictions and no second forward pass over the validation set is needed. In the model output tuple, index `3` holds `pred_masks`:
+Pass this to the [Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer) as a `compute_metrics` function instead of subclassing the trainer. With `eval_do_concat_batches=False` (set in the [TrainingArguments](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments) below), the predictions and labels produced by the standard evaluation pass are handed to `compute_metrics` as a list of per-batch outputs, so the metric reuses those predictions and no second forward pass over the validation set is needed. In the model output tuple, index `3` holds `pred_masks`:
 
 ```py
 >>> import torch.nn.functional as F
@@ -253,11 +271,11 @@ Pass this to the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#tr
 ...     return {"mean_iou": mean_iou}
 ```
 
-The [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) automatically prefixes the returned keys with `eval_`, so this produces the `eval_mean_iou` metric used below for checkpoint selection.
+The [Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer) automatically prefixes the returned keys with `eval_`, so this produces the `eval_mean_iou` metric used below for checkpoint selection.
 
 ## Training
 
-With the data, model, and metrics ready, set up training. A few important notes on the [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments):
+With the data, model, and metrics ready, set up training. A few important notes on the [TrainingArguments](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments):
 
 - `remove_unused_columns=False`: Required because the default behavior would drop columns before our transform runs.
 - `eval_do_concat_batches=False`: Instance segmentation labels are variable-length dicts, they cannot be concatenated across batches. This also keeps predictions grouped per batch so `compute_metrics` can match them to their labels.
@@ -286,7 +304,7 @@ With the data, model, and metrics ready, set up training. A few important notes 
 ...     greater_is_better=True,
 ...     remove_unused_columns=False,
 ...     eval_do_concat_batches=False,
-...     push_to_hub=True,
+...     push_to_hub=False,
 ... )
 
 >>> trainer = Trainer(
@@ -303,7 +321,7 @@ With the data, model, and metrics ready, set up training. A few important notes 
 ```
 
 If you set `push_to_hub=True` in the training arguments, the training checkpoints are pushed to the
-Hugging Face Hub. Upon training completion, push the final model to the Hub as well by calling the [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.push_to_hub) method.
+Hugging Face Hub. Upon training completion, push the final model to the Hub as well by calling the [push_to_hub()](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method.
 
 ```py
 >>> trainer.push_to_hub(
@@ -340,6 +358,7 @@ The post-processing step converts the raw query outputs (logits + low-res masks)
 ... )[0]
 
 >>> print(f"Detected {len(results['segments_info'])} buildings")
+Detected 0 buildings
 >>> for seg_info in results["segments_info"][:5]:
 ...     print(f"  Building (score: {seg_info['score']:.3f})")
 ```
@@ -349,9 +368,9 @@ Visualize the predictions. The segmentation map assigns each pixel a segment ID 
 ```py
 >>> fig, axes = plt.subplots(1, 2, figsize=(14, 6))
 
->>> axes[0].imshow(image)
->>> axes[0].set_title("Input satellite image")
->>> axes[0].axis("off")
+>>> _ = axes[0].imshow(image)
+>>> _ = axes[0].set_title("Input satellite image")
+>>> _ = axes[0].axis("off")
 
 >>> seg_map = results["segmentation"].cpu().numpy()
 >>> overlay = np.array(image).copy()
@@ -360,9 +379,9 @@ Visualize the predictions. The segmentation map assigns each pixel a segment ID 
 ...     color = np.random.randint(0, 255, 3)
 ...     overlay[mask] = (overlay[mask] * 0.4 + color * 0.6).astype(np.uint8)
 
->>> axes[1].imshow(overlay)
->>> axes[1].set_title(f"Predicted masks ({len(results['segments_info'])} buildings)")
->>> axes[1].axis("off")
+>>> _ = axes[1].imshow(overlay)
+>>> _ = axes[1].set_title(f"Predicted masks ({len(results['segments_info'])} buildings)")
+>>> _ = axes[1].axis("off")
 >>> plt.tight_layout()
 >>> plt.show()
 ```
@@ -370,4 +389,4 @@ Visualize the predictions. The segmentation map assigns each pixel a segment ID 
 ![Fine-tuning Result](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/tasks/finetuned-results.png)
 
 ### tiny-agents
-https://huggingface.co/docs/transformers/v5.15.1/serve-cli/tiny_agents.md
+https://huggingface.co/docs/transformers/v5.17.0/serve-cli/tiny_agents.md

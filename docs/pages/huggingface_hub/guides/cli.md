@@ -238,7 +238,7 @@ This command will not log you out if you are logged in using the `HF_TOKEN` envi
 
 ## hf download
 
-Use the `hf download` command to download files from the Hub directly. Internally, it uses the same [hf_hub_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) and [snapshot_download()](/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download) helpers described in the [Download](./download) guide and prints the returned path to the terminal. In the examples below, we will walk through the most common use cases. For a full list of available options, you can run:
+Use the `hf download` command to download files from the Hub directly. Internally, it uses the same [hf_hub_download()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/file_download#huggingface_hub.hf_hub_download) and [snapshot_download()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/file_download#huggingface_hub.snapshot_download) helpers described in the [Download](./download) guide and prints the returned path to the terminal. In the examples below, we will walk through the most common use cases. For a full list of available options, you can run:
 
 ```bash
 hf download --help
@@ -443,7 +443,7 @@ For more details, check out the [environment variables reference](../package_ref
 
 ## hf upload
 
-Use the `hf upload` command to upload files to the Hub directly. Internally, it uses the same [upload_file()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and [upload_folder()](/docs/huggingface_hub/v1.30.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) helpers described in the [Upload](./upload) guide. In the examples below, we will walk through the most common use cases. For a full list of available options, you can run:
+Use the `hf upload` command to upload files to the Hub directly. Internally, it uses the same [upload_file()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and [upload_folder()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) helpers described in the [Upload](./upload) guide. In the examples below, we will walk through the most common use cases. For a full list of available options, you can run:
 
 ```bash
 >>> hf upload --help
@@ -1895,7 +1895,12 @@ Running this will show the following output!
 This code ran with the following GPU: NVIDIA A10G
 ```
 
-A `--` can be used to separate the command from jobs options for clarity, e.g., `hf jobs run --flavor a10g-small -- python -c '...'`
+Use `--` to separate Jobs options from arguments passed to your command or script.
+Jobs does not interpret options after `--`.
+
+```bash
+>>> hf jobs run --flavor cpu-basic python:3.12 -- python --help
+```
 
 That's it! You're now running code on Hugging Face's infrastructure.
 
@@ -2118,7 +2123,7 @@ Run UV scripts (Python scripts with inline dependencies) on HF infrastructure. U
 >>> hf jobs uv run --repo my-uv-scripts my_script.py
 
 # Run with GPU
->>> hf jobs uv run --flavor gpu-t4-small ml_training.py
+>>> hf jobs uv run --flavor t4-small ml_training.py
 
 # Pass arguments to script
 >>> hf jobs uv run process.py input.csv output.parquet
@@ -2135,7 +2140,12 @@ Run UV scripts (Python scripts with inline dependencies) on HF infrastructure. U
 
 UV scripts are Python scripts that include their dependencies directly in the file using a special comment syntax. This makes them perfect for self-contained tasks that don't require complex project setups. Learn more about UV scripts in the [UV documentation](https://docs.astral.sh/uv/guides/scripts/).
 
-A `--` can be used to separate the command from jobs/uv options for clarity, e.g., `hf jobs uv run --flavor gpu-t4-small --with torch -- python -c '...'`
+Use `--` to pass conflicting options through to your script. Here, `--help` reaches `train.py`
+rather than showing Jobs help:
+
+```bash
+>>> hf jobs uv run --flavor t4-small train.py -- --help
+```
 
 ### hf jobs scheduled
 
@@ -2200,6 +2210,9 @@ Manage scheduled jobs using
 >>> hf sandbox create
 ✓ Sandbox ready id=687f911eaea852de79c4a50a image=python:3.12 elapsed=6.0s
 
+# Attach labels to the underlying Job
+>>> hf sandbox create --label controller-run=run-42 --label team=data-infra
+
 # Run commands inside it (output is streamed, exit code is propagated)
 >>> hf sandbox exec 687f911eaea852de79c4a50a -- python -c "print('hi')"
 hi
@@ -2212,7 +2225,7 @@ hi
 >>> hf sandbox kill 687f911eaea852de79c4a50a
 ```
 
-Use `--flavor` to pick hardware (e.g. `a10g-small`), `--idle-timeout` to bound the sandbox lifetime, and `-e` / `--secrets` for environment variables. To fan out many cheap CPU sandboxes, warm a pool with `hf sandbox pool create` and spawn into it with `hf sandbox create --pool <id>` (see the [Sandboxes guide](./sandbox#from-the-cli)).
+Use `--flavor` to pick hardware (e.g. `a10g-small`), `--idle-timeout` to bound the sandbox lifetime, `-l` / `--label` to attach labels to its Job, and `-e` / `--secrets` for environment variables. To fan out many cheap CPU sandboxes, warm a pool with `hf sandbox pool create` and spawn into it with `hf sandbox create --pool <id>` (see the [Sandboxes guide](./sandbox#from-the-cli)).
 
 ## hf webhooks
 
@@ -2413,4 +2426,4 @@ Use `hf endpoints catalog` to interact with the Inference Endpoints Model Catalo
 ```
 
 ### Interact with Discussions and Pull Requests
-https://huggingface.co/docs/huggingface_hub/v1.30.0/guides/community.md
+https://huggingface.co/docs/huggingface_hub/v1.31.0.rc0/guides/community.md

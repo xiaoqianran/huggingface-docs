@@ -1,11 +1,21 @@
 # Logging[[accelerate.logging.get_logger]]
 
-Refer to the [Troubleshooting guide](../usage_guides/troubleshooting#logging) or to the example below to learn 
+Refer to the [Troubleshooting guide](../basic_tutorials/troubleshooting#logging) or to the example below to learn 
 how to use Accelerate's logger. 
 
 #### accelerate.logging.get_logger[[accelerate.logging.get_logger]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/logging.py#L93)
+```python
+accelerate.logging.get_logger(name: str, log_level: str | None = None)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/logging.py#L93)
+
+**Parameters:**
+
+name (`str`) : The name for the logger, such as `__file__`
+
+log_level (`str`, *optional*) : The log level to use. If not passed, will default to the `LOG_LEVEL` environment variable, or `INFO` if not
 
 Returns a `logging.Logger` for `name` that can handle multiprocessing.
 
@@ -33,11 +43,5 @@ Example:
 >>> logger.info(letter_at_rank, in_order=True)
 ```
 
-**Parameters:**
-
-name (`str`) : The name for the logger, such as `__file__`
-
-log_level (`str`, *optional*) : The log level to use. If not passed, will default to the `LOG_LEVEL` environment variable, or `INFO` if not
-
-### Fully Sharded Data Parallel utilities
-https://huggingface.co/docs/accelerate/v1.14.0/package_reference/fsdp.md
+### Megatron-LM utilities
+https://huggingface.co/docs/accelerate/v1.15.0/package_reference/megatron_lm.md

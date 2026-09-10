@@ -32,5 +32,5 @@ for batch in dataloader:
         height="1600"
     >
 
-### Model memory estimator
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/model_size_estimator.md
+### Low Precision Training Methods
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/low_precision_training.md

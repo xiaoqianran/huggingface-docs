@@ -8,5 +8,5 @@ For larger models, the Space may be a bit slower because its resources are tied 
 
 Feel free to ping [@Narsil](https://huggingface.co/Narsil) for any issues with the Space.
 
-### Torch shared tensors
-https://huggingface.co/docs/safetensors/main/torch_shared_tensors.md
+### Metadata Parsing
+https://huggingface.co/docs/safetensors/main/metadata_parsing.md

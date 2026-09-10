@@ -54,7 +54,7 @@ Inference:
 
 1. DeepSpeed ZeRO Inference supports ZeRO stage 3 with ZeRO-Infinity. It uses the same ZeRO protocol as training, but
    it doesn't use an optimizer and a lr scheduler and only stage 3 is relevant. For more details see:
-   [deepspeed-zero-inference](#deepspeed-zero-inference).
+   [ZeRO Inference](#zero-inference).
 
 ## How it works?
 
@@ -719,5 +719,5 @@ have any problems or questions with regards to DeepSpeed usage, please, file an 
 
     For those interested in the similarities and differences between FSDP and DeepSpeed, please check out the [concept guide here](../concept_guides/fsdp_and_deepspeed)!
 
-### Start Here!
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/explore.md
+### Compilation
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/compilation.md

@@ -13,7 +13,7 @@ from torch.nn.parallel import DistributedDataParallel
 model = nn.Linear(10, 10)
 ddp_model = DistributedDataParallel(model)
 ```
-In Accelerate this conversion happens automatically when calling [prepare()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) and passing in your model.
+In Accelerate this conversion happens automatically when calling [prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) and passing in your model.
 
 ```diff
 + from accelerate import Accelerator
@@ -76,7 +76,7 @@ for index, batch in enumerate(dataloader):
 ```
 
 In Accelerate to make this an API that can be called no matter the training device (though it may not do anything if you are not in a distributed system!),
-`ddp_model.no_sync` gets replaced with [no_sync()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.no_sync) and operates the same way:
+`ddp_model.no_sync` gets replaced with [no_sync()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.no_sync) and operates the same way:
 
 ```diff
   ddp_model, dataloader, optimizer = accelerator.prepare(model, dataloader, optimizer)
@@ -100,7 +100,7 @@ In Accelerate to make this an API that can be called no matter the training devi
           optimizer.zero_grad()
 ```
 
-As you may expect, the [accumulate()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.accumulate) function wraps around this conditional check by keeping track of the current batch number, leaving you with the final
+As you may expect, the [accumulate()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.accumulate) function wraps around this conditional check by keeping track of the current batch number, leaving you with the final
 gradient accumulation API:
 
 ```python
@@ -139,7 +139,7 @@ Reference:
 - Baseline: uses no synchronization practices discussed here
 - `no_sync` improperly: `no_sync` only around the `backward` call, not the `forward`
 - `no_sync`: using the `no_sync` pattern properly
-- `accumulate`: using [accumulate()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.accumulate) properly
+- `accumulate`: using [accumulate()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.accumulate) properly
 
 Below are the average seconds per batch iterating over 29 batches of data for each setup on both a single node and on the dual-node setup:
 
@@ -150,14 +150,14 @@ Below are the average seconds per batch iterating over 29 batches of data for ea
 
 As you can see, if you are not careful about how you set up your gradient synchronization, you can get upwards of more than a 2x slowdown during training!
 
-If you are worried about making sure everything is done properly, we highly recommend utilizing the [accumulate()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.accumulate) function and passing in
-`gradient_accumulation_steps` or `gradient_accumulation_plugin` to the [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) object so Accelerate can handle this for you.
+If you are worried about making sure everything is done properly, we highly recommend utilizing the [accumulate()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.accumulate) function and passing in
+`gradient_accumulation_steps` or `gradient_accumulation_plugin` to the [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) object so Accelerate can handle this for you.
 
 ### `no_sync` requires additional GPU memory when using FSDP
 
 Be aware that not syncing gradients can have adverse effects while performing FSDP training. As it has been warned in `torch`, the [`no_sync` context manager for FSDP](https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.FullyShardedDataParallel.no_sync) will require additional memory.
 
-Therefore in memory intensive situations while using FSDP, we recommend to set `sync_each_batch` to `True` in the [GradientAccumulationPlugin](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.utils.GradientAccumulationPlugin) to disable `no_sync`.
+Therefore in memory intensive situations while using FSDP, we recommend to set `sync_each_batch` to `True` in the [GradientAccumulationPlugin](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.GradientAccumulationPlugin) to disable `no_sync`.
 
 See the example below where we fine-tune Mixtral (47B parameters) on 8 A100-80GB GPUs. We see that even for a modest `gradient_accumulation_steps=2` we quickly go out-of-memory (OOM) if `no_sync` is enabled. Again, this is due to additional memory overheads due to FSDP's `no_sync`. However, if `no_sync` is disabled via `sync_each_batch=True`, then the memory consumption for `gradient_accumulation_steps=16` reverts to that of `gradient_accumulation_steps=1`.
 
@@ -168,5 +168,5 @@ mixtral 8x7B      | 69G                 | OOM                 | 69G
 > [!WARNING] 
 > Disabling `no_sync` means there _will be slowdown_ due the extra data syncs, as explained by the earlier sections of this guide.
 
-### Sequence parallel in 🤗`accelerate`
-https://huggingface.co/docs/accelerate/v1.14.0/concept_guides/sequence_parallelism.md
+### Executing and deferring jobs
+https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/deferring_execution.md

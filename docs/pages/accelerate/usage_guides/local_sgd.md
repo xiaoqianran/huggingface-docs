@@ -92,5 +92,5 @@ The current implementation works only with basic multi-GPU (or multi-CPU) traini
     Stich, Sebastian Urban. ["Local SGD Converges Fast and Communicates Little." ICLR 2019-International Conference on
     Learning Representations. No. CONF. 2019.](https://huggingface.co/papers/1805.09767)
 
-### Compilation
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/compilation.md
+### Model quantization
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/quantization.md

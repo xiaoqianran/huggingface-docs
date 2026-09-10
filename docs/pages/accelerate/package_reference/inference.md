@@ -6,9 +6,11 @@ Accelerate supports pipeline parallelism for large-scale training with the PyTor
 
 #### accelerate.prepare_pippy[[accelerate.prepare_pippy]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/inference.py#L126)
+```python
+accelerate.prepare_pippy(model, split_points: typing.Union[str, list[str], NoneType] = 'auto', no_split_module_classes: typing.Optional[list[str]] = None, example_args: typing.Optional[tuple[typing.Any]] = (), example_kwargs: typing.Optional[dict[str, typing.Any]] = None, num_chunks: typing.Optional[int] = None, gather_output: typing.Optional[bool] = False)
+```
 
-Wraps `model` for pipeline parallel inference.
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/inference.py#L126)
 
 **Parameters:**
 
@@ -26,5 +28,7 @@ num_chunks (`int`, defaults to the number of available GPUs) : The number of dif
 
 gather_output (`bool`, defaults to `False`) : If `True`, the output from the last GPU (which holds the true outputs) is sent across to all GPUs.
 
-### DataLoaders, Optimizers, and Schedulers
-https://huggingface.co/docs/accelerate/v1.14.0/package_reference/torch_wrappers.md
+Wraps `model` for pipeline parallel inference.
+
+### Experiment Trackers
+https://huggingface.co/docs/accelerate/v1.15.0/package_reference/tracking.md

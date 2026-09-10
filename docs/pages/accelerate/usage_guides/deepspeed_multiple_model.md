@@ -19,7 +19,7 @@ This tutorial will focus on two common use cases:
 
 Knowledge distillation is a good example of using multiple models, but only training one of them.
 
-Normally, you would use a single [utils.DeepSpeedPlugin](/docs/accelerate/v1.14.0/en/package_reference/deepspeed#accelerate.DeepSpeedPlugin) for both models. However, in this case, there are two separate configurations. Accelerate allows you to create and use multiple plugins **if and only if** they are in a `dict` so that you can reference and enable the proper plugin when needed.
+Normally, you would use a single [utils.DeepSpeedPlugin](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.DeepSpeedPlugin) for both models. However, in this case, there are two separate configurations. Accelerate allows you to create and use multiple plugins **if and only if** they are in a `dict` so that you can reference and enable the proper plugin when needed.
 
 ```python
 from accelerate.utils import DeepSpeedPlugin
@@ -90,7 +90,7 @@ An example `zero2_config.json` configuration is shown below.
 
     DeepSpeed will raise an error if `train_micro_batch_size_per_gpu` isn't specified, even if this particular model isn't being trained.
 
-From here, create a single [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) and pass in both configurations.
+From here, create a single [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) and pass in both configurations.
 
 ```python
 from accelerate import Accelerator
@@ -102,7 +102,7 @@ Now let's see how to use them.
 
 ### Student model
 
-By default, Accelerate sets the first item in the `dict` as the default or enabled plugin (`"student"` plugin). Verify this by using the [utils.deepspeed.get_active_deepspeed_plugin()](/docs/accelerate/v1.14.0/en/package_reference/deepspeed#accelerate.utils.get_active_deepspeed_plugin) function to see which plugin is enabled.
+By default, Accelerate sets the first item in the `dict` as the default or enabled plugin (`"student"` plugin). Verify this by using the [utils.deepspeed.get_active_deepspeed_plugin()](/docs/accelerate/v1.15.0/en/package_reference/deepspeed#accelerate.utils.get_active_deepspeed_plugin) function to see which plugin is enabled.
 
 ```python
 active_plugin = get_active_deepspeed_plugin(accelerator.state)
@@ -125,7 +125,7 @@ Now it's time to deal with the teacher model.
 
 ### Teacher model
 
-First, you need to specify in [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) that the `zero3_config.json` configuration should be used.
+First, you need to specify in [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) that the `zero3_config.json` configuration should be used.
 
 ```python
 accelerator.state.select_deepspeed_plugin("teacher")
@@ -170,9 +170,9 @@ for batch in train_dataloader:
 Training multiple models is a more complicated scenario.
 In its current state, we assume each model is **completely disjointed** from the other during training.
 
-This scenario still requires two [utils.DeepSpeedPlugin](/docs/accelerate/v1.14.0/en/package_reference/deepspeed#accelerate.DeepSpeedPlugin)'s to be made. However, you also need a second [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator), since different `deepspeed` engines are being called at different times. A single [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) can only carry one instance at a time.
+This scenario still requires two [utils.DeepSpeedPlugin](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.DeepSpeedPlugin)'s to be made. However, you also need a second [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator), since different `deepspeed` engines are being called at different times. A single [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) can only carry one instance at a time.
 
-Since the [state.AcceleratorState](/docs/accelerate/v1.14.0/en/package_reference/state#accelerate.state.AcceleratorState) is a stateful object though, it is already aware of both [utils.DeepSpeedPlugin](/docs/accelerate/v1.14.0/en/package_reference/deepspeed#accelerate.DeepSpeedPlugin)'s available. You can just instantiate a second [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) with no extra arguments.
+Since the [state.AcceleratorState](/docs/accelerate/v1.15.0/en/package_reference/state#accelerate.state.AcceleratorState) is a stateful object though, it is already aware of both [utils.DeepSpeedPlugin](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.DeepSpeedPlugin)'s available. You can just instantiate a second [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) with no extra arguments.
 
 ```python
 first_accelerator = Accelerator(deepspeed_plugins=deepspeed_plugins)
@@ -222,5 +222,5 @@ for batch in dl:
 
 To see more examples, please check out the [related tests](https://github.com/huggingface/accelerate/blob/main/src/accelerate/test_utils/scripts/external_deps/test_ds_multiple_model.py) currently in [Accelerate].
 
-### Fully Sharded Data Parallel
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/fsdp.md
+### Using Local SGD with Accelerate
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/local_sgd.md

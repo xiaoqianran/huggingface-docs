@@ -173,5 +173,5 @@ additional_args:
 
 *undecided if feature is needed. Contact us if you would like this feature.*
 
-### Megatron-LM
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/megatron_lm.md
+### Checkpointing
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/checkpoint.md

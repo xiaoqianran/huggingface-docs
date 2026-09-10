@@ -26,26 +26,26 @@ $ hf [OPTIONS] [COMMAND] [ARGS]...
 * `buckets`: Commands to interact with buckets.
 * `cache`: Manage local cache directory.
 * `collections`: Interact with collections on the Hub.
-* `cp`: Copy files between local paths,...
+* `cp`: Copy files between local paths, repositories, and buckets.
 * `datasets`: Interact with datasets on the Hub.
-* `discussions`: Manage discussions and pull requests on...
+* `discussions`: Manage discussions and pull requests on the Hub.
 * `download`: Download files from the Hub.
 * `endpoints`: Manage Hugging Face Inference Endpoints.
 * `env`: Print information about the environment.
 * `extensions`: Manage hf CLI extensions. [alias: ext]
 * `jobs`: Run and manage Jobs on the Hub.
-* `lfs-enable-largefiles`: Configure your repository to enable upload...
-* `lfs-multipart-upload`: Internal git-lfs custom transfer agent for...
+* `lfs-enable-largefiles`: Configure your repository to enable upload of files > 5GB.
+* `lfs-multipart-upload`: Internal git-lfs custom transfer agent for multipart uploads.
 * `models`: Interact with models on the Hub.
 * `papers`: Interact with papers on the Hub.
 * `repos`: Manage repos on the Hub. [alias: repo]
-* `sandbox`: Run and manage experimental sandboxes on...
+* `sandbox`: Run and manage experimental sandboxes on Hugging Face Jobs.
 * `skills`: Manage skills for AI assistants.
 * `spaces`: Interact with spaces on the Hub.
-* `sync`: Sync files between local directory and a...
+* `sync`: Sync files between local directory and a bucket.
 * `update`: Update the `hf` CLI to the latest version.
 * `upload`: Upload a file or a folder to the Hub.
-* `upload-large-folder`: [Deprecated] Upload a large folder to the...
+* `upload-large-folder`: [Deprecated] Upload a large folder to the Hub.
 * `version`: Print information about the hf version.
 * `webhooks`: Manage webhooks on the Hub.
 
@@ -66,11 +66,11 @@ $ hf auth [OPTIONS] COMMAND [ARGS]...
 **Commands**:
 
 * `list`: List all stored access tokens. [alias: ls]
-* `login`: Login from your browser, or using a token...
+* `login`: Login from your browser, or using a token from huggingface.co/settings/tokens.
 * `logout`: Logout from a specific token.
 * `switch`: Switch between access tokens.
 * `token`: Print the current access token to stdout.
-* `whoami`: Find out which huggingface.co account you...
+* `whoami`: Find out which huggingface.co account you are logged in as.
 
 ### `hf auth list`
 
@@ -227,15 +227,15 @@ $ hf buckets [OPTIONS] COMMAND [ARGS]...
 
 **Commands**:
 
-* `cp`: Copy files between local paths,...
+* `cp`: Copy files between local paths, repositories, and buckets.
 * `create`: Create a new bucket.
 * `delete`: Delete a bucket.
 * `info`: Get info about a bucket.
 * `list`: List buckets or files in a bucket. [alias: ls]
-* `move`: Move (rename) a bucket to a new name or...
+* `move`: Move (rename) a bucket to a new name or namespace.
 * `remove`: Remove files from a bucket. [alias: rm]
 * `settings`: Update bucket settings (visibility).
-* `sync`: Sync files between local directory and a...
+* `sync`: Sync files between local directory and a bucket.
 
 ### `hf buckets cp`
 
@@ -572,9 +572,9 @@ $ hf cache [OPTIONS] COMMAND [ARGS]...
 **Commands**:
 
 * `list`: List cached repositories or revisions. [alias: ls]
-* `prune`: Remove detached revisions and incomplete...
+* `prune`: Remove detached revisions and incomplete downloads from the cache.
 * `rm`: Remove cached repositories or revisions.
-* `verify`: Verify checksums for a single repo...
+* `verify`: Verify checksums for a single repo revision from cache or a local directory.
 
 ### `hf cache list`
 
@@ -1016,12 +1016,12 @@ $ hf datasets [OPTIONS] COMMAND [ARGS]...
 
 **Commands**:
 
-* `card`: Get the dataset card (README) for a...
+* `card`: Get the dataset card (README) for a dataset on the Hub.
 * `info`: Get info about a dataset on the Hub.
 * `leaderboard`: List model scores from a dataset leaderboard.
-* `list`: List datasets on the Hub, or files in a... [alias: ls]
-* `parquet`: List parquet file URLs available for a...
-* `sql`: Execute a raw SQL query with DuckDB...
+* `list`: List datasets on the Hub, or files in a dataset repo. [alias: ls]
+* `parquet`: List parquet file URLs available for a dataset.
+* `sql`: Execute a raw SQL query with DuckDB against dataset parquet URLs.
 
 ### `hf datasets card`
 
@@ -1233,9 +1233,9 @@ $ hf discussions [OPTIONS] COMMAND [ARGS]...
 
 * `close`: Close a discussion or pull request.
 * `comment`: Comment on a discussion or pull request.
-* `create`: Create a new discussion or pull request on...
+* `create`: Create a new discussion or pull request on a repo.
 * `diff`: Show the diff of a pull request.
-* `edit`: Edit an existing comment on a discussion...
+* `edit`: Edit an existing comment on a discussion or pull request.
 * `info`: Get info about a discussion or pull request.
 * `list`: List discussions and pull requests on a repo. [alias: ls]
 * `merge`: Merge a pull request.
@@ -1609,12 +1609,12 @@ $ hf endpoints [OPTIONS] COMMAND [ARGS]...
 
 **Commands**:
 
-* `catalog`: Interact with the Inference Endpoints...
+* `catalog`: Interact with the Inference Endpoints catalog.
 * `delete`: Delete an Inference Endpoint permanently.
-* `deploy`: Deploy an Inference Endpoint from a Hub...
+* `deploy`: Deploy an Inference Endpoint from a Hub repository.
 * `describe`: Get information about an existing endpoint.
-* `hardware`: List the hardware available to deploy an...
-* `list`: Lists all Inference Endpoints for the... [alias: ls]
+* `hardware`: List the hardware available to deploy an Inference Endpoint on.
+* `list`: Lists all Inference Endpoints for the given namespace. [alias: ls]
 * `list-catalog`: List available Catalog models.
 * `pause`: Pause an Inference Endpoint.
 * `resume`: Resume an Inference Endpoint.
@@ -1637,7 +1637,7 @@ $ hf endpoints catalog [OPTIONS] COMMAND [ARGS]...
 
 **Commands**:
 
-* `deploy`: Deploy an Inference Endpoint from the...
+* `deploy`: Deploy an Inference Endpoint from the Model Catalog.
 * `list`: List available Catalog models. [alias: ls]
 
 #### `hf endpoints catalog deploy`
@@ -2039,11 +2039,11 @@ $ hf extensions [OPTIONS] COMMAND [ARGS]...
 **Commands**:
 
 * `exec`: Execute an installed extension.
-* `install`: Install an extension from a public GitHub...
+* `install`: Install an extension from a public GitHub repository.
 * `list`: List installed extension commands. [alias: ls]
 * `remove`: Remove an installed extension. [alias: rm]
-* `search`: Search extensions available on GitHub...
-* `update`: Update installed extension(s) to their...
+* `search`: Search extensions available on GitHub (tagged with 'hf-extension' topic).
+* `update`: Update installed extension(s) to their latest version.
 
 ### `hf extensions exec`
 
@@ -2214,16 +2214,16 @@ $ hf jobs [OPTIONS] COMMAND [ARGS]...
 
 * `cancel`: Cancel a Job
 * `hardware`: List available hardware options for Jobs
-* `inspect`: Display detailed information on one or...
+* `inspect`: Display detailed information on one or more Jobs
 * `labels`: Update labels on a Job.
 * `list`: List Jobs. [alias: ls, ps]
 * `logs`: Fetch the logs of a Job.
 * `run`: Run a Job.
 * `scheduled`: Create and manage scheduled Jobs on the Hub.
 * `ssh`: SSH into a running Job.
-* `stats`: Fetch the resource usage statistics and...
-* `uv`: Run UV scripts (Python with inline...
-* `wait`: Wait for one or more Jobs to reach a...
+* `stats`: Fetch the resource usage statistics and metrics of Jobs
+* `uv`: Run UV scripts (Python with inline dependencies) on HF infrastructure.
+* `wait`: Wait for one or more Jobs to reach a terminal state.
 
 ### `hf jobs cancel`
 
@@ -2336,7 +2336,7 @@ Learn more
 
 List Jobs.
 
-Use `--status` to filter by status (see [JobStage](/docs/huggingface_hub/v1.30.0/en/package_reference/jobs#huggingface_hub.JobStage) for possible values) and `--label` to filter by `key=value`
+Use `--status` to filter by status (see [JobStage](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.JobStage) for possible values) and `--label` to filter by `key=value`
 labels. A Job must match every filter to be listed.
 
 **Usage**:
@@ -2470,13 +2470,13 @@ $ hf jobs scheduled [OPTIONS] COMMAND [ARGS]...
 **Commands**:
 
 * `delete`: Delete a scheduled Job.
-* `inspect`: Display detailed information on one or...
+* `inspect`: Display detailed information on one or more scheduled Jobs
 * `labels`: Update labels on a scheduled Job.
 * `list`: List scheduled Jobs. [alias: ls, ps]
 * `resume`: Resume (unpause) a scheduled Job.
 * `run`: Schedule a Job.
 * `suspend`: Suspend (pause) a scheduled Job.
-* `trigger`: Trigger a scheduled Job to run immediately...
+* `trigger`: Trigger a scheduled Job to run immediately (does not change the schedule).
 * `uv`: Schedule UV scripts on HF infrastructure.
 
 #### `hf jobs scheduled delete`
@@ -2739,7 +2739,7 @@ $ hf jobs scheduled uv [OPTIONS] COMMAND [ARGS]...
 
 **Commands**:
 
-* `run`: Run a UV script (local file or URL) on HF...
+* `run`: Run a UV script (local file or URL) on HF infrastructure
 
 ##### `hf jobs scheduled uv run`
 
@@ -2865,7 +2865,7 @@ $ hf jobs uv [OPTIONS] COMMAND [ARGS]...
 
 **Commands**:
 
-* `run`: Run a UV script (local file or URL) on HF...
+* `run`: Run a UV script (local file or URL) on HF infrastructure
 
 #### `hf jobs uv run`
 
@@ -2907,7 +2907,7 @@ $ hf jobs uv run [OPTIONS] SCRIPT [SCRIPT_ARGS]...
 Examples
   $ hf jobs uv run --name my-script my_script.py
   $ hf jobs uv run --detach my_script.py
-  $ hf jobs uv run ml_training.py --flavor a10g-small
+  $ hf jobs uv run --flavor a10g-small ml_training.py
   $ hf jobs uv run --with transformers train.py
   $ hf jobs uv run -v hf://org/my-model:/data -v hf://buckets/org/b:/mnt script.py
 
@@ -3004,9 +3004,9 @@ $ hf models [OPTIONS] COMMAND [ARGS]...
 
 **Commands**:
 
-* `card`: Get the model card (README) for a model on...
+* `card`: Get the model card (README) for a model on the Hub.
 * `info`: Get info about a model on the Hub.
-* `list`: List models on the Hub, or files in a... [alias: ls]
+* `list`: List models on the Hub, or files in a model repo. [alias: ls]
 
 ### `hf models card`
 
@@ -3275,13 +3275,13 @@ $ hf repos [OPTIONS] [COMMAND] [ARGS]...
 **Commands**:
 
 * `branch`: Manage branches for a repo on the Hub.
-* `cp`: Copy files between local paths,...
+* `cp`: Copy files between local paths, repositories, and buckets.
 * `create`: Create a new repo on the Hub.
 * `delete`: Delete a repo from the Hub.
 * `delete-files`: Delete files from a repo on the Hub.
-* `duplicate`: Duplicate a repo on the Hub (model,...
-* `list`: List all repos (models, datasets, spaces,... [alias: ls]
-* `move`: Move a repository from a namespace to...
+* `duplicate`: Duplicate a repo on the Hub (model, dataset, or Space).
+* `list`: List all repos (models, datasets, spaces, buckets) with storage info. [alias: ls]
+* `move`: Move a repository from a namespace to another namespace.
 * `settings`: Update the settings of a repository.
 * `tag`: Manage tags for a repo on the Hub.
 
@@ -3770,13 +3770,13 @@ $ hf sandbox [OPTIONS] COMMAND [ARGS]...
 
 **Commands**:
 
-* `cp`: Copy a file between the local machine and...
-* `create`: Create a sandbox: a dedicated VM by...
+* `cp`: Copy a file between the local machine and a sandbox (docker-style).
+* `create`: Create a sandbox: a dedicated VM by default, or a cheap shared one with `--pool`.
 * `exec`: Run a command in a sandbox, streaming output.
-* `kill`: Terminate a sandbox, a whole shared host,...
-* `pool`: Warm host VM pools and spawn experimental...
-* `process`: List and stop background processes running...
-* `spawn`: Start a long-running command in the...
+* `kill`: Terminate a sandbox, a whole shared host, or everything (--all).
+* `pool`: Warm host VM pools and spawn experimental shared sandboxes for workloads within the same trust boundary.
+* `process`: List and stop background processes running in a sandbox.
+* `spawn`: Start a long-running command in the background and return its pid (don't wait).
 
 ### `hf sandbox cp`
 
@@ -3833,6 +3833,7 @@ $ hf sandbox create [OPTIONS] [IMAGE]
 * `--idle-timeout TEXT`: Auto-terminate the sandbox after this much inactivity (e.g. '10m'). Defaults to 10m.
 * `-e, --env TEXT`: Set environment variables. E.g. --env ENV=value
 * `-s, --secrets TEXT`: Set secret environment variables. E.g. --secrets SECRET=value or `--secrets HF_TOKEN` to pass your Hugging Face token.
+* `-l, --label TEXT`: Set labels. E.g. --label KEY=VALUE or --label LABEL
 * `--env-file TEXT`: Read in a file of environment variables.
 * `--secrets-file TEXT`: Read in a file of secret environment variables.
 * `-v, --volume TEXT`: Mount one or more volumes. Format: hf://[TYPE/]SOURCE:/MOUNT_PATH[:ro]. TYPE is one of: models, datasets, spaces, buckets. TYPE defaults to models if omitted. models, datasets and spaces are always mounted read-only. buckets are read+write by default. E.g. -v hf://org/m:/data or -v hf://datasets/org/ds:/data or -v hf://buckets/org/b:/mnt:ro
@@ -3845,6 +3846,7 @@ Examples
   $ hf sandbox create
   $ hf sandbox create ubuntu:24.04
   $ hf sandbox create --flavor a10g-small
+  $ hf sandbox create --label controller-run=run-42
   $ hf sandbox create --pool pool-ab12cd34ef56 --env LOG_LEVEL=debug
 
 Learn more
@@ -3934,9 +3936,9 @@ $ hf sandbox pool [OPTIONS] COMMAND [ARGS]...
 
 **Commands**:
 
-* `create`: Warm a pool: boot one host VM now, tagged...
-* `delete`: Terminate every host VM of a pool (and... [alias: rm]
-* `ls`: List running sandbox pools (grouped from... [alias: list]
+* `create`: Warm a pool: boot one host VM now, tagged so it can be found later by its pool id.
+* `delete`: Terminate every host VM of a pool (and therefore all its sandboxes). [alias: rm]
+* `ls`: List running sandbox pools (grouped from their host VMs). [alias: list]
 
 #### `hf sandbox pool create`
 
@@ -4038,8 +4040,8 @@ $ hf sandbox process [OPTIONS] COMMAND [ARGS]...
 
 **Commands**:
 
-* `kill`: Stop a background process running in a...
-* `ls`: List the background processes running in a... [alias: list]
+* `kill`: Stop a background process running in a sandbox.
+* `ls`: List the background processes running in a sandbox (started with `hf sandbox spawn`). [alias: list]
 
 #### `hf sandbox process kill`
 
@@ -4147,10 +4149,10 @@ $ hf skills [OPTIONS] COMMAND [ARGS]...
 
 **Commands**:
 
-* `add`: Install a Hugging Face skill for an AI...
-* `list`: List available skills from the Hugging... [alias: ls]
-* `preview`: Print the generated `hf-cli` SKILL.md to...
-* `update`: Update installed Hugging Face marketplace...
+* `add`: Install a Hugging Face skill for an AI assistant.
+* `list`: List available skills from the Hugging Face marketplace. [alias: ls]
+* `preview`: Print the generated `hf-cli` SKILL.md to stdout.
+* `update`: Update installed Hugging Face marketplace skills.
 
 ### `hf skills add`
 
@@ -4274,21 +4276,21 @@ $ hf spaces [OPTIONS] COMMAND [ARGS]...
 
 **Commands**:
 
-* `card`: Get the Space card (README) for a Space on...
+* `card`: Get the Space card (README) for a Space on the Hub.
 * `dev-mode`: Enable or disable dev mode on a Space.
 * `hardware`: List available hardware options for Spaces.
-* `hot-reload`: Hot-reload any Python file of a Space...
+* `hot-reload`: Hot-reload any Python file of a Space without a full rebuild + restart.
 * `info`: Get info about a space on the Hub.
-* `list`: List spaces on the Hub, or files in a... [alias: ls]
+* `list`: List spaces on the Hub, or files in a space repo. [alias: ls]
 * `logs`: Fetch the run or build logs of a Space.
 * `pause`: Pause a Space.
 * `restart`: Restart a Space.
-* `search`: Search spaces on the Hub using semantic...
+* `search`: Search spaces on the Hub using semantic search.
 * `secrets`: Manage secrets for a Space on the Hub.
 * `settings`: Update the settings of a Space.
 * `ssh`: SSH into a Space's Dev Mode container.
 * `templates`: List the available Space templates.
-* `variables`: Manage environment variables for a Space...
+* `variables`: Manage environment variables for a Space on the Hub.
 * `volumes`: Manage volumes for a Space on the Hub.
 * `wait`: Wait for a Space to finish building/starting.
 
@@ -4830,7 +4832,7 @@ $ hf spaces variables [OPTIONS] COMMAND [ARGS]...
 
 **Commands**:
 
-* `add`: Add or update environment variables for a...
+* `add`: Add or update environment variables for a Space.
 * `delete`: Remove an environment variable from a Space.
 * `list`: List environment variables for a Space. [alias: ls]
 
@@ -5409,4 +5411,4 @@ Learn more
   Read the documentation at https://huggingface.co/docs/huggingface_hub/en/guides/cli
 
 ### Interacting with Discussions and Pull Requests
-https://huggingface.co/docs/huggingface_hub/v1.30.0/package_reference/community.md
+https://huggingface.co/docs/huggingface_hub/v1.31.0.rc0/package_reference/community.md

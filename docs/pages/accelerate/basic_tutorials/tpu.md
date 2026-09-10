@@ -13,11 +13,14 @@ The key is to avoid compiling your code again or else training is super slow. Th
 
 ## Weight tying
 
-A common language model design is to tie the weights of the embedding and softmax layers. However, moving the model to a TPU (either yourself or passing it to the [prepare()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) method) breaks the weight tying and you'll need to retie the weights.
+A common language model design is to tie the weights of the embedding and softmax layers. However, moving the model to a TPU (either yourself or passing it to the [prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) method) breaks the weight tying and you'll need to retie the weights.
 
-To add special behavior (like weight tying) in your script for TPUs, set `distributed_type` to `DistributedType.TPU` first. Then you can use the [tie_weights](https://huggingface.co/docs/transformers/v5.11.0/en/main_classes/model#transformers.PreTrainedModel.tie_weights) method to tie the weights.
+To add special behavior (like weight tying) in your script for TPUs, set `distributed_type` to `DistributedType.TPU` first. Then you can use the [tie_weights](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/model#transformers.PreTrainedModel.tie_weights) method to tie the weights.
 
 ```py
 if accelerator.distributed_type == DistributedType.TPU:
     model.tie_weights()
 ```
+
+### Troubleshoot
+https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/troubleshooting.md

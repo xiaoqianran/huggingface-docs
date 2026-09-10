@@ -31,4 +31,4 @@ Not necessarily. The experimental module is a playground for new ideas, and main
 Use: `export TRL_EXPERIMENTAL_SILENCE=1`.
 
 ### GSPO-token
-https://huggingface.co/docs/trl/v1.12.0/gspo_token.md
+https://huggingface.co/docs/trl/v1.13.0/gspo_token.md

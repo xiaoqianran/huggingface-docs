@@ -60,4 +60,4 @@ training_args = GKDConfig(..., use_liger_kernel=True)
 To learn more about Liger-Kernel, visit their [official repository](https://github.com/linkedin/Liger-Kernel/).
 
 ### SFT Trainer
-https://huggingface.co/docs/trl/v1.12.0/sft_trainer.md
+https://huggingface.co/docs/trl/v1.13.0/sft_trainer.md

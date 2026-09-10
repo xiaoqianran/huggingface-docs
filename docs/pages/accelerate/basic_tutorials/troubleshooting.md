@@ -40,7 +40,7 @@ There can be many reasons why your code is hanging. Let's take a look at how to 
 
 Mismatched tensor shapes is a common issue that can cause your code to hang for a significant amount of time on a distributed setup.
 
-When running scripts in a distributed setup, functions such as [Accelerator.gather()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.gather) and [Accelerator.reduce()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.reduce) are necessary to grab tensors across devices to collectively perform operations on them. These (and other) functions rely on `torch.distributed` to perform a `gather` operation, which requires tensors to have the **exact same shape** across all processes. When the tensor shapes don't match, your code hangs and you'll eventually hit a timeout exception.
+When running scripts in a distributed setup, functions such as [Accelerator.gather()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.gather) and [Accelerator.reduce()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.reduce) are necessary to grab tensors across devices to collectively perform operations on them. These (and other) functions rely on `torch.distributed` to perform a `gather` operation, which requires tensors to have the **exact same shape** across all processes. When the tensor shapes don't match, your code hangs and you'll eventually hit a timeout exception.
 
 You can use Accelerate's operational debug mode to immediately catch this issue. We recommend enabling this mode during the `accelerate config` setup, but you can also enable it from the CLI, as an environment variable, or by manually editing the `config.yaml` file.
 
@@ -119,14 +119,14 @@ mpirun -f hostfile -n {number of nodes} -ppn 1 hostname
 
 One of the most frustrating errors when it comes to running training scripts is hitting "Out-of-Memory" on devices like CUDA, XPU or CPU. The entire script needs to be restarted and any progress is lost.
 
-To address this problem, Accelerate provides the [find_executable_batch_size()](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.find_executable_batch_size) utility that is heavily based on [toma](https://github.com/BlackHC/toma).
+To address this problem, Accelerate provides the [find_executable_batch_size()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.find_executable_batch_size) utility that is heavily based on [toma](https://github.com/BlackHC/toma).
 This utility retries code that fails due to OOM (out-of-memory) conditions and automatically lowers batch sizes. For each OOM condition, the algorithm decreases the batch size by half and retries the code until it succeeds.
 
-To use [find_executable_batch_size()](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.find_executable_batch_size), restructure your training function to include an inner function with `find_executable_batch_size` and build your dataloaders inside it. At a minimum, this only takes 4 new lines of code.
+To use [find_executable_batch_size()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.find_executable_batch_size), restructure your training function to include an inner function with `find_executable_batch_size` and build your dataloaders inside it. At a minimum, this only takes 4 new lines of code.
 
  
 
-The inner function **must** take batch size as the first parameter, but we do not pass one to it when called. The wrapper will handle this for you. Any object (models, optimizers) that consumes device memory and is passed to the [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) also **must** be declared inside the inner function.
+The inner function **must** take batch size as the first parameter, but we do not pass one to it when called. The wrapper will handle this for you. Any object (models, optimizers) that consumes device memory and is passed to the [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) also **must** be declared inside the inner function.
 
 ```diff
 def training_function(args):
@@ -181,5 +181,5 @@ If none of the solutions and advice here helped resolve your issue, you can alwa
 
 - Create an Issue on the Accelerate [GitHub repository](https://github.com/huggingface/accelerate/issues) if you think you've found a bug related to the library. Include context regarding the bug and details about your distributed setup to help us better figure out what's wrong and how we can fix it.
 
-### Overview
-https://huggingface.co/docs/accelerate/v1.14.0/basic_tutorials/overview.md
+### Launching Accelerate scripts
+https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/launch.md

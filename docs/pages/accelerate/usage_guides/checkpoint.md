@@ -2,15 +2,15 @@
 
 When training a PyTorch model with Accelerate, you may often want to save and continue a state of training. Doing so requires
 saving and loading the model, optimizer, RNG generators, and the GradScaler. Inside Accelerate are two convenience functions to achieve this quickly:
-- Use [save_state()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.save_state) for saving everything mentioned above to a folder location
-- Use [load_state()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.load_state) for loading everything stored from an earlier `save_state`
+- Use [save_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.save_state) for saving everything mentioned above to a folder location
+- Use [load_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.load_state) for loading everything stored from an earlier `save_state`
 
-To further customize where and how states are saved through [save_state()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.save_state) the [ProjectConfiguration](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.utils.ProjectConfiguration) class can be used. For example 
+To further customize where and how states are saved through [save_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.save_state) the [ProjectConfiguration](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.ProjectConfiguration) class can be used. For example 
 if `automatic_checkpoint_naming` is enabled each saved checkpoint will be located then at `Accelerator.project_dir/checkpoints/checkpoint_{checkpoint_number}`.
 
 It should be noted that the expectation is that those states come from the same training script, they should not be from two separate scripts.
 
-- By using [register_for_checkpointing()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.register_for_checkpointing), you can register custom objects to be automatically stored or loaded from the two prior functions,
+- By using [register_for_checkpointing()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.register_for_checkpointing), you can register custom objects to be automatically stored or loaded from the two prior functions,
 so long as the object has a `state_dict` **and** a `load_state_dict` functionality. This could include objects such as a learning rate scheduler. 
 
 Below is a brief example using checkpointing to save and reload a state during training:
@@ -53,7 +53,7 @@ accelerator.load_state("my/save/path/checkpointing/checkpoint_0")
 ## Restoring the state of the DataLoader 
 
 After resuming from a checkpoint, it may also be desirable to resume from a particular point in the active `DataLoader` if 
-the state was saved during the middle of an epoch. You can use [skip_first_batches()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.skip_first_batches) to do so. 
+the state was saved during the middle of an epoch. You can use [skip_first_batches()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.skip_first_batches) to do so. 
 
 ```python
 from accelerate import Accelerator
@@ -79,5 +79,5 @@ for batch in train_dataloader:
     pass
 ```
 
-### Model quantization
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/quantization.md
+### Example Zoo
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/training_zoo.md

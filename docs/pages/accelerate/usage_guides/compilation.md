@@ -75,5 +75,5 @@ We have conducted extensive benchmarks comparing full compilation and regional c
 
 Both full and regional compilation can significantly speed up your models. Regional compilation offers a practical balance between compilation time and runtime performance, especially for training large models with substantial batch sizes.
 
-### DeepSpeed
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/deepspeed.md
+### Profiler
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/profiler.md

@@ -22,5 +22,5 @@ The following features are not part of the Accelerate library and requires [Opti
 - `minimize_memory` which is used for fp8 training and enables keeping fp8 weights in memory between the forward and backward passes, leading to a smaller memory footprint at the cost of additional fp8 casts.
 - `context_parallel_size` which is used for Context/Sequence Parallelism (CP/SP) and partitions the network inputs and activations along sequence dimension to reduce memory footprint and increase throughput.
 
-### Big Model Inference
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/big_modeling.md
+### Experiment trackers
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/tracking.md

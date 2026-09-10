@@ -30,9 +30,9 @@ For detailed descriptions of the above, refer to [`Accelerate` launch documentat
     To access other DeepSpeed configurations, such as mixed precision settings, 
     you need to pass in a `--deepspeed_config_file`, see the [documentation](../usage_guides/deepspeed#deepspeed-config-file).  
 
-    DeepSpeed can be also configured via [DeepSpeedPlugin](/docs/accelerate/v1.14.0/en/package_reference/deepspeed#accelerate.DeepSpeedPlugin), e.g., `DeepSpeedPlugin.zero_stage` is equivalent of `--zero_stage`, and `DeepSpeedPlugin.hf_ds_config` can be used to pass `--deepeed_config_file.`
+    DeepSpeed can be also configured via [DeepSpeedPlugin](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.DeepSpeedPlugin), e.g., `DeepSpeedPlugin.zero_stage` is equivalent of `--zero_stage`, and `DeepSpeedPlugin.hf_ds_config` can be used to pass `--deepeed_config_file.`
 
-    FSDP can be also configured via [FullyShardedDataParallelPlugin](/docs/accelerate/v1.14.0/en/package_reference/fsdp#accelerate.FullyShardedDataParallelPlugin), e.g., `FullyShardedDataParallelPlugin.sharding_strategy` is equivalent of `--fsdp_sharding_strategy`.
+    FSDP can be also configured via [FullyShardedDataParallelPlugin](/docs/accelerate/v1.15.0/en/package_reference/fsdp#accelerate.FullyShardedDataParallelPlugin), e.g., `FullyShardedDataParallelPlugin.sharding_strategy` is equivalent of `--fsdp_sharding_strategy`.
     
 
 ### Checkpointing
@@ -79,7 +79,7 @@ FSDP requires an explicit `--fsdp_use_orig_params` flag if using `torch.compile`
 
 Deepspeed requires explicit `--gradient_accumulation_steps` and `--gradient_clipping` flags. For FSDP this is transparent to the user.
 
-    When using DeepSpeed, set `gradient_accumulation_steps: "auto"` and `gradient_clipping: "auto"` to automatically pick up values set in the [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) or `TrainingArguments` (if using `transformers`).
+    When using DeepSpeed, set `gradient_accumulation_steps: "auto"` and `gradient_clipping: "auto"` to automatically pick up values set in the [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) or `TrainingArguments` (if using `transformers`).
 
 ## On Differences in Data Precision Handling
 
@@ -110,5 +110,5 @@ FSDP | bf16 | default (none) | bf16 | bf16 | bf16
 FSDP | bf16 | bf16 | fp32 | bf16 | fp32
 DeepSpeed   | bf16 | bf16 | fp32 | bf16 | fp32
 
-### Gradient synchronization
-https://huggingface.co/docs/accelerate/v1.14.0/concept_guides/gradient_synchronization.md
+### Sequence parallel in 🤗`accelerate`
+https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/sequence_parallelism.md

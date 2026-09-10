@@ -62,8 +62,8 @@ First the code shown earlier will be converted to utilize Accelerate without the
 
 ## Letting Accelerate handle gradient accumulation
 
-All that is left now is to let Accelerate handle the gradient accumulation for us. To do so you should pass in a `gradient_accumulation_steps` parameter to [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator), dictating the number 
-of steps to perform before each call to `step()` and how to automatically adjust the loss during the call to [backward()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.backward):
+All that is left now is to let Accelerate handle the gradient accumulation for us. To do so you should pass in a `gradient_accumulation_steps` parameter to [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator), dictating the number 
+of steps to perform before each call to `step()` and how to automatically adjust the loss during the call to [backward()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.backward):
 
 ```diff
   from accelerate import Accelerator
@@ -71,10 +71,10 @@ of steps to perform before each call to `step()` and how to automatically adjust
 + accelerator = Accelerator(gradient_accumulation_steps=2)
 ```
 
-Alternatively, you can pass in a `gradient_accumulation_plugin` parameter to the [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) object's `__init__`, which will allow you to further customize the gradient accumulation behavior. 
+Alternatively, you can pass in a `gradient_accumulation_plugin` parameter to the [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) object's `__init__`, which will allow you to further customize the gradient accumulation behavior. 
 Read more about that in the [GradientAccumulationPlugin](../package_reference/accelerator#accelerate.utils.GradientAccumulationPlugin) docs.
 
-From here you can use the [accumulate()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.accumulate) context manager from inside your training loop to automatically perform the gradient accumulation for you!
+From here you can use the [accumulate()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.accumulate) context manager from inside your training loop to automatically perform the gradient accumulation for you!
 You just wrap it around the entire training part of our code: 
 
 ```diff
@@ -96,12 +96,12 @@ You can remove all the special checks for the step number and the loss adjustmen
   optimizer.zero_grad()
 ```
 
-As you can see the [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) is able to keep track of the batch number you are on and it will automatically know whether to step through the prepared optimizer and how to adjust the loss. 
+As you can see the [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) is able to keep track of the batch number you are on and it will automatically know whether to step through the prepared optimizer and how to adjust the loss. 
 
 Typically with gradient accumulation, you would need to adjust the number of steps to reflect the change in total batches you are 
 training on. Accelerate automagically does this for you by default. Behind the scenes we instantiate a `GradientAccumulationPlugin` configured to do this.
 
-The [state.GradientState](/docs/accelerate/v1.14.0/en/package_reference/state#accelerate.state.GradientState) is sync'd with the active dataloader being iterated upon. As such it assumes naively that when we have reached the end of the dataloader everything will sync and a step will be performed. To disable this, set `sync_with_dataloader` to be `False` in the `GradientAccumulationPlugin`:
+The [state.GradientState](/docs/accelerate/v1.15.0/en/package_reference/state#accelerate.state.GradientState) is sync'd with the active dataloader being iterated upon. As such it assumes naively that when we have reached the end of the dataloader everything will sync and a step will be performed. To disable this, set `sync_with_dataloader` to be `False` in the `GradientAccumulationPlugin`:
 
 ```{python}
 from accelerate import Accelerator
@@ -431,5 +431,5 @@ Running it on several training configurations with constant global batch size eq
 
 Note that the training losses are exactly the same up to training step 20. The small deviation after this training step occurs at the very end of the first epoch, because, by [default](https://huggingface.co/docs/accelerate/en/package_reference/torch_wrappers#accelerate.data_loader.prepare_data_loader.even_batches), the dataloader duplicates the samples at the beginning of the dataset when the total batch size doesn't exactly divide the dataset.
 
-### Experiment trackers
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/tracking.md
+### Model memory estimator
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/model_size_estimator.md

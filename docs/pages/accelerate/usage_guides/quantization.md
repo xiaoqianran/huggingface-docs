@@ -30,7 +30,7 @@ pip install huggingface_hub
 
 ### How it works
 
-First, we need to initialize our model. To save memory, we can initialize an empty model using the context manager [init_empty_weights()](/docs/accelerate/v1.14.0/en/package_reference/big_modeling#accelerate.init_empty_weights). 
+First, we need to initialize our model. To save memory, we can initialize an empty model using the context manager [init_empty_weights()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.init_empty_weights). 
 
 Let's take the GPT2 model from minGPT library.
 ```py
@@ -53,7 +53,7 @@ from huggingface_hub import snapshot_download
 weights_location = snapshot_download(repo_id="marcsun13/gpt2-xl-linear-sharded")
 ```
 
-Finally, you need to set your quantization configuration with [BnbQuantizationConfig](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.utils.BnbQuantizationConfig).
+Finally, you need to set your quantization configuration with [BnbQuantizationConfig](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.BnbQuantizationConfig).
 
 Here's an example for 8-bit quantization:
 ```py
@@ -67,7 +67,7 @@ from accelerate.utils import BnbQuantizationConfig
 bnb_quantization_config = BnbQuantizationConfig(load_in_4bit=True, bnb_4bit_compute_dtype=torch.bfloat16, bnb_4bit_use_double_quant=True, bnb_4bit_quant_type="nf4")
 ```
 
-To quantize your empty model with the selected configuration, you need to use [load_and_quantize_model()](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.utils.load_and_quantize_model). 
+To quantize your empty model with the selected configuration, you need to use [load_and_quantize_model()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.load_and_quantize_model). 
 
 ```py
 from accelerate.utils import load_and_quantize_model
@@ -76,7 +76,7 @@ quantized_model = load_and_quantize_model(empty_model, weights_location=weights_
 
 ### Saving and loading 8-bit model
 
-You can save your 8-bit model with accelerate using [save_model()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.save_model). 
+You can save your 8-bit model with accelerate using [save_model()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.save_model). 
 
 ```py
 from accelerate import Accelerator
@@ -122,5 +122,5 @@ Note that you don’t need to pass `device_map` when loading the model for train
 
 Check out the Google Colab [demo](https://colab.research.google.com/drive/1T1pOgewAWVpR9gKpaEWw4orOrzPFb3yM?usp=sharing) for running quantized models on a GPT2 model. The GPT2-1.5B model checkpoint is in FP32 which uses 6GB of memory. After quantization, it uses 1.6GB with 8-bit modules and 1.2GB with 4-bit modules.
 
-### Using Local SGD with Accelerate
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/local_sgd.md
+### Intel Gaudi
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/gaudi.md

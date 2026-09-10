@@ -97,5 +97,5 @@ An example output is shown below, which describes two GPUs on a single machine w
         - tpu_env: []
 ```
 
-### Launching Accelerate scripts
-https://huggingface.co/docs/accelerate/v1.14.0/basic_tutorials/launch.md
+### TPU training
+https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/tpu.md

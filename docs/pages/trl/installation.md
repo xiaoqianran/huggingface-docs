@@ -33,4 +33,4 @@ pip install -e ".[dev]"
 ```
 
 ### Harbor Integration for Training LLMs with Environments
-https://huggingface.co/docs/trl/v1.12.0/harbor.md
+https://huggingface.co/docs/trl/v1.13.0/harbor.md

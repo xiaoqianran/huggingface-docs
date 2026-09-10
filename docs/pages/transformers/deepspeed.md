@@ -37,19 +37,31 @@ If you run into CUDA-related install errors, check the [DeepSpeed CUDA](./debugg
 
 ## Configure
 
-[Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) integrates DeepSpeed through the [deepspeed](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments.deepspeed) argument, which accepts a JSON config file. Alternatively, use an [Accelerate config file](./accelerate#accelerate-config-file) instead of [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments).
+[Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer) integrates DeepSpeed through the [deepspeed](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments.deepspeed) argument, which accepts a JSON config file. Alternatively, use an [Accelerate config file](./accelerate#accelerate-config-file) instead of [TrainingArguments](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments).
 
-Use `"auto"` in your config for values you want DeepSpeed to fill from [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments). If you want to explicitly specify a value, make sure you use the *same* value for both the DeepSpeed argument and [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments).
+Use `"auto"` in your config for values you want DeepSpeed to fill from [TrainingArguments](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments). If you want to explicitly specify a value, make sure you use the *same* value for both the DeepSpeed argument and [TrainingArguments](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments).
 
 > [!NOTE]
 > See the [DeepSpeed Configuration JSON](https://www.deepspeed.ai/docs/config-json/) reference for a complete list of DeepSpeed config options.
 
 ```json
-"train_micro_batch_size_per_gpu": "auto",  // ← per_device_train_batch_size in TrainingArguments
-"gradient_accumulation_steps": "auto",     // ← gradient_accumulation_steps in TrainingArguments
-"optimizer.params.lr": "auto",             // ← learning_rate in TrainingArguments
-"fp16.enabled": "auto",                    // ← fp16 flag in TrainingArguments
+{
+    "train_micro_batch_size_per_gpu": "auto",
+    "gradient_accumulation_steps": "auto",
+    "optimizer": {
+        "type": "AdamW",
+        "params": { "lr": "auto" }
+    },
+    "fp16": { "enabled": "auto" }
+}
 ```
+
+| DeepSpeed config | [TrainingArguments](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments) |
+|---|---|
+| `train_micro_batch_size_per_gpu` | `per_device_train_batch_size` |
+| `gradient_accumulation_steps` | `gradient_accumulation_steps` |
+| `optimizer.params.lr` | `learning_rate` |
+| `fp16.enabled` | `fp16` |
 
 Pass the config to the `deepspeed` argument.
 
@@ -74,7 +86,7 @@ accelerate launch --num_processes 4 train.py
 ```
 
 > [!NOTE]
-> Accelerate ignores the `deepspeed` argument in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments).
+> Accelerate ignores the `deepspeed` argument in [TrainingArguments](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments).
 
 Run the [accelerate config](https://huggingface.co/docs/accelerate/en/package_reference/cli#accelerate-config) command and answer questions about your hardware and training setup to create a `default_config.yaml` file in your cache.
 
@@ -87,7 +99,7 @@ num_machines: 1
 num_processes: 4
 ```
 
-Run [accelerate launch](https://huggingface.co/docs/accelerate/en/package_reference/cli#accelerate-launch) with a [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer)-based script.
+Run [accelerate launch](https://huggingface.co/docs/accelerate/en/package_reference/cli#accelerate-launch) with a [Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer)-based script.
 
 ```shell
 accelerate launch --config_file deepspeed_config.yaml train.py
@@ -126,7 +138,7 @@ Select a ZeRO stage config to use as a starting point.
 ```
 
 > [!WARNING]
-> ZeRO-3 shards parameters during initialization. You must instantiate [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) before loading your model — if the model is already on each GPU before DeepSpeed is configured, no memory is saved.
+> ZeRO-3 shards parameters during initialization. You must instantiate [TrainingArguments](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments) before loading your model — if the model is already on each GPU before DeepSpeed is configured, no memory is saved.
 
 ```json
 {
@@ -139,8 +151,8 @@ Select a ZeRO stage config to use as a starting point.
         "stage3_prefetch_bucket_size": "auto",
         "stage3_param_persistence_threshold": "auto",
         "stage3_gather_16bit_weights_on_model_save": true,
-        "offload_optimizer": { "device": "cpu", "pin_memory": true },  // optional offloading
-        "offload_param":     { "device": "cpu", "pin_memory": true }  // optional offloading
+        "offload_optimizer": { "device": "cpu", "pin_memory": true },
+        "offload_param":     { "device": "cpu", "pin_memory": true }
     },
     "gradient_clipping": "auto",
     "train_micro_batch_size_per_gpu": "auto",
@@ -157,7 +169,7 @@ The following fields are important for customizing training.
     { "zero_optimization": { "stage": 3 } }
     ```
 
-- Set the batch size and gradient accumulation arguments to `"auto"`. If you manually set these to values that disagree with [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments), training continues silently with the wrong values.
+- Set the batch size and gradient accumulation arguments to `"auto"`. If you manually set these to values that disagree with [TrainingArguments](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments), training continues silently with the wrong values.
 
     ```json
     {
@@ -168,7 +180,7 @@ The following fields are important for customizing training.
     }
     ```
 
-- `bf16` sets the training precision. Set it to `"auto"` so it mirrors the `bf16` flag in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments).
+- `bf16` sets the training precision. Set it to `"auto"` so it mirrors the `bf16` flag in [TrainingArguments](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments).
 
     ```json
     { "bf16": { "enabled": "auto" } }
@@ -180,7 +192,7 @@ The following fields are important for customizing training.
     {
         "zero_optimization": {
             "stage": 3,
-            "stage3_gather_16bit_weights_on_model_save": true,
+            "stage3_gather_16bit_weights_on_model_save": true
         }
     }
     ```
@@ -211,7 +223,7 @@ The following fields are important for customizing training.
     }
     ```
 
-- `optimizer` and `scheduler` default to the optimizer and scheduler configured in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments). Set to `"auto"` so DeepSpeed reads the values from [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) unless you need a DeepSpeed-native optimizer like LAMB.
+- `optimizer` and `scheduler` default to the optimizer and scheduler configured in [TrainingArguments](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments). Set to `"auto"` so DeepSpeed reads the values from [TrainingArguments](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments) unless you need a DeepSpeed-native optimizer like LAMB.
 
     ```json
     {
@@ -236,7 +248,7 @@ The following fields are important for customizing training.
 
 ## Checkpoints
 
-DeepSpeed saves checkpoints in a sharded format that can't be loaded directly with [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). Set `load_best_model_at_end()` to `True` to have Trainer track and reload the best checkpoint at the end of training.
+DeepSpeed saves checkpoints in a sharded format that can't be loaded directly with [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). Set `load_best_model_at_end()` to `True` to have Trainer track and reload the best checkpoint at the end of training.
 
 ```py
 from transformers import TrainingArguments, Trainer
@@ -261,4 +273,4 @@ Setting `save_only_model=True` skips saving the full optimizer state, which mean
 - Read the ZeRO papers: [Memory Optimizations Toward Training Trillion Parameter Models](https://hf.co/papers/1910.02054), [Democratizing Billion-Scale Model Training](https://hf.co/papers/2101.06840), and [Breaking the GPU Memory Wall for Extreme Scale Deep Learning](https://hf.co/papers/2104.07857).
 
 ### Intel Gaudi
-https://huggingface.co/docs/transformers/v5.15.1/perf_train_gaudi.md
+https://huggingface.co/docs/transformers/v5.17.0/perf_train_gaudi.md

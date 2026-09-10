@@ -45,7 +45,7 @@ trainer.train()
 ```
 
 To generate from the teacher-conditioned prompt instead of the student prompt, set `generate_from_teacher=True`.
-To customize how the teacher prompt is built, set `teacher_prompt_template` on `SDFTConfig`.
+To customize how the teacher prompt is built, set `teacher_prompt_template` on [experimental.sdft.SDFTConfig](/docs/trl/v1.13.0/en/sdft_trainer#trl.experimental.sdft.SDFTConfig).
 
 ## Serving the teacher from the vLLM server
 
@@ -124,7 +124,7 @@ The original implementation is available at [idanshen/Self-Distillation](https:/
 trl.experimental.sdft.SDFTConfig(output_dir: str | None = None, per_device_train_batch_size: int = 8, num_train_epochs: float = 3.0, max_steps: int = -1, learning_rate: float = 5e-05, lr_scheduler_type: transformers.trainer_utils.SchedulerType | str = 'linear', lr_scheduler_kwargs: dict | str | None = None, warmup_steps: float = 0, optim: transformers.training_args.OptimizerNames | str = 'adamw_torch_fused', optim_args: str | None = None, weight_decay: float = 0.0, adam_beta1: float = 0.9, adam_beta2: float = 0.999, adam_epsilon: float = 1e-08, optim_target_modules: None | str | list[str] = None, gradient_accumulation_steps: int = 1, average_tokens_across_devices: bool = True, max_grad_norm: float = 1.0, label_smoothing_factor: float = 0.0, bf16: bool | None = None, fp16: bool = False, bf16_full_eval: bool = False, fp16_full_eval: bool = False, tf32: bool | None = None, gradient_checkpointing: bool = True, gradient_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, torch_compile: bool = False, torch_compile_backend: str | None = None, torch_compile_mode: str | None = None, use_liger_kernel: bool = False, liger_kernel_config: dict[str, bool] | None = None, use_cache: bool = False, neftune_noise_alpha: float | None = None, torch_empty_cache_steps: int | None = None, auto_find_batch_size: bool = False, logging_strategy: transformers.trainer_utils.IntervalStrategy | str = 'steps', logging_steps: float = 10, logging_first_step: bool = False, log_on_each_node: bool = True, logging_nan_inf_filter: bool = True, include_num_input_tokens_seen: str | bool = 'no', log_level: str = 'passive', log_level_replica: str = 'warning', disable_tqdm: bool | None = None, report_to: None | str | list[str] = 'none', run_name: str | None = None, project: str = 'huggingface', trackio_space_id: str | None = None, trackio_bucket_id: str | None = None, trackio_static_space_id: typing.Union[str, NoneType, typing.Literal[False]] = None, eval_strategy: transformers.trainer_utils.IntervalStrategy | str = 'no', eval_steps: float | None = None, eval_delay: float = 0, per_device_eval_batch_size: int = 8, prediction_loss_only: bool = False, eval_on_start: bool = False, eval_do_concat_batches: bool = True, eval_use_gather_object: bool = False, eval_accumulation_steps: int | None = None, include_for_metrics: list = <factory>, batch_eval_metrics: bool = False, save_only_model: bool = False, save_strategy: transformers.trainer_utils.SaveStrategy | str = 'steps', save_steps: float = 500, save_on_each_node: bool = False, save_total_limit: int | None = None, enable_jit_checkpoint: bool = False, push_to_hub: bool = False, hub_token: str | None = None, hub_private_repo: bool | None = None, hub_model_id: str | None = None, hub_strategy: transformers.trainer_utils.HubStrategy | str = 'every_save', hub_always_push: bool = False, hub_revision: str | None = None, load_best_model_at_end: bool = False, metric_for_best_model: str | None = None, greater_is_better: bool | None = None, ignore_data_skip: bool = False, restore_callback_states_from_checkpoint: bool = False, full_determinism: bool = False, seed: int = 42, data_seed: int | None = None, use_cpu: bool = False, accelerator_config: dict | str | None = None, parallelism_config: accelerate.parallelism_config.ParallelismConfig | None = None, dataloader_drop_last: bool = False, dataloader_num_workers: int = 0, dataloader_pin_memory: bool = True, dataloader_persistent_workers: bool = False, dataloader_prefetch_factor: int | None = None, dataloader_multiprocessing_context: str | None = None, dataloader_in_order: bool = True, remove_unused_columns: bool = False, label_names: list[str] | None = None, train_sampling_strategy: str = 'random', length_column_name: str = 'length', ddp_find_unused_parameters: bool | None = None, ddp_bucket_cap_mb: int | None = None, ddp_broadcast_buffers: bool | None = None, ddp_static_graph: bool | None = None, ddp_backend: str | None = None, ddp_timeout: int = 1800, fsdp: str | None = None, fsdp_config: dict[str, typing.Any] | str | None = None, deepspeed: dict | str | None = None, debug: str | list[transformers.debug_utils.DebugOption] = '', skip_memory_metrics: bool = True, do_train: bool = False, do_eval: bool = False, do_predict: bool = False, resume_from_checkpoint: str | None = None, local_rank: int = -1, model_init_kwargs: dict[str, typing.Any] | None = None, trust_remote_code: bool = False, disable_dropout: bool = True, max_prompt_length: int | None = 512, num_generations: int = 8, num_generations_eval: int | None = None, max_completion_length: int | None = 256, ds3_gather_for_generation: bool = True, shuffle_dataset: bool = True, generation_batch_size: int | None = None, steps_per_generation: int | None = None, temperature: float = 1.0, top_p: float = 1.0, top_k: int = 0, min_p: float | None = None, generation_kwargs: dict[str, typing.Any] | None = None, chat_template_kwargs: dict[str, typing.Any] | None = None, repetition_penalty: float = 1.0, cache_implementation: str | None = None, use_vllm: bool = False, use_teacher_server: bool = False, vllm_mode: str = 'colocate', vllm_model_impl: str = 'vllm', vllm_enable_sleep_mode: bool = False, vllm_server_base_url: str | None = None, vllm_server_host: str = '0.0.0.0', vllm_server_port: int = 8000, vllm_group_port: int = 51216, vllm_server_timeout: float = 240.0, vllm_tensor_parallel_size: int = 1, vllm_gpu_memory_utilization: float = 0.3, vllm_max_model_length: int | None = None, num_iterations: int = 1, teacher_model_kind: str = 'base', teacher_update_rate: float = 0.05, teacher_sync_steps: int = 1, distillation_alpha: float = 0.5, distillation_mode: typing.Literal['sampled_token', 'full_logits', 'topk_logits'] = 'topk_logits', distillation_topk: int | None = 100, distillation_is_clip: float | None = 2.0, distillation_add_tail: bool = False, generate_from_teacher: bool = False, teacher_prompt_template: str = '{prompt}\n\n{privileged_context}', num_loss_tokens_to_skip: int = 0)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/experimental/sdft/sdft_config.py#L24)
+[Source](https://github.com/huggingface/trl/blob/v1.13.0/trl/experimental/sdft/sdft_config.py#L24)
 
 **Parameters that control the SDFT loss:**
 
@@ -156,9 +156,9 @@ teacher_prompt_template (`str`, *optional*, defaults to `"{prompt}\n\n{privilege
 
 **Parameters that control the model:**
 
-model_init_kwargs (`dict[str, Any]`, *optional*) : Keyword arguments for `transformers.AutoModelForCausalLM.from_pretrained`, used when the `model` argument of the `SDFTTrainer` is provided as a string.
+model_init_kwargs (`dict[str, Any]`, *optional*) : Keyword arguments for `transformers.AutoModelForCausalLM.from_pretrained`, used when the `model` argument of the `SDFTTrainer` is provided as a string. The `revision` value is also used when loading the processing class.
 
-trust_remote_code (`bool`, *optional*, defaults to `False`) : Whether to allow loading models and tokenizers that ship custom Python code from the Hub. Forwarded to [from_pretrained](https://huggingface.co/docs/transformers/v5.16.1/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) and [from_pretrained](https://huggingface.co/docs/transformers/v5.16.1/en/model_doc/auto#transformers.AutoProcessor.from_pretrained), for both the student and teacher.
+trust_remote_code (`bool`, *optional*, defaults to `False`) : Whether to allow loading models and tokenizers that ship custom Python code from the Hub. Forwarded to [from_pretrained](https://huggingface.co/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) and [from_pretrained](https://huggingface.co/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoProcessor.from_pretrained), for both the student and teacher.
 
 disable_dropout (`bool`, *optional*, defaults to `True`) : Whether to disable dropout in the student and teacher models.
 
@@ -232,7 +232,7 @@ generation_batch_size (`int`, *optional*) : Batch size to use for generation. If
 
 steps_per_generation (`int`, *optional*) : Number of steps per generation. If `None`, it defaults to `gradient_accumulation_steps`.
 
-Configuration class for the `SDFTTrainer`.
+Configuration class for the [experimental.sdft.SDFTTrainer](/docs/trl/v1.13.0/en/sdft_trainer#trl.experimental.sdft.SDFTTrainer).
 
 ## SDFTTrainer[[trl.experimental.sdft.SDFTTrainer]]
 
@@ -242,7 +242,7 @@ Configuration class for the `SDFTTrainer`.
 trl.experimental.sdft.SDFTTrainer(model: typing.Union[str, transformers.modeling_utils.PreTrainedModel, torch.nn.Module], args: trl.experimental.sdft.sdft_config.SDFTConfig | None = None, train_dataset: datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset | None = None, eval_dataset: datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset | dict[str, datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset] | None = None, processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | transformers.processing_utils.ProcessorMixin | None = None, callbacks: list[transformers.trainer_callback.TrainerCallback] | None = None, optimizers: tuple = (None, None), peft_config: peft.config.PeftConfig | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/experimental/sdft/sdft_trainer.py#L211)
+[Source](https://github.com/huggingface/trl/blob/v1.13.0/trl/experimental/sdft/sdft_trainer.py#L208)
 
 Trainer for SDFT-style on-policy self-distillation with explicit teacher prompts.
 
@@ -252,7 +252,7 @@ Trainer for SDFT-style on-policy self-distillation with explicit teacher prompts
 train(resume_from_checkpoint: str | bool | None = None, trial: optuna.Trial | dict[str, Any] | None = None, ignore_keys_for_eval: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.12.0/transformers/trainer.py#L1350)
+[Source](https://github.com/huggingface/trl/blob/v1.13.0/transformers/trainer.py#L1408)
 
 **Parameters:**
 
@@ -274,7 +274,7 @@ Main training entry point.
 save_model(output_dir: str | None = None, _internal_call: bool = False)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.12.0/transformers/trainer.py#L3805)
+[Source](https://github.com/huggingface/trl/blob/v1.13.0/transformers/trainer.py#L3930)
 
 Will save the model, so you can reload it using `from_pretrained()`.
 
@@ -286,7 +286,7 @@ Will only save from the main process.
 push_to_hub(commit_message: str | None = 'End of training', blocking: bool = True, token: str | None = None, revision: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.12.0/transformers/trainer.py#L4052)
+[Source](https://github.com/huggingface/trl/blob/v1.13.0/transformers/trainer.py#L4177)
 
 **Parameters:**
 
@@ -308,4 +308,4 @@ progress of the commit if `blocking=True`.
 Upload `self.model` and `self.processing_class` to the 🤗 model hub on the repo `self.args.hub_model_id`.
 
 ### OpenEnv Integration for Training LLMs with Environments
-https://huggingface.co/docs/trl/v1.12.0/openenv.md
+https://huggingface.co/docs/trl/v1.13.0/openenv.md

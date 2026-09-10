@@ -4,7 +4,7 @@
 
 You can find the official checkpoints under the [Thinking Machines Lab](https://huggingface.co/thinkingmachines) organization.
 
-The example below demonstrates how to generate text based on an image with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to generate text based on an image with [Pipeline](/docs/transformers/v5.17.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -201,7 +201,26 @@ print(completion.choices[0].message.content)
 transformers.InklingAudioConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, n_mel_bins: int = 80, mel_vocab_size: int = 256, text_hidden_size: int = 6144, rms_norm_eps: float = 1e-06, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/configuration_inkling.py#L153)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/configuration_inkling.py#L201)
+
+**Parameters:**
+
+n_mel_bins (`int`, *optional*, defaults to 80) : Number of mel-frequency bins per audio frame.
+
+mel_vocab_size (`int`, *optional*, defaults to 256) : Number of discrete bins each mel value is quantized into before being embedded.
+
+text_hidden_size (`int`, *optional*, defaults to 6144) : Dimensionality the audio embeddings are projected to, matching the text backbone.
+
+rms_norm_eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the rms normalization layers.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+This is the configuration class to store the configuration of a InklingModel. It is used to instantiate a Inkling
+model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
+defaults will yield a similar configuration to that of the [thinkingmachines/Inkling](https://huggingface.co/thinkingmachines/Inkling)
+
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## InklingConfig[[transformers.InklingConfig]]
 
@@ -211,7 +230,23 @@ transformers.InklingAudioConfig(transformers_version: str | None = None, archite
 transformers.InklingConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: transformers.models.inkling.configuration_inkling.InklingTextConfig | dict | None = None, audio_config: transformers.models.inkling.configuration_inkling.InklingAudioConfig | dict | None = None, vision_config: transformers.models.inkling.configuration_inkling.InklingVisionConfig | dict | None = None, image_token_id: int = 200054, audio_token_id: int = 200053, image_bos_token_id: int = 200005, audio_bos_token_id: int = 200020)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/configuration_inkling.py#L187)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/configuration_inkling.py#L254)
+
+**Parameters:**
+
+text_config (`Union[~models.inkling.configuration_inkling.InklingTextConfig, dict]`, *optional*) : The config object or dictionary of the text backbone.
+
+audio_config (`Union[~models.inkling.configuration_inkling.InklingAudioConfig, dict]`, *optional*) : The config object or dictionary of the audio backbone.
+
+vision_config (`Union[~models.inkling.configuration_inkling.InklingVisionConfig, dict]`, *optional*) : The config object or dictionary of the vision backbone.
+
+image_token_id (`int`, *optional*, defaults to `200054`) : The image token index used as a placeholder for input images.
+
+audio_token_id (`int`, *optional*, defaults to `200053`) : The audio token index used as a placeholder for input audio.
+
+image_bos_token_id (`int`, *optional*, defaults to 200005) : The beginning-of-image token index used to mark the start of image spans.
+
+audio_bos_token_id (`int`, *optional*, defaults to 200020) : The beginning-of-audio token index used to mark the start of audio spans.
 
 Top-level multimodal config (`InklingMMConfig` in the SGLang source).
 
@@ -223,7 +258,96 @@ Top-level multimodal config (`InklingMMConfig` in the SGLang source).
 transformers.InklingTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 201024, unpadded_vocab_size: int | None = None, hidden_size: int = 6144, num_hidden_layers: int = 66, num_attention_heads: int = 64, num_key_value_heads: int = 8, head_dim: int = 128, swa_num_attention_heads: int = 64, swa_num_key_value_heads: int = 16, swa_head_dim: int = 128, sliding_window_size: int = 512, d_rel: int = 16, rel_extent: int = 1024, log_scaling_n_floor: int | None = None, log_scaling_alpha: float = 0.1, local_layer_ids: list[int] | None = None, layer_types: list[str] | None = None, max_position_embeddings: int = 131072, rms_norm_eps: float = 1e-06, conv_kernel_size: int = 4, mlp_layer_types: list[str] | None = None, intermediate_size: int = 24576, hidden_act: str = 'silu', moe_intermediate_size: int = 3072, n_routed_experts: int = 256, num_experts_per_tok: int = 6, n_shared_experts: int = 2, shared_expert_sink: bool = True, route_scale: float = 8.0, logits_mup_width_multiplier: float = 24.0, rms_norm_eps_moe_gate: float = 1e-06, attention_dropout: float = 0.0, initializer_range: float = 0.02, pad_token_id: int | None = None, bos_token_id: int | None = 1, eos_token_id: int | None = 2, num_mtp_layers: int | None = None, chain_hidden_post_norm: bool = False, mtp_hidden_states_first: bool = True, mtp_local_layer_ids: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/configuration_inkling.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/configuration_inkling.py#L30)
+
+**Parameters:**
+
+vocab_size (`int`, *optional*, defaults to `201024`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
+
+unpadded_vocab_size (`int`, *optional*, defaults to `None`) : Number of rows the checkpoint's unembedding matrix actually holds when the head is not padded to `vocab_size`. Logits beyond it are dropped. If `None`, the head is not padded.
+
+hidden_size (`int`, *optional*, defaults to `6144`) : Dimension of the hidden representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `66`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `64`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+num_key_value_heads (`int`, *optional*, defaults to `8`) : This is the number of key_value heads that should be used to implement Grouped Query Attention. If `num_key_value_heads=num_attention_heads`, the model will use Multi Head Attention (MHA), if `num_key_value_heads=1` the model will use Multi Query Attention (MQA) otherwise GQA is used. When converting a multi-head checkpoint to a GQA checkpoint, each group key and value head should be constructed by meanpooling all the original heads within that group. For more details, check out [this paper](https://huggingface.co/papers/2305.13245). If it is not specified, will default to `num_attention_heads`.
+
+head_dim (`int`, *optional*, defaults to `128`) : The attention head dimension. If None, it will default to hidden_size // num_attention_heads
+
+swa_num_attention_heads (`int`, *optional*, defaults to 64) : Number of attention heads in the sliding-window layers.
+
+swa_num_key_value_heads (`int`, *optional*, defaults to 16) : Number of key/value heads in the sliding-window layers.
+
+swa_head_dim (`int`, *optional*, defaults to 128) : Dimension of query and key heads in the sliding-window layers.
+
+sliding_window_size (`int`, *optional*, defaults to 512) : Size of the sliding attention window used by layers whose `layer_types` entry is `"hybrid_sliding"`.
+
+d_rel (`int`, *optional*, defaults to 16) : Per-head dimension of the relative states that are mixed into the relative position bias.
+
+rel_extent (`int`, *optional*, defaults to 1024) : Backward distance, in tokens, over which the relative position bias is applied. The bias is zero beyond it.
+
+log_scaling_n_floor (`int`, *optional*, defaults to `None`) : Position from which logits start being scaled up logarithmically in the full-attention layers. If `None`, the scaling is disabled.
+
+log_scaling_alpha (`float`, *optional*, defaults to 0.1) : Strength of the logarithmic logit scaling controlled by `log_scaling_n_floor`.
+
+local_layer_ids (`list[int]`, *optional*, defaults to `None`) : Indices of the layers using sliding window attention. Used to derive `layer_types` when it is not provided. If `None`, every layer whose index is not a multiple of 6 uses sliding window attention.
+
+layer_types (`list[str]`, *optional*) : A list that explicitly maps each layer index with its layer type. If not provided, it will be automatically generated based on config values.
+
+max_position_embeddings (`int`, *optional*, defaults to `131072`) : The maximum sequence length that this model might ever be used with.
+
+rms_norm_eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the rms normalization layers.
+
+conv_kernel_size (`int`, *optional*, defaults to `4`) : The size of the convolutional kernel.
+
+mlp_layer_types (`list[str]`, *optional*, defaults to `None`) : MLP type pattern for each layer (`"dense"` or `"sparse"`). If `None`, every layer is sparse.
+
+intermediate_size (`int`, *optional*, defaults to `24576`) : Dimension of the MLP representations.
+
+hidden_act (`str`, *optional*, defaults to `silu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+moe_intermediate_size (`int`, *optional*, defaults to `3072`) : Intermediate size of the routed expert MLPs.
+
+n_routed_experts (`int`, *optional*, defaults to `256`) : Number of routed experts.
+
+num_experts_per_tok (`int`, *optional*, defaults to `6`) : Number of experts to route each token to. This is the top-k value for the token-choice routing.
+
+n_shared_experts (`int`, *optional*, defaults to `2`) : Number of shared experts.
+
+shared_expert_sink (`bool`, *optional*, defaults to `True`) : Whether the router scores the shared experts alongside the routed ones, so that they act as a sink in the softmax over expert weights.
+
+route_scale (`float`, *optional*, defaults to `8.0`) : Scaling factor or routed experts.
+
+logits_mup_width_multiplier (`float`, *optional*, defaults to 24.0) : muP width multiplier the final hidden states are divided by before the language modeling head.
+
+rms_norm_eps_moe_gate (`float`, *optional*, defaults to 1e-6) : Epsilon of the RMS normalization applied inside the mixture-of-experts router.
+
+attention_dropout (`float`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+pad_token_id (`int`, *optional*) : Token id used for padding in the vocabulary.
+
+bos_token_id (`int`, *optional*, defaults to `1`) : Token id used for beginning-of-stream in the vocabulary.
+
+eos_token_id (`int`, *optional*, defaults to `2`) : Token id used for end-of-stream in the vocabulary.
+
+num_mtp_layers (`int`, *optional*, defaults to `None`) : Number of multi-token-prediction layers. If `None`, multi-token prediction is disabled.
+
+chain_hidden_post_norm (`bool`, *optional*, defaults to `False`) : Whether the hidden states chained between multi-token-prediction layers are normalized after each layer.
+
+mtp_hidden_states_first (`bool`, *optional*, defaults to `True`) : Whether the hidden states come before the token embeddings when the two are concatenated as the input of a multi-token-prediction layer.
+
+mtp_local_layer_ids (`list[int]`, *optional*, defaults to `None`) : Indices of the multi-token-prediction layers using sliding window attention. If `None`, every multi-token-prediction layer uses full attention.
+
+This is the configuration class to store the configuration of a InklingModel. It is used to instantiate a Inkling
+model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
+defaults will yield a similar configuration to that of the [thinkingmachines/Inkling](https://huggingface.co/thinkingmachines/Inkling)
+
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## InklingVisionConfig[[transformers.InklingVisionConfig]]
 
@@ -233,7 +357,34 @@ transformers.InklingTextConfig(transformers_version: str | None = None, architec
 transformers.InklingVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_hidden_size: int = 6144, patch_size: int = 40, temporal_patch_size: int = 2, num_channels: int = 3, hidden_size: int = 1024, num_hidden_layers: int = 24, num_attention_heads: int = 16, rms_norm_eps: float = 1e-06, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/configuration_inkling.py#L170)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/configuration_inkling.py#L228)
+
+**Parameters:**
+
+text_hidden_size (`int`, *optional*, defaults to 6144) : Dimensionality the vision features are projected to by the last encoder layer, matching the text backbone.
+
+patch_size (`int`, *optional*, defaults to `40`) : The size (resolution) of each patch.
+
+temporal_patch_size (`int`, *optional*, defaults to `2`) : Temporal patch size used in the 3D patch embedding for video inputs.
+
+num_channels (`int`, *optional*, defaults to `3`) : The number of input channels.
+
+hidden_size (`int`, *optional*, defaults to `1024`) : Dimension of the hidden representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `24`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `16`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+rms_norm_eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the rms normalization layers.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+This is the configuration class to store the configuration of a InklingModel. It is used to instantiate a Inkling
+model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
+defaults will yield a similar configuration to that of the [thinkingmachines/Inkling](https://huggingface.co/thinkingmachines/Inkling)
+
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## InklingAudioModel[[transformers.InklingAudioModel]]
 
@@ -243,7 +394,21 @@ transformers.InklingVisionConfig(transformers_version: str | None = None, archit
 transformers.InklingAudioModel(config: InklingAudioConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/modeling_inkling.py#L819)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/modeling_inkling.py#L821)
+
+**Parameters:**
+
+config ([InklingAudioConfig](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingAudioConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+
+The bare Inkling Model outputting raw hidden-states without any specific head on top.
+
+This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
+etc.)
+
+This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/nn.html#torch.nn.Module) subclass.
+Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
+and behavior.
 
 #### forward[[transformers.InklingAudioModel.forward]]
 
@@ -251,7 +416,38 @@ transformers.InklingAudioModel(config: InklingAudioConfig)
 forward(audio_input_ids: Tensor, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/modeling_inkling.py#L825)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/modeling_inkling.py#L827)
+
+**Parameters:**
+
+audio_input_ids (`torch.Tensor` of shape `(num_audios, max_num_frames, n_mel_bins)`) : Mel-spectrogram frames of the input audios.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([InklingConfig](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingConfig)) and inputs.
+
+The [InklingAudioModel](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingAudioModel) forward method, overrides the `__call__` special method.
+
+Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
+instance afterwards instead of this since the former takes care of running the pre and post processing steps while
+the latter silently ignores them.
+
+- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
+  through the layers used for the auxiliary pretraining task. E.g. for BERT-family of models, this returns
+  the classification token after processing through a linear layer and a tanh activation function. The linear
+  layer weights are trained from the next sentence prediction (classification) objective during pretraining.
+- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+  one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
+
+  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
+- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+  sequence_length)`.
+
+  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
+  heads.
 
 ## InklingForCausalLM[[transformers.InklingForCausalLM]]
 
@@ -261,15 +457,15 @@ forward(audio_input_ids: Tensor, **kwargs)
 transformers.InklingForCausalLM(config: InklingTextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/modeling_inkling.py#L726)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/modeling_inkling.py#L727)
 
 **Parameters:**
 
-config ([InklingTextConfig](/docs/transformers/v5.15.1/en/model_doc/inkling#transformers.InklingTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([InklingTextConfig](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Inkling Model for causal language modeling.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -283,17 +479,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/modeling_inkling.py#L743)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/modeling_inkling.py#L744)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -307,9 +503,9 @@ logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an
 
 A `InklingCausalLMOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([InklingConfig](/docs/transformers/v5.15.1/en/model_doc/inkling#transformers.InklingConfig)) and inputs.
+elements depending on the configuration ([InklingConfig](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingConfig)) and inputs.
 
-The [InklingForCausalLM](/docs/transformers/v5.15.1/en/model_doc/inkling#transformers.InklingForCausalLM) forward method, overrides the `__call__` special method.
+The [InklingForCausalLM](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingForCausalLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -317,7 +513,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.text_config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -358,15 +554,15 @@ Example:
 transformers.InklingForConditionalGeneration(config: InklingConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/modeling_inkling.py#L1181)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/modeling_inkling.py#L1192)
 
 **Parameters:**
 
-config ([InklingConfig](/docs/transformers/v5.15.1/en/model_doc/inkling#transformers.InklingConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([InklingConfig](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Base Inkling model which consists of a vision backbone and a language model without language modeling head.,
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -380,11 +576,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, audio_input_ids: typing.Optional[torch.LongTensor] = None, audio_input_ids_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/modeling_inkling.py#L1201)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/modeling_inkling.py#L1212)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
 
@@ -392,9 +588,9 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-audio_input_ids (`torch.LongTensor` of shape `(num_audios, max_num_frames, n_mel_bins)`, *optional*) : Batch of (padded) discretized dMel bin tokens produced by [InklingProcessor](/docs/transformers/v5.15.1/en/model_doc/inkling#transformers.InklingProcessor).
+audio_input_ids (`torch.LongTensor` of shape `(num_audios, max_num_frames, n_mel_bins)`, *optional*) : Batch of (padded) discretized dMel bin tokens produced by [InklingProcessor](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingProcessor).
 
 audio_input_ids_mask (`torch.Tensor` of shape `(num_audios, max_num_frames)`, *optional*) : Mask marking valid (non-padding) audio frames in `audio_input_ids`.
 
@@ -410,9 +606,9 @@ logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an
 
 A `InklingCausalLMOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([InklingConfig](/docs/transformers/v5.15.1/en/model_doc/inkling#transformers.InklingConfig)) and inputs.
+elements depending on the configuration ([InklingConfig](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingConfig)) and inputs.
 
-The [InklingForConditionalGeneration](/docs/transformers/v5.15.1/en/model_doc/inkling#transformers.InklingForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [InklingForConditionalGeneration](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -420,7 +616,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.text_config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -481,7 +677,7 @@ Example:
 get_image_features(pixel_values: FloatTensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/modeling_inkling.py#L1197)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/modeling_inkling.py#L1208)
 
 **Parameters:**
 
@@ -525,15 +721,15 @@ Example:
 transformers.InklingModel(config: InklingConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/modeling_inkling.py#L1001)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/modeling_inkling.py#L1010)
 
 **Parameters:**
 
-config ([InklingConfig](/docs/transformers/v5.15.1/en/model_doc/inkling#transformers.InklingConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([InklingConfig](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Base Inkling model which consists of a vision backbone and a language model without language modeling head.,
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -547,15 +743,15 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, audio_input_ids: typing.Optional[torch.LongTensor] = None, audio_input_ids_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, token_type_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, **lm_kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/modeling_inkling.py#L1067)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/modeling_inkling.py#L1076)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
 
-audio_input_ids (`torch.LongTensor` of shape `(num_audios, max_num_frames, n_mel_bins)`, *optional*) : Batch of (padded) discretized dMel bin tokens produced by [InklingProcessor](/docs/transformers/v5.15.1/en/model_doc/inkling#transformers.InklingProcessor).
+audio_input_ids (`torch.LongTensor` of shape `(num_audios, max_num_frames, n_mel_bins)`, *optional*) : Batch of (padded) discretized dMel bin tokens produced by [InklingProcessor](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingProcessor).
 
 audio_input_ids_mask (`torch.Tensor` of shape `(num_audios, max_num_frames)`, *optional*) : Mask marking valid (non-padding) audio frames in `audio_input_ids`.
 
@@ -563,7 +759,7 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
@@ -577,9 +773,9 @@ use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value s
 
 A `InklingModelOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([InklingConfig](/docs/transformers/v5.15.1/en/model_doc/inkling#transformers.InklingConfig)) and inputs.
+elements depending on the configuration ([InklingConfig](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingConfig)) and inputs.
 
-The [InklingModel](/docs/transformers/v5.15.1/en/model_doc/inkling#transformers.InklingModel) forward method, overrides the `__call__` special method.
+The [InklingModel](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -589,7 +785,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -638,13 +834,13 @@ Example:
 transformers.InklingPreTrainedModel(config: PreTrainedConfig, *inputs, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/modeling_inkling.py#L596)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/modeling_inkling.py#L595)
 
 **Parameters:**
 
-config ([PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -672,15 +868,15 @@ real subclasses keep a normal metaclass and `inspect.signature` reads their real
 transformers.InklingTextModel(config: InklingTextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/modeling_inkling.py#L646)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/modeling_inkling.py#L645)
 
 **Parameters:**
 
-config ([InklingTextConfig](/docs/transformers/v5.15.1/en/model_doc/inkling#transformers.InklingTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([InklingTextConfig](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Inkling Text Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -694,29 +890,29 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/modeling_inkling.py#L665)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/modeling_inkling.py#L664)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPast](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
+A [BaseModelOutputWithPast](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([InklingConfig](/docs/transformers/v5.15.1/en/model_doc/inkling#transformers.InklingConfig)) and inputs.
+elements depending on the configuration ([InklingConfig](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingConfig)) and inputs.
 
-The [InklingTextModel](/docs/transformers/v5.15.1/en/model_doc/inkling#transformers.InklingTextModel) forward method, overrides the `__call__` special method.
+The [InklingTextModel](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -726,7 +922,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -749,7 +945,21 @@ the latter silently ignores them.
 transformers.InklingVisionModel(config: InklingVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/modeling_inkling.py#L950)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/modeling_inkling.py#L958)
+
+**Parameters:**
+
+config ([InklingVisionConfig](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+
+The bare Inkling Model outputting raw hidden-states without any specific head on top.
+
+This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
+etc.)
+
+This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/nn.html#torch.nn.Module) subclass.
+Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
+and behavior.
 
 #### forward[[transformers.InklingVisionModel.forward]]
 
@@ -757,7 +967,38 @@ transformers.InklingVisionModel(config: InklingVisionConfig)
 forward(pixel_values: Tensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/modeling_inkling.py#L982)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/modeling_inkling.py#L990)
+
+**Parameters:**
+
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([InklingConfig](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingConfig)) and inputs.
+
+The [InklingVisionModel](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingVisionModel) forward method, overrides the `__call__` special method.
+
+Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
+instance afterwards instead of this since the former takes care of running the pre and post processing steps while
+the latter silently ignores them.
+
+- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
+  through the layers used for the auxiliary pretraining task. E.g. for BERT-family of models, this returns
+  the classification token after processing through a linear layer and a tanh activation function. The linear
+  layer weights are trained from the next sentence prediction (classification) objective during pretraining.
+- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+  one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
+
+  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
+- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+  sequence_length)`.
+
+  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
+  heads.
 
 ## InklingImageProcessor[[transformers.InklingImageProcessor]]
 
@@ -767,7 +1008,7 @@ forward(pixel_values: Tensor, **kwargs: Unpack)
 transformers.InklingImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/image_processing_inkling.py#L60)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/image_processing_inkling.py#L60)
 
 **Parameters:**
 
@@ -825,7 +1066,7 @@ Constructs a Inkling image processor.
 transformers.InklingFeatureExtractor(feature_size: int = 80, sampling_rate: int = 16000, padding_value: float = 0.0, audio_token_duration_s: float = 0.05, window_size_multiplier: float = 2.0, n_fft: int | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/feature_extraction_inkling.py#L38)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/feature_extraction_inkling.py#L38)
 
 **Parameters:**
 
@@ -843,9 +1084,9 @@ n_fft (`int`, *optional*) : FFT size. Defaults to the window length (`audio_toke
 
 Constructs a TML audio feature extractor, which converts raw audio waveforms into log-mel spectrogram
 features (mel filterbank energies in log10 space). The quantization of these features into discrete
-dMel bins is performed downstream by [InklingProcessor](/docs/transformers/v5.15.1/en/model_doc/inkling#transformers.InklingProcessor).
+dMel bins is performed downstream by [InklingProcessor](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingProcessor).
 
-This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor)
+This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.17.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor)
 which contains most of the main methods. Users should refer to this superclass for more information
 regarding those methods.
 
@@ -857,7 +1098,7 @@ regarding those methods.
 transformers.InklingProcessor(feature_extractor = None, image_processor = None, tokenizer = None, chat_template = None, image_token = 'REDACTED', audio_token = 'REDACTED', image_bos_token = 'REDACTED', audio_bos_token = 'REDACTED', num_dmel_bins = 16, dmel_min_value = -7.0, dmel_max_value = 2.0, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/inkling/processing_inkling.py#L34)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/inkling/processing_inkling.py#L34)
 
 **Parameters:**
 
@@ -885,8 +1126,8 @@ dmel_max_value (`float`, *optional*, defaults to 2.0) : Upper clamp bound, in lo
 
 Constructs a InklingProcessor which wraps a feature extractor, a image processor, and a tokenizer into a single processor.
 
-[InklingProcessor](/docs/transformers/v5.15.1/en/model_doc/inkling#transformers.InklingProcessor) offers all the functionalities of `feature_extractor_class`, `image_processor_class`, and `tokenizer_class`. See the
+[InklingProcessor](/docs/transformers/v5.17.0/en/model_doc/inkling#transformers.InklingProcessor) offers all the functionalities of `feature_extractor_class`, `image_processor_class`, and `tokenizer_class`. See the
 `~feature_extractor_class`, `~image_processor_class`, and `~tokenizer_class` for more information.
 
 ### SLANet
-https://huggingface.co/docs/transformers/v5.15.1/model_doc/slanet.md
+https://huggingface.co/docs/transformers/v5.17.0/model_doc/slanet.md

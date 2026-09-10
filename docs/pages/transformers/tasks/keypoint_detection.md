@@ -7,7 +7,7 @@ Keypoint detection identifies and locates specific points of interest within an 
 
 In this guide, we will show how to extract keypoints from images.
 
-For this tutorial, we will use [SuperPoint](./model_doc/superpoint), a foundation model for keypoint detection.
+For this tutorial, we will use [SuperPoint](../model_doc/superpoint), a foundation model for keypoint detection.
 
 ```python
 from transformers import AutoImageProcessor, SuperPointForKeypointDetection
@@ -129,4 +129,4 @@ Below you can see the outputs.
          style="height: 200px; object-fit: contain;">
 
 ### Training Vision Models using Backbone API
-https://huggingface.co/docs/transformers/v5.15.1/tasks/training_vision_backbone.md
+https://huggingface.co/docs/transformers/v5.17.0/tasks/training_vision_backbone.md

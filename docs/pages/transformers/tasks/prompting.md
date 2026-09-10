@@ -8,7 +8,7 @@ Try prompting a LLM to classify some text. When you create a prompt, it's import
 from transformers import pipeline
 import torch
 
-pipeline = pipeline(task="text-generation", model="mistralai/Mistal-7B-Instruct-v0.1", dtype=torch.bfloat16, device_map="auto")
+pipeline = pipeline(task="text-generation", model="mistralai/Mistral-7B-Instruct-v0.1", dtype=torch.bfloat16, device_map="auto")
 prompt = """Classify the text into neutral, negative or positive.
 Text: This movie is definitely one of my favorite movies of its kind. The interaction between respectable and morally strong characters is an ode to chivalry and the honor code amongst thieves and policemen.
 Sentiment:
@@ -34,7 +34,7 @@ This guide covers prompt engineering best practices, techniques, and examples fo
     Base models are excellent at completing text given an initial prompt, but they're not as good at following instructions. Instruction-tuned models are specifically trained versions of the base models on instructional or conversational data. This makes instruction-tuned models a better fit for prompting.
 
     > [!WARNING]
-    > Modern LLMs are typically decoder-only models, but there are some encoder-decoder LLMs like [Flan-T5](../model_doc/flan-t5) or [BART](../model_doc/bart) that may be used for prompting. Load these models directly with the [AutoModelForSeq2SeqLM](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModelForSeq2SeqLM) class (instead of using [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline)) and generate outputs from the model itself.
+    > Modern LLMs are typically decoder-only models, but there are some encoder-decoder LLMs like [Flan-T5](../model_doc/flan-t5) or [BART](../model_doc/bart) that may be used for prompting. Load these models directly with the [AutoModelForSeq2SeqLM](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModelForSeq2SeqLM) class (instead of using [Pipeline](/docs/transformers/v5.17.0/en/main_classes/pipelines#transformers.Pipeline)) and generate outputs from the model itself.
 
 2. Start with a short and simple prompt, and iterate on it to get better results.
 
@@ -233,4 +233,4 @@ Result: A blender or food processor is the modern tool
 ```
 
 ### Image captioning
-https://huggingface.co/docs/transformers/v5.15.1/tasks/image_captioning.md
+https://huggingface.co/docs/transformers/v5.17.0/tasks/image_captioning.md

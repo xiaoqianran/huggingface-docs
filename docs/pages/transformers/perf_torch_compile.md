@@ -1,4 +1,4 @@
-# torch.compile
+# torch.compile for inference
 
 [torch.compile](https://pytorch.org/tutorials/intermediate/torch_compile_tutorial.html) compiles PyTorch code into optimized kernels that significantly speed up inference. This feature relies on [TorchDynamo](https://pytorch.org/docs/stable/torch.compiler_dynamo_overview.html) to compile the code into graphs and [TorchInductor](https://dev-discuss.pytorch.org/t/torchinductor-a-pytorch-native-compiler-with-define-by-run-ir-and-symbolic-shapes/747) to further compile the graphs into optimized kernels. It is a powerful optimization tool, and in many cases, only requires adding a single line of code.
 
@@ -60,4 +60,4 @@ Select **Subset** in the table below to switch between different GPUs, as well a
 - See the [torch.compile for training](./torch_compile) guide to learn how to use torch.compile for training.
 
 ### Web server inference
-https://huggingface.co/docs/transformers/v5.15.1/pipeline_webserver.md
+https://huggingface.co/docs/transformers/v5.17.0/pipeline_webserver.md

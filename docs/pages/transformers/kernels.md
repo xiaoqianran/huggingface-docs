@@ -1,17 +1,17 @@
-# Kernels
+# Kernels for training
 
 Custom kernels target specific ops like matrix multiplications, attention, and normalization to run them faster. Fusing multiple ops into a single kernel reduces memory bandwidth usage by reading and writing GPU memory fewer times, and cuts per-op launch overhead.
 
 ## Hub kernels
 
-The [Hub](https://huggingface.co/kernels-community) hosts community kernels you can load with [KernelConfig](/docs/transformers/v5.15.1/en/main_classes/kernels#transformers.KernelConfig). Pass the config to `kernel_config` in [from_pretrained()](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel.from_pretrained). Once the kernel is loaded, it's active for training. Read the [Loading kernels](./kernel_doc/loading_kernels#kernelconfig) guide for all available options.
+The [Hub](https://huggingface.co/kernels-community) hosts community kernels you can load with [KernelConfig](/docs/transformers/v5.17.0/en/main_classes/kernels#transformers.KernelConfig). Pass the config to `kernel_config` in [from_pretrained()](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModel.from_pretrained). Once the kernel is loaded, it's active for training. Read the [Loading kernels](./kernel_doc/loading_kernels#kernelconfig) guide for all available options.
 
 ```py
 from transformers import AutoModelForCausalLM, KernelConfig
 
 kernel_config = KernelConfig(
     kernel_mapping={
-        "RMSNorm": "kernels-community/rmsnorm",
+        "RMSNorm": "kernels-community/liger-kernels:LigerRMSNorm",
     }
 )
 model = AutoModelForCausalLM.from_pretrained(
@@ -29,7 +29,7 @@ model = AutoModelForCausalLM.from_pretrained(
 pip install liger-kernel
 ```
 
-Set `use_liger_kernel=True` in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) to patch the corresponding model layers with Liger's kernels.
+Set `use_liger_kernel=True` in [TrainingArguments](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments) to patch the corresponding model layers with Liger's kernels.
 
 > [!TIP]
 > See the [patching](https://github.com/linkedin/Liger-Kernel#patching) page for a complete list of supported models.
@@ -66,4 +66,4 @@ training_args = TrainingArguments(
 - See the [torch.compile](./torch_compile) guide to learn how to compile the forward and backward pass for your entire training step.
 
 ### Installation
-https://huggingface.co/docs/transformers/v5.15.1/installation.md
+https://huggingface.co/docs/transformers/v5.17.0/installation.md

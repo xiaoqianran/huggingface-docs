@@ -6,29 +6,11 @@ Functions for launching training on distributed processes.
 
 #### accelerate.notebook_launcher[[accelerate.notebook_launcher]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/launchers.py#L43)
-
-Launches a training function, using several processes or multiple nodes if it's possible in the current environment
-(TPU with multiple cores for instance).
-
-To use this function absolutely zero calls to a device must be made in the notebook session before calling. If any
-have been made, you will need to restart the notebook and make sure no cells use any device capability.
-
-Setting `ACCELERATE_DEBUG_MODE="1"` in your environment will run a test before truly launching to ensure that none
-of those calls have been made.
-
-Example:
-
 ```python
-# Assume this is defined in a Jupyter Notebook on an instance with two devices
-from accelerate import notebook_launcher
-
-def train(*args):
-    # Your training function here
-    ...
-
-notebook_launcher(train, args=(arg1, arg2), num_processes=2, mixed_precision="fp16")
+accelerate.notebook_launcher(function, args = (), num_processes = None, mixed_precision = 'no', use_port = '29500', master_addr = '127.0.0.1', node_rank = 0, num_nodes = 1, rdzv_backend = 'static', rdzv_endpoint = '', rdzv_conf = None, rdzv_id = 'none', max_restarts = 0, monitor_interval = 0.1, log_line_prefix_template = None)
 ```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/launchers.py#L43)
 
 **Parameters:**
 
@@ -62,16 +44,37 @@ monitor_interval (`float`, *optional*, defaults to 0.1) : The interval in second
 
 log_line_prefix_template (`str`, *optional*, defaults to `None`) : The prefix template for elastic launch logging. Available from PyTorch 2.2.0.
 
+Launches a training function, using several processes or multiple nodes if it's possible in the current environment
+(TPU with multiple cores for instance).
+
+To use this function absolutely zero calls to a device must be made in the notebook session before calling. If any
+have been made, you will need to restart the notebook and make sure no cells use any device capability.
+
+Setting `ACCELERATE_DEBUG_MODE="1"` in your environment will run a test before truly launching to ensure that none
+of those calls have been made.
+
+Example:
+
+```python
+# Assume this is defined in a Jupyter Notebook on an instance with two devices
+from accelerate import notebook_launcher
+
+def train(*args):
+    # Your training function here
+    ...
+
+notebook_launcher(train, args=(arg1, arg2), num_processes=2, mixed_precision="fp16")
+```
+
 ## debug_launcher[[accelerate.debug_launcher]]
 
 #### accelerate.debug_launcher[[accelerate.debug_launcher]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/launchers.py#L287)
+```python
+accelerate.debug_launcher(function, args = (), num_processes = 2)
+```
 
-Launches a training function using several processes on CPU for debugging purposes.
-
-This function is provided for internal testing and debugging, but it's not intended for real trainings. It will
-only use the CPU.
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/launchers.py#L287)
 
 **Parameters:**
 
@@ -81,5 +84,10 @@ args (`Tuple`) : Tuple of arguments to pass to the function (it will receive `*a
 
 num_processes (`int`, *optional*, defaults to 2) : The number of processes to use for training.
 
-### Logging[[accelerate.logging.get_logger]]
-https://huggingface.co/docs/accelerate/v1.14.0/package_reference/logging.md
+Launches a training function using several processes on CPU for debugging purposes.
+
+This function is provided for internal testing and debugging, but it's not intended for real trainings. It will
+only use the CPU.
+
+### The Command Line
+https://huggingface.co/docs/accelerate/v1.15.0/package_reference/cli.md

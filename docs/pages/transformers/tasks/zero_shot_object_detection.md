@@ -24,7 +24,7 @@ pip install -q transformers
 
 ## Zero-shot object detection pipeline
 
-The simplest way to try out inference with models is to use it in a [pipeline()](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.pipeline). Instantiate a pipeline
+The simplest way to try out inference with models is to use it in a [pipeline()](/docs/transformers/v5.17.0/en/main_classes/pipelines#transformers.pipeline). Instantiate a pipeline
 for zero-shot object detection from a [checkpoint on the Hugging Face Hub](https://huggingface.co/models?pipeline_tag=zero-shot-object-detection):
 
 ```python
@@ -106,7 +106,7 @@ Let's visualize the predictions:
 
 Now that you've seen how to use the zero-shot object detection pipeline, let's replicate the same result manually.
 
-Start by loading the model and associated processor from a [checkpoint on the Hugging Face Hub](hf.co/iSEE-Laboratory/llmdet_large).
+Start by loading the model and associated processor from a [checkpoint on the Hugging Face Hub](https://huggingface.co/iSEE-Laboratory/llmdet_large).
 Here we'll use the same checkpoint as before:
 
 ```py
@@ -259,7 +259,7 @@ In the preprocessing step, instead of text queries, you now need to use `query_i
 >>> inputs = processor(images=image_target, query_images=query_image, return_tensors="pt")
 ```
 
-For predictions, instead of passing the inputs to the model, pass them to [image_guided_detection()](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTForObjectDetection.image_guided_detection). Draw the predictions
+For predictions, instead of passing the inputs to the model, pass them to [image_guided_detection()](/docs/transformers/v5.17.0/en/model_doc/owlvit#transformers.OwlViTForObjectDetection.image_guided_detection). Draw the predictions
 as before except now there are no labels.
 
 ```py
@@ -281,4 +281,4 @@ as before except now there are no labels.
 ```
 
 ### Object detection
-https://huggingface.co/docs/transformers/v5.15.1/tasks/object_detection.md
+https://huggingface.co/docs/transformers/v5.17.0/tasks/object_detection.md

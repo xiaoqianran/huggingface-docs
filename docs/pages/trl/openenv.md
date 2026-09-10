@@ -9,7 +9,7 @@ This guide covers **how to integrate OpenEnv with TRL**. For more on OpenEnv its
 
 ## When to use environments
 
-[GRPOTrainer](/docs/trl/v1.12.0/en/grpo_trainer#trl.GRPOTrainer) can be used to train agents. For agentic tasks, it supports two modes: **tools**, where the model can call external functions but each call is stateless and independent, and **environments**, which maintain state across turns, enabling genuine multi-turn interaction where the agent's actions shape future observations. Use environments when continuity matters — for example, navigating a game, browsing a web page, or any task where what the agent sees next depends on what it did before.
+[GRPOTrainer](/docs/trl/v1.13.0/en/grpo_trainer#trl.GRPOTrainer) can be used to train agents. For agentic tasks, it supports two modes: **tools**, where the model can call external functions but each call is stateless and independent, and **environments**, which maintain state across turns, enabling genuine multi-turn interaction where the agent's actions shape future observations. Use environments when continuity matters — for example, navigating a game, browsing a web page, or any task where what the agent sees next depends on what it did before.
 
 ## Choosing an environment integration
 
@@ -134,7 +134,7 @@ Below is the reward curve from training:
 
 ## How `environment_factory` works
 
-TRL's [GRPOTrainer](/docs/trl/v1.12.0/en/grpo_trainer#trl.GRPOTrainer) supports interactive environment training through the `environment_factory` argument. When provided, the trainer automatically handles the multi-turn tool-calling loop: it generates completions, parses tool calls, executes them against the environment, and feeds the results back to the model. All without custom rollout code.
+TRL's [GRPOTrainer](/docs/trl/v1.13.0/en/grpo_trainer#trl.GRPOTrainer) supports interactive environment training through the `environment_factory` argument. When provided, the trainer automatically handles the multi-turn tool-calling loop: it generates completions, parses tool calls, executes them against the environment, and feeds the results back to the model. All without custom rollout code.
 
 ### Environment class requirements
 
@@ -565,7 +565,7 @@ app = create_app(
 
 ## `environment_factory` vs `rollout_func`
 
-[GRPOTrainer](/docs/trl/v1.12.0/en/grpo_trainer#trl.GRPOTrainer) supports two approaches for environment-based training:
+[GRPOTrainer](/docs/trl/v1.13.0/en/grpo_trainer#trl.GRPOTrainer) supports two approaches for environment-based training:
 
 - **`environment_factory`** (recommended): You define an environment class with tool methods, and the trainer handles generation, tool-call parsing, and the multi-turn loop automatically. This is the approach used throughout this guide.
 - **`rollout_func`**: You write the entire generation and environment interaction loop yourself. This gives full control over how completions are produced, how tools are executed, and how rewards are computed.
@@ -578,7 +578,7 @@ The integrations above are **white-box**: TRL drives the multi-turn loop itself.
 
 Some agents cannot be driven this way because they own their own loop. A production coding agent harness like [`opencode`](https://opencode.ai) has its own planner, tool set, context management, and stop condition. You want to train that exact agent, not a reimplementation of it.
 
-For this, TRL provides an experimental **black box (loop-owning)** path built on [experimental.async_grpo.AsyncGRPOTrainer](/docs/trl/v1.12.0/en/async_grpo_trainer#trl.experimental.async_grpo.AsyncGRPOTrainer) and a `HarnessRolloutWorker` specific for OpenEnv that drives an [OpenEnv `ResourceSessionFactory`](https://huggingface.co/docs/openenv). See [`examples/async_grpo_opencode/async_grpo_opencode.py`](https://github.com/huggingface/trl/blob/main/examples/async_grpo_opencode/async_grpo_opencode.py) for a complete, self-contained example. To scale rollouts beyond a single node, [`examples/async_grpo_opencode/opencode_hf_sandbox.py`](https://github.com/huggingface/trl/blob/main/examples/async_grpo_opencode/opencode_hf_sandbox.py) runs each rollout in its own remote Hugging Face sandbox instead of a local subprocess.
+For this, TRL provides an experimental **black box (loop-owning)** path built on [experimental.async_grpo.AsyncGRPOTrainer](/docs/trl/v1.13.0/en/async_grpo_trainer#trl.experimental.async_grpo.AsyncGRPOTrainer) and a `HarnessRolloutWorker` specific for OpenEnv that drives an [OpenEnv `ResourceSessionFactory`](https://huggingface.co/docs/openenv). See [`examples/async_grpo_opencode/async_grpo_opencode.py`](https://github.com/huggingface/trl/blob/main/examples/async_grpo_opencode/async_grpo_opencode.py) for a complete, self-contained example. To scale rollouts beyond a single node, [`examples/async_grpo_opencode/opencode_hf_sandbox.py`](https://github.com/huggingface/trl/blob/main/examples/async_grpo_opencode/opencode_hf_sandbox.py) runs each rollout in its own remote Hugging Face sandbox instead of a local subprocess.
 
 ### How it works
 
@@ -592,7 +592,7 @@ Each rollout runs in its own isolated session. In the example that means one san
 
 ### Wiring
 
-You pass a `HarnessRolloutWorker` to [experimental.async_grpo.AsyncGRPOTrainer](/docs/trl/v1.12.0/en/async_grpo_trainer#trl.experimental.async_grpo.AsyncGRPOTrainer) with `harness_adapter=None` to select loop-owning mode. Besides the usual training arguments, you provide three functions (`rollout_reward_fn`, `train_turn_fn`, and `agent_turn_fn`) that tell TRL how to score, filter, and read the agent's rollouts. They are described in [What you need to define](#what-you-need-to-define).
+You pass a `HarnessRolloutWorker` to [experimental.async_grpo.AsyncGRPOTrainer](/docs/trl/v1.13.0/en/async_grpo_trainer#trl.experimental.async_grpo.AsyncGRPOTrainer) with `harness_adapter=None` to select loop-owning mode. Besides the usual training arguments, you provide three functions (`rollout_reward_fn`, `train_turn_fn`, and `agent_turn_fn`) that tell TRL how to score, filter, and read the agent's rollouts. They are described in [What you need to define](#what-you-need-to-define).
 
 ```python
 from trl.experimental.async_grpo import AsyncGRPOConfig, AsyncGRPOTrainer
@@ -682,4 +682,4 @@ vllm serve <model> \
 > Loop-owning training lives under `trl.experimental` and its API may change. The example installs the `opencode` CLI into a sandbox template on first run (needs internet once) and uses [`agentica-org/DeepCoder-Preview-Dataset`](https://huggingface.co/datasets/agentica-org/DeepCoder-Preview-Dataset) with a held-out stdin/stdout verifier.
 
 ### CPO Trainer
-https://huggingface.co/docs/trl/v1.12.0/cpo_trainer.md
+https://huggingface.co/docs/trl/v1.13.0/cpo_trainer.md

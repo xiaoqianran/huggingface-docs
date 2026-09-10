@@ -163,5 +163,5 @@ Below contains a non-exhaustive list of papers utilizing Accelerate.
 * Jun Hao Liew, Hanshu Yan, Daquan Zhou, Jiashi Feng: “MagicMix: Semantic Mixing with Diffusion Models”, 2022; [arXiv:2210.16056](http://huggingface.co/papers/2210.16056).
 * Yaqing Wang, Subhabrata Mukherjee, Xiaodong Liu, Jing Gao, Ahmed Hassan Awadallah, Jianfeng Gao: “LiST: Lite Prompted Self-training Makes Parameter-Efficient Few-shot Learners”, 2021; [arXiv:2110.06274](http://huggingface.co/papers/2110.06274).
 
-### Performing gradient accumulation with Accelerate
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/gradient_accumulation.md
+### DDP Communication Hooks
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/ddp_comm_hook.md

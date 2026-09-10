@@ -84,7 +84,7 @@ The cost is right there in the diagram: every sandbox pays a full ~6s VM cold st
 
 ## Pools: many sandboxes in one Job (`SandboxPool`)
 
-A typical RL rollout or tool-execution sandbox needs a few MB of RAM and one core for a few seconds. Paying a 2-vCPU VM and a 6s cold start each — and triggering a 1000-VM scheduling burst — is the wrong trade. So [SandboxPool](/docs/huggingface_hub/v1.30.0/en/package_reference/sandbox#huggingface_hub.SandboxPool) runs one Job as a host and multiplexes many sandboxes inside it.
+A typical RL rollout or tool-execution sandbox needs a few MB of RAM and one core for a few seconds. Paying a 2-vCPU VM and a 6s cold start each — and triggering a 1000-VM scheduling burst — is the wrong trade. So [SandboxPool](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/sandbox#huggingface_hub.SandboxPool) runs one Job as a host and multiplexes many sandboxes inside it.
 
 A pooled sandbox is not a nested VM or container. It is the classic Unix multi-user primitive:
 
@@ -136,7 +136,7 @@ Combining distinct uids (discretionary access control) with Landlock is designed
 > **Why this is not a substitute for a VM.** Landlock and uid isolation are intended for workloads within the same
 > trust boundary. Because pooled sandboxes share a kernel and VM, protection from every cross-sandbox attack is not
 > guaranteed; resources and some process-list metadata also remain shared. For mutually untrusted code, or for GPU,
-> use [Sandbox.create()](/docs/huggingface_hub/v1.30.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create), which gives each sandbox its own VM.
+> use [Sandbox.create()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/sandbox#huggingface_hub.Sandbox.create), which gives each sandbox its own VM.
 
 ### The file model in a pool
 
@@ -211,4 +211,4 @@ All numbers are measured against real HF Jobs on `cpu-basic`, with the client on
 | Pools = uid + Landlock, server-authoritative capacity, no local state | fast same-user fan-out; correct under concurrency; reattachable anywhere        |
 
 ### Git vs HTTP paradigm
-https://huggingface.co/docs/huggingface_hub/v1.30.0/concepts/git_vs_http.md
+https://huggingface.co/docs/huggingface_hub/v1.31.0.rc0/concepts/git_vs_http.md

@@ -41,7 +41,7 @@ We also have a [configuration zoo](https://github.com/huggingface/accelerate/blo
 
 ## Adapt training code
 
-The next main feature of Accelerate is the [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) class which adapts your PyTorch code to run on different distributed setups.
+The next main feature of Accelerate is the [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) class which adapts your PyTorch code to run on different distributed setups.
 
 You only need to add a few lines of code to your training script to enable it to run on multiple GPUs or TPUs.
 
@@ -66,7 +66,7 @@ You only need to add a few lines of code to your training script to enable it to
       scheduler.step()
 ```
 
-1. Import and instantiate the [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) class at the beginning of your training script. The [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) class initializes everything necessary for distributed training, and it automatically detects your training environment (a single machine with a GPU, a machine with several GPUs, several machines with multiple GPUs or a TPU, etc.) based on how the code was launched.
+1. Import and instantiate the [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) class at the beginning of your training script. The [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) class initializes everything necessary for distributed training, and it automatically detects your training environment (a single machine with a GPU, a machine with several GPUs, several machines with multiple GPUs or a TPU, etc.) based on how the code was launched.
 
 ```python
 from accelerate import Accelerator
@@ -74,19 +74,19 @@ from accelerate import Accelerator
 accelerator = Accelerator()
 ```
 
-2. Remove calls like `.cuda()` on your model and input data. The [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) class automatically places these objects on the appropriate device for you.
+2. Remove calls like `.cuda()` on your model and input data. The [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) class automatically places these objects on the appropriate device for you.
 
 > [!WARNING]
-> This step is *optional* but it is considered best practice to allow Accelerate to handle device placement. You could also deactivate automatic device placement by passing `device_placement=False` when initializing the [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator). If you want to explicitly place objects on a device with `.to(device)`, make sure you use `accelerator.device` instead. For example, if you create an optimizer before placing a model on `accelerator.device`, training fails on a TPU.
+> This step is *optional* but it is considered best practice to allow Accelerate to handle device placement. You could also deactivate automatic device placement by passing `device_placement=False` when initializing the [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator). If you want to explicitly place objects on a device with `.to(device)`, make sure you use `accelerator.device` instead. For example, if you create an optimizer before placing a model on `accelerator.device`, training fails on a TPU.
 
 > [!WARNING]
-> Accelerate does not use non-blocking transfers by default for its automatic device placement, which can result in potentially unwanted CUDA synchronizations.  You can enable non-blocking transfers by passing a [DataLoaderConfiguration](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.DataLoaderConfiguration) with `non_blocking=True` set as the `dataloader_config` when initializing the [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator).  As usual, non-blocking transfers will only work if the dataloader also has `pin_memory=True` set.  Be wary that using non-blocking transfers from GPU to CPU may cause incorrect results if it results in CPU operations being performed on non-ready tensors.
+> Accelerate does not use non-blocking transfers by default for its automatic device placement, which can result in potentially unwanted CUDA synchronizations.  You can enable non-blocking transfers by passing a [DataLoaderConfiguration](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.DataLoaderConfiguration) with `non_blocking=True` set as the `dataloader_config` when initializing the [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator).  As usual, non-blocking transfers will only work if the dataloader also has `pin_memory=True` set.  Be wary that using non-blocking transfers from GPU to CPU may cause incorrect results if it results in CPU operations being performed on non-ready tensors.
 
 ```py
 device = accelerator.device
 ```
 
-3. Pass all relevant PyTorch objects for training (optimizer, model, dataloader(s), learning rate scheduler) to the [prepare()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) method as soon as they're created. This method wraps the model in a container optimized for your distributed setup, uses Accelerates version of the optimizer and scheduler, and creates a sharded version of your dataloader for distribution across GPUs or TPUs.
+3. Pass all relevant PyTorch objects for training (optimizer, model, dataloader(s), learning rate scheduler) to the [prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) method as soon as they're created. This method wraps the model in a container optimized for your distributed setup, uses Accelerates version of the optimizer and scheduler, and creates a sharded version of your dataloader for distribution across GPUs or TPUs.
 
 ```python
 model, optimizer, train_dataloader, lr_scheduler = accelerator.prepare(
@@ -94,7 +94,7 @@ model, optimizer, train_dataloader, lr_scheduler = accelerator.prepare(
 )
 ```
 
-4. Replace `loss.backward()` with [backward()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.backward) to use the correct `backward()` method for your training setup.
+4. Replace `loss.backward()` with [backward()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.backward) to use the correct `backward()` method for your training setup.
 
 ```py
 accelerator.backward(loss)
@@ -104,13 +104,13 @@ Read [Accelerate’s internal mechanisms](concept_guides/internal_mechanism) gui
 
 ### Distributed evaluation
 
-To perform distributed evaluation, pass your validation dataloader to the [prepare()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) method:
+To perform distributed evaluation, pass your validation dataloader to the [prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) method:
 
 ```python
 validation_dataloader = accelerator.prepare(validation_dataloader)
 ```
 
-Each device in your distributed setup only receives a part of the evaluation data, which means you should group your predictions together with the [gather_for_metrics()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.gather_for_metrics) method. This method requires all tensors to be the same size on each process, so if your tensors have different sizes on each process (for instance when dynamically padding to the maximum length in a batch), you should use the [pad_across_processes()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.pad_across_processes) method to pad you tensor to the largest size across processes. Note that the tensors needs to be 1D and that we concatenate the tensors along the first dimension. 
+Each device in your distributed setup only receives a part of the evaluation data, which means you should group your predictions together with the [gather_for_metrics()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.gather_for_metrics) method. This method requires all tensors to be the same size on each process, so if your tensors have different sizes on each process (for instance when dynamically padding to the maximum length in a batch), you should use the [pad_across_processes()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.pad_across_processes) method to pad you tensor to the largest size across processes. Note that the tensors needs to be 1D and that we concatenate the tensors along the first dimension. 
 
 ```python
 for inputs, targets in validation_dataloader:
@@ -124,18 +124,18 @@ for inputs, targets in validation_dataloader:
 For more complex cases (e.g. 2D tensors, don't want to concatenate tensors, dict of 3D tensors), you can pass `use_gather_object=True` in `gather_for_metrics`. This will return the list of objects after gathering. Note that using it with GPU tensors is not well supported and inefficient.
 
 > [!TIP]
-> Data at the end of a dataset may be duplicated so the batch can be equally divided among all workers. The [gather_for_metrics()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.gather_for_metrics) method automatically removes the duplicated data to calculate a more accurate metric.
+> Data at the end of a dataset may be duplicated so the batch can be equally divided among all workers. The [gather_for_metrics()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.gather_for_metrics) method automatically removes the duplicated data to calculate a more accurate metric.
 
 ## Big Model Inference
 
-Accelerate's Big Model Inference has two main features, [init_empty_weights()](/docs/accelerate/v1.14.0/en/package_reference/big_modeling#accelerate.init_empty_weights) and [load_checkpoint_and_dispatch()](/docs/accelerate/v1.14.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch), to load large models for inference that typically don't fit into memory.
+Accelerate's Big Model Inference has two main features, [init_empty_weights()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.init_empty_weights) and [load_checkpoint_and_dispatch()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch), to load large models for inference that typically don't fit into memory.
 
 > [!TIP]
 > Take a look at the [Handling big models for inference](concept_guides/big_model_inference) guide for a better understanding of how Big Model Inference works under the hood.
 
 ### Empty weights initialization
 
-The [init_empty_weights()](/docs/accelerate/v1.14.0/en/package_reference/big_modeling#accelerate.init_empty_weights) context manager initializes models of any size by creating a *model skeleton* and moving and placing parameters each time they're created to PyTorch's [**meta**](https://pytorch.org/docs/main/meta.html) device. This way, not all weights are immediately loaded and only a small part of the model is loaded into memory at a time.
+The [init_empty_weights()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.init_empty_weights) context manager initializes models of any size by creating a *model skeleton* and moving and placing parameters each time they're created to PyTorch's [**meta**](https://pytorch.org/docs/main/meta.html) device. This way, not all weights are immediately loaded and only a small part of the model is loaded into memory at a time.
 
 For example, loading an empty [Mixtral-8x7B](https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1) model takes significantly less memory than fully loading the models and weights on the CPU.
 
@@ -150,7 +150,7 @@ with init_empty_weights():
 
 ### Load and dispatch weights
 
-The [load_checkpoint_and_dispatch()](/docs/accelerate/v1.14.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch) function loads full or sharded checkpoints into the empty model, and automatically distribute weights across all available devices.
+The [load_checkpoint_and_dispatch()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch) function loads full or sharded checkpoints into the empty model, and automatically distribute weights across all available devices.
 
 The `device_map` parameter determines where to place each model layer, and specifying `"auto"` places them on the GPU first, then the CPU, and finally the hard drive as memory-mapped tensors if there's still not enough memory. Use the `no_split_module_classes` parameter to indicate which modules shouldn't be split across devices (typically those with a residual connection).
 
@@ -172,5 +172,61 @@ Now that you've been introduced to the main Accelerate features, your next steps
 * Deepen your conceptual understanding of how Accelerate works internally by reading the [concept guides](concept_guides/internal_mechanism).
 * Look up classes and commands in the [API reference](package_reference/accelerator) to see what parameters and options are available.
 
-### FP8
-https://huggingface.co/docs/accelerate/v1.14.0/package_reference/fp8.md
+### Accelerate
+https://huggingface.co/docs/accelerate/v1.15.0/index.md
+
+# Accelerate
+
+Accelerate is a library that enables the same PyTorch code to be run across any distributed configuration by adding just four lines of code! In short, training and inference at scale made simple, efficient and adaptable.
+
+```diff
++ from accelerate import Accelerator
++ accelerator = Accelerator()
+
++ model, optimizer, training_dataloader, scheduler = accelerator.prepare(
++     model, optimizer, training_dataloader, scheduler
++ )
+
+  for batch in training_dataloader:
+      optimizer.zero_grad()
+      inputs, targets = batch
+      inputs = inputs.to(device)
+      targets = targets.to(device)
+      outputs = model(inputs)
+      loss = loss_function(outputs, targets)
++     accelerator.backward(loss)
+      optimizer.step()
+      scheduler.step()
+```
+
+Built on `torch_xla` and `torch.distributed`, Accelerate takes care of the heavy lifting, so you don't have to write any custom code to adapt to these platforms.
+Convert existing codebases to utilize [DeepSpeed](usage_guides/deepspeed), perform [fully sharded data parallelism](usage_guides/fsdp), and have automatic support for mixed-precision training! 
+
+ 
+
+  To get a better idea of this process, make sure to check out the [Tutorials](basic_tutorials/overview)! 
+
+This code can then be launched on any system through Accelerate's CLI interface:
+```bash
+accelerate launch {my_script.py}
+```
+
+  
+    <a class="!no-underline border dark:border-gray-700 p-5 rounded-lg shadow hover:shadow-lg" href="./basic_tutorials/overview"
+      >Tutorials
+      Learn the basics and become familiar with using Accelerate. Start here if you are using Accelerate for the first time!
+    
+    <a class="!no-underline border dark:border-gray-700 p-5 rounded-lg shadow hover:shadow-lg" href="./usage_guides/explore"
+      >How-to guides
+      Practical guides to help you achieve a specific goal. Take a look at these guides to learn how to use Accelerate to solve real-world problems.
+    
+    <a class="!no-underline border dark:border-gray-700 p-5 rounded-lg shadow hover:shadow-lg" href="./concept_guides/gradient_synchronization"
+      >Conceptual guides
+      High-level explanations for building a better understanding of important topics such as avoiding subtle nuances and pitfalls in distributed training and DeepSpeed.
+   
+    <a class="!no-underline border dark:border-gray-700 p-5 rounded-lg shadow hover:shadow-lg" href="./package_reference/accelerator"
+      >Reference
+      Technical descriptions of how Accelerate classes and methods work.
+
+### Fully Sharded Data Parallel utilities
+https://huggingface.co/docs/accelerate/v1.15.0/package_reference/fsdp.md

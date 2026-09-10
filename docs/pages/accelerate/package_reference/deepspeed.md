@@ -6,18 +6,25 @@
 
 #### accelerate.utils.get_active_deepspeed_plugin[[accelerate.utils.get_active_deepspeed_plugin]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/utils/deepspeed.py#L100)
+```python
+accelerate.utils.get_active_deepspeed_plugin(state)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L100)
+
+**Raises:** ``ValueError``
+
+- ``ValueError`` -- If DeepSpeed was not enabled and this function is called.
 
 Returns the currently active DeepSpeedPlugin.
 
 #### accelerate.DeepSpeedPlugin[[accelerate.DeepSpeedPlugin]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/utils/dataclasses.py#L1120)
+```python
+accelerate.DeepSpeedPlugin(hf_ds_config: typing.Any = None, gradient_accumulation_steps: int = None, gradient_clipping: float = None, zero_stage: int = None, is_train_batch_min: bool = True, offload_optimizer_device: str = None, offload_param_device: str = None, offload_optimizer_nvme_path: str = None, offload_param_nvme_path: str = None, zero3_init_flag: bool = None, zero3_save_16bit_model: bool = None, transformer_moe_cls_names: str = None, enable_msamp: bool = None, msamp_opt_level: typing.Optional[typing.Literal['O1', 'O2']] = None)
+```
 
-This plugin is used to integrate DeepSpeed.
-
-deepspeed_config_processaccelerate.DeepSpeedPlugin.deepspeed_config_processhttps://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/utils/dataclasses.py#L1390[{"name": "prefix", "val": " = ''"}, {"name": "mismatches", "val": " = None"}, {"name": "config", "val": " = None"}, {"name": "must_match", "val": " = True"}, {"name": "**kwargs", "val": ""}]
-Process the DeepSpeed config with the values from the kwargs.
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L1122)
 
 **Parameters:**
 
@@ -47,19 +54,37 @@ transformer_moe_cls_names (`str`, defaults to `None`) : Comma-separated list of 
 
 enable_msamp (`bool`, defaults to `None`) : Flag to indicate whether to enable MS-AMP backend for FP8 training.
 
-msasmp_opt_level (`Optional[Literal["O1", "O2"]]`, defaults to `None`) : Optimization level for MS-AMP (defaults to 'O1'). Only applicable if `enable_msamp` is True. Should be one of ['O1' or 'O2'].
+msamp_opt_level (`Optional[Literal["O1", "O2"]]`, defaults to `None`) : Optimization level for MS-AMP (defaults to 'O1'). Only applicable if `enable_msamp` is True. Should be one of ['O1' or 'O2'].
+
+This plugin is used to integrate DeepSpeed.
+
+#### deepspeed_config_process[[accelerate.DeepSpeedPlugin.deepspeed_config_process]]
+
+```python
+deepspeed_config_process(prefix = '', mismatches = None, config = None, must_match = True, **kwargs)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L1392)
+
+Process the DeepSpeed config with the values from the kwargs.
+
 #### select[[accelerate.DeepSpeedPlugin.select]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/utils/dataclasses.py#L1552)
+```python
+select(_from_accelerator_state: bool = False)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L1554)
 
 Sets the HfDeepSpeedWeakref to use the current deepspeed plugin configuration
 
 #### accelerate.utils.DummyScheduler[[accelerate.utils.DummyScheduler]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/utils/deepspeed.py#L362)
+```python
+accelerate.utils.DummyScheduler(optimizer, total_num_steps = None, warmup_num_steps = 0, lr_scheduler_callable = None, **kwargs)
+```
 
-Dummy scheduler presents model parameters or param groups, this is primarily used to follow conventional training
-loop when scheduler config is specified in the deepspeed config file.
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L362)
 
 **Parameters:**
 
@@ -73,40 +98,60 @@ lr_scheduler_callable (callable, *optional*) : A callable function that creates 
 
 - ****kwargs** (additional keyword arguments, *optional*) : Other arguments.
 
+Dummy scheduler presents model parameters or param groups, this is primarily used to follow conventional training
+loop when scheduler config is specified in the deepspeed config file.
+
 ## DeepSpeedEnginerWrapper[[accelerate.utils.DeepSpeedEngineWrapper]]
 
 #### accelerate.utils.DeepSpeedEngineWrapper[[accelerate.utils.DeepSpeedEngineWrapper]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/utils/deepspeed.py#L253)
+```python
+accelerate.utils.DeepSpeedEngineWrapper(engine)
+```
 
-Internal wrapper for deepspeed.runtime.engine.DeepSpeedEngine. This is used to follow conventional training loop.
-
-get_global_grad_normaccelerate.utils.DeepSpeedEngineWrapper.get_global_grad_normhttps://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/utils/deepspeed.py#L286[]
-Get the global gradient norm from DeepSpeed engine.
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L253)
 
 **Parameters:**
 
 engine (deepspeed.runtime.engine.DeepSpeedEngine) : deepspeed engine to wrap
 
+Internal wrapper for deepspeed.runtime.engine.DeepSpeedEngine. This is used to follow conventional training loop.
+
+#### get_global_grad_norm[[accelerate.utils.DeepSpeedEngineWrapper.get_global_grad_norm]]
+
+```python
+get_global_grad_norm()
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L286)
+
+Get the global gradient norm from DeepSpeed engine.
+
 ## DeepSpeedOptimizerWrapper[[accelerate.utils.DeepSpeedOptimizerWrapper]]
 
 #### accelerate.utils.DeepSpeedOptimizerWrapper[[accelerate.utils.DeepSpeedOptimizerWrapper]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/utils/deepspeed.py#L295)
+```python
+accelerate.utils.DeepSpeedOptimizerWrapper(optimizer)
+```
 
-Internal wrapper around a deepspeed optimizer.
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L295)
 
 **Parameters:**
 
 optimizer (`torch.optim.optimizer.Optimizer`) : The optimizer to wrap.
 
+Internal wrapper around a deepspeed optimizer.
+
 ## DeepSpeedSchedulerWrapper[[accelerate.utils.DeepSpeedSchedulerWrapper]]
 
 #### accelerate.utils.DeepSpeedSchedulerWrapper[[accelerate.utils.DeepSpeedSchedulerWrapper]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/utils/deepspeed.py#L322)
+```python
+accelerate.utils.DeepSpeedSchedulerWrapper(scheduler, optimizers)
+```
 
-Internal wrapper around a deepspeed scheduler.
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L322)
 
 **Parameters:**
 
@@ -114,14 +159,17 @@ scheduler (`torch.optim.lr_scheduler.LambdaLR`) : The scheduler to wrap.
 
 optimizers (one or a list of `torch.optim.Optimizer`) --
 
+Internal wrapper around a deepspeed scheduler.
+
 ## DummyOptim[[accelerate.utils.DummyOptim]]
 
 #### accelerate.utils.DummyOptim[[accelerate.utils.DummyOptim]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/utils/deepspeed.py#L339)
+```python
+accelerate.utils.DummyOptim(params, lr = 0.001, weight_decay = 0, **kwargs)
+```
 
-Dummy optimizer presents model parameters or param groups, this is primarily used to follow conventional training
-loop when optimizer config is specified in the deepspeed config file.
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L339)
 
 **Parameters:**
 
@@ -133,7 +181,10 @@ weight_decay (float) : Weight decay.
 
 - ****kwargs** (additional keyword arguments, *optional*) : Other arguments.
 
+Dummy optimizer presents model parameters or param groups, this is primarily used to follow conventional training
+loop when optimizer config is specified in the deepspeed config file.
+
 ## DummyScheduler
 
-### The Command Line
-https://huggingface.co/docs/accelerate/v1.14.0/package_reference/cli.md
+### Utility functions and classes
+https://huggingface.co/docs/accelerate/v1.15.0/package_reference/utilities.md

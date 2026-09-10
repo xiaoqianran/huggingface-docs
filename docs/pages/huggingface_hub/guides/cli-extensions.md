@@ -35,6 +35,10 @@ falls back to installing the repo as a Python package.
 A shell script extension is the simplest type. You only need a GitHub repository with an executable file
 named `hf-<name>` at the root.
 
+> [!WARNING]
+> Shell script extensions are not supported on Windows. If your extension must work on Windows, make it a
+> [Python extension](#create-a-python-extension) instead.
+
 ### Minimal example
 
 Create a repository named `hf-hello` on GitHub with a single file:
@@ -262,4 +266,4 @@ Here are some community extensions you can use as reference:
 | [alvarobartt/hf-mem](https://github.com/alvarobartt/hf-mem) | Python | Estimate inference memory requirements for HF models |
 
 ### Understand caching
-https://huggingface.co/docs/huggingface_hub/v1.30.0/guides/manage-cache.md
+https://huggingface.co/docs/huggingface_hub/v1.31.0.rc0/guides/manage-cache.md

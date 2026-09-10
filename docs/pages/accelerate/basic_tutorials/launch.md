@@ -195,5 +195,5 @@ Once you have done this, you can start your multi-node training run by running `
 
 To get a better idea about multi-node training, check out our example for [multi-node training with FSDP](https://huggingface.co/blog/ram-efficient-pytorch-fsdp).
 
-### Launching distributed training from Jupyter Notebooks
-https://huggingface.co/docs/accelerate/v1.14.0/basic_tutorials/notebook.md
+### Overview
+https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/overview.md

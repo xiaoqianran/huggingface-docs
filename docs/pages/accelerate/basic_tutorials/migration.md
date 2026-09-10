@@ -22,9 +22,9 @@ for batch in training_dataloader:
 
 ## Accelerator
 
-The [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) is the main class for adapting your code to work with Accelerate. It knows about the distributed setup you're using such as the number of different processes and your hardware type. This class also provides access to many of the necessary methods for enabling your PyTorch code to work in any distributed training environment and for managing and executing processes across devices.
+The [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) is the main class for adapting your code to work with Accelerate. It knows about the distributed setup you're using such as the number of different processes and your hardware type. This class also provides access to many of the necessary methods for enabling your PyTorch code to work in any distributed training environment and for managing and executing processes across devices.
 
-That's why you should always start by importing and creating an [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) instance in your script.
+That's why you should always start by importing and creating an [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) instance in your script.
 
 ```python
 from accelerate import Accelerator
@@ -32,7 +32,7 @@ from accelerate import Accelerator
 accelerator = Accelerator()
 ```
 
-The [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) also knows which device to move your PyTorch objects to, so it is recommended to let Accelerate handle this for you.
+The [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) also knows which device to move your PyTorch objects to, so it is recommended to let Accelerate handle this for you.
 
 ```diff
 - device = "cuda"
@@ -42,7 +42,7 @@ The [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#acce
 
 ## Prepare PyTorch objects
 
-Next, you need to prepare your PyTorch objects (model, optimizer, scheduler, etc.) for distributed training. The [prepare()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) method takes care of placing your model in the appropriate container (like single GPU or multi-GPU) for your training setup, adapting the optimizer and scheduler to use Accelerate's [AcceleratedOptimizer](/docs/accelerate/v1.14.0/en/package_reference/torch_wrappers#accelerate.optimizer.AcceleratedOptimizer) and [AcceleratedScheduler](/docs/accelerate/v1.14.0/en/package_reference/torch_wrappers#accelerate.scheduler.AcceleratedScheduler), and creating a new dataloader that can be sharded across processes.
+Next, you need to prepare your PyTorch objects (model, optimizer, scheduler, etc.) for distributed training. The [prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) method takes care of placing your model in the appropriate container (like single GPU or multi-GPU) for your training setup, adapting the optimizer and scheduler to use Accelerate's [AcceleratedOptimizer](/docs/accelerate/v1.15.0/en/package_reference/torch_wrappers#accelerate.optimizer.AcceleratedOptimizer) and [AcceleratedScheduler](/docs/accelerate/v1.15.0/en/package_reference/torch_wrappers#accelerate.scheduler.AcceleratedScheduler), and creating a new dataloader that can be sharded across processes.
 
 > [!TIP]
 > Accelerate only prepares objects that inherit from their respective PyTorch classes such as `torch.optim.Optimizer`.
@@ -57,7 +57,7 @@ model, optimizer, training_dataloader, scheduler = accelerator.prepare(
 
 ## Training loop
 
-Finally, remove the `to(device)` calls to the inputs and targets in the training loop because Accelerate's DataLoader classes automatically places them on the right device. You should also replace the usual `backward()` pass with Accelerate's [backward()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.backward) method which scales the gradients for you and uses the appropriate `backward()` method depending on your distributed setup (for example, DeepSpeed or Megatron).
+Finally, remove the `to(device)` calls to the inputs and targets in the training loop because Accelerate's DataLoader classes automatically places them on the right device. You should also replace the usual `backward()` pass with Accelerate's [backward()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.backward) method which scales the gradients for you and uses the appropriate `backward()` method depending on your distributed setup (for example, DeepSpeed or Megatron).
 
 ```diff
 -   inputs = inputs.to(device)
@@ -95,7 +95,7 @@ Accelerate offers additional features - like gradient accumulation, gradient cli
 
 ### Gradient accumulation
 
-Gradient accumulation enables you to train on larger batch sizes by accumulating the gradients over multiple batches before updating the weights. This can be useful for getting around memory limitations. To enable this feature in Accelerate, specify the `gradient_accumulation_steps` parameter in the [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) class and add the [accumulate()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.accumulate) context manager to your script.
+Gradient accumulation enables you to train on larger batch sizes by accumulating the gradients over multiple batches before updating the weights. This can be useful for getting around memory limitations. To enable this feature in Accelerate, specify the `gradient_accumulation_steps` parameter in the [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) class and add the [accumulate()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.accumulate) context manager to your script.
 
 ```diff
 + accelerator = Accelerator(gradient_accumulation_steps=2)
@@ -115,17 +115,17 @@ Gradient accumulation enables you to train on larger batch sizes by accumulating
 
 Gradient clipping is a technique to prevent "exploding gradients", and Accelerate offers:
 
-* [clip_grad_value_()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.clip_grad_value_) to clip gradients to a minimum and maximum value
-* [clip_grad_norm_()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.clip_grad_norm_) for normalizing gradients to a certain value
+* [clip_grad_value_()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.clip_grad_value_) to clip gradients to a minimum and maximum value
+* [clip_grad_norm_()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.clip_grad_norm_) for normalizing gradients to a certain value
 
 ### Mixed precision
 
 Mixed precision accelerates training by using a lower precision data type like fp16 (half-precision) to calculate the gradients. For the best performance with Accelerate, the loss should be computed inside your model (like in Transformers models) because computations outside of the model are computed in full precision.
 
-Set the mixed precision type to use in the [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator), and then use the [autocast()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.autocast) context manager to automatically cast the values to the specified data type.
+Set the mixed precision type to use in the [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator), and then use the [autocast()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.autocast) context manager to automatically cast the values to the specified data type.
 
 > [!WARNING]
-> Accelerate enables automatic mixed precision, so [autocast()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.autocast) is only needed if there are other mixed precision operations besides those performed on loss by [backward()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.backward) which already handles the scaling.
+> Accelerate enables automatic mixed precision, so [autocast()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.autocast) is only needed if there are other mixed precision operations besides those performed on loss by [backward()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.backward) which already handles the scaling.
 
 ```diff
 + accelerator = Accelerator(mixed_precision="fp16")
@@ -139,16 +139,16 @@ Accelerate can also save and load a *model* once training is complete or you can
 
 ### Model
 
-Once all processes are complete, unwrap the model with the [unwrap_model()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.unwrap_model) method before saving it because the [prepare()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) method wrapped your model into the proper interface for distributed training. If you don't unwrap the model, saving the model state dictionary also saves any potential extra layers from the larger model and you won't be able to load the weights back into your base model.
+Once all processes are complete, unwrap the model with the [unwrap_model()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.unwrap_model) method before saving it because the [prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) method wrapped your model into the proper interface for distributed training. If you don't unwrap the model, saving the model state dictionary also saves any potential extra layers from the larger model and you won't be able to load the weights back into your base model.
 
-You should use the [save_model()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.save_model) method to unwrap and save the model state dictionary. This method can also save a model into sharded checkpoints or into the [safetensors](https://hf.co/docs/safetensors/index) format.
+You should use the [save_model()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.save_model) method to unwrap and save the model state dictionary. This method can also save a model into sharded checkpoints or into the [safetensors](https://hf.co/docs/safetensors/index) format.
 
 ```py
 accelerator.wait_for_everyone()
 accelerator.save_model(model, save_directory)
 ```
 
-For models from the [Transformers](https://hf.co/docs/transformers/index) library, save the model with the [save_pretrained](https://huggingface.co/docs/transformers/v5.11.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) method so that it can be reloaded with the [from_pretrained](https://huggingface.co/docs/transformers/v5.11.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method.
+For models from the [Transformers](https://hf.co/docs/transformers/index) library, save the model with the [save_pretrained](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) method so that it can be reloaded with the [from_pretrained](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method.
 
 ```py
 from transformers import AutoModel
@@ -163,7 +163,7 @@ unwrapped_model.save_pretrained(
 model = AutoModel.from_pretrained("path/to/my_model_directory")
 ```
 
-To load your weights, use the [unwrap_model()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.unwrap_model) method to unwrap the model first before loading the weights. All model parameters are references to tensors, so this loads your weights inside `model`.
+To load your weights, use the [unwrap_model()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.unwrap_model) method to unwrap the model first before loading the weights. All model parameters are references to tensors, so this loads your weights inside `model`.
 
 ```py
 unwrapped_model = accelerator.unwrap_model(model)
@@ -178,7 +178,7 @@ accelerator.wait_for_everyone()
 accelerator.save_model(model, save_directory, max_shard_size="1GB", safe_serialization=True)
 ```
 
-To load a sharded checkpoint or a safetensor formatted checkpoint, use the [load_checkpoint_in_model()](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.load_checkpoint_in_model) method. This method allows you to load a checkpoint onto a specific device.
+To load a sharded checkpoint or a safetensor formatted checkpoint, use the [load_checkpoint_in_model()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.load_checkpoint_in_model) method. This method allows you to load a checkpoint onto a specific device.
 
 ```py
 load_checkpoint_in_model(unwrapped_model, save_directory, device_map={"":device})
@@ -186,14 +186,14 @@ load_checkpoint_in_model(unwrapped_model, save_directory, device_map={"":device}
 
 ### State
 
-During training, you may want to save the current state of the model, optimizer, random generators, and potentially learning rate schedulers so they can be restored in the *same script*. You should add the [save_state()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.save_state) and [load_state()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.load_state) methods to your script to save and load states.
+During training, you may want to save the current state of the model, optimizer, random generators, and potentially learning rate schedulers so they can be restored in the *same script*. You should add the [save_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.save_state) and [load_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.load_state) methods to your script to save and load states.
 
-To further customize where and how states are saved through [save_state()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.save_state), use the [ProjectConfiguration](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.utils.ProjectConfiguration) class. For example, if `automatic_checkpoint_naming` is enabled, each saved checkpoint is stored at `Accelerator.project_dir/checkpoints/checkpoint_{checkpoint_number}`.
+To further customize where and how states are saved through [save_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.save_state), use the [ProjectConfiguration](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.ProjectConfiguration) class. For example, if `automatic_checkpoint_naming` is enabled, each saved checkpoint is stored at `Accelerator.project_dir/checkpoints/checkpoint_{checkpoint_number}`.
 
-Any other stateful items to be stored should be registered with the [register_for_checkpointing()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.register_for_checkpointing) method so they can be saved and loaded. Every object passed to this method to be stored must have a `load_state_dict` and `state_dict` function.
+Any other stateful items to be stored should be registered with the [register_for_checkpointing()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.register_for_checkpointing) method so they can be saved and loaded. Every object passed to this method to be stored must have a `load_state_dict` and `state_dict` function.
 
 > [!TIP]
-> If you have [`torchdata>=0.8.0`](https://github.com/pytorch/data/tree/main) installed, you can additionally pass `use_stateful_dataloader=True` into your [DataLoaderConfiguration](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.DataLoaderConfiguration). This extends Accelerate's DataLoader classes with a `load_state_dict` and `state_dict` function, and makes it so `Accelerator.save_state` and `Accelerator.load_state` also track how far into the training dataset it has read when persisting the model.
+> If you have [`torchdata>=0.8.0`](https://github.com/pytorch/data/tree/main) installed, you can additionally pass `use_stateful_dataloader=True` into your [DataLoaderConfiguration](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.DataLoaderConfiguration). This extends Accelerate's DataLoader classes with a `load_state_dict` and `state_dict` function, and makes it so `Accelerator.save_state` and `Accelerator.load_state` also track how far into the training dataset it has read when persisting the model.
 
-### TPU training
-https://huggingface.co/docs/accelerate/v1.14.0/basic_tutorials/tpu.md
+### Fully Sharded Data Parallel
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/fsdp.md

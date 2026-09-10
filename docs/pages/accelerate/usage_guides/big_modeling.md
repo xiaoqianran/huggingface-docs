@@ -26,7 +26,7 @@ with init_empty_weights():
 
 Next, the weights are loaded into the model for inference.
 
-The [load_checkpoint_and_dispatch()](/docs/accelerate/v1.14.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch) method loads a checkpoint inside your empty model and dispatches the weights for each layer across all available devices, starting with the fastest devices (GPU, MPS, XPU, NPU, MLU, SDAA, MUSA) first before moving to the slower ones (CPU and hard drive).
+The [load_checkpoint_and_dispatch()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch) method loads a checkpoint inside your empty model and dispatches the weights for each layer across all available devices, starting with the fastest devices (GPU, MPS, XPU, NPU, MLU, SDAA, MUSA) first before moving to the slower ones (CPU and hard drive).
 
 Setting `device_map="auto"` automatically fills all available space on the GPU(s) first, then the CPU, and finally, the hard drive (the absolute slowest option) if there is still not enough memory.
 
@@ -82,9 +82,9 @@ output = model(input)
 
 ## Hugging Face ecosystem
 
-Other libraries in the Hugging Face ecosystem, like Transformers or Diffusers, supports Big Model Inference in their [from_pretrained](https://huggingface.co/docs/transformers/v5.11.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) constructors.
+Other libraries in the Hugging Face ecosystem, like Transformers or Diffusers, supports Big Model Inference in their [from_pretrained](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) constructors.
 
-You just need to add `device_map="auto"` in [from_pretrained](https://huggingface.co/docs/transformers/v5.11.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to enable Big Model Inference.
+You just need to add `device_map="auto"` in [from_pretrained](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to enable Big Model Inference.
 
 For example, load Big Sciences T0pp 11 billion parameter model with Big Model Inference.
 
@@ -106,5 +106,5 @@ model = AutoModelForSeq2SeqLM.from_pretrained("bigscience/T0pp", device_map="aut
 
 For a more detailed explanation of Big Model Inference, make sure to check out the [conceptual guide](../concept_guides/big_model_inference)!
 
-### Example Zoo
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/training_zoo.md
+### Training on Intel CPU
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/intel_cpu.md

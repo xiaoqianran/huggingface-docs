@@ -1,4 +1,4 @@
-# Image Feature Extraction
+# Image feature extraction
 
 Image feature extraction is the task of extracting semantically meaningful features given an image. This has many use cases, including image similarity and image retrieval. Moreover, most computer vision models can be used for image feature extraction, where one can remove the task-specific head (image classification, object detection etc) and get the features. These features are very useful on a higher level: edge detection, corner detection and so on. They may also contain information about the real world (e.g. what a cat looks like) depending on how deep the model is. Therefore, these outputs can be used to train new classifiers on a specific dataset.
 
@@ -20,7 +20,7 @@ image_real = Image.open(requests.get(img_urls[0], stream=True).raw).convert("RGB
 image_gen = Image.open(requests.get(img_urls[1], stream=True).raw).convert("RGB")
 ```
 
-Let's see the pipeline in action. First, initialize the pipeline. If you don't pass any model to it, the pipeline will be automatically initialized with [google/vit-base-patch16-224](google/vit-base-patch16-224). If you'd like to calculate similarity, set `pool` to True.
+Let's see the pipeline in action. First, initialize the pipeline. If you don't pass any model to it, the pipeline will be automatically initialized with [google/vit-base-patch16-224](https://huggingface.co/google/vit-base-patch16-224). If you'd like to calculate similarity, set `pool` to True.
 
 ```python
 import torch
@@ -115,5 +115,5 @@ print(similarity_score)
 # tensor([0.6061], device='cuda:0', grad_fn=<SumBackward1>)
 ```
 
-### Image tasks with IDEFICS
-https://huggingface.co/docs/transformers/v5.15.1/tasks/idefics.md
+### Instance segmentation
+https://huggingface.co/docs/transformers/v5.17.0/tasks/instance_segmentation.md

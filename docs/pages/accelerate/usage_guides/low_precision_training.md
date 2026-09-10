@@ -1,6 +1,6 @@
 # Low Precision Training Methods
 
-Accelerate provides integrations to train on lower precision methods using specified supported hardware through the `TransformersEngine`, `MS-AMP`, and `torchao` packages. This documentation will help guide you through what hardware is supported, how to configure your [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) to leverage the low precision methods, and what you can expect when training. 
+Accelerate provides integrations to train on lower precision methods using specified supported hardware through the `TransformersEngine`, `MS-AMP`, and `torchao` packages. This documentation will help guide you through what hardware is supported, how to configure your [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) to leverage the low precision methods, and what you can expect when training. 
 
 ## What training on FP8 means
 
@@ -17,7 +17,7 @@ What this will result in is some reduction in the memory used (as we've cut the 
 
 Currently two actively maintained backends for FP8 are supported (`TransformersEngine` and `torchao`), each with different capabilities and configurations. A legacy `MS-AMP` backend also exists but is no longer recommended (see [below](#configuring-ms-amp) for details).
 
-To use either, the same core API is used. Just pass `mixed_precision="fp8"` to either the [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator), during `accelerate config` when prompted about mixed precision, or as part of your `config.yaml` file in the `mixed_precision` key:
+To use either, the same core API is used. Just pass `mixed_precision="fp8"` to either the [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator), during `accelerate config` when prompted about mixed precision, or as part of your `config.yaml` file in the `mixed_precision` key:
 
 ```{python}
 from accelerate import Accelerator
@@ -197,5 +197,5 @@ To learn more about training in FP8 please check out the following resources:
 * [The `torchao` documentation](https://github.com/pytorch/ao/tree/main/torchao/float8)
 * [The `MS-AMP` documentation](https://azure.github.io/MS-AMP/docs/) (⚠️ no longer maintained)
 
-### Distributed inference
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/distributed_inference.md
+### Amazon SageMaker
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/sagemaker.md

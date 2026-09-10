@@ -589,5 +589,5 @@ transformers models with `t5` in  config's model type, e.g.,
 [T5](https://huggingface.co/docs/transformers/model_doc/t5) and 
 [MT5](https://huggingface.co/docs/transformers/model_doc/mt5)
 
-### Intel Gaudi
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/gaudi.md
+### Using multiple models with DeepSpeed
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/deepspeed_multiple_model.md

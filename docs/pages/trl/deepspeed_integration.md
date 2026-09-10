@@ -36,4 +36,4 @@ accelerate launch --config_file examples/accelerate_configs/deepspeed_zero2.yaml
 Consult the 🤗 Accelerate [documentation](https://huggingface.co/docs/accelerate/usage_guides/deepspeed) for more information about the DeepSpeed plugin.
 
 ### Chat template utilities
-https://huggingface.co/docs/trl/v1.12.0/chat_template_utils.md
+https://huggingface.co/docs/trl/v1.13.0/chat_template_utils.md

@@ -8,5 +8,5 @@ These tutorials assume some basic knowledge of Python and familiarity with the P
 
 If you have any questions about Accelerate, feel free to join and ask the community on our [forum](https://discuss.huggingface.co/c/accelerate/18).
 
-### Installation
-https://huggingface.co/docs/accelerate/v1.14.0/basic_tutorials/install.md
+### Launching distributed training from Jupyter Notebooks
+https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/notebook.md

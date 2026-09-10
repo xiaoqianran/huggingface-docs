@@ -25,7 +25,7 @@ This API is quite new and still in its experimental stage. While we strive to pr
 
 ### Instantiating an empty model
 
-The first tool Accelerate introduces to help with big models is a context manager [init_empty_weights()](/docs/accelerate/v1.14.0/en/package_reference/big_modeling#accelerate.init_empty_weights) that helps you initialize a model without using any RAM so that step 1 can be done on models of any size. Here is how it works:
+The first tool Accelerate introduces to help with big models is a context manager [init_empty_weights()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.init_empty_weights) that helps you initialize a model without using any RAM so that step 1 can be done on models of any size. Here is how it works:
 
 ```py
 from accelerate import init_empty_weights
@@ -49,7 +49,7 @@ initializes an empty model with a bit more than 100B parameters. Behind the scen
 
 It's possible your model is so big that even a single copy won't fit in RAM. That doesn't mean it can't be loaded: if you have one or several GPUs, this is more memory available to store your model. In this case, it's better if your checkpoint is split into several smaller files that we call checkpoint shards.
 
-Accelerate will handle sharded checkpoints as long as you follow the following format: your checkpoint should be in a folder, with several files containing the partial state dicts, and there should be an index in the JSON format that contains a dictionary mapping parameter names to the file containing their weights. You can easily shard your model with [save_model()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.save_model). For instance, we could have a folder containing:
+Accelerate will handle sharded checkpoints as long as you follow the following format: your checkpoint should be in a folder, with several files containing the partial state dicts, and there should be an index in the JSON format that contains a dictionary mapping parameter names to the file containing their weights. You can easily shard your model with [save_model()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.save_model). For instance, we could have a folder containing:
 
 ```bash
 first_state_dict.bin
@@ -72,7 +72,7 @@ and `first_state_dict.bin` containing the weights for `"linear1.weight"` and `"l
 
 ### Loading weights
 
-The second tool Accelerate introduces is a function [load_checkpoint_and_dispatch()](/docs/accelerate/v1.14.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch), that will allow you to load a checkpoint inside your empty model. This supports full checkpoints (a single file containing the whole state dict) as well as sharded checkpoints. It will also automatically dispatch those weights across the devices you have available (GPUs, CPU RAM), so if you are loading a sharded checkpoint, the maximum RAM usage will be the size of the biggest shard.
+The second tool Accelerate introduces is a function [load_checkpoint_and_dispatch()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch), that will allow you to load a checkpoint inside your empty model. This supports full checkpoints (a single file containing the whole state dict) as well as sharded checkpoints. It will also automatically dispatch those weights across the devices you have available (GPUs, CPU RAM), so if you are loading a sharded checkpoint, the maximum RAM usage will be the size of the biggest shard.
 
 If you want to use big model inference with Transformers models, check out this [documentation](https://huggingface.co/docs/transformers/main/en/main_classes/model#large-model-loading).
 
@@ -207,7 +207,7 @@ When you have more GPU memory available than the model size, here is the differe
 
     The options `"auto"` and `"balanced"` produce the same results for now, but the behavior of `"auto"` might change in the future if we find a strategy that makes more sense, while `"balanced"` will stay stable.
 
-First note that you can limit the memory used on each GPU by using the `max_memory` argument (available in [infer_auto_device_map()](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.infer_auto_device_map) and in all functions using it). When setting `max_memory`, you should pass along a dictionary containing the GPU identifiers (for instance `0`, `1` etc.) and the `"cpu"` key for the maximum RAM you want to use for CPU offload. The values can either be an integer (in bytes) or a string representing a number with its unit, such as `"10GiB"` or `"10GB"`.
+First note that you can limit the memory used on each GPU by using the `max_memory` argument (available in [infer_auto_device_map()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.infer_auto_device_map) and in all functions using it). When setting `max_memory`, you should pass along a dictionary containing the GPU identifiers (for instance `0`, `1` etc.) and the `"cpu"` key for the maximum RAM you want to use for CPU offload. The values can either be an integer (in bytes) or a string representing a number with its unit, such as `"10GiB"` or `"10GB"`.
 
 Here is an example where we don't want to use more than 10GiB on each of the two GPUs and no more than 30GiB of CPU RAM for the model weights:
 
@@ -250,13 +250,13 @@ device_map = {"block1": 0, "block2.linear1": 1, "block2.linear2": 1}
 
 ## CPU offload only
 
-If you want to offload your model on CPU, you can use [cpu_offload()](/docs/accelerate/v1.14.0/en/package_reference/big_modeling#accelerate.cpu_offload). As a result, all parameters of the model will be offloaded and only one copy of the state dict of the model will be kept. During the forward pass, parameters will be extracted from that state dict and put on the execution device and passed as they are needed, then offloaded again. 
+If you want to offload your model on CPU, you can use [cpu_offload()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.cpu_offload). As a result, all parameters of the model will be offloaded and only one copy of the state dict of the model will be kept. During the forward pass, parameters will be extracted from that state dict and put on the execution device and passed as they are needed, then offloaded again. 
 
 ```python
 cpu_offload(model, execution_device)
 ```
 
-You can also use [cpu_offload_with_hook()](/docs/accelerate/v1.14.0/en/package_reference/big_modeling#accelerate.cpu_offload_with_hook). This function will offloads a model on the CPU and puts it back to an execution device when executed. The difference with [cpu_offload()](/docs/accelerate/v1.14.0/en/package_reference/big_modeling#accelerate.cpu_offload) is that the model stays on the execution device after the forward and is only offloaded again when the `offload` method of the returned `hook` is called. Furthermore, [cpu_offload_with_hook()](/docs/accelerate/v1.14.0/en/package_reference/big_modeling#accelerate.cpu_offload_with_hook) is more performant but less memory saving. It is useful for pipelines running a model in a loop:
+You can also use [cpu_offload_with_hook()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.cpu_offload_with_hook). This function will offloads a model on the CPU and puts it back to an execution device when executed. The difference with [cpu_offload()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.cpu_offload) is that the model stays on the execution device after the forward and is only offloaded again when the `offload` method of the returned `hook` is called. Furthermore, [cpu_offload_with_hook()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.cpu_offload_with_hook) is more performant but less memory saving. It is useful for pipelines running a model in a loop:
 
 ```python
 model_1, hook_1 = cpu_offload_with_hook(model_1, execution_device)
@@ -276,7 +276,7 @@ hook_3.offload()
 
 ## Disk offload only
 
-To perform disk offload, you can use [disk_offload()](/docs/accelerate/v1.14.0/en/package_reference/big_modeling#accelerate.disk_offload). As a result, all parameters of the model will be offloaded as memory-mapped array in a given folder. During the forward pass, parameters will be accessed from that folder and put on the execution device passed as they are needed, then offloaded again.
+To perform disk offload, you can use [disk_offload()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.disk_offload). As a result, all parameters of the model will be offloaded as memory-mapped array in a given folder. During the forward pass, parameters will be accessed from that folder and put on the execution device passed as they are needed, then offloaded again.
 
 ```python
 disk_offload(model, offload_dir, execution_device)
@@ -286,12 +286,12 @@ disk_offload(model, offload_dir, execution_device)
 
 We are aware of the current limitations in the API:
 
-- [infer_auto_device_map()](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.infer_auto_device_map) (or `device_map="auto"` in [load_checkpoint_and_dispatch()](/docs/accelerate/v1.14.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch)) tries to maximize GPU and CPU RAM it sees available when you execute it. While PyTorch is very good at managing GPU RAM efficiently (and giving it back when not needed), it's not entirely true with Python and CPU RAM. Therefore, an automatically computed device map might be too intense on the CPU. Move a few modules to the disk device if you get crashes due to a lack of RAM.
-- [infer_auto_device_map()](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.infer_auto_device_map) (or `device_map="auto"` in [load_checkpoint_and_dispatch()](/docs/accelerate/v1.14.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch)) attributes devices sequentially (to avoid moving things back and forth) so if your first layer is bigger than the size of the GPU you have, it will end up with everything on the CPU/Disk.
-- [load_checkpoint_and_dispatch()](/docs/accelerate/v1.14.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch) and [load_checkpoint_in_model()](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.load_checkpoint_in_model) do not perform any check on the correctness of your state dict compared to your model at the moment (this will be fixed in a future version), so you may get some weird errors if trying to load a checkpoint with mismatched or missing keys.
+- [infer_auto_device_map()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.infer_auto_device_map) (or `device_map="auto"` in [load_checkpoint_and_dispatch()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch)) tries to maximize GPU and CPU RAM it sees available when you execute it. While PyTorch is very good at managing GPU RAM efficiently (and giving it back when not needed), it's not entirely true with Python and CPU RAM. Therefore, an automatically computed device map might be too intense on the CPU. Move a few modules to the disk device if you get crashes due to a lack of RAM.
+- [infer_auto_device_map()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.infer_auto_device_map) (or `device_map="auto"` in [load_checkpoint_and_dispatch()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch)) attributes devices sequentially (to avoid moving things back and forth) so if your first layer is bigger than the size of the GPU you have, it will end up with everything on the CPU/Disk.
+- [load_checkpoint_and_dispatch()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch) and [load_checkpoint_in_model()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.load_checkpoint_in_model) do not perform any check on the correctness of your state dict compared to your model at the moment (this will be fixed in a future version), so you may get some weird errors if trying to load a checkpoint with mismatched or missing keys.
 - The model parallelism used when your model is split on several GPUs is naive and not optimized, meaning that only one GPU works at a given time and the other sits idle.
 - When weights are offloaded on the CPU/hard drive, there is no pre-fetching (yet, we will work on this for future versions) which means the weights are put on the GPU when they are needed and not before.
 - Hard-drive offloading might be very slow if the hardware you run on does not have fast communication between disk and CPU (like NVMes).
 
-### Low precision training methods
-https://huggingface.co/docs/accelerate/v1.14.0/concept_guides/low_precision_training.md
+### Context Parallel in 🤗`accelerate`
+https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/context_parallelism.md

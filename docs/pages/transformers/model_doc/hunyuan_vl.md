@@ -5,7 +5,7 @@
 HunYuanVL is a vision-language model for image-text understanding and generation
 proposed in [HunyuanOCR Technical Report
 ](https://huggingface.co/papers/2511.19575). The open-source `hunyuan_vl` integration in Transformers is a
-dense-only image-text variant tailored for OCR and document understanding style workloads such as [`tencent/HunyuanOCR`]((https://huggingface.co/tencent/HunyuanOCR)).
+dense-only image-text variant tailored for OCR and document understanding style workloads such as [`tencent/HunyuanOCR`](https://huggingface.co/tencent/HunyuanOCR).
 
 The abstract from the paper is the following:
 
@@ -91,7 +91,7 @@ print(output)
 transformers.HunYuanVLProcessor(image_processor = None, tokenizer = None, chat_template = None, cat_extra_token: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/processing_hunyuan_vl.py#L36)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/processing_hunyuan_vl.py#L36)
 
 **Parameters:**
 
@@ -105,8 +105,8 @@ cat_extra_token (`bool`, *optional*, defaults to `True`) : Whether to account fo
 
 Constructs a HunYuanVLProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[HunYuanVLProcessor](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLProcessor) offers all the functionalities of [HunYuanVLImageProcessor](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLImageProcessor) and [Qwen2Tokenizer](/docs/transformers/v5.15.1/en/model_doc/qwen2#transformers.Qwen2Tokenizer). See the
-[~HunYuanVLImageProcessor](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLImageProcessor) and [~Qwen2Tokenizer](/docs/transformers/v5.15.1/en/model_doc/qwen2#transformers.Qwen2Tokenizer) for more information.
+[HunYuanVLProcessor](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLProcessor) offers all the functionalities of [HunYuanVLImageProcessor](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLImageProcessor) and [Qwen2Tokenizer](/docs/transformers/v5.17.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer). See the
+[~HunYuanVLImageProcessor](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLImageProcessor) and [~Qwen2Tokenizer](/docs/transformers/v5.17.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer) for more information.
 
 #### __call__[[transformers.HunYuanVLProcessor.__call__]]
 
@@ -114,7 +114,7 @@ Constructs a HunYuanVLProcessor which wraps a image processor and a tokenizer in
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L651)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/processing_utils.py#L656)
 
 **Parameters:**
 
@@ -126,9 +126,9 @@ videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.nd
 
 audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.17.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.17.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ## HunYuanVLImageProcessor[[transformers.HunYuanVLImageProcessor]]
 
@@ -138,7 +138,7 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/fil
 transformers.HunYuanVLImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/image_processing_hunyuan_vl.py#L87)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/image_processing_hunyuan_vl.py#L87)
 
 **Parameters:**
 
@@ -200,7 +200,7 @@ Constructs a HunYuanVLImageProcessor image processor.
 get_number_of_image_patches(height: int, width: int, images_kwargs: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/image_processing_hunyuan_vl.py#L256)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/image_processing_hunyuan_vl.py#L256)
 
 **Parameters:**
 
@@ -225,7 +225,7 @@ without an image input.
 patchify(images: torch.Tensor, patch_size: int, merge_size: int, temporal_patch_size: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/image_processing_hunyuan_vl.py#L164)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/image_processing_hunyuan_vl.py#L164)
 
 Patchifies each image into flat layout of shape (`seq_len`, `patch_dim`) so we can concat dynamically shaped pixels.
 
@@ -235,7 +235,7 @@ Patchifies each image into flat layout of shape (`seq_len`, `patch_dim`) so we c
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/image_processing_hunyuan_vl.py#L127)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/image_processing_hunyuan_vl.py#L127)
 
 **Parameters:**
 
@@ -303,7 +303,7 @@ merge_size (`int`, *kwargs*, *optional*, defaults to 2) : The merge size of the 
 resize(images: torch.Tensor, size: SizeDict, resample: PILImageResampling | tvF.InterpolationMode | int | None, factor: int, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/image_processing_hunyuan_vl.py#L135)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/image_processing_hunyuan_vl.py#L135)
 
 Resize dynamically based on input image aspect ratio.
 
@@ -315,7 +315,61 @@ Resize dynamically based on input image aspect ratio.
 transformers.HunYuanVLImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/image_processing_pil_hunyuan_vl.py#L87)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/image_processing_pil_hunyuan_vl.py#L88)
+
+**Parameters:**
+
+do_convert_rgb (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to convert the image to RGB.
+
+do_resize (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to resize the image.
+
+size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*, defaults to `{'shortest_edge' : 262144, 'longest_edge': 4194304}`): Describes the maximum input dimensions to the model.
+
+default_to_square (`bool`, *kwargs*, *optional*, defaults to `False`) : Whether to default to a square image when resizing, if size is an int.
+
+crop_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Size of the output image after applying `center_crop`.
+
+resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*, defaults to `Resampling.BICUBIC`) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+
+do_rescale (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to rescale the image.
+
+rescale_factor (`float`, *kwargs*, *optional*, defaults to `0.00392156862745098`) : Rescale factor to rescale the image by if `do_rescale` is set to `True`.
+
+do_normalize (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to normalize the image.
+
+image_mean (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*, defaults to `[0.48145466, 0.4578275, 0.40821073]`) : Image mean to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+image_std (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*, defaults to `[0.26862954, 0.26130258, 0.27577711]`) : Image standard deviation to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+do_pad (`bool`, *kwargs*, *optional*) : Whether to pad the image. Padding is done either to the largest size in the batch or to a fixed square size per image. The exact padding strategy depends on the model.
+
+pad_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : The size in `{"height": int, "width" int}` to pad the images to. Must be larger than any image size provided for preprocessing. If `pad_size` is not provided, images will be padded to the largest height and width in the batch. Applied only when `do_pad=True.`
+
+do_center_crop (`bool`, *kwargs*, *optional*) : Whether to center crop the image.
+
+data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : Only `ChannelDimension.FIRST` is supported. Added for compatibility with slow processors.
+
+input_data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : The channel dimension format for the input image. If unset, the channel dimension format is inferred from the input image. Can be one of: - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format. - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
+
+device (`Annotated[Union[str, torch.device, NoneType], None]`, *kwargs*) : The device to process the videos on. If unset, the device is inferred from the input videos.
+
+return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwargs*) : Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models.
+
+min_pixels (`int`, *kwargs*, *optional*, defaults to `512 * 512`) : The min pixels of the image to resize the image.
+
+max_pixels (`int`, *kwargs*, *optional*, defaults to `2048 * 2048`) : The max pixels of the image to resize the image.
+
+patch_size (`int`, *kwargs*, *optional*, defaults to 16) : The spatial patch size of the vision encoder.
+
+temporal_patch_size (`int`, *kwargs*, *optional*, defaults to 1) : The temporal patch size of the vision encoder.
+
+merge_size (`int`, *kwargs*, *optional*, defaults to 2) : The merge size of the vision encoder to llm encoder.
+
+Constructs a HunYuanVLImageProcessor image processor.
 
 #### get_number_of_image_patches[[transformers.HunYuanVLImageProcessorPil.get_number_of_image_patches]]
 
@@ -323,7 +377,7 @@ transformers.HunYuanVLImageProcessorPil(**kwargs: Unpack)
 get_number_of_image_patches(height: int, width: int, images_kwargs: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/image_processing_pil_hunyuan_vl.py#L252)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/image_processing_pil_hunyuan_vl.py#L253)
 
 **Parameters:**
 
@@ -348,7 +402,7 @@ without an image input.
 patchify(image: ndarray, patch_size: int, merge_size: int, temporal_patch_size: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/image_processing_pil_hunyuan_vl.py#L156)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/image_processing_pil_hunyuan_vl.py#L157)
 
 Patchifies each image into flat layout of shape (`seq_len`, `patch_dim`) so we can concat dynamically shaped pixels.
 
@@ -358,7 +412,7 @@ Patchifies each image into flat layout of shape (`seq_len`, `patch_dim`) so we c
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/image_processing_pil_hunyuan_vl.py#L193)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/image_processing_pil_hunyuan_vl.py#L194)
 
 **Parameters:**
 
@@ -426,7 +480,7 @@ merge_size (`int`, *kwargs*, *optional*, defaults to 2) : The merge size of the 
 resize(image: ndarray, size: SizeDict, resample: PILImageResampling | int | None, factor: int, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/image_processing_pil_hunyuan_vl.py#L127)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/image_processing_pil_hunyuan_vl.py#L128)
 
 Resize dynamically based on input image aspect ratio.
 
@@ -442,7 +496,7 @@ backbone.
 transformers.HunYuanVLConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, image_token_id: int = 120120, tie_word_embeddings: bool = True, im_start_id: int = 120118, im_end_id: int = 120119, im_newline_id: int = 120121)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/configuration_hunyuan_vl.py#L235)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/configuration_hunyuan_vl.py#L237)
 
 **Parameters:**
 
@@ -464,7 +518,7 @@ Top-level configuration for the open-source HunYuanVL integration.
 
 This configuration describes the dense-only, image-text-only variant used for OCR and document-understanding style
 workloads. It mirrors the `Qwen2_5_VL` / `Qwen3_VL` family layout: the top-level config simply composes a
-[HunYuanVLTextConfig](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLTextConfig) (text backbone) and a [HunYuanVLVisionConfig](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLVisionConfig) (vision tower) plus a few token ids that
+[HunYuanVLTextConfig](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLTextConfig) (text backbone) and a [HunYuanVLVisionConfig](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLVisionConfig) (vision tower) plus a few token ids that
 delimit image spans in multimodal prompts.
 
 Example:
@@ -485,7 +539,7 @@ Example:
 transformers.HunYuanVLVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_act: str = 'gelu', hidden_size: int = 1152, intermediate_size: int = 4304, interpolate_mode: str = 'bilinear', rms_norm_eps: float = 1e-05, attention_dropout: float = 0.0, num_attention_heads: int = 16, num_key_value_heads: int | None = None, num_channels: int = 3, num_hidden_layers: int = 27, out_hidden_size: int = 4096, patch_size: int = 16, spatial_merge_size: int = 2, temporal_patch_size: int = 1, img_max_token_num: int = 4096, max_image_size: int = 2048, min_image_size: int = 512, max_vit_seq_len: int = 16384, text_hidden_size: int = 3072)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/configuration_hunyuan_vl.py#L35)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/configuration_hunyuan_vl.py#L35)
 
 **Parameters:**
 
@@ -547,7 +601,7 @@ Example:
 transformers.HunYuanVLTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 290943, hidden_size: int = 4096, intermediate_size: int = 11008, num_hidden_layers: int = 32, num_attention_heads: int = 32, num_key_value_heads: int | None = None, hidden_act: str = 'silu', max_position_embeddings: int = 2048, initializer_range: float = 0.02, rms_norm_eps: float = 1e-05, use_cache: bool = True, pad_token_id: int | None = 0, bos_token_id: int | None = 1, eos_token_id: int | list[int] | None = 2, eod_token_id: int | None = 3, pretraining_tp: int = 1, tie_word_embeddings: bool = True, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, attention_bias: bool = False, attention_dropout: float | int = 0.0, head_dim: int | None = None, sep_token_id: int | None = 4)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/configuration_hunyuan_vl.py#L106)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/configuration_hunyuan_vl.py#L106)
 
 **Parameters:**
 
@@ -579,13 +633,13 @@ bos_token_id (`int`, *optional*, defaults to `1`) : Token id used for beginning-
 
 eos_token_id (`Union[int, list[int]]`, *optional*, defaults to `2`) : Token id used for end-of-stream in the vocabulary.
 
-eod_token_id (`int`, *optional*, defaults to 3) : Token id representing the end-of-document marker. Inherited from [HunYuanDenseV1Config](/docs/transformers/v5.15.1/en/model_doc/hunyuan_v1_dense#transformers.HunYuanDenseV1Config) and re-documented here so the auto-generated docstring stays in sync.
+eod_token_id (`int`, *optional*, defaults to 3) : Token id representing the end-of-document marker. Inherited from [HunYuanDenseV1Config](/docs/transformers/v5.17.0/en/model_doc/hunyuan_v1_dense#transformers.HunYuanDenseV1Config) and re-documented here so the auto-generated docstring stays in sync.
 
 pretraining_tp (`int`, *optional*, defaults to `1`) : Experimental feature. Tensor parallelism rank used during pretraining. Please refer to [this document](https://huggingface.co/docs/transformers/main/perf_train_gpu_many#tensor-parallelism) to understand more about it. This value is necessary to ensure exact reproducibility of the pretraining results. Please refer to [this issue](https://github.com/pytorch/pytorch/issues/76232).
 
 tie_word_embeddings (`bool`, *optional*, defaults to `True`) : Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
 
-rope_parameters (`dict`, *optional*) : RoPE configuration inherited from [HunYuanDenseV1Config](/docs/transformers/v5.15.1/en/model_doc/hunyuan_v1_dense#transformers.HunYuanDenseV1Config). When `mrope_section` is present, it partitions half of each attention head across HunYuanVL's multimodal RoPE axes. The expected order is `(width, height, image_index)` for 3-axis multimodal RoPE and `(position, width, height, image_index)` for 4-axis multimodal RoPE. The `image_index` axis is the ordinal of the image/frame in the input sequence; all visual tokens from one image share the same value on that axis.
+rope_parameters (`dict`, *optional*) : RoPE configuration inherited from [HunYuanDenseV1Config](/docs/transformers/v5.17.0/en/model_doc/hunyuan_v1_dense#transformers.HunYuanDenseV1Config). When `mrope_section` is present, it partitions half of each attention head across HunYuanVL's multimodal RoPE axes. The expected order is `(width, height, image_index)` for 3-axis multimodal RoPE and `(position, width, height, image_index)` for 4-axis multimodal RoPE. The `image_index` axis is the ordinal of the image/frame in the input sequence; all visual tokens from one image share the same value on that axis.
 
 attention_bias (`bool`, *optional*, defaults to `False`) : Whether to use a bias in the query, key, value and output projection layers during self-attention.
 
@@ -597,7 +651,7 @@ sep_token_id (`int`, *optional*, defaults to 4) : Token id used as a separator m
 
 Text backbone configuration for the dense-only, image-text HunYuanVL open-source variant.
 
-Inherits the standard fields from [HunYuanDenseV1Config](/docs/transformers/v5.15.1/en/model_doc/hunyuan_v1_dense#transformers.HunYuanDenseV1Config) and declares the canonical field names
+Inherits the standard fields from [HunYuanDenseV1Config](/docs/transformers/v5.17.0/en/model_doc/hunyuan_v1_dense#transformers.HunYuanDenseV1Config) and declares the canonical field names
 (`pad_token_id`, `head_dim`, `vocab_size`) as the only public attributes. Legacy aliases that some Tencent
 checkpoints persist on disk (`pad_id`, `attention_head_dim`, `org_vocab_size`) are mapped onto those canonical
 fields via `attribute_map`, so the rest of the model only ever needs to read the canonical fields. Legacy RoPE
@@ -612,7 +666,7 @@ payloads persisted as `rope_scaling` / `rope_theta` are normalized by the base c
 transformers.HunYuanVLVisionTransformer(config: HunYuanVLVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/modeling_hunyuan_vl.py#L689)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/modeling_hunyuan_vl.py#L671)
 
 HunYuanVL vision tower: patch embedding -> transformer blocks -> per-image patch merger.
 
@@ -626,7 +680,7 @@ language-model embedding stream.
 forward(pixel_values: Tensor, grid_thw: LongTensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/modeling_hunyuan_vl.py#L715)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/modeling_hunyuan_vl.py#L697)
 
 **Parameters:**
 
@@ -634,13 +688,13 @@ pixel_values (`torch.Tensor` of shape `(num_patches, num_channels * patch_size *
 
 grid_thw (`torch.LongTensor` of shape `(num_images, 3)`) : The temporal, height and width dimensions for each image. Each row contains `[t, h, w]` patch counts.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([HunYuanVLConfig](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLConfig)) and inputs.
+elements depending on the configuration ([HunYuanVLConfig](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLConfig)) and inputs.
 
-The [HunYuanVLVisionTransformer](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLVisionTransformer) forward method, overrides the `__call__` special method.
+The [HunYuanVLVisionTransformer](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLVisionTransformer) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -669,15 +723,15 @@ the latter silently ignores them.
 transformers.HunYuanVLTextModel(config: HunYuanVLTextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/modeling_hunyuan_vl.py#L758)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/modeling_hunyuan_vl.py#L740)
 
 **Parameters:**
 
-config ([HunYuanVLTextConfig](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([HunYuanVLTextConfig](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Hunyuan Vl Text Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -691,29 +745,29 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/modeling_hunyuan_vl.py#L780)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/modeling_hunyuan_vl.py#L762)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPast](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
+A [BaseModelOutputWithPast](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([HunYuanVLConfig](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLConfig)) and inputs.
+elements depending on the configuration ([HunYuanVLConfig](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLConfig)) and inputs.
 
-The [HunYuanVLTextModel](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLTextModel) forward method, overrides the `__call__` special method.
+The [HunYuanVLTextModel](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -723,7 +777,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -746,15 +800,15 @@ the latter silently ignores them.
 transformers.HunYuanVLModel(config: HunYuanVLConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/modeling_hunyuan_vl.py#L859)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/modeling_hunyuan_vl.py#L841)
 
 **Parameters:**
 
-config ([HunYuanVLConfig](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([HunYuanVLConfig](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The HunYuanVL model which consists of a vision backbone and a language model, without a language modeling head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -768,40 +822,58 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, pixel_values: typing.Optional[torch.FloatTensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, mm_token_type_ids: typing.Optional[torch.IntTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/modeling_hunyuan_vl.py#L1065)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/modeling_hunyuan_vl.py#L1047)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [HunYuanVLImageProcessor](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLImageProcessor). See `HunYuanVLImageProcessor.__call__()` for details ([HunYuanVLProcessor](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLProcessor) uses [HunYuanVLImageProcessor](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [HunYuanVLImageProcessor](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLImageProcessor). See `HunYuanVLImageProcessor.__call__()` for details ([HunYuanVLProcessor](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLProcessor) uses [HunYuanVLImageProcessor](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLImageProcessor) for processing images).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-mm_token_type_ids (`torch.IntTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens matching each modality. For example text (0), image (1), video (2). Multimodal token type ids can be obtained using [AutoProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
+mm_token_type_ids (`torch.IntTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens matching each modality. For example text (0), image (1), video (2). Multimodal token type ids can be obtained using [AutoProcessor](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.17.0/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
 
 **Returns:** `HunYuanVLModelOutputWithPast` or `tuple(torch.FloatTensor)`
 
 A `HunYuanVLModelOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([HunYuanVLConfig](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLConfig)) and inputs.
+elements depending on the configuration ([HunYuanVLConfig](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLConfig)) and inputs.
 
-The [HunYuanVLModel](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLModel) forward method, overrides the `__call__` special method.
+The [HunYuanVLModel](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
+- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+
+  If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
+  hidden_size)` is output.
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+
+  Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
+  `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
+  input) to speed up sequential decoding.
+- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+  one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
+
+  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
+- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+  sequence_length)`.
+
+  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
+  heads.
 - **image_hidden_states** (`torch.FloatTensor`, *optional*) -- Last image features produced by the vision tower and scattered into the language-model token stream.
 
 #### get_image_features[[transformers.HunYuanVLModel.get_image_features]]
@@ -810,19 +882,19 @@ the latter silently ignores them.
 get_image_features(pixel_values: FloatTensor, image_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/modeling_hunyuan_vl.py#L999)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/modeling_hunyuan_vl.py#L981)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [HunYuanVLImageProcessor](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLImageProcessor). See `HunYuanVLImageProcessor.__call__()` for details ([HunYuanVLProcessor](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLProcessor) uses [HunYuanVLImageProcessor](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [HunYuanVLImageProcessor](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLImageProcessor). See `HunYuanVLImageProcessor.__call__()` for details ([HunYuanVLProcessor](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLProcessor) uses [HunYuanVLImageProcessor](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLImageProcessor) for processing images).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([HunYuanVLConfig](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLConfig)) and inputs.
+elements depending on the configuration ([HunYuanVLConfig](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -847,15 +919,15 @@ elements depending on the configuration ([HunYuanVLConfig](/docs/transformers/v5
 transformers.HunYuanVLForConditionalGeneration(config: HunYuanVLConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/modeling_hunyuan_vl.py#L1127)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/modeling_hunyuan_vl.py#L1109)
 
 **Parameters:**
 
-config ([HunYuanVLConfig](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([HunYuanVLConfig](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Hunyuan Vl Model for token generation conditioned on other modalities (e.g. image-text-to-text generation).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -869,17 +941,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, pixel_values: typing.Optional[torch.FloatTensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, mm_token_type_ids: typing.Optional[torch.IntTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/modeling_hunyuan_vl.py#L1148)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/modeling_hunyuan_vl.py#L1135)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -889,19 +961,19 @@ use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value s
 
 logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [HunYuanVLImageProcessor](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLImageProcessor). See `HunYuanVLImageProcessor.__call__()` for details ([HunYuanVLProcessor](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLProcessor) uses [HunYuanVLImageProcessor](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [HunYuanVLImageProcessor](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLImageProcessor). See `HunYuanVLImageProcessor.__call__()` for details ([HunYuanVLProcessor](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLProcessor) uses [HunYuanVLImageProcessor](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLImageProcessor) for processing images).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-mm_token_type_ids (`torch.IntTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens matching each modality. For example text (0), image (1), video (2). Multimodal token type ids can be obtained using [AutoProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
+mm_token_type_ids (`torch.IntTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens matching each modality. For example text (0), image (1), video (2). Multimodal token type ids can be obtained using [AutoProcessor](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.17.0/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
 
-**Returns:** [CausalLMOutputWithPast](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.FloatTensor)`
+**Returns:** [CausalLMOutputWithPast](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.FloatTensor)`
 
-A [CausalLMOutputWithPast](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
+A [CausalLMOutputWithPast](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([HunYuanVLConfig](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLConfig)) and inputs.
+elements depending on the configuration ([HunYuanVLConfig](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLConfig)) and inputs.
 
-The [HunYuanVLForConditionalGeneration](/docs/transformers/v5.15.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [HunYuanVLForConditionalGeneration](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -909,7 +981,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -965,7 +1037,64 @@ Example:
 get_image_features(pixel_values: FloatTensor, image_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/hunyuan_vl/modeling_hunyuan_vl.py#L1140)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/hunyuan_vl/modeling_hunyuan_vl.py#L1122)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor`) : Flat per-patch pixel features produced by the image processor.
+
+image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([HunYuanVLConfig](/docs/transformers/v5.17.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLConfig)) and inputs.
+
+- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
+  through the layers used for the auxiliary pretraining task. E.g. for BERT-family of models, this returns
+  the classification token after processing through a linear layer and a tanh activation function. The linear
+  layer weights are trained from the next sentence prediction (classification) objective during pretraining.
+- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+  one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
+
+  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
+- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+  sequence_length)`.
+
+  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
+  heads.
+
+Example:
+
+```python
+>>> from PIL import Image
+>>> from transformers import AutoProcessor, HunYuanVLForConditionalGeneration
+
+>>> model = HunYuanVLForConditionalGeneration.from_pretrained("None")
+>>> processor = AutoProcessor.from_pretrained("None")
+
+>>> messages = [
+...     {
+...         "role": "user", "content": [
+...             {"type": "image", "url": "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/pipeline-cat-chonk.jpeg"},
+...             {"type": "text", "text": "Where is the cat standing?"},
+...         ]
+...     },
+... ]
+
+>>> inputs = processor.apply_chat_template(
+...     messages,
+...     tokenize=True,
+...     return_dict=True,
+...     return_tensors="pt",
+...     add_generation_prompt=True
+... )
+>>> # Generate
+>>> generate_ids = model.generate(**inputs)
+>>> processor.batch_decode(generate_ids, skip_special_tokens=True)[0]
+```
 
 ### Dia
-https://huggingface.co/docs/transformers/v5.15.1/model_doc/dia.md
+https://huggingface.co/docs/transformers/v5.17.0/model_doc/dia.md

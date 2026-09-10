@@ -36,6 +36,21 @@ nvidia-smi
 uv pip install "transformers[torch]"
 ```
 
+To install Transformers with PyTorch on NVIDIA Spark devices (such as an RTX Spark laptop) running ARM64, install PyTorch from the NVIDIA PyPI index. These devices require NVIDIA's ARM64 builds of PyTorch, which are not available on the default PyPI index or the standard PyTorch wheel index.
+
+Run the command below to check if your system detects an NVIDIA GPU.
+
+```bash
+nvidia-smi
+```
+
+Install PyTorch from the NVIDIA PyPI index, then install Transformers.
+
+```bash
+uv pip install torch --index-url https://pypi.nvidia.com
+uv pip install transformers
+```
+
 To install a CPU-only version of Transformers, run the following command.
 
 ```bash
@@ -115,7 +130,7 @@ After installation, you can configure the Transformers cache location or set up 
 
 ### Cache directory
 
-When you load a pretrained model with [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), the model is downloaded from the Hub and locally cached.
+When you load a pretrained model with [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), the model is downloaded from the Hub and locally cached.
 
 Every time you load a model, it checks whether the cached model is up-to-date. If it's the same, then the local model is loaded. If it's not the same, the newer model is downloaded and cached.
 
@@ -129,7 +144,7 @@ Cache a model in a different directory by changing the path in the following she
 
 ### Offline mode
 
-To use Transformers in an offline or firewalled environment requires the downloaded and cached files ahead of time. Download a model repository from the Hub with the [snapshot_download](https://huggingface.co/docs/huggingface_hub/v1.28.0/en/package_reference/file_download#huggingface_hub.snapshot_download) method.
+To use Transformers in an offline or firewalled environment requires the downloaded and cached files ahead of time. Download a model repository from the Hub with the [snapshot_download](https://huggingface.co/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download) method.
 
 > [!TIP]
 > Refer to the [Download files from the Hub](https://hf.co/docs/huggingface_hub/guides/download) guide for more options for downloading files from the Hub. You can download files from specific revisions, download from the CLI, and even filter which files to download from a repository.
@@ -147,7 +162,7 @@ HF_HUB_OFFLINE=1 \
 python examples/pytorch/language-modeling/run_clm.py --model_name_or_path meta-llama/Llama-2-7b-hf --dataset_name wikitext ...
 ```
 
-Another option for only loading cached files is to set `local_files_only=True` in [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
+Another option for only loading cached files is to set `local_files_only=True` in [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
 
 ```py
 from transformers import LlamaForCausalLM
@@ -156,4 +171,4 @@ model = LlamaForCausalLM.from_pretrained("./path/to/local/directory", local_file
 ```
 
 ### Debugging
-https://huggingface.co/docs/transformers/v5.15.1/debugging.md
+https://huggingface.co/docs/transformers/v5.17.0/debugging.md

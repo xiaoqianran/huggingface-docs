@@ -179,5 +179,5 @@ Imagine it like this:
 ... and so on.
 ```
 
-### Comparing performance across distributed setups
-https://huggingface.co/docs/accelerate/v1.14.0/concept_guides/performance.md
+### Low precision training methods
+https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/low_precision_training.md

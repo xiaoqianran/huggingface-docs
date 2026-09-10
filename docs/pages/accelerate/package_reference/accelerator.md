@@ -1,19 +1,61 @@
 # Accelerator
 
-The [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) is the main class for enabling distributed training on any type of training setup. Read the [Add Accelerator to your code](../basic_tutorials/migration) tutorial to learn more about how to add the [Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) to your script.
+The [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) is the main class for enabling distributed training on any type of training setup. Read the [Add Accelerator to your code](../basic_tutorials/migration) tutorial to learn more about how to add the [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) to your script.
 
 ## Accelerator[[api]][[accelerate.Accelerator]]
 
 #### accelerate.Accelerator[[accelerate.Accelerator]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L184)
+```python
+accelerate.Accelerator(device_placement: bool = True, split_batches: bool = <object object at 0x7f64e184a270>, mixed_precision: PrecisionType | str | None = None, gradient_accumulation_steps: int = 1, cpu: bool = False, dataloader_config: DataLoaderConfiguration | None = None, deepspeed_plugin: DeepSpeedPlugin | dict[str, DeepSpeedPlugin] | None = None, fsdp_plugin: FullyShardedDataParallelPlugin | None = None, torch_tp_plugin: TorchTensorParallelPlugin | None = None, megatron_lm_plugin: MegatronLMPlugin | None = None, rng_types: list[str | RNGType] | None = None, log_with: str | LoggerType | GeneralTracker | list[str | LoggerType | GeneralTracker] | None = None, project_dir: str | os.PathLike | None = None, project_config: ProjectConfiguration | None = None, gradient_accumulation_plugin: GradientAccumulationPlugin | None = None, step_scheduler_with_optimizer: bool = True, kwargs_handlers: list[KwargsHandler] | None = None, dynamo_backend: DynamoBackend | str | None = None, dynamo_plugin: TorchDynamoPlugin | None = None, deepspeed_plugins: DeepSpeedPlugin | dict[str, DeepSpeedPlugin] | None = None, parallelism_config: ParallelismConfig | None = None)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L185)
+
+**Parameters:**
+
+device_placement (`bool`, *optional*, defaults to `True`) : Whether or not the accelerator should put objects on device (tensors yielded by the dataloader, model, etc...).
+
+mixed_precision (`str`, *optional*) : Whether or not to use mixed precision training. Choose from 'no','fp16','bf16' or 'fp8'. Will default to the value in the environment variable `ACCELERATE_MIXED_PRECISION`, which will use the default value in the accelerate config of the current system or the flag passed with the `accelerate.launch` command. 'fp8' requires the installation of transformers-engine.
+
+gradient_accumulation_steps (`int`, *optional*, default to 1) : The number of steps that should pass before gradients are accumulated. A number > 1 should be combined with `Accelerator.accumulate`. If not passed, will default to the value in the environment variable `ACCELERATE_GRADIENT_ACCUMULATION_STEPS`. Can also be configured through a `GradientAccumulationPlugin`.
+
+cpu (`bool`, *optional*) : Whether or not to force the script to execute on CPU. Will ignore GPU available if set to `True` and force the execution on one process only.
+
+dataloader_config (`DataLoaderConfiguration`, *optional*) : A configuration for how the dataloaders should be handled in distributed scenarios.
+
+deepspeed_plugin ([DeepSpeedPlugin](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.DeepSpeedPlugin) or dict of `str` : [DeepSpeedPlugin](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.DeepSpeedPlugin), *optional*): Tweak your DeepSpeed related args using this argument. This argument is optional and can be configured directly using *accelerate config*. If using multiple plugins, use the configured `key` property of each plugin to access them from `accelerator.state.get_deepspeed_plugin(key)`. Alias for `deepspeed_plugins`.
+
+fsdp_plugin ([FullyShardedDataParallelPlugin](/docs/accelerate/v1.15.0/en/package_reference/fsdp#accelerate.FullyShardedDataParallelPlugin), *optional*) : Tweak your FSDP related args using this argument. This argument is optional and can be configured directly using *accelerate config*
+
+torch_tp_plugin (`TorchTensorParallelPlugin`, *optional*) : Deprecated: use `parallelism_config` with `tp_size` instead.
+
+megatron_lm_plugin ([MegatronLMPlugin](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.MegatronLMPlugin), *optional*) : Tweak your MegatronLM related args using this argument. This argument is optional and can be configured directly using *accelerate config*
+
+rng_types (list of `str` or [RNGType](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.RNGType)) : The list of random number generators to synchronize at the beginning of each iteration in your prepared dataloaders. Should be one or several of:  - `"torch"`: the base torch random number generator - `"cuda"`: the CUDA random number generator (GPU only) - `"xla"`: the XLA random number generator (TPU only) - `"generator"`: the `torch.Generator` of the sampler (or batch sampler if there is no sampler in your dataloader) or of the iterable dataset (if it exists) if the underlying dataset is of that type.  Will default to `["torch"]` for PyTorch versions <=1.5.1 and `["generator"]` for PyTorch versions >= 1.6.
+
+log_with (list of `str`, [LoggerType](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.LoggerType) or [GeneralTracker](/docs/accelerate/v1.15.0/en/package_reference/tracking#accelerate.tracking.GeneralTracker), *optional*) : A list of loggers to be setup for experiment tracking. Should be one or several of:  - `"all"` - `"tensorboard"` - `"wandb"` - `"trackio"` - `"aim"` - `"comet_ml"` - `"mlflow"` - `"dvclive"` - `"swanlab"` If `"all"` is selected, will pick up all available trackers in the environment and initialize them. Can also accept implementations of `GeneralTracker` for custom trackers, and can be combined with `"all"`.
+
+project_config ([ProjectConfiguration](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.ProjectConfiguration), *optional*) : A configuration for how saving the state can be handled.
+
+project_dir (`str`, `os.PathLike`, *optional*) : A path to a directory for storing data such as logs of locally-compatible loggers and potentially saved checkpoints.
+
+step_scheduler_with_optimizer (`bool`, *optional*, defaults to `True`) : Set `True` if the learning rate scheduler is stepped at the same time as the optimizer, `False` if only done under certain circumstances (at the end of each epoch, for instance).
+
+kwargs_handlers (list of [KwargsHandler](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.KwargsHandler), *optional*) : A list of [KwargsHandler](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.KwargsHandler) to customize how the objects related to distributed training, profiling or mixed precision are created. See [kwargs](kwargs) for more information.
+
+dynamo_backend (`str` or [DynamoBackend](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.DynamoBackend), *optional*, defaults to `"no"`) : Set to one of the possible dynamo backends to optimize your training with torch dynamo.
+
+dynamo_plugin ([TorchDynamoPlugin](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.TorchDynamoPlugin), *optional*) : A configuration for how torch dynamo should be handled, if more tweaking than just the `backend` or `mode` is needed.
+
+gradient_accumulation_plugin ([GradientAccumulationPlugin](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.GradientAccumulationPlugin), *optional*) : A configuration for how gradient accumulation should be handled, if more tweaking than just the `gradient_accumulation_steps` is needed.
 
 Creates an instance of an accelerator for distributed training or mixed precision training.
 
 **Available attributes:**
 
 - **device** (`torch.device`) -- The device to use.
-- **distributed_type** ([DistributedType](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.DistributedType)) -- The distributed training configuration.
+- **distributed_type** ([DistributedType](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.DistributedType)) -- The distributed training configuration.
 - **local_process_index** (`int`) -- The process index on the current machine.
 - **mixed_precision** (`str`) -- The configured mixed precision mode.
 - **num_processes** (`int`) -- The total number of processes used for training.
@@ -21,13 +63,21 @@ Creates an instance of an accelerator for distributed training or mixed precisio
   gradient overflow in mixed precision), in which
 case the learning rate should not be changed.
 - **process_index** (`int`) -- The overall index of the current process among all processes.
-- **state** ([AcceleratorState](/docs/accelerate/v1.14.0/en/package_reference/state#accelerate.state.AcceleratorState)) -- The distributed setup state.
+- **state** ([AcceleratorState](/docs/accelerate/v1.15.0/en/package_reference/state#accelerate.state.AcceleratorState)) -- The distributed setup state.
 - **sync_gradients** (`bool`) -- Whether the gradients are currently being synced across all processes.
 - **use_distributed** (`bool`) -- Whether the current configuration is for distributed training.
 
-accumulateaccelerate.Accelerator.accumulatehttps://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L1254[{"name": "*models", "val": ""}]- ***models** (list of `torch.nn.Module`) --
-  PyTorch Modules that were prepared with `Accelerator.prepare`. Models passed to `accumulate()` will
-  skip gradient syncing during backward pass in distributed training0
+#### accumulate[[accelerate.Accelerator.accumulate]]
+
+```python
+accumulate(*models)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L1255)
+
+**Parameters:**
+
+- ***models** (list of `torch.nn.Module`) : PyTorch Modules that were prepared with `Accelerator.prepare`. Models passed to `accumulate()` will skip gradient syncing during backward pass in distributed training
 
 A context manager that will lightly wrap around and perform gradient accumulation automatically
 
@@ -49,46 +99,13 @@ Example:
 ...         optimizer.zero_grad()
 ```
 
-**Parameters:**
-
-device_placement (`bool`, *optional*, defaults to `True`) : Whether or not the accelerator should put objects on device (tensors yielded by the dataloader, model, etc...).
-
-mixed_precision (`str`, *optional*) : Whether or not to use mixed precision training. Choose from 'no','fp16','bf16' or 'fp8'. Will default to the value in the environment variable `ACCELERATE_MIXED_PRECISION`, which will use the default value in the accelerate config of the current system or the flag passed with the `accelerate.launch` command. 'fp8' requires the installation of transformers-engine.
-
-gradient_accumulation_steps (`int`, *optional*, default to 1) : The number of steps that should pass before gradients are accumulated. A number > 1 should be combined with `Accelerator.accumulate`. If not passed, will default to the value in the environment variable `ACCELERATE_GRADIENT_ACCUMULATION_STEPS`. Can also be configured through a `GradientAccumulationPlugin`.
-
-cpu (`bool`, *optional*) : Whether or not to force the script to execute on CPU. Will ignore GPU available if set to `True` and force the execution on one process only.
-
-dataloader_config (`DataLoaderConfiguration`, *optional*) : A configuration for how the dataloaders should be handled in distributed scenarios.
-
-deepspeed_plugin ([DeepSpeedPlugin](/docs/accelerate/v1.14.0/en/package_reference/deepspeed#accelerate.DeepSpeedPlugin) or dict of `str` : [DeepSpeedPlugin](/docs/accelerate/v1.14.0/en/package_reference/deepspeed#accelerate.DeepSpeedPlugin), *optional*): Tweak your DeepSpeed related args using this argument. This argument is optional and can be configured directly using *accelerate config*. If using multiple plugins, use the configured `key` property of each plugin to access them from `accelerator.state.get_deepspeed_plugin(key)`. Alias for `deepspeed_plugins`.
-
-fsdp_plugin ([FullyShardedDataParallelPlugin](/docs/accelerate/v1.14.0/en/package_reference/fsdp#accelerate.FullyShardedDataParallelPlugin), *optional*) : Tweak your FSDP related args using this argument. This argument is optional and can be configured directly using *accelerate config*
-
-torch_tp_plugin (`TorchTensorParallelPlugin`, *optional*) : Deprecated: use `parallelism_config` with `tp_size` instead.
-
-megatron_lm_plugin ([MegatronLMPlugin](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.utils.MegatronLMPlugin), *optional*) : Tweak your MegatronLM related args using this argument. This argument is optional and can be configured directly using *accelerate config*
-
-rng_types (list of `str` or [RNGType](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.utils.RNGType)) : The list of random number generators to synchronize at the beginning of each iteration in your prepared dataloaders. Should be one or several of:  - `"torch"`: the base torch random number generator - `"cuda"`: the CUDA random number generator (GPU only) - `"xla"`: the XLA random number generator (TPU only) - `"generator"`: the `torch.Generator` of the sampler (or batch sampler if there is no sampler in your dataloader) or of the iterable dataset (if it exists) if the underlying dataset is of that type.  Will default to `["torch"]` for PyTorch versions <=1.5.1 and `["generator"]` for PyTorch versions >= 1.6.
-
-log_with (list of `str`, [LoggerType](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.utils.LoggerType) or [GeneralTracker](/docs/accelerate/v1.14.0/en/package_reference/tracking#accelerate.tracking.GeneralTracker), *optional*) : A list of loggers to be setup for experiment tracking. Should be one or several of:  - `"all"` - `"tensorboard"` - `"wandb"` - `"trackio"` - `"aim"` - `"comet_ml"` - `"mlflow"` - `"dvclive"` - `"swanlab"` If `"all"` is selected, will pick up all available trackers in the environment and initialize them. Can also accept implementations of `GeneralTracker` for custom trackers, and can be combined with `"all"`.
-
-project_config ([ProjectConfiguration](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.utils.ProjectConfiguration), *optional*) : A configuration for how saving the state can be handled.
-
-project_dir (`str`, `os.PathLike`, *optional*) : A path to a directory for storing data such as logs of locally-compatible loggers and potentially saved checkpoints.
-
-step_scheduler_with_optimizer (`bool`, *optional*, defaults to `True`) : Set `True` if the learning rate scheduler is stepped at the same time as the optimizer, `False` if only done under certain circumstances (at the end of each epoch, for instance).
-
-kwargs_handlers (list of [KwargsHandler](/docs/accelerate/v1.14.0/en/package_reference/kwargs#accelerate.utils.KwargsHandler), *optional*) : A list of [KwargsHandler](/docs/accelerate/v1.14.0/en/package_reference/kwargs#accelerate.utils.KwargsHandler) to customize how the objects related to distributed training, profiling or mixed precision are created. See [kwargs](kwargs) for more information.
-
-dynamo_backend (`str` or [DynamoBackend](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.utils.DynamoBackend), *optional*, defaults to `"no"`) : Set to one of the possible dynamo backends to optimize your training with torch dynamo.
-
-dynamo_plugin ([TorchDynamoPlugin](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.utils.TorchDynamoPlugin), *optional*) : A configuration for how torch dynamo should be handled, if more tweaking than just the `backend` or `mode` is needed.
-
-gradient_accumulation_plugin ([GradientAccumulationPlugin](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.utils.GradientAccumulationPlugin), *optional*) : A configuration for how gradient accumulation should be handled, if more tweaking than just the `gradient_accumulation_steps` is needed.
 #### autocast[[accelerate.Accelerator.autocast]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L4177)
+```python
+autocast(autocast_handler: AutocastKwargs = None)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L4218)
 
 Will apply automatic mixed-precision inside the block inside this context manager, if it is enabled. Nothing
 different will happen otherwise.
@@ -105,9 +122,14 @@ Example:
 >>> with accelerator.autocast():
 ...     train()
 ```
+
 #### backward[[accelerate.Accelerator.backward]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L2818)
+```python
+backward(loss, **kwargs)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L2829)
 
 Scales the gradients in accordance to the `GradientAccumulationPlugin` and calls the correct `backward()` based
 on the configuration.
@@ -124,9 +146,14 @@ Example:
 >>> loss = loss_fn(outputs, labels)
 >>> accelerator.backward(loss)
 ```
+
 #### check_trigger[[accelerate.Accelerator.check_trigger]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L2878)
+```python
+check_trigger()
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L2889)
 
 Checks if the internal trigger tensor has been set to 1 in any of the processes. If so, will return `True` and
 reset the trigger tensor to 0.
@@ -149,9 +176,14 @@ Example:
 >>> if accelerator.check_trigger():
 ...     break
 ```
+
 #### clear[[accelerate.Accelerator.clear]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L3931)
+```python
+clear(*objects)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3972)
 
 Alias for `Accelerate.free_memory`, releases all references to the internal objects stored and call the
 garbage collector. You should call this method between two trainings with different models/optimizers.
@@ -166,9 +198,18 @@ Example:
 >>> model, optimizer, scheduler = accelerator.prepare(model, optimizer, scheduler)
 >>> model, optimizer, scheduler = accelerator.clear(model, optimizer, scheduler)
 ```
+
 #### clip_grad_norm_[[accelerate.Accelerator.clip_grad_norm_]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L2946)
+```python
+clip_grad_norm_(parameters, max_norm, norm_type = 2)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L2989)
+
+**Returns:** `torch.Tensor`
+
+Total norm of the parameter gradients (viewed as a single vector).
 
 Should be used in place of `torch.nn.utils.clip_grad_norm_`.
 
@@ -190,14 +231,13 @@ Example:
 ...     optimizer.step()
 ```
 
-**Returns:**
-
-``torch.Tensor``
-
-Total norm of the parameter gradients (viewed as a single vector).
 #### clip_grad_value_[[accelerate.Accelerator.clip_grad_value_]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L3009)
+```python
+clip_grad_value_(parameters, clip_value)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3050)
 
 Should be used in place of `torch.nn.utils.clip_grad_value_`.
 
@@ -218,14 +258,24 @@ Example:
 ...         accelerator.clip_grad_value_(model.parameters(), clip_value)
 ...     optimizer.step()
 ```
+
 #### deepspeed_ulysses_dl_adapter[[accelerate.Accelerator.deepspeed_ulysses_dl_adapter]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L2486)
+```python
+deepspeed_ulysses_dl_adapter(dl, model)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L2497)
 
 this is normally called as part of `prepare` but when dataloader was prepared apart from model (for the external accelerator.prepare call) this additional call needs to be made after prepare(model) (see HF Trainer as the use-case)
+
 #### end_training[[accelerate.Accelerator.end_training]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L3388)
+```python
+end_training()
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3429)
 
 Runs any special end training behaviors, such as stopping trackers on the main process only or destroying
 process group. Should always be called at the end of your script if using experiment tracking.
@@ -240,9 +290,14 @@ Example:
 >>> # Do training
 >>> accelerator.end_training()
 ```
+
 #### free_memory[[accelerate.Accelerator.free_memory]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L3902)
+```python
+free_memory(*objects)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3943)
 
 Will release all references to the internal objects stored and call the garbage collector. You should call this
 method between two trainings with different models/optimizers. Also will reset `Accelerator.step` to 0.
@@ -257,9 +312,23 @@ Example:
 >>> model, optimizer, scheduler = accelerator.prepare(model, optimizer, scheduler)
 >>> model, optimizer, scheduler = accelerator.free_memory(model, optimizer, scheduler)
 ```
+
 #### gather[[accelerate.Accelerator.gather]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L3036)
+```python
+gather(tensor)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3077)
+
+**Parameters:**
+
+tensor (`torch.Tensor`, or a nested tuple/list/dictionary of `torch.Tensor`) : The tensors to gather across all processes.
+
+**Returns:** `torch.Tensor`, or a nested tuple/list/dictionary of `torch.Tensor`
+
+The gathered tensor(s). Note that the
+first dimension of the result is *num_processes* multiplied by the first dimension of the input tensors.
 
 Gather the values in *tensor* across all processes and concatenate them on the first dimension. Useful to
 regroup the predictions from all processes when doing evaluation.
@@ -281,19 +350,19 @@ Example:
 tensor([0, 1, 2, 3])
 ```
 
-**Parameters:**
-
-tensor (`torch.Tensor`, or a nested tuple/list/dictionary of `torch.Tensor`) : The tensors to gather across all processes.
-
-**Returns:**
-
-``torch.Tensor`, or a nested tuple/list/dictionary of `torch.Tensor``
-
-The gathered tensor(s). Note that the
-first dimension of the result is *num_processes* multiplied by the first dimension of the input tensors.
 #### gather_for_metrics[[accelerate.Accelerator.gather_for_metrics]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L3068)
+```python
+gather_for_metrics(input_data, use_gather_object = False)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3109)
+
+**Parameters:**
+
+input_data (`torch.Tensor`, `object`, a nested tuple/list/dictionary of `torch.Tensor`, or a nested tuple/list/dictionary of `object`) : The tensors or objects for calculating metrics across all processes
+
+use_gather_object(`bool`) : Whether to forcibly use gather_object instead of gather (which is already done if all objects passed do not contain tensors). This flag can be useful for gathering tensors with different sizes that we don't want to pad and concatenate along the first dimension. Using it with GPU tensors is not well supported and inefficient as it incurs GPU -> CPU transfer since tensors would be pickled.
 
 Gathers `input_data` and potentially drops duplicates in the last batch if on a distributed system. Should be
 used for gathering the inputs and targets for metric calculation.
@@ -314,16 +383,25 @@ Example:
 9
 ```
 
-**Parameters:**
-
-input (`torch.Tensor`, `object`, a nested tuple/list/dictionary of `torch.Tensor`, or a nested tuple/list/dictionary of `object`) : The tensors or objects for calculating metrics across all processes
-
-use_gather_object(`bool`) : Whether to forcibly use gather_object instead of gather (which is already done if all objects passed do not contain tensors). This flag can be useful for gathering tensors with different sizes that we don't want to pad and concatenate along the first dimension. Using it with GPU tensors is not well supported and inefficient as it incurs GPU -> CPU transfer since tensors would be pickled.
 #### get_state_dict[[accelerate.Accelerator.get_state_dict]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L4002)
+```python
+get_state_dict(model, unwrap = True)
+```
 
-Returns the state dictionary of a model sent through [Accelerator.prepare()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) potentially without full
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L4043)
+
+**Parameters:**
+
+model (`torch.nn.Module`) : A PyTorch model sent through [Accelerator.prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare)
+
+unwrap (`bool`, *optional*, defaults to `True`) : Whether to return the original underlying state_dict of `model` or to return the wrapped state_dict
+
+**Returns:** `dict`
+
+The state dictionary of the model potentially without full precision.
+
+Returns the state dictionary of a model sent through [Accelerator.prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) potentially without full
 precision.
 
 Example:
@@ -338,20 +416,23 @@ Example:
 >>> state_dict = accelerator.get_state_dict(net)
 ```
 
-**Parameters:**
-
-model (`torch.nn.Module`) : A PyTorch model sent through [Accelerator.prepare()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.prepare)
-
-unwrap (`bool`, *optional*, defaults to `True`) : Whether to return the original underlying state_dict of `model` or to return the wrapped state_dict
-
-**Returns:**
-
-``dict``
-
-The state dictionary of the model potentially without full precision.
 #### get_tracker[[accelerate.Accelerator.get_tracker]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L3324)
+```python
+get_tracker(name: str, unwrap: bool = False)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3365)
+
+**Parameters:**
+
+name (`str`) : The name of a tracker, corresponding to the `.name` property.
+
+unwrap (`bool`) : Whether to return the internal tracking mechanism or to return the wrapped tracker instead (recommended).
+
+**Returns:** `GeneralTracker`
+
+The tracker corresponding to `name` if it exists.
 
 Returns a `tracker` from `self.trackers` based on `name` on the main process only.
 
@@ -365,20 +446,19 @@ Example:
 >>> tensorboard_tracker = accelerator.get_tracker("tensorboard")
 ```
 
-**Parameters:**
-
-name (`str`) : The name of a tracker, corresponding to the `.name` property.
-
-unwrap (`bool`) : Whether to return the internal tracking mechanism or to return the wrapped tracker instead (recommended).
-
-**Returns:**
-
-``GeneralTracker``
-
-The tracker corresponding to `name` if it exists.
 #### join_uneven_inputs[[accelerate.Accelerator.join_uneven_inputs]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L1299)
+```python
+join_uneven_inputs(joinables, even_batches = None)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L1300)
+
+**Parameters:**
+
+joinables (`list[torch.distributed.algorithms.Joinable]`) : A list of models or optimizers that subclass `torch.distributed.algorithms.Joinable`. Most commonly, a PyTorch Module that was prepared with `Accelerator.prepare` for DistributedDataParallel training.
+
+even_batches (`bool`, *optional*) : If set, this will override the value of `even_batches` set in the `Accelerator`. If it is not provided, the default `Accelerator` value will be used.
 
 A context manager that facilitates distributed training or evaluation on uneven inputs, which acts as a wrapper
 around `torch.distributed.algorithms.join`. This is useful when the total batch size does not evenly divide the
@@ -406,18 +486,25 @@ Example:
 ...         optimizer.zero_grad()
 ```
 
-**Parameters:**
-
-joinables (`list[torch.distributed.algorithms.Joinable]`) : A list of models or optimizers that subclass `torch.distributed.algorithms.Joinable`. Most commonly, a PyTorch Module that was prepared with `Accelerator.prepare` for DistributedDataParallel training.
-
-even_batches (`bool`, *optional*) : If set, this will override the value of `even_batches` set in the `Accelerator`. If it is not provided, the default `Accelerator` value will be used.
 #### load_state[[accelerate.Accelerator.load_state]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L3750)
+```python
+load_state(input_dir: str | None = None, load_kwargs: dict | None = None, **load_model_func_kwargs)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3791)
+
+**Parameters:**
+
+input_dir (`str` or `os.PathLike`) : The name of the folder all relevant weights and states were saved in. Can be `None` if `automatic_checkpoint_naming` is used, and will pick up from the latest checkpoint.
+
+load_kwargs (`dict`, *optional*) : Additional keyword arguments for the underlying `load` function, such as optional arguments for state_dict and optimizer on.
+
+load_model_func_kwargs (`dict`, *optional*) : Additional keyword arguments for loading model which can be passed to the underlying load function, such as optional arguments for DeepSpeed's `load_checkpoint` function or a `map_location` to load the model and optimizer on.
 
 Loads the current states of the model, optimizer, scaler, RNG generators, and registered objects.
 
-Should only be used in conjunction with [Accelerator.save_state()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.save_state). If a file is not registered for
+Should only be used in conjunction with [Accelerator.save_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.save_state). If a file is not registered for
 checkpointing, it will not be loaded if stored in the directory.
 
 Example:
@@ -431,16 +518,13 @@ Example:
 >>> accelerator.load_state("my_checkpoint")
 ```
 
-**Parameters:**
-
-input_dir (`str` or `os.PathLike`) : The name of the folder all relevant weights and states were saved in. Can be `None` if `automatic_checkpoint_naming` is used, and will pick up from the latest checkpoint.
-
-load_kwargs (`dict`, *optional*) : Additional keyword arguments for the underlying `load` function, such as optional arguments for state_dict and optimizer on.
-
-load_model_func_kwargs (`dict`, *optional*) : Additional keyword arguments for loading model which can be passed to the underlying load function, such as optional arguments for DeepSpeed's `load_checkpoint` function or a `map_location` to load the model and optimizer on.
 #### local_main_process_first[[accelerate.Accelerator.local_main_process_first]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L1109)
+```python
+local_main_process_first()
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L1110)
 
 Lets the local main process go inside a with block.
 
@@ -457,14 +541,24 @@ Example:
 ...     # random order by the other processes.
 ...     print(f"This will be printed by process {accelerator.local_process_index}")
 ```
+
 #### lomo_backward[[accelerate.Accelerator.lomo_backward]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L4320)
+```python
+lomo_backward(loss: torch.Tensor, learning_rate: float)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L4361)
 
 Runs backward pass on LOMO optimizers.
+
 #### main_process_first[[accelerate.Accelerator.main_process_first]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L1087)
+```python
+main_process_first()
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L1088)
 
 Lets the main process go first inside a with block.
 
@@ -481,9 +575,22 @@ Example:
 ...     # random order by the other processes.
 ...     print(f"This will be printed by process {accelerator.process_index}")
 ```
+
 #### maybe_context_parallel[[accelerate.Accelerator.maybe_context_parallel]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L4110)
+```python
+maybe_context_parallel(buffers: list[torch.Tensor] | None = None, buffer_seq_dims: list[int] | None = None, no_restore_buffers: set[torch.Tensor] | None = None)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L4151)
+
+**Parameters:**
+
+buffers (`list[torch.Tensor]`, `optional`) : Buffers, which are going to be sharded along the sequence dimension. Common examples are inputs, labels or positional embedding buffers. This context manager will modify these buffers in-place, and after exiting the context, the buffers will be restored to their original state. To avoid unnecessary restores, you can use `no_restore_buffers` to specify which buffers don't need to be restored.
+
+buffer_seq_dims (`list[int]`, `optional`) : Sequence dimensions of `buffers`.
+
+no_restore_buffers (`set[torch.Tensor]`, `optional`) : This set must be a subset of `buffers`. Specifies which buffers from `buffers` argument won't be restored after the context exits. These buffers will be then kept in sharded state.
 
 A context manager that enables context parallel training.
 
@@ -506,16 +613,17 @@ Example:
 ...         ...
 ```
 
-**Parameters:**
-
-buffers (`list[torch.Tensor]`, `optional`) : Buffers, which are going to be sharded along the sequence dimension. Common examples are inputs, labels or positional embedding buffers. This context manager will modify these buffers in-place, and after exiting the context, the buffers will be restored to their original state. To avoid unnecessary restores, you can use `no_restore_buffers` to specify which buffers don't need to be restored.
-
-buffer_seq_dims (`list[int]`, `optional`) : Sequence dimensions of `buffers`.
-
-no_restore_buffers (`set[torch.Tensor]`, `optional`) : This set must be a subset of `buffers`. Specifies which buffers from `buffers` argument won't be restored after the context exits. These buffers will be then kept in sharded state.
 #### no_sync[[accelerate.Accelerator.no_sync]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L1131)
+```python
+no_sync(model)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L1132)
+
+**Parameters:**
+
+model (`torch.nn.Module`) : PyTorch Module that was prepared with `Accelerator.prepare`
 
 A context manager to disable gradient synchronizations across DDP processes by calling
 `torch.nn.parallel.DistributedDataParallel.no_sync`.
@@ -544,12 +652,17 @@ Example:
 >>> optimizer.zero_grad()
 ```
 
-**Parameters:**
-
-model (`torch.nn.Module`) : PyTorch Module that was prepared with `Accelerator.prepare`
 #### on_last_process[[accelerate.Accelerator.on_last_process]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L955)
+```python
+on_last_process(function: Callable[..., Any])
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L956)
+
+**Parameters:**
+
+function (`Callable`) : The function to decorate.
 
 A decorator that will run the decorated function on the last process only. Can also be called using the
 `PartialState` class.
@@ -569,12 +682,17 @@ print_something()
 "Printed on process 3"
 ```
 
+#### on_local_main_process[[accelerate.Accelerator.on_local_main_process]]
+
+```python
+on_local_main_process(function: Callable[..., Any] | None = None)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L914)
+
 **Parameters:**
 
 function (`Callable`) : The function to decorate.
-#### on_local_main_process[[accelerate.Accelerator.on_local_main_process]]
-
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L913)
 
 A decorator that will run the decorated function on the local main process only. Can also be called using the
 `PartialState` class.
@@ -597,12 +715,19 @@ print_something()
 "This will be printed by process 0 only"
 ```
 
-**Parameters:**
-
-function (`Callable`) : The function to decorate.
 #### on_local_process[[accelerate.Accelerator.on_local_process]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L1039)
+```python
+on_local_process(function: Callable[..., Any] | None = None, local_process_index: int | None = None)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L1040)
+
+**Parameters:**
+
+function (`Callable`, *optional*) : The function to decorate.
+
+local_process_index (`int`, *optional*) : The index of the local process on which to run the function.
 
 A decorator that will run the decorated function on a given local process index only. Can also be called using
 the `PartialState` class.
@@ -625,14 +750,17 @@ print_something()
 "Printed on process 2"
 ```
 
-**Parameters:**
-
-function (`Callable`, *optional*) : The function to decorate.
-
-local_process_index (`int`, *optional*) : The index of the local process on which to run the function.
 #### on_main_process[[accelerate.Accelerator.on_main_process]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L874)
+```python
+on_main_process(function: Callable[..., Any] | None = None)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L875)
+
+**Parameters:**
+
+function (`Callable`) : The function to decorate.
 
 A decorator that will run the decorated function on the main process only. Can also be called using the
 `PartialState` class.
@@ -652,12 +780,19 @@ Example:
 "This will be printed by process 0 only"
 ```
 
-**Parameters:**
-
-function (`Callable`) : The function to decorate.
 #### on_process[[accelerate.Accelerator.on_process]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L994)
+```python
+on_process(function: Callable[..., Any] | None = None, process_index: int | None = None)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L995)
+
+**Parameters:**
+
+function (`Callable`, `optional`) : The function to decorate.
+
+process_index (`int`, `optional`) : The index of the process on which to run the function.
 
 A decorator that will run the decorated function on a given process index only. Can also be called using the
 `PartialState` class.
@@ -677,14 +812,27 @@ print_something()
 "Printed on process 2"
 ```
 
-**Parameters:**
-
-function (`Callable`, `optional`) : The function to decorate.
-
-process_index (`int`, `optional`) : The index of the process on which to run the function.
 #### pad_across_processes[[accelerate.Accelerator.pad_across_processes]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L3178)
+```python
+pad_across_processes(tensor, dim = 0, pad_index = 0, pad_first = False)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3219)
+
+**Parameters:**
+
+tensor (nested list/tuple/dictionary of `torch.Tensor`) : The data to gather.
+
+dim (`int`, *optional*, defaults to 0) : The dimension on which to pad.
+
+pad_index (`int`, *optional*, defaults to 0) : The value with which to pad.
+
+pad_first (`bool`, *optional*, defaults to `False`) : Whether to pad at the beginning or the end.
+
+**Returns:** `torch.Tensor`, or a nested tuple/list/dictionary of `torch.Tensor`
+
+The padded tensor(s).
 
 Recursively pad the tensors in a nested list/tuple/dictionary of tensors from all devices to the same size so
 they can safely be gathered.
@@ -703,24 +851,19 @@ Example:
 torch.Size([2])
 ```
 
-**Parameters:**
-
-tensor (nested list/tuple/dictionary of `torch.Tensor`) : The data to gather.
-
-dim (`int`, *optional*, defaults to 0) : The dimension on which to pad.
-
-pad_index (`int`, *optional*, defaults to 0) : The value with which to pad.
-
-pad_first (`bool`, *optional*, defaults to `False`) : Whether to pad at the beginning or the end.
-
-**Returns:**
-
-``torch.Tensor`, or a nested tuple/list/dictionary of `torch.Tensor``
-
-The padded tensor(s).
 #### prepare[[accelerate.Accelerator.prepare]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L1414)
+```python
+prepare(*args, device_placement = None)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L1415)
+
+**Parameters:**
+
+- ***args** (list of objects) : Any of the following type of objects:  - `torch.utils.data.DataLoader`: PyTorch Dataloader - `torch.nn.Module`: PyTorch Module - `torch.optim.Optimizer`: PyTorch Optimizer - `torch.optim.lr_scheduler.LRScheduler`: PyTorch LR Scheduler 
+
+device_placement (`list[bool]`, *optional*) : Used to customize whether automatic device placement should be performed for each object passed. Needs to be a list of the same length as `args`. Not compatible with DeepSpeed or FSDP.
 
 Prepare all objects passed in `args` for distributed training and mixed precision, then return them in the same
 order.
@@ -749,17 +892,24 @@ Examples:
 ... )
 ```
 
-**Parameters:**
-
-- ***args** (list of objects) : Any of the following type of objects:  - `torch.utils.data.DataLoader`: PyTorch Dataloader - `torch.nn.Module`: PyTorch Module - `torch.optim.Optimizer`: PyTorch Optimizer - `torch.optim.lr_scheduler.LRScheduler`: PyTorch LR Scheduler 
-
-device_placement (`list[bool]`, *optional*) : Used to customize whether automatic device placement should be performed for each object passed. Needs to be a list of the same length as `args`. Not compatible with DeepSpeed or FSDP.
 #### prepare_data_loader[[accelerate.Accelerator.prepare_data_loader]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L2674)
+```python
+prepare_data_loader(data_loader: torch.utils.data.DataLoader, device_placement = None, slice_fn_for_dispatch = None)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L2685)
+
+**Parameters:**
+
+data_loader (`torch.utils.data.DataLoader`) : A vanilla PyTorch DataLoader to prepare
+
+device_placement (`bool`, *optional*) : Whether or not to place the batches on the proper device in the prepared dataloader. Will default to `self.device_placement`.
+
+slice_fn_for_dispatch (`Callable`, *optional*`) : If passed, this function will be used to slice tensors across `num_processes`. Will default to [slice_tensors()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.slice_tensors). This argument is used only when `dispatch_batches` is set to `True` and will be ignored otherwise.
 
 Prepares a PyTorch DataLoader for training in any distributed setup. It is recommended to use
-[Accelerator.prepare()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) instead.
+[Accelerator.prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) instead.
 
 Example:
 
@@ -772,19 +922,24 @@ Example:
 >>> data_loader = accelerator.prepare_data_loader(data_loader, device_placement=True)
 ```
 
-**Parameters:**
-
-data_loader (`torch.utils.data.DataLoader`) : A vanilla PyTorch DataLoader to prepare
-
-device_placement (`bool`, *optional*) : Whether or not to place the batches on the proper device in the prepared dataloader. Will default to `self.device_placement`.
-
-slice_fn_for_dispatch (`Callable`, *optional*`) : If passed, this function will be used to slice tensors across `num_processes`. Will default to [slice_tensors()](/docs/accelerate/v1.14.0/en/package_reference/utilities#accelerate.utils.slice_tensors). This argument is used only when `dispatch_batches` is set to `True` and will be ignored otherwise.
 #### prepare_model[[accelerate.Accelerator.prepare_model]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L1769)
+```python
+prepare_model(model: torch.nn.Module, device_placement: bool | None = None, evaluation_mode: bool = False)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L1770)
+
+**Parameters:**
+
+model (`torch.nn.Module`) : A PyTorch model to prepare. You don't need to prepare a model if it is used only for inference without any kind of mixed precision
+
+device_placement (`bool`, *optional*) : Whether or not to place the model on the proper device. Will default to `self.device_placement`.
+
+evaluation_mode (`bool`, *optional*, defaults to `False`) : Whether or not to set the model for evaluation only, by just applying mixed precision and `torch.compile` (if configured in the `Accelerator` object).
 
 Prepares a PyTorch model for training in any distributed setup. It is recommended to use
-[Accelerator.prepare()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) instead.
+[Accelerator.prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) instead.
 
 Example:
 
@@ -796,19 +951,22 @@ Example:
 >>> model = accelerator.prepare_model(model)
 ```
 
-**Parameters:**
-
-model (`torch.nn.Module`) : A PyTorch model to prepare. You don't need to prepare a model if it is used only for inference without any kind of mixed precision
-
-device_placement (`bool`, *optional*) : Whether or not to place the model on the proper device. Will default to `self.device_placement`.
-
-evaluation_mode (`bool`, *optional*, defaults to `False`) : Whether or not to set the model for evaluation only, by just applying mixed precision and `torch.compile` (if configured in the `Accelerator` object).
 #### prepare_optimizer[[accelerate.Accelerator.prepare_optimizer]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L2733)
+```python
+prepare_optimizer(optimizer: torch.optim.Optimizer, device_placement = None)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L2744)
+
+**Parameters:**
+
+optimizer (`torch.optim.Optimizer`) : A vanilla PyTorch optimizer to prepare
+
+device_placement (`bool`, *optional*) : Whether or not to place the optimizer on the proper device. Will default to `self.device_placement`.
 
 Prepares a PyTorch Optimizer for training in any distributed setup. It is recommended to use
-[Accelerator.prepare()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) instead.
+[Accelerator.prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) instead.
 
 Example:
 
@@ -821,17 +979,20 @@ Example:
 >>> optimizer = accelerator.prepare_optimizer(optimizer, device_placement=True)
 ```
 
-**Parameters:**
-
-optimizer (`torch.optim.Optimizer`) : A vanilla PyTorch optimizer to prepare
-
-device_placement (`bool`, *optional*) : Whether or not to place the optimizer on the proper device. Will default to `self.device_placement`.
 #### prepare_scheduler[[accelerate.Accelerator.prepare_scheduler]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L2777)
+```python
+prepare_scheduler(scheduler: LRScheduler)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L2788)
+
+**Parameters:**
+
+scheduler (`torch.optim.lr_scheduler.LRScheduler`) : A vanilla PyTorch scheduler to prepare
 
 Prepares a PyTorch Scheduler for training in any distributed setup. It is recommended to use
-[Accelerator.prepare()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) instead.
+[Accelerator.prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) instead.
 
 Example:
 
@@ -845,12 +1006,13 @@ Example:
 >>> scheduler = accelerator.prepare_scheduler(scheduler)
 ```
 
-**Parameters:**
-
-scheduler (`torch.optim.lr_scheduler.LRScheduler`) : A vanilla PyTorch scheduler to prepare
 #### print[[accelerate.Accelerator.print]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L1382)
+```python
+print(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L1383)
 
 Drop in replacement of `print()` to only print once per server.
 
@@ -862,9 +1024,18 @@ Example:
 >>> accelerator = Accelerator()
 >>> accelerator.print("Hello world!")
 ```
+
 #### profile[[accelerate.Accelerator.profile]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L4202)
+```python
+profile(profile_handler: ProfileKwargs | None = None)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L4243)
+
+**Parameters:**
+
+profile_handler (`ProfileKwargs`, *optional*) : The profile handler to use for this context manager. If not passed, will use the one set in the `Accelerator` object.
 
 Will profile the code inside the context manager. The profile will be saved to a Chrome Trace file if
 `profile_handler.output_trace_dir` is set.
@@ -901,12 +1072,25 @@ with accelerator.profile():
     train()
 ```
 
-**Parameters:**
-
-profile_handler (`ProfileKwargs`, *optional*) : The profile handler to use for this context manager. If not passed, will use the one set in the `Accelerator` object.
 #### reduce[[accelerate.Accelerator.reduce]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L3141)
+```python
+reduce(tensor, reduction = 'sum', scale = 1.0)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3182)
+
+**Parameters:**
+
+tensor (`torch.Tensor`, or a nested tuple/list/dictionary of `torch.Tensor`) : The tensors to reduce across all processes.
+
+reduction (`str`, *optional*, defaults to "sum") : A reduction type, can be one of 'sum', 'mean', 'max', or 'none'. If 'none', will not perform any operation.
+
+scale (`float`, *optional*, defaults to 1.0) : A default scaling value to be applied after the reduce, only valid on XLA.
+
+**Returns:** `torch.Tensor`, or a nested tuple/list/dictionary of `torch.Tensor`
+
+The reduced tensor(s).
 
 Reduce the values in *tensor* across all processes based on *reduction*.
 
@@ -928,22 +1112,13 @@ Example:
 tensor([4, 6])
 ```
 
-**Parameters:**
-
-tensor (`torch.Tensor`, or a nested tuple/list/dictionary of `torch.Tensor`) : The tensors to reduce across all processes.
-
-reduction (`str`, *optional*, defaults to "sum") : A reduction type, can be one of 'sum', 'mean', 'max', or 'none'. If 'none', will not perform any operation.
-
-scale (`float`, *optional*, defaults to 1.0) : A default scaling value to be applied after the reduce, only valid on XLA.
-
-**Returns:**
-
-``torch.Tensor`, or a nested tuple/list/dictionary of `torch.Tensor``
-
-The reduced tensor(s).
 #### register_for_checkpointing[[accelerate.Accelerator.register_for_checkpointing]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L4074)
+```python
+register_for_checkpointing(*objects)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L4115)
 
 Makes note of `objects` and will save or load them in during `save_state` or `load_state`.
 
@@ -963,38 +1138,55 @@ Example:
 >>> accelerator.register_for_checkpointing(obj)
 >>> accelerator.save_state("checkpoint.pt")
 ```
+
 #### register_load_state_pre_hook[[accelerate.Accelerator.register_load_state_pre_hook]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L3719)
+```python
+register_load_state_pre_hook(hook: Callable[..., None])
+```
 
-Registers a pre hook to be run before `load_checkpoint` is called in [Accelerator.load_state()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.load_state).
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3760)
+
+**Parameters:**
+
+hook (`Callable`) : A function to be called in [Accelerator.load_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.load_state) before `load_checkpoint`.
+
+**Returns:** `torch.utils.hooks.RemovableHandle`
+
+a handle that can be used to remove the added hook by calling
+`handle.remove()`
+
+Registers a pre hook to be run before `load_checkpoint` is called in [Accelerator.load_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.load_state).
 
 The hook should have the following signature:
 
 `hook(models: list[torch.nn.Module], input_dir: str) -> None`
 
 The `models` argument are the models as saved in the accelerator state under `accelerator._models`, and the
-`input_dir` argument is the `input_dir` argument passed to [Accelerator.load_state()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.load_state).
+`input_dir` argument is the `input_dir` argument passed to [Accelerator.load_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.load_state).
 
-Should only be used in conjunction with [Accelerator.register_save_state_pre_hook()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.register_save_state_pre_hook). Can be useful to load
+Should only be used in conjunction with [Accelerator.register_save_state_pre_hook()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.register_save_state_pre_hook). Can be useful to load
 configurations in addition to model weights. Can also be used to overwrite model loading with a customized
 method. In this case, make sure to remove already loaded models from the models list.
 
+#### register_save_state_pre_hook[[accelerate.Accelerator.register_save_state_pre_hook]]
+
+```python
+register_save_state_pre_hook(hook: Callable[..., None])
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3593)
+
 **Parameters:**
 
-hook (`Callable`) : A function to be called in [Accelerator.load_state()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.load_state) before `load_checkpoint`.
+hook (`Callable`) : A function to be called in [Accelerator.save_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.save_state) before `save_checkpoint`.
 
-**Returns:**
-
-``torch.utils.hooks.RemovableHandle``
+**Returns:** `torch.utils.hooks.RemovableHandle`
 
 a handle that can be used to remove the added hook by calling
 `handle.remove()`
-#### register_save_state_pre_hook[[accelerate.Accelerator.register_save_state_pre_hook]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L3552)
-
-Registers a pre hook to be run before `save_checkpoint` is called in [Accelerator.save_state()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.save_state).
+Registers a pre hook to be run before `save_checkpoint` is called in [Accelerator.save_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.save_state).
 
 The hook should have the following signature:
 
@@ -1002,25 +1194,27 @@ The hook should have the following signature:
 
 The `models` argument are the models as saved in the accelerator state under `accelerator._models`, `weights`
 argument are the state dicts of the `models`, and the `input_dir` argument is the `input_dir` argument passed
-to [Accelerator.load_state()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.load_state).
+to [Accelerator.load_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.load_state).
 
-Should only be used in conjunction with [Accelerator.register_load_state_pre_hook()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.register_load_state_pre_hook). Can be useful to save
+Should only be used in conjunction with [Accelerator.register_load_state_pre_hook()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.register_load_state_pre_hook). Can be useful to save
 configurations in addition to model weights. Can also be used to overwrite model saving with a customized
 method. In this case, make sure to remove already loaded weights from the weights list.
 
-**Parameters:**
-
-hook (`Callable`) : A function to be called in [Accelerator.save_state()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.save_state) before `save_checkpoint`.
-
-**Returns:**
-
-``torch.utils.hooks.RemovableHandle``
-
-a handle that can be used to remove the added hook by calling
-`handle.remove()`
 #### save[[accelerate.Accelerator.save]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L3409)
+```python
+save(obj, f, safe_serialization = False)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3450)
+
+**Parameters:**
+
+obj (`object`) : The object to save.
+
+f (`str` or `os.PathLike`) : Where to save the content of `obj`.
+
+safe_serialization (`bool`, *optional*, defaults to `False`) : Whether to save `obj` using `safetensors`
 
 Save the object passed to disk once per machine. Use in place of `torch.save`.
 
@@ -1038,16 +1232,23 @@ Example:
 >>> accelerator.save(arr, "array.pkl")
 ```
 
-**Parameters:**
-
-obj (`object`) : The object to save.
-
-f (`str` or `os.PathLike`) : Where to save the content of `obj`.
-
-safe_serialization (`bool`, *optional*, defaults to `False`) : Whether to save `obj` using `safetensors`
 #### save_model[[accelerate.Accelerator.save_model]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L3439)
+```python
+save_model(model: torch.nn.Module, save_directory: Union[str, os.PathLike], max_shard_size: Union[int, str] = '10GB', safe_serialization: bool = True)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3480)
+
+**Parameters:**
+
+model : (`torch.nn.Module`): Model to be saved. The model can be wrapped or unwrapped.
+
+save_directory (`str` or `os.PathLike`) : Directory to which to save. Will be created if it doesn't exist.
+
+max_shard_size (`int` or `str`, *optional*, defaults to `"10GB"`) : The maximum size for a checkpoint before being sharded. Checkpoints shard will then be each of size lower than this size. If expressed as a string, needs to be digits followed by a unit (like `"5MB"`).    If a single weight of the model is bigger than `max_shard_size`, it will be in its own checkpoint shard which will be bigger than `max_shard_size`.   
+
+safe_serialization (`bool`, *optional*, defaults to `True`) : Whether to save the model using `safetensors` or the traditional PyTorch way (that uses `pickle`).
 
 Save a model so that it can be re-loaded using load_checkpoint_in_model
 
@@ -1061,25 +1262,28 @@ Example:
 >>> accelerator.save_model(model, save_directory)
 ```
 
-**Parameters:**
-
-model : (`torch.nn.Module`): Model to be saved. The model can be wrapped or unwrapped.
-
-save_directory (`str` or `os.PathLike`) : Directory to which to save. Will be created if it doesn't exist.
-
-max_shard_size (`int` or `str`, *optional*, defaults to `"10GB"`) : The maximum size for a checkpoint before being sharded. Checkpoints shard will then be each of size lower than this size. If expressed as a string, needs to be digits followed by a unit (like `"5MB"`).    If a single weight of the model is bigger than `max_shard_size`, it will be in its own checkpoint shard which will be bigger than `max_shard_size`.   
-
-safe_serialization (`bool`, *optional*, defaults to `True`) : Whether to save the model using `safetensors` or the traditional PyTorch way (that uses `pickle`).
 #### save_state[[accelerate.Accelerator.save_state]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L3584)
+```python
+save_state(output_dir: str | None = None, safe_serialization: bool = True, **save_model_func_kwargs)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3625)
+
+**Parameters:**
+
+output_dir (`str` or `os.PathLike`) : The name of the folder to save all relevant weights and states.
+
+safe_serialization (`bool`, *optional*, defaults to `True`) : Whether to save the model using `safetensors` or the traditional PyTorch way (that uses `pickle`).
+
+save_model_func_kwargs (`dict`, *optional*) : Additional keyword arguments for saving model which can be passed to the underlying save function, such as optional arguments for DeepSpeed's `save_checkpoint` function.
 
 Saves the current states of the model, optimizer, scaler, RNG generators, and registered objects to a folder.
 
 If a `ProjectConfiguration` was passed to the `Accelerator` object with `automatic_checkpoint_naming` enabled
 then checkpoints will be saved to `self.project_dir/checkpoints`. If the number of current saves is greater
 than `total_limit` then the oldest save is deleted. Each checkpoint is saved in separate folders named
-`checkpoint_`.
+`checkpoint_<iteration>`.
 
 Otherwise they are just saved to `output_dir`.
 
@@ -1097,16 +1301,13 @@ Example:
 >>> accelerator.save_state(output_dir="my_checkpoint")
 ```
 
-**Parameters:**
-
-output_dir (`str` or `os.PathLike`) : The name of the folder to save all relevant weights and states.
-
-safe_serialization (`bool`, *optional*, defaults to `True`) : Whether to save the model using `safetensors` or the traditional PyTorch way (that uses `pickle`).
-
-save_model_func_kwargs (`dict`, *optional*) : Additional keyword arguments for saving model which can be passed to the underlying save function, such as optional arguments for DeepSpeed's `save_checkpoint` function.
 #### set_trigger[[accelerate.Accelerator.set_trigger]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L2852)
+```python
+set_trigger()
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L2863)
 
 Sets the internal trigger tensor to 1 on the current process. A latter check should follow using this which
 will check across all processes.
@@ -1129,9 +1330,20 @@ Example:
 >>> if accelerator.check_breakpoint():
 ...     break
 ```
+
 #### skip_first_batches[[accelerate.Accelerator.skip_first_batches]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L4273)
+```python
+skip_first_batches(dataloader, num_batches: int = 0)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L4314)
+
+**Parameters:**
+
+dataloader (`torch.utils.data.DataLoader`) : The data loader in which to skip batches.
+
+num_batches (`int`, *optional*, defaults to 0) : The number of batches to skip
 
 Creates a new `torch.utils.data.DataLoader` that will efficiently skip the first `num_batches`.
 
@@ -1157,14 +1369,19 @@ Example:
 ...     ...
 ```
 
-**Parameters:**
-
-dataloader (`torch.utils.data.DataLoader`) : The data loader in which to skip batches.
-
-num_batches (`int`, *optional*, defaults to 0) : The number of batches to skip
 #### split_between_processes[[accelerate.Accelerator.split_between_processes]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L832)
+```python
+split_between_processes(inputs: list | tuple | dict | torch.Tensor, apply_padding: bool = False)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L833)
+
+**Parameters:**
+
+inputs (`list`, `tuple`, `torch.Tensor`, or `dict` of `list`/`tuple`/`torch.Tensor`) : The input to split between processes.
+
+apply_padding (`bool`, `optional`, defaults to `False`) : Whether to apply padding by repeating the last element of the input so that all processes have the same number of elements. Useful when trying to perform actions such as `Accelerator.gather()` on the outputs or passing in less inputs than there are processes. If so, just remember to drop the padded elements afterwards.
 
 Splits `input` between `self.num_processes` quickly and can be then used on that process. Useful when doing
 distributed inference, such as with different prompts.
@@ -1193,14 +1410,17 @@ with accelerator.split_between_processes(["A", "B", "C"], apply_padding=True) as
 ["C", "C"]
 ```
 
-**Parameters:**
-
-inputs (`list`, `tuple`, `torch.Tensor`, or `dict` of `list`/`tuple`/`torch.Tensor`) : The input to split between processes.
-
-apply_padding (`bool`, `optional`, defaults to `False`) : Whether to apply padding by repeating the last element of the input so that all processes have the same number of elements. Useful when trying to perform actions such as `Accelerator.gather()` on the outputs or passing in less inputs than there are processes. If so, just remember to drop the padded elements afterwards.
 #### trigger_sync_in_backward[[accelerate.Accelerator.trigger_sync_in_backward]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L1180)
+```python
+trigger_sync_in_backward(model)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L1181)
+
+**Parameters:**
+
+model (`torch.nn.Module`) : The model for which to trigger the gradient synchronization.
 
 Trigger the sync of the gradients in the next backward pass of the model after multiple forward passes under
 `Accelerator.no_sync` (only applicable in multi-GPU scenarios).
@@ -1225,16 +1445,21 @@ Example:
 >>> optimizer.zero_grad()
 ```
 
-**Parameters:**
-
-model (`torch.nn.Module`) : The model for which to trigger the gradient synchronization.
 #### unscale_gradients[[accelerate.Accelerator.unscale_gradients]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L2911)
+```python
+unscale_gradients(optimizer = None)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L2922)
+
+**Parameters:**
+
+optimizer (`torch.optim.Optimizer` or `list[torch.optim.Optimizer]`, *optional*) : The optimizer(s) for which to unscale gradients. If not set, will unscale gradients on all optimizers that were passed to [prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare).
 
 Unscale the gradients in mixed precision training with AMP. This is a noop in all other settings.
 
-Likely should be called through [Accelerator.clip_grad_norm_()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.clip_grad_norm_) or [Accelerator.clip_grad_value_()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.clip_grad_value_)
+Likely should be called through [Accelerator.clip_grad_norm_()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.clip_grad_norm_) or [Accelerator.clip_grad_value_()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.clip_grad_value_)
 
 Example:
 
@@ -1249,14 +1474,27 @@ Example:
 >>> accelerator.unscale_gradients(optimizer=optimizer)
 ```
 
-**Parameters:**
-
-optimizer (`torch.optim.Optimizer` or `list[torch.optim.Optimizer]`, *optional*) : The optimizer(s) for which to unscale gradients. If not set, will unscale gradients on all optimizers that were passed to [prepare()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.prepare).
 #### unwrap_model[[accelerate.Accelerator.unwrap_model]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L3213)
+```python
+unwrap_model(model, keep_fp32_wrapper: bool = True, keep_torch_compile: bool = True)
+```
 
-Unwraps the `model` from the additional layer possible added by [prepare()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.prepare). Useful before saving
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3254)
+
+**Parameters:**
+
+model (`torch.nn.Module`) : The model to unwrap.
+
+keep_fp32_wrapper (`bool`, *optional*, defaults to `True`) : Whether to not remove the mixed precision hook if it was added.
+
+keep_torch_compile (`bool`, *optional*, defaults to `True`) : Whether to not unwrap compiled model if compiled.
+
+**Returns:** `torch.nn.Module`
+
+The unwrapped model.
+
+Unwraps the `model` from the additional layer possible added by [prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare). Useful before saving
 the model.
 
 Example:
@@ -1276,27 +1514,23 @@ DistributedDataParallel
 MyModel
 ```
 
-**Parameters:**
-
-model (`torch.nn.Module`) : The model to unwrap.
-
-keep_fp32_wrapper (`bool`, *optional*, defaults to `True`) : Whether to not remove the mixed precision hook if it was added.
-
-keep_torch_compile (`bool`, *optional*, defaults to `True`) : Whether to not unwrap compiled model if compiled.
-
-**Returns:**
-
-``torch.nn.Module``
-
-The unwrapped model.
 #### verify_device_map[[accelerate.Accelerator.verify_device_map]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L4309)
+```python
+verify_device_map(model: torch.nn.Module)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L4350)
 
 Verifies that `model` has not been prepared with big model inference with a device-map resembling `auto`.
+
 #### wait_for_everyone[[accelerate.Accelerator.wait_for_everyone]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/accelerator.py#L3247)
+```python
+wait_for_everyone()
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3288)
 
 Will stop the execution of the current process until every other process has reached that point (so this does
 nothing when the script is only run in one process). Useful to do before saving a model.
@@ -1322,9 +1556,11 @@ Example:
 
 #### accelerate.utils.gather_object[[accelerate.utils.gather_object]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/utils/operations.py#L505)
+```python
+accelerate.utils.gather_object(object: typing.Any)
+```
 
-Recursively gather object in a nested list/tuple/dictionary of objects from all devices.
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/operations.py#L505)
 
 **Parameters:**
 
@@ -1334,5 +1570,7 @@ object (nested list/tuple/dictionary of picklable object) : The data to gather.
 
 The same data structure as `object` with all the objects sent to every device.
 
-### Launchers
-https://huggingface.co/docs/accelerate/v1.14.0/package_reference/launchers.md
+Recursively gather object in a nested list/tuple/dictionary of objects from all devices.
+
+### Kwargs handlers
+https://huggingface.co/docs/accelerate/v1.15.0/package_reference/kwargs.md

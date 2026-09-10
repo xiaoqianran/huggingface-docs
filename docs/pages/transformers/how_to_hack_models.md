@@ -1,6 +1,6 @@
 # Customizing model components
 
-Another way to customize a model is to modify their components, rather than writing a new model entirely, allowing you to tailor a model to your specific use case. For example, you can add new layers or optimize the attention mechanism of an architecture. Customizations are applied directly to a Transformers model so that you can continue to use features such as [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel), and the [PEFT](https://huggingface.co/docs/peft/en/index) library.
+Another way to customize a model is to modify their components, rather than writing a new model entirely, allowing you to tailor a model to your specific use case. For example, you can add new layers or optimize the attention mechanism of an architecture. Customizations are applied directly to a Transformers model so that you can continue to use features such as [Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer), [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel), and the [PEFT](https://huggingface.co/docs/peft/en/index) library.
 
 This guide will show you how to customize a models attention mechanism in order to apply [Low-Rank Adaptation (LoRA)](https://huggingface.co/docs/peft/conceptual_guides/adapter#low-rank-adaptation-lora) to it.
 
@@ -42,7 +42,7 @@ class SamVisionAttentionSplit(SamVisionAttention, nn.Module):
         self._register_load_state_dict_pre_hook(self.split_q_k_v_load_hook)
 ```
 
-2. The `_split_qkv_load_hook` function splits the pretrained `qkv` weights into separate `q`, `k`, and `v` weights when loading the model to ensure compatibility with any pretrained model.
+2. The `split_q_k_v_load_hook` function splits the pretrained `qkv` weights into separate `q`, `k`, and `v` weights when loading the model to ensure compatibility with any pretrained model.
 
 ```py
     def split_q_k_v_load_hook(self, state_dict, prefix, *args):
@@ -90,18 +90,17 @@ class SamVisionAttentionSplit(SamVisionAttention, nn.Module):
 
 Assign the custom `SamVisionAttentionSplit` class to the original models `SamVisionAttention` module to replace it. All instances of `SamVisionAttention` in the model are replaced with the split attention version.
 
-Load the model with [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
+Swap the class *before* calling [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). The load hook only runs while the checkpoint is loading, so replacing the modules on an already loaded model leaves the new `q`, `k`, and `v` layers randomly initialized.
 
 ```py
 from transformers import SamModel
+from transformers.models.sam import modeling_sam
 
-# load the pretrained SAM model
-model = SamModel.from_pretrained("facebook/sam-vit-base")
+# replace the attention class the vision layers instantiate
+modeling_sam.SAM_VISION_ATTENTION_CLASSES["eager"] = SamVisionAttentionSplit
 
-# replace the attention class in the vision_encoder module
-for layer in model.vision_encoder.layers:
-    if hasattr(layer, "attn"):
-        layer.attn = SamVisionAttentionSplit(model.config.vision_config, model.config.vision_config.window_size)
+# load the pretrained SAM model, the hook splits the qkv weights during loading
+model = SamModel.from_pretrained("facebook/sam-vit-base", attn_implementation="eager")
 ```
 
 ## LoRA
@@ -137,4 +136,4 @@ model.print_trainable_parameters()
 ```
 
 ### Attention backends
-https://huggingface.co/docs/transformers/v5.15.1/attention_interface.md
+https://huggingface.co/docs/transformers/v5.17.0/attention_interface.md

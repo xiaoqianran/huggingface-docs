@@ -22,9 +22,9 @@ Transformers provides data collators for various tasks (see all available [data 
 
 ## DataCollatorWithPadding
 
-For simple use cases like adding an extra field, subclass [DataCollatorWithPadding](/docs/transformers/v5.15.1/en/main_classes/data_collator#transformers.DataCollatorWithPadding) and extend its `__call__` method. The example below adds a `"score"` field.
+For simple use cases like adding an extra field, subclass [DataCollatorWithPadding](/docs/transformers/v5.17.0/en/main_classes/data_collator#transformers.DataCollatorWithPadding) and extend its `__call__` method. The example below adds a `"score"` field.
 
-1. Remove the custom field first because [pad()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.pad) doesn't recognize it.
+1. Remove the custom field first because [pad()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.pad) doesn't recognize it.
 2. Call the parent class to handle `input_ids` and `attention_mask`.
 3. Add the `"score"` field back to the batch.
 
@@ -46,7 +46,7 @@ class DataCollatorWithScore(DataCollatorWithPadding):
         return batch
 ```
 
-Pass the custom data collator to [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) like any other data collator.
+Pass the custom data collator to [Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer) like any other data collator.
 
 ```py
 trainer = Trainer(
@@ -66,9 +66,11 @@ Subclass `DataCollatorMixin` for full control over batch assembly and implement 
 
 ```py
 import torch
-from transformers import DataCollatorMixin
+from dataclasses import dataclass
+from transformers.data.data_collator import DataCollatorMixin
 from trl.trainer.utils import pad
 
+@dataclass
 class DataCollatorForPreference(DataCollatorMixin):
     pad_token_id: int
     pad_to_multiple_of: int | None = None
@@ -105,4 +107,4 @@ class DataCollatorForPreference(DataCollatorMixin):
 - See all available [data collators](./main_classes/data_collator) for common tasks like token classification.
 
 ### CPU
-https://huggingface.co/docs/transformers/v5.15.1/perf_train_cpu.md
+https://huggingface.co/docs/transformers/v5.17.0/perf_train_cpu.md

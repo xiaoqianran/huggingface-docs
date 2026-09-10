@@ -5,40 +5,66 @@ The library is integrated with 🤗 [transformers](https://github.com/huggingfac
 
 ## 🎉 What's New
 
-**⚗️ DistillationTrainer is now stable:** [`DistillationTrainer`](distillation_trainer) graduates to the stable API — on-policy knowledge distillation that matches a teacher's full next-token distribution with a memory-efficient chunked JSD loss and vLLM-powered generation.
+**📜 Training beyond 1M tokens:** A new [long context guide](long_context_training) walks through the four things that break as sequences grow — the loss, the positions, the activations and the memory of a single GPU — and ends on an example that trains Qwen3-8B on million-token sequences on one 8-GPU node.
 
 ## Taxonomy
 
-Below is the current list of TRL trainers, organized by method type (⚡️ = vLLM support; 🧪 = experimental).
+Below is an overview of TRL trainers, organized by maturity and method type.
 
-### Online methods
+#### Online methods
 
-- [`GRPOTrainer`](grpo_trainer) ⚡️
-- [`RLOOTrainer`](rloo_trainer) ⚡️
-- [`OnlineDPOTrainer`](online_dpo_trainer) 🧪 ⚡️
-- [`NashMDTrainer`](nash_md_trainer) 🧪 ⚡️
-- [`PPOTrainer`](ppo_trainer) 🧪
-- [`XPOTrainer`](xpo_trainer) 🧪 ⚡️
+- [`GRPOTrainer`](grpo_trainer)
+- [`RLOOTrainer`](rloo_trainer)
 
-### Reward modeling
+#### Reward modeling
 
 - [`RewardTrainer`](reward_trainer)
-- [`PRMTrainer`](prm_trainer) 🧪
 
-### Offline methods
+#### Offline methods
 
 - [`SFTTrainer`](sft_trainer)
 - [`DPOTrainer`](dpo_trainer)
 - [`KTOTrainer`](kto_trainer)
-- [`BCOTrainer`](bco_trainer) 🧪
-- [`CPOTrainer`](cpo_trainer) 🧪
-- [`ORPOTrainer`](orpo_trainer) 🧪
 
-### Knowledge distillation
+#### Knowledge distillation
 
-- [`DistillationTrainer`](distillation_trainer) ⚡️
-- [`GKDTrainer`](gkd_trainer) 🧪
-- [`MiniLLMTrainer`](minillm_trainer) 🧪
+- [`DistillationTrainer`](distillation_trainer)
+
+### Experimental
+
+#### Online methods
+
+- [`A2POTrainer`](a2po_trainer)
+- [`AsyncGRPOTrainer`](async_grpo_trainer)
+- [`GMPOTrainer`](gmpo)
+- [`GRPOWithReplayBufferTrainer`](grpo_with_replay_buffer)
+- [GSPO-token](gspo_token)
+- [`NashMDTrainer`](nash_md_trainer)
+- [`OnlineDPOTrainer`](online_dpo_trainer)
+- [`XPOTrainer`](xpo_trainer)
+
+#### Reward modeling
+
+- [`PRMTrainer`](prm_trainer)
+
+#### Offline methods
+
+- [BEMA for Reference Model](bema_for_reference_model)
+- [`BCOTrainer`](bco_trainer)
+- [`CPOTrainer`](cpo_trainer)
+- [`ORPOTrainer`](orpo_trainer)
+- [`TPOTrainer`](tpo_trainer)
+
+#### Knowledge distillation
+
+- [`AsyncDistillationTrainer`](async_distillation_trainer)
+- [`GKDTrainer`](gkd_trainer)
+- [`GOLDTrainer`](gold_trainer)
+- [`IWOPDTrainer`](iw_opd_trainer)
+- [`MiniLLMTrainer`](minillm_trainer)
+- [`SDFTTrainer`](sdft_trainer)
+- [`SDPOTrainer`](sdpo_trainer)
+- [`SSDTrainer`](ssd_trainer)
 
 You can also explore TRL-related models, datasets, and demos in the [TRL Hugging Face organization](https://huggingface.co/trl-lib).
 
@@ -62,8 +88,23 @@ The documentation is organized into the following sections:
   
     
       
-      Published March 27, 2026
+      Published on May 27, 2026
+      Shipping a Trillion Parameters With a Hub Bucket: Delta Weight Sync in TRL
+    
+    
+      
+      Published on March 31, 2026
       TRL v1: Post-Training Library That Holds When the Field Invalidates Its Own Assumptions
+    
+    
+      
+      Published on March 10, 2026
+      Keep the Tokens Flowing: Lessons from 16 Open-Source RL Libraries
+    
+    
+      
+      Published on March 9, 2026
+      Ulysses Sequence Parallelism: Training with Million-Token Contexts
     
     
       
@@ -102,6 +143,11 @@ The documentation is organized into the following sections:
     
     
       
+      Published on January 10, 2024
+      Make LLM Fine-tuning 2x faster with Unsloth and 🤗 TRL
+    
+    
+      
       Published on September 29, 2023
       Finetune Stable Diffusion Models with DDPO via TRL
     
@@ -136,4 +182,4 @@ The documentation is organized into the following sections:
       Fine tuning with TRL
 
 ### MergeModelCallback[[trl.experimental.merge_model_callback.MergeModelCallback]]
-https://huggingface.co/docs/trl/v1.12.0/merge_model_callback.md
+https://huggingface.co/docs/trl/v1.13.0/merge_model_callback.md

@@ -37,5 +37,5 @@ print(output)
 - [mlx-lm](https://github.com/ml-explore/mlx-lm) repository containing MLX LLM implementations
 - [mlx-vlm](https://github.com/Blaizzy/mlx-vlm) community library with VLM implementations
 
-### Unsloth
-https://huggingface.co/docs/transformers/v5.15.1/community_integrations/unsloth.md
+### LiteRT
+https://huggingface.co/docs/transformers/v5.17.0/community_integrations/litert.md

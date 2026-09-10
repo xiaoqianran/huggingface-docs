@@ -10,22 +10,22 @@ For an overview of the chat templates bundled with TRL and the rationale behind 
 trl.clone_chat_template(model: PreTrainedModel, tokenizer: PreTrainedTokenizerBase, source_tokenizer_path: str, resize_to_multiple_of: int | None = 64)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/chat_template_utils.py#L45)
+[Source](https://github.com/huggingface/trl/blob/v1.13.0/trl/chat_template_utils.py#L45)
 
 **Parameters:**
 
-model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/model#transformers.PreTrainedModel)) : Model to update.
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) : Model to update.
 
-tokenizer ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.16.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase)) : Tokenizer to update.
+tokenizer ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase)) : Tokenizer to update.
 
 source_tokenizer_path (`str`) : Path or identifier of the pretrained tokenizer to clone from.
 
 resize_to_multiple_of (`int` or `None`, *optional*, defaults to `64`) : The embedding layer will be resized to the new vocabulary size. If this is not `None`, it will round up the new vocabulary size to the nearest multiple of this value.
 
-**Returns:** model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/model#transformers.PreTrainedModel))
+**Returns:** model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel))
 
 Updated model with resized token embeddings and EOS token configured.
-tokenizer ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.16.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase)):
+tokenizer ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase)):
 Updated tokenizer with the chat template and special tokens applied.
 added_tokens (`list[int]`):
 List of tokens that were added to the tokenizer from the source tokenizer.
@@ -58,7 +58,7 @@ Example:
 trl.chat_template_utils.is_chat_template_prefix_preserving(processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | transformers.processing_utils.ProcessorMixin)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/chat_template_utils.py#L825)
+[Source](https://github.com/huggingface/trl/blob/v1.13.0/trl/chat_template_utils.py#L825)
 
 **Parameters:**
 
@@ -82,7 +82,7 @@ tokenizations with and without tool messages appended.
 trl.get_training_chat_template(processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | transformers.processing_utils.ProcessorMixin | None = None, tokenizer: transformers.tokenization_utils_base.PreTrainedTokenizerBase | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/chat_template_utils.py#L1032)
+[Source](https://github.com/huggingface/trl/blob/v1.13.0/trl/chat_template_utils.py#L1032)
 
 **Parameters:**
 
@@ -136,4 +136,4 @@ Example:
 ```
 
 ### Generalized Knowledge Distillation Trainer
-https://huggingface.co/docs/trl/v1.12.0/gkd_trainer.md
+https://huggingface.co/docs/trl/v1.13.0/gkd_trainer.md

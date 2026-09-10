@@ -4,12 +4,16 @@
 
 #### accelerate.tracking.GeneralTracker[[accelerate.tracking.GeneralTracker]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L101)
+```python
+accelerate.tracking.GeneralTracker(_blank = False)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L103)
 
 A base Tracker class to be used for all logging integration implementations.
 
 Each function should take in `**kwargs` that will automatically be passed in from a base dictionary provided to
-[Accelerator](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator).
+[Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator).
 
 Should implement `name`, `requires_logging_directory`, and `tracker` properties such that:
 
@@ -20,48 +24,103 @@ tracking mechanism used by a tracker class (such as the `run` for wandb)
 Implementations can also include a `main_process_only` (`bool`) attribute to toggle if relevant logging, init, and
 other functions should occur on the main process or across all processes (by default will use `True`)
 
-finishaccelerate.tracking.GeneralTracker.finishhttps://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L171[]
+#### finish[[accelerate.tracking.GeneralTracker.finish]]
+
+```python
+finish()
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L173)
 
 Should run any finalizing functions within the tracking API. If the API should not have one, just don't
 overwrite that method.
+
 #### log[[accelerate.tracking.GeneralTracker.log]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L159)
+```python
+log(values: dict, step: typing.Optional[int] = None, **kwargs)
+```
 
-Logs `values` to the current run. Base `log` implementations of a tracking API should go in here, along with
-special behavior for the `step parameter.
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L161)
 
 **Parameters:**
 
 values (Dictionary `str` to `str`, `float`, or `int`) : Values to be logged as key-value pairs. The values need to have type `str`, `float`, or `int`.
 
 step (`int`, *optional*) : The run step. If included, the log will be affiliated with this step.
+
+Logs `values` to the current run. Base `log` implementations of a tracking API should go in here, along with
+special behavior for the `step parameter.
+
 #### start[[accelerate.tracking.GeneralTracker.start]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L142)
+```python
+start()
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L144)
 
 Lazy initialization of the tracker inside Accelerator to avoid initializing PartialState before
 InitProcessGroupKwargs.
+
 #### store_init_configuration[[accelerate.tracking.GeneralTracker.store_init_configuration]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L148)
+```python
+store_init_configuration(values: dict)
+```
 
-Logs `values` as hyperparameters for the run. Implementations should use the experiment configuration
-functionality of a tracking API.
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L150)
 
 **Parameters:**
 
 values (Dictionary `str` to `bool`, `str`, `float` or `int`) : Values to be stored as initial hyperparameters as key-value pairs. The values need to have type `bool`, `str`, `float`, `int`, or `None`.
 
+Logs `values` as hyperparameters for the run. Implementations should use the experiment configuration
+functionality of a tracking API.
+
+## register_tracker_class[[accelerate.tracking.register_tracker_class]]
+
+#### accelerate.tracking.register_tracker_class[[accelerate.tracking.register_tracker_class]]
+
+```python
+accelerate.tracking.register_tracker_class(tracker_class: type)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L1264)
+
+**Parameters:**
+
+tracker_class (subclass of `GeneralTracker`) : The tracker class to register. It must subclass `GeneralTracker` and define a non-empty `name` class attribute and a `requires_logging_directory` class attribute. The class is instantiated with the `project_name` passed to `Accelerator.init_trackers()` as the first positional argument. When `requires_logging_directory` is `True`, the logging directory is passed as the second positional argument (matching the built-in tracker convention). Tracker-specific keyword arguments from `init_kwargs` are forwarded as `**kwargs`.
+
+Registers a custom `GeneralTracker` subclass so it can be referenced by its `name` in the `log_with` argument of
+[Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator), the same way as the built-in trackers.
+
+The tracker must be registered before instantiating the [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) that uses it.
+
+Example:
+
+```python
+from accelerate import Accelerator
+from accelerate.tracking import GeneralTracker, register_tracker_class
+
+class MyTracker(GeneralTracker):
+    name = "my_tracker"
+    requires_logging_directory = False
+    # ... implement the rest of the `GeneralTracker` interface
+
+register_tracker_class(MyTracker)
+accelerator = Accelerator(log_with="my_tracker")
+```
+
 ## TensorBoardTracker[[accelerate.tracking.TensorBoardTracker]]
 
 #### accelerate.tracking.TensorBoardTracker[[accelerate.tracking.TensorBoardTracker]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L178)
+```python
+accelerate.tracking.TensorBoardTracker(run_name: str, logging_dir: typing.Union[str, os.PathLike], **kwargs)
+```
 
-A `Tracker` class that supports `tensorboard`. Should be initialized at the start of your script.
-
-__init__accelerate.tracking.TensorBoardTracker.__init__https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L194[{"name": "run_name", "val": ": str"}, {"name": "logging_dir", "val": ": typing.Union[str, os.PathLike]"}, {"name": "**kwargs", "val": ""}]
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L180)
 
 **Parameters:**
 
@@ -71,15 +130,25 @@ logging_dir (`str`, `os.PathLike`) : Location for TensorBoard logs to be stored.
 
 - ****kwargs** (additional keyword arguments, *optional*) : Additional key word arguments passed along to the `tensorboard.SummaryWriter.__init__` method.
 
+A `Tracker` class that supports `tensorboard`. Should be initialized at the start of your script.
+
+#### __init__[[accelerate.tracking.TensorBoardTracker.__init__]]
+
+```python
+__init__(run_name: str, logging_dir: typing.Union[str, os.PathLike], **kwargs)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L196)
+
 ## WandBTracker[[accelerate.tracking.WandBTracker]]
 
 #### accelerate.tracking.WandBTracker[[accelerate.tracking.WandBTracker]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L293)
+```python
+accelerate.tracking.WandBTracker(run_name: str, **kwargs)
+```
 
-A `Tracker` class that supports `wandb`. Should be initialized at the start of your script.
-
-__init__accelerate.tracking.WandBTracker.__init__https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L308[{"name": "run_name", "val": ": str"}, {"name": "**kwargs", "val": ""}]
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L295)
 
 **Parameters:**
 
@@ -87,15 +156,25 @@ run_name (`str`) : The name of the experiment run.
 
 - ****kwargs** (additional keyword arguments, *optional*) : Additional key word arguments passed along to the `wandb.init` method.
 
+A `Tracker` class that supports `wandb`. Should be initialized at the start of your script.
+
+#### __init__[[accelerate.tracking.WandBTracker.__init__]]
+
+```python
+__init__(run_name: str, **kwargs)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L310)
+
 ## Trackio[[accelerate.tracking.TrackioTracker]]
 
 #### accelerate.tracking.TrackioTracker[[accelerate.tracking.TrackioTracker]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L418)
+```python
+accelerate.tracking.TrackioTracker(run_name: str, **kwargs)
+```
 
-A `Tracker` class that supports `trackio`. Should be initialized at the start of your script.
-
-__init__accelerate.tracking.TrackioTracker.__init__https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L435[{"name": "run_name", "val": ": str"}, {"name": "**kwargs", "val": ""}]
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L420)
 
 **Parameters:**
 
@@ -103,20 +182,25 @@ run_name (`str`) : The name of the experiment run. Will be used as the `project`
 
 - ****kwargs** (additional keyword arguments, *optional*) : Additional key word arguments passed along to the `trackio.init` method. Refer to this [init](https://github.com/gradio-app/trackio/blob/814809552310468b13f84f33764f1369b4e5136c/trackio/__init__.py#L22) to see all supported key word arguments.
 
+A `Tracker` class that supports `trackio`. Should be initialized at the start of your script.
+
+#### __init__[[accelerate.tracking.TrackioTracker.__init__]]
+
+```python
+__init__(run_name: str, **kwargs)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L437)
+
 ## CometMLTracker[[accelerate.tracking.CometMLTracker]]
 
 #### accelerate.tracking.CometMLTracker[[accelerate.tracking.CometMLTracker]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L495)
+```python
+accelerate.tracking.CometMLTracker(run_name: str, **kwargs)
+```
 
-A `Tracker` class that supports `comet_ml`. Should be initialized at the start of your script.
-
-API keys must be stored in a Comet config file.
-
-Note:
-For `comet_ml` versions 
-
-__init__accelerate.tracking.CometMLTracker.__init__https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L516[{"name": "run_name", "val": ": str"}, {"name": "**kwargs", "val": ""}]
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L497)
 
 **Parameters:**
 
@@ -124,15 +208,31 @@ run_name (`str`) : The name of the experiment run.
 
 - ****kwargs** (additional keyword arguments, *optional*) : Additional key word arguments passed along to the `comet_ml.start` method: https://www.comet.com/docs/v2/api-and-sdk/python-sdk/reference/start/
 
+A `Tracker` class that supports `comet_ml`. Should be initialized at the start of your script.
+
+API keys must be stored in a Comet config file.
+
+Note:
+For `comet_ml` versions < 3.41.0, additional keyword arguments are passed to `comet_ml.Experiment` instead:
+https://www.comet.com/docs/v2/api-and-sdk/python-sdk/reference/Experiment/#comet_ml.Experiment.__init__
+
+#### __init__[[accelerate.tracking.CometMLTracker.__init__]]
+
+```python
+__init__(run_name: str, **kwargs)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L518)
+
 ## AimTracker[[accelerate.tracking.AimTracker]]
 
 #### accelerate.tracking.AimTracker[[accelerate.tracking.AimTracker]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L589)
+```python
+accelerate.tracking.AimTracker(run_name: str, logging_dir: typing.Union[str, os.PathLike, NoneType] = '.', **kwargs)
+```
 
-A `Tracker` class that supports `aim`. Should be initialized at the start of your script.
-
-__init__accelerate.tracking.AimTracker.__init__https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L603[{"name": "run_name", "val": ": str"}, {"name": "logging_dir", "val": ": typing.Union[str, os.PathLike, NoneType] = '.'"}, {"name": "**kwargs", "val": ""}]
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L591)
 
 **Parameters:**
 
@@ -140,15 +240,25 @@ run_name (`str`) : The name of the experiment run.
 
 - ****kwargs** (additional keyword arguments, *optional*) : Additional key word arguments passed along to the `Run.__init__` method.
 
+A `Tracker` class that supports `aim`. Should be initialized at the start of your script.
+
+#### __init__[[accelerate.tracking.AimTracker.__init__]]
+
+```python
+__init__(run_name: str, logging_dir: typing.Union[str, os.PathLike, NoneType] = '.', **kwargs)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L605)
+
 ## MLflowTracker[[accelerate.tracking.MLflowTracker]]
 
 #### accelerate.tracking.MLflowTracker[[accelerate.tracking.MLflowTracker]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L692)
+```python
+accelerate.tracking.MLflowTracker(experiment_name: typing.Optional[str] = None, logging_dir: typing.Union[str, os.PathLike, NoneType] = None, run_id: typing.Optional[str] = None, tags: typing.Union[dict[str, typing.Any], str, NoneType] = None, nested_run: typing.Optional[bool] = False, run_name: typing.Optional[str] = None, description: typing.Optional[str] = None)
+```
 
-A `Tracker` class that supports `mlflow`. Should be initialized at the start of your script.
-
-__init__accelerate.tracking.MLflowTracker.__init__https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L723[{"name": "experiment_name", "val": ": typing.Optional[str] = None"}, {"name": "logging_dir", "val": ": typing.Union[str, os.PathLike, NoneType] = None"}, {"name": "run_id", "val": ": typing.Optional[str] = None"}, {"name": "tags", "val": ": typing.Union[dict[str, typing.Any], str, NoneType] = None"}, {"name": "nested_run", "val": ": typing.Optional[bool] = False"}, {"name": "run_name", "val": ": typing.Optional[str] = None"}, {"name": "description", "val": ": typing.Optional[str] = None"}]
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L694)
 
 **Parameters:**
 
@@ -166,15 +276,25 @@ run_name (`str`, *optional*) : Name of new run (stored as a mlflow.runName tag).
 
 description (`str`, *optional*) : An optional string that populates the description box of the run. If a run is being resumed, the description is set on the resumed run. If a new run is being created, the description is set on the new run.
 
+A `Tracker` class that supports `mlflow`. Should be initialized at the start of your script.
+
+#### __init__[[accelerate.tracking.MLflowTracker.__init__]]
+
+```python
+__init__(experiment_name: typing.Optional[str] = None, logging_dir: typing.Union[str, os.PathLike, NoneType] = None, run_id: typing.Optional[str] = None, tags: typing.Union[dict[str, typing.Any], str, NoneType] = None, nested_run: typing.Optional[bool] = False, run_name: typing.Optional[str] = None, description: typing.Optional[str] = None)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L725)
+
 ## ClearMLTracker[[accelerate.tracking.ClearMLTracker]]
 
 #### accelerate.tracking.ClearMLTracker[[accelerate.tracking.ClearMLTracker]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L901)
+```python
+accelerate.tracking.ClearMLTracker(run_name: typing.Optional[str] = None, **kwargs)
+```
 
-A `Tracker` class that supports `clearml`. Should be initialized at the start of your script.
-
-__init__accelerate.tracking.ClearMLTracker.__init__https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L916[{"name": "run_name", "val": ": typing.Optional[str] = None"}, {"name": "**kwargs", "val": ""}]
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L905)
 
 **Parameters:**
 
@@ -182,15 +302,25 @@ run_name (`str`, *optional*) : Name of the experiment. Environment variables `CL
 
 - ****kwargs** (additional keyword arguments, *optional*) : Kwargs passed along to the `Task.__init__` method.
 
+A `Tracker` class that supports `clearml`. Should be initialized at the start of your script.
+
+#### __init__[[accelerate.tracking.ClearMLTracker.__init__]]
+
+```python
+__init__(run_name: typing.Optional[str] = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L920)
+
 ## SwanLabTracker[[accelerate.tracking.SwanLabTracker]]
 
 #### accelerate.tracking.SwanLabTracker[[accelerate.tracking.SwanLabTracker]]
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L1147)
+```python
+accelerate.tracking.SwanLabTracker(run_name: str, **kwargs)
+```
 
-A `Tracker` class that supports `swanlab`. Should be initialized at the start of your script.
-
-__init__accelerate.tracking.SwanLabTracker.__init__https://github.com/huggingface/accelerate/blob/v1.14.0/src/accelerate/tracking.py#L1162[{"name": "run_name", "val": ": str"}, {"name": "**kwargs", "val": ""}]
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L1151)
 
 **Parameters:**
 
@@ -198,5 +328,15 @@ run_name (`str`) : The name of the experiment run.
 
 - ****kwargs** (additional keyword arguments, *optional*) : Additional key word arguments passed along to the `swanlab.init` method.
 
-### Stateful Classes
-https://huggingface.co/docs/accelerate/v1.14.0/package_reference/state.md
+A `Tracker` class that supports `swanlab`. Should be initialized at the start of your script.
+
+#### __init__[[accelerate.tracking.SwanLabTracker.__init__]]
+
+```python
+__init__(run_name: str, **kwargs)
+```
+
+[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/tracking.py#L1166)
+
+### DeepSpeed utilities
+https://huggingface.co/docs/accelerate/v1.15.0/package_reference/deepspeed.md

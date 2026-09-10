@@ -225,7 +225,7 @@ trainer.train()
 
 ### Direct Preference Optimization (DPO)
 
-The [DPOTrainer](/docs/trl/v1.12.0/en/bema_for_reference_model#trl.DPOTrainer) implements preference learning from human feedback.
+The [DPOTrainer](/docs/trl/v1.13.0/en/bema_for_reference_model#trl.DPOTrainer) implements preference learning from human feedback.
 
 #### With LoRA
 
@@ -324,87 +324,6 @@ trainer = GRPOTrainer(
 trainer.train()
 ```
 
-### Proximal Policy Optimization (PPO)
-
-#### Multi-Adapter RL Training
-
-You can use a single base model with multiple PEFT adapters for the entire PPO algorithm - including retrieving reference logits, computing active logits, and calculating rewards. This approach is useful for memory-efficient RL training.
-
-> [!WARNING]
-> This feature is experimental and convergence has not been extensively tested. We encourage the community to share feedback and report any issues.
-
-**Requirements**
-
-Install PEFT and optionally bitsandbytes for 8-bit models:
-
-```bash
-pip install peft bitsandbytes
-```
-
-**Training Workflow**
-
-The multi-adapter approach requires three stages:
-
-1. **Supervised Fine-Tuning (SFT)**: Train a base model on your target domain (e.g., IMDB dataset) using `SFTTrainer`
-2. **Reward Model Training**: Train a reward model adapter using PEFT and `RewardTrainer` (see [`trl/scripts/reward.py`](https://github.com/huggingface/trl/blob/main/trl/scripts/reward.py))
-3. **PPO Training**: Fine-tune new adapters using PPO with the reward adapter
-
-> [!IMPORTANT]
-> Use the same base model (architecture and weights) for stages 2 & 3.
-
-**Basic Usage**
-
-After training your reward adapter and pushing it to the Hub:
-
-```python
-from peft import LoraConfig
-from trl.experimental.ppo import PPOTrainer, AutoModelForCausalLMWithValueHead
-
-model_name = "huggyllama/llama-7b"
-rm_adapter_id = "trl-lib/llama-7b-hh-rm-adapter"
-
-# Configure PPO adapter
-lora_config = LoraConfig(
-    r=16,
-    lora_alpha=32,
-    lora_dropout=0.05,
-    bias="none",
-    task_type="CAUSAL_LM",
-)
-
-# Load model with reward adapter
-model = AutoModelForCausalLMWithValueHead.from_pretrained(
-    model_name,
-    peft_config=lora_config,
-    reward_adapter=rm_adapter_id,
-)
-
-trainer = PPOTrainer(model=model, ...)
-```
-
-In your training loop, compute rewards using:
-
-```python
-rewards = trainer.model.compute_reward_score(**inputs)
-```
-
-**Advanced Features**
-
-**Quantized Base Models**
-
-For memory-efficient training, load the base model in 8-bit or 4-bit while keeping adapters in float32:
-
-```python
-from transformers import BitsAndBytesConfig
-
-model = AutoModelForCausalLMWithValueHead.from_pretrained(
-    model_name,
-    peft_config=lora_config,
-    reward_adapter=rm_adapter_id,
-    quantization_config=BitsAndBytesConfig(load_in_8bit=True),
-)
-```
-
 ## QLoRA: Quantized Low-Rank Adaptation
 
 QLoRA combines 4-bit quantization with LoRA to enable fine-tuning of very large models on consumer hardware. This technique can reduce memory requirements by up to 4x compared to standard LoRA.
@@ -437,7 +356,7 @@ python trl/scripts/sft.py \
 
 #### Python Example
 
-Pass the `quantization_config` directly to the trainer alongside `peft_config` — the trainer loads and quantizes the model for you. The same `quantization_config` argument is available on [SFTTrainer](/docs/trl/v1.12.0/en/sft_trainer#trl.SFTTrainer), [DPOTrainer](/docs/trl/v1.12.0/en/bema_for_reference_model#trl.DPOTrainer), [GRPOTrainer](/docs/trl/v1.12.0/en/grpo_trainer#trl.GRPOTrainer), and [RLOOTrainer](/docs/trl/v1.12.0/en/rloo_trainer#trl.RLOOTrainer).
+Pass the `quantization_config` directly to the trainer alongside `peft_config` — the trainer loads and quantizes the model for you. The same `quantization_config` argument is available on [SFTTrainer](/docs/trl/v1.13.0/en/sft_trainer#trl.SFTTrainer), [DPOTrainer](/docs/trl/v1.13.0/en/bema_for_reference_model#trl.DPOTrainer), [GRPOTrainer](/docs/trl/v1.13.0/en/grpo_trainer#trl.GRPOTrainer), and [RLOOTrainer](/docs/trl/v1.13.0/en/rloo_trainer#trl.RLOOTrainer).
 
 ```python
 import torch
@@ -806,4 +725,4 @@ model = AutoModelForCausalLM.from_pretrained(
 - [Prompt Tuning Paper](https://huggingface.co/papers/2104.08691) - The Power of Scale for Parameter-Efficient Prompt Tuning
 
 ### Speeding Up Training
-https://huggingface.co/docs/trl/v1.12.0/speeding_up_training.md
+https://huggingface.co/docs/trl/v1.13.0/speeding_up_training.md

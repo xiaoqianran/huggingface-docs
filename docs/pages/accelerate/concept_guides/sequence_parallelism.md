@@ -196,5 +196,5 @@ For an example of an Accelerate training loop with enabled ALST/UlyssesSP see [e
 
 Since this is a Deepspeed backend the usual Deepspeed configuration applies, so you can combine sequence parallelism with optimizer states and/or weights offloading as well to liberate more gpu memory and enable an even longer sequence length. This technology has been tested to work with DeepSpeed ZeRO stage 2 and 3.
 
-### Context Parallel in 🤗`accelerate`
-https://huggingface.co/docs/accelerate/v1.14.0/concept_guides/context_parallelism.md
+### Accelerate's internal mechanisms
+https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/internal_mechanism.md

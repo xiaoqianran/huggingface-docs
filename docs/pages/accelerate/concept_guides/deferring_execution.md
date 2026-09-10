@@ -17,7 +17,7 @@ point (if you run your script on just one GPU or CPU, this won't do anything).
 
 A few example cases of when to use this utility are listed below:
 
-    Some of these are utilized with the [main_process_first()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.main_process_first) context manager, which utilizes [wait_for_everyone()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.wait_for_everyone) to 
+    Some of these are utilized with the [main_process_first()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.main_process_first) context manager, which utilizes [wait_for_everyone()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.wait_for_everyone) to 
     run a particular set of code on the main process beforehand before triggering and launching the other processes
 
 ## Downloading a Dataset 
@@ -92,7 +92,7 @@ with accelerator.main_process_first():
 To have a check that works with a flag set by a particular process, the `set_trigger` and `check_trigger` API should be used. Useful examples
 for doing so can include situations such as using early stopping and monitoring the loss (as each loss slightly differs on each process).
 
-Call [Accelerator.set_trigger()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.set_trigger) when your condition has been met, and [Accelerator.check_trigger()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.check_trigger) when checking if that condition has been met in any process:
+Call [Accelerator.set_trigger()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.set_trigger) when your condition has been met, and [Accelerator.check_trigger()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.check_trigger) when checking if that condition has been met in any process:
 
 ```python
 for (x,y) in data_loader:
@@ -106,6 +106,3 @@ for (x,y) in data_loader:
     if accelerator.check_trigger():
         break
 ```
-
-### Accelerate's internal mechanisms
-https://huggingface.co/docs/accelerate/v1.14.0/concept_guides/internal_mechanism.md

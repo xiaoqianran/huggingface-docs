@@ -40,4 +40,4 @@ Without usage data, the maintainers have no way to know which parts of the libra
 If you find TRL useful, leaving telemetry enabled is a low-cost way to help us make it better.
 
 ### RapidFire AI Integration
-https://huggingface.co/docs/trl/v1.12.0/rapidfire_integration.md
+https://huggingface.co/docs/trl/v1.13.0/rapidfire_integration.md

@@ -82,10 +82,8 @@ Take a look at an example:
 
 ```py
 >>> next(iter(train_dataset))
-{'audio': {'array': array([...], dtype=float32),
-  'path': '...',
-  'sampling_rate': 16000},
- 'caption': 'A man speaks followed by footsteps'}
+{'audiocap_id': 91139, 'youtube_id': 'r1nicOVtvkQ', 'start_time': 130, 'caption': 'A woman talks nearby as water pours', 'audio_length': 480000, 'audio': <datasets.features._torchcodec.AudioDecoder object at ...>}
+
 ```
 
 The dataset contains:
@@ -122,7 +120,7 @@ Create a data collator that processes audio-text pairs into the format expected 
 ...                     "role": "user",
 ...                     "content": [
 ...                         {"type": "text", "text": "Describe the audio."},
-...                         {"type": "audio", "audio": feature["audio"]["array"]},
+...                         {"type": "audio", "audio": feature["audio"].get_all_samples().data[0].numpy()},
 ...                     ],
 ...                 },
 ...                 {
@@ -151,7 +149,7 @@ Instantiate the data collator:
 ## Train
 
 > [!TIP]
-> If you aren't familiar with fine-tuning a model with the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training)!
+> If you aren't familiar with fine-tuning a model with the [Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training)!
 
 Load the Audio Flamingo model. We use `bfloat16` precision and `device_map="auto"` for efficient memory usage:
 
@@ -191,14 +189,16 @@ Load the Audio Flamingo model. We use `bfloat16` precision and `device_map="auto
 ... )
 >>> model = get_peft_model(model, lora_config)
 >>> model.print_trainable_parameters()
+trainable params: 44,302,336 || all params: 8,311,517,696 || trainable%: 0.5330
+
 ```
 
 > [!TIP]
-> [LoRA](https://huggingface.co/docs/peft/main/conceptual_guides/lora) significantly reduces memory usage and training time by only updating a small number of adapter parameters instead of the full model. This configuration targets the language model's attention and feed-forward layers while keeping the audio encoder frozen, making it possible to fine-tune on a single GPU.
+> LoRA significantly reduces memory usage and training time by only updating a small number of adapter parameters instead of the full model. This configuration targets the language model's attention and feed-forward layers while keeping the audio encoder frozen, making it possible to fine-tune on a single GPU.
 
 ### Setup training
 
-Define training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments). Note that we use `max_steps` instead of epochs since we're using a streaming dataset:
+Define training hyperparameters in [TrainingArguments](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments). Note that we use `max_steps` instead of epochs since we're using a streaming dataset:
 
 ```py
 >>> from transformers import TrainingArguments, Trainer
@@ -224,7 +224,7 @@ Define training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.
 ... )
 ```
 
-Pass the training arguments to [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) along with the model, datasets, and data collator:
+Pass the training arguments to [Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer) along with the model, datasets, and data collator:
 
 ```py
 >>> trainer = Trainer(
@@ -242,6 +242,8 @@ Save the LoRA adapter and processor:
 ```py
 >>> trainer.save_model()
 >>> processor.save_pretrained("audio-flamingo-3-hf-lora-finetuned")
+['audio-flamingo-3-hf-lora-finetuned/processor_config.json']
+
 ```
 
 Once training is completed, share your model to the Hub:
@@ -276,6 +278,8 @@ Load an audio sample for inference:
 >>> dataset = load_dataset("OpenSound/AudioCaps", split="test", streaming=True)
 >>> dataset = dataset.cast_column("audio", Audio(sampling_rate=16000))
 >>> sample = next(iter(dataset))
+>>> audio = sample["audio"]
+>>> audio_array = audio.get_all_samples().data[0].numpy() if hasattr(audio, "get_all_samples") else audio["array"]
 ```
 
 Prepare the input with a conversation format:
@@ -286,7 +290,7 @@ Prepare the input with a conversation format:
 ...         "role": "user",
 ...         "content": [
 ...             {"type": "text", "text": "Describe the audio."},
-...             {"type": "audio", "audio": sample["audio"]["array"]},
+...             {"type": "audio", "audio": audio_array},
 ...         ],
 ...     }
 ... ]
@@ -295,7 +299,7 @@ Prepare the input with a conversation format:
 ...     tokenize=True,
 ...     add_generation_prompt=True,
 ...     return_dict=True,
-... )
+... ).to(device=model.device, dtype=model.dtype)
 ```
 
 Generate a response:
@@ -312,26 +316,29 @@ Generate a response:
 
 ## Pipeline
 
-You can also use the [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) API for quick inference. First, merge the LoRA adapter with the base model, then create a pipeline:
+For quick inference, use the [Pipeline](/docs/transformers/v5.17.0/en/main_classes/pipelines#transformers.Pipeline) API with an `any-to-any` model. The example below uses [Voxtral](https://huggingface.co/mistralai/Voxtral-Mini-3B-2507), which accepts audio and text inputs and generates text. See the [any-to-any task guide](./any_to_any) for more examples.
 
-```py
->>> from transformers import pipeline
->>> # Merge LoRA adapter for pipeline use
->>> merged_model = model.merge_and_unload()
->>> pipe = pipeline(
-...     "audio-text-to-text",
-...     model=merged_model,
-...     processor=processor,
-... )
->>> result = pipe(
-...     sample["audio"]["array"],
-...     generate_kwargs={"max_new_tokens": 100},
-... )
->>> print(result[0]["generated_text"])
+```python
+from transformers import pipeline
+
+pipe = pipeline("any-to-any", model="mistralai/Voxtral-Mini-3B-2507")
+
+messages = [
+    {
+        "role": "user",
+        "content": [
+            {
+                "type": "audio",
+                "url": "https://huggingface.co/datasets/raushan-testing-hf/audio-test/resolve/main/glass-breaking-151256.mp3",
+            },
+            {"type": "text", "text": "What do you hear in this audio?"},
+        ],
+    },
+]
+
+outputs = pipe(text=messages, max_new_tokens=100, return_full_text=False)
+print(outputs[0]["generated_text"])
 ```
-
-> [!TIP]
-> For more advanced use cases like multi-turn conversations with audio, you can structure your messages with alternating user and assistant roles, similar to [image-text-to-text](./image_text_to_text) models.
 
 ## Further Reading
 
@@ -340,4 +347,4 @@ You can also use the [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipel
 - [Audio Flamingo 3 model card](https://huggingface.co/nvidia/audio-flamingo-3-hf) for model-specific details and capabilities.
 
 ### Keypoint Detection
-https://huggingface.co/docs/transformers/v5.15.1/tasks/keypoint_detection.md
+https://huggingface.co/docs/transformers/v5.17.0/tasks/keypoint_detection.md

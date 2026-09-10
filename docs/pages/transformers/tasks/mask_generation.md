@@ -1,4 +1,4 @@
-# Mask Generation
+# Mask generation
 
 Mask generation is the task of generating semantically meaningful masks for an image.
 This task is very similar to [image segmentation](semantic_segmentation), but many differences exist. Image segmentation models are trained on labeled datasets and are limited to the classes they have seen during training; they return a set of masks and corresponding classes, given an image.
@@ -529,4 +529,4 @@ Great improvement after only training for 20 epochs on a small dataset!
 ![SAM2 result after training](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/tasks/sam2_after_training.png)
 
 ### Question answering
-https://huggingface.co/docs/transformers/v5.15.1/tasks/question_answering.md
+https://huggingface.co/docs/transformers/v5.17.0/tasks/question_answering.md

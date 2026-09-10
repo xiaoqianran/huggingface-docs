@@ -19,14 +19,14 @@ progress_bar = tqdm(range(args.max_train_steps), disable=not accelerator.is_loca
 You could also wrap a statement with `accelerator.is_local_main_process`.
 
 > [!TIP]
-> For standalone `print` statements that aren't wrapped in `accelerator.is_local_main_process`, replace `print` with Accelerate's [print()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.print) method to only print once per process.
+> For standalone `print` statements that aren't wrapped in `accelerator.is_local_main_process`, replace `print` with Accelerate's [print()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.print) method to only print once per process.
 
 ```py
 if accelerator.is_local_main_process:
     print("Accelerate is the best")
 ```
 
-For a function that should only be executed once, use [on_local_main_process()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.on_local_main_process).
+For a function that should only be executed once, use [on_local_main_process()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.on_local_main_process).
 
 ```py
 @accelerator.on_local_main_process
@@ -44,7 +44,7 @@ if accelerator.is_main_process:
     repo.push_to_hub()
 ```
 
-For a function that should only be executed once across all processes, use [on_main_process()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.on_main_process).
+For a function that should only be executed once across all processes, use [on_main_process()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.on_main_process).
 
 ```py
 @accelerator.on_main_process
@@ -57,7 +57,7 @@ def do_my_thing():
 
 Accelerate can also help you execute functions that should only be executed on a specific process or a local process index.
 
-Use the [on_process()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.on_process) method and specify the process index to execute a function on.
+Use the [on_process()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.on_process) method and specify the process index to execute a function on.
 
 ```py
 @accelerator.on_process(process_index=0)
@@ -66,7 +66,7 @@ def do_my_thing():
     do_thing_on_index_zero()
 ```
 
-Use the [on_local_process()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.on_local_process) method and specify the local process index to execute a function on.
+Use the [on_local_process()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.on_local_process) method and specify the local process index to execute a function on.
 
 ```py
 @accelerator.on_local_process(local_process_idx=0)
@@ -79,11 +79,11 @@ def do_my_thing():
 
 When you run your script on several GPUs at the same time, some code may be executed faster than others. You might need to wait for all processes to reach a certain point before executing the next set of instructions. For instance, you shouldn’t save a model before making sure every process is done with training.
 
-To do this, add [wait_for_everyone()](/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.wait_for_everyone) in your code. This blocks all processes that have finished first from continuing until all remaining processes have reached the same point (this has no effect if you're running on a single GPU or CPU).
+To do this, add [wait_for_everyone()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.wait_for_everyone) in your code. This blocks all processes that have finished first from continuing until all remaining processes have reached the same point (this has no effect if you're running on a single GPU or CPU).
 
 ```py
 accelerator.wait_for_everyone()
 ```
 
-### Troubleshoot
-https://huggingface.co/docs/accelerate/v1.14.0/basic_tutorials/troubleshooting.md
+### Installation
+https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/install.md

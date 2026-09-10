@@ -1,4 +1,4 @@
-# Utilities for Rotary Embedding
+# Rotary embeddings utilities
 
 This page explains how the Rotary Embedding is computed and applied in Transformers and what types of RoPE are supported.
 
@@ -65,7 +65,7 @@ config.rope_parameters = {
 
 #### transformers.RopeParameters[[transformers.RopeParameters]]
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/modeling_rope_utils.py#L678)
+[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/modeling_rope_utils.py#L678)
 
 **Parameters:**
 
@@ -105,5 +105,5 @@ d[k] = v
 dict(**kwargs) -> new dictionary initialized with the name=value pairs
 in the keyword argument list.  For example:  dict(one=1, two=2)
 
-### Time Series Utilities
-https://huggingface.co/docs/transformers/v5.15.1/internal/time_series_utils.md
+### Utilities for time series
+https://huggingface.co/docs/transformers/v5.17.0/internal/time_series_utils.md

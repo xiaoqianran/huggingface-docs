@@ -113,5 +113,5 @@ This calculation is accurate within a few % of the actual value, so it is a very
 When performing inference you can expect to add up to an additional 20% as found by [EleutherAI](https://blog.eleuther.ai/transformer-math/). We'll be conducting research into finding a more accurate estimate to these values, and will update 
 this calculator once done.
 
-### Amazon SageMaker
-https://huggingface.co/docs/accelerate/v1.14.0/usage_guides/sagemaker.md
+### Accelerated PyTorch Training on Mac
+https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/mps.md
