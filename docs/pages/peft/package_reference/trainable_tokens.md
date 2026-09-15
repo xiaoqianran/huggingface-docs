@@ -18,8 +18,8 @@ embedding matrix of the model accordingly. This method will only re-train the em
 This method can also be used in conjunction with LoRA layers! See [the LoRA documentation](lora#efficiently-train-tokens-alongside-lora).
 
 > [!TIP]
-> Saving the model with [save_pretrained()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.save_pretrained) or retrieving the state dict using
-> [get_peft_model_state_dict()](/docs/peft/v0.20.0/en/package_reference/functional#peft.get_peft_model_state_dict) when adding new tokens may save the full embedding matrix instead of only the difference
+> Saving the model with [save_pretrained()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.save_pretrained) or retrieving the state dict using
+> [get_peft_model_state_dict()](/docs/peft/v0.21.0/en/package_reference/functional#peft.get_peft_model_state_dict) when adding new tokens may save the full embedding matrix instead of only the difference
 > as a precaution because the embedding matrix was resized. To save space you can disable this behavior by setting
 > `save_embedding_layers=False` when calling `save_pretrained`. This is safe to do as long as you don't modify the
 > embedding matrix through other means as well, as such changes will be not tracked by trainable tokens.
@@ -43,7 +43,7 @@ This method can also be used in conjunction with LoRA layers! See [the LoRA docu
 peft.TrainableTokensConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, token_indices: list[int] = <factory>, target_modules: Optional[Union[list[str], str]] = None, init_weights: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/trainable_tokens/config.py#L25)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/trainable_tokens/config.py#L25)
 
 **Parameters:**
 
@@ -70,7 +70,7 @@ Note that training with FSDP/DeepSpeed might not yet be fully supported.
 peft.TrainableTokensModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/trainable_tokens/model.py#L26)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/trainable_tokens/model.py#L26)
 
-### MiSS
-https://huggingface.co/docs/peft/v0.20.0/package_reference/miss.md
+### MonteCLoRA (Monte Carlo Low-Rank Adaptation)
+https://huggingface.co/docs/peft/v0.21.0/package_reference/lora_variant_monteclora.md

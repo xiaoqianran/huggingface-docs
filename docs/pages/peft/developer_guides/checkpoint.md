@@ -6,7 +6,7 @@ This document describes how PEFT's checkpoint files are structured and how to co
 
 PEFT (parameter-efficient fine-tuning) methods only update a small subset of a model's parameters rather than all of them. This is nice because checkpoint files can generally be much smaller than the original model files and are easier to store and share. However, this also means that to load a PEFT model, you need to have the original model available as well.
 
-When you call [save_pretrained()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.save_pretrained) on a PEFT model, the PEFT model saves three files, described below:
+When you call [save_pretrained()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.save_pretrained) on a PEFT model, the PEFT model saves three files, described below:
 
 1. `adapter_model.safetensors` or `adapter_model.bin`
 
@@ -118,7 +118,7 @@ Let's break this down:
 
 When inspecting the parameter names in the loaded model, you might be surprised to find that they look a bit different, e.g. `base_model.model.encoder.layer.0.attention.self.query.lora_A.default.weight`. The difference is the *`.default`* part in the second to last segment. This part exists because PEFT generally allows the addition of multiple adapters at once (using an `nn.ModuleDict` or `nn.ParameterDict` to store them). For example, if you add another adapter called "other", the key for that adapter would be `base_model.model.encoder.layer.0.attention.self.query.lora_A.other.weight`.
 
-When you call [save_pretrained()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.save_pretrained), the adapter name is stripped from the keys. The reason is that the adapter name is not an important part of the model architecture; it is just an arbitrary name. When loading the adapter, you could choose a totally different name, and the model would still work the same way. This is why the adapter name is not stored in the checkpoint file.
+When you call [save_pretrained()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.save_pretrained), the adapter name is stripped from the keys. The reason is that the adapter name is not an important part of the model architecture; it is just an arbitrary name. When loading the adapter, you could choose a totally different name, and the model would still work the same way. This is why the adapter name is not stored in the checkpoint file.
 
 > [!TIP]
 > If you call `save_pretrained("some/path")` and the adapter name is not `"default"`, the adapter is stored in a sub-directory with the same name as the adapter. So if the name is "other", it would be stored inside of `some/path/other`.
@@ -198,7 +198,7 @@ merged_model.save_pretrained(...)
 
 There are some disadvantages to this approach, though:
 
-- Once [merge_and_unload()](/docs/peft/v0.20.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.merge_and_unload) is called, you get a basic model without any PEFT-specific functionality. This means you can't use any of the PEFT-specific methods anymore.
+- Once [merge_and_unload()](/docs/peft/v0.21.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.merge_and_unload) is called, you get a basic model without any PEFT-specific functionality. This means you can't use any of the PEFT-specific methods anymore.
 - You cannot unmerge the weights, load multiple adapters at once, disable the adapter, etc.
 - Not all PEFT methods support merging weights.
 - Some PEFT methods may generally allow merging, but not with specific settings (e.g. when using certain quantization techniques).
@@ -226,5 +226,5 @@ model_loaded.save_pretrained(<final_location>)
 model_loaded.push_to_hub(<final_location>)
 ```
 
-### Model merging
-https://huggingface.co/docs/peft/v0.20.0/developer_guides/model_merging.md
+### Contribute to PEFT
+https://huggingface.co/docs/peft/v0.21.0/developer_guides/contributing.md

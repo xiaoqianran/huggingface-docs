@@ -19,7 +19,7 @@ There are two decisions to take: how many virtual tokens are added to the
 input of the model (`num_virtual_tokens`) - this will define how many
 trainable parameters there will be - and how these tokens are initialized.
 
-Create a [PromptTuningConfig](/docs/peft/v0.20.0/en/package_reference/prompt_tuning#peft.PromptTuningConfig) with the task type, the initial prompt tuning text to train the model with, the number of virtual tokens to add and learn, and a tokenizer.
+Create a [PromptTuningConfig](/docs/peft/v0.21.0/en/package_reference/prompt_tuning#peft.PromptTuningConfig) with the task type, the initial prompt tuning text to train the model with, the number of virtual tokens to add and learn, and a tokenizer.
 
 ```py
 from peft import PromptTuningConfig, PromptTuningInit, get_peft_model
@@ -56,7 +56,7 @@ model.print_trainable_parameters()
 peft.PromptTuningConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, num_virtual_tokens: int = None, token_dim: int = None, num_transformer_submodules: Optional[int] = None, num_attention_heads: Optional[int] = None, num_layers: Optional[int] = None, modules_to_save: Optional[list[str]] = None, prompt_tuning_init: typing.Union[peft.tuners.prompt_tuning.config.PromptTuningInit, str] = <PromptTuningInit.RANDOM: 'RANDOM'>, prompt_tuning_init_text: typing.Optional[str] = None, tokenizer_name_or_path: typing.Optional[str] = None, tokenizer_kwargs: typing.Optional[dict] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/prompt_tuning/config.py#L30)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/prompt_tuning/config.py#L30)
 
 **Parameters:**
 
@@ -68,7 +68,7 @@ tokenizer_name_or_path (`str`, *optional*) : The name or path of the tokenizer. 
 
 tokenizer_kwargs (`dict`, *optional*) : The keyword arguments to pass to `AutoTokenizer.from_pretrained`. Only used if `prompt_tuning_init` is `TEXT`.
 
-This is the configuration class to store the configuration of a [PromptEmbedding](/docs/peft/v0.20.0/en/package_reference/prompt_tuning#peft.PromptEmbedding).
+This is the configuration class to store the configuration of a [PromptEmbedding](/docs/peft/v0.21.0/en/package_reference/prompt_tuning#peft.PromptEmbedding).
 
 ## PromptEmbedding[[peft.PromptEmbedding]]
 
@@ -78,11 +78,11 @@ This is the configuration class to store the configuration of a [PromptEmbedding
 peft.PromptEmbedding(config, word_embeddings)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/prompt_tuning/model.py#L24)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/prompt_tuning/model.py#L25)
 
 **Parameters:**
 
-config ([PromptTuningConfig](/docs/peft/v0.20.0/en/package_reference/prompt_tuning#peft.PromptTuningConfig)) : The configuration of the prompt embedding.
+config ([PromptTuningConfig](/docs/peft/v0.21.0/en/package_reference/prompt_tuning#peft.PromptTuningConfig)) : The configuration of the prompt embedding.
 
 word_embeddings (`torch.nn.Module`) : The word embeddings of the base transformer model.
 
@@ -117,5 +117,5 @@ Input Shape: (`batch_size`, `total_virtual_tokens`)
 
 Output Shape: (`batch_size`, `total_virtual_tokens`, `token_dim`)
 
-### BEFT: Bias-Efficient Fine-Tuning of Language Models in Low-Data Regimes
-https://huggingface.co/docs/peft/v0.20.0/package_reference/beft.md
+### Bridging The Gap between Low-rank and Orthogonal Adaptation via Householder Reflection Adaptation (HRA)
+https://huggingface.co/docs/peft/v0.21.0/package_reference/hra.md

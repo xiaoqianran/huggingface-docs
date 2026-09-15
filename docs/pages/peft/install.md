@@ -12,6 +12,23 @@ To install 🤗 PEFT from PyPI:
 pip install peft
 ```
 
+## CUDA Windows Arm64
+
+To install PEFT with PyTorch CUDA on Windows Arm64, such as for NVIDIA RTX Spark laptops, install PyTorch from the NVIDIA PyPI index. These devices require NVIDIA's Windows Arm64 builds of PyTorch, which are not available on the default PyPI index or the standard PyTorch wheel index.
+
+Run the command below to check if your system detects an NVIDIA GPU.
+
+```bash
+nvidia-smi
+```
+
+Install PyTorch from the NVIDIA PyPI index, then install PEFT.
+
+```bash
+pip install torch --index-url https://pypi.nvidia.com/nvtorch_oot_nightly
+pip install peft
+```
+
 ## Source
 
 New features that haven't been released yet are added every day, which also means there may be some bugs. To try them out, install from the GitHub repository:
@@ -31,5 +48,5 @@ pip install -e ".[test]"
 
 If you're planning to contribute to PEFT, follow the [contributing guide](developer_guides/contributing#installation) instead, which also covers forking, adding the upstream remote, and creating a working branch.
 
-### Parameter efficient fine-tuning methods
-https://huggingface.co/docs/peft/v0.20.0/methods/overview.md
+### PEFT
+https://huggingface.co/docs/peft/v0.21.0/index.md

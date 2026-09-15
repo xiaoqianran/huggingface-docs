@@ -75,7 +75,7 @@ If you use the PaRa variant (`para=True`), please also cite:
 peft.DeftConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 8, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, decomposition_method: Literal['relu', 'qr'] = 'relu', init_scale: float = 1.0, alpha: Optional[int] = None, para: bool = False, fan_in_fan_out: bool = False, deft_dropout: float = 0.0, init_weights: bool = True, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, bias: str = 'none', modules_to_save: Optional[list[str]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/deft/config.py#L25)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/deft/config.py#L25)
 
 **Parameters:**
 
@@ -107,7 +107,7 @@ bias (`str`) : Bias type for DEFT. Can be `'none'`, `'all'` or `'deft_only'`.
 
 modules_to_save (`List[str]`) : List of modules apart from adapter layers to be set as trainable and saved in the final checkpoint.
 
-This is the configuration class to store the configuration of a [DeftModel](/docs/peft/v0.20.0/en/package_reference/deft#peft.DeftModel).
+This is the configuration class to store the configuration of a [DeftModel](/docs/peft/v0.21.0/en/package_reference/deft#peft.DeftModel).
 
 DEFT (Decompositional Efficient Fine-Tuning) performs knowledge injection through a residual-projection update. For
 a frozen base weight `W`, a low-rank projection direction `P` (shape `out_features x r`) and an injection matrix
@@ -128,13 +128,13 @@ equals `W`), so training starts from the pretrained weights and learns the injec
 peft.DeftModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/deft/model.py#L27)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/deft/model.py#L27)
 
 **Parameters:**
 
 model (`torch.nn.Module`) : The model to which the adapter tuner layers will be attached.
 
-config ([DeftConfig](/docs/peft/v0.20.0/en/package_reference/deft#peft.DeftConfig)) : The configuration of the DEFT model.
+config ([DeftConfig](/docs/peft/v0.21.0/en/package_reference/deft#peft.DeftConfig)) : The configuration of the DEFT model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -148,11 +148,11 @@ Creates a DEFT (Decompositional Efficient Fine-Tuning) model from a pretrained m
 
 DEFT freezes the base weights and learns, per target module, a low-rank projection direction `P` and an injection
 matrix `R`. The effective weight becomes `(I - P_proj) @ W + Q_P @ R`, replacing a sub-space of `W` with newly
-injected content (see [DeftConfig](/docs/peft/v0.20.0/en/package_reference/deft#peft.DeftConfig) for the available `decomposition_method` variants).
+injected content (see [DeftConfig](/docs/peft/v0.21.0/en/package_reference/deft#peft.DeftConfig) for the available `decomposition_method` variants).
 
 **Attributes**:
 - **model** (`~torch.nn.Module`) -- The model to be adapted.
-- **peft_config** ([DeftConfig](/docs/peft/v0.20.0/en/package_reference/deft#peft.DeftConfig)): The configuration of the DEFT model.
+- **peft_config** ([DeftConfig](/docs/peft/v0.21.0/en/package_reference/deft#peft.DeftConfig)): The configuration of the DEFT model.
 
-### Helper methods
-https://huggingface.co/docs/peft/v0.20.0/package_reference/helpers.md
+### X-LoRA
+https://huggingface.co/docs/peft/v0.21.0/package_reference/xlora.md

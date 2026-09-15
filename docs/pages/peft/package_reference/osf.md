@@ -221,10 +221,10 @@ optimizer = torch.optim.AdamW([
 #### peft.OSFConfig[[peft.OSFConfig]]
 
 ```python
-peft.OSFConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, effective_rank: Optional[Union[int, float]] = None, target_modules: Optional[Union[list[str], str]] = None, rank_pattern: Optional[dict[str, Union[int, float]]] = None, init_weights: Optional[bool] = None, modules_to_save: Optional[list[str]] = None, target_svd_config: Optional[dict[str, int]] = None)
+peft.OSFConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, effective_rank: Optional[Union[int, float]] = None, target_modules: Optional[Union[list[str], str]] = None, rank_pattern: Optional[dict[str, Union[int, float]]] = None, init_weights: Optional[bool] = True, modules_to_save: Optional[list[str]] = None, target_svd_config: Optional[dict[str, int]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/osf/config.py#L11)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/osf/config.py#L11)
 
 **Parameters:**
 
@@ -244,7 +244,7 @@ Configuration for Orthogonal Subspace Fine-tuning (OSF).
 peft.OSFModel(model, config, adapter_name, low_cpu_mem_usage: bool = False, state_dict: dict[str, torch.Tensor] | None = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/osf/model.py#L14)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/osf/model.py#L14)
 
 A minimal tuner implementing Orthogonal Subspace Fine-tuning.
 
@@ -258,19 +258,9 @@ A minimal tuner implementing Orthogonal Subspace Fine-tuning.
 peft.tuners.osf.utils.decompose_weight_matrix(weight: torch.Tensor, top_k: int)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/osf/utils.py#L42)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/osf/utils.py#L41)
 
 Perform an SVD of `weight` and split it into frozen and trainable parts.
-
-#### peft.tuners.osf.utils.reconstruct_weight_matrix[[peft.tuners.osf.utils.reconstruct_weight_matrix]]
-
-```python
-peft.tuners.osf.utils.reconstruct_weight_matrix(svd_dict: dict[str, torch.Tensor])
-```
-
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/osf/utils.py#L62)
-
-Reconstruct a weight matrix from its SVD components.
 
 ### Gradient Projection[[peft.tuners.osf.utils.project_gradient_to_orthogonal_space]]
 
@@ -280,9 +270,9 @@ Reconstruct a weight matrix from its SVD components.
 peft.tuners.osf.utils.project_gradient_to_orthogonal_space(svd_dict: dict[str, Any])
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/osf/utils.py#L84)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/osf/utils.py#L61)
 
 Project gradients of `U_low` and `V_low` to be orthogonal to the high rank space.
 
-### BOFT
-https://huggingface.co/docs/peft/v0.20.0/package_reference/boft.md
+### ShadowPEFT
+https://huggingface.co/docs/peft/v0.21.0/package_reference/shadow.md

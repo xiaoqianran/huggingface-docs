@@ -35,7 +35,7 @@ The abstract from the paper is:
 peft.TinyLoraConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 2, u: int = 64, weight_tying: float = 0.0, projection_seed: int = 42, save_projection: bool = True, init_v_bound: float = 0.02, target_modules: Optional[Union[list[str], str]] = None, tinylora_dropout: float = 0.0, fan_in_fan_out: bool = False, bias: str = 'none', modules_to_save: Optional[list[str]] = None, init_weights: Union[bool, str] = True, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tinylora/config.py#L25)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tinylora/config.py#L25)
 
 **Parameters:**
 
@@ -67,7 +67,7 @@ layers_to_transform (`Union[List[int], int]`, *optional*) : The layer indexes to
 
 layers_pattern (`Optional[Union[List[str], str]]`, *optional*) : The layer pattern name, used only if `layers_to_transform` is different from `None`.
 
-This is the configuration class to store the configuration of a [TinyLoraModel](/docs/peft/v0.20.0/en/package_reference/tinylora#peft.TinyLoraModel).
+This is the configuration class to store the configuration of a [TinyLoraModel](/docs/peft/v0.21.0/en/package_reference/tinylora#peft.TinyLoraModel).
 
 TinyLoRA is an extremely parameter-efficient fine-tuning method based on the paper "Learning to Reason in 13
 Parameters" (arXiv:2602.04118). It uses SVD decomposition of frozen weights and projects a tiny trainable vector
@@ -97,13 +97,13 @@ model = get_peft_model(base_model, config)
 peft.TinyLoraModel(model, config, adapter_name, low_cpu_mem_usage = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tinylora/model.py#L33)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tinylora/model.py#L33)
 
 **Parameters:**
 
-model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
 
-config ([TinyLoraConfig](/docs/peft/v0.20.0/en/package_reference/tinylora#peft.TinyLoraConfig)) : The configuration of the TinyLoRA model.
+config ([TinyLoraConfig](/docs/peft/v0.21.0/en/package_reference/tinylora#peft.TinyLoraConfig)) : The configuration of the TinyLoRA model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -130,8 +130,8 @@ Example:
 ```
 
 **Attributes**:
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([TinyLoraConfig](/docs/peft/v0.20.0/en/package_reference/tinylora#peft.TinyLoraConfig)): The configuration of the TinyLoRA model.
+- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([TinyLoraConfig](/docs/peft/v0.21.0/en/package_reference/tinylora#peft.TinyLoraConfig)): The configuration of the TinyLoRA model.
 
 #### delete_adapter[[peft.TinyLoraModel.delete_adapter]]
 
@@ -139,9 +139,9 @@ Example:
 delete_adapter(adapter_name: str)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tinylora/model.py#L284)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tinylora/model.py#L285)
 
 Delete an adapter and clean up the model-level shared v parameters.
 
-### Configuration
-https://huggingface.co/docs/peft/v0.20.0/package_reference/config.md
+### Weight-Decomposed Low-Rank Adaptation (DoRA)
+https://huggingface.co/docs/peft/v0.21.0/package_reference/lora_variant_dora.md

@@ -39,7 +39,7 @@ This paper aims to answer this question by introducing RandLora, a parameter-eff
 peft.RandLoraConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 32, target_modules: typing.Union[str, list[str], NoneType] = None, projection_prng_key: int = 0, save_projection: bool = True, sparse: bool = False, very_sparse: bool = False, randlora_dropout: float = 0.0, fan_in_fan_out: bool = False, randlora_alpha: int = 640, bias: str = 'none', modules_to_save: typing.Optional[list[str]] = None, init_weights: bool = True, layers_to_transform: typing.Union[list[int], int, NoneType] = None, layers_pattern: typing.Optional[str] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/randlora/config.py#L24)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/randlora/config.py#L24)
 
 **Parameters:**
 
@@ -71,7 +71,7 @@ layers_to_transform (`Union[list[int],int]`) : The layer indexes to transform, i
 
 layers_pattern (`str`) : The layer pattern name, used only if `layers_to_transform` is different from `None` and if the layer pattern is not in the common layers pattern.
 
-This is the configuration class to store the configuration of a [RandLoraModel](/docs/peft/v0.20.0/en/package_reference/randlora#peft.RandLoraModel).
+This is the configuration class to store the configuration of a [RandLoraModel](/docs/peft/v0.21.0/en/package_reference/randlora#peft.RandLoraModel).
 
 Paper: https://huggingface.co/papers/2502.00987.
 
@@ -83,13 +83,13 @@ Paper: https://huggingface.co/papers/2502.00987.
 peft.RandLoraModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/randlora/model.py#L67)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/randlora/model.py#L67)
 
 **Parameters:**
 
-model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
 
-config ([RandLoraConfig](/docs/peft/v0.20.0/en/package_reference/randlora#peft.RandLoraConfig)) : The configuration of the RandLora model.
+config ([RandLoraConfig](/docs/peft/v0.21.0/en/package_reference/randlora#peft.RandLoraConfig)) : The configuration of the RandLora model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -113,8 +113,8 @@ Example:
 ```
 
 **Attributes**:
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([RandLoraConfig](/docs/peft/v0.20.0/en/package_reference/randlora#peft.RandLoraConfig)): The configuration of the RandLora model.
+- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([RandLoraConfig](/docs/peft/v0.21.0/en/package_reference/randlora#peft.RandLoraConfig)): The configuration of the RandLora model.
 
-### Cartridges
-https://huggingface.co/docs/peft/v0.20.0/package_reference/cartridges.md
+### PVeRA: Probabilistic Vector-Based Random Matrix Adaptation
+https://huggingface.co/docs/peft/v0.21.0/package_reference/pvera.md

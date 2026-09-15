@@ -29,7 +29,7 @@ The abstract from the paper is:
 peft.ShiraConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 32, mask_type: Literal['random'] = 'random', random_seed: Optional[int] = None, target_modules: Optional[Union[list[str], str]] = None, fan_in_fan_out: bool = False, init_weights: bool = True, modules_to_save: Optional[list[str]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/shira/config.py#L28)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/shira/config.py#L28)
 
 **Parameters:**
 
@@ -47,7 +47,7 @@ init_weights (`bool`, defaults to `True`) : Initialize SHiRA weight to have zero
 
 modules_to_save (`List[str]`) : List of modules apart from SHiRA layers to be set as trainable and saved in the final checkpoint.
 
-This is the configuration class to store the configuration of a [ShiraModel](/docs/peft/v0.20.0/en/package_reference/shira#peft.ShiraModel).
+This is the configuration class to store the configuration of a [ShiraModel](/docs/peft/v0.21.0/en/package_reference/shira#peft.ShiraModel).
 
 ## ShiraModel[[peft.ShiraModel]]
 
@@ -57,13 +57,13 @@ This is the configuration class to store the configuration of a [ShiraModel](/do
 peft.ShiraModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/shira/model.py#L41)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/shira/model.py#L42)
 
 **Parameters:**
 
-model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
 
-config ([ShiraConfig](/docs/peft/v0.20.0/en/package_reference/shira#peft.ShiraConfig)) : The configuration of the SHiRA model.
+config ([ShiraConfig](/docs/peft/v0.21.0/en/package_reference/shira#peft.ShiraConfig)) : The configuration of the SHiRA model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -85,8 +85,8 @@ Example:
 ```
 
 **Attributes**:
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([ShiraConfig](/docs/peft/v0.20.0/en/package_reference/shira#peft.ShiraConfig)): The configuration of the SHiRA model.
+- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([ShiraConfig](/docs/peft/v0.21.0/en/package_reference/shira#peft.ShiraConfig)): The configuration of the SHiRA model.
 
-### UniLoRA
-https://huggingface.co/docs/peft/v0.20.0/package_reference/unilora.md
+### TinyLoRA: Learning to Reason in 13 Parameters
+https://huggingface.co/docs/peft/v0.21.0/package_reference/tinylora.md

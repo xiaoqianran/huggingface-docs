@@ -10,7 +10,7 @@ A collection of helper functions for PEFT.
 peft.helpers.check_if_peft_model(model_name_or_path: str)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/helpers.py#L148)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/helpers.py#L149)
 
 **Parameters:**
 
@@ -27,10 +27,10 @@ Check if the model is a PEFT model.
 #### peft.helpers.rescale_adapter_scale[[peft.helpers.rescale_adapter_scale]]
 
 ```python
-peft.helpers.rescale_adapter_scale(model, multiplier)
+peft.helpers.rescale_adapter_scale(model: Module, multiplier: typing.Union[float, int])
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/helpers.py#L169)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/helpers.py#L170)
 
 **Parameters:**
 
@@ -50,7 +50,7 @@ transformers and diffusers models that have directly loaded LoRA adapters.
 
 For LoRA, applying this context manager with multiplier in [0, 1] is strictly equivalent to applying
 [wise-ft](https://huggingface.co/papers/2109.01903) (see [#1940](https://github.com/huggingface/peft/issues/1940)
-for details). It can improve the performances of the model if there is a distribution shiftbetween the training
+for details). It can improve the performances of the model if there is a distribution shift between the training
 data used for fine-tuning, and the test data used during inference.
 
 Warning: It has been reported that when using Apple's MPS backend for PyTorch, it is necessary to add a short sleep
@@ -74,7 +74,7 @@ Example:
 peft.helpers.disable_input_dtype_casting(model: Module, active: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/helpers.py#L230)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/helpers.py#L231)
 
 **Parameters:**
 
@@ -92,7 +92,7 @@ Context manager disables input dtype casting to the dtype of the weight.
 peft.helpers.DoraCaching(enabled: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/helpers.py#L348)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/helpers.py#L351)
 
 Context manager to enable DoRA caching, which improves speed of DoRA inference at the expense of memory.
 
@@ -133,7 +133,7 @@ These properties make the selected modules good candidates for mitigating catast
 peft.helpers.KappaTuneSelector(model: Module, max_dim_size_to_analyze: int = 16384, moe_param_suffixes: typing.Optional[tuple[str, ...]] = None, show_progress: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/helpers.py#L392)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/helpers.py#L395)
 
 Lightweight utility to compute per-module / per-parameter condition numbers and return the best LoRA targets.
 
@@ -152,7 +152,7 @@ bar can be shown/disabled via `show_progress`.
 peft.find_kappa_target_modules(model: Module, top_p: float = 0.2, max_dim_size_to_analyze: int = 16384, moe_param_suffixes: typing.Optional[tuple[str, ...]] = None, show_progress: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/helpers.py#L536)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/helpers.py#L539)
 
 **Parameters:**
 
@@ -168,44 +168,5 @@ show_progress (bool, optional) : Whether to display a progress bar while computi
 
 One-liner convenience function for KappaTune target selection. Returns both target_modules and target_parameters.
 
-### VeLoRA
-https://huggingface.co/docs/peft/v0.20.0/package_reference/lora_variant_velora.md
-
-### VeLoRA
-
-> [!NOTE]
-> This is a variant of LoRA and therefore everything that is possible with LoRA is valid for this method except otherwise stated on this page.
-
-[VeLoRA](https://huggingface.co/papers/2405.17991) is a LoRA variant that reduces training memory by compressing the activations saved for the LoRA in the forward pass and then reconstructing them in the backwards pass to implement the update rules. In PEFT, VeLoRA is configured as a LoRA variant through the `velora_config` argument on [LoraConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig).
-
-```py
-from peft import LoraConfig, VeloraConfig
-
-config = LoraConfig(
-    target_modules=["q_proj", "v_proj"],
-    velora_config=VeloraConfig(
-        num_groups=64,
-        scale=0.2,
-        init_type="batch_average",
-    ),
-)
-```
-
-VeLoRA is applied to every LoRA layer selected by `target_modules`. `num_groups` controls how the input activation depth is split before compression. If the activation depth is not evenly divisible by `num_groups`, VeLoRA pads the grouped representation internally and removes the padding after reconstruction. `scale` rescales the reconstructed activations during the backward pass, and `init_type` chooses how the projection is initialized.
-
-Use `batch_average_once` to initialize the projection from the first training batch, `batch_average` to update it from every training forward pass, or `random` to initialize it immediately from a random normalized vector.
-
-Below are some results with the [MetaMathQA benchmark](https://github.com/huggingface/peft/tree/main/method_comparison/MetaMathQA).
-
-| Variant | Training Loss | Max Memory (GiB) | Tokens/sec |
-|---|---:|---:|---:|
-| LoRA | 0.5427 | 27.69 | 2366.2 |
-| LoRA + GC | 0.5426 | 13.17 | 1671.8 |
-| LoRA+VeLoRA | 0.5427 | 19.94 | 2057.6 |
-
-#### Caveats
-
-- VeLoRA is currently supported on standard LoRA linear layers only.
-
-### X-LoRA
-https://huggingface.co/docs/peft/v0.20.0/package_reference/xlora.md
+### FourierFT: Discrete Fourier Transformation Fine-Tuning
+https://huggingface.co/docs/peft/v0.21.0/package_reference/fourierft.md

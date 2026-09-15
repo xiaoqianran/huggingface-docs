@@ -159,7 +159,7 @@ for decision in get_kernel_variants("kernels-community/activation", version=1):
 kernels.get_loaded_kernels()
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/importer.py#L45)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/importer.py#L43)
 
 **Returns:** `list[LoadedKernel]`
 
@@ -250,10 +250,8 @@ This dataclass provides information about a loaded kernel:
 
 - `metadata` (`Metadata`): kernel metadata.
 - `module` (`ModuleType`): the imported kernel module.
-- `repo_info` (`kernels.hf_hub.RepoInfo | None`): populated only for
-  kernels loaded via `get_kernel`. Loaders that work from a local path
-  (`get_local_kernel`) or a lockfile (`get_locked_kernel`, `load_kernel`)
-  leave this as `None`.
+- `repo_info` (`kernels.hf_hub.RepoInfo | None`): populated whenever the
+  Hub repository the kernel came from is known.
 
 The metadata includes the following properties that describe a kernel:
 
@@ -273,17 +271,17 @@ The metadata includes the following properties that describe a kernel:
 #### kernels.RepoInfo[[kernels.RepoInfo]]
 
 ```python
-kernels.RepoInfo(repo_id: str, revision: str)
+kernels.RepoInfo(repo_id: str, revision: Oid)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/hf_hub.py#L83)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/hf_hub.py#L84)
 
 This dataclass stores the origin of the kernel.
 
 The following fields are available:
 
 - `repo_id` (`str`): the Hub repository containing the kernel.
-- `revision` (`str`): the specific revision of the kernel.
+- `revision` (`Oid`): the commit of the kernel.
 
 ### Layers API Reference
 https://huggingface.co/docs/kernels/main/api/layers.md

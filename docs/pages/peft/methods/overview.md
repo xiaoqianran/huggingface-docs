@@ -47,5 +47,5 @@ A popular way to realize adapters is to insert smaller trainable matrices that a
 
 Low-rank adapters are only one possible adapter formulation, PEFT implements many other types of adapters as well. For example, Orthogonal Fine-Tuning methods ([OFT](../package_reference/oft), [BOFT](../package_reference/boft), ...) use orthogonal decompositions of the adapter weights to achieve small size. Methods like [MiSS](../package_reference/miss) shard matrices and share these shards to save on memory. [IA3](../package_reference/ia3) introduces learned vectors that rescale the key, value, and feed-forward activations.
 
-### PEFT integrations
-https://huggingface.co/docs/peft/v0.20.0/guides/peft_integrations.md
+### Fully Sharded Data Parallel
+https://huggingface.co/docs/peft/v0.21.0/accelerate/fsdp.md

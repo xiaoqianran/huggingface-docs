@@ -29,7 +29,7 @@ The abstract from the paper is:
 peft.WaveFTConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, n_frequency: int = 2592, scaling: float = 25.0, wavelet_family: str = 'db1', use_idwt: bool = True, random_loc_seed: int = 777, fan_in_fan_out: bool = False, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, bias: str = 'none', modules_to_save: Optional[list[str]] = None, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, n_frequency_pattern: Optional[dict] = <factory>, proportional_parameters: bool = False, init_weights: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/waveft/config.py#L27)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/waveft/config.py#L27)
 
 **Parameters:**
 
@@ -63,7 +63,7 @@ init_weights (`bool`) : Initialization strategy for the learnable wavelet coeffi
 
 proportional_parameters (`bool`) : If `True`, `n_frequency` is allocated proportionally to each layer's `input_dim * output_dim`. Default is `False`. Note: This option is included for experimental thoroughness to allow researchers to reproduce paper results, rather than for practical utility, as no beneficial scenarios have been identified.
 
-This is the configuration class to store the configuration of a [WaveFTModel](/docs/peft/v0.20.0/en/package_reference/waveft#peft.WaveFTModel). It is used to define the
+This is the configuration class to store the configuration of a [WaveFTModel](/docs/peft/v0.21.0/en/package_reference/waveft#peft.WaveFTModel). It is used to define the
 parameters for Wavelet-based Fine-Tuning (WaveFT), an approach that leverages the sparsity of wavelet transforms
 for parameter-efficient fine-tuning of pretrained models.
 
@@ -75,7 +75,7 @@ for parameter-efficient fine-tuning of pretrained models.
 peft.WaveFTModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/waveft/model.py#L30)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/waveft/model.py#L30)
 
-### VeRA: Vector-based Random Matrix Adaptation
-https://huggingface.co/docs/peft/v0.20.0/package_reference/vera.md
+### Model merge[[peft.utils.merge_utils.prune]]
+https://huggingface.co/docs/peft/v0.21.0/package_reference/merge_utils.md

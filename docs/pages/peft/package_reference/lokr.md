@@ -46,7 +46,7 @@ model.print_trainable_parameters()
 peft.LoKrConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, rank_pattern: Optional[dict] = <factory>, alpha_pattern: Optional[dict] = <factory>, r: int = 8, alpha: int = 8, rank_dropout: float = 0.0, module_dropout: float = 0.0, use_effective_conv2d: bool = False, decompose_both: bool = False, decompose_factor: int = -1, rank_dropout_scale: bool = False, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, init_weights: Union[bool, Literal['lycoris']] = True, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, modules_to_save: Optional[list[str]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lokr/config.py#L24)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lokr/config.py#L24)
 
 **Parameters:**
 
@@ -82,7 +82,7 @@ alpha_pattern (`dict`) : The mapping from layer names or regexp expression to al
 
 modules_to_save (`Optional[List[str]]`) : List of modules apart from adapter layers to be set as trainable and saved in the final checkpoint.
 
-Configuration class of [LoKrModel](/docs/peft/v0.20.0/en/package_reference/lokr#peft.LoKrModel).
+Configuration class of [LoKrModel](/docs/peft/v0.21.0/en/package_reference/lokr#peft.LoKrModel).
 
 ## LoKrModel[[peft.LoKrModel]]
 
@@ -92,13 +92,13 @@ Configuration class of [LoKrModel](/docs/peft/v0.20.0/en/package_reference/lokr#
 peft.LoKrModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lokr/model.py#L27)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lokr/model.py#L27)
 
 **Parameters:**
 
 model (`torch.nn.Module`) : The model to which the adapter tuner layers will be attached.
 
-config ([LoKrConfig](/docs/peft/v0.20.0/en/package_reference/lokr#peft.LoKrConfig)) : The configuration of the LoKr model.
+config ([LoKrConfig](/docs/peft/v0.21.0/en/package_reference/lokr#peft.LoKrConfig)) : The configuration of the LoKr model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -152,7 +152,7 @@ Example:
 
 **Attributes**:
 - **model** (`~torch.nn.Module`) -- The model to be adapted.
-- **peft_config** ([LoKrConfig](/docs/peft/v0.20.0/en/package_reference/lokr#peft.LoKrConfig)): The configuration of the LoKr model.
+- **peft_config** ([LoKrConfig](/docs/peft/v0.21.0/en/package_reference/lokr#peft.LoKrConfig)): The configuration of the LoKr model.
 
-### DeLoRA: Decoupled Low-rank Adaptation
-https://huggingface.co/docs/peft/v0.20.0/package_reference/delora.md
+### Polytropon
+https://huggingface.co/docs/peft/v0.21.0/package_reference/poly.md

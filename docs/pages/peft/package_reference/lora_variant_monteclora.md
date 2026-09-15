@@ -52,5 +52,38 @@ class MontecloraTrainer(MontecloraTrainerMixin, Trainer):
 
 A complete working example is available at [`examples/monteclora_finetuning`](https://github.com/huggingface/peft/tree/main/examples/monteclora_finetuning).
 
-### PSOFT
-https://huggingface.co/docs/peft/v0.20.0/package_reference/psoft.md
+# API
+
+## MonteCloraConfig[[peft.MontecloraConfig]]
+
+#### peft.MontecloraConfig[[peft.MontecloraConfig]]
+
+```python
+peft.MontecloraConfig(num_samples: int = 8, use_entropy: bool = False, dirichlet_prior: float = 0.1, sample_scaler: float = 0.0001, kl_loss_weight: float = 1e-05, buffer_size: int = 150)
+```
+
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/config.py#L1177)
+
+**Parameters:**
+
+num_samples (`int`) : Number of Monte Carlo samples to draw per forward pass. Higher values usually give smoother training and better uncertainty estimates but increase compute and memory usage. Lower this if training is too slow or memory constrained; increase it if training is stable and you want stronger Monte Carlo averaging.
+
+use_entropy (`bool`) : Whether to add an entropy regularization term that keeps the Monte Carlo weights from collapsing to a single sample. Turn this on if you observe the sampler becoming very peaky or want stronger regularization; leave it off to mimic standard LoRA more closely.
+
+dirichlet_prior (`float`) : Concentration parameter for the Dirichlet prior over sample/expert weights. Larger values push the weights towards being more uniform (stronger regularization, less sparsity), while smaller positive values encourage sparser, more peaked weights. Increase if the sampler overfits; decrease (but keep > 0) if it is too conservative.
+
+sample_scaler (`float`) : Overall scaling factor for the sampled perturbations applied to the LoRA weights. Increasing this makes the Monte Carlo noise stronger (more regularization and exploration, but also more training instability); decreasing it moves the behavior closer to standard deterministic LoRA. Setting it very close to 0 largely disables the effect of Monteclora.
+
+kl_loss_weight (`float`) : Weight of the KL-divergence term between the variational distribution and its prior. Larger values put more emphasis on matching the prior (stronger regularization, potentially underfitting); smaller values rely more on the data likelihood (weaker regularization, potentially overfitting). Tune this if you find Monteclora over- or under-regularizing the adapter.
+
+buffer_size (`int`) : Size of the internal buffer used by the Monte Carlo sampler (e.g. for storing recent statistics). Larger values can stabilize the estimated variational parameters at the cost of additional memory; reduce this if you are memory constrained.
+
+This is the sub-configuration class to store the configuration for Monteclora (Monte Carlo Low-Rank Adaptation).
+Monteclora introduces variational inference into LoRA by adding Monte Carlo sampling to the adapter weights.
+
+In practice you can think of Monteclora as adding stochastic, learned perturbations on top of the LoRA weights to
+obtain a better-calibrated and better-regularized adapter. The arguments below let you trade off stability,
+regularization strength, and compute cost.
+
+### LoRA conversion
+https://huggingface.co/docs/peft/v0.21.0/package_reference/lora_conversion.md

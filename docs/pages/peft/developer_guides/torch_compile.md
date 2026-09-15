@@ -53,5 +53,5 @@ All the use cases listed above are tested inside of [`peft/tests/test_torch_comp
 > [!TIP]
 > If you have another use case where you know that `torch.compile` does or does not work with PEFT, please contribute by letting us know or by opening a PR to add this use case to the covered test cases.
 
-### Quantization
-https://huggingface.co/docs/peft/v0.20.0/developer_guides/quantization.md
+### Adapter injection
+https://huggingface.co/docs/peft/v0.21.0/developer_guides/low_level_api.md

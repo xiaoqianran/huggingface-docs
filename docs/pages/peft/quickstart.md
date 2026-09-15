@@ -11,7 +11,7 @@ This quicktour will show you PEFT's main features and how you can train or run i
 
 ## PEFT configuration and model
 
-For any PEFT method, you'll need to create a configuration which contains all the parameters that specify how the PEFT method should be applied, most importantly which layers of the existing model to target with trainable parameters. Once the configuration is setup, pass it to the [get_peft_model()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.get_peft_model) function along with the base model to create a trainable [PeftModel](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel).
+For any PEFT method, you'll need to create a configuration which contains all the parameters that specify how the PEFT method should be applied, most importantly which layers of the existing model to target with trainable parameters. Once the configuration is setup, pass it to the [get_peft_model()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.get_peft_model) function along with the base model to create a trainable [PeftModel](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel).
 
 Let's use [LoRA](./package_reference/lora) as an example but only discuss common parameters - you might want to use one of the [many other PEFT methods](./methods/overview).
 The configuration usually entails this:
@@ -32,7 +32,7 @@ peft_config = LoraConfig(target_modules=["q_proj"], task_type=TaskType.CAUSAL_LM
 > [!TIP]
 > See the [configuration guide](guides/peft_model_config) for more details on how the PEFT configuration works under the hood.
 
-Once the [LoraConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig) is set up, create a [PeftModel](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel) with the [get_peft_model()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.get_peft_model) function. It takes a base model - which you can (but don't have to) load from the Transformers library - and the [LoraConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig) containing the parameters for how to configure a model for training with LoRA.
+Once the [LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig) is set up, create a [PeftModel](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel) with the [get_peft_model()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.get_peft_model) function. It takes a base model - which you can (but don't have to) load from the Transformers library - and the [LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig) containing the parameters for how to configure a model for training with LoRA.
 
 Load the base model you want to finetune.
 
@@ -42,7 +42,7 @@ from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.2-1B")
 ```
 
-Now wrap the base model and `peft_config` with the [get_peft_model()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.get_peft_model) function to create a [PeftModel](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel).
+Now wrap the base model and `peft_config` with the [get_peft_model()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.get_peft_model) function to create a [PeftModel](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel).
 
   
     
@@ -73,9 +73,9 @@ peft_model.print_trainable_parameters()
 
 Out of [meta-llama/Llama-3.2-1B's](https://huggingface.co/meta-llama/Llama-3.2-1B) 1B parameters, you're only training 0.04% of them!
 
-That is it 🎉! Now you can train the model with the Transformers [Trainer](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.Trainer), Accelerate, or any custom PyTorch training loop.
+That is it 🎉! Now you can train the model with the Transformers [Trainer](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer), Accelerate, or any custom PyTorch training loop.
 
-For example, to train with the [Trainer](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.Trainer) class, setup a [TrainingArguments](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.TrainingArguments) class with some training hyperparameters.
+For example, to train with the [Trainer](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer) class, setup a [TrainingArguments](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments) class with some training hyperparameters.
 
 ```py
 training_args = TrainingArguments(
@@ -91,7 +91,7 @@ training_args = TrainingArguments(
 )
 ```
 
-Pass the model, training arguments, dataset, tokenizer, and any other necessary component to the [Trainer](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.Trainer), and call [train](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.Trainer.train) to start training.
+Pass the model, training arguments, dataset, tokenizer, and any other necessary component to the [Trainer](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer), and call [train](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer.train) to start training.
 
 ```py
 trainer = Trainer(
@@ -108,13 +108,13 @@ trainer.train()
 
 ### Save model
 
-After your model is finished training, you can save your model to a directory using the [save_pretrained()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.save_pretrained) function.
+After your model is finished training, you can save your model to a directory using the [save_pretrained()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.save_pretrained) function.
 
 ```py
 peft_model.save_pretrained("output_dir")
 ```
 
-You can also save your model to the Hub (make sure you're logged in to your Hugging Face account first) with the [push_to_hub](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel.push_to_hub) function.
+You can also save your model to the Hub (make sure you're logged in to your Hugging Face account first) with the [push_to_hub](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.push_to_hub) function.
 
 ```python
 from huggingface_hub import notebook_login
@@ -133,27 +133,29 @@ Both methods only save the extra PEFT weights that were trained, meaning it is s
 > [!TIP]
 > Take a look at the [AutoPeftModel](package_reference/auto_class) API reference for a complete list of available `AutoPeftModel` classes.
 
-Easily load any PEFT-trained model for inference with the [AutoPeftModel](/docs/peft/v0.20.0/en/package_reference/auto_class#peft.AutoPeftModel) class and the [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method:
+Easily load any PEFT-trained model for inference with the [AutoPeftModel](/docs/peft/v0.21.0/en/package_reference/auto_class#peft.AutoPeftModel) class and the [from_pretrained](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method:
 
 ```py
 from peft import AutoPeftModelForCausalLM
 from transformers import AutoTokenizer
 import torch
 
+device = torch.accelerator.current_accelerator().type if hasattr(torch, "accelerator") else "cuda"
+
 peft_model = AutoPeftModelForCausalLM.from_pretrained("ybelkada/opt-350m-lora")
 tokenizer = AutoTokenizer.from_pretrained("facebook/opt-350m")
 
-peft_model = peft_model.to("cuda")
+peft_model = peft_model.to(device)
 peft_model.eval()
 inputs = tokenizer("Preheat the oven to 350 degrees and place the cookie dough", return_tensors="pt")
 
-outputs = peft_model.generate(input_ids=inputs["input_ids"].to("cuda"), max_new_tokens=50)
+outputs = peft_model.generate(input_ids=inputs["input_ids"].to(peft_model.device), max_new_tokens=50)
 print(tokenizer.batch_decode(outputs.detach().cpu().numpy(), skip_special_tokens=True)[0])
 
 "Preheat the oven to 350 degrees and place the cookie dough in the center of the oven. In a large bowl, combine the flour, baking powder, baking soda, salt, and cinnamon. In a separate bowl, combine the egg yolks, sugar, and vanilla."
 ```
 
-For other tasks that aren't explicitly supported with an `AutoPeftModelFor` class - such as automatic speech recognition - you can still use the base [AutoPeftModel](/docs/peft/v0.20.0/en/package_reference/auto_class#peft.AutoPeftModel) class to load a model for the task.
+For other tasks that aren't explicitly supported with an `AutoPeftModelFor` class - such as automatic speech recognition - you can still use the base [AutoPeftModel](/docs/peft/v0.21.0/en/package_reference/auto_class#peft.AutoPeftModel) class to load a model for the task.
 
 ```py
 from peft import AutoPeftModel
@@ -161,7 +163,7 @@ from peft import AutoPeftModel
 peft_model = AutoPeftModel.from_pretrained("smangrul/openai-whisper-large-v2-LORA-colab")
 ```
 
-The most general way of loading a trained PEFT adapter onto a model is to use [from_pretrained()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.from_pretrained):
+The most general way of loading a trained PEFT adapter onto a model is to use [from_pretrained()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.from_pretrained):
 
 ```py
 from transformers import AutoPeftModelForCausalLM
@@ -195,12 +197,12 @@ peft_model.set_adapter('new_adapter')
 
 Now that you've seen how to train a model with one of the PEFT methods, we encourage you to try out some of the other methods like prompt tuning. The steps are very similar to the ones shown in the quicktour:
 
-1. prepare a [PeftConfig](/docs/peft/v0.20.0/en/package_reference/config#peft.PeftConfig) for a PEFT method, e.g. a [LoraConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig) or some other config (see the [method overview](methods/overview))
-2. use the [get_peft_model()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.get_peft_model) method to create a [PeftModel](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel) from the configuration and base model
+1. prepare a [PeftConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PeftConfig) for a PEFT method, e.g. a [LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig) or some other config (see the [method overview](methods/overview))
+2. use the [get_peft_model()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.get_peft_model) method to create a [PeftModel](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel) from the configuration and base model
 
-Then you can train it however you like! To load a PEFT model for inference, you can use the [AutoPeftModel](/docs/peft/v0.20.0/en/package_reference/auto_class#peft.AutoPeftModel) class.
+Then you can train it however you like! To load a PEFT model for inference, you can use the [AutoPeftModel](/docs/peft/v0.21.0/en/package_reference/auto_class#peft.AutoPeftModel) class.
 
 Feel free to also take a look at the task guides if you're interested in training a model with another PEFT method for a specific task such as semantic segmentation, multilingual automatic speech recognition, DreamBooth, token classification, and more.
 
-### PEFT
-https://huggingface.co/docs/peft/v0.20.0/index.md
+### Installation
+https://huggingface.co/docs/peft/v0.21.0/install.md

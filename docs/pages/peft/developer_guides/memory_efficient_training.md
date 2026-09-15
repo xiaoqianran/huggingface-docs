@@ -46,5 +46,5 @@ When using [TRL](https://huggingface.co/docs/trl) you can either use the [Liger 
 
 In case the default chunk size is not optimal for your setting, look in the [original TRL PR](https://github.com/huggingface/trl/pull/5575) for more information on how to tune the chunk size.
 
-### Adapter injection
-https://huggingface.co/docs/peft/v0.20.0/developer_guides/low_level_api.md
+### Custom models
+https://huggingface.co/docs/peft/v0.21.0/developer_guides/custom_models.md

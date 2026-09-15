@@ -20,7 +20,7 @@ Unofficial mirror from official `llms.txt` + `llms-full.txt`.
 | [`kernels`](https://huggingface.co/docs/kernels) | Kernels | 37 | [full](kernels/_full.md) |
 | [`lerobot`](https://huggingface.co/docs/lerobot) | LeRobot | 91 | [full](lerobot/_full.md) |
 | [`optimum`](https://huggingface.co/docs/optimum) | Optimum | 16 | [full](optimum/_full.md) |
-| [`peft`](https://huggingface.co/docs/peft) | PEFT | 75 | [full](peft/_full.md) |
+| [`peft`](https://huggingface.co/docs/peft) | PEFT | 79 | [full](peft/_full.md) |
 | [`safetensors`](https://huggingface.co/docs/safetensors) | Safetensors | 10 | [full](safetensors/_full.md) |
 | [`smolagents`](https://huggingface.co/docs/smolagents) | Smolagents | 22 | [full](smolagents/_full.md) |
 | [`text-embeddings-inference`](https://huggingface.co/docs/text-embeddings-inference) | TEI | 13 | [full](text-embeddings-inference/_full.md) |

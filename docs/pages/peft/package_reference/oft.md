@@ -80,7 +80,7 @@ trainer.train()
 peft.OFTConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 0, oft_block_size: int = 32, module_dropout: float = 0.0, target_modules: Optional[Union[list[str], str]] = None, fan_in_fan_out: bool = False, bias: Literal['none', 'all', 'oft_only'] = 'none', exclude_modules: Optional[Union[list[str], str]] = None, init_weights: bool = True, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, modules_to_save: Optional[list[str]] = None, coft: bool = False, eps: float = 6e-05, block_share: bool = False, use_cayley_neumann: bool = True, num_cayley_neumann_terms: int = 5)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/oft/config.py#L28)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/oft/config.py#L28)
 
 **Parameters:**
 
@@ -114,7 +114,7 @@ eps (`float`) : The control strength of COFT. The freedom of rotation. Only has 
 
 block_share (`bool`) : Whether to share the OFT parameters between blocks or not. This is `False` by default.
 
-This is the configuration class to store the configuration of a [OFTModel](/docs/peft/v0.20.0/en/package_reference/oft#peft.OFTModel).
+This is the configuration class to store the configuration of a [OFTModel](/docs/peft/v0.21.0/en/package_reference/oft#peft.OFTModel).
 
 #### check_kwargs[[peft.OFTConfig.check_kwargs]]
 
@@ -122,7 +122,7 @@ This is the configuration class to store the configuration of a [OFTModel](/docs
 check_kwargs(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/oft/config.py#L198)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/oft/config.py#L198)
 
 **Parameters:**
 
@@ -138,13 +138,13 @@ Check if the kwargs are valid for the configuration.
 peft.OFTModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/oft/model.py#L35)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/oft/model.py#L44)
 
 **Parameters:**
 
 model (`torch.nn.Module`) : The model to which the adapter tuner layers will be attached.
 
-config ([OFTConfig](/docs/peft/v0.20.0/en/package_reference/oft#peft.OFTConfig)) : The configuration of the OFT model.
+config ([OFTConfig](/docs/peft/v0.21.0/en/package_reference/oft#peft.OFTConfig)) : The configuration of the OFT model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -191,7 +191,49 @@ Example:
 
 **Attributes**:
 - **model** (`~torch.nn.Module`) -- The model to be adapted.
-- **peft_config** ([OFTConfig](/docs/peft/v0.20.0/en/package_reference/oft#peft.OFTConfig)): The configuration of the OFT model.
+- **peft_config** ([OFTConfig](/docs/peft/v0.21.0/en/package_reference/oft#peft.OFTConfig)): The configuration of the OFT model.
 
-### LayerNorm Tuning
-https://huggingface.co/docs/peft/v0.20.0/package_reference/layernorm_tuning.md
+### KaSA
+https://huggingface.co/docs/peft/v0.21.0/package_reference/lora_variant_kasa.md
+
+### KaSA
+
+> [!NOTE]
+> This is a variant of LoRA and therefore everything that is possible with LoRA is valid for this method except otherwise stated on this page.
+
+[KaSA](https://huggingface.co/papers/2412.06071) (Knowledge-aware Singular-value Adaptation) is a LoRA variant that uses the singular value decomposition of the base weight to filter out task-irrelevant knowledge and parametrizes the update with learnable singular values. It changes vanilla LoRA in two ways:
+
+1. **Knowledge-based SVD truncation of the frozen base weight.** At initialization, the base weight `W` is SVD-factored and its `r` smallest ("noisy"/long-tail) singular components are discarded, leaving the rank-`(k - r)` approximation as the new frozen base (`k = min(in_features, out_features)`). The trainable branch then re-learns in the discarded residual subspace.
+2. **Knowledge-aware singular-value adaptation.** The trainable update is parametrized in SVD form with a learnable diagonal of singular values inserted between the LoRA factors: `ΔW = scaling * B @ diag(ΔΣ) @ A`, where `ΔΣ` (`lora_diag`) is a learnable `r`-vector and the only new parameter per layer.
+
+In PEFT, KaSA is configured as a LoRA variant through the `kasa_config` argument on [LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig):
+
+```py
+from peft import KasaConfig, LoraConfig
+
+config = LoraConfig(
+    target_modules=["q_proj", "v_proj"],
+    kasa_config=KasaConfig(beta=1e-4, gamma=1e-3),
+)
+```
+
+The paper additionally trains with two auxiliary regularizers: an L2 penalty on the learnable singular values (weighted by `beta`) and an orthogonal regularization on the adapter factors (weighted by `gamma`), which softly enforces the semi-orthogonality assumed by the SVD parametrization. These cannot be injected automatically by PEFT, so during training you must add them to the task loss by calling `LoraModel._get_kasa_loss()` on the underlying `LoraModel`:
+
+```py
+task_loss = ...  # standard loss returned by your model
+kasa_loss = model._get_kasa_loss()  # 0.0 if KaSA is not used
+total_loss = task_loss + kasa_loss
+```
+
+For detailed usage, see [these instructions](https://github.com/huggingface/peft/tree/main/examples/kasa_finetuning).
+
+#### Caveats
+
+- KaSA is currently supported on standard LoRA linear layers only, and not with `fan_in_fan_out=True` layers (e.g. transformers `Conv1D`).
+- KaSA adapters cannot be combined with non-KaSA adapters on the same model, since the base-weight truncation would change the base weights under the other adapters' feet. Multiple KaSA adapters are allowed.
+- `convert_to_lora` is not supported: the KaSA update depends on `lora_diag` and on the truncated base weight, neither of which is representable in a vanilla LoRA adapter.
+- The SVD truncation of the base weight is **destructive**: adding a KaSA adapter permanently changes the layer's frozen weight. Disabling or unloading the adapter does not restore the original base weight, and `merge` followed by `unmerge` round-trips to the truncated weight, not the original one. This is inherent to the method. Keep the original checkpoint if you need to recover the unmodified base model.
+- Loading a trained KaSA adapter with `PeftModel.from_pretrained` re-applies the same truncation to the freshly loaded base weight, so saving and reloading is consistent.
+
+### Prompt tuning
+https://huggingface.co/docs/peft/v0.21.0/package_reference/prompt_tuning.md

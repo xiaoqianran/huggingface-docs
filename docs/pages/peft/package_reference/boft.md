@@ -73,7 +73,7 @@ boft_model = get_peft_model(model, config)
 peft.BOFTConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, boft_block_size: int = 4, boft_block_num: int = 0, boft_n_butterfly_factor: int = 1, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, boft_dropout: float = 0.0, fan_in_fan_out: bool = False, bias: str = 'none', modules_to_save: Optional[list[str]] = None, init_weights: bool = True, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/boft/config.py#L28)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/boft/config.py#L28)
 
 **Parameters:**
 
@@ -99,7 +99,7 @@ layers_to_transform (`Union[List[int],int]`) : The layer indexes to transform, i
 
 layers_pattern (`Optional[Union[List[str], str]]`) : The layer pattern name, used only if `layers_to_transform` is different from `None` and if the layer pattern is not in the common layers pattern. This should target the `nn.ModuleList` of the model, which is often called `'layers'` or `'h'`.
 
-This is the configuration class to store the configuration of a [BOFTModel](/docs/peft/v0.20.0/en/package_reference/boft#peft.BOFTModel).
+This is the configuration class to store the configuration of a [BOFTModel](/docs/peft/v0.21.0/en/package_reference/boft#peft.BOFTModel).
 
 ## BOFTModel[[peft.BOFTModel]]
 
@@ -109,13 +109,13 @@ This is the configuration class to store the configuration of a [BOFTModel](/doc
 peft.BOFTModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/boft/model.py#L47)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/boft/model.py#L47)
 
 **Parameters:**
 
-model ([transformers.PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
+model ([transformers.PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
 
-config ([BOFTConfig](/docs/peft/v0.20.0/en/package_reference/boft#peft.BOFTConfig)) : The configuration of the BOFT model.
+config ([BOFTConfig](/docs/peft/v0.21.0/en/package_reference/boft#peft.BOFTConfig)) : The configuration of the BOFT model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -150,8 +150,8 @@ Example:
 ```
 
 **Attributes**:
-- **model** ([transformers.PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([BOFTConfig](/docs/peft/v0.20.0/en/package_reference/boft#peft.BOFTConfig)): The configuration of the BOFT model.
+- **model** ([transformers.PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([BOFTConfig](/docs/peft/v0.21.0/en/package_reference/boft#peft.BOFTConfig)): The configuration of the BOFT model.
 
-### LoKr
-https://huggingface.co/docs/peft/v0.20.0/package_reference/lokr.md
+### VeRA: Vector-based Random Matrix Adaptation
+https://huggingface.co/docs/peft/v0.21.0/package_reference/vera.md

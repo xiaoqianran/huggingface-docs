@@ -7,17 +7,17 @@ PEFT provides several methods for merging models like a linear or SVD combinatio
 * [TIES](https://hf.co/papers/2306.01708) - TrIm, Elect, and Merge (TIES) is a three-step method for merging models. First, redundant parameters are trimmed, then conflicting signs are resolved into an aggregated vector, and finally the parameters whose signs are the same as the aggregate sign are averaged. This method takes into account that some values (redundant and sign disagreement) can degrade performance in the merged model.
 * [DARE](https://hf.co/papers/2311.03099) - Drop And REscale is a method that can be used to prepare for other model merging methods like TIES. It works by randomly dropping parameters according to a drop rate and rescaling the remaining parameters. This helps to reduce the number of redundant and potentially interfering parameters among multiple models.
 
-Models are merged with the [add_weighted_adapter()](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraModel.add_weighted_adapter) method, and the specific model merging method is specified in the `combination_type` parameter.
+Models are merged with the [add_weighted_adapter()](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraModel.add_weighted_adapter) method, and the specific model merging method is specified in the `combination_type` parameter.
 
 ## Merge method
 
 With TIES and DARE, merging is enabled by setting `combination_type` and `density` to a value of the weights to keep from the individual models. For example, let's merge three finetuned [TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T](https://huggingface.co/TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T) models: [tinyllama_lora_nobots](https://huggingface.co/smangrul/tinyllama_lora_norobots), [tinyllama_lora_sql](https://huggingface.co/smangrul/tinyllama_lora_sql), and [tinyllama_lora_adcopy](https://huggingface.co/smangrul/tinyllama_lora_adcopy).
 
-When you're attempting to merge fully trained models with TIES, you should be aware of any special tokens each model may have added to the embedding layer which are not a part of the original checkpoint's vocabulary. This may cause an issue because each model may have added a special token to the same embedding position. If this is the case, you should use the [resize_token_embeddings](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel.resize_token_embeddings) method to avoid merging the special tokens at the same embedding index.
+When you're attempting to merge fully trained models with TIES, you should be aware of any special tokens each model may have added to the embedding layer which are not a part of the original checkpoint's vocabulary. This may cause an issue because each model may have added a special token to the same embedding position. If this is the case, you should use the [resize_token_embeddings](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.resize_token_embeddings) method to avoid merging the special tokens at the same embedding index.
 
 This shouldn't be an issue if you're only merging LoRA adapters trained from the same base model.
 
-Load a base model and can use the [load_adapter()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.load_adapter) method to load and assign each adapter a name:
+Load a base model and can use the [load_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.load_adapter) method to load and assign each adapter a name:
 
 ```py
 from peft import PeftConfig, PeftModel
@@ -36,7 +36,7 @@ _ = model.load_adapter("smangrul/tinyllama_lora_sql", adapter_name="sql")
 _ = model.load_adapter("smangrul/tinyllama_lora_adcopy", adapter_name="adcopy")
 ```
 
-Set the adapters, weights, `adapter_name`, `combination_type`, and `density` with the [add_weighted_adapter()](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraModel.add_weighted_adapter) method.
+Set the adapters, weights, `adapter_name`, `combination_type`, and `density` with the [add_weighted_adapter()](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraModel.add_weighted_adapter) method.
 
 Weight values greater than `1.0` typically produce better results because they preserve the correct scale. A good default starting value for the weights is to set all values to `1.0`.
 
@@ -56,7 +56,7 @@ density = 0.2
 model.add_weighted_adapter(adapters, weights, adapter_name, combination_type="dare_ties", density=density)
 ```
 
-Set the newly merged model as the active model with the [set_adapter()](/docs/peft/v0.20.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.set_adapter) method.
+Set the newly merged model as the active model with the [set_adapter()](/docs/peft/v0.21.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.set_adapter) method.
 
 ```py
 model.set_adapter("merge")
@@ -119,5 +119,5 @@ It is recommended that the weights sum to 1.0 to preserve the scale of the model
 model.set_adapter("merge")
 ```
 
-### Custom models
-https://huggingface.co/docs/peft/v0.20.0/developer_guides/custom_models.md
+### Parameter efficient fine-tuning methods
+https://huggingface.co/docs/peft/v0.21.0/methods/overview.md

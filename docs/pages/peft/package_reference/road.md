@@ -25,7 +25,7 @@ For running inference with different RoAd adapters in the same batch see [Infere
 peft.RoadConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, variant: Union[str, RoadVariant] = 'road_1', group_size: int = 64, init_weights: bool = True, target_modules: Optional[Union[list[str], str]] = None, modules_to_save: Optional[list[str]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/road/config.py#L28)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/road/config.py#L28)
 
 **Parameters:**
 
@@ -39,7 +39,7 @@ target_modules (`Optional[Union[List[str], str]]`) : The names of the modules to
 
 modules_to_save (`List[str]`) : List of modules apart from Road layers to be set as trainable and saved in the final checkpoint.
 
-This is the configuration class to store the configuration of a [RoadModel](/docs/peft/v0.20.0/en/package_reference/road#peft.RoadModel). RoAd adapter is proposed in
+This is the configuration class to store the configuration of a [RoadModel](/docs/peft/v0.21.0/en/package_reference/road#peft.RoadModel). RoAd adapter is proposed in
 https://huggingface.co/papers/2409.00119.
 
 ## RoadModel[[peft.RoadModel]]
@@ -50,7 +50,7 @@ https://huggingface.co/papers/2409.00119.
 peft.RoadModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/road/model.py#L39)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/road/model.py#L39)
 
-### HiRA
-https://huggingface.co/docs/peft/v0.20.0/package_reference/hira.md
+### DeLoRA: Decoupled Low-rank Adaptation
+https://huggingface.co/docs/peft/v0.21.0/package_reference/delora.md

@@ -32,7 +32,7 @@ The abstract from the paper is:
 peft.FourierFTConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, n_frequency: int = 1000, scaling: float = 150.0, random_loc_seed: Optional[int] = 777, fan_in_fan_out: bool = False, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, bias: str = 'none', modules_to_save: Optional[list[str]] = None, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, n_frequency_pattern: Optional[dict] = <factory>, init_weights: bool = False)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/fourierft/config.py#L25)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/fourierft/config.py#L25)
 
 **Parameters:**
 
@@ -60,7 +60,7 @@ n_frequency_pattern (`dict`) : The mapping from layer names or regexp expression
 
 init_weights (`bool`) : The initialization of the Fourier weights. Set this to False (the default) if the spectrum are initialized to a standard normal distribution. Set this to True if the spectrum are initialized to zeros.
 
-This is the configuration class to store the configuration of a [FourierFTModel](/docs/peft/v0.20.0/en/package_reference/fourierft#peft.FourierFTModel).
+This is the configuration class to store the configuration of a [FourierFTModel](/docs/peft/v0.21.0/en/package_reference/fourierft#peft.FourierFTModel).
 
 ## FourierFTModel[[peft.FourierFTModel]]
 
@@ -70,13 +70,13 @@ This is the configuration class to store the configuration of a [FourierFTModel]
 peft.FourierFTModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/fourierft/model.py#L31)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/fourierft/model.py#L31)
 
 **Parameters:**
 
 model (`torch.nn.Module`) : The model to be adapted.
 
-config ([FourierFTConfig](/docs/peft/v0.20.0/en/package_reference/fourierft#peft.FourierFTConfig)) : The configuration of the FourierFT model.
+config ([FourierFTConfig](/docs/peft/v0.21.0/en/package_reference/fourierft#peft.FourierFTConfig)) : The configuration of the FourierFT model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -91,8 +91,8 @@ Creates FourierFT model from a pretrained transformers model.
 The method is described in detail in https://huggingface.co/papers/2405.03003.
 
 **Attributes**:
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([FourierFTConfig](/docs/peft/v0.20.0/en/package_reference/fourierft#peft.FourierFTConfig)): The configuration of the Fourier model.
+- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([FourierFTConfig](/docs/peft/v0.21.0/en/package_reference/fourierft#peft.FourierFTConfig)): The configuration of the Fourier model.
 
 ### Lily: Low-Rank Interconnected Adaptation across Layers
-https://huggingface.co/docs/peft/v0.20.0/package_reference/lily.md
+https://huggingface.co/docs/peft/v0.21.0/package_reference/lily.md

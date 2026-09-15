@@ -14,7 +14,7 @@
 - [Kernels](https://huggingface.co/docs/kernels) — 37 pages
 - [LeRobot](https://huggingface.co/docs/lerobot) — 91 pages
 - [Optimum](https://huggingface.co/docs/optimum) — 16 pages
-- [PEFT](https://huggingface.co/docs/peft) — 75 pages
+- [PEFT](https://huggingface.co/docs/peft) — 79 pages
 - [Safetensors](https://huggingface.co/docs/safetensors) — 10 pages
 - [Smolagents](https://huggingface.co/docs/smolagents) — 22 pages
 - [TEI](https://huggingface.co/docs/text-embeddings-inference) — 13 pages

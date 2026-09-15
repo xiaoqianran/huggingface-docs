@@ -34,7 +34,7 @@ The abstract from the paper is:
 peft.DeloraConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 8, delora_lambda: int = 15, module_dropout: float = 0.0, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, bias: Literal['none', 'all', 'delora_only'] = 'none', init_weights: bool = True, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, rank_pattern: Optional[dict] = <factory>, lambda_pattern: Optional[dict] = <factory>, modules_to_save: Optional[list[str]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/delora/config.py#L24)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/delora/config.py#L24)
 
 **Parameters:**
 
@@ -62,7 +62,7 @@ lambda_pattern (`dict`) : The mapping from layer names or regexp expression to l
 
 modules_to_save (`Optional[List[str]]`) : List of modules apart from adapter layers to be set as trainable and saved in the final checkpoint.
 
-This is the configuration class to store the configuration of a [DeloraModel](/docs/peft/v0.20.0/en/package_reference/delora#peft.DeloraModel).
+This is the configuration class to store the configuration of a [DeloraModel](/docs/peft/v0.21.0/en/package_reference/delora#peft.DeloraModel).
 
 ## DeloraModel[[peft.DeloraModel]]
 
@@ -72,13 +72,13 @@ This is the configuration class to store the configuration of a [DeloraModel](/d
 peft.DeloraModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/delora/model.py#L28)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/delora/model.py#L28)
 
 **Parameters:**
 
 model (`torch.nn.Module`) : The model to be adapted.
 
-config ([DeloraConfig](/docs/peft/v0.20.0/en/package_reference/delora#peft.DeloraConfig)) : The configuration of the DeLoRA model.
+config ([DeloraConfig](/docs/peft/v0.21.0/en/package_reference/delora#peft.DeloraConfig)) : The configuration of the DeLoRA model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -92,8 +92,8 @@ The method is described in detail in [DeLoRA: Decoupled Low-rank
 Adaptation](https://huggingface.co/papers/2503.18225).
 
 **Attributes**:
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([DeloraConfig](/docs/peft/v0.20.0/en/package_reference/delora#peft.DeloraConfig)): The configuration of the DeLoRA model.
+- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([DeloraConfig](/docs/peft/v0.21.0/en/package_reference/delora#peft.DeloraConfig)): The configuration of the DeLoRA model.
 
-### FRoD: Full-Rank Efficient Fine-Tuning with Rotational Degrees
-https://huggingface.co/docs/peft/v0.20.0/package_reference/frod.md
+### Cartridges
+https://huggingface.co/docs/peft/v0.21.0/package_reference/cartridges.md

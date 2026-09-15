@@ -78,7 +78,7 @@ IA3 is particularly effective when you need the smallest possible adapters for s
 peft.IA3Config(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, feedforward_modules: Optional[Union[list[str], str]] = None, fan_in_fan_out: bool = False, modules_to_save: Optional[list[str]] = None, init_ia3_weights: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/ia3/config.py#L25)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/ia3/config.py#L25)
 
 **Parameters:**
 
@@ -94,7 +94,7 @@ modules_to_save (`Optional[List[str]]`) : List of modules apart from (IA)³ laye
 
 init_ia3_weights (`bool`) : Whether to initialize the vectors in the (IA)³ layers, defaults to `True`. Setting this to `False` is discouraged.
 
-This is the configuration class to store the configuration of a [IA3Model](/docs/peft/v0.20.0/en/package_reference/ia3#peft.IA3Model).
+This is the configuration class to store the configuration of a [IA3Model](/docs/peft/v0.21.0/en/package_reference/ia3#peft.IA3Model).
 
 ## IA3Model[[peft.IA3Model]]
 
@@ -104,13 +104,13 @@ This is the configuration class to store the configuration of a [IA3Model](/docs
 peft.IA3Model(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/ia3/model.py#L36)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/ia3/model.py#L36)
 
 **Parameters:**
 
-model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
 
-config ([IA3Config](/docs/peft/v0.20.0/en/package_reference/ia3#peft.IA3Config)) : The configuration of the (IA)^3 model.
+config ([IA3Config](/docs/peft/v0.21.0/en/package_reference/ia3#peft.IA3Config)) : The configuration of the (IA)^3 model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -141,8 +141,8 @@ Example:
 ```
 
 **Attributes**:
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([IA3Config](/docs/peft/v0.20.0/en/package_reference/ia3#peft.IA3Config)): The configuration of the (IA)^3 model.
+- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([IA3Config](/docs/peft/v0.21.0/en/package_reference/ia3#peft.IA3Config)): The configuration of the (IA)^3 model.
 
 #### add_weighted_adapter[[peft.IA3Model.add_weighted_adapter]]
 
@@ -150,7 +150,7 @@ Example:
 add_weighted_adapter(adapters: list[str], weights: list[float], adapter_name: str)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/ia3/model.py#L273)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/ia3/model.py#L273)
 
 **Parameters:**
 
@@ -161,3 +161,6 @@ weights (`list`) : List of weights for each adapter.
 adapter_name (`str`) : Name of the new adapter.
 
 This method adds a new adapter by merging the given adapters with the given weights.
+
+### GraLoRA
+https://huggingface.co/docs/peft/v0.21.0/package_reference/gralora.md

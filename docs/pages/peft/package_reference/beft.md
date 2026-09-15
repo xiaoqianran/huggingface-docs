@@ -35,7 +35,7 @@ The abstract from the paper is:
 peft.BeftConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, target_modules: Optional[Union[list[str], str]] = None, modules_to_save: Optional[list[str]] = None, init_weights: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/beft/config.py#L25)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/beft/config.py#L25)
 
 **Parameters:**
 
@@ -45,7 +45,7 @@ modules_to_save (`Optional[List[str]]`) : List of modules apart from BEFT layers
 
 init_weights (`bool`) : Whether to initialize the vectors in the BEFT layers, defaults to `True`. Setting this to `False` is discouraged.
 
-This is the configuration class to store the configuration of a [BeftModel](/docs/peft/v0.20.0/en/package_reference/beft#peft.BeftModel).
+This is the configuration class to store the configuration of a [BeftModel](/docs/peft/v0.21.0/en/package_reference/beft#peft.BeftModel).
 
 ## BeftModel[[peft.BeftModel]]
 
@@ -55,13 +55,13 @@ This is the configuration class to store the configuration of a [BeftModel](/doc
 peft.BeftModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/beft/model.py#L26)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/beft/model.py#L26)
 
 **Parameters:**
 
-model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
 
-config ([BeftConfig](/docs/peft/v0.20.0/en/package_reference/beft#peft.BeftConfig)) : The configuration of the (BEFT) model.
+config ([BeftConfig](/docs/peft/v0.21.0/en/package_reference/beft#peft.BeftConfig)) : The configuration of the (BEFT) model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -79,21 +79,20 @@ Example:
 
 ```py
 >>> from transformers import AutoModelForSeq2SeqLM
->>> from peft import BeftModel, BeftConfig
+>>> from peft import BeftConfig, get_peft_model
 
 >>> config = BeftConfig(
-...     peft_type="Beft",
 ...     task_type="SEQ_2_SEQ_LM",
 ...     target_modules=["v"],
 ... )
 
 >>> model = AutoModelForSeq2SeqLM.from_pretrained("t5-base")
->>> beft_model = BeftModel(model, config, adapter_name="default")
+>>> beft_model = get_peft_model(model, config)
 ```
 
 **Attributes**:
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([BeftConfig](/docs/peft/v0.20.0/en/package_reference/beft#peft.BeftConfig)): The configuration of the (BEFT) model.
+- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([BeftConfig](/docs/peft/v0.21.0/en/package_reference/beft#peft.BeftConfig)): The configuration of the (BEFT) model.
 
-### PVeRA: Probabilistic Vector-Based Random Matrix Adaptation
-https://huggingface.co/docs/peft/v0.20.0/package_reference/pvera.md
+### Prefix tuning
+https://huggingface.co/docs/peft/v0.21.0/package_reference/prefix_tuning.md

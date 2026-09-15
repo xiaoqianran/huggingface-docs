@@ -22,7 +22,7 @@ In case you want to try out routing without training first, you can check out th
 peft.PolyConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 8, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, modules_to_save: Optional[list[str]] = None, init_weights: bool = True, poly_type: Literal['poly'] = 'poly', n_tasks: int = 1, n_skills: int = 4, n_splits: int = 1)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/poly/config.py#L25)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/poly/config.py#L25)
 
 **Parameters:**
 
@@ -44,7 +44,7 @@ n_skills (`int`) : The number of skills (LoRA) in each Poly layer.
 
 n_splits (`int`) : The number of splits within each LoRA of a Poly layer. A value greater than 1 indicates the use of Multi-Head Routing (MHR).
 
-This is the configuration class to store the configuration of a [PolyModel](/docs/peft/v0.20.0/en/package_reference/poly#peft.PolyModel).
+This is the configuration class to store the configuration of a [PolyModel](/docs/peft/v0.21.0/en/package_reference/poly#peft.PolyModel).
 - [Polytropon (Poly)](https://huggingface.co/papers/2202.13914)
 - [Multi-Head Routing (MHR)](https://huggingface.co/papers/2211.03831)
 
@@ -56,7 +56,7 @@ This is the configuration class to store the configuration of a [PolyModel](/doc
 peft.PolyModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/poly/model.py#L28)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/poly/model.py#L28)
 
-### P-tuning
-https://huggingface.co/docs/peft/v0.20.0/package_reference/p_tuning.md
+### Block-Diagonal LoRA for Eliminating Communication Overhead in Tensor Parallel LoRA Serving
+https://huggingface.co/docs/peft/v0.21.0/package_reference/lora_variant_bdlora.md

@@ -18,7 +18,7 @@ As a result, the authors found that prefix tuning demonstrates comparable perfor
 
 ## Basic Usage
 
-Create a [PrefixTuningConfig](/docs/peft/v0.20.0/en/package_reference/prefix_tuning#peft.PrefixTuningConfig) with the task type and number of virtual tokens to add and learn.
+Create a [PrefixTuningConfig](/docs/peft/v0.21.0/en/package_reference/prefix_tuning#peft.PrefixTuningConfig) with the task type and number of virtual tokens to add and learn.
 
 ```py
 from peft import PrefixTuningConfig, get_peft_model
@@ -103,7 +103,7 @@ As a guideline:
 peft.PrefixTuningConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, num_virtual_tokens: int = None, token_dim: int = None, num_transformer_submodules: Optional[int] = None, num_attention_heads: Optional[int] = None, num_layers: Optional[int] = None, modules_to_save: Optional[list[str]] = None, init_weights: typing.Optional[typing.Literal['zero']] = None, encoder_hidden_size: int = None, prefix_projection: bool = False)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/prefix_tuning/config.py#L23)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/prefix_tuning/config.py#L23)
 
 **Parameters:**
 
@@ -113,7 +113,7 @@ encoder_hidden_size (`int`) : The hidden size of the prompt encoder.
 
 prefix_projection (`bool`) : Whether to project the prefix embeddings.
 
-This is the configuration class to store the configuration of a [PrefixEncoder](/docs/peft/v0.20.0/en/package_reference/prefix_tuning#peft.PrefixEncoder).
+This is the configuration class to store the configuration of a [PrefixEncoder](/docs/peft/v0.21.0/en/package_reference/prefix_tuning#peft.PrefixEncoder).
 
 ## PrefixEncoder[[peft.PrefixEncoder]]
 
@@ -123,11 +123,11 @@ This is the configuration class to store the configuration of a [PrefixEncoder](
 peft.PrefixEncoder(config)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/prefix_tuning/model.py#L20)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/prefix_tuning/model.py#L22)
 
 **Parameters:**
 
-config ([PrefixTuningConfig](/docs/peft/v0.20.0/en/package_reference/prefix_tuning#peft.PrefixTuningConfig)) : The configuration of the prefix encoder.
+config ([PrefixTuningConfig](/docs/peft/v0.21.0/en/package_reference/prefix_tuning#peft.PrefixTuningConfig)) : The configuration of the prefix encoder.
 
 The `torch.nn` model to encode the prefix.
 
@@ -165,7 +165,7 @@ Output shape: (`batch_size`, `num_virtual_tokens`, `2*layers*hidden`)
 load_prompt_embeddings(prompt_embeddings: Tensor)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/prefix_tuning/model.py#L89)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/prefix_tuning/model.py#L91)
 
 Load the flattened prompt embeddings saved by PEFT (`prompt_embeddings`).
 
@@ -176,5 +176,5 @@ num_layers*2*token_dim]`).
 If `prefix_projection=True`, the parameters are (virtual token embeddings + an MLP) and there is no general way
 to invert the projection to recover those parameters from a flattened KV prefix.
 
-### OSF (Orthogonal Subspace Fine-tuning)
-https://huggingface.co/docs/peft/v0.20.0/package_reference/osf.md
+### AdaLoRA
+https://huggingface.co/docs/peft/v0.21.0/package_reference/adalora.md

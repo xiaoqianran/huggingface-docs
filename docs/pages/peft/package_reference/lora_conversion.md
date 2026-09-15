@@ -6,7 +6,7 @@ Functions that allow to convert non-LoRA PEFT models to LoRA models.
 
 PEFT supports dozens of different parameter effficient fine-tuning techniques. The most popular one by far is LoRA. This means that many other packages support LoRA too. For example, [Diffusers](https://huggingface.co/docs/diffusers/main/en/api/loaders/lora) allows to load LoRA adapters to change the capabilities of diffusion models. [vLLM](https://docs.vllm.ai/en/stable/features/lora/) allows serving models with LoRA adapters. This is nice but unfortunately, all the other, non-LoRA PEFT methods are rarely supported. Therefore, even if another PEFT method would work better for your specific use case, you may be prevented from using it because downstream packages offer no support.
 
-Here we present a potential solution. PEFT offers two functions, [save_as_lora()](/docs/peft/v0.20.0/en/package_reference/lora_conversion#peft.save_as_lora) and [convert_to_lora()](/docs/peft/v0.20.0/en/package_reference/lora_conversion#peft.convert_to_lora), which allow to convert a PEFT adapter into a LoRA adapter. Not all PEFT methods support this for now, but if they do, it means you can start with the PEFT method that works best for you and then later use it as if it were a LoRA adapter.
+Here we present a potential solution. PEFT offers two functions, [save_as_lora()](/docs/peft/v0.21.0/en/package_reference/lora_conversion#peft.save_as_lora) and [convert_to_lora()](/docs/peft/v0.21.0/en/package_reference/lora_conversion#peft.convert_to_lora), which allow to convert a PEFT adapter into a LoRA adapter. Not all PEFT methods support this for now, but if they do, it means you can start with the PEFT method that works best for you and then later use it as if it were a LoRA adapter.
 
 ## Example
 
@@ -14,7 +14,7 @@ The LoRA rank for the converted adapter can either be set to a fixed rank by pas
 
 ### Fixed LoRA rank
 
-The usage of [save_as_lora()](/docs/peft/v0.20.0/en/package_reference/lora_conversion#peft.save_as_lora) is relatively straightforward:
+The usage of [save_as_lora()](/docs/peft/v0.21.0/en/package_reference/lora_conversion#peft.save_as_lora) is relatively straightforward:
 
 ```python
 from peft import get_peft_model, save_as_lora
@@ -35,7 +35,7 @@ save_as_lora(output_path, model, rank=target_rank)
 
 This will create a LoRA checkpoint at `output_path` that you can load like any other LoRA adapter, or use in downstream packages such as Diffusers or vLLM.
 
-The [convert_to_lora()](/docs/peft/v0.20.0/en/package_reference/lora_conversion#peft.convert_to_lora) function is useful if you don't want to save the converted LoRA adapter but instead want to use the converted weights right away, for example to perform evaluations:
+The [convert_to_lora()](/docs/peft/v0.21.0/en/package_reference/lora_conversion#peft.convert_to_lora) function is useful if you don't want to save the converted LoRA adapter but instead want to use the converted weights right away, for example to perform evaluations:
 
 ```python
 from peft import convert_to_lora, get_peft_model, set_peft_model_state_dict
@@ -74,7 +74,7 @@ Using this type of dynamic LoRA rank can be useful if the contribution of the di
 
 ### Compiling the model
 
-For large models, doing the conversion may take some time; for instance each PEFT module has to go through an SVD computation. By passing `compile_kwargs` to [save_as_lora()](/docs/peft/v0.20.0/en/package_reference/lora_conversion#peft.save_as_lora) or [convert_to_lora()](/docs/peft/v0.20.0/en/package_reference/lora_conversion#peft.convert_to_lora), you can apply [`torch.compile`](https://docs.pytorch.org/docs/stable/generated/torch.compile.html) to the conversion function and potentially speed up the process. The `compile_kwargs` are a dict of keyword arguments that are passed to `torch.compile` (empty dict also works). Below is an example:
+For large models, doing the conversion may take some time; for instance each PEFT module has to go through an SVD computation. By passing `compile_kwargs` to [save_as_lora()](/docs/peft/v0.21.0/en/package_reference/lora_conversion#peft.save_as_lora) or [convert_to_lora()](/docs/peft/v0.21.0/en/package_reference/lora_conversion#peft.convert_to_lora), you can apply [`torch.compile`](https://docs.pytorch.org/docs/stable/generated/torch.compile.html) to the conversion function and potentially speed up the process. The `compile_kwargs` are a dict of keyword arguments that are passed to `torch.compile` (empty dict also works). Below is an example:
 
 ```python
 compile_kwargs = {"dynamic": True, "mode": "max-autotune-no-cudagraphs", "fullgraph": True}
@@ -83,7 +83,7 @@ save_as_lora(output_path, model, rank=rank, compile_kwargs=compile_kwargs)
 
 ### LoRA to LoRA conversion
 
-It is also possible to convert a LoRA adapter into another LoRA adapter. Why would you want to do that? There is one reason, namely if you want to reduce the rank of the LoRA adapter. If, after training, you want to shrink the LoRA adapter, use [save_as_lora()](/docs/peft/v0.20.0/en/package_reference/lora_conversion#peft.save_as_lora) or [convert_to_lora()](/docs/peft/v0.20.0/en/package_reference/lora_conversion#peft.convert_to_lora) and pass a smaller rank. This will give you a new LoRA adapter that has a smaller memory and storage footprint.
+It is also possible to convert a LoRA adapter into another LoRA adapter. Why would you want to do that? There is one reason, namely if you want to reduce the rank of the LoRA adapter. If, after training, you want to shrink the LoRA adapter, use [save_as_lora()](/docs/peft/v0.21.0/en/package_reference/lora_conversion#peft.save_as_lora) or [convert_to_lora()](/docs/peft/v0.21.0/en/package_reference/lora_conversion#peft.convert_to_lora) and pass a smaller rank. This will give you a new LoRA adapter that has a smaller memory and storage footprint.
 
 ## Metrics
 
@@ -148,7 +148,7 @@ If there is a lot of demand to extend LoRA conversion, please let us know by cre
 peft.convert_to_lora(model: Module, rank: float, adapter_name: str = 'default', progressbar: bool = False, compile_kwargs = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lora/conversion.py#L146)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/conversion.py#L145)
 
 **Parameters:**
 
@@ -204,7 +204,7 @@ If an invalid rank was chosen (too high or too low).
 peft.save_as_lora(path: str | os.PathLike, model: Module, rank: float, adapter_name: str = 'default', progressbar: bool = False, compile_kwargs = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lora/conversion.py#L363)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/conversion.py#L362)
 
 **Parameters:**
 
@@ -254,5 +254,5 @@ If the provided model does not have any layers that can be converted to LoRA, a 
 ValueError:
 If an invalid rank was chosen (too high or too low).
 
-### Prefix tuning
-https://huggingface.co/docs/peft/v0.20.0/package_reference/prefix_tuning.md
+### PeftWarning[[peft.PeftWarning]]
+https://huggingface.co/docs/peft/v0.21.0/package_reference/warnings.md

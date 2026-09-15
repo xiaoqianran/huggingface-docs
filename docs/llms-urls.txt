@@ -1085,6 +1085,7 @@ https://huggingface.co/docs/peft/package_reference/config.md
 https://huggingface.co/docs/peft/package_reference/cpt.md
 https://huggingface.co/docs/peft/package_reference/deft.md
 https://huggingface.co/docs/peft/package_reference/delora.md
+https://huggingface.co/docs/peft/package_reference/errors.md
 https://huggingface.co/docs/peft/package_reference/fourierft.md
 https://huggingface.co/docs/peft/package_reference/frod.md
 https://huggingface.co/docs/peft/package_reference/functional.md
@@ -1121,13 +1122,16 @@ https://huggingface.co/docs/peft/package_reference/psoft.md
 https://huggingface.co/docs/peft/package_reference/pvera.md
 https://huggingface.co/docs/peft/package_reference/randlora.md
 https://huggingface.co/docs/peft/package_reference/road.md
+https://huggingface.co/docs/peft/package_reference/shadow.md
 https://huggingface.co/docs/peft/package_reference/shira.md
+https://huggingface.co/docs/peft/package_reference/supertuning.md
 https://huggingface.co/docs/peft/package_reference/tinylora.md
 https://huggingface.co/docs/peft/package_reference/trainable_tokens.md
 https://huggingface.co/docs/peft/package_reference/tuners.md
 https://huggingface.co/docs/peft/package_reference/unilora.md
 https://huggingface.co/docs/peft/package_reference/vblora.md
 https://huggingface.co/docs/peft/package_reference/vera.md
+https://huggingface.co/docs/peft/package_reference/warnings.md
 https://huggingface.co/docs/peft/package_reference/waveft.md
 https://huggingface.co/docs/peft/package_reference/xlora.md
 https://huggingface.co/docs/peft/quicktour.md

@@ -37,7 +37,7 @@ The abstract from the paper is:
 peft.C3AConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, block_size: int = 256, target_modules: Optional[Union[list[str], str]] = None, bias: str = 'none', modules_to_save: Optional[list[str]] = None, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, block_size_pattern: Optional[dict] = <factory>, init_weights: Optional[Union[bool, Literal['gaussian', 'kaiming_uniform', 'xavier_uniform']]] = 'xavier_uniform')
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/c3a/config.py#L25)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/c3a/config.py#L25)
 
 **Parameters:**
 
@@ -57,7 +57,7 @@ block_size_pattern (`dict`) : The mapping from layer names or regexp expression 
 
 init_weights (`Union[bool, Literal["gaussian", "kaiming_uniform", "xavier_uniform"]]`) : Defaults to 'xavier_uniform'. Setting this to `False` also uses 'xavier_uniform'. To set the weights to zeros (thus making C3A a no-op), set the value to `True`.
 
-This is the configuration class to store the configuration of a [C3AModel](/docs/peft/v0.20.0/en/package_reference/c3a#peft.C3AModel).
+This is the configuration class to store the configuration of a [C3AModel](/docs/peft/v0.21.0/en/package_reference/c3a#peft.C3AModel).
 
 ## C3AModel[[peft.C3AModel]]
 
@@ -67,13 +67,13 @@ This is the configuration class to store the configuration of a [C3AModel](/docs
 peft.C3AModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/c3a/model.py#L29)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/c3a/model.py#L29)
 
 **Parameters:**
 
 model (`torch.nn.Module`) : The model to be adapted.
 
-config ([C3AConfig](/docs/peft/v0.20.0/en/package_reference/c3a#peft.C3AConfig)) : The configuration of the C3A model.
+config ([C3AConfig](/docs/peft/v0.21.0/en/package_reference/c3a#peft.C3AConfig)) : The configuration of the C3A model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -86,8 +86,8 @@ Creates C3A model from a pretrained transformers model.
 The method is described in detail in https://huggingface.co/papers/2407.19342.
 
 **Attributes**:
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([C3AConfig](/docs/peft/v0.20.0/en/package_reference/c3a#peft.C3AConfig)): The configuration of the C3A model.
+- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([C3AConfig](/docs/peft/v0.21.0/en/package_reference/c3a#peft.C3AConfig)): The configuration of the C3A model.
 
-### TinyLoRA: Learning to Reason in 13 Parameters
-https://huggingface.co/docs/peft/v0.20.0/package_reference/tinylora.md
+### Hotswapping adapters
+https://huggingface.co/docs/peft/v0.21.0/package_reference/hotswap.md

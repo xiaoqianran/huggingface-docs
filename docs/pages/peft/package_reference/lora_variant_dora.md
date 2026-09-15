@@ -62,8 +62,8 @@ Caching can thus make inference with DoRA significantly faster but it also requi
 ## Caveats
 
 - DoRA only supports embedding, linear, and Conv2d layers at the moment.
-- DoRA introduces a bigger overhead than pure LoRA, so it is recommended to merge weights for inference, see [LoraModel.merge_and_unload()](/docs/peft/v0.20.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.merge_and_unload).
+- DoRA introduces a bigger overhead than pure LoRA, so it is recommended to merge weights for inference, see [LoraModel.merge_and_unload()](/docs/peft/v0.21.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.merge_and_unload).
 - DoRA should work with weights quantized with bitsandbytes ("QDoRA"). However, issues have been reported when using QDoRA with DeepSpeed Zero2.
 
-### OFT
-https://huggingface.co/docs/peft/v0.20.0/package_reference/oft.md
+### OSF (Orthogonal Subspace Fine-tuning)
+https://huggingface.co/docs/peft/v0.21.0/package_reference/osf.md

@@ -26,7 +26,7 @@ You can initialize the low-rank matrices with different use-cases in mind - task
 
 ## Usage
 
-The size of the low-rank update matrices is determined by the *rank* or `r`. A higher rank means the model has more parameters to train, but it also means the model has more learning capacity. In the following example, you'll target the *query* and *value* matrices of the attention blocks. Other important parameters to set are `lora_alpha` (scaling factor), `bias` (whether `none`, `all` or only the LoRA bias parameters should be trained), and `modules_to_save` (the modules apart from the LoRA layers to be trained and saved). All of these parameters - and more - are found in the [LoraConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig).
+The size of the low-rank update matrices is determined by the *rank* or `r`. A higher rank means the model has more parameters to train, but it also means the model has more learning capacity. In the following example, you'll target the *query* and *value* matrices of the attention blocks. Other important parameters to set are `lora_alpha` (scaling factor), `bias` (whether `none`, `all` or only the LoRA bias parameters should be trained), and `modules_to_save` (the modules apart from the LoRA layers to be trained and saved). All of these parameters - and more - are found in the [LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig).
 
 ```py
 from peft import LoraConfig, get_peft_model
@@ -55,7 +55,7 @@ model.print_trainable_parameters()
 
 ## Initialization
 
-The initialization of LoRA weights is controlled by the parameter `init_lora_weights` in [LoraConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig). By default, PEFT initializes LoRA weights with Kaiming-uniform for weight A and zeros for weight B resulting in an identity transform (same as the reference [implementation](https://github.com/microsoft/LoRA)).
+The initialization of LoRA weights is controlled by the parameter `init_lora_weights` in [LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig). By default, PEFT initializes LoRA weights with Kaiming-uniform for weight A and zeros for weight B resulting in an identity transform (same as the reference [implementation](https://github.com/microsoft/LoRA)).
 
 It is also possible to pass `init_lora_weights="gaussian"`. As the name suggests, this initializes weight A with a Gaussian distribution and zeros for weight B (this is how [Diffusers](https://huggingface.co/docs/diffusers/index) initializes LoRA weights).
 
@@ -135,7 +135,7 @@ For more advanced usage, please refer to our [documentation](https://github.com/
 
 [EVA](https://huggingface.co/papers/2410.07170) performs SVD on the input activations of each layer and uses the right-singular vectors to initialize LoRA weights. It is therefore a data-driven initialization scheme. Furthermore EVA adaptively allocates ranks across layers based on their "explained variance ratio" - a metric derived from the SVD analysis.
 
-You can use EVA by setting `init_lora_weights="eva"` and defining [EvaConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.EvaConfig) in [LoraConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig):
+You can use EVA by setting `init_lora_weights="eva"` and defining [EvaConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.EvaConfig) in [LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig):
 ```python
 from peft import LoraConfig, EvaConfig
 peft_config = LoraConfig(
@@ -146,15 +146,15 @@ peft_config = LoraConfig(
 ```
 The parameter `rho` (≥ 1.0) determines how much redistribution is allowed. When `rho=1.0` and `r=16`, LoRA adapters are limited to exactly 16 ranks, preventing any redistribution from occurring. A recommended value for EVA with redistribution is 2.0, meaning the maximum rank allowed for a layer is 2r.
 
-It is recommended to perform EVA initialization on an accelerator(e.g. CUDA GPU, Intel XPU) as it is much faster. To optimize the amount of available memory for EVA, you can use the `low_cpu_mem_usage` flag in [get_peft_model()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.get_peft_model):
+It is recommended to perform EVA initialization on an accelerator(e.g. CUDA GPU, Intel XPU) as it is much faster. To optimize the amount of available memory for EVA, you can use the `low_cpu_mem_usage` flag in [get_peft_model()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.get_peft_model):
 ```python
 peft_model = get_peft_model(model, peft_config, low_cpu_mem_usage=True)
 ```
-Then, call [initialize_lora_eva_weights()](/docs/peft/v0.20.0/en/package_reference/lora#peft.initialize_lora_eva_weights) to initialize the EVA weights (in most cases the dataloader used for eva initialization can be the same as the one used for finetuning):
+Then, call [initialize_lora_eva_weights()](/docs/peft/v0.21.0/en/package_reference/lora#peft.initialize_lora_eva_weights) to initialize the EVA weights (in most cases the dataloader used for eva initialization can be the same as the one used for finetuning):
 ```python
 initialize_lora_eva_weights(peft_model, dataloader)
 ```
-EVA works out of the box with bitsandbytes. Simply initialize the model with `quantization_config` and call [initialize_lora_eva_weights()](/docs/peft/v0.20.0/en/package_reference/lora#peft.initialize_lora_eva_weights) as usual.
+EVA works out of the box with bitsandbytes. Simply initialize the model with `quantization_config` and call [initialize_lora_eva_weights()](/docs/peft/v0.21.0/en/package_reference/lora#peft.initialize_lora_eva_weights) as usual.
 
 > [!TIP]
 > For further instructions on using EVA, please refer to our [documentation](https://github.com/huggingface/peft/tree/main/examples/eva_finetuning).
@@ -164,7 +164,7 @@ When quantizing the base model for QLoRA training, consider using the [LoftQ ini
 > [!TIP]
 > Learn more about how PEFT works with quantization and how to use LoftQ in the [Quantization](../developer_guides/quantization) guide.
 
-Another way to initialize [LoraConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig) is with the [rank-stabilized LoRA (rsLoRA)](https://huggingface.co/papers/2312.03732) method. The LoRA architecture scales each adapter during every forward pass by a fixed scalar which is set at initialization and depends on the rank `r`. The scalar is given by `lora_alpha/r` in the original implementation, but rsLoRA uses `lora_alpha/math.sqrt(r)` which stabilizes the adapters and increases the performance potential from using a higher `r`.
+Another way to initialize [LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig) is with the [rank-stabilized LoRA (rsLoRA)](https://huggingface.co/papers/2312.03732) method. The LoRA architecture scales each adapter during every forward pass by a fixed scalar which is set at initialization and depends on the rank `r`. The scalar is given by `lora_alpha/r` in the original implementation, but rsLoRA uses `lora_alpha/math.sqrt(r)` which stabilizes the adapters and increases the performance potential from using a higher `r`.
 
 ```py
 from peft import LoraConfig
@@ -201,7 +201,7 @@ preprocess_loraga(model, lora_config, train_step)
 
 - **Initialization Strategies**: LoRA-GA supports four direction strategies (`direction`): `"ArBr"`, `"A2rBr"`, `"ArB2r"` (default), and `"random"`, and four scaling strategies (`scale`): `"stable"` (default), `"weight_svd"`, `"gd_scale"`, and `"unit"`. The default combination provides the best balance of convergence speed and stability.
 
-- **Base Weight Modification**: Unlike standard LoRA, LoRA-GA modifies the base model weights during initialization by subtracting a scaled version of the low-rank approximation. This enables better alignment with full fine-tuning gradients. Since base weights are modified, use `save_pretrained()` with the `save_embedding_layers` argument or `save_mutated_as_lora` pattern to properly save the adapter.
+- **Base Weight Modification**: Unlike standard LoRA, LoRA-GA modifies the base model weights during initialization by subtracting a scaled version of the low-rank approximation. This enables better alignment with full fine-tuning gradients. Since base weights are modified, use `save_pretrained()` with the `save_embedding_layers` argument or pass `path_initial_model_for_weight_conversion`.
 
 - **Computational Overhead**: The gradient estimation adds a small overhead during initialization (typically 1-2 minutes for 64 batches), but this is quickly amortized by faster convergence during training.
 
@@ -236,7 +236,7 @@ Assuming the original model had 5 layers `[0, 1, 2 ,3, 4]`, this would create a 
 
 ### Fine grained control over ranks and alpha (scaling)
 
-By default, all layers targeted with LoRA will have the same rank `r` and the same `lora_alpha` (which determines the LoRA scaling), depending on what was specified in the [LoraConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig). In some cases, however, you may want to indicate different values for different layers. This is possible by passing the `rank_pattern` and `alpha_pattern` arguments to [LoraConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig). These arguments should be dictionaries with the key being the layer name and the value being the rank/alpha value. The keys can be [regular expressions](https://docs.python.org/3/library/re.html) (regex). All LoRA layers that are not explicitly mentioned in `rank_pattern` and `alpha_pattern` will take the default `r` and `lora_alpha` values.
+By default, all layers targeted with LoRA will have the same rank `r` and the same `lora_alpha` (which determines the LoRA scaling), depending on what was specified in the [LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig). In some cases, however, you may want to indicate different values for different layers. This is possible by passing the `rank_pattern` and `alpha_pattern` arguments to [LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig). These arguments should be dictionaries with the key being the layer name and the value being the rank/alpha value. The keys can be [regular expressions](https://docs.python.org/3/library/re.html) (regex). All LoRA layers that are not explicitly mentioned in `rank_pattern` and `alpha_pattern` will take the default `r` and `lora_alpha` values.
 
 To give an example, let's assume that we have a model with the following structure:
 
@@ -266,9 +266,9 @@ The same logic applies to `alpha_pattern`. If you're in doubt, don't try to get 
 
 ### Automatically detect viable target modules
 
-[peft.helpers.KappaTuneSelector](/docs/peft/v0.20.0/en/package_reference/helpers#peft.helpers.KappaTuneSelector) implements the condition-number-based target selection strategy from the [KappaTune paper](https://arxiv.org/abs/2506.16289). It scans every `nn.Linear` module and, for models where MoE expert weights are stored as fused 3D `nn.Parameter` tensors (e.g. Llama-4, Qwen3-MoE), also those parameters, computes the matrix condition number κ = σ_max / σ_min for each, and selects the most isotropic layers (lowest κ). These isotropic layers serve as ideal candidates for fine-tuning, since their high-entropy nature allows them to absorb new information more readily, leaving the specialized, anisotropic layers intact to mitigate catastrophic forgetting during continual learning.
+[peft.helpers.KappaTuneSelector](/docs/peft/v0.21.0/en/package_reference/helpers#peft.helpers.KappaTuneSelector) implements the condition-number-based target selection strategy from the [KappaTune paper](https://arxiv.org/abs/2506.16289). It scans every `nn.Linear` module and, for models where MoE expert weights are stored as fused 3D `nn.Parameter` tensors (e.g. Llama-4, Qwen3-MoE), also those parameters, computes the matrix condition number κ = σ_max / σ_min for each, and selects the most isotropic layers (lowest κ). These isotropic layers serve as ideal candidates for fine-tuning, since their high-entropy nature allows them to absorb new information more readily, leaving the specialized, anisotropic layers intact to mitigate catastrophic forgetting during continual learning.
 
-Use [peft.helpers.find_kappa_target_modules()](/docs/peft/v0.20.0/en/package_reference/helpers#peft.find_kappa_target_modules) as a one-liner to get the optimal `target_modules` for `LoraConfig`:
+Use [peft.helpers.find_kappa_target_modules()](/docs/peft/v0.21.0/en/package_reference/helpers#peft.find_kappa_target_modules) as a one-liner to get the optimal `target_modules` for `LoraConfig`:
 
 ```python
 from peft import LoraConfig, get_peft_model
@@ -335,7 +335,7 @@ Accelerated inference with the fine-tuned model is possible with, for example, [
 
 ### Efficiently train tokens alongside LoRA
 
-PEFT LoRA adapters support adding new tokens with the `trainable_token_indices` parameter. This allows tuning of other tokens alongside fine-tuning specific layers. Only the specified tokens are trained and all other tokens are untouched. It saves memory and doesn't throw away learned context from existing token embeddings unlike training the whole embedding matrix. Under the hood this method uses the layer of [TrainableTokensModel](/docs/peft/v0.20.0/en/package_reference/trainable_tokens#peft.TrainableTokensModel).
+PEFT LoRA adapters support adding new tokens with the `trainable_token_indices` parameter. This allows tuning of other tokens alongside fine-tuning specific layers. Only the specified tokens are trained and all other tokens are untouched. It saves memory and doesn't throw away learned context from existing token embeddings unlike training the whole embedding matrix. Under the hood this method uses the layer of [TrainableTokensModel](/docs/peft/v0.21.0/en/package_reference/trainable_tokens#peft.TrainableTokensModel).
 
 ```py
 # for layer 'embed_tokens'
@@ -386,7 +386,7 @@ To give a bit of an indication how much VRAM can be saved, a rudimentary compari
 
 Many causal LMs use **weight tying**, where two or more weights share the same underlying parameters. In the most common case, the input embedding weights (`embed_tokens`) and output projection weights (`lm_head`) share the same tensor. This is because it reduces parameters and usually preserves model quality.
 
-It's not always obvious how PEFT deals with these tied weights when they are targeted for fine-tuning. For LoRA, the `ensure_weight_tying` on the [LoraConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig) controls whether PEFT should explicitly keep adapter-side updates tied for those layers. In practice, this can affect `modules_to_save`, `target_modules`, and `trainable_token_indices`. Note that this logic partially relies on convention when it comes to naming the layers (`"embed_tokens"`, `"lm_head"`) and proper working cannot be guaranteed if those conventions are not used.
+It's not always obvious how PEFT deals with these tied weights when they are targeted for fine-tuning. For LoRA, the `ensure_weight_tying` on the [LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig) controls whether PEFT should explicitly keep adapter-side updates tied for those layers. In practice, this can affect `modules_to_save`, `target_modules`, and `trainable_token_indices`. Note that this logic partially relies on convention when it comes to naming the layers (`"embed_tokens"`, `"lm_head"`) and proper working cannot be guaranteed if those conventions are not used.
 
 The tables below summarize expected behavior.
 
@@ -513,7 +513,7 @@ This section shows potential post-processing methods for trained adapters.
 
 ### Merge LoRA weights into the base model
 
-While LoRA is significantly smaller and faster to train, you may encounter latency issues during inference due to separately loading the base model and the LoRA adapter. To eliminate latency, use the [merge_and_unload()](/docs/peft/v0.20.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.merge_and_unload) function to merge the adapter weights with the base model. This allows you to use the newly merged model as a standalone model. The [merge_and_unload()](/docs/peft/v0.20.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.merge_and_unload) function doesn't keep the adapter weights in memory.
+While LoRA is significantly smaller and faster to train, you may encounter latency issues during inference due to separately loading the base model and the LoRA adapter. To eliminate latency, use the [merge_and_unload()](/docs/peft/v0.21.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.merge_and_unload) function to merge the adapter weights with the base model. This allows you to use the newly merged model as a standalone model. The [merge_and_unload()](/docs/peft/v0.21.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.merge_and_unload) function doesn't keep the adapter weights in memory.
 
 Below is a diagram that explains the intuition of LoRA adapter merging:
 
@@ -531,7 +531,7 @@ model = PeftModel.from_pretrained(base_model, peft_model_id)
 model = model.merge_and_unload()
 ```
 
-It is important to assign the returned model to a variable and use it, [merge_and_unload()](/docs/peft/v0.20.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.merge_and_unload) is not an in-place operation. If you need to keep a copy of the weights so you can unmerge the adapter later or delete and load different ones, you should use the [merge_adapter()](/docs/peft/v0.20.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.merge_adapter) function instead. Now you have the option to use [unmerge_adapter()](/docs/peft/v0.20.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.unmerge_adapter) to return the base model.
+It is important to assign the returned model to a variable and use it, [merge_and_unload()](/docs/peft/v0.21.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.merge_and_unload) is not an in-place operation. If you need to keep a copy of the weights so you can unmerge the adapter later or delete and load different ones, you should use the [merge_adapter()](/docs/peft/v0.21.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.merge_adapter) function instead. Now you have the option to use [unmerge_adapter()](/docs/peft/v0.21.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.unmerge_adapter) to return the base model.
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -546,7 +546,7 @@ model.merge_adapter()
 model.unmerge_adapter()
 ```
 
-The [add_weighted_adapter()](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraModel.add_weighted_adapter) function is useful for merging multiple LoRAs into a new adapter based on a user provided weighting scheme in the `weights` parameter. Below is an end-to-end example.
+The [add_weighted_adapter()](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraModel.add_weighted_adapter) function is useful for merging multiple LoRAs into a new adapter based on a user provided weighting scheme in the `weights` parameter. Below is an end-to-end example.
 
 First load the base model:
 
@@ -603,7 +603,7 @@ print(outputs)
 
 ### Recovering base model performance via intruder dimension reduction
 
-The paper [LoRA vs Full Fine-tuning: An Illusion of Equivalence](https://huggingface.co/papers/2410.21228) argues that LoRA training introduces extra dimensions into the weights that have very little in common with the already learnt weights and lead to forgetting of already learned information. PEFT implements the suggested mitigation in [peft.tuners.lora.intruders.reduce_intruder_dimension()](/docs/peft/v0.20.0/en/package_reference/lora#peft.tuners.lora.intruders.reduce_intruder_dimension).
+The paper [LoRA vs Full Fine-tuning: An Illusion of Equivalence](https://huggingface.co/papers/2410.21228) argues that LoRA training introduces extra dimensions into the weights that have very little in common with the already learnt weights and lead to forgetting of already learned information. PEFT implements the suggested mitigation in [peft.tuners.lora.intruders.reduce_intruder_dimension()](/docs/peft/v0.21.0/en/package_reference/lora#peft.tuners.lora.intruders.reduce_intruder_dimension).
 
 The mitigation will take a PEFT model with a loaded LoRA and create a new, modified adapter that is loaded alongside the existing adapter and now the active adapter.
 
@@ -628,7 +628,7 @@ While the defaults are set to deliver a good trade-off between the two factors i
 
 ## Load adapters
 
-Adapters can be loaded onto a pretrained model with [load_adapter()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.load_adapter), which is useful for trying out different adapters whose weights aren't merged. Set the active adapter weights with the [set_adapter()](/docs/peft/v0.20.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.set_adapter) function.
+Adapters can be loaded onto a pretrained model with [load_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.load_adapter), which is useful for trying out different adapters whose weights aren't merged. Set the active adapter weights with the [set_adapter()](/docs/peft/v0.21.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.set_adapter) function.
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -645,7 +645,7 @@ model.load_adapter("alignment-handbook/zephyr-7b-dpo-lora", adapter_name="dpo")
 model.set_adapter("dpo")
 ```
 
-To return the base model, you could use [unload()](/docs/peft/v0.20.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.unload) to unload all of the LoRA modules or [delete_adapter()](/docs/peft/v0.20.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.delete_adapter) to delete the adapter entirely. [unload()](/docs/peft/v0.20.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.unload) is not an in-place operation, remember to assign the returned model to a variable and use it.
+To return the base model, you could use [unload()](/docs/peft/v0.21.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.unload) to unload all of the LoRA modules or [delete_adapter()](/docs/peft/v0.21.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.delete_adapter) to delete the adapter entirely. [unload()](/docs/peft/v0.21.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.unload) is not an in-place operation, remember to assign the returned model to a variable and use it.
 
 ```py
 # unload adapter
@@ -1000,10 +1000,10 @@ To encode general knowledge, GenKnowSub subtracts the average of the provided ge
 #### peft.LoraConfig[[peft.LoraConfig]]
 
 ```python
-peft.LoraConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 8, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, lora_alpha: int = 8, lora_dropout: float = 0.0, fan_in_fan_out: bool = False, bias: Literal['none', 'all', 'lora_only'] = 'none', use_rslora: bool = False, modules_to_save: Optional[list[str]] = None, init_lora_weights: bool | Literal['gaussian', 'eva', 'olora', 'pissa', 'pissa_niter_[number of iters]', 'corda', 'loftq', 'orthogonal', 'mica'] = True, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, rank_pattern: Optional[dict] = <factory>, alpha_pattern: Optional[dict] = <factory>, megatron_config: Optional[dict] = None, megatron_core: Optional[str] = 'megatron.core', trainable_token_indices: Optional[Union[list[int], dict[str, list[int]]]] = None, loftq_config: Union[LoftQConfig, dict] = <factory>, eva_config: Optional[EvaConfig] = None, corda_config: Optional[CordaConfig] = None, lora_ga_config: Optional[LoraGAConfig] = None, use_dora: bool = False, velora_config: Optional[Union[VeloraConfig, dict]] = None, alora_invocation_tokens: Optional[list[int]] = None, use_qalora: bool = False, qalora_group_size: int = 16, monteclora_config: Optional[MontecloraConfig] = None, layer_replication: Optional[list[tuple[int, int]]] = None, runtime_config: LoraRuntimeConfig = <factory>, lora_bias: bool = False, target_parameters: Optional[list[str]] = None, use_bdlora: Optional[BdLoraConfig] = None, arrow_config: Optional[ArrowConfig] = None, ensure_weight_tying: bool = False)
+peft.LoraConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 8, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, lora_alpha: int = 8, lora_dropout: float = 0.0, fan_in_fan_out: bool = False, bias: Literal['none', 'all', 'lora_only'] = 'none', use_rslora: bool = False, modules_to_save: Optional[list[str]] = None, init_lora_weights: bool | Literal['gaussian', 'eva', 'olora', 'pissa', 'pissa_niter_[number of iters]', 'corda', 'loftq', 'orthogonal', 'mica'] = True, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, rank_pattern: Optional[dict] = <factory>, alpha_pattern: Optional[dict] = <factory>, megatron_config: Optional[dict] = None, megatron_core: Optional[str] = 'megatron.core', trainable_token_indices: Optional[Union[list[int], dict[str, list[int]]]] = None, loftq_config: Union[LoftQConfig, dict] = <factory>, eva_config: Optional[EvaConfig] = None, corda_config: Optional[CordaConfig] = None, lora_ga_config: Optional[LoraGAConfig] = None, use_dora: bool = False, velora_config: Optional[Union[VeloraConfig, dict]] = None, alora_invocation_tokens: Optional[list[int]] = None, use_qalora: bool = False, qalora_group_size: int = 16, monteclora_config: Optional[MontecloraConfig] = None, layer_replication: Optional[list[tuple[int, int]]] = None, runtime_config: LoraRuntimeConfig = <factory>, lora_bias: bool = False, target_parameters: Optional[list[str]] = None, use_bdlora: Optional[BdLoraConfig] = None, arrow_config: Optional[ArrowConfig] = None, kasa_config: Optional[KasaConfig] = None, ensure_weight_tying: bool = False)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lora/config.py#L371)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/config.py#L453)
 
 **Parameters:**
 
@@ -1053,6 +1053,8 @@ use_dora (`bool`) : Enable 'Weight-Decomposed Low-Rank Adaptation' (DoRA). This 
 
 velora_config (`Optional[VeloraConfig]`) : Enable VeLoRA by providing a VeloraConfig. VeLoRA swaps in a custom backward pass for the LoRA A projection that stores compressed activations instead of the full input activations.
 
+kasa_config (`Optional[KasaConfig]`) : Enable KaSA (Knowledge-aware Singular-value Adaptation) by providing a KasaConfig. KaSA truncates the `r` smallest singular components of the frozen base weight via a one-time SVD and inserts a learnable diagonal of singular values between the LoRA A and B factors. Currently only linear layers are supported.
+
 alora_invocation_tokens (`List[int]`) : If not None, enable 'Activated LoRA' (aLoRA), with alora_invocation_tokens being the tokenized invocation string for the adapter (must be present in all model input strings). This technique selectively activates the adapter weights only on tokens during and after the alora_invocation_tokens. When used in a CausalLM, this means that the KV cache prior to invocation is interchangeable with that of the base model (and other aLoRA adapters operating this way). As a result, in inference pipelines involving switching between base model inference and adapter inference (e.g. agentic pipelines, see paper for examples), significant savings are realized (relative to LoRA) by saving prefill operations. Overall adapter inference speedups of an order of magnitude or more can occur on vLLM, depending on the length of the shared context. Note that merging is not possible due to the selective application of the weights.
 
 use_qalora (`bool`) : It is only implemented in GPTQ for now. Enable Quantization-Aware Low-Rank Adaptation (QALoRA). This technique combines quantization-aware training with LoRA to improve performance for quantized models. This can improve the performance of LoRA, especially at low ranks. Right now, QALoRA only supports linear layers.
@@ -1075,7 +1077,7 @@ arrow_config (`Optional[ArrowConfig]`) : The necessary config to apply arrow rou
 
 ensure_weight_tying (`bool`, *optional*) : Whether to tie weights or not after peft initialization. This will ensure that the adapters added to the tied layers are also tied. This is only applicable for layers passed via `modules_to_save` and `target_modules`.
 
-This is the configuration class to store the configuration of a [LoraModel](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraModel).
+This is the configuration class to store the configuration of a [LoraModel](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraModel).
 
 #### to_dict[[peft.LoraConfig.to_dict]]
 
@@ -1083,7 +1085,7 @@ This is the configuration class to store the configuration of a [LoraModel](/doc
 to_dict()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lora/config.py#L902)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/config.py#L1001)
 
 Returns the configuration for your adapter model as a dictionary. Removes runtime configurations.
 
@@ -1095,13 +1097,13 @@ Returns the configuration for your adapter model as a dictionary. Removes runtim
 peft.LoraModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lora/model.py#L88)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/model.py#L90)
 
 **Parameters:**
 
 model (`torch.nn.Module`) : The model to be adapted.
 
-config ([LoraConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig)) : The configuration of the Lora model.
+config ([LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig)) : The configuration of the Lora model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -1119,7 +1121,7 @@ Example:
 
 ```py
 >>> from transformers import AutoModelForSeq2SeqLM
->>> from peft import LoraModel, LoraConfig
+>>> from peft import LoraConfig, get_peft_model
 
 >>> config = LoraConfig(
 ...     task_type="SEQ_2_SEQ_LM",
@@ -1130,13 +1132,13 @@ Example:
 ... )
 
 >>> model = AutoModelForSeq2SeqLM.from_pretrained("t5-base")
->>> lora_model = LoraModel(model, config, "default")
+>>> lora_model = get_peft_model(model, config)
 ```
 
 ```py
 >>> import torch
 >>> import transformers
->>> from peft import LoraConfig, PeftModel, get_peft_model, prepare_model_for_kbit_training
+>>> from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 
 >>> rank = ...
 >>> target_modules = ["q_proj", "k_proj", "v_proj", "out_proj", "fc_in", "fc_out", "wte"]
@@ -1168,16 +1170,16 @@ Example:
 ```
 
 **Attributes**:
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([LoraConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig)): The configuration of the Lora model.
+- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig)): The configuration of the Lora model.
 
 #### add_weighted_adapter[[peft.LoraModel.add_weighted_adapter]]
 
 ```python
-add_weighted_adapter(adapters: list[str], weights: list[float], adapter_name: str, combination_type: str = 'svd', svd_rank: int | None = None, svd_clamp: int | None = None, svd_full_matrices: bool = True, svd_driver: str | None = None, density: float | None = None, majority_sign_method: Literal['total', 'frequency'] = 'total')
+add_weighted_adapter(adapters: list[str], weights: list[float], adapter_name: str, combination_type: Literal['svd', 'linear', 'cat', 'ties', 'ties_svd', 'dare_ties', 'dare_linear', 'dare_ties_svd', 'dare_linear_svd', 'magnitude_prune', 'magnitude_prune_svd'] = 'svd', svd_rank: int | None = None, svd_clamp: int | None = None, svd_full_matrices: bool = True, svd_driver: str | None = None, density: float | None = None, majority_sign_method: Literal['total', 'frequency'] = 'total')
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lora/model.py#L664)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/model.py#L681)
 
 **Parameters:**
 
@@ -1187,7 +1189,7 @@ weights (`list`) : List of weights for each adapter. Weights can be positive or 
 
 adapter_name (`str`) : Name of the new adapter.
 
-combination_type (`str`) : The merging type can be one of [`svd`, `linear`, `cat`, `ties`, `ties_svd`, `dare_ties`, `dare_linear`, `dare_ties_svd`, `dare_linear_svd`, `magnitude_prune`, `magnitude_prune_svd`]. When using the `cat` combination_type, the rank of the resulting adapter is equal to the sum of all adapters ranks (the mixed adapter may be too big and result in OOM errors).
+combination_type (`str`) : The merging type can be one of [`svd`, `linear`, `cat`, `ties`, `ties_svd`, `dare_ties`, `dare_linear`, `dare_ties_svd`, `dare_linear_svd`, `magnitude_prune`, `magnitude_prune_svd`]. When using the `cat` combination_type, the rank of the resulting adapter is equal to the sum of all adapters ranks (the mixed adapter may be too big and result in OOM errors). Note that `cat` and `svd` are precise methods and will give you good accuracy, `linear` is efficient but a very rough approximation and should be avoided if you can afford it.
 
 svd_rank (`int`, *optional*) : Rank of output adapter for svd. If None provided, will use max rank of merging adapters.
 
@@ -1213,7 +1215,7 @@ errors.
 subtract_mutated_init(output_state_dict: dict[str, torch.Tensor], adapter_name: str, kwargs = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lora/model.py#L921)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/model.py#L953)
 
 This function can calculate the updates of PiSSA/CorDA/OLoRA by comparing the parameters of the
 PiSSA/CorDA/OLoRA adapter in `output_state_dict` with the initial values of PiSSA/CorDA/OLoRA in
@@ -1240,14 +1242,16 @@ Compute steps:
 peft.ArrowConfig(top_k: int = 3, router_temperature: float = 1.0, use_gks: bool = False, rng_seed: Optional[int] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lora/config.py#L120)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/config.py#L139)
 
 This is the sub-configuration class to store the configuration for Arrow and GenKnowSub algorithm. Arrow is a
 routing algorithm to combine the trained LoRA modules to solve new tasks, proposed in
 'https://huggingface.co/papers/2405.11157'. GenKnowSub is a refinement on the trained modules before being combined
 via Arrow, introduced in 'https://aclanthology.org/2025.acl-short.54/'
 
-### LoftQ[[peft.replace_lora_weights_loftq]]
+### LoftQ
+
+#### replace_lora_weights_loftq[[peft.replace_lora_weights_loftq]]
 
 #### peft.replace_lora_weights_loftq[[peft.replace_lora_weights_loftq]]
 
@@ -1255,7 +1259,7 @@ via Arrow, introduced in 'https://aclanthology.org/2025.acl-short.54/'
 peft.replace_lora_weights_loftq(peft_model, model_path: Optional[str] = None, adapter_name: str = 'default', callback: Optional[Callable[[torch.nn.Module, str], bool]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/utils/loftq_utils.py#L193)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/loftq_utils.py#L193)
 
 **Parameters:**
 
@@ -1277,6 +1281,24 @@ As lazy loading is not possible with pickle, normal PyTorch checkpoint files can
 
 Depending on the model size, calling this function may take some time to finish.
 
+#### LoftQConfig[[peft.LoftQConfig]]
+
+#### peft.LoftQConfig[[peft.LoftQConfig]]
+
+```python
+peft.LoftQConfig(loftq_bits: int = 4, loftq_iter: int = 1)
+```
+
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/config.py#L125)
+
+**Parameters:**
+
+loftq_bits (`int`) : Quantization bits for LoftQ.
+
+loftq_iter (`int`) : Alternating iterations for LoftQ.
+
+This is the sub-configuration class to store the configuration of a [LoraModel](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraModel).
+
 ### Eva
 
 #### EvaConfig[[peft.EvaConfig]]
@@ -1287,7 +1309,7 @@ Depending on the model size, calling this function may take some time to finish.
 peft.EvaConfig(rho: float = 2.0, tau: float = 0.99, use_label_mask: bool = True, label_mask_value: int = -100, whiten: bool = False, adjust_scaling_factors: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lora/config.py#L244)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/config.py#L263)
 
 **Parameters:**
 
@@ -1311,10 +1333,10 @@ introduced in Explained Variance Adaptation.
 #### peft.initialize_lora_eva_weights[[peft.initialize_lora_eva_weights]]
 
 ```python
-peft.initialize_lora_eva_weights(model: Module, dataloader: typing.Optional[collections.abc.Iterable] = None, eva_state_dict: typing.Optional[dict] = None, forward_fn: typing.Optional[collections.abc.Callable] = <function forward_fn_dict at 0x7f29b0f34550>, prepare_model_inputs_fn: typing.Optional[collections.abc.Callable] = <function prepare_model_inputs_fn_language_modeling at 0x7f29b0f34430>, prepare_layer_inputs_fn: typing.Union[collections.abc.Callable, dict[str, collections.abc.Callable], NoneType] = <function prepare_layer_inputs_fn_language_modeling at 0x7f29b0f344c0>, adapter_name: str = 'default', gather_distributed_inputs: bool = True, show_progress_bar: bool = True)
+peft.initialize_lora_eva_weights(model: Module, dataloader: typing.Optional[collections.abc.Iterable] = None, eva_state_dict: typing.Optional[dict] = None, forward_fn: typing.Optional[collections.abc.Callable] = <function forward_fn_dict at 0x7f708404ec20>, prepare_model_inputs_fn: typing.Optional[collections.abc.Callable] = <function prepare_model_inputs_fn_language_modeling at 0x7f708404eb00>, prepare_layer_inputs_fn: typing.Union[collections.abc.Callable, dict[str, collections.abc.Callable], NoneType] = <function prepare_layer_inputs_fn_language_modeling at 0x7f708404eb90>, adapter_name: str = 'default', gather_distributed_inputs: bool = True, show_progress_bar: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lora/eva.py#L654)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/eva.py#L654)
 
 **Parameters:**
 
@@ -1350,10 +1372,10 @@ layer and updates the weights accordingly.
 #### peft.get_eva_state_dict[[peft.get_eva_state_dict]]
 
 ```python
-peft.get_eva_state_dict(model: Module, dataloader: Iterable, peft_config: typing.Optional[peft.tuners.lora.config.LoraConfig] = None, forward_fn: typing.Optional[collections.abc.Callable] = <function forward_fn_dict at 0x7f29b0f34550>, prepare_model_inputs_fn: typing.Optional[collections.abc.Callable] = <function prepare_model_inputs_fn_language_modeling at 0x7f29b0f34430>, prepare_layer_inputs_fn: typing.Union[collections.abc.Callable, dict[str, collections.abc.Callable], NoneType] = <function prepare_layer_inputs_fn_language_modeling at 0x7f29b0f344c0>, adapter_name: str = 'default', gather_distributed_inputs: bool = True, show_progress_bar: bool = True)
+peft.get_eva_state_dict(model: Module, dataloader: Iterable, peft_config: typing.Optional[peft.tuners.lora.config.LoraConfig] = None, forward_fn: typing.Optional[collections.abc.Callable] = <function forward_fn_dict at 0x7f708404ec20>, prepare_model_inputs_fn: typing.Optional[collections.abc.Callable] = <function prepare_model_inputs_fn_language_modeling at 0x7f708404eb00>, prepare_layer_inputs_fn: typing.Union[collections.abc.Callable, dict[str, collections.abc.Callable], NoneType] = <function prepare_layer_inputs_fn_language_modeling at 0x7f708404eb90>, adapter_name: str = 'default', gather_distributed_inputs: bool = True, show_progress_bar: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lora/eva.py#L556)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/eva.py#L556)
 
 **Parameters:**
 
@@ -1393,7 +1415,7 @@ cosine similarity. The rank distribution for each layer is determined based on t
 peft.LoraGAConfig(direction: Literal['ArBr', 'A2rBr', 'ArB2r', 'random'] = 'ArB2r', scale: Literal['stable', 'weight_svd', 'gd_scale', 'unit'] = 'stable', stable_gamma: int = 16)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lora/config.py#L1033)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/config.py#L1138)
 
 **Parameters:**
 
@@ -1419,7 +1441,7 @@ Reference: https://arxiv.org/abs/2407.05000
 peft.tuners.lora.loraga.estimate_gradients(model: Module, lora_config: LoraConfig, train_step: Callable)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lora/loraga.py#L118)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/loraga.py#L118)
 
 Estimate gradients for LoRA-GA initialization.
 
@@ -1432,7 +1454,7 @@ more memory-efficient than enabling gradients globally.
 peft.preprocess_loraga(model: Module, lora_config: LoraConfig, train_step: Callable, cache_file: typing.Optional[str] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lora/loraga.py#L46)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/loraga.py#L46)
 
 **Parameters:**
 
@@ -1461,7 +1483,7 @@ Accumulated gradient for the weight matrix.
 peft.tuners.lora.intruders.reduce_intruder_dimension(peft_model, old_adapter_name = 'default', new_adapter_name = 'intruder_reduced', top_k = 10, threshold_epsilon = 0.5, mitigation_lambda = 0.75, logging_sink = <built-in function print>)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lora/intruders.py#L20)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/intruders.py#L20)
 
 **Parameters:**
 
@@ -1488,5 +1510,5 @@ switch back to the original adapter you can use `peft_model.set_adapter(<old_ada
 
 Currently only LoRA is supported as it is not clear whether this method generalizes to other delta-weight methods.
 
-### GraLoRA
-https://huggingface.co/docs/peft/v0.20.0/package_reference/gralora.md
+### LyCORIS
+https://huggingface.co/docs/peft/v0.21.0/package_reference/adapter_utils.md

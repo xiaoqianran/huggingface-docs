@@ -1,13 +1,13 @@
 # AdaLoRA
 
-[AdaLoRA](https://hf.co/papers/2303.10512) (Adaptive LoRA) is a method for optimizing the number of trainable parameters to assign to weight matrices and layers, unlike LoRA, which distributes parameters evenly across all modules. More parameters are budgeted for important weight matrices and layers while less important ones receive fewer parameters. You can control the average desired *rank* or `r` of the matrices, and which modules to apply AdaLoRA to with `target_modules`. Other important parameters to set are `lora_alpha` (scaling factor), and `modules_to_save` (the modules apart from the AdaLoRA layers to be trained and saved). All of these parameters - and more - are found in the [AdaLoraConfig](/docs/peft/v0.20.0/en/package_reference/adalora#peft.AdaLoraConfig).
+[AdaLoRA](https://hf.co/papers/2303.10512) (Adaptive LoRA) is a method for optimizing the number of trainable parameters to assign to weight matrices and layers, unlike LoRA, which distributes parameters evenly across all modules. More parameters are budgeted for important weight matrices and layers while less important ones receive fewer parameters. You can control the average desired *rank* or `r` of the matrices, and which modules to apply AdaLoRA to with `target_modules`. Other important parameters to set are `lora_alpha` (scaling factor), and `modules_to_save` (the modules apart from the AdaLoRA layers to be trained and saved). All of these parameters - and more - are found in the [AdaLoraConfig](/docs/peft/v0.21.0/en/package_reference/adalora#peft.AdaLoraConfig).
 
 The abstract from the paper is:
 
 *Fine-tuning large pre-trained language models on downstream tasks has become an important paradigm in NLP. However, common practice fine-tunes all of the parameters in a pre-trained model, which becomes prohibitive when a large number of downstream tasks are present. Therefore, many fine-tuning methods are proposed to learn incremental updates of pre-trained weights in a parameter efficient way, e.g., low-rank increments. These methods often evenly distribute the budget of incremental updates across all pre-trained weight matrices, and overlook the varying importance of different weight parameters. As a consequence, the fine-tuning performance is suboptimal. To bridge this gap, we propose AdaLoRA, which adaptively allocates the parameter budget among weight matrices according to their importance score. In particular, AdaLoRA parameterizes the incremental updates in the form of singular value decomposition. Such a novel approach allows us to effectively prune the singular values of unimportant updates, which is essentially to reduce their parameter budget but circumvent intensive exact SVD computations. We conduct extensive experiments with several pre-trained models on natural language processing, question answering, and natural language generation to validate the effectiveness of AdaLoRA. Results demonstrate that AdaLoRA manifests notable improvement over baselines, especially in the low budget settings. Our code is publicly available at https://github.com/QingruZhang/AdaLoRA*.
 
 > [!WARNING]
-> AdaLoRA has an [update_and_allocate()](/docs/peft/v0.20.0/en/package_reference/adalora#peft.AdaLoraModel.update_and_allocate) method that should be called at each training step to update the parameter budget and mask, otherwise the adaptation step is not performed. This requires writing a custom training loop or subclassing the [Trainer](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.Trainer) to incorporate this method. As an example, take a look at this [custom training loop](https://github.com/huggingface/peft/blob/912ad41e96e03652cabf47522cd876076f7a0c4f/examples/conditional_generation/peft_adalora_seq2seq.py#L120).
+> AdaLoRA has an [update_and_allocate()](/docs/peft/v0.21.0/en/package_reference/adalora#peft.AdaLoraModel.update_and_allocate) method that should be called at each training step to update the parameter budget and mask, otherwise the adaptation step is not performed. This requires writing a custom training loop or subclassing the [Trainer](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer) to incorporate this method. As an example, take a look at this [custom training loop](https://github.com/huggingface/peft/blob/912ad41e96e03652cabf47522cd876076f7a0c4f/examples/conditional_generation/peft_adalora_seq2seq.py#L120).
 
 AdaLoRA manages the parameter budget introduced from LoRA by allocating more parameters - in other words, a higher rank `r` - for important weight matrices that are better adapted for a task and pruning less important ones. The rank is controlled by a method similar to singular value decomposition (SVD). The $\Delta W$ is parameterized with two orthogonal matrices and a diagonal matrix which contains singular values. This parametrization method avoids iteratively applying SVD which is computationally expensive. Based on this method, the rank of $\Delta W$ is adjusted according to an importance score. $\Delta W$ is divided into triplets and each triplet is scored according to its contribution to model performance. Triplets with low importance scores are pruned and triplets with high importance scores are kept for finetuning.
 
@@ -58,10 +58,10 @@ model.update_and_allocate(step_idx)
 #### peft.AdaLoraConfig[[peft.AdaLoraConfig]]
 
 ```python
-peft.AdaLoraConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 8, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, lora_alpha: int = 8, lora_dropout: float = 0.0, fan_in_fan_out: bool = False, bias: Literal['none', 'all', 'lora_only'] = 'none', use_rslora: bool = False, modules_to_save: Optional[list[str]] = None, init_lora_weights: bool | Literal['gaussian', 'eva', 'olora', 'pissa', 'pissa_niter_[number of iters]', 'corda', 'loftq', 'orthogonal', 'mica'] = True, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, rank_pattern: typing.Optional[dict] = None, alpha_pattern: Optional[dict] = <factory>, megatron_config: Optional[dict] = None, megatron_core: Optional[str] = 'megatron.core', trainable_token_indices: Optional[Union[list[int], dict[str, list[int]]]] = None, loftq_config: Union[LoftQConfig, dict] = <factory>, eva_config: Optional[EvaConfig] = None, corda_config: Optional[CordaConfig] = None, lora_ga_config: Optional[LoraGAConfig] = None, use_dora: bool = False, velora_config: Optional[Union[VeloraConfig, dict]] = None, alora_invocation_tokens: Optional[list[int]] = None, use_qalora: bool = False, qalora_group_size: int = 16, monteclora_config: Optional[MontecloraConfig] = None, layer_replication: Optional[list[tuple[int, int]]] = None, runtime_config: LoraRuntimeConfig = <factory>, lora_bias: bool = False, target_parameters: Optional[list[str]] = None, use_bdlora: Optional[BdLoraConfig] = None, arrow_config: Optional[ArrowConfig] = None, ensure_weight_tying: bool = False, target_r: int = 8, init_r: int = 12, tinit: int = 0, tfinal: int = 0, deltaT: int = 1, beta1: float = 0.85, beta2: float = 0.85, orth_reg_weight: float = 0.5, total_step: typing.Optional[int] = None)
+peft.AdaLoraConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 8, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, lora_alpha: int = 8, lora_dropout: float = 0.0, fan_in_fan_out: bool = False, bias: Literal['none', 'all', 'lora_only'] = 'none', use_rslora: bool = False, modules_to_save: Optional[list[str]] = None, init_lora_weights: bool | Literal['gaussian', 'eva', 'olora', 'pissa', 'pissa_niter_[number of iters]', 'corda', 'loftq', 'orthogonal', 'mica'] = True, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, rank_pattern: typing.Optional[dict] = None, alpha_pattern: Optional[dict] = <factory>, megatron_config: Optional[dict] = None, megatron_core: Optional[str] = 'megatron.core', trainable_token_indices: Optional[Union[list[int], dict[str, list[int]]]] = None, loftq_config: Union[LoftQConfig, dict] = <factory>, eva_config: Optional[EvaConfig] = None, corda_config: Optional[CordaConfig] = None, lora_ga_config: Optional[LoraGAConfig] = None, use_dora: bool = False, velora_config: Optional[Union[VeloraConfig, dict]] = None, alora_invocation_tokens: Optional[list[int]] = None, use_qalora: bool = False, qalora_group_size: int = 16, monteclora_config: Optional[MontecloraConfig] = None, layer_replication: Optional[list[tuple[int, int]]] = None, runtime_config: LoraRuntimeConfig = <factory>, lora_bias: bool = False, target_parameters: Optional[list[str]] = None, use_bdlora: Optional[BdLoraConfig] = None, arrow_config: Optional[ArrowConfig] = None, kasa_config: Optional[KasaConfig] = None, ensure_weight_tying: bool = False, target_r: int = 8, init_r: int = 12, tinit: int = 0, tfinal: int = 0, deltaT: int = 1, beta1: float = 0.85, beta2: float = 0.85, orth_reg_weight: float = 0.5, total_step: typing.Optional[int] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/adalora/config.py#L24)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/adalora/config.py#L24)
 
 **Parameters:**
 
@@ -85,7 +85,7 @@ total_step (`int`) : The total training steps that should be specified before tr
 
 rank_pattern (`list`) : The allocated rank for each weight matrix by RankAllocator.
 
-This is the configuration class to store the configuration of a [AdaLoraModel](/docs/peft/v0.20.0/en/package_reference/adalora#peft.AdaLoraModel).
+This is the configuration class to store the configuration of a [AdaLoraModel](/docs/peft/v0.21.0/en/package_reference/adalora#peft.AdaLoraModel).
 
 AdaLoRA has three phases defined by `tinit`, `tfinal` and `total_step`.
 
@@ -113,13 +113,13 @@ reduction.
 peft.AdaLoraModel(model, config, adapter_name, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/adalora/model.py#L36)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/adalora/model.py#L36)
 
 **Parameters:**
 
-model ([transformers.PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
+model ([transformers.PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
 
-config ([AdaLoraConfig](/docs/peft/v0.20.0/en/package_reference/adalora#peft.AdaLoraConfig)) : The configuration of the AdaLora model.
+config ([AdaLoraConfig](/docs/peft/v0.21.0/en/package_reference/adalora#peft.AdaLoraConfig)) : The configuration of the AdaLora model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -151,8 +151,8 @@ Example:
 ```
 
 **Attributes**:
-- **model** ([transformers.PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([AdaLoraConfig](/docs/peft/v0.20.0/en/package_reference/adalora#peft.AdaLoraConfig)): The configuration of the AdaLora model.
+- **model** ([transformers.PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([AdaLoraConfig](/docs/peft/v0.21.0/en/package_reference/adalora#peft.AdaLoraConfig)): The configuration of the AdaLora model.
 
 #### add_weighted_adapter[[peft.AdaLoraModel.add_weighted_adapter]]
 
@@ -160,7 +160,7 @@ Example:
 add_weighted_adapter(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/adalora/model.py#L347)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/adalora/model.py#L370)
 
 This method is not supported for AdaLoRA, use LoRA instead.
 
@@ -170,7 +170,7 @@ This method is not supported for AdaLoRA, use LoRA instead.
 update_and_allocate(global_step)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/adalora/model.py#L305)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/adalora/model.py#L328)
 
 **Parameters:**
 
@@ -192,5 +192,5 @@ Example:
 >>> optimizer.zero_grad()
 ```
 
-### AdaMSS
-https://huggingface.co/docs/peft/v0.20.0/package_reference/adamss.md
+### OFT
+https://huggingface.co/docs/peft/v0.21.0/package_reference/oft.md

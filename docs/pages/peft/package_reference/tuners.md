@@ -10,7 +10,7 @@ A tuner (or adapter) is a module that can be plugged into a `torch.nn.Module`. `
 peft.tuners.tuners_utils.BaseTuner(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L236)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L258)
 
 **Parameters:**
 
@@ -50,7 +50,7 @@ The easiest is to check what is done in the `peft.tuners.lora.LoraModel` class.
 delete_adapter(adapter_name: str)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L537)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L574)
 
 **Parameters:**
 
@@ -64,7 +64,7 @@ Deletes an existing adapter.
 disable_adapter_layers()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L513)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L550)
 
 Disable all adapters in-place.
 
@@ -76,7 +76,7 @@ When disabling all adapters, the model output corresponds to the output of the b
 enable_adapter_layers()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L530)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L567)
 
 Enable all adapters in-place
 
@@ -86,7 +86,7 @@ Enable all adapters in-place
 get_model_config(model: nn.Module)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L1279)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L1365)
 
 **Parameters:**
 
@@ -103,7 +103,7 @@ method returns a default config.
 inject_adapter(model: nn.Module, adapter_name: str, autocast_adapter_dtype: bool = True, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L753)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L799)
 
 **Parameters:**
 
@@ -128,7 +128,7 @@ The corresponding PEFT config is directly retrieved from the `peft_config` attri
 merge_adapter(adapter_names: Optional[list[str]] = None, safe_merge: bool = False)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L1227)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L1313)
 
 **Parameters:**
 
@@ -148,7 +148,7 @@ in memory, please call `merge_and_unload`.
 merge_and_unload(progressbar: bool = False, safe_merge: bool = False, adapter_names: Optional[list[str]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L696)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L742)
 
 **Parameters:**
 
@@ -184,7 +184,7 @@ Example:
 set_adapter(adapter_name: str | list[str], inference_mode: bool = False)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L1265)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L1351)
 
 **Parameters:**
 
@@ -200,7 +200,7 @@ Set the active adapter(s).
 set_requires_grad(adapter_names: str | Sequence[str], requires_grad: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L553)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L591)
 
 **Parameters:**
 
@@ -216,7 +216,7 @@ Enable or disable gradients on the given adapter(s).
 supports_lora_conversion(adapter_name: str = 'default')
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L1388)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L1474)
 
 Whether it is possible for the adapter of this model to be converted to LoRA.
 
@@ -228,7 +228,7 @@ Normally, this works if the PEFT method is additive, i.e. W' = W_base + delta_we
 unload()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L734)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L780)
 
 Return the base model by removing all the PEFT modules.
 
@@ -240,7 +240,7 @@ It is important to assign the returned model to a variable and use it, this is n
 unmerge_adapter()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L1256)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L1342)
 
 This method unmerges all merged adapter layers from the base model.
 
@@ -252,7 +252,7 @@ This method unmerges all merged adapter layers from the base model.
 peft.tuners.tuners_utils.BaseTunerLayer()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L1408)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L1844)
 
 **Parameters:**
 
@@ -268,7 +268,7 @@ A tuner layer mixin that provides the common methods and attributes for all tune
 delete_adapter(adapter_name: str)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L1645)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L2081)
 
 **Parameters:**
 
@@ -287,7 +287,7 @@ that the new adapter is chosen in a deterministic way, so that the same adapter 
 enable_adapters(enabled: bool)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L1564)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L2000)
 
 **Parameters:**
 
@@ -303,7 +303,7 @@ Takes care of setting the requires_grad flag for the adapter weights.
 get_base_layer()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L1438)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L1874)
 
 (Recursively) get the base_layer.
 
@@ -315,7 +315,7 @@ This is necessary for the case that the tuner layer wraps another tuner layer.
 get_base_weight()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L1450)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L1886)
 
 Return the weight of the base layer.
 
@@ -327,7 +327,7 @@ This takes care of potentially dequantizing the weight if it is quantized.
 set_adapter(adapter_names: str | list[str], inference_mode: bool = False)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L1609)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L2045)
 
 **Parameters:**
 
@@ -346,7 +346,7 @@ inference_mode is True.
 set_base_weight(weight_data: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L1459)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L1895)
 
 Sets the base weight of the base layer to the new tensor
 
@@ -358,7 +358,7 @@ This works also with quantized weights.
 set_requires_grad(adapter_names: str | Sequence[str], requires_grad: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L1689)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L2125)
 
 **Parameters:**
 
@@ -374,11 +374,11 @@ Enable or disable gradients on the given adapter(s).
 supports_lora_conversion(adapter_name: str = 'default')
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/tuners_utils.py#L1794)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L2237)
 
 Whether it is possible for this layer type to be converted to LoRA.
 
 Normally, this works if the PEFT method is additive, i.e. W' = W_base + delta_weight.
 
-### Context-aware Prompt Tuning: Advancing In-Context Learning with Adversarial Methods
-https://huggingface.co/docs/peft/v0.20.0/package_reference/cpt.md
+### FRoD: Full-Rank Efficient Fine-Tuning with Rotational Degrees
+https://huggingface.co/docs/peft/v0.21.0/package_reference/frod.md

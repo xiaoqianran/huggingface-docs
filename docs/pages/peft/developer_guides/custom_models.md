@@ -207,7 +207,7 @@ If you want to add a new model to PEFT, please create an entry in [constants.py]
 
 You can verify whether you've correctly applied a PEFT method to your model in a few ways.
 
-* Check the fraction of parameters that are trainable with the [print_trainable_parameters()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.print_trainable_parameters) method. If this number is lower or higher than expected, check the model `repr` by printing the model. This shows the names of all the layer types in the model. Ensure that only the intended target layers are replaced by the adapter layers. For example, if LoRA is applied to `nn.Linear` layers, then you should only see `lora.Linear` layers being used.
+* Check the fraction of parameters that are trainable with the [print_trainable_parameters()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.print_trainable_parameters) method. If this number is lower or higher than expected, check the model `repr` by printing the model. This shows the names of all the layer types in the model. Ensure that only the intended target layers are replaced by the adapter layers. For example, if LoRA is applied to `nn.Linear` layers, then you should only see `lora.Linear` layers being used.
 
 ```py
 peft_model.print_trainable_parameters()
@@ -253,7 +253,7 @@ peft_model = get_peft_model(base_model, config)
 ```
 
 > [!TIP]
-> When you call [get_peft_model()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.get_peft_model), you will see a warning because PEFT does not recognize the targeted module type. In this case, you can ignore this warning.
+> When you call [get_peft_model()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.get_peft_model), you will see a warning because PEFT does not recognize the targeted module type. In this case, you can ignore this warning.
 
 By supplying a custom mapping, PEFT first checks the base model's layers against the custom mapping and dispatches to the custom LoRA layer type if there is a match. If there is no match, PEFT checks the built-in LoRA layer types for a match.
 
@@ -286,5 +286,5 @@ peft_model = PeftModel.from_pretrained(model, tmp_path / "lora-custom-module", c
 
 If you use this feature and find it useful, or if you encounter problems, let us know by creating an issue or a discussion on GitHub. This allows us to estimate the demand for this feature and add a public API if it is sufficiently high.
 
-### DeepSpeed
-https://huggingface.co/docs/peft/v0.20.0/accelerate/deepspeed.md
+### PEFT checkpoint format
+https://huggingface.co/docs/peft/v0.21.0/developer_guides/checkpoint.md

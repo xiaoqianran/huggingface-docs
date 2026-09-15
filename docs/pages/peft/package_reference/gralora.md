@@ -49,7 +49,7 @@ settings, making GraLoRA a scalable and robust solution for PEFT.*
 peft.GraloraConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 32, hybrid_r: int = 0, target_modules: typing.Union[str, list[str], NoneType] = None, alpha: int = 64, gralora_dropout: float = 0.0, gralora_k: int = 2, fan_in_fan_out: bool = False, bias: str = 'none', modules_to_save: typing.Optional[list[str]] = None, init_weights: bool = True, layers_to_transform: typing.Union[list[int], int, NoneType] = None, layers_pattern: typing.Optional[str] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/gralora/config.py#L23)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/gralora/config.py#L23)
 
 **Parameters:**
 
@@ -57,7 +57,7 @@ r (`int`) : GraLoRA attention dimension determines the rank of the GraLoRA adapt
 
 hybrid_r (`int`) : Hybrid GraLoRA rank determines the rank allocated to vanilla LoRA method when using Hybrid GraLoRA method. Hybrid GraLoRA, a combination of GraLoRA and vanilla LoRA, becomes available when hybrid_r > 0. The parameter count of the GraLoRA adapter is r + hybrid_r.
 
-target_modules (`Union[List[str], str]`) : List of module names or regex expression of the module names to replace with GraLoRA. " For example, ['q', 'v'] or '.*decoder.*(SelfAttention|EncDecAttention).*(q|v)$'. " This can also be a wildcard 'all-linear' which matches all linear/Conv1D " "(if the model is a PreTrainedModel, the output layer excluded). " If not specified, modules will be chosen according to the model architecture, If the architecture is " not known, an error will be raised -- in this case, you should specify the target modules manually. " To avoid targeting any modules (because you want to apply `target_parameters`), set " `target_modules=[]`.
+target_modules (`Union[List[str], str]`) : List of module names or regex expression of the module names to replace with GraLoRA. For example, ['q', 'v'] or '.*decoder.*(SelfAttention|EncDecAttention).*(q|v)$'. This can also be a wildcard 'all-linear' which matches all linear/Conv1D (if the model is a PreTrainedModel, the output layer excluded). If not specified, modules will be chosen according to the model architecture. If the architecture is not known, an error will be raised -- in this case, you should specify the target modules manually.
 
 alpha (`int`) : GraLoRA alpha. GraLoRA alpha is the scaling factor for the GraLoRA adapter. Scale becomes alpha / (r + hybrid_r).
 
@@ -77,7 +77,7 @@ layers_to_transform (`Union[List[int], int]`) : The layer indexes to transform, 
 
 layers_pattern (`Optional[Union[List[str], str]]`) : The layer pattern name, used only if `layers_to_transform` is different to None and if the layer pattern is not in the common layers pattern. This only works when target_modules is a list of str. This should target the `nn.ModuleList` of the model, which is often called `'layers'` or `'h'`.
 
-This is the configuration class to store the configuration of a [GraloraModel](/docs/peft/v0.20.0/en/package_reference/gralora#peft.GraloraModel).
+This is the configuration class to store the configuration of a [GraloraModel](/docs/peft/v0.21.0/en/package_reference/gralora#peft.GraloraModel).
 
 ## GraloraModel[[peft.GraloraModel]]
 
@@ -87,13 +87,13 @@ This is the configuration class to store the configuration of a [GraloraModel](/
 peft.GraloraModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/gralora/model.py#L28)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/gralora/model.py#L28)
 
 **Parameters:**
 
-model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
 
-config ([GraloraConfig](/docs/peft/v0.20.0/en/package_reference/gralora#peft.GraloraConfig)) : The configuration of the Gralora model.
+config ([GraloraConfig](/docs/peft/v0.21.0/en/package_reference/gralora#peft.GraloraConfig)) : The configuration of the Gralora model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -115,8 +115,8 @@ Example:
 ```
 
 **Attributes**:
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([GraloraConfig](/docs/peft/v0.20.0/en/package_reference/gralora#peft.GraloraConfig)): The configuration of the Gralora model.
+- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([GraloraConfig](/docs/peft/v0.21.0/en/package_reference/gralora#peft.GraloraConfig)): The configuration of the Gralora model.
 
-### DEFT: Decompositional Efficient Fine-Tuning for Text-to-Image Models
-https://huggingface.co/docs/peft/v0.20.0/package_reference/deft.md
+### Errors[[peft.PeftError]]
+https://huggingface.co/docs/peft/v0.21.0/package_reference/errors.md

@@ -31,7 +31,7 @@ If these constraints don't work for your use case, consider other methods instea
 peft.AdamssConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 100, num_subspaces: int = 5, subspace_rank: int = 1, target_modules: Optional[Union[list[str], str]] = None, init_weights: Optional[Literal['orthogonal']] = 'orthogonal', modules_to_save: Optional[list[str]] = None, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, use_asa: bool = False, asa_target_subspaces: int = 50, init_warmup: int = 50, final_warmup: int = 1000, mask_interval: int = 100, asa_importance_beta: float = 0.85, asa_uncertainty_beta: float = 0.85, asa_schedule_exponent: float = 3.0, use_dynamic_rank: bool = False, svd_threshold: float = 0.1, random_seed: int = 0)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/adamss/config.py#L25)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/adamss/config.py#L25)
 
 **Parameters:**
 
@@ -85,7 +85,7 @@ the original weights frozen.
 peft.AdamssModel(model, config, adapter_name, low_cpu_mem_usage: bool = False, state_dict: Optional[dict] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/adamss/model.py#L31)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/adamss/model.py#L31)
 
 **Parameters:**
 
@@ -121,7 +121,7 @@ Example:
 
 **Attributes**:
 - **model** (`~torch.nn.Module`) -- The model to be adapted.
-- **peft_config** ([AdamssConfig](/docs/peft/v0.20.0/en/package_reference/adamss#peft.AdamssConfig)): The configuration of the Adamss model.
+- **peft_config** ([AdamssConfig](/docs/peft/v0.21.0/en/package_reference/adamss#peft.AdamssConfig)): The configuration of the Adamss model.
 
 #### update_and_allocate[[peft.AdamssModel.update_and_allocate]]
 
@@ -129,7 +129,7 @@ Example:
 update_and_allocate(global_step: int)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/adamss/model.py#L157)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/adamss/model.py#L157)
 
 **Parameters:**
 
@@ -154,5 +154,5 @@ loss = model(**batch).loss loss.backward() optimizer.step() model.base_model.upd
 optimizer.zero_grad()
 ```
 
-### LoHa
-https://huggingface.co/docs/peft/v0.20.0/package_reference/loha.md
+### Tuners
+https://huggingface.co/docs/peft/v0.21.0/package_reference/tuners.md

@@ -14,9 +14,11 @@ For example, load a base model and then load the [artificialguybr/3DRedmond-V1](
 import torch
 from diffusers import DiffusionPipeline
 
+device = torch.accelerator.current_accelerator().type if hasattr(torch, "accelerator") else "cuda"
+
 pipeline = DiffusionPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0", torch_dtype=torch.float16
-).to("cuda")
+).to(device)
 pipeline.load_lora_weights(
     "peft-internal-testing/artificialguybr__3DRedmond-V1", 
     weight_name="3DRedmond-3DRenderStyle-3DRenderAF.safetensors", 
@@ -63,7 +65,7 @@ from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained("facebook/opt-350m")
 ```
 
-Next, add an adapter configuration to specify how to adapt the model parameters. Call the [add_adapter()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.add_adapter) method to add the configuration to the base model.
+Next, add an adapter configuration to specify how to adapt the model parameters. Call the [add_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.add_adapter) method to add the configuration to the base model.
 
 ```py
 from peft import LoraConfig
@@ -78,9 +80,9 @@ peft_config = LoraConfig(
 model.add_adapter(peft_config)
 ```
 
-Now you can train the model with Transformer's [Trainer](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.Trainer) class or whichever training framework you prefer.
+Now you can train the model with Transformer's [Trainer](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer) class or whichever training framework you prefer.
 
-To use the newly trained model for inference, the [AutoModel](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoModel) class uses PEFT on the backend to load the adapter weights and configuration file into a base pretrained model.
+To use the newly trained model for inference, the [AutoModel](https://huggingface.co/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModel) class uses PEFT on the backend to load the adapter weights and configuration file into a base pretrained model.
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -97,7 +99,7 @@ model = pipeline("text-generation", "peft-internal-testing/opt-350m-lora")
 print(model("Hello World"))
 ```
 
-If you're interested in comparing or using more than one adapter, you can call the [add_adapter()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.add_adapter) method to add the adapter configuration to the base model. The only requirement is the adapter type must be the same (you can't mix a LoRA and LoHa adapter).
+If you're interested in comparing or using more than one adapter, you can call the [add_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.add_adapter) method to add the adapter configuration to the base model. The only requirement is the adapter type must be the same (you can't mix a LoRA and LoHa adapter).
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -107,13 +109,13 @@ model = AutoModelForCausalLM.from_pretrained("facebook/opt-350m")
 model.add_adapter(lora_config_1, adapter_name="adapter_1")
 ```
 
-Call [add_adapter()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.add_adapter) again to attach a new adapter to the base model.
+Call [add_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.add_adapter) again to attach a new adapter to the base model.
 
 ```py
 model.add_adapter(lora_config_2, adapter_name="adapter_2")
 ```
 
-Then you can use [set_adapter()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.set_adapter) to set the currently active adapter.
+Then you can use [set_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.set_adapter) to set the currently active adapter.
 
 ```py
 model.set_adapter("adapter_1")
@@ -132,4 +134,4 @@ The [enable_adapters](https://github.com/huggingface/transformers/blob/4e3490f79
 If you're curious, check out the [Load and train adapters with PEFT](https://huggingface.co/docs/transformers/main/peft) tutorial to learn more.
 
 ### PEFT configurations and models
-https://huggingface.co/docs/peft/v0.20.0/guides/peft_model_config.md
+https://huggingface.co/docs/peft/v0.21.0/guides/peft_model_config.md

@@ -118,7 +118,7 @@ config = PsoftConfig(psoft_orth=True,psoft_mag_a=True,psoft_mag_b=True)
 peft.PsoftConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 32, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, psoft_alpha: int = 32, psoft_dropout: float = 0.0, fan_in_fan_out: bool = False, ab_svd_init: Literal['psoft_init', 'pissa_init'] = 'psoft_init', psoft_svd: Literal['full', 'lowrank'] = 'full', psoft_svd_lowrank_niter: int = 10, random_seed: int = 0, psoft_orth: bool = True, psoft_mag_b: bool = True, psoft_mag_a: bool = True, use_cayley_neumann: bool = False, num_cayley_neumann_terms: int = 5, cayley_neumann_eps: Optional[float] = None, modules_to_save: Optional[list[str]] = None, init_weights: bool = True, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/psoft/config.py#L26)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/psoft/config.py#L26)
 
 **Parameters:**
 
@@ -174,7 +174,7 @@ B @ (R-I) @ A. Only R (and optional tunable vectors) are trained; A and B are in
 peft.PsoftModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/psoft/model.py#L28)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/psoft/model.py#L28)
 
 **Parameters:**
 
@@ -192,5 +192,5 @@ Inserts an r*r orthogonal (or scaled) transformation R between low-rank A and B:
 ab_svd_init="psoft_init" to initialize A/B from SVD and freeze them, training only R (and optional magnitude
 vectors).
 
-### Hotswapping adapters
-https://huggingface.co/docs/peft/v0.20.0/package_reference/hotswap.md
+### PEFT integrations
+https://huggingface.co/docs/peft/v0.21.0/guides/peft_integrations.md

@@ -10,7 +10,7 @@
 peft.tuners.lycoris_utils.LycorisConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, rank_pattern: Optional[dict] = <factory>, alpha_pattern: Optional[dict] = <factory>)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lycoris_utils.py#L35)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lycoris_utils.py#L35)
 
 A base config for LyCORIS like adapters
 
@@ -22,7 +22,7 @@ A base config for LyCORIS like adapters
 peft.tuners.lycoris_utils.LycorisLayer(base_layer: nn.Module)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lycoris_utils.py#L60)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lycoris_utils.py#L60)
 
 A base layer for LyCORIS like adapters
 
@@ -32,7 +32,7 @@ A base layer for LyCORIS like adapters
 merge(safe_merge: bool = False, adapter_names: Optional[list[str]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lycoris_utils.py#L114)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lycoris_utils.py#L114)
 
 **Parameters:**
 
@@ -48,7 +48,7 @@ Merge the active adapter weights into the base weights
 unmerge()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lycoris_utils.py#L168)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lycoris_utils.py#L168)
 
 This method unmerges all merged adapter layers from the base weights.
 
@@ -60,13 +60,13 @@ This method unmerges all merged adapter layers from the base weights.
 peft.tuners.lycoris_utils.LycorisTuner(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lycoris_utils.py#L194)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lycoris_utils.py#L194)
 
 **Parameters:**
 
 model (`torch.nn.Module`) : The model to be adapted.
 
-config ([LoraConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig)) : The configuration of the Lora model.
+config ([LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig)) : The configuration of the Lora model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -74,5 +74,5 @@ low_cpu_mem_usage (`bool`, `optional`, defaults to `False`) : Create empty adapt
 
 A base tuner for LyCORIS like adapters
 
-### Multitask prompt tuning
-https://huggingface.co/docs/peft/v0.20.0/package_reference/multitask_prompt_tuning.md
+### UniLoRA
+https://huggingface.co/docs/peft/v0.21.0/package_reference/unilora.md

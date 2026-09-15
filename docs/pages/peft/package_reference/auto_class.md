@@ -1,6 +1,6 @@
 # AutoPeftModels
 
-The `AutoPeftModel` classes loads the appropriate PEFT model for the task type by automatically inferring it from the configuration file. They are designed to quickly and easily load a PEFT model in a single line of code without having to worry about which exact model class you need or manually loading a [PeftConfig](/docs/peft/v0.20.0/en/package_reference/config#peft.PeftConfig).
+The `AutoPeftModel` classes loads the appropriate PEFT model for the task type by automatically inferring it from the configuration file. They are designed to quickly and easily load a PEFT model in a single line of code without having to worry about which exact model class you need or manually loading a [PeftConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PeftConfig).
 
 ## AutoPeftModel[[peft.AutoPeftModel]]
 
@@ -10,7 +10,7 @@ The `AutoPeftModel` classes loads the appropriate PEFT model for the task type b
 peft.AutoPeftModel(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/auto.py#L197)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/auto.py#L197)
 
 #### from_pretrained[[peft.AutoPeftModel.from_pretrained]]
 
@@ -18,7 +18,7 @@ peft.AutoPeftModel(*args, **kwargs)
 from_pretrained(pretrained_model_name_or_path, adapter_name: str = 'default', is_trainable: bool = False, config: Optional[PeftConfig] = None, revision: Optional[str] = None, import_allowlist: Optional[list[str]] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/auto.py#L88)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/auto.py#L88)
 
 **Parameters:**
 
@@ -28,7 +28,7 @@ A wrapper around all the preprocessing steps a user needs to perform in order to
 are passed along to `PeftConfig` that automatically takes care of filtering the kwargs of the Hub methods and
 the config object init.
 
-The parameters are equivalent to the ones of [PeftModel.from_pretrained()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.from_pretrained). Differences are documented below.
+The parameters are equivalent to the ones of [PeftModel.from_pretrained()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.from_pretrained). Differences are documented below.
 
 ## AutoPeftModelForCausalLM[[peft.AutoPeftModelForCausalLM]]
 
@@ -38,7 +38,7 @@ The parameters are equivalent to the ones of [PeftModel.from_pretrained()](/docs
 peft.AutoPeftModelForCausalLM(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/auto.py#L202)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/auto.py#L202)
 
 ## AutoPeftModelForSeq2SeqLM[[peft.AutoPeftModelForSeq2SeqLM]]
 
@@ -48,7 +48,7 @@ peft.AutoPeftModelForCausalLM(*args, **kwargs)
 peft.AutoPeftModelForSeq2SeqLM(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/auto.py#L207)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/auto.py#L207)
 
 ## AutoPeftModelForSequenceClassification[[peft.AutoPeftModelForSequenceClassification]]
 
@@ -58,7 +58,7 @@ peft.AutoPeftModelForSeq2SeqLM(*args, **kwargs)
 peft.AutoPeftModelForSequenceClassification(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/auto.py#L212)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/auto.py#L212)
 
 ## AutoPeftModelForTokenClassification[[peft.AutoPeftModelForTokenClassification]]
 
@@ -68,7 +68,7 @@ peft.AutoPeftModelForSequenceClassification(*args, **kwargs)
 peft.AutoPeftModelForTokenClassification(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/auto.py#L217)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/auto.py#L217)
 
 ## AutoPeftModelForQuestionAnswering[[peft.AutoPeftModelForQuestionAnswering]]
 
@@ -78,7 +78,7 @@ peft.AutoPeftModelForTokenClassification(*args, **kwargs)
 peft.AutoPeftModelForQuestionAnswering(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/auto.py#L222)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/auto.py#L222)
 
 ## AutoPeftModelForFeatureExtraction[[peft.AutoPeftModelForFeatureExtraction]]
 
@@ -88,7 +88,7 @@ peft.AutoPeftModelForQuestionAnswering(*args, **kwargs)
 peft.AutoPeftModelForFeatureExtraction(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/auto.py#L227)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/auto.py#L227)
 
-### Bridging The Gap between Low-rank and Orthogonal Adaptation via Householder Reflection Adaptation (HRA)
-https://huggingface.co/docs/peft/v0.20.0/package_reference/hra.md
+### PEANuT: Parameter-Efficient Adaptation with Weight-aware Neural Tweakers
+https://huggingface.co/docs/peft/v0.21.0/package_reference/peanut.md

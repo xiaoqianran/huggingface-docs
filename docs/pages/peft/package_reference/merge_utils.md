@@ -8,7 +8,7 @@ PEFT provides several internal utilities for [merging LoRA adapters](../develope
 peft.utils.merge_utils.prune(tensor: Tensor, density: float, method: typing.Literal['magnitude', 'random'], rescale: bool = False)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/utils/merge_utils.py#L75)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/merge_utils.py#L75)
 
 **Parameters:**
 
@@ -32,7 +32,7 @@ Prune the values of task tensors based on the `method`.
 peft.utils.merge_utils.calculate_majority_sign_mask(tensor: Tensor, method: typing.Literal['total', 'frequency'] = 'total')
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/utils/merge_utils.py#L103)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/merge_utils.py#L103)
 
 **Parameters:**
 
@@ -52,7 +52,7 @@ Get the mask of the majority sign across the task tensors. Task tensors are stac
 peft.utils.merge_utils.disjoint_merge(task_tensors: Tensor, majority_sign_mask: Tensor)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/utils/merge_utils.py#L128)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/merge_utils.py#L128)
 
 **Parameters:**
 
@@ -72,7 +72,7 @@ Merge the task tensors using disjoint merge.
 peft.utils.merge_utils.task_arithmetic(task_tensors: list, weights: Tensor)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/utils/merge_utils.py#L144)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/merge_utils.py#L144)
 
 **Parameters:**
 
@@ -92,7 +92,7 @@ Merge the task tensors using `task arithmetic`.
 peft.utils.merge_utils.ties(task_tensors: list, weights: Tensor, density: float, majority_sign_method: typing.Literal['total', 'frequency'] = 'total')
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/utils/merge_utils.py#L185)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/merge_utils.py#L185)
 
 **Parameters:**
 
@@ -116,7 +116,7 @@ Merge the task tensors using `ties`.
 peft.utils.merge_utils.dare_linear(task_tensors: list, weights: Tensor, density: float)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/utils/merge_utils.py#L217)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/merge_utils.py#L217)
 
 **Parameters:**
 
@@ -138,7 +138,7 @@ Merge the task tensors using `dare linear`.
 peft.utils.merge_utils.dare_ties(task_tensors: list, weights: Tensor, density: float, majority_sign_method: typing.Literal['total', 'frequency'] = 'total')
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/utils/merge_utils.py#L239)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/merge_utils.py#L239)
 
 **Parameters:**
 
@@ -156,5 +156,5 @@ The merged tensor.
 
 Merge the task tensors using `dare ties`.
 
-### Trainable Tokens
-https://huggingface.co/docs/peft/v0.20.0/package_reference/trainable_tokens.md
+### Sparse High Rank Adapters
+https://huggingface.co/docs/peft/v0.21.0/package_reference/shira.md

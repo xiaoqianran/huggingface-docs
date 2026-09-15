@@ -13,7 +13,7 @@ In this guide, you'll see how to quantize a model to 4-bits and train it with Lo
 
 ## Quantize a model
 
-[bitsandbytes](https://github.com/TimDettmers/bitsandbytes) is a quantization library with a Transformers integration. With this integration, you can quantize a model to 8 or 4-bits and enable many other options by configuring the [BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/quantization#transformers.BitsAndBytesConfig) class. For example, you can:
+[bitsandbytes](https://github.com/TimDettmers/bitsandbytes) is a quantization library with a Transformers integration. With this integration, you can quantize a model to 8 or 4-bits and enable many other options by configuring the [BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/quantization#transformers.BitsAndBytesConfig) class. For example, you can:
 
 * set `load_in_4bit=True` to quantize the model to 4-bits when you load it
 * set `bnb_4bit_quant_type="nf4"` to use a special 4-bit data type for weights initialized from a normal distribution
@@ -32,7 +32,7 @@ config = BitsAndBytesConfig(
 )
 ```
 
-Pass the `config` to the [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) method.
+Pass the `config` to the [from_pretrained](https://huggingface.co/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) method.
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -40,7 +40,7 @@ from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-v0.1", quantization_config=config)
 ```
 
-Next, you should call the [prepare_model_for_kbit_training()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.prepare_model_for_kbit_training) function to preprocess the quantized model for training.
+Next, you should call the [prepare_model_for_kbit_training()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.prepare_model_for_kbit_training) function to preprocess the quantized model for training.
 
 ```py
 from peft import prepare_model_for_kbit_training
@@ -52,7 +52,7 @@ Now that the quantized model is ready, let's set up a configuration.
 
 ## LoraConfig
 
-Create a [LoraConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig) with the following parameters (or choose your own):
+Create a [LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig) with the following parameters (or choose your own):
 
 ```py
 from peft import LoraConfig
@@ -67,7 +67,7 @@ config = LoraConfig(
 )
 ```
 
-Then use the [get_peft_model()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.get_peft_model) function to create a [PeftModel](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel) from the quantized model and configuration.
+Then use the [get_peft_model()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.get_peft_model) function to create a [PeftModel](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel) from the quantized model and configuration.
 
 ```py
 from peft import get_peft_model
@@ -185,7 +185,7 @@ from transformers import EetqConfig
 config = EetqConfig("int8")
 ```
 
-Pass the `config` to the [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) method.
+Pass the `config` to the [from_pretrained](https://huggingface.co/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) method.
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -338,5 +338,5 @@ If you're interested in learning more about quantization, the following may be h
 * Learn more details about QLoRA and check out some benchmarks on its impact in the [Making LLMs even more accessible with bitsandbytes, 4-bit quantization and QLoRA](https://huggingface.co/blog/4bit-transformers-bitsandbytes) blog post.
 * Read more about different quantization schemes in the Transformers [Quantization](https://hf.co/docs/transformers/main/quantization) guide.
 
-### Contribute to PEFT
-https://huggingface.co/docs/peft/v0.20.0/developer_guides/contributing.md
+### Model merging
+https://huggingface.co/docs/peft/v0.21.0/developer_guides/model_merging.md

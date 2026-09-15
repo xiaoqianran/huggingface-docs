@@ -45,7 +45,7 @@ Please cite X-LoRA as:
 peft.XLoraConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, hidden_size: int = None, adapters: dict[str, str] = None, enable_softmax: bool = True, enable_softmax_topk: bool = False, layerwise_scalings: bool = False, xlora_depth: int = 1, xlora_size: int = 2048, xlora_dropout_p: float = 0.2, use_trainable_adapters: bool = False, softmax_temperature: float = 1.0, top_k_lora: Optional[int] = None, scaling_pass_value: float = 0.0, global_scaling_weight: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/xlora/config.py#L25)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/xlora/config.py#L25)
 
 **Parameters:**
 
@@ -87,13 +87,13 @@ loading.
 peft.XLoraModel(model: nn.Module, config: Union[dict[str, XLoraConfig], XLoraConfig], adapter_name: str, torch_device: Optional[str] = None, ephemeral_gpu_offload: bool = False, autocast_adapter_dtype: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/xlora/model.py#L156)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/xlora/model.py#L156)
 
 **Parameters:**
 
 model (`torch.nn.Module`) : The model to be adapted.
 
-config ([XLoraConfig](/docs/peft/v0.20.0/en/package_reference/xlora#peft.XLoraConfig)) : The configuration of the Lora model.
+config ([XLoraConfig](/docs/peft/v0.21.0/en/package_reference/xlora#peft.XLoraConfig)) : The configuration of the Lora model.
 
 adapter_name (`str`) : The name of the adapter, does not affect the LoRA adapter names.
 
@@ -142,7 +142,7 @@ Example:
 clear_scalings_log()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/xlora/model.py#L511)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/xlora/model.py#L518)
 
 Clear the scalings log.
 
@@ -152,7 +152,7 @@ Clear the scalings log.
 disable_scalings_logging()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/xlora/model.py#L504)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/xlora/model.py#L511)
 
 Disable scalings logging, without clearing the log.
 
@@ -162,7 +162,7 @@ Disable scalings logging, without clearing the log.
 enable_scalings_logging()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/xlora/model.py#L497)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/xlora/model.py#L504)
 
 Enable scalings logging.
 
@@ -172,7 +172,7 @@ Enable scalings logging.
 get_bucketed_scalings_log()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/xlora/model.py#L518)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/xlora/model.py#L525)
 
 Returns bucketed scalings, bucketed by seq_len. Each value consists of the positions (the first) and the
 associated tensors. The positions are paired with the associated tensors and give the position in the scaling
@@ -184,7 +184,7 @@ log.
 get_global_scaling_weight()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/xlora/model.py#L474)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/xlora/model.py#L481)
 
 Get the global LoRA weight.
 
@@ -194,7 +194,7 @@ Get the global LoRA weight.
 get_latest_scalings()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/xlora/model.py#L481)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/xlora/model.py#L488)
 
 Returns the latest scalings prediction, or None if no scalings have been predicted. The tensor is of shape
 (batch_size, seq_len, n_layers, n_classes).
@@ -205,7 +205,7 @@ Returns the latest scalings prediction, or None if no scalings have been predict
 get_scalings_log()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/xlora/model.py#L488)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/xlora/model.py#L495)
 
 Returns a shallow (only copying the list itself not the tensors) copy of the list containing the scalings log.
 Editing the list does not change the underlying log. The tensors are of shape (batch_size, seq_len, n_layers,
@@ -217,7 +217,7 @@ n_classes). The seq_len dim may vary with input dimension.
 set_global_scaling_weight(weight: float)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/xlora/model.py#L458)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/xlora/model.py#L465)
 
 Set the global LoRA weight, a scalar to multiply the output of each LoRA adapter by. This is by default 1. This
 is reflected in the config.
@@ -228,7 +228,7 @@ is reflected in the config.
 set_scaling_pass_value(value: float | None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/xlora/model.py#L466)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/xlora/model.py#L473)
 
 Set the scaling pass value, the value to set the scalings to during the scaling pass. If the value is None, the
 scaling pass value will be 1/n where n is the number of adapters.
@@ -239,10 +239,10 @@ scaling pass value will be 1/n where n is the number of adapters.
 set_topk_lora(value: Optional[int])
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/xlora/model.py#L450)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/xlora/model.py#L457)
 
 Sparsely select the specified top_k LoRA experts instead of the default dense method. Set to None to use dense.
 This is reflected in the config.
 
-### PEANuT: Parameter-Efficient Adaptation with Weight-aware Neural Tweakers
-https://huggingface.co/docs/peft/v0.20.0/package_reference/peanut.md
+### PSOFT
+https://huggingface.co/docs/peft/v0.21.0/package_reference/psoft.md

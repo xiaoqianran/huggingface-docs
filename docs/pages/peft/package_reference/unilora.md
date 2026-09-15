@@ -68,7 +68,7 @@ height="1000"
 peft.UniLoraConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 4, proj_seed: int = 42, theta_d_length: int = 256, target_modules: typing.Union[str, list[str], NoneType] = None, unilora_dropout: float = 0.0, fan_in_fan_out: bool = False, bias: str = 'none', modules_to_save: typing.Optional[list[str]] = None, init_theta_d_bound: float = 0.02, init_weights: bool = True, save_indices: bool = False, layers_to_transform: typing.Union[list[int], int, NoneType] = None, layers_pattern: typing.Union[str, list[str], NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/unilora/config.py#L23)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/unilora/config.py#L23)
 
 **Parameters:**
 
@@ -115,7 +115,7 @@ Uni-LoRA: One Vector Is All You Need https://arxiv.org/abs/2506.00799
 peft.UniLoraModel(model, config, adapter_name, low_cpu_mem_usage: bool = False, state_dict: dict[str, torch.Tensor] | None = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/unilora/model.py#L31)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/unilora/model.py#L31)
 
 Creates a UniLora adapter around a pretrained model.
 
@@ -125,7 +125,7 @@ Creates a UniLora adapter around a pretrained model.
 generate_index(lora_param_count: int, theta_d_length: int, proj_seed: int)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/unilora/model.py#L127)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/unilora/model.py#L128)
 
 Assign deterministic `theta_d` indices to the flattened UniLora parameter space.
 
@@ -135,5 +135,5 @@ balanced deterministic assignment: each index appears either `floor(D / d)` or `
 is the flattened LoRA parameter count and `d` is `theta_d_length`. This keeps per-index normalization stable
 while still shuffling the assignment with `proj_seed`.
 
-### Block-Diagonal LoRA for Eliminating Communication Overhead in Tensor Parallel LoRA Serving
-https://huggingface.co/docs/peft/v0.20.0/package_reference/lora_variant_bdlora.md
+### Super-Tuning
+https://huggingface.co/docs/peft/v0.21.0/package_reference/supertuning.md

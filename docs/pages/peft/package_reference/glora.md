@@ -33,7 +33,7 @@ where each path is independently parameterized.
 peft.GloraConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 8, target_modules: typing.Union[str, list[str], NoneType] = None, bias: str = 'none', modules_to_save: typing.Optional[list[str]] = None, config_A_B: typing.Literal['lora', 'vector', 'constant', 'none'] = 'lora', config_C: typing.Literal['lora', 'vector', 'none'] = 'lora', config_D_E: typing.Literal['vector', 'constant', 'none'] = 'constant', init_weights: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/glora/config.py#L23)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/glora/config.py#L23)
 
 **Parameters:**
 
@@ -49,7 +49,7 @@ config_D_E (`str`) : Parameterization for the D and E scalars (bias multiplicati
 
 init_weights (`bool`) : If True (default), initialize GLoRA as a no-op (zeros). If False, use kaiming initialization so the adapter is not a no-op.
 
-This is the configuration class to store the configuration of a [GloraModel](/docs/peft/v0.20.0/en/package_reference/glora#peft.GloraModel).
+This is the configuration class to store the configuration of a [GloraModel](/docs/peft/v0.21.0/en/package_reference/glora#peft.GloraModel).
 
 Glora modifies a frozen linear layer W0 as: `W_eff = W0 + W0 * A + B` and `b_eff = b0 + b0 * D + E + W0 @ C`.
 
@@ -84,7 +84,7 @@ Notes:
 peft.GloraModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/glora/model.py#L34)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/glora/model.py#L34)
 
 Creates Generalized Low Rank Adapter (GLoRA) model from a pretrained transformers model.
 
@@ -100,7 +100,7 @@ Creates Generalized Low Rank Adapter (GLoRA) model from a pretrained transformer
 peft.tuners.glora.GloraLayer(base_layer: nn.Module, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/glora/layer.py#L103)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/glora/layer.py#L103)
 
 #### peft.tuners.glora.GloraLinear[[peft.tuners.glora.GloraLinear]]
 
@@ -108,7 +108,7 @@ peft.tuners.glora.GloraLayer(base_layer: nn.Module, **kwargs)
 peft.tuners.glora.GloraLinear(base_layer: nn.Module, adapter_name: str, config, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/glora/layer.py#L298)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/glora/layer.py#L298)
 
 GLoRA adapter wrapping a dense `~torch.nn.Linear` `base_layer`.
 
@@ -145,9 +145,8 @@ model.merge_and_unload()
 - GLoRA supports all standard PEFT adapter management features (add, delete, switch, merge, etc).
 
 ## See Also
-- [Adapter conceptual guide](../conceptual_guides/adapter)
 - [LoRA reference](./lora)
 - [Paper: https://huggingface.co/papers/2306.07967](https://huggingface.co/papers/2306.07967)
 
-### Llama-Adapter
-https://huggingface.co/docs/peft/v0.20.0/package_reference/llama_adapter.md
+### Helper methods
+https://huggingface.co/docs/peft/v0.21.0/package_reference/helpers.md

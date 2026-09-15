@@ -28,7 +28,7 @@ The abstract from the paper is:
 peft.LNTuningConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, modules_to_save: Optional[Union[list[str], str]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/ln_tuning/config.py#L24)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/ln_tuning/config.py#L24)
 
 **Parameters:**
 
@@ -38,7 +38,7 @@ exclude_modules (*Optional[Union[List[str], str]]*) : The names of the modules t
 
 modules_to_save (*Optional[Union[List[str], str]]*) : List of modules to be set as trainable and saved in the final checkpoint. For example, in Sequence Classification or Token Classification tasks, the final layer *classifier/score* are randomly initialized and as such need to be trainable and saved.
 
-This is the configuration class to store the configuration of a [LNTuningModel](/docs/peft/v0.20.0/en/package_reference/layernorm_tuning#peft.LNTuningModel).
+This is the configuration class to store the configuration of a [LNTuningModel](/docs/peft/v0.21.0/en/package_reference/layernorm_tuning#peft.LNTuningModel).
 
 ## LNTuningModel[[peft.LNTuningModel]]
 
@@ -48,13 +48,13 @@ This is the configuration class to store the configuration of a [LNTuningModel](
 peft.LNTuningModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/ln_tuning/model.py#L28)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/ln_tuning/model.py#L28)
 
 **Parameters:**
 
 model (`torch.nn.Module`) : The model to be adapted.
 
-config ([LNTuningConfig](/docs/peft/v0.20.0/en/package_reference/layernorm_tuning#peft.LNTuningConfig)) : The configuration of the LN tuning model.
+config ([LNTuningConfig](/docs/peft/v0.21.0/en/package_reference/layernorm_tuning#peft.LNTuningConfig)) : The configuration of the LN tuning model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -84,8 +84,8 @@ Example:
 ```
 
 **Attributes**:
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([LNTuningConfig](/docs/peft/v0.20.0/en/package_reference/layernorm_tuning#peft.LNTuningConfig)): The configuration of the LN tuning model.
+- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([LNTuningConfig](/docs/peft/v0.21.0/en/package_reference/layernorm_tuning#peft.LNTuningConfig)): The configuration of the LN tuning model.
 
-### C3A: Parameter-Efficient Fine-Tuning via Circular Convolution
-https://huggingface.co/docs/peft/v0.20.0/package_reference/c3a.md
+### WaveFT: Wavelet Fine-Tuning
+https://huggingface.co/docs/peft/v0.21.0/package_reference/waveft.md

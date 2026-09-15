@@ -58,7 +58,7 @@ model.print_trainable_parameters()
 peft.FrodConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, target_modules: Optional[Union[list[str], str]] = None, projection_prng_key: int = 0, save_projection: bool = True, frod_dropout: float = 0.0, fan_in_fan_out: bool = False, bias: str = 'none', modules_to_save: Optional[list[str]] = None, init_weights: bool = True, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, sparse_rate: float = 0.01, regularization_alpha: float = 0.001, progressbar: bool = True, runtime_offload_base_weight: bool = False)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/frod/config.py#L24)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/frod/config.py#L24)
 
 **Parameters:**
 
@@ -90,7 +90,7 @@ progressbar (`bool`) : Whether to show a progress bar while building the FRoD pr
 
 runtime_offload_base_weight (`bool`) : Whether to keep target base weights on CPU when the active FRoD path does not need them. This can reduce GPU memory because FRoD reconstructs the adapted weight directly, but it changes the usual PEFT convention that all base parameters stay on the accelerator after moving the model or running forward. Defaults to `False`.
 
-This is the configuration class to store the configuration of a [FrodModel](/docs/peft/v0.20.0/en/package_reference/frod#peft.FrodModel).
+This is the configuration class to store the configuration of a [FrodModel](/docs/peft/v0.21.0/en/package_reference/frod#peft.FrodModel).
 
 Paper: https://doi.org/10.1609/aaai.v40i31.39813.
 
@@ -102,7 +102,7 @@ Paper: https://doi.org/10.1609/aaai.v40i31.39813.
 peft.FrodModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/frod/model.py#L101)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/frod/model.py#L101)
 
-### Models
-https://huggingface.co/docs/peft/v0.20.0/package_reference/peft_model.md
+### Configuration
+https://huggingface.co/docs/peft/v0.21.0/package_reference/config.md

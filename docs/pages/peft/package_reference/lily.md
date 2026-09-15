@@ -35,7 +35,7 @@ The abstract from the paper is:
 peft.LilyConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 32, stride_A: int = 1, num_B: int = 2, scaling: float = 1.0, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, modules_to_save: Optional[list[str]] = None, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, init_weights: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lily/config.py#L24)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lily/config.py#L24)
 
 **Parameters:**
 
@@ -59,7 +59,7 @@ layers_pattern (`Optional[Union[List[str], str]]`, *optional*) : The layer patte
 
 init_weights (`bool`) : Whether to initialize Lily adapter weights using the default initialization scheme: A matrices are initialized with Kaiming uniform, and B matrices are initialized to zero, ensuring that the adapter output is zero at the start of training and does not disturb the pretrained model. It is strongly recommended to keep this as `True` unless you have a specific reason to change it.
 
-This is the configuration class to store the configuration of a [LilyModel](/docs/peft/v0.20.0/en/package_reference/lily#peft.LilyModel).
+This is the configuration class to store the configuration of a [LilyModel](/docs/peft/v0.21.0/en/package_reference/lily#peft.LilyModel).
 
 ## LilyModel[[peft.LilyModel]]
 
@@ -69,13 +69,13 @@ This is the configuration class to store the configuration of a [LilyModel](/doc
 peft.LilyModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/lily/model.py#L30)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lily/model.py#L30)
 
 **Parameters:**
 
 model (`torch.nn.Module`) : The model to be adapted.
 
-config ([LilyConfig](/docs/peft/v0.20.0/en/package_reference/lily#peft.LilyConfig)) : The configuration of the Lily model.
+config ([LilyConfig](/docs/peft/v0.21.0/en/package_reference/lily#peft.LilyConfig)) : The configuration of the Lily model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -88,8 +88,8 @@ Creates a Low-Rank Interconnected Adaptation Across Layers (Lily) model from a p
 The method is described in detail in https://arxiv.org/abs/2407.09946.
 
 **Attributes**:
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([LilyConfig](/docs/peft/v0.20.0/en/package_reference/lily#peft.LilyConfig)): The configuration of the Lily model.
+- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([LilyConfig](/docs/peft/v0.21.0/en/package_reference/lily#peft.LilyConfig)): The configuration of the Lily model.
 
-### WaveFT: Wavelet Fine-Tuning
-https://huggingface.co/docs/peft/v0.20.0/package_reference/waveft.md
+### C3A: Parameter-Efficient Fine-Tuning via Circular Convolution
+https://huggingface.co/docs/peft/v0.21.0/package_reference/c3a.md

@@ -104,7 +104,7 @@ Notice that we are using LoRA with  rank=8, alpha=16 and targeting all linear la
 
 Let's dive a little deeper into the script so you can see what's going on, and understand how it works.
 
-The first thing to know is that the script uses FSDP for distributed training as the FSDP config has been passed. The [SFTTrainer](https://huggingface.co/docs/trl/v1.9.2/en/sft_trainer#trl.SFTTrainer) class handles all the heavy lifting of creating PEFT model using the peft config that is passed. After that when you call `trainer.train()`, Trainer internally uses 🤗 Accelerate to prepare model, optimizer and trainer using the FSDP config to create FSDP wrapped model which is then trained. The main code snippet is below:
+The first thing to know is that the script uses FSDP for distributed training as the FSDP config has been passed. The [SFTTrainer](https://huggingface.co/docs/trl/v1.13.0/en/sft_trainer#trl.SFTTrainer) class handles all the heavy lifting of creating PEFT model using the peft config that is passed. After that when you call `trainer.train()`, Trainer internally uses 🤗 Accelerate to prepare model, optimizer and trainer using the FSDP config to create FSDP wrapped model which is then trained. The main code snippet is below:
 
 ```python
 # trainer
@@ -138,7 +138,7 @@ if trainer.is_fsdp_enabled:
 trainer.save_model()
 ```
 
-Here, one main thing to note currently when using FSDP with PEFT is that `use_orig_params` needs to be `False` to realize GPU memory savings. Due to `use_orig_params=False`, the auto wrap policy for FSDP needs to change so that trainable and non-trainable parameters are wrapped separately. This is done by the code snippt below which uses the util function `fsdp_auto_wrap_policy` from PEFT:
+Here, one main thing to note currently when using FSDP with PEFT is that `use_orig_params` needs to be `False` to realize GPU memory savings. Due to `use_orig_params=False`, the auto wrap policy for FSDP needs to change so that trainable and non-trainable parameters are wrapped separately. This is done by the code snippet below which uses the util function `fsdp_auto_wrap_policy` from PEFT:
 
 ```
 if getattr(trainer.accelerator.state, "fsdp_plugin", None):
@@ -278,5 +278,5 @@ You can also refer the [llama-recipes](https://github.com/facebookresearch/llama
 4. When using FSDP+QLoRA, `paged_adamw_8bit` currently results in an error when saving a checkpoint.
 5. DoRA training with FSDP should work (albeit at lower speed than LoRA). If combined with bitsandbytes (QDoRA), 4-bit quantization should also work, but 8-bit quantization has known issues and is not recommended.
 
-### Tuners
-https://huggingface.co/docs/peft/v0.20.0/package_reference/tuners.md
+### DeepSpeed
+https://huggingface.co/docs/peft/v0.21.0/accelerate/deepspeed.md

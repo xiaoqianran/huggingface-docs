@@ -46,7 +46,7 @@ The abstract from the paper is:
 peft.PeanutConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 32, depth: int = 0, act_fn: str = 'relu', scaling: float = 1.0, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, modules_to_save: Optional[list[str]] = None, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, init_weights: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/peanut/config.py#L26)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/peanut/config.py#L26)
 
 **Parameters:**
 
@@ -70,7 +70,7 @@ layers_pattern (`Optional[Union[List[str], str]]`, *optional*) : The layer patte
 
 init_weights (`bool`) : Whether to initialize PEANuT adapter weights using the default initialization scheme:  - If `True`: all weights except `B` are initialized with Kaiming uniform, and `B` is initialized to zero. - If `False`: all weights (including `B`) are initialized with Kaiming uniform.  Initializing `B` to zero makes the adapter start as an exact no-op.
 
-This is the configuration class to store the configuration of a [PeanutModel](/docs/peft/v0.20.0/en/package_reference/peanut#peft.PeanutModel).
+This is the configuration class to store the configuration of a [PeanutModel](/docs/peft/v0.21.0/en/package_reference/peanut#peft.PeanutModel).
 
 Notes:
 PEANuT uses a weight-aware pathway, where the delta weight is conditioned on the base weight. The `A` adapter
@@ -85,13 +85,13 @@ is applied over the base weight's output dimension, so `A` has shape `(out_dim -
 peft.PeanutModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/peanut/model.py#L28)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/peanut/model.py#L28)
 
 **Parameters:**
 
 model (`torch.nn.Module`) : The model to be adapted.
 
-config ([PeanutConfig](/docs/peft/v0.20.0/en/package_reference/peanut#peft.PeanutConfig)) : The configuration of the PEANuT model.
+config ([PeanutConfig](/docs/peft/v0.21.0/en/package_reference/peanut#peft.PeanutConfig)) : The configuration of the PEANuT model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -104,8 +104,8 @@ Creates a PEANuT model from a pretrained transformers model.
 The method is described in detail in https://arxiv.org/abs/2410.01870.
 
 **Attributes**:
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([PeanutConfig](/docs/peft/v0.20.0/en/package_reference/peanut#peft.PeanutConfig)): The configuration of the PEANuT model.
+- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([PeanutConfig](/docs/peft/v0.21.0/en/package_reference/peanut#peft.PeanutConfig)): The configuration of the PEANuT model.
 
-### RandLora: Full-rank parameter-efficient fine-tuning of large models
-https://huggingface.co/docs/peft/v0.20.0/package_reference/randlora.md
+### VB-LoRA: Extreme Parameter Efficient Fine-Tuning with Vector Banks
+https://huggingface.co/docs/peft/v0.21.0/package_reference/vblora.md

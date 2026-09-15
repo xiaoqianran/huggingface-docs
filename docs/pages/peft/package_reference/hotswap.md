@@ -72,14 +72,14 @@ Hotswapping works with transformers models and diffusers models. However, there 
 #### peft.utils.hotswap.hotswap_adapter[[peft.utils.hotswap.hotswap_adapter]]
 
 ```python
-peft.utils.hotswap.hotswap_adapter(model, model_name_or_path, adapter_name, torch_device = None, **kwargs)
+peft.utils.hotswap.hotswap_adapter(model: torch.nn.Module, model_name_or_path: str, adapter_name: str, torch_device: Optional[str] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/utils/hotswap.py#L613)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/hotswap.py#L625)
 
 **Parameters:**
 
-model ([~PeftModel](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel)) : The PEFT model with the loaded adapter.
+model ([~PeftModel](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel)) : The PEFT model with the loaded adapter.
 
 model_name_or_path (`str`) : The name or path of the model to load the new adapter from.
 
@@ -130,7 +130,7 @@ Example:
 peft.utils.hotswap.hotswap_adapter_from_state_dict(model: torch.nn.Module, state_dict: dict[str, torch.Tensor], adapter_name: str, config: LoraConfig, parameter_prefix: str = 'lora_')
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/utils/hotswap.py#L419)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/hotswap.py#L420)
 
 **Parameters:**
 
@@ -157,5 +157,5 @@ This is a low-level function that assumes that the adapters have been checked fo
 state_dict has been correctly mapped to work with PEFT. For a high level function that performs this work for you,
 use `hotswap_adapter` instead.
 
-### IA3
-https://huggingface.co/docs/peft/v0.20.0/package_reference/ia3.md
+### Llama-Adapter
+https://huggingface.co/docs/peft/v0.21.0/package_reference/llama_adapter.md

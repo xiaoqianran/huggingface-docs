@@ -69,7 +69,7 @@ VeRA may not be the best choice when:
 peft.VeraConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 256, target_modules: Optional[Union[list[str], str]] = None, projection_prng_key: int = 0, save_projection: bool = True, vera_dropout: float = 0.0, d_initial: float = 0.1, fan_in_fan_out: bool = False, bias: str = 'none', modules_to_save: Optional[list[str]] = None, init_weights: bool = True, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/vera/config.py#L25)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/vera/config.py#L25)
 
 **Parameters:**
 
@@ -97,7 +97,7 @@ layers_to_transform (`Union[List[int],int]`) : The layer indexes to transform, i
 
 layers_pattern (`Optional[Union[List[str], str]]`) : The layer pattern name, used only if `layers_to_transform` is different from `None`. This should target the `nn.ModuleList` of the model, which is often called `'layers'` or `'h'`.
 
-This is the configuration class to store the configuration of a [VeraModel](/docs/peft/v0.20.0/en/package_reference/vera#peft.VeraModel).
+This is the configuration class to store the configuration of a [VeraModel](/docs/peft/v0.21.0/en/package_reference/vera#peft.VeraModel).
 
 Paper: https://huggingface.co/papers/2310.11454.
 
@@ -109,13 +109,13 @@ Paper: https://huggingface.co/papers/2310.11454.
 peft.VeraModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/vera/model.py#L78)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/vera/model.py#L78)
 
 **Parameters:**
 
-model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
 
-config ([VeraConfig](/docs/peft/v0.20.0/en/package_reference/vera#peft.VeraConfig)) : The configuration of the Vera model.
+config ([VeraConfig](/docs/peft/v0.21.0/en/package_reference/vera#peft.VeraConfig)) : The configuration of the Vera model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -139,8 +139,8 @@ Example:
 ```
 
 **Attributes**:
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([VeraConfig](/docs/peft/v0.20.0/en/package_reference/vera#peft.VeraConfig)): The configuration of the Vera model.
+- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([VeraConfig](/docs/peft/v0.21.0/en/package_reference/vera#peft.VeraConfig)): The configuration of the Vera model.
 
-### RoAd
-https://huggingface.co/docs/peft/v0.20.0/package_reference/road.md
+### DEFT: Decompositional Efficient Fine-Tuning for Text-to-Image Models
+https://huggingface.co/docs/peft/v0.21.0/package_reference/deft.md

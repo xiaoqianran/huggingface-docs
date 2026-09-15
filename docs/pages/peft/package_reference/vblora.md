@@ -33,7 +33,7 @@ The abstract from the paper is:
 peft.VBLoRAConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 4, num_vectors: int = 256, vector_length: int = 256, topk: int = 2, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, save_only_topk_weights: bool = False, vblora_dropout: float = 0.0, fan_in_fan_out: bool = False, bias: str = 'none', modules_to_save: Optional[list[str]] = None, init_vector_bank_bound: float = 0.02, init_logits_std: float = 0.1, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/vblora/config.py#L25)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/vblora/config.py#L25)
 
 **Parameters:**
 
@@ -67,7 +67,7 @@ layers_to_transform (`Union[List[int],int]`) : The layer indices to transform. I
 
 layers_pattern (`Optional[Union[List[str], str]]`) : The layer pattern name, used only if `layers_to_transform` is different from `None`. This should target the `nn.ModuleList` of the model, which is often called `'layers'` or `'h'`.
 
-This is the configuration class to store the configuration of a [VBLoRAModel](/docs/peft/v0.20.0/en/package_reference/vblora#peft.VBLoRAModel).
+This is the configuration class to store the configuration of a [VBLoRAModel](/docs/peft/v0.21.0/en/package_reference/vblora#peft.VBLoRAModel).
 
 Paper: https://huggingface.co/papers/2405.15179
 
@@ -79,13 +79,13 @@ Paper: https://huggingface.co/papers/2405.15179
 peft.VBLoRAModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/vblora/model.py#L29)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/vblora/model.py#L29)
 
 **Parameters:**
 
-model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
 
-config ([VBLoRAConfig](/docs/peft/v0.20.0/en/package_reference/vblora#peft.VBLoRAConfig)) : The configuration of the VBLoRA model.
+config ([VBLoRAConfig](/docs/peft/v0.21.0/en/package_reference/vblora#peft.VBLoRAConfig)) : The configuration of the VBLoRA model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -118,8 +118,8 @@ Example:
 ```
 
 **Attributes**:
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([VBLoRAConfig](/docs/peft/v0.20.0/en/package_reference/vblora#peft.VBLoRAConfig)): The configuration of the VBLoRAConfig model.
+- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([VBLoRAConfig](/docs/peft/v0.21.0/en/package_reference/vblora#peft.VBLoRAConfig)): The configuration of the VBLoRAConfig model.
 
 #### get_nb_savable_parameters[[peft.VBLoRAModel.get_nb_savable_parameters]]
 
@@ -127,7 +127,7 @@ Example:
 get_nb_savable_parameters(adapter = 'default')
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/vblora/model.py#L157)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/vblora/model.py#L158)
 
 Returns the number of savable VB-LoRA parameters and other savable parameters.
 
@@ -137,9 +137,9 @@ Returns the number of savable VB-LoRA parameters and other savable parameters.
 print_savable_parameters()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.20.0/src/peft/tuners/vblora/model.py#L193)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/vblora/model.py#L194)
 
 Prints the number of savable VB-LoRA parameters and total savable parameters.
 
-### Functions for PEFT integration
-https://huggingface.co/docs/peft/v0.20.0/package_reference/functional.md
+### AdaMSS
+https://huggingface.co/docs/peft/v0.21.0/package_reference/adamss.md
