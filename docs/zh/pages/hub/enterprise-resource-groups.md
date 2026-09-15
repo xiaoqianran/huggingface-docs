@@ -10,12 +10,12 @@
   <img
     class="block dark:hidden m-0!"
     src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/enterprise/resource-groups.png"
-    alt="screenshot of Hugging Face Resource Groups feature"
+    alt="The Overview tab of a resource group"
   />
   <img
     class="hidden dark:block m-0!"
     src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/enterprise/dark-resource-groups.png"
-    alt="screenshot of Hugging Face Resource Groups feature"
+    alt="The Overview tab of a resource group"
   />
 
 此功能允许组织管理员：

@@ -17,7 +17,7 @@
 
 ## 选择正确的方法
 
-并非每种 PEFT 方法的构建都是相同的，并且某些公式更容易以内存有效的方式构建。如果您的内存预算有限，那么检查 [PEFT method comparison suite](https://huggingface.co/spaces/peft-internal-testing/PEFT-method-comparison) 并筛选**最大**加速器内存使用量是有意义的。不同方法之间的平均加速器内存使用量可能相当相等，但并非每种方法都会随着激活和序列长度而平等扩展；有些方法比其他方法更容易出现内存峰值。
+并非每种 PEFT 方法的构建都是相同的，并且某些公式更容易以内存有效的方式构建。如果您的内存预算有限，那么检查 [PEFT method comparison suite](https://huggingface.co/spaces/peft-internal-testing/PEFT-method-comparison) 并筛选**最大**加速器内存使用量是有意义的。不同方法之间的平均加速器内存使用量可能相当相等，但并非每种方法都随着激活和序列长度而平等扩展；有些方法比其他方法更容易出现内存峰值。
 
 当针对语言建模头或嵌入层等大型层来微调特定标记时，请考虑[using trainable tokens](troubleshooting#using-trainable-tokens)。
 
@@ -42,5 +42,5 @@
 
 如果默认块大小不适合您的设置，请查看 [original TRL PR](https://github.com/huggingface/trl/pull/5575) 了解有关如何调整块大小的更多信息。
 
-### 适配器注入
-https://huggingface.co/docs/peft/v0.20.0/developer_guides/low_level_api.md
+### 定制模型
+https://huggingface.co/docs/peft/v0.21.0/developer_guides/custom_models.md

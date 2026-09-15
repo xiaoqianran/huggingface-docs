@@ -8,7 +8,7 @@
 
 PEFT（参数高效微调）方法仅更新模型参数的一小部分，而不是全部。这很好，因为检查点文件通常比原始模型文件小得多，并且更容易存储和共享。然而，这也意味着要加载 PEFT 模型，您还需要拥有可用的原始模型。
 
-当您在 PEFT 模型上调用 [save_pretrained()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.save_pretrained) 时，PEFT 模型会保存三个文件，如下所述：
+当您在 PEFT 模型上调用 [save_pretrained()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.save_pretrained) 时，PEFT 模型会保存三个文件，如下所述：
 
 1. `adapter_model.safetensors`或`adapter_model.bin`
 
@@ -92,7 +92,7 @@ class LoraLayer(BaseTunerLayer):
         self.kwargs = kwargs
 ```
 
-在PEFT中所有`LoraLayer`类使用的`__init__`代码中，有一堆用于初始化模型的参数，但只有少数参数与检查点文件相关：`lora_A`、`lora_B`、`lora_embedding_A`和`lora_embedding_B`。这些参数列在类属性`adapter_layer_names`中，并且包含可学习的参数，因此它们必须包含在检查点文件中。所有其他参数，如排名 `r`，均源自 `adapter_config.json`，并且必须包含在那里（除非使用默认值）。
+在PEFT中所有`LoraLayer`类使用的`__init__`代码中，有一堆用于初始化模型的参数，但只有少数参数与检查点文件相关：`lora_A`、`lora_B`、`lora_embedding_A`和`lora_embedding_B`。这些参数列在类属性`adapter_layer_names`中，并且包含可学习的参数，因此它们必须包含在检查点文件中。所有其他参数，例如排名 `r`，均源自 `adapter_config.json`，并且必须包含在那里（除非使用默认值）。
 
 我们来检查一下应用于 BERT 的 PEFT LoRA 模型的`state_dict`。当使用默认 LoRA 设置打印前五个键时（其余键相同，只是层数不同），我们得到：
 
@@ -112,10 +112,10 @@ class LoraLayer(BaseTunerLayer):
 > [!提示]
 > 最后一点对于诸如提示调整之类的前缀调整技术来说并不正确。在那里，额外的嵌入直接存储在`state_dict`中，而不向键添加任何前缀。检查加载模型中的参数名称时，您可能会惊讶地发现它们看起来有点不同，例如`base_model.model.encoder.layer.0.attention.self.query.lora_A.default.weight`。不同之处在于倒数第二段中的 *`.default`* 部分。这部分的存在是因为 PEFT 通常允许一次添加多个适配器（使用 `nn.ModuleDict` 或 `nn.ParameterDict` 来存储它们）。例如，如果您添加另一个名为“other”的适配器，则该适配器的键将为 `base_model.model.encoder.layer.0.attention.self.query.lora_A.other.weight`。
 
-当您调用 [save_pretrained()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.save_pretrained) 时，适配器名称将从按键中删除。原因是适配器名称不是模型架构的重要组成部分；这只是一个任意的名称。加载适配器时，您可以选择完全不同的名称，并且模型仍将以相同的方式工作。这就是适配器名称不存储在检查点文件中的原因。
+当您调用 [save_pretrained()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.save_pretrained) 时，适配器名称将从按键中删除。原因是适配器名称不是模型架构的重要组成部分；这只是一个任意的名称。加载适配器时，您可以选择完全不同的名称，并且模型仍将以相同的方式工作。这就是适配器名称不存储在检查点文件中的原因。
 
 > [!提示]
-> 如果调用`save_pretrained("some/path")`且适配器名称不是`"default"`，则适配器存储在与适配器同名的子目录中。因此，如果名称是“other”，它将存储在`some/path/other`内部。在某些情况下，决定将哪些值添加到检查点文件可能会变得更加复杂。例如，在 PEFT 中，DoRA 是作为 LoRA 的特例实现的。如果要将 DoRA 模型转换为 PEFT，您应该创建一个包含 DoRA 额外条目的 LoRA 检查点。您可以在之前的 `LoraLayer` 代码的 `__init__` 中看到这一点：
+> 如果调用`save_pretrained("some/path")`且适配器名称不是`"default"`，则适配器存储在与适配器同名的子目录中。因此，如果名称是“other”，它将存储在`some/path/other`内。在某些情况下，决定将哪些值添加到检查点文件可能会变得更加复杂。例如，在 PEFT 中，DoRA 是作为 LoRA 的特例实现的。如果要将 DoRA 模型转换为 PEFT，您应该创建一个包含 DoRA 额外条目的 LoRA 检查点。您可以在之前的 `LoraLayer` 代码的 `__init__` 中看到这一点：
 
 ```python
 self.lora_magnitude_vector: Optional[torch.nn.ParameterDict] = None  # for DoRA
@@ -186,15 +186,15 @@ merged_model.save_pretrained(...)
 
 但这种方法也有一些缺点：
 
-- 一旦调用[merge_and_unload()](/docs/peft/v0.20.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.merge_and_unload)，您将获得一个没有任何 PEFT 特定功能的基本模型。这意味着您不能再使用任何特定于 PEFT 的方法。
+- 一旦调用[merge_and_unload()](/docs/peft/v0.21.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.merge_and_unload)，您将获得一个没有任何 PEFT 特定功能的基本模型。这意味着您不能再使用任何特定于 PEFT 的方法。
 - 您无法取消合并权重、一次加载多个适配器、禁用适配器等。
 - 并非所有 PEFT 方法都支持合并权重。
 - 某些 PEFT 方法通常允许合并，但不允许进行特定设置（例如，当使用某些量化技术时）。
-- 整个模型将比 PEFT 模型大得多，因为它也包含所有基本权重。
+- 整个模型将比 PEFT 模型大得多，因为它将包含所有基本权重。
 
 但使用合并模型进行推理应该会更快一些。
 
-### 转换为 Transformers 模型保存整个模型的另一种方法（假设基础模型是 Transformers 模型）是使用这种 hacky 方法将 PEFT 权重直接插入基础模型中并保存它，只有当您“欺骗”Transformers 相信 PEFT 模型不是 PEFT 模型时，这种方法才有效。这仅适用于 LoRA，因为 Transformers 中未实现其他适配器。
+### 转换为 Transformers 模型保存整个模型的另一种方法（假设基础模型是 Transformers 模型）是使用这种 hacky 方法将 PEFT 权重直接插入到基础模型中并保存它，只有当您“欺骗”Transformers 相信 PEFT 模型不是 PEFT 模型时，这种方法才有效。这仅适用于 LoRA，因为 Transformers 中未实现其他适配器。
 
 ```python
 model = ...  # the PEFT model
@@ -212,5 +212,5 @@ model_loaded.save_pretrained(<final_location>)
 model_loaded.push_to_hub(<final_location>)
 ```
 
-### 模型合并
-https://huggingface.co/docs/peft/v0.20.0/developer_guides/model_merging.md
+### 为 PEFT 做出贡献
+https://huggingface.co/docs/peft/v0.21.0/developer_guides/contributing.md

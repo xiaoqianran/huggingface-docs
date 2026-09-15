@@ -122,7 +122,7 @@ accelerate launch --config_file "configs/deepspeed_config.yaml"  train.py \
 
 让我们更深入地研究一下脚本，以便您可以了解发生了什么，并了解它是如何工作的。
 
-首先要知道的是，该脚本使用 DeepSpeed 进行分布式训练，因为 DeepSpeed 配置已通过。 [SFTTrainer](https://huggingface.co/docs/trl/v1.9.2/en/sft_trainer#trl.SFTTrainer) 类处理使用传递的 peft 配置创建 PEFT 模型的所有繁重工作。之后，当您调用 `trainer.train()` 时，[SFTTrainer](https://huggingface.co/docs/trl/v1.9.2/en/sft_trainer#trl.SFTTrainer) 内部使用 🤗 Accelerate 准备模型、优化器和训练器，使用 DeepSpeed 配置创建 DeepSpeed 引擎，然后对其进行训练。主要代码片段如下：
+首先要知道的是，该脚本使用 DeepSpeed 进行分布式训练，因为 DeepSpeed 配置已通过。 [SFTTrainer](https://huggingface.co/docs/trl/v1.13.0/en/sft_trainer#trl.SFTTrainer) 类处理使用传递的 peft 配置创建 PEFT 模型的所有繁重工作。之后，当您调用 `trainer.train()` 时，[SFTTrainer](https://huggingface.co/docs/trl/v1.13.0/en/sft_trainer#trl.SFTTrainer) 内部使用 🤗 Accelerate 准备模型、优化器和训练器，使用 DeepSpeed 配置创建 DeepSpeed 引擎，然后对其进行训练。主要代码片段如下：
 
 ```python
 # trainer
@@ -259,7 +259,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 请注意，`AutoModelForCausalLM` 的`dtype` 与`bnb_4bit_quant_storage` 数据类型相同。就是这样。其他一切都由 Trainer 和 TRL 处理。
 
-## 内存使用情况在上面的示例中，每个 GPU 消耗的内存为 **36.6 GB**。因此，需要 8X80GB GPU（采用 DeepSpeed Stage 3+LoRA）和几个 80GB GPU（采用 DDP+QLoRA），现在需要 2X40GB GPU。这使得大型模型的微调变得更加容易。
+## 内存使用情况在上面的示例中，每个 GPU 消耗的内存为 **36.6 GB**。因此，需要 8 个 80GB GPU（采用 DeepSpeed Stage 3+LoRA）和几个 80GB GPU（采用 DDP+QLoRA），现在需要 2X40GB GPU。这使得大型模型的微调变得更加容易。
 
 # 将 PEFT 和 DeepSpeed 与 ZeRO3 和 CPU 卸载结合使用，在单个 GPU 上微调大型模型
 本部分指南将帮助您学习如何使用我们的 DeepSpeed [training script](https://github.com/huggingface/peft/blob/main/examples/conditional_generation/peft_lora_seq2seq_accelerate_ds_zero3_offload.py)。您将配置脚本来训练大型模型，以使用 ZeRO-3 和 CPU Offload 进行条件生成。
@@ -319,10 +319,10 @@ use_cpu: false
 
 让我们更深入地研究一下脚本，以便您可以了解发生了什么，并了解它是如何工作的。
 
-在 [⟦T42⟧](https://github.com/huggingface/peft/blob/2822398fbe896f25d4dac5e468624dc5fd65a51b/examples/conditional_generation/peft_lora_seq2seq_accelerate_ds_zero3_offload.py#L103) 函数中，脚本创建一个 [Accelerator](https://huggingface.co/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator) 类来初始化分布式训练的所有必要要求。
+在 [⟦T42⟧](https://github.com/huggingface/peft/blob/2822398fbe896f25d4dac5e468624dc5fd65a51b/examples/conditional_generation/peft_lora_seq2seq_accelerate_ds_zero3_offload.py#L103) 函数中，脚本创建一个 [Accelerator](https://huggingface.co/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) 类来初始化分布式训练的所有必要要求。
 
 > [!提示]
-> 💡 随意更改 `main` 函数内的模型和数据集。如果您的数据集格式与脚本中的格式不同，您可能还需要编写自己的预处理函数。该脚本还为您正在使用的 🤗 PEFT 方法创建一个配置，在本例中为 LoRA。 [LoraConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig)指定了任务类型和重要参数，例如低秩矩阵的维度、矩阵缩放因子和LoRA层的丢失概率。如果您想使用不同的 🤗 PEFT 方法，请确保将 `LoraConfig` 替换为适当的 [class](../package_reference/tuners)。
+> 💡 随意更改 `main` 函数内的模型和数据集。如果您的数据集格式与脚本中的格式不同，您可能还需要编写自己的预处理函数。该脚本还为您正在使用的 🤗 PEFT 方法创建一个配置，在本例中为 LoRA。 [LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig)指定了任务类型和重要参数，例如低秩矩阵的维度、矩阵缩放因子和LoRA层的丢失概率。如果您想使用不同的 🤗 PEFT 方法，请确保将 `LoraConfig` 替换为适当的 [class](../package_reference/tuners)。
 
 ```diff
  def main():
@@ -334,16 +334,16 @@ use_cpu: false
      )
 ```
 
-在整个脚本中，您将看到 [main_process_first](https://huggingface.co/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.main_process_first) 和 [wait_for_everyone](https://huggingface.co/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.wait_for_everyone) 函数，它们有助于控制和同步进程的执行。
+在整个脚本中，您将看到 [main_process_first](https://huggingface.co/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.main_process_first) 和 [wait_for_everyone](https://huggingface.co/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.wait_for_everyone) 函数，它们有助于控制和同步进程的执行。
 
-[get_peft_model()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.get_peft_model) 函数采用一个基本模型和您之前准备创建 [PeftModel](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel) 的 `peft_config`：
+[get_peft_model()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.get_peft_model) 函数采用一个基本模型和您之前准备创建 [PeftModel](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel) 的 `peft_config`：
 
 ```diff
   model = AutoModelForSeq2SeqLM.from_pretrained(model_name_or_path)
 + model = get_peft_model(model, peft_config)
 ```
 
-将所有相关的训练对象传递给 🤗 Accelerate 的 [prepare](https://huggingface.co/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.prepare)，以确保一切都准备好进行训练：
+将所有相关的训练对象传递给 🤗 Accelerate 的 [prepare](https://huggingface.co/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare)，以确保一切都准备好进行训练：
 
 ```py
 model, train_dataloader, eval_dataloader, test_dataloader, optimizer, lr_scheduler = accelerator.prepare(
@@ -359,7 +359,7 @@ if getattr(accelerator.state, "deepspeed_plugin", None):
     is_ds_zero_3 = accelerator.state.deepspeed_plugin.zero_stage == 3
 ```
 
-在训练循环中，通常的 `loss.backward()` 被🤗 Accelerate 的 [backward](https://huggingface.co/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.backward) 取代，后者根据您的配置使用正确的 `backward()` 方法：
+在训练循环中，通常的 `loss.backward()` 被 🤗 Accelerate 的 [backward](https://huggingface.co/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.backward) 取代，它根据您的配置使用正确的 `backward()` 方法：
 
 ```diff
   for epoch in range(num_epochs):
@@ -381,7 +381,7 @@ if getattr(accelerator.state, "deepspeed_plugin", None):
 运行以下命令来启动训练脚本。之前，您将配置文件保存到 `ds_zero3_cpu.yaml`，因此您需要使用 `--config_file` 参数将路径传递给启动器，如下所示：
 
 ```bash
-accelerate launch --config_file ds_zero3_cpu.yaml examples/peft_lora_seq2seq_accelerate_ds_zero3_offload.py
+accelerate launch --config_file ds_zero3_cpu.yaml examples/conditional_generation/peft_lora_seq2seq_accelerate_ds_zero3_offload.py
 ```
 
 您将看到一些跟踪训练期间内存使用情况的输出日志，一旦完成，脚本就会返回准确性并将预测与标签进行比较：
@@ -428,5 +428,4 @@ dataset['train'][label_column][:10]=['no complaint', 'no complaint', 'complaint'
 >     # do whatever is needed, then unmerge in the same context if unmerging is required
 >     ...
 >     model.unmerge_adapter()
-> ```### 完全分片数据并行
-https://huggingface.co/docs/peft/v0.20.0/accelerate/fsdp.md
+> ```

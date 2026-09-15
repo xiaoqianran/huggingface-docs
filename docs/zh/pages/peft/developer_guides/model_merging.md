@@ -4,18 +4,18 @@
 
 为每项任务训练模型可能成本高昂，占用存储空间，并且模型无法学习新信息来提高其性能。多任务学习可以通过训练模型来学习多个任务来克服其中的一些限制，但训练成本很高，并且为此设计数据集具有挑战性。 *模型合并*通过将多个预训练模型组合成一个模型，为这些挑战提供了一种解决方案，无需任何额外的训练即可赋予每个模型的综合能力。
 
-PEFT 提供了多种合并模型的方法，例如线性或 SVD 组合。本指南重点介绍两种通过消除冗余参数来更有效地合并 LoRA 适配器的方法：* [TIES](https://hf.co/papers/2306.01708) - TrIm、Elect 和 Merge (TIES) 是一种合并模型的三步方法。首先，修剪冗余参数，然后将冲突符号分解为聚合向量，最后对符号与聚合符号相同的参数进行平均。此方法考虑到某些值（冗余和符号不一致）可能会降低合并模型的性能。
-* [DARE](https://hf.co/papers/2311.03099) - Drop And REscale 是一种可用于为 TIES 等其他模型合并方法做准备的方法。它的工作原理是根据丢弃率随机丢弃参数并重新调整剩余参数。这有助于减少多个模型之间冗余和潜在干扰参数的数量。
+PEFT 提供了多种合并模型的方法，例如线性或 SVD 组合。本指南重点介绍两种通过消除冗余参数更有效地合并 LoRA 适配器的方法：* [TIES](https://hf.co/papers/2306.01708) - TrIm、Elect 和 Merge (TIES) 是合并模型的三步方法。首先，修剪冗余参数，然后将冲突符号分解为聚合向量，最后对符号与聚合符号相同的参数进行平均。此方法考虑到某些值（冗余和符号不一致）可能会降低合并模型的性能。
+* [DARE](https://hf.co/papers/2311.03099) - Drop And REscale 是一种可用于为其他模型合并方法（如 TIES）做准备的方法。它的工作原理是根据丢弃率随机丢弃参数并重新调整剩余参数。这有助于减少多个模型之间冗余和潜在干扰参数的数量。
 
-模型合并采用[add_weighted_adapter()](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraModel.add_weighted_adapter)方法，具体模型合并方法在`combination_type`参数中指定。
+模型合并采用[add_weighted_adapter()](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraModel.add_weighted_adapter)方法，具体模型合并方法在`combination_type`参数中指定。
 
 ## 合并方法
 
-对于 TIES 和 DARE，通过将 `combination_type` 和 `density` 设置为远离各个模型的权重值来启用合并。例如，让我们合并三个微调的 [TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T](https://huggingface.co/TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T) 模型：[tinyllama_lora_nobots](https://huggingface.co/smangrul/tinyllama_lora_norobots)、[tinyllama_lora_sql](https://huggingface.co/smangrul/tinyllama_lora_sql) 和 [tinyllama_lora_adcopy](https://huggingface.co/smangrul/tinyllama_lora_adcopy)。当您尝试将完全训练的模型与 TIES 合并时，您应该注意每个模型可能添加到嵌入层的任何特殊标记，这些标记不属于原始检查点词汇表的一部分。这可能会导致问题，因为每个模型可能都在同一嵌入位置添加了特殊标记。如果是这种情况，您应该使用 [resize_token_embeddings](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel.resize_token_embeddings) 方法来避免合并同一嵌入索引处的特殊标记。
+对于 TIES 和 DARE，通过将 `combination_type` 和 `density` 设置为远离各个模型的权重值来启用合并。例如，让我们合并三个微调的 [TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T](https://huggingface.co/TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T) 模型：[tinyllama_lora_nobots](https://huggingface.co/smangrul/tinyllama_lora_norobots)、[tinyllama_lora_sql](https://huggingface.co/smangrul/tinyllama_lora_sql) 和 [tinyllama_lora_adcopy](https://huggingface.co/smangrul/tinyllama_lora_adcopy)。当您尝试将完全训练的模型与 TIES 合并时，您应该注意每个模型可能添加到嵌入层的任何特殊标记，这些标记不属于原始检查点词汇表的一部分。这可能会导致问题，因为每个模型可能都在同一嵌入位置添加了特殊标记。如果是这种情况，您应该使用 [resize_token_embeddings](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.resize_token_embeddings) 方法来避免合并同一嵌入索引处的特殊标记。
 
-如果您只是合并从同一基本模型训练的 LoRA 适配器，这应该不是问题。
+如果您只是合并从同一基础模型训练的 LoRA 适配器，这应该不是问题。
 
-加载基础模型，并可以使用 [load_adapter()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.load_adapter) 方法加载每个适配器并为其分配名称：
+加载基础模型，并可以使用 [load_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.load_adapter) 方法加载每个适配器并为其分配名称：
 
 ```py
 from peft import PeftConfig, PeftModel
@@ -34,7 +34,7 @@ _ = model.load_adapter("smangrul/tinyllama_lora_sql", adapter_name="sql")
 _ = model.load_adapter("smangrul/tinyllama_lora_adcopy", adapter_name="adcopy")
 ```
 
-使用 [add_weighted_adapter()](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraModel.add_weighted_adapter) 方法设置适配器、权重、`adapter_name`、`combination_type` 和 `density`。
+使用 [add_weighted_adapter()](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraModel.add_weighted_adapter) 方法设置适配器、权重、`adapter_name`、`combination_type` 和 `density`。
 
 大于 `1.0` 的权重值通常会产生更好的结果，因为它们保留了正确的比例。权重的一个很好的默认起始值​​是将所有值设置为 `1.0`。
 
@@ -54,7 +54,7 @@ density = 0.2
 model.add_weighted_adapter(adapters, weights, adapter_name, combination_type="dare_ties", density=density)
 ```
 
-使用 [set_adapter()](/docs/peft/v0.20.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.set_adapter) 方法将新合并的模型设置为活动模型。
+使用 [set_adapter()](/docs/peft/v0.21.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.set_adapter) 方法将新合并的模型设置为活动模型。
 
 ```py
 model.set_adapter("merge")
@@ -115,5 +115,5 @@ model.add_weighted_adapter(adapters, weights, adapter_name)
 model.set_adapter("merge")
 ```
 
-### 定制模型
-https://huggingface.co/docs/peft/v0.20.0/developer_guides/custom_models.md
+### 参数高效微调方法
+https://huggingface.co/docs/peft/v0.21.0/methods/overview.md

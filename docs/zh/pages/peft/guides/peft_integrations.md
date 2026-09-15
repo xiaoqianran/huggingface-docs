@@ -14,9 +14,11 @@ Diffusers 是一个生成式 AI 库，用于使用扩散模型从文本或图像
 import torch
 from diffusers import DiffusionPipeline
 
+device = torch.accelerator.current_accelerator().type if hasattr(torch, "accelerator") else "cuda"
+
 pipeline = DiffusionPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0", torch_dtype=torch.float16
-).to("cuda")
+).to(device)
 pipeline.load_lora_weights(
     "peft-internal-testing/artificialguybr__3DRedmond-V1", 
     weight_name="3DRedmond-3DRenderStyle-3DRenderAF.safetensors", 
@@ -28,7 +30,7 @@ image
 
     
 
-现在让我们尝试另一个很酷的 LoRA 模型，[ostris/super-cereal-sdxl-lora](https://huggingface.co/ostris/super-cereal-sdxl-lora)。您需要做的就是加载这个新适配器并将其命名为 `adapter_name`，然后使用 [⟦T14⟧](https://huggingface.co/docs/diffusers/api/loaders/unet#diffusers.loaders.UNet2DConditionLoadersMixin.set_adapters) 方法将其设置为当前活动适配器。
+现在让我们尝试另一个很酷的 LoRA 模型，[ostris/super-cereal-sdxl-lora](https://huggingface.co/ostris/super-cereal-sdxl-lora)。您需要做的就是加载这个新适配器并将其命名为 `adapter_name`，然后使用 [⟦T14⟧](https://huggingface.co/docs/diffusers/api/loaders/unet#diffusers.loaders.UNet2DConditionLoadersMixin.set_adapters) 方法将其设置为当前活动的适配器。
 
 ```py
 pipeline.load_lora_weights(
@@ -63,7 +65,7 @@ from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained("facebook/opt-350m")
 ```
 
-接下来，添加适配器配置以指定如何调整模型参数。调用[add_adapter()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.add_adapter)方法将配置添加到基础模型中。
+接下来，添加适配器配置以指定如何调整模型参数。调用[add_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.add_adapter)方法将配置添加到基础模型中。
 
 ```py
 from peft import LoraConfig
@@ -78,7 +80,7 @@ peft_config = LoraConfig(
 model.add_adapter(peft_config)
 ```
 
-现在您可以使用 Transformer 的 [Trainer](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.Trainer) 类或您喜欢的任何训练框架来训练模型。为了使用新训练的模型进行推理，[AutoModel](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoModel)类在后端使用 PEFT 将适配器权重和配置文件加载到基础预训练模型中。
+现在您可以使用 Transformer 的 [Trainer](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer) 类或您喜欢的任何训练框架来训练模型。为了使用新训练的模型进行推理，[AutoModel](https://huggingface.co/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModel)类在后端使用 PEFT 将适配器权重和配置文件加载到基础预训练模型中。
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -95,7 +97,7 @@ model = pipeline("text-generation", "peft-internal-testing/opt-350m-lora")
 print(model("Hello World"))
 ```
 
-如果您有兴趣比较或使用多个适配器，可以调用 [add_adapter()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.add_adapter) 方法将适配器配置添加到基础模型中。唯一的要求是适配器类型必须相同（不能混合使用 LoRA 和 LoHa 适配器）。
+如果您有兴趣比较或使用多个适配器，可以调用 [add_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.add_adapter) 方法将适配器配置添加到基础模型中。唯一的要求是适配器类型必须相同（不能混合使用 LoRA 和 LoHa 适配器）。
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -105,13 +107,13 @@ model = AutoModelForCausalLM.from_pretrained("facebook/opt-350m")
 model.add_adapter(lora_config_1, adapter_name="adapter_1")
 ```
 
-再次调用 [add_adapter()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.add_adapter) 将新适配器连接到基础模型。
+再次调用 [add_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.add_adapter) 将新适配器连接到基础模型。
 
 ```py
 model.add_adapter(lora_config_2, adapter_name="adapter_2")
 ```
 
-然后你可以使用[set_adapter()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.set_adapter)来设置当前活动的适配器。
+然后你可以使用[set_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.set_adapter)来设置当前活动的适配器。
 
 ```py
 model.set_adapter("adapter_1")
@@ -130,4 +132,4 @@ model.disable_adapters()
 如果您好奇，请查看 [Load and train adapters with PEFT](https://huggingface.co/docs/transformers/main/peft) 教程以了解更多信息。
 
 ### PEFT 配置和模型
-https://huggingface.co/docs/peft/v0.20.0/guides/peft_model_config.md
+https://huggingface.co/docs/peft/v0.21.0/guides/peft_model_config.md

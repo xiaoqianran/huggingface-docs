@@ -104,7 +104,7 @@ accelerate launch --config_file "configs/fsdp_config.yaml"  train.py \
 
 让我们更深入地研究一下脚本，以便您可以了解发生了什么，并了解它是如何工作的。
 
-首先要知道的是，该脚本使用 FSDP 进行分布式训练，因为 FSDP 配置已通过。 [SFTTrainer](https://huggingface.co/docs/trl/v1.9.2/en/sft_trainer#trl.SFTTrainer) 类处理使用传递的 peft 配置创建 PEFT 模型的所有繁重工作。之后，当您调用 `trainer.train()` 时，Trainer 在内部使用 🤗 Accelerate 准备模型，优化器和训练器使用 FSDP 配置创建 FSDP 包装模型，然后进行训练。主要代码片段如下：
+首先要知道的是，该脚本使用 FSDP 进行分布式训练，因为 FSDP 配置已通过。 [SFTTrainer](https://huggingface.co/docs/trl/v1.13.0/en/sft_trainer#trl.SFTTrainer) 类处理使用传递的 peft 配置创建 PEFT 模型的所有繁重工作。之后，当您调用 `trainer.train()` 时，Trainer 在内部使用 🤗 Accelerate 准备模型，优化器和训练器使用 FSDP 配置创建 FSDP 包装模型，然后进行训练。主要代码片段如下：
 
 ```python
 # trainer
@@ -156,7 +156,7 @@ if getattr(trainer.accelerator.state, "fsdp_plugin", None):
 
 # 使用 PEFT QLoRA 和 FSDP 在多个 GPU 上微调大型模型
 
-在本节中，我们将了解如何使用 QLoRA 和 FSDP 在 2X24GB GPU 上微调 70B llama 模型。 [Answer.AI](https://www.answer.ai/) 与bitsandbytes 和 Hugging Face 合作🤗 开源代码，支持使用 FSDP+QLoRA，并在其富有洞察力的博文[You can now train a 70b language model at home](https://www.answer.ai/posts/2024-03-06-fsdp-qlora.html) 中解释了整个过程。现在它已集成到 Hugging Face 生态系统中。为此，我们首先需要`bitsandbytes>=0.43.3`、`accelerate>=1.0.1`、`transformers>4.44.2`、`trl>0.11.4`和`peft>0.13.0`。使用 Accelerate 配置时，我们需要设置 `fsdp_cpu_ram_efficient_loading=true`、`fsdp_use_orig_params=false` 和 `fsdp_offload_params=true`（CPU 卸载）。当不使用加速启动器时，您可以交替设置环境变量`export FSDP_CPU_RAM_EFFICIENT_LOADING=true`。  在这里，我们将使用加速配置，下面是可以在[fsdp_config_qlora.yaml](https://github.com/huggingface/peft/blob/main/examples/sft/configs/fsdp_config_qlora.yaml)找到的配置：
+在本节中，我们将了解如何使用 QLoRA 和 FSDP 在 2X24GB GPU 上微调 70B llama 模型。 [Answer.AI](https://www.answer.ai/) 与bitsandbytes 和 Hugging Face 🤗 合作，开源代码支持使用 FSDP+QLoRA，并在其富有洞察力的博文 [You can now train a 70b language model at home](https://www.answer.ai/posts/2024-03-06-fsdp-qlora.html) 中解释了整个过程。现在它已集成到 Hugging Face 生态系统中。为此，我们首先需要`bitsandbytes>=0.43.3`、`accelerate>=1.0.1`、`transformers>4.44.2`、`trl>0.11.4`和`peft>0.13.0`。使用 Accelerate 配置时，我们需要设置 `fsdp_cpu_ram_efficient_loading=true`、`fsdp_use_orig_params=false` 和 `fsdp_offload_params=true`（CPU 卸载）。当不使用加速启动器时，您可以交替设置环境变量`export FSDP_CPU_RAM_EFFICIENT_LOADING=true`。  在这里，我们将使用加速配置，下面是可以在[fsdp_config_qlora.yaml](https://github.com/huggingface/peft/blob/main/examples/sft/configs/fsdp_config_qlora.yaml)找到的配置：
 
 ```yml
 compute_environment: LOCAL_MACHINE                                                                                                                                           
@@ -232,7 +232,7 @@ accelerate launch --config_file "configs/fsdp_config_qlora.yaml"  train.py \
 --bnb_4bit_quant_storage_dtype "bfloat16"
 ```
 
-请注意传递的新参数`bnb_4bit_quant_storage_dtype`，它表示用于打包 4 位参数的数据类型。例如，当它设置为 `bfloat16` 时，**16/4 = 4** 4 位参数在量化后打包在一起。当使用`bfloat16`进行混合精度训练时，`bnb_4bit_quant_storage_dtype`可以是`bfloat16`（用于纯`bfloat16`微调），也可以是`float32`（用于自动混合精度）（这会消耗更多GPU内存）。当使用`float16`进行混合精度训练时，`bnb_4bit_quant_storage_dtype`应设置为`float32`，以实现稳定的自动混合精度训练。
+请注意传递的新参数`bnb_4bit_quant_storage_dtype`，它表示用于打包 4 位参数的数据类型。例如，当它设置为 `bfloat16` 时，**16/4 = 4** 4 位参数在量化后打包在一起。当使用`bfloat16`进行混合精度训练时，`bnb_4bit_quant_storage_dtype`可以是`bfloat16`（用于纯`bfloat16`微调），也可以是`float32`用于自动混合精度（这会消耗更多GPU内存）。当使用`float16`进行混合精度训练时，`bnb_4bit_quant_storage_dtype`应设置为`float32`，以实现稳定的自动混合精度训练。
 
 在训练代码方面，重要的代码变化是： 
 
@@ -272,5 +272,5 @@ model = AutoModelForCausalLM.from_pretrained(
 4. 使用 FSDP+QLoRA 时，`paged_adamw_8bit` 目前会导致保存检查点时出错。
 5. 使用 FSDP 进行 DoRA 训练应该有效（尽管速度低于 LoRA）。如果与位和字节 (QDoRA) 结合使用，4 位量化也应该可以工作，但 8 位量化存在已知问题，不建议使用。
 
-### 调音器
-https://huggingface.co/docs/peft/v0.20.0/package_reference/tuners.md
+### 深速
+https://huggingface.co/docs/peft/v0.21.0/accelerate/deepspeed.md

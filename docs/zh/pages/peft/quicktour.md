@@ -5,13 +5,13 @@
 PEFT 提供参数有效的方法来微调大型预训练模型。传统的范例是针对每个下游任务微调模型的所有参数，但由于当今模型中的参数数量巨大，这变得非常昂贵且不切实际。相反，训练较少数量的提示参数或使用低秩自适应（LoRA）等重新参数化方法来减少可训练参数的数量会更有效。
 
   
-    PEFT 可以被认为是向现有模型（“基础模型”）中的任意位置添加可训练参数的框架。特定的 PEFT 方法以某种方式排列可训练参数或修改训练过程，以达到与训练基础模型的所有参数相当的微调性能。
+    PEFT 可以被视为将可训练参数添加到现有模型（“基础模型”）中的任意位置的框架。特定的PEFT方法以某种方式排列可训练参数或修改训练过程，以达到与训练基础模型的所有参数相当的微调性能。
   
   
 
 本快速浏览将向您展示 PEFT 的主要功能，以及如何在消费设备上通常无法访问的大型模型上训练或运行推理。
 
-## PEFT配置和模型对于任何 PEFT 方法，您需要创建一个配置，其中包含指定如何应用 PEFT 方法的所有参数，最重要的是使用可训练参数定位现有模型的哪些层。设置配置后，将其与基本模型一起传递给 [get_peft_model()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.get_peft_model) 函数，以创建可训练的 [PeftModel](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel)。
+## PEFT配置和模型对于任何 PEFT 方法，您需要创建一个配置，其中包含指定如何应用 PEFT 方法的所有参数，最重要的是使用可训练参数定位现有模型的哪些层。设置配置后，将其与基本模型一起传递给 [get_peft_model()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.get_peft_model) 函数，以创建可训练的 [PeftModel](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel)。
 
 让我们使用 [LoRA](./package_reference/lora) 作为示例，但仅讨论常用参数 - 您可能想使用 [many other PEFT methods](./methods/overview) 之一。
 配置通常需要这样：
@@ -30,7 +30,7 @@ peft_config = LoraConfig(target_modules=["q_proj"], task_type=TaskType.CAUSAL_LM
 ```
 
 > [!提示]
-> 有关 PEFT 配置如何在后台工作的更多详细信息，请参阅 [configuration guide](guides/peft_model_config)。设置 [LoraConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig) 后，使用 [get_peft_model()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.get_peft_model) 函数创建 [PeftModel](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel)。它需要一个基本模型 - 您可以（但不必）从 Transformers 库加载 - 以及包含如何配置模型以使用 LoRA 进行训练的参数的 [LoraConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig)。
+> 有关 PEFT 配置如何在后台工作的更多详细信息，请参阅 [configuration guide](guides/peft_model_config)。设置 [LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig) 后，使用 [get_peft_model()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.get_peft_model) 函数创建 [PeftModel](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel)。它需要一个基本模型 - 您可以（但不必）从 Transformers 库加载 - 以及包含如何配置模型以使用 LoRA 进行训练的参数的 [LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig)。
 
 加载您想要微调的基本模型。
 
@@ -40,7 +40,7 @@ from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.2-1B")
 ```
 
-现在使用 [get_peft_model()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.get_peft_model) 函数包装基本模型和 `peft_config` 以创建一个 [PeftModel](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel)。
+现在使用 [get_peft_model()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.get_peft_model) 函数包装基本模型和 `peft_config` 以创建一个 [PeftModel](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel)。
 
   
     
@@ -63,9 +63,9 @@ peft_model.print_trainable_parameters()
 
 在 [meta-llama/Llama-3.2-1B's](https://huggingface.co/meta-llama/Llama-3.2-1B) 1B 个参数中，您只训练了其中的 0.04%！
 
-就是这样🎉！现在，您可以使用 Transformers [Trainer](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.Trainer)、Accelerate 或任何自定义 PyTorch 训练循环来训练模型。
+就是这样🎉！现在，您可以使用 Transformers [Trainer](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer)、Accelerate 或任何自定义 PyTorch 训练循环来训练模型。
 
-例如，要使用 [Trainer](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.Trainer) 类进行训练，请设置带有一些训练超参数的 [TrainingArguments](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.TrainingArguments) 类。
+例如，要使用 [Trainer](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer) 类进行训练，请设置带有一些训练超参数的 [TrainingArguments](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments) 类。
 
 ```py
 training_args = TrainingArguments(
@@ -81,7 +81,7 @@ training_args = TrainingArguments(
 )
 ```
 
-将模型、训练参数、数据集、分词器和任何其他必要组件传递给[Trainer](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.Trainer)，并调用[train](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.Trainer.train)开始训练。
+将模型、训练参数、数据集、分词器和任何其他必要组件传递给[Trainer](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer)，并调用[train](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer.train)开始训练。
 
 ```py
 trainer = Trainer(
@@ -98,13 +98,13 @@ trainer.train()
 
 ### 保存模型
 
-模型训练完成后，您可以使用[save_pretrained()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.save_pretrained)功能将模型保存到目录中。
+模型训练完成后，您可以使用[save_pretrained()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.save_pretrained)功能将模型保存到目录中。
 
 ```py
 peft_model.save_pretrained("output_dir")
 ```
 
-您还可以使用 [push_to_hub](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel.push_to_hub) 功能将模型保存到 Hub（确保您先登录 Hugging Face 帐户）。
+您还可以使用 [push_to_hub](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.push_to_hub) 功能将模型保存到 Hub（确保您先登录 Hugging Face 帐户）。
 
 ```python
 from huggingface_hub import notebook_login
@@ -121,27 +121,29 @@ peft_model.push_to_hub("your-name/my-llama3.2-adapter")
 > [!提示]
 > 查看 [AutoPeftModel](package_reference/auto_class) API 参考，获取可用 `AutoPeftModel` 类的完整列表。
 
-使用 [AutoPeftModel](/docs/peft/v0.20.0/en/package_reference/auto_class#peft.AutoPeftModel) 类和 [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) 方法轻松加载任何经过 PEFT 训练的模型进行推理：
+使用 [AutoPeftModel](/docs/peft/v0.21.0/en/package_reference/auto_class#peft.AutoPeftModel) 类和 [from_pretrained](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) 方法轻松加载任何经过 PEFT 训练的模型进行推理：
 
 ```py
 from peft import AutoPeftModelForCausalLM
 from transformers import AutoTokenizer
 import torch
 
+device = torch.accelerator.current_accelerator().type if hasattr(torch, "accelerator") else "cuda"
+
 peft_model = AutoPeftModelForCausalLM.from_pretrained("ybelkada/opt-350m-lora")
 tokenizer = AutoTokenizer.from_pretrained("facebook/opt-350m")
 
-peft_model = peft_model.to("cuda")
+peft_model = peft_model.to(device)
 peft_model.eval()
 inputs = tokenizer("Preheat the oven to 350 degrees and place the cookie dough", return_tensors="pt")
 
-outputs = peft_model.generate(input_ids=inputs["input_ids"].to("cuda"), max_new_tokens=50)
+outputs = peft_model.generate(input_ids=inputs["input_ids"].to(peft_model.device), max_new_tokens=50)
 print(tokenizer.batch_decode(outputs.detach().cpu().numpy(), skip_special_tokens=True)[0])
 
 "Preheat the oven to 350 degrees and place the cookie dough in the center of the oven. In a large bowl, combine the flour, baking powder, baking soda, salt, and cinnamon. In a separate bowl, combine the egg yolks, sugar, and vanilla."
 ```
 
-对于 `AutoPeftModelFor` 类未明确支持的其他任务（例如自动语音识别），您仍然可以使用基本 [AutoPeftModel](/docs/peft/v0.20.0/en/package_reference/auto_class#peft.AutoPeftModel) 类来加载该任务的模型。
+对于 `AutoPeftModelFor` 类未明确支持的其他任务（例如自动语音识别），您仍然可以使用基本 [AutoPeftModel](/docs/peft/v0.21.0/en/package_reference/auto_class#peft.AutoPeftModel) 类来加载该任务的模型。
 
 ```py
 from peft import AutoPeftModel
@@ -149,7 +151,7 @@ from peft import AutoPeftModel
 peft_model = AutoPeftModel.from_pretrained("smangrul/openai-whisper-large-v2-LORA-colab")
 ```
 
-将经过训练的 PEFT 适配器加载到模型上的最通用方法是使用 [from_pretrained()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.from_pretrained)：
+将经过训练的 PEFT 适配器加载到模型上的最通用方法是使用 [from_pretrained()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.from_pretrained)：
 
 ```py
 from transformers import AutoPeftModelForCausalLM
@@ -161,12 +163,12 @@ peft_model = PeftModel.from_pretrained(base_model, "my-user/my-llama-adapter")  
 
 ## 多个适配器
 
-PEFT 支持在基本模型之上安装多个适配器（同类适配器，在本文档中为 LoRA）。当您调用 `get_peft_model` 时，只有一个名为 `"default"` 的适配器，但您可以通过调用 `peft_model.add_adapter(adapter_name=...)` 添加任意数量的其他适配器。这是有效的，因为包装层实际上为每个适配器名称都有一组唯一的可训练权重。默认情况下，并非每个适配器都是活动的且可训练的。  您必须在适配器处于活动状态之前按名称显式启用它们。这使您可以在需要特定任务知识的适配器之间快速切换，或者在一个模型之上为不同的用例提供服务。
+PEFT 支持在基本模型之上安装多个适配器（同类，在本文档中为 LoRA）。当您调用 `get_peft_model` 时，只有一个名为 `"default"` 的适配器，但您可以通过调用 `peft_model.add_adapter(adapter_name=...)` 添加任意数量的其他适配器。这是有效的，因为包装层实际上为每个适配器名称都有一组唯一的可训练权重。默认情况下，并非每个适配器都是活动的且可训练的。  您必须在适配器处于活动状态之前按名称显式启用它们。这使您可以在需要特定任务知识的适配器之间快速切换，或者在一个模型之上为不同的用例提供服务。
     
   
   
 
-请记住先调用`peft_model.set_adapter(<adapter_name>)`来启用适配器。
+请记住首先调用`peft_model.set_adapter(<adapter_name>)`来启用适配器。
 
 快速示例：
 
@@ -179,10 +181,10 @@ peft_model.set_adapter('new_adapter')
 
 现在您已经了解了如何使用其中一种 PEFT 方法训练模型，我们鼓励您尝试其他一些方法，例如提示调整。这些步骤与快速教程中显示的步骤非常相似：
 
-1. 准备用于 PEFT 方法的[PeftConfig](/docs/peft/v0.20.0/en/package_reference/config#peft.PeftConfig)，例如[LoraConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig) 或其他一些配置（请参阅[method overview](methods/overview)）
-2.使用[get_peft_model()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.get_peft_model)方法从配置和基础模型创建[PeftModel](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel)
+1. 准备用于 PEFT 方法的[PeftConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PeftConfig)，例如[LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig) 或其他一些配置（请参阅[method overview](methods/overview)）
+2.使用[get_peft_model()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.get_peft_model)方法从配置和基础模型创建[PeftModel](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel)
 
-然后你就可以随心所欲地训练它了！要加载 PEFT 模型进行推理，您可以使用 [AutoPeftModel](/docs/peft/v0.20.0/en/package_reference/auto_class#peft.AutoPeftModel) 类。如果您有兴趣使用另一种 PEFT 方法训练模型以执行特定任务（例如语义分割、多语言自动语音识别、DreamBooth、标记分类等），请随意查看任务指南。
+然后你就可以随心所欲地训练它了！要加载 PEFT 模型进行推理，您可以使用 [AutoPeftModel](/docs/peft/v0.21.0/en/package_reference/auto_class#peft.AutoPeftModel) 类。如果您有兴趣使用另一种 PEFT 方法训练模型来执行特定任务（例如语义分割、多语言自动语音识别、DreamBooth、标记分类等），请随意查看任务指南。
 
-### PEFT
-https://huggingface.co/docs/peft/v0.20.0/index.md
+### 安装
+https://huggingface.co/docs/peft/v0.21.0/install.md

@@ -180,7 +180,7 @@ peft_model.print_trainable_parameters()
 
 ## 新的 Transformer 架构当新的流行 Transformer 架构发布时，我们会尽力将它们快速添加到 PEFT 中。如果您遇到不支持开箱即用的变压器模型，请不要担心，如果配置设置正确，它很可能仍然可以工作。具体来说，您必须在初始化相应的配置类时确定应调整的层并正确设置它们，例如`LoraConfig`。以下是一些有助于解决此问题的提示。
 
-作为第一步，最好检查现有模型以获取灵感。您可以在 PEFT 存储库的[constants.py](https://github.com/huggingface/peft/blob/main/src/peft/utils/constants.py) 中找到它们。通常，您会发现使用相同名称的类似架构。例如，如果新模型架构是“mistral”模型的变体，并且您想要应用 LoRA，则可以看到 `REDACTED` 中的“mistral”条目包含 `["q_proj", "v_proj"]`。这告诉您，对于“mistral”模型，LoRA 的 `target_modules` 应该是 `["q_proj", "v_proj"]`：
+作为第一步，最好检查现有模型以获取灵感。您可以在 PEFT 存储库的[constants.py](https://github.com/huggingface/peft/blob/main/src/peft/utils/constants.py) 中找到它们。通常，您会发现使用相同名称的类似架构。例如，如果新模型架构是“mistral”模型的变体，并且您想要应用 LoRA，则可以看到 `REDACTED` 中“mistral”的条目包含 `["q_proj", "v_proj"]`。这告诉您，对于“mistral”模型，LoRA 的 `target_modules` 应该是 `["q_proj", "v_proj"]`：
 
 ```python
 from peft import LoraConfig, get_peft_model
@@ -199,7 +199,7 @@ peft_model = get_peft_model(my_mistral_model, config)
 
 ## 验证参数和层
 
-您可以通过多种方式验证是否已将 PEFT 方法正确应用于模型。* 检查可使用 [print_trainable_parameters()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel.print_trainable_parameters) 方法训练的参数比例。如果该数字低于或高于预期，请通过打印型号来检查型号`repr`。这显示了模型中所有图层类型的名称。确保仅预期的目标层被适配器层替换。例如，如果 LoRA 应用于 `nn.Linear` 层，那么您应该只会看到正在使用的 `lora.Linear` 层。
+您可以通过多种方式验证是否已将 PEFT 方法正确应用于模型。* 检查可使用 [print_trainable_parameters()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.print_trainable_parameters) 方法训练的参数比例。如果该数字低于或高于预期，请通过打印型号来检查型号`repr`。这显示了模型中所有图层类型的名称。确保仅预期的目标层被适配器层替换。例如，如果 LoRA 应用于 `nn.Linear` 层，那么您应该只会看到正在使用的 `lora.Linear` 层。
 
 ```py
 peft_model.print_trainable_parameters()
@@ -243,7 +243,7 @@ peft_model = get_peft_model(base_model, config)
 ```
 
 > [!提示]
-> 当您调用[get_peft_model()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.get_peft_model)时，您将看到一条警告，因为PEFT无法识别目标模块类型。在这种情况下，您可以忽略此警告。
+> 当您调用[get_peft_model()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.get_peft_model)时，您将看到一条警告，因为PEFT无法识别目标模块类型。在这种情况下，您可以忽略此警告。
 
 通过提供自定义映射，PEFT 首先根据自定义映射检查基本模型的层，如果存在匹配，则分派到自定义 LoRA 层类型。如果没有匹配，PEFT 将检查内置 LoRA 层类型是否匹配。
 
@@ -272,5 +272,5 @@ config._register_custom_module(custom_module_mapping)
 peft_model = PeftModel.from_pretrained(model, tmp_path / "lora-custom-module", config=config)
 ```
 
-如果您使用此功能并发现它很有用，或者遇到问题，请通过在 GitHub 上创建问题或讨论来告知我们。这使我们能够估计对此功能的需求，并在需求足够高时添加公共 API。### 深速
-https://huggingface.co/docs/peft/v0.20.0/accelerate/deepspeed.md
+如果您使用此功能并发现它很有用，或者遇到问题，请通过在 GitHub 上创建问题或讨论来告知我们。这使我们能够估计对此功能的需求，并在需求足够高时添加公共 API。### PEFT 检查点格式
+https://huggingface.co/docs/peft/v0.21.0/developer_guides/checkpoint.md

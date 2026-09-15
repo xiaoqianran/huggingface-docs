@@ -37,8 +37,8 @@
       "translatedAt": "2026-08-14T08:23:00.014Z"
     },
     "hub/agents-local.md": {
-      "hash": "ae1fba8ccc04df09457f9e0336b6f53d52620d40",
-      "translatedAt": "2026-08-14T08:23:04.382Z"
+      "hash": "3827733c03486f697d86834c1272223c755a1c96",
+      "translatedAt": "2026-09-15T12:36:54.553Z"
     },
     "hub/agents-sdk.md": {
       "hash": "22852bce974c71ef78f921edd396b1c3d3577a95",
@@ -69,8 +69,8 @@
       "translatedAt": "2026-08-14T08:23:14.063Z"
     },
     "hub/asteroid.md": {
-      "hash": "795e76be47dd22feb26aafc0a1fbcfda540eba51",
-      "translatedAt": "2026-08-14T08:23:14.633Z"
+      "hash": "bbd07b9970681b7152e164b7deffe6e631b569e7",
+      "translatedAt": "2026-09-15T12:36:53.663Z"
     },
     "hub/bertopic.md": {
       "hash": "a4aa77bee6da64a2eeff70d10854db1904d14c09",
@@ -317,8 +317,8 @@
       "translatedAt": "2026-08-14T08:24:04.848Z"
     },
     "hub/enterprise-resource-groups.md": {
-      "hash": "6c7c12535832fc09a5635ad114ebca105e4f29bf",
-      "translatedAt": "2026-08-19T07:46:56.734Z"
+      "hash": "b7d9381d0964f16cd9fd574bd7374513826baa6f",
+      "translatedAt": "2026-09-15T12:36:53.707Z"
     },
     "hub/enterprise-service-accounts.md": {
       "hash": "5b3be08873ab8be5c5063fd01a153340f9e74968",
@@ -721,8 +721,8 @@
       "translatedAt": "2026-08-14T08:25:24.535Z"
     },
     "hub/security-resource-groups.md": {
-      "hash": "16bf94638849b55eacb3e0f853defd3daefd77ac",
-      "translatedAt": "2026-08-19T07:47:02.352Z"
+      "hash": "0ca0501a095d7f1f965b827b2094a4a0999398b3",
+      "translatedAt": "2026-09-15T12:36:59.742Z"
     },
     "hub/security-sso-okta-oidc.md": {
       "hash": "693df1db7540e95f74d55b9cea151b8bc9022349",
@@ -1513,88 +1513,88 @@
       "translatedAt": "2026-09-10T12:16:14.453Z"
     },
     "peft/index.md": {
-      "hash": "e593c47aeb7d07016444dc18bd02c07f2965a825",
-      "translatedAt": "2026-08-11T13:57:32.130Z"
+      "hash": "fba3a689e8e6f6ed0ee9ba4437cf5f1999b8872c",
+      "translatedAt": "2026-09-15T12:36:55.491Z"
     },
     "accelerate/usage_guides/training_zoo.md": {
       "hash": "74a257f0f875be510330682a0a56db688caa8c05",
       "translatedAt": "2026-09-10T12:16:17.470Z"
     },
     "peft/install.md": {
-      "hash": "acd452bfec5c099f236bba0756af2b7c92ff2eef",
-      "translatedAt": "2026-08-11T13:57:32.362Z"
+      "hash": "176ca09b624c26fc9e53652c34ad13fe46dfefa3",
+      "translatedAt": "2026-09-15T12:36:55.470Z"
     },
     "peft/methods/overview.md": {
-      "hash": "d8679314f1d6a93476aaa3f79d0a45da2cbcd553",
-      "translatedAt": "2026-08-11T13:57:34.986Z"
+      "hash": "15d26a4dcb2888075df9d09fb2b2a670fc94a5e7",
+      "translatedAt": "2026-09-15T12:36:58.299Z"
     },
     "peft/quicktour.md": {
-      "hash": "95f73f9fc47bf9503b26ec2c1ef9de8a04c3195f",
-      "translatedAt": "2026-08-11T13:57:35.290Z"
+      "hash": "96385f24799c390c78e47ca929dee23f3798a49b",
+      "translatedAt": "2026-09-15T12:36:58.653Z"
     },
     "peft/accelerate/fsdp.md": {
-      "hash": "b474d8d3a1754a5bed0b2263d82418371a66c5bd",
-      "translatedAt": "2026-08-11T13:57:37.403Z"
+      "hash": "d10a9b54c8c8f8bd853e532f9231cd58d6a520bb",
+      "translatedAt": "2026-09-15T12:37:01.360Z"
     },
     "peft/accelerate/deepspeed.md": {
-      "hash": "4d851d695ebbc9eec41cfae90f5e03b6bb4b0c16",
-      "translatedAt": "2026-08-11T13:57:38.514Z"
+      "hash": "7f5e93a6cdb717985324755919fe92a073c3e0eb",
+      "translatedAt": "2026-09-15T12:37:01.846Z"
     },
     "accelerate/package_reference/utilities.md": {
       "hash": "b27d4853972455719c7dfc91e8b56de6c660624e",
       "translatedAt": "2026-09-10T12:16:20.320Z"
     },
     "peft/developer_guides/checkpoint.md": {
-      "hash": "99cf1e1c3b3c59d629a4912db07ebf5e5143d369",
-      "translatedAt": "2026-08-11T13:57:42.143Z"
+      "hash": "ecb901db4d9f9c01911a1d9c4dc9f09f1db0dc7f",
+      "translatedAt": "2026-09-15T12:37:03.582Z"
     },
     "peft/developer_guides/contributing.md": {
-      "hash": "5e4ff3153b85d9eaa4074f09ca5466b910193713",
-      "translatedAt": "2026-08-11T13:57:42.714Z"
+      "hash": "adfdb9b63710961e63266deeb57f825bea964179",
+      "translatedAt": "2026-09-15T12:37:06.652Z"
     },
     "peft/developer_guides/custom_models.md": {
-      "hash": "cce67960c4eb745e3576b4b3378befd20e227215",
-      "translatedAt": "2026-08-12T08:29:52.682Z"
+      "hash": "8319c871a445a3a927f28313ad0883e0f048dfc8",
+      "translatedAt": "2026-09-15T12:37:06.145Z"
     },
     "peft/developer_guides/low_level_api.md": {
-      "hash": "03dc4d3be2929fb3b93c1c0ca887c6254ca0c1db",
-      "translatedAt": "2026-08-11T13:57:43.580Z"
+      "hash": "25d517bd77869eb70629e853d9aa7aeed14b1504",
+      "translatedAt": "2026-09-15T12:37:05.857Z"
     },
     "peft/developer_guides/mixed_models.md": {
-      "hash": "421de5fce560199d6947f8e2162a30509e3d283b",
-      "translatedAt": "2026-08-11T13:57:43.890Z"
+      "hash": "8e2e340dcba94735fdfa69b835e13fb6b5d72cd7",
+      "translatedAt": "2026-09-15T12:37:07.153Z"
     },
     "peft/developer_guides/memory_efficient_training.md": {
-      "hash": "ff7244e791c5a04dbeb8631f3ea316cb5d2de674",
-      "translatedAt": "2026-08-11T13:57:44.428Z"
+      "hash": "fe9556cb6cabaa84f11f45c700bdae0972776df1",
+      "translatedAt": "2026-09-15T12:37:07.821Z"
     },
     "peft/developer_guides/model_merging.md": {
-      "hash": "5957bb7037725e857d24f616e6c3e2f76c89eb20",
-      "translatedAt": "2026-08-11T13:57:45.055Z"
+      "hash": "5ca5a7f5afa76ac54194482050ff4759a471c67a",
+      "translatedAt": "2026-09-15T12:37:08.289Z"
     },
     "peft/developer_guides/torch_compile.md": {
-      "hash": "efd317252e785b4c1fc5feebcbf14e3917e03dd4",
-      "translatedAt": "2026-08-11T13:57:45.773Z"
+      "hash": "8df6a324b3c8f5a40d661134e8e8a2d3799dfd59",
+      "translatedAt": "2026-09-15T12:37:09.532Z"
     },
     "peft/guides/peft_integrations.md": {
-      "hash": "cf652ee21e2452b0c324d803957fd14fadc6601a",
-      "translatedAt": "2026-08-11T13:57:47.140Z"
+      "hash": "b43cfb8e241a19b9d6ff5353fd8414bcbe92f6e8",
+      "translatedAt": "2026-09-15T12:37:10.959Z"
     },
     "peft/developer_guides/quantization.md": {
-      "hash": "2d83a54500f9249a69884c2bcc1d9c25c8eaeded",
-      "translatedAt": "2026-08-11T13:57:48.343Z"
+      "hash": "e3874fd56a0af79abc375afddcd88fead60fc989",
+      "translatedAt": "2026-09-15T12:37:12.115Z"
     },
     "peft/guides/peft_model_config.md": {
-      "hash": "559465a6d5388a9a8e12fd37484915d0f59b3ae1",
-      "translatedAt": "2026-08-11T13:57:48.552Z"
+      "hash": "177e93cb9508b10919f923f5a2904e4a2749f393",
+      "translatedAt": "2026-09-15T12:37:13.361Z"
     },
     "peft/developer_guides/troubleshooting.md": {
-      "hash": "cf085ee02cbe68666fdbea050af6476ce6b8ace9",
-      "translatedAt": "2026-08-11T13:57:50.982Z"
+      "hash": "62d23d366d46a77b7de10a0db5f87ac574d2b7d1",
+      "translatedAt": "2026-09-15T12:37:16.889Z"
     },
     "peft/package_reference/adalora.md": {
-      "hash": "c6ab08e0dea4e0f056a400e70370d957b618a152",
-      "translatedAt": "2026-08-11T13:57:51.369Z"
+      "hash": "307a39bd0b48048b7352318a84b739ac9208268f",
+      "translatedAt": "2026-09-15T12:37:15.640Z"
     },
     "peft/package_reference/adapter_utils.md": {
       "hash": "f5b7519cf046ae69d700527caa752cbaa1b0f2e8",
@@ -2001,10 +2001,10 @@
       "translatedAt": "2026-08-11T13:59:27.535Z"
     }
   },
-  "updatedAt": "2026-09-14T13:51:36.943Z",
+  "updatedAt": "2026-09-15T12:37:16.889Z",
   "stats": {
-    "translated": 0,
-    "skipped": 400,
+    "translated": 23,
+    "skipped": 377,
     "failed": 0,
     "total": 400
   }

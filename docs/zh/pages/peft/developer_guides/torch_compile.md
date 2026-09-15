@@ -51,5 +51,5 @@
 上面列出的所有用例都在 [⟦T19⟧](https://github.com/huggingface/peft/blob/main/tests/test_torch_compile.py) 内进行了测试。如果您想更详细地检查我们如何测试某个功能，请转到该文件并检查与您的用例相对应的测试。
 
 > [!提示]
-> 如果您有另一个用例，您知道 `torch.compile` 是否可以与 PEFT 配合使用，请通过告知我们或打开 PR 将此用例添加到涵盖的测试用例中来做出贡献。### 量化
-https://huggingface.co/docs/peft/v0.20.0/developer_guides/quantization.md
+> 如果您有另一个用例，您知道 `torch.compile` 是否可以与 PEFT 一起使用，请通过告知我们或打开 PR 将此用例添加到涵盖的测试用例中来做出贡献。### 适配器注入
+https://huggingface.co/docs/peft/v0.21.0/developer_guides/low_level_api.md

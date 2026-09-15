@@ -24,7 +24,7 @@ PEFT 方法训练尽可能少的参数，同时追求与完全微调相当的性
 - 硬提示是带有离散输入标记的手动文本提示；缺点是需要付出很大的努力才能创建一个好的提示
 - 软提示是可学习的张量，与可优化为数据集的输入嵌入相连接；缺点是它们不是人类可读的，因为您没有将这些“虚拟标记”与真实单词的嵌入相匹配
 
-PEFT 库支持多种类型的提示方法（p 调优、前缀调优、提示调优……），浏览目录以获取软提示方法的完整列表。
+PEFT 库支持多种类型的提示方法（p 调优、前缀调优、提示调优等），请浏览目录以获取软提示方法的完整列表。
 如果您有兴趣将这些方法应用于其他任务和用例，请查看我们的[notebook collection](https://huggingface.co/spaces/PEFT/soft-prompting)！
 
 > [!提示]
@@ -34,10 +34,10 @@ PEFT 库支持多种类型的提示方法（p 调优、前缀调优、提示调�
 
 ## 适配器方法
 
-适配器方法可以被视为向现有模型添加相对较小的可训练矩阵以进行微调的方法。目标是引入少量可训练参数来引导大模型执行需要微调以节省资源（例如内存或计算）的任务。实现适配器的一种流行方法是插入较小的可训练矩阵，这些矩阵是适应权重布局的低秩分解，以节省内存。有几种不同的方法可以将权重矩阵表示为低秩分解，但[Low-Rank Adaptation (LoRA)](../package_reference/lora)是最常见的方法。 PEFT 库支持该公式的其他几种变体 - 有些是 LoRA 的直接变体并在 LoRA 下记录，有些差异足以算作自己的方法，例如 [Low-Rank Hadamard Product (LoHa)](../package_reference/loha)、[Low-Rank Kronecker Product (LoKr)](../package_reference/lokr) 和 [Adaptive Low-Rank Adaptation (AdaLoRA)](../package_reference/adalora)。如果您有兴趣将这些方法应用于其他任务和用例，例如语义分割、标记分类，请看看我们的[notebook collection](https://huggingface.co/collections/PEFT/notebooks-6573b28b33e5a4bf5b157fc1)！
+适配器方法可以被视为向现有模型添加相对较小的可训练矩阵以进行微调的方法。目标是引入少量可训练参数来引导大模型执行需要微调以节省资源（例如内存或计算）的任务。实现适配器的一种流行方法是插入较小的可训练矩阵，这些矩阵是适应权重布局的低阶分解，以节省内存。有几种不同的方法可以将权重矩阵表示为低秩分解，但[Low-Rank Adaptation (LoRA)](../package_reference/lora)是最常见的方法。 PEFT 库支持该公式的其他几种变体 - 有些是 LoRA 的直接变体，并在 LoRA 下记录，有些足够不同，可以算作自己的方法，例如 [Low-Rank Hadamard Product (LoHa)](../package_reference/loha)、[Low-Rank Kronecker Product (LoKr)](../package_reference/lokr) 和 [Adaptive Low-Rank Adaptation (AdaLoRA)](../package_reference/adalora)。如果您有兴趣将这些方法应用于其他任务和用例，例如语义分割、标记分类，请看看我们的[notebook collection](https://huggingface.co/collections/PEFT/notebooks-6573b28b33e5a4bf5b157fc1)！
 
 > [!提示]
 > LoRA 是最流行的 PEFT 方法之一，如果您刚刚开始使用 PEFT，这是一个很好的起点。它最初是为大型语言模型开发的，但由于其效率和有效性，它是扩散模型的一种非常流行的训练方法。低阶适配器只是一种可能的适配器配方，PEFT 还实现了许多其他类型的适配器。例如，正交微调方法（[OFT](../package_reference/oft)，[BOFT](../package_reference/boft)，...）使用适配器权重的正交分解来实现小尺寸。像[MiSS](../package_reference/miss)这样的方法对矩阵进行分片并共享这些分片以节省内存。 [IA3](../package_reference/ia3) 引入了重新调整键、值和前馈激活的学习向量。
 
-### PEFT 集成
-https://huggingface.co/docs/peft/v0.20.0/guides/peft_integrations.md
+### 完全分片数据并行
+https://huggingface.co/docs/peft/v0.21.0/accelerate/fsdp.md

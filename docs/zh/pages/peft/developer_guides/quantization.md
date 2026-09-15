@@ -13,7 +13,7 @@
 
 ## 量化模型
 
-[bitsandbytes](https://github.com/TimDettmers/bitsandbytes) 是一个集成了 Transformers 的量化库。通过这种集成，您可以将模型量化为 8 或 4 位，并通过配置 [BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/quantization#transformers.BitsAndBytesConfig) 类启用许多其他选项。例如，您可以：
+[bitsandbytes](https://github.com/TimDettmers/bitsandbytes) 是一个集成了 Transformers 的量化库。通过这种集成，您可以将模型量化为 8 位或 4 位，并通过配置 [BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/quantization#transformers.BitsAndBytesConfig) 类启用许多其他选项。例如，您可以：
 
 * 设置 `load_in_4bit=True` 在加载模型时将模型量化为 4 位
 * 设置`bnb_4bit_quant_type="nf4"`为从正态分布初始化的权重使用特殊的4位数据类型
@@ -32,7 +32,7 @@ config = BitsAndBytesConfig(
 )
 ```
 
-将 `config` 传递给 [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) 方法。
+将 `config` 传递给 [from_pretrained](https://huggingface.co/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) 方法。
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -40,7 +40,7 @@ from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-v0.1", quantization_config=config)
 ```
 
-接下来，您应该调用[prepare_model_for_kbit_training()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.prepare_model_for_kbit_training)函数对量化模型进行预处理以进行训练。
+接下来，您应该调用[prepare_model_for_kbit_training()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.prepare_model_for_kbit_training)函数对量化模型进行预处理以进行训练。
 
 ```py
 from peft import prepare_model_for_kbit_training
@@ -52,7 +52,7 @@ model = prepare_model_for_kbit_training(model)
 
 ## 洛拉配置
 
-使用以下参数创建 [LoraConfig](/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig)（或选择您自己的参数）：
+使用以下参数创建 [LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig)（或选择您自己的参数）：
 
 ```py
 from peft import LoraConfig
@@ -67,7 +67,7 @@ config = LoraConfig(
 )
 ```
 
-然后使用 [get_peft_model()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.get_peft_model) 函数根据量化模型和配置创建 [PeftModel](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel)。
+然后使用 [get_peft_model()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.get_peft_model) 函数根据量化模型和配置创建 [PeftModel](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel)。
 
 ```py
 from peft import get_peft_model
@@ -175,7 +175,7 @@ from transformers import EetqConfig
 config = EetqConfig("int8")
 ```
 
-将 `config` 传递给 [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) 方法。
+将 `config` 传递给 [from_pretrained](https://huggingface.co/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) 方法。
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -214,7 +214,7 @@ peft_config = LoraConfig(...)
 quantized_model = get_peft_model(quantized_model, peft_config)
 ```
 
-或者使用与 HQQ 兼容的转换器版本（例如，通过从最新的 pypi 或源代码安装）。
+或者使用与 HQQ 兼容的 Transformer 版本（例如，通过从最新的 pypi 或源代码安装）。
 
 ```python
 from transformers import HqqConfig, AutoModelForCausalLM
@@ -246,7 +246,7 @@ model = get_peft_model(base_model, peft_config)
 - 目前不支持`quant_type = "int4_weight_only"`。
 - `NF4` 尚未在 Transformer 中实现，因此也不支持。
 - DoRA 目前仅适用于`quant_type = "int8_weight_only"`。
-- 与 LoRA 一起使用时，明确支持 torchao。然而，当 torchao 量化一个层时，它的类不会改变，只会改变底层张量的类型。因此，除 LoRA 之外的 PEFT 方法通常也适用于 torchao，即使没有明确支持。但请注意，**合并仅适用于 LoRA 和 `quant_type = "int8_weight_only"`**。如果您使用不同的 PEFT 方法或数据类型，合并可能会导致错误，即使没有，结果仍然不正确。
+- 与 LoRA 一起使用时，明确支持 torchao。然而，当 torchao 量化一个层时，它的类不会改变，只会改变底层张量的类型。因此，除 LoRA 之外的 PEFT 方法通常也适用于 torchao，即使没有明确支持。但请注意，**合并仅适用于 LoRA 和 `quant_type = "int8_weight_only"`**。如果您使用不同的 PEFT 方法或 dtype，合并可能会导致错误，即使没有，结果仍然不正确。
 
 ## INC 量化英特尔神经压缩器（[INC](https://github.com/intel/neural-compressor)）支持各种设备的模型量化，
 包括 Intel Gaudi 加速器（也称为 HPU 设备）。您可以对已经完成的模型进行 LoRA 微调
@@ -292,7 +292,7 @@ model = convert(model)
 - **AdaLoRA**（支持位和字节和 GPTQ 量化）
 - **(IA)³**（支持位和字节量化）
 
-## 变压器引擎 (TE) LoRAPEFT 支持[NVIDIA Transformer Engine](https://docs.nvidia.com/deeplearning/transformer-engine/) 层（`te.pytorch.Linear`、`te.pytorch.LayerNormLinear` 和`te.pytorch.LayerNormMLP`）之上的 LoRA 适配器。 TE 层使用 FP8 和融合内核来加速 Transformer 训练，附加 LoRA 适配器可让您高效地参数微调 TE 加速模型。
+## 变压器引擎 (TE) LoRAPEFT 支持[NVIDIA Transformer Engine](https://docs.nvidia.com/deeplearning/transformer-engine/) 层（`te.pytorch.Linear`、`te.pytorch.LayerNormLinear` 和`te.pytorch.LayerNormMLP`）之上的 LoRA 适配器。 TE 层使用 FP8 和融合内核来加速 Transformer 训练，并且附加 LoRA 适配器可让您高效地参数微调 TE 加速模型。
 
 ```python
 from peft import LoraConfig, get_peft_model
@@ -306,7 +306,7 @@ config = LoraConfig(
 model = get_peft_model(te_model, config)
 ```
 
-安装 Transformer Engine 后，PEFT 会自动将匹配层分派到 `TeLinear` 适配器 - 无需额外配置。
+安装 Transformer Engine 后，PEFT 会自动将匹配层分派到 `TeLinear` 适配器 — 无需额外配置。
 
 ### 注意事项
 
@@ -322,5 +322,5 @@ model = get_peft_model(te_model, config)
 * 了解有关 QLoRA 的更多详细信息，并在 [Making LLMs even more accessible with bitsandbytes, 4-bit quantization and QLoRA](https://huggingface.co/blog/4bit-transformers-bitsandbytes) 博客文章中查看一些有关其影响的基准。
 * 在 Transformers [Quantization](https://hf.co/docs/transformers/main/quantization) 指南中了解有关不同量化方案的更多信息。
 
-### 为 PEFT 做出贡献
-https://huggingface.co/docs/peft/v0.20.0/developer_guides/contributing.md
+### 模型合并
+https://huggingface.co/docs/peft/v0.21.0/developer_guides/model_merging.md
