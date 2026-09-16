@@ -2,140 +2,134 @@
 
 # 快速入门
 
-在本指南中，您将在几分钟内运行一个作业来微调 Hugging Face 基础设施上的开源模型。
-确保您已登录 Hugging Face，并且您的帐户或组织上有 [pre-paid credits](https://huggingface.co/settings/billing)。然后，您可以访问您的[Jobs page](https://huggingface.co/settings/jobs)来创建和管理作业。
+在 Hugging Face CPU 和 GPU 上运行 Python 代码。在本指南中，您将在 CPU 上运行一个简单的命令，然后在 GPU 上使用小型语言模型生成文本。
 
-## 开始使用
+您需要一个包含 [pre-paid credits](https://huggingface.co/settings/billing) 的 Hugging Face 帐户。有关计算成本，请参阅[Pricing and Billing](./jobs-pricing)。
 
-首先安装 Hugging Face CLI：
+## 1. 设置 CLI
 
-### 1. 安装 CLI
-
-推荐方法：
-
-```bash
->>> curl -LsSf https://hf.co/cli/install.sh | bash
-```
-
-或者使用自制程序：
-
-```bash
->>> brew install hf
-```
-
-或者使用紫外线：
-
-```bash
->>> uv tool install hf
-```
-
-### 2. 登录您的 Hugging Face 帐户
-
-登录
+[Install the Hugging Face CLI](https://huggingface.co/docs/huggingface_hub/en/guides/cli#getting-started)，然后登录您的帐户：
 
 ```bash
 >>> hf auth login
 ```
 
-### 3. 使用 `hf jobs` 命令创建您的第一个作业
+## 2. 运行Hello World
 
-运行 UV 命令或脚本
+在终端中运行此命令：
 
 ```bash
 >>> hf jobs uv run python -c 'print("Hello from the cloud!")'
-Job started with ID: 693aef401a39f67af5a41c0e
-View at: https://huggingface.co/jobs/lhoestq/693aef401a39f67af5a41c0e
+```
+
+`hf jobs uv run` 在 Hugging Face 基础设施上的 Python 环境中运行该命令。它默认使用 CPU 并将作业日志传输到您的终端。启动后，你会看到：
+
+```text
 Hello from the cloud!
 ```
 
-```bash
->>> echo "print('Hello from uv script!')" > script.py
->>> hf jobs uv run script.py
-Job started with ID: 695f6cd8d2f3efac77e8cf7f
-View at: https://huggingface.co/jobs/lhoestq/695f6cd8d2f3efac77e8cf7f
-Hello from uv script!
-```
+CLI 还会打印您的作业 ID 及其页面的链接。打开链接以在浏览器中查看其状态和日志。您可以在 [Jobs page](https://huggingface.co/settings/jobs) 上再次找到您的职位，或者通过以下 CLI 命令使用该 ID。
 
-运行 Docker 命令
+作业还可以在任何 Docker 映像中运行命令：
 
 ```bash
 >>> hf jobs run ubuntu echo 'Hello from the cloud!'
-Job started with ID: 693aee76c67c9f186cfe233e
-View at: https://huggingface.co/jobs/lhoestq/693aee76c67c9f186cfe233e
-Hello from the cloud!
 ```
 
-### 4.检查你的第一份工作
+本指南的其余部分使用 `hf jobs uv run`。请参阅 [Docker Jobs](./jobs-configuration#docker-jobs) 了解何时以及如何使用图像。
 
-作业日志显示在您的终端中，但您也可以在作业页面中看到它们。打开作业页面可以查看作业信息、状态和日志：
+## 3. 在 GPU 上运行模型
 
-## 训练脚本
-
-这是一个简单的训练脚本，用于使用监督微调 (SFT) 将基本模型微调为会话模型。它使用 [Qwen/Qwen2.5-0.5B](https://huggingface.co/Qwen/Qwen2.5-0.5B) 模型、[trl-lib/Capybara](https://huggingface.co/datasets/trl-lib/Capybara) 数据集和 [TRL](https://huggingface.co/docs/trl/en/index) 库，并将生成的模型以 `"Qwen2.5-0.5B-SFT"` 的名称保存到您的 Hugging Face 帐户中：
-
-```python
-from datasets import load_dataset
-from trl import SFTTrainer
-
-dataset = load_dataset("trl-lib/Capybara", split="train")
-trainer = SFTTrainer(
-    model="Qwen/Qwen2.5-0.5B",
-    train_dataset=dataset,
-)
-trainer.train()
-trainer.push_to_hub("Qwen2.5-0.5B-SFT")
-```
-
-将此脚本保存为 `train.py`，我们现在可以在 Hugging Face Jobs 上使用 UV 运行它。## 运行训练作业
-
-`hf jobs`采用多个参数：使用`--flavor`选择硬件，使用`--timeout`选择最大持续时间，并使用`--env`和`--secrets`传递环境变量。在这里，我们使用带有 `--flavor a100-large` 的 A100 大型 GPU 风格，并使用 `--secrets HF_TOKEN` 将您的 Hugging Face 令牌作为秘密传递，以便能够将生成的模型推送到您的帐户。请参阅 [Persist your results](./jobs-manage#persist-your-results) 了解如何确保作业的输出在完成后仍然存在。
-
-此外，UV 接受 `--with` 参数来定义 python 依赖项，因此我们使用 `--with trl` 来提供 `trl` 库。
-
-您现在可以运行最终命令，如下所示：
+运行这个准备好的脚本来生成机器人名称。您可以[view it on GitHub](https://github.com/huggingface/hub-docs/blob/main/examples/jobs/hello_gpu.py)或阅读以下代码。
 
 ```bash
 hf jobs uv run \
-    --flavor a100-large \
-    --timeout 6h \
-    --with trl \
-    --secrets HF_TOKEN \
-    train.py
+    --flavor t4-small \
+    --timeout 5m \
+    https://raw.githubusercontent.com/huggingface/hub-docs/main/examples/jobs/hello_gpu.py
 ```
 
-日志出现在您的终端中，您可以安全地按 Ctrl+C 停止流式传输日志，作业将继续运行。
+- `--flavor t4-small` 选择具有 NVIDIA T4 GPU 的机器。
+- `--timeout 5m` 对作业设置五分钟限制。作业下载模型并在日志中打印其答案。例如：
 
-```
-...
-Downloaded nvidia-cudnn-cu12 
-Downloaded torch
-Installed 66 packages in 233ms
-Generating train split: 100%|██████████| 15806/15806 [00:00<00:00, 76686.50 examples/s]
-Generating test split: 100%|██████████| 200/200 [00:00<00:00, 43880.36 examples/s]
-Tokenizing train dataset: 100%|██████████| 15806/15806 [00:41<00:00, 384.97 examples/s]
-Truncating train dataset: 100%|██████████| 15806/15806 [00:00<00:00, 212272.92 examples/s]
-The model is already on multiple devices. Skipping the move to device specified in `args`.
-The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.
-{'loss': 1.7357, 'grad_norm': 4.8733229637146, 'learning_rate': 1.9969635627530365e-05, 'entropy': 1.7238958358764649, 'num_tokens': 59528.0, 'mean_token_accuracy': 0.6124177813529968, 'epoch': 0.01}
-{'loss': 1.6239, 'grad_norm': 6.200186729431152, 'learning_rate': 1.9935897435897437e-05, 'entropy': 1.644005584716797, 'num_tokens': 115219.0, 'mean_token_accuracy': 0.6259662985801697, 'epoch': 0.01}
-{'loss': 1.4449, 'grad_norm': 6.167325496673584, 'learning_rate': 1.990215924426451e-05, 'entropy': 1.5156117916107177, 'num_tokens': 171787.0, 'mean_token_accuracy': 0.6586395859718323, 'epoch': 0.02}
-{'loss': 1.6023, 'grad_norm': 5.133708953857422, 'learning_rate': 1.986842105263158e-05, 'entropy': 1.6885507702827454, 'num_tokens': 226067.0, 'mean_token_accuracy': 0.6271904468536377, 'epoch': 0.02}
+```text
+RoboLearnbot
 ```
 
-关注 Hugging Face 职位页面上的职位进展：
+这是完整的脚本：
 
-在 CLI 中监控 GPU 使用情况和其他指标或使用 [MacOS menu bar](./jobs-manage#macos-menu-bar)。通过 CLI，您将获得：
+```python
+# /// script
+# dependencies = ["torch", "transformers"]
+# ///
+
+from transformers import pipeline
+
+generator = pipeline(
+    "text-generation",
+    model="HuggingFaceTB/SmolLM2-360M-Instruct",
+    dtype="float16",
+)
+messages = [{
+    "role": "user",
+    "content": "Suggest a name for a robot that helps people learn Python. Answer with only the name.",
+}]
+outputs = generator(messages, max_new_tokens=48, do_sample=False, return_full_text=False)
+print(outputs[0]["generated_text"])
+```
+
+[dependency header](https://docs.astral.sh/uv/guides/scripts/#declaring-script-dependencies) 告诉 uv 在作业中安装 `torch` 和 `transformers`。您还可以使用 `--with` 指定依赖关系。您只需要本地的 `hf` CLI。
+
+该脚本在作业的 GPU 上运行 [SmolLM2-360M-Instruct](https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct)。 `max_new_tokens` 限制答案长度。
+
+启动时间因硬件可用性、依赖项安装和模型下载而异。
+
+> [!提示]
+> 按 Ctrl+C 停止流日志；作业继续运行。要停止作业，请使用 `hf jobs cancel JOB_ID`，将 `JOB_ID` 替换为 CLI 打印的 ID。
+
+您还可以使用 [⟦T21⟧ client](https://huggingface.co/docs/huggingface_hub/guides/jobs) 从 Python 启动相同的作业：
+
+```python
+from huggingface_hub import run_uv_job
+
+job = run_uv_job(
+    "https://raw.githubusercontent.com/huggingface/hub-docs/main/examples/jobs/hello_gpu.py",
+    flavor="t4-small",
+    timeout="5m",
+)
+print(job.url)
+```
+
+## 4. 检查结果
+
+使用 GPU 作业的 ID 检查其状态并再次读取其日志：
 
 ```bash
->>> hf jobs stats
-JOB ID                   CPU % NUM CPU MEM % MEM USAGE        NET I/O         GPU UTIL % GPU MEM % GPU MEM USAGE   
------------------------- ----- ------- ----- ---------------- --------------- ---------- --------- --------------- 
-695e83c5d2f3efac77e8cf18 8%    12.0    7.18% 10.9GB / 152.5GB 0.0bps / 0.0bps 100%       31.92%    25.9GB / 81.2GB
+>>> hf jobs inspect JOB_ID
+>>> hf jobs logs JOB_ID
 ```
 
-工作完成后，在您的帐户中找到您的模型：
+成功运行的状态为`COMPLETED`，其日志包含生成的答案。
 
-恭喜！您只需运行第一个作业来微调开源模型 🔥请随意在本地尝试您的模型并使用例如评估它单击“使用此模型”即可创建[transformers](https://huggingface.co/docs/transformers)，或者使用“部署”按钮将其一键部署到[Inference Endpoints](https://huggingface.co/docs/inference-endpoints)。
+作业完成后，答案仍保留在作业日志中。当您调整脚本来生成文件时，[save those results to a bucket or Hub repository](./jobs-manage#persist-your-results)，以便它们在作业中存活下来。
+
+## 尝试你自己的脚本（可选）
+
+将上面的代码复制到`hello_gpu.py`中，编辑`messages`中的提示符，然后运行本地文件：
+
+```bash
+hf jobs uv run --flavor t4-small --timeout 5m hello_gpu.py
+```
+
+CLI 会自动上传您编辑的脚本。如果您将其保存在其他地方，请将 `hello_gpu.py` 替换为其路径。## 后续步骤
+
+在此示例的基础上构建更大的工作负载：
+
+- [Annotate a dataset with OCR, classification or batch inference](./jobs-examples#uv-scripts)。
+- [Fine-tune and save a model](./jobs-examples#guides-to-train-with-jobs) 使用 TRL 或 Unsloth。
+- [Read datasets or buckets and save processed results](./jobs-large-datasets)。
+- [Run commands in Docker images](./jobs-configuration#docker-jobs)。
+- [Use Jobs from a coding agent](./jobs-examples#coding-agent-skills)。
 
 ### GGUF 在 LM Studio 中的使用
 https://huggingface.co/docs/hub/lmstudio.md

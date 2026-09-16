@@ -81,8 +81,8 @@
       "translatedAt": "2026-08-14T08:23:21.180Z"
     },
     "hub/audit-logs.md": {
-      "hash": "617dc018438b8e74de3b6460e95e1aac390cb5d5",
-      "translatedAt": "2026-08-14T08:23:20.548Z"
+      "hash": "b2e33dfb19fcf6bbba0c09dfe55821c6ca1ae761",
+      "translatedAt": "2026-09-16T12:33:21.916Z"
     },
     "hub/billing.md": {
       "hash": "660cb5e0fb5fe307f1150a62ad682e3312669d67",
@@ -357,8 +357,8 @@
       "translatedAt": "2026-08-14T08:24:13.758Z"
     },
     "hub/enterprise-tokens-management.md": {
-      "hash": "075a38a49962952cc20c0554f8538ca489c2940f",
-      "translatedAt": "2026-08-14T08:24:13.370Z"
+      "hash": "113d81337515aaecf049d5cd8b6bcafc9ea8c1f0",
+      "translatedAt": "2026-09-16T12:33:25.374Z"
     },
     "hub/gguf-gpt4all.md": {
       "hash": "cd103005c16010a5aeae6e756aa4e549e9f475df",
@@ -393,12 +393,12 @@
       "translatedAt": "2026-08-14T08:24:20.458Z"
     },
     "hub/jobs-configuration.md": {
-      "hash": "9849c7c0017b0b3c7c56b5a768965a63a826c981",
-      "translatedAt": "2026-09-05T11:14:37.980Z"
+      "hash": "3e91259803a51e9e96ebf749cfd0edb0cbc18ae4",
+      "translatedAt": "2026-09-16T12:33:25.381Z"
     },
     "hub/jobs-overview.md": {
-      "hash": "7dcbb1065730d9c1ddae2f530033e938d988d5ac",
-      "translatedAt": "2026-08-14T08:24:21.419Z"
+      "hash": "639bd18da4a574bd4a54bd2e3ef6735e92197a76",
+      "translatedAt": "2026-09-16T12:33:23.681Z"
     },
     "hub/jobs-popular-images.md": {
       "hash": "4e385e5cfd86d3f7fae38b67222da018ec57d8d5",
@@ -413,16 +413,16 @@
       "translatedAt": "2026-08-14T08:24:23.635Z"
     },
     "hub/jobs-quickstart.md": {
-      "hash": "63954c39490c4164564f74a62aa93fcfd8fdad04",
-      "translatedAt": "2026-08-14T08:24:23.606Z"
+      "hash": "22cf297bd8db468ba33a36b5cd68734730d6706e",
+      "translatedAt": "2026-09-16T12:33:26.460Z"
     },
     "hub/jobs-webhooks.md": {
       "hash": "5b9158aeba0bea3af5b6e1d47cacad12b8c902a6",
       "translatedAt": "2026-09-03T12:03:23.151Z"
     },
     "hub/jobs.md": {
-      "hash": "73dce88dca826603e16898aa694cede40aabf6ee",
-      "translatedAt": "2026-08-14T08:24:24.382Z"
+      "hash": "66aa90d06222d5a95deebd72333681b37f8dfcf2",
+      "translatedAt": "2026-09-16T12:33:25.921Z"
     },
     "hub/jobs-serving.md": {
       "hash": "165b06125c606b8df3889d6778d4c251cead7be9",
@@ -433,8 +433,8 @@
       "translatedAt": "2026-08-14T08:24:26.353Z"
     },
     "hub/jobs-pricing.md": {
-      "hash": "a594efb83e7b7737c14102477850e1ec2f4c08ed",
-      "translatedAt": "2026-09-03T12:03:27.304Z"
+      "hash": "2ea8eb6e4eb83c798cce7a4264ac7ec2b8fc7caf",
+      "translatedAt": "2026-09-16T12:33:27.018Z"
     },
     "hub/lmstudio.md": {
       "hash": "a435818c90ea450bffc7477c11a226ba239814c5",
@@ -1065,8 +1065,8 @@
       "translatedAt": "2026-08-14T08:26:27.052Z"
     },
     "hub/webhooks.md": {
-      "hash": "d33bd5e2b284f77395849896357e4e1eca5e4490",
-      "translatedAt": "2026-09-03T12:03:28.638Z"
+      "hash": "e6365fcbf815f39109eafd41d92c98bf4e079222",
+      "translatedAt": "2026-09-16T12:33:29.706Z"
     },
     "hub/webhooks-guide-metadata-review.md": {
       "hash": "7f63463dca93e25f2f91b2b637f33eca36230e65",
@@ -1549,8 +1549,8 @@
       "translatedAt": "2026-09-15T12:37:03.582Z"
     },
     "peft/developer_guides/contributing.md": {
-      "hash": "adfdb9b63710961e63266deeb57f825bea964179",
-      "translatedAt": "2026-09-15T12:37:06.652Z"
+      "hash": "4318bc0b200414fa60484db96f7a6aad85c81b3d",
+      "translatedAt": "2026-09-16T12:33:29.340Z"
     },
     "peft/developer_guides/custom_models.md": {
       "hash": "8319c871a445a3a927f28313ad0883e0f048dfc8",
@@ -2001,10 +2001,10 @@
       "translatedAt": "2026-08-11T13:59:27.535Z"
     }
   },
-  "updatedAt": "2026-09-15T12:37:16.889Z",
+  "updatedAt": "2026-09-16T12:33:29.706Z",
   "stats": {
-    "translated": 23,
-    "skipped": 377,
+    "translated": 9,
+    "skipped": 391,
     "failed": 0,
     "total": 400
   }

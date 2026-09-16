@@ -5,7 +5,7 @@
 Hugging Face Jobs 让您可以在 Hugging Face 基础设施上运行计算任务，而无需自行管理。只需在各种 CPU 和 GPU 选项中定义命令、Docker 映像和硬件风格即可。
 
 > [!提示]
-> 任何具有积极 [credit balance](https://huggingface.co/settings/billing) 的用户或组织都可以获得工作。 [PRO](./pro)、团队或 [Enterprise](./enterprise) 订阅中包含的每月计算积分计入该余额，并可用于工作。
+> 任何具有积极的 [credit balance](https://huggingface.co/settings/billing) 的用户或组织都可以获得工作。 [PRO](./pro)、团队或 [Enterprise](./enterprise) 订阅中包含的每月计算积分计入该余额，并可用于工作。
 
 作业计费基于硬件使用情况并按分钟计算：作业在请求的硬件上运行的每分钟都会向您收费。
 
@@ -15,7 +15,9 @@ Hugging Face Jobs 让您可以在 Hugging Face 基础设施上运行计算任务
 
 ## 定价
 
-作业根据所使用的硬件按分钟计费。以下是可用的硬件选项及其定价。
+作业根据所使用的硬件按分钟计费。例如，`a10g-small` 上 10 分钟的计费时间大约需要 0.17 美元的硬件费用。
+
+要管理支出，[set a timeout](#set-timeout-limits)、[cancel a Job](#cancel-irrelevant-jobs) 或 [view your current usage](#view-current-compute-usage)。
 
 ＃＃＃ 中央处理器| **硬件** | **CPU** | **内存** | **临时存储** | **每小时价格** |
 |------------------------ |-------------- |------------- |------------------------ | ----------------- |
@@ -104,6 +106,8 @@ hf jobs run --namespace my-org-name --resource-group-id <resource-group-id> ...
 ... )
 ```
 
+组织和资源组管理员可以为向该组计费的作业设置 [monthly spending limits](./security-resource-groups#spend-limits)。
+
 ### 查看当前计算使用情况您可以在 [Billing](https://huggingface.co/settings/billing) 页面的“计算使用情况”部分下查看作业的当前账单信息：
 
 有关计费的更多信息可以在 [dedicated Hub documentation](https://huggingface.co/docs/hub/en/billing) 中找到。
@@ -112,8 +116,8 @@ hf jobs run --namespace my-org-name --resource-group-id <resource-group-id> ...
 
 #### 设置超时限制
 
-创建作业时设置`timeout`，以确保其运行不会超过一定的持续时间。
-达到`timeout`持续时间的作业运行将自动停止，其计费也将自动停止。
+创建Job时设置一个`timeout`以确保它不能运行超过一定的持续时间。
+达到`timeout`持续时间的作业运行将自动停止，其计费也是如此。
 以下是使用 CLI 设置超时的方法：
 
 ```bash

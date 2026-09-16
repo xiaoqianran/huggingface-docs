@@ -8,7 +8,7 @@
 
 在打开拉取请求（包括草稿）之前，请在 [huggingface/peft](https://github.com/huggingface/peft/issues) 中打开或查找问题并讨论您提议的贡献。如果存在现有问题并且有人已经在处理该问题、已声明其处理该问题的意图或有公开的 PR，则您不应提交单独的 PR。等待 PEFT 维护者或 Hugging Face 成员明确批准该提案。如果您提出问题，请确保描述的长度和复杂性与问题的复杂性成比例。通常，带有复制者的简短描述比长描述更有价值。
 
-使用 `#123`、`huggingface/peft#123` 或 `https://github.com/huggingface/peft/issues/123` 在 PR 描述中链接已批准的问题。例如，写`Fixes #123`。该引用必须指向 PEFT 存储库中的问题。如果您引用多个问题，批准其中一个就足够了。自动化工作流程会检查 PR 是否有相应的批准问题。未经验证批准的 PR 将自动关闭并附有解释。您可以获得批准，更新 PR 描述，并重新打开相同的 PR；请不要创建替代品。如果您认为您的 PR 被错误关闭，请 ping PR 上的维护者。
+使用 `#123`、`huggingface/peft#123` 或 `https://github.com/huggingface/peft/issues/123` 在 PR 描述中链接已批准的未解决问题。作为例外，维护人员可以指定特定的长期讨论，可以通过完整的 GitHub URL 引用这些讨论，而无需单独的批准评论。如果您引用多个问题或讨论，则一份有效的引用就足够了。自动化工作流程会检查 PR 中是否有已批准的未决问题或讨论。没有有效参考的 PR 将自动关闭并附有解释。您可以获得问题批准、更新 PR 描述并重新打开同一 PR；请不要创建替代品。如果您认为您的 PR 被错误关闭，请 ping PR 上的维护者。
 
 独立的过时机器人仍然可以关闭不活动的项目，即使标记为`triaged`。如果您觉得维护者忽视了您的贡献，您可以对他们进行 ping 操作，但不能早于两周不活动之前。
 
@@ -48,7 +48,7 @@
    pip install -e ".[test]"
    ```
 
-   （如果虚拟环境中已经安装了PEFT，请先使用`pip uninstall peft`将其删除，然后再重新安装。）
+   （如果虚拟环境中已经安装了PEFT，请使用`pip uninstall peft`将其删除，然后重新安装。）
 
 如果您不熟悉创建拉取请求，请遵循 GitHub 的 [Creating a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) 指南。
 
@@ -69,9 +69,9 @@ make test
 ```sh
 make quality  # just check
 make style  # check and fix
-```运行 `make quality` 还将检查文档中是否提到了 PEFT 公共 API 中的所有方法/类（即 `peft.__all__` 中提到的所有内容）。这些错误无法通过 `make style` 修复，您需要确保在文档中记录公共 API 中的新项目来修复此错误。
+```运行 `make quality` 还将检查文档中是否提到了 PEFT 公共 API 中的所有方法/类（即 `peft.__all__` 中提到的所有内容）。这些错误无法通过 `make style` 修复，您需要确保在文档中记录公共 API 中的新项目以修复此错误。
 
-您还可以设置 [⟦T21⟧](https://pre-commit.com/) 来运行这些修复
+您还可以设置 [⟦T20⟧](https://pre-commit.com/) 来运行这些修复
 自动作为 Git 提交挂钩。
 
 ```bash
@@ -79,7 +79,7 @@ $ pip install pre-commit
 $ pre-commit install
 ```
 
-运行所有测试可能需要一段时间，因此在开发过程中，仅使用 [run tests specific to your change](https://docs.pytest.org/en/6.2.x/usage.html#specifying-tests-selecting-tests) 会更高效，例如通过：
+运行所有测试可能需要一段时间，因此在开发过程中，仅[run tests specific to your change](https://docs.pytest.org/en/6.2.x/usage.html#specifying-tests-selecting-tests)可能会更高效，例如通过：
 
 ```sh
 pytest tests/<test-file-name> -k <name-of-test>
@@ -91,7 +91,7 @@ pytest tests/<test-file-name> -k <name-of-test>
 
 有关添加新测试的一般指南，请查看`tests/README.md`。
 
-如果您的更改特定于硬件设置（例如，它需要 CUDA），请查看 [⟦T23⟧](https://github.com/huggingface/peft/blob/1c1c7fdaa6e6abaa53939b865dee1eded82ad032/tests/test_gpu_examples.py) 和 [⟦T24⟧](https://github.com/huggingface/peft/blob/1c1c7fdaa6e6abaa53939b865dee1eded82ad032/tests/test_common_gpu.py)，看看在那里添加测试是否有意义。如果您的更改可能会影响保存和加载模型，请使用 `--regression` 标志运行测试以触发回归测试。
+如果您的更改特定于硬件设置（例如，它需要 CUDA），请查看 [⟦T22⟧](https://github.com/huggingface/peft/blob/1c1c7fdaa6e6abaa53939b865dee1eded82ad032/tests/test_gpu_examples.py) 和 [⟦T23⟧](https://github.com/huggingface/peft/blob/1c1c7fdaa6e6abaa53939b865dee1eded82ad032/tests/test_common_gpu.py)，看看在那里添加测试是否有意义。如果您的更改可能会影响保存和加载模型，请使用 `--regression` 标志运行测试以触发回归测试。
 
 ## 过时的 PR当您处理 PR 时，底层代码库可能会由于合并其他更改而发生更改。如果发生这种情况 - 特别是当存在合并冲突时 - 请使用最新更改更新您的分支。这可以是合并或变基，一旦准备好，我们将压缩并合并 PR。如果可能的话，**避免强行推动**以使审核更容易。
 
@@ -135,7 +135,7 @@ pytest tests/<test-file-name> -k <name-of-test>
 - [ ] 将方法注册到调谐器`__init__.py`和`register_peft_method(...)`中。
 - [ ] 从`src/peft/tuners/__init__.py`和`src/peft/__init__.py`导出新的配置/模型。
 - [ ] 如果该方法需要Transformers模型的默认目标模块，请在`src/peft/utils/constants.py`中添加映射。
-- [ ] 将方法添加到`tests/test_custom_models.py` 中的测试矩阵中，因为这些是最广泛和最快的测试。检查测试是否通过`pytest tests/test_custom_models.py -k <method-name> -v`，修复失败（如果有）。
+- [ ] 将方法添加到`tests/test_custom_models.py`中的测试矩阵中，因为这些是最广泛和最快的测试。检查测试是否通过 `pytest tests/test_custom_models.py -k <method-name> -v`，修复失败（如果有）。
 - [ ] 在推送之前使用 `make style` 运行样式/质量检查。
 - [ ] 在 PR 描述中，解释方法、链接论文、总结权衡并列出添加的内容。
 

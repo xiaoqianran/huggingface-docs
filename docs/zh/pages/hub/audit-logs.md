@@ -5,7 +5,7 @@
 > [!警告]
 > 此功能是团队和企业计划的一部分。
 
-审核日志使组织管理员能够轻松查看成员采取的操作，包括组织成员资格、存储库设置和计费更改。
+审核日志使组织管理员能够轻松审查成员采取的操作，包括组织成员身份、存储库设置和计费更改。
 
   <img
     class="block dark:hidden m-0!"
@@ -30,16 +30,26 @@
 
 您还可以将完整的审核日志下载为 JSON 文件以进行进一步分析。
 
-## 跟踪哪些事件？
+### 通过API导出
 
-每个操作都有一个 **事件名称**，采用 `scope.action` 格式（例如 `repo.create`、`collection.delete`）。这是每个日志条目和导出的 JSON 中的 `type` 字段 - 在搜索或过滤日志时使用它。
+程序化导出可在以下位置获得：
 
-### 组织管理与安全
+```
+GET https://huggingface.co/api/organizations/{org}/audit-log/export
+```
+
+使用具有组织的 **导出审核日志** 权限 (`org.auditLog.write`) 的用户访问令牌或服务帐户令牌进行身份验证。响应是日志条目的 JSON 数组，与从设置页面下载的文件相同。与手动导出一样，API 调用记录为`org.audit_log.export`。
+
+该端点也记录在 OpenAPI 参考中。
+
+## 跟踪哪些事件？每个操作都有一个 **事件名称**，采用 `scope.action` 格式（例如 `repo.create`、`collection.delete`）。这是每个日志条目和导出的 JSON 中的 `type` 字段 - 在搜索或过滤日志时使用它。
+
+### Organization Management & Security
 
   > [!提示]
   > 下面的 **设置更改** 事件仅适用于 2026 年 6 月 16 日之后采取的操作。该日期之前的事件使用唯一的 `org.update_settings` 事件类型。任何过滤或解析 2026 年 6 月 16 日之前创建的组织的事件 `type` 字段的集成都应该处理这两者。- **核心组织变更** — 创建、删除、恢复和重命名。
   - **活动：** `org.create`、`org.delete`、`org.restore`、`org.rename`
-- **设置更改** — 组织设置的更新会记录为精细的 `org.settings.*` 事件，因此您可以准确地查明更改的设置。
+- **设置更改** — 组织设置的更新被记录为精细的 `org.settings.*` 事件，因此您可以准确地查明更改的设置。
   - 常规设置 — 配置文件、存储区域、资源组和发布者门控。
   - **活动：** `org.settings.profile`、`org.settings.regions`、`org.settings.resource_groups`、`org.settings.publisher_gating`
   - 推理提供程序 — 提供程序配置、API 密钥添加/删除以及使用设置。
@@ -66,7 +76,7 @@
 - **邀请** — 通过电子邮件发送邀请、邀请链接以及用户接受邀请。
   - **活动：** `org.invite_user`、`org.invite.accept`、`org.invite.email`
 - **自动加入** — 通过经过验证的电子邮件域或“请求访问”加入。
-  - **活动：** `org.join.from_domain`、`org.join.automatic`
+  - **活动：** `org.join.from_domain`，`org.join.automatic`
 
 ### 内容和资源管理- **存储库管理** — 创建、删除、移动、禁用/重新启用、重复设置、DOI 删除、资源组分配和常规存储库设置（可见性、门控、讨论等）。还有LFS文件删除。
   - **活动：** `repo.create`、`repo.delete`、`repo.move`、`repo.disable`、`repo.removeDisable`、`repo.duplication`、`repo.delete_doi`、`repo.update_resource_group`、`repo.update_settings`、`repo.delete_lfs_file`
@@ -101,7 +111,7 @@
 
 ## 事件参考
 
-上面的列表涵盖了审核日志 UI 和导出中显示的每种事件类型。事件名称遵循 `scope.action` 模式；范围包括 `org`、`repo`、`collection`、`spaces`、`resource_group`、`jobs`、`scheduled_job` 和 `billing`。导出操作本身记录为 `org.audit_log.export`，但该事件不包含在默认审核日志视图中。
+上面的列表涵盖了审核日志 UI 和导出中显示的每种事件类型。事件名称遵循 `scope.action` 模式；范围包括`org`、`repo`、`collection`、`spaces`、`resource_group`、`jobs`、`scheduled_job`和`billing`。导出操作本身记录为 `org.audit_log.export`，但该事件不包含在默认审核日志视图中。
 
 ### 抱脸登录
 https://huggingface.co/docs/hub/oauth.md

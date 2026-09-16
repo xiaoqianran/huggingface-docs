@@ -2,9 +2,11 @@
 
 # 职位
 
-`Hugging Face Jobs` 为 AI 和数据工作流程提供计算，允许您使用熟悉的 UV 和类似 Docker 的界面在 Hugging Face 基础设施上运行工作负载。作业非常适合微调 AI 模型、使用 GPU 运行推理以及数据摄取和处理。
+Hugging Face Jobs 在云中的 CPU 和 GPU 上运行您的代码。直接运行 Python 脚本，或将 Docker 映像用于其他工作负载和自定义环境。
 
-您可以使用 `hf` CLI、`huggingface_hub` Python 客户端或作业 HTTP API 运行作业。 Jobs 支持从 CPU 到 A100 和 TPU 的任何硬件，采用即用即付定价，您只需按使用的秒数付费。
+使用作业来微调模型、对数据集运行推理或处理数据，而无需设置自己的计算基础设施。
+
+[Run your first Job](./jobs-quickstart) 使用 `hf` CLI，或 [browse examples](./jobs-examples) 从现有脚本启动。作业也可以在 [⟦T1⟧ Python client](https://huggingface.co/docs/huggingface_hub/guides/jobs) 和 [HTTP API](./jobs-overview#run-jobs-from-anywhere) 上进行。
 
 ## 内容
 
