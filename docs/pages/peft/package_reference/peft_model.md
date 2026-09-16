@@ -1103,7 +1103,7 @@ the original, mutated instance of the passed model.
 peft.get_peft_model_state_dict(model, state_dict = None, adapter_name: str = 'default', unwrap_compiled: bool = False, save_embedding_layers: bool | Literal['auto'] = 'auto')
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/save_and_load.py#L143)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/save_and_load.py#L148)
 
 **Parameters:**
 

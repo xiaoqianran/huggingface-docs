@@ -588,7 +588,7 @@ Find out more about Image To Image [here](../tasks/image-to-image).
 
 <InferenceSnippet
     pipeline=image-to-image
-    providersMapping={ {"replicate":{"modelId":"black-forest-labs/FLUX.2-dev","providerModelId":"black-forest-labs/flux-2-dev"} } }
+    providersMapping={ {"replicate":{"modelId":"black-forest-labs/FLUX.2-klein-9B","providerModelId":"black-forest-labs/flux-2-klein-9b"} } }
 />
 
 ### Text To Image
@@ -844,7 +844,7 @@ Find out more about Image To Image [here](../tasks/image-to-image).
 
 <InferenceSnippet
     pipeline=image-to-image
-    providersMapping={ {"fal-ai":{"modelId":"black-forest-labs/FLUX.2-dev","providerModelId":"fal-ai/flux-2/edit"} } }
+    providersMapping={ {"fal-ai":{"modelId":"black-forest-labs/FLUX.2-klein-9B","providerModelId":"fal-ai/flux-2/klein/9b/edit"} } }
 />
 
 ### Text To Image
@@ -1164,15 +1164,6 @@ Find out more about Chat Completion (VLM) [here](../tasks/chat-completion).
     pipeline=image-text-to-text
     providersMapping={ {"together":{"modelId":"zai-org/GLM-5.3-Flash","providerModelId":"zai-org/GLM-5.3-Flash"} } }
 conversational />
-
-### Feature Extraction
-
-Find out more about Feature Extraction [here](../tasks/feature-extraction).
-
-<InferenceSnippet
-    pipeline=feature-extraction
-    providersMapping={ {"together":{"modelId":"intfloat/multilingual-e5-large-instruct","providerModelId":"intfloat/multilingual-e5-large-instruct"} } }
-/>
 
 ### Template
 https://huggingface.co/docs/inference-providers/providers/hf-inference.md

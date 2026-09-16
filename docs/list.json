@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-15T12:36:52.522673+00:00",
+  "fetchedAt": "2026-09-16T12:33:19.492645+00:00",
   "method": "llms-full-split",
   "ok": 2177,
   "failed": 0,
@@ -5088,7 +5088,7 @@
     },
     {
       "rel": "hub/jobs-pricing.md",
-      "bytes": 7826,
+      "bytes": 8166,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs-pricing.md",
       "track": "Hub",
@@ -5448,7 +5448,7 @@
     },
     {
       "rel": "hub/jobs-overview.md",
-      "bytes": 3300,
+      "bytes": 2738,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs-overview.md",
       "track": "Hub",
@@ -5547,7 +5547,7 @@
     },
     {
       "rel": "hub/jobs-quickstart.md",
-      "bytes": 6241,
+      "bytes": 4874,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs-quickstart.md",
       "track": "Hub",
@@ -5619,7 +5619,7 @@
     },
     {
       "rel": "hub/audit-logs.md",
-      "bytes": 7902,
+      "bytes": 8432,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/audit-logs.md",
       "track": "Hub",
@@ -6123,7 +6123,7 @@
     },
     {
       "rel": "hub/enterprise-tokens-management.md",
-      "bytes": 8776,
+      "bytes": 9125,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/enterprise-tokens-management.md",
       "track": "Hub",
@@ -6573,7 +6573,7 @@
     },
     {
       "rel": "hub/jobs.md",
-      "bytes": 907,
+      "bytes": 1014,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs.md",
       "track": "Hub",
@@ -6690,7 +6690,7 @@
     },
     {
       "rel": "hub/jobs-configuration.md",
-      "bytes": 19361,
+      "bytes": 21385,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs-configuration.md",
       "track": "Hub",
@@ -7239,7 +7239,7 @@
     },
     {
       "rel": "hub/webhooks.md",
-      "bytes": 12809,
+      "bytes": 13123,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/webhooks.md",
       "track": "Hub",
@@ -8040,7 +8040,7 @@
     },
     {
       "rel": "inference-providers/index.md",
-      "bytes": 71849,
+      "bytes": 71565,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/index.md",
       "track": "Inference Providers",
@@ -8130,7 +8130,7 @@
     },
     {
       "rel": "inference-providers/guides/github-actions-code-review.md",
-      "bytes": 101003,
+      "bytes": 100902,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/github-actions-code-review.md",
       "track": "Inference Providers",
@@ -9912,7 +9912,7 @@
     },
     {
       "rel": "peft/package_reference/lora.md",
-      "bytes": 110397,
+      "bytes": 110399,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/lora.md",
       "track": "PEFT",
@@ -9948,7 +9948,7 @@
     },
     {
       "rel": "peft/package_reference/functional.md",
-      "bytes": 10331,
+      "bytes": 10454,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/functional.md",
       "track": "PEFT",
@@ -10182,7 +10182,7 @@
     },
     {
       "rel": "peft/developer_guides/contributing.md",
-      "bytes": 13486,
+      "bytes": 13585,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/peft/v0.21.0/developer_guides/contributing.md",
       "track": "PEFT",
@@ -19650,7 +19650,7 @@
       "toc": 270,
       "found": 269,
       "written": 269,
-      "full_bytes": 1452541
+      "full_bytes": 1454359
     },
     {
       "pkg": "huggingface_hub",
@@ -19671,7 +19671,7 @@
       "toc": 66,
       "found": 28,
       "written": 28,
-      "full_bytes": 416056
+      "full_bytes": 415671
     },
     {
       "pkg": "kernels",
@@ -19699,7 +19699,7 @@
       "toc": 81,
       "found": 79,
       "written": 79,
-      "full_bytes": 874759
+      "full_bytes": 874983
     },
     {
       "pkg": "safetensors",

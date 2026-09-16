@@ -20,7 +20,8 @@ adapter_name (`str`) : The adapter name.
 
 autocast_adapter_dtype (`bool`, *optional*) : Whether to autocast the adapter dtype. Defaults to `True`.
 
-A helper method to cast the adapter weights to the correct dtype.
+A helper method to cast the adapter weights to the correct dtype. It reassigns new parameters to the adapter
+layers, if some object references the old parameters, they will not be updated.
 
 Currently, this only upcasts float dtypes to float32.
 
@@ -63,7 +64,7 @@ PEFT model instance, or just reloading the base model.
 peft.get_peft_model_state_dict(model, state_dict = None, adapter_name: str = 'default', unwrap_compiled: bool = False, save_embedding_layers: bool | Literal['auto'] = 'auto')
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/save_and_load.py#L143)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/save_and_load.py#L148)
 
 **Parameters:**
 
@@ -150,7 +151,7 @@ between multiple PEFT adapters.
 peft.tuners.tuners_utils.set_requires_grad(model, adapter_names: str | Sequence[str], requires_grad: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L2753)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/tuners_utils.py#L2766)
 
 **Parameters:**
 
@@ -170,7 +171,7 @@ Enable or disable gradients on the given adapter(s).
 peft.set_peft_model_state_dict(model, peft_model_state_dict, adapter_name = 'default', ignore_mismatched_sizes: bool = False, low_cpu_mem_usage: bool = False)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/save_and_load.py#L516)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/save_and_load.py#L549)
 
 **Parameters:**
 
