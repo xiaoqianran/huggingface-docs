@@ -22,7 +22,7 @@ Hugging Face Hub 通过 Jobs 为人工智能和数据工作流程提供计算。
 
 ## 作业命令行界面
 
-使用 [⟦T39⟧ CLI](./cli#hf-jobs) 从命令行运行作业，并传递 `--flavor` 指定您的硬件。
+使用 [⟦T41⟧ CLI](./cli#hf-jobs) 从命令行运行作业，并传递 `--flavor` 指定您的硬件。
 
 `hf jobs run` 使用 Docker 映像和命令以及熟悉的类似 Docker 的界面来运行作业。想想`docker run`，但对于在任何硬件上运行代码：
 
@@ -39,7 +39,7 @@ Hugging Face Hub 通过 Jobs 为人工智能和数据工作流程提供计算。
 ```UV 脚本是 Python 脚本，使用 [UV documentation](https://docs.astral.sh/uv/guides/scripts/) 中定义的特殊注释语法将其依赖项直接包含在文件中。
 
 现在本指南的其余部分将向您展示 python API。
-如果您想查看所有可用的 `hf jobs` 命令和选项，请查看 [guide on the ⟦T45⟧ command line interface](./cli#hf-jobs)。
+如果您想查看所有可用的 `hf jobs` 命令和选项，请查看 [guide on the ⟦T47⟧ command line interface](./cli#hf-jobs)。
 
 > [!提示]
 > 需要一台“交互式”机器，而不是一劳永逸的工作——例如运行人工智能生成的代码，通过命令执行和文件传输？查看基于 Jobs 构建的 [Sandboxes](./sandbox)。
@@ -51,7 +51,7 @@ Hugging Face Hub 通过 Jobs 为人工智能和数据工作流程提供计算。
 您只能管理您拥有的作业（在您的用户名命名空间下）或来自您具有写入权限的组织的作业。
 此功能是按使用量付费的：您只需为使用的秒数付费。
 
-[run_job()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job) 允许您在 Hugging Face 的基础设施上运行任何命令：
+[run_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job) 允许您在 Hugging Face 的基础设施上运行任何命令：
 
 ```python
 # Directly run Python code
@@ -87,8 +87,8 @@ Hugging Face Hub 通过 Jobs 为人工智能和数据工作流程提供计算。
 ```
 
 > [!警告]
-> **重要**：作业有默认超时（30 分钟），之后它们将自动停止。对于模型训练等长时间运行的任务，请确保使用 `timeout` 参数设置自定义超时。详情请参阅[Configure Job Timeout](#configure-job-timeout)。[run_job()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job) 返回[JobInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.JobInfo)，其中包含 Hugging Face 上作业的 URL，您可以在其中查看作业状态和日志。
-保存[JobInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.JobInfo)的作业ID以管理作业：
+> **重要**：作业有默认超时（30 分钟），之后它们将自动停止。对于模型训练等长时间运行的任务，请确保使用 `timeout` 参数设置自定义超时。详情请参阅[Configure Job Timeout](#configure-job-timeout)。[run_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job) 返回[JobInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.JobInfo)，其中包含 Hugging Face 上作业的 URL，您可以在其中查看作业状态和日志。
+保存[JobInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.JobInfo)的作业ID以管理作业：
 
 ```python
 >>> from huggingface_hub import run_job
@@ -102,7 +102,7 @@ https://huggingface.co/jobs/lhoestq/687f911eaea852de79c4a50a
 687f911eaea852de79c4a50a
 ```
 
-作业在后台运行。下一节将引导您通过 [inspect_job()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.inspect_job) 了解作业状态、[fetch_job_logs()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_job_logs) 查看日志以及 [fetch_job_metrics()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_job_metrics) 监控资源使用情况。
+作业在后台运行。下一节将引导您通过 [inspect_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.inspect_job) 了解作业状态，通过 [fetch_job_logs()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_job_logs) 查看日志，并通过 [fetch_job_metrics()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_job_metrics) 监控资源使用情况。
 
 ## 检查作业状态
 
@@ -155,7 +155,7 @@ Hello from the cloud!
 
 ## 等待作业完成
 
-使用 [wait_for_job()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.wait_for_job) 进行阻塞，直到作业到达终止阶段（`COMPLETED`、`CANCELED`、`ERROR` 或 `DELETED`）。最终的[JobInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.JobInfo)总是返回——失败的作业不会引发异常——所以检查`job.status.stage`以对结果采取行动。传递作业 ID 列表以立即等待整批作业。
+使用 [wait_for_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.wait_for_job) 进行阻塞，直到作业到达终止阶段（`COMPLETED`、`CANCELED`、`ERROR` 或 `DELETED`）。最终的[JobInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.JobInfo)总是返回——失败的作业不会引发异常——所以检查`job.status.stage`以对结果采取行动。传递作业 ID 列表以立即等待整批作业。
 
 ```python
 >>> from huggingface_hub import run_job, wait_for_job
@@ -224,9 +224,9 @@ This code ran with the following GPU: NVIDIA A10G
 > 有关在 Hugging Face 基础设施上使用 TRL 运行模型训练作业的综合指南，请查看 [TRL Jobs Training documentation](https://huggingface.co/docs/trl/main/en/jobs_training)。它涵盖了微调配方、硬件选择以及有效训练模型的最佳实践。
 
 以下是运行作业的可用硬件的完整列表：|名称 |漂亮的名字|中央处理器|公羊|存储|加速器|成本/分钟 |成本/小时 |
-| ---| ---| ---| ---| ---| ---| ---| ---|
+| --- | --- | --- | --- | --- | --- | --- | --- |
 | `cpu-basic` | CPU基础| 2 个虚拟CPU | 16GB| 50GB| - | 0.0002 美元 | 0.01 美元 |
-| `cpu-upgrade` | CPU升级| 8 个 vCPU | 32GB| 50GB| - | 0.0005 美元 | 0.03 美元 |
+| `cpu-upgrade` | CPU升级 | 8 个 vCPU | 32GB| 50GB| - | 0.0005 美元 | 0.03 美元 |
 | `cpu-performance` | CPU性能| 32 个 vCPU | 256 GB | 256 GB 1024 GB | 1024 GB - | 0.0317 美元 | 1.90 美元 |
 | `cpu-xl` |中央处理器XL | 16 个 vCPU | 124GB| 1000 GB | - | 0.0167 美元 | 1.00 美元 |
 | `t4-small` | Nvidia T4 - 小| 4 个虚拟CPU | 15GB| 50GB| 1 个 T4 (16 GB) | 0.0067 美元 | 0.40 美元 |
@@ -267,7 +267,7 @@ This code ran with the following GPU: NVIDIA A10G
 
 ## 挂载卷
 
-使用 [Volume](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.Volume) 列表在作业磁盘上安装卷。
+使用 [Volume](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.Volume) 列表在作业磁盘上挂载卷。
 
 您可以安装任何 Hugging Face 存储库（模型/数据集/空间）或[Storage Bucket](/docs/hub/storage-buckets)。例如：
 
@@ -301,7 +301,7 @@ This code ran with the following GPU: NVIDIA A10G
 
 使用`read_only=True`启用只读：`Volume(type="bucket", read_only=True, ...)`。
 
-### 挂载本地数据要针对计算机上的数据运行作业，请使用 [sync_job_volume()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_job_volume)：它将本地目录同步到您的 `jobs-artifacts` [Storage Bucket](https://huggingface.co/docs/hub/storage-buckets)（如果需要，会自动创建）并返回准备安装的 [Volume](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.Volume)：
+### 挂载本地数据要针对计算机上的数据运行作业，请使用 [sync_job_volume()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_job_volume)：它将本地目录同步到您的 `jobs-artifacts` [Storage Bucket](https://huggingface.co/docs/hub/storage-buckets)（如果需要，会自动创建）并返回准备安装的 [Volume](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.Volume)：
 
 ```python
 >>> from huggingface_hub import run_uv_job, sync_job_volume
@@ -314,7 +314,7 @@ This code ran with the following GPU: NVIDIA A10G
 >>> run_uv_job("train.py", script_args=["--learning-rate", "0.05"], volumes=[volume])
 ```
 
-每个目录在存储桶中都有自己的稳定文件夹：在同一目录上重新运行[sync_job_volume()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_job_volume)只会上传新的或修改的文件。默认情况下，该卷以只读方式安装。
+每个目录在存储桶中都有自己的稳定文件夹：在同一目录上重新运行[sync_job_volume()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_job_volume)只会上传新的或修改的文件。默认情况下，该卷以只读方式安装。
 
 要检索作业写入的文件，请安装一个读写卷（空的输出目录也可以）并在作业结束后将其同步回来：
 
@@ -336,7 +336,7 @@ This code ran with the following GPU: NVIDIA A10G
 
 ## 通过 SSH 进入作业
 
-将 `ssh=True` 传递给 [run_job()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job)（或 [run_uv_job()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.run_uv_job)）以使作业的容器可通过 SSH 访问。 SSH 端点在作业状态中可用：
+将 `ssh=True` 传递给 [run_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job)（或 [run_uv_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_uv_job)）以使作业的容器可通过 SSH 访问。 SSH 端点在作业状态中可用：
 
 ```python
 >>> from huggingface_hub import run_job
@@ -357,7 +357,30 @@ This code ran with the following GPU: NVIDIA A10G
 
 仅允许对作业命名空间具有写入权限的用户（作业创建者或所有者组织的成员），并通过在 https://huggingface.co/settings/keys 注册的 SSH 公钥进行身份验证。
 
-## 配置作业超时作业有一个默认超时（30 分钟），之后它们将自动停止。在运行模型训练等长时间运行的任务时，了解这一点很重要。
+## 网络组将`network_group="<name>"`传递给[run_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job)（或[run_uv_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_uv_job)），让同一命名空间和资源组中的作业在每个端口上相互到达。在每个成员内部，`HF_NETWORK_GROUP_HOSTNAME` 解析为组中的每个作业，`${HF_NETWORK_GROUP_PREFIX}<alias>` 解析为使用 `network_aliases=[...]` 声明别名的成员：
+
+```python
+>>> from huggingface_hub import run_job
+>>> server = run_job(
+...     image="python:3.12",
+...     command=["python", "-m", "http.server", "8000"],
+...     network_group="train",
+...     network_aliases=["master"],
+... )
+>>> client = run_job(
+...     image="python:3.12",
+...     command=["sh", "-c", 'curl --retry 10 --retry-connrefused "http://${HF_NETWORK_GROUP_PREFIX}master:8000/"'],
+...     network_group="train",
+... )
+>>> server.network
+JobNetwork(group='train', aliases=['master'])
+```
+
+成员在准备好之前就可以解析，因此请重试进行连接。组名称和别名由小写字母数字和短划线组成，最多 46 和 34 个字符。
+
+## 配置作业超时
+
+作业有一个默认超时（30 分钟），之后它们将自动停止。在运行模型训练等长时间运行的任务时，了解这一点很重要。
 
 ### 设置自定义超时
 
@@ -408,9 +431,7 @@ This code ran with the following GPU: NVIDIA A10G
 ...     flavor="a10g-large",
 ...     timeout="90m",  # 90 minutes
 ... )
-```
-
-> [!警告]
+```> [!警告]
 > 如果您不指定超时，则默认超时将应用于您的作业。对于模型训练等可能需要数小时的长时间运行的任务，请确保设置适当的超时以避免作业意外终止。
 
 ### 监控作业持续时间
@@ -431,9 +452,11 @@ This code ran with the following GPU: NVIDIA A10G
 ...         print(log)
 ```
 
-有关超时参数的更多详细信息，请参阅[⟦T98⟧ API reference](https://huggingface.co/docs/huggingface_hub/package_reference/hf_api#huggingface_hub.HfApi.run_job.timeout)。
+有关超时参数的更多详细信息，请参见[⟦T104⟧ API reference](https://huggingface.co/docs/huggingface_hub/package_reference/hf_api#huggingface_hub.HfApi.run_job.timeout)。
 
-## 传递环境变量和 Secret您可以使用 `env` 和 `secrets` 将环境变量传递给您的作业：
+## 传递环境变量和 Secret
+
+您可以使用 `env` 和 `secrets` 将环境变量传递给您的作业：
 
 ```python
 # Pass environment variables
@@ -457,12 +480,10 @@ This code ran with the following GPU: NVIDIA A10G
 
 ### 内置环境变量
 
-在作业容器内，以下环境变量自动可用：
-
-|变量|描述 |
+在作业容器内，以下环境变量自动可用：|变量|描述 |
 |----------|-------------|
 | `JOB_ID` |当前作业的唯一标识符。使用它以编程方式引用作业，例如以唯一名称将输出存储在数据集中。 |
-| `ACCELERATOR` |可用的加速器类型（例如，`t4-medium`、`a10g-small`、`a100x4`）。如果没有加速器则为空。 |
+| `ACCELERATOR` |可用加速器的类型（例如，`t4-medium`、`a10g-small`、`a100x4`）。如果没有加速器则为空。 |
 | `CPU_CORES` |作业可用的 CPU 核心数量（例如，`2`、`4`、`8`）。 |
 | `MEMORY` |作业可用的内存量（例如，`16Gi`、`32Gi`）。 |
 
@@ -499,7 +520,9 @@ This code ran with the following GPU: NVIDIA A10G
 ```bash
 >>> hf jobs run --name daily-report python:3.12 python report.py
 >>> hf jobs labels <job_id> --name daily-report
-````hf jobs ls` 显示`NAME` 列，并且可以按名称过滤（`--label name=NAME` 的快捷方式）：
+```
+
+`hf jobs ls` 显示`NAME` 列，并且可以按名称过滤（`--label name=NAME` 的快捷方式）：
 
 ```bash
 >>> hf jobs ls -a --name daily-report
@@ -513,20 +536,18 @@ This code ran with the following GPU: NVIDIA A10G
 ...     command=["python", "-c", "import os; print(os.environ['MY_SECRET'])"],
 ...     labels={"my-label": "my-value", "foo": "bar"},
 ... )
-```
-
-如果您不通过 `--name`，则会从 Docker 映像或脚本自动派生一个名称，加上命令的简短哈希值，因此同一命令的重新运行会共享一个名称（例如 `python:3.12 foo --truc` → `python-3-12-1a2b3c4d`）。
+```如果您不传递名称，则会从 Docker 映像或脚本自动派生一个名称，再加上一个简短的哈希值（例如 `python:3.12 foo --truc` → `python-3-12-1a2b3c4d`）。从 CLI 中，该哈希涵盖了命令*和*已解析的运行时设置（风格、超时、环境值等），因此相同的配置始终会生成相同的名称，并且更改设置（包括来自脚本的 `[tool.hf-jobs]` 标头的设置）会更改它。从 Python API 来看，哈希仅涵盖命令。
 
 ### 更新标签
 
-使用 [update_job_labels()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.update_job_labels) 替换现有作业上的标签。这将替换所有现有的用户提供的标签：
+使用 [update_job_labels()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_job_labels) 替换现有作业上的标签。这将替换所有现有的用户提供的标签：
 
 ```python
 >>> from huggingface_hub import update_job_labels
 >>> update_job_labels(job_id, labels={"env": "prod", "team": "ml"})
 ```
 
-这也适用于 [update_scheduled_job_labels()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.update_scheduled_job_labels) 的预定作业：
+这也适用于[update_scheduled_job_labels()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_scheduled_job_labels)的预定作业：
 
 ```python
 >>> from huggingface_hub import update_scheduled_job_labels
@@ -569,13 +590,33 @@ This code ran with the following GPU: NVIDIA A10G
 
 # Run a command
 >>> run_uv_job("python", script_args=["-c", "import lighteval"], dependencies=["lighteval"])
+```UV 脚本是 Python 脚本，使用特殊的注释语法将其依赖项直接包含在文件中。这使得它们非常适合不需要复杂项目设置的独立任务。在 [UV documentation](https://docs.astral.sh/uv/guides/scripts/) 中了解有关 UV 脚本的更多信息。
+
+#### 使用脚本发送启动配置
+
+仅在特定运行时正确运行的脚本可以在其 PEP 723 标头的可选 `[tool.hf-jobs]` 表中携带该运行时：
+
+```python
+# /// script
+# requires-python = ">=3.11"
+# dependencies = ["vllm", "datasets"]
+#
+# [tool.hf-jobs]
+# image   = "vllm/vllm-openai:unlimited-ocr"
+# flavor  = "l4x1"
+# python  = "/usr/bin/python3"
+# secrets = ["HF_TOKEN"]
+# ///
 ```
 
-UV 脚本是 Python 脚本，使用特殊的注释语法将其依赖项直接包含在文件中。这使得它们非常适合不需要复杂项目设置的独立任务。在 [UV documentation](https://docs.astral.sh/uv/guides/scripts/) 中了解有关 UV 脚本的更多信息。
+然后，`hf jobs uv run ocr.py` 使用正确的图像、硬件和解释器启动，并且 `--flavor`、`-e`...仍然覆盖脚本声明的内容。有关键和合并规则的完整列表，请参阅[CLI guide](./cli#ship-the-launch-config-with-the-script)。
 
-#### UV 脚本的 Docker 镜像虽然 UV 脚本可以内联指定其依赖关系，但 ML 工作负载通常具有复杂的依赖关系。使用已安装这些库的预构建 Docker 映像可以显着加快作业启动速度并避免依赖性问题。
+> [!警告]
+> 该表仅由 `hf` CLI 读取：[run_uv_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_uv_job) 和 [create_scheduled_uv_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_scheduled_uv_job) 忽略它并准确使用给定的参数。换句话说，`run_uv_job("ocr.py")` 和 `hf jobs uv run ocr.py` **不**运行同一个作业 — Python API 需要 `image=`、`flavor=`、... 显式传递。
 
-默认情况下，当您运行 `hf jobs uv run` 时，将使用 `astral-sh/uv:python3.12-bookworm` 图像。该图像基于预装了 uv 的 Python 3.12 Bookworm 发行版。
+#### UV 脚本的 Docker 镜像
+
+虽然 UV 脚本可以内联指定其依赖关系，但 ML 工作负载通常具有复杂的依赖关系。使用已安装这些库的预构建 Docker 映像可以显着加快作业启动速度并避免依赖性问题。默认情况下，当您运行 `hf jobs uv run` 时，将使用 `astral-sh/uv:python3.12-bookworm` 图像。该图像基于预装了 uv 的 Python 3.12 Bookworm 发行版。
 
 您可以使用 `--image` 标志指定不同的图像：
 
@@ -595,7 +636,7 @@ hf jobs uv run \
 
 安排和管理将在 HF 基础设施上运行的作业。
 
-将 [create_scheduled_job()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_scheduled_job) 或 [create_scheduled_uv_job()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_scheduled_uv_job) 与时间表 `@annually`、`@yearly`、`@monthly`、`@weekly`、`@daily`、`@hourly` 或 CRON 时间表表达式（例如， `"0 9 * * 1"`每周一上午 9 点）：
+将 [create_scheduled_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_scheduled_job) 或 [create_scheduled_uv_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_scheduled_uv_job) 与时间表 `@annually`、`@yearly`、`@monthly`、`@weekly`、`@daily`、`@hourly` 或 CRON 时间表表达式（例如， `"0 9 * * 1"`每周一上午 9 点）：
 
 ```python
 # Schedule a job that runs every hour
@@ -626,7 +667,9 @@ hf jobs uv run \
 >>> create_scheduled_uv_job("my_script.py", schedule="@hourly")
 ```
 
-使用与[run_job()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job)和[run_uv_job()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.run_uv_job)相同的参数来传递环境变量、秘密、超时等。使用 `list_scheduled_jobs`、[inspect_scheduled_job()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.inspect_scheduled_job)、[suspend_scheduled_job()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.suspend_scheduled_job)、[resume_scheduled_job()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.resume_scheduled_job)、[trigger_scheduled_job()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.trigger_scheduled_job) 和 [delete_scheduled_job()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_scheduled_job) 管理计划作业：
+使用与[run_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job)和[run_uv_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_uv_job)相同的参数来传递环境变量、秘密、超时等。
+
+使用 `list_scheduled_jobs`、[inspect_scheduled_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.inspect_scheduled_job)、[suspend_scheduled_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.suspend_scheduled_job)、[resume_scheduled_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.resume_scheduled_job)、[trigger_scheduled_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.trigger_scheduled_job) 和 [delete_scheduled_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_scheduled_job) 管理计划作业：
 
 ```python
 # List your active scheduled jobs
@@ -660,9 +703,7 @@ hf jobs uv run \
 
 ### 使用 webhooks 触发作业
 
-Webhooks 允许您监听特定存储库或属于特定用户/组织集的所有存储库（不仅仅是您的存储库，而是任何存储库）的新更改。
-
-使用 [create_webhook()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_webhook) 创建一个 Webhook，当 Hugging Face 存储库中发生更改时触发作业：
+Webhooks 允许您监听特定存储库或属于特定用户/组织集的所有存储库（不仅仅是您的存储库，而是任何存储库）的新更改。使用 [create_webhook()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_webhook) 创建一个 Webhook，当 Hugging Face 存储库中发生更改时触发作业：
 
 ```python
 from huggingface_hub import create_webhook
@@ -680,4 +721,4 @@ Webhook 使用环境变量 `WEBHOOK_PAYLOAD` 中的 Webhook 负载触发作业�
 您可以在 [Webhooks documentation](./webhooks) 中找到有关 webhook 的更多信息。
 
 ### 将任何 ML 框架与 Hub 集成
-https://huggingface.co/docs/huggingface_hub/v1.31.0.rc0/guides/integrations.md
+https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/integrations.md

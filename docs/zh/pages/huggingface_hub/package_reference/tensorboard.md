@@ -20,7 +20,7 @@ Hub 上的集成，请查看 [this guide](https://huggingface.co/docs/hub/tensor
 huggingface_hub.HFSummaryWriter(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/_tensorboard_logger.py#L45)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_tensorboard_logger.py#L39)
 
 **参数：**
 
@@ -52,7 +52,7 @@ kwargs ：传递给 `SummaryWriter` 的附加关键字参数。
 分钟（默认为每 5 分钟一次）。
 
 > [!警告]
-> `HFSummaryWriter` 是实验性的。其 API 将来可能会发生更改，恕不另行通知。
+> `HFSummaryWriter` 是实验性的。其 API 将来如有更改，恕不另行通知。
 
 示例：
 ```diff
@@ -82,4 +82,4 @@ for n_iter in range(100):
 ```
 
 ### 管理集合
-https://huggingface.co/docs/huggingface_hub/v1.31.0.rc0/package_reference/collections.md
+https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/collections.md

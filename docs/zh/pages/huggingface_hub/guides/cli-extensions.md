@@ -234,7 +234,7 @@ agents hanouticelina/hf-agents       HF extension to run local coding...
 
 # Check every installed extension and update the outdated ones
 >>> hf extensions update
-````hf extensions update` 仅更新已安装的扩展。如果未安装扩展，则会引发错误。已更新的扩展将被跳过。
+````hf extensions update` 仅更新已安装的扩展。如果未安装扩展，则会出现错误。已更新的扩展将被跳过。
 
 ## 命名规则
 
@@ -258,4 +258,4 @@ agents hanouticelina/hf-agents       HF extension to run local coding...
 | [alvarobartt/hf-mem](https://github.com/alvarobartt/hf-mem) |蟒蛇 |估计 HF 模型的推理内存需求 |
 
 ### 了解缓存
-https://huggingface.co/docs/huggingface_hub/v1.31.0.rc0/guides/manage-cache.md
+https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/manage-cache.md

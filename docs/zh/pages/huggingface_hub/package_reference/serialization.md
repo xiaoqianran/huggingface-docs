@@ -6,16 +6,16 @@
 
 ## DDUF 文件格式
 
-DDUF 是一种专为扩散模型设计的文件格式。它允许将运行模型的所有信息保存在单个文件中。该作品的灵感来自于[GGUF](https://github.com/ggerganov/ggml/blob/master/docs/gguf.md)格式。 `huggingface_hub` 提供保存和加载 DDUF 文件的帮助程序，确保遵循文件格式。
+DDUF 是一种专为扩散模型设计的文件格式。它允许将运行模型的所有信息保存在单个文件中。这项工作的灵感来自于[GGUF](https://github.com/ggerganov/ggml/blob/master/docs/gguf.md)格式。 `huggingface_hub` 提供保存和加载 DDUF 文件的帮助程序，确保遵循文件格式。
 
 > [!警告]
-> 这是解析器的一个非常早期的版本。 API 和实现可以在不久的将来发展。
+> 这是解析器的一个非常早期的版本。 API 和实现可能会在不久的将来发展。
 >
 > 解析器目前只进行很少的验证。有关文件格式的更多详细信息，请查看 https://github.com/huggingface/huggingface.js/tree/main/packages/dduf。
 
 ### 如何写入DDUF文件？
 
-以下是如何使用 [export_folder_as_dduf()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/serialization#huggingface_hub.export_folder_as_dduf) 导出包含扩散模型不同部分的文件夹：
+以下是如何使用 [export_folder_as_dduf()](/docs/huggingface_hub/v1.32.0/en/package_reference/serialization#huggingface_hub.export_folder_as_dduf) 导出包含扩散模型不同部分的文件夹：
 
 ```python
 # Export a folder as a DDUF file
@@ -23,7 +23,7 @@ DDUF 是一种专为扩散模型设计的文件格式。它允许将运行模型
 >>> export_folder_as_dduf("FLUX.1-dev.dduf", folder_path="path/to/FLUX.1-dev")
 ```
 
-为了获得更大的灵活性，您可以使用 [export_entries_as_dduf()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/serialization#huggingface_hub.export_entries_as_dduf) 并传递要包含在最终 DDUF 文件中的文件列表：
+为了获得更大的灵活性，您可以使用 [export_entries_as_dduf()](/docs/huggingface_hub/v1.32.0/en/package_reference/serialization#huggingface_hub.export_entries_as_dduf) 并传递要包含在最终 DDUF 文件中的文件列表：
 
 ```python
 # Export specific files from the local disk.
@@ -96,7 +96,7 @@ DDUFEntry(filename='model_index.json', offset=66, length=587)
 huggingface_hub.export_entries_as_dduf(dduf_path: str | os.PathLike, entries: Iterable)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/serialization/_dduf.py#L160)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/serialization/_dduf.py#L160)
 
 **参数：**
 
@@ -106,9 +106,9 @@ Entrys (`Iterable[tuple[str, Union[str, Path, bytes]]]`) ：要写入 DDUF 文�
 
 **加薪：** `-`
 
-- - -- `DDUFExportError`：如果导出过程中出现任何问题（例如条目名称无效、缺少“model_index.json”等）。从可迭代的条目写入 DDUF 文件。
+- - -- `DDUFExportError`：如果导出过程中出现任何问题（例如无效的条目名称、缺少“model_index.json”等）。从可迭代的条目写入 DDUF 文件。
 
-这是一个比 [export_folder_as_dduf()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/serialization#huggingface_hub.export_folder_as_dduf) 更低级别的帮助程序，在序列化数据时提供更大的灵活性。
+这是一个比 [export_folder_as_dduf()](/docs/huggingface_hub/v1.32.0/en/package_reference/serialization#huggingface_hub.export_folder_as_dduf) 更低级别的帮助程序，在序列化数据时提供更大的灵活性。
 特别是，在将数据导出到 DDUF 文件之前，您不需要将数据保存在磁盘上。
 
 示例：
@@ -156,17 +156,17 @@ Entrys (`Iterable[tuple[str, Union[str, Path, bytes]]]`) ：要写入 DDUF 文�
 huggingface_hub.export_folder_as_dduf(dduf_path: str | os.PathLike, folder_path: str | os.PathLike)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/serialization/_dduf.py#L249)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/serialization/_dduf.py#L249)
 
 **参数：**
 
-dduf_path (`str` 或 `os.PathLike`) ：要写入的 DDUF 文件的路径。
+dduf_path（`str`或`os.PathLike`）：要写入的DDUF文件的路径。
 
 folder_path（`str`或`os.PathLike`）：包含扩散模型的文件夹的路径。
 
 将文件夹导出为 DDUF 文件。
 
-A在引擎盖下使用[export_entries_as_dduf()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/serialization#huggingface_hub.export_entries_as_dduf)。
+A在引擎盖下使用[export_entries_as_dduf()](/docs/huggingface_hub/v1.32.0/en/package_reference/serialization#huggingface_hub.export_entries_as_dduf)。
 
 示例：
 ```python
@@ -180,15 +180,15 @@ A在引擎盖下使用[export_entries_as_dduf()](/docs/huggingface_hub/v1.31.0.r
 huggingface_hub.read_dduf_file(dduf_path: os.PathLike | str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/serialization/_dduf.py#L91)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/serialization/_dduf.py#L91)
 
 **参数：**
 
 dduf_path（`str`或`os.PathLike`）：要读取的DDUF文件的路径。
 
-**退货：** `dict[str, DDUFEntry]`
+**返回：** `dict[str, DDUFEntry]`
 
-按文件名索引的[DDUFEntry](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/serialization#huggingface_hub.DDUFEntry)字典。
+按文件名索引的[DDUFEntry](/docs/huggingface_hub/v1.32.0/en/package_reference/serialization#huggingface_hub.DDUFEntry)字典。
 
 **加薪：** `-`
 
@@ -226,7 +226,7 @@ DDUFEntry(filename='model_index.json', offset=66, length=587)
 huggingface_hub.DDUFEntry(filename: str, length: int, offset: int, dduf_path: Path)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/serialization/_dduf.py#L36)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/serialization/_dduf.py#L36)
 
 **参数：**filename (str) ：DDUF 存档中的文件名。
 
@@ -238,7 +238,7 @@ dduf_path (str) ：DDUF 存档的路径（供内部使用）。
 
 表示 DDUF 文件中的文件条目的对象。
 
-请参阅[read_dduf_file()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/serialization#huggingface_hub.read_dduf_file)了解如何读取DDUF文件。
+有关如何读取 DDUF 文件，请参阅[read_dduf_file()](/docs/huggingface_hub/v1.32.0/en/package_reference/serialization#huggingface_hub.read_dduf_file)。
 
 #### as_mmap[[huggingface_hub.DDUFEntry.as_mmap]]
 
@@ -246,7 +246,7 @@ dduf_path (str) ：DDUF 存档的路径（供内部使用）。
 as_mmap()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/serialization/_dduf.py#L58)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/serialization/_dduf.py#L58)
 
 将文件作为内存映射文件打开。
 
@@ -265,7 +265,7 @@ as_mmap()
 read_text(encoding: str = 'utf-8')
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/serialization/_dduf.py#L75)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/serialization/_dduf.py#L75)
 
 以文本形式读取文件。
 
@@ -281,31 +281,31 @@ read_text(encoding: str = 'utf-8')
 
 #### Huggingface_hub.errors.DDUFError[[huggingface_hub.errors.DDUFError]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/errors.py#L509)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/errors.py#L509)
 
 与 DDUF 格式相关的错误的基本异常。
 
 #### Huggingface_hub.errors.DDUFCorruptedFileError[[huggingface_hub.errors.DDUFCorruptedFileError]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/errors.py#L513)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/errors.py#L513)
 
 DDUF 文件损坏时抛出异常。
 
 #### Huggingface_hub.errors.DDUFExportError[[huggingface_hub.errors.DDUFExportError]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/errors.py#L517)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/errors.py#L517)
 
 DDUF 导出期间错误的基本异常。#### Huggingface_hub.errors.DDUFInvalidEntryNameError[[huggingface_hub.errors.DDUFInvalidEntryNameError]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/errors.py#L521)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/errors.py#L521)
 
 当条目名称无效时抛出异常。
 
 ## 保存张量
 
-`serialization`模块的主要助手将火炬`nn.Module`作为输入并将其保存到磁盘。它处理保存共享张量的逻辑（参见[safetensors explanation](https://huggingface.co/docs/safetensors/torch_shared_tensors)）以及将状态字典分割成分片的逻辑，在底层使用[split_torch_state_dict_into_shards()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/serialization#huggingface_hub.split_torch_state_dict_into_shards)。目前仅支持`torch`框架。
+`serialization`模块的主要助手将火炬`nn.Module`作为输入并将其保存到磁盘。它处理保存共享张量的逻辑（参见[safetensors explanation](https://huggingface.co/docs/safetensors/torch_shared_tensors)）以及将状态字典分割成分片的逻辑，在底层使用[split_torch_state_dict_into_shards()](/docs/huggingface_hub/v1.32.0/en/package_reference/serialization#huggingface_hub.split_torch_state_dict_into_shards)。目前仅支持`torch`框架。
 
-如果你想保存状态字典（例如层名称和相关张量之间的映射）而不是`nn.Module`，你可以使用[save_torch_state_dict()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/serialization#huggingface_hub.save_torch_state_dict)，它提供相同的功能。例如，如果您想在保存之前将自定义逻辑应用于状态字典，这非常有用。
+如果您想保存状态字典（例如层名称和相关张量之间的映射）而不是`nn.Module`，您可以使用[save_torch_state_dict()](/docs/huggingface_hub/v1.32.0/en/package_reference/serialization#huggingface_hub.save_torch_state_dict)，它提供相同的功能。例如，如果您想在保存之前将自定义逻辑应用于状态字典，这非常有用。
 
 ### save_torch_model[[huggingface_hub.save_torch_model]]
 
@@ -315,7 +315,7 @@ DDUF 导出期间错误的基本异常。#### Huggingface_hub.errors.DDUFInvalid
 huggingface_hub.save_torch_model(model: torch.nn.Module, save_directory: str | pathlib.Path, filename_pattern: str | None = None, force_contiguous: bool = True, max_shard_size: int | str = '5GB', metadata: dict[str, str] | None = None, safe_serialization: bool = True, is_main_process: bool = True, shared_tensors_to_discard: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/serialization/_torch.py#L43)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/serialization/_torch.py#L47)
 
 **参数：**
 
@@ -323,7 +323,7 @@ model (`torch.nn.Module`) ：保存在磁盘上的模型。
 
 save_directory（`str`或`Path`）：保存模型的目录。filename_pattern (`str`, *可选*) ：生成保存模型的文件名的模式。 Pattern 必须是可以使用 `filename_pattern.format(suffix=...)` 格式化的字符串，并且必须包含关键字 `suffix` 默认为 `"model{suffix}.safetensors"` 或 `pytorch_model{suffix}.bin`，具体取决于 `safe_serialization` 参数。
 
-force_contigious (`boolean`, *可选*) ：强制将 state_dict 保存为连续张量。这对模型的正确性没有影响，但如果专门为此选择张量的布局，则可能会改变性能。默认为 `True`。
+force_contigious (`boolean`, *可选*) ：强制将 state_dict 保存为连续张量。这对模型的正确性没有影响，但如果专门为此选择张量的布局，则可能会改变性能。默认为`True`。
 
 max_shard_size（`int`或`str`，*可选*）：每个分片的最大大小，以字节为单位。默认为 5GB。
 
@@ -335,14 +335,14 @@ shared_tensors_to_discard (`list[str]`, *可选*) ：保存共享张量时要删
 
 将给定的火炬模型保存到磁盘，处理分片和共享张量问题。
 
-另请参阅[save_torch_state_dict()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/serialization#huggingface_hub.save_torch_state_dict)以更灵活地保存状态字典。
+另请参阅[save_torch_state_dict()](/docs/huggingface_hub/v1.32.0/en/package_reference/serialization#huggingface_hub.save_torch_state_dict)以更灵活地保存状态字典。
 
 有关张量共享的更多信息，请查看[this guide](https://huggingface.co/docs/safetensors/torch_shared_tensors)。
 
 模型状态字典被分成多个分片，以便每个分片都小于给定的大小。碎片是
 与给定的 `filename_pattern` 一起保存在 `save_directory` 中。如果模型太大而无法放入单个分片中，
 `save_directory`中保存有一个索引文件，以指示每个张量的保存位置。这个助手使用
-[split_torch_state_dict_into_shards()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/serialization#huggingface_hub.split_torch_state_dict_into_shards) 在引擎盖下。如果`safe_serialization`是`True`，则分片保存为
+[split_torch_state_dict_into_shards()](/docs/huggingface_hub/v1.32.0/en/package_reference/serialization#huggingface_hub.split_torch_state_dict_into_shards) 在引擎盖下。如果`safe_serialization`是`True`，则分片保存为
 安全张量（默认）。否则，碎片将保存为 pickle。在保存模型之前，会清除 `save_directory` 之前的任何分片文件。
 
 > [!警告]
@@ -375,7 +375,7 @@ shared_tensors_to_discard (`list[str]`, *可选*) ：保存共享张量时要删
 huggingface_hub.save_torch_state_dict(state_dict: dict, save_directory: str | pathlib.Path, filename_pattern: str | None = None, force_contiguous: bool = True, max_shard_size: int | str = '5GB', metadata: dict[str, str] | None = None, safe_serialization: bool = True, is_main_process: bool = True, shared_tensors_to_discard: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/serialization/_torch.py#L137)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/serialization/_torch.py#L141)
 
 **参数：**
 
@@ -395,14 +395,14 @@ is_main_process (`bool`, *可选*) ：调用此进程的进程是否为主进程
 
 将模型状态字典保存到磁盘，处理分片和共享张量问题。
 
-另请参阅[save_torch_model()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/serialization#huggingface_hub.save_torch_model)直接保存 PyTorch 模型。
+另请参阅[save_torch_model()](/docs/huggingface_hub/v1.32.0/en/package_reference/serialization#huggingface_hub.save_torch_model)直接保存 PyTorch 模型。
 
 有关张量共享的更多信息，请查看[this guide](https://huggingface.co/docs/safetensors/torch_shared_tensors)。
 
 模型状态字典被分成多个分片，以便每个分片都小于给定的大小。碎片是
 与给定的 `filename_pattern` 一起保存在 `save_directory` 中。如果模型太大而无法放入单个分片中，
 `save_directory`中保存有一个索引文件，以指示每个张量的保存位置。这个助手使用
-[split_torch_state_dict_into_shards()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/serialization#huggingface_hub.split_torch_state_dict_into_shards) 在引擎盖下。如果`safe_serialization`是`True`，则分片保存为
+[split_torch_state_dict_into_shards()](/docs/huggingface_hub/v1.32.0/en/package_reference/serialization#huggingface_hub.split_torch_state_dict_into_shards) 在引擎盖下。如果`safe_serialization`是`True`，则分片保存为
 安全张量（默认）。否则，碎片将保存为 pickle。
 
 在保存模型之前，会清除 `save_directory` 之前的任何分片文件。
@@ -423,7 +423,7 @@ is_main_process (`bool`, *可选*) ：调用此进程的进程是否为主进程
 >>> save_torch_state_dict(state_dict, "path/to/folder")
 ```
 
-`serialization` 模块还包含低级帮助程序，用于将状态字典拆分为多个分片，同时在此过程中创建适当的索引。这些助手可用于 `torch` 张量，并且旨在轻松扩展到任何其他 ML 框架。
+`serialization`模块还包含低级帮助程序，用于将状态字典拆分为多个分片，同时在此过程中创建适当的索引。这些助手可用于 `torch` 张量，并且旨在轻松扩展到任何其他 ML 框架。
 
 ### split_torch_state_dict_into_shards[[huggingface_hub.split_torch_state_dict_into_shards]]
 
@@ -433,7 +433,7 @@ is_main_process (`bool`, *可选*) ：调用此进程的进程是否为主进程
 huggingface_hub.split_torch_state_dict_into_shards(state_dict: dict, filename_pattern: str = 'model{suffix}.safetensors', max_shard_size: int | str = '5GB')
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/serialization/_torch.py#L294)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/serialization/_torch.py#L302)
 
 **参数：**
 
@@ -453,7 +453,7 @@ max_shard_size（`int`或`str`，*可选*）：每个分片的最大大小，以
 [6+2+2GB]、[6+2GB]、[6GB]。
 
 > [!提示]
-> 要将模型状态字典保存到磁盘，请参阅[save_torch_state_dict()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/serialization#huggingface_hub.save_torch_state_dict)。这个助手使用
+> 要将模型状态字典保存到磁盘，请参阅[save_torch_state_dict()](/docs/huggingface_hub/v1.32.0/en/package_reference/serialization#huggingface_hub.save_torch_state_dict)。这个助手使用
 > `split_torch_state_dict_into_shards` 在引擎盖下。
 
 > [!警告]
@@ -490,16 +490,16 @@ max_shard_size（`int`或`str`，*可选*）：每个分片的最大大小，以
 这是每个特定于框架的帮助器派生的底层工厂。在实践中，除非您需要将其调整到尚不支持的框架，否则您不需要直接使用该工厂。如果是这种情况，请通过 `huggingface_hub` 存储库上的 [opening a new issue](https://github.com/huggingface/huggingface_hub/issues/new) 告知我们。#### Huggingface_hub.split_state_dict_into_shards_factory[[huggingface_hub.split_state_dict_into_shards_factory]]
 
 ```python
-huggingface_hub.split_state_dict_into_shards_factory(state_dict: dict, get_storage_size: Callable, filename_pattern: str, get_storage_id: Callable = <function <lambda> at 0x7fe31976b010>, max_shard_size: int | str = '5GB')
+huggingface_hub.split_state_dict_into_shards_factory(state_dict: dict, get_storage_size: Callable, filename_pattern: str, get_storage_id: Callable = <function <lambda> at 0x7fa3cb6377f0>, max_shard_size: int | str = '5GB')
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/serialization/_base.py#L50)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/serialization/_base.py#L50)
 
 **参数：**
 
 state_dict (`dict[str, Tensor]`) ：要保存的状态字典。
 
-get_storage_size (`Callable[[Tensor], int]`) ：一个函数，返回保存在磁盘上的张量的大小（以字节为单位）。
+get_storage_size (`Callable[[Tensor], int]`) ：返回张量保存在磁盘上时的大小（以字节为单位）的函数。
 
 get_storage_id (`Callable[[Tensor], Optional[Any]]`, *可选*) ：向张量存储返回唯一标识符的函数。多个不同的张量可以共享相同的底层存储。在该张量的生命周期内，该标识符保证是唯一且恒定的。具有不重叠生命周期的两个张量存储可以具有相同的id。
 
@@ -522,45 +522,58 @@ max_shard_size（`int`或`str`，*可选*）：每个分片的最大大小，以
 
 ## 加载张量
 
-加载助手支持 safetensors 或 pickle 格式的单文件和分片检查点。 [load_torch_model()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/serialization#huggingface_hub.load_torch_model) 采用 `nn.Module` 和检查点路径（单个文件或目录）作为输入，并将权重加载到模型中。
+加载助手支持 safetensors 或 pickle 格式的单文件和分片检查点。 [load_torch_model()](/docs/huggingface_hub/v1.32.0/en/package_reference/serialization#huggingface_hub.load_torch_model) 采用 `nn.Module` 和检查点路径（单个文件或目录）作为输入，并将权重加载到模型中。> [!警告]
+> 两个助手都默认为 `safe=True`，这意味着检查点始终使用 safetensors 加载器反序列化 - 无论文件命名如何。加载 pickle 检查点需要显式选择，因为 unpickle 在加载时执行任意代码：
+> ```py
+> >>> from huggingface_hub import load_state_dict_from_file, load_torch_model
+>
+> # Raises: the file is not safetensors
+> >>> load_state_dict_from_file("path/to/pytorch_model.bin")
+> >>> load_torch_model(model, "path/to/pytorch_model.bin")
+>
+> # Explicit opt-in
+> >>> load_state_dict_from_file("path/to/pytorch_model.bin", safe=False)
+> >>> load_torch_model(model, "path/to/pytorch_model.bin", safe=False)
+> ```
+> pickle 路径另外默认为 `weights_only=True`，即 torch 的受限 unpickler。保存非张量对象（优化器状态、整个模型……）的检查点需要在 `safe=False` 之上。
 
 ### load_torch_model[[huggingface_hub.load_torch_model]]
 
 #### Huggingface_hub.load_torch_model[[huggingface_hub.load_torch_model]]
 
 ```python
-huggingface_hub.load_torch_model(model: torch.nn.Module, checkpoint_path: str | os.PathLike, strict: bool = False, safe: bool = True, weights_only: bool = False, map_location: typing.Union[str, ForwardRef('torch.device'), NoneType] = None, mmap: bool = False, filename_pattern: str | None = None)
+huggingface_hub.load_torch_model(model: torch.nn.Module, checkpoint_path: str | os.PathLike, strict: bool = False, safe: bool = True, weights_only: bool = True, map_location: typing.Union[str, ForwardRef('torch.device'), NoneType] = None, mmap: bool = False, filename_pattern: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/serialization/_torch.py#L367)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/serialization/_torch.py#L375)
 
 **参数：**
 
 model (`torch.nn.Module`) ：加载检查点的模型。
 
-checkpoint_path（`str`或`os.PathLike`）：检查点文件或包含检查点的目录的路径。strict (`bool`，*可选*，默认为`False`)：是否严格强制模型状态字典中的键与检查点中的键匹配。
+checkpoint_path（`str`或`os.PathLike`）：检查点文件或包含检查点的目录的路径。
 
-safe（`bool`，*可选*，默认为`True`）：如果`safe`为True，则将加载safetensors文件。如果 `safe` 为 False，该函数将首先尝试加载安全张量文件（如果可用），否则它将回退到加载 pickle 文件。 `filename_pattern` 参数优先于`safe` 参数。
+strict (`bool`，*可选*，默认为`False`)：是否严格强制模型状态字典中的键与检查点中的键匹配。与 `torch.nn.Module.load_state_dict` 一样，检查点加载后就会进行检查，因此在引发错误时模型可能已部分更新。safe（`bool`，*可选*，默认为`True`）：如果`safe`为True，则将加载safetensors文件。如果 `safe` 为 False，该函数将首先尝试加载安全张量文件（如果可用），否则它将回退到加载 pickle 文件。当 `safe=True` 时，未描述安全张量文件的 `filename_pattern` 将被拒绝。
 
-weights_only（`bool`，*可选*，默认为`False`）：如果为 True，则仅加载模型权重，而不加载优化器状态和其他元数据。仅在 PyTorch >= 1.13 中受支持。
+weights_only（`bool`，*可选*，默认为`True`）：如果为True，则使用torch的受限unpickler仅加载模型权重，而不加载优化器状态和其他元数据。设置为 False 以允许 pickle 检查点中的任意 Python 对象（这会在加载时执行任意代码）。对带有基于 zip 文件的检查点的 PyTorch < 1.13, which has no restricted unpickler and always unpickles without restriction.
 
-map_location（`str`或`torch.device`，*可选*）：指定如何重新映射存储位置的`torch.device`对象、字符串或字典。它指示应加载所有张量的位置。
+map_location (⟦T161⟧ or ⟦T162⟧, *optional*) : A ⟦T163⟧ object, string or a dict specifying how to remap storage locations. It indicates the location where all tensors should be loaded.
 
-mmap (`bool`, *可选*, 默认为`False`) : 是否使用内存映射文件加载。内存映射可以通过基于 zip 文件的检查点提高 PyTorch >= 2.1.0 中大型模型的加载性能。filename_pattern (`str`, *可选*) ：查找索引文件的模式。 Pattern 必须是可以使用 `filename_pattern.format(suffix=...)` 格式化的字符串，并且必须包含关键字 `suffix` 默认为 `"model{suffix}.safetensors"`。
+mmap (⟦T164⟧, *optional*, defaults to ⟦T165⟧) : Whether to use memory-mapped file loading. Memory mapping can improve loading performance for large models in PyTorch >= 2.1.0 没有影响。
 
-**返回：** `NamedTuple`
+filename_pattern (`str`, *可选*) ：查找索引文件的模式。 Pattern 必须是可以使用 `filename_pattern.format(suffix=...)` 格式化的字符串，并且必须包含关键字 `suffix` 默认为 `"model{suffix}.safetensors"`。
+
+**退货：** `NamedTuple`
 
 具有 `missing_keys` 和 `unexpected_keys` 字段的命名元组。
 - `missing_keys` 是包含缺失键的 str 列表，即模型中但不在检查点中的键。
-- `unexpected_keys` 是包含意外键的 str 列表，即在检查点中但不在模型中的键。
+- `unexpected_keys` 是包含意外键的 str 列表，即位于检查点但不在模型中的键。**加薪：** ``FileNotFoundError`` or ``ImportError`` or ``ValueError``
 
-**加薪：** ``FileNotFoundError`` or ``ImportError`` or ``ValueError``
-
-- [⟦T174⟧](https://docs.python.org/3/library/exceptions.html#FileNotFoundError) -- 
+- [⟦T180⟧](https://docs.python.org/3/library/exceptions.html#FileNotFoundError) -- 
   如果检查点文件或目录不存在。
-- [⟦T175⟧](https://docs.python.org/3/library/exceptions.html#ImportError) -- 
+- [⟦T181⟧](https://docs.python.org/3/library/exceptions.html#ImportError) -- 
   如果在尝试分别加载 .safetensors 文件或 PyTorch 检查点时未安装 safetensors 或 torch。
-- [⟦T176⟧](https://docs.python.org/3/library/exceptions.html#ValueError) -- 
+- [⟦T182⟧](https://docs.python.org/3/library/exceptions.html#ValueError) -- 
   如果检查点路径无效或无法确定检查点格式。
 
 将检查点加载到模型中，处理分片和非分片检查点。
@@ -577,18 +590,20 @@ mmap (`bool`, *可选*, 默认为`False`) : 是否使用内存映射文件加载
 #### Huggingface_hub.load_state_dict_from_file[[huggingface_hub.load_state_dict_from_file]]
 
 ```python
-huggingface_hub.load_state_dict_from_file(checkpoint_file: str | os.PathLike, map_location: typing.Union[str, ForwardRef('torch.device'), NoneType] = None, weights_only: bool = False, mmap: bool = False)
+huggingface_hub.load_state_dict_from_file(checkpoint_file: str | os.PathLike, map_location: typing.Union[str, ForwardRef('torch.device'), NoneType] = None, weights_only: bool = True, mmap: bool = False, safe: bool = True)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/serialization/_torch.py#L573)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/serialization/_torch.py#L633)
 
-**参数：**checkpoint_file (`str` 或 `os.PathLike`) ：要加载的检查点文件的路径。可以是安全张量或泡菜（`.bin`）检查点。
+**参数：**
 
-map_location（`str`或`torch.device`，*可选*）：指定如何重新映射存储位置的`torch.device`对象、字符串或字典。它指示应加载所有张量的位置。
+checkpoint_file（`str`或`os.PathLike`）：要加载的检查点文件的路径。可以是安全张量或泡菜（`.bin`）检查点。
 
-weights_only（`bool`，*可选*，默认为`False`）：如果为 True，则仅加载模型权重，而不加载优化器状态和其他元数据。仅支持 PyTorch >= 1.13 的 pickle (`.bin`) 检查点。加载 safetensors 文件时无效。
+map_location（`str`或`torch.device`，*可选*）：指定如何重新映射存储位置的`torch.device`对象、字符串或字典。它指示应加载所有张量的位置。weights_only（`bool`，*可选*，默认为`True`）：如果为True，则使用torch的受限unpickler仅加载模型权重，而不加载优化器状态和其他元数据。设置为 False 以允许 pickle 检查点中的任意 Python 对象（这会在加载时执行任意代码）。加载 safetensors 文件时无效，对带有基于 zipfile 检查点的 PyTorch < 1.13 which has no restricted unpickler — those versions always unpickle without restriction and a warning is logged.
 
-mmap (`bool`, *可选*, 默认为`False`) : 是否使用内存映射文件加载。内存映射可以通过基于 zip 文件的检查点提高 PyTorch >= 2.1.0 中大型模型的加载性能。加载 safetensors 文件时无效，因为 `safetensors` 库默认使用内存映射。
+mmap (⟦T191⟧, *optional*, defaults to ⟦T192⟧) : Whether to use memory-mapped file loading. Memory mapping can improve loading performance for large models in PyTorch >= 2.1.0 也无效。加载 safetensors 文件时无效，因为 `safetensors` 库默认使用内存映射。
+
+safe (`bool`，*可选*，默认为`True`)：如果为 True，则检查点始终加载为安全张量，无论其名称如何。任何其他格式（例如 pickle `.bin` 文件）都会引发 `ValueError` 而不是被反序列化：pickle 检查点可以在加载时执行任意代码。如果为 False，则文件将在其名称所示时作为安全张量加载，否则使用 `torch.load`。
 
 **退货：** `Union[dict[str, "torch.Tensor"], Any]`
 
@@ -597,14 +612,15 @@ mmap (`bool`, *可选*, 默认为`False`) : 是否使用内存映射文件加载
 - 对于pickle文件：返回任何被pickle的Python对象（通常是一个状态字典，但也可以是
   整个模型、优化器状态或任何其他 Python 对象）。**加薪：** ``FileNotFoundError`` or ``ImportError`` or ``OSError`` or ``ValueError``
 
-- [⟦T197⟧](https://docs.python.org/3/library/exceptions.html#FileNotFoundError) -- 
+- [⟦T207⟧](https://docs.python.org/3/library/exceptions.html#FileNotFoundError) -- 
   如果检查点文件不存在。
-- [⟦T198⟧](https://docs.python.org/3/library/exceptions.html#ImportError) -- 
+- [⟦T208⟧](https://docs.python.org/3/library/exceptions.html#ImportError) -- 
   如果在尝试分别加载 .safetensors 文件或 PyTorch 检查点时未安装 safetensors 或 torch。
-- [⟦T199⟧](https://docs.python.org/3/library/exceptions.html#OSError) -- 
+- [⟦T209⟧](https://docs.python.org/3/library/exceptions.html#OSError) -- 
   如果检查点文件格式无效或者 git-lfs 文件未正确下载。
-- [⟦T200⟧](https://docs.python.org/3/library/exceptions.html#ValueError) -- 
-  如果检查点文件路径为空或无效。
+- [⟦T210⟧](https://docs.python.org/3/library/exceptions.html#ValueError) -- 
+  如果检查点文件路径为空或无效，或者无法反序列化为安全张量
+  `safe=True`（通过`safe=False`以允许pickle检查点）。
 
 加载检查点文件，处理安全张量和 pickle 检查点格式。
 
@@ -612,12 +628,12 @@ mmap (`bool`, *可选*, 默认为`False`) : 是否使用内存映射文件加载
 ```python
 >>> from huggingface_hub import load_state_dict_from_file
 
-# Load a PyTorch checkpoint
->>> state_dict = load_state_dict_from_file("path/to/model.bin", map_location="cpu")
+# Load a safetensors checkpoint (safe by default)
+>>> state_dict = load_state_dict_from_file("path/to/model.safetensors", safe=True)
 >>> model.load_state_dict(state_dict)
 
-# Load a safetensors checkpoint
->>> state_dict = load_state_dict_from_file("path/to/model.safetensors")
+# Load a pickle checkpoint. `safe=False` is required: pickle files can execute arbitrary code.
+>>> state_dict = load_state_dict_from_file("path/to/model.bin", safe=False, map_location="cpu")
 >>> model.load_state_dict(state_dict)
 ```
 
@@ -631,7 +647,7 @@ mmap (`bool`, *可选*, 默认为`False`) : 是否使用内存映射文件加载
 huggingface_hub.get_torch_storage_id(tensor: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/serialization/_torch.py#L764)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/serialization/_torch.py#L875)
 
 将唯一标识符返回到张量存储。
 
@@ -648,9 +664,9 @@ huggingface_hub.get_torch_storage_id(tensor: torch.Tensor)
 huggingface_hub.get_torch_storage_size(tensor: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/serialization/_torch.py#L781)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/serialization/_torch.py#L892)
 
 摘自https://github.com/huggingface/safetensors/blob/08db34094e9e59e2f9218f2df133b7b4aaff5a99/bindings/python/py_src/safetensors/torch.py#L31C1-L41C59
 
 ### Mixins 和序列化方法
-https://huggingface.co/docs/huggingface_hub/v1.31.0.rc0/package_reference/mixins.md
+https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/mixins.md

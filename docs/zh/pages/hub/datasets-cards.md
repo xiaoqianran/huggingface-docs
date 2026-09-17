@@ -50,11 +50,11 @@ task_categories:
 * 访问论文页面
 * 过滤 Hub 上引用同一论文的其他模型。
 
-了解有关纸质页面的更多信息[here](./paper-pages)。
+阅读有关纸质页面的更多信息[here](./paper-pages)。
 
 ### 强制设置数据集模式Hub 将根据数据集包含的文件（音频、视频、地理空间等）自动检测数据集的模式。如果要强制使用特定模态，可以向数据集卡元数据添加标签：`3d`、`audio`、`geospatial`、`image`、`tabular`、`text`、`timeseries`、`video`。
 
-例如，要强制模态为 `audio`，请将以下内容添加到数据集卡元数据中：
+例如，要强制模态为`audio`，请将以下内容添加到数据集卡元数据中：
 
 ```yaml
 tags:
@@ -63,7 +63,7 @@ tags:
 
 ### 将库关联到数据集
 
-数据集页面会自动显示能够本地加载数据集的库和工具，但如果您想显示其他特定库，您可以在数据集卡元数据中添加标签：`argilla`、`dask`、`datasets`、`distilabel`、`fiftyone`、`mlcroissant`、`pandas`、 `webdataset`。请参阅 [list of supported libraries](https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/dataset-libraries.ts) 了解更多信息，或建议添加新库。
+数据集页面自动显示能够本地加载数据集的库和工具，但如果您想显示另一个特定库，您可以向数据集卡元数据添加标签。支持的标签包括`argilla`、`dask`、`datasets`、`distilabel`、`fiftyone`、`harbor`、`mlcroissant`、`nemo-gym`、`openenv`、`pandas`、 `verifiers`和`webdataset`。请参阅 [list of supported libraries](https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/dataset-libraries.ts) 获取完整列表，或提议一个新库。
 
 例如，要将 `argilla` 库关联到数据集卡，请将以下内容添加到数据集卡元数据中：
 
@@ -71,6 +71,31 @@ tags:
 tags:
 - argilla
 ```
+
+### 声明一个 RL 环境数据集强化学习环境是一种普通的数据集存储库，其文件可由一个或多个环境框架使用。添加 `rl-environment` 标签，使数据集可通过 **RL 环境** 过滤器发现，然后为每个支持的框架添加一个标签。框架标签还将其生成的命令添加到**使用此数据集**。
+
+例如，包含也可由验证程序加载的 Harbor 任务目录的数据集使用此数据集卡 YAML：
+
+```yaml
+---
+pretty_name: Terminal-Bench 2.0
+tags:
+- rl-environment
+- harbor
+- verifiers
+---
+```
+
+支持的环境框架标签有：
+
+|标签 |框架|
+| --- | --- |
+| `harbor` | [Harbor](https://github.com/harbor-framework/harbor) |
+| `verifiers` | [Verifiers](https://github.com/PrimeIntellect-ai/verifiers) |
+| `openenv` | [OpenEnv](https://github.com/huggingface/OpenEnv) |
+| `nemo-gym` | [NeMo Gym](https://github.com/NVIDIA-NeMo/Gym) |
+
+这些标签描述兼容性并生成加载命令。它们不会创建新的存储库类型或导致 Hub 执行环境。
 
 ### 在本地使用 AI 模型
 https://huggingface.co/docs/hub/local-apps.md

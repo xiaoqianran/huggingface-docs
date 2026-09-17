@@ -96,7 +96,7 @@ Python 还将搜索您克隆的文件夹`./huggingface_hub/`。
 
 ## 安装 Hugging Face CLI 
 
-使用我们的单行安装程序来设置 `hf` CLI，而无需接触您的 Python 环境：
+使用我们的一行安装程序来设置 `hf` CLI，而无需接触您的 Python 环境：
 
 在 macOS 和 Linux 上：
 
@@ -159,4 +159,4 @@ Task: text-generation
 [configure environment variables](package_reference/environment_variables) 或 [check one of our guides](guides/overview) 开始。
 
 ### 🤗 Hub 客户端库
-https://huggingface.co/docs/huggingface_hub/v1.31.0.rc0/index.md
+https://huggingface.co/docs/huggingface_hub/v1.32.0/index.md

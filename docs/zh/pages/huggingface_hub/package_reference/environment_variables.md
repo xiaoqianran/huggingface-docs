@@ -2,17 +2,17 @@
 
 # 环境变量
 
-`huggingface_hub`可以使用环境变量进行配置。
+`huggingface_hub` 可以使用环境变量进行配置。
 
 如果您不熟悉环境变量，这里有关于它们的通用文章
 [on macOS and Linux](https://linuxize.com/post/how-to-set-and-list-environment-variables-in-linux/)
 以及[Windows](https://phoenixnap.com/kb/windows-set-environment-variable)。
 
 此页面将引导您了解特定于 `huggingface_hub` 的所有环境变量
-以及它们的意义。
+以及它们的含义。
 
 > [!提示]
-> 所有环境变量均在`huggingface_hub` 导入时读取。任何修改
+> 所有环境变量均在 `huggingface_hub` 导入时读取。任何修改
 > 之后制作的内容将不予考虑。确保设置环境变量
 > 导入`huggingface_hub` 之前。
 
@@ -71,7 +71,7 @@
 
 欲了解更多详情，请参阅[logging reference](../package_reference/utilities#huggingface_hub.utils.logging.get_verbosity)。
 
-### HF_HUB_ETAG_TIMEOUT整数值，用于定义在下载文件之前从存储库获取最新元数据时等待服务器响应的秒数。如果请求超时，`huggingface_hub`将默认使用本地缓存的文件。设置较低的值可以加快连接速度较慢且已缓存文件的计算机的工作流程。较高的值可以保证元数据调用在更多情况下成功。默认为 10 秒。
+### HF_HUB_ETAG_TIMEOUT整数值，用于定义在下载文件之前从存储库获取最新元数据时等待服务器响应的秒数。如果请求超时，`huggingface_hub`将默认使用本地缓存的文件。设置较低的值可以加快连接速度较慢且已缓存文件的计算机的工作流程。较高的值可保证元数据调用在更多情况下成功。默认为 10 秒。
 
 ### HF_HUB_DOWNLOAD_TIMEOUT
 
@@ -113,9 +113,9 @@
 
 如果设置，则不会对 Hugging Face Hub 进行 HTTP 调用。如果您尝试下载文件，则只会访问缓存的文件。如果未检测到缓存文件，则会引发错误。如果您的网络速度较慢并且您不关心文件的最新版本，这非常有用。
 
-如果`HF_HUB_OFFLINE=1`设置为环境变量，并且调用[HfApi](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi)的任何方法，都会引发[OfflineModeIsEnabled](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled)异常。**注意：** 即使缓存了文件的最新版本，调用 `hf_hub_download` 仍然会触发 HTTP 请求来检查新版本是否可用。设置 `HF_HUB_OFFLINE=1` 将跳过此调用，从而加快加载时间。
+如果`HF_HUB_OFFLINE=1`设置为环境变量，并且调用[HfApi](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi)的任何方法，都会引发[OfflineModeIsEnabled](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled)异常。**注意：** 即使缓存了文件的最新版本，调用 `hf_hub_download` 仍然会触发 HTTP 请求来检查新版本是否可用。设置 `HF_HUB_OFFLINE=1` 将跳过此调用，从而加快加载时间。
 
-如果你想检查离线模式是否启用，你可以使用[is_offline_mode()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.is_offline_mode)助手。
+如果你想检查离线模式是否启用，你可以使用[is_offline_mode()](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.is_offline_mode)助手。
 
 ### HF_HUB_DISABLE_IMPLICIT_TOKEN
 
@@ -137,14 +137,14 @@
 
 如果设置，`huggingface_hub`将永远不会在缓存中创建符号链接。相反，文件将被复制或直接移动到快照目录中。这是一项高级用户功能，使缓存目录以降级模式运行，其中巨大的文件最终会在硬盘驱动器上重复。
 
-一个示例用例是当共享网络驱动器（例如 NAS）在运行不同操作的计算机之间用作 `HF_HUB_CACHE` 时
+一个示例用例是当共享网络驱动器（例如 NAS）在运行不同操作系统的机器上用作 `HF_HUB_CACHE` 时
 系统。在 Linux 上创建的符号链接并不总是可以在 Windows 上遍历，从而导致错误。设置`HF_HUB_DISABLE_SYMLINKS=1`可以避免此问题，但代价是磁盘空间重复数据删除。
 
 ### HF_HUB_DISABLE_SYMLINKS_WARNING如果您使用的是Windows机器，建议启用开发者模式或运行
 `huggingface_hub` 处于管理模式。否则，`huggingface_hub`将无法创建
 缓存系统中的符号链接。您将能够执行除用户体验之外的任何脚本
 将会降级，因为一些大文件可能最终会在您的硬盘驱动器上重复。警告
-系统会触发消息来警告您此行为。设置`HF_HUB_DISABLE_SYMLINKS_WARNING=1`，
+将触发消息来警告您此行为。设置`HF_HUB_DISABLE_SYMLINKS_WARNING=1`，
 禁用此警告。
 
 欲了解更多详情，请参阅[cache limitations](../guides/manage-cache#limitations)。
@@ -179,46 +179,48 @@
 > 现在 Hugging Face Hub 完全由 Xet 存储后端提供支持，所有文件传输都通过 `hf-xet` 二进制包进行。它使用基于块的重复数据删除策略提供高效的传输，并与`huggingface_hub`无缝集成。
 > 这意味着`hf_transfer`不能再使用了。如果您对更高的性能感兴趣，请查看[⟦T66⟧ section](#hf_xet_high_performance)
 
+### HF_HUB_DISABLE_SHARED_BLOBS设置为 `1` 以禁用缓存范围的共享 blob 存储。默认情况下，成功下载的 Xet 文件存储在 `<CACHE_DIR>/blobs/<prefix>/<xet_hash>` 中并符号链接到存储库缓存中，因此相同的文件在存储库中仅存储在磁盘上一次，并且可以重复使用而无需重新获取。默认情况下启用此优化，但如果 Xet 不可用（例如，如果设置了 `HF_HUB_DISABLE_XET=1`）或本地不支持符号链接，则会禁用此优化。在这些情况下，它会默默地退回到常规存储库本地存储。详情请参阅[caching guide](../guides/manage-cache#shared-blobs-across-repos)。
+
 ### HF_XET_HIGH_PERFORMANCE
 
 将 `hf-xet` 设置为以增加的设置运行，以最大限度地利用计算机上的网络和磁盘资源。启用高性能模式将尝试使本机的网络带宽饱和，并利用所有 CPU 核心进行并行上传/下载活动。
 
-将此视为类似于旧版 `HF_HUB_ENABLE_HF_TRANSFER=1` 环境变量，但应用于 `hf-xet`。要了解有关 Xet 存储和 `hf_xet` 的优势的更多信息，请参阅此 [section](https://huggingface.co/docs/hub/xet/index)。
+将此视为类似于旧版 `HF_HUB_ENABLE_HF_TRANSFER=1` 环境变量，但应用于 `hf-xet`。
 
-### HF_XET_RECONSTRUCT_WRITE_SEQUENTIALLY
+要了解有关 Xet 存储和 `hf_xet` 的优势的更多信息，请参阅此 [section](https://huggingface.co/docs/hub/xet/index)。
 
-让`hf-xet`顺序写入本地磁盘，而不是并行。 `hf-xet` 专为 SSD/NVMe 磁盘而设计（使用直接寻址的并行写入）。如果您使用的是 HDD（旋转硬盘），设置此项会将磁盘写入更改为顺序写入而不是并行写入。对于速度较慢的硬盘，这可以提高整体写入性能，因为磁盘不会旋转来寻求并行写入。
+### HF_XET_RECONSTRUCT_WRITE_SEQUENTIALLYTo have `hf-xet` write sequentially to local disk, instead of in parallel. `hf-xet` is designed for SSD/NVMe disks (using parallel writes with direct addressing). If you are using an HDD (spinning hard disk), setting this will change disk writes to be sequential instead of parallel. For slower hard disks, this can improve overall write performance, as the disk is not spinning to seek for parallel writes.
 
 ## 已弃用的环境变量
 
-为了标准化 Hugging Face 生态系统中的所有环境变量，一些变量已被标记为已弃用。尽管它们仍然有效，但它们不再优先于其替代品。下表概述了已弃用的变量及其相应的替代变量：
+In order to standardize all environment variables within the Hugging Face ecosystem, some variables have been marked as deprecated. Although they remain functional, they no longer take precedence over their replacements. The following table outlines the deprecated variables and their corresponding alternatives:
 
-|已弃用的变量 |更换|
+|已弃用的变量 | Replacement        |
 | ------------------------ | | ------------------ |
-| `HUGGINGFACE_HUB_CACHE` | `HF_HUB_CACHE` |
-| `HUGGINGFACE_ASSETS_CACHE` | `HF_ASSETS_CACHE` |
-| `HUGGING_FACE_HUB_TOKEN` | `HF_TOKEN` |
+| `HUGGINGFACE_HUB_CACHE`     | `HF_HUB_CACHE`     |
+| `HUGGINGFACE_ASSETS_CACHE`  | `HF_ASSETS_CACHE`  |
+| `HUGGING_FACE_HUB_TOKEN`    | `HF_TOKEN`         |
 
-## 来自外部工具
+## From external tools
 
-某些环境变量并非特定于 `huggingface_hub`，但在设置时仍会考虑在内。### 请勿追踪
+Some environment variables are not specific to `huggingface_hub` but are still taken into account when they are set.
 
-布尔值。相当于`HF_HUB_DISABLE_TELEMETRY`。当设置为 true 时，遥测在 Hugging Face Python 生态系统中全局禁用（`transformers`、`diffusers`、`gradio` 等）。请参阅 https://donottrack.sh/ 了解更多详细信息。
+### DO_NOT_TRACK布尔值。相当于`HF_HUB_DISABLE_TELEMETRY`。 When set to true, telemetry is globally disabled in the Hugging Face Python ecosystem (`transformers`, `diffusers`, `gradio`, etc.).请参阅 https://donottrack.sh/ 了解更多详细信息。
 
 ### 无颜色
 
-布尔值。设置后，`hf` CLI 将不会打印任何 ANSI 颜色。
+布尔值。 When set, `hf` CLI will not print any ANSI color.
 参见[no-color.org](https://no-color.org/)。
 
 ### XDG_CACHE_HOME
 
 仅当`HF_HOME`未设置时使用！
 
-这是配置[user-specific non-essential (cached) data should be written](https://wiki.archlinux.org/title/XDG_Base_Directory)的默认方式
+This is the default way to configure where [user-specific non-essential (cached) data should be written](https://wiki.archlinux.org/title/XDG_Base_Directory)
 在 Linux 机器上。
 
-如果未设置`HF_HOME`，则默认主页为`"$XDG_CACHE_HOME/huggingface"`
+If `HF_HOME` is not set, the default home will be `"$XDG_CACHE_HOME/huggingface"` instead
 `"~/.cache/huggingface"`。
 
 ### HfApi 客户端
-https://huggingface.co/docs/huggingface_hub/v1.31.0.rc0/package_reference/hf_api.md
+https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/hf_api.md

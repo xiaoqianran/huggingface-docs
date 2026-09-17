@@ -11,7 +11,7 @@
 ## 传递参数
 
 使用 `--` 将作业选项与命令或脚本及其参数分开。之后的选项
-`--`，例如`--help`或`--timeout`，是通过乔布斯传递而不是由乔布斯解释。
+`--`，例如`--help`或`--timeout`，是通过乔布斯传递的，而不是由乔布斯解释的。
 这适用于 UV 和 Docker 作业。
 
 ```text
@@ -48,19 +48,43 @@ hf jobs uv run --flavor t4-small -- script.py --early-stopping-patience 3
 
 默认情况下，UV 作业使用 `ghcr.io/astral-sh/uv:python3.12-bookworm` Docker 映像运行，但只要安装了 UV，您就可以使用其他映像，即 `--image <docker-image>`。
 
-## Docker 工作
+### 在脚本中定义启动配置仅在特定运行时（给定图像、GPU 风格或系统解释器）上正确运行的脚本可以在其 PEP 723 标头的可选 `[tool.hf-jobs]` 表中携带该配置：
 
-指定 Docker 映像和要运行的命令，就像使用 docker 一样：
+```python
+# /// script
+# requires-python = ">=3.11"
+# dependencies = ["vllm", "datasets"]
+#
+# [tool.hf-jobs]
+# image   = "vllm/vllm-openai:unlimited-ocr"
+# flavor  = "l4x1"
+# python  = "/usr/bin/python3"
+# secrets = ["HF_TOKEN"]
+# ///
+```
+
+`hf jobs uv run ocr.py` 然后在该映像和硬件上启动。普通的 `uv run` 会忽略该表，因为 `[tool.*]` 表是 PEP 723 的一部分，并且工具会跳过它们不拥有的表。
+
+支持的按键，全部可选：`image`、`flavor`、`python`、`timeout`、`name`、`namespace`、`env`、`secrets`、`labels`、`volumes`、 `network_group` 和 `network_aliases`。它们映射到同名的标志。脚本中的值是默认值：显式标志始终获胜，并且 `env`、`secrets`、`labels` 和 `volumes` 逐项合并，因此 `-e` 和 `-v` 添加到脚本声明的内容中。未知的密钥是一个错误，`secrets`只列出名称：值来自运行脚本的人的环境，未在本地设置的秘密也是一个错误。
+
+使用`--dry-run`打印解析后的配置，无需提交；来自脚本的值被标记为 `(from script)`。有关完整的合并规则，请参阅[⟦T80⟧ CLI guide](https://huggingface.co/docs/huggingface_hub/guides/cli#ship-the-launch-config-with-the-script)。
+
+> [!警告]
+> 该表仅由 `hf` CLI 读取。 `run_uv_job()` 和 `create_scheduled_uv_job()` 忽略它，因此从 Python 显式传递 `image=`、`flavor=`、...。
+
+## Docker 工作指定 Docker 映像和要运行的命令，就像使用 docker 一样：
 
 ```bash
 >>> hf jobs run ubuntu echo "Hello from the cloud!"
 ```
 
-在这里，`--help`到达Python而不是显示乔布斯帮助：
+在这里，`--help` 到达了 Python，而不是显示乔布斯帮助：
 
 ```bash
 >>> hf jobs run --flavor cpu-basic python:3.12 -- python --help
-```在 [CLI documentation](https://huggingface.co/docs/huggingface_hub/package_reference/cli#hf-jobs-run) 中找到所有参数的列表。
+```
+
+在 [CLI documentation](https://huggingface.co/docs/huggingface_hub/package_reference/cli#hf-jobs-run) 中找到所有参数的列表。
 
 ## 环境变量和秘密
 
@@ -82,9 +106,7 @@ hf jobs uv run --flavor t4-small -- script.py --early-stopping-patience 3
 ```bash
 # Access job environment information
 >>> hf jobs run python:3.12 python -c "import os; print(f'Job: {os.environ.get(\"JOB_ID\")}, CPU: {os.environ.get(\"CPU_CORES\")}, Mem: {os.environ.get(\"MEMORY\")}')"
-```
-
-### 用户定义的环境变量
+```### 用户定义的环境变量
 
 您可以使用以下命令将环境变量传递给您的作业 
 
@@ -106,14 +128,16 @@ hf jobs uv run --flavor t4-small -- script.py --early-stopping-patience 3
 ```bash
 # Pass secrets from a local .env.secrets file - they will be encrypted server side
 >>> hf jobs uv run --secrets-file .env.secrets python -c 'import os; print(os.environ["MY_SECRET"])'
-```> [!提示]
+```
+
+> [!提示]
 > 使用 `--secrets HF_TOKEN` 隐式传递您本地的 Hugging Face 令牌。
 > 使用此语法，可以从环境变量中检索机密。
 > 对于`HF_TOKEN`，如果未设置环境变量，它可能会读取位于 Hugging Face 主文件夹中的令牌文件。
 
 ## 卷
 
-使用 `-v` 或 `--volume` 将 Hugging Face 存储库（模型、数据集）、[Storage Buckets](./storage-buckets) 或本地目录作为卷安装在作业容器中。 Hub 源使用 `hf://` URL 方案：`hf://[TYPE/]SOURCE:/MOUNT_PATH[:ro]`；本地目录直接作为源传递。
+使用 `-v` 或 `--volume` 将 Hugging Face 存储库（模型、数据集）、[Storage Buckets](./storage-buckets) 或本地目录作为卷装载到作业容器中。 Hub 源使用 `hf://` URL 方案：`hf://[TYPE/]SOURCE:/MOUNT_PATH[:ro]`；本地目录直接作为源传递。
 
 > [!提示]
 > 由于装载的文件是延迟获取的，因此装载可以让作业处理远大于其本地磁盘的数据集。有关在作业上安装、流式传输和处理大数据的信息，请参阅[Process Large Datasets](./jobs-large-datasets)。
@@ -153,15 +177,15 @@ hf jobs uv run --flavor t4-small -- script.py --early-stopping-patience 3
 
 ### 本地目录
 
-传递本地目录作为源，在作业启动之前将其同步到您的私有`jobs-artifacts`[Storage Bucket](./storage-buckets)（自动创建），然后将其安装到容器中。本地目录默认以**只读**方式挂载；使用 `:rw` 写入输出：
+传递本地目录作为源，在作业启动之前将其同步到您的私有`jobs-artifacts`[Storage Bucket](./storage-buckets)（自动创建），然后将其安装到容器中。本地目录默认挂载为**只读**；使用 `:rw` 写入输出：
 
 ```bash
 >>> hf jobs uv run -v ./pdfs:/input -v ./md-out:/output:rw ocr.py
 ```
 
-重新同步同一目录只会上传新的或修改的文件。要检索作业写入读写卷的文件，请在作业结束后同步其存储桶文件夹 — CLI 在作业启动时打印确切的 `hf buckets sync` 命令。计划作业也可以工作：创建计划时目录会同步一次，并且每个触发器都会安装相同的文件夹。在Python中，使用[⟦T84⟧](https://huggingface.co/docs/huggingface_hub/guides/jobs#mount-local-data)。
+重新同步同一目录只会上传新的或修改的文件。要检索作业写入读写卷的文件，请在作业结束后同步其存储桶文件夹 — CLI 在作业启动时打印确切的 `hf buckets sync` 命令。计划作业也可以工作：创建计划时目录会同步一次，并且每个触发器都会安装相同的文件夹。在Python中，使用[⟦T116⟧](https://huggingface.co/docs/huggingface_hub/guides/jobs#mount-local-data)。
 
-在 Python 中，使用 [⟦T85⟧](https://huggingface.co/docs/huggingface_hub/package_reference/jobs#huggingface_hub.Volume) 类：
+在 Python 中，使用 [⟦T117⟧](https://huggingface.co/docs/huggingface_hub/package_reference/jobs#huggingface_hub.Volume) 类：
 
 ```python
 from huggingface_hub import Volume, run_job
@@ -185,9 +209,9 @@ job = run_job(
 
 ```bash
 >>> hf jobs uv run --with torch --flavor a10g-small python -c "import torch; print(f'This code ran with the following GPU: {torch.cuda.get_device_name()}')"
-```
+```运行此命令将显示以下输出！
 
-运行此命令将显示以下输出！```
+```
 This code ran with the following GPU: NVIDIA A10G
 ```
 
@@ -268,9 +292,9 @@ Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
 ['https://6a2ab384c4f53f9fc5aa4d4f--8000.hf.jobs']
 ```
 
-## SSH您可以在正在运行的作业中打开交互式 SSH 会话，以直接在容器内进行调试、检查或工作。在创建作业时使用 `--ssh` (CLI) 或 `ssh=True` (Python API) 启用它，然后与 `hf jobs ssh <job_id>` 连接。
+## SSH您可以在正在运行的作业中打开交互式 SSH 会话，以直接在容器内进行调试、检查或工作。在创建作业时使用 `--ssh` (CLI) 或 `ssh=True` (Python API) 启用它，然后使用 `hf jobs ssh <job_id>` 连接。
 
-仅允许对作业的命名空间具有写入权限的用户（即作业创建者或具有写入权限的所有者组织的成员）。身份验证是通过在[https://huggingface.co/settings/keys](https://huggingface.co/settings/keys)注册的SSH公钥执行的。
+仅允许对作业的命名空间具有写入权限的用户（即作业创建者或具有写入权限的所有者组织的成员）。通过在 [https://huggingface.co/settings/keys](https://huggingface.co/settings/keys) 注册的 SSH 公钥执行身份验证。
 
 SSH 在 `hf jobs run` 和 `hf jobs uv run` 上可用。计划作业不支持它。
 
@@ -423,7 +447,7 @@ ssh 6a2bd1f1871c005b5352ad31@ssh.hf.jobs
 
 ```bash
 hf jobs uv run --label fine-tuning --label model=Qwen3-06B --label dataset=Capybara ...
-```请注意，多次使用相同的`key`会导致最后一个`key=value`覆盖并丢弃任何先前带有`key`的标签。
+```请注意，多次使用相同的 `key` 会导致最后一个 `key=value` 覆盖并丢弃任何先前带有 `key` 的标签。
 
 ### 命名一个工作
 
@@ -433,7 +457,7 @@ hf jobs uv run --label fine-tuning --label model=Qwen3-06B --label dataset=Capyb
 hf jobs run --name daily-report python:3.12 python report.py
 ```
 
-如果您不通过 `--name`，作业将以其 Docker 映像或脚本加上命令的简短哈希值命名，因此同一命令的重新运行共享一个名称，而不同的命令将获得不同的名称（例如，`python-3-12-6b9d662c` 表示在 `python:3.12` 上运行的作业）。
+如果您未通过 `--name`，则作业以其 Docker 映像或脚本加上命令的简短哈希值命名，因此同一命令的重新运行共享一个名称，而不同的命令会获得不同的名称（例如，`python-3-12-6b9d662c` 表示在 `python:3.12` 上运行的作业）。
 
 ### 更新标签
 

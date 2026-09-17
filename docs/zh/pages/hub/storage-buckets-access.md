@@ -14,7 +14,7 @@
 | **CLI 同步** |批量传输、备份| [Sync docs](./storage-buckets#syncing-directories) |
 | **S3 API** |现有 S3 工具（AWS CLI、boto3、s5cmd）| [S3-Compatible API](./storage-buckets-s3) |
 
-对于使用存储桶作为后端的工具（SkyPilot、Inspect 等），请参阅 [Integrations](./storage-buckets-integrations)。
+对于使用存储桶作为后端的工具（SkyPilot、Inspect 等），请参阅 [Integrations](./storage-buckets-integrations)。要使客户端与存储桶保持同步而不轮询它，请参阅[Tracking Changes](./storage-buckets#tracking-changes)。
 
 ## 挂载为本地文件系统
 
@@ -32,10 +32,10 @@ brew install hf-mount
 hf-mount start bucket username/my-bucket /mnt/data
 ```
 
-安装后，任何读取或写入文件的工具都可以与您的存储桶配合使用 - pandas、DuckDB、vLLM、训练脚本、shell 命令等。
+安装后，任何读取或写入文件的工具都可以与您的存储桶配合使用 - pandas、DuckDB、vLLM、训练脚本、shell 命令等。> [!提示]
+> 存储桶以读写方式挂载；回购协议是只读的。请参阅 [hf-mount repository](https://github.com/huggingface/hf-mount) 获取完整文档，包括后端选项、缓存和写入模式。
 
-> [!提示]
-> 存储桶以读写方式挂载；回购协议是只读的。请参阅 [hf-mount repository](https://github.com/huggingface/hf-mount) 了解完整文档，包括后端选项、缓存和写入模式。## 在作业和空间中安装卷
+## 在作业和空间中安装卷
 
 [Jobs](./jobs)和[Spaces](./spaces)中的卷挂载与`hf-mount`相同，由平台为您管理 - 无需额外设置。默认情况下，存储桶以读写方式安装。
 
