@@ -14,7 +14,7 @@ for a detailed presentation of caching at HF.
 huggingface_hub.try_to_load_from_cache(repo_id: str, filename: str, cache_dir: str | pathlib.Path | None = None, revision: str | None = None, repo_type: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/file_download.py#L1488)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/file_download.py#L1518)
 
 **Parameters:**
 
@@ -64,7 +64,7 @@ else:
 huggingface_hub.cached_assets_path(library_name: str, namespace: str = 'default', subfolder: str = 'default', assets_dir: str | pathlib.Path | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/utils/_cache_assets.py#L19)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_assets.py#L19)
 
 **Parameters:**
 
@@ -160,17 +160,17 @@ PosixPath('/tmp/tmp123456/datasets/default/default')
 huggingface_hub.scan_cache_dir(cache_dir: str | pathlib.Path | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/utils/_cache_manager.py#L597)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L692)
 
 **Parameters:**
 
 cache_dir (`str` or `Path`, `optional`) : Cache directory to cache. Defaults to the default HF cache directory.
 
-Scan the entire HF cache-system and return a [~HFCacheInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/cache#huggingface_hub.HFCacheInfo) structure.
+Scan the entire HF cache-system and return a [~HFCacheInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.HFCacheInfo) structure.
 
 Use `scan_cache_dir` in order to programmatically scan your cache-system. The cache
-will be scanned repo by repo. If a repo is corrupted, a [~CorruptedCacheException](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/cache#huggingface_hub.CorruptedCacheException)
-will be thrown internally but captured and returned in the [~HFCacheInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/cache#huggingface_hub.HFCacheInfo)
+will be scanned repo by repo. If a repo is corrupted, a [~CorruptedCacheException](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.CorruptedCacheException)
+will be thrown internally but captured and returned in the [~HFCacheInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.HFCacheInfo)
 structure. Only valid repos get a proper report.
 
 ```py
@@ -239,39 +239,76 @@ Got 1 warning(s) while scanning. Use -vvv to print details.
 >     [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)
 >       If the cache directory is a file, instead of a directory.
 
-Returns: a [~HFCacheInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/cache#huggingface_hub.HFCacheInfo) object.
+Returns: a [~HFCacheInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.HFCacheInfo) object.
 
 ## Data structures
 
-All structures are built and returned by [scan_cache_dir()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/cache#huggingface_hub.scan_cache_dir) and are immutable.
+All structures are built and returned by [scan_cache_dir()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.scan_cache_dir) and are immutable.
 
 ### HFCacheInfo[[huggingface_hub.HFCacheInfo]]
 
 #### huggingface_hub.HFCacheInfo[[huggingface_hub.HFCacheInfo]]
 
 ```python
-huggingface_hub.HFCacheInfo(size_on_disk: int, repos: frozenset, incomplete_files: frozenset, warnings: list)
+huggingface_hub.HFCacheInfo(size_on_disk: int, repos: frozenset, incomplete_files: frozenset, warnings: list, cache_dir: pathlib.Path | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/utils/_cache_manager.py#L349)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L384)
 
 **Parameters:**
 
-size_on_disk (`int`) : Sum of all valid repo sizes in the cache-system.
+size_on_disk (`int`) : Physical size of the cache-system in bytes. A blob shared across repos is counted once, and store-only shared blobs no longer referenced by any repo are included. Can be smaller than the sum of the per-repo sizes.
 
-repos (`frozenset[CachedRepoInfo]`) : Set of [~CachedRepoInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/cache#huggingface_hub.CachedRepoInfo) describing all valid cached repos found on the cache-system while scanning.
+repos (`frozenset[CachedRepoInfo]`) : Set of [~CachedRepoInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.CachedRepoInfo) describing all valid cached repos found on the cache-system while scanning.
 
-incomplete_files (`frozenset[CachedIncompleteFileInfo]`) : Set of [~CachedIncompleteFileInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/cache#huggingface_hub.CachedIncompleteFileInfo) describing orphaned `*.incomplete` files left behind by interrupted downloads.
+incomplete_files (`frozenset[CachedIncompleteFileInfo]`) : Set of [~CachedIncompleteFileInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.CachedIncompleteFileInfo) describing orphaned `*.incomplete` files left behind by interrupted downloads.
 
-warnings (`list[CorruptedCacheException]`) : List of [~CorruptedCacheException](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/cache#huggingface_hub.CorruptedCacheException) that occurred while scanning the cache. Those exceptions are captured so that the scan can continue. Corrupted repos are skipped from the scan.
+warnings (`list[CorruptedCacheException]`) : List of [~CorruptedCacheException](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.CorruptedCacheException) that occurred while scanning the cache. Those exceptions are captured so that the scan can continue. Corrupted repos are skipped from the scan.
+
+cache_dir (`Path` or `None`) : Cache directory that was scanned.
 
 Frozen data structure holding information about the entire cache-system.
 
-This data structure is returned by [scan_cache_dir()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/cache#huggingface_hub.scan_cache_dir) and is immutable.
+This data structure is returned by [scan_cache_dir()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.scan_cache_dir) and is immutable.
 
 > [!WARNING]
-> Here `size_on_disk` is equal to the sum of all repo sizes (only blobs). However if
-> some cached repos are corrupted, their sizes are not taken into account.
+> `size_on_disk` only accounts for blobs, and corrupted repos are skipped. It is a
+> physical size: unlike `CachedRepoInfo.size_on_disk`, which attributes a shared blob
+> to every repo referencing it, a shared blob is counted here only once.
+
+#### delete_files[[huggingface_hub.HFCacheInfo.delete_files]]
+
+```python
+delete_files(*files: CachedFileInfo)
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L547)
+
+Prepare the strategy to delete individual cached files.
+
+Only the snapshot entries are removed. A blob is deleted only if no other cached file
+references it, so blobs shared with other revisions are kept. Refs and snapshot
+directories are kept as well, even if a snapshot ends up empty. To delete whole
+revisions or repos, use [delete_revisions()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_revisions).
+
+Example:
+```py
+>>> from huggingface_hub import scan_cache_dir
+>>> cache_info = scan_cache_dir()
+>>> files = [
+...     file
+...     for repo in cache_info.repos
+...     if repo.repo_id == "org/model"
+...     for revision in repo.revisions
+...     for file in revision.files
+...     if file.file_name == "model-Q4_K_M.gguf"
+... ]
+>>> delete_strategy = cache_info.delete_files(*files)
+>>> print(f"Will free {delete_strategy.expected_freed_size_str}.")
+Will free 4.9G.
+>>> delete_strategy.execute()
+Cache deletion done. Saved 4.9G.
+```
 
 #### delete_revisions[[huggingface_hub.HFCacheInfo.delete_revisions]]
 
@@ -279,7 +316,7 @@ This data structure is returned by [scan_cache_dir()](/docs/huggingface_hub/v1.3
 delete_revisions(*revisions: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/utils/_cache_manager.py#L393)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L433)
 
 Prepare the strategy to delete one or more revisions cached locally.
 
@@ -311,8 +348,8 @@ Cache deletion done. Saved 8.6G.
 ```
 
 > [!WARNING]
-> `delete_revisions` returns a [DeleteCacheStrategy](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) object that needs to
-> be executed. The [DeleteCacheStrategy](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) is not meant to be modified but
+> `delete_revisions` returns a [DeleteCacheStrategy](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) object that needs to
+> be executed. The [DeleteCacheStrategy](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) is not meant to be modified but
 > allows having a dry run before actually executing the deletion.
 
 #### export_as_table[[huggingface_hub.HFCacheInfo.export_as_table]]
@@ -321,7 +358,7 @@ Cache deletion done. Saved 8.6G.
 export_as_table(verbosity: int = 0)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/utils/_cache_manager.py#L502)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L597)
 
 **Parameters:**
 
@@ -331,7 +368,7 @@ verbosity (`int`, *optional*) : The verbosity level. Defaults to 0.
 
 The table as a string.
 
-Generate a table from the [HFCacheInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/cache#huggingface_hub.HFCacheInfo) object.
+Generate a table from the [HFCacheInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.HFCacheInfo) object.
 
 Pass `verbosity=0` to get a table with a single row per repo, with columns
 "repo_id", "repo_type", "size_on_disk", "nb_files", "last_accessed", "last_modified", "refs", "local_path".
@@ -368,16 +405,16 @@ t5-large                                            model     150ebc2c4b72291e77
 #### huggingface_hub.CachedRepoInfo[[huggingface_hub.CachedRepoInfo]]
 
 ```python
-huggingface_hub.CachedRepoInfo(repo_id: str, repo_type: typing.Literal['model', 'dataset', 'space'], repo_path: Path, size_on_disk: int, nb_files: int, revisions: frozenset, last_accessed: float, last_modified: float)
+huggingface_hub.CachedRepoInfo(repo_id: str, repo_type: typing.Literal['model', 'dataset', 'space', 'kernel'], repo_path: Path, size_on_disk: int, nb_files: int, revisions: frozenset, last_accessed: float, last_modified: float)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/utils/_cache_manager.py#L175)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L176)
 
 **Parameters:**
 
 repo_id (`str`) : Repo id of the repo on the Hub. Example: `"google/fleurs"`.
 
-repo_type (`Literal["dataset", "model", "space"]`) : Type of the cached repo.
+repo_type (`Literal["dataset", "model", "space", "kernel"]`) : Type of the cached repo.
 
 repo_path (`Path`) : Local path to the cached repo.
 
@@ -385,7 +422,7 @@ size_on_disk (`int`) : Sum of the blob file sizes in the cached repo.
 
 nb_files (`int`) : Total number of blob files in the cached repo.
 
-revisions (`frozenset[CachedRevisionInfo]`) : Set of [~CachedRevisionInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/cache#huggingface_hub.CachedRevisionInfo) describing all revisions cached in the repo.
+revisions (`frozenset[CachedRevisionInfo]`) : Set of [~CachedRevisionInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.CachedRevisionInfo) describing all revisions cached in the repo.
 
 last_accessed (`float`) : Timestamp of the last time a blob file of the repo has been accessed.
 
@@ -409,7 +446,7 @@ Frozen data structure holding information about a cached repository.
 size_on_disk_str()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/utils/_cache_manager.py#L237)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L238)
 
 (property) Sum of the blob file sizes as a human-readable string.
 
@@ -421,7 +458,7 @@ Example: "42.2K".
 refs()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/utils/_cache_manager.py#L251)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L252)
 
 (property) Mapping between `refs` and revision data structures.
 
@@ -433,7 +470,7 @@ refs()
 huggingface_hub.CachedRevisionInfo(commit_hash: str, snapshot_path: Path, size_on_disk: int, files: frozenset, refs: frozenset, last_modified: float)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/utils/_cache_manager.py#L104)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L105)
 
 **Parameters:**
 
@@ -441,7 +478,7 @@ commit_hash (`str`) : Hash of the revision (unique). Example: `"9338f7b671827df8
 
 snapshot_path (`Path`) : Path to the revision directory in the `snapshots` folder. It contains the exact tree structure as the repo on the Hub.
 
-files : (`frozenset[CachedFileInfo]`): Set of [~CachedFileInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/cache#huggingface_hub.CachedFileInfo) describing all files contained in the snapshot.
+files : (`frozenset[CachedFileInfo]`): Set of [~CachedFileInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.CachedFileInfo) describing all files contained in the snapshot.
 
 refs (`frozenset[str]`) : Set of `refs` pointing to this revision. If the revision has no `refs`, it is considered detached. Example: `{"main", "2.4.0"}` or `{"refs/pr/1"}`.
 
@@ -470,7 +507,7 @@ revision can be either referenced by 1 or more `refs` or be "detached" (no refs)
 size_on_disk_str()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/utils/_cache_manager.py#L157)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L158)
 
 (property) Sum of the blob file sizes as a human-readable string.
 
@@ -482,7 +519,7 @@ Example: "42.2K".
 nb_files()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/utils/_cache_manager.py#L166)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L167)
 
 (property) Total number of files in the revision.
 
@@ -494,7 +531,7 @@ nb_files()
 huggingface_hub.CachedFileInfo(file_name: str, file_path: Path, blob_path: Path, size_on_disk: int, blob_last_accessed: float, blob_last_modified: float)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/utils/_cache_manager.py#L40)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L40)
 
 **Parameters:**
 
@@ -502,7 +539,7 @@ file_name (`str`) : Name of the file. Example: `config.json`.
 
 file_path (`Path`) : Path of the file in the `snapshots` directory. The file path is a symlink referring to a blob in the `blobs` folder.
 
-blob_path (`Path`) : Path of the blob file. This is equivalent to `file_path.resolve()`.
+blob_path (`Path`) : Path of the repo-local blob entry referenced by `file_path`. The blob entry can itself be a symlink to the cache-wide shared blob store.
 
 size_on_disk (`int`) : Size of the blob file in bytes.
 
@@ -523,7 +560,7 @@ Frozen data structure holding information about a single cached file.
 size_on_disk_str()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/utils/_cache_manager.py#L93)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L94)
 
 (property) Size of the blob file as a human-readable string.
 
@@ -537,7 +574,7 @@ Example: "42.2K".
 huggingface_hub.CachedIncompleteFileInfo(file_path: Path, size_on_disk: int)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/utils/_cache_manager.py#L330)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L365)
 
 **Parameters:**
 
@@ -549,17 +586,17 @@ Frozen data structure holding information about a single incomplete download.
 
 Interrupted downloads leave `<cache>/<repo>/blobs/<etag>.incomplete` files behind.
 These are not part of any committed revision, so they are surfaced separately by
-[scan_cache_dir()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/cache#huggingface_hub.scan_cache_dir).
+[scan_cache_dir()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.scan_cache_dir).
 
 ### DeleteCacheStrategy[[huggingface_hub.DeleteCacheStrategy]]
 
 #### huggingface_hub.DeleteCacheStrategy[[huggingface_hub.DeleteCacheStrategy]]
 
 ```python
-huggingface_hub.DeleteCacheStrategy(expected_freed_size: int, blobs: frozenset, refs: frozenset, repos: frozenset, snapshots: frozenset)
+huggingface_hub.DeleteCacheStrategy(expected_freed_size: int, blobs: frozenset, refs: frozenset, repos: frozenset, snapshots: frozenset, files: frozenset = frozenset(), cache_dir: pathlib.Path | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/utils/_cache_manager.py#L260)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L261)
 
 **Parameters:**
 
@@ -573,10 +610,15 @@ repos (`frozenset[Path]`) : Set of entire repo paths to be deleted.
 
 snapshots (`frozenset[Path]`) : Set of snapshots to be deleted (directory of symlinks).
 
-Frozen data structure holding the strategy to delete cached revisions.
+files (`frozenset[Path]`, *optional*) : Set of individual snapshot entries to be deleted. Their blobs are deleted only if listed in `blobs`.
+
+cache_dir (`Path` or `None`) : Cache directory the strategy was computed from. Used to collect shared blobs referenced by repo-local symlinks removed by the deletion.
+
+Frozen data structure holding the strategy to delete cached revisions or files.
 
 This object is not meant to be instantiated programmatically but to be returned by
-[delete_revisions()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_revisions). See documentation for usage example.
+[delete_revisions()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_revisions) or [delete_files()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_files). See
+documentation for usage example.
 
 #### expected_freed_size_str[[huggingface_hub.DeleteCacheStrategy.expected_freed_size_str]]
 
@@ -584,7 +626,7 @@ This object is not meant to be instantiated programmatically but to be returned 
 expected_freed_size_str()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/utils/_cache_manager.py#L285)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L295)
 
 (property) Expected size that will be freed as a human-readable string.
 
@@ -596,9 +638,9 @@ Example: "42.2K".
 
 #### huggingface_hub.CorruptedCacheException[[huggingface_hub.CorruptedCacheException]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/errors.py#L22)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/errors.py#L22)
 
 Exception for any unexpected structure in the Huggingface cache-system.
 
 ### Environment variables
-https://huggingface.co/docs/huggingface_hub/v1.31.0.rc0/package_reference/environment_variables.md
+https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/environment_variables.md

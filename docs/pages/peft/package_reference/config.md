@@ -78,7 +78,7 @@ pretrained_model_name_or_path (`str`) : The directory or the Hub repository id w
 
 subfolder (`str`, *optional*) : An optional subfolder under `pretrained_model_name_or_path`.
 
-kwargs (additional keyword arguments, *optional*) : Keyword arguments forwarded to [huggingface_hub.hf_hub_download](https://huggingface.co/docs/huggingface_hub/v1.31.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) (for example `token`, `revision`, `cache_dir`). PEFT config-specific arguments, such as `task_type` or `r`, cannot be passed as overrides. To change attributes, set them on the returned config after loading.
+kwargs (additional keyword arguments, *optional*) : Keyword arguments forwarded to [huggingface_hub.hf_hub_download](https://huggingface.co/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) (for example `token`, `revision`, `cache_dir`). PEFT config-specific arguments, such as `task_type` or `r`, cannot be passed as overrides. To change attributes, set them on the returned config after loading.
 
 This method loads the configuration of your adapter model from a directory.
 

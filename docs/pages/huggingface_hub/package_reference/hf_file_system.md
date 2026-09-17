@@ -12,7 +12,7 @@ The `HfFileSystem` class provides a pythonic file interface to the Hugging Face 
 huggingface_hub.HfFileSystem(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_file_system.py#L141)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_file_system.py#L142)
 
 **Parameters:**
 
@@ -29,7 +29,7 @@ expand_info (`bool`, *optional*) : Whether to expand the information of the file
 Access a remote Hugging Face Hub repository as if were a local file system.
 
 > [!WARNING]
-> [HfFileSystem](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) provides fsspec compatibility, which is useful for libraries that require it (e.g., reading
+> [HfFileSystem](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) provides fsspec compatibility, which is useful for libraries that require it (e.g., reading
 >     Hugging Face datasets directly with `pandas`). However, it introduces additional overhead due to this compatibility
 >     layer. For better performance and reliability, it's recommended to use `HfApi` methods when possible.
 
@@ -49,7 +49,7 @@ hf://spaces/<repo-id>[@<revision>]/<path/in/repo>
 hf://buckets/<bucket-id>/<path/in/bucket>
 ```
 
-Note: when using the [HfFileSystem](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) directly, passing the `hf://` protocol prefix is optional in paths.
+Note: when using the [HfFileSystem](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) directly, passing the `hf://` protocol prefix is optional in paths.
 
 Usage:
 
@@ -81,7 +81,7 @@ Specify a token for authentication:
 cp_file(path1: str, path2: str, revision: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_file_system.py#L797)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_file_system.py#L798)
 
 **Parameters:**
 
@@ -102,7 +102,7 @@ Copy a file within or between repositories.
 exists(path, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_file_system.py#L992)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_file_system.py#L993)
 
 **Parameters:**
 
@@ -125,7 +125,7 @@ For more details, refer to [fsspec documentation](https://filesystem-spec.readth
 find(path: str, maxdepth: int | None = None, withdirs: bool = False, detail: bool = False, refresh: bool = False, revision: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_file_system.py#L736)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_file_system.py#L737)
 
 **Parameters:**
 
@@ -152,10 +152,10 @@ For more details, refer to [fsspec documentation](https://filesystem-spec.readth
 #### get_file[[huggingface_hub.HfFileSystem.get_file]]
 
 ```python
-get_file(rpath, lpath, callback = <fsspec.callbacks.NoOpCallback object at 0x7fe31aafb940>, outfile = None, **kwargs)
+get_file(rpath, lpath, callback = <fsspec.callbacks.NoOpCallback object at 0x7fa3cb702b90>, outfile = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_file_system.py#L1079)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_file_system.py#L1080)
 
 **Parameters:**
 
@@ -178,7 +178,7 @@ Copy single remote file to local.
 glob(path: str, maxdepth: int | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_file_system.py#L718)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_file_system.py#L719)
 
 **Parameters:**
 
@@ -200,7 +200,7 @@ For more details, refer to [fsspec documentation](https://filesystem-spec.readth
 info(path: str, refresh: bool = False, revision: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_file_system.py#L882)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_file_system.py#L883)
 
 **Parameters:**
 
@@ -228,7 +228,7 @@ For more details, refer to [fsspec documentation](https://filesystem-spec.readth
 invalidate_cache(path: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_file_system.py#L356)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_file_system.py#L357)
 
 **Parameters:**
 
@@ -244,7 +244,7 @@ For more details, refer to [fsspec documentation](https://filesystem-spec.readth
 isdir(path)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_file_system.py#L1017)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_file_system.py#L1018)
 
 **Parameters:**
 
@@ -264,7 +264,7 @@ For more details, refer to [fsspec documentation](https://filesystem-spec.readth
 isfile(path)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_file_system.py#L1035)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_file_system.py#L1036)
 
 **Parameters:**
 
@@ -284,7 +284,7 @@ For more details, refer to [fsspec documentation](https://filesystem-spec.readth
 ls(path: str, detail: bool = True, refresh: bool = False, revision: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_file_system.py#L473)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_file_system.py#L474)
 
 **Parameters:**
 
@@ -314,7 +314,7 @@ For more details, refer to [fsspec documentation](https://filesystem-spec.readth
 modified(path: str, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_file_system.py#L857)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_file_system.py#L858)
 
 **Parameters:**
 
@@ -334,7 +334,7 @@ For more details, refer to [fsspec documentation](https://filesystem-spec.readth
 resolve_path(path: str, revision: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_file_system.py#L277)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_file_system.py#L278)
 
 **Parameters:**
 
@@ -361,7 +361,7 @@ Resolve a Hugging Face file system path into its components.
 rm(path: str, recursive: bool = False, maxdepth: int | None = None, revision: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_file_system.py#L423)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_file_system.py#L424)
 
 **Parameters:**
 
@@ -386,7 +386,7 @@ For more details, refer to [fsspec documentation](https://filesystem-spec.readth
 url(path: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_file_system.py#L1053)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_file_system.py#L1054)
 
 **Parameters:**
 
@@ -404,7 +404,7 @@ Get the HTTP URL of the given path.
 walk(path: str, *args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_file_system.py#L702)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_file_system.py#L703)
 
 **Parameters:**
 
@@ -419,4 +419,4 @@ Return all files below the given path.
 For more details, refer to [fsspec documentation](https://filesystem-spec.readthedocs.io/en/latest/api.html#fsspec.spec.AbstractFileSystem.walk).
 
 ### Buckets
-https://huggingface.co/docs/huggingface_hub/v1.31.0.rc0/guides/buckets.md
+https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/buckets.md

@@ -187,7 +187,7 @@ model's per-layer outputs and does not exist standalone) would leave the detache
 unload_shadow(adapter_name: typing.Optional[str] = None, copy: bool = False)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/shadow/model.py#L871)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/shadow/model.py#L875)
 
 **Parameters:**
 

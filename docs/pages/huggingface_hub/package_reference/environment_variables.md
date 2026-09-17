@@ -119,11 +119,11 @@ If set, the log level for the `huggingface_hub` logger is set to DEBUG. Addition
 
 If set, no HTTP calls will be made to the Hugging Face Hub. If you try to download files, only the cached files will be accessed. If no cache file is detected, an error is raised This is useful in case your network is slow and you don't care about having the latest version of a file.
 
-If `HF_HUB_OFFLINE=1` is set as environment variable and you call any method of [HfApi](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi), an [OfflineModeIsEnabled](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled) exception will be raised.
+If `HF_HUB_OFFLINE=1` is set as environment variable and you call any method of [HfApi](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi), an [OfflineModeIsEnabled](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled) exception will be raised.
 
 **Note:** even if the latest version of a file is cached, calling `hf_hub_download` still triggers a HTTP request to check that a new version is not available. Setting `HF_HUB_OFFLINE=1` will skip this call which speeds up your loading time.
 
-If you want to check if offline mode is enabled or not, you can use the [is_offline_mode()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.is_offline_mode) helper.
+If you want to check if offline mode is enabled or not, you can use the [is_offline_mode()](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.is_offline_mode) helper.
 
 ### HF_HUB_DISABLE_IMPLICIT_TOKEN
 
@@ -195,6 +195,10 @@ Set to disable using `hf-xet`, even if it is available in your Python environmen
 > Now that the Hugging Face Hub is fully powered by the Xet storage backend, all file transfers go through the `hf-xet` binary package. It provides efficient transfers using a chunk-based deduplication strategy and integrates seamlessly with `huggingface_hub`.
 > This means `hf_transfer` can't be used anymore. If you are interested in higher performance, check out the [`HF_XET_HIGH_PERFORMANCE` section](#hf_xet_high_performance)
 
+### HF_HUB_DISABLE_SHARED_BLOBS
+
+Set to `1` to disable the cache-wide shared blob store. By default, successfully downloaded Xet files are stored in `<CACHE_DIR>/blobs/<prefix>/<xet_hash>` and symlinked into repo caches, so identical files are stored on disk only once across repos and can be reused without re-fetching. This optimization is enabled by default, but is disabled if Xet is unavailable (e.g. if `HF_HUB_DISABLE_XET=1` is set) or if symlinks are not supported locally. In those cases it silently falls back to regular repo-local storage. See the [caching guide](../guides/manage-cache#shared-blobs-across-repos) for details.
+
 ### HF_XET_HIGH_PERFORMANCE
 
 Set `hf-xet` to operate with increased settings to maximize network and disk resources on the machine. Enabling high performance mode will try to saturate the network bandwidth of this machine and utilize all CPU cores for parallel upload/download activity.
@@ -241,4 +245,4 @@ If `HF_HOME` is not set, the default home will be `"$XDG_CACHE_HOME/huggingface"
 of `"~/.cache/huggingface"`.
 
 ### HfApi Client
-https://huggingface.co/docs/huggingface_hub/v1.31.0.rc0/package_reference/hf_api.md
+https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/hf_api.md

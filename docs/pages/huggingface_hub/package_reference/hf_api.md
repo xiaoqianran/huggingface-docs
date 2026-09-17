@@ -4,9 +4,9 @@ Below is the documentation for the `HfApi` class, which serves as a Python wrapp
 
 All methods from the `HfApi` are also accessible from the package's root directly. Both approaches are detailed below.
 
-Using the root method is more straightforward but the [HfApi](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi) class gives you more flexibility.
+Using the root method is more straightforward but the [HfApi](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi) class gives you more flexibility.
 In particular, you can pass a token that will be reused in all HTTP calls. This is different
-from `hf auth login` or [login()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/authentication#huggingface_hub.login) as the token is not persisted on the machine.
+from `hf auth login` or [login()](/docs/huggingface_hub/v1.32.0/en/package_reference/authentication#huggingface_hub.login) as the token is not persisted on the machine.
 It is also possible to provide a different endpoint or configure a custom user-agent.
 
 ```python
@@ -31,7 +31,7 @@ models = hf_api.list_models()
 huggingface_hub.HfApi(endpoint: str | None = None, token: str | bool | None = None, library_name: str | None = None, library_version: str | None = None, user_agent: dict | str | None = None, headers: dict[str, str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L2249)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L2222)
 
 **Parameters:**
 
@@ -60,7 +60,7 @@ directly at the root of `huggingface_hub`.
 accept_access_request(repo_id: str, user: str, repo_type: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L10920)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L10961)
 
 **Parameters:**
 
@@ -90,7 +90,7 @@ Accept an access request from a user for a given gated repo.
 
 Once the request is accepted, the user will be able to download any file of the repo and access the community
 tab. If the approval mode is automatic, you don't have to accept requests manually. An accepted request can be
-cancelled or rejected at any time using [cancel_access_request()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.cancel_access_request) and [reject_access_request()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.reject_access_request).
+cancelled or rejected at any time using [cancel_access_request()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.cancel_access_request) and [reject_access_request()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.reject_access_request).
 
 For more info about gated repos, see https://huggingface.co/docs/hub/models-gated.
 
@@ -100,7 +100,7 @@ For more info about gated repos, see https://huggingface.co/docs/hub/models-gate
 add_collection_item(collection_slug: str, item_id: str, item_type: CollectionItemType_T, note: str | None = None, exists_ok: bool = False, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L10473)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L10514)
 
 **Parameters:**
 
@@ -128,7 +128,7 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 Add an item to a collection on the Hub.
 
-Returns: [Collection](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/collections#huggingface_hub.Collection)
+Returns: [Collection](/docs/huggingface_hub/v1.32.0/en/package_reference/collections#huggingface_hub.Collection)
 
 Example:
 
@@ -159,7 +159,7 @@ Example:
 add_space_secret(repo_id: str, key: str, value: str, description: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L8120)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L8142)
 
 **Parameters:**
 
@@ -184,7 +184,7 @@ For more details, see https://huggingface.co/docs/hub/spaces-overview#managing-s
 add_space_variable(repo_id: str, key: str, value: str, description: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L8246)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L8268)
 
 **Parameters:**
 
@@ -209,7 +209,7 @@ For more details, see https://huggingface.co/docs/hub/spaces-overview#managing-s
 auth_check(repo_id: str, repo_type: str | None = None, token: bool | str | None = None, write: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L12044)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L12090)
 
 **Parameters:**
 
@@ -221,14 +221,14 @@ token (`Union[bool, str, None]`, *optional*) : A valid user access token. If not
 
 write (`bool`, *optional*) : If `True`, checks whether the user has content write permission on the repository. If `False` (default), only checks for read access.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [GatedRepoError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.GatedRepoError)
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [GatedRepoError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.GatedRepoError)
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   Raised if the repository does not exist, is private, or the user does not have access. This can
   occur if the `repo_id` or `repo_type` is incorrect or if the repository is private but the user
   is not authenticated.
 
-- [GatedRepoError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.GatedRepoError) -- 
+- [GatedRepoError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.GatedRepoError) -- 
   Raised if the repository exists but is gated and the user is not authorized to access it.
 
 Check if the provided user token has access to a specific repository on the Hugging Face Hub.
@@ -266,7 +266,7 @@ to handle them accordingly.
 batch_bucket_files(bucket_id: str, add: list[tuple[str | Path | bytes, str]] | None = None, copy: list[tuple[str, str, str, str]] | None = None, delete: list[str] | None = None, token: str | bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L14492)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L14596)
 
 **Parameters:**
 
@@ -324,7 +324,7 @@ Example:
 bucket_info(bucket_id: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L13822)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L13910)
 
 **Parameters:**
 
@@ -332,7 +332,7 @@ bucket_id (`str`) : The ID of the bucket (e.g. `"username/my-bucket"`).
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [BucketInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.BucketInfo)
+**Returns:** [BucketInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.BucketInfo)
 
 The bucket information.
 
@@ -365,7 +365,7 @@ datetime.datetime(2026, 2, 6, 17, 37, 57, tzinfo=datetime.timezone.utc)
 cancel_access_request(repo_id: str, user: str, repo_type: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L10880)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L10921)
 
 **Parameters:**
 
@@ -403,7 +403,7 @@ For more info about gated repos, see https://huggingface.co/docs/hub/models-gate
 cancel_job(job_id: str, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L12683)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L12744)
 
 **Parameters:**
 
@@ -421,7 +421,7 @@ Cancel a compute Job on Hugging Face infrastructure.
 change_discussion_status(repo_id: str, discussion_num: int, new_status: Literal['open', 'closed'], token: bool | str | None = None, comment: str | None = None, repo_type: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L7875)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L7897)
 
 **Parameters:**
 
@@ -437,7 +437,7 @@ repo_type (`str`, *optional*) : Set to `"dataset"` or `"space"` if uploading to 
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [DiscussionStatusChange](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/community#huggingface_hub.DiscussionStatusChange)
+**Returns:** [DiscussionStatusChange](/docs/huggingface_hub/v1.32.0/en/package_reference/community#huggingface_hub.DiscussionStatusChange)
 
 the status change event
 
@@ -462,7 +462,7 @@ Examples:
 >       if the HuggingFace API returned an error
 >     - [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)
 >       if some parameter value is invalid
->     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+>     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 >       If the repository to download from cannot be found. This may be because it doesn't exist,
 >       or because it is set to `private` and you do not have access.
 
@@ -472,7 +472,7 @@ Examples:
 comment_discussion(repo_id: str, discussion_num: int, comment: str, token: bool | str | None = None, repo_type: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L7732)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L7754)
 
 **Parameters:**
 
@@ -486,7 +486,7 @@ repo_type (`str`, *optional*) : Set to `"dataset"` or `"space"` if uploading to 
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [DiscussionComment](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/community#huggingface_hub.DiscussionComment)
+**Returns:** [DiscussionComment](/docs/huggingface_hub/v1.32.0/en/package_reference/community#huggingface_hub.DiscussionComment)
 
 the newly created comment
 
@@ -520,7 +520,7 @@ Examples:
 >       if the HuggingFace API returned an error
 >     - [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)
 >       if some parameter value is invalid
->     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+>     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 >       If the repository to download from cannot be found. This may be because it doesn't exist,
 >       or because it is set to `private` and you do not have access.
 
@@ -530,7 +530,7 @@ Examples:
 copy_files(source: str, destination: str, token: str | bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L14166)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L14262)
 
 **Parameters:**
 
@@ -557,7 +557,7 @@ the source folder is nested inside the destination (like `cp -r`).
 When copying from a repository to a bucket, `.gitattributes` files are automatically excluded since they
 are git-specific metadata and not relevant in a bucket context.
 
-Repo-to-repo copies use [CommitOperationCopy](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.CommitOperationCopy) under the hood and create a commit on the destination
+Repo-to-repo copies use [CommitOperationCopy](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.CommitOperationCopy) under the hood and create a commit on the destination
 repository. Bucket-to-repo copies are not supported.
 
 > [!WARNING]
@@ -595,7 +595,7 @@ Example:
 create_branch(repo_id: str, branch: str, revision: str | None = None, token: bool | str | None = None, repo_type: str | None = None, exist_ok: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L7082)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L7104)
 
 **Parameters:**
 
@@ -611,19 +611,19 @@ repo_type (`str`, *optional*) : Set to `"dataset"` or `"space"` if creating a br
 
 exist_ok (`bool`, *optional*, defaults to `False`) : If `True`, do not raise an error if branch already exists.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [BadRequestError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError) or [HfHubHTTPError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError)
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [BadRequestError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError) or [HfHubHTTPError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError)
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If repository is not found (error 404): wrong repo_id/repo_type, private
   but not authenticated or repo does not exist.
-- [BadRequestError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError) -- 
+- [BadRequestError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError) -- 
   If invalid reference for a branch. Ex: `refs/pr/5` or 'refs/foo/bar'.
-- [HfHubHTTPError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) -- 
+- [HfHubHTTPError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) -- 
   If the branch already exists on the repo (error 409) and `exist_ok` is
   set to `False`.
 
 Create a new branch for a repo on the Hub, starting from the specified revision (defaults to `main`).
-To find a revision suiting your needs, you can use [list_repo_refs()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_refs) or [list_repo_commits()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_commits).
+To find a revision suiting your needs, you can use [list_repo_refs()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_refs) or [list_repo_commits()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_commits).
 
 #### create_bucket[[huggingface_hub.HfApi.create_bucket]]
 
@@ -631,7 +631,7 @@ To find a revision suiting your needs, you can use [list_repo_refs()](/docs/hugg
 create_bucket(bucket_id: str, private: bool | None = None, resource_group_id: str | None = None, region: REPO_REGIONS | None = None, exist_ok: bool = False, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L13722)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L13808)
 
 **Parameters:**
 
@@ -647,7 +647,7 @@ exist_ok (`bool`, *optional*, defaults to `False`) : If `True`, do not raise an 
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [BucketUrl](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.BucketUrl)
+**Returns:** [BucketUrl](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.BucketUrl)
 
 URL to the newly created bucket containing
 attributes like `endpoint`, `namespace`, and `bucket_id`.
@@ -679,7 +679,7 @@ BucketUrl(...)
 create_collection(title: str, namespace: str | None = None, description: str | None = None, private: bool = False, resource_group_id: str | None = None, exists_ok: bool = False, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L10253)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L10294)
 
 **Parameters:**
 
@@ -699,7 +699,7 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 Create a new Collection on the Hub.
 
-Returns: [Collection](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/collections#huggingface_hub.Collection)
+Returns: [Collection](/docs/huggingface_hub/v1.32.0/en/package_reference/collections#huggingface_hub.Collection)
 
 Example:
 
@@ -719,13 +719,13 @@ Example:
 create_commit(repo_id: str, operations: Iterable[CommitOperation], commit_message: str, commit_description: str | None = None, token: str | bool | None = None, repo_type: str | None = None, revision: str | None = None, create_pr: bool | None = None, num_threads: int = 5, parent_commit: str | None = None, run_as_future: bool = False, _hot_reload: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L5105)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L5090)
 
 **Parameters:**
 
 repo_id (`str`) : The repository in which the commit will be created, for example: `"username/custom_transformers"` 
 
-operations (`Iterable` of `CommitOperation()`) : An iterable of operations to include in the commit, either:  - [CommitOperationAdd](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.CommitOperationAdd) to upload a file - [CommitOperationDelete](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.CommitOperationDelete) to delete a file - [CommitOperationCopy](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.CommitOperationCopy) to copy a file  Operation objects will be mutated to include information relative to the upload. Do not reuse the same objects for multiple commits. 
+operations (`Iterable` of `~hf_api.CommitOperation`) : An iterable of operations to include in the commit, either:  - `~hf_api.CommitOperationAdd` to upload a file - `~hf_api.CommitOperationDelete` to delete a file - `~hf_api.CommitOperationCopy` to copy a file  Operation objects will be mutated to include information relative to the upload. Do not reuse the same objects for multiple commits. 
 
 commit_message (`str`) : The summary (first line) of the commit that will be created. 
 
@@ -745,13 +745,13 @@ parent_commit (`str`, *optional*) : The OID / SHA of the parent commit, as a hex
 
 run_as_future (`bool`, *optional*) : Whether or not to run this method in the background. Background jobs are run sequentially without blocking the main thread. Passing `run_as_future=True` will return a [Future](https://docs.python.org/3/library/concurrent.futures.html#future-objects) object. Defaults to `False`.
 
-**Returns:** [CommitInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.CommitInfo) or `Future`
+**Returns:** [CommitInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.CommitInfo) or `Future`
 
-Instance of [CommitInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.CommitInfo) containing information about the newly created commit (commit hash, commit
+Instance of [CommitInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.CommitInfo) containing information about the newly created commit (commit hash, commit
 url, pr url, commit message,...). If `run_as_future=True` is passed, returns a Future object which will
 contain the result when executed.
 
-**Raises:** ``ValueError`` or [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+**Raises:** ``ValueError`` or [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 
 - [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError) -- 
   If commit message is empty.
@@ -762,7 +762,7 @@ contain the result when executed.
   early, before trying to upload any file.
 - [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError) -- 
   If `create_pr` is `True` and revision is neither `None` nor `"main"`.
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If repository is not found (error 404): wrong repo_id/repo_type, private
   but not authenticated or repo does not exist.
 
@@ -776,7 +776,7 @@ Creates a commit in the given repo, deleting & uploading files as needed.
 > `create_commit` assumes that the repo already exists on the Hub. If you get a
 > Client error 404, please make sure you are authenticated, that your token has the required permissions,
 > and that `repo_id` and `repo_type` are set correctly. If repo does not exist,
-> create it first using [create_repo()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo).
+> create it first using [create_repo()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo).
 
 > [!WARNING]
 > `create_commit` is limited to 25k LFS files and a 1GB payload for regular files.
@@ -787,7 +787,7 @@ Creates a commit in the given repo, deleting & uploading files as needed.
 create_discussion(repo_id: str, title: str, token: bool | str | None = None, description: str | None = None, repo_type: str | None = None, pull_request: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L7559)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L7581)
 
 **Parameters:**
 
@@ -807,9 +807,9 @@ Creates a Discussion or Pull Request.
 
 Pull Requests created programmatically will be in `"draft"` status.
 
-Creating a Pull Request with changes can also be done at once with [HfApi.create_commit()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit).
+Creating a Pull Request with changes can also be done at once with [HfApi.create_commit()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit).
 
-Returns: [DiscussionWithDetails](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/community#huggingface_hub.DiscussionWithDetails)
+Returns: [DiscussionWithDetails](/docs/huggingface_hub/v1.32.0/en/package_reference/community#huggingface_hub.DiscussionWithDetails)
 
 > [!TIP]
 > Raises the following errors:
@@ -818,17 +818,17 @@ Returns: [DiscussionWithDetails](/docs/huggingface_hub/v1.31.0.rc0/en/package_re
 >       if the HuggingFace API returned an error
 >     - [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)
 >       if some parameter value is invalid
->     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+>     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 >       If the repository to download from cannot be found. This may be because it doesn't exist,
 >       or because it is set to `private` and you do not have access.
 
 #### create_inference_endpoint[[huggingface_hub.HfApi.create_inference_endpoint]]
 
 ```python
-create_inference_endpoint(name: str, repository: str, framework: str, accelerator: str, instance_size: str, instance_type: str, region: str, vendor: str, account_id: str | None = None, min_replica: int = 1, max_replica: int = 1, scaling_metric: InferenceEndpointScalingMetric | None = None, scaling_threshold: float | None = None, scale_to_zero_timeout: int | None = None, revision: str | None = None, task: str | None = None, custom_image: dict | None = None, container_command: list[str] | None = None, container_args: list[str] | None = None, env: dict[str, str] | None = None, secrets: dict[str, str] | None = None, type: InferenceEndpointType | str = <InferenceEndpointType.AUTHENTICATED: 'authenticated'>, domain: str | None = None, path: str | None = None, cache_http_responses: bool | None = None, tags: list[str] | None = None, namespace: str | None = None, token: bool | str | None = None)
+create_inference_endpoint(name: str, repository: str, framework: str, accelerator: str, instance_size: str, instance_type: str, region: str, vendor: str, account_id: str | None = None, min_replica: int = 1, max_replica: int = 1, scaling_metric: InferenceEndpointScalingMetric | None = None, scaling_threshold: float | None = None, scale_to_zero_timeout: int | None = None, revision: str | None = None, task: str | None = None, custom_image: dict | None = None, container_registry_username: str | None = None, container_registry_password: str | None = None, container_command: list[str] | None = None, container_args: list[str] | None = None, env: dict[str, str] | None = None, secrets: dict[str, str] | None = None, type: InferenceEndpointType | str = <InferenceEndpointType.AUTHENTICATED: 'authenticated'>, domain: str | None = None, path: str | None = None, cache_http_responses: bool | None = None, tags: list[str] | None = None, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L9367)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L9389)
 
 **Parameters:**
 
@@ -866,6 +866,10 @@ task (`str`, *optional*) : The task on which to deploy the model (e.g. `"text-cl
 
 custom_image (`dict`, *optional*) : The container image to run. Either a dict keyed by image variant (e.g. `{"vLLM": {"url": "vllm/vllm-openai:v0.23.0", "port": 8000}}`, also `sGLang`, `tgi`, `tei`, `llamacpp`, `hfServe`, ...), which is forwarded as-is, or a flat dict describing a custom container (e.g. `{"url": ..., "port": ...}`), which is sent as `{"custom": ...}` (see examples). Defaults to the Hugging Face managed image.
 
+container_registry_username (`str`, *optional*) : Username used to authenticate with the registry hosting a custom container image.
+
+container_registry_password (`str`, *optional*) : Password used to authenticate with the registry hosting a custom container image. Requires `container_registry_username`. Omitted from the API payload when not provided.
+
 container_command (`list[str]`, *optional*) : Override the container entrypoint command (maps to `model.command` in the API payload). Works with both managed engine images (e.g. vLLM, SGLang) and custom images.
 
 container_args (`list[str]`, *optional*) : Arguments appended to the container entrypoint (maps to `model.args` in the API payload). Works with both managed engine images (e.g. vLLM, SGLang) and custom images.
@@ -888,14 +892,14 @@ namespace (`str`, *optional*) : The namespace where the Inference Endpoint will 
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.32.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
 
 information about the updated Inference Endpoint.
 
 Create a new Inference Endpoint.
 
 The `accelerator`, `instance_size`, `instance_type`, `region` and `vendor` values depend on each other; use
-[list_inference_endpoints_hardware()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_endpoints_hardware) to list the valid combinations.
+[list_inference_endpoints_hardware()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_endpoints_hardware) to list the valid combinations.
 
 Example:
 ```python
@@ -981,7 +985,7 @@ TextClassificationOutputElement(label='positive', score=0.8983615040779114)
 create_inference_endpoint_from_catalog(repo_id: str, name: str | None = None, accelerator: Literal['cpu', 'gpu', 'neuron'] | str | None = None, token: bool | str | None = None, namespace: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L9629)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L9670)
 
 **Parameters:**
 
@@ -995,7 +999,7 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 namespace (`str`, *optional*) : The namespace where the Inference Endpoint will be created. Defaults to the current user's namespace.
 
-**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.32.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
 
 information about the new Inference Endpoint.
 
@@ -1015,7 +1019,7 @@ of available models in the catalog.
 create_pull_request(repo_id: str, title: str, token: bool | str | None = None, description: str | None = None, repo_type: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L7648)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L7670)
 
 **Parameters:**
 
@@ -1031,11 +1035,11 @@ repo_type (`str`, *optional*) : Set to `"dataset"` or `"space"` if uploading to 
 
 Creates a Pull Request . Pull Requests created programmatically will be in `"draft"` status.
 
-Creating a Pull Request with changes can also be done at once with [HfApi.create_commit()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit);
+Creating a Pull Request with changes can also be done at once with [HfApi.create_commit()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit);
 
-This is a wrapper around [HfApi.create_discussion()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_discussion).
+This is a wrapper around [HfApi.create_discussion()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_discussion).
 
-Returns: [DiscussionWithDetails](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/community#huggingface_hub.DiscussionWithDetails)
+Returns: [DiscussionWithDetails](/docs/huggingface_hub/v1.32.0/en/package_reference/community#huggingface_hub.DiscussionWithDetails)
 
 > [!TIP]
 > Raises the following errors:
@@ -1044,7 +1048,7 @@ Returns: [DiscussionWithDetails](/docs/huggingface_hub/v1.31.0.rc0/en/package_re
 >       if the HuggingFace API returned an error
 >     - [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)
 >       if some parameter value is invalid
->     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+>     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 >       If the repository to download from cannot be found. This may be because it doesn't exist,
 >       or because it is set to `private` and you do not have access.
 
@@ -1054,7 +1058,7 @@ Returns: [DiscussionWithDetails](/docs/huggingface_hub/v1.31.0.rc0/en/package_re
 create_repo(repo_id: str, token: str | bool | None = None, private: bool | None = None, visibility: RepoVisibility_T | None = None, repo_type: str | None = None, exist_ok: bool = False, resource_group_id: str | None = None, region: REPO_REGIONS | None = None, space_sdk: str | None = None, space_hardware: SpaceHardware | None = None, space_storage: SpaceStorage | None = None, space_sleep_time: int | None = None, space_secrets: list[dict[str, str]] | None = None, space_variables: list[dict[str, str]] | None = None, space_volumes: list[Volume] | None = None, space_template: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L4659)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L4644)
 
 **Parameters:**
 
@@ -1076,9 +1080,9 @@ region (`Literal["us", "eu"]`, *optional*) : Cloud region in which to create the
 
 space_sdk (`str`, *optional*) : Choice of SDK to use if repo_type is "space". Can be "streamlit", "gradio", "docker", or "static".
 
-space_hardware (`SpaceHardware` or `str`, *optional*) : Choice of Hardware if repo_type is "space". See [SpaceHardware](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceHardware) for a complete list.
+space_hardware (`SpaceHardware` or `str`, *optional*) : Choice of Hardware if repo_type is "space". See [SpaceHardware](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceHardware) for a complete list.
 
-space_storage (`SpaceStorage` or `str`, *optional*) :  Choice of persistent storage tier. Example: `"small"`. See [SpaceStorage](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceStorage) for a complete list.
+space_storage (`SpaceStorage` or `str`, *optional*) :  Choice of persistent storage tier. Example: `"small"`. See [SpaceStorage](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceStorage) for a complete list.
 
 space_sleep_time (`int`, *optional*) : Number of seconds of inactivity to wait before a Space is put to sleep. Set to `-1` if you don't want your Space to sleep (default behavior for upgraded hardware). For free hardware, you can't configure the sleep time (value is fixed to 48 hours of inactivity). See https://huggingface.co/docs/hub/spaces-gpus#sleep-time for more details.
 
@@ -1086,11 +1090,11 @@ space_secrets (`list[dict[str, str]]`, *optional*) : A list of secret keys to se
 
 space_variables (`list[dict[str, str]]`, *optional*) : A list of public environment variables to set in your Space. Each item is in the form `{"key": ..., "value": ..., "description": ...}` where description is optional. For more details, see https://huggingface.co/docs/hub/spaces-overview#managing-secrets-and-environment-variables.
 
-space_volumes (`list[Volume]`, *optional*) : A list of [Volume](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.Volume) objects to mount in the Space at creation time. Each volume has a `type` (`"bucket"`, `"model"`, `"dataset"`, or `"space"`), a `source` (repo or bucket ID), a `mount_path` (path inside the container), and optional `revision`, `read_only`, and `path` fields. Only applicable if repo_type is "space".
+space_volumes (`list[Volume]`, *optional*) : A list of [Volume](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.Volume) objects to mount in the Space at creation time. Each volume has a `type` (`"bucket"`, `"model"`, `"dataset"`, or `"space"`), a `source` (repo or bucket ID), a `mount_path` (path inside the container), and optional `revision`, `read_only`, and `path` fields. Only applicable if repo_type is "space".
 
-space_template (`str`, *optional*) : Seed the new Space from an official template. Can be either the template repo id (e.g. `"SpacesExamples/jupyterlab"`) or its short name (e.g. `"JupyterLab"`). Use [HfApi.list_space_templates()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_space_templates) to list available templates. Only applicable if repo_type is "space". If the template is recommended to be private and visibility is not explicitly set, the Space is created as private.
+space_template (`str`, *optional*) : Seed the new Space from an official template. Can be either the template repo id (e.g. `"SpacesExamples/jupyterlab"`) or its short name (e.g. `"JupyterLab"`). Use [HfApi.list_space_templates()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_space_templates) to list available templates. Only applicable if repo_type is "space". If the template is recommended to be private and visibility is not explicitly set, the Space is created as private.
 
-**Returns:** [RepoUrl](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.RepoUrl)
+**Returns:** [RepoUrl](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.RepoUrl)
 
 URL to the newly created repo. Value is a subclass of `str` containing
 attributes like `endpoint`, `repo_type` and `repo_id`.
@@ -1103,7 +1107,7 @@ Create an empty repo on the HuggingFace Hub.
 create_scheduled_job(image: str, command: list[str], schedule: str, suspend: bool | None = None, concurrency: bool | None = None, env: dict[str, Any] | None = None, secrets: dict[str, Any] | None = None, flavor: JobHardware | str | None = None, timeout: int | float | str | None = None, name: str | None = None, labels: dict[str, str] | None = None, volumes: list[Volume] | None = None, expose: list[int] | None = None, resource_group_id: str | None = None, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L12925)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L13006)
 
 **Parameters:**
 
@@ -1129,7 +1133,7 @@ name (`str`, *optional*) : A name for the scheduled Job. Stored as the `name` la
 
 labels (`dict[str, str]`, *optional*) : Labels to attach to the job (key-value pairs). 
 
-volumes (`list[Volume]`, *optional*) : Hugging Face Buckets or Repos to mount as volumes in the job container. Each volume is a [Volume](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.Volume) with `type` (`"bucket"`, `"model"`, `"dataset"`, or `"space"`), `source` (e.g. `"username/my-bucket"`), and `mount_path` (e.g. `"/data"`). 
+volumes (`list[Volume]`, *optional*) : Hugging Face Buckets or Repos to mount as volumes in the job container. Each volume is a [Volume](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.Volume) with `type` (`"bucket"`, `"model"`, `"dataset"`, or `"space"`), `source` (e.g. `"username/my-bucket"`), and `mount_path` (e.g. `"/data"`). 
 
 expose (`list[int]`, *optional*) : Container ports to expose through the jobs proxy. Each listed port is reachable on the public jobs domain (e.g. `https://<job_id>--8000.hf.jobs`). Access always requires an HF token with read access to the job's namespace. 
 
@@ -1172,7 +1176,7 @@ Create a scheduled GPU Job:
 create_scheduled_uv_job(script: str, script_args: list[str] | None = None, schedule: str, suspend: bool | None = None, concurrency: bool | None = None, dependencies: list[str] | None = None, python: str | None = None, image: str | None = None, env: dict[str, Any] | None = None, secrets: dict[str, Any] | None = None, flavor: JobHardware | str | None = None, timeout: int | float | str | None = None, name: str | None = None, labels: dict[str, str] | None = None, volumes: list[Volume] | None = None, expose: list[int] | None = None, resource_group_id: str | None = None, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L13340)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L13421)
 
 **Parameters:**
 
@@ -1204,7 +1208,7 @@ name (`str`, *optional*) : A name for the scheduled Job. Stored as the `name` la
 
 labels (`dict[str, str]`, *optional*) : Labels to attach to the job (key-value pairs). 
 
-volumes (`list[Volume]`, *optional*) : Hugging Face Buckets or Repos to mount as volumes in the job container. Each volume is a [Volume](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.Volume) with `type` (`"bucket"`, `"model"`, `"dataset"`, or `"space"`), `source` (e.g. `"username/my-bucket"`), and `mount_path` (e.g. `"/data"`). 
+volumes (`list[Volume]`, *optional*) : Hugging Face Buckets or Repos to mount as volumes in the job container. Each volume is a [Volume](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.Volume) with `type` (`"bucket"`, `"model"`, `"dataset"`, or `"space"`), `source` (e.g. `"username/my-bucket"`), and `mount_path` (e.g. `"/data"`). 
 
 expose (`list[int]`, *optional*) : Container ports to expose through the jobs proxy. Each listed port is reachable on the public jobs domain (e.g. `https://<job_id>--8000.hf.jobs`). Access always requires an HF token with read access to the job's namespace. 
 
@@ -1215,6 +1219,11 @@ namespace (`str`, *optional*) : The namespace where the Job will be created. Def
 token (`bool` or `str`, *optional*) : A valid user access token. If not provided, the locally saved token will be used, which is the recommended authentication method. Set to `False` to disable authentication. Refer to: https://huggingface.co/docs/huggingface_hub/quick-start#authentication.
 
 Run a UV script Job on Hugging Face infrastructure.
+
+> [!WARNING]
+> Unlike `hf jobs uv run`, this method ignores the optional `[tool.hf-jobs]` table a UV script can
+> carry in its PEP 723 header (see the [Jobs guide](../guides/jobs#ship-the-launch-config-with-the-script)):
+> the launch configuration has to be passed explicitly here.
 
 Example:
 
@@ -1251,7 +1260,7 @@ Schedule a command:
 create_tag(repo_id: str, tag: str, tag_message: str | None = None, revision: str | None = None, token: bool | str | None = None, repo_type: str | None = None, exist_ok: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L7214)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L7236)
 
 **Parameters:**
 
@@ -1269,14 +1278,14 @@ repo_type (`str`, *optional*) : Set to `"dataset"` or `"space"` if tagging a dat
 
 exist_ok (`bool`, *optional*, defaults to `False`) : If `True`, do not raise an error if tag already exists.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) or [HfHubHTTPError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError)
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) or [HfHubHTTPError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError)
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If repository is not found (error 404): wrong repo_id/repo_type, private
   but not authenticated or repo does not exist.
-- [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
+- [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
   If revision is not found (error 404) on the repo.
-- [HfHubHTTPError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) -- 
+- [HfHubHTTPError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) -- 
   If the branch already exists on the repo (error 409) and `exist_ok` is
   set to `False`.
 
@@ -1288,7 +1297,7 @@ Tag a given commit of a repo on the Hub.
 create_webhook(url: str | None = None, job_id: str | None = None, watched: list[dict | WebhookWatchedItem], domains: list[constants.WEBHOOK_DOMAIN_T] | None = None, secret: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L11202)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L11243)
 
 **Parameters:**
 
@@ -1296,7 +1305,7 @@ url (`str`) : URL to send the payload to.
 
 job_id (`str`) : ID of the source Job to trigger with the webhook payload in the environment variable WEBHOOK_PAYLOAD. Additional environment variables are available for convenience: WEBHOOK_REPO_ID, WEBHOOK_REPO_TYPE and WEBHOOK_SECRET.
 
-watched (`list[WebhookWatchedItem]`) : List of [WebhookWatchedItem](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.WebhookWatchedItem) to be watched by the webhook. It can be users, orgs, models, datasets or spaces. Watched items can also be provided as plain dictionaries.
+watched (`list[WebhookWatchedItem]`) : List of [WebhookWatchedItem](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.WebhookWatchedItem) to be watched by the webhook. It can be users, orgs, models, datasets or spaces. Watched items can also be provided as plain dictionaries.
 
 domains (`list[Literal["repo", "discussion"]]`, optional) : List of domains to watch. It can be "repo", "discussion" or both.
 
@@ -1304,7 +1313,7 @@ secret (`str`, optional) : A secret to sign the payload with.
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [WebhookInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.WebhookInfo)
+**Returns:** [WebhookInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.WebhookInfo)
 
 Info about the newly created webhook.
 
@@ -1380,7 +1389,7 @@ WebhookInfo(
 dataset_info(repo_id: str, revision: str | None = None, timeout: float | None = None, files_metadata: bool = False, expand: list[ExpandDatasetProperty_T] | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L3348)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L3324)
 
 **Parameters:**
 
@@ -1396,7 +1405,7 @@ expand (`list[ExpandDatasetProperty_T]`, *optional*) : List properties to return
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [hf_api.DatasetInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.DatasetInfo)
+**Returns:** [hf_api.DatasetInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.DatasetInfo)
 
 The dataset repository information.
 
@@ -1407,10 +1416,10 @@ Dataset can be private if you pass an acceptable token.
 > [!TIP]
 > Raises the following errors:
 >
->     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+>     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 >       If the repository to download from cannot be found. This may be because it doesn't exist,
 >       or because it is set to `private` and you do not have access.
->     - [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
+>     - [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
 >       If the revision to download from cannot be found.
 
 #### delete_branch[[huggingface_hub.HfApi.delete_branch]]
@@ -1419,7 +1428,7 @@ Dataset can be private if you pass an acceptable token.
 delete_branch(repo_id: str, branch: str, token: bool | str | None = None, repo_type: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L7162)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L7184)
 
 **Parameters:**
 
@@ -1431,14 +1440,14 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 repo_type (`str`, *optional*) : Set to `"dataset"` or `"space"` if creating a branch on a dataset or space, `None` or `"model"` if tagging a model. Default is `None`.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [HfHubHTTPError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError)
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [HfHubHTTPError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError)
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If repository is not found (error 404): wrong repo_id/repo_type, private
   but not authenticated or repo does not exist.
-- [HfHubHTTPError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) -- 
+- [HfHubHTTPError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) -- 
   If trying to delete a protected branch. Ex: `main` cannot be deleted.
-- [HfHubHTTPError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) -- 
+- [HfHubHTTPError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) -- 
   If trying to delete a branch that does not exist.
 
 Delete a branch from a repo on the Hub.
@@ -1449,7 +1458,7 @@ Delete a branch from a repo on the Hub.
 delete_bucket(bucket_id: str, missing_ok: bool = False, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L13917)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L14009)
 
 **Parameters:**
 
@@ -1478,7 +1487,7 @@ Example:
 delete_collection(collection_slug: str, missing_ok: bool = False, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L10435)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L10476)
 
 **Parameters:**
 
@@ -1506,13 +1515,13 @@ Example:
 delete_collection_item(collection_slug: str, item_object_id: str, missing_ok: bool = False, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L10610)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L10651)
 
 **Parameters:**
 
 collection_slug (`str`) : Slug of the collection to update. Example: `"TheBloke/recent-models-64f9a55bb3115b4f513ec026"`.
 
-item_object_id (`str`) : ID of the item in the collection. This is not the id of the item on the Hub (repo_id or paper id). It must be retrieved from a [CollectionItem](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/collections#huggingface_hub.CollectionItem) object. Example: `collection.items[0].item_object_id`.
+item_object_id (`str`) : ID of the item in the collection. This is not the id of the item on the Hub (repo_id or paper id). It must be retrieved from a [CollectionItem](/docs/huggingface_hub/v1.32.0/en/package_reference/collections#huggingface_hub.CollectionItem) object. Example: `collection.items[0].item_object_id`.
 
 missing_ok (`bool`, *optional*) : If `True`, do not raise an error if the item doesn't exist.
 
@@ -1541,7 +1550,7 @@ Example:
 delete_file(path_in_repo: str, repo_id: str, token: str | bool | None = None, repo_type: str | None = None, revision: str | None = None, commit_message: str | None = None, commit_description: str | None = None, create_pr: bool | None = None, parent_commit: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L6106)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L6111)
 
 **Parameters:**
 
@@ -1572,12 +1581,12 @@ Deletes a file in the given repo.
 >       if the HuggingFace API returned an error
 >     - [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)
 >       if some parameter value is invalid
->     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+>     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 >       If the repository to download from cannot be found. This may be because it doesn't exist,
 >       or because it is set to `private` and you do not have access.
->     - [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
+>     - [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
 >       If the revision to download from cannot be found.
->     - [EntryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.EntryNotFoundError)
+>     - [EntryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.EntryNotFoundError)
 >       If the file to download cannot be found.
 
 #### delete_files[[huggingface_hub.HfApi.delete_files]]
@@ -1586,7 +1595,7 @@ Deletes a file in the given repo.
 delete_files(repo_id: str, delete_patterns: list[str], token: bool | str | None = None, repo_type: str | None = None, revision: str | None = None, commit_message: str | None = None, commit_description: str | None = None, create_pr: bool | None = None, parent_commit: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L6193)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L6201)
 
 **Parameters:**
 
@@ -1619,7 +1628,7 @@ all files it contained.
 delete_folder(path_in_repo: str, repo_id: str, token: bool | str | None = None, repo_type: str | None = None, revision: str | None = None, commit_message: str | None = None, commit_description: str | None = None, create_pr: bool | None = None, parent_commit: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L6272)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L6280)
 
 **Parameters:**
 
@@ -1643,7 +1652,7 @@ parent_commit (`str`, *optional*) : The OID / SHA of the parent commit, as a hex
 
 Deletes a folder in the given repo.
 
-Simple wrapper around [create_commit()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) method.
+Simple wrapper around [create_commit()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) method.
 
 #### delete_inference_endpoint[[huggingface_hub.HfApi.delete_inference_endpoint]]
 
@@ -1651,7 +1660,7 @@ Simple wrapper around [create_commit()](/docs/huggingface_hub/v1.31.0.rc0/en/pac
 delete_inference_endpoint(name: str, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L9956)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L9997)
 
 **Parameters:**
 
@@ -1664,9 +1673,9 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 Delete an Inference Endpoint.
 
 This operation is not reversible. If you don't want to be charged for an Inference Endpoint, it is preferable
-to pause it with [pause_inference_endpoint()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_inference_endpoint) or scale it to zero with [scale_to_zero_inference_endpoint()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.scale_to_zero_inference_endpoint).
+to pause it with [pause_inference_endpoint()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_inference_endpoint) or scale it to zero with [scale_to_zero_inference_endpoint()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.scale_to_zero_inference_endpoint).
 
-For convenience, you can also delete an Inference Endpoint using [InferenceEndpoint.delete()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.delete).
+For convenience, you can also delete an Inference Endpoint using [InferenceEndpoint.delete()](/docs/huggingface_hub/v1.32.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.delete).
 
 #### delete_repo[[huggingface_hub.HfApi.delete_repo]]
 
@@ -1674,7 +1683,7 @@ For convenience, you can also delete an Inference Endpoint using [InferenceEndpo
 delete_repo(repo_id: str, token: str | bool | None = None, repo_type: str | None = None, missing_ok: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L4877)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L4862)
 
 **Parameters:**
 
@@ -1686,9 +1695,9 @@ repo_type (`str`, *optional*) : Set to `"dataset"` or `"space"` if uploading to 
 
 missing_ok (`bool`, *optional*, defaults to `False`) : If `True`, do not raise an error if repo does not exist.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If the repository to delete from cannot be found and `missing_ok` is set to False (default).
 
 Delete a repo from the HuggingFace Hub. CAUTION: this is irreversible.
@@ -1699,7 +1708,7 @@ Delete a repo from the HuggingFace Hub. CAUTION: this is irreversible.
 delete_scheduled_job(scheduled_job_id: str, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L13165)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L13246)
 
 **Parameters:**
 
@@ -1717,7 +1726,7 @@ Delete a scheduled compute Job on Hugging Face infrastructure.
 delete_space_secret(repo_id: str, key: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L8160)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L8182)
 
 **Parameters:**
 
@@ -1738,7 +1747,7 @@ For more details, see https://huggingface.co/docs/hub/spaces-overview#managing-s
 delete_space_storage(repo_id: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L9185)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L9207)
 
 **Parameters:**
 
@@ -1746,7 +1755,7 @@ repo_id (`str`) : ID of the Space to update. Example: `"open-llm-leaderboard/ope
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [SpaceRuntime](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime)
+**Returns:** [SpaceRuntime](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime)
 
 Runtime information about a Space including Space stage and hardware.
 
@@ -1758,7 +1767,7 @@ Runtime information about a Space including Space stage and hardware.
 Delete persistent storage for a Space.
 
 > [!WARNING]
-> `delete_space_storage` is deprecated and will be removed in version 2.0. Use [delete_space_volumes()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_space_volumes) instead.
+> `delete_space_storage` is deprecated and will be removed in version 2.0. Use [delete_space_volumes()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_space_volumes) instead.
 
 #### delete_space_variable[[huggingface_hub.HfApi.delete_space_variable]]
 
@@ -1766,7 +1775,7 @@ Delete persistent storage for a Space.
 delete_space_variable(repo_id: str, key: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L8287)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L8309)
 
 **Parameters:**
 
@@ -1787,7 +1796,7 @@ For more details, see https://huggingface.co/docs/hub/spaces-overview#managing-s
 delete_space_volumes(repo_id: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L9270)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L9292)
 
 **Parameters:**
 
@@ -1815,7 +1824,7 @@ Example:
 delete_tag(repo_id: str, tag: str, token: bool | str | None = None, repo_type: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L7288)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L7310)
 
 **Parameters:**
 
@@ -1827,12 +1836,12 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 repo_type (`str`, *optional*) : Set to `"dataset"` or `"space"` if tagging a dataset or space, `None` or `"model"` if tagging a model. Default is `None`.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If repository is not found (error 404): wrong repo_id/repo_type, private
   but not authenticated or repo does not exist.
-- [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
+- [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
   If tag is not found.
 
 Delete a tag from a repo on the Hub.
@@ -1843,7 +1852,7 @@ Delete a tag from a repo on the Hub.
 delete_webhook(webhook_id: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L11531)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L11572)
 
 **Parameters:**
 
@@ -1867,7 +1876,7 @@ Example:
 disable_space_dev_mode(repo_id: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L8534)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L8556)
 
 **Parameters:**
 
@@ -1875,19 +1884,19 @@ repo_id (`str`) : ID of the Space to disable dev mode. Example: `"Salesforce/BLI
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [SpaceRuntime](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime)
+**Returns:** [SpaceRuntime](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime)
 
 Runtime information about your Space.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [HfHubHTTPError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) or [BadRequestError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError)
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [HfHubHTTPError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) or [BadRequestError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError)
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If your Space is not found (error 404). Most probably wrong repo_id or your space is private but you
   are not authenticated.
-- [HfHubHTTPError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) -- 
+- [HfHubHTTPError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) -- 
   403 Forbidden: only the owner of a Space can set dev mode. If you want to handle a Space that you don't
   own, either ask the owner by opening a Discussion or duplicate the Space.
-- [BadRequestError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError) -- 
+- [BadRequestError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError) -- 
   If your Space is a static Space. Static Spaces are always running and never billed. If you want to hide
   a static Space, you can set it to private.
 
@@ -1903,7 +1912,7 @@ a PRO or Team & Enterprise plan. See https://huggingface.co/docs/hub/spaces-dev-
 disable_webhook(webhook_id: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L11478)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L11519)
 
 **Parameters:**
 
@@ -1911,7 +1920,7 @@ webhook_id (`str`) : The unique identifier of the webhook to disable.
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [WebhookInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.WebhookInfo)
+**Returns:** [WebhookInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.WebhookInfo)
 
 Info about the disabled webhook.
 
@@ -1939,7 +1948,7 @@ WebhookInfo(
 download_bucket_files(bucket_id: str, files: list[tuple[str | BucketFile, str | Path]], raise_on_missing_files: bool = False, token: str | bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L14794)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L14910)
 
 **Parameters:**
 
@@ -1954,8 +1963,8 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 Download files from a bucket.
 
 Files input is a list of `(remote file, local file)` tuples where `remote file` is either the path of the file
-in the bucket or a [BucketFile](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.BucketFile) object, and `local file` is the destination path on the local filesystem.
-When passing a [BucketFile](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.BucketFile) object (obtained from [list_bucket_tree()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_bucket_tree)), the method will skip the metadata
+in the bucket or a [BucketFile](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.BucketFile) object, and `local file` is the destination path on the local filesystem.
+When passing a [BucketFile](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.BucketFile) object (obtained from [list_bucket_tree()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_bucket_tree)), the method will skip the metadata
 fetching step and directly download the files.
 
 Example:
@@ -1987,7 +1996,7 @@ Example:
 duplicate_repo(from_id: str, to_id: str | None = None, repo_type: str | None = None, private: bool | None = None, visibility: RepoVisibility_T | None = None, token: bool | str | None = None, exist_ok: bool = False, space_hardware: SpaceHardware | None = None, space_storage: SpaceStorage | None = None, space_sleep_time: int | None = None, space_secrets: list[dict[str, str]] | None = None, space_variables: list[dict[str, str]] | None = None, space_volumes: list[Volume] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L8862)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L8884)
 
 **Parameters:**
 
@@ -2005,9 +2014,9 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 exist_ok (`bool`, *optional*, defaults to `False`) : If `True`, do not raise an error if repo already exists.
 
-space_hardware (`SpaceHardware` or `str`, *optional*) : Choice of Hardware if repo_type is "space". Example: `"t4-medium"`. See [SpaceHardware](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceHardware) for a complete list.
+space_hardware (`SpaceHardware` or `str`, *optional*) : Choice of Hardware if repo_type is "space". Example: `"t4-medium"`. See [SpaceHardware](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceHardware) for a complete list.
 
-space_storage (`SpaceStorage` or `str`, *optional*) :  Choice of persistent storage tier if repo_type is "space". Example: `"small"`. See [SpaceStorage](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceStorage) for a complete list.
+space_storage (`SpaceStorage` or `str`, *optional*) :  Choice of persistent storage tier if repo_type is "space". Example: `"small"`. See [SpaceStorage](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceStorage) for a complete list.
 
 space_sleep_time (`int`, *optional*) : Number of seconds of inactivity to wait before a Space is put to sleep. Set to `-1` if you don't want your Space to sleep (default behavior for upgraded hardware). For free hardware, you can't configure the sleep time (value is fixed to 48 hours of inactivity). Only applicable if repo_type is "space". See https://huggingface.co/docs/hub/spaces-gpus#sleep-time for more details.
 
@@ -2015,16 +2024,16 @@ space_secrets (`list[dict[str, str]]`, *optional*) : A list of secret keys to se
 
 space_variables (`list[dict[str, str]]`, *optional*) : A list of public environment variables to set in your Space. Each item is in the form `{"key": ..., "value": ..., "description": ...}` where description is optional. Only applicable if repo_type is "space". For more details, see https://huggingface.co/docs/hub/spaces-overview#managing-secrets-and-environment-variables.
 
-space_volumes (`list[Volume]`, *optional*) : A list of [Volume](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.Volume) objects to mount in the Space at duplication time. Each volume has a `type` (`"bucket"`, `"model"`, `"dataset"`, or `"space"`), a `source` (repo or bucket ID), a `mount_path` (path inside the container), and optional `revision`, `read_only`, and `path` fields. Only applicable if repo_type is "space".
+space_volumes (`list[Volume]`, *optional*) : A list of [Volume](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.Volume) objects to mount in the Space at duplication time. Each volume has a `type` (`"bucket"`, `"model"`, `"dataset"`, or `"space"`), a `source` (repo or bucket ID), a `mount_path` (path inside the container), and optional `revision`, `read_only`, and `path` fields. Only applicable if repo_type is "space".
 
-**Returns:** [RepoUrl](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.RepoUrl)
+**Returns:** [RepoUrl](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.RepoUrl)
 
 URL to the newly created repo. Value is a subclass of `str` containing
 attributes like `endpoint`, `repo_type` and `repo_id`.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or `HfHubHTTPError`
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or `HfHubHTTPError`
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If one of `from_id` or `to_id` cannot be found. This may be because it doesn't exist,
   or because it is set to `private` and you do not have access.
 - `HfHubHTTPError` -- 
@@ -2058,7 +2067,7 @@ RepoUrl('https://huggingface.co/spaces/nateraw/dreambooth-training',...)
 duplicate_space(from_id: str, to_id: str | None = None, private: bool | None = None, visibility: RepoVisibility_T | None = None, token: bool | str | None = None, exist_ok: bool = False, hardware: SpaceHardware | None = None, storage: SpaceStorage | None = None, sleep_time: int | None = None, secrets: list[dict[str, str]] | None = None, variables: list[dict[str, str]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L9048)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L9070)
 
 **Parameters:**
 
@@ -2074,9 +2083,9 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 exist_ok (`bool`, *optional*, defaults to `False`) : If `True`, do not raise an error if repo already exists.
 
-hardware (`SpaceHardware` or `str`, *optional*) : Choice of Hardware. Example: `"t4-medium"`. See [SpaceHardware](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceHardware) for a complete list.
+hardware (`SpaceHardware` or `str`, *optional*) : Choice of Hardware. Example: `"t4-medium"`. See [SpaceHardware](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceHardware) for a complete list.
 
-storage (`SpaceStorage` or `str`, *optional*) : Choice of persistent storage tier. Example: `"small"`. See [SpaceStorage](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceStorage) for a complete list.
+storage (`SpaceStorage` or `str`, *optional*) : Choice of persistent storage tier. Example: `"small"`. See [SpaceStorage](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceStorage) for a complete list.
 
 sleep_time (`int`, *optional*) : Number of seconds of inactivity to wait before a Space is put to sleep. Set to `-1` if you don't want your Space to sleep (default behavior for upgraded hardware). For free hardware, you can't configure the sleep time (value is fixed to 48 hours of inactivity). See https://huggingface.co/docs/hub/spaces-gpus#sleep-time for more details.
 
@@ -2084,14 +2093,14 @@ secrets (`list[dict[str, str]]`, *optional*) : A list of secret keys to set in y
 
 variables (`list[dict[str, str]]`, *optional*) : A list of public environment variables to set in your Space. Each item is in the form `{"key": ..., "value": ..., "description": ...}` where description is optional. For more details, see https://huggingface.co/docs/hub/spaces-overview#managing-secrets-and-environment-variables.
 
-**Returns:** [RepoUrl](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.RepoUrl)
+**Returns:** [RepoUrl](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.RepoUrl)
 
 URL to the newly created repo. Value is a subclass of `str` containing
 attributes like `endpoint`, `repo_type` and `repo_id`.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or `HfHubHTTPError`
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or `HfHubHTTPError`
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If one of `from_id` or `to_id` cannot be found. This may be because it doesn't exist,
   or because it is set to `private` and you do not have access.
 - `HfHubHTTPError` -- 
@@ -2116,7 +2125,7 @@ RepoUrl('https://huggingface.co/spaces/nateraw/my-dreambooth',...)
 ```
 
 > [!WARNING]
-> `duplicate_space` is deprecated and will be removed in version 2.0. Use [duplicate_repo()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.duplicate_repo) instead.
+> `duplicate_space` is deprecated and will be removed in version 2.0. Use [duplicate_repo()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.duplicate_repo) instead.
 
 #### edit_discussion_comment[[huggingface_hub.HfApi.edit_discussion_comment]]
 
@@ -2124,7 +2133,7 @@ RepoUrl('https://huggingface.co/spaces/nateraw/my-dreambooth',...)
 edit_discussion_comment(repo_id: str, discussion_num: int, comment_id: str, new_content: str, token: bool | str | None = None, repo_type: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L8003)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L8025)
 
 **Parameters:**
 
@@ -2140,7 +2149,7 @@ repo_type (`str`, *optional*) : Set to `"dataset"` or `"space"` if uploading to 
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [DiscussionComment](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/community#huggingface_hub.DiscussionComment)
+**Returns:** [DiscussionComment](/docs/huggingface_hub/v1.32.0/en/package_reference/community#huggingface_hub.DiscussionComment)
 
 the edited comment
 
@@ -2153,7 +2162,7 @@ Edits a comment on a Discussion / Pull Request.
 >       if the HuggingFace API returned an error
 >     - [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)
 >       if some parameter value is invalid
->     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+>     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 >       If the repository to download from cannot be found. This may be because it doesn't exist,
 >       or because it is set to `private` and you do not have access.
 
@@ -2163,7 +2172,7 @@ Edits a comment on a Discussion / Pull Request.
 enable_space_dev_mode(repo_id: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L8495)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L8517)
 
 **Parameters:**
 
@@ -2171,19 +2180,19 @@ repo_id (`str`) : ID of the Space to enable dev mode. Example: `"Salesforce/BLIP
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [SpaceRuntime](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime)
+**Returns:** [SpaceRuntime](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime)
 
 Runtime information about your Space.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [HfHubHTTPError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) or [BadRequestError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError)
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [HfHubHTTPError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) or [BadRequestError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError)
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If your Space is not found (error 404). Most probably wrong repo_id or your space is private but you
   are not authenticated.
-- [HfHubHTTPError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) -- 
+- [HfHubHTTPError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) -- 
   403 Forbidden: only the owner of a Space can set dev mode. If you want to handle a Space that you don't
   own, either ask the owner by opening a Discussion or duplicate the Space.
-- [BadRequestError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError) -- 
+- [BadRequestError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError) -- 
   If your Space is a static Space. Static Spaces are always running and never billed. If you want to hide
   a static Space, you can set it to private.
 
@@ -2199,7 +2208,7 @@ a PRO or Team & Enterprise plan. See https://huggingface.co/docs/hub/spaces-dev-
 enable_webhook(webhook_id: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L11425)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L11466)
 
 **Parameters:**
 
@@ -2207,7 +2216,7 @@ webhook_id (`str`) : The unique identifier of the webhook to enable.
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [WebhookInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.WebhookInfo)
+**Returns:** [WebhookInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.WebhookInfo)
 
 Info about the enabled webhook.
 
@@ -2235,7 +2244,7 @@ WebhookInfo(
 fetch_job_logs(job_id: str, namespace: str | None = None, follow: bool = False, tail: int | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L12296)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L12357)
 
 **Parameters:**
 
@@ -2275,7 +2284,7 @@ Hello from HF compute!
 fetch_job_metrics(job_id: str, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L12376)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L12437)
 
 **Parameters:**
 
@@ -2318,7 +2327,7 @@ Example:
 fetch_space_logs(repo_id: str, build: bool = False, follow: bool = False, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L8736)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L8758)
 
 **Parameters:**
 
@@ -2363,7 +2372,7 @@ Example:
 file_exists(repo_id: str, filename: str, repo_type: str | None = None, revision: str | None = None, token: str | bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L3893)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L3873)
 
 **Parameters:**
 
@@ -2400,7 +2409,7 @@ False
 get_bucket_file_metadata(bucket_id: str, remote_path: str, token: str | bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L14742)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L14851)
 
 **Parameters:**
 
@@ -2410,7 +2419,7 @@ remote_path (`str`) : The path of the file in the bucket.
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [BucketFileMetadata](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.BucketFileMetadata)
+**Returns:** [BucketFileMetadata](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.BucketFileMetadata)
 
 The file metadata containing size and xet information.
 
@@ -2433,7 +2442,7 @@ Example:
 get_bucket_paths_info(bucket_id: str, paths: Iterable[str], token: str | bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L14114)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L14208)
 
 **Parameters:**
 
@@ -2445,7 +2454,7 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 **Returns:** `Iterable[BucketFile]`
 
-The information about the paths, as an iterable of [BucketFile](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.BucketFile) objects.
+The information about the paths, as an iterable of [BucketFile](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.BucketFile) objects.
 
 Get information about a bucket's paths.
 
@@ -2467,7 +2476,7 @@ BucketFile(type='file', path='checkpoints/model.safetensors', size=2408828, xet_
 get_collection(collection_slug: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L10214)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L10255)
 
 **Parameters:**
 
@@ -2477,7 +2486,7 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 Gets information about a Collection on the Hub.
 
-Returns: [Collection](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/collections#huggingface_hub.Collection)
+Returns: [Collection](/docs/huggingface_hub/v1.32.0/en/package_reference/collections#huggingface_hub.Collection)
 
 Example:
 
@@ -2504,7 +2513,7 @@ CollectionItem(
 get_dataset_leaderboard(repo_id: str, base_model_only: bool | None = None, token: bool | str | None = None, timeout: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L3418)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L3394)
 
 **Parameters:**
 
@@ -2518,7 +2527,7 @@ timeout (`float`, *optional*) : Whether to set a timeout for the request to the 
 
 **Returns:** `list[DatasetLeaderboardEntry]`
 
-A list of [DatasetLeaderboardEntry](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.DatasetLeaderboardEntry) objects representing
+A list of [DatasetLeaderboardEntry](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.DatasetLeaderboardEntry) objects representing
 the leaderboard entries, sorted by rank.
 
 Get the leaderboard for a dataset on the Hub.
@@ -2526,15 +2535,15 @@ Get the leaderboard for a dataset on the Hub.
 The leaderboard ranks models based on their evaluation scores on the given benchmark
 dataset. Not all datasets have leaderboards — only benchmark datasets with evaluation
 results submitted to them. This gives a dataset-centric view of scores; for a model-centric
-view, use [model_info()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.model_info) with `expand=["evalResults"]`.
+view, use [model_info()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.model_info) with `expand=["evalResults"]`.
 
 > [!TIP]
 > Raises the following errors:
 >
->     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+>     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 >       If the repository cannot be found. This may be because it doesn't exist,
 >       or because it is set to `private` and you do not have access.
->     - [HfHubHTTPError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError)
+>     - [HfHubHTTPError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError)
 >       If the dataset does not have a leaderboard.
 
 Example:
@@ -2557,7 +2566,7 @@ Example:
 get_dataset_tags()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L2423)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L2396)
 
 List all valid dataset tags as a nested namespace object.
 
@@ -2567,7 +2576,7 @@ List all valid dataset tags as a nested namespace object.
 get_discussion_details(repo_id: str, discussion_num: int, repo_type: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L7483)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L7505)
 
 **Parameters:**
 
@@ -2581,7 +2590,7 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 Fetches a Discussion's / Pull Request 's details from the Hub.
 
-Returns: [DiscussionWithDetails](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/community#huggingface_hub.DiscussionWithDetails)
+Returns: [DiscussionWithDetails](/docs/huggingface_hub/v1.32.0/en/package_reference/community#huggingface_hub.DiscussionWithDetails)
 
 > [!TIP]
 > Raises the following errors:
@@ -2590,7 +2599,7 @@ Returns: [DiscussionWithDetails](/docs/huggingface_hub/v1.31.0.rc0/en/package_re
 >       if the HuggingFace API returned an error
 >     - [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)
 >       if some parameter value is invalid
->     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+>     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 >       If the repository to download from cannot be found. This may be because it doesn't exist,
 >       or because it is set to `private` and you do not have access.
 
@@ -2600,7 +2609,7 @@ Returns: [DiscussionWithDetails](/docs/huggingface_hub/v1.31.0.rc0/en/package_re
 get_full_repo_name(model_id: str, organization: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L7337)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L7359)
 
 **Parameters:**
 
@@ -2625,11 +2634,11 @@ organization.
 get_hf_file_metadata(url: str, token: bool | str | None = None, timeout: float | None = 10)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L6472)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L6485)
 
 **Parameters:**
 
-url (`str`) : File url, for example returned by [hf_hub_url()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/file_download#huggingface_hub.hf_hub_url).
+url (`str`) : File url, for example returned by [hf_hub_url()](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.hf_hub_url).
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
@@ -2637,7 +2646,7 @@ timeout (`float`, *optional*, defaults to 10) : How many seconds to wait for the
 
 **Returns:**
 
-A [HfFileMetadata](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/file_download#huggingface_hub.HfFileMetadata) object containing metadata such as location, etag, size and commit_hash.
+A [HfFileMetadata](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.HfFileMetadata) object containing metadata such as location, etag, size and commit_hash.
 
 Fetch metadata of a file versioned on the Hub for a given url.
 
@@ -2647,7 +2656,7 @@ Fetch metadata of a file versioned on the Hub for a given url.
 get_inference_endpoint(name: str, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L9721)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L9762)
 
 **Parameters:**
 
@@ -2657,7 +2666,7 @@ namespace (`str`, *optional*) : The namespace in which the Inference Endpoint is
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.32.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
 
 information about the requested Inference Endpoint.
 
@@ -2687,7 +2696,7 @@ InferenceEndpoint(name='my-text-to-image', ...)
 get_model_tags()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L2414)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L2387)
 
 List all valid model tags as a nested namespace object
 
@@ -2697,7 +2706,7 @@ List all valid model tags as a nested namespace object
 get_organization_overview(organization: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L11744)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L11790)
 
 **Parameters:**
 
@@ -2722,7 +2731,7 @@ Get an overview of an organization on the Hub.
 get_paths_info(repo_id: str, paths: list[str] | str, expand: bool = False, revision: str | None = None, repo_type: str | None = None, token: str | bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L4352)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L4337)
 
 **Parameters:**
 
@@ -2740,14 +2749,14 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 **Returns:** `list[Union[RepoFile, RepoFolder]]`
 
-The information about the paths, as a list of [RepoFile](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.RepoFile) and `RepoFolder` objects.
+The information about the paths, as a list of [RepoFile](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.RepoFile) and `RepoFolder` objects.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If repository is not found (error 404): wrong repo_id/repo_type, private but not authenticated or repo
   does not exist.
-- [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
+- [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
   If revision is not found (error 404) on the repo.
 
 Get information about a repo's paths.
@@ -2769,7 +2778,7 @@ Example:
 get_repo_discussions(repo_id: str, author: str | None = None, discussion_type: constants.DiscussionTypeFilter | None = None, discussion_status: constants.DiscussionStatusFilter | None = None, repo_type: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L7375)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L7397)
 
 **Parameters:**
 
@@ -2787,7 +2796,7 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 **Returns:** `Iterator[Discussion]`
 
-An iterator of [Discussion](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/community#huggingface_hub.Discussion) objects.
+An iterator of [Discussion](/docs/huggingface_hub/v1.32.0/en/package_reference/community#huggingface_hub.Discussion) objects.
 
 Fetches Discussions and Pull Requests for the given repo.
 
@@ -2814,7 +2823,7 @@ Iterating over discussions of a repo:
 get_safetensors_metadata(repo_id: str, repo_type: str | None = None, revision: str | None = None, token: bool | str | None = None, timeout: float | None = 10)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L6853)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L6869)
 
 **Parameters:**
 
@@ -2846,7 +2855,7 @@ We first check if the repo has a single safetensors file or a sharded safetensor
 safetensors file, we parse the metadata from this file. If it's a sharded safetensors repo, we parse the
 metadata from the index file and then parse the metadata from each shard.
 
-To parse metadata from a single safetensors file, use [parse_safetensors_file_metadata()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.parse_safetensors_file_metadata).
+To parse metadata from a single safetensors file, use [parse_safetensors_file_metadata()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.parse_safetensors_file_metadata).
 
 For more details regarding the safetensors format, check out https://huggingface.co/docs/safetensors/index#format.
 
@@ -2883,7 +2892,7 @@ NotASafetensorsRepoError: 'runwayml/stable-diffusion-v1-5' is not a safetensors 
 get_space_runtime(repo_id: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L8316)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L8338)
 
 **Parameters:**
 
@@ -2891,7 +2900,7 @@ repo_id (`str`) : ID of the repo to update. Example: `"bigcode/in-the-stack"`.
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [SpaceRuntime](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime)
+**Returns:** [SpaceRuntime](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime)
 
 Runtime information about a Space including Space stage and hardware.
 
@@ -2903,7 +2912,7 @@ Gets runtime information about a Space.
 get_space_secrets(repo_id: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L8186)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L8208)
 
 **Parameters:**
 
@@ -2937,7 +2946,7 @@ Example:
 get_space_variables(repo_id: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L8223)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L8245)
 
 **Parameters:**
 
@@ -2956,7 +2965,7 @@ For more details, see https://huggingface.co/docs/hub/spaces-overview#managing-s
 get_user_overview(username: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L11718)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L11764)
 
 **Parameters:**
 
@@ -2966,7 +2975,7 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 **Returns:** `User`
 
-A [User](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.User) object with the user's overview.
+A [User](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.User) object with the user's overview.
 
 **Raises:** `HfHubHTTPError`
 
@@ -2981,7 +2990,7 @@ Get an overview of a user on the Hub.
 get_webhook(webhook_id: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L11098)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L11139)
 
 **Parameters:**
 
@@ -2989,7 +2998,7 @@ webhook_id (`str`) : The unique identifier of the webhook to get.
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [WebhookInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.WebhookInfo)
+**Returns:** [WebhookInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.WebhookInfo)
 
 Info about the webhook.
 
@@ -3017,7 +3026,7 @@ WebhookInfo(
 grant_access(repo_id: str, user: str, repo_type: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L11043)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L11084)
 
 **Parameters:**
 
@@ -3045,7 +3054,7 @@ Grant access to a user for a given gated repo.
 
 Granting access don't require for the user to send an access request by themselves. The user is automatically
 added to the accepted list meaning they can download the files You can revoke the granted access at any time
-using [cancel_access_request()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.cancel_access_request) or [reject_access_request()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.reject_access_request).
+using [cancel_access_request()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.cancel_access_request) or [reject_access_request()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.reject_access_request).
 
 For more info about gated repos, see https://huggingface.co/docs/hub/models-gated.
 
@@ -3055,7 +3064,7 @@ For more info about gated repos, see https://huggingface.co/docs/hub/models-gate
 hf_hub_download(repo_id: str, filename: str, subfolder: str | None = None, repo_type: str | None = None, revision: str | None = None, cache_dir: str | Path | None = None, local_dir: str | Path | None = None, force_download: bool = False, etag_timeout: float = 10, token: bool | str | None = None, local_files_only: bool = False, tqdm_class: type[base_tqdm] | None = None, dry_run: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L6548)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L6564)
 
 **Parameters:**
 
@@ -3083,23 +3092,23 @@ local_files_only (`bool`, *optional*, defaults to `False`) : If `True`, avoid do
 
 tqdm_class (`tqdm`, *optional*) : If provided, overwrites the default behavior for the progress bar. Passed argument must inherit from `tqdm.auto.tqdm` or at least mimic its behavior. Defaults to the custom HF progress bar that can be disabled by setting `HF_HUB_DISABLE_PROGRESS_BARS` environment variable.
 
-dry_run (`bool`, *optional*, defaults to `False`) : If `True`, perform a dry run without actually downloading the file. Returns a [DryRunFileInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo) object containing information about what would be downloaded.
+dry_run (`bool`, *optional*, defaults to `False`) : If `True`, perform a dry run without actually downloading the file. Returns a [DryRunFileInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo) object containing information about what would be downloaded.
 
-**Returns:** `str` or [DryRunFileInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo)
+**Returns:** `str` or [DryRunFileInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo)
 
 - If `dry_run=False`: Local path of file or if networking is off, last version of file cached on disk.
-- If `dry_run=True`: A [DryRunFileInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo) object containing download information.
+- If `dry_run=True`: A [DryRunFileInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo) object containing download information.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) or `~utils.RemoteEntryNotFoundError` or [LocalEntryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.LocalEntryNotFoundError) or ``EnvironmentError`` or ``OSError`` or ``ValueError``
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) or `~utils.RemoteEntryNotFoundError` or [LocalEntryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.LocalEntryNotFoundError) or ``EnvironmentError`` or ``OSError`` or ``ValueError``
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If the repository to download from cannot be found. This may be because it doesn't exist,
   or because it is set to `private` and you do not have access.
-- [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
+- [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
   If the revision to download from cannot be found.
 - `~utils.RemoteEntryNotFoundError` -- 
   If the file to download cannot be found.
-- [LocalEntryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.LocalEntryNotFoundError) -- 
+- [LocalEntryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.LocalEntryNotFoundError) -- 
   If network is disabled or unavailable and file is not found in cache.
 - [`EnvironmentError`](https://docs.python.org/3/library/exceptions.html#EnvironmentError) -- 
   If `token=True` but the token cannot be found.
@@ -3149,7 +3158,7 @@ cache-system, it's optimized for regularly pulling the latest version of a repos
 hide_discussion_comment(repo_id: str, discussion_num: int, comment_id: str, token: bool | str | None = None, repo_type: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L8060)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L8082)
 
 **Parameters:**
 
@@ -3163,7 +3172,7 @@ repo_type (`str`, *optional*) : Set to `"dataset"` or `"space"` if uploading to 
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [DiscussionComment](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/community#huggingface_hub.DiscussionComment)
+**Returns:** [DiscussionComment](/docs/huggingface_hub/v1.32.0/en/package_reference/community#huggingface_hub.DiscussionComment)
 
 the hidden comment
 
@@ -3179,7 +3188,7 @@ Hides a comment on a Discussion / Pull Request.
 >       if the HuggingFace API returned an error
 >     - [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)
 >       if some parameter value is invalid
->     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+>     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 >       If the repository to download from cannot be found. This may be because it doesn't exist,
 >       or because it is set to `private` and you do not have access.
 
@@ -3189,7 +3198,7 @@ Hides a comment on a Discussion / Pull Request.
 inspect_job(job_id: str, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L12518)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L12579)
 
 **Parameters:**
 
@@ -3227,7 +3236,7 @@ JobInfo(
 inspect_scheduled_job(scheduled_job_id: str, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L13126)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L13207)
 
 **Parameters:**
 
@@ -3253,7 +3262,7 @@ Example:
 kernel_info(repo_id: str, revision: str | None = None, timeout: float | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L3558)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L3534)
 
 **Parameters:**
 
@@ -3265,7 +3274,7 @@ timeout (`float`, *optional*) : Whether to set a timeout for the request to the 
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [ModelInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.ModelInfo)
+**Returns:** [ModelInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.ModelInfo)
 
 The kernel repository information.
 
@@ -3277,7 +3286,7 @@ Get info on one specific kernel on huggingface.co.
 list_accepted_access_requests(repo_id: str, repo_type: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L10730)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L10771)
 
 **Parameters:**
 
@@ -3305,8 +3314,8 @@ Get accepted access requests for a given gated repo.
 
 An accepted request means the user has requested access to the repo and the request has been accepted. The user
 can download any file of the repo. If the approval mode is automatic, this list should contains by default all
-requests. Accepted requests can be cancelled or rejected at any time using [cancel_access_request()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.cancel_access_request) and
-[reject_access_request()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.reject_access_request). A cancelled request will go back to the pending list while a rejected request will
+requests. Accepted requests can be cancelled or rejected at any time using [cancel_access_request()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.cancel_access_request) and
+[reject_access_request()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.reject_access_request). A cancelled request will go back to the pending list while a rejected request will
 go to the rejected list. In both cases, the user will lose access to the repo.
 
 For more info about gated repos, see https://huggingface.co/docs/hub/models-gated.
@@ -3338,7 +3347,7 @@ Example:
 list_bucket_tree(bucket_id: str, prefix: str | None = None, recursive: bool | None = None, token: str | bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L14061)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L14153)
 
 **Parameters:**
 
@@ -3352,7 +3361,7 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 **Returns:** `Iterable[Union[BucketFile, BucketFolder]]`
 
-An iterable of [BucketFile](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.BucketFile) and `BucketFolder` objects
+An iterable of [BucketFile](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.BucketFile) and `BucketFolder` objects
 containing file and directory information (path, etc.).
 
 List files in a bucket.
@@ -3374,7 +3383,7 @@ Example:
 list_buckets(namespace: str | None = None, search: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L13870)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L13960)
 
 **Parameters:**
 
@@ -3386,7 +3395,7 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 **Returns:** `Iterable[BucketInfo]`
 
-An iterable of [BucketInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.BucketInfo) objects.
+An iterable of [BucketInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.BucketInfo) objects.
 
 List buckets on the Hub under a certain namespace.
 
@@ -3409,7 +3418,7 @@ Example:
 list_collections(owner: list[str] | str | None = None, item: list[str] | str | None = None, sort: CollectionSort_T | None = None, limit: int | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L10158)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L10199)
 
 **Parameters:**
 
@@ -3425,13 +3434,13 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 **Returns:** `Iterable[Collection]`
 
-an iterable of [Collection](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/collections#huggingface_hub.Collection) objects.
+an iterable of [Collection](/docs/huggingface_hub/v1.32.0/en/package_reference/collections#huggingface_hub.Collection) objects.
 
 List collections on the Huggingface Hub, given some filters.
 
 > [!WARNING]
 > When listing collections, the item list per collection is truncated to 4 items maximum. To retrieve all items
-> from a collection, you must use [get_collection()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.get_collection).
+> from a collection, you must use [get_collection()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_collection).
 
 #### list_daily_papers[[huggingface_hub.HfApi.list_daily_papers]]
 
@@ -3439,7 +3448,7 @@ List collections on the Huggingface Hub, given some filters.
 list_daily_papers(date: str | None = None, token: bool | str | None = None, week: str | None = None, month: str | None = None, submitter: str | None = None, sort: DailyPapersSort_T | None = None, p: int | None = None, limit: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L11975)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L12021)
 
 **Parameters:**
 
@@ -3480,7 +3489,7 @@ Example:
 list_dataset_parquet_files(repo_id: str, config: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L2839)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L2812)
 
 **Parameters:**
 
@@ -3516,7 +3525,7 @@ DatasetParquetEntry(config='default', split='train', url='https://huggingface.co
 list_datasets(filter: str | Iterable[str] | None = None, author: str | None = None, benchmark: Literal[True] | Literal['official'] | str | None = None, dataset_name: str | None = None, gated: bool | None = None, language_creators: str | list[str] | None = None, language: str | list[str] | None = None, multilinguality: str | list[str] | None = None, size_categories: str | list[str] | None = None, task_categories: str | list[str] | None = None, task_ids: str | list[str] | None = None, search: str | None = None, sort: DatasetSort_T | None = None, limit: int | None = None, expand: list[ExpandDatasetProperty_T] | None = None, full: bool | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L2634)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L2607)
 
 **Parameters:**
 
@@ -3556,7 +3565,7 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 **Returns:** `Iterable[DatasetInfo]`
 
-an iterable of [huggingface_hub.hf_api.DatasetInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.DatasetInfo) objects.
+an iterable of [huggingface_hub.hf_api.DatasetInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.DatasetInfo) objects.
 
 List datasets hosted on the Huggingface Hub, given some filters.
 
@@ -3602,7 +3611,7 @@ Example usage with the `search` argument:
 list_inference_catalog(token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L9691)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L9732)
 
 **Parameters:**
 
@@ -3618,7 +3627,7 @@ The goal of the Inference Catalog is to provide a curated list of models that ar
 and for which default configurations have been tested. See https://endpoints.huggingface.co/catalog for a list
 of available models in the catalog.
 
-Use [create_inference_endpoint_from_catalog()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint_from_catalog) to deploy a model from the catalog.
+Use [create_inference_endpoint_from_catalog()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint_from_catalog) to deploy a model from the catalog.
 
 > [!WARNING]
 > `list_inference_catalog` is experimental. Its API is subject to change in the future. Please provide feedback
@@ -3630,7 +3639,7 @@ Use [create_inference_endpoint_from_catalog()](/docs/huggingface_hub/v1.31.0.rc0
 list_inference_endpoints(namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L9309)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L9331)
 
 **Parameters:**
 
@@ -3638,7 +3647,7 @@ namespace (`str`, *optional*) : The namespace to list endpoints for. Defaults to
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** list[InferenceEndpoint](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+**Returns:** list[InferenceEndpoint](/docs/huggingface_hub/v1.32.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
 
 A list of all inference endpoints for the given namespace.
 
@@ -3658,7 +3667,7 @@ Example:
 list_inference_endpoints_hardware(namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L10100)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L10141)
 
 **Parameters:**
 
@@ -3674,7 +3683,7 @@ hardware that is currently unavailable or deprecated.
 List the hardware available to deploy an Inference Endpoint on.
 
 Each entry carries the exact `vendor`, `region`, `accelerator`, `instance_type` and `instance_size` values
-expected by [create_inference_endpoint()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint), along with the price and the accelerator quota of the namespace.
+expected by [create_inference_endpoint()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint), along with the price and the accelerator quota of the namespace.
 
 Example:
 ```python
@@ -3691,11 +3700,11 @@ Example:
 list_jobs(status: list[JobStage | str] | JobStage | str | None = None, labels: dict[str, str] | None = None, timeout: int | None = None, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L12442)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L12503)
 
 **Parameters:**
 
-status (`JobStage`, `str` or `list`, *optional*) : Only return Jobs with the given status(es), e.g. `"RUNNING"` or `[JobStage.RUNNING, JobStage.SCHEDULING]`. See [JobStage](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.JobStage) for possible values. 
+status (`JobStage`, `str` or `list`, *optional*) : Only return Jobs with the given status(es), e.g. `"RUNNING"` or `[JobStage.RUNNING, JobStage.SCHEDULING]`. See [JobStage](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.JobStage) for possible values. 
 
 labels (`dict[str, str]`, *optional*) : Only return Jobs that have all the given `key=value` labels, e.g. `{"env": "prod", "team": "ml"}`. 
 
@@ -3707,7 +3716,7 @@ token (`bool` or `str`, *optional*) : A valid user access token. If not provided
 
 **Returns:** `Iterable[JobInfo]`
 
-an iterable of [JobInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.JobInfo) objects.
+an iterable of [JobInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.JobInfo) objects.
 
 List compute Jobs on Hugging Face infrastructure.
 
@@ -3717,7 +3726,7 @@ List compute Jobs on Hugging Face infrastructure.
 list_jobs_hardware(token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L12490)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L12551)
 
 **Returns:** `list[JobHardwareInfo]`
 
@@ -3748,7 +3757,7 @@ JobHardwareInfo(name='cpu-basic', pretty_name='CPU Basic', cpu='2 vCPU', ram='16
 list_lfs_files(repo_id: str, repo_type: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L4509)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L4494)
 
 **Parameters:**
 
@@ -3765,7 +3774,7 @@ An iterator of `LFSFileInfo` objects.
 List all LFS files in a repo on the Hub.
 
 This is primarily useful to count how much storage a repo is using and to eventually clean up large files
-with [permanently_delete_lfs_files()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.permanently_delete_lfs_files). Note that this would be a permanent action that will affect all commits
+with [permanently_delete_lfs_files()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.permanently_delete_lfs_files). Note that this would be a permanent action that will affect all commits
 referencing this deleted files and that cannot be undone.
 
 Example:
@@ -3788,7 +3797,7 @@ Example:
 list_liked_repos(user: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L3117)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L3093)
 
 **Parameters:**
 
@@ -3796,7 +3805,7 @@ user (`str`, *optional*) : Name of the user for which you want to fetch the like
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [UserLikes](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.UserLikes)
+**Returns:** [UserLikes](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.UserLikes)
 
 object containing the user name and 3 lists of repo ids (1 for
 models, 1 for datasets and 1 for Spaces).
@@ -3811,7 +3820,7 @@ List all public repos liked by a user on huggingface.co.
 This list is public so token is optional. If `user` is not passed, it defaults to
 the logged in user.
 
-See also [unlike()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.unlike).
+See also [unlike()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.unlike).
 
 Example:
 ```python
@@ -3832,7 +3841,7 @@ Example:
 list_models(filter: str | Iterable[str] | None = None, author: str | None = None, apps: str | list[str] | None = None, gated: bool | None = None, inference: Literal['warm'] | None = None, inference_provider: Literal['all'] | PROVIDER_T | list[PROVIDER_T] | None = None, model_name: str | None = None, trained_dataset: str | list[str] | None = None, search: str | None = None, pipeline_tag: str | None = None, num_parameters: str | None = None, emissions_thresholds: tuple[float, float] | None = None, sort: ModelSort_T | None = None, limit: int | None = None, expand: list[ExpandModelProperty_T] | None = None, full: bool | None = None, cardData: bool = False, fetch_config: bool = False, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L2432)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L2405)
 
 **Parameters:**
 
@@ -3876,7 +3885,7 @@ model_name (`str`, *optional*) : (deprecated). Use `search` instead.
 
 **Returns:** `Iterable[ModelInfo]`
 
-an iterable of [huggingface_hub.hf_api.ModelInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.ModelInfo) objects.
+an iterable of [huggingface_hub.hf_api.ModelInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.ModelInfo) objects.
 
 List models hosted on the Huggingface Hub, given some filters.
 
@@ -3915,7 +3924,7 @@ Example:
 list_organization_followers(organization: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L11771)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L11817)
 
 **Parameters:**
 
@@ -3925,7 +3934,7 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 **Returns:** `Iterable[User]`
 
-A list of [User](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.User) objects with the followers of the organization.
+A list of [User](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.User) objects with the followers of the organization.
 
 **Raises:** `HfHubHTTPError`
 
@@ -3940,7 +3949,7 @@ List followers of an organization on the Hub.
 list_organization_members(organization: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L11800)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L11846)
 
 **Parameters:**
 
@@ -3950,7 +3959,7 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 **Returns:** `Iterable[User]`
 
-A list of [User](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.User) objects with the members of the organization.
+A list of [User](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.User) objects with the members of the organization.
 
 **Raises:** `HfHubHTTPError`
 
@@ -3965,7 +3974,7 @@ List of members of an organization on the Hub.
 list_papers(query: str | None = None, limit: int | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L11884)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L11930)
 
 **Parameters:**
 
@@ -3998,7 +4007,7 @@ Example:
 list_pending_access_requests(repo_id: str, repo_type: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L10666)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L10707)
 
 **Parameters:**
 
@@ -4026,7 +4035,7 @@ Get pending access requests for a given gated repo.
 
 A pending request means the user has requested access to the repo but the request has not been processed yet.
 If the approval mode is automatic, this list should be empty. Pending requests can be accepted or rejected
-using [accept_access_request()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.accept_access_request) and [reject_access_request()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.reject_access_request).
+using [accept_access_request()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.accept_access_request) and [reject_access_request()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.reject_access_request).
 
 For more info about gated repos, see https://huggingface.co/docs/hub/models-gated.
 
@@ -4061,7 +4070,7 @@ Example:
 list_rejected_access_requests(repo_id: str, repo_type: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L10792)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L10833)
 
 **Parameters:**
 
@@ -4089,8 +4098,8 @@ Get rejected access requests for a given gated repo.
 
 A rejected request means the user has requested access to the repo and the request has been explicitly rejected
 by a repo owner (either you or another user from your organization). The user cannot download any file of the
-repo. Rejected requests can be accepted or cancelled at any time using [accept_access_request()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.accept_access_request) and
-[cancel_access_request()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.cancel_access_request). A cancelled request will go back to the pending list while an accepted request will
+repo. Rejected requests can be accepted or cancelled at any time using [accept_access_request()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.accept_access_request) and
+[cancel_access_request()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.cancel_access_request). A cancelled request will go back to the pending list while an accepted request will
 go to the accepted list.
 
 For more info about gated repos, see https://huggingface.co/docs/hub/models-gated.
@@ -4122,7 +4131,7 @@ Example:
 list_repo_commits(repo_id: str, repo_type: str | None = None, token: bool | str | None = None, revision: str | None = None, formatted: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L4266)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L4251)
 
 **Parameters:**
 
@@ -4136,16 +4145,16 @@ revision (`str`, *optional*) : The git revision to commit from. Defaults to the 
 
 formatted (`bool`) : Whether to return the HTML-formatted title and description of the commits. Defaults to False.
 
-**Returns:** list[[GitCommitInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.GitCommitInfo)]
+**Returns:** list[[GitCommitInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.GitCommitInfo)]
 
 list of objects containing information about the commits for a repo on the Hub.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If repository is not found (error 404): wrong repo_id/repo_type, private but not authenticated or repo
   does not exist.
-- [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
+- [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
   If revision is not found (error 404) on the repo.
 
 Get the list of commits of a given revision for a repo on the Hub.
@@ -4182,7 +4191,7 @@ GitCommitInfo(
 list_repo_files(repo_id: str, revision: str | None = None, repo_type: str | None = None, token: str | bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L3951)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L3934)
 
 **Parameters:**
 
@@ -4206,7 +4215,7 @@ Get the list of files in a given repo.
 list_repo_likers(repo_id: str, repo_type: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L3234)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L3210)
 
 **Parameters:**
 
@@ -4218,11 +4227,11 @@ repo_type (`str`, *optional*) : Set to `"dataset"` or `"space"` if uploading to 
 
 **Returns:** `Iterable[User]`
 
-an iterable of [huggingface_hub.hf_api.User](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.User) objects.
+an iterable of [huggingface_hub.hf_api.User](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.User) objects.
 
 List all users who liked a given repo on the hugging Face Hub.
 
-See also [list_liked_repos()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_liked_repos).
+See also [list_liked_repos()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_liked_repos).
 
 #### list_repo_refs[[huggingface_hub.HfApi.list_repo_refs]]
 
@@ -4230,7 +4239,7 @@ See also [list_liked_repos()](/docs/huggingface_hub/v1.31.0.rc0/en/package_refer
 list_repo_refs(repo_id: str, repo_type: str | None = None, include_pull_requests: bool = False, token: str | bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L4194)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L4179)
 
 **Parameters:**
 
@@ -4242,7 +4251,7 @@ include_pull_requests (`bool`, *optional*) : Whether to include refs from pull r
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [GitRefs](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.GitRefs)
+**Returns:** [GitRefs](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.GitRefs)
 
 object containing all information about branches and tags for a
 repo on the Hub.
@@ -4275,7 +4284,7 @@ GitRefs(
 list_repo_tree(repo_id: str, path_in_repo: str | None = None, recursive: bool = False, expand: bool = False, revision: str | None = None, repo_type: str | None = None, token: str | bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L3988)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L3971)
 
 **Parameters:**
 
@@ -4295,15 +4304,15 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 **Returns:** `Iterable[Union[RepoFile, RepoFolder]]`
 
-The information about the tree's files and folders, as an iterable of [RepoFile](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.RepoFile) and `RepoFolder` objects. The order of the files and folders is
+The information about the tree's files and folders, as an iterable of [RepoFile](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.RepoFile) and `RepoFolder` objects. The order of the files and folders is
 not guaranteed.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) or `~utils.RemoteEntryNotFoundError`
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) or `~utils.RemoteEntryNotFoundError`
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If repository is not found (error 404): wrong repo_id/repo_type, private but not authenticated or repo
   does not exist.
-- [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
+- [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
   If revision is not found (error 404) on the repo.
 - `~utils.RemoteEntryNotFoundError` -- 
   If the tree (folder) does not exist (error 404) on the repo.
@@ -4388,7 +4397,7 @@ Get even more information about a repo's tree (last commit and files' security s
 list_scheduled_jobs(labels: dict[str, str] | None = None, timeout: int | None = None, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L13072)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L13153)
 
 **Parameters:**
 
@@ -4412,7 +4421,7 @@ List scheduled compute Jobs on Hugging Face infrastructure.
 list_space_templates(token: str | bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L4631)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L4616)
 
 **Parameters:**
 
@@ -4425,7 +4434,7 @@ The list of available Space templates.
 List the official Space templates available on the Hub.
 
 The `repo_id` of a returned template (or its short `name`) can be passed as `space_template`
-to [HfApi.create_repo()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo) to seed a new Space from that template.
+to [HfApi.create_repo()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo) to seed a new Space from that template.
 
 Example:
 ```py
@@ -4441,7 +4450,7 @@ SpaceTemplate(name='Streamlit', repo_id='streamlit/streamlit-template-space', sd
 list_spaces(filter: str | Iterable[str] | None = None, author: str | None = None, search: str | None = None, datasets: str | Iterable[str] | None = None, models: str | Iterable[str] | None = None, linked: bool = False, sort: SpaceSort_T | None = None, limit: int | None = None, expand: list[ExpandSpaceProperty_T] | None = None, full: bool | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L2903)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L2879)
 
 **Parameters:**
 
@@ -4469,7 +4478,7 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 **Returns:** `Iterable[SpaceInfo]`
 
-an iterable of [huggingface_hub.hf_api.SpaceInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.SpaceInfo) objects.
+an iterable of [huggingface_hub.hf_api.SpaceInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.SpaceInfo) objects.
 
 List spaces hosted on the Huggingface Hub, given some filters.
 
@@ -4479,7 +4488,7 @@ List spaces hosted on the Huggingface Hub, given some filters.
 list_spaces_hardware(token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L8337)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L8359)
 
 **Returns:** `list[JobHardwareInfo]`
 
@@ -4504,7 +4513,7 @@ JobHardwareInfo(name='cpu-basic', pretty_name='CPU Basic', cpu='2 vCPU', ram='16
 list_user_followers(username: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L11828)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L11874)
 
 **Parameters:**
 
@@ -4514,7 +4523,7 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 **Returns:** `Iterable[User]`
 
-A list of [User](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.User) objects with the followers of the user.
+A list of [User](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.User) objects with the followers of the user.
 
 **Raises:** `HfHubHTTPError`
 
@@ -4529,7 +4538,7 @@ Get the list of followers of a user on the Hub.
 list_user_following(username: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L11856)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L11902)
 
 **Parameters:**
 
@@ -4539,7 +4548,7 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 **Returns:** `Iterable[User]`
 
-A list of [User](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.User) objects with the users followed by the user.
+A list of [User](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.User) objects with the users followed by the user.
 
 **Raises:** `HfHubHTTPError`
 
@@ -4554,7 +4563,7 @@ Get the list of users followed by a user on the Hub.
 list_user_repos(namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L3194)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L3170)
 
 **Parameters:**
 
@@ -4589,7 +4598,7 @@ RepoStorageInfo(id='username/my-model', type='model', ...)
 list_webhooks(token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L11151)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L11192)
 
 **Parameters:**
 
@@ -4624,7 +4633,7 @@ WebhookInfo(
 merge_pull_request(repo_id: str, discussion_num: int, token: bool | str | None = None, comment: str | None = None, repo_type: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L7950)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L7972)
 
 **Parameters:**
 
@@ -4638,7 +4647,7 @@ repo_type (`str`, *optional*) : Set to `"dataset"` or `"space"` if uploading to 
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [DiscussionStatusChange](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/community#huggingface_hub.DiscussionStatusChange)
+**Returns:** [DiscussionStatusChange](/docs/huggingface_hub/v1.32.0/en/package_reference/community#huggingface_hub.DiscussionStatusChange)
 
 the status change event
 
@@ -4651,7 +4660,7 @@ Merges a Pull Request.
 >       if the HuggingFace API returned an error
 >     - [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)
 >       if some parameter value is invalid
->     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+>     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 >       If the repository to download from cannot be found. This may be because it doesn't exist,
 >       or because it is set to `private` and you do not have access.
 
@@ -4661,7 +4670,7 @@ Merges a Pull Request.
 model_info(repo_id: str, revision: str | None = None, timeout: float | None = None, securityStatus: bool | None = None, files_metadata: bool = False, expand: list[ExpandModelProperty_T] | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L3273)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L3249)
 
 **Parameters:**
 
@@ -4679,7 +4688,7 @@ expand (`list[ExpandModelProperty_T]`, *optional*) : List properties to return i
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [huggingface_hub.hf_api.ModelInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.ModelInfo)
+**Returns:** [huggingface_hub.hf_api.ModelInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.ModelInfo)
 
 The model repository information.
 
@@ -4690,10 +4699,10 @@ Model can be private if you pass an acceptable token or are logged in.
 > [!TIP]
 > Raises the following errors:
 >
->     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+>     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 >       If the repository to download from cannot be found. This may be because it doesn't exist,
 >       or because it is set to `private` and you do not have access.
->     - [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
+>     - [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
 >       If the revision to download from cannot be found.
 
 #### move_bucket[[huggingface_hub.HfApi.move_bucket]]
@@ -4702,7 +4711,7 @@ Model can be private if you pass an acceptable token or are logged in.
 move_bucket(from_id: str, to_id: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L13959)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L14051)
 
 **Parameters:**
 
@@ -4741,7 +4750,7 @@ Example:
 move_repo(from_id: str, to_id: str, repo_type: str | None = None, token: str | bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L5007)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L4992)
 
 **Parameters:**
 
@@ -4762,7 +4771,7 @@ https://hf.co/docs/hub/repositories-settings#renaming-or-transferring-a-repo.
 > [!TIP]
 > Raises the following errors:
 >
->     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+>     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 >       If the repository to download from cannot be found. This may be because it doesn't exist,
 >       or because it is set to `private` and you do not have access.
 
@@ -4772,7 +4781,7 @@ https://hf.co/docs/hub/repositories-settings#renaming-or-transferring-a-repo.
 paper_info(id: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L11935)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L11981)
 
 **Parameters:**
 
@@ -4795,7 +4804,7 @@ Get information for a paper on the Hub.
 parse_safetensors_file_metadata(repo_id: str, filename: str, repo_type: str | None = None, revision: str | None = None, token: bool | str | None = None, timeout: float | None = 10)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L7004)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L7023)
 
 **Parameters:**
 
@@ -4825,7 +4834,7 @@ information related to a safetensors file.
 
 Parse metadata from a safetensors file on the Hub.
 
-To parse metadata from all safetensors files in a repo at once, use [get_safetensors_metadata()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.get_safetensors_metadata).
+To parse metadata from all safetensors files in a repo at once, use [get_safetensors_metadata()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_safetensors_metadata).
 
 For more details regarding the safetensors format, check out https://huggingface.co/docs/safetensors/index#format.
 
@@ -4835,7 +4844,7 @@ For more details regarding the safetensors format, check out https://huggingface
 pause_inference_endpoint(name: str, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L9984)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L10025)
 
 **Parameters:**
 
@@ -4845,17 +4854,17 @@ namespace (`str`, *optional*) : The namespace in which the Inference Endpoint is
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.32.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
 
 information about the paused Inference Endpoint.
 
 Pause an Inference Endpoint.
 
-A paused Inference Endpoint will not be charged. It can be resumed at any time using [resume_inference_endpoint()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.resume_inference_endpoint).
-This is different than scaling the Inference Endpoint to zero with [scale_to_zero_inference_endpoint()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.scale_to_zero_inference_endpoint), which
+A paused Inference Endpoint will not be charged. It can be resumed at any time using [resume_inference_endpoint()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.resume_inference_endpoint).
+This is different than scaling the Inference Endpoint to zero with [scale_to_zero_inference_endpoint()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.scale_to_zero_inference_endpoint), which
 would be automatically restarted when a request is made to it.
 
-For convenience, you can also pause an Inference Endpoint using [pause_inference_endpoint()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_inference_endpoint).
+For convenience, you can also pause an Inference Endpoint using [pause_inference_endpoint()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_inference_endpoint).
 
 #### pause_space[[huggingface_hub.HfApi.pause_space]]
 
@@ -4863,7 +4872,7 @@ For convenience, you can also pause an Inference Endpoint using [pause_inference
 pause_space(repo_id: str, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L8456)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L8478)
 
 **Parameters:**
 
@@ -4871,19 +4880,19 @@ repo_id (`str`) : ID of the Space to pause. Example: `"Salesforce/BLIP2"`.
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [SpaceRuntime](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime)
+**Returns:** [SpaceRuntime](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime)
 
 Runtime information about your Space including `stage=PAUSED` and requested hardware.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [HfHubHTTPError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) or [BadRequestError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError)
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [HfHubHTTPError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) or [BadRequestError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError)
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If your Space is not found (error 404). Most probably wrong repo_id or your space is private but you
   are not authenticated.
-- [HfHubHTTPError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) -- 
+- [HfHubHTTPError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) -- 
   403 Forbidden: only the owner of a Space can pause it. If you want to manage a Space that you don't
   own, either ask the owner by opening a Discussion or duplicate the Space.
-- [BadRequestError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError) -- 
+- [BadRequestError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError) -- 
   If your Space is a static Space. Static Spaces are always running and never billed. If you want to hide
   a static Space, you can set it to private.
 
@@ -4891,7 +4900,7 @@ Pause your Space.
 
 A paused Space stops executing until manually restarted by its owner. This is different from the sleeping
 state in which free Spaces go after 48h of inactivity. Paused time is not billed to your account, no matter the
-hardware you've selected. To restart your Space, use [restart_space()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.restart_space) and go to your Space settings page.
+hardware you've selected. To restart your Space, use [restart_space()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.restart_space) and go to your Space settings page.
 
 For more details, please visit [the docs](https://huggingface.co/docs/hub/spaces-gpus#pause).
 
@@ -4901,13 +4910,13 @@ For more details, please visit [the docs](https://huggingface.co/docs/hub/spaces
 permanently_delete_lfs_files(repo_id: str, lfs_files: Iterable[LFSFileInfo], rewrite_history: bool = True, repo_type: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L4563)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L4548)
 
 **Parameters:**
 
 repo_id (`str`) : The repository for which you are listing LFS files.
 
-lfs_files (`Iterable[LFSFileInfo]`) : An iterable of `LFSFileInfo` items to permanently delete from the repo. Use [list_lfs_files()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_lfs_files) to list all LFS files from a repo.
+lfs_files (`Iterable[LFSFileInfo]`) : An iterable of `LFSFileInfo` items to permanently delete from the repo. Use [list_lfs_files()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_lfs_files) to list all LFS files from a repo.
 
 rewrite_history (`bool`, *optional*, default to `True`) : Whether to rewrite repository history to remove file pointers referencing the deleted LFS files (recommended).
 
@@ -4941,13 +4950,13 @@ Example:
 preupload_lfs_files(repo_id: str, additions: Iterable[CommitOperationAdd], token: str | bool | None = None, repo_type: str | None = None, revision: str | None = None, create_pr: bool | None = None, num_threads: int = 5, free_memory: bool = True, gitignore_content: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L5383)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L5377)
 
 **Parameters:**
 
 repo_id (`str`) : The repository in which you will commit the files, for example: `"username/custom_transformers"`. 
 
-additions (`Iterable` of [CommitOperationAdd](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.CommitOperationAdd)) : The list of files to upload. Warning: the objects in this list will be mutated to include information relative to the upload. Do not reuse the same objects for multiple commits. 
+additions (`Iterable` of [CommitOperationAdd](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.CommitOperationAdd)) : The list of files to upload. Warning: the objects in this list will be mutated to include information relative to the upload. Do not reuse the same objects for multiple commits. 
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`. 
 
@@ -4959,7 +4968,7 @@ create_pr (`boolean`, *optional*) : Whether or not you plan to create a Pull Req
 
 num_threads (`int`, *optional*) : Number of concurrent threads for uploading files. Defaults to 5. Setting it to 2 means at most 2 files will be uploaded concurrently. 
 
-free_memory (`bool`, *optional*, defaults to `True`) : If `True`, the `path_or_fileobj` attribute of each `CommitOperationAdd` is replaced by an empty `bytes` object after upload to save memory. Set to `False` if you need to reuse the operation objects outside of a subsequent [create_commit()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) call. 
+free_memory (`bool`, *optional*, defaults to `True`) : If `True`, the `path_or_fileobj` attribute of each `CommitOperationAdd` is replaced by an empty `bytes` object after upload to save memory. Set to `False` if you need to reuse the operation objects outside of a subsequent [create_commit()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) call. 
 
 gitignore_content (`str`, *optional*) : The content of the `.gitignore` file to know which files should be ignored. The order of priority is to first check if `gitignore_content` is passed, then check if the `.gitignore` file is present in the list of files to commit and finally default to the `.gitignore` file already hosted on the Hub (if any).
 
@@ -4970,12 +4979,12 @@ in memory before uploading them all at once.
 
 > [!WARNING]
 > This is a power-user method. You shouldn't need to call it directly to make a normal commit.
-> Use [create_commit()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) directly instead.
+> Use [create_commit()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) directly instead.
 
 > [!WARNING]
 > Commit operations will be mutated during the process. In particular, the attached `path_or_fileobj` will be
 > removed after the upload to save memory (and replaced by an empty `bytes` object). Do not reuse the same
-> objects except to pass them to [create_commit()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit). If you don't want to remove the attached content from the
+> objects except to pass them to [create_commit()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit). If you don't want to remove the attached content from the
 > commit operation object, pass `free_memory=False`.
 
 Example:
@@ -5002,7 +5011,7 @@ Example:
 read_paper(id: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L11955)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L12001)
 
 **Parameters:**
 
@@ -5025,7 +5034,7 @@ Get the markdown content of a paper page on the Hub.
 reject_access_request(repo_id: str, user: str, repo_type: str | None = None, rejection_reason: str | None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L10962)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L11003)
 
 **Parameters:**
 
@@ -5056,7 +5065,7 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 Reject an access request from a user for a given gated repo.
 
 A rejected request will go to the rejected list. The user cannot download any file of the repo. Rejected
-requests can be accepted or cancelled at any time using [accept_access_request()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.accept_access_request) and [cancel_access_request()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.cancel_access_request).
+requests can be accepted or cancelled at any time using [accept_access_request()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.accept_access_request) and [cancel_access_request()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.cancel_access_request).
 A cancelled request will go back to the pending list while an accepted request will go to the accepted list.
 
 For more info about gated repos, see https://huggingface.co/docs/hub/models-gated.
@@ -5067,7 +5076,7 @@ For more info about gated repos, see https://huggingface.co/docs/hub/models-gate
 rename_discussion(repo_id: str, discussion_num: int, new_title: str, token: bool | str | None = None, repo_type: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L7808)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L7830)
 
 **Parameters:**
 
@@ -5081,7 +5090,7 @@ repo_type (`str`, *optional*) : Set to `"dataset"` or `"space"` if uploading to 
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [DiscussionTitleChange](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/community#huggingface_hub.DiscussionTitleChange)
+**Returns:** [DiscussionTitleChange](/docs/huggingface_hub/v1.32.0/en/package_reference/community#huggingface_hub.DiscussionTitleChange)
 
 the title change event
 
@@ -5106,7 +5115,7 @@ Examples:
 >       if the HuggingFace API returned an error
 >     - [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)
 >       if some parameter value is invalid
->     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+>     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 >       If the repository to download from cannot be found. This may be because it doesn't exist,
 >       or because it is set to `private` and you do not have access.
 
@@ -5116,7 +5125,7 @@ Examples:
 repo_exists(repo_id: str, repo_type: str | None = None, token: str | bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L3802)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L3782)
 
 **Parameters:**
 
@@ -5147,7 +5156,7 @@ False
 repo_info(repo_id: str, revision: str | None = None, repo_type: str | None = None, timeout: float | None = None, files_metadata: bool = False, expand: ExpandModelProperty_T | ExpandDatasetProperty_T | ExpandSpaceProperty_T | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L3598)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L3574)
 
 **Parameters:**
 
@@ -5159,7 +5168,7 @@ repo_type (`str`, *optional*) : Set to `"dataset"` or `"space"` if getting repos
 
 timeout (`float`, *optional*) : Whether to set a timeout for the request to the Hub.
 
-expand (`ExpandModelProperty_T` or `ExpandDatasetProperty_T` or `ExpandSpaceProperty_T`, *optional*) : List properties to return in the response. When used, only the properties in the list will be returned. This parameter cannot be used if `files_metadata` is passed. For an exhaustive list of available properties, check out [model_info()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.model_info), [dataset_info()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.dataset_info) or [space_info()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.space_info).
+expand (`ExpandModelProperty_T` or `ExpandDatasetProperty_T` or `ExpandSpaceProperty_T`, *optional*) : List properties to return in the response. When used, only the properties in the list will be returned. This parameter cannot be used if `files_metadata` is passed. For an exhaustive list of available properties, check out [model_info()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.model_info), [dataset_info()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.dataset_info) or [space_info()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.space_info).
 
 files_metadata (`bool`, *optional*) : Whether or not to retrieve metadata for files in the repository (size, LFS metadata, etc). Defaults to `False`.
 
@@ -5168,18 +5177,18 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 **Returns:** `Union[SpaceInfo, DatasetInfo, ModelInfo]`
 
 The repository information, as a
-[huggingface_hub.hf_api.DatasetInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.DatasetInfo), [huggingface_hub.hf_api.ModelInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.ModelInfo)
-or [huggingface_hub.hf_api.SpaceInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.SpaceInfo) object.
+[huggingface_hub.hf_api.DatasetInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.DatasetInfo), [huggingface_hub.hf_api.ModelInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.ModelInfo)
+or [huggingface_hub.hf_api.SpaceInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.SpaceInfo) object.
 
 Get the info object for a given repo of a given type.
 
 > [!TIP]
 > Raises the following errors:
 >
->     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+>     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 >       If the repository to download from cannot be found. This may be because it doesn't exist,
 >       or because it is set to `private` and you do not have access.
->     - [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
+>     - [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
 >       If the revision to download from cannot be found.
 
 #### request_space_hardware[[huggingface_hub.HfApi.request_space_hardware]]
@@ -5188,26 +5197,26 @@ Get the info object for a given repo of a given type.
 request_space_hardware(repo_id: str, hardware: SpaceHardware, token: bool | str | None = None, sleep_time: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L8360)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L8382)
 
 **Parameters:**
 
 repo_id (`str`) : ID of the repo to update. Example: `"bigcode/in-the-stack"`.
 
-hardware (`str` or [SpaceHardware](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceHardware)) : Hardware on which to run the Space. Example: `"t4-medium"`.
+hardware (`str` or [SpaceHardware](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceHardware)) : Hardware on which to run the Space. Example: `"t4-medium"`.
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
 sleep_time (`int`, *optional*) : Number of seconds of inactivity to wait before a Space is put to sleep. Set to `-1` if you don't want your Space to sleep (default behavior for upgraded hardware). For free hardware, you can't configure the sleep time (value is fixed to 48 hours of inactivity). See https://huggingface.co/docs/hub/spaces-gpus#sleep-time for more details.
 
-**Returns:** [SpaceRuntime](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime)
+**Returns:** [SpaceRuntime](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime)
 
 Runtime information about a Space including Space stage and hardware.
 
 Request new hardware for a Space.
 
 > [!TIP]
-> It is also possible to request hardware directly when creating the Space repo! See [create_repo()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo) for details.
+> It is also possible to request hardware directly when creating the Space repo! See [create_repo()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo) for details.
 
 #### request_space_storage[[huggingface_hub.HfApi.request_space_storage]]
 
@@ -5215,24 +5224,24 @@ Request new hardware for a Space.
 request_space_storage(repo_id: str, storage: SpaceStorage, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L9149)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L9171)
 
 **Parameters:**
 
 repo_id (`str`) : ID of the Space to update. Example: `"open-llm-leaderboard/open_llm_leaderboard"`.
 
-storage (`str` or [SpaceStorage](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceStorage)) : Storage tier. Either 'small', 'medium', or 'large'.
+storage (`str` or [SpaceStorage](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceStorage)) : Storage tier. Either 'small', 'medium', or 'large'.
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [SpaceRuntime](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime)
+**Returns:** [SpaceRuntime](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime)
 
 Runtime information about a Space including Space stage and hardware.
 
 Request persistent storage for a Space.
 
 > [!WARNING]
-> `request_space_storage` is deprecated and will be removed in version 2.0. Use [set_space_volumes()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.set_space_volumes) instead.
+> `request_space_storage` is deprecated and will be removed in version 2.0. Use [set_space_volumes()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.set_space_volumes) instead.
 
 #### resolve_revision[[huggingface_hub.HfApi.resolve_revision]]
 
@@ -5240,7 +5249,7 @@ Request persistent storage for a Space.
 resolve_revision(repo_id: str, repo_type: str | None = None, revision: str | None = None, cache_dir: str | Path | None = None, local_files_only: bool = False, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L3673)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L3649)
 
 **Parameters:**
 
@@ -5248,7 +5257,7 @@ repo_id (`str`) : A user or an organization name and a repo name separated by a 
 
 repo_type (`str`, *optional*) : Set to `"dataset"`, `"space"` or `"kernel"` if the repo is a dataset, space or kernel repo, `None` or `"model"` if it is a model. Default is `None`.
 
-revision (`str`, *optional*) : The revision to resolve. Can be a branch name, a tag, a PR ref or a commit hash. Defaults to the default branch. If a [ResolvedRevision](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/file_download#huggingface_hub.ResolvedRevision) is passed, it is returned as is - unless it was resolved against another repo, in which case the revision it initially requested is resolved again.
+revision (`str`, *optional*) : The revision to resolve. Can be a branch name, a tag, a PR ref or a commit hash. Defaults to the default branch. If a [ResolvedRevision](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision) is passed, it is returned as is - unless it was resolved against another repo, in which case the revision it initially requested is resolved again.
 
 cache_dir (`str`, `Path`, *optional*) : Path to the folder where cached files are stored. Defaults to the value of `HF_HUB_CACHE`.
 
@@ -5256,24 +5265,24 @@ local_files_only (`bool`, *optional*, defaults to `False`) : If `True`, resolve 
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [ResolvedRevision](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/file_download#huggingface_hub.ResolvedRevision)
+**Returns:** [ResolvedRevision](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision)
 
 A `str` subclass holding both the requested revision and the commit hash it resolves to.
 
-**Raises:** [RevisionResolutionError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionResolutionError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) or [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+**Raises:** [RevisionResolutionError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionResolutionError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) or [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 
-- [RevisionResolutionError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionResolutionError) -- 
+- [RevisionResolutionError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionResolutionError) -- 
   If the revision cannot be resolved: the Hub could not be reached and nothing is cached locally.
-- [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
+- [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
   If the revision does not exist on the Hub.
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If the repository cannot be found. This may be because it doesn't exist, or because it is set to
   `private` and you do not have access.
 
 Resolve a revision (branch, tag, PR ref) to a commit hash.
 
 This is meant for libraries that download and load several components of a repo separately (config,
-weights, tokenizer, ...). Resolving the revision once and passing the returned [ResolvedRevision](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/file_download#huggingface_hub.ResolvedRevision) around
+weights, tokenizer, ...). Resolving the revision once and passing the returned [ResolvedRevision](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision) around
 guarantees that every subsequent call targets the exact same commit, even if the repo is updated in the
 meantime. It also saves HTTP calls, as downloads made with a commit hash can be served from the local
 cache without contacting the Hub.
@@ -5283,7 +5292,7 @@ best-effort basis. If the Hub cannot be reached later on (offline mode, connecti
 downtime, ...), the cached value is used as a fallback.
 
 > [!TIP]
-> If you only need to download a full repo snapshot, a single [snapshot_download()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/file_download#huggingface_hub.snapshot_download) call is enough and
+> If you only need to download a full repo snapshot, a single [snapshot_download()](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.snapshot_download) call is enough and
 > already does the right thing. `resolve_revision` is only useful when downloading files separately.
 
 Example:
@@ -5304,7 +5313,7 @@ ResolvedRevision(initial=None, resolved='607a30d783dfa663caf39e06633721c8d4cfcd7
 restart_space(repo_id: str, token: bool | str | None = None, factory_reboot: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L8578)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L8600)
 
 **Parameters:**
 
@@ -5314,25 +5323,25 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 factory_reboot (`bool`, *optional*) : If `True`, the Space will be rebuilt from scratch without caching any requirements.
 
-**Returns:** [SpaceRuntime](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime)
+**Returns:** [SpaceRuntime](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime)
 
 Runtime information about your Space.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [HfHubHTTPError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) or [BadRequestError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError)
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [HfHubHTTPError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) or [BadRequestError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError)
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If your Space is not found (error 404). Most probably wrong repo_id or your space is private but you
   are not authenticated.
-- [HfHubHTTPError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) -- 
+- [HfHubHTTPError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) -- 
   403 Forbidden: only the owner of a Space can restart it. If you want to restart a Space that you don't
   own, either ask the owner by opening a Discussion or duplicate the Space.
-- [BadRequestError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError) -- 
+- [BadRequestError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError) -- 
   If your Space is a static Space. Static Spaces are always running and never billed. If you want to hide
   a static Space, you can set it to private.
 
 Restart your Space.
 
-This is the only way to programmatically restart a Space if you've put it on Pause (see [pause_space()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_space)). You
+This is the only way to programmatically restart a Space if you've put it on Pause (see [pause_space()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_space)). You
 must be the owner of the Space to restart it. If you are using an upgraded hardware, your account will be
 billed as soon as the Space is restarted. You can trigger a restart no matter the current state of a Space.
 
@@ -5344,7 +5353,7 @@ For more details, please visit [the docs](https://huggingface.co/docs/hub/spaces
 resume_inference_endpoint(name: str, namespace: str | None = None, running_ok: bool = True, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L10019)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L10060)
 
 **Parameters:**
 
@@ -5356,13 +5365,13 @@ running_ok (`bool`, *optional*) : If `True`, the method will not raise an error 
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.32.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
 
 information about the resumed Inference Endpoint.
 
 Resume an Inference Endpoint.
 
-For convenience, you can also resume an Inference Endpoint using [InferenceEndpoint.resume()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.resume).
+For convenience, you can also resume an Inference Endpoint using [InferenceEndpoint.resume()](/docs/huggingface_hub/v1.32.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.resume).
 
 #### resume_scheduled_job[[huggingface_hub.HfApi.resume_scheduled_job]]
 
@@ -5370,7 +5379,7 @@ For convenience, you can also resume an Inference Endpoint using [InferenceEndpo
 resume_scheduled_job(scheduled_job_id: str, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L13225)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L13306)
 
 **Parameters:**
 
@@ -5388,7 +5397,7 @@ Resume (unpause) a scheduled compute Job on Hugging Face infrastructure.
 revision_exists(repo_id: str, revision: str, repo_type: str | None = None, token: str | bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L3846)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L3826)
 
 **Parameters:**
 
@@ -5421,7 +5430,7 @@ False
 run_as_future(fn: Callable[..., R], *args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L2300)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L2273)
 
 **Parameters:**
 
@@ -5440,7 +5449,7 @@ The main goal is to run methods without blocking the main thread (e.g. to push d
 Background jobs are queued to preserve order but are not ran in parallel. If you need to speed-up your scripts
 by parallelizing lots of call to the API, you must setup and use your own [ThreadPoolExecutor](https://docs.python.org/3/library/concurrent.futures.html#threadpoolexecutor).
 
-Note: Most-used methods like [upload_file()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file), [upload_folder()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) and [create_commit()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) have a `run_as_future: bool`
+Note: Most-used methods like [upload_file()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file), [upload_folder()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) and [create_commit()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) have a `run_as_future: bool`
 argument to directly call them in the background. This is equivalent to calling `api.run_as_future(...)` on them
 but less verbose.
 
@@ -5460,10 +5469,10 @@ True
 #### run_job[[huggingface_hub.HfApi.run_job]]
 
 ```python
-run_job(image: str, command: list[str], env: dict[str, Any] | None = None, secrets: dict[str, Any] | None = None, flavor: JobHardware | str | None = None, timeout: int | float | str | None = None, name: str | None = None, labels: dict[str, str] | None = None, volumes: list[Volume] | None = None, expose: list[int] | None = None, ssh: bool = False, resource_group_id: str | None = None, namespace: str | None = None, token: bool | str | None = None)
+run_job(image: str, command: list[str], env: dict[str, Any] | None = None, secrets: dict[str, Any] | None = None, flavor: JobHardware | str | None = None, timeout: int | float | str | None = None, name: str | None = None, labels: dict[str, str] | None = None, volumes: list[Volume] | None = None, expose: list[int] | None = None, ssh: bool = False, network_group: str | None = None, network_aliases: list[str] | None = None, resource_group_id: str | None = None, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L12119)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L12165)
 
 **Parameters:**
 
@@ -5483,11 +5492,15 @@ name (`str`, *optional*) : A name for the Job. Stored as the `name` label. Canno
 
 labels (`dict[str, str]`, *optional*) : Labels to attach to the job (key-value pairs). 
 
-volumes (`list[Volume]`, *optional*) : Hugging Face Buckets or Repos to mount as volumes in the job container. Each volume is a [Volume](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.Volume) with `type` (`"bucket"`, `"model"`, `"dataset"`, or `"space"`), `source` (e.g. `"username/my-bucket"`), and `mount_path` (e.g. `"/data"`). 
+volumes (`list[Volume]`, *optional*) : Hugging Face Buckets or Repos to mount as volumes in the job container. Each volume is a [Volume](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.Volume) with `type` (`"bucket"`, `"model"`, `"dataset"`, or `"space"`), `source` (e.g. `"username/my-bucket"`), and `mount_path` (e.g. `"/data"`). 
 
 expose (`list[int]`, *optional*) : Container ports to expose through the jobs proxy. Each listed port is reachable on the public jobs domain (e.g. `https://<job_id>--8000.hf.jobs`). Access always requires an HF token with read access to the job's namespace. 
 
 ssh (`bool`, *optional*) : If True, the job's container is reachable over SSH at the URL given by `job.status.ssh_url` (e.g. `ssh <job_id>@ssh.hf.jobs`, or `hf jobs ssh <job_id>` from the CLI). Connecting requires write access to the job's namespace and an SSH public key registered on the Hub (https://huggingface.co/settings/keys). Defaults to False. 
+
+network_group (`str`, *optional*) : Name of a network group to join. Jobs in the same namespace and resource group sharing a group are placed together and can reach each other on every port. Inside each member, `HF_NETWORK_GROUP_HOSTNAME` resolves to every member of the group. Lowercase alphanumerics and dashes, 46 characters max. 
+
+network_aliases (`list[str]`, *optional*) : Aliases this job claims in its network group. Members reach the jobs claiming an alias at `${HF_NETWORK_GROUP_PREFIX}<alias>`. Several jobs may claim the same alias. Lowercase alphanumerics and dashes, 34 characters max, unique within the job. Requires `network_group`. 
 
 resource_group_id (`str`, *optional*) : The ID of the resource group to create the Job in. Used to control access to resources within an organization and for cost attribution/spending-limit features. If not provided, the Job is created outside of any resource group. 
 
@@ -5529,10 +5542,10 @@ Run a Job with volumes:
 #### run_uv_job[[huggingface_hub.HfApi.run_uv_job]]
 
 ```python
-run_uv_job(script: str, script_args: list[str] | None = None, dependencies: list[str] | None = None, python: str | None = None, image: str | None = None, env: dict[str, Any] | None = None, secrets: dict[str, Any] | None = None, flavor: JobHardware | str | None = None, timeout: int | float | str | None = None, name: str | None = None, labels: dict[str, str] | None = None, volumes: list[Volume] | None = None, expose: list[int] | None = None, ssh: bool = False, resource_group_id: str | None = None, namespace: str | None = None, token: bool | str | None = None)
+run_uv_job(script: str, script_args: list[str] | None = None, dependencies: list[str] | None = None, python: str | None = None, image: str | None = None, env: dict[str, Any] | None = None, secrets: dict[str, Any] | None = None, flavor: JobHardware | str | None = None, timeout: int | float | str | None = None, name: str | None = None, labels: dict[str, str] | None = None, volumes: list[Volume] | None = None, expose: list[int] | None = None, ssh: bool = False, network_group: str | None = None, network_aliases: list[str] | None = None, resource_group_id: str | None = None, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L12756)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L12817)
 
 **Parameters:**
 
@@ -5558,11 +5571,15 @@ name (`str`, *optional*) : A name for the Job. Stored as the `name` label. Canno
 
 labels (`dict[str, str]`, *optional*) : Labels to attach to the job (key-value pairs). 
 
-volumes (`list[Volume]`, *optional*) : Hugging Face Buckets or Repos to mount as volumes in the job container. Each volume is a [Volume](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.Volume) with `type` (`"bucket"`, `"model"`, `"dataset"`, or `"space"`), `source` (e.g. `"username/my-bucket"`), and `mount_path` (e.g. `"/data"`). 
+volumes (`list[Volume]`, *optional*) : Hugging Face Buckets or Repos to mount as volumes in the job container. Each volume is a [Volume](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.Volume) with `type` (`"bucket"`, `"model"`, `"dataset"`, or `"space"`), `source` (e.g. `"username/my-bucket"`), and `mount_path` (e.g. `"/data"`). 
 
 expose (`list[int]`, *optional*) : Container ports to expose through the jobs proxy. Each listed port is reachable on the public jobs domain (e.g. `https://<job_id>--8000.hf.jobs`). Access always requires an HF token with read access to the job's namespace. 
 
 ssh (`bool`, *optional*) : If True, the job's container is reachable over SSH at the URL given by `job.status.ssh_url` (e.g. `ssh <job_id>@ssh.hf.jobs`, or `hf jobs ssh <job_id>` from the CLI). Connecting requires write access to the job's namespace and an SSH public key registered on the Hub (https://huggingface.co/settings/keys). Defaults to False. 
+
+network_group (`str`, *optional*) : Name of a network group to join. Jobs in the same namespace and resource group sharing a group are placed together and can reach each other on every port. Inside each member, `HF_NETWORK_GROUP_HOSTNAME` resolves to every member of the group. Lowercase alphanumerics and dashes, 46 characters max. 
+
+network_aliases (`list[str]`, *optional*) : Aliases this job claims in its network group. Members reach the jobs claiming an alias at `${HF_NETWORK_GROUP_PREFIX}<alias>`. Several jobs may claim the same alias. Lowercase alphanumerics and dashes, 34 characters max, unique within the job. Requires `network_group`. 
 
 resource_group_id (`str`, *optional*) : The ID of the resource group to create the Job in. Used to control access to resources within an organization and for cost attribution/spending-limit features. If not provided, the Job is created outside of any resource group. 
 
@@ -5571,6 +5588,11 @@ namespace (`str`, *optional*) : The namespace where the Job will be created. Def
 token (`bool` or `str`, *optional*) : A valid user access token. If not provided, the locally saved token will be used, which is the recommended authentication method. Set to `False` to disable authentication. Refer to: https://huggingface.co/docs/huggingface_hub/quick-start#authentication.
 
 Run a UV script Job on Hugging Face infrastructure.
+
+> [!WARNING]
+> Unlike `hf jobs uv run`, this method ignores the optional `[tool.hf-jobs]` table a UV script can
+> carry in its PEP 723 header (see the [Jobs guide](../guides/jobs#ship-the-launch-config-with-the-script)):
+> the launch configuration has to be passed explicitly here.
 
 Example:
 
@@ -5617,7 +5639,7 @@ Mount volumes, e.g. to save model checkpoints during training:
 scale_to_zero_inference_endpoint(name: str, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L10065)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L10106)
 
 **Parameters:**
 
@@ -5627,17 +5649,17 @@ namespace (`str`, *optional*) : The namespace in which the Inference Endpoint is
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.32.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
 
 information about the scaled-to-zero Inference Endpoint.
 
 Scale Inference Endpoint to zero.
 
 An Inference Endpoint scaled to zero will not be charged. It will be resume on the next request to it, with a
-cold start delay. This is different than pausing the Inference Endpoint with [pause_inference_endpoint()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_inference_endpoint), which
-would require a manual resume with [resume_inference_endpoint()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.resume_inference_endpoint).
+cold start delay. This is different than pausing the Inference Endpoint with [pause_inference_endpoint()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_inference_endpoint), which
+would require a manual resume with [resume_inference_endpoint()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.resume_inference_endpoint).
 
-For convenience, you can also scale an Inference Endpoint to zero using [InferenceEndpoint.scale_to_zero()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.scale_to_zero).
+For convenience, you can also scale an Inference Endpoint to zero using [InferenceEndpoint.scale_to_zero()](/docs/huggingface_hub/v1.32.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.scale_to_zero).
 
 #### search_spaces[[huggingface_hub.HfApi.search_spaces]]
 
@@ -5645,7 +5667,7 @@ For convenience, you can also scale an Inference Endpoint to zero using [Inferen
 search_spaces(query: str, filter: str | Iterable[str] | None = None, sdk: str | list[str] | None = None, include_non_running: bool = False, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L3007)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L2983)
 
 **Parameters:**
 
@@ -5661,7 +5683,7 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 **Returns:** `Iterable[SpaceSearchResult]`
 
-an iterable of [SpaceSearchResult](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.SpaceSearchResult) objects.
+an iterable of [SpaceSearchResult](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.SpaceSearchResult) objects.
 
 Search Spaces on the Hub using semantic search.
 
@@ -5685,7 +5707,7 @@ Example:
 set_space_sleep_time(repo_id: str, sleep_time: int, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L8410)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L8432)
 
 **Parameters:**
 
@@ -5695,7 +5717,7 @@ sleep_time (`int`, *optional*) : Number of seconds of inactivity to wait before 
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [SpaceRuntime](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime)
+**Returns:** [SpaceRuntime](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime)
 
 Runtime information about a Space including Space stage and hardware.
 
@@ -5707,7 +5729,7 @@ configurable sleep time. To know more about the sleep stage, please refer to
 https://huggingface.co/docs/hub/spaces-gpus#sleep-time.
 
 > [!TIP]
-> It is also possible to set a custom sleep time when requesting hardware with [request_space_hardware()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.request_space_hardware).
+> It is also possible to set a custom sleep time when requesting hardware with [request_space_hardware()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.request_space_hardware).
 
 #### set_space_volumes[[huggingface_hub.HfApi.set_space_volumes]]
 
@@ -5715,13 +5737,13 @@ https://huggingface.co/docs/hub/spaces-gpus#sleep-time.
 set_space_volumes(repo_id: str, volumes: list[Volume], token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L9219)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L9241)
 
 **Parameters:**
 
 repo_id (`str`) : ID of the Space to update. Example: `"username/my-space"`.
 
-volumes (`list[Volume]`) : List of [Volume](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.Volume) objects to mount. Each volume has a `type` (`"bucket"`, `"model"`, `"dataset"`, or `"space"`), a `source` (repo or bucket ID), a `mount_path` (path inside the container), and optional `revision`, `read_only`, and `path` fields.
+volumes (`list[Volume]`) : List of [Volume](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.Volume) objects to mount. Each volume has a `type` (`"bucket"`, `"model"`, `"dataset"`, or `"space"`), a `source` (repo or bucket ID), a `mount_path` (path inside the container), and optional `revision`, `read_only`, and `path` fields.
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
@@ -5754,7 +5776,7 @@ Example:
 snapshot_download(repo_id: str, repo_type: str | None = None, revision: str | None = None, cache_dir: str | Path | None = None, local_dir: str | Path | None = None, etag_timeout: float = 10, force_download: bool = False, token: bool | str | None = None, local_files_only: bool = False, allow_patterns: list[str] | str | None = None, ignore_patterns: list[str] | str | None = None, max_workers: int = 8, tqdm_class: type[base_tqdm] | None = None, dry_run: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L6730)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L6746)
 
 **Parameters:**
 
@@ -5784,19 +5806,19 @@ max_workers (`int`, *optional*) : Number of concurrent threads to download files
 
 tqdm_class (`tqdm`, *optional*) : If provided, overwrites the default behavior for the progress bar. Passed argument must inherit from `tqdm.auto.tqdm` or at least mimic its behavior. Note that the `tqdm_class` is not passed to each individual download. Defaults to the custom HF progress bar that can be disabled by setting `HF_HUB_DISABLE_PROGRESS_BARS` environment variable.
 
-dry_run (`bool`, *optional*, defaults to `False`) : If `True`, perform a dry run without actually downloading the files. Returns a list of [DryRunFileInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo) objects containing information about what would be downloaded.
+dry_run (`bool`, *optional*, defaults to `False`) : If `True`, perform a dry run without actually downloading the files. Returns a list of [DryRunFileInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo) objects containing information about what would be downloaded.
 
-**Returns:** `str` or list of [DryRunFileInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo)
+**Returns:** `str` or list of [DryRunFileInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo)
 
 - If `dry_run=False`: Folder path of the repo snapshot.
-- If `dry_run=True`: A list of [DryRunFileInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo) objects containing download information.
+- If `dry_run=True`: A list of [DryRunFileInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo) objects containing download information.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) or ``EnvironmentError`` or ``OSError`` or ``ValueError``
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) or ``EnvironmentError`` or ``OSError`` or ``ValueError``
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If the repository to download from cannot be found. This may be because it doesn't exist,
   or because it is set to `private` and you do not have access.
-- [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
+- [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
   If the revision to download from cannot be found.
 - [`EnvironmentError`](https://docs.python.org/3/library/exceptions.html#EnvironmentError) -- 
   If `token=True` and the token cannot be found.
@@ -5826,7 +5848,7 @@ configured. It is also not possible to filter which files to download when cloni
 space_info(repo_id: str, revision: str | None = None, timeout: float | None = None, files_metadata: bool = False, expand: list[ExpandSpaceProperty_T] | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L3488)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L3464)
 
 **Parameters:**
 
@@ -5842,7 +5864,7 @@ expand (`list[ExpandSpaceProperty_T]`, *optional*) : List properties to return i
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [SpaceInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.SpaceInfo)
+**Returns:** [SpaceInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.SpaceInfo)
 
 The space repository information.
 
@@ -5853,10 +5875,10 @@ Space can be private if you pass an acceptable token.
 > [!TIP]
 > Raises the following errors:
 >
->     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+>     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 >       If the repository to download from cannot be found. This may be because it doesn't exist,
 >       or because it is set to `private` and you do not have access.
->     - [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
+>     - [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
 >       If the revision to download from cannot be found.
 
 #### super_squash_history[[huggingface_hub.HfApi.super_squash_history]]
@@ -5865,7 +5887,7 @@ Space can be private if you pass an acceptable token.
 super_squash_history(repo_id: str, branch: str | None = None, commit_message: str | None = None, repo_type: str | None = None, token: str | bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L4429)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L4414)
 
 **Parameters:**
 
@@ -5879,14 +5901,14 @@ repo_type (`str`, *optional*) : Set to `"dataset"` or `"space"` if listing commi
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) or [BadRequestError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError)
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) or [BadRequestError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError)
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If repository is not found (error 404): wrong repo_id/repo_type, private but not authenticated or repo
   does not exist.
-- [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
+- [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
   If the branch to squash cannot be found.
-- [BadRequestError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError) -- 
+- [BadRequestError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.BadRequestError) -- 
   If invalid reference for a branch. You cannot squash history on tags.
 
 Squash commit history on a branch for a repo on the Hub.
@@ -5924,7 +5946,7 @@ Example:
 suspend_scheduled_job(scheduled_job_id: str, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L13195)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L13276)
 
 **Parameters:**
 
@@ -5942,7 +5964,7 @@ Suspend (pause) a scheduled compute Job on Hugging Face infrastructure.
 sync_bucket(source: str | None = None, dest: str | None = None, delete: bool = False, ignore_times: bool = False, ignore_sizes: bool = False, existing: bool = False, ignore_existing: bool = False, include: list[str] | None = None, exclude: list[str] | None = None, filter_from: str | None = None, plan: str | None = None, apply: str | None = None, dry_run: bool = False, verbose: bool = False, quiet: bool = False, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L14931)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L15048)
 
 **Parameters:**
 
@@ -6022,7 +6044,7 @@ Example:
 sync_job_volume(source: str | Path, mount_path: str, remote_name: str | None = None, read_only: bool = True, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L13629)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L13715)
 
 **Parameters:**
 
@@ -6032,22 +6054,22 @@ mount_path (`str`) : Mount path inside the Job container, e.g. `"/inputs"`. Must
 
 remote_name (`str`, *optional*) : Name of the bucket subfolder to sync to. Defaults to a `{dirname}-{hash}` name derived from the source path and the machine's hostname.
 
-read_only (`bool`, *optional*, defaults to `True`) : Mount the volume read-only in the Job. Pass `False` to let the Job write back to the bucket folder (e.g. to retrieve outputs with [sync_bucket()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_bucket) afterwards).
+read_only (`bool`, *optional*, defaults to `True`) : Mount the volume read-only in the Job. Pass `False` to let the Job write back to the bucket folder (e.g. to retrieve outputs with [sync_bucket()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_bucket) afterwards).
 
 namespace (`str`, *optional*) : The namespace owning the `jobs-artifacts` bucket. Defaults to the current user's namespace. Use the same namespace as the Job that will mount the volume.
 
 token (`Union[bool, str, None]`, *optional*) : A valid user access token. If not provided, the locally saved token will be used, which is the recommended authentication method. Set to `False` to disable authentication. Refer to: https://huggingface.co/docs/huggingface_hub/quick-start#authentication.
 
-**Returns:** [Volume](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.Volume)
+**Returns:** [Volume](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.Volume)
 
 A bucket volume scoped to the synced subfolder, to pass in the `volumes` list
-of [run_job()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job), [run_uv_job()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.run_uv_job), [create_scheduled_job()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_scheduled_job) or [create_scheduled_uv_job()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_scheduled_uv_job).
+of [run_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job), [run_uv_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_uv_job), [create_scheduled_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_scheduled_job) or [create_scheduled_uv_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_scheduled_uv_job).
 
-Sync a local directory to a bucket and return a [Volume](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.Volume) ready to mount in a Job.
+Sync a local directory to a bucket and return a [Volume](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.Volume) ready to mount in a Job.
 
 Files are uploaded to a subfolder of the `{namespace}/jobs-artifacts` bucket (auto-created as
 private; a warning is emitted if it already exists and is public) using the same sync logic
-as [sync_bucket()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_bucket): re-syncing the same directory only
+as [sync_bucket()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_bucket): re-syncing the same directory only
 uploads new or modified files. By default the subfolder name is derived from the directory
 path and the machine's hostname, so repeated calls from the same directory reuse the same
 remote folder. Pass `remote_name` to use a fixed name instead.
@@ -6055,7 +6077,7 @@ remote folder. Pass `remote_name` to use a fixed name instead.
 Note that the data is *copied* to the bucket, not mounted live: changes made locally after
 the sync are not visible to the Job (re-run `sync_job_volume` to update), and the volume is
 mounted read-only by default. To retrieve data written by a Job to a read-write volume, sync
-the bucket folder back with [sync_bucket()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_bucket). If the source directory is empty (e.g. an output
+the bucket folder back with [sync_bucket()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_bucket). If the source directory is empty (e.g. an output
 directory), a placeholder `.keep` file is uploaded so the volume can still be mounted.
 
 Example:
@@ -6078,7 +6100,7 @@ Example:
 trigger_scheduled_job(scheduled_job_id: str, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L13255)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L13336)
 
 **Parameters:**
 
@@ -6088,13 +6110,13 @@ namespace (`str`, *optional*) : The namespace where the scheduled Job is. Defaul
 
 token (`bool` or `str`, *optional*) : A valid user access token. If not provided, the locally saved token will be used, which is the recommended authentication method. Set to `False` to disable authentication. Refer to: https://huggingface.co/docs/huggingface_hub/quick-start#authentication.
 
-**Returns:** [JobInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.JobInfo)
+**Returns:** [JobInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.JobInfo)
 
 Info about the triggered run.
 
-**Raises:** [HfHubHTTPError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError)
+**Raises:** [HfHubHTTPError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError)
 
-- [HfHubHTTPError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) -- 
+- [HfHubHTTPError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) -- 
   HTTP 409 if another instance is already running and `concurrency` is disabled on the scheduled job.
 
 Trigger a scheduled Job to run immediately.
@@ -6109,7 +6131,7 @@ job does not allow concurrent runs, the request is rejected (HTTP 409).
 unlike(repo_id: str, token: bool | str | None = None, repo_type: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L3066)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L3042)
 
 **Parameters:**
 
@@ -6119,9 +6141,9 @@ token (`bool` or `str`, *optional*) : A valid user access token (string). Defaul
 
 repo_type (`str`, *optional*) : Set to `"dataset"` or `"space"` if unliking a dataset or space, `None` or `"model"` if unliking a model. Default is `None`.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If repository is not found (error 404): wrong repo_id/repo_type, private
   but not authenticated or repo does not exist.
 
@@ -6129,7 +6151,7 @@ Unlike a given repo on the Hub (e.g. remove from favorite list).
 
 To prevent spam usage, it is not possible to `like` a repository from a script.
 
-See also [list_liked_repos()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_liked_repos).
+See also [list_liked_repos()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_liked_repos).
 
 Example:
 ```python
@@ -6147,7 +6169,7 @@ False
 update_bucket_settings(bucket_id: str, private: bool, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L14016)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L14108)
 
 **Parameters:**
 
@@ -6183,13 +6205,13 @@ Example:
 update_collection_item(collection_slug: str, item_object_id: str, note: str | None = None, position: int | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L10557)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L10598)
 
 **Parameters:**
 
 collection_slug (`str`) : Slug of the collection to update. Example: `"TheBloke/recent-models-64f9a55bb3115b4f513ec026"`.
 
-item_object_id (`str`) : ID of the item in the collection. This is not the id of the item on the Hub (repo_id or paper id). It must be retrieved from a [CollectionItem](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/collections#huggingface_hub.CollectionItem) object. Example: `collection.items[0].item_object_id`.
+item_object_id (`str`) : ID of the item in the collection. This is not the id of the item on the Hub (repo_id or paper id). It must be retrieved from a [CollectionItem](/docs/huggingface_hub/v1.32.0/en/package_reference/collections#huggingface_hub.CollectionItem) object. Example: `collection.items[0].item_object_id`.
 
 note (`str`, *optional*) : A note to attach to the item in the collection. The maximum size for a note is 500 characters.
 
@@ -6222,7 +6244,7 @@ Example:
 update_collection_metadata(collection_slug: str, title: str | None = None, description: str | None = None, position: int | None = None, private: bool | None = None, theme: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L10327)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L10368)
 
 **Parameters:**
 
@@ -6244,7 +6266,7 @@ Update metadata of a collection on the Hub.
 
 All arguments are optional. Only provided metadata will be updated.
 
-Returns: [Collection](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/collections#huggingface_hub.Collection)
+Returns: [Collection](/docs/huggingface_hub/v1.32.0/en/package_reference/collections#huggingface_hub.Collection)
 
 Example:
 
@@ -6268,7 +6290,7 @@ Example:
 update_collection_resource_group(collection_slug: str, resource_group_id: str | None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L10395)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L10436)
 
 **Parameters:**
 
@@ -6298,7 +6320,7 @@ Example:
 update_inference_endpoint(name: str, accelerator: str | None = None, instance_size: str | None = None, instance_type: str | None = None, min_replica: int | None = None, max_replica: int | None = None, scale_to_zero_timeout: int | None = None, scaling_metric: InferenceEndpointScalingMetric | None = None, scaling_threshold: float | None = None, repository: str | None = None, framework: str | None = None, revision: str | None = None, task: str | None = None, custom_image: dict | None = None, container_command: list[str] | None = None, container_args: list[str] | None = None, tensor_parallel_size: int | None = None, data_parallel_size: int | None = None, env: dict[str, str] | None = None, secrets: dict[str, str] | None = None, domain: str | None = None, path: str | None = None, cache_http_responses: bool | None = None, tags: list[str] | None = None, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L9768)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L9809)
 
 **Parameters:**
 
@@ -6354,7 +6376,7 @@ namespace (`str`, *optional*) : The namespace where the Inference Endpoint will 
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v1.32.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
 
 information about the updated Inference Endpoint.
 
@@ -6363,7 +6385,7 @@ Update an Inference Endpoint.
 This method allows the update of either the compute configuration, the deployed model, the route, or any combination.
 All arguments are optional but at least one must be provided.
 
-For convenience, you can also update an Inference Endpoint using [InferenceEndpoint.update()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.update).
+For convenience, you can also update an Inference Endpoint using [InferenceEndpoint.update()](/docs/huggingface_hub/v1.32.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.update).
 
 #### update_job_labels[[huggingface_hub.HfApi.update_job_labels]]
 
@@ -6371,7 +6393,7 @@ For convenience, you can also update an Inference Endpoint using [InferenceEndpo
 update_job_labels(job_id: str, labels: dict[str, str], namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L12713)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L12774)
 
 **Parameters:**
 
@@ -6383,7 +6405,7 @@ namespace (`str`, *optional*) : The namespace where the Job is running. Defaults
 
 token (`bool` or `str`, *optional*) : A valid user access token. If not provided, the locally saved token will be used, which is the recommended authentication method. Set to `False` to disable authentication. Refer to: https://huggingface.co/docs/huggingface_hub/quick-start#authentication.
 
-**Returns:** [JobInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.JobInfo)
+**Returns:** [JobInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.JobInfo)
 
 The updated Job info.
 
@@ -6397,7 +6419,7 @@ Replaces all existing user-provided labels with the new labels.
 update_repo_settings(repo_id: str, gated: Literal['auto', 'manual', False] | None = None, private: bool | None = None, visibility: RepoVisibility_T | None = None, token: str | bool | None = None, repo_type: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L4927)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L4912)
 
 **Parameters:**
 
@@ -6413,15 +6435,15 @@ token (`Union[str, bool, None]`, *optional*) : A valid user access token (string
 
 repo_type (`str`, *optional*) : The type of the repository to update settings from (`"model"`, `"dataset"` or `"space"`). Defaults to `"model"`.
 
-**Raises:** ``ValueError`` or [HfHubHTTPError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) or [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+**Raises:** ``ValueError`` or [HfHubHTTPError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) or [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 
 - [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError) -- 
   If gated is not one of "auto", "manual", or False.
 - [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError) -- 
   If repo_type is not one of the values in constants.REPO_TYPES.
-- [HfHubHTTPError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) -- 
+- [HfHubHTTPError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.HfHubHTTPError) -- 
   If the request to the Hugging Face Hub API fails.
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If the repository to download from cannot be found. This may be because it doesn't exist,
   or because it is set to `private` and you do not have access.
 
@@ -6436,7 +6458,7 @@ access requests for their repos, and also to change the visibility of the repo.
 update_scheduled_job_labels(scheduled_job_id: str, labels: dict[str, str], namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L13297)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L13378)
 
 **Parameters:**
 
@@ -6462,7 +6484,7 @@ Replaces all existing user-provided labels with the new labels.
 update_webhook(webhook_id: str, url: str | None = None, watched: list[dict | WebhookWatchedItem] | None = None, domains: list[constants.WEBHOOK_DOMAIN_T] | None = None, secret: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L11336)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L11377)
 
 **Parameters:**
 
@@ -6470,7 +6492,7 @@ webhook_id (`str`) : The unique identifier of the webhook to be updated.
 
 url (`str`, optional) : The URL to which the payload will be sent.
 
-watched (`list[WebhookWatchedItem]`, optional) : List of items to watch. It can be users, orgs, models, datasets, or spaces. Refer to [WebhookWatchedItem](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.WebhookWatchedItem) for more details. Watched items can also be provided as plain dictionaries.
+watched (`list[WebhookWatchedItem]`, optional) : List of items to watch. It can be users, orgs, models, datasets, or spaces. Refer to [WebhookWatchedItem](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.WebhookWatchedItem) for more details. Watched items can also be provided as plain dictionaries.
 
 domains (`list[Literal["repo", "discussion"]]`, optional) : The domains to watch. This can include "repo", "discussion", or both.
 
@@ -6478,7 +6500,7 @@ secret (`str`, optional) : A secret to sign the payload with, providing an addit
 
 token (`bool` or `str`, *optional*) : A valid user access token (string). Defaults to the locally saved token, which is the recommended method for authentication (see https://huggingface.co/docs/huggingface_hub/quick-start#authentication). To disable authentication, pass `False`.
 
-**Returns:** [WebhookInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.WebhookInfo)
+**Returns:** [WebhookInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.WebhookInfo)
 
 Info about the updated webhook.
 
@@ -6511,7 +6533,7 @@ WebhookInfo(
 upload_file(path_or_fileobj: str | Path | bytes | BinaryIO, path_in_repo: str, repo_id: str, token: str | bool | None = None, repo_type: str | None = None, revision: str | None = None, commit_message: str | None = None, commit_description: str | None = None, create_pr: bool | None = None, parent_commit: str | None = None, run_as_future: bool = False, _hot_reload: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L5687)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L5687)
 
 **Parameters:**
 
@@ -6537,9 +6559,9 @@ parent_commit (`str`, *optional*) : The OID / SHA of the parent commit, as a hex
 
 run_as_future (`bool`, *optional*) : Whether or not to run this method in the background. Background jobs are run sequentially without blocking the main thread. Passing `run_as_future=True` will return a [Future](https://docs.python.org/3/library/concurrent.futures.html#future-objects) object. Defaults to `False`.
 
-**Returns:** [CommitInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.CommitInfo) or `Future`
+**Returns:** [CommitInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.CommitInfo) or `Future`
 
-Instance of [CommitInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.CommitInfo) containing information about the newly created commit (commit hash, commit
+Instance of [CommitInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.CommitInfo) containing information about the newly created commit (commit hash, commit
 url, pr url, commit message,...). If `run_as_future=True` is passed, returns a Future object which will
 contain the result when executed.
 
@@ -6554,17 +6576,17 @@ installed.
 >       if the HuggingFace API returned an error
 >     - [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)
 >       if some parameter value is invalid
->     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
+>     - [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError)
 >       If the repository to download from cannot be found. This may be because it doesn't exist,
 >       or because it is set to `private` and you do not have access.
->     - [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
+>     - [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
 >       If the revision to download from cannot be found.
 
 > [!WARNING]
 > `upload_file` assumes that the repo already exists on the Hub. If you get a
 > Client error 404, please make sure you are authenticated, that your token has the required permissions,
 > and that `repo_id` and `repo_type` are set correctly. If repo does not exist,
-> create it first using [create_repo()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo).
+> create it first using [create_repo()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo).
 
 Example:
 
@@ -6602,7 +6624,7 @@ Example:
 upload_folder(repo_id: str, folder_path: str | Path, path_in_repo: str | None = None, commit_message: str | None = None, commit_description: str | None = None, token: str | bool | None = None, repo_type: str | None = None, revision: str | None = None, create_pr: bool | None = None, parent_commit: str | None = None, allow_patterns: list[str] | str | None = None, ignore_patterns: list[str] | str | None = None, delete_patterns: list[str] | str | None = None, run_as_future: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L5871)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L5874)
 
 **Parameters:**
 
@@ -6634,9 +6656,9 @@ delete_patterns (`list[str]` or `str`, *optional*) : If provided, remote files m
 
 run_as_future (`bool`, *optional*) : Whether or not to run this method in the background. Background jobs are run sequentially without blocking the main thread. Passing `run_as_future=True` will return a [Future](https://docs.python.org/3/library/concurrent.futures.html#future-objects) object. Defaults to `False`.
 
-**Returns:** [CommitInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.CommitInfo) or `Future`
+**Returns:** [CommitInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.CommitInfo) or `Future`
 
-Instance of [CommitInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.CommitInfo) containing information about the newly created commit (commit hash, commit
+Instance of [CommitInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.CommitInfo) containing information about the newly created commit (commit hash, commit
 url, pr url, commit message,...). If `run_as_future=True` is passed, returns a Future object which will
 contain the result when executed.
 
@@ -6665,7 +6687,7 @@ the folder is still being checked against the Hub, files are hashed while being 
 read pass), and large folders are automatically committed in several batches to stay below server limits
 (follow-up commits get a ` (part N)` suffix on the commit message). If the upload is interrupted, re-running
 the same call resumes it: already-committed files are skipped and already-uploaded data is deduplicated. When
-`hf_xet` is not installed, falls back to a single commit created with [create_commit()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit).
+`hf_xet` is not installed, falls back to a single commit created with [create_commit()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit).
 
 > [!TIP]
 > Raises the following errors:
@@ -6678,7 +6700,7 @@ the same call resumes it: already-committed files are skipped and already-upload
 > [!WARNING]
 > `upload_folder` assumes that the repo already exists on the Hub. If you get a Client error 404, please make
 > sure you are authenticated, that your token has the required permissions, and that `repo_id` and `repo_type`
-> are set correctly. If repo does not exist, create it first using [create_repo()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo).
+> are set correctly. If repo does not exist, create it first using [create_repo()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo).
 
 Example:
 
@@ -6721,7 +6743,7 @@ Example:
 upload_large_folder(repo_id: str, folder_path: str | Path, repo_type: str, revision: str | None = None, private: bool | None = None, allow_patterns: list[str] | str | None = None, ignore_patterns: list[str] | str | None = None, num_workers: int | None = None, print_report: bool = True, print_report_every: int = 60)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L6340)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L6351)
 
 **Parameters:**
 
@@ -6748,7 +6770,7 @@ print_report_every (`int`, *optional*) : Frequency at which the report is printe
 Upload a large folder to the Hub in the most resilient way possible.
 
 > [!WARNING]
-> `upload_large_folder` is deprecated and will be removed in a future release. [upload_folder()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) is now multi-commits
+> `upload_large_folder` is deprecated and will be removed in a future release. [upload_folder()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) is now multi-commits
 > by default and resilient to interruptions so it is the recommended way to upload large folders.
 
 Several workers are started to upload files in an optimized way. Before being committed to a repo, files must be
@@ -6764,11 +6786,11 @@ to be able to resume the process if interrupted. The whole process might result 
 >     - Do not upload the same folder to several repositories. If you need to do so, you must delete the local `.cache/.huggingface/` folder first.
 
 > [!WARNING]
-> While being much more robust to upload large folders, `upload_large_folder` is more limited than [upload_folder()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) feature-wise. In practice:
+> While being much more robust to upload large folders, `upload_large_folder` is more limited than [upload_folder()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) feature-wise. In practice:
 >     - you cannot set a custom `path_in_repo`. If you want to upload to a subfolder, you need to set the proper structure locally.
 >     - you cannot set a custom `commit_message` and `commit_description` since multiple commits are created.
 >     - you cannot delete from the repo while uploading. Please make a separate commit first.
->     - you cannot create a PR directly. Please create a PR first (from the UI or using [create_pull_request()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_pull_request)) and then commit to it by passing `revision`.
+>     - you cannot create a PR directly. Please create a PR first (from the UI or using [create_pull_request()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_pull_request)) and then commit to it by passing `revision`.
 
 **Technical details:**
 
@@ -6812,7 +6834,7 @@ Special rules:
 verify_repo_checksums(repo_id: str, repo_type: str | None = None, revision: str | None = None, local_dir: str | Path | None = None, cache_dir: str | Path | None = None, token: str | bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L4120)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L4103)
 
 **Parameters:**
 
@@ -6832,12 +6854,12 @@ token (Union[bool, str, None], optional) : A valid user access token (string). D
 
 a structured result containing the verification details.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If repository is not found (error 404): wrong repo_id/repo_type, private but not authenticated or repo
   does not exist.
-- [RevisionNotFoundError](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
+- [RevisionNotFoundError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
   If revision is not found (error 404) on the repo.
 
 Verify local files for a repo against Hub checksums.
@@ -6848,11 +6870,11 @@ Verify local files for a repo against Hub checksums.
 wait_for_job(job_id: str | list[str], timeout: float | None = None, poll_interval: float = 1.0, stages: list[JobStage] | None = None, namespace: str | None = None, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L12593)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L12654)
 
 **Parameters:**
 
-job_id (`str` or `list[str]`) : ID of the Job, or a list of Job IDs to wait for. If a list is passed, a list of [JobInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.JobInfo) is returned (in the same order). 
+job_id (`str` or `list[str]`) : ID of the Job, or a list of Job IDs to wait for. If a list is passed, a list of [JobInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.JobInfo) is returned (in the same order). 
 
 timeout (`float`, *optional*) : The maximum time to wait for the Job(s) to finish, in seconds. If `None`, will wait indefinitely. 
 
@@ -6864,7 +6886,7 @@ namespace (`str`, *optional*) : The namespace where the Job(s) are running. Defa
 
 token (`bool` or `str`, *optional*) : A valid user access token. If not provided, the locally saved token will be used, which is the recommended authentication method. Set to `False` to disable authentication. Refer to: https://huggingface.co/docs/huggingface_hub/quick-start#authentication.
 
-**Returns:** [JobInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.JobInfo) or `list[JobInfo]`
+**Returns:** [JobInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.JobInfo) or `list[JobInfo]`
 
 the final Job info(s).
 
@@ -6875,9 +6897,9 @@ the final Job info(s).
 
 Wait until one or more compute Jobs on Hugging Face infrastructure reach a given stage.
 
-Each Job status is polled (with [inspect_job()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.inspect_job)) every `poll_interval` seconds until its stage is one
+Each Job status is polled (with [inspect_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.inspect_job)) every `poll_interval` seconds until its stage is one
 of `stages` (terminal stages by default: `"COMPLETED"`, `"CANCELED"`, `"ERROR"` or `"DELETED"`). The
-final [JobInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/jobs#huggingface_hub.JobInfo) is returned in all cases: a failed or canceled Job does **not** raise an exception —
+final [JobInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.JobInfo) is returned in all cases: a failed or canceled Job does **not** raise an exception —
 check `job.status.stage` to act on the outcome.
 
 Terminal stages always stop the wait, even when not listed in `stages`. This avoids waiting forever for
@@ -6898,7 +6920,7 @@ Example:
 wait_for_space(repo_id: str, timeout: float | None = None, poll_interval: float = 1.0, token: bool | str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L8802)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L8824)
 
 **Parameters:**
 
@@ -6910,7 +6932,7 @@ poll_interval (`float`, *optional*) : Seconds between status checks. Defaults to
 
 token (`bool` or `str`, *optional*) : A valid user access token. Defaults to the locally saved token, which is the recommended authentication method. Set to `False` to disable authentication. See https://huggingface.co/docs/huggingface_hub/quick-start#authentication.
 
-**Returns:** [SpaceRuntime](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime)
+**Returns:** [SpaceRuntime](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime)
 
 The final runtime information once the Space reaches a terminal stage.
 
@@ -6921,9 +6943,9 @@ The final runtime information once the Space reaches a terminal stage.
 
 Wait until a Space reaches a terminal stage (not building/starting).
 
-Polls [get_space_runtime()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.get_space_runtime) every `poll_interval` seconds until the Space's stage
+Polls [get_space_runtime()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_space_runtime) every `poll_interval` seconds until the Space's stage
 is no longer intermediate (`BUILDING`, `RUNNING_BUILDING`, `APP_STARTING`,
-`RUNNING_APP_STARTING`). Returns the final [SpaceRuntime](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime) in all cases — check
+`RUNNING_APP_STARTING`). Returns the final [SpaceRuntime](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime) in all cases — check
 `runtime.stage` to act on the outcome (e.g. `RUNNING` vs `BUILD_ERROR`).
 
 Example:
@@ -6942,7 +6964,7 @@ Example:
 whoami(token: bool | str | None = None, cache: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L2340)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L2313)
 
 **Parameters:**
 
@@ -6965,7 +6987,7 @@ If passing `cache=True`, the result will be cached for subsequent calls for the 
 huggingface_hub.hf_api.AccessRequest(username: str, fullname: str, email: str | None, timestamp: datetime, status: Literal['pending', 'accepted', 'rejected'], fields: dict[str, Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L591)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L564)
 
 **Parameters:**
 
@@ -6991,11 +7013,11 @@ Data structure containing information about a user access request.
 huggingface_hub.BucketFile(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/_buckets.py#L196)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_buckets.py#L196)
 
-Contains information about a file in a bucket on the Hub. This object is returned by [list_bucket_tree()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_bucket_tree).
+Contains information about a file in a bucket on the Hub. This object is returned by [list_bucket_tree()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_bucket_tree).
 
-Similar to [RepoFile](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.RepoFile) but for files in buckets.
+Similar to [RepoFile](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.RepoFile) but for files in buckets.
 
 ### BucketFileMetadata[[huggingface_hub.BucketFileMetadata]]
 
@@ -7005,7 +7027,7 @@ Similar to [RepoFile](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_
 huggingface_hub.BucketFileMetadata(size: int, xet_file_data: XetFileData)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/_buckets.py#L139)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_buckets.py#L139)
 
 **Parameters:**
 
@@ -7015,7 +7037,7 @@ xet_file_data (`XetFileData`) : Xet information for the file (hash and refresh r
 
 Data structure containing information about a file in a bucket.
 
-Returned by [get_bucket_file_metadata()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.get_bucket_file_metadata).
+Returned by [get_bucket_file_metadata()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_bucket_file_metadata).
 
 ### BucketInfo[[huggingface_hub.BucketInfo]]
 
@@ -7025,7 +7047,7 @@ Returned by [get_bucket_file_metadata()](/docs/huggingface_hub/v1.31.0.rc0/en/pa
 huggingface_hub.BucketInfo(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/_buckets.py#L64)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_buckets.py#L64)
 
 **Parameters:**
 
@@ -7039,7 +7061,7 @@ size (`int`) : Size of the bucket in bytes.
 
 total_files (`int`) : Total number of files in the bucket.
 
-Contains information about a bucket on the Hub. This object is returned by [bucket_info()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.bucket_info) and [list_buckets()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_buckets).
+Contains information about a bucket on the Hub. This object is returned by [bucket_info()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.bucket_info) and [list_buckets()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_buckets).
 
 ### BucketUrl[[huggingface_hub.BucketUrl]]
 
@@ -7049,7 +7071,7 @@ Contains information about a bucket on the Hub. This object is returned by [buck
 huggingface_hub.BucketUrl(url: str, endpoint: str = '')
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/_buckets.py#L156)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_buckets.py#L156)
 
 **Parameters:**
 
@@ -7059,7 +7081,7 @@ endpoint (`str`, *optional*) : Endpoint of the Hub. Defaults to .
 
 Describes a bucket URL on the Hub.
 
-`BucketUrl` is returned by [create_bucket()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_bucket). At initialization, the URL is parsed to populate properties:
+`BucketUrl` is returned by [create_bucket()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_bucket). At initialization, the URL is parsed to populate properties:
 - endpoint (`str`)
 - namespace (`str`)
 - bucket_id (`str`)
@@ -7074,7 +7096,7 @@ Describes a bucket URL on the Hub.
 huggingface_hub.DatasetLeaderboardEntry(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L2076)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L2049)
 
 **Parameters:**
 
@@ -7099,9 +7121,9 @@ notes (`str`, *optional*) : Notes associated with the leaderboard entry, if any.
 Contains information about a single entry in a dataset leaderboard on the Hub.
 
 A leaderboard ranks models based on their evaluation scores on a given benchmark dataset.
-This object is returned by [get_dataset_leaderboard()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.get_dataset_leaderboard). To get evaluation results for a
-specific model across benchmarks, see `ModelInfo.eval_results` (via [model_info()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.model_info) with
-`expand=["evalResults"]`) and [EvalResultEntry](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.EvalResultEntry).
+This object is returned by [get_dataset_leaderboard()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_dataset_leaderboard). To get evaluation results for a
+specific model across benchmarks, see `ModelInfo.eval_results` (via [model_info()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.model_info) with
+`expand=["evalResults"]`) and [EvalResultEntry](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.EvalResultEntry).
 
 ### EvalResultEntry[[huggingface_hub.EvalResultEntry]]
 
@@ -7111,7 +7133,7 @@ specific model across benchmarks, see `ModelInfo.eval_results` (via [model_info(
 huggingface_hub.EvalResultEntry(dataset_id: str, task_id: str, value: typing.Any, dataset_revision: str | None = None, verify_token: str | None = None, date: str | None = None, source_url: str | None = None, source_name: str | None = None, source_user: str | None = None, source_org: str | None = None, notes: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/_eval_results.py#L12)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_eval_results.py#L12)
 
 **Parameters:**
 
@@ -7142,7 +7164,7 @@ Evaluation result entry for the `.eval_results/*.yaml` format.
 Represents evaluation scores stored in model repos that automatically appear on
 the model page and the benchmark dataset's leaderboard.
 
-For the legacy `model-index` format in `README.md`, use [EvalResult](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/cards#huggingface_hub.EvalResult) instead.
+For the legacy `model-index` format in `README.md`, use [EvalResult](/docs/huggingface_hub/v1.32.0/en/package_reference/cards#huggingface_hub.EvalResult) instead.
 
 See https://huggingface.co/docs/hub/eval-results for more details.
 
@@ -7179,7 +7201,7 @@ Example:
 huggingface_hub.SyncOperation(action: typing.Literal['upload', 'download', 'delete', 'skip'], path: str, size: int | None = None, reason: str = '', local_mtime: str | None = None, remote_mtime: str | None = None, bucket_file: huggingface_hub._buckets.BucketFile | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/_buckets.py#L288)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_buckets.py#L288)
 
 Represents a sync operation to be performed.
 
@@ -7191,7 +7213,7 @@ Represents a sync operation to be performed.
 huggingface_hub.SyncPlan(source: str, dest: str, timestamp: str, operations: list = <factory>)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/_buckets.py#L301)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_buckets.py#L301)
 
 Represents a complete sync plan.
 
@@ -7203,7 +7225,7 @@ Represents a complete sync plan.
 huggingface_hub.CommitInfo(commit_url: str, *args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L508)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L481)
 
 **Parameters:**
 
@@ -7219,14 +7241,14 @@ pr_url (`str`, *optional*) : Url to the PR that has been created, if any. Popula
 
 pr_revision (`str`, *optional*) : Revision of the PR that has been created, if any. Populated when `create_pr=True` is passed. Example: `"refs/pr/1"`. 
 
-pr_num (`int`, *optional*) : Number of the PR discussion that has been created, if any. Populated when `create_pr=True` is passed. Can be passed as `discussion_num` in [get_discussion_details()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.get_discussion_details). Example: `1`. 
+pr_num (`int`, *optional*) : Number of the PR discussion that has been created, if any. Populated when `create_pr=True` is passed. Can be passed as `discussion_num` in [get_discussion_details()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_discussion_details). Example: `1`. 
 
 repo_url (`RepoUrl`) : Repo URL of the commit containing info like repo_id, repo_type, etc.
 
 Data structure containing information about a newly created commit.
 
-Returned by any method that creates a commit on the Hub: [create_commit()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit), [upload_file()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file), [upload_folder()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder),
-[delete_file()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_file), [delete_folder()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_folder). It inherits from `str` for backward compatibility but using methods specific
+Returned by any method that creates a commit on the Hub: [create_commit()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit), [upload_file()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file), [upload_folder()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder),
+[delete_file()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_file), [delete_folder()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_folder). It inherits from `str` for backward compatibility but using methods specific
 to `str` is deprecated.
 
 ### DatasetInfo[[huggingface_hub.DatasetInfo]]
@@ -7237,7 +7259,7 @@ to `str` is deprecated.
 huggingface_hub.DatasetInfo(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L1141)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L1114)
 
 **Parameters:**
 
@@ -7245,7 +7267,7 @@ id (`str`) : ID of dataset.
 
 author (`str`) : Author of the dataset.
 
-card_data (`DatasetCardData`, *optional*) : Dataset Card Metadata  as a [huggingface_hub.repocard_data.DatasetCardData](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/cards#huggingface_hub.DatasetCardData) object.
+card_data (`DatasetCardData`, *optional*) : Dataset Card Metadata  as a [huggingface_hub.repocard_data.DatasetCardData](/docs/huggingface_hub/v1.32.0/en/package_reference/cards#huggingface_hub.DatasetCardData) object.
 
 citation (`str`, *optional*) : Citation information for the dataset.
 
@@ -7275,7 +7297,7 @@ resource_group (`dict`, *optional*) : Resource group information for the dataset
 
 sha (`str`) : Repo SHA at this particular revision.
 
-siblings (`list[RepoSibling]`) : List of [huggingface_hub.hf_api.RepoSibling](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.hf_api.RepoSibling) objects that constitute the dataset.
+siblings (`list[RepoSibling]`) : List of [huggingface_hub.hf_api.RepoSibling](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.hf_api.RepoSibling) objects that constitute the dataset.
 
 tags (`list[str]`) : List of tags of the dataset.
 
@@ -7283,12 +7305,12 @@ trending_score (`int`, *optional*) : Trending score of the dataset.
 
 used_storage (`int`, *optional*) : Size in bytes of the dataset on the Hub.
 
-Contains information about a dataset on the Hub. This object is returned by [dataset_info()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.dataset_info) and [list_datasets()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_datasets).
+Contains information about a dataset on the Hub. This object is returned by [dataset_info()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.dataset_info) and [list_datasets()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_datasets).
 
 > [!TIP]
 > Most attributes of this class are optional. This is because the data returned by the Hub depends on the query made.
 > In general, the more specific the query, the more information is returned. On the contrary, when listing datasets
-> using [list_datasets()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_datasets) only a subset of the attributes are returned.
+> using [list_datasets()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_datasets) only a subset of the attributes are returned.
 
 ### DryRunFileInfo[[huggingface_hub.DryRunFileInfo]]
 
@@ -7298,7 +7320,7 @@ Contains information about a dataset on the Hub. This object is returned by [dat
 huggingface_hub.DryRunFileInfo(commit_hash: str, file_size: int | None, filename: str, local_path: str, is_cached: bool, will_download: bool)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/file_download.py#L176)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/file_download.py#L183)
 
 **Parameters:**
 
@@ -7314,7 +7336,7 @@ will_download (`bool`) : Whether the file will be downloaded if `hf_hub_download
 
 Information returned when performing a dry run of a file download.
 
-Returned by [hf_hub_download()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/file_download#huggingface_hub.hf_hub_download) when `dry_run=True`.
+Returned by [hf_hub_download()](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) when `dry_run=True`.
 
 ### GitRefInfo[[huggingface_hub.GitRefInfo]]
 
@@ -7324,7 +7346,7 @@ Returned by [hf_hub_download()](/docs/huggingface_hub/v1.31.0.rc0/en/package_ref
 huggingface_hub.GitRefInfo(name: str, ref: str, target_commit: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L1572)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L1545)
 
 **Parameters:**
 
@@ -7344,7 +7366,7 @@ Contains information about a git reference for a repo on the Hub.
 huggingface_hub.GitCommitInfo(commit_id: str, authors: list[str], created_at: datetime, title: str, message: str, formatted_title: str | None, formatted_message: str | None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L1617)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L1590)
 
 **Parameters:**
 
@@ -7362,7 +7384,7 @@ formatted_title (`str`) : Title of the commit formatted as HTML. Only returned i
 
 formatted_message (`str`) : Description of the commit formatted as HTML. Only returned if `formatted=True` is set.
 
-Contains information about a git commit for a repo on the Hub. Check out [list_repo_commits()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_commits) for more details.
+Contains information about a git commit for a repo on the Hub. Check out [list_repo_commits()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_commits) for more details.
 
 ### GitRefs[[huggingface_hub.GitRefs]]
 
@@ -7372,21 +7394,21 @@ Contains information about a git commit for a repo on the Hub. Check out [list_r
 huggingface_hub.GitRefs(branches: list[GitRefInfo], converts: list[GitRefInfo], tags: list[GitRefInfo], pull_requests: list[GitRefInfo] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L1591)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L1564)
 
 **Parameters:**
 
-branches (`list[GitRefInfo]`) : A list of [GitRefInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.GitRefInfo) containing information about branches on the repo.
+branches (`list[GitRefInfo]`) : A list of [GitRefInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.GitRefInfo) containing information about branches on the repo.
 
-converts (`list[GitRefInfo]`) : A list of [GitRefInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.GitRefInfo) containing information about "convert" refs on the repo. Converts are refs used (internally) to push preprocessed data in Dataset repos.
+converts (`list[GitRefInfo]`) : A list of [GitRefInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.GitRefInfo) containing information about "convert" refs on the repo. Converts are refs used (internally) to push preprocessed data in Dataset repos.
 
-tags (`list[GitRefInfo]`) : A list of [GitRefInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.GitRefInfo) containing information about tags on the repo.
+tags (`list[GitRefInfo]`) : A list of [GitRefInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.GitRefInfo) containing information about tags on the repo.
 
-pull_requests (`list[GitRefInfo]`, *optional*) : A list of [GitRefInfo](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.GitRefInfo) containing information about pull requests on the repo. Only returned if `include_prs=True` is set.
+pull_requests (`list[GitRefInfo]`, *optional*) : A list of [GitRefInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.GitRefInfo) containing information about pull requests on the repo. Only returned if `include_prs=True` is set.
 
 Contains information about all git references for a repo on the Hub.
 
-Object is returned by [list_repo_refs()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_refs).
+Object is returned by [list_repo_refs()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_refs).
 
 ### InferenceProviderMapping[[huggingface_hub.hf_api.InferenceProviderMapping]]
 
@@ -7396,7 +7418,7 @@ Object is returned by [list_repo_refs()](/docs/huggingface_hub/v1.31.0.rc0/en/pa
 huggingface_hub.hf_api.InferenceProviderMapping(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L901)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L874)
 
 ### KernelInfo[[huggingface_hub.KernelInfo]]
 
@@ -7406,7 +7428,7 @@ huggingface_hub.hf_api.InferenceProviderMapping(**kwargs)
 huggingface_hub.KernelInfo(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L1413)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L1386)
 
 **Parameters:**
 
@@ -7426,7 +7448,7 @@ private (`bool`, *optional*) : Is the repo private.
 
 sha (`str`, *optional*) : Repo SHA at this particular revision.
 
-Contains information about a kernel repo on the Hub. This object is returned by [kernel_info()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.kernel_info).
+Contains information about a kernel repo on the Hub. This object is returned by [kernel_info()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.kernel_info).
 
 ### LFSFileInfo[[huggingface_hub.hf_api.LFSFileInfo]]
 
@@ -7436,7 +7458,7 @@ Contains information about a kernel repo on the Hub. This object is returned by 
 huggingface_hub.hf_api.LFSFileInfo(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L2015)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L1988)
 
 **Parameters:**
 
@@ -7455,7 +7477,7 @@ size (`int`) : Size of the LFS object.
 Contains information about a file stored as LFS on a repo on the Hub.
 
 Used in the context of listing and permanently deleting LFS files from a repo to free-up space.
-See [list_lfs_files()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_lfs_files) and [permanently_delete_lfs_files()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.permanently_delete_lfs_files) for more details.
+See [list_lfs_files()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_lfs_files) and [permanently_delete_lfs_files()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.permanently_delete_lfs_files) for more details.
 
 Git LFS files are tracked using SHA-256 object IDs, rather than file paths, to optimize performance
 This approach is necessary because a single object can be referenced by multiple paths across different commits,
@@ -7484,7 +7506,7 @@ Example:
 huggingface_hub.ModelInfo(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L926)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L899)
 
 **Parameters:**
 
@@ -7494,7 +7516,7 @@ author (`str`, *optional*) : Author of the model.
 
 base_models (`list[str]`, *optional*) : List of base models this model is derived from.
 
-card_data (`ModelCardData`, *optional*) : Model Card Metadata  as a [huggingface_hub.repocard_data.ModelCardData](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/cards#huggingface_hub.ModelCardData) object.
+card_data (`ModelCardData`, *optional*) : Model Card Metadata  as a [huggingface_hub.repocard_data.ModelCardData](/docs/huggingface_hub/v1.32.0/en/package_reference/cards#huggingface_hub.ModelCardData) object.
 
 children_model_count (`int`, *optional*) : Number of children models derived from this model.
 
@@ -7540,7 +7562,7 @@ security_repo_status (`dict`, *optional*) : Model's security scan status.
 
 sha (`str`, *optional*) : Repo SHA at this particular revision.
 
-siblings (`list[RepoSibling]`) : List of [huggingface_hub.hf_api.RepoSibling](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.hf_api.RepoSibling) objects that constitute the model.
+siblings (`list[RepoSibling]`) : List of [huggingface_hub.hf_api.RepoSibling](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.hf_api.RepoSibling) objects that constitute the model.
 
 spaces (`list[str]`, *optional*) : List of spaces using the model.
 
@@ -7554,12 +7576,12 @@ used_storage (`int`, *optional*) : Size in bytes of the model on the Hub.
 
 widget_data (`Any`, *optional*) : Widget data associated with the model.
 
-Contains information about a model on the Hub. This object is returned by [model_info()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.model_info) and [list_models()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_models).
+Contains information about a model on the Hub. This object is returned by [model_info()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.model_info) and [list_models()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_models).
 
 > [!TIP]
 > Most attributes of this class are optional. This is because the data returned by the Hub depends on the query made.
 > In general, the more specific the query, the more information is returned. On the contrary, when listing models
-> using [list_models()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_models) only a subset of the attributes are returned.
+> using [list_models()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_models) only a subset of the attributes are returned.
 
 ### RepoSibling[[huggingface_hub.hf_api.RepoSibling]]
 
@@ -7569,25 +7591,25 @@ Contains information about a model on the Hub. This object is returned by [model
 huggingface_hub.hf_api.RepoSibling(rfilename: str, size: int | None = None, blob_id: str | None = None, lfs: BlobLfsInfo | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L776)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L749)
 
 **Parameters:**
 
 rfilename (str) : file name, relative to the repo root.
 
-size (`int`, *optional*) : The file's size, in bytes. This attribute is defined when `files_metadata` argument of [repo_info()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.repo_info) is set to `True`. It's `None` otherwise.
+size (`int`, *optional*) : The file's size, in bytes. This attribute is defined when `files_metadata` argument of [repo_info()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.repo_info) is set to `True`. It's `None` otherwise.
 
-blob_id (`str`, *optional*) : The file's git OID. This attribute is defined when `files_metadata` argument of [repo_info()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.repo_info) is set to `True`. It's `None` otherwise.
+blob_id (`str`, *optional*) : The file's git OID. This attribute is defined when `files_metadata` argument of [repo_info()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.repo_info) is set to `True`. It's `None` otherwise.
 
-lfs (`BlobLfsInfo`, *optional*) : The file's LFS metadata. This attribute is defined when`files_metadata` argument of [repo_info()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.repo_info) is set to `True` and the file is stored with Git LFS. It's `None` otherwise.
+lfs (`BlobLfsInfo`, *optional*) : The file's LFS metadata. This attribute is defined when`files_metadata` argument of [repo_info()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.repo_info) is set to `True` and the file is stored with Git LFS. It's `None` otherwise.
 
 Contains basic information about a repo file inside a repo on the Hub.
 
 > [!TIP]
 > All attributes of this class are optional except `rfilename`. This is because only the file names are returned when
-> listing repositories on the Hub (with [list_models()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_models), [list_datasets()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_datasets) or [list_spaces()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_spaces)). If you need more
+> listing repositories on the Hub (with [list_models()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_models), [list_datasets()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_datasets) or [list_spaces()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_spaces)). If you need more
 > information like file size, blob id or lfs details, you must request them specifically from one repo at a time
-> (using [model_info()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.model_info), [dataset_info()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.dataset_info) or [space_info()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.space_info)) as it adds more constraints on the backend server to
+> (using [model_info()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.model_info), [dataset_info()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.dataset_info) or [space_info()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.space_info)) as it adds more constraints on the backend server to
 > retrieve these.
 
 ### RepoFile[[huggingface_hub.RepoFile]]
@@ -7598,7 +7620,7 @@ Contains basic information about a repo file inside a repo on the Hub.
 huggingface_hub.RepoFile(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L808)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L781)
 
 **Parameters:**
 
@@ -7612,9 +7634,9 @@ lfs (`BlobLfsInfo`, *optional*) : The file's LFS metadata.
 
 xet_hash (`str`, *optional*) : The file's Xet hash.
 
-last_commit (`LastCommitInfo`, *optional*) : The file's last commit metadata. Only defined if [list_repo_tree()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_tree) and [get_paths_info()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.get_paths_info) are called with `expand=True`.
+last_commit (`LastCommitInfo`, *optional*) : The file's last commit metadata. Only defined if [list_repo_tree()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_tree) and [get_paths_info()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_paths_info) are called with `expand=True`.
 
-security (`BlobSecurityInfo`, *optional*) : The file's security scan metadata. Only defined if [list_repo_tree()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_tree) and [get_paths_info()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.get_paths_info) are called with `expand=True`.
+security (`BlobSecurityInfo`, *optional*) : The file's security scan metadata. Only defined if [list_repo_tree()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_tree) and [get_paths_info()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_paths_info) are called with `expand=True`.
 
 Contains information about a file on the Hub.
 
@@ -7626,7 +7648,7 @@ Contains information about a file on the Hub.
 huggingface_hub.RepoUrl(url: Any, endpoint: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L667)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L640)
 
 **Parameters:**
 
@@ -7673,7 +7695,7 @@ RepoUrl('https://huggingface.co/Wauplin/dummy_model', endpoint='https://huggingf
 huggingface_hub.utils.SafetensorsRepoMetadata(metadata: dict | None, sharded: bool, weight_map: dict, files_metadata: dict)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/utils/_safetensors.py#L74)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_safetensors.py#L74)
 
 **Parameters:**
 
@@ -7692,7 +7714,7 @@ Metadata for a Safetensors repo.
 A repo is considered to be a Safetensors repo if it contains either a 'model.safetensors' weight file (non-shared
 model) or a 'model.safetensors.index.json' index file (sharded model) at its root.
 
-This class is returned by [get_safetensors_metadata()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.get_safetensors_metadata).
+This class is returned by [get_safetensors_metadata()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_safetensors_metadata).
 
 For more details regarding the safetensors format, check out https://huggingface.co/docs/safetensors/index#format.
 
@@ -7704,7 +7726,7 @@ For more details regarding the safetensors format, check out https://huggingface
 huggingface_hub.utils.SafetensorsFileMetadata(metadata: dict, tensors: dict)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/utils/_safetensors.py#L44)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_safetensors.py#L44)
 
 **Parameters:**
 
@@ -7716,7 +7738,7 @@ parameter_count (`dict[str, int]`) : A map of the number of parameters per data 
 
 Metadata for a Safetensors file hosted on the Hub.
 
-This class is returned by [parse_safetensors_file_metadata()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.parse_safetensors_file_metadata).
+This class is returned by [parse_safetensors_file_metadata()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.parse_safetensors_file_metadata).
 
 For more details regarding the safetensors format, check out https://huggingface.co/docs/safetensors/index#format.
 
@@ -7728,7 +7750,7 @@ For more details regarding the safetensors format, check out https://huggingface
 huggingface_hub.SpaceInfo(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L1275)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L1248)
 
 **Parameters:**
 
@@ -7736,7 +7758,7 @@ id (`str`) : ID of the Space.
 
 author (`str`, *optional*) : Author of the Space.
 
-card_data (`SpaceCardData`, *optional*) : Space Card Metadata  as a [huggingface_hub.repocard_data.SpaceCardData](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/cards#huggingface_hub.SpaceCardData) object.
+card_data (`SpaceCardData`, *optional*) : Space Card Metadata  as a [huggingface_hub.repocard_data.SpaceCardData](/docs/huggingface_hub/v1.32.0/en/package_reference/cards#huggingface_hub.SpaceCardData) object.
 
 created_at (`datetime`, *optional*) : Date of creation of the repo on the Hub. Note that the lowest value is `2022-03-02T23:29:04.000Z`, corresponding to the date when we began to store creation dates.
 
@@ -7760,13 +7782,13 @@ region (`Literal["us", "eu"]`, *optional*) : Cloud region in which the Space is 
 
 resource_group (`dict`, *optional*) : Resource group information for the Space.
 
-runtime (`SpaceRuntime`, *optional*) : Space runtime information as a [huggingface_hub.hf_api.SpaceRuntime](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime) object.
+runtime (`SpaceRuntime`, *optional*) : Space runtime information as a [huggingface_hub.hf_api.SpaceRuntime](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime) object.
 
 sdk (`str`, *optional*) : SDK used by the Space.
 
 sha (`str`, *optional*) : Repo SHA at this particular revision.
 
-siblings (`list[RepoSibling]`) : List of [huggingface_hub.hf_api.RepoSibling](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.hf_api.RepoSibling) objects that constitute the Space.
+siblings (`list[RepoSibling]`) : List of [huggingface_hub.hf_api.RepoSibling](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.hf_api.RepoSibling) objects that constitute the Space.
 
 subdomain (`str`, *optional*) : Subdomain of the Space.
 
@@ -7776,12 +7798,12 @@ trending_score (`int`, *optional*) : Trending score of the Space.
 
 used_storage (`int`, *optional*) : Size in bytes of the Space on the Hub.
 
-Contains information about a Space on the Hub. This object is returned by [space_info()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.space_info) and [list_spaces()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_spaces).
+Contains information about a Space on the Hub. This object is returned by [space_info()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.space_info) and [list_spaces()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_spaces).
 
 > [!TIP]
 > Most attributes of this class are optional. This is because the data returned by the Hub depends on the query made.
 > In general, the more specific the query, the more information is returned. On the contrary, when listing spaces
-> using [list_spaces()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_spaces) only a subset of the attributes are returned.
+> using [list_spaces()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_spaces) only a subset of the attributes are returned.
 
 ### SpaceSearchResult[[huggingface_hub.SpaceSearchResult]]
 
@@ -7791,7 +7813,7 @@ Contains information about a Space on the Hub. This object is returned by [space
 huggingface_hub.SpaceSearchResult(data: dict)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/_space_api.py#L302)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_space_api.py#L303)
 
 **Parameters:**
 
@@ -7811,7 +7833,7 @@ private (`bool`) : Whether the Space is private.
 
 tags (`list[str]` or `None`) : List of tags.
 
-runtime ([SpaceRuntime](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime) or `None`) : Runtime information (stage, hardware, etc.).
+runtime ([SpaceRuntime](/docs/huggingface_hub/v1.32.0/en/package_reference/space_runtime#huggingface_hub.SpaceRuntime) or `None`) : Runtime information (stage, hardware, etc.).
 
 ai_short_description (`str` or `None`) : AI-generated short description.
 
@@ -7823,21 +7845,21 @@ trending_score (`int` or `None`) : Trending score.
 
 A single result from the Spaces semantic search API.
 
-Returned by [HfApi.search_spaces()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.search_spaces).
+Returned by [HfApi.search_spaces()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.search_spaces).
 
 ### TensorInfo[[huggingface_hub.utils.TensorInfo]]
 
 #### huggingface_hub.utils.TensorInfo[[huggingface_hub.utils.TensorInfo]]
 
 ```python
-huggingface_hub.utils.TensorInfo(dtype: typing.Literal['F64', 'F32', 'F16', 'BF16', 'I64', 'I32', 'I16', 'I8', 'U8', 'BOOL'], shape: list, data_offsets: tuple)
+huggingface_hub.utils.TensorInfo(dtype: typing.Literal['F64', 'F32', 'F16', 'BF16', 'I64', 'I32', 'I16', 'I8', 'U8', 'U3', 'BOOL'], shape: list, data_offsets: tuple)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/utils/_safetensors.py#L14)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_safetensors.py#L14)
 
 **Parameters:**
 
-dtype (`str`) : The data type of the tensor ("F64", "F32", "F16", "BF16", "I64", "I32", "I16", "I8", "U8", "BOOL").
+dtype (`str`) : The data type of the tensor ("F64", "F32", "F16", "BF16", "I64", "I32", "I16", "I8", "U8", "U3", "BOOL").
 
 shape (`list[int]`) : The shape of the tensor.
 
@@ -7857,7 +7879,7 @@ For more details regarding the safetensors format, check out https://huggingface
 huggingface_hub.User(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L1786)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L1759)
 
 **Parameters:**
 
@@ -7903,7 +7925,7 @@ Contains information about a user on the Hub.
 huggingface_hub.UserLikes(user: str, total: int, datasets: list[str], kernels: list[str], models: list[str], spaces: list[str])
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L1650)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L1623)
 
 **Parameters:**
 
@@ -7929,7 +7951,7 @@ Contains information about a user likes on the Hub.
 huggingface_hub.WebhookInfo(id: str, url: str | None, job: JobSpec | None, watched: list[WebhookWatchedItem], domains: list[constants.WEBHOOK_DOMAIN_T], secret: str | None, disabled: bool)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L636)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L609)
 
 **Parameters:**
 
@@ -7939,7 +7961,7 @@ url (`str`, *optional*) : URL of the webhook.
 
 job (`JobSpec`, *optional*) : Specifications of the Job to trigger.
 
-watched (`list[WebhookWatchedItem]`) : List of items watched by the webhook, see [WebhookWatchedItem](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.WebhookWatchedItem).
+watched (`list[WebhookWatchedItem]`) : List of items watched by the webhook, see [WebhookWatchedItem](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.WebhookWatchedItem).
 
 domains (`list[WEBHOOK_DOMAIN_T]`) : List of domains the webhook is watching. Can be one of `["repo", "discussions"]`.
 
@@ -7959,7 +7981,7 @@ One of `url` or `job` is specified, but not both.
 huggingface_hub.WebhookWatchedItem(type: Literal['dataset', 'model', 'org', 'space', 'user'], name: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/hf_api.py#L621)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/hf_api.py#L594)
 
 **Parameters:**
 
@@ -7979,7 +8001,7 @@ Below are the supported values for `CommitOperation()`:
 huggingface_hub.CommitOperationAdd(path_in_repo: str, path_or_fileobj: str | pathlib.Path | bytes | typing.BinaryIO)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/_commit_api.py#L145)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_commit_api.py#L141)
 
 **Parameters:**
 
@@ -8005,7 +8027,7 @@ Data structure holding necessary info to upload a file to a repository on the Hu
 as_file(with_tqdm: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/_commit_api.py#L227)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_commit_api.py#L223)
 
 **Parameters:**
 
@@ -8044,7 +8066,7 @@ config.json: 100%|████████████████████�
 b64content()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/_commit_api.py#L277)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_commit_api.py#L275)
 
 The base64-encoded content of `path_or_fileobj`
 
@@ -8056,7 +8078,7 @@ Returns: `bytes`
 huggingface_hub.CommitOperationDelete(path_in_repo: str, is_folder: typing.Union[bool, typing.Literal['auto']] = 'auto')
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/_commit_api.py#L60)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_commit_api.py#L56)
 
 **Parameters:**
 
@@ -8073,7 +8095,7 @@ on the Hub.
 huggingface_hub.CommitOperationCopy(src_path_in_repo: str, path_in_repo: str, src_revision: str | None = None, src_repo_id: str | None = None, src_repo_type: str | None = None, _src_oid: str | None = None, _dest_oid: str | None = None, _is_duplicated: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/_commit_api.py#L91)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_commit_api.py#L87)
 
 **Parameters:**
 
@@ -8094,10 +8116,10 @@ downloaded and re-uploaded as part of the commit.
 
 Cross-repository copies are supported by setting `src_repo_id` and `src_repo_type`. For cross-repo LFS copies,
 the LFS objects are duplicated to the destination repository before the commit is created. This is handled
-automatically by [create_commit()](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit). Note that cross-repository copies only work within the same
+automatically by [create_commit()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit). Note that cross-repository copies only work within the same
 [storage region](https://huggingface.co/docs/hub/storage-regions); copying across regions is not supported.
 
-Note: you can combine a [CommitOperationCopy](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.CommitOperationCopy) and a [CommitOperationDelete](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.CommitOperationDelete) to rename an LFS file on the Hub.
+Note: you can combine a [CommitOperationCopy](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.CommitOperationCopy) and a [CommitOperationDelete](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.CommitOperationDelete) to rename an LFS file on the Hub.
 
 ## CommitScheduler[[huggingface_hub.CommitScheduler]]
 
@@ -8107,7 +8129,7 @@ Note: you can combine a [CommitOperationCopy](/docs/huggingface_hub/v1.31.0.rc0/
 huggingface_hub.CommitScheduler(repo_id: str, folder_path: str | pathlib.Path, every: int | float = 5, path_in_repo: str | None = None, repo_type: str | None = None, revision: str | None = None, private: bool | None = None, token: str | None = None, allow_patterns: list[str] | str | None = None, ignore_patterns: list[str] | str | None = None, squash_history: bool = False, hf_api: typing.Optional[ForwardRef('HfApi')] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/_commit_scheduler.py#L29)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_commit_scheduler.py#L30)
 
 **Parameters:**
 
@@ -8133,7 +8155,7 @@ ignore_patterns (`list[str]` or `str`, *optional*) : If provided, files matching
 
 squash_history (`bool`, *optional*) : Whether to squash the history of the repo after each commit. Defaults to `False`. Squashing commits is useful to avoid degraded performances on the repo when it grows too large.
 
-hf_api (`HfApi`, *optional*) : The [HfApi](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi) client to use to commit to the Hub. Can be set with custom settings (user agent, token,...).
+hf_api (`HfApi`, *optional*) : The [HfApi](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi) client to use to commit to the Hub. Can be set with custom settings (user agent, token,...).
 
 Scheduler to upload a local folder to the Hub at regular intervals (e.g. push to hub every 5 minutes).
 
@@ -8181,7 +8203,7 @@ Example using a context manager:
 push_to_hub()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/_commit_scheduler.py#L204)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_commit_scheduler.py#L205)
 
 Push folder to the Hub and return the commit info.
 
@@ -8192,7 +8214,7 @@ Push folder to the Hub and return the commit info.
 
 The default behavior of `push_to_hub` is to assume an append-only folder. It lists all files in the folder and
 uploads only changed files. If no changes are found, the method returns without committing anything. If you want
-to change this behavior, you can inherit from [CommitScheduler](/docs/huggingface_hub/v1.31.0.rc0/en/package_reference/hf_api#huggingface_hub.CommitScheduler) and override this method. This can be useful
+to change this behavior, you can inherit from [CommitScheduler](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.CommitScheduler) and override this method. This can be useful
 for example to compress data together in a single file before committing. For more details and examples, check
 out our [integration guide](https://huggingface.co/docs/huggingface_hub/main/en/guides/upload#scheduled-uploads).
 
@@ -8202,7 +8224,7 @@ out our [integration guide](https://huggingface.co/docs/huggingface_hub/main/en/
 stop()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/_commit_scheduler.py#L157)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_commit_scheduler.py#L158)
 
 Stop the scheduler.
 
@@ -8214,7 +8236,7 @@ A stopped scheduler cannot be restarted. Mostly for tests purposes.
 trigger()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.31.0.rc0/src/huggingface_hub/_commit_scheduler.py#L181)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_commit_scheduler.py#L182)
 
 Trigger a `push_to_hub` and return a future.
 
@@ -8222,4 +8244,4 @@ This method is automatically called every `every` minutes. You can also call it 
 immediately, without waiting for the next scheduled commit.
 
 ### MCP Client
-https://huggingface.co/docs/huggingface_hub/v1.31.0.rc0/package_reference/mcp.md
+https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/mcp.md

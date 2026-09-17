@@ -1333,7 +1333,7 @@ introduced in Explained Variance Adaptation.
 #### peft.initialize_lora_eva_weights[[peft.initialize_lora_eva_weights]]
 
 ```python
-peft.initialize_lora_eva_weights(model: Module, dataloader: typing.Optional[collections.abc.Iterable] = None, eva_state_dict: typing.Optional[dict] = None, forward_fn: typing.Optional[collections.abc.Callable] = <function forward_fn_dict at 0x7f699f76b400>, prepare_model_inputs_fn: typing.Optional[collections.abc.Callable] = <function prepare_model_inputs_fn_language_modeling at 0x7f699f76b2e0>, prepare_layer_inputs_fn: typing.Union[collections.abc.Callable, dict[str, collections.abc.Callable], NoneType] = <function prepare_layer_inputs_fn_language_modeling at 0x7f699f76b370>, adapter_name: str = 'default', gather_distributed_inputs: bool = True, show_progress_bar: bool = True)
+peft.initialize_lora_eva_weights(model: Module, dataloader: typing.Optional[collections.abc.Iterable] = None, eva_state_dict: typing.Optional[dict] = None, forward_fn: typing.Optional[collections.abc.Callable] = <function forward_fn_dict at 0x7ff3dcc5af80>, prepare_model_inputs_fn: typing.Optional[collections.abc.Callable] = <function prepare_model_inputs_fn_language_modeling at 0x7ff3dcc5ae60>, prepare_layer_inputs_fn: typing.Union[collections.abc.Callable, dict[str, collections.abc.Callable], NoneType] = <function prepare_layer_inputs_fn_language_modeling at 0x7ff3dcc5aef0>, adapter_name: str = 'default', gather_distributed_inputs: bool = True, show_progress_bar: bool = True)
 ```
 
 [Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/eva.py#L654)
@@ -1372,7 +1372,7 @@ layer and updates the weights accordingly.
 #### peft.get_eva_state_dict[[peft.get_eva_state_dict]]
 
 ```python
-peft.get_eva_state_dict(model: Module, dataloader: Iterable, peft_config: typing.Optional[peft.tuners.lora.config.LoraConfig] = None, forward_fn: typing.Optional[collections.abc.Callable] = <function forward_fn_dict at 0x7f699f76b400>, prepare_model_inputs_fn: typing.Optional[collections.abc.Callable] = <function prepare_model_inputs_fn_language_modeling at 0x7f699f76b2e0>, prepare_layer_inputs_fn: typing.Union[collections.abc.Callable, dict[str, collections.abc.Callable], NoneType] = <function prepare_layer_inputs_fn_language_modeling at 0x7f699f76b370>, adapter_name: str = 'default', gather_distributed_inputs: bool = True, show_progress_bar: bool = True)
+peft.get_eva_state_dict(model: Module, dataloader: Iterable, peft_config: typing.Optional[peft.tuners.lora.config.LoraConfig] = None, forward_fn: typing.Optional[collections.abc.Callable] = <function forward_fn_dict at 0x7ff3dcc5af80>, prepare_model_inputs_fn: typing.Optional[collections.abc.Callable] = <function prepare_model_inputs_fn_language_modeling at 0x7ff3dcc5ae60>, prepare_layer_inputs_fn: typing.Union[collections.abc.Callable, dict[str, collections.abc.Callable], NoneType] = <function prepare_layer_inputs_fn_language_modeling at 0x7ff3dcc5aef0>, adapter_name: str = 'default', gather_distributed_inputs: bool = True, show_progress_bar: bool = True)
 ```
 
 [Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/eva.py#L556)

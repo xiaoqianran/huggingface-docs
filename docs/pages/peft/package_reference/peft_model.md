@@ -1027,7 +1027,7 @@ model.
 peft.cast_mixed_precision_params(model: torch.nn.Module, dtype: torch.dtype)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/other.py#L1453)
+[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/other.py#L1461)
 
 **Parameters:**
 
