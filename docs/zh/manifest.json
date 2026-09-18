@@ -373,8 +373,8 @@
       "translatedAt": "2026-08-14T08:24:16.155Z"
     },
     "hub/jobs-examples.md": {
-      "hash": "1d98b7479332adf7258e4a6a3becf0bbbedf8ec2",
-      "translatedAt": "2026-08-19T07:46:56.753Z"
+      "hash": "9bbd12dd36fdb6ec47a8cf4b1e4c49e737370bc0",
+      "translatedAt": "2026-09-18T12:11:43.463Z"
     },
     "hub/enterprise.md": {
       "hash": "a5aebc2494ac381070636f719ac48edbfe9dea43",
@@ -2001,10 +2001,10 @@
       "translatedAt": "2026-08-11T13:59:27.535Z"
     }
   },
-  "updatedAt": "2026-09-17T12:40:07.233Z",
+  "updatedAt": "2026-09-18T12:11:43.463Z",
   "stats": {
-    "translated": 58,
-    "skipped": 342,
+    "translated": 1,
+    "skipped": 399,
     "failed": 0,
     "total": 400
   }

@@ -21,7 +21,7 @@ hf jobs uv run --flavor a10g-small --secrets HF_TOKEN \
 
 ## 大规模处理数据
 
-[DataTrove](https://github.com/huggingface/datatrove) 提供了一个实验性的[⟦T1⟧](https://github.com/huggingface/datatrove#jobspipelineexecutor)，用于跨作业池分配数据处理管道。它支持并发限制、多阶段依赖、重试和可恢复运行——重新运行管道会跳过已经完成的任务，只运行剩余的任务。
+[DataTrove](https://github.com/huggingface/datatrove) 提供了一个实验性的 [⟦T2⟧](https://github.com/huggingface/datatrove#jobspipelineexecutor)，用于跨作业池分配数据处理管道。它支持并发限制、多阶段依赖、重试和可恢复运行——重新运行管道会跳过已经完成的任务，只运行剩余的任务。
 
 请参阅准备运行的示例：
 
@@ -35,7 +35,13 @@ hf jobs uv run --flavor a10g-small --secrets HF_TOKEN \
 
 [Unsloth](https://huggingface.co/datasets/unsloth/jobs) 还提供了可立即运行的训练脚本，用于在 Jobs 上微调 LLM 和 VLM。
 
-## 编码代理技能[hugging-face-jobs skill](https://github.com/huggingface/skills/tree/main/skills/hugging-face-jobs) 允许 Claude Code 和 Cursor 等编码代理直接从编辑器提交和监控作业。
+## 编码代理技能Claude Code、Codex 和 Cursor 等编码代理可以为您提交和监控作业。安装从已安装的 CLI 生成的 `hf` CLI 技能，使其保持最新状态：
+
+```bash
+hf skills add
+```
+
+请参阅 [Hugging Face CLI for AI agents](./agents-cli) 了解每个代理的设置，并参阅 [Agent Skills](./agents-skills) 了解培训和其他工作流程技能。
 
 ## 沙箱
 
