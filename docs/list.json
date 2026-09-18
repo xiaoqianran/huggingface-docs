@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-17T12:33:25.944674+00:00",
+  "fetchedAt": "2026-09-18T12:11:40.043360+00:00",
   "method": "llms-full-split",
   "ok": 2177,
   "failed": 0,
@@ -6726,7 +6726,7 @@
     },
     {
       "rel": "hub/jobs-examples.md",
-      "bytes": 3556,
+      "bytes": 3699,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs-examples.md",
       "track": "Hub",
@@ -7770,7 +7770,7 @@
     },
     {
       "rel": "inference-endpoints/quick_start.md",
-      "bytes": 3680,
+      "bytes": 3881,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-endpoints/quick_start.md",
       "track": "Inference Endpoints",
@@ -7779,7 +7779,7 @@
     },
     {
       "rel": "inference-endpoints/api_reference.md",
-      "bytes": 534,
+      "bytes": 1157,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-endpoints/api_reference.md",
       "track": "Inference Endpoints",
@@ -7887,7 +7887,7 @@
     },
     {
       "rel": "inference-endpoints/guides/foundations.md",
-      "bytes": 6161,
+      "bytes": 6345,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-endpoints/guides/foundations.md",
       "track": "Inference Endpoints",
@@ -7905,7 +7905,7 @@
     },
     {
       "rel": "inference-endpoints/guides/analytics.md",
-      "bytes": 14564,
+      "bytes": 14177,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-endpoints/guides/analytics.md",
       "track": "Inference Endpoints",
@@ -7923,7 +7923,7 @@
     },
     {
       "rel": "inference-endpoints/guides/mcp_server.md",
-      "bytes": 6341,
+      "bytes": 6541,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-endpoints/guides/mcp_server.md",
       "track": "Inference Endpoints",
@@ -8040,7 +8040,7 @@
     },
     {
       "rel": "inference-providers/index.md",
-      "bytes": 71528,
+      "bytes": 71177,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/index.md",
       "track": "Inference Providers",
@@ -8130,7 +8130,7 @@
     },
     {
       "rel": "inference-providers/guides/github-actions-code-review.md",
-      "bytes": 100874,
+      "bytes": 100618,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/github-actions-code-review.md",
       "track": "Inference Providers",
@@ -8139,7 +8139,7 @@
     },
     {
       "rel": "inference-providers/tasks/index.md",
-      "bytes": 14098,
+      "bytes": 14107,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/tasks/index.md",
       "track": "Inference Providers",
@@ -19650,7 +19650,7 @@
       "toc": 270,
       "found": 269,
       "written": 269,
-      "full_bytes": 1461795
+      "full_bytes": 1461938
     },
     {
       "pkg": "huggingface_hub",
@@ -19664,14 +19664,14 @@
       "toc": 25,
       "found": 25,
       "written": 25,
-      "full_bytes": 176756
+      "full_bytes": 177573
     },
     {
       "pkg": "inference-providers",
       "toc": 66,
       "found": 28,
       "written": 28,
-      "full_bytes": 415597
+      "full_bytes": 414999
     },
     {
       "pkg": "kernels",

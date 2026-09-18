@@ -260,7 +260,7 @@ hf models ls --warm --pipeline-tag token-classification --sort trending_score
 
 <InferenceSnippet
     pipeline=token-classification
-    providersMapping={ {"hf-inference":{"modelId":"Qwen/Qwen3-ForcedAligner-0.6B-hf","providerModelId":"Qwen/Qwen3-ForcedAligner-0.6B-hf"}} }
+    providersMapping={ {"hf-inference":{"modelId":"dslim/bert-base-NER","providerModelId":"dslim/bert-base-NER"}} }
 />
 
 ### API specification
@@ -512,14 +512,14 @@ The API supports:
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"baseten":{"modelId":"deepseek-ai/DeepSeek-V4-Flash-0731","providerModelId":"deepseek-ai/DeepSeek-V4-Flash-0731"},"cerebras":{"modelId":"openai/gpt-oss-120b","providerModelId":"gpt-oss-120b"},"cohere":{"modelId":"CohereLabs/tiny-aya-water","providerModelId":"tiny-aya-water"},"deepinfra":{"modelId":"zai-org/GLM-5.3","providerModelId":"zai-org/GLM-5.3"},"featherless-ai":{"modelId":"OBLITERATUS/Qwen3.8-27B-OBLITERATED","providerModelId":"OBLITERATUS/Qwen3.8-27B-OBLITERATED"},"fireworks-ai":{"modelId":"zai-org/GLM-5.3","providerModelId":"accounts/fireworks/models/glm-5p3"},"groq":{"modelId":"openai/gpt-oss-20b","providerModelId":"openai/gpt-oss-20b"},"novita":{"modelId":"zai-org/GLM-5.3","providerModelId":"zai-org/glm-5.3"},"nscale":{"modelId":"meta-llama/Llama-3.1-8B-Instruct","providerModelId":"meta-llama/Llama-3.1-8B-Instruct"},"ovhcloud":{"modelId":"openai/gpt-oss-20b","providerModelId":"gpt-oss-20b"},"publicai":{"modelId":"speakleash/Bielik-11B-v3.0-Instruct","providerModelId":"speakleash/Bielik-11B-v3.0-Instruct"},"scaleway":{"modelId":"deepseek-ai/DeepSeek-V4-Flash-0731","providerModelId":"deepseek-v4-flash-0731"},"together":{"modelId":"zai-org/GLM-5.3","providerModelId":"zai-org/GLM-5.3"},"zai-org":{"modelId":"zai-org/GLM-5.3","providerModelId":"glm-5.3"}} }
+    providersMapping={ {"baseten":{"modelId":"zai-org/GLM-5.3","providerModelId":"zai-org/GLM-5.3"},"cerebras":{"modelId":"openai/gpt-oss-120b","providerModelId":"gpt-oss-120b"},"cohere":{"modelId":"CohereLabs/tiny-aya-water","providerModelId":"tiny-aya-water"},"deepinfra":{"modelId":"zai-org/GLM-5.3","providerModelId":"zai-org/GLM-5.3"},"featherless-ai":{"modelId":"zai-org/GLM-5.3","providerModelId":"zai-org/GLM-5.3"},"fireworks-ai":{"modelId":"zai-org/GLM-5.3","providerModelId":"accounts/fireworks/models/glm-5p3"},"groq":{"modelId":"openai/gpt-oss-20b","providerModelId":"openai/gpt-oss-20b"},"novita":{"modelId":"zai-org/GLM-5.3","providerModelId":"zai-org/glm-5.3"},"nscale":{"modelId":"meta-llama/Llama-3.1-8B-Instruct","providerModelId":"meta-llama/Llama-3.1-8B-Instruct"},"ovhcloud":{"modelId":"openai/gpt-oss-20b","providerModelId":"gpt-oss-20b"},"publicai":{"modelId":"speakleash/Bielik-11B-v3.0-Instruct","providerModelId":"speakleash/Bielik-11B-v3.0-Instruct"},"scaleway":{"modelId":"deepseek-ai/DeepSeek-V4-Flash-0731","providerModelId":"deepseek-v4-flash-0731"},"together":{"modelId":"zai-org/GLM-5.3","providerModelId":"zai-org/GLM-5.3"},"zai-org":{"modelId":"zai-org/GLM-5.3","providerModelId":"glm-5.3"}} }
 conversational />
 
 #### Code snippet example for conversational VLMs
 
 <InferenceSnippet
     pipeline=image-text-to-text
-    providersMapping={ {"baseten":{"modelId":"deepseek-ai/DeepSeek-V4.1-Flash","providerModelId":"deepseek-ai/DeepSeek-V4.1-Flash"},"cerebras":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"qwen-3.8-27b"},"cohere":{"modelId":"CohereLabs/command-a-plus-05-2026-w4a4","providerModelId":"command-a-plus-05-2026"},"deepinfra":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"Qwen/Qwen3.8-27B"},"featherless-ai":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"Qwen/Qwen3.8-27B"},"fireworks-ai":{"modelId":"deepseek-ai/DeepSeek-V4.1-Flash","providerModelId":"accounts/fireworks/models/deepseek-v4p1-flash"},"novita":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"qwen/qwen3.8-27b"},"nscale":{"modelId":"meta-llama/Llama-4-Scout-17B-16E-Instruct","providerModelId":"meta-llama/Llama-4-Scout-17B-16E-Instruct"},"ovhcloud":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"Qwen3.8-27B"},"publicai":{"modelId":"swiss-ai/Apertus-v1.5-8B","providerModelId":"swiss-ai/apertus-v1.5-8b"},"scaleway":{"modelId":"Qwen/Qwen3.6-35B-A3B","providerModelId":"qwen3.6-35b-a3b"},"together":{"modelId":"zai-org/GLM-5.3-Flash","providerModelId":"zai-org/GLM-5.3-Flash"},"zai-org":{"modelId":"zai-org/GLM-5.3-Flash","providerModelId":"glm-5.3-flash"}} }
+    providersMapping={ {"baseten":{"modelId":"zai-org/GLM-5.3-Flash","providerModelId":"zai-org/GLM-5.3-Flash"},"cohere":{"modelId":"CohereLabs/aya-vision-32b","providerModelId":"c4ai-aya-vision-32b"},"deepinfra":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"Qwen/Qwen3.8-27B"},"featherless-ai":{"modelId":"Qwen/Qwen3.8-Flash-Next","providerModelId":"Qwen/Qwen3.8-Flash-Next"},"fireworks-ai":{"modelId":"deepseek-ai/DeepSeek-V4.1-Flash","providerModelId":"accounts/fireworks/models/deepseek-v4p1-flash"},"novita":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"qwen/qwen3.8-27b"},"nscale":{"modelId":"meta-llama/Llama-4-Scout-17B-16E-Instruct","providerModelId":"meta-llama/Llama-4-Scout-17B-16E-Instruct"},"ovhcloud":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"Qwen3.8-27B"},"publicai":{"modelId":"swiss-ai/Apertus-v1.5-8B","providerModelId":"swiss-ai/apertus-v1.5-8b"},"scaleway":{"modelId":"Qwen/Qwen3.6-35B-A3B","providerModelId":"qwen3.6-35b-a3b"},"together":{"modelId":"zai-org/GLM-5.3-Flash","providerModelId":"zai-org/GLM-5.3-Flash"},"zai-org":{"modelId":"zai-org/GLM-5.3-Flash","providerModelId":"glm-5.3-flash"}} }
 conversational />
 
 ### API specification
@@ -1115,7 +1115,7 @@ hf models ls --warm --pipeline-tag question-answering --sort trending_score
 
 <InferenceSnippet
     pipeline=question-answering
-    providersMapping={ {"hf-inference":{"modelId":"deepset/roberta-base-squad2","providerModelId":"deepset/roberta-base-squad2"}} }
+    providersMapping={ {"hf-inference":{"modelId":"distilbert/distilbert-base-cased-distilled-squad","providerModelId":"distilbert/distilbert-base-cased-distilled-squad"}} }
 />
 
 ### API specification
@@ -1348,7 +1348,7 @@ hf models ls --warm --pipeline-tag image-text-to-text --sort trending_score
 
 <InferenceSnippet
     pipeline=image-text-to-text
-    providersMapping={ {"baseten":{"modelId":"deepseek-ai/DeepSeek-V4.1-Flash","providerModelId":"deepseek-ai/DeepSeek-V4.1-Flash"},"cerebras":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"qwen-3.8-27b"},"cohere":{"modelId":"CohereLabs/command-a-plus-05-2026-w4a4","providerModelId":"command-a-plus-05-2026"},"deepinfra":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"Qwen/Qwen3.8-27B"},"featherless-ai":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"Qwen/Qwen3.8-27B"},"fireworks-ai":{"modelId":"deepseek-ai/DeepSeek-V4.1-Flash","providerModelId":"accounts/fireworks/models/deepseek-v4p1-flash"},"novita":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"qwen/qwen3.8-27b"},"nscale":{"modelId":"meta-llama/Llama-4-Scout-17B-16E-Instruct","providerModelId":"meta-llama/Llama-4-Scout-17B-16E-Instruct"},"ovhcloud":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"Qwen3.8-27B"},"publicai":{"modelId":"swiss-ai/Apertus-v1.5-8B","providerModelId":"swiss-ai/apertus-v1.5-8b"},"scaleway":{"modelId":"Qwen/Qwen3.6-35B-A3B","providerModelId":"qwen3.6-35b-a3b"},"together":{"modelId":"zai-org/GLM-5.3-Flash","providerModelId":"zai-org/GLM-5.3-Flash"},"zai-org":{"modelId":"zai-org/GLM-5.3-Flash","providerModelId":"glm-5.3-flash"}} }
+    providersMapping={ {"baseten":{"modelId":"zai-org/GLM-5.3-Flash","providerModelId":"zai-org/GLM-5.3-Flash"},"cohere":{"modelId":"CohereLabs/aya-vision-32b","providerModelId":"c4ai-aya-vision-32b"},"deepinfra":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"Qwen/Qwen3.8-27B"},"featherless-ai":{"modelId":"Qwen/Qwen3.8-Flash-Next","providerModelId":"Qwen/Qwen3.8-Flash-Next"},"fireworks-ai":{"modelId":"deepseek-ai/DeepSeek-V4.1-Flash","providerModelId":"accounts/fireworks/models/deepseek-v4p1-flash"},"novita":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"qwen/qwen3.8-27b"},"nscale":{"modelId":"meta-llama/Llama-4-Scout-17B-16E-Instruct","providerModelId":"meta-llama/Llama-4-Scout-17B-16E-Instruct"},"ovhcloud":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"Qwen3.8-27B"},"publicai":{"modelId":"swiss-ai/Apertus-v1.5-8B","providerModelId":"swiss-ai/apertus-v1.5-8b"},"scaleway":{"modelId":"Qwen/Qwen3.6-35B-A3B","providerModelId":"qwen3.6-35b-a3b"},"together":{"modelId":"zai-org/GLM-5.3-Flash","providerModelId":"zai-org/GLM-5.3-Flash"},"zai-org":{"modelId":"zai-org/GLM-5.3-Flash","providerModelId":"glm-5.3-flash"}} }
 conversational />
 
 ### API specification

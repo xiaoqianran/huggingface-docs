@@ -597,7 +597,7 @@ Find out more about Text To Image [here](../tasks/text-to-image).
 
 <InferenceSnippet
     pipeline=text-to-image
-    providersMapping={ {"replicate":{"modelId":"Tongyi-MAI/Z-Image-Turbo","providerModelId":"prunaai/z-image-turbo"} } }
+    providersMapping={ {"replicate":{"modelId":"black-forest-labs/FLUX.1-dev","providerModelId":"black-forest-labs/flux-dev"} } }
 />
 
 ### Text To Video
@@ -662,7 +662,7 @@ Find out more about Chat Completion (VLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=image-text-to-text
-    providersMapping={ {"cohere":{"modelId":"CohereLabs/command-a-plus-05-2026-w4a4","providerModelId":"command-a-plus-05-2026"} } }
+    providersMapping={ {"cohere":{"modelId":"CohereLabs/aya-vision-32b","providerModelId":"c4ai-aya-vision-32b"} } }
 conversational />
 
 ### Template
@@ -773,15 +773,6 @@ Find out more about Chat Completion (LLM) [here](../tasks/chat-completion).
 <InferenceSnippet
     pipeline=text-generation
     providersMapping={ {"cerebras":{"modelId":"openai/gpt-oss-120b","providerModelId":"gpt-oss-120b"} } }
-conversational />
-
-### Chat Completion (VLM)
-
-Find out more about Chat Completion (VLM) [here](../tasks/chat-completion).
-
-<InferenceSnippet
-    pipeline=image-text-to-text
-    providersMapping={ {"cerebras":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"qwen-3.8-27b"} } }
 conversational />
 
 ### Template
@@ -1264,7 +1255,7 @@ Find out more about Question Answering [here](../tasks/question-answering).
 
 <InferenceSnippet
     pipeline=question-answering
-    providersMapping={ {"hf-inference":{"modelId":"deepset/roberta-base-squad2","providerModelId":"deepset/roberta-base-squad2"} } }
+    providersMapping={ {"hf-inference":{"modelId":"distilbert/distilbert-base-cased-distilled-squad","providerModelId":"distilbert/distilbert-base-cased-distilled-squad"} } }
 />
 
 ### Summarization
@@ -1309,7 +1300,7 @@ Find out more about Token Classification [here](../tasks/token-classification).
 
 <InferenceSnippet
     pipeline=token-classification
-    providersMapping={ {"hf-inference":{"modelId":"Qwen/Qwen3-ForcedAligner-0.6B-hf","providerModelId":"Qwen/Qwen3-ForcedAligner-0.6B-hf"} } }
+    providersMapping={ {"hf-inference":{"modelId":"dslim/bert-base-NER","providerModelId":"dslim/bert-base-NER"} } }
 />
 
 ### Translation
@@ -1674,7 +1665,7 @@ Find out more about Chat Completion (LLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"baseten":{"modelId":"deepseek-ai/DeepSeek-V4-Flash-0731","providerModelId":"deepseek-ai/DeepSeek-V4-Flash-0731"} } }
+    providersMapping={ {"baseten":{"modelId":"zai-org/GLM-5.3","providerModelId":"zai-org/GLM-5.3"} } }
 conversational />
 
 ### Chat Completion (VLM)
@@ -1683,7 +1674,7 @@ Find out more about Chat Completion (VLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=image-text-to-text
-    providersMapping={ {"baseten":{"modelId":"deepseek-ai/DeepSeek-V4.1-Flash","providerModelId":"deepseek-ai/DeepSeek-V4.1-Flash"} } }
+    providersMapping={ {"baseten":{"modelId":"zai-org/GLM-5.3-Flash","providerModelId":"zai-org/GLM-5.3-Flash"} } }
 conversational />
 
 ### Template
@@ -1730,7 +1721,7 @@ Find out more about Chat Completion (LLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"featherless-ai":{"modelId":"OBLITERATUS/Qwen3.8-27B-OBLITERATED","providerModelId":"OBLITERATUS/Qwen3.8-27B-OBLITERATED"} } }
+    providersMapping={ {"featherless-ai":{"modelId":"zai-org/GLM-5.3","providerModelId":"zai-org/GLM-5.3"} } }
 conversational />
 
 ### Chat Completion (VLM)
@@ -1739,7 +1730,7 @@ Find out more about Chat Completion (VLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=image-text-to-text
-    providersMapping={ {"featherless-ai":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"Qwen/Qwen3.8-27B"} } }
+    providersMapping={ {"featherless-ai":{"modelId":"Qwen/Qwen3.8-Flash-Next","providerModelId":"Qwen/Qwen3.8-Flash-Next"} } }
 conversational />
 
 ### Function Calling with Inference Providers
