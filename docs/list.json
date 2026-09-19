@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-18T12:11:40.043360+00:00",
+  "fetchedAt": "2026-09-19T11:54:11.356599+00:00",
   "method": "llms-full-split",
   "ok": 2177,
   "failed": 0,
@@ -11883,7 +11883,7 @@
     },
     {
       "rel": "transformers.js/installation.md",
-      "bytes": 563,
+      "bytes": 603,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/transformers.js/installation.md",
       "track": "Transformers.js",
@@ -11891,17 +11891,8 @@
       "title": "Installation"
     },
     {
-      "rel": "transformers.js/index.md",
-      "bytes": 105826,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/index.md",
-      "track": "Transformers.js",
-      "package": "transformers.js",
-      "title": "Transformers.js"
-    },
-    {
       "rel": "transformers.js/custom_usage.md",
-      "bytes": 1177,
+      "bytes": 1168,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/transformers.js/custom_usage.md",
       "track": "Transformers.js",
@@ -11909,8 +11900,17 @@
       "title": "Use custom models"
     },
     {
+      "rel": "transformers.js/index.md",
+      "bytes": 106454,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/transformers.js/index.md",
+      "track": "Transformers.js",
+      "package": "transformers.js",
+      "title": "Transformers.js"
+    },
+    {
       "rel": "transformers.js/pipelines.md",
-      "bytes": 22352,
+      "bytes": 22529,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/transformers.js/pipelines.md",
       "track": "Transformers.js",
@@ -11918,13 +11918,40 @@
       "title": "The `pipeline` API"
     },
     {
-      "rel": "transformers.js/tutorials/electron.md",
-      "bytes": 303,
+      "rel": "transformers.js/tutorials/vanilla-js.md",
+      "bytes": 11592,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/tutorials/electron.md",
+      "url": "https://huggingface.co/docs/transformers.js/tutorials/vanilla-js.md",
       "track": "Transformers.js",
       "package": "transformers.js",
-      "title": "Building an Electron application"
+      "title": "Building a Vanilla JavaScript Application"
+    },
+    {
+      "rel": "transformers.js/tutorials/next.md",
+      "bytes": 15758,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/transformers.js/tutorials/next.md",
+      "track": "Transformers.js",
+      "package": "transformers.js",
+      "title": "Building a Next.js application"
+    },
+    {
+      "rel": "transformers.js/tutorials/next-ai-sdk.md",
+      "bytes": 14988,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/transformers.js/tutorials/next-ai-sdk.md",
+      "track": "Transformers.js",
+      "package": "transformers.js",
+      "title": "Building a Next.js AI Chatbot with Vercel AI SDK"
+    },
+    {
+      "rel": "transformers.js/tutorials/node.md",
+      "bytes": 7794,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/transformers.js/tutorials/node.md",
+      "track": "Transformers.js",
+      "package": "transformers.js",
+      "title": "Server-side Inference in Node.js"
     },
     {
       "rel": "transformers.js/tutorials/browser-extension.md",
@@ -11937,7 +11964,7 @@
     },
     {
       "rel": "transformers.js/tutorials/react.md",
-      "bytes": 15161,
+      "bytes": 16085,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/transformers.js/tutorials/react.md",
       "track": "Transformers.js",
@@ -11945,62 +11972,17 @@
       "title": "Building a React application"
     },
     {
-      "rel": "transformers.js/tutorials/next.md",
-      "bytes": 14893,
+      "rel": "transformers.js/tutorials/electron.md",
+      "bytes": 315,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/tutorials/next.md",
+      "url": "https://huggingface.co/docs/transformers.js/tutorials/electron.md",
       "track": "Transformers.js",
       "package": "transformers.js",
-      "title": "Building a Next.js application"
-    },
-    {
-      "rel": "transformers.js/tutorials/node.md",
-      "bytes": 7814,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/tutorials/node.md",
-      "track": "Transformers.js",
-      "package": "transformers.js",
-      "title": "Server-side Inference in Node.js"
-    },
-    {
-      "rel": "transformers.js/tutorials/vanilla-js.md",
-      "bytes": 11313,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/tutorials/vanilla-js.md",
-      "track": "Transformers.js",
-      "package": "transformers.js",
-      "title": "Building a Vanilla JavaScript Application"
-    },
-    {
-      "rel": "transformers.js/tutorials/next-ai-sdk.md",
-      "bytes": 14132,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/tutorials/next-ai-sdk.md",
-      "track": "Transformers.js",
-      "package": "transformers.js",
-      "title": "Building a Next.js AI Chatbot with Vercel AI SDK"
-    },
-    {
-      "rel": "transformers.js/integrations/vercel-ai-sdk.md",
-      "bytes": 8459,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/integrations/vercel-ai-sdk.md",
-      "track": "Transformers.js",
-      "package": "transformers.js",
-      "title": "Using Transformers.js with the Vercel AI SDK"
-    },
-    {
-      "rel": "transformers.js/guides/dtypes.md",
-      "bytes": 4940,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/guides/dtypes.md",
-      "track": "Transformers.js",
-      "package": "transformers.js",
-      "title": "Using quantized models (dtypes)"
+      "title": "Building an Electron application"
     },
     {
       "rel": "transformers.js/guides/node-audio-processing.md",
-      "bytes": 4580,
+      "bytes": 4576,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/transformers.js/guides/node-audio-processing.md",
       "track": "Transformers.js",
@@ -12018,7 +12000,7 @@
     },
     {
       "rel": "transformers.js/guides/webgpu.md",
-      "bytes": 4493,
+      "bytes": 4312,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/transformers.js/guides/webgpu.md",
       "track": "Transformers.js",
@@ -12026,26 +12008,17 @@
       "title": "Running models on WebGPU"
     },
     {
-      "rel": "transformers.js/api/processors.md",
-      "bytes": 7041,
+      "rel": "transformers.js/guides/dtypes.md",
+      "bytes": 4865,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/api/processors.md",
+      "url": "https://huggingface.co/docs/transformers.js/guides/dtypes.md",
       "track": "Transformers.js",
       "package": "transformers.js",
-      "title": "processors"
-    },
-    {
-      "rel": "transformers.js/api/transformers.md",
-      "bytes": 529,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/api/transformers.md",
-      "track": "Transformers.js",
-      "package": "transformers.js",
-      "title": "transformers"
+      "title": "Using quantized models (dtypes)"
     },
     {
       "rel": "transformers.js/api/models.md",
-      "bytes": 15266,
+      "bytes": 17825,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/transformers.js/api/models.md",
       "track": "Transformers.js",
@@ -12054,7 +12027,7 @@
     },
     {
       "rel": "transformers.js/api/configs.md",
-      "bytes": 8679,
+      "bytes": 4490,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/transformers.js/api/configs.md",
       "track": "Transformers.js",
@@ -12063,7 +12036,7 @@
     },
     {
       "rel": "transformers.js/api/env.md",
-      "bytes": 8942,
+      "bytes": 5274,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/transformers.js/api/env.md",
       "track": "Transformers.js",
@@ -12071,17 +12044,17 @@
       "title": "env"
     },
     {
-      "rel": "transformers.js/api/pipelines.md",
-      "bytes": 4277,
+      "rel": "transformers.js/api/processors.md",
+      "bytes": 21277,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/api/pipelines.md",
+      "url": "https://huggingface.co/docs/transformers.js/api/processors.md",
       "track": "Transformers.js",
       "package": "transformers.js",
-      "title": "pipelines"
+      "title": "processors"
     },
     {
       "rel": "transformers.js/api/tokenizers.md",
-      "bytes": 22751,
+      "bytes": 16767,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/transformers.js/api/tokenizers.md",
       "track": "Transformers.js",
@@ -12089,17 +12062,98 @@
       "title": "tokenizers"
     },
     {
-      "rel": "transformers.js/api/backends/onnx.md",
-      "bytes": 8030,
+      "rel": "transformers.js/api/transformers.md",
+      "bytes": 2033,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/api/backends/onnx.md",
+      "url": "https://huggingface.co/docs/transformers.js/api/transformers.md",
       "track": "Transformers.js",
       "package": "transformers.js",
-      "title": "backends/onnx"
+      "title": "transformers"
+    },
+    {
+      "rel": "transformers.js/api/pipelines.md",
+      "bytes": 102263,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/transformers.js/api/pipelines.md",
+      "track": "Transformers.js",
+      "package": "transformers.js",
+      "title": "pipelines"
+    },
+    {
+      "rel": "transformers.js/api/generation/cache.md",
+      "bytes": 1626,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/transformers.js/api/generation/cache.md",
+      "track": "Transformers.js",
+      "package": "transformers.js",
+      "title": "generation/cache"
+    },
+    {
+      "rel": "transformers.js/api/generation/streamers.md",
+      "bytes": 4256,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/transformers.js/api/generation/streamers.md",
+      "track": "Transformers.js",
+      "package": "transformers.js",
+      "title": "generation/streamers"
+    },
+    {
+      "rel": "transformers.js/api/generation/logits_process.md",
+      "bytes": 18034,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/transformers.js/api/generation/logits_process.md",
+      "track": "Transformers.js",
+      "package": "transformers.js",
+      "title": "generation/logits_process"
+    },
+    {
+      "rel": "transformers.js/api/generation/stopping_criteria.md",
+      "bytes": 3952,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/transformers.js/api/generation/stopping_criteria.md",
+      "track": "Transformers.js",
+      "package": "transformers.js",
+      "title": "generation/stopping_criteria"
+    },
+    {
+      "rel": "transformers.js/api/generation/configuration_utils.md",
+      "bytes": 11921,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/transformers.js/api/generation/configuration_utils.md",
+      "track": "Transformers.js",
+      "package": "transformers.js",
+      "title": "generation/configuration_utils"
+    },
+    {
+      "rel": "transformers.js/api/generation/parameters.md",
+      "bytes": 3524,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/transformers.js/api/generation/parameters.md",
+      "track": "Transformers.js",
+      "package": "transformers.js",
+      "title": "generation/parameters"
+    },
+    {
+      "rel": "transformers.js/api/utils/video.md",
+      "bytes": 1837,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/transformers.js/api/utils/video.md",
+      "track": "Transformers.js",
+      "package": "transformers.js",
+      "title": "utils/video"
+    },
+    {
+      "rel": "transformers.js/api/utils/image.md",
+      "bytes": 6109,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/transformers.js/api/utils/image.md",
+      "track": "Transformers.js",
+      "package": "transformers.js",
+      "title": "utils/image"
     },
     {
       "rel": "transformers.js/api/utils/maths.md",
-      "bytes": 16648,
+      "bytes": 1816,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/transformers.js/api/utils/maths.md",
       "track": "Transformers.js",
@@ -12107,8 +12161,17 @@
       "title": "utils/maths"
     },
     {
+      "rel": "transformers.js/api/utils/audio.md",
+      "bytes": 1633,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/transformers.js/api/utils/audio.md",
+      "track": "Transformers.js",
+      "package": "transformers.js",
+      "title": "utils/audio"
+    },
+    {
       "rel": "transformers.js/api/utils/model_registry.md",
-      "bytes": 22840,
+      "bytes": 20056,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/transformers.js/api/utils/model_registry.md",
       "track": "Transformers.js",
@@ -12117,7 +12180,7 @@
     },
     {
       "rel": "transformers.js/api/utils/core.md",
-      "bytes": 11297,
+      "bytes": 3129,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/transformers.js/api/utils/core.md",
       "track": "Transformers.js",
@@ -12125,44 +12188,8 @@
       "title": "utils/core"
     },
     {
-      "rel": "transformers.js/api/utils/tensor.md",
-      "bytes": 40230,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/api/utils/tensor.md",
-      "track": "Transformers.js",
-      "package": "transformers.js",
-      "title": "utils/tensor"
-    },
-    {
-      "rel": "transformers.js/api/utils/hub.md",
-      "bytes": 14136,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/api/utils/hub.md",
-      "track": "Transformers.js",
-      "package": "transformers.js",
-      "title": "utils/hub"
-    },
-    {
-      "rel": "transformers.js/api/utils/image.md",
-      "bytes": 10492,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/api/utils/image.md",
-      "track": "Transformers.js",
-      "package": "transformers.js",
-      "title": "utils/image"
-    },
-    {
-      "rel": "transformers.js/api/utils/audio.md",
-      "bytes": 20903,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/api/utils/audio.md",
-      "track": "Transformers.js",
-      "package": "transformers.js",
-      "title": "utils/audio"
-    },
-    {
       "rel": "transformers.js/api/utils/random.md",
-      "bytes": 6171,
+      "bytes": 4005,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/transformers.js/api/utils/random.md",
       "track": "Transformers.js",
@@ -12170,67 +12197,40 @@
       "title": "utils/random"
     },
     {
-      "rel": "transformers.js/api/utils/logger.md",
-      "bytes": 604,
+      "rel": "transformers.js/api/utils/hub.md",
+      "bytes": 3754,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/api/utils/logger.md",
+      "url": "https://huggingface.co/docs/transformers.js/api/utils/hub.md",
       "track": "Transformers.js",
       "package": "transformers.js",
-      "title": "utils/logger"
+      "title": "utils/hub"
     },
     {
-      "rel": "transformers.js/api/generation/configuration_utils.md",
-      "bytes": 27479,
+      "rel": "transformers.js/api/utils/tensor.md",
+      "bytes": 29228,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/api/generation/configuration_utils.md",
+      "url": "https://huggingface.co/docs/transformers.js/api/utils/tensor.md",
       "track": "Transformers.js",
       "package": "transformers.js",
-      "title": "generation/configuration_utils"
+      "title": "utils/tensor"
     },
     {
-      "rel": "transformers.js/api/generation/logits_sampler.md",
-      "bytes": 6230,
+      "rel": "transformers.js/api/backends/onnx.md",
+      "bytes": 707,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/api/generation/logits_sampler.md",
+      "url": "https://huggingface.co/docs/transformers.js/api/backends/onnx.md",
       "track": "Transformers.js",
       "package": "transformers.js",
-      "title": "generation/logits_sampler"
+      "title": "backends/onnx"
     },
     {
-      "rel": "transformers.js/api/generation/logits_process.md",
-      "bytes": 31202,
+      "rel": "transformers.js/integrations/vercel-ai-sdk.md",
+      "bytes": 8612,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/api/generation/logits_process.md",
+      "url": "https://huggingface.co/docs/transformers.js/integrations/vercel-ai-sdk.md",
       "track": "Transformers.js",
       "package": "transformers.js",
-      "title": "generation/logits_process"
-    },
-    {
-      "rel": "transformers.js/api/generation/streamers.md",
-      "bytes": 4844,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/api/generation/streamers.md",
-      "track": "Transformers.js",
-      "package": "transformers.js",
-      "title": "generation/streamers"
-    },
-    {
-      "rel": "transformers.js/api/generation/parameters.md",
-      "bytes": 3425,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/api/generation/parameters.md",
-      "track": "Transformers.js",
-      "package": "transformers.js",
-      "title": "generation/parameters"
-    },
-    {
-      "rel": "transformers.js/api/generation/stopping_criteria.md",
-      "bytes": 5618,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/transformers.js/api/generation/stopping_criteria.md",
-      "track": "Transformers.js",
-      "package": "transformers.js",
-      "title": "generation/stopping_criteria"
+      "title": "Using Transformers.js with the Vercel AI SDK"
     },
     {
       "rel": "transformers/index.md",
@@ -19748,7 +19748,7 @@
       "toc": 39,
       "found": 39,
       "written": 39,
-      "full_bytes": 518385
+      "full_bytes": 508576
     },
     {
       "pkg": "transformers",

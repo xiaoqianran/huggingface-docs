@@ -1319,9 +1319,9 @@ https://huggingface.co/docs/tokenizers/training_from_memory.md
 https://huggingface.co/docs/transformers.js/api/backends/onnx.md
 https://huggingface.co/docs/transformers.js/api/configs.md
 https://huggingface.co/docs/transformers.js/api/env.md
+https://huggingface.co/docs/transformers.js/api/generation/cache.md
 https://huggingface.co/docs/transformers.js/api/generation/configuration_utils.md
 https://huggingface.co/docs/transformers.js/api/generation/logits_process.md
-https://huggingface.co/docs/transformers.js/api/generation/logits_sampler.md
 https://huggingface.co/docs/transformers.js/api/generation/parameters.md
 https://huggingface.co/docs/transformers.js/api/generation/stopping_criteria.md
 https://huggingface.co/docs/transformers.js/api/generation/streamers.md
@@ -1334,11 +1334,11 @@ https://huggingface.co/docs/transformers.js/api/utils/audio.md
 https://huggingface.co/docs/transformers.js/api/utils/core.md
 https://huggingface.co/docs/transformers.js/api/utils/hub.md
 https://huggingface.co/docs/transformers.js/api/utils/image.md
-https://huggingface.co/docs/transformers.js/api/utils/logger.md
 https://huggingface.co/docs/transformers.js/api/utils/maths.md
 https://huggingface.co/docs/transformers.js/api/utils/model_registry.md
 https://huggingface.co/docs/transformers.js/api/utils/random.md
 https://huggingface.co/docs/transformers.js/api/utils/tensor.md
+https://huggingface.co/docs/transformers.js/api/utils/video.md
 https://huggingface.co/docs/transformers.js/custom_usage.md
 https://huggingface.co/docs/transformers.js/guides/dtypes.md
 https://huggingface.co/docs/transformers.js/guides/node-audio-processing.md
