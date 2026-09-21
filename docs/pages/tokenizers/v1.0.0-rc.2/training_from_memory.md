@@ -1,12 +1,17 @@
 # Training from memory
 
+Not supported by the rc0 bindings yet. rc0 loads a `tokenizer.json` and encodes and
+decodes with it — building a tokenizer from its components, editing one, saving one
+and training are not exposed. They are coming soon, along with the other bindings.
+See [`REQUIRED_FOR_V1.md`](https://github.com/huggingface/tokenizers/blob/main/REQUIRED_FOR_V1.md) for the full list.
+
 In the [Quicktour](quicktour), we saw how to build and train a
 tokenizer using text files, but we can actually use any Python Iterator.
 In this section we'll see a few different ways of training our
 tokenizer.
 
-For all the examples listed below, we'll use the same [Tokenizer](/docs/tokenizers/v0.23.2/en/api/tokenizer#tokenizers.Tokenizer) and
-`Trainer`, built as
+For all the examples listed below, we'll use the same `Tokenizer` and
+`~tokenizers.trainers.Trainer`, built as
 following:
 
 ```python
@@ -22,9 +27,9 @@ trainer = trainers.UnigramTrainer(
 )
 ```
 
-This tokenizer is based on the [Unigram](/docs/tokenizers/v0.23.2/en/api/models#tokenizers.models.Unigram) model. It
+This tokenizer is based on the `~tokenizers.models.Unigram` model. It
 takes care of normalizing the input using the NFKC Unicode normalization
-method, and uses a [ByteLevel](/docs/tokenizers/v0.23.2/en/api/pre-tokenizers#tokenizers.pre_tokenizers.ByteLevel) pre-tokenizer with the corresponding decoder.
+method, and uses a `~tokenizers.pre_tokenizers.ByteLevel` pre-tokenizer with the corresponding decoder.
 
 For more information on the components used here, you can check
 [here](components).
@@ -120,9 +125,14 @@ tokenizer.train_from_iterator(gzip_iterator(), trainer=trainer)
 And voilà!
 
 ### Tokenizers
-https://huggingface.co/docs/tokenizers/v0.23.2/index.md
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.2/index.md
 
 # Tokenizers
+
+Not supported by the rc0 bindings yet. rc0 loads a `tokenizer.json` and encodes and
+decodes with it — building a tokenizer from its components, editing one, saving one
+and training are not exposed. They are coming soon, along with the other bindings.
+See [`REQUIRED_FOR_V1.md`](https://github.com/huggingface/tokenizers/blob/main/REQUIRED_FOR_V1.md) for the full list.
 
 Fast State-of-the-art tokenizers, optimized for both research and
 production
@@ -141,4 +151,4 @@ performance and versatility. These tokenizers are also used in [🤗 Transformer
 - Does all the pre-processing: Truncation, Padding, add the special tokens your model needs.
 
 ### The tokenization pipeline
-https://huggingface.co/docs/tokenizers/v0.23.2/pipeline.md
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.2/pipeline.md

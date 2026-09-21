@@ -26,7 +26,7 @@ Unofficial mirror from official `llms.txt` + `llms-full.txt`.
 | [`text-embeddings-inference`](https://huggingface.co/docs/text-embeddings-inference) | TEI | 13 | [full](text-embeddings-inference/_full.md) |
 | [`text-generation-inference`](https://huggingface.co/docs/text-generation-inference) | TGI | 41 | [full](text-generation-inference/_full.md) |
 | [`timm`](https://huggingface.co/docs/timm) | timm | 77 | [full](timm/_full.md) |
-| [`tokenizers`](https://huggingface.co/docs/tokenizers) | Tokenizers | 18 | [full](tokenizers/_full.md) |
+| [`tokenizers`](https://huggingface.co/docs/tokenizers) | Tokenizers | 19 | [full](tokenizers/_full.md) |
 | [`transformers.js`](https://huggingface.co/docs/transformers.js) | Transformers.js | 39 | [full](transformers.js/_full.md) |
 | [`transformers`](https://huggingface.co/docs/transformers) | Transformers | 741 | [full](transformers/_full.md) |
 | [`trl`](https://huggingface.co/docs/trl) | TRL | 65 | [full](trl/_full.md) |

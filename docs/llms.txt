@@ -20,7 +20,7 @@
 - [TEI](https://huggingface.co/docs/text-embeddings-inference) — 13 pages
 - [TGI](https://huggingface.co/docs/text-generation-inference) — 41 pages
 - [timm](https://huggingface.co/docs/timm) — 77 pages
-- [Tokenizers](https://huggingface.co/docs/tokenizers) — 18 pages
+- [Tokenizers](https://huggingface.co/docs/tokenizers) — 19 pages
 - [Transformers.js](https://huggingface.co/docs/transformers.js) — 39 pages
 - [Transformers](https://huggingface.co/docs/transformers) — 741 pages
 - [TRL](https://huggingface.co/docs/trl) — 65 pages

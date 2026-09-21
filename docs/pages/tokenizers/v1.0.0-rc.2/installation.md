@@ -1,12 +1,7 @@
 # Installation
 
-🤗 Tokenizers is tested on Python 3.5+.
-
-You should install 🤗 Tokenizers in a [virtual environment](https://docs.python.org/3/library/venv.html). If you're
-unfamiliar with Python virtual environments, check out the [user
-guide](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/).
-Create a virtual environment with the version of Python you're going to
-use and activate it.
+🤗 Tokenizers is tested on Python 3.10+.
+We highly recommend using `uv` for virtual environment installs.
 
 ## Installation with pip
 
@@ -18,13 +13,9 @@ pip install tokenizers
 
 ## Installation from sources
 
-To use this method, you need to have the Rust language installed. You
-can follow [the official
-guide](https://www.rust-lang.org/learn/get-started) for more
-information.
+To use this method, you need to have the Rust language installed. You can follow [the official guide](https://www.rust-lang.org/learn/get-started) for more information.
 
-If you are using a unix based OS, the installation should be as simple
-as running:
+If you are using a unix based OS, the installation should be as simple as running:
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -55,6 +46,11 @@ activated. In order to compile 🤗 Tokenizers, you need to:
 ```bash
 pip install -e .
 ```
+or, if you want to dev you need to install `maturin` and run:
+
+```bash
+maturin dev
+```
 
 ## Crates.io
 
@@ -68,11 +64,11 @@ cargo add tokenizers
 
 ## Installation with npm
 
-You can simply install 🤗 Tokenizers with npm using:
-
 ```bash
 npm install tokenizers
 ```
 
-### Training from memory
-https://huggingface.co/docs/tokenizers/v0.23.2/training_from_memory.md
+See the [Node page](node) for what the binding exposes and how to use it.
+
+### Node
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.2/node.md

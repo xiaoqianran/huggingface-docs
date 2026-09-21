@@ -1,5 +1,10 @@
 # Components
 
+Not supported by the rc0 bindings yet. rc0 loads a `tokenizer.json` and encodes and
+decodes with it — building a tokenizer from its components, editing one, saving one
+and training are not exposed. They are coming soon, along with the other bindings.
+See [`REQUIRED_FOR_V1.md`](https://github.com/huggingface/tokenizers/blob/main/REQUIRED_FOR_V1.md) for the full list.
+
 When building a Tokenizer, you can attach various types of components to
 this Tokenizer in order to customize its behavior. This page lists most
 provided components.
@@ -41,19 +46,6 @@ The `Normalizer` is optional.
 | BertNormalizer | Provides an implementation of the Normalizer used in the original BERT. Options that can be set are:  clean_text handle_chinese_chars strip_accents lowercase   |  |
 | Sequence | Composes multiple normalizers that will run in the provided order | `Sequence::new(vec![NFKC, Lowercase])` |
 
-| Name | Description | Example |
-| :--- | :--- | :--- |
-| NFD | NFD unicode normalization |  |
-| NFKD | NFKD unicode normalization |  |
-| NFC | NFC unicode normalization |  |
-| NFKC | NFKC unicode normalization |  |
-| Lowercase | Replaces all uppercase to lowercase | Input: `HELLO ὈΔΥΣΣΕΎΣ`  Output: `hello`ὀδυσσεύς`  |
-| Strip | Removes all whitespace characters on the specified sides (left, right or both) of the input | Input: `"`hi`"`  Output: `"hi"`  |
-| StripAccents | Removes all accent symbols in unicode (to be used with NFD for consistency) | Input: `é`  Output: `e`  |
-| Replace | Replaces a custom string or regexp and changes it with given content | `Replace("a", "e")` will behave like this:  Input: `"banana"`  Output: `"benene"`  |
-| BertNormalizer | Provides an implementation of the Normalizer used in the original BERT. Options that can be set are:  cleanText handleChineseChars stripAccents lowercase   |  |
-| Sequence | Composes multiple normalizers that will run in the provided order | |
-
 ## Pre-tokenizers
 
 The `PreTokenizer` takes care of splitting the input according to a set
@@ -92,18 +84,6 @@ the ByteLevel)
 | Split | Versatile pre-tokenizer that splits on provided pattern and according to provided behavior. The pattern can be inverted if necessary.  pattern should be either a custom string or regexp. behavior should be one of: RemovedIsolatedMergedWithPreviousMergedWithNextContiguous invert should be a boolean flag.  | Example with pattern = ` `, behavior = `"isolated"`, invert = `False`:  Input: `"Hello, how are you?"`  Output: `"Hello,", " ", "how", " ", "are", " ", "you?"` |
 | Sequence | Lets you compose multiple `PreTokenizer` that will be run in the given order | `Sequence::new(vec![Punctuation, WhitespaceSplit])` |
 
-| Name | Description | Example |
-| :--- | :--- | :--- |
-| ByteLevel | Splits on whitespaces while remapping all the bytes to a set of visible characters. This technique as been introduced by OpenAI with GPT-2 and has some more or less nice properties:  Since it maps on bytes, a tokenizer using this only requires **256** characters as initial alphabet (the number of values a byte can have), as opposed to the 130,000+ Unicode characters. A consequence of the previous point is that it is absolutely unnecessary to have an unknown token using this since we can represent anything with 256 tokens (Youhou!! 🎉🎉) For non ascii characters, it gets completely unreadable, but it works nonetheless!  | Input: `"Hello my friend, how are you?"`  Output: `"Hello", "Ġmy", Ġfriend", ",", "Ġhow", "Ġare", "Ġyou", "?"`  |
-| Whitespace | Splits on word boundaries (using the following regular expression: `\w+&#124;[^\w\s]+` | Input: `"Hello there!"`  Output: `"Hello", "there", "!"`  |
-| WhitespaceSplit | Splits on any whitespace character | Input: `"Hello there!"`  Output: `"Hello", "there!"`  |
-| Punctuation | Will isolate all punctuation characters | Input: `"Hello?"`  Output: `"Hello", "?"`  |
-| Metaspace | Splits on whitespaces and replaces them with a special char “▁” (U+2581) | Input: `"Hello there"`  Output: `"Hello", "▁there"`  |
-| CharDelimiterSplit | Splits on a given character | Example with `x`:  Input: `"Helloxthere"`  Output: `"Hello", "there"`  |
-| Digits | Splits the numbers from any other characters. | Input: `"Hello123there"`   Output: ``"Hello", "123", "there"``  |
-| Split | Versatile pre-tokenizer that splits on provided pattern and according to provided behavior. The pattern can be inverted if necessary.  pattern should be either a custom string or regexp. behavior should be one of: removedisolatedmergedWithPreviousmergedWithNextcontiguous invert should be a boolean flag.  | Example with pattern = ` `, behavior = `"isolated"`, invert = `False`:  Input: `"Hello, how are you?"`  Output: `"Hello,", " ", "how", " ", "are", " ", "you?"` |
-| Sequence | Lets you compose multiple `PreTokenizer` that will be run in the given order | |
-
 ## Models
 
 Models are the core algorithms used to actually tokenize, and therefore,
@@ -140,4 +120,4 @@ special characters or identifiers that need to be reverted for example.
 | WordPiece | Reverts the WordPiece Model. This model uses a special identifier `##` for continuing subwords, and so this Decoder helps with decoding these. |
 
 ### Installation
-https://huggingface.co/docs/tokenizers/v0.23.2/installation.md
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.2/installation.md

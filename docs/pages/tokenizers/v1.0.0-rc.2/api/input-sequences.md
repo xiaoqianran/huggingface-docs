@@ -1,5 +1,10 @@
 # Input Sequences
 
+Not supported by the rc0 bindings yet. rc0 loads a `tokenizer.json` and encodes and
+decodes with it — building a tokenizer from its components, editing one, saving one
+and training are not exposed. They are coming soon, along with the other bindings.
+See [`REQUIRED_FOR_V1.md`](https://github.com/huggingface/tokenizers/blob/main/REQUIRED_FOR_V1.md) for the full list.
+
 These types represent all the different kinds of sequence that can be used as input of a Tokenizer.
 Globally, any sequence can be either a string or a list of strings, according to the operating
 mode of the tokenizer: `raw text` vs `pre-tokenized`.
@@ -32,7 +37,5 @@ alias of `Union[str, List[str], Tuple[str]]`.
 
 The Rust API Reference is available directly on the [Docs.rs](https://docs.rs/tokenizers/latest/tokenizers/) website.
 
-The node API has not been documented yet.
-
 ### Pre-tokenizers
-https://huggingface.co/docs/tokenizers/v0.23.2/api/pre-tokenizers.md
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.2/api/pre-tokenizers.md

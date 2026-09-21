@@ -1,5 +1,10 @@
 # The tokenization pipeline
 
+Not supported by the rc0 bindings yet. rc0 loads a `tokenizer.json` and encodes and
+decodes with it — building a tokenizer from its components, editing one, saving one
+and training are not exposed. They are coming soon, along with the other bindings.
+See [`REQUIRED_FOR_V1.md`](https://github.com/huggingface/tokenizers/blob/main/REQUIRED_FOR_V1.md) for the full list.
+
 When calling `Tokenizer.encode` or
 `Tokenizer.encode_batch`, the input
 text(s) go through the following pipeline:
@@ -26,11 +31,6 @@ tokenizer = Tokenizer.from_file("data/tokenizer-wiki.json")
 ```rust
 use tokenizers::Tokenizer;
 let mut tokenizer = Tokenizer::from_file("data/tokenizer-wiki.json")?;
-```
-
-```js
-let { Tokenizer } = require("tokenizers");
-let tokenizer = Tokenizer.fromFile("data/tokenizer-wiki.json");
 ```
 
 ## Normalization
@@ -60,11 +60,6 @@ use tokenizers::normalizers::{
 let normalizer = NormalizerSequence::new(vec![NFD.into(), StripAccents.into()]);
 ```
 
-```js
-let { sequenceNormalizer, nfdNormalizer, stripAccentsNormalizer } = require("tokenizers");
-let normalizer = sequenceNormalizer([nfdNormalizer(), stripAccentsNormalizer()]);
-```
-
 You can manually test that normalizer by applying it to any string:
 
 ```python
@@ -80,11 +75,6 @@ println!("{}", normalized.get());
 // "Hello how are u?"
 ```
 
-```js
-let normalized = normalizer.normalizeString("Héllò hôw are ü?")
-// "Hello how are u?"
-```
-
 When building a `Tokenizer`, you can
 customize its normalizer by just changing the corresponding attribute:
 
@@ -94,10 +84,6 @@ tokenizer.normalizer = normalizer
 
 ```rust
 tokenizer.with_normalizer(Some(normalizer)).unwrap();
-```
-
-```js
-tokenizer.setNormalizer(normalizer)
 ```
 
 Of course, if you change the way a tokenizer applies normalization, you
@@ -142,12 +128,6 @@ println!(
 //  ("you", (36, 39), None), (".", (39, 40), None)]
 ```
 
-```js
-let { whitespacePreTokenizer } = require("tokenizers");
-var preTokenizer = whitespacePreTokenizer();
-var preTokenized = preTokenizer.preTokenizeString("Hello! How are you? I'm fine, thank you.");
-```
-
 The output is a list of tuples, with each tuple containing one word and
 its span in the original sentence (which is used to determine the final
 `offsets` of our `Encoding`). Note that splitting on
@@ -176,12 +156,6 @@ println!(
 );
 ```
 
-```js
-let { sequencePreTokenizer, digitsPreTokenizer } = require("tokenizers");
-var preTokenizer = sequencePreTokenizer([whitespacePreTokenizer(), digitsPreTokenizer(true)]);
-var preTokenized = preTokenizer.preTokenizeString("Call 911!");
-```
-
 As we saw in the `quicktour`, you can
 customize the pre-tokenizer of a `Tokenizer` by just changing the corresponding attribute:
 
@@ -191,10 +165,6 @@ tokenizer.pre_tokenizer = pre_tokenizer
 
 ```rust
 tokenizer.with_pre_tokenizer(Some(pre_tokenizer));
-```
-
-```js
-tokenizer.setPreTokenizer(preTokenizer)
 ```
 
 Of course, if you change the way the pre-tokenizer, you should probably
@@ -259,15 +229,6 @@ tokenizer.with_post_processor(Some(
 ));
 ```
 
-```js
-let { templateProcessing } = require("tokenizers");
-tokenizer.setPostProcessor(templateProcessing(
-    "[CLS] $A [SEP]",
-    "[CLS] $A [SEP] $B:1 [SEP]:1",
-    [["[CLS]", 1], ["[SEP]", 2]]
-));
-```
-
 Note that contrarily to the pre-tokenizer or the normalizer, you don't
 need to retrain a tokenizer after changing its post-processor.
 
@@ -284,20 +245,14 @@ bert_tokenizer = Tokenizer(WordPiece(unk_token="[UNK]"))
 ```
 
 ```rust
-use tokenizers::models::wordpiece::WordPiece;
 use tokenizers::Tokenizer;
+use tokenizers::models::wordpiece::WordPiece;
 let mut bert_tokenizer = Tokenizer::new(
     WordPiece::builder()
         .unk_token("[UNK]".to_string())
         .build()
         .unwrap(),
 );
-```
-
-```js
-let { Tokenizer } = require("tokenizers");
-let { WordPiece } = require("tokenizers");
-let bertTokenizer = new Tokenizer(WordPiece.init({}, { unkToken: "[UNK]" }));
 ```
 
 Then we know that BERT preprocesses texts by removing accents and
@@ -321,14 +276,6 @@ bert_tokenizer
     .unwrap();
 ```
 
-```js
-let { sequenceNormalizer, lowercaseNormalizer, nfdNormalizer, stripAccentsNormalizer }
-    = require("tokenizers");
-bertTokenizer.setNormalizer(sequenceNormalizer([
-    nfdNormalizer(), lowercaseNormalizer(), stripAccentsNormalizer()
-]))
-```
-
 The pre-tokenizer is just splitting on whitespace and punctuation:
 
 ```python
@@ -339,11 +286,6 @@ bert_tokenizer.pre_tokenizer = Whitespace()
 ```rust
 use tokenizers::pre_tokenizers::whitespace::Whitespace;
 bert_tokenizer.with_pre_tokenizer(Some(Whitespace {}));
-```
-
-```js
-let { whitespacePreTokenizer } = require("tokenizers");
-bertTokenizer.setPreTokenizer(whitespacePreTokenizer());
 ```
 
 And the post-processing uses the template we saw in the previous
@@ -375,15 +317,6 @@ bert_tokenizer.with_post_processor(Some(
 ));
 ```
 
-```js
-let { templateProcessing } = require("tokenizers");
-bertTokenizer.setPostProcessor(templateProcessing(
-    "[CLS] $A [SEP]",
-    "[CLS] $A [SEP] $B:1 [SEP]:1",
-    [["[CLS]", 1], ["[SEP]", 2]]
-));
-```
-
 We can use this tokenizer and train on it on wikitext like in the
 `quicktour`:
 
@@ -396,7 +329,7 @@ bert_tokenizer.save("data/bert-wiki.json")
 ```
 
 ```rust
-use tokenizers::models::{wordpiece::WordPieceTrainer, TrainerWrapper};
+use tokenizers::models::{TrainerWrapper, wordpiece::WordPieceTrainer};
 let mut trainer: TrainerWrapper = WordPieceTrainer::builder()
     .vocab_size(30_522)
     .special_tokens(vec![
@@ -415,17 +348,6 @@ let files = vec![
 ];
 bert_tokenizer.train_from_files(&mut trainer, files)?;
 bert_tokenizer.save("data/bert-wiki.json", false)?;
-```
-
-```js
-let { wordPieceTrainer } = require("tokenizers");
-let trainer = wordPieceTrainer({
-    vocabSize: 30522,
-    specialTokens: ["[UNK]", "[CLS]", "[SEP]", "[PAD]", "[MASK]"]
-});
-let files = ["test", "train", "valid"].map(split => `data/wikitext-103-raw/wiki.${split}.raw`);
-bertTokenizer.train(files, trainer);
-bertTokenizer.save("data/bert-wiki.json")
 ```
 
 ## Decoding
@@ -458,14 +380,6 @@ println!("{decoded}");
 // "Hello , y ' all ! How are you ?"
 ```
 
-```js
-let output = await tokenizer.encode("Hello, y'all! How are you 😁 ?");
-console.log(output.getIds());
-// [1, 27253, 16, 93, 11, 5097, 5, 7961, 5112, 6218, 0, 35, 2]
-let decoded = await tokenizer.decode([1, 27253, 16, 93, 11, 5097, 5, 7961, 5112, 6218, 0, 35, 2], true);
-// "Hello , y ' all ! How are you ?"
-```
-
 If you used a model that added special characters to represent subtokens
 of a given "word" (like the `"##"` in
 WordPiece) you will need to customize the `decoder` to treat
@@ -489,14 +403,6 @@ println!("{decoded}");
 // "welcome to the tok ##eni ##zer ##s library ."
 ```
 
-```js
-let output = await bertTokenizer.encode("Welcome to the 🤗 Tokenizers library.");
-console.log(output.getTokens());
-// ["[CLS]", "welcome", "to", "the", "[UNK]", "tok", "##eni", "##zer", "##s", "library", ".", "[SEP]"]
-var decoded = await bertTokenizer.decode(output.getIds(), true);
-// "welcome to the tok ##eni ##zer ##s library ."
-```
-
 But by changing it to a proper decoder, we get:
 
 ```python
@@ -513,12 +419,5 @@ let decoded = bert_tokenizer.decode(output.get_ids(), true)?;
 // "welcome to the tokenizers library."
 ```
 
-```js
-let { wordPieceDecoder } = require("tokenizers");
-bertTokenizer.setDecoder(wordPieceDecoder());
-var decoded = await bertTokenizer.decode(output.getIds(), true);
-// "welcome to the tokenizers library."
-```
-
 ### Tokenizer
-https://huggingface.co/docs/tokenizers/v0.23.2/api/tokenizer.md
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.2/api/tokenizer.md

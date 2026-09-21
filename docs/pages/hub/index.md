@@ -84,7 +84,7 @@ Quickstart
 Pricing
 Manage Jobs
 Jobs Configuration
-Popular images
+Using Docker images
 Schedule Jobs
 Webhooks Automation
 Reference

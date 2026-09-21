@@ -21,3 +21,6 @@
 - [Trainers](https://huggingface.co/docs/tokenizers/v1.0.0-rc.2/api/trainers.md)
 - [Visualizer](https://huggingface.co/docs/tokenizers/v1.0.0-rc.2/api/visualizer.md)
 - [Added Tokens](https://huggingface.co/docs/tokenizers/v1.0.0-rc.2/api/added-tokens.md)
+
+### Quicktour
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.2/quicktour.md

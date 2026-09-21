@@ -1,5 +1,10 @@
 # Quicktour
 
+Not supported by the rc0 bindings yet. rc0 loads a `tokenizer.json` and encodes and
+decodes with it — building a tokenizer from its components, editing one, saving one
+and training are not exposed. They are coming soon, along with the other bindings.
+See [`REQUIRED_FOR_V1.md`](https://github.com/huggingface/tokenizers/blob/main/REQUIRED_FOR_V1.md) for the full list.
+
 Let's have a quick look at the 🤗 Tokenizers library features. The
 library provides an implementation of today's most used tokenizers that
 is both easy to use and blazing fast.
@@ -55,12 +60,6 @@ let mut tokenizer: TokenizerImpl<
 );
 ```
 
-```js
-{ Tokenizer } = require('tokenizers')
-{ BPE } = require('tokenizers')
-tokenizer = new Tokenizer(BPE.init({}, [], { unkToken: '[UNK]' }))
-```
-
 To train our tokenizer on the wikitext files, we will need to
 instantiate a [trainer]{.title-ref}, in this case a
 `BpeTrainer`
@@ -81,12 +80,6 @@ let mut trainer = BpeTrainer::builder()
         AddedToken::from("[MASK]", true),
     ])
     .build();
-```
-
-```js
-{ bpeTrainer } = require('tokenizers')
-trainer = bpeTrainer({
-ecialTokens: ['[UNK]', '[CLS]', '[SEP]', '[PAD]', '[MASK]'],
 ```
 
 We can set the training arguments like `vocab_size` or `min_frequency` (here
@@ -117,11 +110,6 @@ use tokenizers::pre_tokenizers::whitespace::Whitespace;
 tokenizer.with_pre_tokenizer(Some(Whitespace {}));
 ```
 
-```js
-{ whitespacePreTokenizer } = require('tokenizers')
-nizer.setPreTokenizer(whitespacePreTokenizer())
-```
-
 Now, we can just call the `Tokenizer.train` method with any list of files we want to use:
 
 ```python
@@ -138,11 +126,6 @@ let files = vec![
 tokenizer.train_from_files(&mut trainer, files)?;
 ```
 
-```js
-files = ['test', 'train', 'valid'].map((split) => `data/wikitext-103-raw/wiki.${split}.raw`)
-nizer.train(files, trainer)
-```
-
 This should only take a few seconds to train our tokenizer on the full
 wikitext dataset! To save the tokenizer in one file that contains all
 its configuration and vocabulary, just use the
@@ -154,10 +137,6 @@ tokenizer.save("data/tokenizer-wiki.json")
 
 ```rust
 tokenizer.save("data/tokenizer-wiki.json", false)?;
-```
-
-```js
-nizer.save('data/tokenizer-wiki.json')
 ```
 
 and you can reload your tokenizer from that file with the
@@ -172,10 +151,6 @@ tokenizer = Tokenizer.from_file("data/tokenizer-wiki.json")
 let mut tokenizer = Tokenizer::from_file("data/tokenizer-wiki.json")?;
 ```
 
-```js
-tokenizer = Tokenizer.fromFile('data/tokenizer-wiki.json')
-```
-
 ### Using the tokenizer
 
 Now that we have trained a tokenizer, we can use it on any text we want
@@ -187,10 +162,6 @@ output = tokenizer.encode("Hello, y'all! How are you 😁 ?")
 
 ```rust
 let output = tokenizer.encode("Hello, y'all! How are you 😁 ?", true)?;
-```
-
-```js
-output = await tokenizer.encode("Hello, y'all! How are you 😁 ?")
 ```
 
 This applied the full pipeline of the tokenizer on the text, returning
@@ -212,11 +183,6 @@ println!("{:?}", output.get_tokens());
 // ["Hello", ",", "y", "'", "all", "!", "How", "are", "you", "[UNK]", "?",]
 ```
 
-```js
-ole.log(output.getTokens())
-"Hello", ",", "y", "'", "all", "!", "How", "are", "you", "[UNK]", "?"]
-```
-
 Similarly, the `ids` attribute will
 contain the index of each of those tokens in the tokenizer's
 vocabulary:
@@ -229,11 +195,6 @@ print(output.ids)
 ```rust
 println!("{:?}", output.get_ids());
 // [27253, 16, 93, 11, 5097, 5, 7961, 5112, 6218, 0, 35]
-```
-
-```js
-ole.log(output.getIds())
-27253, 16, 93, 11, 5097, 5, 7961, 5112, 6218, 0, 35]
 ```
 
 An important feature of the 🤗 Tokenizers library is that it comes with
@@ -256,12 +217,6 @@ println!("{:?}", output.get_offsets()[9]);
 // (26, 30)
 ```
 
-```js
-offsets = output.getOffsets()
-ole.log(offsets[9])
-26, 27)
-```
-
 and those are the indices that correspond to the emoji in the original
 sentence:
 
@@ -275,14 +230,6 @@ sentence[26:27]
 let sentence = "Hello, y'all! How are you 😁 ?";
 println!("{}", &sentence[26..30]);
 // "😁"
-```
-
-```js
-{ slice } = require('tokenizers')
-sentence = "Hello, y'all! How are you 😁 ?"
-[start, end] = offsets[9]
-ole.log(slice(sentence, start, end))
-😁"
 ```
 
 ### Post-processing
@@ -306,10 +253,6 @@ tokenizer.token_to_id("[SEP]")
 ```rust
 println!("{}", tokenizer.token_to_id("[SEP]").unwrap());
 // 2
-```
-
-```js
-ole.log(tokenizer.tokenToId('[SEP]'))
 ```
 
 Here is how we can set the post-processing to give us the traditional
@@ -344,15 +287,6 @@ tokenizer.with_post_processor(Some(
 ));
 ```
 
-```js
-{ templateProcessing } = require('tokenizers')
-nizer.setPostProcessor(
-mplateProcessing('[CLS] $A [SEP]', '[CLS] $A [SEP] $B:1 [SEP]:1', [
-['[CLS]', tokenizer.tokenToId('[CLS]')],
-['[SEP]', tokenizer.tokenToId('[SEP]')],
-,
-```
-
 Let's go over this snippet of code in more details. First we specify
 the template for single sentences: those should have the form
 `"[CLS] $A [SEP]"` where
@@ -385,12 +319,6 @@ println!("{:?}", output.get_tokens());
 // ["[CLS]", "Hello", ",", "y", "'", "all", "!", "How", "are", "you", "[UNK]", "?", "[SEP]"]
 ```
 
-```js
-output = await tokenizer.encode("Hello, y'all! How are you 😁 ?")
-ole.log(output.getTokens())
-"[CLS]", "Hello", ",", "y", "'", "all", "!", "How", "are", "you", "[UNK]", "?", "[SEP]"]
-```
-
 To check the results on a pair of sentences, we just pass the two
 sentences to `Tokenizer.encode`:
 
@@ -406,12 +334,6 @@ println!("{:?}", output.get_tokens());
 // ["[CLS]", "Hello", ",", "y", "'", "all", "!", "[SEP]", "How", "are", "you", "[UNK]", "?", "[SEP]"]
 ```
 
-```js
-output = await tokenizer.encode("Hello, y'all!", 'How are you 😁 ?')
-ole.log(output.getTokens())
-"[CLS]", "Hello", ",", "y", "'", "all", "!", "[SEP]", "How", "are", "you", "[UNK]", "?", "[SEP]"]
-```
-
 You can then check the type IDs attributed to each token is correct with
 
 ```python
@@ -422,11 +344,6 @@ print(output.type_ids)
 ```rust
 println!("{:?}", output.get_type_ids());
 // [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1]
-```
-
-```js
-ole.log(output.getTypeIds())
-0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1]
 ```
 
 If you save your tokenizer with `Tokenizer.save`, the post-processor will be saved along.
@@ -443,10 +360,6 @@ output = tokenizer.encode_batch(["Hello, y'all!", "How are you 😁 ?"])
 
 ```rust
 let output = tokenizer.encode_batch(vec!["Hello, y'all!", "How are you 😁 ?"], true)?;
-```
-
-```js
-output = await tokenizer.encodeBatch(["Hello, y'all!", 'How are you 😁 ?'])
 ```
 
 The output is then a list of `Encoding`
@@ -473,12 +386,6 @@ let output = tokenizer.encode_batch(
 )?;
 ```
 
-```js
-ar output = await tokenizer.encodeBatch(
-   [["Hello, y'all!", "How are you 😁 ?"], ["Hello to you too!", "I'm fine, thank you!"]]
-;
-```
-
 When encoding multiple sentences, you can automatically pad the outputs
 to the longest sentence present by using
 `Tokenizer.enable_padding`, with the
@@ -499,10 +406,6 @@ tokenizer.with_padding(Some(PaddingParams {
 }));
 ```
 
-```js
-nizer.setPadding({ padId: 3, padToken: '[PAD]' })
-```
-
 We can set the `direction` of the padding
 (defaults to the right) or a given `length` if we want to pad every sample to that specific number (here
 we leave it unset to pad to the size of the longest text).
@@ -519,12 +422,6 @@ println!("{:?}", output[1].get_tokens());
 // ["[CLS]", "How", "are", "you", "[UNK]", "?", "[SEP]", "[PAD]"]
 ```
 
-```js
-output = await tokenizer.encodeBatch(["Hello, y'all!", 'How are you 😁 ?'])
-ole.log(output[1].getTokens())
-"[CLS]", "How", "are", "you", "[UNK]", "?", "[SEP]", "[PAD]"]
-```
-
 In this case, the `attention mask` generated by the
 tokenizer takes the padding into account:
 
@@ -536,11 +433,6 @@ print(output[1].attention_mask)
 ```rust
 println!("{:?}", output[1].get_attention_mask());
 // [1, 1, 1, 1, 1, 1, 1, 0]
-```
-
-```js
-ole.log(output[1].getAttentionMask())
-1, 1, 1, 1, 1, 1, 1, 0]
 ```
 
 ## Pretrained
@@ -563,16 +455,15 @@ have its vocabulary file. For instance, here is how to import the
 classic pretrained BERT tokenizer:
 
 ```python
-from tokenizers import BertWordPieceTokenizer
-
-tokenizer = BertWordPieceTokenizer("bert-base-uncased-vocab.txt", lowercase=True)
+from tokenizers import Tokenizer
+tokenizer = Tokenizer.from_file("bert-base-uncased-vocab.txt", lowercase=True)
 ```
 
 as long as you have downloaded the file `bert-base-uncased-vocab.txt` with
 
 ```bash
-wget https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt
+hf download hf://google-bert/bert-base-uncased/vocab.txt
 ```
 
 ### Components
-https://huggingface.co/docs/tokenizers/v0.23.2/components.md
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.2/components.md
