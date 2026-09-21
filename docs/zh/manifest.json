@@ -1999,13 +1999,18 @@
     "trl/ppo_trainer.md": {
       "hash": "665d8b08c80f9e79c98f0242f1756271d3f34bd8",
       "translatedAt": "2026-08-11T13:59:27.535Z"
+    },
+    "hub/jobs-images.md": {
+      "hash": "92abb1c0417b64db764e61f7cba4072a60025ffc",
+      "translatedAt": "2026-09-21T13:53:46.028Z",
+      "failed": true
     }
   },
-  "updatedAt": "2026-09-20T12:12:35.366Z",
+  "updatedAt": "2026-09-21T13:53:57.782Z",
   "stats": {
     "translated": 0,
-    "skipped": 400,
-    "failed": 0,
+    "skipped": 391,
+    "failed": 9,
     "total": 400
   }
 }
