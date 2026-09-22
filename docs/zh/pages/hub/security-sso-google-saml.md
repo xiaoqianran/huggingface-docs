@@ -40,7 +40,7 @@
 
 ## 步骤 4：属性映射
 
-- 在“属性映射”屏幕上，单击`Add mapping`并配置要发送的属性。此步骤是可选的，取决于您要在 Hugging Face 上使用 [Role Mapping](./security-sso-user-management#role-mapping) 还是 [Resource Group Mapping](./security-sso-user-management#resource-group-mapping)。
+- 在“属性映射”屏幕上，单击`Add mapping`并配置要发送的属性。此步骤是可选的，取决于您是否要在 Hugging Face 上使用 [Role Mapping](./security-sso-user-management#role-mapping) 还是 [Resource Group Mapping](./security-sso-user-management#resource-group-mapping)。
 
 - 点击`Finish`。
 
@@ -53,5 +53,5 @@
 - 测试成功后，您可以通过单击“启用”按钮为您的组织启用 SSO。
 - 启用后，您组织的成员必须完成 [How it works](./security-sso-basic#how-it-works) 部分中描述的 SSO 身份验证流程。
 
-### 小部件示例
-https://huggingface.co/docs/hub/models-widgets-examples.md
+### 使用 Docker 镜像
+https://huggingface.co/docs/hub/jobs-images.md

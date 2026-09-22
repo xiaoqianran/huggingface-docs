@@ -48,6 +48,8 @@ hf jobs uv run --flavor t4-small -- script.py --early-stopping-patience 3
 
 默认情况下，UV 作业使用 `ghcr.io/astral-sh/uv:python3.12-bookworm` Docker 映像运行，但只要安装了 UV，您就可以使用其他映像，即 `--image <docker-image>`。
 
+请参阅 [Using Docker images](./jobs-images#use-an-image-with-uv) 选择图像并了解其环境如何与 UV 依赖性交互。
+
 ### 在脚本中定义启动配置仅在特定运行时（给定图像、GPU 风格或系统解释器）上正确运行的脚本可以在其 PEP 723 标头的可选 `[tool.hf-jobs]` 表中携带该配置：
 
 ```python
@@ -67,7 +69,7 @@ hf jobs uv run --flavor t4-small -- script.py --early-stopping-patience 3
 
 支持的按键，全部可选：`image`、`flavor`、`python`、`timeout`、`name`、`namespace`、`env`、`secrets`、`labels`、`volumes`、 `network_group` 和 `network_aliases`。它们映射到同名的标志。脚本中的值是默认值：显式标志始终获胜，并且 `env`、`secrets`、`labels` 和 `volumes` 逐项合并，因此 `-e` 和 `-v` 添加到脚本声明的内容中。未知的密钥是一个错误，`secrets`只列出名称：值来自运行脚本的人的环境，未在本地设置的秘密也是一个错误。
 
-使用`--dry-run`打印解析后的配置，无需提交；来自脚本的值被标记为 `(from script)`。有关完整的合并规则，请参阅[⟦T80⟧ CLI guide](https://huggingface.co/docs/huggingface_hub/guides/cli#ship-the-launch-config-with-the-script)。
+使用`--dry-run`打印解析后的配置，无需提交；来自脚本的值被标记为 `(from script)`。完整的合并规则请参见[⟦T80⟧ CLI guide](https://huggingface.co/docs/huggingface_hub/guides/cli#ship-the-launch-config-with-the-script)。
 
 > [!警告]
 > 该表仅由 `hf` CLI 读取。 `run_uv_job()` 和 `create_scheduled_uv_job()` 忽略它，因此从 Python 显式传递 `image=`、`flavor=`、...。
@@ -86,11 +88,13 @@ hf jobs uv run --flavor t4-small -- script.py --early-stopping-patience 3
 
 在 [CLI documentation](https://huggingface.co/docs/huggingface_hub/package_reference/cli#hf-jobs-run) 中找到所有参数的列表。
 
+有关使用现有镜像和 Docker Spaces 构建的镜像的示例，请参阅 [Using Docker images](./jobs-images)。
+
 ## 环境变量和秘密
 
 ### 内置环境变量
 
-与[built-in environment variables in Spaces](./spaces-overview#built-in-environment-variables)类似，作业会自动在容器内提供以下环境变量：
+与[built-in environment variables in Spaces](./spaces-overview#built-in-environment-variables)类似，Jobs自动在容器内提供以下环境变量：
 
 |变量|描述 |
 |----------|-------------|
@@ -99,14 +103,14 @@ hf jobs uv run --flavor t4-small -- script.py --early-stopping-patience 3
 | `CPU_CORES` |分配给作业的 CPU 核心数。 |
 | `MEMORY` |分配给作业的内存量（例如，`8Gi`）。 |
 | `HF_NETWORK_GROUP_HOSTNAME` |解析作业的 [network group](#network-groups) 中每个作业的主机名。仅在作业声明一项时设置。 |
-| `HF_NETWORK_GROUP_PREFIX` |用于添加别名的前缀，以获取声明该别名的组成员的主机名（例如，`${HF_NETWORK_GROUP_PREFIX}master`）。仅当作业声明网络组时设置。 |
-
-您可以使用这些变量来跟踪输出，使代码适应可用资源，或以编程方式引用当前作业：
+| `HF_NETWORK_GROUP_PREFIX` |用于添加别名的前缀，以获取声明该别名的组成员的主机名（例如，`${HF_NETWORK_GROUP_PREFIX}master`）。仅当作业声明网络组时设置。 |您可以使用这些变量来跟踪输出，使代码适应可用资源，或以编程方式引用当前作业：
 
 ```bash
 # Access job environment information
 >>> hf jobs run python:3.12 python -c "import os; print(f'Job: {os.environ.get(\"JOB_ID\")}, CPU: {os.environ.get(\"CPU_CORES\")}, Mem: {os.environ.get(\"MEMORY\")}')"
-```### 用户定义的环境变量
+```
+
+### 用户定义的环境变量
 
 您可以使用以下命令将环境变量传递给您的作业 
 
@@ -149,10 +153,8 @@ hf jobs uv run --flavor t4-small -- script.py --early-stopping-patience 3
 |模型仓库 | `-v hf://openai/gpt-oss-120b:/model` |
 |数据集存储库 | `-v hf://datasets/stanfordnlp/imdb:/data` |
 |储物桶| `-v hf://buckets/username/my-bucket:/mnt` |
-|子文件夹 | `-v hf://datasets/org/my-dataset/train:/data` |
-|本地目录 | `-v ./training-data:/data` |
-
-然后使用已安装的卷作为容器内的本地目录：
+|子文件夹| `-v hf://datasets/org/my-dataset/train:/data` |
+|本地目录| `-v ./training-data:/data` |然后使用已安装的卷作为容器内的本地目录：
 
 ```bash
 # Mount a dataset and query it with DuckDB
@@ -169,7 +171,9 @@ hf jobs uv run --flavor t4-small -- script.py --early-stopping-patience 3
 ```bash
 >>> hf jobs run -v hf://datasets/username/my-dataset:/data -v hf://buckets/username/my-bucket:/output \
 ...     python:3.12 python script.py
-```模型和数据集始终以**只读**方式安装。默认情况下，存储桶是**读写**的，这对于保存输出、检查点或中间结果非常有用。使用 `:ro` 以只读模式挂载存储桶：
+```
+
+模型和数据集始终以**只读**方式安装。默认情况下，存储桶是**读写**的，这对于保存输出、检查点或中间结果非常有用。使用 `:ro` 以只读模式挂载存储桶：
 
 ```bash
 >>> hf jobs run -v hf://buckets/username/my-bucket:/mnt:ro python:3.12 ls /mnt
@@ -177,7 +181,7 @@ hf jobs uv run --flavor t4-small -- script.py --early-stopping-patience 3
 
 ### 本地目录
 
-传递本地目录作为源，在作业启动之前将其同步到您的私有`jobs-artifacts`[Storage Bucket](./storage-buckets)（自动创建），然后将其安装到容器中。本地目录默认挂载为**只读**；使用 `:rw` 写入输出：
+在作业启动之前传递本地目录作为源，将其同步到您的私有`jobs-artifacts`[Storage Bucket](./storage-buckets)（自动创建），然后将其安装到容器中。本地目录默认挂载为**只读**；使用 `:rw` 写入输出：
 
 ```bash
 >>> hf jobs uv run -v ./pdfs:/input -v ./md-out:/output:rw ocr.py
@@ -203,13 +207,13 @@ job = run_job(
 > [!注意]
 > 批量安装需要 `huggingface_hub` >= 1.8.0。更多详情请参阅[Python client documentation](https://huggingface.co/docs/huggingface_hub/guides/jobs#mount-a-volume)和[installation guide](https://huggingface.co/docs/huggingface_hub/installation)。
 
-## 硬件风味
-
-使用 `flavor` 参数在 GPU 或 TPU 上运行作业。例如，要在 A10G GPU 上运行 PyTorch 作业：
+## 硬件风味使用 `flavor` 参数在 GPU 或 TPU 上运行作业。例如，要在 A10G GPU 上运行 PyTorch 作业：
 
 ```bash
 >>> hf jobs uv run --with torch --flavor a10g-small python -c "import torch; print(f'This code ran with the following GPU: {torch.cuda.get_device_name()}')"
-```运行此命令将显示以下输出！
+```
+
+运行此命令将显示以下输出！
 
 ```
 This code ran with the following GPU: NVIDIA A10G

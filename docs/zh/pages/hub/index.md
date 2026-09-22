@@ -84,7 +84,7 @@ Docker 空间
 定价
 管理职位
 职位配置
-热门图片
+使用 Docker 镜像
 安排工作
 Webhooks 自动化
 参考
@@ -143,19 +143,19 @@ Hugging Face Hub 托管基于 Git 的存储库，这些存储库是版本控制�
 
 [🤗 ⟦T0⟧](https://huggingface.co/docs/datasets/index) 库允许您以编程方式与数据集交互，因此您可以在项目中轻松使用 Hub 中的数据集。只需一行代码，您就可以访问数据集；即使它们太大而无法放入您的计算机，您也可以使用流式传输来有效地访问数据。
 
-## Spaces
+## 空格
 
 [Spaces](https://huggingface.co/spaces) 是在 Hub 上托管 ML 演示应用程序的简单方法。它们允许您构建 ML 产品组合、在会议上或向利益相关者展示您的项目，以及与 ML 生态系统中的其他人员协作。我们目前支持两个很棒的 Python SDK（**[Gradio](https://gradio.app/)** 和 **[Streamlit](./spaces-sdks-streamlit)**），让您在几分钟内构建很酷的应用程序。用户还可以创建静态空间，即简单的 HTML/CSS/JavaScript 页面，或部署任何基于 Docker 的应用程序。
 
 如果您的演示需要 GPU 能力，请尝试[**ZeroGPU**](./spaces-zerogpu)：它仅在需要时实时动态提供 NVIDIA RTX Pro 6000 Blackwell GPU。
 
-探索了几个空间后（看看我们的 [Space of the Week!](https://huggingface.co/spaces)），请深入了解 [**Spaces documentation**](./spaces-overview) 了解如何创建自己的空间。您还可以升级 Space 以在 GPU 或其他加速硬件上运行。 ⚡️
+探索了几个空间后（看看我们的[Space of the Week!](https://huggingface.co/spaces)），请深入了解[**Spaces documentation**](./spaces-overview)，了解如何创建自己的空间。您还可以升级 Space 以在 GPU 或其他加速硬件上运行。 ⚡️
 
-## Storage Buckets
+## 存储桶
 
 [Storage Buckets](./storage-buckets) 在 Hugging Face 上提供类似 S3 的对象存储，由 Xet 存储后端提供支持。与存储库（基于 git 并跟踪文件历史记录）不同，存储桶是远程对象存储容器，专为具有内容可寻址重复数据删除功能的大型文件而设计。它们专为需要简单、快速、可变存储的用例而设计，例如存储训练检查点、日志、中间工件或任何不需要版本控制的大型文件集合。
 
-## Organizations公司、大学和非营利组织是 Hugging Face 社区的重要组成部分！ Hub 提供[**Organizations**](./organizations)，可用于对帐户进行分组并管理数据集、模型和空间。教育工作者还可以使用[Hugging Face for Classrooms](https://huggingface.co/classrooms)为学生创建协作组织。组织的存储库将显示在组织的页面上，并且组织的每个成员都将能够为存储库做出贡献。除了方便地对组织的所有工作进行分组之外，该中心还允许管理员将角色设置为[**control access to repositories**](./organizations-security)，并管理其组织的[payment method and billing info](https://huggingface.co/pricing)。协作时机器学习会更有趣！ 🔥
+## 组织公司、大学和非营利组织是 Hugging Face 社区的重要组成部分！ Hub 提供[**Organizations**](./organizations)，可用于对帐户进行分组并管理数据集、模型和空间。教育工作者还可以使用[Hugging Face for Classrooms](https://huggingface.co/classrooms)为学生创建协作组织。组织的存储库将显示在组织的页面上，并且组织的每个成员都将能够为存储库做出贡献。除了方便地对组织的所有工作进行分组之外，该中心还允许管理员将角色设置为[**control access to repositories**](./organizations-security)，并管理其组织的[payment method and billing info](https://huggingface.co/pricing)。协作时机器学习会更有趣！ 🔥
 
 [Explore existing organizations](https://huggingface.co/organizations)，创建新组织[here](https://huggingface.co/organizations/new)，然后访问[**Organizations documentation**](./organizations)了解更多信息。
 

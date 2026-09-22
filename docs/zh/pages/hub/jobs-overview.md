@@ -22,14 +22,14 @@ UV 和类似 Docker 的 CLI uv、run、ps、logs、stats、inspect CPU 和 GPU �
 
 ### Python 脚本
 
-使用`hf jobs uv run`远程运行Python脚本。使用 `--with` 或在 [script header](https://docs.astral.sh/uv/guides/scripts/#declaring-script-dependencies) 中指定其依赖项。乔布斯在运行代码之前使用 uv 安装这些依赖项。
+使用`hf jobs uv run`远程运行Python脚本。使用 `--with` 或在 [script header](https://docs.astral.sh/uv/guides/scripts/#declaring-script-dependencies) 中指定其依赖关系。乔布斯在运行代码之前使用 uv 安装这些依赖项。
 
 ```diff
 - uv run <script.py>
 + hf jobs uv run <script.py>
 ```
 
-### Docker 镜像将 `hf jobs run` 与 Docker 映像和要运行的命令结合使用。无论您使用的是 Python 还是其他语言，该映像都会提供您的工作负载所需的工具和库。选择一个 [existing image](./jobs-popular-images)，使用由 [Docker Space](./spaces-sdks-docker) 构建的一个，或者构建您自己的。
+### Docker 镜像将 `hf jobs run` 与 Docker 映像和要运行的命令结合使用。无论您使用的是 Python 还是其他语言，该映像都会提供您的工作负载所需的工具和库。选择一个 [existing image](./jobs-images)，使用由 [Docker Space](./spaces-sdks-docker) 构建的一个，或者构建您自己的。
 
 ```diff
 - docker run <image> <command>
@@ -40,7 +40,7 @@ UV 和类似 Docker 的 CLI uv、run、ps、logs、stats、inspect CPU 和 GPU �
 
 ## 自动化作业
 
-通过计划或使用 Webhook 自动触发作业。
+通过计划或使用 Webhooks 自动触发作业。
 
 通过计划，您可以每 X 分钟、几小时、几天、几周或几个月运行一次作业。调度作业使用 `cron` 语法，如 `"*/5 * * * *"` 表示“每 5 分钟”，或使用 `"@hourly"`、`"@daily"`、`"weekly"` 或 `"@monthly"` 等别名。
 

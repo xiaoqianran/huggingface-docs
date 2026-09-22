@@ -33,8 +33,8 @@
       "translatedAt": "2026-08-14T08:23:01.338Z"
     },
     "hub/index.md": {
-      "hash": "4b2e309874a7364761ce88dbdfdf615072ccf2c0",
-      "translatedAt": "2026-08-14T08:23:00.014Z"
+      "hash": "01325efe0f585391564e4b3be362ab36b9625aae",
+      "translatedAt": "2026-09-22T12:32:14.706Z"
     },
     "hub/agents-local.md": {
       "hash": "3827733c03486f697d86834c1272223c755a1c96",
@@ -393,12 +393,12 @@
       "translatedAt": "2026-08-14T08:24:20.458Z"
     },
     "hub/jobs-configuration.md": {
-      "hash": "dc2f5c70dab562c88df994eccc3dd8636aea1682",
-      "translatedAt": "2026-09-17T12:33:40.871Z"
+      "hash": "9fa99144d5ef4937e10ac7415ebee86be98175e3",
+      "translatedAt": "2026-09-22T12:32:16.666Z"
     },
     "hub/jobs-overview.md": {
-      "hash": "639bd18da4a574bd4a54bd2e3ef6735e92197a76",
-      "translatedAt": "2026-09-16T12:33:23.681Z"
+      "hash": "a13b1b5831814ebe19eb06e51bb4935adef42510",
+      "translatedAt": "2026-09-22T12:32:12.327Z"
     },
     "hub/jobs-popular-images.md": {
       "hash": "4e385e5cfd86d3f7fae38b67222da018ec57d8d5",
@@ -413,16 +413,16 @@
       "translatedAt": "2026-08-14T08:24:23.635Z"
     },
     "hub/jobs-quickstart.md": {
-      "hash": "22cf297bd8db468ba33a36b5cd68734730d6706e",
-      "translatedAt": "2026-09-16T12:33:26.460Z"
+      "hash": "be46cca9b0e5df8eed36491f5e1cb886bb9c2bf7",
+      "translatedAt": "2026-09-22T12:32:13.704Z"
     },
     "hub/jobs-webhooks.md": {
       "hash": "5b9158aeba0bea3af5b6e1d47cacad12b8c902a6",
       "translatedAt": "2026-09-03T12:03:23.151Z"
     },
     "hub/jobs.md": {
-      "hash": "66aa90d06222d5a95deebd72333681b37f8dfcf2",
-      "translatedAt": "2026-09-16T12:33:25.921Z"
+      "hash": "508afb40feefca1098875b811766c5853f7578cf",
+      "translatedAt": "2026-09-22T12:32:14.268Z"
     },
     "hub/jobs-serving.md": {
       "hash": "165b06125c606b8df3889d6778d4c251cead7be9",
@@ -585,8 +585,8 @@
       "translatedAt": "2026-08-14T08:25:03.193Z"
     },
     "hub/organizations.md": {
-      "hash": "0acc6cb933898b340cc1ec8fcdce25b4c32f5007",
-      "translatedAt": "2026-08-14T08:25:03.289Z"
+      "hash": "cfe3c15113ed5e4c50a730c55731da2530562e44",
+      "translatedAt": "2026-09-22T12:32:14.703Z"
     },
     "hub/organizations-managing.md": {
       "hash": "e0d77017f30e00f26219114c23b276d136e51fb2",
@@ -729,8 +729,8 @@
       "translatedAt": "2026-08-14T08:25:25.198Z"
     },
     "hub/security-sso-google-saml.md": {
-      "hash": "513c6c44fc304543a78af768edea9370a85ac8c5",
-      "translatedAt": "2026-08-14T08:25:25.300Z"
+      "hash": "ec91f51df38cac4e362ecb2ab3ccfb4d7bddfff0",
+      "translatedAt": "2026-09-22T12:32:15.828Z"
     },
     "hub/security-sso-okta-saml.md": {
       "hash": "d49a3fc3135fae18181edd5c3140b9ac275e4822",
@@ -997,8 +997,8 @@
       "translatedAt": "2026-09-07T13:27:50.086Z"
     },
     "hub/storage-buckets-integrations.md": {
-      "hash": "f1a0ea92a3877788eda77700d33ab6a6a8aa3850",
-      "translatedAt": "2026-08-14T08:26:10.777Z"
+      "hash": "97ec3fc64ce4acdc5c921898c1ea9228d8cca938",
+      "translatedAt": "2026-09-22T12:32:15.772Z"
     },
     "hub/storage-buckets-security.md": {
       "hash": "9282202c23ea986fa4d0ba2d91f7ec8743d4a793",
@@ -2006,11 +2006,11 @@
       "failed": true
     }
   },
-  "updatedAt": "2026-09-21T13:53:57.782Z",
+  "updatedAt": "2026-09-22T12:32:16.666Z",
   "stats": {
-    "translated": 0,
-    "skipped": 391,
-    "failed": 9,
+    "translated": 8,
+    "skipped": 392,
+    "failed": 0,
     "total": 400
   }
 }

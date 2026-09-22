@@ -15,7 +15,7 @@ Hugging Face Jobs 在云中的 CPU 和 GPU 上运行您的代码。直接运行 
 - [Pricing](./jobs-pricing)
 - [Manage Jobs](./jobs-manage)
 - [Jobs Configuration](./jobs-configuration)
-- [Popular Images](./jobs-popular-images)
+- [Using Docker images](./jobs-images)
 - [Schedule Jobs](./jobs-schedule)
 - [Webhooks Automation](./jobs-webhooks)
 - [Reference](./jobs-reference)

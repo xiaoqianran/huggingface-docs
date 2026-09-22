@@ -17,11 +17,16 @@ df.to_parquet("hf://buckets/username/my-bucket/output.parquet")
 
 ## 达斯克
 
+Dask 延迟读取和写入，每个文件一个分区，因此您可以直接从存储桶处理大于内存的数据集：
+
 ```python
 import dask.dataframe as dd
 
-df = dd.read_parquet("hf://buckets/username/my-bucket/data.parquet")
+df = dd.read_parquet("hf://buckets/username/my-bucket/data/")
+df.to_parquet("hf://buckets/username/my-bucket/output/")
 ```
+
+更多信息请参见[Dask on the Hub](./datasets-dask)。
 
 ## 愚蠢
 
@@ -106,15 +111,15 @@ file_mounts:
 
 run: |
   python train.py --model /base-model --output_dir /checkpoints
-```
-
-验证一次 - `hf auth login`（或 `export HF_TOKEN=REDACTED 就是 SkyPilot 所需要的。它将您本地的 Hugging Face 令牌转发到每个云，因此存储桶和存储库安装会自动进行验证：
+```身份验证一次 - `hf auth login`（或 `export HF_TOKEN=REDACTED 就是 SkyPilot 所需要的全部。它将您本地的 Hugging Face 令牌转发到每个云，因此存储桶和存储库安装会自动进行身份验证：
 
 ```bash
 pip install "skypilot[huggingface]"
 hf auth login                              # or: export HF_TOKEN=REDACTED
 sky launch qwen-sft.yaml
-```如果您自己的 `run` 代码拉取门控存储库，请将 `--secret HF_TOKEN` 添加到启动命令中，以将令牌公开为环境变量。
+```
+
+如果您自己的 `run` 代码拉取门控存储库，请将 `--secret HF_TOKEN` 添加到启动命令中，以将令牌公开为环境变量。
 
 > [!提示]
 > `MOUNT` 和 `MOUNT_CACHED` 与 `hf` 的行为相同，并使用 [hf-mount](https://github.com/huggingface/hf-mount) FUSE 后端，该后端需要 glibc ≥ 2.34 和 `/dev/fuse` 的基础映像。裸虚拟机云同时提供这两种功能。 SkyPilot 的默认 Kubernetes 映像附带较旧的 glibc，因此设置较新的 `image_id`（例如 `docker:mirror.gcr.io/ubuntu:22.04`）。当前环境要求请参见[SkyPilot storage docs](https://docs.skypilot.co/en/latest/reference/storage.html)。

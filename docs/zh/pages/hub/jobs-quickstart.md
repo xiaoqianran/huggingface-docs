@@ -22,7 +22,7 @@
 >>> hf jobs uv run python -c 'print("Hello from the cloud!")'
 ```
 
-`hf jobs uv run` 在 Hugging Face 基础设施上的 Python 环境中运行该命令。它默认使用 CPU 并将作业日志传输到您的终端。启动后，你会看到：
+`hf jobs uv run` 在 Hugging Face 基础设施上的 Python 环境中运行命令。它默认使用 CPU 并将作业日志传输到您的终端。启动后，你会看到：
 
 ```text
 Hello from the cloud!
@@ -36,7 +36,7 @@ CLI 还会打印您的作业 ID 及其页面的链接。打开链接以在浏览
 >>> hf jobs run ubuntu echo 'Hello from the cloud!'
 ```
 
-本指南的其余部分使用 `hf jobs uv run`。请参阅 [Docker Jobs](./jobs-configuration#docker-jobs) 了解何时以及如何使用图像。
+本指南的其余部分使用 `hf jobs uv run`。请参阅 [Using Docker images](./jobs-images) 了解何时以及如何使用图像。
 
 ## 3. 在 GPU 上运行模型
 
