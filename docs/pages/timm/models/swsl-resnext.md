@@ -102,4 +102,4 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 ```
 
 ### SelecSLS
-https://huggingface.co/docs/timm/v1.0.29/models/selecsls.md
+https://huggingface.co/docs/timm/v1.0.30/models/selecsls.md

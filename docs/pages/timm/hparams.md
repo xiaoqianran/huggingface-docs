@@ -33,4 +33,4 @@ I've collected several of the hparam families in a series of gists. These can be
 | — | Tiny Test Models | [Link](https://gist.github.com/rwightman/9ba8efc39a546426e99055720d2f705f) |
 
 ### Sharing and Loading Models From the Hugging Face Hub
-https://huggingface.co/docs/timm/v1.0.29/hf_hub.md
+https://huggingface.co/docs/timm/v1.0.30/hf_hub.md

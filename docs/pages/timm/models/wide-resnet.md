@@ -95,4 +95,4 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 ```
 
 ### Inception v3
-https://huggingface.co/docs/timm/v1.0.29/models/inception-v3.md
+https://huggingface.co/docs/timm/v1.0.30/models/inception-v3.md

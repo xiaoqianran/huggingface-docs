@@ -95,4 +95,4 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 ```
 
 ### SPNASNet
-https://huggingface.co/docs/timm/v1.0.29/models/spnasnet.md
+https://huggingface.co/docs/timm/v1.0.30/models/spnasnet.md

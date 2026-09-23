@@ -74,4 +74,4 @@ python -c "from timm import list_models; print(list_models(pretrained=True)[:5])
 ```
 
 ### Model Summaries
-https://huggingface.co/docs/timm/v1.0.29/models.md
+https://huggingface.co/docs/timm/v1.0.30/models.md

@@ -89,4 +89,4 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 ```
 
 ### AdvProp (EfficientNet)
-https://huggingface.co/docs/timm/v1.0.29/models/advprop.md
+https://huggingface.co/docs/timm/v1.0.30/models/advprop.md

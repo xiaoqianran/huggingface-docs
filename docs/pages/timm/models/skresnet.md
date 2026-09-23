@@ -89,4 +89,4 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 ```
 
 ### SWSL ResNeXt
-https://huggingface.co/docs/timm/v1.0.29/models/swsl-resnext.md
+https://huggingface.co/docs/timm/v1.0.30/models/swsl-resnext.md

@@ -97,4 +97,4 @@ These params will also work well for SE-ResNeXt-50 and SK-ResNeXt-50 and likely 
 ```
 
 ### Learning Rate Schedulers
-https://huggingface.co/docs/timm/v1.0.29/reference/schedulers.md
+https://huggingface.co/docs/timm/v1.0.30/reference/schedulers.md

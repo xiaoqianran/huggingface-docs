@@ -97,4 +97,4 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 ```
 
 ### Res2NeXt
-https://huggingface.co/docs/timm/v1.0.29/models/res2next.md
+https://huggingface.co/docs/timm/v1.0.30/models/res2next.md

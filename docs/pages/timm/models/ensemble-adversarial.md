@@ -120,4 +120,4 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 ```
 
 ### (Legacy) SE-ResNeXt
-https://huggingface.co/docs/timm/v1.0.29/models/legacy-se-resnext.md
+https://huggingface.co/docs/timm/v1.0.30/models/legacy-se-resnext.md

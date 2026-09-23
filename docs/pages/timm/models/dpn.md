@@ -91,4 +91,4 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 ```
 
 ### # Ensemble Adversarial Inception ResNet v2
-https://huggingface.co/docs/timm/v1.0.29/models/ensemble-adversarial.md
+https://huggingface.co/docs/timm/v1.0.30/models/ensemble-adversarial.md

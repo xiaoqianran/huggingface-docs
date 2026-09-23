@@ -6,7 +6,7 @@
 timm.data.create_dataset(name: str, root: typing.Optional[str] = None, split: str = 'validation', search_split: bool = True, class_map: dict = None, load_bytes: bool = False, is_training: bool = False, download: bool = False, batch_size: int = 1, num_samples: typing.Optional[int] = None, seed: int = 42, repeats: int = 0, input_img_mode: str = 'RGB', trust_remote_code: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/data/dataset_factory.py#L63)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/data/dataset_factory.py#L63)
 
 **Parameters:**
 
@@ -59,7 +59,7 @@ In parentheses after each arg are the type of dataset supported for each arg, on
 timm.data.create_loader(dataset: typing.Union[timm.data.dataset.ImageDataset, timm.data.dataset.IterableImageDataset], input_size: typing.Union[int, typing.Tuple[int, int], typing.Tuple[int, int, int]], batch_size: int, is_training: bool = False, no_aug: bool = False, re_prob: float = 0.0, re_mode: str = 'const', re_count: int = 1, re_split: bool = False, train_crop_mode: typing.Optional[str] = None, scale: typing.Optional[typing.Tuple[float, float]] = None, ratio: typing.Optional[typing.Tuple[float, float]] = None, hflip: float = 0.5, vflip: float = 0.0, color_jitter: float = 0.4, color_jitter_prob: typing.Optional[float] = None, grayscale_prob: float = 0.0, gaussian_blur_prob: float = 0.0, auto_augment: typing.Optional[str] = None, num_aug_repeats: int = 0, num_aug_splits: int = 0, interpolation: str = 'bilinear', mean: typing.Tuple[float, ...] = (0.485, 0.456, 0.406), std: typing.Tuple[float, ...] = (0.229, 0.224, 0.225), num_workers: int = 1, distributed: bool = False, crop_pct: typing.Optional[float] = None, crop_mode: typing.Optional[str] = None, crop_border_pixels: typing.Optional[int] = None, collate_fn: typing.Optional[typing.Callable] = None, pin_memory: bool = False, fp16: bool = False, img_dtype: dtype = torch.float32, device: device = torch.device(), use_prefetcher: bool = True, use_multi_epochs_loader: bool = False, persistent_workers: bool = True, worker_seeding: str = 'all', tf_preprocessing: bool = False, input_size_choices: typing.Optional[typing.Sequence[typing.Union[int, typing.Tuple[int, int], typing.Tuple[int, int, int]]]] = None, batch_size_choices: typing.Optional[typing.Sequence[int]] = None, batch_choice_weights: typing.Optional[typing.Sequence[float]] = None, batch_choice_seed: int = 0, batch_choice_schedule: str = 'constant', batch_schedule_epochs: typing.Optional[int] = None, batch_schedule_spread: float = 0.65, batch_schedule_random_mix: float = 0.1, num_batches: typing.Optional[int] = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/data/loader.py#L205)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/data/loader.py#L222)
 
 **Parameters:**
 
@@ -167,7 +167,7 @@ DataLoader
 timm.data.create_transform(input_size: typing.Union[int, typing.Tuple[int, int], typing.Tuple[int, int, int]] = 224, is_training: bool = False, no_aug: bool = False, train_crop_mode: typing.Optional[str] = None, scale: typing.Optional[typing.Tuple[float, float]] = None, ratio: typing.Optional[typing.Tuple[float, float]] = None, hflip: float = 0.5, vflip: float = 0.0, color_jitter: typing.Union[float, typing.Tuple[float, ...]] = 0.4, color_jitter_prob: typing.Optional[float] = None, grayscale_prob: float = 0.0, gaussian_blur_prob: float = 0.0, auto_augment: typing.Optional[str] = None, interpolation: str = 'bilinear', mean: typing.Tuple[float, ...] = (0.485, 0.456, 0.406), std: typing.Tuple[float, ...] = (0.229, 0.224, 0.225), re_prob: float = 0.0, re_mode: str = 'const', re_count: int = 1, re_num_splits: int = 0, crop_pct: typing.Optional[float] = None, crop_mode: typing.Optional[str] = None, crop_border_pixels: typing.Optional[int] = None, tf_preprocessing: bool = False, use_prefetcher: bool = False, normalize: bool = True, separate: bool = False, naflex: bool = False, patch_size: typing.Union[int, typing.Tuple[int, int]] = 16, max_seq_len: int = 576, patchify: bool = False, patchify_channels_last: bool = True, patchify_flatten: bool = True)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/data/transforms_factory.py#L387)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/data/transforms_factory.py#L387)
 
 **Parameters:**
 
@@ -241,7 +241,7 @@ Composed transforms or tuple thereof
 timm.data.resolve_data_config(args = None, pretrained_cfg = None, model = None, use_test_size = False, verbose = False)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/data/config.py#L8)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/data/config.py#L8)
 
 ### Big Transfer (BiT)
-https://huggingface.co/docs/timm/v1.0.29/models/big-transfer.md
+https://huggingface.co/docs/timm/v1.0.30/models/big-transfer.md

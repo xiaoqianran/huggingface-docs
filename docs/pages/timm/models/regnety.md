@@ -95,4 +95,4 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 ```
 
 ### ResNeSt
-https://huggingface.co/docs/timm/v1.0.29/models/resnest.md
+https://huggingface.co/docs/timm/v1.0.30/models/resnest.md

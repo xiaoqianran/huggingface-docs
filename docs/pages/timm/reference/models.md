@@ -6,7 +6,7 @@
 timm.create_model(model_name: str, pretrained: bool = False, pretrained_cfg: typing.Union[str, typing.Dict[str, typing.Any], timm.models._pretrained.PretrainedCfg, NoneType] = None, pretrained_cfg_overlay: typing.Optional[typing.Dict[str, typing.Any]] = None, checkpoint_path: typing.Union[str, pathlib.Path, NoneType] = None, cache_dir: typing.Union[str, pathlib.Path, NoneType] = None, scriptable: typing.Optional[bool] = None, exportable: typing.Optional[bool] = None, no_jit: typing.Optional[bool] = None, **kwargs: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/models/_factory.py#L81)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/models/_factory.py#L81)
 
 **Parameters:**
 
@@ -70,7 +70,7 @@ Example:
 timm.list_models(filter: typing.Union[str, typing.List[str]] = '', module: typing.Union[str, typing.List[str]] = '', pretrained: bool = False, exclude_filters: typing.Union[str, typing.List[str]] = '', name_matches_cfg: bool = False, include_tags: typing.Optional[bool] = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/models/_registry.py#L185)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/models/_registry.py#L185)
 
 **Parameters:**
 
@@ -97,4 +97,4 @@ model_list('gluon_resnet*') -- returns all models starting with 'gluon_resnet'
 model_list('*resnext*, 'resnet') -- returns all models with 'resnext' in 'resnet' module
 
 ### Optimization
-https://huggingface.co/docs/timm/v1.0.29/reference/optimizers.md
+https://huggingface.co/docs/timm/v1.0.30/reference/optimizers.md

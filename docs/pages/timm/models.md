@@ -230,4 +230,4 @@ NOTE: I am deprecating this version of the networks, the new ones are part of `r
 * Reference code: https://github.com/tensorflow/models/tree/master/research/deeplab
 
 ### Feature Extraction
-https://huggingface.co/docs/timm/v1.0.29/feature_extraction.md
+https://huggingface.co/docs/timm/v1.0.30/feature_extraction.md

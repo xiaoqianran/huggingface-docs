@@ -272,4 +272,4 @@ Feat shape: torch.Size([2, 512, 16, 16])
 ```
 
 ### HParams
-https://huggingface.co/docs/timm/v1.0.29/hparams.md
+https://huggingface.co/docs/timm/v1.0.30/hparams.md

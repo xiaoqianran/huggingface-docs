@@ -98,4 +98,4 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 ```
 
 ### MnasNet
-https://huggingface.co/docs/timm/v1.0.29/models/mnasnet.md
+https://huggingface.co/docs/timm/v1.0.30/models/mnasnet.md

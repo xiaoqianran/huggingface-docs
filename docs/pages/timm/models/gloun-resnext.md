@@ -100,4 +100,4 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 ```
 
 ### (Legacy) SENet
-https://huggingface.co/docs/timm/v1.0.29/models/legacy-senet.md
+https://huggingface.co/docs/timm/v1.0.30/models/legacy-senet.md

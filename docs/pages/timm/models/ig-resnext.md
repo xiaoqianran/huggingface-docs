@@ -93,4 +93,4 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 ```
 
 ### SSL ResNet
-https://huggingface.co/docs/timm/v1.0.29/models/ssl-resnet.md
+https://huggingface.co/docs/timm/v1.0.30/models/ssl-resnet.md

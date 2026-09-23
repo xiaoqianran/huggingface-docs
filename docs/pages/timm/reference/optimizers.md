@@ -12,7 +12,7 @@ This page contains the API reference documentation for learning rate optimizers 
 timm.optim.create_optimizer_v2(model_or_params: typing.Union[torch.nn.Module, torch.optim.optimizer.ParamsT], opt: str = 'sgd', lr: typing.Optional[float] = None, weight_decay: float = 0.0, momentum: float = 0.9, foreach: typing.Optional[bool] = None, filter_bias_and_bn: bool = True, fallback_list: typing.Collection[str] = (), fallback_no_weight_decay: bool = False, layer_decay: typing.Optional[float] = None, layer_decay_min_scale: float = 0.0, layer_decay_no_opt_scale: typing.Optional[float] = None, param_group_fn: typing.Optional[typing.Callable[[torch.nn.Module], torch.optim.optimizer.ParamsT]] = None, **kwargs: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/_optim_factory.py#L1199)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/_optim_factory.py#L1199)
 
 **Parameters:**
 
@@ -87,7 +87,7 @@ Parameter group handling precedence:
 timm.optim.list_optimizers(filter: typing.Union[str, typing.List[str]] = '', exclude_filters: typing.Optional[typing.List[str]] = None, with_description: bool = False)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/_optim_factory.py#L1102)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/_optim_factory.py#L1102)
 
 **Parameters:**
 
@@ -131,7 +131,7 @@ Examples:
 timm.optim.get_optimizer_class(name: str, bind_defaults: bool = True)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/_optim_factory.py#L1162)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/_optim_factory.py#L1162)
 
 **Parameters:**
 
@@ -172,7 +172,7 @@ Examples:
 timm.optim.AdaBelief(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-16, weight_decay = 0, amsgrad = False, decoupled_decay = True, fixed_decay = False, rectify = True, degenerated_to_sgd = True)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/adabelief.py#L6)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/adabelief.py#L6)
 
 **Parameters:**
 
@@ -211,7 +211,7 @@ For example train/args for EfficientNet see these gists
 step(closure = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/adabelief.py#L106)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/adabelief.py#L106)
 
 **Parameters:**
 
@@ -225,7 +225,7 @@ Performs a single optimization step.
 timm.optim.Adafactor(params: ParamsT, lr: typing.Optional[float] = None, eps: float = 1e-30, eps_scale: float = 0.001, clip_threshold: float = 1.0, decay_rate: float = -0.8, betas: typing.Optional[typing.Tuple[float, float]] = None, weight_decay: float = 0.0, scale_parameter: bool = True, warmup_init: bool = False, min_dim_size_to_factor: int = 16, caution: bool = False)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/adafactor.py#L21)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/adafactor.py#L21)
 
 Implements Adafactor algorithm.
 
@@ -256,7 +256,7 @@ warmup_init: time-dependent learning rate computation depends on whether warm-up
 step(closure = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/adafactor.py#L127)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/adafactor.py#L127)
 
 **Parameters:**
 
@@ -270,7 +270,7 @@ Performs a single optimization step.
 timm.optim.AdafactorBigVision(params: ParamsT, lr: float = 1.0, min_dim_size_to_factor: int = 16, decay_rate: float = 0.8, decay_offset: int = 0, beta2_cap: float = 0.999, momentum: typing.Optional[float] = 0.9, momentum_dtype: typing.Union[str, torch.dtype] = torch.bfloat16, eps: typing.Optional[float] = None, weight_decay: float = 0.0, clipping_threshold: typing.Optional[float] = None, unscaled_wd: bool = False, caution: bool = False, corrected_weight_decay: bool = False, foreach: typing.Optional[bool] = False)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/adafactor_bv.py#L49)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/adafactor_bv.py#L49)
 
 PyTorch implementation of BigVision's Adafactor variant with both single and multi tensor implementations.
 
@@ -282,7 +282,7 @@ Adapted from https://github.com/google-research/big_vision by Ross Wightman
 timm.optim.Adahessian(params, lr = 0.1, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0.0, hessian_power = 1.0, update_each = 1, n_samples = 1, avg_conv_kernel = False)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/adahessian.py#L9)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/adahessian.py#L9)
 
 **Parameters:**
 
@@ -310,7 +310,7 @@ Implements the AdaHessian algorithm from "ADAHESSIAN: An Adaptive Second OrderOp
 get_params()
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/adahessian.py#L74)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/adahessian.py#L74)
 
 Gets all parameters in all param_groups with gradients
 
@@ -320,7 +320,7 @@ Gets all parameters in all param_groups with gradients
 set_hessian()
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/adahessian.py#L90)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/adahessian.py#L90)
 
 Computes the Hutchinson approximation of the hessian trace and accumulates it for each trainable parameter.
 
@@ -330,7 +330,7 @@ Computes the Hutchinson approximation of the hessian trace and accumulates it fo
 step(closure = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/adahessian.py#L118)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/adahessian.py#L118)
 
 **Parameters:**
 
@@ -344,7 +344,7 @@ Performs a single optimization step.
 zero_hessian()
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/adahessian.py#L81)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/adahessian.py#L81)
 
 Zeros out the accumulated hessian traces.
 
@@ -354,7 +354,7 @@ Zeros out the accumulated hessian traces.
 timm.optim.AdamP(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0, delta = 0.1, wd_ratio = 0.1, nesterov = False, caution = False)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/adamp.py#L64)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/adamp.py#L64)
 
 #### timm.optim.Adan[[timm.optim.Adan]]
 
@@ -362,7 +362,7 @@ timm.optim.AdamP(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_d
 timm.optim.Adan(params, lr: float = 0.001, betas: typing.Tuple[float, float, float] = (0.98, 0.92, 0.99), eps: float = 1e-08, weight_decay: float = 0.0, no_prox: bool = False, caution: bool = False, foreach: typing.Optional[bool] = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/adan.py#L46)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/adan.py#L46)
 
 **Parameters:**
 
@@ -393,7 +393,7 @@ https://arxiv.org/abs/2208.06677
 step(closure = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/adan.py#L117)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/adan.py#L117)
 
 Performs a single optimization step.
 
@@ -403,7 +403,7 @@ Performs a single optimization step.
 timm.optim.Adopt(params: ParamsT, lr: typing.Union[float, torch.Tensor] = 0.001, betas: typing.Tuple[float, float] = (0.9, 0.9999), eps: float = 1e-06, clip_exp: typing.Optional[float] = 0.333, weight_decay: float = 0.0, decoupled: bool = False, corrected_weight_decay: bool = False, caution: bool = False, foreach: typing.Optional[bool] = False, maximize: bool = False, capturable: bool = False, differentiable: bool = False)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/adopt.py#L59)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/adopt.py#L59)
 
 ADOPT: Modified Adam Can Converge with Any β2 with the Optimal Rate: https://arxiv.org/abs/2411.02853
 
@@ -413,7 +413,7 @@ ADOPT: Modified Adam Can Converge with Any β2 with the Optimal Rate: https://ar
 step(closure = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/adopt.py#L188)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/adopt.py#L188)
 
 **Parameters:**
 
@@ -427,7 +427,7 @@ Perform a single optimization step.
 timm.optim.Lamb(params: ParamsT, lr: float = 0.001, bias_correction: bool = True, betas: typing.Tuple[float, float] = (0.9, 0.999), eps: float = 1e-06, weight_decay: float = 0.01, grad_averaging: bool = True, max_grad_norm: typing.Optional[float] = 1.0, trust_clip: bool = False, always_adapt: bool = False, caution: bool = False, decoupled_decay: bool = False, corrected_weight_decay: bool = False)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/lamb.py#L67)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/lamb.py#L67)
 
 **Parameters:**
 
@@ -468,7 +468,7 @@ LAMB was proposed in:
 step(closure = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/lamb.py#L152)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/lamb.py#L152)
 
 **Parameters:**
 
@@ -482,7 +482,7 @@ Performs a single optimization step.
 timm.optim.LaProp(params: ParamsT, lr: float = 0.0004, betas: typing.Tuple[float, float] = (0.9, 0.999), eps: float = 1e-15, weight_decay: float = 0.0, caution: bool = False, corrected_weight_decay: bool = False)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/laprop.py#L28)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/laprop.py#L28)
 
 LaProp Optimizer
 
@@ -494,7 +494,7 @@ Paper: LaProp: Separating Momentum and Adaptivity in Adam, https://arxiv.org/abs
 step(closure = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/laprop.py#L79)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/laprop.py#L79)
 
 **Parameters:**
 
@@ -508,7 +508,7 @@ Performs a single optimization step.
 timm.optim.Lars(params, lr = 1.0, momentum = 0, dampening = 0, weight_decay = 0, nesterov = False, trust_coeff = 0.001, eps = 1e-08, trust_clip = False, always_adapt = False)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/lars.py#L17)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/lars.py#L17)
 
 **Parameters:**
 
@@ -542,7 +542,7 @@ Paper: `Large batch training of Convolutional Networks` - https://arxiv.org/pdf/
 step(closure = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/lars.py#L75)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/lars.py#L75)
 
 **Parameters:**
 
@@ -556,7 +556,7 @@ Performs a single optimization step.
 timm.optim.Lion(params: ParamsT, lr: float = 0.0001, betas: typing.Tuple[float, float] = (0.9, 0.99), weight_decay: float = 0.0, caution: bool = False, corrected_weight_decay: bool = False, maximize: bool = False, foreach: typing.Optional[bool] = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/lion.py#L32)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/lion.py#L32)
 
 Implements Lion algorithm.
 
@@ -566,7 +566,7 @@ Implements Lion algorithm.
 step(closure = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/lion.py#L81)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/lion.py#L81)
 
 **Parameters:**
 
@@ -584,7 +584,7 @@ Performs a single optimization step.
 timm.optim.Lookahead(base_optimizer, alpha = 0.5, k = 6)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/lookahead.py#L15)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/lookahead.py#L15)
 
 #### timm.optim.MADGRAD[[timm.optim.MADGRAD]]
 
@@ -592,7 +592,7 @@ timm.optim.Lookahead(base_optimizer, alpha = 0.5, k = 6)
 timm.optim.MADGRAD(params: typing.Any, lr: float = 0.01, momentum: float = 0.9, weight_decay: float = 0, eps: float = 1e-06, decoupled_decay: bool = False)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/madgrad.py#L24)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/madgrad.py#L24)
 
 **Parameters:**
 
@@ -628,7 +628,7 @@ On sparse problems both weight_decay and momentum should be set to 0.
 step(closure: typing.Optional[typing.Callable[[], float]] = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/madgrad.py#L90)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/madgrad.py#L90)
 
 **Parameters:**
 
@@ -642,7 +642,7 @@ Performs a single optimization step.
 timm.optim.Mars(params: ParamsT, lr: float = 0.003, betas: typing.Tuple[float, float] = (0.9, 0.99), eps: float = 1e-08, weight_decay: float = 0.0, gamma: float = 0.025, mars_type: str = 'adamw', optimize_1d: bool = False, lr_1d_factor: float = 1.0, betas_1d: typing.Optional[typing.Tuple[float, float]] = None, caution: bool = False)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/mars.py#L91)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/mars.py#L91)
 
 MARS Optimizer
 
@@ -655,7 +655,7 @@ https://arxiv.org/abs/2411.10438
 step(closure = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/mars.py#L141)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/mars.py#L141)
 
 **Parameters:**
 
@@ -669,7 +669,7 @@ Performs a single optimization step.
 timm.optim.NAdamW(params: ParamsT, lr: float = 0.001, betas: typing.Tuple[float, float] = (0.9, 0.999), eps: float = 1e-08, weight_decay: float = 0.01, caution: bool = False, corrected_weight_decay: bool = False, maximize: bool = False, foreach: typing.Optional[bool] = None, capturable: bool = False)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/nadamw.py#L21)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/nadamw.py#L21)
 
 **Parameters:**
 
@@ -703,7 +703,7 @@ For further details regarding the algorithm we refer to
 step(closure = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/nadamw.py#L94)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/nadamw.py#L94)
 
 **Parameters:**
 
@@ -717,7 +717,7 @@ Performs a single optimization step.
 timm.optim.NvNovoGrad(params, lr = 0.001, betas = (0.95, 0.98), eps = 1e-08, weight_decay = 0, grad_averaging = False, amsgrad = False)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/nvnovograd.py#L13)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/nvnovograd.py#L13)
 
 **Parameters:**
 
@@ -743,7 +743,7 @@ Implements Novograd algorithm.
 step(closure = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/nvnovograd.py#L66)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/nvnovograd.py#L66)
 
 **Parameters:**
 
@@ -759,7 +759,7 @@ Performs a single optimization step.
 timm.optim.RMSpropTF(params: ParamsT, lr: float = 0.01, alpha: float = 0.9, eps: float = 1e-10, weight_decay: float = 0, momentum: float = 0.0, centered: bool = False, decoupled_decay: bool = False, corrected_weight_decay: bool = False, lr_in_momentum: bool = True, caution: bool = False)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/rmsprop_tf.py#L21)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/rmsprop_tf.py#L21)
 
 **Parameters:**
 
@@ -807,7 +807,7 @@ With Recurrent Neural Networks](https://arxiv.org/pdf/1308.0850v5.pdf).
 step(closure = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/rmsprop_tf.py#L99)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/rmsprop_tf.py#L99)
 
 **Parameters:**
 
@@ -821,7 +821,7 @@ Performs a single optimization step.
 timm.optim.SGDP(params, lr = torch.optim.optimizer.required, momentum = 0, dampening = 0, weight_decay = 0, nesterov = False, eps = 1e-08, delta = 0.1, wd_ratio = 0.1, caution = False)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/sgdp.py#L22)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/sgdp.py#L22)
 
 #### timm.optim.SGDW[[timm.optim.SGDW]]
 
@@ -829,7 +829,7 @@ timm.optim.SGDP(params, lr = torch.optim.optimizer.required, momentum = 0, dampe
 timm.optim.SGDW(params: ParamsT, lr: float = 0.001, momentum: float = 0.0, dampening: float = 0.0, weight_decay: float = 0.0, nesterov: bool = False, caution: bool = False, corrected_weight_decay: bool = False, maximize: bool = False, foreach: typing.Optional[bool] = None, differentiable: bool = False)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/sgdw.py#L25)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/sgdw.py#L25)
 
 #### step[[timm.optim.SGDW.step]]
 
@@ -837,7 +837,7 @@ timm.optim.SGDW(params: ParamsT, lr: float = 0.001, momentum: float = 0.0, dampe
 step(closure = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.29/timm/optim/sgdw.py#L94)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.30/timm/optim/sgdw.py#L94)
 
 **Parameters:**
 
@@ -846,4 +846,4 @@ closure (Callable, optional) : A closure that reevaluates the model and returns 
 Performs a single optimization step.
 
 ### Data[[timm.data.create_dataset]]
-https://huggingface.co/docs/timm/v1.0.29/reference/data.md
+https://huggingface.co/docs/timm/v1.0.30/reference/data.md

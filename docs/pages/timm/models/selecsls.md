@@ -94,4 +94,4 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 ```
 
 ### Xception
-https://huggingface.co/docs/timm/v1.0.29/models/xception.md
+https://huggingface.co/docs/timm/v1.0.30/models/xception.md

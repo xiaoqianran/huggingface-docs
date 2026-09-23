@@ -91,4 +91,4 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 ```
 
 ### ResNeXt
-https://huggingface.co/docs/timm/v1.0.29/models/resnext.md
+https://huggingface.co/docs/timm/v1.0.30/models/resnext.md

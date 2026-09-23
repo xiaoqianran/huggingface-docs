@@ -54,4 +54,4 @@ Loading a model from the Hub is as simple as calling `timm.create_model` with th
 ```
 
 ### Results
-https://huggingface.co/docs/timm/v1.0.29/results.md
+https://huggingface.co/docs/timm/v1.0.30/results.md

@@ -100,4 +100,4 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 ```
 
 ### (Tensorflow) EfficientNet CondConv
-https://huggingface.co/docs/timm/v1.0.29/models/tf-efficientnet-condconv.md
+https://huggingface.co/docs/timm/v1.0.30/models/tf-efficientnet-condconv.md
