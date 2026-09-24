@@ -40,15 +40,14 @@ $ hf [OPTIONS] [COMMAND] [ARGS]...
 * `lfs-enable-largefiles`：配置您的存储库以允许上传> 5GB 的文件。* `lfs-multipart-upload`：用于分段上传的内部 git-lfs 自定义传输代理。
 * `models`：与 Hub 上的模型交互。
 * `papers`：与 Hub 上的论文互动。
-* `repos`：管理 Hub 上的存储库。 [别名：回购]
+* `repos`：管理 Hub 上的存储库。
 * `sandbox`：运行和管理 Hugging Face Jobs 上的实验性沙箱。
 * `skills`：管理人工智能助手的技能。
 * `spaces`：与 Hub 上的空间互动。
 * `sync`：本地目录和存储桶之间的文件同步。
 * `update`：将`hf` CLI 更新到最新版本。
 * `upload`：上传文件或文件夹到集线器。
-* `upload-large-folder`：[已弃用] 将大文件夹上传到集线器。
-* `version`：打印hf版本信息。
+* `version`：打印有关hf版本的信息。
 * `webhooks`：管理 Hub 上的 webhook。
 
 ## `hf auth`
@@ -74,7 +73,9 @@ $ hf auth [OPTIONS] COMMAND [ARGS]...
 * `token`：将当前访问令牌打印到标准输出。
 * `whoami`：找出您登录的huggingface.co 帐户。
 
-### `hf auth list`列出所有存储的访问令牌。 [别名：ls]
+### `hf auth list`
+
+列出所有存储的访问令牌。 [别名：ls]
 
 **用法**：
 
@@ -82,15 +83,13 @@ $ hf auth [OPTIONS] COMMAND [ARGS]...
 $ hf auth list [OPTIONS]
 ```
 
-**选项**：
-
-* `--help`：显示此消息并退出。
+**选项**：* `--help`：显示此消息并退出。
 
 示例
   $ hf 授权列表
 
 了解更多
-  使用 `hf <command> --help` 了解有关命令的更多信息。
+  使用 `hf <command> --help` 获取有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf auth login`
@@ -133,12 +132,12 @@ $ hf auth logout [OPTIONS]
 **选项**：
 
 * `--token-name TEXT`：要注销的令牌名称
-* `--help`：显示此消息并退出。示例
-  $ hf 身份验证注销
-  $ hf auth logout --token-name my-token
+* `--help`：显示此消息并退出。
 
-了解更多
-  使用 `hf <command> --help` 了解有关命令的更多信息。
+示例
+  $ hf 身份验证注销
+  $ hf auth logout --token-name my-token了解更多
+  使用 `hf <command> --help` 获取有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf auth switch`
@@ -162,7 +161,7 @@ $ hf auth switch [OPTIONS]
   $ hf auth switch --token-name my-token
 
 了解更多
-  使用 `hf <command> --help` 获取有关命令的更多信息。
+  使用 `hf <command> --help` 了解有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf auth token`
@@ -197,9 +196,9 @@ $ hf auth token [OPTIONS]
 $ hf auth whoami [OPTIONS]
 ```
 
-**选项**：* `--help`：显示此消息并退出。
+**选项**：
 
-示例
+* `--help`：显示此消息并退出。示例
   $ hf auth whoami
   $ hf auth whoami --format json
 
@@ -238,7 +237,7 @@ $ hf buckets [OPTIONS] COMMAND [ARGS]...
 在本地路径、存储库和存储桶之间复制文件。处理上传（本地/stdin -> repo/bucket）、下载（repo/bucket -> local/stdout）和
 远程到远程副本（repo/bucket -> repo/bucket）。存储桶到存储库和本地到本地
 不支持副本。对于目录，使用 `hf upload`/`hf download` (repos) 或
-`hf buckets sync`（桶）。远程到远程复制仅在同一存储中工作
+`hf buckets sync`（桶）。远程到远程复制仅在同一存储内工作
 区域（https://huggingface.co/docs/hub/storage-regions）。
 
 **用法**：
@@ -305,7 +304,7 @@ $ hf buckets create [OPTIONS] BUCKET_ID
 
 删除一个桶。
 
-这将删除整个存储桶及其所有内容。使用`hf buckets rm`删除单个文件。
+这将删除整个存储桶及其所有内容。使用 `hf buckets rm` 删除单个文件。
 
 **用法**：
 
@@ -356,12 +355,12 @@ $ hf buckets info [OPTIONS] BUCKET_ID
   $ hf 存储桶信息 hf://buckets/user/my-bucket
 
 了解更多
-  使用 `hf <command> --help` 获取有关命令的更多信息。
+  使用 `hf <command> --help` 了解有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf buckets list`
 
-列出存储桶或存储桶中的文件。 [别名：ls]当不带参数或命名空间调用时，列出存储桶。
+列出存储桶或存储桶中的文件。 [别名：ls]当不带参数或名称空间调用时，列出存储桶。
 当使用存储桶 ID (namespace/bucket_name) 调用时，列出存储桶中的文件。
 
 **用法**：
@@ -396,7 +395,7 @@ $ hf buckets list [OPTIONS] [ARGUMENT]
   $ hf 存储桶列表 user/my-bucket/sub -R
 
 了解更多
-  使用 `hf <command> --help` 了解有关命令的更多信息。
+  使用 `hf <command> --help` 获取有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf buckets move`将存储桶移动（重命名）到新名称或命名空间。
@@ -409,7 +408,7 @@ $ hf buckets move [OPTIONS] FROM_ID TO_ID
 
 **参数**：
 
-* `FROM_ID`: 源存储桶 ID：namespace/bucket_name 或 hf://buckets/namespace/bucket_name [必填]
+* `FROM_ID`：源存储桶 ID：namespace/bucket_name 或 hf://buckets/namespace/bucket_name [必填]
 * `TO_ID`：目标存储桶 ID：namespace/bucket_name 或 hf://buckets/namespace/bucket_name [必填]
 
 **选项**：
@@ -423,7 +422,7 @@ $ hf buckets move [OPTIONS] FROM_ID TO_ID
   $ hf 存储桶移动 hf://buckets/user/old-bucket hf://buckets/user/new-bucket
 
 了解更多
-  使用 `hf <command> --help` 了解有关命令的更多信息。
+  使用 `hf <command> --help` 获取有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf buckets remove`
@@ -446,7 +445,7 @@ $ hf buckets remove [OPTIONS] ARGUMENT
 * `-y, --yes`：跳过确认提示。
 * `--dry-run`：预览将要删除的内容，而不实际删除。
 * `--include TEXT`：仅包含匹配模式的文件（可以指定多个）。需要--递归。
-* `--exclude TEXT`：排除匹配模式的文件（可以指定多个）。需要--递归。
+* `--exclude TEXT`：排除匹配模式的文件（可指定多个）。需要--递归。
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
 * `--help`：显示此消息并退出。
 
@@ -640,7 +639,7 @@ $ hf cache rm [OPTIONS] TARGETS...
 
 示例：
   - 验证缓存中的主要修订版：`hf cache verify gpt2`
-  - 验证具体修订：`hf cache verify gpt2 --revision refs/pr/1`
+  - 验证具体修订版：`hf cache verify gpt2 --revision refs/pr/1`
   - 验证数据集：`hf cache verify karpathy/fineweb-edu-100b-shuffle --repo-type dataset`
   - 验证本地目录：`hf cache verify deepseek-ai/DeepSeek-OCR --local-dir /path/to/repo`
 
@@ -744,7 +743,7 @@ $ hf collections create [OPTIONS] TITLE
 **选项**：* `--namespace TEXT`：命名空间（用户名或组织）。默认为经过身份验证的用户。
 * `--description TEXT`：集合的描述（最多 150 个字符）。
 * `--private / --no-private`：创建私人收藏。  [默认值：非私有]
-* `--exists-ok / --no-exists-ok`：如果集合已存在，请勿引发错误。  [默认值：不存在-确定]
+* `--exists-ok / --no-exists-ok`：如果集合已经存在，则不要引发错误。  [默认值：不存在-确定]
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
 * `--help`：显示此消息并退出。
 
@@ -780,7 +779,7 @@ $ hf collections delete [OPTIONS] COLLECTION_SLUG
   $ hf collections 删除用户名/my-collection --missing-ok
 
 了解更多
-  使用 `hf <command> --help` 获取有关命令的更多信息。
+  使用 `hf <command> --help` 了解有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf collections delete-item`
@@ -853,7 +852,7 @@ $ hf collections list [OPTIONS]
   $ hf 集合 ls --item models/teknium/OpenHermes-2.5-Mistral-7B --limit 10
 
 了解更多
-  使用 `hf <command> --help` 获取有关命令的更多信息。
+  使用 `hf <command> --help` 了解有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf collections update`
@@ -884,7 +883,7 @@ $ hf collections update [OPTIONS] COLLECTION_SLUG
   $ hf collections 更新用户名/my-collection --private --theme green
 
 了解更多
-  使用 `hf <command> --help` 获取有关命令的更多信息。
+  使用 `hf <command> --help` 了解有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf collections update-item`
@@ -912,7 +911,7 @@ $ hf collections update-item [OPTIONS] COLLECTION_SLUG ITEM_OBJECT_ID
   $ hf 集合更新项目用户名/我的集合 ITEM_OBJECT_ID --位置 0
 
 了解更多
-  使用 `hf <command> --help` 了解有关命令的更多信息。
+  使用 `hf <command> --help` 获取有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ## `hf cp`
@@ -922,7 +921,7 @@ $ hf collections update-item [OPTIONS] COLLECTION_SLUG ITEM_OBJECT_ID
 处理上传（本地/stdin -> repo/bucket）、下载（repo/bucket -> local/stdout）和
 远程到远程副本（repo/bucket -> repo/bucket）。存储桶到存储库和本地到本地
 不支持副本。对于目录，使用 `hf upload`/`hf download` (repos) 或
-`hf buckets sync`（桶）。远程到远程复制仅在同一存储中工作
+`hf buckets sync`（桶）。远程到远程复制仅在同一存储内工作
 区域（https://huggingface.co/docs/hub/storage-regions）。
 
 **用法**：
@@ -1058,7 +1057,7 @@ $ hf datasets leaderboard [OPTIONS] DATASET_ID
   $ hf datasets ls --filter benchmark:official # 列出可用的排行榜
 
 了解更多
-  使用 `hf <command> --help` 了解有关命令的更多信息。
+  使用 `hf <command> --help` 获取有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf datasets list`
@@ -1074,7 +1073,7 @@ $ hf datasets leaderboard [OPTIONS] DATASET_ID
 $ hf datasets list [OPTIONS] [REPO_ID]
 ```
 
-**参数**：* `[REPO_ID]`: Dataset ID (e.g. `username/repo-name`) to list files from.如果省略，则列出数据集。
+**参数**：* `[REPO_ID]`：用于列出文件的数据集 ID（例如 `username/repo-name`）。如果省略，则列出数据集。
 
 **选项**：
 
@@ -1082,12 +1081,12 @@ $ hf datasets list [OPTIONS] [REPO_ID]
 * `--author TEXT`：按作者或组织过滤。
 * `--filter TEXT`：按标签过滤（例如“文本分类”）。可以多次使用。
 * `--sort [created_at|downloads|last_modified|likes|trending_score]`：对结果进行排序。
-* `--limit INTEGER`：限制结果数量。  [default: 30]
-* `--expand TEXT`: Comma-separated properties to return.使用时，仅返回列出的属性（和 id）。示例：“--expand=下载、喜欢、标签”。有效：作者、cardData、引用、createdAt、描述、禁用、下载、downloadsAllTime、gate、lastModified、likes、mainSize、paperswithcode_id、private、resourceGroup、sha、siblings、tags、trendingScore、usedStorage。
+* `--limit INTEGER`：限制结果数量。  [默认值：30]
+* `--expand TEXT`：要返回的逗号分隔属性。使用时，仅返回列出的属性（和 id）。示例：“--expand=下载、喜欢、标签”。有效：作者、cardData、引用、createdAt、描述、禁用、下载、downloadsAllTime、gate、lastModified、likes、mainSize、paperswithcode_id、private、resourceGroup、sha、siblings、tags、trendingScore、usedStorage。
 * `-h, --human-readable`：以人类可读的格式显示大小（仅用于列出文件）。
-* `--tree`: List files in tree format (only for listing files).
-* `-R, --recursive`: List files recursively (only for listing files).
-* `--revision TEXT`: Git revision id which can be a branch name, a tag, or a commit hash.
+* `--tree`：以树形格式列出文件（仅用于列出文件）。
+* `-R, --recursive`：递归列出文件（仅用于列出文件）。
+* `--revision TEXT`：Git 修订 ID，可以是分支名称、标签或提交哈希。
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
 * `--help`：显示此消息并退出。示例
   $ hf 数据集 ls
@@ -1209,7 +1208,7 @@ $ hf discussions close [OPTIONS] REPO_ID NUM
 示例
   $ hf 讨论关闭用户名/我的模型 5
   $ hf Discussion close username/my-model 5 --comment "关闭已解决。"了解更多
-  使用 `hf <command> --help` 获取有关命令的更多信息。
+  使用 `hf <command> --help` 了解有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf discussions comment`
@@ -1272,7 +1271,7 @@ $ hf discussions create [OPTIONS] REPO_ID
   $ hf Discussion create username/my-dataset --type dataset --title "数据质量问题"
 
 了解更多
-  使用 `hf <command> --help` 获取有关命令的更多信息。
+  使用 `hf <command> --help` 了解有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf discussions diff`
@@ -1375,7 +1374,7 @@ $ hf discussions list [OPTIONS] REPO_ID
 * `REPO_ID`：存储库的 ID（例如 `username/repo-name` 或 `spaces/username/repo-name`）。  [必需的]**选项**：
 
 * `-s, --status [open|closed|merged|draft|all]`：按状态过滤（打开、关闭、合并、草稿、全部）。  [默认：打开]
-* `-k, --kind [all|discussion|pull_request]`：按类型过滤（讨论、pull_request、全部）。  [默认值：全部]
+* `-k, --kind [all|discussion|pull_request]`：按种类过滤（讨论、pull_request、全部）。  [默认值：全部]
 * `--author TEXT`：按作者或组织过滤。
 * `--limit INTEGER`：限制结果数量。  [默认值：30]
 * `--type, --repo-type [model|dataset|space|kernel]`：存储库的类型（模型、数据集、空间或内核）。  [默认：型号]
@@ -1418,7 +1417,7 @@ $ hf discussions merge [OPTIONS] REPO_ID NUM
   $ hf Discussions merge username/my-model 5 --comment "合并，谢谢！"
 
 了解更多
-  使用 `hf <command> --help` 了解有关命令的更多信息。
+  使用 `hf <command> --help` 获取有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf discussions rename`
@@ -1506,7 +1505,7 @@ $ hf download [OPTIONS] REPO_ID [FILENAMES]...
 * `--max-workers INTEGER`：用于下载文件的最大工作线程数。默认值为 8。[默认值：8]
 * `--help`：显示此消息并退出。示例
   $ hf 下载meta-llama/Llama-3.2-1B-Instruct
-  $ hf 下载meta-llama/Llama-3.2-1B-Instruct config.json tokenizer.json
+  $ hf 下载 meta-llama/Llama-3.2-1B-Instruct config.json tokenizer.json
   $ hf 下载meta-llama/Llama-3.2-1B-Instruct --include "*.safetensors" --exclude "*.bin"
   $ hf 下载meta-llama/Llama-3.2-1B-Instruct --local-dir ./models/llama
   $ hf 下载 HuggingFaceM4/FineVision art/ --repo-type 数据集
@@ -1678,13 +1677,13 @@ $ hf endpoints deploy [OPTIONS] NAME
 * `--env-file TEXT`：读入环境变量文件。使用 `-` 从标准输入读取它们。
 * `-s, --secrets TEXT`：设置秘密环境变量。首选 `--secrets SECRET` 从您的环境中读取值（例如 `--secrets HF_TOKEN` 传递您的 Hugging Face 令牌）； `--secrets SECRET=value` 将该值放入您的 shell 历史记录中。
 * `--secrets-file TEXT`：读入秘密环境变量文件。使用 `-` 从标准输入读取它们。
-* `--type [public|protected|authenticated|private]`：端点访问类型。默认为“经过身份验证”（令牌门控，可公开访问）。
+* `--type [public|authenticated|private]`：端点访问类型。默认为“经过身份验证”（令牌门控，可公开访问）。
 * `--help`：显示此消息并退出。
 
 示例
   $ hf 端点部署 my-endpoint --repo gpt2 --framework pytorch ...
   $ hf 端点部署 my-endpoint --repo openai/gpt-oss-120b --framework custom --engine vllm --custom-image vllm/vllm-openai:v0.23.0 --tensor-parallel-size 8 ...了解更多
-  使用 `hf <command> --help` 了解有关命令的更多信息。
+  使用 `hf <command> --help` 获取有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf endpoints describe`
@@ -1711,7 +1710,7 @@ $ hf endpoints describe [OPTIONS] NAME
   $ hf 端点描述我的端点
 
 了解更多
-  使用 `hf <command> --help` 了解有关命令的更多信息。
+  使用 `hf <command> --help` 获取有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf endpoints hardware`
@@ -1721,7 +1720,7 @@ $ hf endpoints describe [OPTIONS] NAME
 仅列出命名空间现在可以部署的硬件：可用状态和足够的加速器
 一个副本的剩余配额。使用 `--all` 列出 API 返回的每个组合。
 
-配额是按命名空间计算的，因此请传递您将传递给 `hf endpoints deploy` 的相同 `--namespace`。价格在
+配额是每个命名空间的，因此传递您将传递给 `hf endpoints deploy` 的相同的 `--namespace`。价格在
 美元，每个副本每小时。
 
 **用法**：
@@ -1731,7 +1730,7 @@ $ hf endpoints hardware [OPTIONS]
 ```
 
 **选项**：* `--namespace TEXT`：与推理端点关联的命名空间。默认为当前用户的命名空间。
-* `--vendor TEXT`：仅显示此云提供商托管的硬件（例如“aws”）。
+* `--vendor TEXT`：仅显示该云提供商托管的硬件（例如“aws”）。
 * `--region TEXT`：仅显示此云区域中可用的硬件（例如“us-east-1”）。
 * `--accelerator TEXT`：仅显示具有此加速器的硬件（例如“cpu”、“gpu”、“neuron”）。
 * `--instance-type TEXT`：仅显示该实例类型的硬件（例如“nvidia-l4”）。
@@ -1744,7 +1743,7 @@ $ hf endpoints hardware [OPTIONS]
   $ hf 端点硬件 --vendor aws --accelerator gpu
 
 了解更多
-  使用 `hf <command> --help` 了解有关命令的更多信息。
+  使用 `hf <command> --help` 获取有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf endpoints list`
@@ -1766,7 +1765,7 @@ $ hf endpoints list [OPTIONS]
   $ hf 端点 ls --namespace my-org
 
 了解更多
-  使用 `hf <command> --help` 获取有关命令的更多信息。
+  使用 `hf <command> --help` 了解有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf endpoints list-catalog`
@@ -1826,7 +1825,7 @@ $ hf endpoints resume [OPTIONS] NAME
 **选项**：
 
 * `--namespace TEXT`：与推理端点关联的命名空间。默认为当前用户的命名空间。
-* `--fail-if-already-running`：如果`True`，如果推理端点已在运行，该方法将引发错误。
+* `--fail-if-already-running`：如果是`True`，如果推理端点已在运行，该方法将引发错误。
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
 * `--help`：显示此消息并退出。
 
@@ -1834,7 +1833,7 @@ $ hf endpoints resume [OPTIONS] NAME
   $ hf 端点恢复我的端点
 
 了解更多
-  使用 `hf <command> --help` 了解有关命令的更多信息。
+  使用 `hf <command> --help` 获取有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf endpoints scale-to-zero`
@@ -1967,7 +1966,7 @@ $ hf extensions exec [OPTIONS] NAME
 示例
   $ hf 扩展 exec claude -- --help
   $ hf 扩展 exec claude --model zai-org/GLM-5了解更多
-  使用 `hf <command> --help` 获取有关命令的更多信息。
+  使用 `hf <command> --help` 了解有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf extensions install`
@@ -2088,7 +2087,7 @@ $ hf extensions update [OPTIONS] [NAME]
   $ hf 扩展更新
   $ hf 扩展更新 hf-claude
   $ hf 扩展更新 alvarobartt/hf-mem了解更多
-  使用 `hf <command> --help` 了解有关命令的更多信息。
+  使用 `hf <command> --help` 获取有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ## `hf jobs`
@@ -2163,7 +2162,7 @@ $ hf jobs hardware [OPTIONS]
   $ hf 工作 硬件
 
 了解更多
-  使用 `hf <command> --help` 获取有关命令的更多信息。
+  使用 `hf <command> --help` 了解有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf jobs inspect`
@@ -2190,7 +2189,7 @@ $ hf jobs inspect [OPTIONS] JOB_IDS...
   $ hf 工作检查 
 
 了解更多
-  使用 `hf <command> --help` 了解有关命令的更多信息。
+  使用 `hf <command> --help` 获取有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf jobs labels`
@@ -2220,14 +2219,14 @@ $ hf jobs labels [OPTIONS] JOB_ID
   $ hf 工作标签 --clear
 
 了解更多
-  使用 `hf <command> --help` 了解有关命令的更多信息。
+  使用 `hf <command> --help` 获取有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf jobs list | ls | ps`
 
 列出职位。
 
-使用 `--status` 按状态过滤（请参阅 [JobStage](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.JobStage) 了解可能的值）并使用 `--label` 按 `key=value` 过滤
+使用 `--status` 按状态过滤（请参阅 [JobStage](/docs/huggingface_hub/v2.0.0/en/package_reference/jobs#huggingface_hub.JobStage) 了解可能的值）并使用 `--label` 按 `key=value` 过滤
 标签。作业必须匹配要列出的每个过滤器。
 
 **用法**：
@@ -2239,11 +2238,10 @@ $ hf jobs list | ls | ps [OPTIONS]
 **选项**：* `-a, --all`：显示所有作业（默认显示正在运行和正在调度）。不能与--status 结合使用。
 * `--status [COMPLETED|CANCELED|ERROR|DELETED|SCHEDULING|RUNNING]`：仅显示给定状态的作业。以逗号分隔或重复，例如`--status running,scheduling`。
 * `-l, --label TEXT`：仅显示具有给定 `key=value` 标签的职位。重复以需要多个标签，例如`--label env=prod --label team=ml`。
-* `--name TEXT`：仅显示具有给定名称的职位（`--label name=NAME` 的快捷方式）。
+* `--name TEXT`：仅显示具有给定名称的作业（`--label name=NAME` 的快捷方式）。
 * `--limit INTEGER`：要显示的最大作业数。设置为 0 以显示全部（无限制）。  [默认值：100]
 * `--namespace TEXT`：作业将运行的命名空间。默认为当前用户的命名空间。
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
-* `-f, --filter TEXT`：（已弃用）使用 `--status` 和 `--label` 代替。
 * `--help`：显示此消息并退出。
 
 示例
@@ -2292,7 +2290,7 @@ $ hf jobs logs [OPTIONS] JOB_ID
   $ hf 作业日志 -f --tail 100 
 
 了解更多
-  使用 `hf <command> --help` 了解有关命令的更多信息。
+  使用 `hf <command> --help` 获取有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档### `hf jobs run`
 
 运行作业。
@@ -2319,13 +2317,16 @@ $ hf jobs run [OPTIONS] IMAGE COMMAND...
 * `--flavor [cpu-basic|cpu-upgrade|cpu-performance|cpu-xl|t4-small|t4-medium|l4x1|l4x4|l40sx1|l40sx4|l40sx8|a10g-small|a10g-large|a10g-largex2|a10g-largex4|a100-large|a100x4|a100x8|h200|h200x2|h200x4|h200x8|rtx-pro-6000|rtx-pro-6000x2|rtx-pro-6000x4|rtx-pro-6000x8]`：硬件的味道。运行“hf jobs hardware”以列出可用的口味。默认为`cpu-basic`。
 * `--timeout TEXT`：最大持续时间：带 s（秒，默认）、m（分钟）、h（小时）或 d（天）的整数。
 * `-d, --detach`：在后台运行作业并打印作业ID。
-* `--dry-run`：打印已解析的作业配置，而不提交作业。
+* `--dry-run`：打印已解决的作业配置，而不提交作业。
 * `--expose INTEGER`：通过作业代理公开容器端口。对多个端口重复该标志（例如`--expose 8000 --expose 8001`）。每个暴露的端口都可以在公共作业域上访问；访问需要具有对作业命名空间的读取访问权限的 HF 令牌。
 * `--ssh`：使作业的容器可通过 SSH 访问。连接`hf jobs ssh <job_id>`。需要在 https://huggingface.co/settings/keys 上注册的 SSH 公钥。
-* `--network-group TEXT`：加入网络群组。同一命名空间和共享组的资源组中的作业放置在一起，并在每个端口上相互访问。在每个成员内部，`$HF_NETWORK_GROUP_HOSTNAME` 解析为每个成员。小写字母数字和破折号，最多 46 个字符。* `--network-alias TEXT`：在网络组中声明别名。会员在`${HF_NETWORK_GROUP_PREFIX}<alias>`到达领取它的工作。对多个别名重复该标志。小写字母数字和破折号，最多 34 个字符，在作业中是唯一的。需要`--network-group`。
+* `--network-group TEXT`：加入网络群组。同一命名空间和共享组的资源组中的作业放置在一起，并在每个端口上相互访问。在每个成员内部，`$HF_NETWORK_GROUP_HOSTNAME`解析为每个成员。小写字母数字和破折号，最多 46 个字符。* `--network-alias TEXT`：在网络组中声明别名。会员在`${HF_NETWORK_GROUP_PREFIX}<alias>`到达领取它的工作。对多个别名重复该标志。小写字母数字和破折号，最多 34 个字符，在作业中是唯一的。需要`--network-group`。
 * `--resource-group-id TEXT`：要在其中创建作业的资源组的 ID。用于控制对组织内资源的访问以及成本归因/支出限制功能。
 * `--namespace TEXT`：作业将运行的命名空间。默认为当前用户的命名空间。
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
+* `--format [agent|auto|human|json|quiet]`：输出格式。默认为“自动”，根据终端选择“代理”或“人类”。
+* `--json`：JSON 输出。相当于“--format json”。
+* `-q, --quiet`：安静输出（每行一个ID）。相当于“--format Quiet”。
 * `--help`：显示此消息并退出。
 
 示例
@@ -2333,10 +2334,8 @@ $ hf jobs run [OPTIONS] IMAGE COMMAND...
   $ hf jobs run --detach python:3.12 python script.py
   $ hf jobs run -e FOO=foo python:3.12 python script.py
   $ hf jobs run --secrets HF_TOKEN python:3.12 python script.py
-  $ hf jobs run -v hf://org/my-model:/data -v hf://buckets/org/b:/mnt python:3.12 python script.py
-
-了解更多
-  使用 `hf <command> --help` 获取有关命令的更多信息。
+  $ hf jobs run -v hf://org/my-model:/data -v hf://buckets/org/b:/mnt python:3.12 python script.py了解更多
+  使用 `hf <command> --help` 了解有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf jobs scheduled`
@@ -2347,7 +2346,9 @@ $ hf jobs run [OPTIONS] IMAGE COMMAND...
 
 ```console
 $ hf jobs scheduled [OPTIONS] COMMAND [ARGS]...
-```**选项**：
+```
+
+**选项**：
 
 * `--help`：显示此消息并退出。
 
@@ -2384,9 +2385,7 @@ $ hf jobs scheduled delete [OPTIONS] SCHEDULED_JOB_ID
 * `--help`：显示此消息并退出。
 
 示例
-  $ hf 作业计划删除 
-
-了解更多
+  $ hf 作业计划删除了解更多
   使用 `hf <command> --help` 获取有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
@@ -2400,7 +2399,9 @@ $ hf jobs scheduled delete [OPTIONS] SCHEDULED_JOB_ID
 $ hf jobs scheduled inspect [OPTIONS] SCHEDULED_JOB_IDS...
 ```
 
-**参数**：* `SCHEDULED_JOB_IDS...`：要检查的计划作业 ID（或“namespace/scheduled_job_id”）[必需]
+**参数**：
+
+* `SCHEDULED_JOB_IDS...`：要检查的计划作业 ID（或“namespace/scheduled_job_id”）[必需]
 
 **选项**：
 
@@ -2464,7 +2465,6 @@ $ hf jobs scheduled list | ls | ps [OPTIONS]
 * `--name TEXT`：仅显示具有给定名称的计划作业（`--label name=NAME` 的快捷方式）。
 * `--namespace TEXT`：作业将运行的命名空间。默认为当前用户的命名空间。
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
-* `-f, --filter TEXT`：（已弃用）使用 `--status` 和 `--label` 代替。
 * `--help`：显示此消息并退出。
 
 示例
@@ -2490,9 +2490,9 @@ $ hf jobs scheduled resume [OPTIONS] SCHEDULED_JOB_ID
 
 **参数**：
 
-* `SCHEDULED_JOB_ID`：计划作业 ID（或“namespace/scheduled_job_id”）[必需]**选项**：
+* `SCHEDULED_JOB_ID`：计划作业 ID（或“namespace/scheduled_job_id”）[必需]
 
-* `--namespace TEXT`：作业将运行的命名空间。默认为当前用户的命名空间。
+**选项**：* `--namespace TEXT`：作业将运行的命名空间。默认为当前用户的命名空间。
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
 * `--help`：显示此消息并退出。
 
@@ -2527,17 +2527,21 @@ $ hf jobs scheduled run [OPTIONS] SCHEDULE IMAGE COMMAND...
 * `-l, --label TEXT`：设置标签。例如。 --label KEY=VALUE 或 --label LABEL
 * `-v, --volume TEXT`：安装一个或多个卷。格式：hf://[TYPE/]SOURCE:/MOUNT_PATH[:ro|:rw] 或 LOCAL_DIR:/MOUNT_PATH[:ro|:rw]。 TYPE 是以下之一：模型、数据集、空间、存储桶。如果省略，TYPE 默认为型号。模型、数据集和空间始终以只读方式安装。默认情况下，存储桶是读+写的。本地目录源首先同步到存储桶，并默认以只读方式挂载。例如。 -v hf://datasets/org/ds:/data 或 -v hf://buckets/org/b:/mnt:ro 或 -v ./inputs:/inputs
 * `--env-file TEXT`：读入环境变量文件。使用 `-` 从标准输入读取它们。* `--secrets-file TEXT`：读入秘密环境变量文件。使用 `-` 从标准输入读取它们。
-* `--flavor [cpu-basic|cpu-upgrade|cpu-performance|cpu-xl|t4-small|t4-medium|l4x1|l4x4|l40sx1|l40sx4|l40sx8|a10g-small|a10g-large|a10g-largex2|a10g-largex4|a100-large|a100x4|a100x8|h200|h200x2|h200x4|h200x8|rtx-pro-6000|rtx-pro-6000x2|rtx-pro-6000x4|rtx-pro-6000x8]`：硬件的风味。运行“hf jobs hardware”以列出可用的口味。默认为`cpu-basic`。
+* `--flavor [cpu-basic|cpu-upgrade|cpu-performance|cpu-xl|t4-small|t4-medium|l4x1|l4x4|l40sx1|l40sx4|l40sx8|a10g-small|a10g-large|a10g-largex2|a10g-largex4|a100-large|a100x4|a100x8|h200|h200x2|h200x4|h200x8|rtx-pro-6000|rtx-pro-6000x2|rtx-pro-6000x4|rtx-pro-6000x8]`：硬件的味道。运行“hf jobs hardware”以列出可用的口味。默认为 `cpu-basic`。
 * `--timeout TEXT`：最大持续时间：带 s（秒，默认）、m（分钟）、h（小时）或 d（天）的 int。
 * `--dry-run`：打印已解析的作业配置，而不提交作业。
 * `--expose INTEGER`：通过作业代理公开容器端口。对多个端口重复该标志（例如`--expose 8000 --expose 8001`）。每个暴露的端口都可以在公共作业域上访问；访问需要具有对作业命名空间的读取访问权限的 HF 令牌。
 * `--resource-group-id TEXT`：要在其中创建作业的资源组的 ID。用于控制对组织内资源的访问以及成本归因/支出限制功能。
 * `--namespace TEXT`：作业将运行的命名空间。默认为当前用户的命名空间。
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
-* `--help`：显示此消息并退出。
+* `--format [agent|auto|human|json|quiet]`：输出格式。默认为“自动”，根据终端选择“代理”或“人类”。
+* `--json`：JSON 输出。相当于“--format json”。
+* `-q, --quiet`：安静输出（每行一个ID）。相当于“--format Quiet”。* `--help`：显示此消息并退出。
 
 示例
-  $ hf jobs Scheduled run "0 0 * * *" --name daily-script python:3.12 python script.py了解更多
+  $ hf jobs Scheduled run "0 0 * * *" --name daily-script python:3.12 python script.py
+
+了解更多
   使用 `hf <command> --help` 了解有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
@@ -2582,11 +2586,11 @@ $ hf jobs scheduled trigger [OPTIONS] SCHEDULED_JOB_ID
 
 * `SCHEDULED_JOB_ID`：计划作业 ID（或“namespace/scheduled_job_id”）[必需]
 
-**选项**：
-
-* `--namespace TEXT`：作业将运行的命名空间。默认为当前用户的命名空间。
+**选项**：* `--namespace TEXT`：作业将运行的命名空间。默认为当前用户的命名空间。
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
-* `--help`：显示此消息并退出。示例
+* `--help`：显示此消息并退出。
+
+示例
   $ hf 作业计划触发器 
 
 了解更多
@@ -2644,6 +2648,9 @@ $ hf jobs scheduled uv run [OPTIONS] SCHEDULE SCRIPT [SCRIPT_ARGS]...
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
 * `--with TEXT`：使用安装的给定软件包运行
 * `-p, --python TEXT`：运行环境使用的Python解释器
+* `--format [agent|auto|human|json|quiet]`：输出格式。默认为“自动”，根据终端选择“代理”或“人类”。
+* `--json`：JSON 输出。相当于“--format json”。
+* `-q, --quiet`：安静输出（每行一个ID）。相当于“--format Quiet”。
 * `--help`：显示此消息并退出。
 
 示例
@@ -2656,9 +2663,7 @@ $ hf jobs scheduled uv run [OPTIONS] SCHEDULE SCRIPT [SCRIPT_ARGS]...
 
 ### `hf jobs ssh`
 
-通过 SSH 连接到正在运行的作业。
-
-如果作业尚未运行，则等待其达到 RUNNING 状态后再执行
+通过 SSH 连接到正在运行的作业。如果作业尚未运行，则等待其达到 RUNNING 状态后再执行
 连接。需要在启用 SSH 的情况下启动作业 (`hf jobs run --ssh ...`)
 以及要在 https://huggingface.co/settings/keys 注册的 SSH 公钥。
 
@@ -2672,7 +2677,9 @@ $ hf jobs ssh [OPTIONS] JOB_ID
 
 * `JOB_ID`：作业 ID（或“namespace/job_id”）[必需]
 
-**选项**：* `-i, --identity-file PATH`：SSH 身份文件的路径（转发到`ssh -i`）。
+**选项**：
+
+* `-i, --identity-file PATH`：SSH 身份文件的路径（转发到`ssh -i`）。
 * `--dry-run`：打印 SSH 命令而不是运行它。
 * `--namespace TEXT`：作业将运行的命名空间。默认为当前用户的命名空间。
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
@@ -2701,9 +2708,7 @@ $ hf jobs stats [OPTIONS] [JOB_IDS]...
 
 * `[JOB_IDS]...`：作业 ID（或“namespace/job_id”）
 
-**选项**：
-
-* `--namespace TEXT`：作业将运行的命名空间。默认为当前用户的命名空间。
+**选项**：* `--namespace TEXT`：作业将运行的命名空间。默认为当前用户的命名空间。
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
 * `--help`：显示此消息并退出。
 
@@ -2714,7 +2719,9 @@ $ hf jobs stats [OPTIONS] [JOB_IDS]...
   使用 `hf <command> --help` 了解有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
-### `hf jobs uv`在 HF 基础设施上运行 UV 脚本（具有内联依赖项的 Python）。
+### `hf jobs uv`
+
+在 HF 基础设施上运行 UV 脚本（具有内联依赖项的 Python）。
 
 **用法**：
 
@@ -2745,27 +2752,28 @@ $ hf jobs uv run [OPTIONS] SCRIPT [SCRIPT_ARGS]...
 * `SCRIPT`：要运行的UV脚本（本地文件或URL）[必需]
 * `[SCRIPT_ARGS]...`：脚本的参数
 
-**选项**：
-
-* `--image TEXT`：使用安装了 `uv` 的自定义 Docker 镜像。
-* `--flavor [cpu-basic|cpu-upgrade|cpu-performance|cpu-xl|t4-small|t4-medium|l4x1|l4x4|l40sx1|l40sx4|l40sx8|a10g-small|a10g-large|a10g-largex2|a10g-largex4|a100-large|a100x4|a100x8|h200|h200x2|h200x4|h200x8|rtx-pro-6000|rtx-pro-6000x2|rtx-pro-6000x4|rtx-pro-6000x8]`：硬件的味道。运行“hf jobs hardware”以列出可用的口味。默认为`cpu-basic`。
+**选项**：* `--image TEXT`：使用安装了 `uv` 的自定义 Docker 镜像。
+* `--flavor [cpu-basic|cpu-upgrade|cpu-performance|cpu-xl|t4-small|t4-medium|l4x1|l4x4|l40sx1|l40sx4|l40sx8|a10g-small|a10g-large|a10g-largex2|a10g-largex4|a100-large|a100x4|a100x8|h200|h200x2|h200x4|h200x8|rtx-pro-6000|rtx-pro-6000x2|rtx-pro-6000x4|rtx-pro-6000x8]`：硬件的味道。运行“hf jobs hardware”以列出可用的口味。默认为 `cpu-basic`。
 * `-e, --env TEXT`：设置环境变量。例如。 --env ENV=值
 * `-s, --secrets TEXT`：设置秘密环境变量。首选 `--secrets SECRET` 从您的环境中读取值（例如 `--secrets HF_TOKEN` 传递您的 Hugging Face 令牌）； `--secrets SECRET=value` 将该值放入您的 shell 历史记录中。
 * `--name TEXT`：为作业命名。存储为 `name` 标签。名称不必是唯一的。默认为图像或脚本名称加上已解析的启动配置的短哈希。
-* `-l, --label TEXT`：设置标签。例如。 --label KEY=VALUE 或 --label LABEL* `-v, --volume TEXT`：安装一个或多个卷。格式：hf://[TYPE/]SOURCE:/MOUNT_PATH[:ro|:rw] 或 LOCAL_DIR:/MOUNT_PATH[:ro|:rw]。 TYPE 是以下之一：模型、数据集、空间、存储桶。如果省略，TYPE 默认为型号。模型、数据集和空间始终以只读方式安装。默认情况下，存储桶是读+写的。本地目录源首先同步到存储桶，并默认以只读方式挂载。例如。 -v hf://datasets/org/ds:/data 或 -v hf://buckets/org/b:/mnt:ro 或 -v ./inputs:/inputs
-* `--env-file TEXT`：读入环境变量文件。使用 `-` 从标准输入读取它们。
+* `-l, --label TEXT`：设置标签。例如。 --label KEY=VALUE 或 --label LABEL
+* `-v, --volume TEXT`：安装一个或多个卷。格式：hf://[TYPE/]SOURCE:/MOUNT_PATH[:ro|:rw] 或 LOCAL_DIR:/MOUNT_PATH[:ro|:rw]。 TYPE 是以下之一：模型、数据集、空间、存储桶。如果省略，TYPE 默认为型号。模型、数据集和空间始终以只读方式安装。默认情况下，存储桶是读+写的。本地目录源首先同步到存储桶，并默认以只读方式挂载。例如。 -v hf://datasets/org/ds:/data 或 -v hf://buckets/org/b:/mnt:ro 或 -v ./inputs:/inputs* `--env-file TEXT`：读入环境变量文件。使用 `-` 从标准输入读取它们。
 * `--secrets-file TEXT`：读入秘密环境变量文件。使用 `-` 从标准输入读取它们。
 * `--timeout TEXT`：最大持续时间：带 s（秒，默认）、m（分钟）、h（小时）或 d（天）的 int。
 * `-d, --detach`：在后台运行作业并打印作业ID。
-* `--dry-run`：打印已解决的作业配置，而不提交作业。
-* `--expose INTEGER`：通过作业代理公开容器端口。对多个端口重复该标志（例如`--expose 8000 --expose 8001`）。每个暴露的端口都可以在公共作业域上访问；访问需要具有对作业命名空间的读取访问权限的 HF 令牌。* `--ssh`：使作业的容器可通过 SSH 访问。连接`hf jobs ssh <job_id>`。需要在 https://huggingface.co/settings/keys 上注册的 SSH 公钥。
-* `--network-group TEXT`：加入网络群组。同一命名空间和共享组的资源组中的作业放置在一起，并在每个端口上相互访问。在每个成员内部，`$HF_NETWORK_GROUP_HOSTNAME` 解析为每个成员。小写字母数字和破折号，最多 46 个字符。
-* `--network-alias TEXT`：在网络组中声明别名。会员到达工作地点`${HF_NETWORK_GROUP_PREFIX}<alias>`领取它。对多个别名重复该标志。小写字母数字和破折号，最多 34 个字符，在作业中是唯一的。需要`--network-group`。
+* `--dry-run`：打印已解析的作业配置，而不提交作业。
+* `--expose INTEGER`：通过作业代理公开容器端口。对多个端口重复该标志（例如`--expose 8000 --expose 8001`）。每个暴露的端口都可以在公共作业域上访问；访问需要具有对作业命名空间的读取访问权限的 HF 令牌。
+* `--ssh`：使作业的容器可通过 SSH 访问。连接`hf jobs ssh <job_id>`。需要在 https://huggingface.co/settings/keys 上注册的 SSH 公钥。
+* `--network-group TEXT`：加入网络群组。同一命名空间和共享组的资源组中的作业放置在一起，并在每个端口上相互访问。在每个成员内部，`$HF_NETWORK_GROUP_HOSTNAME` 解析为每个成员。小写字母数字和破折号，最多 46 个字符。* `--network-alias TEXT`：在网络组中声明别名。会员到达工作地点`${HF_NETWORK_GROUP_PREFIX}<alias>`领取它。对多个别名重复该标志。小写字母数字和破折号，最多 34 个字符，在作业中是唯一的。需要`--network-group`。
 * `--resource-group-id TEXT`：要在其中创建作业的资源组的 ID。用于控制对组织内资源的访问以及成本归因/支出限制功能。
 * `--namespace TEXT`：作业将运行的命名空间。默认为当前用户的命名空间。
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
 * `--with TEXT`：使用安装的给定软件包运行
 * `-p, --python TEXT`：运行环境使用的Python解释器
+* `--format [agent|auto|human|json|quiet]`：输出格式。默认为“自动”，根据终端选择“代理”或“人类”。
+* `--json`：JSON 输出。相当于“--format json”。
+* `-q, --quiet`：安静输出（每行一个ID）。相当于“--format Quiet”。
 * `--help`：显示此消息并退出。示例
   $ hf jobs uv run --name my-script my_script.py
   $ hf jobs uv run --detach my_script.py
@@ -2799,7 +2807,7 @@ $ hf jobs wait [OPTIONS] JOB_IDS...
 
 **选项**：
 
-* `--timeout TEXT`：最长等待时间：带 s（秒，默认）、m（分钟）、h（小时）或 d（天）的 int。
+* `--timeout TEXT`：最长时间等待：带有 s（秒，默认）、m（分钟）、h（小时）或 d（天）的 int。
 * `--namespace TEXT`：作业将运行的命名空间。默认为当前用户的命名空间。
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
 * `--help`：显示此消息并退出。示例
@@ -2864,7 +2872,7 @@ $ hf models [OPTIONS] COMMAND [ARGS]...
 * `--help`：显示此消息并退出。
 
 **命令**：* `card`：获取 Hub 上模型的模型卡 (README)。
-* `info`：获取有关 Hub 上模型的信息。
+* `info`：获取 Hub 上模型的信息。
 * `list`：列出 Hub 上的模型或模型存储库中的文件。 [别名：ls]
 
 ### `hf models card`
@@ -2938,14 +2946,14 @@ $ hf models list [OPTIONS] [REPO_ID]
 
 **参数**：
 
-* `[REPO_ID]`：用于列出文件的模型 ID（例如 `username/repo-name`）。如果省略，则列出型号。
+* `[REPO_ID]`：用于列出文件的型号 ID（例如 `username/repo-name`）。如果省略，则列出型号。
 
 **选项**：
 
 * `--search TEXT`：搜索查询。
 * `--author TEXT`：按作者或组织过滤。
 * `--filter TEXT`：按标签过滤（例如“文本分类”）。可以多次使用。
-* `--pipeline-tag TEXT`：按管道标签（规范任务）过滤，例如‘总结’。
+* `--pipeline-tag TEXT`：按管道标签过滤（规范任务），例如‘总结’。
 * `--gated / --no-gated`：按门控状态过滤。 '--gate' 仅适用于门控，'--no-gate' 仅适用于非门控。
 * `--apps TEXT`：按可以运行模型的应用程序过滤，例如“ollama”或“vllm”。
 * `--num-parameters TEXT`：按参数计数过滤，例如'最小值：6B，最大值：128B'。
@@ -2953,7 +2961,7 @@ $ hf models list [OPTIONS] [REPO_ID]
 * `--warm`：仅列出当前由至少一个推理提供者提供服务的模型。
 * `--sort [created_at|downloads|last_modified|likes|trending_score]`：对结果进行排序。
 * `--limit INTEGER`：限制结果数量。  [默认值：30]* `--expand TEXT`：要返回的逗号分隔属性。使用时，仅返回列出的属性（和 id）。示例：“--expand=下载、喜欢、标签”。有效：作者、baseModels、cardData、childrenModelCount、config、createdAt、disabled、downloads、downloadsAllTime、evalResults、gate、gguf、inference、inferenceProviderMapping、lastModified、library_name、likes、mask_token、model-index、pipeline_tag、private、resourceGroup、safetensors、sha、siblings、spaces、tags、transformersInfo、trendingScore、usedStorage、widgetData。
-* `-h, --human-readable`：以人类可读的格式显示大小（仅适用于列出文件）。
+* `-h, --human-readable`：以人类可读的格式显示大小（仅用于列出文件）。
 * `--tree`：以树形格式列出文件（仅用于列出文件）。
 * `-R, --recursive`：递归列出文件（仅用于列出文件）。
 * `--revision TEXT`：Git 修订 ID，可以是分支名称、标签或提交哈希。
@@ -3103,22 +3111,22 @@ $ hf papers search [OPTIONS] QUERY
   $ hf 论文搜索“扩散”--format json
 
 了解更多
-  使用 `hf <command> --help` 获取有关命令的更多信息。
+  使用 `hf <command> --help` 了解有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ## `hf repos`
 
-管理 Hub 上的存储库。 [别名：回购]
+管理 Hub 上的存储库。
 
 **用法**：
 
 ```console
-$ hf repos [OPTIONS] [COMMAND] [ARGS]...
+$ hf repos [OPTIONS] COMMAND [ARGS]...
 ```
 
-**选项**：* `--help`：显示此消息并退出。
+**选项**：
 
-**命令**：
+* `--help`：显示此消息并退出。**命令**：
 
 * `branch`：管理 Hub 上存储库的分支。
 * `cp`：在本地路径、存储库和存储桶之间复制文件。
@@ -3202,7 +3210,7 @@ $ hf repos branch delete [OPTIONS] REPO_ID BRANCH
 
 示例
   $ hf repos 分支删除 my-model dev了解更多
-  使用 `hf <command> --help` 获取有关命令的更多信息。
+  使用 `hf <command> --help` 了解有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf repos cp`
@@ -3212,7 +3220,7 @@ $ hf repos branch delete [OPTIONS] REPO_ID BRANCH
 处理上传（本地/stdin -> repo/bucket）、下载（repo/bucket -> local/stdout）和
 远程到远程副本（repo/bucket -> repo/bucket）。存储桶到存储库和本地到本地
 不支持副本。对于目录，使用 `hf upload`/`hf download` (repos) 或
-`hf buckets sync`（桶）。远程到远程复制仅在同一存储中工作
+`hf buckets sync`（桶）。远程到远程复制仅在同一存储内工作
 区域（https://huggingface.co/docs/hub/storage-regions）。
 
 **用法**：
@@ -3268,8 +3276,7 @@ $ hf repos create [OPTIONS] REPO_ID
 * `--exist-ok / --no-exist-ok`：如果存储库已存在，则不要引发错误。  [默认值：不存在-确定]
 * `--resource-group-id TEXT`：要在其中创建存储库的资源组。资源组仅适用于企业中心组织。
 * `--region [us|eu]`：要在其中创建存储库的云区域。可以是“我们”或“欧盟”之一。需要团队计划或以上。
-* `--flavor [cpu-basic|cpu-upgrade|zero-a10g|t4-small|t4-medium|l4x1|l4x4|l40sx1|l40sx4|l40sx8|a10g-small|a10g-large|a10g-largex2|a10g-largex4|a100-large|a100x4|a100x8]`：太空硬件风格（例如“cpu-basic”、“t4-medium”、“l4x4”）。仅适用于空间。* `--storage [small|medium|large]`：（已弃用，请改用卷）空间持久存储层（“小”、“中”或“大”）。仅适用于空间。
-* `--sleep-time INTEGER`：空间进入睡眠状态之前不活动的秒数。使用-1 禁用。仅适用于空间。
+* `--flavor [cpu-basic|cpu-upgrade|zero-a10g|t4-small|t4-medium|l4x1|l4x4|l40sx1|l40sx4|l40sx8|a10g-small|a10g-large|a10g-largex2|a10g-largex4|a100-large|a100x4|a100x8]`：太空硬件风格（例如“cpu-basic”、“t4-medium”、“l4x4”）。仅适用于空间。* `--sleep-time INTEGER`：空间进入睡眠状态之前不活动的秒数。使用-1 禁用。仅适用于空间。
 * `-s, --secrets TEXT`：设置秘密环境变量。首选 `--secrets SECRET` 从您的环境中读取值（例如 `--secrets HF_TOKEN` 传递您的 Hugging Face 令牌）； `--secrets SECRET=value` 将该值放入您的 shell 历史记录中。
 * `--secrets-file TEXT`：读入秘密环境变量文件。使用 `-` 从标准输入读取它们。
 * `-e, --env TEXT`：设置环境变量。例如。 --env ENV=值
@@ -3364,24 +3371,23 @@ $ hf repos duplicate [OPTIONS] FROM_ID [TO_ID]
 **选项**：
 
 * `--type, --repo-type [model|dataset|space|kernel]`：存储库的类型（模型、数据集、空间或内核）。  [默认：型号]
-* `--private / --no-private`：如果 Hub 上不存在存储库，是否创建私有存储库。如果存储库已存在，则忽略。
+* `--private / --no-private`: 如果 Hub 上不存在存储库，是否创建私有存储库。如果存储库已存在，则忽略。
 * `--public`：是否公开仓库。如果存储库已存在，则忽略。
 * `--protected`：是否对Space进行保护（仅限Spaces）。如果存储库已存在，则忽略。
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
 * `--exist-ok / --no-exist-ok`：如果存储库已存在，则不要引发错误。  [默认值：不存在-确定]
-* `--flavor [cpu-basic|cpu-upgrade|zero-a10g|t4-small|t4-medium|l4x1|l4x4|l40sx1|l40sx4|l40sx8|a10g-small|a10g-large|a10g-largex2|a10g-largex4|a100-large|a100x4|a100x8]`：太空硬件风格（例如“cpu-basic”、“t4-medium”、“l4x4”）。仅适用于空间。* `--storage [small|medium|large]`：（已弃用，请改用卷）空间持久存储层（“小”、“中”或“大”）。仅适用于空间。
-* `--sleep-time INTEGER`：空间进入睡眠状态之前不活动的秒数。使用-1 禁用。仅适用于空间。
-* `-s, --secrets TEXT`：设置秘密环境变量。首选 `--secrets SECRET` 从您的环境中读取值（例如 `--secrets HF_TOKEN` 传递您的 Hugging Face 令牌）； `--secrets SECRET=value` 将该值放入您的 shell 历史记录中。
+* `--flavor [cpu-basic|cpu-upgrade|zero-a10g|t4-small|t4-medium|l4x1|l4x4|l40sx1|l40sx4|l40sx8|a10g-small|a10g-large|a10g-largex2|a10g-largex4|a100-large|a100x4|a100x8]`：太空硬件风格（例如“cpu-basic”、“t4-medium”、“l4x4”）。仅适用于空间。
+* `--sleep-time INTEGER`：空间进入睡眠状态之前不活动的秒数。使用-1 禁用。仅适用于空间。* `-s, --secrets TEXT`：设置秘密环境变量。首选 `--secrets SECRET` 从您的环境中读取值（例如 `--secrets HF_TOKEN` 传递您的 Hugging Face 令牌）； `--secrets SECRET=value` 将该值放入您的 shell 历史记录中。
 * `--secrets-file TEXT`：读入秘密环境变量文件。使用 `-` 从标准输入读取它们。
 * `-e, --env TEXT`：设置环境变量。例如。 --env ENV=值
 * `--env-file TEXT`：读入环境变量文件。使用 `-` 从标准输入读取它们。
 * `-v, --volume TEXT`：安装一个或多个卷。格式：hf://[TYPE/]SOURCE:/MOUNT_PATH[:ro]。 TYPE 是以下之一：模型、数据集、空间、存储桶。如果省略，TYPE 默认为型号。模型、数据集和空间始终以只读方式安装。默认情况下，存储桶是读+写的。例如。 -v hf://org/m:/data 或 -v hf://datasets/org/ds:/data 或 -v hf://buckets/org/b:/mnt:ro
-* `--help`：显示此消息并退出。示例
+* `--help`：显示此消息并退出。
+
+示例
   $ hf repos 重复 openai/gdpval --type 数据集
   $ hf repos 重复的 multimodalart/dreambooth-training my-dreambooth --type space --flavor l4x4 --secrets HF_TOKEN --private
-  $ hf repos 重复 org/my-space my-space --type space -v hf://org/my-model:/models -v hf://buckets/org/b:/data
-
-了解更多
+  $ hf repos 重复 org/my-space my-space --type space -v hf://org/my-model:/models -v hf://buckets/org/b:/data了解更多
   使用 `hf <command> --help` 了解有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
@@ -3408,8 +3414,10 @@ $ hf repos list [OPTIONS]
 示例
   $ hf 仓库 ls
   $ hf repos ls --explore
-  $ hf repos ls --namespace my-org --search bert了解更多
-  使用 `hf <command> --help` 了解有关命令的更多信息。
+  $ hf repos ls --namespace my-org --search bert
+
+了解更多
+  使用 `hf <command> --help` 获取有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
 ### `hf repos move`
@@ -3425,9 +3433,7 @@ $ hf repos move [OPTIONS] FROM_ID TO_ID
 **参数**：
 
 * `FROM_ID`：存储库的 ID（例如 `username/repo-name` 或 `spaces/username/repo-name`）。  [必填]
-* `TO_ID`：存储库的 ID（例如 `username/repo-name` 或 `spaces/username/repo-name`）。  [必填]
-
-**选项**：
+* `TO_ID`：存储库的 ID（例如 `username/repo-name` 或 `spaces/username/repo-name`）。  [必需的]**选项**：
 
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
 * `--type, --repo-type [model|dataset|space|kernel]`：存储库的类型（模型、数据集、空间或内核）。  [默认：型号]
@@ -3454,15 +3460,15 @@ $ hf repos settings [OPTIONS] REPO_ID
 
 * `REPO_ID`：存储库的 ID（例如 `username/repo-name` 或 `spaces/username/repo-name`）。  [必填]
 
-**选项**：* `--gated [auto|manual|false]`：存储库的门控状态。
-* `--private / --no-private`: 如果 Hub 上不存在存储库，是否创建私有存储库。如果存储库已存在，则忽略。
+**选项**：
+
+* `--gated [auto|manual|false]`：存储库的门控状态。
+* `--private / --no-private`：如果 Hub 上不存在存储库，是否创建私有存储库。如果存储库已存在，则忽略。
 * `--public`：是否公开仓库。如果存储库已存在，则忽略。
 * `--protected`：是否对Space进行保护（仅限Spaces）。如果存储库已存在，则忽略。
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
 * `--type, --repo-type [model|dataset|space|kernel]`：存储库的类型（模型、数据集、空间或内核）。  [默认：型号]
-* `--help`：显示此消息并退出。
-
-示例
+* `--help`：显示此消息并退出。示例
   $ hf 存储库设置 my-model --private
   $ hf 存储库设置 my-model --gate auto
   $ hf 存储库设置 my-space --repo-type space --protected
@@ -3501,7 +3507,9 @@ $ hf repos tag [OPTIONS] COMMAND [ARGS]...
 $ hf repos tag create [OPTIONS] REPO_ID TAG
 ```
 
-**参数**：* `REPO_ID`：存储库的 ID（例如 `username/repo-name` 或 `spaces/username/repo-name`）。  [必填]
+**参数**：
+
+* `REPO_ID`：存储库的 ID（例如 `username/repo-name` 或 `spaces/username/repo-name`）。  [必填]
 * `TAG`：要创建的标签的名称。  [必填]
 
 **选项**：
@@ -3510,9 +3518,7 @@ $ hf repos tag create [OPTIONS] REPO_ID TAG
 * `--revision TEXT`：Git 修订 ID，可以是分支名称、标签或提交哈希。
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
 * `--type, --repo-type [model|dataset|space|kernel]`：存储库的类型（模型、数据集、空间或内核）。  [默认：型号]
-* `--help`：显示此消息并退出。
-
-示例
+* `--help`：显示此消息并退出。示例
   $ hf repos 标签创建 my-model v1.0
   $ hf repos tag create my-model v1.0 -m "First release"
 
@@ -3535,7 +3541,9 @@ $ hf repos tag delete [OPTIONS] REPO_ID TAG
 * `REPO_ID`：存储库的 ID（例如 `username/repo-name` 或 `spaces/username/repo-name`）。  [必填]
 * `TAG`：要删除的标签名称。  [必填]
 
-**选项**：* `-y, --yes`：回答“是”则自动提示
+**选项**：
+
+* `-y, --yes`：回答“是”则自动提示
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
 * `--type, --repo-type [model|dataset|space|kernel]`：存储库的类型（模型、数据集、空间或内核）。  [默认：型号]
 * `--help`：显示此消息并退出。
@@ -3561,9 +3569,7 @@ $ hf repos tag list [OPTIONS] REPO_ID
 
 * `REPO_ID`：存储库的 ID（例如 `username/repo-name` 或 `spaces/username/repo-name`）。  [必填]
 
-**选项**：
-
-* `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
+**选项**：* `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
 * `--type, --repo-type [model|dataset|space|kernel]`：存储库的类型（模型、数据集、空间或内核）。  [默认：型号]
 * `--help`：显示此消息并退出。
 
@@ -3588,7 +3594,9 @@ $ hf sandbox [OPTIONS] COMMAND [ARGS]...
 
 * `--help`：显示此消息并退出。
 
-**命令**：* `cp`：在本地计算机和沙箱（docker 风格）之间复制文件。
+**命令**：
+
+* `cp`：在本地计算机和沙箱（docker 风格）之间复制文件。
 * `create`：创建一个沙箱：默认为专用虚拟机，或者使用`--pool`廉价的共享虚拟机。
 * `exec`：在沙箱中运行命令，流式输出。
 * `kill`：终止沙箱、整个共享主机或所有内容（--全部）。
@@ -3596,9 +3604,7 @@ $ hf sandbox [OPTIONS] COMMAND [ARGS]...
 * `process`：列出并停止沙箱中运行的后台进程。
 * `spawn`：在后台启动一个长时间运行的命令并返回其pid（不要等待）。
 
-### `hf sandbox cp`
-
-在本地计算机和沙箱（docker 样式）之间复制文件。
+### `hf sandbox cp`在本地计算机和沙箱（docker 样式）之间复制文件。
 
 **用法**：
 
@@ -3619,7 +3625,9 @@ $ hf sandbox cp [OPTIONS] SRC DST
 
 示例
   $ hf 沙箱 cp data.csv :/data/data.csv
-  $ hf 沙箱 cp :/app/result.json result.json了解更多
+  $ hf 沙箱 cp :/app/result.json result.json
+
+了解更多
   使用 `hf <command> --help` 了解有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
@@ -3628,7 +3636,7 @@ $ hf sandbox cp [OPTIONS] SRC DST
 创建一个沙箱：默认情况下是一个专用虚拟机，或者是一个带有 `--pool` 的廉价共享虚拟机。
 
 Env 和idle-timeout 在两种模式下都适用于沙箱。有了`--pool`，图像和
-味道来自池子，所以将它们传递到这里是一个错误； `--secrets`也是
+味道来自池子，所以将它们传递到这里是一个错误； `--secrets` 也是
 被拒绝，因为池化沙箱没有加密秘密通道（使用`--env`）。定义
 首先是一个带有`hf sandbox pool create`的池。
 
@@ -3681,7 +3689,7 @@ $ hf sandbox exec [OPTIONS] SANDBOX_ID COMMAND...
 
 **参数**：
 
-* `SANDBOX_ID`：`hf sandbox create`打印的沙箱id。  [必填]
+* `SANDBOX_ID`：`hf sandbox create`打印的沙箱ID。  [必填]
 * `COMMAND...`：要运行的命令。  [必填]
 
 **选项**：* `-w, --workdir TEXT`：工作目录。
@@ -3876,7 +3884,7 @@ $ hf sandbox process kill [OPTIONS] SANDBOX_ID PID
 
 #### `hf sandbox process ls`
 
-列出沙箱中运行的后台进程（以 `hf sandbox spawn` 开头）。 [别名：列表]
+列出沙箱中运行的后台进程（以`hf sandbox spawn`开头）。 [别名：列表]
 
 **用法**：
 
@@ -3934,7 +3942,7 @@ $ hf sandbox spawn [OPTIONS] SANDBOX_ID COMMAND...
 
 ## `hf skills`
 
-管理人工智能助手的技能。
+管理人工智能助理的技能。
 
 **用法**：
 
@@ -3960,7 +3968,8 @@ $ hf skills [OPTIONS] COMMAND [ARGS]...
 默认的`hf-cli`技能是从安装的CLI版本本地生成的；
 其他技能可以从 Hugging Face 市场下载。
 默认位置位于当前目录 (.agents/skills) 或用户级别 (~/.agents/skills)。
-如果指定了`--claude`，该技能也会符号链接到 Claude 的旧技能目录中。
+该技能也被符号链接到 Claude Code 的技能目录中（`.claude/skills` 或 `~/.claude/skills`，
+设置时遵守`CLAUDE_CONFIG_DIR`），除非使用`--dest`。
 
 **用法**：
 
@@ -3972,8 +3981,7 @@ $ hf skills add [OPTIONS] [NAME]
 
 * `[NAME]`：市场技能名称。
 
-**选项**：* `--claude`：为克劳德安装。
-* `-g, --global`：全局安装（用户级）而不是安装在当前项目目录中。
+**选项**：* `-g, --global`：全局安装（用户级）而不是在当前项目目录中。
 * `--dest PATH`：安装到自定义目标（技能目录的路径）。
 * `--force`：覆盖目的地已有的技能。
 * `--help`：显示此消息并退出。
@@ -3982,8 +3990,7 @@ $ hf skills add [OPTIONS] [NAME]
   $ hf 技能添加
   $ hf 技能添加 Huggingface-gradio --dest=~/my-skills
   $ hf 技能添加 --global
-  $ hf 技能添加 --claude
-  $ hf 技能添加 Huggingface-gradio --claude --global
+  $ hf 技能添加 Huggingface-gradio --global
 
 了解更多
   使用 `hf <command> --help` 了解有关命令的更多信息。
@@ -4022,11 +4029,11 @@ $ hf skills list [OPTIONS]
 $ hf skills preview [OPTIONS]
 ```
 
-**选项**：* `--help`：显示此消息并退出。
+**选项**：
 
-### `hf skills update`
+* `--help`：显示此消息并退出。
 
-更新已安装的 Hugging Face 市场技能。
+### `hf skills update`更新已安装的 Hugging Face 市场技能。
 
 **用法**：
 
@@ -4040,8 +4047,7 @@ $ hf skills update [OPTIONS] [NAME]
 
 **选项**：
 
-* `--claude`：更新为克劳德安装的技能。
-* `-g, --global`：使用全局技能目录而不是当前项目。
+* `-g, --global`：使用全局技能目录代替当前项目。
 * `--dest PATH`：更新自定义技能目录中的技能。
 * `--help`：显示此消息并退出。
 
@@ -4049,7 +4055,7 @@ $ hf skills update [OPTIONS] [NAME]
   $ 高频技能更新
   $ hf 技能更新 hf-cli
   $ hf 技能更新 Huggingface-gradio --dest=~/my-skills
-  $ hf 技能更新 --claude
+  $ hf 技能更新 -g
 
 了解更多
   使用 `hf <command> --help` 了解有关命令的更多信息。
@@ -4176,7 +4182,7 @@ $ hf spaces hardware [OPTIONS]
 ⚠ 此功能是实验性的 ⚠
 
 仅适用于 Gradio SDK (6.1+)
-打开交互式编辑器，除非指定了 --local-file/-f 。此命令使用 https://github.com/breuleux/jurigged 修补实时 Python 进程
+除非指定 --local-file/-f ，否则打开交互式编辑器。此命令使用 https://github.com/breuleux/jurigged 修补实时 Python 进程
 （基于 AST 的差异、就地功能更新等），与 Gradio 的本机热重载支持集成
 （意味着 Gradio 演示对象的更改反映在 UI 中）
 
@@ -4260,7 +4266,7 @@ $ hf spaces list [OPTIONS] [REPO_ID]
 * `--sort [created_at|last_modified|likes|trending_score]`：对结果进行排序。
 * `--limit INTEGER`：限制结果数量。  [默认值：30]
 * `--expand TEXT`：要返回的逗号分隔属性。使用时，仅返回列出的属性（和 id）。示例：“--expand=likes,tags”。有效：作者、cardData、createdAt、数据集、disabled、lastModified、likes、models、private、region、resourceGroup、runtime、sdk、sha、siblings、subdomain、tags、trendingScore、usedStorage。
-* `-h, --human-readable`：以人类可读的格式显示大小（仅用于列出文件）。
+* `-h, --human-readable`：以人类可读的格式显示大小（仅适用于列出文件）。
 * `--tree`：以树形格式列出文件（仅用于列出文件）。
 * `-R, --recursive`：递归列出文件（仅用于列出文件）。
 * `--revision TEXT`：Git 修订 ID，可以是分支名称、标签或提交哈希。
@@ -4874,14 +4880,14 @@ $ hf upload [OPTIONS] REPO_ID [LOCAL_PATH] [PATH_IN_REPO]
 
 * `--type, --repo-type [model|dataset|space|kernel]`：存储库的类型（模型、数据集、空间或内核）。  [默认值：（型号）]
 * `--revision TEXT`：Git 修订 ID，可以是分支名称、标签或提交哈希。
-* `--private / --no-private`：如果 Hub 上不存在存储库，是否创建私有存储库。如果存储库已存在，则忽略。
+* `--private / --no-private`: 如果 Hub 上不存在存储库，是否创建私有存储库。如果存储库已存在，则忽略。
 * `--include TEXT`：匹配要上传的文件的全局模式。
 * `--exclude TEXT`：从要上传的文件中排除的全局模式。
-* `--delete TEXT`：提交时要从存储库中删除的文件的全局模式。
+* `--delete TEXT`：提交时从存储库中删除的文件的全局模式。
 * `--commit-message TEXT`：生成的提交的摘要/标题/第一行。
 * `--commit-description TEXT`：生成的提交的描述。
 * `--create-pr / --no-create-pr`：是否将内容作为新的 Pull Request 上传。  [默认值：no-create-pr]
-* `--every FLOAT`：如果设置，则计划后台作业每 `every` 分钟创建提交。
+* `--every FLOAT`：如果设置，后台作业将计划每`every` 分钟创建提交。
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。* `--help`：显示此消息并退出。
 
 示例
@@ -4890,40 +4896,6 @@ $ hf upload [OPTIONS] REPO_ID [LOCAL_PATH] [PATH_IN_REPO]
   $ hf upload Wauplin/my-cool-dataset ./data /train --repo-type=dataset
   $ hf upload Wauplin/my-cool-model ./models 。 --commit-message="Epoch 34/50" --commit-description="Val 准确度：68%"
   $ hf upload bigcode/the-stack 。 。 --repo-type 数据集 --create-pr
-
-了解更多
-  使用 `hf <command> --help` 了解有关命令的更多信息。
-  阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
-
-## `hf upload-large-folder`
-
-[已弃用] 将大文件夹上传到集线器。请使用 `hf upload` 代替。
-
-**用法**：
-
-```console
-$ hf upload-large-folder [OPTIONS] REPO_ID LOCAL_PATH
-```
-
-**参数**：
-
-* `REPO_ID`：存储库的 ID（例如 `username/repo-name` 或 `spaces/username/repo-name`）。  [必填]
-* `LOCAL_PATH`：要上传的文件夹的本地路径。  [必填]
-
-**选项**：* `--type, --repo-type [model|dataset|space|kernel]`：存储库的类型（模型、数据集、空间或内核）。  [默认：型号]
-* `--revision TEXT`：Git 修订 ID，可以是分支名称、标签或提交哈希。
-* `--private / --no-private`: 如果 Hub 上不存在存储库，是否创建私有存储库。如果存储库已存在，则忽略。
-* `--include TEXT`：匹配要上传的文件的全局模式。
-* `--exclude TEXT`：从要上传的文件中排除的全局模式。
-* `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
-* `--num-workers INTEGER`：用于散列、上传和提交文件的工作人员数量。
-* `--no-report / --no-no-report`: 是否关闭定期状态报告。  [默认值：不报告]
-* `--no-bars / --no-no-bars`: 是否禁用进度条。  [默认值：无栏]
-* `--help`：显示此消息并退出。
-
-示例
-  $ hf 上传大文件夹 Wauplin/my-cool-model ./large_model_dir
-  $ hf upload-large-folder Wauplin/my-cool-model ./large_model_dir --revision v1.0
 
 了解更多
   使用 `hf <command> --help` 了解有关命令的更多信息。
@@ -4943,7 +4915,9 @@ $ hf version [OPTIONS]
 
 * `--help`：显示此消息并退出。
 
-## `hf webhooks`管理 Hub 上的 Webhook。
+## `hf webhooks`
+
+管理 Hub 上的 Webhook。
 
 **用法**：
 
@@ -4967,9 +4941,7 @@ $ hf webhooks [OPTIONS] COMMAND [ARGS]...
 
 ### `hf webhooks create`
 
-创建一个新的网络钩子。
-
-提供 --url（用于 ping 远程服务器）或 --job-id（用于触发作业），但不能同时提供两者。
+创建一个新的网络钩子。提供 --url（用于 ping 远程服务器）或 --job-id（用于触发作业），但不能同时提供两者。
 
 **用法**：
 
@@ -4979,13 +4951,15 @@ $ hf webhooks create [OPTIONS]
 
 **选项**：
 
-* `--watch TEXT`：要观看的项目，采用“类型：名称”格式（例如“型号：bert-base-uncased”）。可重复。  [必填]
+* `--watch TEXT`：要观看的项目，采用“类型：名称”格式（例如“模型：bert-base-uncased”）。可重复。  [必填]
 * `--url TEXT`：将 Webhook 负载发送到的 URL。与 --job-id 互斥。
 * `--job-id TEXT`：要触发的作业 ID（来自 job.id），而不是 ping URL。与 --url 互斥。
 * `--domain [repo|discussions]`：要观看的域：“repo”或“discussions”。可重复。默认为所有域。
 * `--secret TEXT`：用于签署 Webhook 有效负载的可选密钥。
 * `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
-* `--help`：显示此消息并退出。示例
+* `--help`：显示此消息并退出。
+
+示例
   $ hf webhooks create --url https://example.com/hook --watch model:bert-base-uncased
   $ hf webhooks create --url https://example.com/hook --watch org:HuggingFace --watch model:gpt2 --domain repo
   $ hf webhooks create --job-id 687f911eaea852de79c4a50a --watch 用户：julien-c
@@ -5002,9 +4976,7 @@ $ hf webhooks create [OPTIONS]
 
 ```console
 $ hf webhooks delete [OPTIONS] WEBHOOK_ID
-```
-
-**参数**：
+```**参数**：
 
 * `WEBHOOK_ID`：要删除的Webhook的ID。  [必填]
 
@@ -5036,7 +5008,9 @@ $ hf webhooks disable [OPTIONS] WEBHOOK_ID
 
 * `WEBHOOK_ID`：要禁用的 webhook 的 ID。  [必填]
 
-**选项**：* `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
+**选项**：
+
+* `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
 * `--help`：显示此消息并退出。
 
 示例
@@ -5060,9 +5034,7 @@ $ hf webhooks enable [OPTIONS] WEBHOOK_ID
 
 * `WEBHOOK_ID`：要启用的 webhook 的 ID。  [必填]
 
-**选项**：
-
-* `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
+**选项**：* `--token TEXT`：从 https://huggingface.co/settings/tokens 生成的用户访问令牌。
 * `--help`：显示此消息并退出。
 
 示例
@@ -5092,7 +5064,9 @@ $ hf webhooks info [OPTIONS] WEBHOOK_ID
 * `--help`：显示此消息并退出。
 
 示例
-  $ hf webhooks 信息 abc123了解更多
+  $ hf webhooks 信息 abc123
+
+了解更多
   使用 `hf <command> --help` 了解有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
@@ -5114,9 +5088,7 @@ $ hf webhooks list [OPTIONS]
 示例
   $ hf webhooks ls
   $ hf webhooks ls --format json
-  $ hf webhooks ls --format 安静
-
-了解更多
+  $ hf webhooks ls --format 安静了解更多
   使用 `hf <command> --help` 了解有关命令的更多信息。
   阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
 
@@ -5134,7 +5106,9 @@ $ hf webhooks update [OPTIONS] WEBHOOK_ID
 
 * `WEBHOOK_ID`：要更新的 webhook 的 ID。  [必填]
 
-**选项**：* `--url TEXT`：用于发送 Webhook 负载的新 URL。
+**选项**：
+
+* `--url TEXT`：将 webhook 负载发送到的新 URL。
 * `--watch TEXT`：要观看的新项目列表，采用“类型：名称”格式。可重复。替换整个现有的监视列表。
 * `--domain [repo|discussions]`：要观看的新域名列表：“repo”或“discussions”。可重复。
 * `--secret TEXT`：用于签署 Webhook 有效负载的新密钥。
@@ -5148,7 +5122,5 @@ $ hf webhooks update [OPTIONS] WEBHOOK_ID
 
 了解更多
   使用 `hf <command> --help` 了解有关命令的更多信息。
-  阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档
-
-### 与讨论和 Pull 请求交互
-https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/community.md
+  阅读 https://huggingface.co/docs/huggingface_hub/en/guides/cli 上的文档### 与讨论和 Pull 请求交互
+https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/community.md

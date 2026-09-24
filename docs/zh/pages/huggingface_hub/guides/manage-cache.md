@@ -38,7 +38,7 @@ Hugging Face Hub 缓存系统旨在成为跨图书馆共享的中央缓存
 ```
 
 现在将从集线器下载所有文件在这些文件夹中。缓存可确保
-如果文件已存在且未更新，则不会下载两次；但如果更新的话
+如果文件已经存在且未更新，则不会下载两次；但如果更新的话
 如果您要求最新的文件，那么它将下载最新的文件（同时保留
 之前的文件完好无损，以防您再次需要）。
 
@@ -56,7 +56,7 @@ Hugging Face Hub 缓存系统旨在成为跨图书馆共享的中央缓存
 
 每个文件夹均设计为包含以下内容：
 
-### 参考资料
+### 参考文献
 
 `refs` 文件夹包含指示给定参考的最新版本的文件。例如，
 如果我们之前从存储库的 `main` 分支获取了文件，则 `refs`
@@ -94,9 +94,9 @@ Hugging Face Hub 缓存系统旨在成为跨图书馆共享的中央缓存
 
 每个缓存列表均以提交哈希命名并存储为 JSON 文件，例如 `trees/aaaaaa.json`。对于该提交时存储库中的每个文件，它都会记录下载该文件所需的内容：其路径、大小和哈希值。这与集线器返回的信息相同，但通常每个文件需要一次网络调用才能获取它。
 
-该缓存是由[snapshot_download()](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.snapshot_download)写入的。第一次下载提交时，文件列表将被提取一次并保存在此处。下次下载相同的提交时，将从磁盘读取该列表，而不是再次获取。因此，当所有内容都已缓存时重新运行下载会花费一次网络调用：将分支或标记名称解析为提交哈希所需的网络调用。[snapshot_download()](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.snapshot_download)和[hf_hub_download()](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.hf_hub_download)都会读取此缓存以避免网络调用。当您下载带有提交哈希作为修订版的文件时（这正是 [snapshot_download()](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.snapshot_download) 在内部对每个文件执行的操作），将从缓存文件列表中读取下载元数据，并跳过每个文件的网络调用。这意味着单个文件的 [hf_hub_download()](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) 也受益于早期 [snapshot_download()](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.snapshot_download) 为同一提交保存的文件列表。
+该缓存是由[snapshot_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.snapshot_download)写入的。第一次下载提交时，文件列表将被提取一次并保存在此处。下次下载相同的提交时，将从磁盘读取该列表，而不是再次获取。因此，当所有内容都已缓存时重新运行下载会花费一次网络调用：将分支或标记名称解析为提交哈希所需的网络调用。[snapshot_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.snapshot_download)和[hf_hub_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.hf_hub_download)都会读取此缓存以避免网络调用。当您下载带有提交哈希作为修订版的文件时（这正是 [snapshot_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.snapshot_download) 在内部对每个文件执行的操作），将从缓存文件列表中读取下载元数据，并跳过每个文件的网络调用。这意味着单个文件的 [hf_hub_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) 也受益于早期 [snapshot_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.snapshot_download) 为同一提交保存的文件列表。
 
-因为缓存文件列表准确地描述了提交应该包含的内容，所以[snapshot_download()](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.snapshot_download)还可以判断本地快照是否完整。如果无法访问集线器（您处于离线状态、连接失败或通过了 `local_files_only=True`）并且本地快照中缺少一些预期文件，[snapshot_download()](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.snapshot_download) 会引发 [IncompleteSnapshotError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.IncompleteSnapshotError) 而不是返回部分文件夹。在此之前，会以静默方式返回不完整的快照，这可能会让您在不知情的情况下处理丢失的文件。 `allow_patterns` 或 `ignore_patterns` 排除的文件不计为丢失。该异常通过其 `snapshot_path` 属性公开不完整快照的路径，因此您仍然可以在需要时找到部分缓存的文件。
+因为缓存文件列表准确地描述了提交应该包含的内容，所以[snapshot_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.snapshot_download)还可以判断本地快照是否完整。如果无法访问集线器（您处于离线状态、连接失败或通过了 `local_files_only=True`）并且本地快照中缺少一些预期文件，[snapshot_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.snapshot_download) 会引发 [IncompleteSnapshotError](/docs/huggingface_hub/v2.0.0/en/package_reference/utilities#huggingface_hub.errors.IncompleteSnapshotError) 而不是返回部分文件夹。在此之前，会以静默方式返回不完整的快照，这可能会让您在不知情的情况下处理丢失的文件。 `allow_patterns` 或 `ignore_patterns` 排除的文件不计为丢失。该异常通过其 `snapshot_path` 属性公开不完整快照的路径，因此您仍然可以在需要时找到部分缓存的文件。
 
 ### .no_exist（高级）除了 `blobs`、`refs` 和 `snapshots` 文件夹之外，您还可能会找到 `.no_exist` 文件夹
 在你的缓存中。此文件夹跟踪您曾经尝试下载但不存在的文件
@@ -115,7 +115,7 @@ Hugging Face Hub 缓存系统旨在成为跨图书馆共享的中央缓存
 可选文件的数量使得加载模型的速度更快，因为它为每个可能的可选文件节省了 1 个 HTTP 调用。
 例如，在 `transformers` 中，每个标记生成器都可以支持其他文件。
 第一次在计算机上加载分词器时，它将缓存存在哪些可选文件（以及
-事实并非如此）以使下一次初始化的加载时间更快。要测试文件是否在本地缓存（不发出任何 HTTP 请求），您可以使用 [try_to_load_from_cache()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.try_to_load_from_cache)
+事实并非如此）以使下一次初始化的加载时间更快。要测试文件是否在本地缓存（不发出任何 HTTP 请求），您可以使用 [try_to_load_from_cache()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.try_to_load_from_cache)
 帮手。它将返回文件路径（如果存在并缓存）、对象`_CACHED_NO_EXIST`（如果不存在）
 被缓存）或`None`（如果我们不知道）。
 
@@ -178,7 +178,7 @@ Restic、rsync）该目录包含可重新下载的缓存数据，并且可以安
 
 如果您想从 Windows 计算机上基于符号链接的缓存系统中受益，您可以
 要么需要 [activate Developer Mode](https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development)
-或以管理员身份运行Python。
+或以管理员身份运行 Python。
 
 如果您想主动使用无符号链接缓存模式（例如，在不处理符号链接的共享文件系统上）
 好吧），您可以将 [⟦T81⟧](../package_reference/environment_variables#hfhubdisablesymlinks) 环境变量设置为 `1`。文件将被复制到`snapshots/`
@@ -199,11 +199,11 @@ Restic、rsync）该目录包含可重新下载的缓存数据，并且可以安
 该存储需要基于符号链接的缓存布局，并被`HF_HUB_DISABLE_XET=1`禁用。任何共享文件失败的情况，例如不受支持的文件系统、权限错误或预先存在的未标记的`blobs`目录，都会默默地回退到常规存储库本地存储。设置 [⟦T105⟧](../package_reference/environment_variables#hfhubdisablesharedblobs) 以完全退出。
 
 ## 固定修订版（高级）> [!提示]
-> 如果您要将 Hub 集成到 ML 库中，单个 [snapshot_download()](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.snapshot_download) 调用仍然是推荐的方法：它会解析一次修订版本，并行下载所有内容并缓存文件列表。以下内容仅适用于单独下载和加载许多组件（配置、权重、分词器、处理器、适配器...）并且不能使用单个调用的复杂库。
+> 如果您要将 Hub 集成到 ML 库中，单个 [snapshot_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.snapshot_download) 调用仍然是推荐的方法：它会解析一次修订版本，并行下载所有内容并缓存文件列表。以下内容仅适用于单独下载和加载许多组件（配置、权重、分词器、处理器、适配器...）并且不能使用单个调用的复杂库。
 
 当库逐一下载多个文件时，每次调用都必须再次将 `revision="main"` 解析为提交哈希。这会花费每个文件一次 HTTP 调用，更糟糕的是，如果存储库在其间更新，则相隔几秒进行的两次调用可能会导致两次不同的提交。
 
-[HfApi.resolve_revision()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision) 解析一次修订并返回 [ResolvedRevision](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision)：
+[HfApi.resolve_revision()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision) 解析一次修订并返回 [ResolvedRevision](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision)：
 
 ```py
 >>> from huggingface_hub import resolve_revision
@@ -212,7 +212,7 @@ Restic、rsync）该目录包含可重新下载的缓存数据，并且可以安
 ResolvedRevision(initial=None, resolved='607a30d783dfa663caf39e06633721c8d4cfcd7e')
 ```
 
-[ResolvedRevision](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision) 是 `str` 子类，因此它可以传递给任何采用 `revision` 参数的 `huggingface_hub` 方法。它的字符串值是用户最初请求的（这里是`"main"`，因此是可读的错误消息），而`.resolved`保存提交哈希：
+[ResolvedRevision](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision) 是 `str` 子类，因此它可以传递给任何采用 `revision` 参数的 `huggingface_hub` 方法。它的字符串值是用户最初请求的（这里是`"main"`，因此是可读的错误消息），而`.resolved`保存提交哈希：
 
 ```py
 >>> revision == "main"
@@ -221,15 +221,15 @@ True
 '607a30d783dfa663caf39e06633721c8d4cfcd7e'
 ```
 
-下载帮助程序（[hf_hub_download()](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.hf_hub_download)、[snapshot_download()](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.snapshot_download)、[get_cached_repo_tree()](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.get_cached_repo_tree)）检测[ResolvedRevision](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision)并直接使用提交哈希。每个文件都保证来自同一个提交，并且一旦文件被缓存，就根本不需要 HTTP 调用：
+下载帮助程序（[hf_hub_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.hf_hub_download)、[snapshot_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.snapshot_download)、[get_cached_repo_tree()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.get_cached_repo_tree)）检测[ResolvedRevision](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision)并直接使用提交哈希。每个文件都保证来自同一个提交，并且一旦文件被缓存，就根本不需要 HTTP 调用：
 
 ```py
 >>> from huggingface_hub import hf_hub_download
 >>> config = hf_hub_download("openai-community/gpt2", "config.json", revision=revision)
 >>> weights = hf_hub_download("openai-community/gpt2", "model.safetensors", revision=revision)
-````revision` -> `commit hash` 映射也会写入缓存的 `refs/` 文件夹（请参阅 [Refs](#refs)）。这意味着，如果稍后无法到达集线器（离线模式、连接错误、超时、集线器停机），[HfApi.resolve_revision()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision) 会透明地回退到缓存的值。如果也没有缓存任何内容，则会引发 [RevisionResolutionError](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.RevisionResolutionError)。
+````revision` -> `commit hash` 映射也会写入缓存的 `refs/` 文件夹（请参阅 [Refs](#refs)）。这意味着，如果稍后无法到达集线器（离线模式、连接错误、超时、集线器停机），[HfApi.resolve_revision()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision) 会透明地回退到缓存的值。如果也没有缓存任何内容，则会引发 [RevisionResolutionError](/docs/huggingface_hub/v2.0.0/en/package_reference/utilities#huggingface_hub.errors.RevisionResolutionError)。
 
-提交哈希仅意味着它所针对的存储库的某些内容，下载帮助程序按原样使用它。因此 [ResolvedRevision](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision) 只能传递到它所解析的存储库。如果一个库还从另一个存储库（基本模型、适配器、位于其自己的存储库中的组件……）下载，则它需要为该存储库解析修订版本。只需将 [ResolvedRevision](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision) 传回 [HfApi.resolve_revision()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision)：它会记住它属于哪个存储库，并为新存储库再次解析最初请求的修订（此处为`"main"`）。
+提交哈希仅意味着它所针对的存储库的某些内容，下载帮助程序按原样使用它。因此 [ResolvedRevision](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision) 只能传递到它所解析的存储库。如果一个库还从另一个存储库（基本模型、适配器、位于其自己的存储库中的组件……）下载，则它需要为该存储库解析修订版本。只需将 [ResolvedRevision](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision) 传回 [HfApi.resolve_revision()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision)：它会记住它属于哪个存储库，并为新存储库再次解析最初请求的修订（此处为`"main"`）。
 
 ```py
 >>> other_revision = resolve_revision("openai-community/gpt2-medium", revision=revision)  # resolves "main" again
@@ -353,7 +353,7 @@ True
 ## 缓存资源除了缓存来自 Hub 的文件外，下游库通常还需要缓存
 其他与 HF 相关但未由 `huggingface_hub` 直接处理的文件（例如：文件
 从 GitHub 下载，预处理数据，日志，...）。为了缓存这些文件，
-称为`assets`，可以使用[cached_assets_path()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.cached_assets_path)。这个小助手生成路径
+称为`assets`，可以使用[cached_assets_path()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.cached_assets_path)。这个小助手生成路径
 根据请求的库的名称以统一的方式存储在 HF 缓存中，并且
 可选的名称空间和子文件夹名称。目标是让每一个下游
 图书馆以自己的方式管理其资产（例如，结构上没有规则），只要它
@@ -369,7 +369,7 @@ something_path = assets_path / "something.json" # Do anything you like in your a
 ```
 
 > [!提示]
-> [cached_assets_path()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.cached_assets_path)是推荐的资产存储方式，但不是强制的。如果
+> [cached_assets_path()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.cached_assets_path)是推荐的资产存储方式，但不是强制的。如果
 > 您的库已经使用了自己的缓存，请随意使用它！
 
 ### 实践中的资产
@@ -434,7 +434,7 @@ model/t5-small                        970.7M 3 days ago     3 days ago     main 
 Found 6 repo(s) for a total of 12 revision(s) and 3.4G on disk.
 ```
 
-添加 `--revisions` 列出每个缓存的快照和链过滤器以关注哪些内容
+添加 `--revisions` 列出每个缓存的快照和链式过滤器以关注哪些内容
 很重要。过滤器了解人类友好的大小和持续时间，因此诸如
 `size>1GB` 或 `accessed>30d` 开箱即用：
 
@@ -450,7 +450,7 @@ Found 2 repo(s) for a total of 2 revision(s) and 3.0G on disk.
 
 需要机器友好的输出吗？使用`--format json`获取结构化对象或
 `--format csv` 用于电子表格。或者 `--quiet` 仅打印标识符（一个
-每行），这样您就可以将它们传输到其他工具中。使用 `--sort` 按 `accessed`、`modified`、`name` 或 `size` 对条目进行排序（附加 `:asc` 或 `:desc` 来控制顺序），并使用 `--limit` 将结果限制为前 N 个条目。将这些选项与
+每行），这样您就可以将它们通过管道传输到其他工具中。使用 `--sort` 按 `accessed`、`modified`、`name` 或 `size` 对条目进行排序（附加 `:asc` 或 `:desc` 来控制顺序），并使用 `--limit` 将结果限制为前 N 个条目。将这些选项与
 `--cache-dir` 当您需要检查存储在 `HF_HOME` 之外的缓存时。**使用常用的shell工具进行过滤**
 
 表格输出意味着您可以继续使用您已经知道的工具。例如，
@@ -464,15 +464,15 @@ model/t5-small                       8f3ad1c90fed7a62    820.1M 2 weeks ago   re
 
 **从 Python 检查缓存**
 
-对于更高级的用法，请使用 [scan_cache_dir()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.scan_cache_dir)，这是由
+对于更高级的用法，请使用 [scan_cache_dir()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.scan_cache_dir)，这是由
 CLI 工具。
 
 您可以使用它来获取围绕 4 个数据类构建的详细报告：
 
-- [HFCacheInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.HFCacheInfo)：[scan_cache_dir()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.scan_cache_dir)返回的完整报告
-- [CachedRepoInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.CachedRepoInfo)：有关缓存存储库的信息
-- [CachedRevisionInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.CachedRevisionInfo)：有关存储库内缓存修订版（例如“快照”）的信息
-- [CachedFileInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.CachedFileInfo)：快照中缓存文件的信息
+- [HFCacheInfo](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.HFCacheInfo)：[scan_cache_dir()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.scan_cache_dir)返回的完整报告
+- [CachedRepoInfo](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.CachedRepoInfo)：有关缓存存储库的信息
+- [CachedRevisionInfo](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.CachedRevisionInfo)：有关存储库内缓存修订版（例如“快照”）的信息
+- [CachedFileInfo](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.CachedFileInfo)：快照中缓存文件的信息
 
 这是一个简单的使用示例。详细信息请参阅参考资料。
 
@@ -548,15 +548,15 @@ HFCacheInfo(
 ### 清理你的缓存扫描缓存很有趣，但接下来您真正想做的通常是
 删除一些部分以释放驱动器上的一些空间。这可以使用
 `hf cache rm` 和 `hf cache prune` CLI 命令。还可以通过编程方式使用
-[delete_revisions()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_revisions) 和 [delete_files()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_files) 来自
-[HFCacheInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.HFCacheInfo) 扫描缓存时返回的对象。
+[delete_revisions()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_revisions) 和 [delete_files()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_files) 来自
+[HFCacheInfo](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.HFCacheInfo) 扫描缓存时返回的对象。
 
 **删除策略**
 
 要删除某些缓存，您需要传递要删除的修订版本列表。该工具将
 根据此列表定义释放空间的策略。它返回一个
-[DeleteCacheStrategy](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) 描述将删除哪些文件和文件夹的对象。
-[DeleteCacheStrategy](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) 可以告诉您预计释放多少空间。
+[DeleteCacheStrategy](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) 描述将删除哪些文件和文件夹的对象。
+[DeleteCacheStrategy](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) 可以告诉您预计释放多少空间。
 一旦您同意删除，您必须执行才能使删除生效。在
 为了避免差异，您无法手动编辑策略对象。
 
@@ -565,7 +565,7 @@ HFCacheInfo(
 - 包含修订符号链接的`snapshot`文件夹被删除。
 - 仅以要删除的修订为目标的 blob 文件也会被删除。
 - 如果修订版链接到 1 个或多个 `refs`，则引用将被删除。
-- 如果删除存储库中的所有修订，则整个缓存的存储库将被删除。使用 [delete_files()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_files) 删除单个文件遵循相同的逻辑：
+- 如果删除存储库中的所有修订，则整个缓存的存储库将被删除。使用 [delete_files()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_files) 删除单个文件遵循相同的逻辑：
 仅当没有其他缓存文件时，快照条目才会被删除，并且它们的 blob 才会被删除
 引用他们。保留引用和快照文件夹。
 
@@ -578,7 +578,7 @@ HFCacheInfo(
 > 如果在缓存中找不到修订版本，它将被静默忽略。此外，如果一个文件
 > 或尝试删除时找不到文件夹，将记录警告但不会
 > 抛出错误。继续删除该文件中包含的其他路径
-> [DeleteCacheStrategy](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) 对象。
+> [DeleteCacheStrategy](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) 对象。
 
 **从终端清除缓存**
 
@@ -616,7 +616,7 @@ About to delete 1 repo(s) and 1 revision(s) totalling 1.1G.
       8f3ad1c [main] 1.1G
 Dry run: no files were deleted.
 ```要删除单个文件而不是整个存储库，例如一个 GGUF 量化，
-传递 `hf://` 文件 URI。该文件将从存储库的每个缓存版本中删除，并且
+传递 `hf://` 文件 URI。该文件将从存储库的每个缓存修订版本中删除，并且
 仅当没有其他缓存文件仍然引用它时，它的 blob 才会被删除。修订保留
 可以使用，下次需要时会再次下载已删除的文件。路径必须匹配
 确切地说：不支持文件夹和全局模式。
@@ -653,7 +653,7 @@ Deleted 3 unreferenced revision(s) and 2 incomplete download(s); freed 2.4G.
 这两个命令都支持 `--dry-run`、`--yes` 和 `--cache-dir`，因此您可以预览、自动化、
 并根据需要定位备用缓存目录。**从 Python 中清理缓存**
 
-为了更加灵活，您还可以使用[delete_revisions()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_revisions)方法
+为了更加灵活，您还可以使用[delete_revisions()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_revisions)方法
 以编程方式。这是一个简单的例子。详细信息请参阅参考资料。
 
 ```py
@@ -672,4 +672,4 @@ Cache deletion done. Saved 8.6G.
 ```
 
 ### 创建并分享模型卡
-https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/model-cards.md
+https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/model-cards.md

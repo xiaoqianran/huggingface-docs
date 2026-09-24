@@ -2,7 +2,7 @@
 
 # 环境变量
 
-`huggingface_hub` 可以使用环境变量进行配置。
+`huggingface_hub`可以使用环境变量进行配置。
 
 如果您不熟悉环境变量，这里有关于它们的通用文章
 [on macOS and Linux](https://linuxize.com/post/how-to-set-and-list-environment-variables-in-linux/)
@@ -12,7 +12,7 @@
 以及它们的含义。
 
 > [!提示]
-> 所有环境变量均在 `huggingface_hub` 导入时读取。任何修改
+> 所有环境变量均在`huggingface_hub` 导入时读取。任何修改
 > 之后制作的内容将不予考虑。确保设置环境变量
 > 导入`huggingface_hub` 之前。
 
@@ -113,16 +113,16 @@
 
 如果设置，则不会对 Hugging Face Hub 进行 HTTP 调用。如果您尝试下载文件，则只会访问缓存的文件。如果未检测到缓存文件，则会引发错误。如果您的网络速度较慢并且您不关心文件的最新版本，这非常有用。
 
-如果`HF_HUB_OFFLINE=1`设置为环境变量，并且调用[HfApi](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi)的任何方法，都会引发[OfflineModeIsEnabled](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled)异常。**注意：** 即使缓存了文件的最新版本，调用 `hf_hub_download` 仍然会触发 HTTP 请求来检查新版本是否可用。设置 `HF_HUB_OFFLINE=1` 将跳过此调用，从而加快加载时间。
+如果`HF_HUB_OFFLINE=1`设置为环境变量，并且调用[HfApi](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi)的任何方法，都会引发[OfflineModeIsEnabled](/docs/huggingface_hub/v2.0.0/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled)异常。**注意：** 即使缓存了文件的最新版本，调用 `hf_hub_download` 仍然会触发 HTTP 请求来检查新版本是否可用。设置 `HF_HUB_OFFLINE=1` 将跳过此调用，从而加快加载时间。
 
-如果你想检查离线模式是否启用，你可以使用[is_offline_mode()](/docs/huggingface_hub/v1.32.0/en/package_reference/utilities#huggingface_hub.is_offline_mode)助手。
+如果你想检查离线模式是否启用，你可以使用[is_offline_mode()](/docs/huggingface_hub/v2.0.0/en/package_reference/utilities#huggingface_hub.is_offline_mode)助手。
 
 ### HF_HUB_DISABLE_IMPLICIT_TOKEN
 
-并非对发送到集线器的每个请求都强制进行身份验证。例如，请求
+并非每个向集线器发出的请求都必须进行身份验证。例如，请求
 `"gpt2"`型号详情无需认证。但是，如果用户是
 [logged in](../package_reference/login)，默认行为是始终发送令牌
-为了在访问私有或门禁存储库时减轻用户体验（永远不会出现 HTTP 401 Unauthorized）。为了保护隐私，您可以
+为了在访问私有或门控存储库时减轻用户体验（永远不会出现 HTTP 401 Unauthorized）。为了保护隐私，您可以
 通过设置 `HF_HUB_DISABLE_IMPLICIT_TOKEN=1` 禁用此行为。在这种情况下，
 令牌将仅针对“写访问”调用发送（例如：创建提交）。
 
@@ -158,7 +158,7 @@
 如果您正在使用实验性功能，请告诉我们！您的反馈可以帮助我们设计和改进它。
 
 ### HF_HUB_DISABLE_TELEMETRY默认情况下，HF 库（`transformers`、`datasets`、`gradio`、..）收集一些数据，以监控使用情况、调试问题并帮助确定功能的优先级。
-每个库定义了自己的策略（即监视哪些使用），但核心实现发生在`huggingface_hub`（请参阅`send_telemetry`）。
+每个库定义了自己的策略（即要监视的使用情况），但核心实现发生在`huggingface_hub`（请参阅`send_telemetry`）。
 
 您可以将 `HF_HUB_DISABLE_TELEMETRY=1` 设置为环境变量以全局禁用遥测。
 
@@ -189,38 +189,38 @@
 
 要了解有关 Xet 存储和 `hf_xet` 的优势的更多信息，请参阅此 [section](https://huggingface.co/docs/hub/xet/index)。
 
-### HF_XET_RECONSTRUCT_WRITE_SEQUENTIALLYTo have `hf-xet` write sequentially to local disk, instead of in parallel. `hf-xet` is designed for SSD/NVMe disks (using parallel writes with direct addressing). If you are using an HDD (spinning hard disk), setting this will change disk writes to be sequential instead of parallel. For slower hard disks, this can improve overall write performance, as the disk is not spinning to seek for parallel writes.
+### HF_XET_RECONSTRUCT_WRITE_SEQUENTIALLY让`hf-xet`顺序写入本地磁盘，而不是并行。 `hf-xet` 专为 SSD/NVMe 磁盘而设计（使用直接寻址的并行写入）。如果您使用的是 HDD（旋转硬盘），设置此项会将磁盘写入更改为顺序写入而不是并行写入。对于速度较慢的硬盘，这可以提高整体写入性能，因为磁盘不会旋转来寻求并行写入。
 
 ## 已弃用的环境变量
 
-In order to standardize all environment variables within the Hugging Face ecosystem, some variables have been marked as deprecated. Although they remain functional, they no longer take precedence over their replacements. The following table outlines the deprecated variables and their corresponding alternatives:
+为了标准化 Hugging Face 生态系统中的所有环境变量，一些变量已被标记为已弃用。尽管它们仍然有效，但它们不再优先于其替代品。下表概述了已弃用的变量及其相应的替代变量：
 
-|已弃用的变量 | Replacement        |
-| ------------------------ | | ------------------ |
-| `HUGGINGFACE_HUB_CACHE`     | `HF_HUB_CACHE`     |
-| `HUGGINGFACE_ASSETS_CACHE`  | `HF_ASSETS_CACHE`  |
-| `HUGGING_FACE_HUB_TOKEN`    | `HF_TOKEN`         |
+|已弃用的变量 |更换|
+| --------------------------------------- | ------------------ |
+| `HUGGINGFACE_HUB_CACHE` | `HF_HUB_CACHE` |
+| `HUGGINGFACE_ASSETS_CACHE` | `HF_ASSETS_CACHE` |
+| `HUGGING_FACE_HUB_TOKEN` | `HF_TOKEN` |
 
-## From external tools
+## 来自外部工具
 
-Some environment variables are not specific to `huggingface_hub` but are still taken into account when they are set.
+某些环境变量并非特定于 `huggingface_hub`，但在设置时仍会考虑在内。
 
-### DO_NOT_TRACK布尔值。相当于`HF_HUB_DISABLE_TELEMETRY`。 When set to true, telemetry is globally disabled in the Hugging Face Python ecosystem (`transformers`, `diffusers`, `gradio`, etc.).请参阅 https://donottrack.sh/ 了解更多详细信息。
+### 请勿追踪布尔值。相当于`HF_HUB_DISABLE_TELEMETRY`。设置为 true 时，遥测在 Hugging Face Python 生态系统中全局禁用（`transformers`、`diffusers`、`gradio` 等）。请参阅 https://donottrack.sh/ 了解更多详细信息。
 
 ### 无颜色
 
-布尔值。 When set, `hf` CLI will not print any ANSI color.
+布尔值。设置后，`hf` CLI 将不会打印任何 ANSI 颜色。
 参见[no-color.org](https://no-color.org/)。
 
 ### XDG_CACHE_HOME
 
 仅当`HF_HOME`未设置时使用！
 
-This is the default way to configure where [user-specific non-essential (cached) data should be written](https://wiki.archlinux.org/title/XDG_Base_Directory)
+这是配置[user-specific non-essential (cached) data should be written](https://wiki.archlinux.org/title/XDG_Base_Directory)的默认方式
 在 Linux 机器上。
 
-If `HF_HOME` is not set, the default home will be `"$XDG_CACHE_HOME/huggingface"` instead
+如果未设置`HF_HOME`，则默认主页为`"$XDG_CACHE_HOME/huggingface"`
 `"~/.cache/huggingface"`。
 
 ### HfApi 客户端
-https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/hf_api.md
+https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/hf_api.md

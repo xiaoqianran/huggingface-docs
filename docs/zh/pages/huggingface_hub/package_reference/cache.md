@@ -2,7 +2,7 @@
 
 # 缓存系统参考
 
-缓存系统在v0.8.0中更新为中央缓存系统共享
+缓存系统在v0.8.0更新为中央缓存系统共享
 跨依赖于 Hub 的库。阅读[cache-system guide](../guides/manage-cache)
 有关 HF 缓存的详细介绍。
 
@@ -16,7 +16,7 @@
 huggingface_hub.try_to_load_from_cache(repo_id: str, filename: str, cache_dir: str | pathlib.Path | None = None, revision: str | None = None, repo_type: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/file_download.py#L1518)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/file_download.py#L1522)
 
 **参数：**
 
@@ -24,7 +24,7 @@ cache_dir (`str` 或 `os.PathLike`) ：缓存文件所在的文件夹。
 
 repo_id (`str`) ：huggingface.co 上的存储库的 ID。
 
-filename (`str`) ：要在`repo_id`内查找的文件名。
+filename (`str`) ：要在 `repo_id` 中查找的文件名。
 
 修订版（`str`，*可选*）：要使用的特定模型版本。如果未提供且未提供 `commit_hash`，则默认为 `"main"`。
 
@@ -34,7 +34,7 @@ repo_type (`str`, *可选*) ：存储库的类型。默认为`"model"`。
 
 如果文件未缓存，将返回`None`。否则：
 - 缓存文件的确切路径（如果在缓存中找到）
-- 如果文件在给定的提交哈希中不存在，则一个特殊值`_CACHED_NO_EXIST`，并且这一事实是
+- 如果文件在给定的提交哈希中不存在，则特殊值`_CACHED_NO_EXIST`，并且这一事实是
   缓存。
 
 探索缓存以返回给定修订版的最新缓存文件（如果找到）。如果文件未缓存，此函数不会引发任何异常。
@@ -64,7 +64,7 @@ else:
 huggingface_hub.cached_assets_path(library_name: str, namespace: str = 'default', subfolder: str = 'default', assets_dir: str | pathlib.Path | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_assets.py#L19)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/utils/_cache_assets.py#L19)
 
 **参数：**
 
@@ -156,17 +156,17 @@ PosixPath('/tmp/tmp123456/datasets/default/default')
 
 ```python
 huggingface_hub.scan_cache_dir(cache_dir: str | pathlib.Path | None = None)
-```[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L692)
+```[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/utils/_cache_manager.py#L692)
 
 **参数：**
 
 cache_dir (`str` 或 `Path`, `optional`) ：要缓存的缓存目录。默认为默认 HF 缓存目录。
 
-扫描整个 HF 缓存系统并返回 [~HFCacheInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.HFCacheInfo) 结构。
+扫描整个 HF 缓存系统并返回 [~HFCacheInfo](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.HFCacheInfo) 结构。
 
 使用 `scan_cache_dir` 以编程方式扫描您的缓存系统。缓存
-将由仓库扫描仓库。如果存储库损坏，则会出现 [~CorruptedCacheException](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.CorruptedCacheException)
-将在内部抛出，但在 [~HFCacheInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.HFCacheInfo) 中捕获并返回
+将由仓库扫描仓库。如果存储库损坏，则会出现 [~CorruptedCacheException](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.CorruptedCacheException)
+将在内部抛出，但在 [~HFCacheInfo](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.HFCacheInfo) 中捕获并返回
 结构。只有有效的回购协议才能获得正确的报告。
 
 ```py
@@ -235,11 +235,11 @@ Got 1 warning(s) while scanning. Use -vvv to print details.
 > [⟦T62⟧](https://docs.python.org/3/library/exceptions.html#ValueError)
 > 如果缓存目录是文件，而不是目录。
 
-返回：一个[~HFCacheInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.HFCacheInfo)对象。
+返回：一个[~HFCacheInfo](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.HFCacheInfo)对象。
 
 ## 数据结构
 
-所有结构都是由[scan_cache_dir()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.scan_cache_dir)构建和返回的，并且是不可变的。
+所有结构都是由[scan_cache_dir()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.scan_cache_dir)构建和返回的，并且是不可变的。
 
 ### HFCacheInfo[[huggingface_hub.HFCacheInfo]]
 
@@ -249,21 +249,21 @@ Got 1 warning(s) while scanning. Use -vvv to print details.
 huggingface_hub.HFCacheInfo(size_on_disk: int, repos: frozenset, incomplete_files: frozenset, warnings: list, cache_dir: pathlib.Path | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L384)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/utils/_cache_manager.py#L384)
 
 **参数：**size_on_disk (`int`) ：缓存系统的物理大小（以字节为单位）。跨存储库共享的 Blob 只计数一次，并且包括不再被任何存储库引用的仅存储共享 Blob。可以小于每个存储库大小的总和。
 
-repos (`frozenset[CachedRepoInfo]`) ：一组[~CachedRepoInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.CachedRepoInfo)，描述扫描时在缓存系统上找到的所有有效缓存存储库。
+repos (`frozenset[CachedRepoInfo]`) ：一组[~CachedRepoInfo](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.CachedRepoInfo)，描述扫描时在缓存系统上找到的所有有效缓存存储库。
 
-incomplete_files (`frozenset[CachedIncompleteFileInfo]`) ：一组 [~CachedIncompleteFileInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.CachedIncompleteFileInfo) 描述因下载中断而留下的孤立 `*.incomplete` 文件。
+incomplete_files (`frozenset[CachedIncompleteFileInfo]`) ：一组 [~CachedIncompleteFileInfo](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.CachedIncompleteFileInfo) 描述因下载中断而留下的孤立 `*.incomplete` 文件。
 
-warnings (`list[CorruptedCacheException]`) ：扫描缓存时发生的[~CorruptedCacheException](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.CorruptedCacheException)列表。捕获这些异常以便扫描可以继续。扫描中会跳过损坏的存储库。
+warnings (`list[CorruptedCacheException]`) ：扫描缓存时发生的[~CorruptedCacheException](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.CorruptedCacheException)列表。捕获这些异常以便扫描可以继续。扫描中会跳过损坏的存储库。
 
 cache_dir (`Path` 或 `None`) ：扫描的缓存目录。
 
 冻结的数据结构保存有关整个缓存系统的信息。
 
-该数据结构由[scan_cache_dir()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.scan_cache_dir)返回并且是不可变的。
+该数据结构由[scan_cache_dir()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.scan_cache_dir)返回并且是不可变的。
 
 > [!警告]
 > `size_on_disk` 仅考虑 blob，并且会跳过损坏的存储库。它是一个
@@ -276,12 +276,12 @@ cache_dir (`Path` 或 `None`) ：扫描的缓存目录。
 delete_files(*files: CachedFileInfo)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L547)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/utils/_cache_manager.py#L547)
 
 准备删除单个缓存文件的策略。仅删除快照条目。仅当没有其他缓存文件时才会删除 blob
 引用它，因此与其他修订共享的 blob 被保留。参考资料和快照
 即使快照最终为空，目录也会保留。删除整个
-修订或回购，使用[delete_revisions()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_revisions)。
+修订或回购，使用[delete_revisions()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_revisions)。
 
 示例：
 ```py
@@ -308,7 +308,7 @@ Cache deletion done. Saved 4.9G.
 delete_revisions(*revisions: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L433)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/utils/_cache_manager.py#L433)
 
 准备策略以删除本地缓存的一个或多个修订。
 
@@ -340,8 +340,8 @@ Cache deletion done. Saved 8.6G.
 ```
 
 > [!警告]
-> `delete_revisions` 返回一个 [DeleteCacheStrategy](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) 对象，需要
-> 被处决。 [DeleteCacheStrategy](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) 并不是要修改，而是
+> `delete_revisions` 返回一个 [DeleteCacheStrategy](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) 对象，需要
+> 被处决。 [DeleteCacheStrategy](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) 并不是要修改，而是
 > 允许在实际执行删除之前进行试运行。
 
 #### export_as_table[[huggingface_hub.HFCacheInfo.export_as_table]]
@@ -350,7 +350,7 @@ Cache deletion done. Saved 8.6G.
 export_as_table(verbosity: int = 0)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L597)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/utils/_cache_manager.py#L597)
 
 **参数：**
 
@@ -360,7 +360,7 @@ export_as_table(verbosity: int = 0)
 
 表作为字符串。
 
-从 [HFCacheInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.HFCacheInfo) 对象生成一个表。通过 `verbosity=0` 获取每个存储库包含一行和列的表
+从 [HFCacheInfo](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.HFCacheInfo) 对象生成一个表。通过 `verbosity=0` 获取每个存储库包含一行和列的表
 “repo_id”、“repo_type”、“磁盘大小”、“nb_files”、“last_accessed”、“last_modified”、“refs”、“local_path”。
 
 通过 `verbosity=1` 获取一个表，每个存储库和修订包含一行（因此单个存储库可以出现多行），其中包含列
@@ -398,7 +398,7 @@ t5-large                                            model     150ebc2c4b72291e77
 huggingface_hub.CachedRepoInfo(repo_id: str, repo_type: typing.Literal['model', 'dataset', 'space', 'kernel'], repo_path: Path, size_on_disk: int, nb_files: int, revisions: frozenset, last_accessed: float, last_modified: float)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L176)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/utils/_cache_manager.py#L176)
 
 **参数：**
 
@@ -412,7 +412,7 @@ size_on_disk (`int`) ：缓存存储库中 blob 文件大小的总和。
 
 nb_files (`int`) ：缓存存储库中的 blob 文件总数。
 
-revisions (`frozenset[CachedRevisionInfo]`) ：一组[~CachedRevisionInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.CachedRevisionInfo)，描述存储库中缓存的所有修订版本。
+revisions (`frozenset[CachedRevisionInfo]`) ：一组[~CachedRevisionInfo](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.CachedRevisionInfo)，描述存储库中缓存的所有修订版本。
 
 last_accessed (`float`) ：上次访问存储库的 blob 文件的时间戳。
 
@@ -434,7 +434,7 @@ last_modified (`float`) ：上次修改/创建存储库的 blob 文件的时间�
 size_on_disk_str()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L238)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/utils/_cache_manager.py#L238)
 
 （属性）作为人类可读字符串的 blob 文件大小总和。
 
@@ -446,7 +446,7 @@ size_on_disk_str()
 refs()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L252)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/utils/_cache_manager.py#L252)
 
 （属性）`refs`和修订数据结构之间的映射。
 
@@ -458,7 +458,7 @@ refs()
 huggingface_hub.CachedRevisionInfo(commit_hash: str, snapshot_path: Path, size_on_disk: int, files: frozenset, refs: frozenset, last_modified: float)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L105)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/utils/_cache_manager.py#L105)
 
 **参数：**
 
@@ -466,7 +466,7 @@ commit_hash (`str`) ：修订版的哈希值（唯一）。示例：`"9338f7b671
 
 snapshot_path (`Path`) ：`snapshots`文件夹中修订目录的路径。它包含与 Hub 上的存储库完全相同的树结构。
 
-files : (`frozenset[CachedFileInfo]`)：一组[~CachedFileInfo](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.CachedFileInfo)，描述快照中包含的所有文件。refs (`frozenset[str]`) ：指向此修订版的`refs`集。如果修订版没有`refs`，则视为分离。例如：`{"main", "2.4.0"}` 或 `{"refs/pr/1"}`。
+files : (`frozenset[CachedFileInfo]`)：一组[~CachedFileInfo](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.CachedFileInfo)，描述快照中包含的所有文件。refs (`frozenset[str]`) ：指向此修订版的`refs`集。如果修订版没有`refs`，则视为分离。例如：`{"main", "2.4.0"}` 或 `{"refs/pr/1"}`。
 
 size_on_disk (`int`) ：修订版符号链接的 blob 文件大小的总和。
 
@@ -493,7 +493,7 @@ last_modified (`float`) ：上次创建/修改修订版的时间戳。
 size_on_disk_str()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L158)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/utils/_cache_manager.py#L158)
 
 （属性）作为人类可读字符串的 blob 文件大小总和。
 
@@ -505,7 +505,7 @@ size_on_disk_str()
 nb_files()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L167)（属性）修订版中的文件总数。
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/utils/_cache_manager.py#L167)（属性）修订版中的文件总数。
 
 ### CachedFileInfo[[huggingface_hub.CachedFileInfo]]
 
@@ -515,7 +515,7 @@ nb_files()
 huggingface_hub.CachedFileInfo(file_name: str, file_path: Path, blob_path: Path, size_on_disk: int, blob_last_accessed: float, blob_last_modified: float)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L40)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/utils/_cache_manager.py#L40)
 
 **参数：**
 
@@ -544,7 +544,7 @@ blob_last_modified (`float`) ：上次修改/创建 blob 文件的时间戳。
 size_on_disk_str()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L94)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/utils/_cache_manager.py#L94)
 
 （属性）作为人类可读字符串的 blob 文件的大小。
 
@@ -556,7 +556,7 @@ size_on_disk_str()
 huggingface_hub.CachedIncompleteFileInfo(file_path: Path, size_on_disk: int)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L365)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/utils/_cache_manager.py#L365)
 
 **参数：**
 
@@ -568,7 +568,7 @@ size_on_disk (`int`) ：部分下载的文件的大小（以字节为单位）�
 
 中断的下载会留下 `<cache>/<repo>/blobs/<etag>.incomplete` 文件。
 这些不是任何已提交修订的一部分，因此它们由
-[scan_cache_dir()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.scan_cache_dir)。
+[scan_cache_dir()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.scan_cache_dir)。
 
 ### DeleteCacheStrategy[[huggingface_hub.DeleteCacheStrategy]]
 
@@ -578,7 +578,7 @@ size_on_disk (`int`) ：部分下载的文件的大小（以字节为单位）�
 huggingface_hub.DeleteCacheStrategy(expected_freed_size: int, blobs: frozenset, refs: frozenset, repos: frozenset, snapshots: frozenset, files: frozenset = frozenset(), cache_dir: pathlib.Path | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L261)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/utils/_cache_manager.py#L261)
 
 **参数：**
 
@@ -597,7 +597,7 @@ snapshots (`frozenset[Path]`) ：要删除的快照集（符号链接目录）�
 冻结数据结构保存删除缓存修订或文件的策略。
 
 该对象并不意味着以编程方式实例化，而是由
-[delete_revisions()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_revisions) 或 [delete_files()](/docs/huggingface_hub/v1.32.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_files)。参见
+[delete_revisions()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_revisions) 或 [delete_files()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_files)。参见
 使用示例的文档。
 
 #### Expected_freed_size_str[[huggingface_hub.DeleteCacheStrategy.expected_freed_size_str]]
@@ -606,7 +606,7 @@ snapshots (`frozenset[Path]`) ：要删除的快照集（符号链接目录）�
 expected_freed_size_str()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/utils/_cache_manager.py#L295)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/utils/_cache_manager.py#L295)
 
 （属性）将作为人类可读字符串释放的预期大小。
 
@@ -618,9 +618,9 @@ expected_freed_size_str()
 
 #### Huggingface_hub.CorruptedCacheException[[huggingface_hub.CorruptedCacheException]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/errors.py#L22)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/errors.py#L22)
 
 Huggingface 缓存系统中任何意外结构的例外情况。
 
 ### 环境变量
-https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/environment_variables.md
+https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/environment_variables.md

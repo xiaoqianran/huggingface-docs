@@ -159,4 +159,4 @@ Task: text-generation
 [configure environment variables](package_reference/environment_variables) 或 [check one of our guides](guides/overview) 开始。
 
 ### 🤗 Hub 客户端库
-https://huggingface.co/docs/huggingface_hub/v1.32.0/index.md
+https://huggingface.co/docs/huggingface_hub/v2.0.0/index.md
