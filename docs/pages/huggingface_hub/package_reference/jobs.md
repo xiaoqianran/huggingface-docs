@@ -1,16 +1,16 @@
 # Jobs
 
-Check the [HfApi](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi) documentation page for the reference of methods to manage your Jobs on the Hub.
+Check the [HfApi](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi) documentation page for the reference of methods to manage your Jobs on the Hub.
 
-- Run a Job: [run_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job)
-- Fetch logs: [fetch_job_logs()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_job_logs)
-- Fetch metrics: [fetch_job_metrics()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_job_metrics)
-- Inspect Job: [inspect_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.inspect_job)
-- Wait until Job(s) finish: [wait_for_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.wait_for_job)
-- List Jobs: [list_jobs()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_jobs)
-- Cancel Job: [cancel_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.cancel_job)
-- Run a UV Job: [run_uv_job()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_uv_job)
-- Sync a local directory to mount it in a Job: [sync_job_volume()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_job_volume)
+- Run a Job: [run_job()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job)
+- Fetch logs: [fetch_job_logs()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_job_logs)
+- Fetch metrics: [fetch_job_metrics()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_job_metrics)
+- Inspect Job: [inspect_job()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.inspect_job)
+- Wait until Job(s) finish: [wait_for_job()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.wait_for_job)
+- List Jobs: [list_jobs()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_jobs)
+- Cancel Job: [cancel_job()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.cancel_job)
+- Run a UV Job: [run_uv_job()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_uv_job)
+- Sync a local directory to mount it in a Job: [sync_job_volume()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_job_volume)
 
 ## Data structures
 
@@ -22,7 +22,7 @@ Check the [HfApi](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#hugg
 huggingface_hub.JobInfo(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_jobs_api.py#L186)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_jobs_api.py#L186)
 
 **Parameters:**
 
@@ -52,7 +52,7 @@ labels (`dict[str, str]` or `None`) : Labels to attach to the job (key-value pai
 
 volumes (`list[Volume]` or `None`) : Volumes mounted in the job container (buckets, models, datasets, spaces).
 
-status : (`JobStatus` or `None`): Status of the Job, e.g. `JobStatus(stage="RUNNING", message=None)` See [JobStage](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.JobStage) for possible stage values.
+status : (`JobStatus` or `None`): Status of the Job, e.g. `JobStatus(stage="RUNNING", message=None)` See [JobStage](/docs/huggingface_hub/v2.0.0/en/package_reference/jobs#huggingface_hub.JobStage) for possible stage values.
 
 durations (`JobDurations` or `None`) : Timing breakdown of the Job. Present for all job states including SCHEDULING.
 
@@ -94,7 +94,7 @@ JobInfo(id='687fb701029421ae5549d998', created_at=datetime.datetime(2025, 7, 22,
 huggingface_hub.JobOwner(id: str, name: str, type: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_jobs_api.py#L116)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_jobs_api.py#L116)
 
 ### JobNetwork[[huggingface_hub.JobNetwork]]
 
@@ -104,7 +104,7 @@ huggingface_hub.JobOwner(id: str, name: str, type: str)
 huggingface_hub.JobNetwork(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_jobs_api.py#L123)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_jobs_api.py#L123)
 
 **Parameters:**
 
@@ -122,7 +122,7 @@ Network group a Job joined.
 huggingface_hub.JobStage(value, names = None, module = None, qualname = None, type = None, start = 1)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_jobs_api.py#L71)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_jobs_api.py#L71)
 
 Enumeration of possible stage of a Job on the Hub.
 
@@ -142,7 +142,7 @@ Taken from https://github.com/huggingface/moon-landing/blob/main/server/job_type
 huggingface_hub.JobStatus(stage: JobStage, message: str | None, expose_urls: list[str] | None, ssh_url: str | None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_jobs_api.py#L108)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_jobs_api.py#L108)
 
 ### Volume[[huggingface_hub.Volume]]
 
@@ -152,7 +152,7 @@ huggingface_hub.JobStatus(stage: JobStage, message: str | None, expose_urls: lis
 huggingface_hub.Volume(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_space_api.py#L122)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_space_api.py#L122)
 
 **Parameters:**
 
@@ -176,7 +176,7 @@ Describes a volume to mount in a Space or Job container.
 to_dict()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_space_api.py#L158)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_space_api.py#L158)
 
 Serialize to the JSON payload expected by the Hub API.
 
@@ -186,9 +186,9 @@ Serialize to the JSON payload expected by the Hub API.
 to_uri()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.32.0/src/huggingface_hub/_space_api.py#L173)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_space_api.py#L173)
 
 Return the volume as an HF mount URI in the format expected by the CLI.
 
 ### Serialization
-https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/serialization.md
+https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/serialization.md

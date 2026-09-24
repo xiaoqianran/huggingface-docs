@@ -39,14 +39,13 @@ $ hf [OPTIONS] [COMMAND] [ARGS]...
 * `lfs-multipart-upload`: Internal git-lfs custom transfer agent for multipart uploads.
 * `models`: Interact with models on the Hub.
 * `papers`: Interact with papers on the Hub.
-* `repos`: Manage repos on the Hub. [alias: repo]
+* `repos`: Manage repos on the Hub.
 * `sandbox`: Run and manage experimental sandboxes on Hugging Face Jobs.
 * `skills`: Manage skills for AI assistants.
 * `spaces`: Interact with spaces on the Hub.
 * `sync`: Sync files between local directory and a bucket.
 * `update`: Update the `hf` CLI to the latest version.
 * `upload`: Upload a file or a folder to the Hub.
-* `upload-large-folder`: [Deprecated] Upload a large folder to the Hub.
 * `version`: Print information about the hf version.
 * `webhooks`: Manage webhooks on the Hub.
 
@@ -1767,7 +1766,7 @@ $ hf endpoints deploy [OPTIONS] NAME
 * `--env-file TEXT`: Read in a file of environment variables. Use `-` to read them from stdin.
 * `-s, --secrets TEXT`: Set secret environment variables. Prefer `--secrets SECRET` to read the value from your environment (e.g. `--secrets HF_TOKEN` to pass your Hugging Face token); `--secrets SECRET=value` puts the value in your shell history.
 * `--secrets-file TEXT`: Read in a file of secret environment variables. Use `-` to read them from stdin.
-* `--type [public|protected|authenticated|private]`: Endpoint access type. Defaults to 'authenticated' (token-gated, publicly reachable).
+* `--type [public|authenticated|private]`: Endpoint access type. Defaults to 'authenticated' (token-gated, publicly reachable).
 * `--help`: Show this message and exit.
 
 Examples
@@ -2340,7 +2339,7 @@ Learn more
 
 List Jobs.
 
-Use `--status` to filter by status (see [JobStage](/docs/huggingface_hub/v1.32.0/en/package_reference/jobs#huggingface_hub.JobStage) for possible values) and `--label` to filter by `key=value`
+Use `--status` to filter by status (see [JobStage](/docs/huggingface_hub/v2.0.0/en/package_reference/jobs#huggingface_hub.JobStage) for possible values) and `--label` to filter by `key=value`
 labels. A Job must match every filter to be listed.
 
 **Usage**:
@@ -2358,7 +2357,6 @@ $ hf jobs list | ls | ps [OPTIONS]
 * `--limit INTEGER`: Maximum number of Jobs to display. Set to 0 to show all (no limit).  [default: 100]
 * `--namespace TEXT`: The namespace where the job will be running. Defaults to the current user's namespace.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
-* `-f, --filter TEXT`: (Deprecated) Use `--status` and `--label` instead.
 * `--help`: Show this message and exit.
 
 Examples
@@ -2447,6 +2445,9 @@ $ hf jobs run [OPTIONS] IMAGE COMMAND...
 * `--resource-group-id TEXT`: The ID of the resource group to create the Job in. Used to control access to resources within an organization and for cost attribution/spending-limit features.
 * `--namespace TEXT`: The namespace where the job will be running. Defaults to the current user's namespace.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
+* `--format [agent|auto|human|json|quiet]`: Output format. Defaults to 'auto' which picks 'agent' or 'human' based on the terminal.
+* `--json`: JSON output. Equivalent to '--format json'.
+* `-q, --quiet`: Quiet output (one ID per line). Equivalent to '--format quiet'.
 * `--help`: Show this message and exit.
 
 Examples
@@ -2593,7 +2594,6 @@ $ hf jobs scheduled list | ls | ps [OPTIONS]
 * `--name TEXT`: Only show scheduled Jobs with the given name (shortcut for `--label name=NAME`).
 * `--namespace TEXT`: The namespace where the job will be running. Defaults to the current user's namespace.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
-* `-f, --filter TEXT`: (Deprecated) Use `--status` and `--label` instead.
 * `--help`: Show this message and exit.
 
 Examples
@@ -2668,6 +2668,9 @@ $ hf jobs scheduled run [OPTIONS] SCHEDULE IMAGE COMMAND...
 * `--resource-group-id TEXT`: The ID of the resource group to create the Job in. Used to control access to resources within an organization and for cost attribution/spending-limit features.
 * `--namespace TEXT`: The namespace where the job will be running. Defaults to the current user's namespace.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
+* `--format [agent|auto|human|json|quiet]`: Output format. Defaults to 'auto' which picks 'agent' or 'human' based on the terminal.
+* `--json`: JSON output. Equivalent to '--format json'.
+* `-q, --quiet`: Quiet output (one ID per line). Equivalent to '--format quiet'.
 * `--help`: Show this message and exit.
 
 Examples
@@ -2786,6 +2789,9 @@ $ hf jobs scheduled uv run [OPTIONS] SCHEDULE SCRIPT [SCRIPT_ARGS]...
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--with TEXT`: Run with the given packages installed
 * `-p, --python TEXT`: The Python interpreter to use for the run environment
+* `--format [agent|auto|human|json|quiet]`: Output format. Defaults to 'auto' which picks 'agent' or 'human' based on the terminal.
+* `--json`: JSON output. Equivalent to '--format json'.
+* `-q, --quiet`: Quiet output (one ID per line). Equivalent to '--format quiet'.
 * `--help`: Show this message and exit.
 
 Examples
@@ -2914,6 +2920,9 @@ $ hf jobs uv run [OPTIONS] SCRIPT [SCRIPT_ARGS]...
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--with TEXT`: Run with the given packages installed
 * `-p, --python TEXT`: The Python interpreter to use for the run environment
+* `--format [agent|auto|human|json|quiet]`: Output format. Defaults to 'auto' which picks 'agent' or 'human' based on the terminal.
+* `--json`: JSON output. Equivalent to '--format json'.
+* `-q, --quiet`: Quiet output (one ID per line). Equivalent to '--format quiet'.
 * `--help`: Show this message and exit.
 
 Examples
@@ -3273,12 +3282,12 @@ Learn more
 
 ## `hf repos`
 
-Manage repos on the Hub. [alias: repo]
+Manage repos on the Hub.
 
 **Usage**:
 
 ```console
-$ hf repos [OPTIONS] [COMMAND] [ARGS]...
+$ hf repos [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -3444,7 +3453,6 @@ $ hf repos create [OPTIONS] REPO_ID
 * `--resource-group-id TEXT`: Resource group in which to create the repo. Resource groups is only available for Enterprise Hub organizations.
 * `--region [us|eu]`: Cloud region in which to create the repo. Can be one of 'us' or 'eu'. Requires Team plan or above.
 * `--flavor [cpu-basic|cpu-upgrade|zero-a10g|t4-small|t4-medium|l4x1|l4x4|l40sx1|l40sx4|l40sx8|a10g-small|a10g-large|a10g-largex2|a10g-largex4|a100-large|a100x4|a100x8]`: Space hardware flavor (e.g. 'cpu-basic', 't4-medium', 'l4x4'). Only for Spaces.
-* `--storage [small|medium|large]`: (Deprecated, use volumes instead) Space persistent storage tier ('small', 'medium', or 'large'). Only for Spaces.
 * `--sleep-time INTEGER`: Seconds of inactivity before the Space is put to sleep. Use -1 to disable. Only for Spaces.
 * `-s, --secrets TEXT`: Set secret environment variables. Prefer `--secrets SECRET` to read the value from your environment (e.g. `--secrets HF_TOKEN` to pass your Hugging Face token); `--secrets SECRET=value` puts the value in your shell history.
 * `--secrets-file TEXT`: Read in a file of secret environment variables. Use `-` to read them from stdin.
@@ -3552,7 +3560,6 @@ $ hf repos duplicate [OPTIONS] FROM_ID [TO_ID]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--exist-ok / --no-exist-ok`: Do not raise an error if repo already exists.  [default: no-exist-ok]
 * `--flavor [cpu-basic|cpu-upgrade|zero-a10g|t4-small|t4-medium|l4x1|l4x4|l40sx1|l40sx4|l40sx8|a10g-small|a10g-large|a10g-largex2|a10g-largex4|a100-large|a100x4|a100x8]`: Space hardware flavor (e.g. 'cpu-basic', 't4-medium', 'l4x4'). Only for Spaces.
-* `--storage [small|medium|large]`: (Deprecated, use volumes instead) Space persistent storage tier ('small', 'medium', or 'large'). Only for Spaces.
 * `--sleep-time INTEGER`: Seconds of inactivity before the Space is put to sleep. Use -1 to disable. Only for Spaces.
 * `-s, --secrets TEXT`: Set secret environment variables. Prefer `--secrets SECRET` to read the value from your environment (e.g. `--secrets HF_TOKEN` to pass your Hugging Face token); `--secrets SECRET=value` puts the value in your shell history.
 * `--secrets-file TEXT`: Read in a file of secret environment variables. Use `-` to read them from stdin.
@@ -4174,7 +4181,8 @@ Install a Hugging Face skill for an AI assistant.
 The default `hf-cli` skill is generated locally from the installed CLI version;
 other skills are downloaded from the Hugging Face marketplace.
 Default location is in the current directory (.agents/skills) or user-level (~/.agents/skills).
-If `--claude` is specified, the skill is also symlinked into Claude's legacy skills directory.
+The skill is also symlinked into Claude Code's skills directory (`.claude/skills` or `~/.claude/skills`,
+honoring `CLAUDE_CONFIG_DIR` when set), unless `--dest` is used.
 
 **Usage**:
 
@@ -4188,7 +4196,6 @@ $ hf skills add [OPTIONS] [NAME]
 
 **Options**:
 
-* `--claude`: Install for Claude.
 * `-g, --global`: Install globally (user-level) instead of in the current project directory.
 * `--dest PATH`: Install into a custom destination (path to skills directory).
 * `--force`: Overwrite existing skills in the destination.
@@ -4198,8 +4205,7 @@ Examples
   $ hf skills add
   $ hf skills add huggingface-gradio --dest=~/my-skills
   $ hf skills add --global
-  $ hf skills add --claude
-  $ hf skills add huggingface-gradio --claude --global
+  $ hf skills add huggingface-gradio --global
 
 Learn more
   Use `hf <command> --help` for more information about a command.
@@ -4258,7 +4264,6 @@ $ hf skills update [OPTIONS] [NAME]
 
 **Options**:
 
-* `--claude`: Update skills installed for Claude.
 * `-g, --global`: Use global skills directories instead of the current project.
 * `--dest PATH`: Update skills in a custom skills directory.
 * `--help`: Show this message and exit.
@@ -4267,7 +4272,7 @@ Examples
   $ hf skills update
   $ hf skills update hf-cli
   $ hf skills update huggingface-gradio --dest=~/my-skills
-  $ hf skills update --claude
+  $ hf skills update -g
 
 Learn more
   Use `hf <command> --help` for more information about a command.
@@ -5156,42 +5161,6 @@ Learn more
   Use `hf <command> --help` for more information about a command.
   Read the documentation at https://huggingface.co/docs/huggingface_hub/en/guides/cli
 
-## `hf upload-large-folder`
-
-[Deprecated] Upload a large folder to the Hub. Use `hf upload` instead.
-
-**Usage**:
-
-```console
-$ hf upload-large-folder [OPTIONS] REPO_ID LOCAL_PATH
-```
-
-**Arguments**:
-
-* `REPO_ID`: The ID of the repo (e.g. `username/repo-name` or `spaces/username/repo-name`).  [required]
-* `LOCAL_PATH`: Local path to the folder to upload.  [required]
-
-**Options**:
-
-* `--type, --repo-type [model|dataset|space|kernel]`: The type of repository (model, dataset, space, or kernel).  [default: model]
-* `--revision TEXT`: Git revision id which can be a branch name, a tag, or a commit hash.
-* `--private / --no-private`: Whether to create a private repo if repo doesn't exist on the Hub. Ignored if the repo already exists.
-* `--include TEXT`: Glob patterns to match files to upload.
-* `--exclude TEXT`: Glob patterns to exclude from files to upload.
-* `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
-* `--num-workers INTEGER`: Number of workers to use to hash, upload and commit files.
-* `--no-report / --no-no-report`: Whether to disable regular status report.  [default: no-no-report]
-* `--no-bars / --no-no-bars`: Whether to disable progress bars.  [default: no-no-bars]
-* `--help`: Show this message and exit.
-
-Examples
-  $ hf upload-large-folder Wauplin/my-cool-model ./large_model_dir
-  $ hf upload-large-folder Wauplin/my-cool-model ./large_model_dir --revision v1.0
-
-Learn more
-  Use `hf <command> --help` for more information about a command.
-  Read the documentation at https://huggingface.co/docs/huggingface_hub/en/guides/cli
-
 ## `hf version`
 
 Print information about the hf version.
@@ -5424,4 +5393,4 @@ Learn more
   Read the documentation at https://huggingface.co/docs/huggingface_hub/en/guides/cli
 
 ### Interacting with Discussions and Pull Requests
-https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/community.md
+https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/community.md

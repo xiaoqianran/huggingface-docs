@@ -9,10 +9,8 @@ The `huggingface_hub` Python package comes with a built-in CLI called `hf`. This
 > [!TIP]
 > Using the `hf` CLI with AI agents? Install the Skill and check out the [Hugging Face CLI for AI Agents](https://huggingface.co/docs/hub/agents-cli) guide.
 > ```bash
-> # for Codex, Cursor, OpenCode, Pi and other agents that load skills from `.agents/skills`
+> # works with Claude Code, Codex, Cursor, OpenCode, Pi and any agent that loads skills from `.agents/skills`
 > hf skills add
-> # includes the above + Claude Code
-> hf skills add --claude
 > ```
 > The standalone installer installs it for you (see below), and `hf update` refreshes it.
 
@@ -70,12 +68,11 @@ Main commands:
   jobs                 Run and manage Jobs on the Hub.
   models               Interact with models on the Hub.
   papers               Interact with papers on the Hub.
-  repo                 Manage repos on the Hub.
+  repos                Manage repos on the Hub.
   skills               Manage skills for AI assistants.
   spaces               Interact with spaces on the Hub.
   sync                 Sync files between local directory and a bucket.
   upload               Upload a file or a folder to the Hub.
-  upload-large-folder  [Deprecated] Use 'hf upload' instead.
 
 Help commands:
   env      Print information about the environment.
@@ -239,7 +236,7 @@ This command will not log you out if you are logged in using the `HF_TOKEN` envi
 
 ## hf download
 
-Use the `hf download` command to download files from the Hub directly. Internally, it uses the same [hf_hub_download()](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) and [snapshot_download()](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.snapshot_download) helpers described in the [Download](./download) guide and prints the returned path to the terminal. In the examples below, we will walk through the most common use cases. For a full list of available options, you can run:
+Use the `hf download` command to download files from the Hub directly. Internally, it uses the same [hf_hub_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) and [snapshot_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.snapshot_download) helpers described in the [Download](./download) guide and prints the returned path to the terminal. In the examples below, we will walk through the most common use cases. For a full list of available options, you can run:
 
 ```bash
 hf download --help
@@ -431,7 +428,7 @@ By default, the `hf download` command will be verbose. It will print details suc
 On machines with slow connections, you might encounter timeout issues like this one:
 
 ```bash
-`httpx.TimeoutException: (TimeoutException("HTTPSConnectionPool(host='cdn-lfs-us-1.huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: a33d910c-84c6-4514-8362-c705e2039d38)')`
+`httpx2.TimeoutException: (TimeoutException("HTTPSConnectionPool(host='cdn-lfs-us-1.huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: a33d910c-84c6-4514-8362-c705e2039d38)')`
 ```
 
 To mitigate this issue, you can set the `HF_HUB_DOWNLOAD_TIMEOUT` environment variable to a higher value (default is 10):
@@ -444,7 +441,7 @@ For more details, check out the [environment variables reference](../package_ref
 
 ## hf upload
 
-Use the `hf upload` command to upload files to the Hub directly. Internally, it uses the same [upload_file()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and [upload_folder()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) helpers described in the [Upload](./upload) guide. In the examples below, we will walk through the most common use cases. For a full list of available options, you can run:
+Use the `hf upload` command to upload files to the Hub directly. Internally, it uses the same [upload_file()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and [upload_folder()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) helpers described in the [Upload](./upload) guide. In the examples below, we will walk through the most common use cases. For a full list of available options, you can run:
 
 ```bash
 >>> hf upload --help
@@ -598,19 +595,6 @@ By default, the `hf upload` command will be verbose. It will print details such 
 ```bash
 >>> hf upload Wauplin/my-cool-model ./models . --quiet
 https://huggingface.co/Wauplin/my-cool-model/tree/main
-```
-
-## hf upload-large-folder
-
-> [!WARNING]
-> `hf upload-large-folder` is deprecated and will be removed in a future release. Use [`hf upload`](#hf-upload) instead. It now handles very large folders out of the box and resumes automatically on re-run.
-
-```bash
-# Upload a large folder to a model repository
->>> hf upload Wauplin/my-cool-model ./large_model_dir
-
-# Upload a dataset
->>> hf upload Wauplin/my-cool-dataset ./large_data_dir --repo-type dataset
 ```
 
 ## hf buckets
@@ -1790,7 +1774,7 @@ Copy-and-paste the text below in your GitHub issue.
 - Configured git credential helpers: store
 - Installation method: unknown
 - Torch: N/A
-- httpx: 0.28.1
+- httpx2: 2.0.0
 - hf_xet: 1.1.10
 - gradio: 5.41.1
 - tensorboard: N/A
@@ -1850,7 +1834,12 @@ Run compute jobs on Hugging Face infrastructure with a familiar Docker-like inte
 >>> hf jobs run python:3.12 python -c 'print("Hello from HF compute!")'
 ```
 
-This command runs the job and shows the logs. You can pass `--detach` to run the Job in the background and only print the Job ID.
+This command runs the job and shows the logs. You can pass `--detach` to run the Job in the background and only print the Job ID. Add `-q` to print the Job ID alone, which is handy to capture it in a script:
+
+```bash
+>>> JOB_ID=$(hf jobs run -dq python:3.12 python train.py)
+>>> hf jobs wait "$JOB_ID"
+```
 
 #### 2. Check job status
 
@@ -2107,9 +2096,6 @@ By default `hf jobs ps` displays at most 100 Jobs to avoid bloating the terminal
 >>> hf jobs ps -a --limit 0
 ```
 
-> [!WARNING]
-> `-f`/`--filter` is deprecated in favor of `--status` and `--label`. Matching is exact: glob patterns (`data-*`) and negation (`key!=value`) are not supported, and filtering by `id`, `image` or `command` is not available.
-
 ### SSH into a Job
 
 Pass `--ssh` to `hf jobs run` (or `hf jobs uv run`) to make the Job's container reachable over SSH, then connect with `hf jobs ssh`:
@@ -2179,6 +2165,8 @@ rather than showing Jobs help:
 ```bash
 >>> hf jobs uv run --flavor t4-small train.py -- --help
 ```
+
+This also applies to the formatting flags: `hf jobs run`, `hf jobs uv run` and their `scheduled` variants consume `--format`, `--json` and `-q` wherever they appear, so use `--` when your script needs them.
 
 #### Ship the launch config with the script
 
@@ -2396,7 +2384,7 @@ Or create a webhook that triggers a Job instead:
 >>> hf webhooks create --job-id 687f911eaea852de79c4a50a --watch user:julien-c
 ```
 
-The `--watch` option uses the format `type:name` where type is one of `model`, `dataset`, `space`, `org`, or `user`. It can be repeated to watch multiple items. Use `--domain` to filter events to `repo` or `discussions`, and `--secret` to set a signing secret.
+The `--watch` option uses the format `type:name` where type is one of `model`, `dataset`, `space`, `bucket`, `org`, or `user`. It can be repeated to watch multiple items. Use `--domain` to filter events to `repo` or `discussions`, and `--secret` to set a signing secret.
 
 ### Update a webhook
 

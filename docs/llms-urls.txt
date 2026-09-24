@@ -809,6 +809,7 @@ https://huggingface.co/docs/hub/xet/security.md
 https://huggingface.co/docs/hub/xet/using-xet-storage.md
 https://huggingface.co/docs/huggingface_hub/concepts/git_vs_http.md
 https://huggingface.co/docs/huggingface_hub/concepts/migration.md
+https://huggingface.co/docs/huggingface_hub/concepts/migration_v2.md
 https://huggingface.co/docs/huggingface_hub/concepts/sandbox.md
 https://huggingface.co/docs/huggingface_hub/guides/buckets.md
 https://huggingface.co/docs/huggingface_hub/guides/cli-extensions.md

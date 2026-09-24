@@ -8,7 +8,7 @@
 - [Datasets](https://huggingface.co/docs/datasets) — 58 pages
 - [Diffusers](https://huggingface.co/docs/diffusers) — 354 pages
 - [Hub](https://huggingface.co/docs/hub) — 269 pages
-- [Hub Client](https://huggingface.co/docs/huggingface_hub) — 52 pages
+- [Hub Client](https://huggingface.co/docs/huggingface_hub) — 53 pages
 - [Inference Endpoints](https://huggingface.co/docs/inference-endpoints) — 25 pages
 - [Inference Providers](https://huggingface.co/docs/inference-providers) — 28 pages
 - [Kernels](https://huggingface.co/docs/kernels) — 37 pages

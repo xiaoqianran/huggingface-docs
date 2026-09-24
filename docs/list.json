@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-09-23T12:42:27.715769+00:00",
+  "fetchedAt": "2026-09-24T12:41:04.420986+00:00",
   "method": "llms-full-split",
-  "ok": 2178,
+  "ok": 2179,
   "failed": 0,
   "pages": [
     {
@@ -930,7 +930,7 @@
     },
     {
       "rel": "cli/index.md",
-      "bytes": 102227,
+      "bytes": 101820,
       "source": "llms-full",
       "url": "https://huggingface.co/docs/cli",
       "track": "CLI",
@@ -5709,7 +5709,7 @@
     },
     {
       "rel": "hub/billing.md",
-      "bytes": 8499,
+      "bytes": 10216,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/billing.md",
       "track": "Hub",
@@ -7302,468 +7302,477 @@
     },
     {
       "rel": "huggingface_hub/quick-start.md",
-      "bytes": 8957,
+      "bytes": 8905,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/quick-start.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/quick-start.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Quickstart"
     },
     {
       "rel": "huggingface_hub/installation.md",
-      "bytes": 6927,
+      "bytes": 6926,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/installation.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/installation.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Installation"
     },
     {
       "rel": "huggingface_hub/index.md",
-      "bytes": 2203,
+      "bytes": 2202,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/index.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/index.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "\ud83e\udd17 Hub client library"
     },
     {
       "rel": "huggingface_hub/package_reference/cache.md",
-      "bytes": 27908,
+      "bytes": 27870,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/cache.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/cache.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Cache-system reference"
     },
     {
       "rel": "huggingface_hub/package_reference/environment_variables.md",
-      "bytes": 15040,
+      "bytes": 15036,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/environment_variables.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/environment_variables.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Environment variables"
     },
     {
       "rel": "huggingface_hub/package_reference/hf_api.md",
-      "bytes": 429664,
+      "bytes": 415622,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/hf_api.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/hf_api.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "HfApi Client"
     },
     {
       "rel": "huggingface_hub/package_reference/mcp.md",
-      "bytes": 8943,
+      "bytes": 8926,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/mcp.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/mcp.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "MCP Client"
     },
     {
       "rel": "huggingface_hub/package_reference/file_download.md",
-      "bytes": 25734,
+      "bytes": 25699,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/file_download.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/file_download.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Downloading files"
     },
     {
       "rel": "huggingface_hub/package_reference/inference_endpoints.md",
-      "bytes": 22425,
+      "bytes": 22357,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/inference_endpoints.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/inference_endpoints.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Inference Endpoints"
     },
     {
       "rel": "huggingface_hub/package_reference/space_runtime.md",
-      "bytes": 6973,
+      "bytes": 6815,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/space_runtime.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/space_runtime.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Managing your Space runtime"
     },
     {
       "rel": "huggingface_hub/package_reference/tensorboard.md",
-      "bytes": 4695,
+      "bytes": 4693,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/tensorboard.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/tensorboard.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "TensorBoard logger"
     },
     {
       "rel": "huggingface_hub/package_reference/collections.md",
-      "bytes": 3780,
+      "bytes": 3768,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/collections.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/collections.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Managing collections"
     },
     {
       "rel": "huggingface_hub/package_reference/oauth.md",
-      "bytes": 8613,
+      "bytes": 8603,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/oauth.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/oauth.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "OAuth and FastAPI"
     },
     {
       "rel": "huggingface_hub/package_reference/sandbox.md",
-      "bytes": 23042,
+      "bytes": 23000,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/sandbox.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/sandbox.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Sandboxes"
     },
     {
       "rel": "huggingface_hub/package_reference/cards.md",
-      "bytes": 42449,
+      "bytes": 42409,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/cards.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/cards.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Repository Cards"
     },
     {
       "rel": "huggingface_hub/package_reference/inference_types.md",
-      "bytes": 73538,
+      "bytes": 73388,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/inference_types.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/inference_types.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Inference types"
     },
     {
       "rel": "huggingface_hub/package_reference/dataclasses.md",
-      "bytes": 14325,
+      "bytes": 14317,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/dataclasses.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/dataclasses.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Strict Dataclasses"
     },
     {
       "rel": "huggingface_hub/package_reference/cli.md",
-      "bytes": 186788,
+      "bytes": 185655,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/cli.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/cli.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "WARNING"
     },
     {
       "rel": "huggingface_hub/package_reference/community.md",
-      "bytes": 11488,
+      "bytes": 11460,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/community.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/community.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Interacting with Discussions and Pull Requests"
     },
     {
       "rel": "huggingface_hub/package_reference/webhooks_server.md",
-      "bytes": 11537,
+      "bytes": 11519,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/webhooks_server.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/webhooks_server.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Webhooks Server"
     },
     {
       "rel": "huggingface_hub/package_reference/hf_uris.md",
-      "bytes": 19538,
+      "bytes": 19519,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/hf_uris.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/hf_uris.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "HF URIs"
     },
     {
       "rel": "huggingface_hub/package_reference/inference_client.md",
-      "bytes": 219356,
+      "bytes": 218873,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/inference_client.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/inference_client.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Inference"
     },
     {
       "rel": "huggingface_hub/package_reference/authentication.md",
-      "bytes": 6998,
+      "bytes": 6981,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/authentication.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/authentication.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Authentication"
     },
     {
       "rel": "huggingface_hub/package_reference/overview.md",
-      "bytes": 204,
+      "bytes": 203,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/overview.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/overview.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Overview"
     },
     {
       "rel": "huggingface_hub/package_reference/jobs.md",
-      "bytes": 8759,
+      "bytes": 8739,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/jobs.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/jobs.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Jobs"
     },
     {
       "rel": "huggingface_hub/package_reference/serialization.md",
-      "bytes": 39668,
+      "bytes": 39635,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/serialization.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/serialization.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Serialization"
     },
     {
       "rel": "huggingface_hub/package_reference/mixins.md",
-      "bytes": 19995,
+      "bytes": 19975,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/mixins.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/mixins.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Mixins & serialization methods"
     },
     {
       "rel": "huggingface_hub/package_reference/utilities.md",
-      "bytes": 43666,
+      "bytes": 43534,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/utilities.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/utilities.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Utilities"
     },
     {
       "rel": "huggingface_hub/package_reference/hf_file_system.md",
-      "bytes": 13762,
+      "bytes": 13803,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/package_reference/hf_file_system.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/hf_file_system.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Filesystem API"
     },
     {
       "rel": "huggingface_hub/guides/buckets.md",
-      "bytes": 25957,
+      "bytes": 26071,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/buckets.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/buckets.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Buckets"
     },
     {
       "rel": "huggingface_hub/guides/cli-extensions.md",
-      "bytes": 9284,
+      "bytes": 9283,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/cli-extensions.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/cli-extensions.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Create a CLI extension"
     },
     {
       "rel": "huggingface_hub/guides/manage-cache.md",
-      "bytes": 43246,
+      "bytes": 43206,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/manage-cache.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/manage-cache.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Understand caching"
     },
     {
       "rel": "huggingface_hub/guides/model-cards.md",
-      "bytes": 10986,
+      "bytes": 10977,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/model-cards.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/model-cards.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Create and share Model Cards"
     },
     {
       "rel": "huggingface_hub/guides/inference_endpoints.md",
-      "bytes": 25436,
+      "bytes": 25398,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/inference_endpoints.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/inference_endpoints.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Inference Endpoints"
     },
     {
       "rel": "huggingface_hub/guides/collections.md",
-      "bytes": 11359,
+      "bytes": 11341,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/collections.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/collections.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Collections"
     },
     {
       "rel": "huggingface_hub/guides/repository.md",
-      "bytes": 15890,
+      "bytes": 15865,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/repository.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/repository.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Create and manage a repository"
     },
     {
       "rel": "huggingface_hub/guides/sandbox.md",
-      "bytes": 18028,
+      "bytes": 18011,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/sandbox.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/sandbox.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Sandboxes"
     },
     {
       "rel": "huggingface_hub/guides/cli.md",
-      "bytes": 102347,
+      "bytes": 101939,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/cli.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/cli.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Command Line Interface (CLI)"
     },
     {
       "rel": "huggingface_hub/guides/community.md",
-      "bytes": 9246,
+      "bytes": 9221,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/community.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/community.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Interact with Discussions and Pull Requests"
     },
     {
       "rel": "huggingface_hub/guides/upload.md",
-      "bytes": 33647,
+      "bytes": 33200,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/upload.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/upload.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Upload files to the Hub"
     },
     {
       "rel": "huggingface_hub/guides/download.md",
-      "bytes": 15357,
+      "bytes": 15340,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/download.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/download.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Download files from the Hub"
     },
     {
       "rel": "huggingface_hub/guides/overview.md",
-      "bytes": 3769,
+      "bytes": 3768,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/overview.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/overview.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "How-to guides"
     },
     {
       "rel": "huggingface_hub/guides/inference.md",
-      "bytes": 38738,
+      "bytes": 38682,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/inference.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/inference.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Run Inference on servers"
     },
     {
       "rel": "huggingface_hub/guides/jobs.md",
-      "bytes": 34254,
+      "bytes": 34222,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/jobs.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/jobs.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Run and manage Jobs"
     },
     {
       "rel": "huggingface_hub/guides/integrations.md",
-      "bytes": 23451,
+      "bytes": 23432,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/integrations.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/integrations.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Integrate any ML framework with the Hub"
     },
     {
       "rel": "huggingface_hub/guides/manage-spaces.md",
-      "bytes": 19974,
+      "bytes": 19964,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/manage-spaces.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/manage-spaces.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Manage your Space"
     },
     {
       "rel": "huggingface_hub/guides/search.md",
-      "bytes": 2861,
+      "bytes": 2856,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/search.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/search.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Search the Hub"
     },
     {
       "rel": "huggingface_hub/guides/hf_file_system.md",
-      "bytes": 6662,
+      "bytes": 6651,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/hf_file_system.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/hf_file_system.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Interact with the Hub through the Filesystem API"
     },
     {
       "rel": "huggingface_hub/guides/webhooks.md",
-      "bytes": 15163,
+      "bytes": 15162,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/guides/webhooks.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/webhooks.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Webhooks"
     },
     {
-      "rel": "huggingface_hub/concepts/sandbox.md",
-      "bytes": 28366,
+      "rel": "huggingface_hub/concepts/migration_v2.md",
+      "bytes": 3080,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/concepts/sandbox.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/concepts/migration_v2.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Migrating to huggingface_hub v2.0"
+    },
+    {
+      "rel": "huggingface_hub/concepts/sandbox.md",
+      "bytes": 28362,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/concepts/sandbox.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Sandboxes under the hood"
     },
     {
       "rel": "huggingface_hub/concepts/git_vs_http.md",
-      "bytes": 3897,
+      "bytes": 3889,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/concepts/git_vs_http.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/concepts/git_vs_http.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Git vs HTTP paradigm"
     },
     {
       "rel": "huggingface_hub/concepts/migration.md",
-      "bytes": 11815,
+      "bytes": 11800,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.32.0/concepts/migration.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v2.0.0/concepts/migration.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Migrating to huggingface_hub v1.0"
@@ -8130,7 +8139,7 @@
     },
     {
       "rel": "inference-providers/guides/github-actions-code-review.md",
-      "bytes": 100932,
+      "bytes": 100746,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/github-actions-code-review.md",
       "track": "Inference Providers",
@@ -11109,7 +11118,7 @@
     },
     {
       "rel": "timm/training_script.md",
-      "bytes": 7119,
+      "bytes": 11413,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/timm/v1.0.30/training_script.md",
       "track": "timm",
@@ -19631,7 +19640,7 @@
       "toc": 0,
       "found": 1,
       "written": 1,
-      "full_bytes": 101687
+      "full_bytes": 101280
     },
     {
       "pkg": "dataset-viewer",
@@ -19659,14 +19668,14 @@
       "toc": 270,
       "found": 269,
       "written": 269,
-      "full_bytes": 1469185
+      "full_bytes": 1470898
     },
     {
       "pkg": "huggingface_hub",
-      "toc": 52,
-      "found": 52,
-      "written": 52,
-      "full_bytes": 1818760
+      "toc": 53,
+      "found": 53,
+      "written": 53,
+      "full_bytes": 1804267
     },
     {
       "pkg": "inference-endpoints",
@@ -19680,7 +19689,7 @@
       "toc": 66,
       "found": 28,
       "written": 28,
-      "full_bytes": 415674
+      "full_bytes": 415488
     },
     {
       "pkg": "kernels",
@@ -19743,7 +19752,7 @@
       "toc": 77,
       "found": 77,
       "written": 77,
-      "full_bytes": 479818
+      "full_bytes": 484112
     },
     {
       "pkg": "tokenizers",

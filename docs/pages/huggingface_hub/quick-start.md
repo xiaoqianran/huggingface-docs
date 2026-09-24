@@ -20,17 +20,15 @@ For more details, check out the [installation](installation) guide.
 > The `huggingface_hub` also ships with a [`hf` CLI](./guides/cli) that lets you interact with the Hub directly from the terminal.
 > If you're using AI agents (Claude Code, Codex, Cursor, ...), install the Skill to let your agent use the CLI:
 > ```bash
-> # for Codex, Cursor, OpenCode, Pi and other agents that load skills from `.agents/skills`
+> # works with Claude Code, Codex, Cursor, OpenCode, Pi and any agent that loads skills from `.agents/skills`
 > hf skills add
-> # includes the above + Claude Code
-> hf skills add --claude
 > ```
 > Check out the [Hugging Face CLI for AI Agents](https://huggingface.co/docs/hub/agents-cli) guide for more details.
 
 ## Download files
 
 Repositories on the Hub are git version controlled, and users can download a single file
-or the whole repository. You can use the [hf_hub_download()](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) function to download files.
+or the whole repository. You can use the [hf_hub_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) function to download files.
 This function will download and cache a file on your local disk. The next time you need
 that file, it will load from your cache, so you don't need to re-download it.
 
@@ -56,7 +54,7 @@ full-length hash instead of the shorter 7-character commit hash:
 ... )
 ```
 
-For more details and options, see the API reference for [hf_hub_download()](/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.hf_hub_download).
+For more details and options, see the API reference for [hf_hub_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.hf_hub_download).
 
  
 
@@ -68,7 +66,7 @@ the Hub: download private repos, upload files, create PRs,...
 
 ### Login command
 
-The easiest way to authenticate is with the [login()](/docs/huggingface_hub/v1.32.0/en/package_reference/authentication#huggingface_hub.login) command:
+The easiest way to authenticate is with the [login()](/docs/huggingface_hub/v2.0.0/en/package_reference/authentication#huggingface_hub.login) command:
 
 ```bash
 hf auth login
@@ -79,7 +77,7 @@ If you are already logged in, the command will return immediately. To force re-l
 > [!TIP]
 > User Access Tokens can have `read` or `write` permissions. Make sure to have a `write` access token if you want to create or edit a repository. Otherwise, it's best to generate a `read` token to reduce risk in case your token is inadvertently leaked.
 
-Alternatively, you can programmatically log in using [login()](/docs/huggingface_hub/v1.32.0/en/package_reference/authentication#huggingface_hub.login) in a notebook or a script:
+Alternatively, you can programmatically log in using [login()](/docs/huggingface_hub/v2.0.0/en/package_reference/authentication#huggingface_hub.login) in a notebook or a script:
 
 ```py
 >>> from huggingface_hub import login
@@ -93,7 +91,7 @@ You can only be logged in to one account at a time. Logging in to a new account 
 
 ### Manage multiple tokens locally
 
-You can save multiple tokens on your machine by simply logging in with the [login()](/docs/huggingface_hub/v1.32.0/en/package_reference/authentication#huggingface_hub.login) command with each token. If you need to switch between these tokens locally, you can use the `auth switch` command:
+You can save multiple tokens on your machine by simply logging in with the [login()](/docs/huggingface_hub/v2.0.0/en/package_reference/authentication#huggingface_hub.login) command with each token. If you need to switch between these tokens locally, you can use the `auth switch` command:
 
 ```bash
 hf auth switch
@@ -129,7 +127,7 @@ This is usually discouraged except in an environment where you don't want to sto
 
 ## Create a repository
 
-Once you've registered and logged in, create a repository with the [create_repo()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo)
+Once you've registered and logged in, create a repository with the [create_repo()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo)
 function:
 
 ```py
@@ -155,7 +153,7 @@ Private repositories will not be visible to anyone except yourself.
 
 ## Upload files
 
-Use the [upload_file()](/docs/huggingface_hub/v1.32.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) function to add a file to your newly created repository. You
+Use the [upload_file()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) function to add a file to your newly created repository. You
 need to specify:
 
 1. The path of the file to upload.
@@ -188,4 +186,4 @@ Hub, we recommend reading our [how-to guides](./guides/overview) to:
 - [Run Inference](./guides/inference) across multiple services for models hosted on the Hugging Face Hub.
 
 ### Installation
-https://huggingface.co/docs/huggingface_hub/v1.32.0/installation.md
+https://huggingface.co/docs/huggingface_hub/v2.0.0/installation.md
