@@ -81,6 +81,7 @@ Docker 空间
 简介
 职位概览
 快速入门
+火车模型
 定价
 管理职位
 职位配置
@@ -135,7 +136,7 @@ Hugging Face Hub 托管基于 Git 的存储库，这些存储库是版本控制�
 
 ## 型号
 
-您可以发现和使用社区共享的数十万个开源 ML 模型。为了促进负责任的模型使用和开发，模型存储库配备了[Model Cards](./model-cards)，以告知用户每个模型的局限性和偏差。可以包含有关任务、语言和评估结果等信息的附加[metadata](./model-cards#model-card-metadata)，如果存储库包含[TensorBoard traces](./tensorboard)，甚至还可以添加训练指标图表。向您的模型添加 [**inference widget**](./models-widgets) 也很容易，任何人都可以直接在浏览器中使用该模型！对于编程访问，[**Inference Providers**](./models-inference) 提供了无服务器 API。
+您可以发现和使用社区共享的数十万个开源 ML 模型。为了促进负责任的模型使用和开发，模型存储库配备了[Model Cards](./model-cards)，以告知用户每个模型的局限性和偏差。可以包含有关任务、语言和评估结果等信息的附加[metadata](./model-cards#model-card-metadata)，如果存储库包含[TensorBoard traces](./tensorboard)，甚至还可以添加训练指标图表。向您的模型添加 [**inference widget**](./models-widgets) 也很容易，让任何人都可以直接在浏览器中使用该模型！对于编程访问，[**Inference Providers**](./models-inference) 提供了无服务器 API。
 
 要将模型上传到 Hub，或下载模型并将其集成到您的工作中，请探索 [**Models documentation**](./models)。您还可以选择支持 Hub 的[**over a dozen libraries**](./models-libraries)，例如🤗 Transformers、Asteroids 和 ESPnet。
 

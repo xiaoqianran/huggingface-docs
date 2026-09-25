@@ -4,7 +4,7 @@
 
 Hugging Face Jobs 在云中的 CPU 和 GPU 上运行您的代码。直接运行 Python 脚本，或将 Docker 映像用于其他工作负载和自定义环境。
 
-使用作业来微调模型、对数据集运行推理或处理数据，而无需设置自己的计算基础设施。
+使用作业来[train models](./jobs-training)，对数据集运行推理，或[process data](./jobs-large-datasets)，而无需设置自己的计算基础设施。
 
 [Run your first Job](./jobs-quickstart) 使用 `hf` CLI，或 [browse examples](./jobs-examples) 从现有脚本启动。作业也可以在 [⟦T1⟧ Python client](https://huggingface.co/docs/huggingface_hub/guides/jobs) 和 [HTTP API](./jobs-overview#run-jobs-from-anywhere) 上进行。
 

@@ -22,7 +22,7 @@
 >>> hf jobs uv run python -c 'print("Hello from the cloud!")'
 ```
 
-`hf jobs uv run` 在 Hugging Face 基础设施上的 Python 环境中运行命令。它默认使用 CPU 并将作业日志传输到您的终端。启动后，你会看到：
+`hf jobs uv run` 在 Hugging Face 基础设施上的 Python 环境中运行该命令。它默认使用 CPU 并将作业日志传输到您的终端。启动后，你会看到：
 
 ```text
 Hello from the cloud!
@@ -126,7 +126,7 @@ CLI 会自动上传您编辑的脚本。如果您将其保存在其他地方，�
 在此示例的基础上构建更大的工作负载：
 
 - [Annotate a dataset with OCR, classification or batch inference](./jobs-examples#uv-scripts)。
-- [Fine-tune and save a model](./jobs-examples#guides-to-train-with-jobs) 使用 TRL 或 Unsloth。
+- [Train a model](./jobs-training) 并将其保存到集线器。
 - [Read datasets or buckets and save processed results](./jobs-large-datasets)。
 - [Run commands in Docker images](./jobs-configuration#docker-jobs)。
 - [Use Jobs from a coding agent](./jobs-examples#coding-agent-skills)。
