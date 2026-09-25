@@ -81,6 +81,7 @@ Security & Compliance
 Introduction
 Jobs Overview
 Quickstart
+Train Models
 Pricing
 Manage Jobs
 Jobs Configuration

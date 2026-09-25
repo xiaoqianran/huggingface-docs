@@ -2,7 +2,7 @@
 
 Unsloth is an open‑source framework for fine‑tuning and reinforcement learning that trains LLMs (like Llama, OpenAI gpt-oss, Mistral, Gemma, DeepSeek, and more) up to 2× faster with up to 80% less VRAM. Unsloth allows [training](https://huggingface.co/docs/trl/en/unsloth_integration#Training), evaluation, running and [deployment](https://huggingface.co/docs/trl/en/unsloth_integration#Saving-the-model) with other inference engines like llama.cpp, Ollama and vLLM.
 
-The library provides a streamlined, Hugging Face compatible workflow for training, evaluation, inference and deployment and is fully compatible with [SFTTrainer](/docs/trl/v1.13.0/en/sft_trainer#trl.SFTTrainer).
+The library provides a streamlined, Hugging Face compatible workflow for training, evaluation, inference and deployment and is fully compatible with [SFTTrainer](/docs/trl/v1.14.0/en/sft_trainer#trl.SFTTrainer).
 
 ## Key Features
 
@@ -124,5 +124,5 @@ model.save_pretrained_merged("model", tokenizer, save_method = "merged_16bit",)
 model.push_to_hub_merged("hf/model", tokenizer, save_method = "merged_16bit", token = "")
 ```
 
-### PRM Trainer
-https://huggingface.co/docs/trl/v1.13.0/prm_trainer.md
+### vLLM Integration
+https://huggingface.co/docs/trl/v1.14.0/vllm_integration.md

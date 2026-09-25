@@ -472,4 +472,4 @@ For troubleshooting guidance, see the [RapidFire AI Troubleshooting Guide](https
 Learn more about RapidFire AI in their [official repository](https://github.com/RapidFireAI/rapidfireai) and [documentation](https://oss-docs.rapidfire.ai).
 
 ### BEMA for Reference Model
-https://huggingface.co/docs/trl/v1.13.0/bema_for_reference_model.md
+https://huggingface.co/docs/trl/v1.14.0/bema_for_reference_model.md

@@ -64,5 +64,5 @@ trainer.train()
 
 will give you a hosted dashboard at https://huggingface.co/spaces/trl-lib/trackio.
 
-### Nash-MD Trainer
-https://huggingface.co/docs/trl/v1.13.0/nash_md_trainer.md
+### Paper Index
+https://huggingface.co/docs/trl/v1.14.0/paper_index.md

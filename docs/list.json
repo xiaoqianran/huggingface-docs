@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-09-24T12:41:04.420986+00:00",
+  "fetchedAt": "2026-09-25T12:42:49.712051+00:00",
   "method": "llms-full-split",
-  "ok": 2179,
+  "ok": 2174,
   "failed": 0,
   "pages": [
     {
@@ -5439,7 +5439,7 @@
     },
     {
       "rel": "hub/jobs-overview.md",
-      "bytes": 2730,
+      "bytes": 2770,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs-overview.md",
       "track": "Hub",
@@ -5448,12 +5448,21 @@
     },
     {
       "rel": "hub/models-uploading.md",
-      "bytes": 8408,
+      "bytes": 8398,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/models-uploading.md",
       "track": "Hub",
       "package": "hub",
       "title": "Uploading models"
+    },
+    {
+      "rel": "hub/jobs-training.md",
+      "bytes": 16126,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/jobs-training.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Train Models on Jobs"
     },
     {
       "rel": "hub/spaces-api-endpoints.md",
@@ -5538,7 +5547,7 @@
     },
     {
       "rel": "hub/jobs-quickstart.md",
-      "bytes": 4863,
+      "bytes": 4826,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs-quickstart.md",
       "track": "Hub",
@@ -6564,7 +6573,7 @@
     },
     {
       "rel": "hub/jobs.md",
-      "bytes": 1011,
+      "bytes": 1051,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs.md",
       "track": "Hub",
@@ -6717,7 +6726,7 @@
     },
     {
       "rel": "hub/jobs-examples.md",
-      "bytes": 3699,
+      "bytes": 3105,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs-examples.md",
       "track": "Hub",
@@ -6753,7 +6762,7 @@
     },
     {
       "rel": "hub/index.md",
-      "bytes": 8974,
+      "bytes": 8987,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/index.md",
       "track": "Hub",
@@ -8139,7 +8148,7 @@
     },
     {
       "rel": "inference-providers/guides/github-actions-code-review.md",
-      "bytes": 100746,
+      "bytes": 100932,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/github-actions-code-review.md",
       "track": "Inference Providers",
@@ -18920,55 +18929,37 @@
       "title": "Pipelines"
     },
     {
-      "rel": "trl/grpo_with_replay_buffer.md",
-      "bytes": 13211,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/grpo_with_replay_buffer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "GRPO With Replay Buffer"
-    },
-    {
       "rel": "trl/experimental_overview.md",
-      "bytes": 1685,
+      "bytes": 3111,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/experimental_overview.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/experimental_overview.md",
       "track": "TRL",
       "package": "trl",
       "title": "Experimental"
     },
     {
-      "rel": "trl/gspo_token.md",
-      "bytes": 5360,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/gspo_token.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "GSPO-token"
-    },
-    {
       "rel": "trl/data_utils.md",
       "bytes": 7366,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/data_utils.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/data_utils.md",
       "track": "TRL",
       "package": "trl",
       "title": "Data Utilities"
     },
     {
       "rel": "trl/example_overview.md",
-      "bytes": 15164,
+      "bytes": 15462,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/example_overview.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/example_overview.md",
       "track": "TRL",
       "package": "trl",
       "title": "Examples"
     },
     {
       "rel": "trl/distributing_training.md",
-      "bytes": 5075,
+      "bytes": 5006,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/distributing_training.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/distributing_training.md",
       "track": "TRL",
       "package": "trl",
       "title": "Distributing Training"
@@ -18977,16 +18968,16 @@
       "rel": "trl/peft_integration.md",
       "bytes": 21940,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/peft_integration.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/peft_integration.md",
       "track": "TRL",
       "package": "trl",
       "title": "PEFT Integration"
     },
     {
       "rel": "trl/speeding_up_training.md",
-      "bytes": 6197,
+      "bytes": 6084,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/speeding_up_training.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/speeding_up_training.md",
       "track": "TRL",
       "package": "trl",
       "title": "Speeding Up Training"
@@ -18995,7 +18986,7 @@
       "rel": "trl/usage_stats.md",
       "bytes": 2607,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/usage_stats.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/usage_stats.md",
       "track": "TRL",
       "package": "trl",
       "title": "Usage Stats Collection"
@@ -19004,7 +18995,7 @@
       "rel": "trl/rapidfire_integration.md",
       "bytes": 17860,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/rapidfire_integration.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/rapidfire_integration.md",
       "track": "TRL",
       "package": "trl",
       "title": "RapidFire AI Integration"
@@ -19013,16 +19004,16 @@
       "rel": "trl/bema_for_reference_model.md",
       "bytes": 7193,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/bema_for_reference_model.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/bema_for_reference_model.md",
       "track": "TRL",
       "package": "trl",
       "title": "BEMA for Reference Model"
     },
     {
       "rel": "trl/grpo_trainer.md",
-      "bytes": 114847,
+      "bytes": 114490,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/grpo_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/grpo_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "GRPO Trainer"
@@ -19031,7 +19022,7 @@
       "rel": "trl/installation.md",
       "bytes": 830,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/installation.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/installation.md",
       "track": "TRL",
       "package": "trl",
       "title": "Installation"
@@ -19040,7 +19031,7 @@
       "rel": "trl/harbor.md",
       "bytes": 13886,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/harbor.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/harbor.md",
       "track": "TRL",
       "package": "trl",
       "title": "Harbor Integration for Training LLMs with Environments"
@@ -19049,7 +19040,7 @@
       "rel": "trl/long_context_training.md",
       "bytes": 13250,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/long_context_training.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/long_context_training.md",
       "track": "TRL",
       "package": "trl",
       "title": "Training Beyond 1M Tokens"
@@ -19058,16 +19049,16 @@
       "rel": "trl/ssd_trainer.md",
       "bytes": 18710,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/ssd_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/ssd_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "SSD"
     },
     {
       "rel": "trl/sdft_trainer.md",
-      "bytes": 28290,
+      "bytes": 28020,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/sdft_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/sdft_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "SDFT"
@@ -19076,7 +19067,7 @@
       "rel": "trl/openenv.md",
       "bytes": 35913,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/openenv.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/openenv.md",
       "track": "TRL",
       "package": "trl",
       "title": "OpenEnv Integration for Training LLMs with Environments"
@@ -19085,25 +19076,25 @@
       "rel": "trl/cpo_trainer.md",
       "bytes": 29170,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/cpo_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/cpo_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "CPO Trainer"
     },
     {
       "rel": "trl/sdpo_trainer.md",
-      "bytes": 35763,
+      "bytes": 35492,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/sdpo_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/sdpo_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "SDPO"
     },
     {
       "rel": "trl/gmpo.md",
-      "bytes": 13775,
+      "bytes": 13781,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/gmpo.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/gmpo.md",
       "track": "TRL",
       "package": "trl",
       "title": "GMPO"
@@ -19112,7 +19103,7 @@
       "rel": "trl/async_distillation_trainer.md",
       "bytes": 52971,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/async_distillation_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/async_distillation_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "Async Distillation"
@@ -19121,7 +19112,7 @@
       "rel": "trl/reward_trainer.md",
       "bytes": 31798,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/reward_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/reward_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "Reward Modeling"
@@ -19130,70 +19121,43 @@
       "rel": "trl/distillation_trainer.md",
       "bytes": 40465,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/distillation_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/distillation_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "Distillation Trainer"
     },
     {
       "rel": "trl/rewards.md",
-      "bytes": 12461,
+      "bytes": 12469,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/rewards.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/rewards.md",
       "track": "TRL",
       "package": "trl",
       "title": "Reward Functions"
     },
     {
-      "rel": "trl/xpo_trainer.md",
-      "bytes": 23783,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/xpo_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "XPO Trainer"
-    },
-    {
       "rel": "trl/minillm_trainer.md",
-      "bytes": 25651,
+      "bytes": 25673,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/minillm_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/minillm_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "MiniLLM Trainer"
     },
     {
-      "rel": "trl/bco_trainer.md",
-      "bytes": 21842,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/bco_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "BCO Trainer"
-    },
-    {
       "rel": "trl/unsloth_integration.md",
-      "bytes": 5309,
+      "bytes": 5319,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/unsloth_integration.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/unsloth_integration.md",
       "track": "TRL",
       "package": "trl",
       "title": "Unsloth Integration"
     },
     {
-      "rel": "trl/prm_trainer.md",
-      "bytes": 19514,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/prm_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "PRM Trainer"
-    },
-    {
       "rel": "trl/vllm_integration.md",
-      "bytes": 10234,
+      "bytes": 8909,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/vllm_integration.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/vllm_integration.md",
       "track": "TRL",
       "package": "trl",
       "title": "vLLM Integration"
@@ -19202,7 +19166,7 @@
       "rel": "trl/orpo_trainer.md",
       "bytes": 23780,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/orpo_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/orpo_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "ORPO Trainer"
@@ -19211,7 +19175,7 @@
       "rel": "trl/community_tutorials.md",
       "bytes": 11092,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/community_tutorials.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/community_tutorials.md",
       "track": "TRL",
       "package": "trl",
       "title": "Community Tutorials"
@@ -19220,7 +19184,7 @@
       "rel": "trl/openreward.md",
       "bytes": 11919,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/openreward.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/openreward.md",
       "track": "TRL",
       "package": "trl",
       "title": "OpenReward Integration for Training LLMs with Environments"
@@ -19229,7 +19193,7 @@
       "rel": "trl/a2po_trainer.md",
       "bytes": 16830,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/a2po_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/a2po_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "A2PO"
@@ -19238,52 +19202,43 @@
       "rel": "trl/chat_templates.md",
       "bytes": 14904,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/chat_templates.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/chat_templates.md",
       "track": "TRL",
       "package": "trl",
       "title": "Chat Templates"
     },
     {
       "rel": "trl/gold_trainer.md",
-      "bytes": 33271,
+      "bytes": 33345,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/gold_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/gold_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "General Online Logit Distillation (GOLD) Trainer"
     },
     {
       "rel": "trl/dpo_trainer.md",
-      "bytes": 46762,
+      "bytes": 47030,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/dpo_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/dpo_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "DPO Trainer"
     },
     {
       "rel": "trl/trackio_integration.md",
-      "bytes": 1992,
+      "bytes": 1984,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/trackio_integration.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/trackio_integration.md",
       "track": "TRL",
       "package": "trl",
       "title": "Trackio Integration"
     },
     {
-      "rel": "trl/nash_md_trainer.md",
-      "bytes": 22751,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/nash_md_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Nash-MD Trainer"
-    },
-    {
       "rel": "trl/paper_index.md",
-      "bytes": 93357,
+      "bytes": 91749,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/paper_index.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/paper_index.md",
       "track": "TRL",
       "package": "trl",
       "title": "Paper Index"
@@ -19292,16 +19247,16 @@
       "rel": "trl/tpo_trainer.md",
       "bytes": 27314,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/tpo_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/tpo_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "TPO Trainer"
     },
     {
       "rel": "trl/use_model.md",
-      "bytes": 2456,
+      "bytes": 2520,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/use_model.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/use_model.md",
       "track": "TRL",
       "package": "trl",
       "title": "Use model after training"
@@ -19310,7 +19265,7 @@
       "rel": "trl/lora_without_regret.md",
       "bytes": 14331,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/lora_without_regret.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/lora_without_regret.md",
       "track": "TRL",
       "package": "trl",
       "title": "LoRA Without Regret"
@@ -19319,7 +19274,7 @@
       "rel": "trl/quickstart.md",
       "bytes": 3700,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/quickstart.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/quickstart.md",
       "track": "TRL",
       "package": "trl",
       "title": "Quickstart"
@@ -19328,16 +19283,16 @@
       "rel": "trl/customization.md",
       "bytes": 7591,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/customization.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/customization.md",
       "track": "TRL",
       "package": "trl",
       "title": "Training customization"
     },
     {
       "rel": "trl/index.md",
-      "bytes": 4941,
+      "bytes": 4705,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/index.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/index.md",
       "track": "TRL",
       "package": "trl",
       "title": "TRL - Transformers Reinforcement Learning"
@@ -19346,16 +19301,16 @@
       "rel": "trl/merge_model_callback.md",
       "bytes": 1466,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/merge_model_callback.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/merge_model_callback.md",
       "track": "TRL",
       "package": "trl",
       "title": "MergeModelCallback[[trl.experimental.merge_model_callback.MergeModelCallback]]"
     },
     {
       "rel": "trl/rloo_trainer.md",
-      "bytes": 69150,
+      "bytes": 68978,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/rloo_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/rloo_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "RLOO Trainer"
@@ -19364,25 +19319,25 @@
       "rel": "trl/script_utils.md",
       "bytes": 11255,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/script_utils.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/script_utils.md",
       "track": "TRL",
       "package": "trl",
       "title": "Scripts Utilities"
     },
     {
       "rel": "trl/reducing_memory_usage.md",
-      "bytes": 13905,
+      "bytes": 13792,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/reducing_memory_usage.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/reducing_memory_usage.md",
       "track": "TRL",
       "package": "trl",
       "title": "Reducing Memory Usage"
     },
     {
       "rel": "trl/iw_opd_trainer.md",
-      "bytes": 21515,
+      "bytes": 21464,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/iw_opd_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/iw_opd_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "IW-OPD"
@@ -19391,7 +19346,7 @@
       "rel": "trl/kernels_hub.md",
       "bytes": 5751,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/kernels_hub.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/kernels_hub.md",
       "track": "TRL",
       "package": "trl",
       "title": "Kernels Hub Integration and Usage"
@@ -19400,16 +19355,16 @@
       "rel": "trl/clis.md",
       "bytes": 13025,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/clis.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/clis.md",
       "track": "TRL",
       "package": "trl",
       "title": "Command Line Interfaces (CLIs)"
     },
     {
       "rel": "trl/async_grpo_trainer.md",
-      "bytes": 60625,
+      "bytes": 64810,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/async_grpo_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/async_grpo_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "Asynchronous GRPO"
@@ -19418,52 +19373,52 @@
       "rel": "trl/online_dpo_trainer.md",
       "bytes": 36048,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/online_dpo_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/online_dpo_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "Online DPO Trainer"
     },
     {
       "rel": "trl/liger_kernel_integration.md",
-      "bytes": 2274,
+      "bytes": 2479,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/liger_kernel_integration.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/liger_kernel_integration.md",
       "track": "TRL",
       "package": "trl",
       "title": "Liger Kernel Integration"
     },
     {
       "rel": "trl/sft_trainer.md",
-      "bytes": 45039,
+      "bytes": 45037,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/sft_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/sft_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "SFT Trainer"
     },
     {
       "rel": "trl/kto_trainer.md",
-      "bytes": 42496,
+      "bytes": 42698,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/kto_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/kto_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "KTO Trainer"
     },
     {
       "rel": "trl/dataset_formats.md",
-      "bytes": 42933,
+      "bytes": 36841,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/dataset_formats.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/dataset_formats.md",
       "track": "TRL",
       "package": "trl",
       "title": "Dataset formats and types"
     },
     {
       "rel": "trl/deepspeed_integration.md",
-      "bytes": 1611,
+      "bytes": 1546,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/deepspeed_integration.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/deepspeed_integration.md",
       "track": "TRL",
       "package": "trl",
       "title": "DeepSpeed Integration"
@@ -19472,16 +19427,16 @@
       "rel": "trl/chat_template_utils.md",
       "bytes": 7187,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/chat_template_utils.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/chat_template_utils.md",
       "track": "TRL",
       "package": "trl",
       "title": "Chat template utilities"
     },
     {
       "rel": "trl/gkd_trainer.md",
-      "bytes": 20969,
+      "bytes": 20975,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/gkd_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/gkd_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "Generalized Knowledge Distillation Trainer"
@@ -19490,7 +19445,7 @@
       "rel": "trl/jobs_training.md",
       "bytes": 9391,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/jobs_training.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/jobs_training.md",
       "track": "TRL",
       "package": "trl",
       "title": "Training with Jobs"
@@ -19499,7 +19454,7 @@
       "rel": "trl/callbacks.md",
       "bytes": 8931,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.13.0/callbacks.md",
+      "url": "https://huggingface.co/docs/trl/v1.14.0/callbacks.md",
       "track": "TRL",
       "package": "trl",
       "title": "Callbacks"
@@ -19665,10 +19620,10 @@
     },
     {
       "pkg": "hub",
-      "toc": 270,
-      "found": 269,
-      "written": 269,
-      "full_bytes": 1470898
+      "toc": 271,
+      "found": 270,
+      "written": 270,
+      "full_bytes": 1486554
     },
     {
       "pkg": "huggingface_hub",
@@ -19689,7 +19644,7 @@
       "toc": 66,
       "found": 28,
       "written": 28,
-      "full_bytes": 415488
+      "full_bytes": 415674
     },
     {
       "pkg": "kernels",
@@ -19777,10 +19732,10 @@
     },
     {
       "pkg": "trl",
-      "toc": 65,
-      "found": 65,
-      "written": 65,
-      "full_bytes": 1406616
+      "toc": 59,
+      "found": 59,
+      "written": 59,
+      "full_bytes": 1295746
     },
     {
       "pkg": "xet",

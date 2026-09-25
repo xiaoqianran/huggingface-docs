@@ -3,11 +3,11 @@
 TRL is designed with modularity in mind so that users are able to efficiently customize the training loop for their needs. Below are examples on how you can apply and test different techniques.
 
 > [!NOTE]
-> Although these examples use the [DPOTrainer](/docs/trl/v1.13.0/en/bema_for_reference_model#trl.DPOTrainer), these customization methods apply to most (if not all) trainers in TRL.
+> Although these examples use the [DPOTrainer](/docs/trl/v1.14.0/en/bema_for_reference_model#trl.DPOTrainer), these customization methods apply to most (if not all) trainers in TRL.
 
 ## Use different optimizers and schedulers
 
-By default, the [DPOTrainer](/docs/trl/v1.13.0/en/bema_for_reference_model#trl.DPOTrainer) creates a `torch.optim.AdamW` optimizer. You can create and define a different optimizer and pass it to [DPOTrainer](/docs/trl/v1.13.0/en/bema_for_reference_model#trl.DPOTrainer) as follows:
+By default, the [DPOTrainer](/docs/trl/v1.14.0/en/bema_for_reference_model#trl.DPOTrainer) creates a `torch.optim.AdamW` optimizer. You can create and define a different optimizer and pass it to [DPOTrainer](/docs/trl/v1.14.0/en/bema_for_reference_model#trl.DPOTrainer) as follows:
 
 ```python
 from datasets import load_dataset
@@ -166,9 +166,9 @@ trainer = MyDPOTrainer(..., data_collator=my_collator)
 
 ### Complete example
 
-The block-diffusion SFT example [`examples/sft_diffusion_gemma/sft_diffusion_gemma.py`](https://github.com/huggingface/trl/blob/main/examples/sft_diffusion_gemma/sft_diffusion_gemma.py) combines the three: `DiffusionGemmaSFTConfig` extends [SFTConfig](/docs/trl/v1.13.0/en/sft_trainer#trl.SFTConfig) with the canvas and corruption parameters, and `DiffusionGemmaSFTTrainer` extends [SFTTrainer](/docs/trl/v1.13.0/en/sft_trainer#trl.SFTTrainer) and replaces the autoregressive cross-entropy with a block-diffusion denoising objective. Neither requires a change to the library.
+The block-diffusion SFT example [`examples/sft_diffusion_gemma/sft_diffusion_gemma.py`](https://github.com/huggingface/trl/blob/main/examples/sft_diffusion_gemma/sft_diffusion_gemma.py) combines the three: `DiffusionGemmaSFTConfig` extends [SFTConfig](/docs/trl/v1.14.0/en/sft_trainer#trl.SFTConfig) with the canvas and corruption parameters, and `DiffusionGemmaSFTTrainer` extends [SFTTrainer](/docs/trl/v1.14.0/en/sft_trainer#trl.SFTTrainer) and replaces the autoregressive cross-entropy with a block-diffusion denoising objective. Neither requires a change to the library.
 
-[Antidoom](https://github.com/Liquid4All/antidoom), an open-source tool from [Liquid AI](https://huggingface.co/LiquidAI), extends [DPOTrainer](/docs/trl/v1.13.0/en/bema_for_reference_model#trl.DPOTrainer) with Final Token Preference Optimization ([Antislop](https://huggingface.co/papers/2510.15061)), a preference loss over a single token position that reduces repetition loops in reasoning models.
+[Antidoom](https://github.com/Liquid4All/antidoom), an open-source tool from [Liquid AI](https://huggingface.co/LiquidAI), extends [DPOTrainer](/docs/trl/v1.14.0/en/bema_for_reference_model#trl.DPOTrainer) with Final Token Preference Optimization ([Antislop](https://huggingface.co/papers/2510.15061)), a preference loss over a single token position that reduces repetition loops in reasoning models.
 
 ### TRL - Transformers Reinforcement Learning
-https://huggingface.co/docs/trl/v1.13.0/index.md
+https://huggingface.co/docs/trl/v1.14.0/index.md

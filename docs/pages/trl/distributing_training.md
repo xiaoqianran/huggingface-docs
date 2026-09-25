@@ -1,8 +1,5 @@
 # Distributing Training
 
-> [!WARNING]
-> Section under construction. Feel free to contribute!
-
 ## Multi-GPU Training with TRL
 
 The trainers in TRL use [🤗 Accelerate](https://github.com/huggingface/accelerate) to enable distributed training across multiple GPUs or nodes. To do so, first create an [🤗 Accelerate](https://github.com/huggingface/accelerate) config file by running
@@ -125,4 +122,4 @@ You can combine multi-node with DeepSpeed by setting `distributed_type: DEEPSPEE
 - [SLURM Workload Manager Documentation](https://slurm.schedmd.com/) - For cluster job scheduling
 
 ### PEFT Integration
-https://huggingface.co/docs/trl/v1.13.0/peft_integration.md
+https://huggingface.co/docs/trl/v1.14.0/peft_integration.md

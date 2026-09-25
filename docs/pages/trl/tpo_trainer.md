@@ -41,7 +41,7 @@ accelerate launch train_tpo.py
 
 ## Expected dataset type and format
 
-TPO requires a *triple-preference* dataset: each example must contain a `prompt`, a `chosen` (preferred) completion, a `rejected` (dispreferred) completion **and** a `reference` (gold) completion. The [experimental.tpo.TPOTrainer](/docs/trl/v1.13.0/en/tpo_trainer#trl.experimental.tpo.TPOTrainer) supports both [conversational](dataset_formats#conversational) and [standard](dataset_formats#standard) dataset formats. When provided with a conversational dataset, the trainer will automatically apply the chat template to the dataset.
+TPO requires a *triple-preference* dataset: each example must contain a `prompt`, a `chosen` (preferred) completion, a `rejected` (dispreferred) completion **and** a `reference` (gold) completion. The [experimental.tpo.TPOTrainer](/docs/trl/v1.14.0/en/tpo_trainer#trl.experimental.tpo.TPOTrainer) supports both [conversational](dataset_formats#conversational) and [standard](dataset_formats#standard) dataset formats. When provided with a conversational dataset, the trainer will automatically apply the chat template to the dataset.
 
 ```python
 # Standard format
@@ -131,13 +131,13 @@ While training and evaluating, we record the following metrics:
 trl.experimental.tpo.TPOTrainer(model: str | PreTrainedModel | PeftModel, args: trl.experimental.tpo.tpo_config.TPOConfig | None = None, data_collator: collections.abc.Callable[[list[typing.Any]], dict[str, typing.Any]] | None = None, train_dataset: datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset | None = None, eval_dataset: datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset | dict[str, datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset] | None = None, processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | None = None, compute_metrics: collections.abc.Callable[[transformers.trainer_utils.EvalPrediction], dict] | None = None, callbacks: list[transformers.trainer_callback.TrainerCallback] | None = None, optimizers: tuple = (None, None), peft_config: PeftConfig | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.13.0/trl/experimental/tpo/tpo_trainer.py#L218)
+[Source](https://github.com/huggingface/trl/blob/v1.14.0/trl/experimental/tpo/tpo_trainer.py#L217)
 
 **Parameters:**
 
-model (`str` or [PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel) or [PeftModel](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel)) : Model to be trained. Can be either:  - A string, being the *model id* of a pretrained model hosted inside a model repo on huggingface.co, or a path to a *directory* containing model weights saved using [save_pretrained](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), e.g., `'./my_model_directory/'`. The model is loaded using `<ModelArchitecture>.from_pretrained` (where `<ModelArchitecture>` is derived from the model config) with the keyword arguments in `args.model_init_kwargs`. - A [PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel) object. Only causal language models are supported. - A [PeftModel](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel) object. Only causal language models are supported.
+model (`str` or [PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel) or [PeftModel](https://huggingface.co/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel)) : Model to be trained. Can be either:  - A string, being the *model id* of a pretrained model hosted inside a model repo on huggingface.co, or a path to a *directory* containing model weights saved using [save_pretrained](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), e.g., `'./my_model_directory/'`. The model is loaded using `<ModelArchitecture>.from_pretrained` (where `<ModelArchitecture>` is derived from the model config) with the keyword arguments in `args.model_init_kwargs`. - A [PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel) object. Only causal language models are supported. - A [PeftModel](https://huggingface.co/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel) object. Only causal language models are supported.
 
-args ([experimental.tpo.TPOConfig](/docs/trl/v1.13.0/en/tpo_trainer#trl.experimental.tpo.TPOConfig), *optional*) : Configuration for this trainer. If `None`, a default configuration is used.
+args ([experimental.tpo.TPOConfig](/docs/trl/v1.14.0/en/tpo_trainer#trl.experimental.tpo.TPOConfig), *optional*) : Configuration for this trainer. If `None`, a default configuration is used.
 
 data_collator (`DataCollator`, *optional*) : Function to use to form a batch from a list of elements of the processed `train_dataset` or `eval_dataset`. Will default to `DataCollatorForTriplePreference`. Custom collators must truncate sequences before padding; the trainer does not apply post-collation truncation.
 
@@ -153,7 +153,7 @@ callbacks (list of [TrainerCallback](https://huggingface.co/docs/transformers/v5
 
 optimizers (`tuple[torch.optim.Optimizer | None, torch.optim.lr_scheduler.LambdaLR | None]`, *optional*, defaults to `(None, None)`) : A tuple containing the optimizer and the scheduler to use. Will default to an instance of `AdamW` on your model and a scheduler given by [get_linear_schedule_with_warmup](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/optimizer_schedules#transformers.get_linear_schedule_with_warmup) controlled by `args`.
 
-peft_config ([PeftConfig](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/config#peft.PeftConfig), *optional*) : PEFT configuration used to wrap the model. If `None`, the model is not wrapped.
+peft_config ([PeftConfig](https://huggingface.co/docs/peft/v0.21.0/en/package_reference/config#peft.PeftConfig), *optional*) : PEFT configuration used to wrap the model. If `None`, the model is not wrapped.
 
 Trainer for Triple Preference Optimization (TPO) method. This algorithm was initially proposed in the paper [Triple
 Preference Optimization: Achieving Better Alignment using a Single Step
@@ -166,7 +166,7 @@ Optimization](https://huggingface.co/papers/2405.16681). This class is a wrapper
 train(resume_from_checkpoint: str | bool | None = None, trial: optuna.Trial | dict[str, Any] | None = None, ignore_keys_for_eval: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.13.0/transformers/trainer.py#L1408)
+[Source](https://github.com/huggingface/trl/blob/v1.14.0/transformers/trainer.py#L1408)
 
 **Parameters:**
 
@@ -188,7 +188,7 @@ Main training entry point.
 save_model(output_dir: str | None = None, _internal_call: bool = False)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.13.0/transformers/trainer.py#L3930)
+[Source](https://github.com/huggingface/trl/blob/v1.14.0/transformers/trainer.py#L3930)
 
 Will save the model, so you can reload it using `from_pretrained()`.
 
@@ -200,7 +200,7 @@ Will only save from the main process.
 push_to_hub(commit_message: str | None = 'End of training', blocking: bool = True, token: str | None = None, revision: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.13.0/transformers/trainer.py#L4177)
+[Source](https://github.com/huggingface/trl/blob/v1.14.0/transformers/trainer.py#L4177)
 
 **Parameters:**
 
@@ -229,11 +229,11 @@ Upload `self.model` and `self.processing_class` to the 🤗 model hub on the rep
 trl.experimental.tpo.TPOConfig(output_dir: str | None = None, per_device_train_batch_size: int = 8, num_train_epochs: float = 3.0, max_steps: int = -1, learning_rate: float = 5e-07, lr_scheduler_type: transformers.trainer_utils.SchedulerType | str = 'linear', lr_scheduler_kwargs: dict | str | None = None, warmup_steps: float = 0, optim: transformers.training_args.OptimizerNames | str = 'adamw_torch_fused', optim_args: str | None = None, weight_decay: float = 0.0, adam_beta1: float = 0.9, adam_beta2: float = 0.999, adam_epsilon: float = 1e-08, optim_target_modules: None | str | list[str] = None, gradient_accumulation_steps: int = 1, average_tokens_across_devices: bool = True, max_grad_norm: float = 1.0, label_smoothing_factor: float = 0.0, bf16: bool | None = None, fp16: bool = False, bf16_full_eval: bool = False, fp16_full_eval: bool = False, tf32: bool | None = None, gradient_checkpointing: bool = True, gradient_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, torch_compile: bool = False, torch_compile_backend: str | None = None, torch_compile_mode: str | None = None, use_liger_kernel: bool = False, liger_kernel_config: dict[str, bool] | None = None, use_cache: bool = False, neftune_noise_alpha: float | None = None, torch_empty_cache_steps: int | None = None, auto_find_batch_size: bool = False, logging_strategy: transformers.trainer_utils.IntervalStrategy | str = 'steps', logging_steps: float = 10, logging_first_step: bool = False, log_on_each_node: bool = True, logging_nan_inf_filter: bool = True, include_num_input_tokens_seen: str | bool = 'no', log_level: str = 'passive', log_level_replica: str = 'warning', disable_tqdm: bool | None = None, report_to: None | str | list[str] = 'none', run_name: str | None = None, project: str = 'huggingface', trackio_space_id: str | None = None, trackio_bucket_id: str | None = None, trackio_static_space_id: typing.Union[str, NoneType, typing.Literal[False]] = None, eval_strategy: transformers.trainer_utils.IntervalStrategy | str = 'no', eval_steps: float | None = None, eval_delay: float = 0, per_device_eval_batch_size: int = 8, prediction_loss_only: bool = False, eval_on_start: bool = False, eval_do_concat_batches: bool = True, eval_use_gather_object: bool = False, eval_accumulation_steps: int | None = None, include_for_metrics: list = <factory>, batch_eval_metrics: bool = False, save_only_model: bool = False, save_strategy: transformers.trainer_utils.SaveStrategy | str = 'steps', save_steps: float = 500, save_on_each_node: bool = False, save_total_limit: int | None = None, enable_jit_checkpoint: bool = False, push_to_hub: bool = False, hub_token: str | None = None, hub_private_repo: bool | None = None, hub_model_id: str | None = None, hub_strategy: transformers.trainer_utils.HubStrategy | str = 'every_save', hub_always_push: bool = False, hub_revision: str | None = None, load_best_model_at_end: bool = False, metric_for_best_model: str | None = None, greater_is_better: bool | None = None, ignore_data_skip: bool = False, restore_callback_states_from_checkpoint: bool = False, full_determinism: bool = False, seed: int = 42, data_seed: int | None = None, use_cpu: bool = False, accelerator_config: dict | str | None = None, parallelism_config: accelerate.parallelism_config.ParallelismConfig | None = None, dataloader_drop_last: bool = False, dataloader_num_workers: int = 0, dataloader_pin_memory: bool = True, dataloader_persistent_workers: bool = False, dataloader_prefetch_factor: int | None = None, dataloader_multiprocessing_context: str | None = None, dataloader_in_order: bool = True, remove_unused_columns: bool = True, label_names: list[str] | None = None, train_sampling_strategy: str = 'random', length_column_name: str = 'length', ddp_find_unused_parameters: bool | None = None, ddp_bucket_cap_mb: int | None = None, ddp_broadcast_buffers: bool | None = None, ddp_static_graph: bool | None = None, ddp_backend: str | None = None, ddp_timeout: int = 1800, fsdp: str | None = None, fsdp_config: dict[str, typing.Any] | str | None = None, deepspeed: dict | str | None = None, debug: str | list[transformers.debug_utils.DebugOption] = '', skip_memory_metrics: bool = True, do_train: bool = False, do_eval: bool = False, do_predict: bool = False, resume_from_checkpoint: str | None = None, local_rank: int = -1, model_init_kwargs: dict[str, typing.Any] | str | None = None, trust_remote_code: bool = False, disable_dropout: bool = True, dataset_num_proc: int | None = None, max_length: int | None = 1024, truncation_mode: str = 'keep_start', pad_to_multiple_of: int | None = None, loss_type: str = 'sigmoid', beta: float = 0.01, label_smoothing: float = 0.0, tpo_alpha: float = 1.0, tpo_l_gamma: float = 0.5)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.13.0/trl/experimental/tpo/tpo_config.py#L22)
+[Source](https://github.com/huggingface/trl/blob/v1.14.0/trl/experimental/tpo/tpo_config.py#L22)
 
 **Parameters that control the model:**
 
-model_init_kwargs (`dict[str, Any]`, *optional*) : Keyword arguments for [from_pretrained](https://huggingface.co/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained), used when the `model` argument of the [experimental.tpo.TPOTrainer](/docs/trl/v1.13.0/en/tpo_trainer#trl.experimental.tpo.TPOTrainer) is provided as a string. The `revision` value is also used when loading the processing class.
+model_init_kwargs (`dict[str, Any]`, *optional*) : Keyword arguments for [from_pretrained](https://huggingface.co/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained), used when the `model` argument of the [experimental.tpo.TPOTrainer](/docs/trl/v1.14.0/en/tpo_trainer#trl.experimental.tpo.TPOTrainer) is provided as a string. The `revision` value is also used when loading the processing class.
 
 trust_remote_code (`bool`, *optional*, defaults to `False`) : Whether to allow loading models and tokenizers that ship custom Python code from the Hub. Forwarded to [from_pretrained](https://huggingface.co/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) and [from_pretrained](https://huggingface.co/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoProcessor.from_pretrained).
 
@@ -261,7 +261,7 @@ tpo_alpha (`float`, *optional*, defaults to `1.0`) : Weight of the supervised ne
 
 tpo_l_gamma (`float`, *optional*, defaults to `0.5`) : Target reward margin γ for the TPO-L loss, used only when `loss_type="tpo-l"`.
 
-Configuration class for the [experimental.tpo.TPOTrainer](/docs/trl/v1.13.0/en/tpo_trainer#trl.experimental.tpo.TPOTrainer).
+Configuration class for the [experimental.tpo.TPOTrainer](/docs/trl/v1.14.0/en/tpo_trainer#trl.experimental.tpo.TPOTrainer).
 
 This class includes only the parameters that are specific to TPO training. For a full list of training arguments,
 please refer to the [TrainingArguments](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments) documentation. Note that default values in this class may
@@ -279,4 +279,4 @@ command line.
 > - `learning_rate`: Defaults to `5e-7` instead of `5e-5`.
 
 ### Use model after training
-https://huggingface.co/docs/trl/v1.13.0/use_model.md
+https://huggingface.co/docs/trl/v1.14.0/use_model.md

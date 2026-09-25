@@ -66,6 +66,7 @@
 - [Datasets](https://huggingface.co/docs/hub/enterprise-datasets.md)
 - [Jobs Overview](https://huggingface.co/docs/hub/jobs-overview.md)
 - [Uploading models](https://huggingface.co/docs/hub/models-uploading.md)
+- [Train Models on Jobs](https://huggingface.co/docs/hub/jobs-training.md)
 - [Spaces as API endpoints](https://huggingface.co/docs/hub/spaces-api-endpoints.md)
 - [User Provisioning (SCIM)](https://huggingface.co/docs/hub/enterprise-scim.md)
 - [Hub Local Cache](https://huggingface.co/docs/hub/local-cache.md)

@@ -642,6 +642,7 @@ https://huggingface.co/docs/hub/jobs-quickstart.md
 https://huggingface.co/docs/hub/jobs-reference.md
 https://huggingface.co/docs/hub/jobs-schedule.md
 https://huggingface.co/docs/hub/jobs-serving.md
+https://huggingface.co/docs/hub/jobs-training.md
 https://huggingface.co/docs/hub/jobs-webhooks.md
 https://huggingface.co/docs/hub/jobs.md
 https://huggingface.co/docs/hub/keras.md
@@ -2101,7 +2102,6 @@ https://huggingface.co/docs/transformers/weightconverter.md
 https://huggingface.co/docs/trl/a2po_trainer.md
 https://huggingface.co/docs/trl/async_distillation_trainer.md
 https://huggingface.co/docs/trl/async_grpo_trainer.md
-https://huggingface.co/docs/trl/bco_trainer.md
 https://huggingface.co/docs/trl/bema_for_reference_model.md
 https://huggingface.co/docs/trl/callbacks.md
 https://huggingface.co/docs/trl/chat_template_utils.md
@@ -2122,8 +2122,6 @@ https://huggingface.co/docs/trl/gkd_trainer.md
 https://huggingface.co/docs/trl/gmpo.md
 https://huggingface.co/docs/trl/gold_trainer.md
 https://huggingface.co/docs/trl/grpo_trainer.md
-https://huggingface.co/docs/trl/grpo_with_replay_buffer.md
-https://huggingface.co/docs/trl/gspo_token.md
 https://huggingface.co/docs/trl/harbor.md
 https://huggingface.co/docs/trl/index.md
 https://huggingface.co/docs/trl/installation.md
@@ -2136,14 +2134,12 @@ https://huggingface.co/docs/trl/long_context_training.md
 https://huggingface.co/docs/trl/lora_without_regret.md
 https://huggingface.co/docs/trl/merge_model_callback.md
 https://huggingface.co/docs/trl/minillm_trainer.md
-https://huggingface.co/docs/trl/nash_md_trainer.md
 https://huggingface.co/docs/trl/online_dpo_trainer.md
 https://huggingface.co/docs/trl/openenv.md
 https://huggingface.co/docs/trl/openreward.md
 https://huggingface.co/docs/trl/orpo_trainer.md
 https://huggingface.co/docs/trl/paper_index.md
 https://huggingface.co/docs/trl/peft_integration.md
-https://huggingface.co/docs/trl/prm_trainer.md
 https://huggingface.co/docs/trl/quickstart.md
 https://huggingface.co/docs/trl/rapidfire_integration.md
 https://huggingface.co/docs/trl/reducing_memory_usage.md
@@ -2162,7 +2158,6 @@ https://huggingface.co/docs/trl/unsloth_integration.md
 https://huggingface.co/docs/trl/usage_stats.md
 https://huggingface.co/docs/trl/use_model.md
 https://huggingface.co/docs/trl/vllm_integration.md
-https://huggingface.co/docs/trl/xpo_trainer.md
 https://huggingface.co/docs/xet/api.md
 https://huggingface.co/docs/xet/auth.md
 https://huggingface.co/docs/xet/chunking.md

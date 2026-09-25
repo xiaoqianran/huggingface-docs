@@ -159,12 +159,6 @@ from trl import KTOConfig
 training_args = KTOConfig(..., use_liger_kernel=True)
 ```
 
-```python
-from trl.experimental.gkd import GKDConfig
-
-training_args = GKDConfig(..., use_liger_kernel=True)
-```
-
 For more information, see [Liger Kernel Integration](liger_kernel_integration).
 
 ## Mixed precision training
@@ -180,4 +174,4 @@ training_args = SFTConfig(..., bf16=True)  # or fp16=True for older GPUs
 Use `bf16=True` for Ampere GPUs (A100, RTX 30xx) or newer, and `fp16=True` for older GPUs. Mixed precision training is supported across all TRL trainers.
 
 ### Usage Stats Collection
-https://huggingface.co/docs/trl/v1.13.0/usage_stats.md
+https://huggingface.co/docs/trl/v1.14.0/usage_stats.md

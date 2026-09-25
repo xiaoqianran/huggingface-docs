@@ -2,7 +2,7 @@
 
 In the paper [On the Position Bias of On-Policy Distillation](https://huggingface.co/papers/2606.22600), the authors introduce Importance-Weighted On-Policy Distillation (IW-OPD). IW-OPD addresses position bias in on-policy distillation by reweighting sampled-token updates according to accumulated teacher-student prefix discrepancy. Early tokens keep larger weights, while later tokens after high drift are downweighted.
 
-To use IW-OPD, you can use the [experimental.iw_opd.IWOPDTrainer](/docs/trl/v1.13.0/en/iw_opd_trainer#trl.experimental.iw_opd.IWOPDTrainer) class in `trl.experimental.iw_opd`.
+To use IW-OPD, you can use the [experimental.iw_opd.IWOPDTrainer](/docs/trl/v1.14.0/en/iw_opd_trainer#trl.experimental.iw_opd.IWOPDTrainer) class in `trl.experimental.iw_opd`.
 
 > [!NOTE]
 > IW-OPD is currently part of the `trl.experimental` namespace. APIs may change without notice while the feature is iterated on.
@@ -35,7 +35,7 @@ IW-OPD is an on-policy objective: `distillation_objective="iw_opd"` requires `lm
 trl.experimental.iw_opd.IWOPDTrainer(model: typing.Union[transformers.modeling_utils.PreTrainedModel, torch.nn.Module, str, NoneType] = None, teacher_model: typing.Union[transformers.modeling_utils.PreTrainedModel, torch.nn.Module, str] = None, args: trl.experimental.iw_opd.iw_opd_config.IWOPDConfig | None = None, data_collator: collections.abc.Callable[[list[typing.Any]], dict[str, typing.Any]] | None = None, train_dataset: datasets.arrow_dataset.Dataset | None = None, eval_dataset: datasets.arrow_dataset.Dataset | dict[str, datasets.arrow_dataset.Dataset] | None = None, processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | transformers.image_processing_utils.BaseImageProcessor | transformers.feature_extraction_utils.FeatureExtractionMixin | transformers.processing_utils.ProcessorMixin | None = None, compute_metrics: collections.abc.Callable[[transformers.trainer_utils.EvalPrediction], dict] | None = None, callbacks: list[transformers.trainer_callback.TrainerCallback] | None = None, optimizers: tuple = (None, None), preprocess_logits_for_metrics: collections.abc.Callable[[torch.Tensor, torch.Tensor], torch.Tensor] | None = None, peft_config: typing.Optional[ForwardRef('PeftConfig')] = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.13.0/trl/experimental/iw_opd/iw_opd_trainer.py#L351)
+[Source](https://github.com/huggingface/trl/blob/v1.14.0/trl/experimental/iw_opd/iw_opd_trainer.py#L349)
 
 Trainer for Importance-Weighted On-Policy Distillation (IW-OPD).
 
@@ -53,7 +53,6 @@ Supports:
 - On-policy / off-policy mixing via *lmbda* (buffered across gradient accumulation)
 - Local teacher model or external teacher via vLLM server
 - Student on-policy generation via vLLM or model.generate()
-- Liger kernel for memory-efficient fused JSD loss
 
 #### train[[trl.experimental.iw_opd.IWOPDTrainer.train]]
 
@@ -61,7 +60,7 @@ Supports:
 train(resume_from_checkpoint: str | bool | None = None, trial: optuna.Trial | dict[str, Any] | None = None, ignore_keys_for_eval: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.13.0/transformers/trainer.py#L1408)
+[Source](https://github.com/huggingface/trl/blob/v1.14.0/transformers/trainer.py#L1408)
 
 **Parameters:**
 
@@ -83,7 +82,7 @@ Main training entry point.
 save_model(output_dir: str | None = None, _internal_call: bool = False)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.13.0/transformers/trainer.py#L3930)
+[Source](https://github.com/huggingface/trl/blob/v1.14.0/transformers/trainer.py#L3930)
 
 Will save the model, so you can reload it using `from_pretrained()`.
 
@@ -95,7 +94,7 @@ Will only save from the main process.
 push_to_hub(commit_message: str | None = 'End of training', blocking: bool = True, token: str | None = None, revision: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.13.0/transformers/trainer.py#L4177)
+[Source](https://github.com/huggingface/trl/blob/v1.14.0/transformers/trainer.py#L4177)
 
 **Parameters:**
 
@@ -124,7 +123,7 @@ Upload `self.model` and `self.processing_class` to the 🤗 model hub on the rep
 trl.experimental.iw_opd.IWOPDConfig(output_dir: str | None = None, per_device_train_batch_size: int = 8, num_train_epochs: float = 3.0, max_steps: int = -1, learning_rate: float = 1e-06, lr_scheduler_type: transformers.trainer_utils.SchedulerType | str = 'linear', lr_scheduler_kwargs: dict | str | None = None, warmup_steps: float = 0, optim: transformers.training_args.OptimizerNames | str = 'adamw_torch_fused', optim_args: str | None = None, weight_decay: float = 0.0, adam_beta1: float = 0.9, adam_beta2: float = 0.999, adam_epsilon: float = 1e-08, optim_target_modules: None | str | list[str] = None, gradient_accumulation_steps: int = 1, average_tokens_across_devices: bool = True, max_grad_norm: float = 1.0, label_smoothing_factor: float = 0.0, bf16: bool | None = None, fp16: bool = False, bf16_full_eval: bool = False, fp16_full_eval: bool = False, tf32: bool | None = None, gradient_checkpointing: bool = True, gradient_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, torch_compile: bool = False, torch_compile_backend: str | None = None, torch_compile_mode: str | None = None, use_liger_kernel: bool = False, liger_kernel_config: dict[str, bool] | None = None, use_cache: bool = False, neftune_noise_alpha: float | None = None, torch_empty_cache_steps: int | None = None, auto_find_batch_size: bool = False, logging_strategy: transformers.trainer_utils.IntervalStrategy | str = 'steps', logging_steps: float = 10, logging_first_step: bool = False, log_on_each_node: bool = True, logging_nan_inf_filter: bool = True, include_num_input_tokens_seen: str | bool = 'no', log_level: str = 'passive', log_level_replica: str = 'warning', disable_tqdm: bool | None = None, report_to: None | str | list[str] = 'none', run_name: str | None = None, project: str = 'huggingface', trackio_space_id: str | None = None, trackio_bucket_id: str | None = None, trackio_static_space_id: typing.Union[str, NoneType, typing.Literal[False]] = None, eval_strategy: transformers.trainer_utils.IntervalStrategy | str = 'no', eval_steps: float | None = None, eval_delay: float = 0, per_device_eval_batch_size: int = 8, prediction_loss_only: bool = False, eval_on_start: bool = False, eval_do_concat_batches: bool = True, eval_use_gather_object: bool = False, eval_accumulation_steps: int | None = None, include_for_metrics: list = <factory>, batch_eval_metrics: bool = False, save_only_model: bool = False, save_strategy: transformers.trainer_utils.SaveStrategy | str = 'steps', save_steps: float = 500, save_on_each_node: bool = False, save_total_limit: int | None = None, enable_jit_checkpoint: bool = False, push_to_hub: bool = False, hub_token: str | None = None, hub_private_repo: bool | None = None, hub_model_id: str | None = None, hub_strategy: transformers.trainer_utils.HubStrategy | str = 'every_save', hub_always_push: bool = False, hub_revision: str | None = None, load_best_model_at_end: bool = False, metric_for_best_model: str | None = None, greater_is_better: bool | None = None, ignore_data_skip: bool = False, restore_callback_states_from_checkpoint: bool = False, full_determinism: bool = False, seed: int = 42, data_seed: int | None = None, use_cpu: bool = False, accelerator_config: dict | str | None = None, parallelism_config: accelerate.parallelism_config.ParallelismConfig | None = None, dataloader_drop_last: bool = False, dataloader_num_workers: int = 0, dataloader_pin_memory: bool = True, dataloader_persistent_workers: bool = False, dataloader_prefetch_factor: int | None = None, dataloader_multiprocessing_context: str | None = None, dataloader_in_order: bool = True, remove_unused_columns: bool = True, label_names: list[str] | None = None, train_sampling_strategy: str = 'random', length_column_name: str = 'length', ddp_find_unused_parameters: bool | None = None, ddp_bucket_cap_mb: int | None = None, ddp_broadcast_buffers: bool | None = None, ddp_static_graph: bool | None = None, ddp_backend: str | None = None, ddp_timeout: int = 1800, fsdp: str | None = None, fsdp_config: dict[str, typing.Any] | str | None = None, deepspeed: dict | str | None = None, debug: str | list[transformers.debug_utils.DebugOption] = '', skip_memory_metrics: bool = True, do_train: bool = False, do_eval: bool = False, do_predict: bool = False, resume_from_checkpoint: str | None = None, local_rank: int = -1, model_init_kwargs: dict[str, typing.Any] | str | None = None, trust_remote_code: bool = False, max_length: int | None = 1024, temperature: float = 1.0, lmbda: float = 1.0, beta: float = 1.0, distillation_objective: str = 'iw_opd', iw_opd_gamma: float = 0.5, iw_opd_epsilon: float = 1e-08, reverse_kl_top_1_mode: str = 'sampled', max_completion_length: int = 512, max_prompt_length: int | None = None, disable_dropout: bool = True, teacher_model_name_or_path: str | None = None, teacher_model_revision: str | None = None, teacher_model_init_kwargs: dict[str, typing.Any] | str | None = None, use_teacher_server: bool = False, teacher_model_server_url: str | None = None, loss_top_k: int = 1, loss_add_tail: bool = True, num_generations: int = 1, generation_batch_size: int | None = None, top_p: float = 0.95, top_k: int = 0, use_vllm: bool = False, vllm_mode: str = 'colocate', vllm_server_base_url: str | None = None, vllm_server_host: str = '0.0.0.0', vllm_server_port: int = 8001, vllm_server_timeout: float = 240.0, vllm_group_port: int = 51216, vllm_gpu_memory_utilization: float = 0.3, vllm_tensor_parallel_size: int = 1, vllm_max_model_length: int | None = None, vllm_model_impl: str = 'vllm', vllm_structured_outputs_regex: str | None = None, vllm_sync_frequency: int = 1, vllm_enable_sleep_mode: bool = False, log_completions: bool = False, log_completions_steps: int = 100, num_completions_to_print: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.13.0/trl/experimental/iw_opd/iw_opd_config.py#L23)
+[Source](https://github.com/huggingface/trl/blob/v1.14.0/trl/experimental/iw_opd/iw_opd_config.py#L23)
 
 **Parameters that control the model:**
 
@@ -220,14 +219,14 @@ log_completions_steps (`int`, *optional*, defaults to `100`) : Number of steps b
 
 num_completions_to_print (`int` or `None`, *optional*) : Number of completions to print. If `None`, all completions are logged.
 
-Configuration class for the [experimental.iw_opd.IWOPDTrainer](/docs/trl/v1.13.0/en/iw_opd_trainer#trl.experimental.iw_opd.IWOPDTrainer).
+Configuration class for the [experimental.iw_opd.IWOPDTrainer](/docs/trl/v1.14.0/en/iw_opd_trainer#trl.experimental.iw_opd.IWOPDTrainer).
 
 Extends [TrainingArguments](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments) with parameters specific to knowledge distillation. This config is
-independent of [SFTConfig](/docs/trl/v1.13.0/en/sft_trainer#trl.SFTConfig) — all necessary fields are declared here.
+independent of [SFTConfig](/docs/trl/v1.14.0/en/sft_trainer#trl.SFTConfig) — all necessary fields are declared here.
 
 Using [HfArgumentParser](https://huggingface.co/docs/transformers/v5.17.0/en/internal/trainer_utils#transformers.HfArgumentParser) we can turn this class into
 [argparse](https://docs.python.org/3/library/argparse#module-argparse) arguments that can be specified on the
 command line.
 
 ### Kernels Hub Integration and Usage
-https://huggingface.co/docs/trl/v1.13.0/kernels_hub.md
+https://huggingface.co/docs/trl/v1.14.0/kernels_hub.md

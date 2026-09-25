@@ -114,4 +114,4 @@ training_args = SFTConfig(
 Learn more about the [Liger Kernel Integration](liger_kernel_integration).
 
 ### Command Line Interfaces (CLIs)
-https://huggingface.co/docs/trl/v1.13.0/clis.md
+https://huggingface.co/docs/trl/v1.14.0/clis.md

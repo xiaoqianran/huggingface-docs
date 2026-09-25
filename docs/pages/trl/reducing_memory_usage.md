@@ -145,17 +145,11 @@ from trl import KTOConfig
 training_args = KTOConfig(..., use_liger_kernel=True)
 ```
 
-```python
-from trl.experimental.gkd import GKDConfig
-
-training_args = GKDConfig(..., use_liger_kernel=True)
-```
-
 ## Chunked cross-entropy for reducing peak memory usage
 
-At large vocabulary sizes, the `[batch × seq_len × vocab]` logits tensor produced by the LM head is one of the dominant activations held in memory across forward and backward. `loss_type="chunked_nll"` in [SFTTrainer](/docs/trl/v1.13.0/en/sft_trainer#trl.SFTTrainer) avoids materializing it all at once: positions with `labels == -100` are dropped *before* the `lm_head` matmul, and the cross-entropy is computed in chunks of tokens using gradient checkpointing, so peak activation memory scales with `chunk_size × vocab_size` instead of `(batch × seq_len) × vocab_size`.
+At large vocabulary sizes, the `[batch × seq_len × vocab]` logits tensor produced by the LM head is one of the dominant activations held in memory across forward and backward. `loss_type="chunked_nll"` in [SFTTrainer](/docs/trl/v1.14.0/en/sft_trainer#trl.SFTTrainer) avoids materializing it all at once: positions with `labels == -100` are dropped *before* the `lm_head` matmul, and the cross-entropy is computed in chunks of tokens using gradient checkpointing, so peak activation memory scales with `chunk_size × vocab_size` instead of `(batch × seq_len) × vocab_size`.
 
-Same math as the standard `"nll"` loss — this is a memory optimization, not a new loss. It is the **default** in [SFTTrainer](/docs/trl/v1.13.0/en/sft_trainer#trl.SFTTrainer); to opt out, set `loss_type="nll"`:
+Same math as the standard `"nll"` loss — this is a memory optimization, not a new loss. It is the **default** in [SFTTrainer](/docs/trl/v1.14.0/en/sft_trainer#trl.SFTTrainer); to opt out, set `loss_type="nll"`:
 
 ```python
 from trl import SFTConfig
@@ -177,7 +171,7 @@ Padding-free batching is an alternative approach for reducing memory usage. In t
 > It's highly recommended to use padding-free batching with **FlashAttention 2** or **FlashAttention 3**. Otherwise, you may encounter batch contamination issues.
 
 > [!WARNING]
-> Padding-free is temporarily unavailable in [DPOTrainer](/docs/trl/v1.13.0/en/bema_for_reference_model#trl.DPOTrainer): since the DPO refactor, setting `padding_free=True` warns and falls back to standard padding. It is planned to return in a future update.
+> Padding-free is temporarily unavailable in [DPOTrainer](/docs/trl/v1.14.0/en/bema_for_reference_model#trl.DPOTrainer): since the DPO refactor, setting `padding_free=True` warns and falls back to standard padding. It is planned to return in a future update.
 
 ```python
 from trl import DPOConfig
@@ -285,4 +279,4 @@ training_args = SFTConfig(..., gradient_checkpointing=True)
 For more memory optimization techniques, see the [Transformers Performance Guide](https://huggingface.co/docs/transformers/perf_train_gpu_one#gradient-checkpointing).
 
 ### IW-OPD
-https://huggingface.co/docs/trl/v1.13.0/iw_opd_trainer.md
+https://huggingface.co/docs/trl/v1.14.0/iw_opd_trainer.md
