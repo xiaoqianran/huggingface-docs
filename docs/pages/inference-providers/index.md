@@ -653,7 +653,7 @@ Find out more about Chat Completion (LLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"cohere":{"modelId":"CohereLabs/tiny-aya-water","providerModelId":"tiny-aya-water"} } }
+    providersMapping={ {"cohere":{"modelId":"CohereLabs/tiny-aya-earth","providerModelId":"tiny-aya-earth"} } }
 conversational />
 
 ### Chat Completion (VLM)
@@ -1309,7 +1309,7 @@ Find out more about Token Classification [here](../tasks/token-classification).
 
 <InferenceSnippet
     pipeline=token-classification
-    providersMapping={ {"hf-inference":{"modelId":"dslim/bert-base-NER","providerModelId":"dslim/bert-base-NER"} } }
+    providersMapping={ {"hf-inference":{"modelId":"Qwen/Qwen3-ForcedAligner-0.6B-hf","providerModelId":"Qwen/Qwen3-ForcedAligner-0.6B-hf"} } }
 />
 
 ### Translation
