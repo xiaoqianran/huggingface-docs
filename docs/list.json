@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-27T12:55:41.747520+00:00",
+  "fetchedAt": "2026-09-28T15:16:22.473434+00:00",
   "method": "llms-full-split",
   "ok": 2174,
   "failed": 0,
@@ -5088,7 +5088,7 @@
     },
     {
       "rel": "hub/jobs-pricing.md",
-      "bytes": 8166,
+      "bytes": 8163,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs-pricing.md",
       "track": "Hub",
@@ -5178,7 +5178,7 @@
     },
     {
       "rel": "hub/mlx-image.md",
-      "bytes": 3587,
+      "bytes": 3588,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/mlx-image.md",
       "track": "Hub",
@@ -5295,7 +5295,7 @@
     },
     {
       "rel": "hub/webhooks-guide-discussion-bot.md",
-      "bytes": 5879,
+      "bytes": 5884,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/webhooks-guide-discussion-bot.md",
       "track": "Hub",
@@ -5340,7 +5340,7 @@
     },
     {
       "rel": "hub/datasets-fiftyone.md",
-      "bytes": 7168,
+      "bytes": 7222,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/datasets-fiftyone.md",
       "track": "Hub",
@@ -5358,7 +5358,7 @@
     },
     {
       "rel": "hub/security-git-ssh.md",
-      "bytes": 4935,
+      "bytes": 4938,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/security-git-ssh.md",
       "track": "Hub",
@@ -5394,7 +5394,7 @@
     },
     {
       "rel": "hub/data-studio.md",
-      "bytes": 7198,
+      "bytes": 7245,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/data-studio.md",
       "track": "Hub",
@@ -5448,7 +5448,7 @@
     },
     {
       "rel": "hub/models-uploading.md",
-      "bytes": 8398,
+      "bytes": 8399,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/models-uploading.md",
       "track": "Hub",
@@ -5457,7 +5457,7 @@
     },
     {
       "rel": "hub/jobs-training.md",
-      "bytes": 16126,
+      "bytes": 16242,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs-training.md",
       "track": "Hub",
@@ -5502,7 +5502,7 @@
     },
     {
       "rel": "hub/datasets-adding.md",
-      "bytes": 7381,
+      "bytes": 7390,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/datasets-adding.md",
       "track": "Hub",
@@ -5565,7 +5565,7 @@
     },
     {
       "rel": "hub/spaces-sdks-gradio.md",
-      "bytes": 4032,
+      "bytes": 4042,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/spaces-sdks-gradio.md",
       "track": "Hub",
@@ -5673,7 +5673,7 @@
     },
     {
       "rel": "hub/repositories-pull-requests-discussions.md",
-      "bytes": 5324,
+      "bytes": 5326,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/repositories-pull-requests-discussions.md",
       "track": "Hub",
@@ -5898,7 +5898,7 @@
     },
     {
       "rel": "hub/spaces-oauth.md",
-      "bytes": 8169,
+      "bytes": 8173,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/spaces-oauth.md",
       "track": "Hub",
@@ -6042,7 +6042,7 @@
     },
     {
       "rel": "hub/spaces-sdks-docker-first-demo.md",
-      "bytes": 9950,
+      "bytes": 9951,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-first-demo.md",
       "track": "Hub",
@@ -6339,7 +6339,7 @@
     },
     {
       "rel": "hub/datasets-libraries.md",
-      "bytes": 16173,
+      "bytes": 16172,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/datasets-libraries.md",
       "track": "Hub",
@@ -6375,7 +6375,7 @@
     },
     {
       "rel": "hub/webhooks-guide-auto-retrain.md",
-      "bytes": 7270,
+      "bytes": 7266,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/webhooks-guide-auto-retrain.md",
       "track": "Hub",
@@ -6411,7 +6411,7 @@
     },
     {
       "rel": "hub/datasets-downloading.md",
-      "bytes": 6410,
+      "bytes": 6419,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/datasets-downloading.md",
       "track": "Hub",
@@ -6447,7 +6447,7 @@
     },
     {
       "rel": "hub/enterprise.md",
-      "bytes": 12901,
+      "bytes": 12911,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/enterprise.md",
       "track": "Hub",
@@ -6753,12 +6753,12 @@
     },
     {
       "rel": "hub/spaces-github-actions.md",
-      "bytes": 2649,
+      "bytes": 2955,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/spaces-github-actions.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Managing Spaces with Github Actions"
+      "title": "Managing Spaces with GitHub Actions"
     },
     {
       "rel": "hub/index.md",
@@ -6771,7 +6771,7 @@
     },
     {
       "rel": "hub/spaces-dev-mode.md",
-      "bytes": 6579,
+      "bytes": 6580,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/spaces-dev-mode.md",
       "track": "Hub",
@@ -6834,7 +6834,7 @@
     },
     {
       "rel": "hub/datasets-duckdb.md",
-      "bytes": 3704,
+      "bytes": 3705,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/datasets-duckdb.md",
       "track": "Hub",
@@ -6861,7 +6861,7 @@
     },
     {
       "rel": "hub/security-sso-azure-oidc.md",
-      "bytes": 3060,
+      "bytes": 3061,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/security-sso-azure-oidc.md",
       "track": "Hub",
@@ -6870,7 +6870,7 @@
     },
     {
       "rel": "hub/agents-cli.md",
-      "bytes": 2505,
+      "bytes": 2288,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/agents-cli.md",
       "track": "Hub",
@@ -6879,7 +6879,7 @@
     },
     {
       "rel": "hub/agents-skills.md",
-      "bytes": 4119,
+      "bytes": 4123,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/agents-skills.md",
       "track": "Hub",
@@ -6960,7 +6960,7 @@
     },
     {
       "rel": "hub/storage-buckets-integrations.md",
-      "bytes": 5531,
+      "bytes": 5529,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/storage-buckets-integrations.md",
       "track": "Hub",
@@ -6978,7 +6978,7 @@
     },
     {
       "rel": "hub/spaces-circleci.md",
-      "bytes": 2652,
+      "bytes": 2711,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/spaces-circleci.md",
       "track": "Hub",
@@ -7005,7 +7005,7 @@
     },
     {
       "rel": "hub/model-cards-user-studies.md",
-      "bytes": 8857,
+      "bytes": 8862,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/model-cards-user-studies.md",
       "track": "Hub",
@@ -7059,7 +7059,7 @@
     },
     {
       "rel": "hub/model-card-landscape-analysis.md",
-      "bytes": 26756,
+      "bytes": 26757,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/model-card-landscape-analysis.md",
       "track": "Hub",
@@ -7185,7 +7185,7 @@
     },
     {
       "rel": "hub/spaces-sdks-docker-zenml.md",
-      "bytes": 9004,
+      "bytes": 9018,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-zenml.md",
       "track": "Hub",
@@ -7212,7 +7212,7 @@
     },
     {
       "rel": "hub/organizations-security.md",
-      "bytes": 2607,
+      "bytes": 2606,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/organizations-security.md",
       "track": "Hub",
@@ -7248,7 +7248,7 @@
     },
     {
       "rel": "hub/webhooks.md",
-      "bytes": 13313,
+      "bytes": 13314,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/webhooks.md",
       "track": "Hub",
@@ -7293,7 +7293,7 @@
     },
     {
       "rel": "hub/xet/using-xet-storage.md",
-      "bytes": 15491,
+      "bytes": 15502,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/xet/using-xet-storage.md",
       "track": "Hub",
@@ -8013,7 +8013,7 @@
     },
     {
       "rel": "inference-providers/register-as-a-provider.md",
-      "bytes": 28794,
+      "bytes": 28796,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/register-as-a-provider.md",
       "track": "Inference Providers",
@@ -8022,7 +8022,7 @@
     },
     {
       "rel": "inference-providers/hub-integration.md",
-      "bytes": 2127,
+      "bytes": 2159,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/hub-integration.md",
       "track": "Inference Providers",
@@ -8049,7 +8049,7 @@
     },
     {
       "rel": "inference-providers/pricing.md",
-      "bytes": 11656,
+      "bytes": 11681,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/pricing.md",
       "track": "Inference Providers",
@@ -8085,7 +8085,7 @@
     },
     {
       "rel": "inference-providers/guides/building-first-app.md",
-      "bytes": 18489,
+      "bytes": 18494,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/building-first-app.md",
       "track": "Inference Providers",
@@ -8148,7 +8148,7 @@
     },
     {
       "rel": "inference-providers/guides/github-actions-code-review.md",
-      "bytes": 100990,
+      "bytes": 100804,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/github-actions-code-review.md",
       "track": "Inference Providers",
@@ -8256,7 +8256,7 @@
     },
     {
       "rel": "inference-providers/integrations/visionagents.md",
-      "bytes": 3163,
+      "bytes": 3165,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/integrations/visionagents.md",
       "track": "Inference Providers",
@@ -8463,7 +8463,7 @@
     },
     {
       "rel": "kernels/builder/build-variants.md",
-      "bytes": 1787,
+      "bytes": 1889,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/build-variants.md",
       "track": "Kernels",
@@ -19460,17 +19460,26 @@
       "title": "Callbacks"
     },
     {
-      "rel": "xet/file-id.md",
-      "bytes": 1624,
+      "rel": "xet/api.md",
+      "bytes": 21463,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/xet/file-id.md",
+      "url": "https://huggingface.co/docs/xet/api.md",
       "track": "Xet",
       "package": "xet",
-      "title": "Getting a Xet File ID from the Hugging Face Hub"
+      "title": "CAS API Documentation"
+    },
+    {
+      "rel": "xet/shard.md",
+      "bytes": 31949,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/xet/shard.md",
+      "track": "Xet",
+      "package": "xet",
+      "title": "MDB Shard File Format Specification"
     },
     {
       "rel": "xet/auth.md",
-      "bytes": 5611,
+      "bytes": 5600,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/xet/auth.md",
       "track": "Xet",
@@ -19478,8 +19487,44 @@
       "title": "Authentication and Authorization"
     },
     {
+      "rel": "xet/upload-protocol.md",
+      "bytes": 10979,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/xet/upload-protocol.md",
+      "track": "Xet",
+      "package": "xet",
+      "title": "Upload Protocol"
+    },
+    {
+      "rel": "xet/hashing.md",
+      "bytes": 10511,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/xet/hashing.md",
+      "track": "Xet",
+      "package": "xet",
+      "title": "Hashing"
+    },
+    {
+      "rel": "xet/file-id.md",
+      "bytes": 1653,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/xet/file-id.md",
+      "track": "Xet",
+      "package": "xet",
+      "title": "Getting a Xet File ID from the Hugging Face Hub"
+    },
+    {
+      "rel": "xet/file-reconstruction.md",
+      "bytes": 9223,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/xet/file-reconstruction.md",
+      "track": "Xet",
+      "package": "xet",
+      "title": "File Reconstruction: Term-based Representation"
+    },
+    {
       "rel": "xet/xorb.md",
-      "bytes": 9368,
+      "bytes": 9380,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/xet/xorb.md",
       "track": "Xet",
@@ -19487,13 +19532,13 @@
       "title": "Xorb Formation & Serialization Format"
     },
     {
-      "rel": "xet/upload-protocol.md",
-      "bytes": 10999,
+      "rel": "xet/chunking.md",
+      "bytes": 9445,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/xet/upload-protocol.md",
+      "url": "https://huggingface.co/docs/xet/chunking.md",
       "track": "Xet",
       "package": "xet",
-      "title": "Upload Protocol"
+      "title": "Content-Defined Chunking Algorithm"
     },
     {
       "rel": "xet/download-protocol.md",
@@ -19506,57 +19551,12 @@
     },
     {
       "rel": "xet/index.md",
-      "bytes": 5229,
+      "bytes": 5271,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/xet/index.md",
       "track": "Xet",
       "package": "xet",
       "title": "Xet Protocol Specification"
-    },
-    {
-      "rel": "xet/hashing.md",
-      "bytes": 10499,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/xet/hashing.md",
-      "track": "Xet",
-      "package": "xet",
-      "title": "Hashing"
-    },
-    {
-      "rel": "xet/chunking.md",
-      "bytes": 9435,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/xet/chunking.md",
-      "track": "Xet",
-      "package": "xet",
-      "title": "Content-Defined Chunking Algorithm"
-    },
-    {
-      "rel": "xet/api.md",
-      "bytes": 21463,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/xet/api.md",
-      "track": "Xet",
-      "package": "xet",
-      "title": "CAS API Documentation"
-    },
-    {
-      "rel": "xet/shard.md",
-      "bytes": 32002,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/xet/shard.md",
-      "track": "Xet",
-      "package": "xet",
-      "title": "MDB Shard File Format Specification"
-    },
-    {
-      "rel": "xet/file-reconstruction.md",
-      "bytes": 9238,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/xet/file-reconstruction.md",
-      "track": "Xet",
-      "package": "xet",
-      "title": "File Reconstruction: Term-based Representation"
     },
     {
       "rel": "xet/deduplication.md",
@@ -19623,7 +19623,7 @@
       "toc": 271,
       "found": 270,
       "written": 270,
-      "full_bytes": 1486554
+      "full_bytes": 1487002
     },
     {
       "pkg": "huggingface_hub",
@@ -19644,14 +19644,14 @@
       "toc": 66,
       "found": 28,
       "written": 28,
-      "full_bytes": 415774
+      "full_bytes": 415654
     },
     {
       "pkg": "kernels",
       "toc": 37,
       "found": 37,
       "written": 37,
-      "full_bytes": 216804
+      "full_bytes": 216906
     },
     {
       "pkg": "lerobot",
@@ -19742,7 +19742,7 @@
       "toc": 12,
       "found": 12,
       "written": 12,
-      "full_bytes": 134993
+      "full_bytes": 134969
     }
   ]
 }

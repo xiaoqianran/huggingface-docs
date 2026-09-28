@@ -181,5 +181,5 @@ sequenceDiagram
     Note over C,S: All referenced Xorbs MUST be uploaded before Shard upload.<br/>Endpoints are idempotent by content-addressed keys.
 ```
 
-### Download Protocol
-https://huggingface.co/docs/xet/download-protocol.md
+### Hashing
+https://huggingface.co/docs/xet/hashing.md

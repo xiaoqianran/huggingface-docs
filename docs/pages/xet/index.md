@@ -44,11 +44,11 @@ The primary reference implementation of the protocol written in Rust 🦀 lives 
 
 ### huggingface.js
 
-There is also a second reference implementation in Huggingface.js that can be used when downloading or uploading files with the `@huggingface/hub` library.
+There is also a second reference implementation in huggingface.js that can be used when downloading or uploading files with the `@huggingface/hub` library.
 
 - Download uses the `XetBlob` that can be found in [XetBlob.ts](https://github.com/huggingface/huggingface.js/blob/main/packages/hub/src/utils/XetBlob.ts).
 - The upload implementation is more comprehensive but the root of it begins in [uploadShards](https://github.com/huggingface/huggingface.js/blob/main/packages/hub/src/utils/uploadShards.ts).
   - The upload process uses xet-core constructs compiled from Rust to WebAssembly, particularly all functions exported from the [hf_xet_thin_wasm](https://github.com/huggingface/xet-core/tree/main/wasm/hf_xet_thin_wasm) crate.
 
-### Hashing
-https://huggingface.co/docs/xet/hashing.md
+### Xet Chunk-Level Deduplication Specification
+https://huggingface.co/docs/xet/deduplication.md

@@ -211,7 +211,7 @@
 - [Examples & Tutorials](https://huggingface.co/docs/hub/jobs-examples.md)
 - [Licenses](https://huggingface.co/docs/hub/repositories-licenses.md)
 - [Moderation](https://huggingface.co/docs/hub/moderation.md)
-- [Managing Spaces with Github Actions](https://huggingface.co/docs/hub/spaces-github-actions.md)
+- [Managing Spaces with GitHub Actions](https://huggingface.co/docs/hub/spaces-github-actions.md)
 - [Hugging Face Hub documentation](https://huggingface.co/docs/hub/index.md)
 - [Spaces Dev Mode: Seamless development in Spaces](https://huggingface.co/docs/hub/spaces-dev-mode.md)
 - [Spaces Overview](https://huggingface.co/docs/hub/spaces-overview.md)

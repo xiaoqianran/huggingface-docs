@@ -177,5 +177,5 @@ Implementors should use the chunk lengths to determine that they are producing t
 [rust-gearhash-table]: https://github.com/srijs/rust-gearhash/blob/adad44e7141cfd29d898cf6e0858f50b995db286/src/table.rs#L5
 [fastcdc-paper]: https://www.usenix.org/conference/atc16/technical-sessions/presentation/xia
 
-### CAS API Documentation
-https://huggingface.co/docs/xet/api.md
+### Download Protocol
+https://huggingface.co/docs/xet/download-protocol.md

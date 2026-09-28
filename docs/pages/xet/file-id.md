@@ -31,5 +31,5 @@ This is the string representation of the hash and can be used directly in the fi
 > The resolve URL will return a 302 redirect http status code, following the redirect will download the content via the old LFS compatible route rather than through the Xet protocol.
 In order to use the Xet protocol you MUST NOT follow this redirect.
 
-### Authentication and Authorization
-https://huggingface.co/docs/xet/auth.md
+### File Reconstruction: Term-based Representation
+https://huggingface.co/docs/xet/file-reconstruction.md

@@ -37,7 +37,7 @@ In Microsoft Entra ID, navigate to Enterprise applications, and click on your ne
 In the application overview, click on "Single sign-on", then "Go to application"
 
 In the OIDC app overview, you will find a copiable field named "Application (client) ID".
-Copy that ID to your clipboard and paste it into the "Client ID" field on Huggingface.
+Copy that ID to your clipboard and paste it into the "Client ID" field on Hugging Face.
 
 Next, click "Endpoints" in the top menu in Microsoft Entra.
 Copy the value in the "OpenID connect metadata document" field and paste it into the "Issue URL" field in Hugging Face.

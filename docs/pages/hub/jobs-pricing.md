@@ -116,7 +116,7 @@ Organization and Resource Group admins can set [monthly spending limits](./secur
 
 ### View current compute usage
 
-You can look at your current billing information for Jobs in in your [Billing](https://huggingface.co/settings/billing) page, under the "Compute Usage" section:
+You can look at your current billing information for Jobs in your [Billing](https://huggingface.co/settings/billing) page, under the "Compute Usage" section:
 
 Additional information about billing can be found in the [dedicated Hub documentation](https://huggingface.co/docs/hub/en/billing).
 

@@ -150,5 +150,5 @@ sequenceDiagram
    end
 ```
 
-### Xorb Formation & Serialization Format
-https://huggingface.co/docs/xet/xorb.md
+### Upload Protocol
+https://huggingface.co/docs/xet/upload-protocol.md

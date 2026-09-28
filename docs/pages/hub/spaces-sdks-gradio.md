@@ -56,7 +56,7 @@ This Python script uses a [🤗 Transformers pipeline](https://huggingface.co/do
 
 ## Embed Gradio Spaces on other webpages
 
-You can embed a Gradio Space on other webpages by using either Web Components or the HTML `<iframe>` tag. Check out [our documentation](./spaces-embed) or the [Gradio documentation](https://gradio.app/sharing_your_app/#embedding-hosted-spaces) for more details.
+You can embed a Gradio Space on other webpages by using either Web Components or the HTML `<iframe>` tag. Check out [our documentation](./spaces-embed) or the [Gradio documentation](https://www.gradio.app/guides/sharing-your-app#embedding-hosted-spaces) for more details.
 
 ### How to configure SAML SSO with Okta
 https://huggingface.co/docs/hub/security-sso-okta-saml.md

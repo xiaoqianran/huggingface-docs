@@ -177,5 +177,5 @@ with xorb [eea25d6ee393ccae385820daed127b96ef0ea034dfb7cf6da3a950ce334b7632](htt
 The verification range hash for this range is the value in [eea25d6ee393ccae385820daed127b96ef0ea034dfb7cf6da3a950ce334b7632.xorb.range-hash](https://huggingface.co/datasets/xet-team/xet-spec-reference-files/blob/main/eea25d6ee393ccae385820daed127b96ef0ea034dfb7cf6da3a950ce334b7632.xorb.range-hash)
 which is `d81c11b1fc9bc2a25587108c675bbfe65ca2e5d350b0cd92c58329fcc8444178`.
 
-### Content-Defined Chunking Algorithm
-https://huggingface.co/docs/xet/chunking.md
+### Getting a Xet File ID from the Hugging Face Hub
+https://huggingface.co/docs/xet/file-id.md
