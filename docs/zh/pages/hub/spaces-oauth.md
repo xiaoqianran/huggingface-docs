@@ -4,7 +4,7 @@
 
 您可以通过无缝创建和关联 [OAuth/OpenID connect](https://developer.okta.com/blog/2019/10/21/illustrated-guide-to-oauth-and-oidc) 应用程序来启用空间中的内置登录流程，以便用户可以使用其 HF 帐户登录。
 
-这将为您的空间带来新的用例。例如，当与[Storage Buckets](https://huggingface.co/docs/hub/storage-buckets)结合使用时，生成式AI Space可以允许用户登录以访问他们的前几代，只有他们可以访问。
+这将为您的空间带来新的用例。例如，当与[Storage Buckets](https://huggingface.co/docs/hub/storage-buckets)结合使用时，生成式AI空间可以允许用户登录以访问他们的前几代，只有他们可以访问。
 
 > [!提示]
 > 本指南将引导您完成将*使用 HF 登录*按钮集成到任何空间的过程。如果您正在寻找一种快速而简单的方法来在 **Gradio** 空间中实现此目的，请查看它的 [built-in integration](https://www.gradio.app/guides/sharing-your-app#o-auth-login-via-hugging-face)。
@@ -47,7 +47,7 @@ hf_oauth_authorized_org:
 
 您可以查看[configuration reference docs](./spaces-config-reference)了解更多信息。
 
-这会将以下 [environment variables](https://huggingface.co/docs/hub/spaces-overview#helper-environment-variables) 添加到您的空间：- `OAUTH_CLIENT_ID`：OAuth 应用程序的客户端 ID（公共）
+这会将以下 [environment variables](https://huggingface.co/docs/hub/spaces-overview#built-in-environment-variables) 添加到您的空间：- `OAUTH_CLIENT_ID`：OAuth 应用程序的客户端 ID（公共）
 - `OAUTH_CLIENT_SECRET`：OAuth 应用程序的客户端密钥
 - `OAUTH_SCOPES`：OAuth 应用程序可访问的范围。
 - `OPENID_PROVIDER_URL`：OpenID 提供商的 URL。 OpenID 元数据将于 [⟦T8⟧](https://huggingface.co/.well-known/openid-configuration) 提供。
@@ -58,7 +58,7 @@ hf_oauth_authorized_org:
 
 您可以使用任何您想要的重定向 URL，只要它针对您的空间即可。
 
-请注意，`SPACE_HOST` 是 [available](https://huggingface.co/docs/hub/spaces-overview#helper-environment-variables) 作为环境变量。
+请注意，`SPACE_HOST` 是 [available](https://huggingface.co/docs/hub/spaces-overview#built-in-environment-variables) 作为环境变量。
 
 例如，您可以使用 `https://{SPACE_HOST}/login/callback` 作为重定向 URI。
 

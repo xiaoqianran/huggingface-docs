@@ -30,7 +30,7 @@
 
 ### 2.Dockerfile
 
-Dockerfile 包含 Docker 将执行的一系列命令，以构建和启动图像作为面板应用程序将在其中运行的容器。通常，为了提供面板应用程序，我们使用命令 `panel serve app.py`。在这个特定的文件中，我们将命令划分为字符串列表。此外，我们必须定义地址和端口，因为 Hugging Face 期望在端口 7860 上为您的应用程序提供服务。此外，我们需要指定 `allow-websocket-origin` 标志以启用与服务器 Websocket 的连接。 
+Dockerfile 包含一系列命令，Docker 将执行这些命令来构建和启动图像作为您的面板应用程序将在其中运行的容器。通常，为了服务于面板应用程序，我们使用命令 `panel serve app.py`。在这个特定的文件中，我们将命令划分为字符串列表。此外，我们必须定义地址和端口，因为 Hugging Face 预计在端口 7860 上为您的应用程序提供服务。此外，我们需要指定 `allow-websocket-origin` 标志以启用与服务器 Websocket 的连接。 
 
 ### 3.需求.txt该文件定义了我们的面板应用程序所需的包。使用Space时，将自动安装requirements.txt文件中列出的依赖项。您可以通过删除不必要的包或添加应用程序所需的其他包来自由修改此文件。请随意进行必要的更改，以确保您的应用程序安装了适当的软件包。
 
@@ -41,7 +41,7 @@ Dockerfile 包含 Docker 将执行的一系列命令，以构建和启动图像�
 - [Discourse](https://discourse.holoviz.org/)
 - [Twitter](https://twitter.com/Panel_Org)
 - [LinkedIn](https://www.linkedin.com/company/panel-org)
-- [Github](https://github.com/holoviz/panel)
+- [GitHub](https://github.com/holoviz/panel)
 
 ### 空间上的磁盘使用情况
 https://huggingface.co/docs/hub/spaces-storage.md

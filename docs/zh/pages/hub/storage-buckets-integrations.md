@@ -61,7 +61,7 @@ df = (
 )
 ```
 
-更多信息请参见[PySpark on the Hub](./datasets-pyspark)。
+更多信息请参见[PySpark on the Hub](./datasets-spark)。
 
 ## 🤗 数据集
 

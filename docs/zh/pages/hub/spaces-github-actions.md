@@ -1,6 +1,6 @@
 <!-- huggingface-docs: machine-translated zh-CN from English source -->
 
-# 使用 Github Actions 管理空间
+# 使用 GitHub Actions 管理空间
 
 您可以使用官方 [⟦T2⟧](https://github.com/marketplace/actions/sync-github-to-hugging-face-hub) GitHub Action 使您的空间与 GitHub 存储库保持同步。
 
@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: huggingface/hub-sync@v0.1.0
+      - uses: huggingface/hub-sync@v0.3.0
         with:
           github_repo_id: ${{ github.repository }}
           huggingface_repo_id: username/my-space
@@ -33,17 +33,15 @@ jobs:
 
 ## 它是如何工作的
 
-该操作使用 `hf` CLI (`hf repo create` + `hf upload`) 将您的文件镜像到集线器。它不是 git-to-git 同步 - 它上传文件内容并自动排除 `.github/` 和 `.git/` 目录。从 GitHub 存储库中删除的文件也将从 Hub 中删除。
+该操作使用 `hf` CLI (`hf repos create` + `hf upload`) 将您的文件镜像到集线器。它不是 git-to-git 同步 - 它上传文件内容并自动排除 `.github/` 和 `.git/` 目录。从 GitHub 存储库中删除的文件也将从 Hub 中删除。
 
 对于更复杂的工作流程（例如构建步骤、自定义逻辑），您可以直接在工作流程中安装和使用 [⟦T13⟧ CLI](https://huggingface.co/docs/huggingface_hub/en/guides/cli)。
 
 ## 文件大小注意事项
 
-对于大于 10MB 的文件，Spaces 需要[Git-LFS](./repositories-getting-started#terminal)。确保在同步之前使用 LFS 跟踪 GitHub 存储库中的大文件。
+该操作使用 `hf upload` 上传文件内容，因此您无需为 Hub 设置 Git LFS 或 git-xet：大文件会自动存储在 Xet 中。如果您的 GitHub 存储库使用 Git LFS 存储文件（GitHub 需要使用它来存储超过 100MB 的文件），请在 `actions/checkout` 步骤上设置 `lfs: true`，以便该操作上传文件而不是 LFS 指针。## 替代方案：手动 git 推送
 
-## 替代方案：手动 git 推送
-
-如果您更喜欢直接 git-to-git 同步而不是文件镜像，您可以直接推送到 Space 的 git 远程：
+如果您更喜欢直接 git 到 git 同步而不是文件镜像，您可以直接推送到空间的 git 远程。使用 git Push 时，必须使用 [git-xet](./xet/using-xet-storage#git-xet)（推荐）或 Git LFS 跟踪大于 10MB 的文件：
 
 ```yaml
 name: Sync to Hugging Face hub
@@ -64,7 +62,9 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: git push https://HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/HF_USERNAME/SPACE_NAME main
-```将 `HF_USERNAME` 替换为您的用户名，将 `SPACE_NAME` 替换为您的空间名称。
+```
+
+将 `HF_USERNAME` 替换为您的用户名，将 `SPACE_NAME` 替换为您的空间名称。
 
 ### Hugging Face Hub 文档
 https://huggingface.co/docs/hub/index.md

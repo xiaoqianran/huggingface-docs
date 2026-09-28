@@ -38,7 +38,7 @@ hf://datasets/{my-username}/{my-dataset}/{path_to_file}
 
 - **我的用户名**，数据集的用户或组织，例如`ibm`
 - **my-dataset**，数据集名称，例如：`duorc`
-- **path_to_parquet_file**，支持 glob 模式的 parquet 文件路径，例如 `**/*.parquet`，用于查询所有 parquet 文件
+- **path_to_parquet_file**，支持 glob 模式的 parquet 文件路径，例如`**/*.parquet`，查询所有parquet文件
 
 > [!提示]
 > 您可以使用 @~parquet 分支查询自动转换的 Parquet 文件，该分支对应于 `refs/convert/parquet` 修订版。有关更多详细信息，请参阅 https://huggingface.co/docs/datasets-server/en/parquet#conversion-to-parquet 上的文档。

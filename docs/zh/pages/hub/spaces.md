@@ -16,7 +16,7 @@
   - [Using OpenCV in Spaces](./spaces-using-opencv)
   - [Using Spaces for Organization Cards](./spaces-organization-cards)
   - [More ways to create Spaces](./spaces-more-ways-to-create)
-  - [Managing Spaces with Github Actions](./spaces-github-actions)
+  - [Managing Spaces with GitHub Actions](./spaces-github-actions)
   - [How to Add a Space to ArXiv](./spaces-add-to-arxiv)
 - [Spaces Dev Mode](./spaces-dev-mode)
 - [Spaces GPU Upgrades](./spaces-gpus)

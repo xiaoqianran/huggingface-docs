@@ -20,7 +20,7 @@ hf jobs uv run --flavor a10g-small --timeout 30m -s HF_TOKEN -- \
   --push_to_hub
 ```
 
-[Transformers](#transformers) 部分涵盖了完整运行和其他示例脚本。
+[Transformers](#transformers) 部分涵盖完整运行和其他示例脚本。
 
 ## 训练作业是如何组合在一起的
 
@@ -32,7 +32,7 @@ hf jobs uv run --flavor a10g-small --timeout 30m -s HF_TOKEN -- \
 **您自己的训练代码。** 使用适合的最简单形式：
 
 - **一个文件。** 在脚本头中声明其依赖项并运行 `hf jobs uv run train.py`。 TRL 部分显示了其中之一。
-- **一个项目文件夹**，包含本地导入、`pyproject.toml` 或配置文件。 `hf jobs uv run` 仅上传脚本文件，因此请挂载文件夹。挂载是只读的，因此该命令将项目复制到可写目录并在那里运行它，就像在本地一样：
+- **项目文件夹**，包含本地导入、`pyproject.toml` 或配置文件。 `hf jobs uv run` 仅上传脚本文件，因此请挂载文件夹。挂载是只读的，因此该命令将项目复制到可写目录并在那里运行它，就像在本地一样：
 
   ```bash
   hf jobs run --flavor a10g-small --timeout 30m -s HF_TOKEN \
@@ -158,6 +158,8 @@ max_steps: 20
 这将在大约七分钟内完成，并将适配器推送到`hub_model_id`，作为私人存储库。移除`max_steps`以进行完整运行。图像标签格式在[Axolotl's Docker guide](https://docs.axolotl.ai/docs/docker.html#sec-main-tags)中描述。
 
 对于更多 GPU，只需更改风格即可：在 `a10g-largex4` 上，`axolotl train` 为每个 GPU 单独启动一个进程。 DeepSpeed 和 FSDP 就是 YAML 密钥的问题，在 [Axolotl's multi-GPU guide](https://docs.axolotl.ai/docs/multi-gpu.html) 中介绍。
+
+有关更多详细信息，请参阅 Axolotl 文档中的 [Hugging Face Jobs guide](https://docs.axolotl.ai/docs/hf-jobs.html)。
 
 ## 更进一步- [Serve Models](./jobs-serving) 将您训练的模型放在临时端点后面，以进行评估运行或演示。 [Inference Endpoints](https://huggingface.co/docs/inference-endpoints) 运行一个持续运行的系统。
 - [Configuration](./jobs-configuration) 用于秘密、环境变量、卷和 `[tool.hf-jobs]` 表，让脚本携带自己的风格和超时。

@@ -17,22 +17,22 @@
 
 您可以通过在表格顶部的搜索栏中输入单词来搜索数据集中的单词。搜索不区分大小写，并且将匹配包含该单词的任何行。即使值嵌套在字典或列表中，也会在 `string` 的列中搜索文本。
 
-## 对数据集运行 SQL 查询You can run SQL queries on the dataset in the browser using the SQL Console.此功能还利用了我们的[auto-conversion to Parquet](data-studio#access-the-parquet-files)。
+## 对数据集运行 SQL 查询您可以使用 SQL 控制台在浏览器中对数据集运行 SQL 查询。此功能还利用了我们的[auto-conversion to Parquet](data-studio#access-the-parquet-files)。
 
-有关更多信息，请参阅我们的 [SQL Console](./datasets-viewer-sql-console) 指南。 You can run the same DuckDB SQL queries from the command line with [⟦T3⟧](/docs/huggingface_hub/package_reference/cli#hf-datasets-sql) or with [DuckDB](./datasets-duckdb) directly.
+有关更多信息，请参阅我们的 [SQL Console](./datasets-viewer-sql-console) 指南。您可以使用 [⟦T3⟧](/docs/huggingface_hub/package_reference/cli#hf-datasets-sql) 或直接使用 [DuckDB](./datasets-duckdb) 从命令行运行相同的 DuckDB SQL 查询。
 
 ## 共享特定行
 
-You can share a specific row by clicking on it, and then copying the URL in the address bar of your browser.例如 https://huggingface.co/datasets/nyu-mll/glue/viewer/mrpc/test?p=2&row=241 将在 MRPC 数据集、测试分割和第 241 行上打开数据集工作室。
+您可以通过单击特定行，然后复制浏览器地址栏中的 URL 来共享该行。例如，https://huggingface.co/datasets/nyu-mll/glue/viewer/mrpc/test?p=2&row=241 将在 MRPC 数据集、测试拆分和第 241 行上打开数据集工作室。
 
 ## 代理痕迹
 
-将原始 JSONL 跟踪从 Claude Code、Codex 或 Pi 等工具推送到数据集中，以便在 Data Studio 中浏览它们，或者将它们同步到 [Storage Bucket](./storage-buckets) 并在其中打开单独的 `.jsonl` 文件。 Both paths use the same trace viewer for stepping through sessions, turns, tool calls, and model responses. See [Agent Traces](./agent-traces) for supported agents and viewing traces.
+将原始 JSONL 跟踪从 Claude Code、Codex 或 Pi 等工具推送到数据集中，以便在 Data Studio 中浏览它们，或者将它们同步到 [Storage Bucket](./storage-buckets) 并在其中打开单独的 `.jsonl` 文件。两条路径都使用相同的跟踪查看器来逐步执行会话、轮次、工具调用和模型响应。有关支持的代理和查看跟踪，请参阅[Agent Traces](./agent-traces)。
 
 ## 大规模数据集
 
-The Dataset Viewer supports large scale datasets, but depending on the data format it may only show the first 5GB of the dataset:- 对于 Parquet 数据集：数据集查看器显示完整数据集，但仅在前 5GB 上启用排序、过滤和搜索。
-- 对于其他格式（例如[WebDataset](https://github.com/webdataset/webdataset)或JSON Lines）> 5GB的数据集：数据集查看器仅显示前5GB，并且在前5GB上启用排序、过滤和搜索。
+数据集查看器支持大规模数据集，但根据数据格式，它可能只显示数据集的前 5GB：- 对于 Parquet 数据集：数据集查看器显示完整数据集，但仅在前 5GB 上启用排序、过滤和搜索。
+- 对于其他格式（例如 [WebDataset](https://github.com/webdataset/webdataset) 或 JSON Lines）的 >5GB 的数据集：数据集查看器仅显示前 5GB，并且在前 5GB 上启用排序、过滤和搜索。
 
 在这种情况下，一条信息性消息会让您知道查看器是部分的。这应该是一个足够大的样本，可以准确地表示完整的数据集，如果您需要更大的样本，请告诉我们。
 
@@ -47,7 +47,7 @@ The Dataset Viewer supports large scale datasets, but depending on the data form
 
 ### 编程访问
 
-您还可以使用 [Hub API](./api#get-apidatasetsrepoidparquet) 以编程方式访问 Parquet 文件列表；例如，端点 [⟦T6⟧](https://huggingface.co/api/datasets/nyu-mll/glue/parquet) 列出了 `nyu-mll/glue` 数据集的 parquet 文件。 `hf` CLI 提供与 [⟦T9⟧](/docs/huggingface_hub/package_reference/cli#hf-datasets-parquet) 相同的列表，[⟦T10⟧](/docs/huggingface_hub/package_reference/cli#hf-datasets-sql) 允许您使用 SQL 查询文件。
+您还可以使用 [Hub API](https://huggingface.co/docs/dataset-viewer/parquet#using-the-hugging-face-hub-api) 以编程方式访问 Parquet 文件列表；例如，端点 [⟦T6⟧](https://huggingface.co/api/datasets/nyu-mll/glue/parquet) 列出了 `nyu-mll/glue` 数据集的 parquet 文件。 `hf` CLI 提供与 [⟦T9⟧](/docs/huggingface_hub/package_reference/cli#hf-datasets-parquet) 相同的列表，[⟦T10⟧](/docs/huggingface_hub/package_reference/cli#hf-datasets-sql) 允许您使用 SQL 查询文件。
 
 我们还有关于[Dataset Viewer API](https://huggingface.co/docs/dataset-viewer)的具体文档，您可以直接调用。该 API 允许您访问所有 Hugging Face Hub 数据集的内容、元数据和基本统计​​数据，并为数据集查看器前端提供支持。
 

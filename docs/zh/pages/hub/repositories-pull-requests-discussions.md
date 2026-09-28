@@ -39,7 +39,7 @@ _注意，拉取请求和讨论可以从 [repository settings](./repositories-se
 
 另请阅读[moderation](./moderation)，了解如何举报辱骂性评论。
 
-## 我可以在评论和讨论中使用 Markdown 和 LaTeX 吗？是的！您可以使用 Markdown 为评论添加格式。此外，您可以使用 LaTeX 进行数学排版，您的公式将在 Markdown 中解析之前使用 [KaTeX](https://katex.org/) 进行渲染。
+## 我可以在评论和讨论中使用 Markdown 和 LaTeX 吗？是的！您可以使用 Markdown 为评论添加格式。此外，您可以使用 LaTeX 进行数学排版，您的公式将在 Markdown 中解析之前使用 [KaTeX](https://katex.org/) 渲染。
 
 对于 LaTeX 方程，您必须使用以下分隔符：
 - `$$ ... $$` 显示模式
@@ -87,7 +87,7 @@ git push origin pr/42:refs/pr/42
 1. 获取
 
 ```bash
-git fetch origin refs/pr/*:refs/remotes/origin/pr/*
+git fetch origin "refs/pr/*:refs/remotes/origin/pr/*"
 ```
 
 2. 创建一个本地分支来跟踪 ref

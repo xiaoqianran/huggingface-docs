@@ -14,7 +14,7 @@
 hf download HuggingFaceH4/ultrachat_200k --repo-type dataset
 ```
 
-请参阅[HF CLI download documentation](https://huggingface.co/docs/huggingface_hub/en/guides/cli#download-a-dataset-or-a-space)了解更多信息。
+请参阅[HF CLI download documentation](https://huggingface.co/docs/huggingface_hub/en/guides/cli#download-a-dataset-a-space-or-a-kernel)了解更多信息。
 
 您还可以将其集成到您自己的库中！例如，您可以使用 Pandas 快速加载包含几行的 CSV 数据集。
 ```py
@@ -68,7 +68,7 @@ hf-mount start repo datasets/stanfordnlp/imdb /tmp/imdb
 将以下主机名列入白名单（全部通过 HTTPS/端口 443）：
 
 |主机名 |目的|
-|------------------------------------------|--------------------------------------------------------|
+|------------------------------------------|---------------------------------------------------------|
 | `huggingface.co` | Hub API、元数据和下载重定向 |
 | `cas-server.xethub.hf.co` | Xet 协议 API、下载和上传（美国）|
 | `cas-server.xethub-eu.hf.co` | Xet 协议 API、下载和上传（欧盟）|

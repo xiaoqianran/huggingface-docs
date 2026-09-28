@@ -8,13 +8,13 @@ Webhook 是 MLOps 相关功能的基础。它们允许您监听特定存储库�
 
 Webhooks 的文档如下 - 或者您也可以浏览我们的**指南**，其中展示了 Webhooks 的一些可能的用例：
 - [Fine-tune a new model whenever a dataset gets updated (Python)](./webhooks-guide-auto-retrain)
-- [Create a discussion bot on the Hub, using a LLM API (NodeJS)](./webhooks-guide-discussion-bot)
+- [Create a discussion bot on the Hub, using an LLM API (NodeJS)](./webhooks-guide-discussion-bot)
 - [Create metadata quality reports (Python)](./webhooks-guide-metadata-review)
 - 还有更多即将推出...
 
 ## 创建您的 Webhook
 
-您可以创建新的 Webhooks 并编辑 Webhooks 中的现有 Webhooks [settings](https://huggingface.co/settings/webhooks)：
+您可以创建新的 Webhooks 并编辑 Webhooks 中的现有 Webhook [settings](https://huggingface.co/settings/webhooks)：
 
 ![Settings of an individual webhook](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/webhook-settings.png)
 
@@ -279,11 +279,11 @@ Webhooks 可以监视存储库更新、拉取请求、讨论和新评论。甚�
 
 如果您需要增加 Webhook 的触发器数量，请升级到 PRO、Team 或 Enterprise，并通过 website@huggingface.co 联系我们。
 
-## 开发您的 Webhook如果您没有 HTTPS 端点/URL，您可以尝试使用公共工具进行 Webhook 测试。这些工具充当发送给它们的包罗万象（捕获所有请求）并给出 200 OK 状态代码。 [Beeceptor](https://beeceptor.com/) 是一种可用于创建临时 HTTP 端点并检查传入负载的工具。另一个这样的工具是[Webhook.site](https://webhook.site/)。
+## 开发您的 Webhooks如果您没有 HTTPS 端点/URL，您可以尝试使用公共工具进行 Webhook 测试。这些工具充当发送给它们的包罗万象（捕获所有请求）并给出 200 OK 状态代码。 [Beeceptor](https://beeceptor.com/) 是一种可用于创建临时 HTTP 端点并检查传入负载的工具。另一个这样的工具是[Webhook.site](https://webhook.site/)。
 
 此外，您可以在开发过程中将真实的 Webhook 有效负载路由到计算机上本地运行的代码。这是测试和调试以实现更快集成的好方法。您可以通过将本地主机端口公开到互联网来完成此操作。为了能够走这条路，您可以使用[ngrok](https://ngrok.com/)或[localtunnel](https://theboroer.github.io/localtunnel-www/)。
 
-## 调试 Webhooks
+## 调试 Webhook
 
 您可以轻松找到最近为您的 webhook 生成的事件。打开 Webhook 的活动选项卡。在那里您将看到最近事件的列表。
 

@@ -17,7 +17,7 @@ pip install mlx-image
 
 ## 型号
 
-模型权重可在 HuggingFace 的 [⟦T7⟧](https://huggingface.co/mlx-vision) 社区上找到。
+模型权重可在 Hugging Face 的 [⟦T7⟧](https://huggingface.co/mlx-vision) 社区上找到。
 
 要加载具有预训练权重的模型：
 ```python
@@ -39,7 +39,7 @@ list_models()
 
 ## ImageNet-1K 结果
 
-前往[results-imagenet-1k.csv](https://github.com/riccardomusmeci/mlx-image/blob/main/results/results-imagenet-1k.csv)查看每个转换为`mlx-image`的模型及其在不同设置的ImageNet-1K上的表现。
+前往[results-imagenet-1k.csv](https://github.com/riccardomusmeci/mlx-image/blob/main/results/results-imagenet-1k.csv)查看转换为`mlx-image`的每个模型及其在不同设置的ImageNet-1K上的性能。
 
 > **TL;DR** 性能与 PyTorch 实现的原始模型相当。
 

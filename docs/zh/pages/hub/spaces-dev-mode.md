@@ -9,7 +9,7 @@
 
 Spaces 开发模式是一项可简化应用程序调试并使 Spaces 迭代速度更快的功能。
 
-每当您向 Space 存储库提交一些更改时，底层 Docker 映像就会重新构建，然后配置一个新的虚拟机来托管新容器。
+每当您对 Space 存储库提交一些更改时，底层 Docker 映像就会重新构建，然后配置一个新的虚拟机来托管新容器。
 
 开发模式允许您通过覆盖 Docker 镜像来更快地更新您的空间。
 
@@ -126,9 +126,9 @@ Docker Spaces 支持开发模式。但是，您的空间需要遵守以下规则
 
 4. Dockerfile 必须包含`CMD` 启动指令。查看[Docker's documentation](https://docs.docker.com/reference/dockerfile/#cmd)有关`CMD`指令的更多详细信息。
 
-当基础映像基于 debian（例如 ubuntu）时，开发模式效果很好。
+当基础镜像基于 debian（例如 ubuntu）时，开发模式效果很好。
 
-更奇特的 Linux 发行版（例如 alpine）未经测试，并且开发模式不保证在它们上工作。
+更奇特的 Linux 发行版（例如 alpine）未经测试，并且不保证开发模式适用于它们。
 
 ### 兼容 Dockerfile 的示例
 
@@ -160,7 +160,7 @@ CMD ["node", "index.js"]
 该组织中有几个兼容开发模式的 Docker 空间的示例。
 请随意在您的命名空间中复制它们！示例 Python 应用程序（FastAPI HTTP 服务器）：https://huggingface.co/spaces/dev-mode-explorers/dev-mode-python
 
-示例 Javascript 应用程序（Express.js HTTP 服务器）：https://huggingface.co/spaces/dev-mode-explorers/dev-mode-javascript
+JavaScript 应用程序示例（Express.js HTTP 服务器）：https://huggingface.co/spaces/dev-mode-explorers/dev-mode-javascript
 
 ## 反馈
 

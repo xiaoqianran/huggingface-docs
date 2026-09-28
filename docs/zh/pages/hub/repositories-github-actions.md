@@ -5,7 +5,7 @@
 您可以使用 [GitHub Actions](https://docs.github.com/en/actions) 自动将 GitHub 存储库同步到 Hugging Face Hub。官方[⟦T2⟧](https://github.com/marketplace/actions/sync-github-to-hugging-face-hub)操作支持同步**模型**、**数据集**和**空间**。
 
 > [!提示]
-> 对于无密钥发布 - 无需存储或轮换 `HF_TOKEN` 秘密 - 请参阅 [Trusted Publishers](./trusted-publishers)，它在每次运行开始时将 GitHub Actions 的内置 OIDC 令牌交换为短期的、存储库范围的 Hub 令牌。
+> 对于无密钥发布 - 无需存储或轮换 `HF_TOKEN` 秘密 - 请参阅 [Trusted Publishers](./trusted-publishers)，它在每次运行开始时将 GitHub Actions 的内置 OIDC 令牌交换为短期的、repo 范围的 Hub 令牌。
 
 ## 设置
 
@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: huggingface/hub-sync@v0.1.0
+      - uses: huggingface/hub-sync@v0.3.0
         with:
           github_repo_id: ${{ github.repository }}
           huggingface_repo_id: username/repo-name
@@ -36,7 +36,7 @@ jobs:
 默认情况下，这会同步到 **Space**。要同步模型或数据集，请设置 `repo_type` 参数：
 
 ```yaml
-      - uses: huggingface/hub-sync@v0.1.0
+      - uses: huggingface/hub-sync@v0.3.0
         with:
           github_repo_id: ${{ github.repository }}
           huggingface_repo_id: username/my-dataset
@@ -44,7 +44,7 @@ jobs:
           repo_type: dataset
 ```
 
-## 参数|参数|必填 |默认|描述 |
+## 参数|参数|必填 |默认 |描述 |
 |---|---|---|---|
 | `github_repo_id` |是的 | — | GitHub 存储库（使用`${{ github.repository }}`）|
 | `huggingface_repo_id` |是的 | — | Hub 上的目标存储库 (`username/repo-name`) |
@@ -52,7 +52,7 @@ jobs:
 | `repo_type` |没有 | `space` | `space`、`model` 或 `dataset` |
 | `space_sdk` |没有 | `gradio` | `gradio`、`streamlit`、`docker` 或 `static` |
 | `private` |没有 | `false` |是否将存储库创建为私有 |
-| `subdirectory` |没有 | `.` |同步特定子目录（对于 monorepos 很有用）|
+| `subdirectory` |没有 | `.` |同步特定子目录（对于 monorepos 有用）|
 
 该操作使用 `hf` CLI 将您的文件镜像到 Hub — 它不是 git 到 git 同步。它会自动排除 `.github/` 和 `.git/` 目录和镜像删除（从 GitHub 删除的文件也将从 Hub 中删除）。
 

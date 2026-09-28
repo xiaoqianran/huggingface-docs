@@ -18,19 +18,12 @@
 技能为您的代理提供有效使用工具所需的背景。独立安装程序为您添加了 CLI 技能 - 如果您使用 pip 或 Homebrew、跳过它或希望在单个项目中使用它，请手动安装它。在[agentskills.io](https://agentskills.io)了解有关技能的更多信息。
 
 ```bash
-# install globally (available in all projects, works with Codex, Cursor, OpenCode,
-# and any agent that loads skills from ~/.agents/skills)
+# install globally (available in all projects, works with Claude Code, Codex, Cursor,
+# OpenCode, and any agent that loads skills from ~/.agents/skills)
 hf skills add --global
 
-# for Claude Code use the --claude flag
-hf skills add --claude --global
-
-# or install for the current project only (works with Codex, Cursor, OpenCode,
-# and any agent that loads skills from .agents/skills)
+# or install for the current project only
 hf skills add
-
-# for Claude Code, use the --claude flag
-hf skills add --claude
 ```> [!提示]
 > 该技能是从您本地安装的 CLI 版本生成的，因此当您升级时它就会过时。 `hf update` 刷新全局安装的技能 - 永远不会重新添加您删除的技能 - `hf skills update -g` 自行刷新它。 `hf` 每天提醒您一次技能缺失或过时；使用 `HF_HUB_DISABLE_UPDATE_CHECK=1` 使其静音。
 

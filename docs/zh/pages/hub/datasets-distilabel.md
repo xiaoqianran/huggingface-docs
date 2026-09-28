@@ -4,7 +4,7 @@
 
 Distilabel 是一个合成数据和人工智能反馈框架，适用于需要基于经过验证的研究论文的快速、可靠和可扩展管道的工程师。
 
-Distilabel 可用于为各种项目生成合成数据和 AI 反馈，包括传统的预测 NLP（分类、提取等）或生成和大型语言模型场景（指令跟踪、对话生成、判断等）。 Distilabel 的编程方法允许您构建可扩展的管道数据生成和 AI 反馈。 distilabel 的目标是根据经过验证的研究方法快速生成高质量、多样化的数据集，用于生成和判断 AI 反馈，从而加速您的 AI 开发。
+Distilabel 可用于为各种项目生成合成数据和 AI 反馈，包括传统的预测 NLP（分类、提取等）或生成式和大型语言模型场景（指令跟踪、对话生成、判断等）。 Distilabel 的编程方法允许您构建可扩展的管道数据生成和 AI 反馈。 distilabel 的目标是根据经过验证的研究方法快速生成高质量、多样化的数据集，用于生成和判断 AI 反馈，从而加速您的 AI 开发。
 
 ## 人们用 distilabel 构建了什么？
 
@@ -32,7 +32,7 @@ pip install -U distilabel[vllm]
 
 distilabel 中的 Pipeline 返回一种特殊类型的 Hugging Face `datasets.DatasetDict`，称为 `Distiset`。
 
-Pipeline 可以在 Distiset 中输出多个子集，Distiset 是一个类似字典的对象，每个子集有一个条目。然后可以将 Distiset 无缝推送到 Hugging Face Hub，所有子集都位于同一存储库中。
+Pipeline 可以在 Distiset 中输出多个子集，Distiset 是一个类似字典的对象，每个子集有一个条目。然后，Distiset 可以无缝推送到 Hugging Face Hub，所有子集都位于同一存储库中。
 
 ## 将数据从 Hub 加载到 Distiset为了展示从 Hub 加载数据的示例，我们将重现 [Prometheus 2 paper](https://arxiv.org/pdf/2405.01535) 并使用 distilabel 中实现的 PrometheusEval 任务。 Prometheus 2 和 Prometheusval 任务直接评估和成对排名任务，即评估给定指令（有或没有参考答案）的单个独立响应的质量，以及分别针对有或没有参考答案的给定指令评估一个响应相对于另一个响应的质量。我们将在从 Hub 加载的数据集上使用这些任务，该数据集由 Hugging Face H4 团队创建，名为 [HuggingFaceH4/instruction-dataset](https://huggingface.co/datasets/HuggingFaceH4/instruction-dataset)。 
 

@@ -32,7 +32,7 @@
 
 您可以找到一个示例空间[here](https://huggingface.co/spaces/huggingface-projects/auto-retrain/tree/main)。
 
-该空间使用 Docker、Python、[FastAPI](https://fastapi.tiangolo.com/) 和 [uvicorn](https://www.uvicorn.org) 来运行一个简单的 HTTP 服务器。了解有关 Docker Spaces [here](https://huggingface.co/docs/hub/spaces-sdks-docker) 的更多信息。
+该空间使用 Docker、Python、[FastAPI](https://fastapi.tiangolo.com/) 和 [uvicorn](https://uvicorn.dev) 来运行一个简单的 HTTP 服务器。了解有关 Docker Spaces [here](https://huggingface.co/docs/hub/spaces-sdks-docker) 的更多信息。
 
 入口点是[src/main.py](https://huggingface.co/spaces/huggingface-projects/auto-retrain/blob/main/src/main.py)。让我们浏览一下这个文件并详细说明它的作用：
 

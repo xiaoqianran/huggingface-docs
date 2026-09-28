@@ -32,7 +32,7 @@
 
 空间的代码是[here](https://huggingface.co/spaces/discussion-bot/webhook/tree/main)。
 
-我们使用 NodeJS 和 Typescript 来实现它，但任何语言或框架都可以同样良好地工作。了解有关 Docker Spaces [here](https://huggingface.co/docs/hub/spaces-sdks-docker) 的更多信息。
+我们使用 NodeJS 和 TypeScript 来实现它，但任何语言或框架都可以同样良好地工作。了解有关 Docker Spaces [here](https://huggingface.co/docs/hub/spaces-sdks-docker) 的更多信息。
 
 **主要的`server.ts`文件是[here](https://huggingface.co/spaces/discussion-bot/webhook/blob/main/server.ts)**
 
@@ -92,7 +92,7 @@ app.post("/", async (req, res) => {
 		...
 ```
 
-这是最酷的部分：使用[Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers/chat-completions)，我们调用一个带有系统提示和用户评论的开放权重模型（`moonshotai/Kimi-K2.6`）。该模型生成一个回复，我们从 `choices[0].message.content` 中提取该回复。您可以从 [list of available models](https://huggingface.co/inference/models) 中选择任何型号 — 只需交换 `model` 字段即可。
+这是最酷的部分：使用[Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers/tasks/chat-completion)，我们调用带有系统提示和用户评论的开放权重模型（`moonshotai/Kimi-K2.6`）。该模型生成一个回复，我们从 `choices[0].message.content` 中提取该回复。您可以从 [list of available models](https://huggingface.co/inference/models) 中选择任何型号 — 只需交换 `model` 字段即可。
 
 最后，我们将在同一讨论线程中将其作为回复发布：
 

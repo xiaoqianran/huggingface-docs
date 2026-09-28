@@ -23,7 +23,7 @@
 
 ## HTTP API
 
-作业 HTTP API 端点在 `https://huggingface.co/api/jobs` 下可用。使用 Hugging 面部令牌进行身份验证，并有权在您的命名空间（您的帐户或组织）下启动和管理作业。
+作业 HTTP API 端点在 `https://huggingface.co/api/jobs` 下可用。使用 Hugging Face 令牌进行身份验证，并有权在您的命名空间（您的帐户或组织）下启动和管理作业。
 将令牌作为不记名令牌传递，其标头为：`"Authorization: Bearer {token}"`。
 
 以下是可用端点和参数的列表：

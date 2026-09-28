@@ -28,7 +28,7 @@ SSH 密钥通常位于 Mac 和 Linux 上的 `~/.ssh` 下，以及 Windows 上的
 
 ```
 $ ssh-keygen -t ed25519 -C "your.email@example.co"
-```我们建议您在出现提示时输入密码。密码是额外的安全层：每当您使用 SSH 密钥时都会提示输入密码。
+```我们建议您在出现提示时输入密码。密码短语是额外的安全层：每当您使用 SSH 密钥时都会提示输入密码。
 
 生成新密钥后，使用 `ssh-add` 将其添加到 SSH 代理：
 
@@ -62,18 +62,18 @@ $ ssh -T git@hf.co
 Hi anonymous, welcome to Hugging Face.
 ```
 
-## HuggingFace 的 SSH 密钥指纹
+## Hugging Face 的 SSH 密钥指纹
 
 公钥指纹可用于验证与远程服务器的连接。
 
-这些是 HuggingFace 的公钥指纹：
+这些是 Hugging Face 的公钥指纹：
 
 > SHA256:aBG5R7IomF4BSsx/h6tNAUVLhEkkaNGB8Sluyh/Q/qY (ECDSA)
 > SHA256:skgQjK2+RuzvdmHr24IIAJ6uLWQs0TGtEUt3FtzqirQ（DSA - 已弃用）
 > SHA256:dVjzGIdV7d6cwKieZiCorMa2gMvSKfGZAvHf4gMiMao (ED25519)
 > SHA256:uqjYymysBGCXXiMVebB8L8RIuWbPSKGBxQQNhcT5a3Q (RSA)
 
-您可以将以下 ssh 密钥条目添加到 ~/.ssh/known_hosts 文件中，以避免手动验证 HuggingFace 主机：
+您可以将以下 ssh 密钥条目添加到 ~/.ssh/known_hosts 文件中，以避免手动验证 Hugging Face 主机：
 
 ```
 hf.co ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDtPB+snz63eZvTrbMY2Qt39a6HYile89JOum55z3lhIqAqUHxLtXFd+q+ED8izQvyORFPSmFIaPw05rtXo37bm+ixL6wDmvWrHN74oUUWmtrv2MNCLHE5VDb3+Q6MJjjDVIoK5QZIuTStlq0cUbGGxQk7vFZZ2VXdTPqgPjw4hMV7MGp3RFY/+Wy8rIMRv+kRCIwSAOeuaLPT7FzL0zUMDwj/VRjlzC08+srTQHqfoh0RguZiXZQneZKmM75AFhoMbP5x4AW2bVoZam864DSGiEwL8R2jMiyXxL3OuicZteZqll0qfRlNopKnzoxS29eBbXTr++ILqYz1QFqaruUgqSi3MIC9sDYEqh2Q8UxP5+Hh97AnlgWDZC0IhojVmEPNAc7Y2d+ctQl4Bt91Ik4hVf9bU+tqMXgaTrTMXeTURSXRxJEm2zfKQVkqn3vS/zGVnkDS+2b2qlVtrgbGdU/we8Fux5uOAn/dq5GygW/DUlHFw412GtKYDFdWjt3nJCY8=

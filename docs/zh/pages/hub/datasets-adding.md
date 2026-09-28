@@ -43,7 +43,7 @@
 
     您还可以查看 [Dataset Card specifications](https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1)，它具有一整套允许的标签，包括像 `annotations_creators` 这样的可选标签，以帮助您选择对您的数据集有用的标签。3. 在数据集卡中编写您的数据集文档，向社区介绍您的数据集并帮助用户了解其中的内容：用例和限制是什么、数据来自哪里、重要的道德考虑因素是什么以及任何其他相关细节。
 
-    您可以单击编辑器顶部的**导入数据集卡模板**链接来自动创建数据集卡模板。有关良好数据集卡应是什么样子的详细示例，请查看 [CNN DailyMail Dataset card](https://huggingface.co/datasets/cnn_dailymail)。
+    您可以单击编辑器顶部的**导入数据集卡模板**链接来自动创建数据集卡模板。有关良好的数据集卡应是什么样子的详细示例，请查看 [CNN DailyMail Dataset card](https://huggingface.co/datasets/abisee/cnn_dailymail)。
 
 ## 使用`huggingface_hub`客户端库
 
@@ -51,7 +51,7 @@
 
 ## 使用其他库
 
-一些库（如 [🤗 Datasets](/docs/datasets/index)、[Pandas](https://pandas.pydata.org/)、[Polars](https://pola.rs)、[Dask](https://www.dask.org/)、[DuckDB](https://duckdb.org/) 或 [Daft](https://daft.ai/)）可以将文件上传到 Hub。
+一些库，如 [🤗 Datasets](/docs/datasets/index)、[Pandas](https://pandas.pydata.org/)、[Polars](https://pola.rs)、[Dask](https://www.dask.org/)、[DuckDB](https://duckdb.org/) 或 [Daft](https://daft.ai/) 可以将文件上传到 Hub。
 更多信息请参见[Libraries supported by the Datasets Hub](./datasets-libraries)列表。
 
 ## 使用 Git
@@ -80,7 +80,7 @@ Hub本身支持多种文件格式：
 
 它支持使用 ZIP (.zip)、GZIP (.gz)、ZSTD (.zst)、BZ2 (.bz2)、LZ4 (.lz4) 和 LZMA (.xz) 压缩的文件。
 
-图像和音频文件还可以有附加的元数据文件。请参阅有关图像和音频数据集的[Data files Configuration](./datasets-data-files-configuration#image-and-audio-datasets)，以及有关 CSV、TSV 和图像的[example datasets](https://huggingface.co/datasets-examples) 集合。
+图像和音频文件还可以有附加的元数据文件。请参阅图像和音频数据集的 [Data files Configuration](./datasets-data-files-configuration#image-audio-and-video-datasets)，以及 CSV、TSV 和图像的 [example datasets](https://huggingface.co/datasets-examples) 集合。
 
 您可能希望将文件转换为这些格式，以受益于 Hub 的所有功能。
 Hub 可能无法识别其他格式和结构。
@@ -98,7 +98,7 @@ Hugging Face Hub 支持大规模数据集，通常以 Parquet 格式上传（例
 
 您可以使用`huggingface_hub`库高速上传大规模数据集。
 
-请参阅[how to upload a folder by chunks](/docs/huggingface_hub/guides/upload#upload-a-folder-by-chunks)、[tips and tricks for large uploads](/docs/huggingface_hub/guides/upload#tips-and-tricks-for-large-uploads) 和[repository storage limits and recommendations](./storage-limits)。
+请参阅[how to upload a folder by chunks](/docs/huggingface_hub/guides/upload#upload-a-large-folder)、[tips and tricks for large uploads](/docs/huggingface_hub/guides/upload#tips-and-tricks-for-large-uploads) 和[repository storage limits and recommendations](./storage-limits)。
 
 ### 冲向空格
 https://huggingface.co/docs/hub/spaces-sdks-docker-dash.md

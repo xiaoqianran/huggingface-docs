@@ -2,7 +2,7 @@
 
 # 在抱脸处使用🤗 `transformers`
 
-🤗 `transformers` 是由 Hugging Face 和社区维护的库，用于 Pytorch、TensorFlow 和 JAX 的最先进的机器学习。它提供了数千个预训练模型来执行不同模式（例如文本、视觉和音频）的任务。我们有点偏见，但我们真的很喜欢🤗`transformers`！
+🤗 `transformers` 是由 Hugging Face 和社区维护的库，用于 PyTorch、TensorFlow 和 JAX 的最先进的机器学习。它提供了数千个预训练模型来执行不同模式（例如文本、视觉和音频）的任务。我们有点偏见，但我们真的很喜欢🤗`transformers`！
 
 ## 探索 Hub 中的 🤗 变形金刚
 
@@ -77,7 +77,7 @@ tokenizer = AutoTokenizer.from_pretrained("distilbert/distilgpt2")
 model = AutoModelForCausalLM.from_pretrained("distilbert/distilgpt2")
 ```
 
-您还可以从特定版本（基于提交哈希、标签名称或分支）加载模型，如下所示：
+您还可以从特定版本（基于提交哈希、标记名称或分支）加载模型，如下所示：
 
 ```py
 model = AutoModel.from_pretrained(

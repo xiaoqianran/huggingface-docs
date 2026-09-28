@@ -37,7 +37,7 @@ URL 如下所示：`https://huggingface.co/organizations/[organizationIdentifier
 在应用程序概述中，单击“单点登录”，然后单击“转到应用程序”
 
 在 OIDC 应用程序概述中，您将找到一个名为“应用程序（客户端）ID”的可复制字段。
-将该 ID 复制到剪贴板并将其粘贴到 Huggingface 上的“客户端 ID”字段中。
+将该 ID 复制到剪贴板并将其粘贴到 Hugging Face 上的“客户端 ID”字段中。
 
 接下来，单击 Microsoft Entra 顶部菜单中的“端点”。
 复制“OpenID 连接元数据文档”字段中的值并将其粘贴到 Hugging Face 中的“问题 URL”字段中。

@@ -58,7 +58,7 @@ session = fo.launch_app(dataset)
 下载、创建的数据集对象的名称或是否持久化
 到磁盘。
 
-您可以使用以下方法列出 Hub 上所有可用的 FiftyOne 数据集：
+您可以使用以下命令列出 Hub 上所有可用的 FiftyOne 数据集：
 
 ```python
 from huggingface_hub import HfApi
@@ -72,13 +72,13 @@ api.list_datasets(tags="fiftyone")
 文件。为您处理类型转换，并从 URL 下载图像
 如果需要的话。
 
-借助此功能，[you can load](https://docs.voxel51.com/integrations/huggingface.html#basic-examples) 可以实现以下任一功能：
+借助此功能，[you can load](https://docs.voxel51.com/integrations/huggingface.html#basic-examples) 以下任何一项：
 
-- [FiftyOne-Compatible Image Classification Datasets](https://huggingface.co/collections/Voxel51/fiftyone-compatible-image-classification-datasets-665dfd51020d8b66a56c9b6f)，如 [Food101](https://huggingface.co/datasets/food101) 和 [ImageNet-Sketch](https://huggingface.co/datasets/imagenet_sketch)
-- [FiftyOne-Compatible Object Detection Datasets](https://huggingface.co/collections/Voxel51/fiftyone-compatible-object-detection-datasets-665e0279c94ae552c7159a2b) 类似 [CPPE-5](https://huggingface.co/datasets/cppe-5) 和 [WIDER FACE](https://huggingface.co/datasets/wider_face)
-- [FiftyOne-Compatible Segmentation Datasets](https://huggingface.co/collections/Voxel51/fiftyone-compatible-image-segmentation-datasets-665e15b6ddb96a4d7226a380) 类似 [SceneParse150](https://huggingface.co/datasets/scene_parse_150) 和 [Sidewalk Semantic](https://huggingface.co/datasets/segments/sidewalk-semantic)
+- [FiftyOne-Compatible Image Classification Datasets](https://huggingface.co/collections/Voxel51/fiftyone-compatible-image-classification-datasets-665dfd51020d8b66a56c9b6f)，如 [Food101](https://huggingface.co/datasets/ethz/food101) 和 [ImageNet-Sketch](https://huggingface.co/datasets/songweig/imagenet_sketch)
+- [FiftyOne-Compatible Object Detection Datasets](https://huggingface.co/collections/Voxel51/fiftyone-compatible-object-detection-datasets-665e0279c94ae552c7159a2b) 类似 [CPPE-5](https://huggingface.co/datasets/rishitdagli/cppe-5) 和 [WIDER FACE](https://huggingface.co/datasets/CUHK-CSE/wider_face)
+- [FiftyOne-Compatible Segmentation Datasets](https://huggingface.co/collections/Voxel51/fiftyone-compatible-image-segmentation-datasets-665e15b6ddb96a4d7226a380) 类似 [SceneParse150](https://huggingface.co/datasets/zhoubolei/scene_parse_150) 和 [Sidewalk Semantic](https://huggingface.co/datasets/segments/sidewalk-semantic)
 - [FiftyOne-Compatible Image Captioning Datasets](https://huggingface.co/collections/Voxel51/fiftyone-compatible-image-captioning-datasets-665e16e29350244c06084505) 类似 [COYO-700M](https://huggingface.co/datasets/kakaobrain/coyo-700m) 和 [New Yorker Caption Contest](https://huggingface.co/datasets/jmhessel/newyorker_caption_contest)
-- [FiftyOne-Compatible Visual Question-Answering Datasets](https://huggingface.co/collections/Voxel51/fiftyone-compatible-vqa-datasets-665e16424ecc8a718156248a) 类似 [TextVQA](https://huggingface.co/datasets/textvqa) 和 [ScienceQA](https://huggingface.co/datasets/derek-thomas/ScienceQA)
+- [FiftyOne-Compatible Visual Question-Answering Datasets](https://huggingface.co/collections/Voxel51/fiftyone-compatible-vqa-datasets-665e16424ecc8a718156248a) 类似 [TextVQA](https://huggingface.co/datasets/facebook/textvqa) 和 [ScienceQA](https://huggingface.co/datasets/derek-thomas/ScienceQA)
 
 例如，我们可以加载前 1,000 个样本
 [WikiArt dataset](https://huggingface.co/datasets/huggan/wikiart) 进入 FiftyOne：
@@ -116,7 +116,7 @@ push_to_hub(dataset, "my-hf-dataset")
 在您的用户名下使用指定的存储库名称，然后将创建存储库
 如果需要的话。将自动生成 [Dataset Card](./datasets-cards) 并填充从集线器加载数据集的说明。您可以使用 `preview_path` 参数上传缩略图/gif 以显示在数据集卡上。
 
-下面是一个使用许多这些参数的示例，它将使用标签、MIT 许可证、描述和预览图像将 FiftyOne 的 [Quickstart Video](https://docs.voxel51.com/user_guide/dataset_zoo/datasets.html#quickstart-video) 数据集的前三个样本上传到私有存储库 `username/my-quickstart-video-dataset`：
+下面是一个使用许多这些参数的示例，它将 FiftyOne 的 [Quickstart Video](https://docs.voxel51.com/user_guide/dataset_zoo/datasets.html#quickstart-video) 数据集的前三个样本上传到私有存储库 `username/my-quickstart-video-dataset`，其中包含标签、MIT 许可证、描述和预览图像：
 
 ```python
 dataset = foz.load_from_zoo("quickstart-video", max_samples=3)

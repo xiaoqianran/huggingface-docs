@@ -17,8 +17,8 @@
       "translatedAt": "2026-08-14T08:23:00.013Z"
     },
     "hub/agents-cli.md": {
-      "hash": "5001143db114e641ec1e0ea8b26493fdbe7783a7",
-      "translatedAt": "2026-08-14T08:23:02.692Z"
+      "hash": "7e15937ddf1c4fbd0f820301413dffb86d9b73ab",
+      "translatedAt": "2026-09-28T15:16:24.323Z"
     },
     "hub/adapters.md": {
       "hash": "d006d242b225b4d422c96d1e25353028758ac54c",
@@ -53,24 +53,24 @@
       "translatedAt": "2026-08-14T08:23:07.591Z"
     },
     "hub/agents-skills.md": {
-      "hash": "3ae791279324f69befccde4ee3814c12a73c3b0d",
-      "translatedAt": "2026-08-14T08:23:11.380Z"
+      "hash": "d7773c1b3cb90abf11ffd952d29a529078043cbf",
+      "translatedAt": "2026-09-28T15:16:25.394Z"
     },
     "hub/api.md": {
       "hash": "64ea27acb93ba5061b9f53c6f9d30681d6025b0b",
       "translatedAt": "2026-08-14T08:23:12.043Z"
     },
     "hub/agents-overview.md": {
-      "hash": "f5fdc1705ff3cce369f0bd79bbe283745060aaed",
-      "translatedAt": "2026-08-14T08:23:15.799Z"
+      "hash": "86313d62fedae0c2527153121e1d3efd4560d589",
+      "translatedAt": "2026-09-28T15:16:29.370Z"
     },
     "hub/allennlp.md": {
       "hash": "aebe27883d31d8ea2d60debf3107cec75ca55a28",
       "translatedAt": "2026-08-14T08:23:14.063Z"
     },
     "hub/asteroid.md": {
-      "hash": "bbd07b9970681b7152e164b7deffe6e631b569e7",
-      "translatedAt": "2026-09-15T12:36:53.663Z"
+      "hash": "59a9fc36dc36b1c84fbda53bb3429b6239a02f84",
+      "translatedAt": "2026-09-28T15:16:26.699Z"
     },
     "hub/bertopic.md": {
       "hash": "a4aa77bee6da64a2eeff70d10854db1904d14c09",
@@ -93,12 +93,12 @@
       "translatedAt": "2026-08-14T08:23:25.890Z"
     },
     "hub/data-studio.md": {
-      "hash": "84afa7b7342c93914ddd8bd8c74ca87f9bba07ec",
-      "translatedAt": "2026-08-14T08:23:24.649Z"
+      "hash": "fc9a4f6f698b5f0cde7fce2f1dc3c0559faf65d7",
+      "translatedAt": "2026-09-28T15:16:32.026Z"
     },
     "hub/datasets-adding.md": {
-      "hash": "9a2d6f7be9b609acfe10168274d9e4e5987e4dfb",
-      "translatedAt": "2026-08-14T08:23:26.330Z"
+      "hash": "ded1048974797159c79d1c637acc3af6e07c9167",
+      "translatedAt": "2026-09-28T15:16:33.023Z"
     },
     "hub/datasets-argilla.md": {
       "hash": "a07b5ebba1f4d888dcc2d42987ca56f5658c6390",
@@ -125,8 +125,8 @@
       "translatedAt": "2026-08-14T08:23:30.747Z"
     },
     "hub/datasets-distilabel.md": {
-      "hash": "868887f388fcb006407c1e395f85d5e4f716f1e0",
-      "translatedAt": "2026-08-14T08:23:31.711Z"
+      "hash": "579e5cff8e34fac8658119a34cfe74df002d1b94",
+      "translatedAt": "2026-09-28T15:16:34.237Z"
     },
     "hub/datasets-audio.md": {
       "hash": "ce90b49749a243c1827790b7c55b6f70831f9da5",
@@ -161,12 +161,12 @@
       "translatedAt": "2026-08-14T08:23:33.394Z"
     },
     "hub/datasets-downloading.md": {
-      "hash": "6a03196913e3033cb2b51c66d73090870e4bab1e",
-      "translatedAt": "2026-08-27T18:13:44.509Z"
+      "hash": "599c1ed6cadb3bd04eef2b06f67663708690bd78",
+      "translatedAt": "2026-09-28T15:16:37.316Z"
     },
     "hub/datasets-duckdb.md": {
-      "hash": "89870273b5fc312e103ed44c984a2b0b13ea4bcc",
-      "translatedAt": "2026-08-14T08:23:34.843Z"
+      "hash": "16ffa9f3d490d2a97066fb7fc15d12db1aef3254",
+      "translatedAt": "2026-09-28T15:16:37.825Z"
     },
     "hub/datasets-embedding-atlas.md": {
       "hash": "beac9a404a221fe31c525b4a7618bee6b8b20879",
@@ -181,8 +181,8 @@
       "translatedAt": "2026-08-14T08:23:36.613Z"
     },
     "hub/datasets-fiftyone.md": {
-      "hash": "dac62139b6a2a8a55693f3ee1dea0f61f993bc09",
-      "translatedAt": "2026-08-14T08:23:36.878Z"
+      "hash": "58e000dab21fbab3a2061e64dbb289faff415c4f",
+      "translatedAt": "2026-09-28T15:16:37.929Z"
     },
     "hub/datasets-file-names-and-splits.md": {
       "hash": "6ba1d08ff87da3e6e5691eabd0b9dd4da2e7a99b",
@@ -237,8 +237,8 @@
       "translatedAt": "2026-08-14T08:23:48.656Z"
     },
     "hub/datasets-libraries.md": {
-      "hash": "01d3dc17964eb12661b50dd2ace9d1e393282a92",
-      "translatedAt": "2026-08-14T08:23:51.005Z"
+      "hash": "974eeced09309e7349aef6381ef4210d41717270",
+      "translatedAt": "2026-09-28T15:16:56.797Z"
     },
     "hub/datasets-streaming.md": {
       "hash": "b3c38e9cb7ed810f009e958c89f6dbac5867312f",
@@ -377,8 +377,8 @@
       "translatedAt": "2026-09-25T12:42:50.682Z"
     },
     "hub/enterprise.md": {
-      "hash": "a5aebc2494ac381070636f719ac48edbfe9dea43",
-      "translatedAt": "2026-08-22T07:38:29.424Z"
+      "hash": "c465856e61b515da755d35f70cdd9da190a38d4e",
+      "translatedAt": "2026-09-28T15:16:58.897Z"
     },
     "hub/gguf.md": {
       "hash": "01ba0a8f87ee1546d45bdc32445aba6c58ce059d",
@@ -405,8 +405,8 @@
       "translatedAt": "2026-09-05T11:14:34.432Z"
     },
     "hub/jobs-reference.md": {
-      "hash": "6d80c485ccf8265d1ad373e820de3991c06b8f3d",
-      "translatedAt": "2026-08-14T08:24:22.853Z"
+      "hash": "f9c4a33e78f102948efc508495e96fb10fddba62",
+      "translatedAt": "2026-09-28T15:16:56.799Z"
     },
     "hub/jobs-schedule.md": {
       "hash": "6fd8c3125b18ee89701e0625be76bf8fff3cfd7c",
@@ -433,8 +433,8 @@
       "translatedAt": "2026-08-14T08:24:26.353Z"
     },
     "hub/jobs-pricing.md": {
-      "hash": "2ea8eb6e4eb83c798cce7a4264ac7ec2b8fc7caf",
-      "translatedAt": "2026-09-16T12:33:27.018Z"
+      "hash": "ff23ae7d3b4185832e015563df450ccc54594f9d",
+      "translatedAt": "2026-09-28T15:16:54.764Z"
     },
     "hub/lmstudio.md": {
       "hash": "a435818c90ea450bffc7477c11a226ba239814c5",
@@ -457,8 +457,8 @@
       "translatedAt": "2026-08-14T08:24:29.055Z"
     },
     "hub/mlx-image.md": {
-      "hash": "d5acc12569a3abc6af1a624c85cf6f6c48c3b98b",
-      "translatedAt": "2026-08-14T08:24:29.134Z"
+      "hash": "e3a658c3feb95e504103af5396e2d3b8c5dd1858",
+      "translatedAt": "2026-09-28T15:17:00.039Z"
     },
     "hub/mlx.md": {
       "hash": "1ec0253d687f853d090d34df64b0599b045d2a8c",
@@ -469,8 +469,8 @@
       "translatedAt": "2026-08-14T08:24:31.537Z"
     },
     "hub/model-card-appendix.md": {
-      "hash": "eb93f84d3947760f1c4aac0954c19815744a8124",
-      "translatedAt": "2026-08-14T08:24:32.469Z"
+      "hash": "2b88d64be19daf3352b422f886aea4db4c2edfd0",
+      "translatedAt": "2026-09-28T15:17:07.492Z"
     },
     "hub/model-cards-co2.md": {
       "hash": "deef228f1f4c2532293a05b1fd5943f08af8650a",
@@ -485,8 +485,8 @@
       "translatedAt": "2026-08-14T08:24:36.023Z"
     },
     "hub/model-cards-user-studies.md": {
-      "hash": "89731b5d0c66dc27c9e762b2ded767df9d5233eb",
-      "translatedAt": "2026-08-14T08:24:39.978Z"
+      "hash": "9196729bea9c1755a27c5bcb8995aeed8dc84b59",
+      "translatedAt": "2026-09-28T15:17:18.177Z"
     },
     "hub/model-cards.md": {
       "hash": "ead8d4dc1280a65543ba48442e961330c8587821",
@@ -517,8 +517,8 @@
       "translatedAt": "2026-08-27T18:13:47.130Z"
     },
     "hub/model-card-landscape-analysis.md": {
-      "hash": "2a68e93319aafa7be9030735d9c2f7fce5e1c0cd",
-      "translatedAt": "2026-08-14T08:24:49.553Z"
+      "hash": "309aa105d223b419f266b8ffcabfcd8c9ca7f237",
+      "translatedAt": "2026-09-28T15:17:35.542Z"
     },
     "hub/models-inference.md": {
       "hash": "65956882c408f067da9d8e620564b23bcd816882",
@@ -541,8 +541,8 @@
       "translatedAt": "2026-08-14T08:24:55.741Z"
     },
     "hub/models-uploading.md": {
-      "hash": "1621613d1776b448f73a85017276165781d29658",
-      "translatedAt": "2026-09-25T12:42:54.347Z"
+      "hash": "59114be9dd9e6bc28b2214a4840c766ae0756dd0",
+      "translatedAt": "2026-09-28T15:17:15.947Z"
     },
     "hub/models-widgets-examples.md": {
       "hash": "bcd1b8cb9e8918bd49c875b4c20da7559c246b6a",
@@ -553,8 +553,8 @@
       "translatedAt": "2026-08-14T08:24:57.201Z"
     },
     "hub/moderation.md": {
-      "hash": "cdc4664b43775a17f3101ee6b6d2dd9364b251ef",
-      "translatedAt": "2026-08-14T08:24:58.223Z"
+      "hash": "b8d7a9cce65454a4ad87c38baf0b44c16f0201fb",
+      "translatedAt": "2026-09-28T15:17:19.193Z"
     },
     "hub/notebooks.md": {
       "hash": "e06c8708f2b5c7141bf0955056cac996eaad00a9",
@@ -581,8 +581,8 @@
       "translatedAt": "2026-08-14T08:25:01.129Z"
     },
     "hub/organizations-security.md": {
-      "hash": "bb4f51fd8d05f34577d5377928c80c6cbacb0b30",
-      "translatedAt": "2026-08-14T08:25:03.193Z"
+      "hash": "5899f6d1fa4a336118ddd5ef8e012a13b67988cb",
+      "translatedAt": "2026-09-28T15:17:20.566Z"
     },
     "hub/organizations.md": {
       "hash": "cfe3c15113ed5e4c50a730c55731da2530562e44",
@@ -621,8 +621,8 @@
       "translatedAt": "2026-08-14T08:25:06.849Z"
     },
     "hub/repositories-github-actions.md": {
-      "hash": "2acf3727e78d3ea056337df7498cf0313f3257a8",
-      "translatedAt": "2026-08-14T08:25:09.535Z"
+      "hash": "bdf24e1362ec8edd71e4f976fda70c65dfdf16d1",
+      "translatedAt": "2026-09-28T15:17:22.458Z"
     },
     "hub/rate-limits.md": {
       "hash": "7940987da990aa75f09eba2311b8859306b5c14c",
@@ -641,8 +641,8 @@
       "translatedAt": "2026-08-14T08:25:12.340Z"
     },
     "hub/repositories-pull-requests-discussions.md": {
-      "hash": "76ec918a60b6c0709c2402e0f6e8ef3adbcd73a8",
-      "translatedAt": "2026-08-14T08:25:13.994Z"
+      "hash": "a59983bf917c17cd7d0867642da56ab4274e5fa5",
+      "translatedAt": "2026-09-28T15:17:26.209Z"
     },
     "hub/repositories-settings.md": {
       "hash": "b10a8fac0e752edb4b5041ff7646a5a768f90ddf",
@@ -665,8 +665,8 @@
       "translatedAt": "2026-08-14T08:25:15.872Z"
     },
     "hub/security-git-ssh.md": {
-      "hash": "b454698e4a93c5bd008ec367398f1755b38f0aa3",
-      "translatedAt": "2026-08-14T08:25:17.018Z"
+      "hash": "a2e28af61de2def543c1a4ad4fef92c389c9814a",
+      "translatedAt": "2026-09-28T15:17:25.592Z"
     },
     "hub/sample-factory.md": {
       "hash": "67f28b2e91bc6f2ee7f35be4fb71c3adb04ec411",
@@ -697,8 +697,8 @@
       "translatedAt": "2026-08-14T08:25:20.721Z"
     },
     "hub/security-sso-azure-oidc.md": {
-      "hash": "f2caa06886ce308748dce230c9bb6792d69a5faa",
-      "translatedAt": "2026-08-14T08:25:22.129Z"
+      "hash": "716fba145ca2cf0d1abfd31883333d6940766633",
+      "translatedAt": "2026-09-28T15:17:28.410Z"
     },
     "hub/security-sso-azure-saml.md": {
       "hash": "cef6843e44dfe0d142bb168fc18237c18fc2f52c",
@@ -769,8 +769,8 @@
       "translatedAt": "2026-08-14T08:25:31.232Z"
     },
     "hub/spaces-advanced.md": {
-      "hash": "f5b6c0212dae426137cd4a6d7dbeccdbfdcc5f4c",
-      "translatedAt": "2026-08-14T08:25:31.730Z"
+      "hash": "4ad26f76241133e8d741af54fe46bc5fdbe89055",
+      "translatedAt": "2026-09-28T15:17:27.184Z"
     },
     "hub/spaces-agents.md": {
       "hash": "9fdc998440489d1d91481b38c62a761adfe38f87",
@@ -785,8 +785,8 @@
       "translatedAt": "2026-08-14T08:25:32.426Z"
     },
     "hub/spaces-circleci.md": {
-      "hash": "e483d777f093f549ed7528b5a691b1649fcc2cf4",
-      "translatedAt": "2026-08-14T08:25:35.355Z"
+      "hash": "f85b3853ced8e9a6d50098d26fbb8c55b3572e2b",
+      "translatedAt": "2026-09-28T15:17:31.615Z"
     },
     "hub/spaces-api-endpoints.md": {
       "hash": "46909be1a4513c35e93e551f90deac22ecadd0ce",
@@ -797,8 +797,8 @@
       "translatedAt": "2026-08-14T08:25:36.460Z"
     },
     "hub/spaces-changelog.md": {
-      "hash": "88624c0974a0ffa55a08ec07fed03f29bfdb1d90",
-      "translatedAt": "2026-08-14T08:25:36.118Z"
+      "hash": "3210c54f95da06bc090bd88e367e417ae4ac384b",
+      "translatedAt": "2026-09-28T15:17:32.205Z"
     },
     "hub/spaces-custom-domain.md": {
       "hash": "a550547e5fb07ade66f930c58440ef9655b2c694",
@@ -825,12 +825,12 @@
       "translatedAt": "2026-08-14T08:25:38.764Z"
     },
     "hub/spaces-github-actions.md": {
-      "hash": "2a61ab2caf8e2dbdeb22377b3a6445b2d5995892",
-      "translatedAt": "2026-08-14T08:25:39.706Z"
+      "hash": "86befea2943f0143335bd93f2c1952440b8b25e4",
+      "translatedAt": "2026-09-28T15:17:34.361Z"
     },
     "hub/spaces-dev-mode.md": {
-      "hash": "4e231d0f2aab343727fd83fbd121d43c9fceed24",
-      "translatedAt": "2026-08-14T08:25:39.221Z"
+      "hash": "b33d7f8cb87b0bb1e617bd85ac363d25e032b07c",
+      "translatedAt": "2026-09-28T15:17:37.687Z"
     },
     "hub/spaces-handle-url-parameters.md": {
       "hash": "c7cc2a78a18f85816beab186919cb5d408441f6a",
@@ -853,16 +853,16 @@
       "translatedAt": "2026-08-14T08:25:42.422Z"
     },
     "hub/spaces-oauth.md": {
-      "hash": "ade37849934a26cfacc58c7999633d8891508686",
-      "translatedAt": "2026-08-19T07:47:04.508Z"
+      "hash": "afdd1d849a1a8fe3febbeb57f917250b84c9a566",
+      "translatedAt": "2026-09-28T15:17:40.814Z"
     },
     "hub/spaces-sdks-docker-aim.md": {
       "hash": "9bec003e510e105f8439f2720b9ba148cd0f8010",
       "translatedAt": "2026-08-14T08:25:43.774Z"
     },
     "hub/spaces-gpus.md": {
-      "hash": "b4b634b55bd34c73162bf125aaf56b9ad99e3f22",
-      "translatedAt": "2026-08-14T08:25:41.502Z"
+      "hash": "dfe8de15512813c348f2e80ba2915132ff615c94",
+      "translatedAt": "2026-09-28T15:17:47.061Z"
     },
     "hub/spaces-sdks-docker-argilla.md": {
       "hash": "53b573e914bea42da58cb5212007274f0082660a",
@@ -873,8 +873,8 @@
       "translatedAt": "2026-08-14T08:25:45.644Z"
     },
     "hub/spaces-sdks-docker-evidence.md": {
-      "hash": "211a292efeaedb83184768a008a702570140be02",
-      "translatedAt": "2026-08-14T08:25:47.814Z"
+      "hash": "a29f2e3293735fc99ec0c9ab812264ebe6ca3efe",
+      "translatedAt": "2026-09-28T15:17:41.447Z"
     },
     "hub/spaces-sdks-docker-dash.md": {
       "hash": "2c27878d990b1ace55aa9767de488001b2465f75",
@@ -889,8 +889,8 @@
       "translatedAt": "2026-08-14T08:25:51.313Z"
     },
     "hub/spaces-sdks-docker-first-demo.md": {
-      "hash": "6e663ef75fe35a7bc44eb4692588e2c419a5e24a",
-      "translatedAt": "2026-08-14T08:25:54.474Z"
+      "hash": "60ec3c3131cc600ca53511ff4b3abb6dfe36ea85",
+      "translatedAt": "2026-09-28T15:17:47.350Z"
     },
     "hub/spaces-overview.md": {
       "hash": "38cb304401360e2dfa73ad719e20bff17e320d1b",
@@ -909,8 +909,8 @@
       "translatedAt": "2026-08-14T08:25:57.432Z"
     },
     "hub/spaces-sdks-docker-panel.md": {
-      "hash": "0f0070bb708d2a44251f0bdd2e4afe8e2f0a12c1",
-      "translatedAt": "2026-08-14T08:25:57.970Z"
+      "hash": "b5cd9878040f523ff4b9d2d10c1bec6b7e2a0b56",
+      "translatedAt": "2026-09-28T15:17:45.043Z"
     },
     "hub/spaces-sdks-docker-label-studio.md": {
       "hash": "eb40ccb07b31f041dba2992b0e7a80949a06e5c5",
@@ -925,8 +925,8 @@
       "translatedAt": "2026-08-14T08:25:59.298Z"
     },
     "hub/spaces-sdks-gradio.md": {
-      "hash": "7d10c2da94cf1c9a013c59d04bcb3a2d6579325e",
-      "translatedAt": "2026-08-14T08:26:01.437Z"
+      "hash": "1ab9f9d198c6e4a4996484094eded81041ca18ce",
+      "translatedAt": "2026-09-28T15:17:50.635Z"
     },
     "hub/spaces-sdks-docker-shiny.md": {
       "hash": "c7cf8f404c9d1fd8059212ea93099f750ff7c7bb",
@@ -957,16 +957,16 @@
       "translatedAt": "2026-08-14T08:26:04.483Z"
     },
     "hub/spaces-sdks-docker-zenml.md": {
-      "hash": "d719ce8cae3ae18cae95f4e25b92a0d3bbf08806",
-      "translatedAt": "2026-08-14T08:26:02.339Z"
+      "hash": "27514dd38bba96c0f297afdd332e8948931ac19e",
+      "translatedAt": "2026-09-28T15:17:55.994Z"
     },
     "hub/spaces-sdks-streamlit.md": {
       "hash": "ffacc226caa7baa943ecedc95fdce46950187b00",
       "translatedAt": "2026-08-14T08:26:05.847Z"
     },
     "hub/spaces.md": {
-      "hash": "a24c9ec0788e04c94abecbd4c5a025ba36a97736",
-      "translatedAt": "2026-08-14T08:26:05.849Z"
+      "hash": "94b1e40d6e18fc6270aff02105c023cb1ecbc8bf",
+      "translatedAt": "2026-09-28T15:17:48.227Z"
     },
     "hub/span_marker.md": {
       "hash": "508821cf1d6240a5cb6d6a35f19846c503a5bb92",
@@ -997,8 +997,8 @@
       "translatedAt": "2026-09-07T13:27:50.086Z"
     },
     "hub/storage-buckets-integrations.md": {
-      "hash": "97ec3fc64ce4acdc5c921898c1ea9228d8cca938",
-      "translatedAt": "2026-09-22T12:32:15.772Z"
+      "hash": "aca7347fc3965bf62f0c03213062b024a82f9250",
+      "translatedAt": "2026-09-28T15:17:50.693Z"
     },
     "hub/storage-buckets-security.md": {
       "hash": "9282202c23ea986fa4d0ba2d91f7ec8743d4a793",
@@ -1021,8 +1021,8 @@
       "translatedAt": "2026-08-14T08:26:16.080Z"
     },
     "hub/transformers-js.md": {
-      "hash": "9a801a3d82394fc76093ddaf2de4e508d6ca5f22",
-      "translatedAt": "2026-08-14T08:26:18.609Z"
+      "hash": "aa20869a267b5ea44417940e284ebb2529204e89",
+      "translatedAt": "2026-09-28T15:17:52.715Z"
     },
     "hub/storage-buckets-s3.md": {
       "hash": "837ffa8469a13af77d6efba4b4d387cacb009572",
@@ -1033,20 +1033,20 @@
       "translatedAt": "2026-09-17T12:33:44.000Z"
     },
     "hub/transformers.md": {
-      "hash": "69302a70368fbc3f0c5db7d521afce5a2fa46908",
-      "translatedAt": "2026-08-14T08:26:20.198Z"
+      "hash": "955fef42c952f2991414725fc2b255c791c41a83",
+      "translatedAt": "2026-09-28T15:17:57.216Z"
     },
     "hub/unity-sentis.md": {
       "hash": "ef3933d9911346fc063d9769228a9ac57c1728af",
       "translatedAt": "2026-08-14T08:26:21.726Z"
     },
     "hub/webhooks-guide-discussion-bot.md": {
-      "hash": "e0006221445300cb5e31cee217481297939f4c11",
-      "translatedAt": "2026-08-14T08:26:24.449Z"
+      "hash": "a65512ce761231214e1fbeec2f8eb69b922e0b4e",
+      "translatedAt": "2026-09-28T15:17:59.482Z"
     },
     "hub/webhooks-guide-auto-retrain.md": {
-      "hash": "b06f43dd0e7be99f684631c518b68c75d5c02f70",
-      "translatedAt": "2026-08-14T08:26:24.712Z"
+      "hash": "51e946f16bf0150be930eb6e2f2a7271c6d86294",
+      "translatedAt": "2026-09-28T15:17:57.223Z"
     },
     "hub/trusted-publishers.md": {
       "hash": "61910f085bc4fc27542e54bb4b88220e63d515ff",
@@ -1065,8 +1065,8 @@
       "translatedAt": "2026-08-14T08:26:27.052Z"
     },
     "hub/webhooks.md": {
-      "hash": "f9bf59740285b355adede101b35ae357099cfd07",
-      "translatedAt": "2026-09-17T12:33:37.743Z"
+      "hash": "6c3076920de32dece3bb3fc160095e8ca683c0da",
+      "translatedAt": "2026-09-28T15:18:05.595Z"
     },
     "hub/webhooks-guide-metadata-review.md": {
       "hash": "7f63463dca93e25f2f91b2b637f33eca36230e65",
@@ -1093,8 +1093,8 @@
       "translatedAt": "2026-09-24T12:41:07.660Z"
     },
     "hub/xet/using-xet-storage.md": {
-      "hash": "aff872859fafdd0b2112b6fc1f686d456c962a27",
-      "translatedAt": "2026-08-14T08:26:32.436Z"
+      "hash": "584ccb4827f3607d14a30b55099ff59704d57179",
+      "translatedAt": "2026-09-28T15:18:10.093Z"
     },
     "huggingface_hub/concepts/migration.md": {
       "hash": "ce1dd7ebea201a9b2d16e690b6c1daa2c7ed3f47",
@@ -2010,14 +2010,14 @@
       "translatedAt": "2026-09-24T12:41:08.228Z"
     },
     "hub/jobs-training.md": {
-      "hash": "5d025cb999234d6d4aa9ea525bfeeaede0acefc1",
-      "translatedAt": "2026-09-25T12:42:55.318Z"
+      "hash": "845bb247f4faefd3b66e679bb9c835041ff3f79f",
+      "translatedAt": "2026-09-28T15:17:08.320Z"
     }
   },
-  "updatedAt": "2026-09-27T12:55:41.928Z",
+  "updatedAt": "2026-09-28T15:18:10.094Z",
   "stats": {
-    "translated": 0,
-    "skipped": 400,
+    "translated": 46,
+    "skipped": 354,
     "failed": 0,
     "total": 400
   }
