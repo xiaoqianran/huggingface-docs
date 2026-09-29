@@ -65,4 +65,4 @@ trainer.train()
 will give you a hosted dashboard at https://huggingface.co/spaces/trl-lib/trackio.
 
 ### Paper Index
-https://huggingface.co/docs/trl/v1.14.0/paper_index.md
+https://huggingface.co/docs/trl/v1.14.1/paper_index.md

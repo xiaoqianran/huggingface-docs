@@ -58,4 +58,4 @@ training_args = KTOConfig(..., use_liger_kernel=True)
 To learn more about Liger-Kernel, visit their [official repository](https://github.com/linkedin/Liger-Kernel/).
 
 ### SFT Trainer
-https://huggingface.co/docs/trl/v1.14.0/sft_trainer.md
+https://huggingface.co/docs/trl/v1.14.1/sft_trainer.md
