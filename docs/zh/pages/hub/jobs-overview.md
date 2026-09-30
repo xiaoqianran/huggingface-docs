@@ -2,7 +2,7 @@
 
 # 职位概览
 
-Hugging Face Jobs 在远程 CPU 和 GPU 上运行您的代码。使用它来[train models](./jobs-training)，对数据集运行推理，或[process data](./jobs-large-datasets)。
+Hugging Face Jobs 在远程 CPU 和 GPU 上运行您的代码。使用它来[train or fine-tune models](./jobs-training)，对数据集运行推理，或[process data](./jobs-large-datasets)。
 
 作业在您选择的硬件上的环境中运行命令。您可以从终端或集线器上跟踪其状态和日志。
 

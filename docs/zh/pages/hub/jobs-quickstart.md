@@ -126,7 +126,7 @@ CLI 会自动上传您编辑的脚本。如果您将其保存在其他地方，�
 在此示例的基础上构建更大的工作负载：
 
 - [Annotate a dataset with OCR, classification or batch inference](./jobs-examples#uv-scripts)。
-- [Train a model](./jobs-training) 并将其保存到集线器。
+- [Train or fine-tune a model](./jobs-training) 并将其保存到集线器。
 - [Read datasets or buckets and save processed results](./jobs-large-datasets)。
 - [Run commands in Docker images](./jobs-configuration#docker-jobs)。
 - [Use Jobs from a coding agent](./jobs-examples#coding-agent-skills)。
