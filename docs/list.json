@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-29T13:56:59.588998+00:00",
+  "fetchedAt": "2026-09-30T13:33:53.251540+00:00",
   "method": "llms-full-split",
   "ok": 2174,
   "failed": 0,
@@ -5439,7 +5439,7 @@
     },
     {
       "rel": "hub/jobs-overview.md",
-      "bytes": 2770,
+      "bytes": 2783,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs-overview.md",
       "track": "Hub",
@@ -5547,7 +5547,7 @@
     },
     {
       "rel": "hub/jobs-quickstart.md",
-      "bytes": 4826,
+      "bytes": 4839,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs-quickstart.md",
       "track": "Hub",
@@ -6231,7 +6231,7 @@
     },
     {
       "rel": "hub/storage-buckets.md",
-      "bytes": 22263,
+      "bytes": 22023,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/storage-buckets.md",
       "track": "Hub",
@@ -6573,7 +6573,7 @@
     },
     {
       "rel": "hub/jobs.md",
-      "bytes": 1051,
+      "bytes": 1064,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs.md",
       "track": "Hub",
@@ -8058,7 +8058,7 @@
     },
     {
       "rel": "inference-providers/index.md",
-      "bytes": 71580,
+      "bytes": 71560,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/index.md",
       "track": "Inference Providers",
@@ -8148,7 +8148,7 @@
     },
     {
       "rel": "inference-providers/guides/github-actions-code-review.md",
-      "bytes": 100804,
+      "bytes": 100950,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/github-actions-code-review.md",
       "track": "Inference Providers",
@@ -8463,7 +8463,7 @@
     },
     {
       "rel": "kernels/builder/build-variants.md",
-      "bytes": 1757,
+      "bytes": 1862,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/build-variants.md",
       "track": "Kernels",
@@ -19623,7 +19623,7 @@
       "toc": 271,
       "found": 270,
       "written": 270,
-      "full_bytes": 1487002
+      "full_bytes": 1486801
     },
     {
       "pkg": "huggingface_hub",
@@ -19644,14 +19644,14 @@
       "toc": 66,
       "found": 28,
       "written": 28,
-      "full_bytes": 415654
+      "full_bytes": 415780
     },
     {
       "pkg": "kernels",
       "toc": 37,
       "found": 37,
       "written": 37,
-      "full_bytes": 216721
+      "full_bytes": 216826
     },
     {
       "pkg": "lerobot",
