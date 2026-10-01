@@ -349,5 +349,5 @@ Clean generated artifacts
     This document was generated automatically by
     clap-markdown.
 
-### Talks
-https://huggingface.co/docs/kernels/main/talks.md
+### Kernels security
+https://huggingface.co/docs/kernels/main/security.md

@@ -6,7 +6,7 @@ In this guide, we will see how to manage your Space runtime
 
 ## Search for Spaces
 
-You can search for Spaces on the Hub using semantic search with [search_spaces()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.search_spaces). This uses embedding-based search for multi-word queries and full-text search for single-word queries.
+You can search for Spaces on the Hub using semantic search with [search_spaces()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.search_spaces). This uses embedding-based search for multi-word queries and full-text search for single-word queries.
 
 ```py
 >>> from huggingface_hub import search_spaces
@@ -43,9 +43,12 @@ Here is an end-to-end example to create and set up a Space on the Hub.
 >>> api.create_repo(repo_id=repo_id, repo_type="space", space_sdk="gradio")
 ```
 
+> [!TIP]
+> Static Spaces are free for everyone. Gradio and Docker Spaces run on compute: on the free `cpu-basic` hardware, they require a subscription (PRO for users, Team or Enterprise for organizations), while paid hardware only requires billing (a payment method and prepaid credits). Without a subscription, creating, duplicating or moving a Gradio or Docker Space on `cpu-basic` fails with a payment error (HTTP 402). See [pricing](https://huggingface.co/pricing) for more details.
+
 ### Create a Space from a template
 
-Instead of starting from an empty Space, you can seed a new Space from one of the official templates offered on the Hub (e.g. JupyterLab, a Gradio chatbot, a Streamlit app, etc.). List the available templates with [list_space_templates()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_space_templates), then pass a template's `repo_id` (or its short `name`) as `space_template` to [create_repo()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo). Note that `space_sdk` is still required: the template seeds the files while the SDK sets the card metadata.
+Instead of starting from an empty Space, you can seed a new Space from one of the official templates offered on the Hub (e.g. JupyterLab, a Gradio chatbot, a Streamlit app, etc.). List the available templates with [list_space_templates()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.list_space_templates), then pass a template's `repo_id` (or its short `name`) as `space_template` to [create_repo()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo). Note that `space_sdk` is still required: the template seeds the files while the SDK sets the card metadata.
 
 ```py
 >>> from huggingface_hub import HfApi
@@ -86,7 +89,7 @@ Livebook        livebook-dev/livebook                          docker
 ### Duplicate a Space
 
 This can prove useful if you want to build up from an existing Space instead of starting from scratch.
-It is also useful is you want control over the configuration/settings of a public Space. See [duplicate_repo()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.duplicate_repo) for more details.
+It is also useful is you want control over the configuration/settings of a public Space. See [duplicate_repo()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.duplicate_repo) for more details.
 
 ```py
 >>> api.duplicate_repo("multimodalart/dreambooth-training", repo_type="space")
@@ -100,8 +103,7 @@ Here is an example to upload the local folder `src/` from your machine to your S
 >>> api.upload_folder(repo_id=repo_id, repo_type="space", folder_path="src/")
 ```
 
-At this step, your app should already be running on the Hub for free !
-However, you might want to configure it further with secrets and upgraded hardware.
+At this step, your app should already be running on the Hub! However, you might want to configure it further with secrets and upgraded hardware.
 
 ### Configure secrets and variables
 
@@ -161,9 +163,7 @@ Secrets and variables can be set when creating or duplicating a space:
 
 ### Configure the hardware
 
-By default, your Space will run on a CPU environment for free. You can upgrade the hardware
-to run it on GPUs. A payment card or a community grant is required to access upgrade your
-Space. See [docs](https://huggingface.co/docs/hub/spaces-gpus) for more details.
+By default, your Space runs on the free `cpu-basic` hardware (which requires a subscription for Gradio and Docker Spaces, see above). You can upgrade the hardware to run it on GPUs. A payment method and prepaid credits (or a community grant) are required to upgrade your Space. See [docs](https://huggingface.co/docs/hub/spaces-gpus) for more details.
 
 ```py
 # Use `SpaceHardware` enum
@@ -188,8 +188,7 @@ has been met.
 "t4-medium"
 ```
 
-You now have a Space fully configured. Make sure to downgrade your Space back to "cpu-classic"
-when you are done using it.
+You now have a Space fully configured. Make sure to downgrade your Space back to `cpu-basic` when you are done using it.
 
 **Bonus: request hardware when creating or duplicating the Space!**
 
@@ -213,11 +212,27 @@ Upgraded hardware will be automatically assigned to your Space once it's built.
 ... )
 ```
 
+### Track your ZeroGPU quota
+
+[ZeroGPU](https://huggingface.co/docs/hub/spaces-zerogpu) Spaces run on shared GPUs allocated on demand. Each time you use a ZeroGPU Space (from the UI or through its API), some GPU time is deducted from your personal quota, which is reset periodically. If you are building an app, an agent or an MCP server on top of ZeroGPU Spaces, you can track your usage with [get_zero_gpu_quota()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.get_zero_gpu_quota). Values are expressed in GPU-seconds.
+
+```py
+>>> quota = api.get_zero_gpu_quota()
+>>> quota
+ZeroGpuQuota(base=2400, remaining=1810, resets_at=datetime.datetime(2026, 9, 30, 9, 12, 3, tzinfo=datetime.timezone.utc), overquota_used=0)
+>>> if quota.remaining < 60:
+...     print(f"Less than 1 minute of ZeroGPU left. Quota resets at {quota.resets_at}.")
+```
+
+`resets_at` is `None` if you haven't used ZeroGPU since the last reset. If you use a fine-grained token, it must have the "Billing > Read billing usage and payment method status" permission. The same information is available from the CLI with `hf spaces zero-gpu quota`.
+
+Once the quota is exhausted, PRO, Team and Enterprise users can keep using ZeroGPU Spaces by consuming pre-paid credits. You can purchase credits from your [billing settings](https://huggingface.co/settings/billing?add-credits=true). See [Extending quota with credits](https://huggingface.co/docs/hub/spaces-zerogpu#extending-quota-with-credits) for more details.
+
 ### Pause and restart your Space
 
 By default if your Space is running on an upgraded hardware, it will never be stopped. However to avoid getting billed,
-you might want to pause it when you are not using it. This is possible using [pause_space()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_space). A paused Space will be
-inactive until the owner of the Space restarts it, either with the UI or via API using [restart_space()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.restart_space).
+you might want to pause it when you are not using it. This is possible using [pause_space()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.pause_space). A paused Space will be
+inactive until the owner of the Space restarts it, either with the UI or via API using [restart_space()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.restart_space).
 For more details about paused mode, please refer to [this section](https://huggingface.co/docs/hub/spaces-gpus#pause)
 
 ```py
@@ -230,7 +245,7 @@ For more details about paused mode, please refer to [this section](https://huggi
 
 Another possibility is to set a timeout for your Space. If your Space is inactive for more than the timeout duration,
 it will go to sleep. Any visitor landing on your Space will start it back up. You can set a timeout using
-[set_space_sleep_time()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.set_space_sleep_time). For more details about sleeping mode, please refer to [this section](https://huggingface.co/docs/hub/spaces-gpus#sleep-time).
+[set_space_sleep_time()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.set_space_sleep_time). For more details about sleeping mode, please refer to [this section](https://huggingface.co/docs/hub/spaces-gpus#sleep-time).
 
 ```py
 # Put your Space to sleep after 1h of inactivity
@@ -270,7 +285,7 @@ Upgraded hardware will be automatically assigned to your Space once it's built.
 
 ### Debug a failing Space by reading its logs
 
-When a Space fails to build or crashes at runtime, the logs you normally view in the browser are also available programmatically via [fetch_space_logs()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_space_logs). This is particularly useful from scripts or agentic workflows where opening a browser is not an option.
+When a Space fails to build or crashes at runtime, the logs you normally view in the browser are also available programmatically via [fetch_space_logs()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_space_logs). This is particularly useful from scripts or agentic workflows where opening a browser is not an option.
 
 ```py
 # Drain the currently available run logs and return immediately (like `docker logs`)
@@ -321,6 +336,12 @@ You can also enable Dev Mode without SSH using `hf spaces dev-mode`, which print
 hf spaces dev-mode username/my-space
 ```
 
+Enabling Dev Mode requires a PRO or Team & Enterprise plan. Disabling it is always allowed, for example if your subscription has expired while Dev Mode was on:
+
+```bash
+hf spaces dev-mode username/my-space --stop
+```
+
 ### Mount volumes in your Space
 
 You can mount Hub resources (models, datasets, or storage buckets) as volumes in your Space's container. This gives your Space direct filesystem access to these resources without having to download them in your code. Volumes can be set directly when creating or duplicating a Space:
@@ -356,7 +377,7 @@ You can check which volumes are currently mounted via the Space runtime:
 [Volume(type='model', source='username/my-model', mount_path='/models', read_only=True), ...]
 ```
 
-If you need to update volumes on an existing Space, use [set_space_volumes()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.set_space_volumes). Note that this replaces all previously mounted volumes.
+If you need to update volumes on an existing Space, use [set_space_volumes()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.set_space_volumes). Note that this replaces all previously mounted volumes.
 
 ```py
 >>> api.set_space_volumes(
@@ -421,9 +442,7 @@ we will see one solution using a Dataset as "task scheduler".
 
 ### App skeleton
 
-Here is what your app would look like. On startup, check if a task is scheduled and if yes,
-run it on the correct hardware. Once done, set back hardware to the free-plan CPU and
-prompt the user for a new task.
+Here is what your app would look like. On startup, check if a task is scheduled and if yes, run it on the correct hardware. Once done, set back hardware to the free `cpu-basic` CPU and prompt the user for a new task.
 
 > [!WARNING]
 > Such a workflow does not support concurrent access as normal demos.
@@ -523,4 +542,4 @@ def mark_as_done(task):
 ```
 
 ### Search the Hub
-https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/search.md
+https://huggingface.co/docs/huggingface_hub/v2.1.1/guides/search.md

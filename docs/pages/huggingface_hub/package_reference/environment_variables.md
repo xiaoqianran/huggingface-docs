@@ -39,7 +39,7 @@ Defaults to `"$HF_HOME/hub"` (e.g. `"~/.cache/huggingface/hub"` by default).
 
 ### HF_XET_CACHE
 
-To configure where Xet chunks (byte ranges from files managed by Xet backend) are cached locally.
+To configure where Xet stores its shard cache and upload staging data locally. See [Xet caching](../guides/manage-cache#xet-caching) for more details.
 
 Defaults to `"$HF_HOME/xet"` (e.g. `"~/.cache/huggingface/xet"` by default).
 
@@ -89,9 +89,7 @@ Integer value to define the number of seconds to wait for server response when d
 
 ### HF_XET_CHUNK_CACHE_SIZE_BYTES
 
-To set the size of the Xet chunk cache locally. By default, the chunk cache is disabled. The chunk cache can be beneficial if you are generating new revisions to existing models or datasets as this is used to cache terms/chunks that are fetched from S3. A larger cache can better take advantage of deduplication across repos & files. To enable the chunk cache set the environment variable to a large number (10GB) or greater. However, in most cases when downloading or uploading new data, disabling the chunk cache will have better performance, which is why it is disabled by default.
-
-Defaults to `0` (0 bytes, means chunk cache is disabled).
+This variable no longer has any effect. `hf_xet` no longer uses a local chunk cache for downloads, and setting this variable does not enable one. See [xet-core#715](https://github.com/huggingface/xet-core/issues/715) for details.
 
 ### HF_XET_SHARD_CACHE_SIZE_LIMIT
 
@@ -101,9 +99,7 @@ Defaults to `16000000000` (16GB).
 
 ### HF_XET_NUM_CONCURRENT_RANGE_GETS
 
-To set the number of concurrent terms (range of bytes from within a xorb, often called a chunk) downloaded from S3 per file. Increasing this will help with the speed of downloading a file if there is network bandwidth available. 
-
-Defaults to `16`.
+This variable is no longer used. Since `hf_xet` 1.3.0, download concurrency is controlled adaptively.
 
 ## Boolean values
 
@@ -119,11 +115,11 @@ If set, the log level for the `huggingface_hub` logger is set to DEBUG. Addition
 
 If set, no HTTP calls will be made to the Hugging Face Hub. If you try to download files, only the cached files will be accessed. If no cache file is detected, an error is raised This is useful in case your network is slow and you don't care about having the latest version of a file.
 
-If `HF_HUB_OFFLINE=1` is set as environment variable and you call any method of [HfApi](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi), an [OfflineModeIsEnabled](/docs/huggingface_hub/v2.0.0/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled) exception will be raised.
+If `HF_HUB_OFFLINE=1` is set as environment variable and you call any method of [HfApi](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi), an [OfflineModeIsEnabled](/docs/huggingface_hub/v2.1.1/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled) exception will be raised.
 
 **Note:** even if the latest version of a file is cached, calling `hf_hub_download` still triggers a HTTP request to check that a new version is not available. Setting `HF_HUB_OFFLINE=1` will skip this call which speeds up your loading time.
 
-If you want to check if offline mode is enabled or not, you can use the [is_offline_mode()](/docs/huggingface_hub/v2.0.0/en/package_reference/utilities#huggingface_hub.is_offline_mode) helper.
+If you want to check if offline mode is enabled or not, you can use the [is_offline_mode()](/docs/huggingface_hub/v2.1.1/en/package_reference/utilities#huggingface_hub.is_offline_mode) helper.
 
 ### HF_HUB_DISABLE_IMPLICIT_TOKEN
 
@@ -245,4 +241,4 @@ If `HF_HOME` is not set, the default home will be `"$XDG_CACHE_HOME/huggingface"
 of `"~/.cache/huggingface"`.
 
 ### HfApi Client
-https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/hf_api.md
+https://huggingface.co/docs/huggingface_hub/v2.1.1/package_reference/hf_api.md

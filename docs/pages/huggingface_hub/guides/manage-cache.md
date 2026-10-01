@@ -1,6 +1,6 @@
 # Understand caching
 
-`huggingface_hub` utilizes the local disk as two caches, which avoid re-downloading items again. The first cache is a file-based cache, which caches individual files downloaded from the Hub and ensures that the same file is not downloaded again when a repo gets updated. The second cache is a chunk cache, where each chunk represents a byte range from a file and ensures that chunks that are shared across files are only downloaded once.
+`huggingface_hub` uses a local file-based cache to store individual files downloaded from the Hub and avoid downloading unchanged files again when a repo gets updated. In addition, `hf_xet` stores a shard cache and staging data to optimize uploads (see [Xet caching](#xet-caching)).
 
 > [!TIP]
 > This guide covers the Python-specific cache management tools provided by `huggingface_hub`. For a language-agnostic overview of how the Hugging Face Hub cache system works, see the [Hub documentation on local caching](https://huggingface.co/docs/hub/local-cache).
@@ -98,11 +98,11 @@ The `trees` folder caches the list of files that a repository contains at a give
 
 Each cached list is named after a commit hash and stored as a JSON file, for example `trees/aaaaaa.json`. For every file in the repository at that commit, it records what is needed to download the file: its path, its size and its hash. This is the same information the Hub would otherwise return, but it normally costs one network call per file to fetch it.
 
-This cache is written by [snapshot_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.snapshot_download). The first time you download a commit, the file list is fetched once and saved here. The next time you download the same commit, the list is read from disk instead of being fetched again. As a result, re-running a download when everything is already cached costs a single network call: the one needed to resolve the branch or tag name into a commit hash.
+This cache is written by [snapshot_download()](/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.snapshot_download). The first time you download a commit, the file list is fetched once and saved here. The next time you download the same commit, the list is read from disk instead of being fetched again. As a result, re-running a download when everything is already cached costs a single network call: the one needed to resolve the branch or tag name into a commit hash.
 
-Both [snapshot_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.snapshot_download) and [hf_hub_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) read this cache to avoid network calls. When you download a file with a commit hash as revision (this is exactly what [snapshot_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.snapshot_download) does internally for every file), the download metadata is read from the cached file list and the per-file network call is skipped. This means a [hf_hub_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) for a single file also benefits from a file list that an earlier [snapshot_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.snapshot_download) saved for the same commit.
+Both [snapshot_download()](/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.snapshot_download) and [hf_hub_download()](/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.hf_hub_download) read this cache to avoid network calls. When you download a file with a commit hash as revision (this is exactly what [snapshot_download()](/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.snapshot_download) does internally for every file), the download metadata is read from the cached file list and the per-file network call is skipped. This means a [hf_hub_download()](/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.hf_hub_download) for a single file also benefits from a file list that an earlier [snapshot_download()](/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.snapshot_download) saved for the same commit.
 
-Because the cached file list describes exactly what a commit should contain, [snapshot_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.snapshot_download) can also tell whether a local snapshot is complete. If the Hub cannot be reached (you are offline, the connection fails, or you passed `local_files_only=True`) and some expected files are missing from the local snapshot, [snapshot_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.snapshot_download) raises [IncompleteSnapshotError](/docs/huggingface_hub/v2.0.0/en/package_reference/utilities#huggingface_hub.errors.IncompleteSnapshotError) instead of returning a partial folder. Before this, an incomplete snapshot was returned silently, which could leave you working with missing files without knowing it. Files excluded by `allow_patterns` or `ignore_patterns` are not counted as missing. The exception exposes the path to the incomplete snapshot via its `snapshot_path` attribute, so you can still locate the partially cached files if needed.
+Because the cached file list describes exactly what a commit should contain, [snapshot_download()](/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.snapshot_download) can also tell whether a local snapshot is complete. If the Hub cannot be reached (you are offline, the connection fails, or you passed `local_files_only=True`) and some expected files are missing from the local snapshot, [snapshot_download()](/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.snapshot_download) raises [IncompleteSnapshotError](/docs/huggingface_hub/v2.1.1/en/package_reference/utilities#huggingface_hub.errors.IncompleteSnapshotError) instead of returning a partial folder. Before this, an incomplete snapshot was returned silently, which could leave you working with missing files without knowing it. Files excluded by `allow_patterns` or `ignore_patterns` are not counted as missing. The exception exposes the path to the incomplete snapshot via its `snapshot_path` attribute, so you can still locate the partially cached files if needed.
 
 ### .no_exist (advanced)
 
@@ -125,7 +125,7 @@ This is for example the case in `transformers` where each tokenizer can support 
 The first time you load the tokenizer on your machine, it will cache which optional files exist (and
 which doesn't) to make the loading time faster for the next initializations.
 
-To test if a file is cached locally (without making any HTTP request), you can use the [try_to_load_from_cache()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.try_to_load_from_cache)
+To test if a file is cached locally (without making any HTTP request), you can use the [try_to_load_from_cache()](/docs/huggingface_hub/v2.1.1/en/package_reference/cache#huggingface_hub.try_to_load_from_cache)
 helper. It will either return the filepath (if exists and cached), the object `_CACHED_NO_EXIST` (if non-existence
 is cached) or `None` (if we don't know).
 
@@ -217,11 +217,11 @@ The store requires the symlink-based cache layout and is disabled by `HF_HUB_DIS
 ## Pin a revision (advanced)
 
 > [!TIP]
-> If you are integrating the Hub in an ML library, a single [snapshot_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.snapshot_download) call is still the recommended approach: it resolves the revision once, downloads everything in parallel and caches the file listing. What follows is only useful for complex libraries that download and load many components separately (config, weights, tokenizer, processor, adapters, ...) and cannot use a single call.
+> If you are integrating the Hub in an ML library, a single [snapshot_download()](/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.snapshot_download) call is still the recommended approach: it resolves the revision once, downloads everything in parallel and caches the file listing. What follows is only useful for complex libraries that download and load many components separately (config, weights, tokenizer, processor, adapters, ...) and cannot use a single call.
 
 When a library downloads several files one by one, each call has to resolve `revision="main"` into a commit hash again. This costs one HTTP call per file and, worse, two calls made a few seconds apart can land on two different commits if the repo is updated in between.
 
-[HfApi.resolve_revision()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision) resolves the revision once and returns a [ResolvedRevision](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision):
+[HfApi.resolve_revision()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision) resolves the revision once and returns a [ResolvedRevision](/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.ResolvedRevision):
 
 ```py
 >>> from huggingface_hub import resolve_revision
@@ -230,7 +230,7 @@ When a library downloads several files one by one, each call has to resolve `rev
 ResolvedRevision(initial=None, resolved='607a30d783dfa663caf39e06633721c8d4cfcd7e')
 ```
 
-[ResolvedRevision](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision) is a `str` subclass, so it can be passed to any `huggingface_hub` method taking a `revision` argument. Its string value is what the user initially requested (`"main"` here, hence readable error messages), while `.resolved` holds the commit hash:
+[ResolvedRevision](/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.ResolvedRevision) is a `str` subclass, so it can be passed to any `huggingface_hub` method taking a `revision` argument. Its string value is what the user initially requested (`"main"` here, hence readable error messages), while `.resolved` holds the commit hash:
 
 ```py
 >>> revision == "main"
@@ -239,7 +239,7 @@ True
 '607a30d783dfa663caf39e06633721c8d4cfcd7e'
 ```
 
-Download helpers ([hf_hub_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.hf_hub_download), [snapshot_download()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.snapshot_download), [get_cached_repo_tree()](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.get_cached_repo_tree)) detect a [ResolvedRevision](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision) and use the commit hash directly. Every file is guaranteed to come from the same commit, and once the files are cached no HTTP call is needed at all:
+Download helpers ([hf_hub_download()](/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.hf_hub_download), [snapshot_download()](/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.snapshot_download), [get_cached_repo_tree()](/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.get_cached_repo_tree)) detect a [ResolvedRevision](/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.ResolvedRevision) and use the commit hash directly. Every file is guaranteed to come from the same commit, and once the files are cached no HTTP call is needed at all:
 
 ```py
 >>> from huggingface_hub import hf_hub_download
@@ -247,9 +247,9 @@ Download helpers ([hf_hub_download()](/docs/huggingface_hub/v2.0.0/en/package_re
 >>> weights = hf_hub_download("openai-community/gpt2", "model.safetensors", revision=revision)
 ```
 
-The `revision` -> `commit hash` mapping is also written to the `refs/` folder of the cache (see [Refs](#refs)). This means that if the Hub cannot be reached later on (offline mode, connection error, timeout, Hub downtime), [HfApi.resolve_revision()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision) transparently falls back to the cached value. If nothing is cached either, a [RevisionResolutionError](/docs/huggingface_hub/v2.0.0/en/package_reference/utilities#huggingface_hub.errors.RevisionResolutionError) is raised.
+The `revision` -> `commit hash` mapping is also written to the `refs/` folder of the cache (see [Refs](#refs)). This means that if the Hub cannot be reached later on (offline mode, connection error, timeout, Hub downtime), [HfApi.resolve_revision()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision) transparently falls back to the cached value. If nothing is cached either, a [RevisionResolutionError](/docs/huggingface_hub/v2.1.1/en/package_reference/utilities#huggingface_hub.errors.RevisionResolutionError) is raised.
 
-A commit hash only means something for the repo it was resolved against, and download helpers use it as is. So a [ResolvedRevision](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision) must only be passed to the repo it was resolved for. If a library also downloads from another repo (a base model, an adapter, a component living in its own repo, ...), it needs a revision resolved for that repo. Just pass the [ResolvedRevision](/docs/huggingface_hub/v2.0.0/en/package_reference/file_download#huggingface_hub.ResolvedRevision) back to [HfApi.resolve_revision()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision): it remembers which repo it belongs to and resolves the revision initially requested (`"main"` here) again for the new repo.
+A commit hash only means something for the repo it was resolved against, and download helpers use it as is. So a [ResolvedRevision](/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.ResolvedRevision) must only be passed to the repo it was resolved for. If a library also downloads from another repo (a base model, an adapter, a component living in its own repo, ...), it needs a revision resolved for that repo. Just pass the [ResolvedRevision](/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.ResolvedRevision) back to [HfApi.resolve_revision()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision): it remembers which repo it belongs to and resolves the revision initially requested (`"main"` here) again for the new repo.
 
 ```py
 >>> other_revision = resolve_revision("openai-community/gpt2-medium", revision=revision)  # resolves "main" again
@@ -258,70 +258,48 @@ A commit hash only means something for the repo it was resolved against, and dow
 >>> config = hf_hub_download("openai-community/gpt2-medium", "config.json", revision=other_revision)
 ```
 
-## Chunk-based caching (Xet)
+## Xet caching
 
-To provide more efficient file transfers, `hf_xet` adds a `xet` directory to the existing `huggingface_hub` cache, creating additional caching layer to enable chunk-based deduplication. This cache holds chunks (immutable byte ranges of files ~64KB in size) and shards (a data structure that maps files to chunks). For more information on the Xet Storage system, see this [section](https://huggingface.co/docs/hub/xet/index).
+To provide more efficient uploads, `hf_xet` adds a `xet` directory to the existing `huggingface_hub` cache. It stores shards (a data structure that maps files to chunks) and staging data used for upload deduplication and resumption. For more information on the Xet Storage system, see this [section](https://huggingface.co/docs/hub/xet/index).
 
-The `xet` directory, located at `~/.cache/huggingface/xet` by default, contains two caches, utilized for uploads and downloads. It has the following structure:
+`hf_xet` no longer uses a local chunk cache for downloads. Setting `HF_XET_CHUNK_CACHE_SIZE_BYTES` does not enable one. Downloaded files are still cached in the [file-based cache](#file-based-caching).
+
+The `xet` directory, located at `~/.cache/huggingface/xet` by default, can be configured with [`HF_XET_CACHE`](../package_reference/environment_variables#hfxetcache). It has the following structure:
 
 ```bash
 <CACHE_DIR>
 ├─ xet
 │  ├─ environment_identifier
-│  │  ├─ chunk_cache
-│  │  ├─ shard_cache
+│  │  ├─ shard-cache
 │  │  ├─ staging
 ```
 
 The `environment_identifier` directory is an encoded string (it may appear on your machine as `https___cas_serv-tGqkUaZf_CBPHQ6h`). This is used during development allowing for local and production versions of the cache to exist alongside each other simultaneously. It is also used when downloading from repositories that reside in different [storage regions](https://huggingface.co/docs/hub/storage-regions). You may see multiple such entries in the `xet` directory, each corresponding to a different environment, but their internal structure is the same. 
 
 The internal directories serve the following purposes:
-* `chunk-cache` contains cached data chunks that are used to speed up downloads.
 * `shard-cache` contains cached shards that are utilized on the upload path. 
 * `staging` is a workspace designed to support resumable uploads.
 
 These are documented below.
 
-Note that the `xet` caching system, like the rest of `hf_xet` is fully integrated with `huggingface_hub`.  If you use the existing APIs for interacting with cached assets, there is no need to update your workflow. The `xet` caches are built as an optimization layer on top of the existing `hf_xet` chunk-based deduplication and `huggingface_hub` cache system. 
+The shard cache and staging data are managed by `hf_xet` as an optimization layer for uploads. To manage downloaded files, use the `huggingface_hub` file-based cache APIs.
 
-### `chunk_cache`
-
-This cache is used on the download path. The cache directory structure is based on a base-64 encoded hash from the content-addressed store (CAS) that backs each Xet-enabled repository. A CAS hash serves as the key to lookup the offsets of where the data is stored. Note: as of `hf_xet` 1.2.0 the chunk_cache is disabled by default. To enable it, set the `HF_XET_CHUNK_CACHE_SIZE_BYTES` environment variable to the appropriate size prior to launching the Python process.
-
-At the topmost level, the first two letters of the base 64 encoded CAS hash are used to create a subdirectory in the `chunk_cache` (keys that share these first two letters are grouped here).  The inner levels are comprised of subdirectories with the full key as the directory name. At the base are the cache items which are ranges of blocks that contain the cached chunks.
-
-```bash
-<CACHE_DIR>
-├─ xet
-│  ├─ chunk_cache
-│  │  ├─ A1
-│  │  │  ├─ A1GerURLUcISVivdseeoY1PnYifYkOaCCJ7V5Q9fjgxkZWZhdWx0
-│  │  │  │  ├─ AAAAAAEAAAA5DQAAAAAAAIhRLjDI3SS5jYs4ysNKZiJy9XFI8CN7Ww0UyEA9KPD9
-│  │  │  │  ├─ AQAAAAIAAABzngAAAAAAAPNqPjd5Zby5aBvabF7Z1itCx0ryMwoCnuQcDwq79jlB
-
-```
-
-When requesting a file, the first thing `hf_xet` does is communicate with Xet storage’s content addressed store (CAS) for reconstruction information. The reconstruction information contains information about the CAS keys required to download the file in its entirety. 
-
-Before executing the requests for the CAS keys, the `chunk_cache` is consulted. If a key in the cache matches a CAS key, then there is no reason to issue a request for that content. `hf_xet` uses the chunks stored in the directory instead.
-
-As the `chunk_cache` is purely an optimization, not a guarantee, `hf_xet` utilizes a computationally efficient eviction policy. When the `chunk_cache` is full (see `Limits and Limitations` below), `hf_xet` implements a random eviction policy when selecting an eviction candidate. This significantly reduces the overhead of managing a robust caching system (e.g., LRU) while still providing most of the benefits of caching chunks. 
-
-### `shard_cache`
+### `shard-cache`
 
 This cache is used when uploading content to the Hub. The directory is flat, comprising only of shard files, each using an ID for the shard name. 
 
 ```sh
 <CACHE_DIR>
 ├─ xet
-│  ├─ shard_cache
-│  │  ├─ 1fe4ffd5cf0c3375f1ef9aec5016cf773ccc5ca294293d3f92d92771dacfc15d.mdb
-│  │  ├─ 906ee184dc1cd0615164a89ed64e8147b3fdccd1163d80d794c66814b3b09992.mdb
-│  │  ├─ ceeeb7ea4cf6c0a8d395a2cf9c08871211fbbd17b9b5dc1005811845307e6b8f.mdb
-│  │  ├─ e8535155b1b11ebd894c908e91a1e14e3461dddd1392695ddc90ae54a548d8b2.mdb
+│  ├─ environment_identifier
+│  │  ├─ shard-cache
+│  │  │  ├─ 1fe4ffd5cf0c3375f1ef9aec5016cf773ccc5ca294293d3f92d92771dacfc15d.mdb
+│  │  │  ├─ 906ee184dc1cd0615164a89ed64e8147b3fdccd1163d80d794c66814b3b09992.mdb
+│  │  │  ├─ ceeeb7ea4cf6c0a8d395a2cf9c08871211fbbd17b9b5dc1005811845307e6b8f.mdb
+│  │  │  ├─ e8535155b1b11ebd894c908e91a1e14e3461dddd1392695ddc90ae54a548d8b2.mdb
 ```
 
-The `shard_cache` contains shards that are: 
+The `shard-cache` contains shards that are:
 
 - Locally generated and successfully uploaded to the CAS
 - Downloaded from CAS as part of the global deduplication algorithm
@@ -339,11 +317,12 @@ So that you do not have to restart from the beginning, the `staging` directory a
 ```
 <CACHE_DIR>
 ├─ xet
-│  ├─ staging
-│  │  ├─ shard-session
-│  │  │  ├─ 906ee184dc1cd0615164a89ed64e8147b3fdccd1163d80d794c66814b3b09992.mdb
-│  │  │  ├─ xorb-metadata
-│  │  │  │  ├─ 1fe4ffd5cf0c3375f1ef9aec5016cf773ccc5ca294293d3f92d92771dacfc15d.mdb
+│  ├─ environment_identifier
+│  │  ├─ staging
+│  │  │  ├─ shard-session
+│  │  │  │  ├─ 906ee184dc1cd0615164a89ed64e8147b3fdccd1163d80d794c66814b3b09992.mdb
+│  │  │  │  ├─ xorb-metadata
+│  │  │  │  │  ├─ 1fe4ffd5cf0c3375f1ef9aec5016cf773ccc5ca294293d3f92d92771dacfc15d.mdb
 ```
 
 As files are processed and chunks successfully uploaded, their metadata is stored in `xorb-metadata` as a shard. Upon resuming an upload session, each file is processed again and the shards in this directory are consulted. Any content that was successfully uploaded is skipped, and any new content is uploaded (and its metadata saved). 
@@ -352,32 +331,28 @@ Meanwhile, `shard-session` stores file and chunk information for processed files
 
 ### Limits and Limitations
 
-The `chunk_cache` is limited to 10GB in size while the `shard_cache` has a soft limit of 4GB.  By design, both caches are without high-level APIs, although their size is configurable through the `HF_XET_CHUNK_CACHE_SIZE_BYTES` and `HF_XET_SHARD_CACHE_SIZE_LIMIT` environment variables. 
+The `shard-cache` has a soft limit of 16GB, configurable through the [`HF_XET_SHARD_CACHE_SIZE_LIMIT`](../package_reference/environment_variables#hfxetshardcachesizelimit) environment variable. There is no high-level API for managing this cache.
 
-These caches are used primarily to facilitate the reconstruction (download) or upload of a file. To interact with the assets themselves, it’s recommended that you use the [`huggingface_hub` cache system APIs](https://huggingface.co/docs/huggingface_hub/guides/manage-cache).
+The shard cache and staging data are used to optimize uploads. To interact with the assets themselves, it’s recommended that you use the [`huggingface_hub` cache system APIs](https://huggingface.co/docs/huggingface_hub/guides/manage-cache).
 
-If you need to reclaim the space utilized by either cache or need to debug any potential cache-related issues, simply remove the `xet` cache entirely by running `rm -rf ~/<cache_dir>/xet` where `<cache_dir>` is the location of your Hugging Face cache, typically `~/.cache/huggingface` 
+If you need to reclaim the space utilized by Xet or need to debug any potential cache-related issues, simply remove the `xet` cache entirely by running `rm -rf ~/<cache_dir>/xet` where `<cache_dir>` is the location of your Hugging Face cache, typically `~/.cache/huggingface`
 
-Example full `xet`cache directory tree:
+Example `xet` cache directory tree:
 
 ```sh
 <CACHE_DIR>
 ├─ xet
-│  ├─ chunk_cache
-│  │  ├─ L1
-│  │  │  ├─ L1GerURLUcISVivdseeoY1PnYifYkOaCCJ7V5Q9fjgxkZWZhdWx0
-│  │  │  │  ├─ AAAAAAEAAAA5DQAAAAAAAIhRLjDI3SS5jYs4ysNKZiJy9XFI8CN7Ww0UyEA9KPD9
-│  │  │  │  ├─ AQAAAAIAAABzngAAAAAAAPNqPjd5Zby5aBvabF7Z1itCx0ryMwoCnuQcDwq79jlB
-│  ├─ shard_cache
-│  │  ├─ 1fe4ffd5cf0c3375f1ef9aec5016cf773ccc5ca294293d3f92d92771dacfc15d.mdb
-│  │  ├─ 906ee184dc1cd0615164a89ed64e8147b3fdccd1163d80d794c66814b3b09992.mdb
-│  │  ├─ ceeeb7ea4cf6c0a8d395a2cf9c08871211fbbd17b9b5dc1005811845307e6b8f.mdb
-│  │  ├─ e8535155b1b11ebd894c908e91a1e14e3461dddd1392695ddc90ae54a548d8b2.mdb
-│  ├─ staging
-│  │  ├─ shard-session
+│  ├─ environment_identifier
+│  │  ├─ shard-cache
+│  │  │  ├─ 1fe4ffd5cf0c3375f1ef9aec5016cf773ccc5ca294293d3f92d92771dacfc15d.mdb
 │  │  │  ├─ 906ee184dc1cd0615164a89ed64e8147b3fdccd1163d80d794c66814b3b09992.mdb
-│  │  │  ├─ xorb-metadata
-│  │  │  │  ├─ 1fe4ffd5cf0c3375f1ef9aec5016cf773ccc5ca294293d3f92d92771dacfc15d.mdb
+│  │  │  ├─ ceeeb7ea4cf6c0a8d395a2cf9c08871211fbbd17b9b5dc1005811845307e6b8f.mdb
+│  │  │  ├─ e8535155b1b11ebd894c908e91a1e14e3461dddd1392695ddc90ae54a548d8b2.mdb
+│  │  ├─ staging
+│  │  │  ├─ shard-session
+│  │  │  │  ├─ 906ee184dc1cd0615164a89ed64e8147b3fdccd1163d80d794c66814b3b09992.mdb
+│  │  │  │  ├─ xorb-metadata
+│  │  │  │  │  ├─ 1fe4ffd5cf0c3375f1ef9aec5016cf773ccc5ca294293d3f92d92771dacfc15d.mdb
 ```
 
 To learn more about Xet Storage, see this [section](https://huggingface.co/docs/hub/xet/index).
@@ -387,7 +362,7 @@ To learn more about Xet Storage, see this [section](https://huggingface.co/docs/
 In addition to caching files from the Hub, downstream libraries often requires to cache
 other files related to HF but not handled directly by `huggingface_hub` (example: file
 downloaded from GitHub, preprocessed data, logs,...). In order to cache those files,
-called `assets`, one can use [cached_assets_path()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.cached_assets_path). This small helper generates paths
+called `assets`, one can use [cached_assets_path()](/docs/huggingface_hub/v2.1.1/en/package_reference/cache#huggingface_hub.cached_assets_path). This small helper generates paths
 in the HF cache in a unified way based on the name of the library requesting it and
 optionally on a namespace and a subfolder name. The goal is to let every downstream
 libraries manage its assets its own way (e.g. no rule on the structure) as long as it
@@ -403,7 +378,7 @@ something_path = assets_path / "something.json" # Do anything you like in your a
 ```
 
 > [!TIP]
-> [cached_assets_path()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.cached_assets_path) is the recommended way to store assets but is not mandatory. If
+> [cached_assets_path()](/docs/huggingface_hub/v2.1.1/en/package_reference/cache#huggingface_hub.cached_assets_path) is the recommended way to store assets but is not mandatory. If
 > your library already uses its own cache, feel free to use it!
 
 ### Assets in practice
@@ -502,15 +477,15 @@ model/t5-small                       8f3ad1c90fed7a62    820.1M 2 weeks ago   re
 
 **Inspect cache from Python**
 
-For a more advanced usage, use [scan_cache_dir()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.scan_cache_dir) which is the python utility called by
+For a more advanced usage, use [scan_cache_dir()](/docs/huggingface_hub/v2.1.1/en/package_reference/cache#huggingface_hub.scan_cache_dir) which is the python utility called by
 the CLI tool.
 
 You can use it to get a detailed report structured around 4 dataclasses:
 
-- [HFCacheInfo](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.HFCacheInfo): complete report returned by [scan_cache_dir()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.scan_cache_dir)
-- [CachedRepoInfo](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.CachedRepoInfo): information about a cached repo
-- [CachedRevisionInfo](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.CachedRevisionInfo): information about a cached revision (e.g. "snapshot") inside a repo
-- [CachedFileInfo](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.CachedFileInfo): information about a cached file in a snapshot
+- [HFCacheInfo](/docs/huggingface_hub/v2.1.1/en/package_reference/cache#huggingface_hub.HFCacheInfo): complete report returned by [scan_cache_dir()](/docs/huggingface_hub/v2.1.1/en/package_reference/cache#huggingface_hub.scan_cache_dir)
+- [CachedRepoInfo](/docs/huggingface_hub/v2.1.1/en/package_reference/cache#huggingface_hub.CachedRepoInfo): information about a cached repo
+- [CachedRevisionInfo](/docs/huggingface_hub/v2.1.1/en/package_reference/cache#huggingface_hub.CachedRevisionInfo): information about a cached revision (e.g. "snapshot") inside a repo
+- [CachedFileInfo](/docs/huggingface_hub/v2.1.1/en/package_reference/cache#huggingface_hub.CachedFileInfo): information about a cached file in a snapshot
 
 Here is a simple usage example. See reference for details.
 
@@ -588,15 +563,15 @@ Verify a specific cached revision:
 Scanning your cache is interesting but what you really want to do next is usually to
 delete some portions to free up some space on your drive. This is possible using the
 `hf cache rm` and `hf cache prune` CLI commands. One can also programmatically use the
-[delete_revisions()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_revisions) and [delete_files()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_files) helpers from the
-[HFCacheInfo](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.HFCacheInfo) object returned when scanning the cache.
+[delete_revisions()](/docs/huggingface_hub/v2.1.1/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_revisions) and [delete_files()](/docs/huggingface_hub/v2.1.1/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_files) helpers from the
+[HFCacheInfo](/docs/huggingface_hub/v2.1.1/en/package_reference/cache#huggingface_hub.HFCacheInfo) object returned when scanning the cache.
 
 **Delete strategy**
 
 To delete some cache, you need to pass a list of revisions to delete. The tool will
 define a strategy to free up the space based on this list. It returns a
-[DeleteCacheStrategy](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) object that describes which files and folders will be deleted.
-The [DeleteCacheStrategy](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) allows give you how much space is expected to be freed.
+[DeleteCacheStrategy](/docs/huggingface_hub/v2.1.1/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) object that describes which files and folders will be deleted.
+The [DeleteCacheStrategy](/docs/huggingface_hub/v2.1.1/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) allows give you how much space is expected to be freed.
 Once you agree with the deletion, you must execute it to make the deletion effective. In
 order to avoid discrepancies, you cannot edit a strategy object manually.
 
@@ -607,7 +582,7 @@ The strategy to delete revisions is the following:
 - if a revision is linked to 1 or more `refs`, references are deleted.
 - if all revisions from a repo are deleted, the entire cached repository is deleted.
 
-Deleting individual files with [delete_files()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_files) follows the same logic: the
+Deleting individual files with [delete_files()](/docs/huggingface_hub/v2.1.1/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_files) follows the same logic: the
 snapshot entries are removed, and their blobs are deleted only if no other cached file
 references them. Refs and snapshot folders are kept.
 
@@ -620,7 +595,7 @@ references them. Refs and snapshot folders are kept.
 > If a revision is not found in the cache, it will be silently ignored. Besides, if a file
 > or folder cannot be found while trying to delete it, a warning will be logged but no
 > error is thrown. The deletion continues for other paths contained in the
-> [DeleteCacheStrategy](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) object.
+> [DeleteCacheStrategy](/docs/huggingface_hub/v2.1.1/en/package_reference/cache#huggingface_hub.DeleteCacheStrategy) object.
 
 **Clean cache from the terminal**
 
@@ -699,7 +674,7 @@ and target alternate cache directories as needed.
 
 **Clean cache from Python**
 
-For more flexibility, you can also use the [delete_revisions()](/docs/huggingface_hub/v2.0.0/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_revisions) method
+For more flexibility, you can also use the [delete_revisions()](/docs/huggingface_hub/v2.1.1/en/package_reference/cache#huggingface_hub.HFCacheInfo.delete_revisions) method
 programmatically. Here is a simple example. See reference for details.
 
 ```py
@@ -718,4 +693,4 @@ Cache deletion done. Saved 8.6G.
 ```
 
 ### Create and share Model Cards
-https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/model-cards.md
+https://huggingface.co/docs/huggingface_hub/v2.1.1/guides/model-cards.md

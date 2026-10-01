@@ -10,7 +10,7 @@ This guide assumes you are familiar with the concept of webhooks on the Huggingf
 
 ### Creating a Webhook
 
-To create a new webhook, use [create_webhook()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_webhook) and specify the URL where payloads should be sent, what events should be watched, and optionally set a domain and a secret for security.
+To create a new webhook, use [create_webhook()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.create_webhook) and specify the URL where payloads should be sent, what events should be watched, and optionally set a domain and a secret for security.
 
 ```python
 from huggingface_hub import create_webhook
@@ -40,11 +40,12 @@ webhook = create_webhook(
 ```
 
 The webhook triggers the Job with the webhook payload in the environment variable `WEBHOOK_PAYLOAD`.
+The source Job's secrets are not copied to the webhook. If the triggered Job needs secrets (e.g. `HF_TOKEN`), pass them with `secrets={"HF_TOKEN": "hf_***"}`. With [update_webhook()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.update_webhook), you must pass `job_id` together with `secrets`. Listed secrets replace the stored values, an empty string removes a secret, and all other secrets are kept.
 For more information on Hugging Face Jobs, available hardware (CPU, GPU) and UV scripts, see the [Jobs documentation](./jobs).
 
 ### Listing Webhooks
 
-To see all the webhooks you have configured, you can list them with [list_webhooks()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_webhooks). This is useful to review their IDs, URLs, and statuses.
+To see all the webhooks you have configured, you can list them with [list_webhooks()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.list_webhooks). This is useful to review their IDs, URLs, and statuses.
 
 ```python
 from huggingface_hub import list_webhooks
@@ -57,7 +58,7 @@ for webhook in webhooks:
 
 ### Updating a Webhook
 
-If you need to change the configuration of an existing webhook, such as the URL or the events it watches, you can update it using [update_webhook()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_webhook).
+If you need to change the configuration of an existing webhook, such as the URL or the events it watches, you can update it using [update_webhook()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.update_webhook).
 
 ```python
 from huggingface_hub import update_webhook
@@ -73,7 +74,7 @@ updated_webhook = update_webhook(
 
 ### Enabling and Disabling Webhooks
 
-You might want to temporarily disable a webhook without deleting it. This can be done using [disable_webhook()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.disable_webhook), and the webhook can be re-enabled later with [enable_webhook()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.enable_webhook).
+You might want to temporarily disable a webhook without deleting it. This can be done using [disable_webhook()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.disable_webhook), and the webhook can be re-enabled later with [enable_webhook()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.enable_webhook).
 
 ```python
 from huggingface_hub import enable_webhook, disable_webhook
@@ -89,7 +90,7 @@ print("Disabled:", disabled_webhook)
 
 ### Deleting a Webhook
 
-When a webhook is no longer needed, it can be permanently deleted using [delete_webhook()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_webhook).
+When a webhook is no longer needed, it can be permanently deleted using [delete_webhook()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.delete_webhook).
 
 ```python
 from huggingface_hub import delete_webhook
@@ -115,6 +116,9 @@ All of the above operations are also available from the `hf` command-line interf
 # Create a webhook that triggers a Job
 >>> hf webhooks create --job-id <job_id> --watch user:julien-c
 
+# Create a webhook that triggers a Job with your HF token as a secret
+>>> hf webhooks create --job-id <job_id> --watch bucket:my-org/my-bucket --secrets HF_TOKEN
+
 # Update an existing webhook
 >>> hf webhooks update <webhook_id> --url https://new-url.com/hook
 
@@ -130,7 +134,7 @@ The `--watch` option uses the format `type:name` where type is one of `model`, `
 
 ## Webhooks Server
 
-The base class that we will use in this guides section is [WebhooksServer()](/docs/huggingface_hub/v2.0.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer). It is a class for easily configuring a server that
+The base class that we will use in this guides section is [WebhooksServer()](/docs/huggingface_hub/v2.1.1/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer). It is a class for easily configuring a server that
 can receive webhooks from the Huggingface Hub. The server is based on a [Gradio](https://gradio.app/) app. It has a UI
 to display instructions for you or your users and an API to listen to webhooks.
 
@@ -178,12 +182,12 @@ Go to https://huggingface.co/settings/webhooks to setup your webhooks.
 
 Good job! You just launched a webhook server! Let's break down what happened exactly:
 
-1. By decorating a function with [webhook_endpoint()](/docs/huggingface_hub/v2.0.0/en/package_reference/webhooks_server#huggingface_hub.webhook_endpoint), a [WebhooksServer()](/docs/huggingface_hub/v2.0.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer) object has been created in the background.
+1. By decorating a function with [webhook_endpoint()](/docs/huggingface_hub/v2.1.1/en/package_reference/webhooks_server#huggingface_hub.webhook_endpoint), a [WebhooksServer()](/docs/huggingface_hub/v2.1.1/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer) object has been created in the background.
 As you can see, this server is a Gradio app running on http://127.0.0.1:7860. If you open this URL in your browser, you
 will see a landing page with instructions about the registered webhooks.
 2. A Gradio app is a FastAPI server under the hood. A new POST route `/webhooks/trigger_training` has been added to it.
 This is the route that will listen to webhooks and run the `trigger_training` function when triggered. FastAPI will
-automatically parse the payload and pass it to the function as a [WebhookPayload](/docs/huggingface_hub/v2.0.0/en/package_reference/webhooks_server#huggingface_hub.WebhookPayload) object. This is a `pydantic` object
+automatically parse the payload and pass it to the function as a [WebhookPayload](/docs/huggingface_hub/v2.1.1/en/package_reference/webhooks_server#huggingface_hub.WebhookPayload) object. This is a `pydantic` object
 that contains all the information about the event that triggered the webhook.
 3. The Gradio app also opened a tunnel to receive requests from the internet. This is the interesting part: you can
 configure a Webhook on https://huggingface.co/settings/webhooks pointing to your local machine. This is useful for
@@ -225,7 +229,7 @@ should consider setting to an [upgraded hardware](https://huggingface.co/docs/hu
 
 ### Advanced usage
 
-The guide above explained the quickest way to setup a [WebhooksServer()](/docs/huggingface_hub/v2.0.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer). In this section, we will see how to customize
+The guide above explained the quickest way to setup a [WebhooksServer()](/docs/huggingface_hub/v2.1.1/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer). In this section, we will see how to customize
 it further.
 
 #### Multiple endpoints
@@ -262,10 +266,10 @@ Webhooks are correctly setup and ready to use:
 
 #### Custom server
 
-To get more flexibility, you can also create a [WebhooksServer()](/docs/huggingface_hub/v2.0.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer) object directly. This is useful if you want to
+To get more flexibility, you can also create a [WebhooksServer()](/docs/huggingface_hub/v2.1.1/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer) object directly. This is useful if you want to
 customize the landing page of your server. You can do this by passing a [Gradio UI](https://gradio.app/docs/#blocks)
 that will overwrite the default one. For example, you can add instructions for your users or add a form to manually
-trigger the webhooks. When creating a [WebhooksServer()](/docs/huggingface_hub/v2.0.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer), you can register new webhooks using the
+trigger the webhooks. When creating a [WebhooksServer()](/docs/huggingface_hub/v2.1.1/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer), you can register new webhooks using the
 `add_webhook()` decorator.
 
 Here is a complete example:
@@ -297,11 +301,11 @@ app.launch()
 ```
 
 1. We define a custom UI using Gradio blocks. This UI will be displayed on the landing page of the server.
-2. We create a [WebhooksServer()](/docs/huggingface_hub/v2.0.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer) object with a custom UI and a secret. The secret is optional and can be set with
+2. We create a [WebhooksServer()](/docs/huggingface_hub/v2.1.1/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer) object with a custom UI and a secret. The secret is optional and can be set with
 the `WEBHOOK_SECRET` environment variable.
 3. We register a webhook with an explicit name. This will create an endpoint at `/webhooks/say_hello`.
 4. We register a webhook with an implicit name. This will create an endpoint at `/webhooks/goodbye`.
 5. We start the server. This is optional as your server will automatically be started at the end of the script.
 
 ### Migrating to huggingface_hub v2.0
-https://huggingface.co/docs/huggingface_hub/v2.0.0/concepts/migration_v2.md
+https://huggingface.co/docs/huggingface_hub/v2.1.1/concepts/migration_v2.md

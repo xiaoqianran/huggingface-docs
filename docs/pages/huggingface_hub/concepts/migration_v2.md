@@ -14,7 +14,7 @@ except httpx.HTTPError:
     ...
 ```
 
-Use this same import when creating custom clients for [set_client_factory()](/docs/huggingface_hub/v2.0.0/en/package_reference/utilities#huggingface_hub.set_client_factory) or [set_async_client_factory()](/docs/huggingface_hub/v2.0.0/en/package_reference/utilities#huggingface_hub.set_async_client_factory). Clients and exceptions from the old HTTP package are distinct from those in `httpx2` and cannot be used interchangeably.
+Use this same import when creating custom clients for [set_client_factory()](/docs/huggingface_hub/v2.1.1/en/package_reference/utilities#huggingface_hub.set_client_factory) or [set_async_client_factory()](/docs/huggingface_hub/v2.1.1/en/package_reference/utilities#huggingface_hub.set_async_client_factory). Clients and exceptions from the old HTTP package are distinct from those in `httpx2` and cannot be used interchangeably.
 
 `httpx2` uses the operating system's certificate trust store by default. Custom CA bundles configured with `SSL_CERT_FILE` or `SSL_CERT_DIR` are still supported. Logging configuration should target `httpx2` and `httpcore2` instead of the old logger names. See the [upstream migration guide](https://httpx2.pydantic.dev/migration/) for details.
 
@@ -38,4 +38,4 @@ For more context, see the [`httpx2` project](https://github.com/pydantic/httpx2)
 [`huggingface_hub` transition plan](https://github.com/huggingface/huggingface_hub/issues/4802).
 
 ### Sandboxes under the hood
-https://huggingface.co/docs/huggingface_hub/v2.0.0/concepts/sandbox.md
+https://huggingface.co/docs/huggingface_hub/v2.1.1/concepts/sandbox.md

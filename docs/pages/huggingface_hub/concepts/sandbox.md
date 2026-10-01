@@ -77,10 +77,9 @@ The client uses the narrow one automatically: `pool.create()` receives it in the
 
 What this means for a leak: a **pooled sandbox token** compromises that sandbox. A **host token** compromises the host — every sandbox on it, current and future, plus its management routes — so treat it as the pool's admin credential. Members of your namespace hold a different HF token and cannot derive yours, but see [Known limitations](#known-limitations) for how a token can be *delivered* to the wrong place.
 
-> [!NOTE]
-> During the rollout the host server still accepts the host token on per-sandbox routes, so
-> clients that predate per-sandbox tokens keep working. That is a management credential
-> reaching the sandboxes it created; a sandbox credential can never reach a sibling.
+The client requires a non-empty sandbox-scoped token for pooled operations and refuses
+hosts that do not provide one. It never substitutes the host-management credential.
+Upgrade the client and recycle older pool hosts before using this API.
 
 ## Dedicated sandboxes (`Sandbox.create`)
 
@@ -109,10 +108,10 @@ The cost is right there in the diagram: every sandbox pays a full ~6s VM cold st
 > ruleset inside a shared VM, not a VM of its own, and its host runs a privileged control plane
 > that all of its sandboxes talk to. Use pools to fan out *your own* code cheaply. For mutually
 > distrusting workloads — anything you would not let read your other sandboxes' files — use
-> [Sandbox.create()](/docs/huggingface_hub/v2.0.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create), which gives each workload its own VM. See
+> [Sandbox.create()](/docs/huggingface_hub/v2.1.1/en/package_reference/sandbox#huggingface_hub.Sandbox.create), which gives each workload its own VM. See
 > [Known limitations](#known-limitations) for the specific gaps.
 
-A typical RL rollout or tool-execution sandbox needs a few MB of RAM and one core for a few seconds. Paying a 2-vCPU VM and a 6s cold start each — and triggering a 1000-VM scheduling burst — is the wrong trade. So [SandboxPool](/docs/huggingface_hub/v2.0.0/en/package_reference/sandbox#huggingface_hub.SandboxPool) runs one Job as a host and multiplexes many sandboxes inside it.
+A typical RL rollout or tool-execution sandbox needs a few MB of RAM and one core for a few seconds. Paying a 2-vCPU VM and a 6s cold start each — and triggering a 1000-VM scheduling burst — is the wrong trade. So [SandboxPool](/docs/huggingface_hub/v2.1.1/en/package_reference/sandbox#huggingface_hub.SandboxPool) runs one Job as a host and multiplexes many sandboxes inside it.
 
 A pooled sandbox is not a nested VM or container. It is the classic Unix multi-user primitive:
 
@@ -166,7 +165,7 @@ These controls constrain the workload. The root control plane remains a separate
 > **Why this is not a substitute for a VM.** Landlock and uid isolation are intended for workloads within the same
 > trust boundary. Because pooled sandboxes share a kernel, a VM and a control plane, protection from every
 > cross-sandbox attack is not guaranteed; resources and some process-list metadata also remain shared. For mutually
-> untrusted code, or for GPU, use [Sandbox.create()](/docs/huggingface_hub/v2.0.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create), which gives each sandbox its own VM.
+> untrusted code, or for GPU, use [Sandbox.create()](/docs/huggingface_hub/v2.1.1/en/package_reference/sandbox#huggingface_hub.Sandbox.create), which gives each sandbox its own VM.
 
 ### The file model in a pool
 
@@ -233,7 +232,7 @@ Two things to keep in mind. Treat `$HF_HOME` as sensitive: an entry is still a r
 ### Isolation and resource gaps
 
 - **Host discovery is not attestation.** The default `adopt_hosts="own"` checks initiator, image, flavor, command, and exposed URL. It does not attest the running binary or make a mutable image trustworthy. Only use `adopt_hosts="namespace"` with namespace members you trust.
-- **Host credentials remain powerful.** They manage the pool and recover each sandbox's token. The server also accepts them on scoped routes during the compatibility window (`SBX_COMPAT_HOST_TOKEN=0` disables that fallback).
+- **Host credentials remain powerful.** They manage the pool and recover each sandbox's token. They are never substituted for missing scoped tokens by this client. Hosts booted by this version run sbx-server 0.7.0, which refuses them on scoped routes; hosts started by older clients keep their server (and its host-token compatibility) until they are recycled.
 - **Shared channels remain.** Outbound TCP, loopback access to the control server, UDP, kernel IPC, and readable process-list metadata are not isolated. System directories and selected device nodes remain accessible. GPU pool isolation is untested; use dedicated mode for GPU.
 - **Limits are not aggregate quotas.** Per-process rlimits and bounded output queues reduce resource amplification. They do not partition CPU shares, total memory, disk space, inodes, or network capacity between sandboxes. Directory pagination bounds responses but still materializes the directory on the server. API file writes are not a disk quota, and dedicated-mode writes to special files can block.
 - **Confinement can be explicitly weakened.** Host mode requires Landlock ABI 6 by default and refuses a failed ruleset. Lowering `SBX_MIN_LANDLOCK_ABI` or using the server's `--allow-unconfined` development flag accepts fewer guarantees; inspect authenticated `/health` for the effective ABI and features.
@@ -284,4 +283,4 @@ All numbers are measured against real HF Jobs on `cpu-basic`, with the client on
 | Pools = uid + Landlock, server-authoritative capacity, no local state | fast same-user fan-out; correct under concurrency; reattachable anywhere        |
 
 ### Git vs HTTP paradigm
-https://huggingface.co/docs/huggingface_hub/v2.0.0/concepts/git_vs_http.md
+https://huggingface.co/docs/huggingface_hub/v2.1.1/concepts/git_vs_http.md

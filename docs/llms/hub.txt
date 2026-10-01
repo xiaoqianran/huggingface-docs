@@ -179,6 +179,7 @@
 - [Argilla](https://huggingface.co/docs/hub/datasets-argilla.md)
 - [Team & Enterprise plans](https://huggingface.co/docs/hub/enterprise.md)
 - [Agent Libraries](https://huggingface.co/docs/hub/agents-libraries.md)
+- [Webhook guide: Process new files in a bucket with Jobs](https://huggingface.co/docs/hub/webhooks-guide-bucket-jobs.md)
 - [Secrets Scanning](https://huggingface.co/docs/hub/security-secrets.md)
 - [Download Analytics](https://huggingface.co/docs/hub/download-analytics.md)
 - [Process Large Datasets](https://huggingface.co/docs/hub/jobs-large-datasets.md)

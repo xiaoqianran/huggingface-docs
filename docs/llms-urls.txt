@@ -799,6 +799,7 @@ https://huggingface.co/docs/hub/transformers.md
 https://huggingface.co/docs/hub/trusted-publishers.md
 https://huggingface.co/docs/hub/unity-sentis.md
 https://huggingface.co/docs/hub/webhooks-guide-auto-retrain.md
+https://huggingface.co/docs/hub/webhooks-guide-bucket-jobs.md
 https://huggingface.co/docs/hub/webhooks-guide-discussion-bot.md
 https://huggingface.co/docs/hub/webhooks-guide-metadata-review.md
 https://huggingface.co/docs/hub/webhooks.md
@@ -949,6 +950,7 @@ https://huggingface.co/docs/kernels/kernel-requirements.md
 https://huggingface.co/docs/kernels/layers.md
 https://huggingface.co/docs/kernels/locking.md
 https://huggingface.co/docs/kernels/migration.md
+https://huggingface.co/docs/kernels/security.md
 https://huggingface.co/docs/kernels/talks.md
 https://huggingface.co/docs/kernels/why_kernels.md
 https://huggingface.co/docs/lerobot/act.md

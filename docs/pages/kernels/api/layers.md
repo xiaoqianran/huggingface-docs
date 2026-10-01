@@ -10,7 +10,7 @@
 kernels.use_kernel_forward_from_hub(layer_name: str, condition: Callable[['nn.Module'], bool] | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L318)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L343)
 
 **Parameters:**
 
@@ -137,7 +137,7 @@ model = MyModel()
 kernels.use_kernelized_func(*args: Callable)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L395)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L420)
 
 **Parameters:**
 
@@ -185,7 +185,7 @@ model = LayerUsingIdentity()
 kernels.replace_kernel_forward_from_hub(layer_name: str, condition: Callable[['nn.Module'], bool] | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L286)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L311)
 
 **Parameters:**
 
@@ -336,7 +336,7 @@ register_kernel_mapping(advanced_mapping)
 #### kernels.kernelize[[kernels.kernelize]]
 
 ```python
-kernels.kernelize(model: 'nn.Module', mode: Mode, device: str | 'torch.device' | None = None, use_fallback: bool = True)
+kernels.kernelize(model: 'nn.Module', mode: Mode, device: str | 'torch.device' | None = None, use_fallback: bool | KernelizeFallback = True)
 ```
 
 [Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/kernelize.py#L178)
@@ -349,7 +349,7 @@ mode ([Mode](/docs/kernels/main/en/api/layers#kernels.Mode)) : The mode that the
 
 device (`Union[str, torch.device]`, *optional*) : The device type to load kernels for. Supported device types are: "cuda", "mps", "npu", "rocm", "tpu", "xpu". The device type will be inferred from the model parameters when not provided.
 
-use_fallback (`bool`, *optional*, defaults to `True`) : Whether to use the original forward method of modules when no compatible kernel could be found. If set to `False`, an exception will be raised in such cases.
+use_fallback (`bool | KernelizeFallback`, *optional*, defaults to `True`) : Cases in which to use the original forward method. `True` is equivalent to `KernelizeFallback.DEFAULT`: it allows fallback when no compatible mapping or mode exists. `False` is equivalent to `KernelizeFallback.NONE` and raises instead. `KernelizeFallback.ALL` also falls back when kernel loading fails.
 
 **Returns:** `nn.Module`
 
@@ -625,7 +625,7 @@ layer_repo_versioned = FuncRepository(
 kernels.LayerRepository(repo_id: str, layer_name: str, revision: str | None = None, version: int | None = None, trust_remote_code: bool | list[str] = False, user_agent: str | dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L42)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L67)
 
 **Parameters:**
 
@@ -698,7 +698,7 @@ layer_repo = LocalFuncRepository(
 kernels.LocalLayerRepository(repo_path: Path, layer_name: str)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L144)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L169)
 
 **Parameters:**
 
@@ -758,7 +758,7 @@ are locked inside a project.
 kernels.LockedLayerRepository(repo_id: str, lockfile: Path | None = None, layer_name: str, trust_remote_code: bool | list[str] = False)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L195)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L220)
 
 Repository and name of a layer.
 

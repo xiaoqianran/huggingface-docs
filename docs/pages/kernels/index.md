@@ -19,6 +19,7 @@
 - [Kernel requirements](https://huggingface.co/docs/kernels/main/kernel-requirements.md)
 - [kernels info](https://huggingface.co/docs/kernels/main/cli-info.md)
 - [CLI reference for kernel-builder](https://huggingface.co/docs/kernels/main/builder-cli.md)
+- [Kernels security](https://huggingface.co/docs/kernels/main/security.md)
 - [Talks](https://huggingface.co/docs/kernels/main/talks.md)
 - [kernels verify-signature](https://huggingface.co/docs/kernels/main/cli-verify-signature.md)
 - [Kernels](https://huggingface.co/docs/kernels/main/index.md)
