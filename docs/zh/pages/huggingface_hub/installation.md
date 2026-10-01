@@ -141,7 +141,7 @@ Task: text-generation
 
 我们的目标是让优秀的机器学习民主化，我们将 `huggingface_hub` 打造成
 跨平台库，特别是可以在基于 Unix 和 Windows 上正常工作
-系统。然而，在某些情况下，`huggingface_hub`有一些限制：
+系统。然而，在某些情况下，`huggingface_hub` 有一些限制：
 在 Windows 上运行。以下是已知问题的详尽列表。请告诉我们如果您
 遇到任何未记录的问题，请打开[an issue on Github](https://github.com/huggingface/huggingface_hub/issues/new/choose)。
 
@@ -159,4 +159,4 @@ Task: text-generation
 [configure environment variables](package_reference/environment_variables) 或 [check one of our guides](guides/overview) 开始。
 
 ### 🤗 Hub 客户端库
-https://huggingface.co/docs/huggingface_hub/v2.0.0/index.md
+https://huggingface.co/docs/huggingface_hub/v2.1.1/index.md

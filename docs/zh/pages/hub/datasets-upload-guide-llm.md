@@ -13,7 +13,7 @@
 ## 概述
 
 您的目标是帮助用户将数据集上传到 Hugging Face Hub。理想情况下，数据集应与数据集查看器（以及`load_dataset`功能）兼容，以确保轻松访问和可用性。您应该致力于满足以下标准：| **标准** |描述 |优先|
-| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- || **尊重存储库限制** |确保数据集遵守 Hugging Face 的文件大小、存储库大小和文件计数的存储限制。有关具体限制，请参阅下面的关键约束部分。                                                                                                                                                                                               |必填|
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- || **尊重存储库限制** |确保数据集遵守 Hugging Face 的文件大小、存储库大小和文件计数的存储限制。有关具体限制，请参阅下面的关键约束部分。                                                                                                                                                                                               |必填 |
 | **使用集线器兼容的格式** |尽可能使用 Parquet 格式（最佳压缩、丰富的类型、大数据集支持）。对于较小的数据集 (<several GB), JSON/JSONL or CSV are acceptable. Raw files work well for images/audio in smaller datasets while respecting repo limits. Use WebDataset (.tar) for large media collections. Domain-specific formats can be used when conversion is impractical. | Desired                                           |
 | **Dataset Viewer compatibility**   | Structure data to work with the automatic Dataset Viewer, enabling preview and easy exploration. This typically means using supported formats and proper file organization. Validation steps are provided later in this guide.                                                                                                                                               | Desired                                           |
 | **Organize data sensibly**         | Use logical folder structures that match Hub conventions (e.g., train/test splits). Configs can be used to define different configurations of the dataset. This facilitates both human understanding and automatic data loading.                                                                                                                                             | Desired                                           |
@@ -49,7 +49,7 @@ When you don't have direct access to the user's files (e.g., web interface), ask
 **Human-readable summary**:
 
 - Free: 100GB private datasets
-- Pro (for individuals) | Team or Enterprise (for organizations): 1TB+ private storage per seat (see ⟦T93⟧)
+- Pro (for individuals) | Team or Enterprise (for organizations): 1TB+ private storage per seat (see ⟦T94⟧)
 - Public: 1TB (contact datasets@huggingface.co for larger)
 - Per file: 200GB max, <50GB recommended
 - Per folder: <10k files
@@ -61,10 +61,10 @@ See https://huggingface.co/docs/hub/storage-limits#repository-limitations-and-re
 | Your Data                           | Recommended Approach                                                                                         | Quick Command                                                                                    |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | **CSV/JSON files**                  | Use built-in loaders (handles any size via memory mapping)                                                   | ⟦T26⟧                     |
-| **Images in folders**               | Use ⟦T94⟧ for automatic class detection          | ⟦T27⟧               |
-| **Audio files**                     | Use ⟦T95⟧ for automatic organization             | ⟦T28⟧                |
-| **Video files**                     | Use ⟦T96⟧ for automatic organization | ⟦T29⟧               |
-| **PDF documents**                   | Use ⟦T97⟧ for text extraction      | ⟦T30⟧                   |
+| **Images in folders**               | Use ⟦T95⟧ for automatic class detection          | ⟦T27⟧               |
+| **Audio files**                     | Use ⟦T96⟧ for automatic organization             | ⟦T28⟧                |
+| **Video files**                     | Use ⟦T97⟧ for automatic organization | ⟦T29⟧               |
+| **PDF documents**                   | Use ⟦T98⟧ for text extraction      | ⟦T30⟧                   |
 | **Very large datasets (100GB+)**    | Use ⟦T31⟧ to control memory usage                                                                 | ⟦T32⟧                                  |
 | **Many files / directories (>10k)** |使用`upload_folder`/`hf upload`（处理大/多文件上传）| `hf upload username/dataset ./data --repo-type=dataset` |
 | **流媒体大媒体** |用于高效流式传输的 WebDataset 格式 |创建 .tar 分片，然后 `hf upload` |
@@ -87,7 +87,7 @@ See https://huggingface.co/docs/hub/storage-limits#repository-limitations-and-re
 2. ✓ **识别您的数据类型**：检查上面的[Quick Reference](#quick-reference-by-data-type)表
 3. ✓ **选择上传方式**：
 
-   - **小文件（<1GB) with hub-compatible format**: Can use ⟦T100⟧ for quick uploads
+   - **小文件（<1GB) with hub-compatible format**: Can use ⟦T101⟧ for quick uploads
    - **Built-in loader available**: Use the loader + ⟦T41⟧ (see Quick Reference table)
    - **Large datasets or many files**: Use ⟦T42⟧ / ⟦T43⟧ which handles large uploads (auto multi-commit, resumable).
    - **Custom formats**: Convert to hub-compatible format if possible, otherwise document thoroughly
@@ -103,7 +103,7 @@ See https://huggingface.co/docs/hub/storage-limits#repository-limitations-and-re
 6. ✓ **Verify your upload**:
    - Check Dataset Viewer: ⟦T44⟧
    - Test loading: ⟦T45⟧
-   - If viewer shows errors, check the ⟦T101⟧ section
+   - If viewer shows errors, check the ⟦T102⟧ section
 
 ## Common Conversion Patterns
 
@@ -170,7 +170,7 @@ Features define the schema and data types for your dataset columns. Specifying c
 - Efficient storage and loading
 - Clear documentation of your data structure
 
-For complete feature documentation, see: ⟦T102⟧
+For complete feature documentation, see: ⟦T103⟧
 
 ### Feature Types Overview
 
@@ -258,13 +258,13 @@ Use when you have hub-compatible files (e.g., Parquet files) already prepared an
 
 |问题 |解决方案 |
 | -------------------------- | ------------------------------------------------ |
-| “找不到存储库”|运行`hf auth login` |
+| “找不到存储库” |运行`hf auth login` |
 |内存错误 |使用`max_shard_size="500MB"` |
 |数据集查看器无法工作 |等待5-10分钟，检查README.md配置|
 |文件 >50GB |分割成更小的文件 |
 | “找不到文件” |在元数据中使用相对路径 |
 
-## 数据集查看器配置**注意**：此部分主要适用于直接上传到 Hub 的数据集（通过 UI 或`upload_large_folder`）。使用 `push_to_hub()` 上传的数据集通常会自​​动配置查看器。
+## 数据集查看器配置**注意**：此部分主要适用于直接上传到 Hub 的数据集（通过 UI、`upload_folder` 或 `hf upload`）。使用`push_to_hub()`上传的数据集通常会自​​动配置查看器。
 
 ### 自动检测何时工作
 

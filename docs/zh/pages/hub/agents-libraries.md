@@ -56,5 +56,5 @@ smolagent "Plan a trip to Tokyo, Kyoto and Osaka between Mar 28 and Apr 7." \
 
 代理可以作为空间推送到中心。浏览社区代理[here](https://huggingface.co/spaces?filter=smolagents&sort=likes)。了解更多信息[smolagents documentation](https://huggingface.co/docs/smolagents/tutorials/tools#use-mcp-tools-with-mcpclient-directly)。
 
-### 秘密扫描
-https://huggingface.co/docs/hub/security-secrets.md
+### Webhook 指南：使用作业处理存储桶中的新文件
+https://huggingface.co/docs/hub/webhooks-guide-bucket-jobs.md

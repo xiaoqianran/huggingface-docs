@@ -4,7 +4,7 @@
 
 **Streamlit** 让用户可以自由地以“反应式”方式使用 Python 构建功能齐全的 Web 应用程序。每次应用程序状态发生变化时，您的代码都会重新运行。 Streamlit 也非常适合数据可视化，并支持多个图表库，例如 Bokeh、Plotly 和 Altair。阅读这篇关于在 Spaces 中构建和托管 Streamlit 应用程序的 [blog post](https://huggingface.co/blog/streamlit-spaces)。
 
-当 [creating a new Space](https://huggingface.co/new-space) 选择 **Streamlit** 作为 SDK 时，将通过在 `README.md` 文件的 YAML 块中将 `sdk` 属性设置为 `streamlit`，使用最新版本的 Streamlit 初始化您的空间。如果您想更改 Streamlit 版本，可以编辑 `sdk_version` 属性。
+当 [creating a new Space](https://huggingface.co/new-space) 时选择 **Streamlit** 作为 SDK，将通过在 `README.md` 文件的 YAML 块中将 `sdk` 属性设置为 `streamlit`，使用最新版本的 Streamlit 初始化您的空间。如果您想更改 Streamlit 版本，可以编辑 `sdk_version` 属性。
 
 要在空间中使用 Streamlit，请在通过 [**New Space** form](https://huggingface.co/new-space) 创建空间时选择 **Streamlit** 作为 SDK。这将创建一个带有 `README.md` 的存储库，其中在 YAML 配置块中包含以下属性：
 
@@ -68,7 +68,7 @@ if file_name is not None:
 
 ## 在其他网页上嵌入 Streamlit Spaces
 
-您可以使用 HTML `<iframe>` 标签将 Streamlit Space 作为内嵌框架嵌入到其他网页上。只需包含您的空间的 URL，以 `.hf.space` 后缀结尾。要查找您的空间的 URL，您可以使用空间选项中的“嵌入此空间”按钮。
+您可以使用 HTML `<iframe>` 标签将 Streamlit Space 作为内联框架嵌入到其他网页上。只需包含您的空间的 URL，以 `.hf.space` 后缀结尾。要查找您的空间的 URL，您可以使用空间选项中的“嵌入此空间”按钮。
 
 例如，上面的演示可以使用以下标签嵌入到这些文档中：
 
@@ -99,7 +99,7 @@ if file_name is not None:
 - `iFrame Resizer` 通过`script` 标签加载。
 - 使用目标`iframe`元素的ID调用`iFrameResize()`函数，使其大小自动改变。
 
-我们可以将选项传递给`iFrameResize()`的第一个参数。详情请参阅[the document](https://github.com/davidjbradshaw/iframe-resizer/blob/master/docs/parent_page/options.md)。
+我们可以将选项传递给`iFrameResize()`的第一个参数。详情请参阅[the document](https://github.com/davidjbradshaw/iframe-resizer/blob/v4/docs/parent_page/options.md)。
 
 ```html
 <iframe

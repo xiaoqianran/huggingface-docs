@@ -8,7 +8,7 @@
 
 ## 搜索空间
 
-您可以使用 [search_spaces()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.search_spaces) 使用语义搜索来搜索 Hub 上的空间。这对多词查询使用基于嵌入的搜索，对单词查询使用全文搜索。
+您可以使用 [search_spaces()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.search_spaces) 使用语义搜索来搜索 Hub 上的空间。这对多词查询使用基于嵌入的搜索，对单词查询使用全文搜索。
 
 ```py
 >>> from huggingface_hub import search_spaces
@@ -45,9 +45,10 @@ SpaceSearchResult(id='mrfakename/Z-Image-Turbo', title='Z Image Turbo', sdk='gra
 >>> api.create_repo(repo_id=repo_id, repo_type="space", space_sdk="gradio")
 ```
 
-### 从模板创建空间
+> [!提示]
+> 静态空间对所有人免费。 Gradio 和 Docker Spaces 在计算上运行：在免费的 `cpu-basic` 硬件上，它们需要订阅（用户为 PRO，组织为团队或企业），而付费硬件仅需要计费（付款方式和预付积分）。如果没有订阅，在 `cpu-basic` 上创建、复制或移动 Gradio 或 Docker Space 将失败并出现付款错误 (HTTP 402)。更多详情请参见[pricing](https://huggingface.co/pricing)。
 
-您可以从 Hub 上提供的官方模板之一（例如 JupyterLab、Gradio 聊天机器人、Streamlit 应用程序等）播种新空间，而不是从空空间开始。使用 [list_space_templates()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_space_templates) 列出可用模板，然后将模板的 `repo_id` （或其简称 `name`）作为 `space_template` 传递给 [create_repo()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo)。请注意，`space_sdk` 仍然是必需的：模板在 SDK 设置卡元数据时播种文件。
+### 从模板创建空间您可以从 Hub 上提供的官方模板之一（例如 JupyterLab、Gradio 聊天机器人、Streamlit 应用程序等）播种新空间，而不是从空空间开始。使用 [list_space_templates()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.list_space_templates) 列出可用模板，然后将模板的 `repo_id` （或其简称 `name`）作为 `space_template` 传递到 [create_repo()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo)。请注意，`space_sdk` 仍然是必需的：模板在 SDK 设置卡元数据时播种文件。
 
 ```py
 >>> from huggingface_hub import HfApi
@@ -66,7 +67,9 @@ chatbot (gradio-templates/chatbot)
 >>> api.create_repo(repo_id=repo_id, repo_type="space", space_template="JupyterLab")
 ```
 
-建议将某些模板设为私有（例如 JupyterLab）。如果您没有明确设置可见性，此类空间将自动创建为私有空间。在 CLI 中，可以通过 `hf spaces templates` 和 `hf repos create --template` 获得相同的功能：
+建议将某些模板设为私有（例如 JupyterLab）。如果您没有明确设置可见性，此类空间将自动创建为私有空间。
+
+在 CLI 中，可以通过 `hf spaces templates` 和 `hf repos create --template` 获得相同的功能：
 
 ```bash
 # List available templates
@@ -86,7 +89,7 @@ Livebook        livebook-dev/livebook                          docker
 ### 复制一个空格
 
 如果您想从现有空间构建而不是从头开始，这可能会很有用。
-如果您想要控制公共空间的配置/设置，它也很有用。更多详情请参见[duplicate_repo()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.duplicate_repo)。
+如果您想要控制公共空间的配置/设置，它也很有用。更多详情请参见[duplicate_repo()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.duplicate_repo)。
 
 ```py
 >>> api.duplicate_repo("multimodalart/dreambooth-training", repo_type="space")
@@ -100,12 +103,9 @@ Livebook        livebook-dev/livebook                          docker
 >>> api.upload_folder(repo_id=repo_id, repo_type="space", folder_path="src/")
 ```
 
-在此步骤中，您的应用程序应该已经在 Hub 上免费运行！
-但是，您可能希望使用机密和升级的硬件进一步配置它。
+在此步骤中，您的应用程序应该已经在 Hub 上运行！但是，您可能希望使用机密和升级的硬件进一步配置它。
 
-### 配置秘密和变量
-
-您的空间可能需要一些密钥、令牌或变量才能工作。
+### 配置秘密和变量您的空间可能需要一些密钥、令牌或变量才能工作。
 更多详情请参见[docs](https://huggingface.co/docs/hub/spaces-overview#managing-secrets)。
 例如，从您的空间生成后，用于将图像数据集上传到集线器的 HF 令牌。
 
@@ -127,8 +127,10 @@ Livebook        livebook-dev/livebook                          docker
 ```py
 >>> api.delete_space_secret(repo_id=repo_id, key="HF_TOKEN")
 >>> api.delete_space_variable(repo_id=repo_id, key="MODEL_REPO_ID")
-```> [!提示]
-> 在您的空间内，秘密可以作为环境变量（或
+```
+
+> [!提示]
+> 在您的空间内，秘密可作为环境变量（或
 > Streamlit 机密管理（如果使用 Streamlit）。无需通过 API 获取它们！
 
 > [!警告]
@@ -159,9 +161,7 @@ Livebook        livebook-dev/livebook                          docker
 
 ### 配置硬件
 
-默认情况下，您的 Space 将免费运行在 CPU 环境上。你可以升级硬件
-在 GPU 上运行它。需要支付卡或社区补助金才能升级您的
-空间。更多详情请参见[docs](https://huggingface.co/docs/hub/spaces-gpus)。
+默认情况下，您的空间在免费的 `cpu-basic` 硬件上运行（需要订阅 Gradio 和 Docker Spaces，请参阅上文）。您可以升级硬件以在 GPU 上运行它。升级您的空间需要付款方式和预付积分（或社区补助金）。更多详情请参见[docs](https://huggingface.co/docs/hub/spaces-gpus)。
 
 ```py
 # Use `SpaceHardware` enum
@@ -170,9 +170,7 @@ Livebook        livebook-dev/livebook                          docker
 
 # Or simply pass a string value
 >>> api.request_space_hardware(repo_id=repo_id, hardware="t4-medium")
-```
-
-硬件更新不会立即完成，因为您的空间必须重新加载到我们的服务器上。
+```硬件更新不会立即完成，因为您的空间必须重新加载到我们的服务器上。
 您可以随时检查您的空间正在运行哪些硬件，以了解您的请求是否有效
 已经满足了。
 
@@ -186,8 +184,7 @@ Livebook        livebook-dev/livebook                          docker
 "t4-medium"
 ```
 
-您现在已经拥有一个完全配置的空间。确保将您的空间降级回“cpu-classic”
-当你使用完它时。
+您现在已经拥有一个完全配置的空间。使用完毕后，请务必将您的空间降级回`cpu-basic`。
 
 **奖励：创建或复制空间时请求硬件！**
 
@@ -209,11 +206,27 @@ Livebook        livebook-dev/livebook                          docker
 ...     space_hardware="cpu-upgrade",
 ...     space_sleep_time="7200", # 2 hours in secs
 ... )
-```### 暂停并重新启动您的空间
+```
+
+### 跟踪您的 ZeroGPU 配额
+
+[ZeroGPU](https://huggingface.co/docs/hub/spaces-zerogpu) 空间在按需分配的共享 GPU 上运行。每次您使用 ZeroGPU 空间（从 UI 或通过其 API）时，都会从您的个人配额中扣除一些 GPU 时间，该配额会定期重置。如果您正在 ZeroGPU Spaces 上构建应用程序、代理或 MCP 服务器，您可以使用 [get_zero_gpu_quota()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.get_zero_gpu_quota) 跟踪您的使用情况。值以 GPU 秒表示。
+
+```py
+>>> quota = api.get_zero_gpu_quota()
+>>> quota
+ZeroGpuQuota(base=2400, remaining=1810, resets_at=datetime.datetime(2026, 9, 30, 9, 12, 3, tzinfo=datetime.timezone.utc), overquota_used=0)
+>>> if quota.remaining < 60:
+...     print(f"Less than 1 minute of ZeroGPU left. Quota resets at {quota.resets_at}.")
+```
+
+如果您自上次重置后未使用过 ZeroGPU，则`resets_at` 为 `None`。如果您使用细粒度令牌，则它必须具有“计费 > 读取计费使用情况和付款方式状态”权限。通过 CLI `hf spaces zero-gpu quota` 可以获得相同的信息。一旦配额用完，PRO、Team 和 Enterprise 用户可以通过消耗预付费积分继续使用 ZeroGPU Spaces。您可以从[billing settings](https://huggingface.co/settings/billing?add-credits=true)购买积分。更多详情请参见[Extending quota with credits](https://huggingface.co/docs/hub/spaces-zerogpu#extending-quota-with-credits)。
+
+### 暂停并重新启动您的空间
 
 默认情况下，如果您的空间在升级的硬件上运行，它将永远不会停止。但为了避免被扣款，
-当您不使用它时，您可能想暂停它。使用 [pause_space()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_space) 可以实现这一点。暂停的空间将是
-在空间所有者通过 UI 或使用 [restart_space()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.restart_space) 通过 API 重新启动它之前，该空间处于非活动状态。
+当您不使用它时，您可能想暂停它。使用 [pause_space()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.pause_space) 可以实现这一点。暂停的空间将是
+在空间所有者通过 UI 或使用 [restart_space()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.restart_space) 通过 API 重新启动它之前，该空间处于非活动状态。
 有关暂停模式的更多详细信息，请参阅[this section](https://huggingface.co/docs/hub/spaces-gpus#pause)
 
 ```py
@@ -226,7 +239,7 @@ Livebook        livebook-dev/livebook                          docker
 
 另一种可能性是为您的空间设置超时。如果您的空间处于非活动状态的时间超过超时时间，
 它会去睡觉。任何登陆您空间的访客都会将其重新启动。您可以使用设置超时
-[set_space_sleep_time()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.set_space_sleep_time)。有关睡眠模式的更多详细信息，请参阅[this section](https://huggingface.co/docs/hub/spaces-gpus#sleep-time)。
+[set_space_sleep_time()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.set_space_sleep_time)。有关睡眠模式的更多详细信息，请参阅[this section](https://huggingface.co/docs/hub/spaces-gpus#sleep-time)。
 
 ```py
 # Put your Space to sleep after 1h of inactivity
@@ -236,9 +249,7 @@ Livebook        livebook-dev/livebook                          docker
 注意：如果您使用“cpu-basic”硬件，则无法配置自定义睡眠时间。您的空间将自动
 48 小时不活动后暂停。
 
-**奖励：在请求硬件时设置睡眠时间**
-
-升级后的硬件将在您的空间建成后自动分配给您。
+**奖励：在请求硬件时设置睡眠时间**升级后的硬件将在您的空间建成后自动分配给您。
 
 ```py
 >>> api.request_space_hardware(repo_id=repo_id, hardware=SpaceHardware.T4_MEDIUM, sleep_time=3600)
@@ -264,7 +275,9 @@ Livebook        livebook-dev/livebook                          docker
 ... )
 ```
 
-### 通过读取日志来调试失败的空间当空间无法构建或在运行时崩溃时，您通常在浏览器中查看的日志也可以通过[fetch_space_logs()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_space_logs)以编程方式获得。这对于无法打开浏览器的脚本或代理工作流程特别有用。
+### 通过读取日志来调试失败的空间
+
+当空间无法构建或在运行时崩溃时，您通常在浏览器中查看的日志也可以通过[fetch_space_logs()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_space_logs)以编程方式获得。这对于无法打开浏览器的脚本或代理工作流程特别有用。
 
 ```py
 # Drain the currently available run logs and return immediately (like `docker logs`)
@@ -309,13 +322,17 @@ hf spaces ssh username/my-space --dry-run
 hf spaces ssh username/my-space -i ~/.ssh/id_ed25519
 ```
 
-您还可以使用 `hf spaces dev-mode` 在没有 SSH 的情况下启用开发模式，它会打印 SSH、VS Code、Cursor 和 Windsurf 的连接说明：
+您还可以使用 `hf spaces dev-mode` 启用开发模式而不使用 SSH，它会打印 SSH、VS Code、Cursor 和 Windsurf 的连接说明：
 
 ```bash
 hf spaces dev-mode username/my-space
 ```
 
-### 在您的空间中挂载卷
+启用开发模式需要 PRO 或团队和企业计划。始终允许禁用它，例如，如果您的订阅在开发模式开启时已过期：
+
+```bash
+hf spaces dev-mode username/my-space --stop
+```### 在您的空间中挂载卷
 
 您可以将 Hub 资源（模型、数据集或存储桶）作为卷装载到空间容器中。这使您的 Space 可以直接文件系统访问这些资源，而无需在代码中下载它们。创建或复制空间时可以直接设置卷：
 
@@ -340,7 +357,9 @@ hf spaces dev-mode username/my-space
 ...         Volume(type="bucket", source="username/my-bucket", mount_path="/data"),
 ...     ],
 ... )
-```您可以通过 Space 运行时检查当前安装了哪些卷：
+```
+
+您可以通过 Space 运行时检查当前安装了哪些卷：
 
 ```py
 >>> runtime = api.get_space_runtime(repo_id=repo_id)
@@ -348,7 +367,7 @@ hf spaces dev-mode username/my-space
 [Volume(type='model', source='username/my-model', mount_path='/models', read_only=True), ...]
 ```
 
-如果您需要更新现有空间上的卷，请使用[set_space_volumes()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.set_space_volumes)。请注意，这会替换所有先前安装的卷。
+如果您需要更新现有空间上的卷，请使用[set_space_volumes()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.set_space_volumes)。请注意，这会替换所有先前安装的卷。
 
 ```py
 >>> api.set_space_volumes(
@@ -388,13 +407,13 @@ hf spaces volumes set username/my-space \
 hf spaces volumes delete username/my-space
 ```
 
-## 更高级：暂时升级你的空间！
-
-空间允许许多不同的用例。有时，您可能想要
+## 更高级：暂时升级你的空间！空间允许许多不同的用例。有时，您可能想要
 要在特定硬件上临时运行空间，请执行某些操作，然后将其关闭。在
-在本节中，我们将探讨如何利用 Spaces 来按需微调模型。
+在本节中，我们将探讨如何利用 Spaces 按需微调模型。
 这只是解决这个特定问题的一种方法。必须将其视为建议
-并适应您的用例。假设我们有一个空间来微调模型。这是一个 Gradio 应用程序，它作为输入
+并适应您的用例。
+
+假设我们有一个空间来微调模型。这是一个 Gradio 应用程序，它作为输入
 模型 ID 和数据集 ID。工作流程如下：
 
 0.（提示用户输入模型和数据集）
@@ -409,12 +428,10 @@ hf spaces volumes delete username/my-space
 它正在执行的当前任务。有多种方法可以做到这一点。在本指南中
 我们将看到一种使用数据集作为“任务调度程序”的解决方案。
 
-### 应用程序骨架
+### 应用程序骨架您的应用程序如下所示。启动时，检查是否计划了任务，如果是，则在正确的硬件上运行它。完成后，将硬件设置回空闲的 `cpu-basic` CPU 并提示用户执行新任务。
 
-您的应用程序如下所示。启动时，检查是否计划了任务，如果是，
-在正确的硬件上运行它。完成后，将硬件设置回自由计划 CPU 并
-提示用户执行新任务。> [!警告]
-> 这样的工作流程不支持普通演示的并发访问。
+> [!警告]
+> 这样的工作流程不支持像普通演示那样的并发访问。
 > 特别是，当训练发生时，该界面将被禁用。
 > 最好将您的存储库设置为私有，以确保您是唯一的用户。
 
@@ -455,7 +472,7 @@ else:
         api.request_space_hardware(repo_id=TRAINING_SPACE_ID, hardware=SpaceHardware.T4_MEDIUM)
 ```
 
-### 任务调度程序
+### 任务调度器
 
 可以通过多种方式来完成任务安排。这是一个如何使用它来完成的示例
 存储为数据集的简单 CSV。
@@ -511,4 +528,4 @@ def mark_as_done(task):
 ```
 
 ### 搜索中心
-https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/search.md
+https://huggingface.co/docs/huggingface_hub/v2.1.1/guides/search.md

@@ -16,7 +16,7 @@ except httpx.HTTPError:
     ...
 ```
 
-为 [set_client_factory()](/docs/huggingface_hub/v2.0.0/en/package_reference/utilities#huggingface_hub.set_client_factory) 或 [set_async_client_factory()](/docs/huggingface_hub/v2.0.0/en/package_reference/utilities#huggingface_hub.set_async_client_factory) 创建自定义客户端时，请使用相同的导入。旧 HTTP 包中的客户端和异常与 `httpx2` 中的客户端和异常不同，不能互换使用。
+为 [set_client_factory()](/docs/huggingface_hub/v2.1.1/en/package_reference/utilities#huggingface_hub.set_client_factory) 或 [set_async_client_factory()](/docs/huggingface_hub/v2.1.1/en/package_reference/utilities#huggingface_hub.set_async_client_factory) 创建自定义客户端时，请使用相同的导入。旧 HTTP 包中的客户端和异常与 `httpx2` 中的客户端和异常不同，不能互换使用。
 
 `httpx2` 默认使用操作系统的证书信任存储。仍然支持使用 `SSL_CERT_FILE` 或 `SSL_CERT_DIR` 配置的自定义 CA 捆绑包。日志记录配置应针对 `httpx2` 和 `httpcore2` 而不是旧的记录器名称。详情请参阅[upstream migration guide](https://httpx2.pydantic.dev/migration/)。
 
@@ -38,4 +38,4 @@ except httpx.HTTPError:
 [⟦T59⟧ transition plan](https://github.com/huggingface/huggingface_hub/issues/4802)。
 
 ### 引擎盖下的沙箱
-https://huggingface.co/docs/huggingface_hub/v2.0.0/concepts/sandbox.md
+https://huggingface.co/docs/huggingface_hub/v2.1.1/concepts/sandbox.md

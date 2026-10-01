@@ -222,7 +222,7 @@ agents hanouticelina/hf-agents       HF extension to run local coding...
 ```
 
 > [!提示]
-> 在测试更新时使用 `--force` 覆盖以前安装的版本。
+> 在测试更新时使用`--force`覆盖以前安装的版本。
 
 ## 更新已安装的扩展
 
@@ -234,7 +234,7 @@ agents hanouticelina/hf-agents       HF extension to run local coding...
 
 # Check every installed extension and update the outdated ones
 >>> hf extensions update
-````hf extensions update` 仅更新已安装的扩展。如果未安装扩展，则会出现错误。已更新的扩展将被跳过。
+````hf extensions update` 仅更新已安装的扩展。如果未安装扩展，则会引发错误。已更新的扩展将被跳过。
 
 ## 命名规则
 
@@ -254,8 +254,8 @@ agents hanouticelina/hf-agents       HF extension to run local coding...
 
 |扩展|类型 |描述 |
 |------------|------|-------------|
-| [hanouticelina/hf-claude](https://github.com/hanouticelina/hf-claude) |外壳脚本|与 HF 推理提供商一起启动 Claude Code |
+| [hanouticelina/hf-claude](https://github.com/hanouticelina/hf-claude) |外壳脚本 |与 HF 推理提供商一起启动 Claude Code |
 | [alvarobartt/hf-mem](https://github.com/alvarobartt/hf-mem) |蟒蛇 |估计 HF 模型的推理内存需求 |
 
 ### 了解缓存
-https://huggingface.co/docs/huggingface_hub/v2.0.0/guides/manage-cache.md
+https://huggingface.co/docs/huggingface_hub/v2.1.1/guides/manage-cache.md

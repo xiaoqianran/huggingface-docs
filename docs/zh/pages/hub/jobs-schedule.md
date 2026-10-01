@@ -4,7 +4,7 @@
 
 安排和管理将在 HF 基础设施上运行的作业。
 
-将 `hf jobs uv run ` 或 `hf jobs run` 与`@annually`、`@yearly`、`@monthly`、`@weekly`、`@daily`、`@hourly` 的计划或 CRON 计划表达式（例如，每周一上午 9 点使用`"0 9 * * 1"`）配合使用：
+将 `hf jobs uv run ` 或 `hf jobs run` 与`@annually`、`@yearly`、`@monthly`、`@weekly`、`@daily`、`@hourly` 的计划或 CRON 计划表达式（例如，`"0 9 * * 1"` 每周一上午 9 点）一起使用：
 
 ```bash
 # Schedule a job that runs every hour
@@ -28,7 +28,7 @@
 
 使用与`hf jobs uv run`和`hf jobs run`相同的参数来传递环境变量、秘密、超时、标签等。
 
-使用 `hf jobs scheduled ps`、`hf jobs scheduled inspect`、`hf jobs scheduled suspend`、`hf jobs scheduled resume`、`hf jobs scheduled trigger` 和 `hf jobs scheduled delete` 管理计划作业：
+使用 `hf jobs scheduled ps`、`hf jobs scheduled inspect`、`hf jobs scheduled suspend`、`hf jobs scheduled resume`、`hf jobs scheduled reschedule`、`hf jobs scheduled trigger` 和 `hf jobs scheduled delete` 管理计划作业：
 
 ```python
 # List your active scheduled jobs
@@ -45,6 +45,9 @@
 
 # Resume a scheduled job
 >>> hf jobs scheduled resume <scheduled-job-id>
+
+# Change when a scheduled job runs (here, 9 AM every Monday)
+>>> hf jobs scheduled reschedule <scheduled-job-id> "0 9 * * 1"
 
 # Trigger a scheduled job to run right now (does not change the schedule)
 >>> hf jobs scheduled trigger <scheduled-job-id>

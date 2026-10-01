@@ -65,7 +65,7 @@ JOB_ID      NAME         IMAGE/SPACE COMMAND      CREATED      STATUS    RUNTIME
 
 ## 监控资源使用情况
 
-使用`hf jobs stats`获取正在运行的作业的CPU、内存、网络和GPU（如果有）的使用统计信息：
+使用`hf jobs stats`获取正在运行的作业的CPU、内存、网络和GPU（如果有）的使用情况统计：
 
 ```bash
 >>> hf jobs stats
@@ -158,7 +158,7 @@ hf jobs logs --namespace <my-org-name> <job_id>
 
 当作业结束时，作业的文件系统将被删除。在作业退出之前写下您想要在某处持久保存的任何内容：
 
-- **中间工件、检查点和日志 → 存储桶卷。** 安装存储桶并在安装路径下写入输出 - 有关示例，请参阅 [Volumes](./jobs-configuration#volumes)。创建作业时，卷安装将使用您的 Hugging Face 身份进行授权，因此您的脚本不需要令牌即可写入它们。- **最终模型和数据集 → 推送到 Hub 存储库。** 作业没有 Hugging Face 令牌，除非您传递一个令牌，例如`--secrets HF_TOKEN`（裸表单自动解析为您登录的令牌）。如果您的脚本调用`push_to_hub()`或`create_repo()`，请确保令牌具有写入权限（细粒度令牌需要存储库写入和创建权限）。常见的失败模式是作业完成数小时的计算，然后在最终上传时出错，因为令牌无法写入 — 计算已完成，但结果未保存。
+- **中间工件、检查点和日志 → 存储桶卷。** 安装存储桶并在安装路径下写入输出 - 有关示例，请参阅 [Volumes](./jobs-configuration#volumes)。创建作业时，卷安装将通过您的 Hugging Face 身份进行授权，因此您的脚本不需要令牌即可写入它们。- **最终模型和数据集 → 推送到 Hub 存储库。** 作业没有 Hugging Face 令牌，除非您传递一个令牌，例如`--secrets HF_TOKEN`（裸表单自动解析为您登录的令牌）。如果您的脚本调用`push_to_hub()`或`create_repo()`，请确保令牌具有写入权限（细粒度令牌需要存储库写入和创建权限）。常见的失败模式是作业完成数小时的计算，然后在最终上传时出错，因为令牌无法写入 — 计算已完成，但结果未保存。
 
 - **将关键结果打印到日志中。** 作业日志在作业结束后保留​​，并且可以随时使用 `hf jobs logs <job-id>` 获取。即使上传步骤失败，将最终指标打印到标准输出也能让它们恢复。
 
@@ -196,6 +196,16 @@ NameError: name 'train_dataset' is not defined. Did you mean: 'load_dataset'?
 hf jobs uv run --timeout 3h ...
 ```
 
+## 重新运行作业
+
+使用 `hf jobs rerun` 使用现有作业的已保存配置启动新作业，包括其秘密和硬件风格：
+
+```bash
+>>> hf jobs rerun <job_id>
+```
+
+新作业有自己的 ID。在Python中，使用`rerun_job`。
+
 ## 取消作业
 
 使用作业页面上的“取消”按钮取消作业：
@@ -214,7 +224,7 @@ hf jobs cancel --namespace <my-org-name> <job_id>
 
 ## MacOS 菜单栏
 
-在 MacOS [⟦T59⟧](https://github.com/drbh/hfjobs-menubar) 客户端中找到您的职位列表：
+在 MacOS [⟦T62⟧](https://github.com/drbh/hfjobs-menubar) 客户端中查找您的作业列表：
 
 获取作业信息，并监控日志和资源使用统计信息：
 

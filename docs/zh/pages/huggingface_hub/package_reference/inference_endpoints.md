@@ -7,19 +7,20 @@ Inference Endpoints 提供了一种安全的生产解决方案，可以在由 Hu
 > [!提示]
 > 查看 [related guide](../guides/inference_endpoints) 了解如何使用 `huggingface_hub` 以编程方式管理您的推理端点。
 
-推理端点可以通过 API 完全管理。端点用[Swagger](https://api.endpoints.huggingface.cloud/)记录。 [InferenceEndpoint](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) 类是一个在此 API 之上构建的简单包装器。
+推理端点可以通过 API 完全管理。端点用[Swagger](https://api.endpoints.huggingface.cloud/)记录。 [InferenceEndpoint](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) 类是一个在此 API 之上构建的简单包装器。
 
 ## 方法
 
-推理端点功能的子集在 [HfApi](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi) 中实现：
+推理端点功能的子集在 [HfApi](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi) 中实现：
 
-- [get_inference_endpoint()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_inference_endpoint) 和 [list_inference_endpoints()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_endpoints) 获取有关您的推理端点的信息
-- [list_inference_endpoints_hardware()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_endpoints_hardware) 列出可以部署推理端点的硬件
-- [create_inference_endpoint()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint)、[update_inference_endpoint()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_inference_endpoint) 和 [delete_inference_endpoint()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_inference_endpoint) 用于部署和管理推理端点
-- [pause_inference_endpoint()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_inference_endpoint) 和 [resume_inference_endpoint()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.resume_inference_endpoint) 暂停和恢复推理端点
-- [scale_to_zero_inference_endpoint()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.scale_to_zero_inference_endpoint) 手动将端点扩展到 0 个副本
+- [get_inference_endpoint()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.get_inference_endpoint) 和 [list_inference_endpoints()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_endpoints) 获取有关您的推理端点的信息
+- [list_inference_endpoints_hardware()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_endpoints_hardware) 列出可以部署推理端点的硬件
+- [create_inference_endpoint()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint)、[update_inference_endpoint()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.update_inference_endpoint) 和 [delete_inference_endpoint()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.delete_inference_endpoint) 用于部署和管理推理端点
+- [list_inference_catalog()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_catalog) 和 [create_inference_endpoint_from_catalog()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint_from_catalog) 浏览和部署精选的模型目录
+- [pause_inference_endpoint()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.pause_inference_endpoint) 和 [resume_inference_endpoint()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.resume_inference_endpoint) 暂停和恢复推理端点
+- [scale_to_zero_inference_endpoint()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.scale_to_zero_inference_endpoint) 手动将端点扩展到 0 个副本
 
-## InferenceEndpoint[[huggingface_hub.InferenceEndpoint]]主要数据类是[InferenceEndpoint](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)。它包含有关已部署的`InferenceEndpoint`的信息，包括其配置和当前状态。部署后，您可以使用 [InferenceEndpoint.client](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.client) 和 [InferenceEndpoint.async_client](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.async_client) 属性在端点上运行推理，它们分别返回 [InferenceClient](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 和 [AsyncInferenceClient](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient) 对象。
+## InferenceEndpoint[[huggingface_hub.InferenceEndpoint]]主要数据类是[InferenceEndpoint](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)。它包含有关已部署的`InferenceEndpoint`的信息，包括其配置和当前状态。部署后，您可以使用 [InferenceEndpoint.client](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.client) 和 [InferenceEndpoint.async_client](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.async_client) 属性在端点上运行推理，它们分别返回 [InferenceClient](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_client#huggingface_hub.InferenceClient) 和 [AsyncInferenceClient](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient) 对象。
 
 #### Huggingface_hub.InferenceEndpoint[[huggingface_hub.InferenceEndpoint]]
 
@@ -27,7 +28,7 @@ Inference Endpoints 提供了一种安全的生产解决方案，可以在由 Hu
 huggingface_hub.InferenceEndpoint(namespace: str, raw: dict, _token: str | bool | None, _api: HfApi)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_inference_endpoints.py#L116)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.1.1/src/huggingface_hub/_inference_endpoints.py#L116)
 
 **参数：**
 
@@ -37,7 +38,7 @@ namespace (`str`) ：推理端点所在的命名空间。
 
 存储库 (`str`) ：部署在此推理端点上的模型存储库的名称。
 
-status ([InferenceEndpointStatus](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointStatus)) ：推理端点的当前状态。
+status ([InferenceEndpointStatus](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointStatus)) ：推理端点的当前状态。
 
 url (`str`, *可选*) ：推理端点的 URL（如果可用）。只有部署的推理端点才会有 URL。
 
@@ -49,9 +50,9 @@ revision (`str`) ：部署在推理端点上的特定模型修订版。
 
 created_at (`datetime.datetime`) ：创建推理端点时的时间戳。
 
-Updated_at (`datetime.datetime`) ：推理端点上次更新的时间戳。type ([InferenceEndpointType](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointType)) ：推理端点的类型（公共、经过身份验证、私有）。
+Updated_at (`datetime.datetime`) ：推理端点上次更新的时间戳。type ([InferenceEndpointType](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointType)) ：推理端点的类型（公共、经过身份验证、私有）。
 
-raw (`dict`) ：从API返回的原始字典数据。
+raw (`dict`) ：从 API 返回的原始字典数据。
 
 token（`str` 或 `bool`，*可选*）：推理端点的身份验证令牌（如果在请求 API 时设置）。如果未提供，将默认为本地保存的令牌。如果您不想将令牌发送到服务器，请传递 `token=False`。
 
@@ -89,7 +90,7 @@ InferenceEndpoint(name='my-text-to-image', ...)
 from_raw(raw: dict, namespace: str, token: str | bool | None = None, api: typing.Optional[ForwardRef('HfApi')] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_inference_endpoints.py#L199)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.1.1/src/huggingface_hub/_inference_endpoints.py#L199)
 
 从原始字典初始化对象。
 
@@ -99,15 +100,15 @@ from_raw(raw: dict, namespace: str, token: str | bool | None = None, api: typing
 client()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_inference_endpoints.py#L220)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.1.1/src/huggingface_hub/_inference_endpoints.py#L220)
 
-**返回：** [InferenceClient](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)
+**退货：** [InferenceClient](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_client#huggingface_hub.InferenceClient)
 
 指向已部署端点的推理客户端。
 
-**加薪：** [InferenceEndpointError](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError)
+**加薪：** [InferenceEndpointError](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError)
 
-- [InferenceEndpointError](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) -- 如果推理端点尚未部署。
+- [InferenceEndpointError](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) -- 如果推理端点尚未部署。
 
 返回客户端以对此推理端点进行预测。
 
@@ -117,15 +118,15 @@ client()
 async_client()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_inference_endpoints.py#L242)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.1.1/src/huggingface_hub/_inference_endpoints.py#L242)
 
-**退货：** [AsyncInferenceClient](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient)
+**退货：** [AsyncInferenceClient](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient)
 
 指向已部署端点的异步兼容推理客户端。
 
-**加薪：** [InferenceEndpointError](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError)
+**加薪：** [InferenceEndpointError](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError)
 
-- [InferenceEndpointError](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) -- 如果推理端点尚未部署。
+- [InferenceEndpointError](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) -- 如果推理端点尚未部署。
 
 返回客户端以对此推理端点进行预测。#### 删除[[huggingface_hub.InferenceEndpoint.delete]]
 
@@ -133,14 +134,14 @@ async_client()
 delete()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_inference_endpoints.py#L487)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.1.1/src/huggingface_hub/_inference_endpoints.py#L487)
 
 删除推理端点。
 
 此操作不可逆。如果您不想为推理端点付费，最好选择
-使用[InferenceEndpoint.pause()](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.pause)暂停它或使用[InferenceEndpoint.scale_to_zero()](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.scale_to_zero)将其缩放到零。
+使用[InferenceEndpoint.pause()](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.pause)暂停它或使用[InferenceEndpoint.scale_to_zero()](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.scale_to_zero)将其缩放到零。
 
-这是 [HfApi.delete_inference_endpoint()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_inference_endpoint) 的别名。
+这是 [HfApi.delete_inference_endpoint()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.delete_inference_endpoint) 的别名。
 
 #### 获取[[huggingface_hub.InferenceEndpoint.fetch]]
 
@@ -148,9 +149,9 @@ delete()
 fetch()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_inference_endpoints.py#L317)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.1.1/src/huggingface_hub/_inference_endpoints.py#L317)
 
-**返回：** [InferenceEndpoint](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+**返回：** [InferenceEndpoint](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
 
 相同的推理端点，使用最新数据进行了突变。
 
@@ -162,19 +163,19 @@ fetch()
 pause()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_inference_endpoints.py#L430)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.1.1/src/huggingface_hub/_inference_endpoints.py#L430)
 
-**退货：** [InferenceEndpoint](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+**退货：** [InferenceEndpoint](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
 
 相同的推理端点，使用最新数据进行了突变。
 
 暂停推理端点。
 
-暂停的推理端点不会被计费。它可以随时使用[InferenceEndpoint.resume()](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.resume)恢复。
-这与使用 [InferenceEndpoint.scale_to_zero()](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.scale_to_zero) 将推理端点缩放为零不同，后者
+暂停的推理端点不会被计费。它可以随时使用[InferenceEndpoint.resume()](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.resume)恢复。
+这与使用 [InferenceEndpoint.scale_to_zero()](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.scale_to_zero) 将推理端点缩放为零不同，后者
 当有请求时会自动重新启动。
 
-这是 [HfApi.pause_inference_endpoint()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_inference_endpoint) 的别名。当前对象已就地变异
+这是 [HfApi.pause_inference_endpoint()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.pause_inference_endpoint) 的别名。当前对象已就地变异
 来自服务器的最新数据。
 
 #### 简历[[huggingface_hub.InferenceEndpoint.resume]]
@@ -183,17 +184,17 @@ pause()
 resume(running_ok: bool = True)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_inference_endpoints.py#L448)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.1.1/src/huggingface_hub/_inference_endpoints.py#L448)
 
-**参数：**running_ok (`bool`, *可选*) ：如果为 `True`，则如果推理端点已在运行，则该方法不会引发错误。默认为 `True`。
+**参数：**running_ok (`bool`, *可选*) ：如果`True`，如果推理端点已在运行，则该方法不会引发错误。默认为 `True`。
 
-**退货：** [InferenceEndpoint](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+**返回：** [InferenceEndpoint](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
 
 相同的推理端点，使用最新数据进行了突变。
 
 恢复推理端点。
 
-这是 [HfApi.resume_inference_endpoint()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.resume_inference_endpoint) 的别名。当前对象已就地变异
+这是 [HfApi.resume_inference_endpoint()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.resume_inference_endpoint) 的别名。当前对象已就地变异
 来自服务器的最新数据。
 
 ####scale_to_zero[[huggingface_hub.InferenceEndpoint.scale_to_zero]]
@@ -202,19 +203,19 @@ resume(running_ok: bool = True)
 scale_to_zero()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_inference_endpoints.py#L469)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.1.1/src/huggingface_hub/_inference_endpoints.py#L469)
 
-**返回：** [InferenceEndpoint](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+**退货：** [InferenceEndpoint](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
 
 相同的推理端点，使用最新数据进行了突变。
 
 将推理端点缩放为零。
 
 缩放为零的推理端点不会被收取费用。它将在下一个请求时恢复，并带有
-冷启动延迟。这与使用 [InferenceEndpoint.pause()](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.pause) 暂停推理端点不同，后者
-需要使用 [InferenceEndpoint.resume()](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.resume) 手动恢复。
+冷启动延迟。这与使用 [InferenceEndpoint.pause()](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.pause) 暂停推理端点不同，后者
+需要使用[InferenceEndpoint.resume()](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.resume)手动恢复。
 
-这是 [HfApi.scale_to_zero_inference_endpoint()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.scale_to_zero_inference_endpoint) 的别名。当前对象已就地变异
+这是 [HfApi.scale_to_zero_inference_endpoint()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.scale_to_zero_inference_endpoint) 的别名。当前对象已就地变异
 来自服务器的最新数据。
 
 ####更新[[huggingface_hub.InferenceEndpoint.update]]
@@ -223,7 +224,7 @@ scale_to_zero()
 update(accelerator: str | None = None, instance_size: str | None = None, instance_type: str | None = None, min_replica: int | None = None, max_replica: int | None = None, scale_to_zero_timeout: int | None = None, repository: str | None = None, framework: str | None = None, revision: str | None = None, task: str | None = None, custom_image: dict | None = None, container_command: list[str] | None = None, container_args: list[str] | None = None, tensor_parallel_size: int | None = None, data_parallel_size: int | None = None, secrets: dict[str, str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_inference_endpoints.py#L328)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.1.1/src/huggingface_hub/_inference_endpoints.py#L328)
 
 **参数：**
 
@@ -243,7 +244,7 @@ scale_to_zero_timeout（`int`，*可选*）：非活动端点缩放为零之前�
 
 修订版（`str`，*可选*）：要在推理端点上部署的特定模型修订版（例如`"6c0e6080953db56375760c0471a8c5f2929baf11"`）。
 
-任务（`str`，*可选*）：部署模型的任务（例如`"text-classification"`）。custom_image (`dict`, *可选*) ：要运行的容器映像。按图像变体键控的字典（例如`{"vLLM": {"url": "vllm/vllm-openai:v0.23.0", "port": 8000}}`，还有`sGLang`，`tgi`，`tei`，`llamacpp`，`hfServe`，...），按原样转发，或者描述自定义容器的平面字典（例如`{"url": ..., "port": ...}`)，作为 `{"custom": ...}` 发送。
+任务（`str`，*可选*）：部署模型的任务（例如`"text-classification"`）。custom_image (`dict`, *可选*) ：要运行的容器映像。按图像变体键入的字典（例如`{"vLLM": {"url": "vllm/vllm-openai:v0.23.0", "port": 8000}}`，还有`sGLang`，`tgi`，`tei`，`llamacpp`，`hfServe`，...）按原样转发，或者描述自定义容器的平面字典（例如`{"url": ..., "port": ...}`)，作为 `{"custom": ...}` 发送。
 
 container_command (`list[str]`, *可选*) ：覆盖容器入口点命令（映射到 API 有效负载中的 `model.command`）。适用于托管引擎映像（例如 vLLM、SGLang）和自定义映像。
 
@@ -255,14 +256,14 @@ data_parallel_size（`int`，*可选*）：要运行的模型副本数量，每�
 
 Secrets (`dict[str, str]`, *可选*) ：要注入到容器环境中的秘密值。
 
-**返回：** [InferenceEndpoint](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)相同的推理端点，使用最新数据进行了突变。
+**返回：** [InferenceEndpoint](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)相同的推理端点，使用最新数据进行了突变。
 
 更新推理端点。
 
 此方法允许更新计算配置、部署模型或两者。所有参数都是
 可选，但必须至少提供一项。
 
-这是 [HfApi.update_inference_endpoint()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_inference_endpoint) 的别名。当前对象已就地变异
+这是 [HfApi.update_inference_endpoint()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.update_inference_endpoint) 的别名。当前对象已就地变异
 来自服务器的最新数据。
 
 #### 等待[[huggingface_hub.InferenceEndpoint.wait]]
@@ -271,7 +272,7 @@ Secrets (`dict[str, str]`, *可选*) ：要注入到容器环境中的秘密值�
 wait(timeout: int | None = None, refresh_every: int = 5)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_inference_endpoints.py#L264)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.1.1/src/huggingface_hub/_inference_endpoints.py#L264)
 
 **参数：**
 
@@ -279,19 +280,19 @@ timeout (`int`, *可选*) ：等待部署推理端点的最长时间，以秒为
 
 fresh_every (`int`, *可选*) ：每次获取推理端点状态之间等待的时间，以秒为单位。默认为 5 秒。
 
-**返回：** [InferenceEndpoint](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+**返回：** [InferenceEndpoint](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
 
 相同的推理端点，使用最新数据进行了突变。
 
-**加薪：** [InferenceEndpointError](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) 或 `InferenceEndpointTimeoutError`
+**加薪：** [InferenceEndpointError](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) 或 `InferenceEndpointTimeoutError`
 
-- [InferenceEndpointError](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) -- 
+- [InferenceEndpointError](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) -- 
   如果推理端点最终处于失败状态。
 - `InferenceEndpointTimeoutError` -- 
-  如果推理端点在 `timeout` 秒后仍未部署。
+  如果推理端点在 `timeout` 秒后未部署。
 
-等待部署推理端点。每隔1s就会从服务器获取一次信息。如果推理端点在 `timeout` 之后未部署
-秒，将引发`InferenceEndpointTimeoutError`。 [InferenceEndpoint](/docs/huggingface_hub/v2.0.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) 将根据最新版本进行适当突变
+等待部署推理端点。每隔1s就会从服务器获取一次信息。如果推理端点在`timeout`之后未部署
+秒，将引发`InferenceEndpointTimeoutError`。 [InferenceEndpoint](/docs/huggingface_hub/v2.1.1/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) 将根据最新版本进行适当突变
 数据。
 
 ## InferenceEndpointHardware[[huggingface_hub.InferenceEndpointHardware]]
@@ -302,7 +303,7 @@ fresh_every (`int`, *可选*) ：每次获取推理端点状态之间等待的�
 huggingface_hub.InferenceEndpointHardware(id: str, vendor: str, region: str, accelerator: str, instance_type: str, instance_size: str, architecture: str, num_accelerators: int, num_cpus: int | None, memory_gb: float, gpu_memory_gb: int | None, price_per_hour: float, status: str, max_accelerators: int, used_accelerators: int)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_inference_endpoints.py#L519)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.1.1/src/huggingface_hub/_inference_endpoints.py#L519)
 
 **参数：**
 
@@ -320,7 +321,7 @@ instance_size (`str`) ：实例大小乘数，例如`"x1"`。
 
 架构（`str`）：人类可读的硬件描述，例如`"Nvidia L4"`。
 
-num_accelerators (`int`) ：每个副本的加速器单元数。
+num_accelerators (`int`) ：每个副本的加速器单元数量。
 
 num_cpus（`int`，*可选*）：每个副本的 vCPU 数量。
 
@@ -337,7 +338,7 @@ used_accelerators (`int`) ：命名空间当前使用的此类加速器的数量
 包含有关可用于推理端点的硬件配置的信息。
 
 `vendor`、`region`、`accelerator`、`instance_type` 和 `instance_size` 字段正是要传递到的值
-[create_inference_endpoint()](/docs/huggingface_hub/v2.0.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint)（或`hf endpoints deploy`）部署在此硬件上。
+[create_inference_endpoint()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint)（或`hf endpoints deploy`）部署在此硬件上。
 
 示例：
 ```python
@@ -353,9 +354,88 @@ InferenceEndpointHardware(id='aws-us-east-1-nvidia-l4-x1', vendor='aws', region=
 from_raw(raw: dict, vendor: str, region: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_inference_endpoints.py#L584)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.1.1/src/huggingface_hub/_inference_endpoints.py#L584)
 
 从原始计算字典初始化对象，嵌套在 API 响应中的供应商和区域下。
+
+## InferenceCatalogModel[[huggingface_hub.InferenceCatalogModel]]
+
+#### Huggingface_hub.InferenceCatalogModel[[huggingface_hub.InferenceCatalogModel]]
+
+```python
+huggingface_hub.InferenceCatalogModel(repo_id: str, name: str, author: str, license: str, task: str, created_at: datetime, recipes: list)
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.1.1/src/huggingface_hub/_inference_endpoints.py#L647)
+
+**参数：**
+
+repo_id (`str`) : Hub 上模型存储库的 id，例如`"meta-llama/Llama-3.1-8B-Instruct"`。
+
+name (`str`) : 型号名称，即`repo_id`作者后面的部分，例如`"Llama-3.1-8B-Instruct"`。作者 (`str`) ：模型存储库的作者，例如`"meta-llama"`。
+
+许可证 (`str`) : 模型的许可证，例如`"Apache 2.0"`。
+
+任务 (`str`) ：部署模型的任务，例如`"text-generation"`。
+
+created_at (`datetime`) ：模型添加到目录的日期。
+
+食谱（`list[InferenceCatalogRecipe]`）：部署此模型的经过测试的方法。
+
+包含有关推理目录中可用模型的信息。
+
+示例：
+```python
+>>> from huggingface_hub import list_inference_catalog
+>>> catalog = list_inference_catalog(engine="vllm")
+>>> catalog[0]
+InferenceCatalogModel(repo_id='Qwen/Qwen2.5-Coder-7B-Instruct', name='Qwen2.5-Coder-7B-Instruct', ...)
+```
+
+#### from_raw[[huggingface_hub.InferenceCatalogModel.from_raw]]
+
+```python
+from_raw(raw: dict)
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.1.1/src/huggingface_hub/_inference_endpoints.py#L684)
+
+从原始目录项字典初始化对象。
+
+## InferenceCatalogRecipe[[huggingface_hub.InferenceCatalogRecipe]]
+
+#### Huggingface_hub.InferenceCatalogRecipe[[huggingface_hub.InferenceCatalogRecipe]]
+
+```python
+huggingface_hub.InferenceCatalogRecipe(id: str, accelerator: str, engine: str, gguf_file: str | None, revision: str | None)
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.1.1/src/huggingface_hub/_inference_endpoints.py#L608)
+
+**参数：**
+
+id (`str`) ：公共配方 id，作为 `recipe_id` 传递给 [create_inference_endpoint_from_catalog()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint_from_catalog)。
+
+加速器（`str`）：配方运行的硬件加速器的类型，例如`"cpu"`、`"gpu"` 或 `"neuron"`。
+
+引擎 (`str`) ：配方运行的推理引擎，例如`"vllm"`、`"llamacpp"`、`"tei"` 或 `"sglang"`。
+
+gguf_file (`str`, *可选*) ：配方部署的 GGUF 文件。仅适用于 `"llamacpp"` 食谱。
+
+revision (`str`, *可选*) ：配方固定的模型修订版本（如果有）。包含有关从推理目录部署模型的预先测试方法的信息。
+
+配方是推理端点团队针对给定模型测试过的硬件和引擎组合。一个
+模型通常有一个配方，但也可以有多个（例如，一个 GPU 一个和一个神经元一个，或者每个 GGUF 定量一个）。
+
+#### from_raw[[huggingface_hub.InferenceCatalogRecipe.from_raw]]
+
+```python
+from_raw(raw: dict)
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.1.1/src/huggingface_hub/_inference_endpoints.py#L634)
+
+从原始配方字典初始化对象，嵌套在 API 响应中的模型下。
 
 ## InferenceEndpointStatus[[huggingface_hub.InferenceEndpointStatus]]
 
@@ -365,7 +445,7 @@ from_raw(raw: dict, vendor: str, region: str)
 huggingface_hub.InferenceEndpointStatus(value, names = None, module = None, qualname = None, type = None, start = 1)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_inference_endpoints.py#L93)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.1.1/src/huggingface_hub/_inference_endpoints.py#L93)
 
 一个枚举。
 
@@ -377,15 +457,15 @@ huggingface_hub.InferenceEndpointStatus(value, names = None, module = None, qual
 huggingface_hub.InferenceEndpointType(value, names = None, module = None, qualname = None, type = None, start = 1)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/_inference_endpoints.py#L104)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.1.1/src/huggingface_hub/_inference_endpoints.py#L104)
 
-一个枚举。## InferenceEndpointError[[huggingface_hub.InferenceEndpointError]]
+一个枚举。
+
+## InferenceEndpointError[[huggingface_hub.InferenceEndpointError]]
 
 #### Huggingface_hub.InferenceEndpointError[[huggingface_hub.InferenceEndpointError]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.0.0/src/huggingface_hub/errors.py#L162)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.1.1/src/huggingface_hub/errors.py#L162)
 
-处理推理端点时的一般异常。
-
-### 管理您的 Space 运行时
-https://huggingface.co/docs/huggingface_hub/v2.0.0/package_reference/space_runtime.md
+处理推理端点时的一般异常。### 管理您的 Space 运行时
+https://huggingface.co/docs/huggingface_hub/v2.1.1/package_reference/space_runtime.md

@@ -51,7 +51,7 @@
 
 ## 使用其他库
 
-一些库，如 [🤗 Datasets](/docs/datasets/index)、[Pandas](https://pandas.pydata.org/)、[Polars](https://pola.rs)、[Dask](https://www.dask.org/)、[DuckDB](https://duckdb.org/) 或 [Daft](https://daft.ai/) 可以将文件上传到 Hub。
+一些库（如 [🤗 Datasets](/docs/datasets/index)、[Pandas](https://pandas.pydata.org/)、[Polars](https://pola.rs)、[Dask](https://www.dask.org/)、[DuckDB](https://duckdb.org/) 或 [Daft](https://daft.ai/)）可以将文件上传到 Hub。
 更多信息请参见[Libraries supported by the Datasets Hub](./datasets-libraries)列表。
 
 ## 使用 Git
@@ -96,9 +96,9 @@ Hub 可能无法识别其他格式和结构。
 
 Hugging Face Hub 支持大规模数据集，通常以 Parquet 格式上传（例如通过 `push_to_hub()` 使用 [🤗 Datasets](/docs/datasets/main/en/package_reference/main_classes#datasets.Dataset.push_to_hub)）或 [WebDataset](https://github.com/webdataset/webdataset) 格式。
 
-您可以使用`huggingface_hub`库高速上传大规模数据集。
+使用 `huggingface_hub` 库中的 `upload_folder()` 或 `hf upload` 上传大型文件夹：它们将上传分成多个提交，并在中断时自动恢复。
 
-请参阅[how to upload a folder by chunks](/docs/huggingface_hub/guides/upload#upload-a-large-folder)、[tips and tricks for large uploads](/docs/huggingface_hub/guides/upload#tips-and-tricks-for-large-uploads) 和[repository storage limits and recommendations](./storage-limits)。
+请参阅[how to upload a large folder](/docs/huggingface_hub/guides/upload#upload-a-large-folder)、[tips and tricks for large uploads](/docs/huggingface_hub/guides/upload#tips-and-tricks-for-large-uploads) 和[repository storage limits and recommendations](./storage-limits)。
 
 ### 冲向空格
 https://huggingface.co/docs/hub/spaces-sdks-docker-dash.md

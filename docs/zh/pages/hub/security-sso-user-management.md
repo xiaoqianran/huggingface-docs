@@ -66,6 +66,9 @@ If there is no match, the role is determined as follows:
 
 如果不匹配，则不会将用户分配到任何资源组。
 
+> [!警告]
+> 仍可以从 Hub UI 或 API 手动编辑映射所针对的资源组，但这些编辑会在用户下次 SSO 登录时被覆盖：角色更改将恢复到映射的角色，并且会重新添加手动删除的用户。要永久更改映射用户的访问权限，请更新您的 IdP 数据或映射配置。
+
 ## 匹配电子邮件域
 
 > [!注意]
@@ -75,12 +78,12 @@ If there is no match, the role is determined as follows:
 
 要添加电子邮件域，请填写“匹配电子邮件域”字段，单击键盘上的 Enter 键，然后保存。
 
-## 外部合作者
+## 外部合作者这使得组织内的某些用户无需完成单点登录 (SSO) 流程即可访问资源。当您与不属于组织身份提供商 (IdP) 但需要访问特定资源的外部方合作时，这会很有帮助。
 
-这使得组织内的某些用户无需完成单点登录 (SSO) 流程即可访问资源。当您与不属于组织身份提供商 (IdP) 但需要访问特定资源的外部方合作时，这会很有帮助。要将用户添加为“外部协作者”，请访问组织设置中的 `SSO/Users Management` 部分。添加后，这些用户将不需要执行 SSO 流程。
+要将用户添加为“外部协作者”，请访问组织设置中的 `SSO/Users Management` 部分。添加后，这些用户将不需要执行 SSO 流程。
 
-但是，它们仍然受到您组织的访问控制 ([Resource Groups](./enterprise-resource-groups))。
-仔细管理他们的访问对于维护组织的数据安全至关重要。
+但是，它们仍然受您组织的访问控制 ([Resource Groups](./enterprise-resource-groups)) 的约束。
+仔细管理他们的访问权限对于维护组织的数据安全至关重要。
 
 ### S3 兼容性
 https://huggingface.co/docs/hub/storage-buckets-s3.md

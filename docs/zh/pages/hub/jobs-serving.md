@@ -31,7 +31,7 @@ Hint: Exposed ports are reachable at (requires an HF token with read access to t
 
 ## 连接客户端
 
-公开端口需要 HF 令牌，该令牌具有对作业命名空间的`read` 访问权限，并作为承载令牌传递。对于 OpenAI 兼容服务器，它直接插入客户端的 API 密钥 — 基本 URL 是公开的端口 URL 加上 `/v1`：
+公开的端口需要具有 `read` 访问作业命名空间的 HF 令牌，作为承载令牌传递。对于兼容 OpenAI 的服务器，它直接插入客户端的 API 密钥 — 基本 URL 是公开的端口 URL 加上 `/v1`：
 
 ```python
 import os
@@ -60,7 +60,7 @@ LFM2.5 是一个推理模型，因此响应将其推理包含在最终答案之�
 ...   -d '{"model": "LiquidAI/LFM2.5-8B-A1B", "messages": [{"role": "user", "content": "Hello!"}]}'
 ```
 
-由于令牌在 `Authorization` 标头中传输，因此这些 URL 可在脚本、笔记本和代理中工作 — 无论您在哪里使用兼容 OpenAI 的 API，都可以使用这些 URL。它们无法直接在浏览器中打开。
+由于令牌在 `Authorization` 标头中传输，因此这些 URL 可在脚本、笔记本和代理中工作——无论您在哪里使用兼容 OpenAI 的 API。它们无法直接在浏览器中打开。要在没有 HF 令牌的情况下为端口提供服务，请使用`--expose-public` — 请参阅[Expose Ports](./jobs-configuration#expose-ports)。
 
 ## 使用 llama.cpp 提供 GGUF 模型
 
@@ -72,9 +72,9 @@ LFM2.5 是一个推理模型，因此响应将其推理包含在最终答案之�
 ...   /app/llama serve -hf ggml-org/gemma-4-E4B-it-GGUF \
 ...   --host 0.0.0.0 --port 8080 -ngl 99 \
 ...   --temp 1.0 --top-p 0.95 --top-k 64
-```
+````--` 将作业的命令与 `hf jobs run` 自己的选项分开 - 此处需要，因为 `llama serve` 的标志否则将由 CLI 本身解析。
 
-`--` 将作业的命令与 `hf jobs run` 自己的选项分开 - 此处需要，因为 `llama serve` 的标志否则将由 CLI 本身解析。> [!提示]
+> [!提示]
 > 您可以通过将模型存储库安装为只读卷并将服务器直接指向该文件来完全跳过模型下载：
 >
 > ```bash
@@ -85,10 +85,10 @@ LFM2.5 是一个推理模型，因此响应将其推理包含在最终答案之�
 > ...   --host 0.0.0.0 --port 8080 -ngl 99
 > ```
 >
-> 服务器启动速度要快得多，因为无需下载任何内容 - 模型在加载时从已安装的存储库中流式传输。
+> 服务器启动速度要快得多，因为无需下载任何内容 - 模型在加载时从已安装的存储库中进行流式传输。
 
 > [!警告]
-> 您的服务器必须侦听 `0.0.0.0`。默认情况下，`llama serve`绑定到`127.0.0.1`，作业代理无法访问它——显式传递`--host 0.0.0.0`。
+> 您的服务器必须侦听 `0.0.0.0`。默认情况下，`llama serve` 绑定到 `127.0.0.1`，作业代理无法到达 — 显式传递 `--host 0.0.0.0`。
 
 这同样适用于任何其他 OpenAI 兼容服务器（SGLang，...）：在公开端口上启动服务器，侦听 `0.0.0.0`，并使用 HF 令牌作为 API 密钥进行连接。
 

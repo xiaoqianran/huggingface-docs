@@ -14,12 +14,12 @@
 
 ## 存储桶与存储库
 
-Hub 提供两种类型的存储：基于 Git 的**存储库**，用于版本化、协作工作；**存储桶**，用于快速、可变的对象存储。|特色 |存储库（基于 Git）|存储桶|
+Hub 提供两种类型的存储：基于 Git 的**存储库**，用于版本化、协作工作；**存储桶**，用于快速、可变的对象存储。|特色|存储库（基于 Git）|存储桶|
 | ------------------ | ------------------------------------------- | ----------------------------------- |
 |版本控制 |完整的 Git 历史记录 |无（可变，就地覆盖）|
 |类型 |模型、数据集、空间 |独立桶|
 |主要用例 |发布成品 |工作存储/中间数据|
-|运营| Hub API、Git 推/拉 |类 S3 `sync`、`cp`、`rm` |
+|运营| Hub API、Git 推/拉 |类似 S3 `sync`、`cp`、`rm` |
 |重复数据删除 | Xet 块级 | Xet 块级 |
 |请求请求 |是的 |没有 |
 |模型/数据集卡|是的 |否（但呈现简单的自述文件）|
@@ -149,7 +149,7 @@ hf buckets list julien-c/my-training-bucket --tree -h -R
 ...
 ```
 
-## 管理文件您可以直接从 Hub 上的存储桶页面上传和下载文件，也可以使用 CLI 和 Python API 进行编程访问。使用 `hf://buckets/` 路径（例如 `hf://buckets/username/my-bucket/path/to/file`）引用存储桶文件。 `hf buckets cp` 命令处理单个文件传输，而 `hf buckets sync` 更适合目录。所有命令都双向工作——本地到远程和远程到本地。
+## 管理文件您可以直接从 Hub 上的存储桶页面上传和下载文件，或使用 CLI 和 Python API 进行编程访问。使用 `hf://buckets/` 路径（例如 `hf://buckets/username/my-bucket/path/to/file`）引用存储桶文件。 `hf buckets cp` 命令处理单个文件传输，而 `hf buckets sync` 更适合目录。所有命令都双向工作——本地到远程和远程到本地。
 
 如果您的数据已经存在于模型、数据集或空间存储库（或另一个存储桶）中，您可以使用 `hf buckets cp` 将其复制到**服务器端** — 无需下载或重新上传。参见[Copying files between repos and buckets](#copying-files-between-repos-and-buckets)。
 
@@ -213,7 +213,7 @@ download_bucket_files(
 
 ### 同步目录
 
-`sync` 命令的工作方式类似于 `rsync` 或 `aws s3 sync` — 它比较源和目标，仅传输已更改的文件。这是保持本地目录和存储桶同步的最有效方法。默认情况下，`sync`仅添加和更新文件。传递 `--delete` 还可以删除目标中不再存在于源中的文件。使用 `--dry-run` 预览会发生什么，而无需实际传输任何内容。
+`sync` 命令的工作方式类似于 `rsync` 或 `aws s3 sync` — 它比较源和目标，仅传输已更改的文件。这是保持本地目录和存储桶同步的最有效方法。默认情况下，`sync`仅添加和更新文件。传递 `--delete` 也可以删除目标中不再存在于源中的文件。使用 `--dry-run` 预览会发生什么，而无需实际传输任何内容。
 
 **命令行界面：**
 ```bash
@@ -306,12 +306,12 @@ api.copy_files(
 
 存储桶是可变的，因此保存存储桶视图的工具（挂载、文件系统层、同步守护进程、仪表板）需要知道文件何时发生更改。有两种机制可用：
 
-- [Webhooks](./webhooks#buckets)：HTTP 回调到您控制的服务器，以实现自动化和集成。
+- [Webhooks](./webhooks#buckets)：对您控制的服务器的 HTTP 回调，或在每次更改时启动 [Job](./jobs) — 请参阅[Process new files in a bucket with Jobs](./webhooks-guide-bucket-jobs)。
 - **实时关注**：您的客户端订阅的服务器发送的事件流。
 
 ### 直播关注
 
-`GET https://huggingface.co/api/buckets/<owner>/<bucket-name>/events` 将存储桶的文件更改流式传输为 [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)。该请求必须携带`Accept: text/event-stream`（否则返回`400`），并且它需要与列出存储桶相同的读取访问权限 - 公共存储桶不需要令牌。有关完整参数和响应架构，请参阅[OpenAPI spec](https://huggingface.co/spaces/huggingface/openapi#tag/buckets/GET/api/buckets/{namespace}/{repo}/events)。
+`GET https://huggingface.co/api/buckets/<owner>/<bucket-name>/events` 将存储桶的文件更改流式传输为 [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)。该请求必须携带`Accept: text/event-stream`（否则返回`400`），并且它需要与列出存储桶相同的读取访问权限 - 公共存储桶不需要令牌。有关完整参数和响应模式，请参阅[OpenAPI spec](https://huggingface.co/spaces/huggingface/openapi#tag/buckets/GET/api/buckets/{namespace}/{repo}/events)。
 
 ```bash
 curl -N -H "Accept: text/event-stream" \
@@ -350,7 +350,7 @@ data: {"cursor":"...","changes":[{"path":"data/train.txt","op":"add","size":20,"
 - 多区域设置，管道的不同部分在不同的云中运行
 - 向全球许多消费者分发大型文物
 
-有关可用区域以及启用预热的详细信息，请参阅[hf.co/storage](https://huggingface.co/storage)。
+请参阅[hf.co/storage](https://huggingface.co/storage)了解可用区域以及启用预热的详细信息。
 
 ## 用例### 训练检查点和日志
 
@@ -392,9 +392,9 @@ buckets:
 
 有关更多详细信息，请参阅模型卡文档中的[Specifying a bucket](./model-cards#specifying-a-bucket)。
 
-## 定价存储桶根据存储的数据量进行计费，并采用简单的按 TB 定价。企业计划受益于基于重复数据删除的计费，其中跨文件共享的块直接减少了计费占用空间。
+## 定价存储桶根据存储的数据量进行计费，并采用简单的按 TB 定价。企业计划受益于基于重复数据删除的计费，其中跨文件共享块直接减少计费占用空间。
 
-至于其他存储库，存储桶可以自由创建，并且有免费的存储空间。对于[free tier](https://huggingface.co/docs/hub/storage-limits)以上的用法，请参阅[hf.co/storage](https://huggingface.co/storage)。有关一般计费信息，请参阅 [Billing](./billing) 文档。
+至于其他存储库，存储桶可以自由创建，并且有免费的存储限额。对于[free tier](https://huggingface.co/docs/hub/storage-limits)以上的用法，请参阅[hf.co/storage](https://huggingface.co/storage)。有关一般计费信息，请参阅 [Billing](./billing) 文档。
 
 ### 在空间中使用 OpenCV
 https://huggingface.co/docs/hub/spaces-using-opencv.md
