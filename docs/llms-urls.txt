@@ -950,7 +950,6 @@ https://huggingface.co/docs/kernels/kernel-requirements.md
 https://huggingface.co/docs/kernels/layers.md
 https://huggingface.co/docs/kernels/locking.md
 https://huggingface.co/docs/kernels/migration.md
-https://huggingface.co/docs/kernels/security.md
 https://huggingface.co/docs/kernels/talks.md
 https://huggingface.co/docs/kernels/why_kernels.md
 https://huggingface.co/docs/lerobot/act.md

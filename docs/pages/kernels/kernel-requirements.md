@@ -46,8 +46,8 @@ displays a corresponding badge in the UI.
 A kernel repository on the Hub must contain a `build` directory. This
 directory contains build variants of a kernel in the form of directories
 following the template
-`<framework><version>-<cu><cudaver>-<arch>-<os>`.
-For example `build/torch214-cu130-x86_64-linux`.
+`<framework><version>-cxx<abiver>-<cu><cudaver>-<arch>-<os>`.
+For example `build/torch26-cxx98-cu118-x86_64-linux`.
 
 The kernel is in the build variant directory and must contain a
 `__init__.py` file. For compatibility with older versions of the
@@ -298,8 +298,8 @@ fail on the build variants that were not rebuilt.
 
 ### Exceptions
 
-For the following types of kernels, some API changes do not require
-bumping the version:
+A version bump is not needed when every existing build variant is
+replaced by the new build:
 
 - Python-only (noarch) kernels, e.g. `torch-cuda`. All build variants get
   updated, so this issue does not exist.
@@ -309,11 +309,6 @@ bumping the version:
     versions.
   - Torch stable ABI kernels, as long as the CUDA versions that get built
     overlap with the current build variants.
-
-In the following cases no version bump is required for these types of kernels:
-
-- Adding new functions/methods/classes.
-- Adding new arguments with default values to a function/method/constructor, as long as the default values do not change previous behavior.
 
 ## Native Python module
 
