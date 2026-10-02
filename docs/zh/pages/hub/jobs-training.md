@@ -20,7 +20,7 @@ hf jobs uv run --flavor a10g-small --timeout 30m -s HF_TOKEN -- \
   --push_to_hub
 ```
 
-[Transformers](#transformers) 部分涵盖完整运行和其他示例脚本。
+[Transformers](#transformers) 部分涵盖了完整运行和其他示例脚本。
 
 ## 训练作业是如何组合在一起的
 
@@ -38,7 +38,7 @@ hf jobs uv run --flavor a10g-small --timeout 30m -s HF_TOKEN -- \
   hf jobs run --flavor a10g-small --timeout 30m -s HF_TOKEN \
     -v ./my-project:/code ghcr.io/astral-sh/uv:python3.12-bookworm -- \
     bash -c "cp -r /code /tmp/project && cd /tmp/project && uv run train.py --config configs/run.yaml"
-  ````uv run` 从 `pyproject.toml` 或脚本标头安装依赖项，本地导入和相对路径保持不变。参见[Local directories](./jobs-configuration#local-directories)。
+  ````uv run` 从 `pyproject.toml` 或脚本头安装依赖项，本地导入和相对路径保持不变。参见[Local directories](./jobs-configuration#local-directories)。
 - **需要系统包或 CUDA 工具包的代码。** 构建一次映像并使用 `hf jobs run` 运行它。参见[Build your own image with a Docker Space](./jobs-images#build-your-own-image-with-a-docker-space)。
 
 脚本还可以在脚本标头的 `[tool.hf-jobs]` 表中携带自己的启动配置，如 TRL 部分所示。参见[Define the launch config in the script](./jobs-configuration#define-the-launch-config-in-the-script)。 Python 中提供了与 `run_uv_job()` 和 `run_job()` 相同的命令，在 [Configuration](./jobs-configuration) 中进行了介绍。
@@ -46,9 +46,9 @@ hf jobs uv run --flavor a10g-small --timeout 30m -s HF_TOKEN -- \
 ## 长跑前的检查
 
 在取下盖子之前，进行一些检查可以避免浪费运行。- **首先进行冒烟测试。** 在小版本上运行带有步骤上限的命令，如本页上的示例所示。它证明了依赖项安装、数据加载、模型适合以及推送有效。然后取下盖子并启动完整运行。
-- **检查数据是否相符。** 每个风味都有一个固定磁盘，列在[Pricing and Billing](./jobs-pricing#pricing)的临时存储列中。权重、数据集和保存的检查点共享它。对于磁盘来说太大的数据集可以流式传输或安装，而不是下载。参见[Process Large Datasets](./jobs-large-datasets)。
+- **检查数据是否合适。** 每个风味都有一个固定磁盘，列在[Pricing and Billing](./jobs-pricing#pricing)的临时存储列中。权重、数据集和保存的检查点共享它。对于磁盘来说太大的数据集可以流式传输或安装，而不是下载。参见[Process Large Datasets](./jobs-large-datasets)。
 - **估计运行时间。** 冒烟测试的最终 `train_*` 指标包括 `train_steps_per_second`，训练器在开始时打印总步数。他们一起提供完整的跑步训练时间。将 `--timeout` 设置在其上方，因为作业还花费时间安装依赖项和下载模型。每种口味的价格为[Pricing and Billing](./jobs-pricing)。
-- **在多 GPU 风格上，每个 GPU 启动一个进程。** 以 `x2`、`x4` 或 `x8` 结尾的风格在一台机器上提供多个 GPU。确保您的启动方式使用了它们。 Transformer 和 TRL 需要 `accelerate launch`，如 TRL 部分所示。蝾螈自己做这件事。普通的`python train.py`使用一个GPU，而`Trainer`则回退到`DataParallel`，这比每个GPU一个进程要慢。- **如果要重新运行，则固定。** 将脚本 URL 固定到提交而不是 `main`，并将图像固定到特定标签而不是 `latest`。重新运行会得到相同的软件。下面的脚本 URL 跟踪 `main`，因此请在重新运行之前固定提交。
+- **在多 GPU 风格上，每个 GPU 启动一个进程。** 以 `x2`、`x4` 或 `x8` 结尾的风格在一台机器上提供多个 GPU。确保您的启动方式使用了它们。 Transformer 和 TRL 需要 `accelerate launch`，如 TRL 部分所示。蝾螈自己做这件事。普通的`python train.py`使用一个GPU，而`Trainer`则回退到`DataParallel`，这比每个GPU一个进程要慢。- **如果要重新运行，请固定。** 将脚本 URL 固定到提交而不是 `main`，将图像固定到特定标签而不是 `latest`。重新运行会得到相同的软件。下面的脚本 URL 跟踪 `main`，因此请在重新运行之前固定提交。
 - **检查长运行**到已安装的存储桶，因此超时或崩溃不会丢失运行。参见[After it ends](#after-it-ends)。
 
 ## 当它运行时
@@ -61,7 +61,7 @@ hf jobs uv run --flavor a10g-small --timeout 30m -s HF_TOKEN -- \
 
 ## 结束后当作业结束时，作业的磁盘将被丢弃，无论是完成、失败还是超时。您想要保留的任何东西都必须在此之前离开容器。
 
-**将模型推送到 Hub 存储库。** 此页面上的每个库都有一个选项：`--push_to_hub` 用于 Transformers 和 TRL，`--output-repo` 用于 Unsloth 脚本，`hub_model_id` 在 Axolotl YAML 中。运行结束时，库上传权重、分词器和生成的模型卡，记录基本模型和训练参数。如果存储库不存在，则创建该存储库。要使其私有，请先使用 `hf repos create <name> --private` 创建它。细粒度令牌需要写入并创建对模型存储库的访问权限。如果没有它，运行会训练到最后，然后上传失败。
+**将模型推送到 Hub 存储库。** 此页面上的每个库都有一个选项：`--push_to_hub` 用于 Transformers、TRL 和 Diffusers，`--output-repo` 用于 Unsloth 脚本，`hub_model_id` 在 Axolotl YAML 中。运行结束时，库上传权重、分词器和生成的模型卡，记录基本模型和训练参数。如果存储库不存在，则创建该存储库。要使其私有，请先使用 `hf repos create <name> --private` 创建它。细粒度令牌需要写入并创建对模型存储库的访问权限。如果没有它，运行会训练到最后，然后上传失败。
 
 **随时写入存储桶。** 对于需要数小时的运行，请挂载现有的 [Storage Bucket](./storage-buckets) 读写（使用 `hf buckets create` 创建一个）并将库的输出目录指向它。检查点在保存时会落入存储桶中，因此超时或崩溃不会丢失运行，并且下一个作业可以从中恢复。同样的路线适用于评估输出、日志和其他任何非模型的内容。
 
@@ -69,13 +69,13 @@ hf jobs uv run --flavor a10g-small --timeout 30m -s HF_TOKEN -- \
 hf jobs uv run --flavor a10g-large --timeout 8h -s HF_TOKEN \
   -v hf://buckets/your-username/checkpoints:/ckpt -- \
   train.py --output_dir /ckpt/run-01
-```Transformer 和 TRL 脚本采用 `--output_dir`。 Axolotl 在 YAML 中采用 `output_dir`。如果您还传递了`--push_to_hub`，请也设置`--hub_model_id`，或者存储库以输出路径的最后一部分（`run-01`）命名。要继续中断的运行，请再次挂载相同的存储桶并传递库的恢复选项，例如 Transformers 的 `--resume_from_checkpoint` `Trainer`。有关安装选项，请参阅[Volumes](./jobs-configuration#volumes)。
+```Transformers、TRL 和 Diffusers 脚本采用 `--output_dir`。 Axolotl 在 YAML 中采用 `output_dir`。如果您还传递了`--push_to_hub`，请也设置`--hub_model_id`，或者存储库以输出路径的最后一部分（`run-01`）命名。要继续中断的运行，请再次挂载相同的存储桶并传递库的恢复选项，例如 Transformers 的 `--resume_from_checkpoint` `Trainer`。有关安装选项，请参阅[Volumes](./jobs-configuration#volumes)。
 
 **读取失败的运行。**失败的作业会保留其日志：`hf jobs logs <job_id>`在结束后继续工作，`hf jobs inspect <job_id>`给出最终状态和错误消息。无论运行是否成功，`hf jobs logs -f`都会在日志流结束时返回，因此在假设它有效之前检查`inspect`。
 
 ## 变形金刚
 
-Transformers 存储库中的 [example scripts](https://github.com/huggingface/transformers/tree/main/examples/pytorch) 在脚本标头中声明它们的依赖项，因此它们直接从 GitHub URL 在作业上运行。 URL 后面的参数转到脚本。 [A first run](#a-first-run) 使用图像分类脚本。对于完整运行，从该命令中删除 `--max_train_samples 2000 --max_eval_samples 500 --num_train_epochs 1`：75,000 个 Food-101 训练图像上的三个 epoch 在 `a10g-small` 上大约需要一个小时，按照该风味的速度大约需要 1 美元，并达到 90% 的准确率。在启动之前将 `--timeout` 调至 `2h`。 `--push_to_hub` 使用输出目录名称在您的命名空间下上传模型。脚本可用于文本分类、摘要、翻译、标记分类、语音识别等。
+Transformers 存储库中的 [example scripts](https://github.com/huggingface/transformers/tree/main/examples/pytorch) 在脚本标头中声明其依赖项，因此它们直接从 GitHub URL 在作业上运行。 URL 后面的参数转到脚本。 [A first run](#a-first-run) 使用图像分类脚本。对于完整运行，从该命令中删除 `--max_train_samples 2000 --max_eval_samples 500 --num_train_epochs 1`：75,000 个 Food-101 训练图像上的三个 epoch 在 `a10g-small` 上大约需要一个小时，按照该风味的速度大约需要 1 美元，并达到 90% 的准确率。在启动之前将 `--timeout` 调至 `2h`。 `--push_to_hub` 使用输出目录名称在您的命名空间下上传模型。脚本可用于文本分类、摘要、翻译、标记分类、语音识别等。
 
 ## TRL
 
@@ -126,7 +126,7 @@ from trl import SFTConfig, SFTTrainer
 
 ## 不懒惰
 
-[Unsloth](https://unsloth.ai) 在 [⟦T88⟧](https://huggingface.co/datasets/unsloth/jobs) 数据集中提供可立即运行的脚本，每个模型系列一个。他们从脚本头安装 Unsloth 并将数据集和输出存储库作为参数：
+[Unsloth](https://unsloth.ai) 在 [⟦T89⟧](https://huggingface.co/datasets/unsloth/jobs) 数据集中提供可立即运行的脚本，每个模型系列一个。他们从脚本头安装 Unsloth 并将数据集和输出存储库作为参数：
 
 ```bash
 hf jobs uv run --flavor a10g-small --timeout 30m -s HF_TOKEN -- \
@@ -157,11 +157,31 @@ max_steps: 20
 
 这将在大约七分钟内完成，并将适配器推送到`hub_model_id`，作为私人存储库。移除`max_steps`以进行完整运行。图像标签格式在[Axolotl's Docker guide](https://docs.axolotl.ai/docs/docker.html#sec-main-tags)中描述。
 
-对于更多 GPU，只需更改风格即可：在 `a10g-largex4` 上，`axolotl train` 为每个 GPU 单独启动一个进程。 DeepSpeed 和 FSDP 就是 YAML 密钥的问题，在 [Axolotl's multi-GPU guide](https://docs.axolotl.ai/docs/multi-gpu.html) 中介绍。
+对于更多 GPU，只需更改风格即可：在 `a10g-largex4` 上，`axolotl train` 为每个 GPU 单独启动一个进程。 DeepSpeed 和 FSDP 就是 YAML 密钥的问题，在 [Axolotl's multi-GPU guide](https://docs.axolotl.ai/docs/multi-gpu.html) 中进行了介绍。
 
 有关更多详细信息，请参阅 Axolotl 文档中的 [Hugging Face Jobs guide](https://docs.axolotl.ai/docs/hf-jobs.html)。
 
-## 更进一步- [Serve Models](./jobs-serving) 将您训练的模型放在临时端点后面，以进行评估运行或演示。 [Inference Endpoints](https://huggingface.co/docs/inference-endpoints) 运行一个持续运行的系统。
+## 扩散器
+
+Diffusers 存储库中的大多数 [DreamBooth LoRA scripts](https://github.com/huggingface/diffusers/tree/main/examples/dreambooth) 在脚本标头中声明其依赖项，因此它们直接从 GitHub URL 在作业上运行，就像 Transformers 脚本一样。此命令在五张狗的照片上训练 LoRA for [FLUX.2 [klein] 4B](https://huggingface.co/black-forest-labs/FLUX.2-klein-4B)：
+
+```bash
+hf jobs uv run --flavor a10g-small --timeout 30m -s HF_TOKEN -- \
+  https://raw.githubusercontent.com/huggingface/diffusers/main/examples/dreambooth/train_dreambooth_lora_flux2_klein.py \
+  --pretrained_model_name_or_path black-forest-labs/FLUX.2-klein-4B \
+  --dataset_name diffusers/dog-example \
+  --instance_prompt "a photo of sks dog" \
+  --resolution 512 --mixed_precision bf16 --guidance_scale 1 \
+  --gradient_checkpointing --cache_latents \
+  --optimizer adamW --use_8bit_adam --learning_rate 1e-4 \
+  --max_train_steps 20 --seed 0 \
+  --output_dir /tmp/out \
+  --push_to_hub --hub_model_id your-username/klein-dog-lora
+```这将在大约五分钟内完成并推动 LoRA。提高`--max_train_steps`进行真正的跑步； [FLUX.2 README](https://github.com/huggingface/diffusers/blob/main/examples/dreambooth/README_flux2.md) 使用 500。该文件夹中的其他自述文件涵盖了其余型号及其内存选项。检查脚本顶部是否有 `# /// script` 块：没有该块的脚本（例如 SDXL 脚本）需要通过 `--with` 传递其依赖项。
+
+## 更进一步
+
+- [Serve Models](./jobs-serving) 将您训练的模型放在临时端点后面，以进行评估运行或演示。 [Inference Endpoints](https://huggingface.co/docs/inference-endpoints) 运行一个保持正常运行的系统。
 - [Configuration](./jobs-configuration) 用于秘密、环境变量、卷和 `[tool.hf-jobs]` 表，让脚本携带自己的风格和超时。
 - [Manage Jobs](./jobs-manage) 用于列出、检查、调试和取消作业。
 - [Process Large Datasets](./jobs-large-datasets) 用于流式传输和安装不适合磁盘的数据。

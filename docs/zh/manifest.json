@@ -2010,18 +2010,18 @@
       "translatedAt": "2026-10-01T14:24:03.693Z"
     },
     "hub/jobs-training.md": {
-      "hash": "845bb247f4faefd3b66e679bb9c835041ff3f79f",
-      "translatedAt": "2026-09-28T15:17:08.320Z"
+      "hash": "0ce3200b30909e9adee16247dc2a55fe4adece4d",
+      "translatedAt": "2026-10-02T13:46:57.039Z"
     },
     "hub/webhooks-guide-bucket-jobs.md": {
       "hash": "d4c262a4c47304e1ffb4bf4a95a84c27607dc538",
       "translatedAt": "2026-10-01T14:23:56.989Z"
     }
   },
-  "updatedAt": "2026-10-01T14:27:40.984Z",
+  "updatedAt": "2026-10-02T13:46:57.039Z",
   "stats": {
-    "translated": 68,
-    "skipped": 332,
+    "translated": 1,
+    "skipped": 399,
     "failed": 0,
     "total": 400
   }
