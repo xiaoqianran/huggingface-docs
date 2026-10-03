@@ -11,7 +11,7 @@ The `kernels` CLI provides commands for managing compute kernels.
 | [info](cli-info)                         | Describe a kernel                  |
 | [lock](cli-lock)                         | Lock kernel revisions              |
 | [verify-signature](cli-verify-signature) | Verify a kernel signature          |
-| [versions](cli-versions)                 | Show kernel versions               |
+| [variants](cli-variants)                 | Show variants and compatibility               |
 
 ### Quickstart
 https://huggingface.co/docs/kernels/main/basic-usage.md

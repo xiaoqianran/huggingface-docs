@@ -4,7 +4,7 @@ Use `kernels info` to describe a kernel from a Hub repo ID or a local path.
 It prints the kernel metadata (name, version, license, upstream/source
 repositories, Python dependencies, and supported backends). To list the
 build variants of a kernel and their compatibility with the current system,
-use [kernels versions](cli-versions).
+use [kernels variants](cli-variants).
 
 ## Usage
 
@@ -61,7 +61,7 @@ Backends: cuda, metal
 
 ## See Also
 
-- [kernels versions](cli-versions) - List available versions of a kernel
+- [kernels variants](cli-variants) - List kernel variants and compatibility decisions
 - [kernels download](cli-download) - Download locked kernels
 
 ### CLI reference for kernel-builder

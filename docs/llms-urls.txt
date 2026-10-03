@@ -938,6 +938,7 @@ https://huggingface.co/docs/kernels/cli-download.md
 https://huggingface.co/docs/kernels/cli-info.md
 https://huggingface.co/docs/kernels/cli-lock.md
 https://huggingface.co/docs/kernels/cli-skills.md
+https://huggingface.co/docs/kernels/cli-variants.md
 https://huggingface.co/docs/kernels/cli-verify-signature.md
 https://huggingface.co/docs/kernels/cli-versions.md
 https://huggingface.co/docs/kernels/cli.md
@@ -950,6 +951,7 @@ https://huggingface.co/docs/kernels/kernel-requirements.md
 https://huggingface.co/docs/kernels/layers.md
 https://huggingface.co/docs/kernels/locking.md
 https://huggingface.co/docs/kernels/migration.md
+https://huggingface.co/docs/kernels/security.md
 https://huggingface.co/docs/kernels/talks.md
 https://huggingface.co/docs/kernels/why_kernels.md
 https://huggingface.co/docs/lerobot/act.md

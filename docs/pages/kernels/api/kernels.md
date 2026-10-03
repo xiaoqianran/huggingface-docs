@@ -10,7 +10,7 @@
 kernels.get_kernel(repo_id: str, revision: str | None = None, version: int | None = None, backend: str | None = None, user_agent: str | dict | None = None, trust_remote_code: bool | list[str] = False, check_arch: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L96)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L103)
 
 **Parameters:**
 
@@ -56,7 +56,7 @@ result = activation.relu(out, x)
 kernels.get_local_kernel(repo_path: Path, backend: str | None = None, trust_remote_code: bool | list[str] = False, user_agent: str | dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L177)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L185)
 
 **Parameters:**
 
@@ -84,7 +84,7 @@ If the kernel has any (transitive) dependencies, they will be downloaded.
 kernels.has_kernel(repo_id: str, revision: str | None = None, version: int | None = None, backend: str | None = None, trust_remote_code: bool | list[str] = False, check_arch: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L230)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L239)
 
 **Parameters:**
 
@@ -159,7 +159,7 @@ for decision in get_kernel_variants("kernels-community/activation", version=1):
 kernels.get_loaded_kernels()
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/importer.py#L45)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/importer.py#L43)
 
 **Returns:** `list[LoadedKernel]`
 
@@ -189,7 +189,7 @@ for loaded in get_loaded_kernels():
 kernels.load_kernel(repo_id: str, lockfile: pathlib.Path | None, backend: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L302)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L311)
 
 **Parameters:**
 
@@ -218,7 +218,7 @@ If `lockfile` is not specified, the lockfile will be loaded from the caller's pa
 kernels.get_locked_kernel(repo_id: str, lockfile: pathlib.Path | None, trust_remote_code: bool | list[str] = False, user_agent: str | dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L346)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L356)
 
 **Parameters:**
 
@@ -250,10 +250,8 @@ This dataclass provides information about a loaded kernel:
 
 - `metadata` (`Metadata`): kernel metadata.
 - `module` (`ModuleType`): the imported kernel module.
-- `repo_info` (`kernels.hf_hub.RepoInfo | None`): populated only for
-  kernels loaded via `get_kernel`. Loaders that work from a local path
-  (`get_local_kernel`) or a lockfile (`get_locked_kernel`, `load_kernel`)
-  leave this as `None`.
+- `repo_info` (`kernels.hf_hub.RepoInfo | None`): populated whenever the
+  Hub repository the kernel came from is known.
 
 The metadata includes the following properties that describe a kernel:
 
@@ -273,7 +271,7 @@ The metadata includes the following properties that describe a kernel:
 #### kernels.RepoInfo[[kernels.RepoInfo]]
 
 ```python
-kernels.RepoInfo(repo_id: str, revision: str)
+kernels.RepoInfo(repo_id: str, revision: Oid)
 ```
 
 [Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/hf_hub.py#L83)
@@ -283,7 +281,7 @@ This dataclass stores the origin of the kernel.
 The following fields are available:
 
 - `repo_id` (`str`): the Hub repository containing the kernel.
-- `revision` (`str`): the specific revision of the kernel.
+- `revision` (`Oid`): the commit of the kernel.
 
 ### Layers API Reference
 https://huggingface.co/docs/kernels/main/api/layers.md
