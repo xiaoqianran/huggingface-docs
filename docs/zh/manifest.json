@@ -2018,10 +2018,10 @@
       "translatedAt": "2026-10-01T14:23:56.989Z"
     }
   },
-  "updatedAt": "2026-10-02T13:46:57.039Z",
+  "updatedAt": "2026-10-03T12:25:16.040Z",
   "stats": {
-    "translated": 1,
-    "skipped": 399,
+    "translated": 0,
+    "skipped": 400,
     "failed": 0,
     "total": 400
   }
