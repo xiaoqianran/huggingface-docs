@@ -7,7 +7,7 @@ The model can be loaded with the following code snippet.
 ```python
 from diffusers import AutoencoderKLCogVideoX
 
-vae = AutoencoderKLCogVideoX.from_pretrained("THUDM/CogVideoX-2b", subfolder="vae", dtype=torch.float16).to("cuda")
+vae = AutoencoderKLCogVideoX.from_pretrained("THUDM/CogVideoX-2b", subfolder="vae", dtype=torch.float16).to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 ## AutoencoderKLCogVideoX[[diffusers.AutoencoderKLCogVideoX]]
@@ -18,7 +18,7 @@ vae = AutoencoderKLCogVideoX.from_pretrained("THUDM/CogVideoX-2b", subfolder="va
 diffusers.AutoencoderKLCogVideoX(in_channels: int = 3, out_channels: int = 3, down_block_types: tuple = ('CogVideoXDownBlock3D', 'CogVideoXDownBlock3D', 'CogVideoXDownBlock3D', 'CogVideoXDownBlock3D'), up_block_types: tuple = ('CogVideoXUpBlock3D', 'CogVideoXUpBlock3D', 'CogVideoXUpBlock3D', 'CogVideoXUpBlock3D'), block_out_channels: tuple = (128, 256, 256, 512), latent_channels: int = 16, layers_per_block: int = 3, act_fn: str = 'silu', norm_eps: float = 1e-06, norm_num_groups: int = 32, temporal_compression_ratio: float = 4, sample_height: int = 480, sample_width: int = 720, scaling_factor: float = 1.15258426, shift_factor: float | None = None, latents_mean: tuple[float] | None = None, latents_std: tuple[float] | None = None, force_upcast: float = True, use_quant_conv: bool = False, use_post_quant_conv: bool = False, invert_scale_latents: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_cogvideox.py#L956)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_cogvideox.py#L956)
 
 **Parameters:**
 
@@ -43,7 +43,7 @@ force_upcast (`bool`, *optional*, default to `True`) : If enabled it will force 
 A VAE model with KL loss for encoding images into latents and decoding latent representations into images. Used in
 [CogVideoX](https://github.com/THUDM/CogVideo).
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
+This model inherits from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
 for all models (such as downloading or saving).
 
 #### decode[[diffusers.AutoencoderKLCogVideoX.decode]]
@@ -52,7 +52,7 @@ for all models (such as downloading or saving).
 decode(z: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_cogvideox.py#L1207)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_cogvideox.py#L1207)
 
 **Parameters:**
 
@@ -73,7 +73,7 @@ Decode a batch of images.
 encode(x: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_cogvideox.py#L1151)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_cogvideox.py#L1151)
 
 **Parameters:**
 
@@ -94,7 +94,7 @@ Encode a batch of images into latents.
 enable_tiling(tile_sample_min_height: int | None = None, tile_sample_min_width: int | None = None, tile_overlap_factor_height: float | None = None, tile_overlap_factor_width: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_cogvideox.py#L1089)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_cogvideox.py#L1089)
 
 **Parameters:**
 
@@ -116,7 +116,7 @@ processing larger images.
 forward(sample: Tensor, sample_posterior: bool = False, return_dict: bool = True, generator: typing.Optional[torch.Generator] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_cogvideox.py#L1405)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_cogvideox.py#L1405)
 
 **Parameters:**
 
@@ -139,7 +139,7 @@ returned.
 tiled_decode(z: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_cogvideox.py#L1322)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_cogvideox.py#L1322)
 
 **Parameters:**
 
@@ -160,7 +160,7 @@ Decode a batch of images using a tiled decoder.
 tiled_encode(x: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_cogvideox.py#L1248)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_cogvideox.py#L1248)
 
 **Parameters:**
 
@@ -186,7 +186,7 @@ output, but they should be much less noticeable.
 diffusers.models.modeling_outputs.AutoencoderKLOutput(latent_dist: DiagonalGaussianDistribution)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L7)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/modeling_outputs.py#L7)
 
 **Parameters:**
 
@@ -202,7 +202,7 @@ Output of AutoencoderKL encoding method.
 diffusers.models.autoencoders.vae.DecoderOutput(sample: Tensor, commit_loss: typing.Optional[torch.FloatTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/vae.py#L46)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/vae.py#L49)
 
 **Parameters:**
 
@@ -211,4 +211,4 @@ sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) : T
 Output of decoding method.
 
 ### AutoencoderKLHunyuanVideo
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoder_kl_hunyuan_video.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_kl_hunyuan_video.md

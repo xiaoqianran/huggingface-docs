@@ -34,15 +34,15 @@ transformer = HiDreamImageTransformer2DModel.from_single_file(
 diffusers.HiDreamImageTransformer2DModel(patch_size: int | None = None, in_channels: int = 64, out_channels: int | None = None, num_layers: int = 16, num_single_layers: int = 32, attention_head_dim: int = 128, num_attention_heads: int = 20, caption_channels: list = None, text_emb_dim: int = 2048, num_routed_experts: int = 4, num_activated_experts: int = 2, axes_dims_rope: tuple = (32, 32), max_resolution: tuple = (128, 128), llama_layers: list = None, force_inference_output: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_hidream_image.py#L602)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_hidream_image.py#L602)
 
 #### forward[[diffusers.HiDreamImageTransformer2DModel.forward]]
 
 ```python
-forward(hidden_states: Tensor, timesteps: LongTensor = None, encoder_hidden_states_t5: Tensor = None, encoder_hidden_states_llama3: Tensor = None, pooled_embeds: Tensor = None, img_ids: typing.Optional[torch.Tensor] = None, img_sizes: list[tuple[int, int]] | None = None, hidden_states_masks: typing.Optional[torch.Tensor] = None, attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True, **kwargs)
+forward(hidden_states: Tensor, timesteps: LongTensor = None, encoder_hidden_states_t5: Tensor = None, encoder_hidden_states_llama3: Tensor = None, pooled_embeds: Tensor = None, img_ids: typing.Optional[torch.Tensor] = None, img_sizes: list[tuple[int, int]] | None = None, hidden_states_masks: typing.Optional[torch.Tensor] = None, attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_hidream_image.py#L773)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_hidream_image.py#L773)
 
 **Parameters:**
 
@@ -71,7 +71,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
-The [HiDreamImageTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/hidream_image_transformer#diffusers.HiDreamImageTransformer2DModel) forward method.
+The [HiDreamImageTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/hidream_image_transformer#diffusers.HiDreamImageTransformer2DModel) forward method.
 
 ## Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
@@ -81,13 +81,13 @@ The [HiDreamImageTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/hidre
 diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L21)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-The output of [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+The output of [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
 
 ### OvisImageTransformer2DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/ovisimage_transformer2d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/ovisimage_transformer2d.md

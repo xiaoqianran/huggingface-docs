@@ -15,27 +15,27 @@ The Stable Diffusion latent upscaler model was created by [Katherine Crowson](ht
 diffusers.StableDiffusionLatentUpscalePipeline(vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, unet: UNet2DConditionModel, scheduler: EulerDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion_latent_upscale.py#L84)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion_latent_upscale.py#L84)
 
 **Parameters:**
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) model to encode and decode images to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) model to encode and decode images to and from latent representations.
 
-text_encoder ([CLIPTextModel](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTextModel)) : Frozen text-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)).
+text_encoder ([CLIPTextModel](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPTextModel)) : Frozen text-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)).
 
-tokenizer ([CLIPTokenizer](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTokenizer)) : A `CLIPTokenizer` to tokenize text.
+tokenizer ([CLIPTokenizer](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPTokenizer)) : A `CLIPTokenizer` to tokenize text.
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : A `UNet2DConditionModel` to denoise the encoded image latents.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : A `UNet2DConditionModel` to denoise the encoded image latents.
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A [EulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/euler#diffusers.EulerDiscreteScheduler) to be used in combination with `unet` to denoise the encoded image latents.
+scheduler ([SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A [EulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/euler#diffusers.EulerDiscreteScheduler) to be used in combination with `unet` to denoise the encoded image latents.
 
 Pipeline for upscaling Stable Diffusion output image resolution by a factor of 2.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 The pipeline also inherits the following loading methods:
-- [from_single_file()](/docs/diffusers/v0.40.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) for loading `.ckpt` files
+- [from_single_file()](/docs/diffusers/v0.41.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) for loading `.ckpt` files
 
 #### __call__[[diffusers.StableDiffusionLatentUpscalePipeline.__call__]]
 
@@ -43,7 +43,7 @@ The pipeline also inherits the following loading methods:
 __call__(prompt: str | list[str] = None, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, num_inference_steps: int = 75, guidance_scale: float = 9.0, negative_prompt: str | list[str] | None = None, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, pooled_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_pooled_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int = 1)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion_latent_upscale.py#L396)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion_latent_upscale.py#L396)
 
 **Parameters:**
 
@@ -71,15 +71,15 @@ negative_pooled_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negat
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated image. Choose between `PIL.Image` or `np.array`.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) instead of a plain tuple.
 
 callback (`Callable`, *optional*) : A function that calls every `callback_steps` steps during inference. The function is called with the following arguments: `callback(step: int, timestep: int, latents: torch.Tensor)`.
 
 callback_steps (`int`, *optional*, defaults to 1) : The frequency at which the `callback` function is called. If not specified, the callback is called at every step.
 
-**Returns:** [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) or `tuple`
+**Returns:** [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) is returned,
+If `return_dict` is `True`, [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) is returned,
 otherwise a `tuple` is returned where the first element is a list with the generated images.
 
 The call function to the pipeline for generation.
@@ -126,7 +126,7 @@ Examples:
 enable_sequential_cpu_offload(gpu_id: int | None = None, device: typing.Union[torch.device, str] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L1313)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L1293)
 
 **Parameters:**
 
@@ -146,7 +146,7 @@ and then moved to `torch.device('meta')` and loaded to accelerator only when the
 enable_attention_slicing(slice_size: str | int = 'auto')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L2076)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L2048)
 
 **Parameters:**
 
@@ -184,7 +184,7 @@ Examples:
 disable_attention_slicing()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L2113)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L2085)
 
 Disable sliced attention computation. If `enable_attention_slicing` was previously called, attention is
 computed in one step.
@@ -195,7 +195,7 @@ computed in one step.
 enable_xformers_memory_efficient_attention(attention_op: typing.Optional[typing.Callable] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L2021)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L1993)
 
 **Parameters:**
 
@@ -228,7 +228,7 @@ Examples:
 disable_xformers_memory_efficient_attention()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L2052)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L2024)
 
 Disable memory efficient attention from [xFormers](https://facebookresearch.github.io/xformers/).
 
@@ -238,7 +238,7 @@ Disable memory efficient attention from [xFormers](https://facebookresearch.gith
 encode_prompt(prompt, device, do_classifier_free_guidance, negative_prompt = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, pooled_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_pooled_prompt_embeds: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion_latent_upscale.py#L166)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion_latent_upscale.py#L166)
 
 **Parameters:**
 
@@ -268,7 +268,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray, nsfw_content_detected: list[bool] | None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_diffusion/pipeline_output.py#L10)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_diffusion/pipeline_output.py#L10)
 
 **Parameters:**
 
@@ -279,4 +279,4 @@ nsfw_content_detected (`list[bool]`) : list indicating whether the corresponding
 Output class for Stable Diffusion pipelines.
 
 ### Image-to-image
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/stable_diffusion/img2img.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_diffusion/img2img.md

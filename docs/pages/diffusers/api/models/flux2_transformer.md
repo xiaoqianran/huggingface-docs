@@ -10,7 +10,7 @@ A Transformer model for image-like data from [Flux2](https://hf.co/black-forest-
 diffusers.Flux2Transformer2DModel(patch_size: int = 1, in_channels: int = 128, out_channels: int | None = None, num_layers: int = 8, num_single_layers: int = 48, attention_head_dim: int = 128, num_attention_heads: int = 48, joint_attention_dim: int = 15360, timestep_guidance_channels: int = 256, mlp_ratio: float = 3.0, axes_dims_rope: tuple = (32, 32, 32, 32), rope_theta: int = 2000, eps: float = 1e-06, guidance_embeds: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_flux2.py#L1059)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_flux2.py#L1059)
 
 **Parameters:**
 
@@ -46,7 +46,7 @@ Reference: https://blackforestlabs.ai/announcing-black-forest-labs/
 forward(hidden_states: Tensor, encoder_hidden_states: Tensor = None, timestep: LongTensor = None, img_ids: Tensor = None, txt_ids: Tensor = None, guidance: Tensor = None, joint_attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True, kv_cache: Flux2KVCache | None = None, kv_cache_mode: str | None = None, num_ref_tokens: int = 0, ref_fixed_timestep: float = 0.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_flux2.py#L1225)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_flux2.py#L1225)
 
 **Parameters:**
 
@@ -80,7 +80,7 @@ If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` i
 `tuple` where the first element is the sample tensor. When `kv_cache_mode="extract"`, also returns the
 populated `Flux2KVCache`.
 
-The [Flux2Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux2_transformer#diffusers.Flux2Transformer2DModel) forward method.
+The [Flux2Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/flux2_transformer#diffusers.Flux2Transformer2DModel) forward method.
 
 ## Flux2Transformer2DModelOutput[[diffusers.models.transformers.transformer_flux2.Flux2Transformer2DModelOutput]]
 
@@ -90,7 +90,7 @@ The [Flux2Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux2_transf
 diffusers.models.transformers.transformer_flux2.Flux2Transformer2DModelOutput(sample: torch.Tensor, kv_cache: Flux2KVCache | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_flux2.py#L46)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_flux2.py#L46)
 
 **Parameters:**
 
@@ -98,7 +98,7 @@ sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) : T
 
 kv_cache (`Flux2KVCache`, *optional*) : The populated KV cache for reference image tokens. Only returned when `kv_cache_mode="extract"`.
 
-The output of [Flux2Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux2_transformer#diffusers.Flux2Transformer2DModel).
+The output of [Flux2Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/flux2_transformer#diffusers.Flux2Transformer2DModel).
 
 ### Text-to-Video Generation with AnimateDiff
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/animatediff.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/animatediff.md

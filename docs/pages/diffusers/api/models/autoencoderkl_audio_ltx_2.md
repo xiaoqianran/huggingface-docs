@@ -7,7 +7,7 @@ The model can be loaded with the following code snippet.
 ```python
 from diffusers import AutoencoderKLLTX2Audio
 
-vae = AutoencoderKLLTX2Audio.from_pretrained("Lightricks/LTX-2", subfolder="vae", dtype=torch.float32).to("cuda")
+vae = AutoencoderKLLTX2Audio.from_pretrained("Lightricks/LTX-2", subfolder="vae", dtype=torch.float32).to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 ## AutoencoderKLLTX2Audio[[diffusers.AutoencoderKLLTX2Audio]]
@@ -18,7 +18,7 @@ vae = AutoencoderKLLTX2Audio.from_pretrained("Lightricks/LTX-2", subfolder="vae"
 diffusers.AutoencoderKLLTX2Audio(base_channels: int = 128, output_channels: int = 2, ch_mult: tuple = (1, 2, 4), num_res_blocks: int = 2, attn_resolutions: tuple[int, ...] | None = None, in_channels: int = 2, resolution: int = 256, latent_channels: int = 8, norm_type: str = 'pixel', causality_axis: str | None = 'height', dropout: float = 0.0, mid_block_add_attention: bool = False, sample_rate: int = 16000, mel_hop_length: int = 160, is_causal: bool = True, mel_bins: int | None = 64, double_z: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx2_audio.py#L668)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx2_audio.py#L668)
 
 LTX2 audio VAE for encoding and decoding audio latent representations.
 
@@ -28,7 +28,7 @@ LTX2 audio VAE for encoding and decoding audio latent representations.
 encode(x: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx2_audio.py#L759)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx2_audio.py#L759)
 
 #### decode[[diffusers.AutoencoderKLLTX2Audio.decode]]
 
@@ -36,7 +36,7 @@ encode(x: Tensor, return_dict: bool = True)
 decode(z: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx2_audio.py#L775)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx2_audio.py#L775)
 
 #### forward[[diffusers.AutoencoderKLLTX2Audio.forward]]
 
@@ -44,7 +44,7 @@ decode(z: Tensor, return_dict: bool = True)
 forward(sample: Tensor, sample_posterior: bool = False, return_dict: bool = True, generator: typing.Optional[torch.Generator] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx2_audio.py#L788)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx2_audio.py#L788)
 
 **Parameters:**
 
@@ -61,4 +61,4 @@ generator (`torch.Generator`, *optional*) : A [`torch.Generator`](https://pytorc
 If `return_dict` is True, a `DecoderOutput` is returned, otherwise a plain `tuple` is returned.
 
 ### CogView4Transformer2DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/cogview4_transformer2d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/cogview4_transformer2d.md

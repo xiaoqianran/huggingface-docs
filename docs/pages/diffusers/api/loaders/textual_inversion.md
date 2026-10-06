@@ -5,7 +5,7 @@ Textual Inversion is a training method for personalizing models by learning new 
 `TextualInversionLoaderMixin` provides a function for loading Textual Inversion embeddings from Diffusers and Automatic1111 into the text encoder and loading a special token to activate the embeddings.
 
 > [!TIP]
-> To learn more about how to load Textual Inversion embeddings, see the [Textual Inversion](../../using-diffusers/textual_inversion_inference) loading guide.
+> To learn more about how to load Textual Inversion embeddings, see the [Textual Inversion](../../using-diffusers/legacy_adapters#textual-inversion) loading guide.
 
 ## TextualInversionLoaderMixin[[diffusers.loaders.TextualInversionLoaderMixin]]
 
@@ -15,7 +15,7 @@ Textual Inversion is a training method for personalizing models by learning new 
 diffusers.loaders.TextualInversionLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/textual_inversion.py#L118)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/textual_inversion.py#L118)
 
 Load Textual Inversion tokens and embeddings to the tokenizer and text encoder.
 
@@ -25,7 +25,7 @@ Load Textual Inversion tokens and embeddings to the tokenizer and text encoder.
 load_textual_inversion(pretrained_model_name_or_path: str | list[str] | dict[str, torch.Tensor] | list[dict[str, torch.Tensor]], token: str | list[str] | None = None, tokenizer: 'PreTrainedTokenizer' | None = None, text_encoder: 'PreTrainedModel' | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/textual_inversion.py#L271)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/textual_inversion.py#L271)
 
 **Parameters:**
 
@@ -33,9 +33,9 @@ pretrained_model_name_or_path (`str` or `os.PathLike` or `list[str or os.PathLik
 
 token (`str` or `list[str]`, *optional*) : Override the token to use for the textual inversion weights. If `pretrained_model_name_or_path` is a list, then `token` must also be a list of equal length.
 
-text_encoder ([CLIPTextModel](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTextModel), *optional*) : Frozen text-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)). If not specified, function will take self.tokenizer.
+text_encoder ([CLIPTextModel](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPTextModel), *optional*) : Frozen text-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)). If not specified, function will take self.tokenizer.
 
-tokenizer ([CLIPTokenizer](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTokenizer), *optional*) : A `CLIPTokenizer` to tokenize text. If not specified, function will take self.tokenizer.
+tokenizer ([CLIPTokenizer](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPTokenizer), *optional*) : A `CLIPTokenizer` to tokenize text. If not specified, function will take self.tokenizer.
 
 weight_name (`str`, *optional*) : Name of a custom weight file. This should be used when:  - The saved textual inversion file is in 🤗 Diffusers format, but was saved under a specific weight name such as `text_inv.bin`. - The saved textual inversion file is in the Automatic1111 format.
 
@@ -55,7 +55,7 @@ subfolder (`str`, *optional*, defaults to `""`) : The subfolder location of a mo
 
 mirror (`str`, *optional*) : Mirror source to resolve accessibility issues if you're downloading a model in China. We do not guarantee the timeliness or safety of the source, and you should refer to the mirror site for more information.
 
-Load Textual Inversion embeddings into the text encoder of [StableDiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline) (both 🤗 Diffusers and
+Load Textual Inversion embeddings into the text encoder of [StableDiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline) (both 🤗 Diffusers and
 Automatic1111 formats are supported).
 
 Example:
@@ -103,7 +103,7 @@ image.save("character.png")
 maybe_convert_prompt(prompt: str | list[str], tokenizer: 'PreTrainedTokenizer')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/textual_inversion.py#L123)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/textual_inversion.py#L123)
 
 **Parameters:**
 
@@ -125,9 +125,9 @@ inversion token or if the textual inversion token is a single vector, the input 
 unload_textual_inversion(tokens: str | list[str] | None = None, tokenizer: 'PreTrainedTokenizer' | None = None, text_encoder: 'PreTrainedModel' | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/textual_inversion.py#L467)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/textual_inversion.py#L467)
 
-Unload Textual Inversion embeddings from the text encoder of [StableDiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline)
+Unload Textual Inversion embeddings from the text encoder of [StableDiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline)
 
 Example:
 ```py
@@ -184,4 +184,4 @@ pipeline.unload_textual_inversion(
 ```
 
 ### UNet
-https://huggingface.co/docs/diffusers/v0.40.0/api/loaders/unet.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/loaders/unet.md

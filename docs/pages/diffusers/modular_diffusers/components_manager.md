@@ -1,15 +1,15 @@
 # ComponentsManager
 
 > [!WARNING]
-> [ComponentsManager](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) is still under active development and its API may change.
+> [ComponentsManager](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) is still under active development and its API may change.
 
-The [ComponentsManager](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) is a model registry and management system for Modular Diffusers. It adds and tracks models, stores useful metadata (model size, device placement, adapters), and supports offloading.
+The [ComponentsManager](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) is a model registry and management system for Modular Diffusers. It adds and tracks models, stores useful metadata (model size, device placement, adapters), and supports offloading.
 
-This guide will show you how to use [ComponentsManager](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) to manage components and device memory.
+This guide will show you how to use [ComponentsManager](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) to manage components and device memory.
 
 ## Connect to a pipeline
 
-Create a [ComponentsManager](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) and pass it to a [ModularPipeline](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) with either [from_pretrained()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.from_pretrained) or [init_pipeline()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline). 
+Create a [ComponentsManager](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) and pass it to a [ModularPipeline](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) with either [from_pretrained()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.from_pretrained) or [init_pipeline()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline). 
 
 ```py
 from diffusers import ModularPipeline, ComponentsManager
@@ -33,7 +33,7 @@ Components loaded by the pipeline are automatically registered in the manager. Y
 
 ## Inspect components
 
-Print the [ComponentsManager](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) to see all registered components, including their class, device placement, dtype, memory size, and load ID.
+Print the [ComponentsManager](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) to see all registered components, including their class, device placement, dtype, memory size, and load ID.
 
 The output below corresponds to the `from_pretrained` example above.
 
@@ -62,22 +62,22 @@ The table shows models (with device, dtype, and memory info) separately from oth
 
 ## Offloading
 
-The [enable_auto_cpu_offload()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager.enable_auto_cpu_offload) method is a global offloading strategy that works across all models regardless of which pipeline is using them. Once enabled, you don't need to worry about device placement if you add or remove components.
+The [enable_auto_cpu_offload()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager.enable_auto_cpu_offload) method is a global offloading strategy that works across all models regardless of which pipeline is using them. Once enabled, you don't need to worry about device placement if you add or remove components.
 
 ```py
-manager.enable_auto_cpu_offload(device="cuda")
+manager.enable_auto_cpu_offload(device="cuda")  # or "mps", "xpu", "cpu"
 ```
 
-All models begin on the CPU and [ComponentsManager](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) moves them to the appropriate device right before they're needed, and moves other models back to the CPU when GPU memory is low.
+All models begin on the CPU and [ComponentsManager](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) moves them to the appropriate device right before they're needed, and moves other models back to the CPU when GPU memory is low.
 
-Call [disable_auto_cpu_offload()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager.disable_auto_cpu_offload) to disable offloading.
+Call [disable_auto_cpu_offload()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager.disable_auto_cpu_offload) to disable offloading.
 
 ```py
 manager.disable_auto_cpu_offload()
 ```
 
 ### Using Custom Blocks with Mellon
-https://huggingface.co/docs/diffusers/v0.40.0/modular_diffusers/mellon.md
+https://huggingface.co/docs/diffusers/v0.41.0/modular_diffusers/mellon.md
 
 ## Using Custom Blocks with Mellon
 
@@ -276,7 +276,7 @@ The generated template is a starting point - you may want to adjust it for your 
 
 ### Understanding the Structure
 
-The `params` dict defines how each UI element renders. The `input_names`, `model_input_names`, and `output_names` lists map these UI elements to the underlying [ModularPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks)'s I/O interface:
+The `params` dict defines how each UI element renders. The `input_names`, `model_input_names`, and `output_names` lists map these UI elements to the underlying [ModularPipelineBlocks](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks)'s I/O interface:
 
 | Mellon Config | ModularPipelineBlocks |
 |---------------|----------------------|
@@ -338,4 +338,4 @@ Remove `old_prompt` from both `params` and `output_names` because you won't need
 See the final config at [diffusers/gemini-prompt-expander-mellon](https://huggingface.co/diffusers/gemini-prompt-expander-mellon).
 
 ### Distributed inference
-https://huggingface.co/docs/diffusers/v0.40.0/training/distributed_inference.md
+https://huggingface.co/docs/diffusers/v0.41.0/training/distributed_inference.md

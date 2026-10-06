@@ -20,7 +20,7 @@ import torch
 from diffusers import Ideogram4Pipeline
 
 pipe = Ideogram4Pipeline.from_pretrained("ideogram-ai/ideogram-v4", dtype=torch.bfloat16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt = "A photo of a cat holding a sign that says hello world"
 # The defaults are the recommended settings for best quality.
@@ -45,7 +45,7 @@ import torch
 from diffusers import Ideogram4Pipeline
 
 pipe = Ideogram4Pipeline.from_pretrained("ideogram-ai/ideogram-4-nf4", dtype=torch.bfloat16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 # Expand the prompt into a structured JSON caption with Ideogram's hosted magic-prompt API.
 response = requests.post(
@@ -62,7 +62,7 @@ image.save("ideogram4_upsampled.png")
 
 ### Local (on-device)
 
-For a fully local pipeline, load a small [Ideogram4PromptEnhancerHead](/docs/diffusers/v0.40.0/en/api/pipelines/ideogram4#diffusers.Ideogram4PromptEnhancerHead) (the Qwen3-VL LM head) as the optional
+For a fully local pipeline, load a small [Ideogram4PromptEnhancerHead](/docs/diffusers/v0.41.0/en/api/pipelines/ideogram4#diffusers.Ideogram4PromptEnhancerHead) (the Qwen3-VL LM head) as the optional
 `prompt_enhancer_head` component and pass `prompt_upsampling=True`. The head is grafted onto the shared
 `text_encoder`, so no second text encoder is loaded. Install `outlines` for schema-constrained captions (the nf4
 checkpoint also needs `bitsandbytes`):
@@ -77,7 +77,7 @@ prompt_enhancer_head = Ideogram4PromptEnhancerHead.from_pretrained(
 pipe = Ideogram4Pipeline.from_pretrained(
     "ideogram-ai/ideogram-4-nf4", prompt_enhancer_head=prompt_enhancer_head, dtype=torch.bfloat16
 )
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt = "A photo of a cat holding a sign that says hello world"
 image = pipe(
@@ -98,11 +98,11 @@ image.save("ideogram4_upsampled.png")
 diffusers.Ideogram4Pipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKLFlux2, text_encoder: PreTrainedModel, tokenizer: AutoTokenizer, transformer: Ideogram4Transformer2DModel, unconditional_transformer: Ideogram4Transformer2DModel, prompt_enhancer_head: diffusers.pipelines.ideogram4.prompt_enhancer.Ideogram4PromptEnhancerHead | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ideogram4/pipeline_ideogram4.py#L141)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ideogram4/pipeline_ideogram4.py#L141)
 
 **Parameters:**
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : Flow-matching scheduler. The pipeline overrides the default sigma schedule with a resolution-aware logit-normal schedule.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : Flow-matching scheduler. The pipeline overrides the default sigma schedule with a resolution-aware logit-normal schedule.
 
 vae (`AutoencoderKLFlux2`) : Variational auto-encoder used to decode latents back into images.
 
@@ -110,9 +110,9 @@ text_encoder (`PreTrainedModel`) : Multimodal text encoder. The pipeline consume
 
 tokenizer (`AutoTokenizer`) : Tokenizer paired with `text_encoder`.
 
-transformer ([Ideogram4Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/ideogram4_transformer2d#diffusers.Ideogram4Transformer2DModel)) : Conditional flow-matching transformer.
+transformer ([Ideogram4Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/ideogram4_transformer2d#diffusers.Ideogram4Transformer2DModel)) : Conditional flow-matching transformer.
 
-unconditional_transformer ([Ideogram4Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/ideogram4_transformer2d#diffusers.Ideogram4Transformer2DModel)) : Unconditional (asymmetric-CFG) flow-matching transformer.
+unconditional_transformer ([Ideogram4Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/ideogram4_transformer2d#diffusers.Ideogram4Transformer2DModel)) : Unconditional (asymmetric-CFG) flow-matching transformer.
 
 Text-to-image pipeline for Ideogram4.
 
@@ -126,7 +126,7 @@ zeroed text features. The two velocity predictions are linearly blended each ste
 __call__(prompt: str | list[str] | None = None, height: int = 2048, width: int = 2048, num_inference_steps: int = 48, guidance_scale: float | None = None, guidance_schedule: typing.Union[list[float], torch.Tensor, NoneType] = (7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 3.0, 3.0, 3.0), mu: float = 0.0, std: float = 1.5, prompt_upsampling: bool = False, prompt_upsampling_temperature: float = 1.0, max_sequence_length: int = 2048, num_images_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[ForwardRef('Ideogram4Pipeline'), int, int, dict[str, typing.Any]], dict[str, typing.Any]]] = None, callback_on_step_end_tensor_inputs: list = ['latents'])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ideogram4/pipeline_ideogram4.py#L481)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ideogram4/pipeline_ideogram4.py#L481)
 
 **Parameters:**
 
@@ -146,7 +146,7 @@ mu (`float`, *optional*, defaults to 0.0) : Base mean of the logit-normal flow-m
 
 std (`float`, *optional*, defaults to 1.5) : Standard deviation of the logit-normal flow-matching schedule.
 
-prompt_upsampling (`bool`, *optional*, defaults to `False`) : If `True`, rewrite `prompt` into Ideogram4's native structured JSON caption via [upsample_prompt()](/docs/diffusers/v0.40.0/en/api/pipelines/ideogram4#diffusers.Ideogram4Pipeline.upsample_prompt) before encoding. Requires the optional `prompt_enhancer_head` component; install `outlines` for schema-constrained captions. `generator` is reused to make the upsampling reproducible.
+prompt_upsampling (`bool`, *optional*, defaults to `False`) : If `True`, rewrite `prompt` into Ideogram4's native structured JSON caption via [upsample_prompt()](/docs/diffusers/v0.41.0/en/api/pipelines/ideogram4#diffusers.Ideogram4Pipeline.upsample_prompt) before encoding. Requires the optional `prompt_enhancer_head` component; install `outlines` for schema-constrained captions. `generator` is reused to make the upsampling reproducible.
 
 prompt_upsampling_temperature (`float`, *optional*, defaults to 1.0) : Sampling temperature for prompt upsampling when `prompt_upsampling=True`.
 
@@ -160,7 +160,7 @@ latents (`torch.Tensor`, *optional*) : Pre-generated noise of shape `(batch_size
 
 output_type (`str`, *optional*, defaults to `"pil"`) : One of `"pil"`, `"np"`, `"pt"`, or `"latent"`.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether to return an [Ideogram4PipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ideogram4#diffusers.pipelines.ideogram4.Ideogram4PipelineOutput).
+return_dict (`bool`, *optional*, defaults to `True`) : Whether to return an [Ideogram4PipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ideogram4#diffusers.pipelines.ideogram4.Ideogram4PipelineOutput).
 
 attention_kwargs (`dict`, *optional*) : A kwargs dictionary passed along to the attention processor of each transformer. A `"scale"` entry scales the loaded LoRA weights (e.g. `{"scale": 0.7}`) when the PEFT backend is active.
 
@@ -170,7 +170,7 @@ callback_on_step_end_tensor_inputs (`list[str]`, *optional*) : Names of tensors 
 
 **Returns:**
 
-[Ideogram4PipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ideogram4#diffusers.pipelines.ideogram4.Ideogram4PipelineOutput) or `tuple`.
+[Ideogram4PipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ideogram4#diffusers.pipelines.ideogram4.Ideogram4PipelineOutput) or `tuple`.
 
 Run text-to-image generation.
 
@@ -194,7 +194,7 @@ Examples:
 encode_prompt(prompt: str | list[str], grid_h: int, grid_w: int, max_sequence_length: int, device: device)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ideogram4/pipeline_ideogram4.py#L335)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ideogram4/pipeline_ideogram4.py#L335)
 
 Prepare the conditioning for the packed text+image sequence (one entry per prompt).
 
@@ -207,7 +207,7 @@ no text, so the pipeline builds its (zeroed) inputs directly rather than encodin
 upsample_prompt(prompt: str | list[str], height: int = 2048, width: int = 2048, temperature: float = 1.0, max_new_tokens: int = 1024, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, device: typing.Optional[torch.device] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ideogram4/pipeline_ideogram4.py#L204)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ideogram4/pipeline_ideogram4.py#L204)
 
 Rewrite each prompt into Ideogram4's native structured JSON caption.
 
@@ -223,7 +223,7 @@ unconstrained. Pass `generator` (the same one accepted by `__call__`) to make sa
 diffusers.Ideogram4PromptEnhancerHead(hidden_size: int = 4096, vocab_size: int = 151936)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ideogram4/prompt_enhancer.py#L42)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ideogram4/prompt_enhancer.py#L42)
 
 LM head that makes the head-less Qwen3-VL `text_encoder` generative for prompt upsampling.
 
@@ -239,7 +239,7 @@ combines it with the shared `text_encoder` body to form the generative model.
 diffusers.pipelines.ideogram4.Ideogram4PipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ideogram4/pipeline_output.py#L24)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ideogram4/pipeline_output.py#L24)
 
 **Parameters:**
 
@@ -248,4 +248,4 @@ images (`list[PIL.Image.Image]` or `np.ndarray`) : List of denoised PIL images o
 Output class for the Ideogram 4 pipeline.
 
 ### Bria 3.2
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/bria_3_2.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/bria_3_2.md

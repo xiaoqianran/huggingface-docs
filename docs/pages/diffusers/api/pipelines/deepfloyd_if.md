@@ -127,10 +127,10 @@ make_image_grid([pt_to_pil(stage_1_output)[0], pt_to_pil(stage_2_output)[0], sta
 ### Text Guided Image-to-Image Generation
 
 The same IF model weights can be used for text-guided image-to-image translation or image variation.
-In this case just make sure to load the weights using the [IFImg2ImgPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/deepfloyd_if#diffusers.IFImg2ImgPipeline) and [IFImg2ImgSuperResolutionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/deepfloyd_if#diffusers.IFImg2ImgSuperResolutionPipeline) pipelines.
+In this case just make sure to load the weights using the [IFImg2ImgPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/deepfloyd_if#diffusers.IFImg2ImgPipeline) and [IFImg2ImgSuperResolutionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/deepfloyd_if#diffusers.IFImg2ImgSuperResolutionPipeline) pipelines.
 
 **Note**: You can also directly move the weights of the text-to-image pipelines to the image-to-image pipelines
-without loading them twice by making use of the [components](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.components) argument as explained [here](#converting-between-different-pipelines).
+without loading them twice by making use of the [components](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.components) argument as explained [here](#converting-between-different-pipelines).
 
 ```python
 from diffusers import IFImg2ImgPipeline, IFImg2ImgSuperResolutionPipeline, DiffusionPipeline
@@ -199,7 +199,7 @@ make_image_grid([original_image, pt_to_pil(stage_1_output)[0], pt_to_pil(stage_2
 ### Text Guided Inpainting Generation
 
 The same IF model weights can be used for text-guided image-to-image translation or image variation.
-In this case just make sure to load the weights using the [IFInpaintingPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/deepfloyd_if#diffusers.IFInpaintingPipeline) and [IFInpaintingSuperResolutionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/deepfloyd_if#diffusers.IFInpaintingSuperResolutionPipeline) pipelines.
+In this case just make sure to load the weights using the [IFInpaintingPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/deepfloyd_if#diffusers.IFInpaintingPipeline) and [IFInpaintingSuperResolutionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/deepfloyd_if#diffusers.IFInpaintingSuperResolutionPipeline) pipelines.
 
 **Note**: You can also directly move the weights of the text-to-image pipelines to the image-to-image pipelines
 without loading them twice by making use of the `~DiffusionPipeline.components()` function as explained [here](#converting-between-different-pipelines).
@@ -300,7 +300,7 @@ The simplest optimization to run IF faster is to move all model components to th
 
 ```py
 pipe = DiffusionPipeline.from_pretrained("DeepFloyd/IF-I-XL-v1.0", variant="fp16", dtype=torch.float16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 You can also run the diffusion process for a shorter number of timesteps.
@@ -325,7 +325,7 @@ A smaller number will vary the image less but run faster.
 
 ```py
 pipe = IFImg2ImgPipeline.from_pretrained("DeepFloyd/IF-I-XL-v1.0", variant="fp16", dtype=torch.float16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 image = pipe(image=image, prompt="<prompt>", strength=0.3).images
 ```
@@ -338,7 +338,7 @@ from diffusers import DiffusionPipeline
 import torch
 
 pipe = DiffusionPipeline.from_pretrained("DeepFloyd/IF-I-XL-v1.0", variant="fp16", dtype=torch.float16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 pipe.text_encoder = torch.compile(pipe.text_encoder, mode="reduce-overhead", fullgraph=True)
 pipe.unet = torch.compile(pipe.unet, mode="reduce-overhead", fullgraph=True)
@@ -471,7 +471,7 @@ make_image_grid([pt_to_pil(stage_1_output)[0], pt_to_pil(stage_2_output)[0]], ro
 diffusers.IFPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, unet: UNet2DConditionModel, scheduler: DDPMScheduler, safety_checker: diffusers.pipelines.deepfloyd_if.safety_checker.IFSafetyChecker | None, feature_extractor: transformers.models.clip.image_processing_pil_clip.CLIPImageProcessorPil | None, watermarker: diffusers.pipelines.deepfloyd_if.watermark.IFWatermarker | None, requires_safety_checker: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if.py#L96)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if.py#L96)
 
 #### __call__[[diffusers.IFPipeline.__call__]]
 
@@ -479,7 +479,7 @@ diffusers.IFPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, unet:
 __call__(prompt: str | list[str] = None, num_inference_steps: int = 100, timesteps: list = None, guidance_scale: float = 7.0, negative_prompt: str | list[str] | None = None, num_images_per_prompt: int | None = 1, height: int | None = None, width: int | None = None, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int = 1, clean_caption: bool = True, cross_attention_kwargs: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if.py#L547)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if.py#L547)
 
 **Parameters:**
 
@@ -499,7 +499,7 @@ height (`int`, *optional*, defaults to self.unet.config.sample_size) : The heigh
 
 width (`int`, *optional*, defaults to self.unet.config.sample_size) : The width in pixels of the generated image.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -582,7 +582,7 @@ Examples:
 encode_prompt(prompt: str | list[str], do_classifier_free_guidance: bool = True, num_images_per_prompt: int = 1, device: typing.Optional[torch.device] = None, negative_prompt: str | list[str] | None = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, clean_caption: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if.py#L168)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if.py#L168)
 
 **Parameters:**
 
@@ -612,7 +612,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.IFSuperResolutionPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, unet: UNet2DConditionModel, scheduler: DDPMScheduler, image_noising_scheduler: DDPMScheduler, safety_checker: diffusers.pipelines.deepfloyd_if.safety_checker.IFSafetyChecker | None, feature_extractor: transformers.models.clip.image_processing_pil_clip.CLIPImageProcessorPil | None, watermarker: diffusers.pipelines.deepfloyd_if.watermark.IFWatermarker | None, requires_safety_checker: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_superresolution.py#L82)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_superresolution.py#L82)
 
 #### __call__[[diffusers.IFSuperResolutionPipeline.__call__]]
 
@@ -620,7 +620,7 @@ diffusers.IFSuperResolutionPipeline(tokenizer: T5Tokenizer, text_encoder: T5Enco
 __call__(prompt: str | list[str] = None, height: int = None, width: int = None, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor] = None, num_inference_steps: int = 50, timesteps: list = None, guidance_scale: float = 4.0, negative_prompt: str | list[str] | None = None, num_images_per_prompt: int | None = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int = 1, cross_attention_kwargs: dict[str, typing.Any] | None = None, noise_level: int = 250, clean_caption: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_superresolution.py#L614)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_superresolution.py#L614)
 
 **Parameters:**
 
@@ -642,7 +642,7 @@ negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not t
 
 num_images_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -708,7 +708,7 @@ Examples:
 encode_prompt(prompt: str | list[str], do_classifier_free_guidance: bool = True, num_images_per_prompt: int = 1, device: typing.Optional[torch.device] = None, negative_prompt: str | list[str] | None = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, clean_caption: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_superresolution.py#L302)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_superresolution.py#L302)
 
 **Parameters:**
 
@@ -738,7 +738,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.IFImg2ImgPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, unet: UNet2DConditionModel, scheduler: DDPMScheduler, safety_checker: diffusers.pipelines.deepfloyd_if.safety_checker.IFSafetyChecker | None, feature_extractor: transformers.models.clip.image_processing_pil_clip.CLIPImageProcessorPil | None, watermarker: diffusers.pipelines.deepfloyd_if.watermark.IFWatermarker | None, requires_safety_checker: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_img2img.py#L120)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_img2img.py#L120)
 
 #### __call__[[diffusers.IFImg2ImgPipeline.__call__]]
 
@@ -746,7 +746,7 @@ diffusers.IFImg2ImgPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel
 __call__(prompt: str | list[str] = None, image: typing.Union[PIL.Image.Image, torch.Tensor, numpy.ndarray, list[PIL.Image.Image], list[torch.Tensor], list[numpy.ndarray]] = None, strength: float = 0.7, num_inference_steps: int = 80, timesteps: list = None, guidance_scale: float = 10.0, negative_prompt: str | list[str] | None = None, num_images_per_prompt: int | None = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int = 1, clean_caption: bool = True, cross_attention_kwargs: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_img2img.py#L661)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_img2img.py#L661)
 
 **Parameters:**
 
@@ -766,7 +766,7 @@ negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not t
 
 num_images_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -853,7 +853,7 @@ Examples:
 encode_prompt(prompt: str | list[str], do_classifier_free_guidance: bool = True, num_images_per_prompt: int = 1, device: typing.Optional[torch.device] = None, negative_prompt: str | list[str] | None = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, clean_caption: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_img2img.py#L192)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_img2img.py#L192)
 
 **Parameters:**
 
@@ -883,7 +883,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.IFImg2ImgSuperResolutionPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, unet: UNet2DConditionModel, scheduler: DDPMScheduler, image_noising_scheduler: DDPMScheduler, safety_checker: diffusers.pipelines.deepfloyd_if.safety_checker.IFSafetyChecker | None, feature_extractor: transformers.models.clip.image_processing_pil_clip.CLIPImageProcessorPil | None, watermarker: diffusers.pipelines.deepfloyd_if.watermark.IFWatermarker | None, requires_safety_checker: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_img2img_superresolution.py#L124)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_img2img_superresolution.py#L124)
 
 #### __call__[[diffusers.IFImg2ImgSuperResolutionPipeline.__call__]]
 
@@ -891,7 +891,7 @@ diffusers.IFImg2ImgSuperResolutionPipeline(tokenizer: T5Tokenizer, text_encoder:
 __call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor], original_image: typing.Union[PIL.Image.Image, torch.Tensor, numpy.ndarray, list[PIL.Image.Image], list[torch.Tensor], list[numpy.ndarray]] = None, strength: float = 0.8, prompt: str | list[str] = None, num_inference_steps: int = 50, timesteps: list = None, guidance_scale: float = 4.0, negative_prompt: str | list[str] | None = None, num_images_per_prompt: int | None = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int = 1, cross_attention_kwargs: dict[str, typing.Any] | None = None, noise_level: int = 250, clean_caption: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_img2img_superresolution.py#L744)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_img2img_superresolution.py#L744)
 
 **Parameters:**
 
@@ -913,7 +913,7 @@ negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not t
 
 num_images_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -1002,7 +1002,7 @@ Examples:
 encode_prompt(prompt: str | list[str], do_classifier_free_guidance: bool = True, num_images_per_prompt: int = 1, device: typing.Optional[torch.device] = None, negative_prompt: str | list[str] | None = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, clean_caption: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_img2img_superresolution.py#L344)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_img2img_superresolution.py#L344)
 
 **Parameters:**
 
@@ -1032,7 +1032,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.IFInpaintingPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, unet: UNet2DConditionModel, scheduler: DDPMScheduler, safety_checker: diffusers.pipelines.deepfloyd_if.safety_checker.IFSafetyChecker | None, feature_extractor: transformers.models.clip.image_processing_pil_clip.CLIPImageProcessorPil | None, watermarker: diffusers.pipelines.deepfloyd_if.watermark.IFWatermarker | None, requires_safety_checker: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_inpainting.py#L123)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_inpainting.py#L123)
 
 #### __call__[[diffusers.IFInpaintingPipeline.__call__]]
 
@@ -1040,7 +1040,7 @@ diffusers.IFInpaintingPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderMo
 __call__(prompt: str | list[str] = None, image: typing.Union[PIL.Image.Image, torch.Tensor, numpy.ndarray, list[PIL.Image.Image], list[torch.Tensor], list[numpy.ndarray]] = None, mask_image: typing.Union[PIL.Image.Image, torch.Tensor, numpy.ndarray, list[PIL.Image.Image], list[torch.Tensor], list[numpy.ndarray]] = None, strength: float = 1.0, num_inference_steps: int = 50, timesteps: list = None, guidance_scale: float = 7.0, negative_prompt: str | list[str] | None = None, num_images_per_prompt: int | None = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int = 1, clean_caption: bool = True, cross_attention_kwargs: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_inpainting.py#L753)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_inpainting.py#L753)
 
 **Parameters:**
 
@@ -1062,7 +1062,7 @@ negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not t
 
 num_images_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -1151,7 +1151,7 @@ Examples:
 encode_prompt(prompt: str | list[str], do_classifier_free_guidance: bool = True, num_images_per_prompt: int = 1, device: typing.Optional[torch.device] = None, negative_prompt: str | list[str] | None = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, clean_caption: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_inpainting.py#L195)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_inpainting.py#L195)
 
 **Parameters:**
 
@@ -1181,7 +1181,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.IFInpaintingSuperResolutionPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, unet: UNet2DConditionModel, scheduler: DDPMScheduler, image_noising_scheduler: DDPMScheduler, safety_checker: diffusers.pipelines.deepfloyd_if.safety_checker.IFSafetyChecker | None, feature_extractor: transformers.models.clip.image_processing_pil_clip.CLIPImageProcessorPil | None, watermarker: diffusers.pipelines.deepfloyd_if.watermark.IFWatermarker | None, requires_safety_checker: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_inpainting_superresolution.py#L126)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_inpainting_superresolution.py#L126)
 
 #### __call__[[diffusers.IFInpaintingSuperResolutionPipeline.__call__]]
 
@@ -1189,7 +1189,7 @@ diffusers.IFInpaintingSuperResolutionPipeline(tokenizer: T5Tokenizer, text_encod
 __call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor], original_image: typing.Union[PIL.Image.Image, torch.Tensor, numpy.ndarray, list[PIL.Image.Image], list[torch.Tensor], list[numpy.ndarray]] = None, mask_image: typing.Union[PIL.Image.Image, torch.Tensor, numpy.ndarray, list[PIL.Image.Image], list[torch.Tensor], list[numpy.ndarray]] = None, strength: float = 0.8, prompt: str | list[str] = None, num_inference_steps: int = 100, timesteps: list = None, guidance_scale: float = 4.0, negative_prompt: str | list[str] | None = None, num_images_per_prompt: int | None = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int = 1, cross_attention_kwargs: dict[str, typing.Any] | None = None, noise_level: int = 0, clean_caption: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_inpainting_superresolution.py#L832)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_inpainting_superresolution.py#L832)
 
 **Parameters:**
 
@@ -1213,7 +1213,7 @@ negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not t
 
 num_images_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -1304,7 +1304,7 @@ Examples:
 encode_prompt(prompt: str | list[str], do_classifier_free_guidance: bool = True, num_images_per_prompt: int = 1, device: typing.Optional[torch.device] = None, negative_prompt: str | list[str] | None = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, clean_caption: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_inpainting_superresolution.py#L346)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/deepfloyd_if/pipeline_if_inpainting_superresolution.py#L346)
 
 **Parameters:**
 
@@ -1327,4 +1327,4 @@ clean_caption (bool, defaults to `False`) : If `True`, the function will preproc
 Encodes the prompt into text encoder hidden states.
 
 ### Hunyuan-DiT
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/hunyuandit.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/hunyuandit.md

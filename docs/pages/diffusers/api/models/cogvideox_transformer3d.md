@@ -7,7 +7,7 @@ The model can be loaded with the following code snippet.
 ```python
 from diffusers import CogVideoXTransformer3DModel
 
-transformer = CogVideoXTransformer3DModel.from_pretrained("THUDM/CogVideoX-2b", subfolder="transformer", dtype=torch.float16).to("cuda")
+transformer = CogVideoXTransformer3DModel.from_pretrained("THUDM/CogVideoX-2b", subfolder="transformer", dtype=torch.float16).to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 ## CogVideoXTransformer3DModel[[diffusers.CogVideoXTransformer3DModel]]
@@ -18,7 +18,7 @@ transformer = CogVideoXTransformer3DModel.from_pretrained("THUDM/CogVideoX-2b", 
 diffusers.CogVideoXTransformer3DModel(num_attention_heads: int = 30, attention_head_dim: int = 64, in_channels: int = 16, out_channels: int | None = 16, flip_sin_to_cos: bool = True, freq_shift: int = 0, time_embed_dim: int = 512, ofs_embed_dim: int | None = None, text_embed_dim: int = 4096, num_layers: int = 30, dropout: float = 0.0, attention_bias: bool = True, sample_width: int = 90, sample_height: int = 60, sample_frames: int = 49, patch_size: int = 2, patch_size_t: int | None = None, temporal_compression_ratio: int = 4, max_text_seq_length: int = 226, activation_fn: str = 'gelu-approximate', timestep_activation_fn: str = 'silu', norm_elementwise_affine: bool = True, norm_eps: float = 1e-05, spatial_interpolation_scale: float = 1.875, temporal_interpolation_scale: float = 1.0, use_rotary_positional_embeddings: bool = False, use_learned_positional_embeddings: bool = False, patch_bias: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/cogvideox_transformer_3d.py#L160)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/cogvideox_transformer_3d.py#L160)
 
 **Parameters:**
 
@@ -76,7 +76,7 @@ A Transformer model for video-like data in [CogVideoX](https://github.com/THUDM/
 forward(hidden_states: Tensor, encoder_hidden_states: Tensor, timestep: typing.Union[int, float, torch.LongTensor], timestep_cond: typing.Optional[torch.Tensor] = None, ofs: typing.Union[int, float, torch.LongTensor, NoneType] = None, image_rotary_emb: tuple[torch.Tensor, torch.Tensor] | None = None, attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/cogvideox_transformer_3d.py#L366)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/cogvideox_transformer_3d.py#L366)
 
 **Parameters:**
 
@@ -101,7 +101,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
-The [CogVideoXTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/cogvideox_transformer3d#diffusers.CogVideoXTransformer3DModel) forward method.
+The [CogVideoXTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/cogvideox_transformer3d#diffusers.CogVideoXTransformer3DModel) forward method.
 
 #### fuse_qkv_projections[[diffusers.CogVideoXTransformer3DModel.fuse_qkv_projections]]
 
@@ -109,7 +109,7 @@ The [CogVideoXTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/cogvideo
 fuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/cogvideox_transformer_3d.py#L335)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/cogvideox_transformer_3d.py#L335)
 
 Enables fused QKV projections. For self-attention modules, all projection matrices (i.e., query, key, value)
 are fused. For cross-attention modules, key and value projection matrices are fused.
@@ -122,7 +122,7 @@ are fused. For cross-attention modules, key and value projection matrices are fu
 unfuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/cogvideox_transformer_3d.py#L357)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/cogvideox_transformer_3d.py#L357)
 
 Disables the fused QKV projection if enabled.
 
@@ -136,13 +136,13 @@ Disables the fused QKV projection if enabled.
 diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L21)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-The output of [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+The output of [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
 
 ### AutoencoderKLQwenImage
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoderkl_qwenimage.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_qwenimage.md

@@ -13,7 +13,7 @@ The abstract from the paper is:
 This pipeline was contributed by [maxin-cn](https://github.com/maxin-cn). The original codebase can be found [here](https://github.com/Vchitect/Latte). The original weights can be found under [hf.co/maxin-cn](https://huggingface.co/maxin-cn).
 
 > [!TIP]
-> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reuse-a-pipeline) section to learn how to efficiently load the same components into multiple pipelines.
+> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reusing-models-in-multiple-pipelines) section to learn how to efficiently load the same components into multiple pipelines.
 
 ### Inference
 
@@ -27,7 +27,7 @@ from diffusers import LattePipeline
 
 pipeline = LattePipeline.from_pretrained(
 	"maxin-cn/Latte-1", dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 Then change the memory layout of the pipelines `transformer` and `vae` components to `torch.channels-last`:
@@ -57,7 +57,7 @@ With torch.compile(): Average inference time: 14.573 seconds.
 
 Quantization helps reduce the memory requirements of very large models by storing model weights in a lower precision data type. However, quantization may have varying impact on video quality depending on the video model.
 
-Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [LattePipeline](/docs/diffusers/v0.40.0/en/api/pipelines/latte#diffusers.LattePipeline) for inference with bitsandbytes.
+Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [LattePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/latte#diffusers.LattePipeline) for inference with bitsandbytes.
 
 ```py
 import torch
@@ -102,23 +102,23 @@ export_to_gif(video, "latte.gif")
 diffusers.LattePipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, vae: AutoencoderKL, transformer: LatteTransformer3DModel, scheduler: KarrasDiffusionSchedulers)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/latte/pipeline_latte.py#L145)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/latte/pipeline_latte.py#L145)
 
 **Parameters:**
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 text_encoder (`T5EncoderModel`) : Frozen text-encoder. Latte uses [T5](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5EncoderModel), specifically the [t5-v1_1-xxl](https://huggingface.co/PixArt-alpha/PixArt-alpha/tree/main/t5-v1_1-xxl) variant.
 
 tokenizer (`T5Tokenizer`) : Tokenizer of class [T5Tokenizer](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5Tokenizer).
 
-transformer ([LatteTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/latte_transformer3d#diffusers.LatteTransformer3DModel)) : A text conditioned `LatteTransformer3DModel` to denoise the encoded video latents.
+transformer ([LatteTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/latte_transformer3d#diffusers.LatteTransformer3DModel)) : A text conditioned `LatteTransformer3DModel` to denoise the encoded video latents.
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
+scheduler ([SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
 
 Pipeline for text-to-video generation using Latte.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.LattePipeline.__call__]]
@@ -127,7 +127,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str] = None, negative_prompt: str = '', num_inference_steps: int = 50, timesteps: list[int] | None = None, guidance_scale: float = 7.5, num_images_per_prompt: int = 1, video_length: int = 16, height: int = 512, width: int = 512, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str = 'pil', return_dict: bool = True, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], clean_caption: bool = True, mask_feature: bool = True, enable_temporal_attentions: bool = True, decode_chunk_size: int = 14)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/latte/pipeline_latte.py#L613)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/latte/pipeline_latte.py#L613)
 
 **Parameters:**
 
@@ -149,7 +149,7 @@ height (`int`, *optional*, defaults to self.unet.config.sample_size) : The heigh
 
 width (`int`, *optional*, defaults to self.unet.config.sample_size) : The width in pixels of the generated video.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -204,7 +204,7 @@ Examples:
 encode_prompt(prompt: str | list[str], do_classifier_free_guidance: bool = True, negative_prompt: str = '', num_images_per_prompt: int = 1, device: typing.Optional[torch.device] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, clean_caption: bool = False, mask_feature: bool = True, dtype = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/latte/pipeline_latte.py#L206)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/latte/pipeline_latte.py#L206)
 
 **Parameters:**
 
@@ -229,4 +229,4 @@ mask_feature : (bool, defaults to `True`): If `True`, the function will mask the
 Encodes the prompt into text encoder hidden states.
 
 ### Bria Fibo Edit
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/bria_fibo_edit.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/bria_fibo_edit.md

@@ -1,6 +1,6 @@
 # Video Processor
 
-The `VideoProcessor` provides a unified API for video pipelines to prepare inputs for VAE encoding and post-processing outputs once they're decoded. The class inherits [VaeImageProcessor](/docs/diffusers/v0.40.0/en/api/image_processor#diffusers.VaeImageProcessor) so it includes transformations such as resizing, normalization, and conversion between PIL Image, PyTorch, and NumPy arrays.
+The `VideoProcessor` provides a unified API for video pipelines to prepare inputs for VAE encoding and post-processing outputs once they're decoded. The class inherits [VaeImageProcessor](/docs/diffusers/v0.41.0/en/api/image_processor#diffusers.VaeImageProcessor) so it includes transformations such as resizing, normalization, and conversion between PIL Image, PyTorch, and NumPy arrays.
 
 ## VideoProcessor[[diffusers.VideoProcessor.preprocess_video]]
 
@@ -10,7 +10,7 @@ The `VideoProcessor` provides a unified API for video pipelines to prepare input
 diffusers.VideoProcessor.preprocess_video(video, height: int | None = None, width: int | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/video_processor.py#L28)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/video_processor.py#L28)
 
 **Parameters:**
 
@@ -32,7 +32,7 @@ Preprocesses input video(s). Keyword arguments will be forwarded to `VaeImagePro
 diffusers.VideoProcessor.postprocess_video(video: Tensor, output_type: str = 'np', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/video_processor.py#L93)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/video_processor.py#L93)
 
 **Parameters:**
 
@@ -44,4 +44,4 @@ Converts a video tensor to a list of frames for export. Keyword arguments will b
 `VaeImageProcessor.postprocess`.
 
 ### Utilities
-https://huggingface.co/docs/diffusers/v0.40.0/api/utilities.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/utilities.md

@@ -11,7 +11,7 @@ The implementation is mostly based on the DDIM inversion definition from [Null-t
 diffusers.DDIMInverseScheduler(num_train_timesteps: int = 1000, beta_start: float = 0.0001, beta_end: float = 0.02, beta_schedule: typing.Literal['linear', 'scaled_linear', 'squaredcos_cap_v2'] = 'linear', trained_betas: numpy.ndarray | list[float] | None = None, clip_sample: bool = True, set_alpha_to_one: bool = True, steps_offset: int = 0, prediction_type: typing.Literal['epsilon', 'sample', 'v_prediction'] = 'epsilon', clip_sample_range: float = 1.0, timestep_spacing: typing.Literal['leading', 'trailing'] = 'leading', rescale_betas_zero_snr: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ddim_inverse.py#L138)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_ddim_inverse.py#L138)
 
 **Parameters:**
 
@@ -39,9 +39,9 @@ timestep_spacing (`str`, defaults to `"leading"`) : The way the timesteps should
 
 rescale_betas_zero_snr (`bool`, defaults to `False`) : Whether to rescale the betas to have zero terminal SNR. This enables the model to generate very bright and dark samples instead of limiting it to samples with medium brightness. Loosely related to [`--offset_noise`](https://github.com/huggingface/diffusers/blob/74fd735eb073eb1d774b1ab4154a0876eb82f055/examples/dreambooth/train_dreambooth.py#L506).
 
-`DDIMInverseScheduler` is the reverse scheduler of [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler).
+`DDIMInverseScheduler` is the reverse scheduler of [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler).
 
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
 methods the library implements for all schedulers such as loading and saving.
 
 #### scale_model_input[[diffusers.DDIMInverseScheduler.scale_model_input]]
@@ -50,7 +50,7 @@ methods the library implements for all schedulers such as loading and saving.
 scale_model_input(sample: Tensor, timestep: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ddim_inverse.py#L250)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_ddim_inverse.py#L250)
 
 **Parameters:**
 
@@ -71,7 +71,7 @@ current timestep.
 set_timesteps(num_inference_steps: int, device: typing.Union[str, torch.device, NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ddim_inverse.py#L267)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_ddim_inverse.py#L267)
 
 **Parameters:**
 
@@ -87,7 +87,7 @@ Sets the discrete timesteps used for the diffusion chain (to be run before infer
 step(model_output: Tensor, timestep: int, sample: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ddim_inverse.py#L311)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_ddim_inverse.py#L311)
 
 **Parameters:**
 
@@ -108,4 +108,4 @@ Predict the sample from the previous timestep by reversing the SDE. This functio
 process from the learned model outputs (most often the predicted noise).
 
 ### HeliosScheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/helios.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/helios.md

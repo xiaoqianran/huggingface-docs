@@ -10,7 +10,7 @@ Customized activation functions for supporting various models in 🤗 Diffusers.
 diffusers.models.activations.GELU(dim_in: int, dim_out: int, approximate: str = 'none', bias: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/activations.py#L65)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/activations.py#L65)
 
 **Parameters:**
 
@@ -32,7 +32,7 @@ GELU activation function with tanh approximation support with `approximate="tanh
 diffusers.models.activations.GEGLU(dim_in: int, dim_out: int, bias: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/activations.py#L93)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/activations.py#L93)
 
 **Parameters:**
 
@@ -52,7 +52,7 @@ A [variant](https://huggingface.co/papers/2002.05202) of the gated linear unit a
 diffusers.models.activations.ApproximateGELU(dim_in: int, dim_out: int, bias: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/activations.py#L149)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/activations.py#L149)
 
 **Parameters:**
 
@@ -73,7 +73,7 @@ The approximate form of the Gaussian Error Linear Unit (GELU). For more details,
 diffusers.models.activations.SwiGLU(dim_in: int, dim_out: int, bias: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/activations.py#L126)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/activations.py#L126)
 
 **Parameters:**
 
@@ -94,7 +94,7 @@ A [variant](https://huggingface.co/papers/2002.05202) of the gated linear unit a
 diffusers.models.activations.FP32SiLU()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/activations.py#L53)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/activations.py#L53)
 
 SiLU activation function with input upcasted to torch.float32.
 
@@ -106,7 +106,7 @@ SiLU activation function with input upcasted to torch.float32.
 diffusers.models.activations.LinearActivation(dim_in: int, dim_out: int, bias: bool = True, activation: str = 'silu')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/activations.py#L169)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/activations.py#L169)
 
 ### Attention Processor
-https://huggingface.co/docs/diffusers/v0.40.0/api/attnprocessor.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/attnprocessor.md

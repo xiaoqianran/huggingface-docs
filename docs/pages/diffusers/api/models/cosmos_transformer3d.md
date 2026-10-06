@@ -18,7 +18,7 @@ transformer = CosmosTransformer3DModel.from_pretrained("nvidia/Cosmos-1.0-Diffus
 diffusers.CosmosTransformer3DModel(in_channels: int = 16, out_channels: int = 16, num_attention_heads: int = 32, attention_head_dim: int = 128, num_layers: int = 28, mlp_ratio: float = 4.0, text_embed_dim: int = 1024, adaln_lora_dim: int = 256, max_size: tuple = (128, 240, 240), patch_size: tuple = (1, 2, 2), rope_scale: tuple = (2.0, 1.0, 1.0), concat_padding_mask: bool = True, extra_pos_embed_type: str | None = 'learnable', use_crossattn_projection: bool = False, crossattn_proj_in_channels: int = 1024, encoder_hidden_states_channels: int = 1024, controlnet_block_every_n: int | None = None, img_context_dim_in: int | None = None, img_context_num_tokens: int = 256, img_context_dim_out: int = 2048)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_cosmos.py#L554)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_cosmos.py#L554)
 
 **Parameters:**
 
@@ -64,7 +64,7 @@ A Transformer model for video-like data used in [Cosmos](https://github.com/NVID
 forward(hidden_states: Tensor, timestep: Tensor, encoder_hidden_states: Tensor, block_controlnet_hidden_states: list[torch.Tensor] | None = None, attention_mask: typing.Optional[torch.Tensor] = None, fps: int | None = None, condition_mask: typing.Optional[torch.Tensor] = None, padding_mask: typing.Optional[torch.Tensor] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_cosmos.py#L688)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_cosmos.py#L688)
 
 **Parameters:**
 
@@ -91,7 +91,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
-The [CosmosTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/cosmos_transformer3d#diffusers.CosmosTransformer3DModel) forward method.
+The [CosmosTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/cosmos_transformer3d#diffusers.CosmosTransformer3DModel) forward method.
 
 ## Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
@@ -101,13 +101,13 @@ The [CosmosTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/cosmos_tran
 diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L21)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-The output of [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+The output of [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
 
 ### WanAnimate2Transformer3DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/wan_animate_2_transformer_3d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/wan_animate_2_transformer_3d.md

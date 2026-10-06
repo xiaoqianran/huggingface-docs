@@ -206,4 +206,4 @@ Congratulations on training a T2I-Adapter model! 🎉 To learn more:
 - Read the [Efficient Controllable Generation for SDXL with T2I-Adapters](https://huggingface.co/blog/t2i-sdxl-adapters) blog post to learn more details about the experimental results from the T2I-Adapter team.
 
 ### Latent Consistency Distillation
-https://huggingface.co/docs/diffusers/v0.40.0/training/lcm_distill.md
+https://huggingface.co/docs/diffusers/v0.41.0/training/lcm_distill.md

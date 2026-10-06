@@ -14,7 +14,7 @@ The abstract from the paper is:
 diffusers.UNet2DModel(sample_size: int | tuple[int, int] | None = None, in_channels: int = 3, out_channels: int = 3, center_input_sample: bool = False, time_embedding_type: str = 'positional', time_embedding_dim: int | None = None, freq_shift: int = 0, flip_sin_to_cos: bool = True, down_block_types: tuple = ('DownBlock2D', 'AttnDownBlock2D', 'AttnDownBlock2D', 'AttnDownBlock2D'), mid_block_type: str | None = 'UNetMidBlock2D', up_block_types: tuple = ('AttnUpBlock2D', 'AttnUpBlock2D', 'AttnUpBlock2D', 'UpBlock2D'), block_out_channels: tuple = (224, 448, 672, 896), layers_per_block: int = 2, mid_block_scale_factor: float = 1, downsample_padding: int = 1, downsample_type: str = 'conv', upsample_type: str = 'conv', dropout: float = 0.0, act_fn: str = 'silu', attention_head_dim: int | None = 8, norm_num_groups: int = 32, attn_norm_num_groups: int | None = None, norm_eps: float = 1e-05, resnet_time_scale_shift: str = 'default', add_attention: bool = True, class_embed_type: str | None = None, num_class_embeds: int | None = None, num_train_timesteps: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_2d.py#L39)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_2d.py#L39)
 
 **Parameters:**
 
@@ -70,7 +70,7 @@ num_class_embeds (`int`, *optional*, defaults to `None`) : Input dimension of th
 
 A 2D UNet model that takes a noisy sample and a timestep and returns a sample shaped output.
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
+This model inherits from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
 for all models (such as downloading or saving).
 
 #### forward[[diffusers.UNet2DModel.forward]]
@@ -79,7 +79,7 @@ for all models (such as downloading or saving).
 forward(sample: Tensor, timestep: typing.Union[torch.Tensor, float, int], class_labels: typing.Optional[torch.Tensor] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_2d.py#L249)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_2d.py#L249)
 
 **Parameters:**
 
@@ -89,14 +89,14 @@ timestep (`torch.Tensor` or `float` or `int`) : The number of timesteps to denoi
 
 class_labels (`torch.Tensor`, *optional*, defaults to `None`) : Optional class labels for conditioning. Their embeddings will be summed with the timestep embeddings.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [UNet2DOutput](/docs/diffusers/v0.40.0/en/api/models/unet2d#diffusers.models.unets.unet_2d.UNet2DOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [UNet2DOutput](/docs/diffusers/v0.41.0/en/api/models/unet2d#diffusers.models.unets.unet_2d.UNet2DOutput) instead of a plain tuple.
 
-**Returns:** [UNet2DOutput](/docs/diffusers/v0.40.0/en/api/models/unet2d#diffusers.models.unets.unet_2d.UNet2DOutput) or `tuple`
+**Returns:** [UNet2DOutput](/docs/diffusers/v0.41.0/en/api/models/unet2d#diffusers.models.unets.unet_2d.UNet2DOutput) or `tuple`
 
-If `return_dict` is True, an [UNet2DOutput](/docs/diffusers/v0.40.0/en/api/models/unet2d#diffusers.models.unets.unet_2d.UNet2DOutput) is returned, otherwise a `tuple` is
+If `return_dict` is True, an [UNet2DOutput](/docs/diffusers/v0.41.0/en/api/models/unet2d#diffusers.models.unets.unet_2d.UNet2DOutput) is returned, otherwise a `tuple` is
 returned where the first element is the sample tensor.
 
-The [UNet2DModel](/docs/diffusers/v0.40.0/en/api/models/unet2d#diffusers.UNet2DModel) forward method.
+The [UNet2DModel](/docs/diffusers/v0.41.0/en/api/models/unet2d#diffusers.UNet2DModel) forward method.
 
 ## UNet2DOutput[[diffusers.models.unets.unet_2d.UNet2DOutput]]
 
@@ -106,13 +106,13 @@ The [UNet2DModel](/docs/diffusers/v0.40.0/en/api/models/unet2d#diffusers.UNet2DM
 diffusers.models.unets.unet_2d.UNet2DOutput(sample: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_2d.py#L27)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_2d.py#L27)
 
 **Parameters:**
 
 sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) : The hidden states output from the last layer of the model.
 
-The output of [UNet2DModel](/docs/diffusers/v0.40.0/en/api/models/unet2d#diffusers.UNet2DModel).
+The output of [UNet2DModel](/docs/diffusers/v0.41.0/en/api/models/unet2d#diffusers.UNet2DModel).
 
 ### SD3 Transformer Model
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/sd3_transformer2d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/sd3_transformer2d.md

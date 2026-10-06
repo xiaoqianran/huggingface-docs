@@ -12,7 +12,7 @@ The abstract from the paper is:
 > You can find additional information about LEDITS++ on the [project page](https://leditsplusplus-project.static.hf.space/index.html) and try it out in a [demo](https://huggingface.co/spaces/editing-images/leditsplusplus).
 
 > [!WARNING]
-> Due to some backward compatibility issues with the current diffusers implementation of [DPMSolverMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler) this implementation of LEdits++ can no longer guarantee perfect inversion.
+> Due to some backward compatibility issues with the current diffusers implementation of [DPMSolverMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler) this implementation of LEdits++ can no longer guarantee perfect inversion.
 > This issue is unlikely to have any noticeable effects on applied use-cases. However, we provide an alternative implementation that guarantees perfect inversion in a dedicated [GitHub repo](https://github.com/ml-research/ledits_pp).
 
 We provide two distinct pipelines based on different pre-trained models.
@@ -25,27 +25,27 @@ We provide two distinct pipelines based on different pre-trained models.
 diffusers.LEditsPPPipelineStableDiffusion(vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, unet: UNet2DConditionModel, scheduler: diffusers.schedulers.scheduling_ddim.DDIMScheduler | diffusers.schedulers.scheduling_dpmsolver_multistep.DPMSolverMultistepScheduler, safety_checker: StableDiffusionSafetyChecker, feature_extractor: CLIPImageProcessorPil, requires_safety_checker: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ledits_pp/pipeline_leditspp_stable_diffusion.py#L269)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ledits_pp/pipeline_leditspp_stable_diffusion.py#L269)
 
 **Parameters:**
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
-text_encoder ([CLIPTextModel](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTextModel)) : Frozen text-encoder. Stable Diffusion uses the text portion of [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
+text_encoder ([CLIPTextModel](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPTextModel)) : Frozen text-encoder. Stable Diffusion uses the text portion of [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
 
-tokenizer ([CLIPTokenizer](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTokenizer)) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/v4.21.0/en/model_doc/clip#transformers.CLIPTokenizer).
+tokenizer ([CLIPTokenizer](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPTokenizer)) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/v4.21.0/en/model_doc/clip#transformers.CLIPTokenizer).
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the encoded image latents.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the encoded image latents.
 
-scheduler ([DPMSolverMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler) or [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler)) : A scheduler to be used in combination with `unet` to denoise the encoded image latens. Can be one of [DPMSolverMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler) or [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler). If any other scheduler is passed it will automatically be set to [DPMSolverMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler).
+scheduler ([DPMSolverMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler) or [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler)) : A scheduler to be used in combination with `unet` to denoise the encoded image latens. Can be one of [DPMSolverMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler) or [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler). If any other scheduler is passed it will automatically be set to [DPMSolverMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler).
 
 safety_checker (`StableDiffusionSafetyChecker`) : Classification module that estimates whether generated images could be considered offensive or harmful. Please, refer to the [model card](https://huggingface.co/CompVis/stable-diffusion-v1-4) for details.
 
-feature_extractor ([CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPImageProcessor)) : Model that extracts features from generated images to be used as inputs for the `safety_checker`.
+feature_extractor ([CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPImageProcessor)) : Model that extracts features from generated images to be used as inputs for the `safety_checker`.
 
 Pipeline for textual image editing using LEDits++ with Stable Diffusion.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) and builds on the [StableDiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline). Check the superclass
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) and builds on the [StableDiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline). Check the superclass
 documentation for the generic methods implemented for all pipelines (downloading, saving, running on a particular
 device, etc.).
 
@@ -55,7 +55,7 @@ device, etc.).
 __call__(negative_prompt: str | list[str] | None = None, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, output_type: str | None = 'pil', return_dict: bool = True, editing_prompt: str | list[str] | None = None, editing_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, reverse_editing_direction: bool | list[bool] | None = False, edit_guidance_scale: float | list[float] | None = 5, edit_warmup_steps: int | list[int] | None = 0, edit_cooldown_steps: int | list[int] | None = None, edit_threshold: float | list[float] | None = 0.9, user_mask: typing.Optional[torch.Tensor] = None, sem_guidance: list[torch.Tensor] | None = None, use_cross_attn_mask: bool = False, use_intersect_mask: bool = True, attn_store_steps: list[int] | None = [], store_averaged_over_steps: bool = True, cross_attention_kwargs: dict[str, typing.Any] | None = None, guidance_rescale: float = 0.0, clip_skip: int | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ledits_pp/pipeline_leditspp_stable_diffusion.py#L720)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ledits_pp/pipeline_leditspp_stable_diffusion.py#L720)
 
 **Parameters:**
 
@@ -65,7 +65,7 @@ generator (`torch.Generator`, *optional*) : One or a list of [torch generator(s)
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [LEditsPPDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ledits_pp#diffusers.pipelines.LEditsPPDiffusionPipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [LEditsPPDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ledits_pp#diffusers.pipelines.LEditsPPDiffusionPipelineOutput) instead of a plain tuple.
 
 editing_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. The image is reconstructed by setting `editing_prompt = None`. Guidance direction of prompt should be specified via `reverse_editing_direction`.
 
@@ -105,15 +105,15 @@ callback_on_step_end (`Callable`, *optional*) : A function that calls at the end
 
 callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
 
-**Returns:** [LEditsPPDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ledits_pp#diffusers.pipelines.LEditsPPDiffusionPipelineOutput) or `tuple`
+**Returns:** [LEditsPPDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ledits_pp#diffusers.pipelines.LEditsPPDiffusionPipelineOutput) or `tuple`
 
-[LEditsPPDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ledits_pp#diffusers.pipelines.LEditsPPDiffusionPipelineOutput) if `return_dict` is True, otherwise a `tuple. When
+[LEditsPPDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ledits_pp#diffusers.pipelines.LEditsPPDiffusionPipelineOutput) if `return_dict` is True, otherwise a `tuple. When
 returning a tuple, the first element is a list with the generated images, and the second element is a list
 of `bool`s denoting whether the corresponding generated image likely represents "not-safe-for-work" (nsfw)
 content, according to the `safety_checker`.
 
 The call function to the pipeline for editing. The
-[invert()](/docs/diffusers/v0.40.0/en/api/pipelines/ledits_pp#diffusers.LEditsPPPipelineStableDiffusion.invert) method has to be called beforehand. Edits will
+[invert()](/docs/diffusers/v0.41.0/en/api/pipelines/ledits_pp#diffusers.LEditsPPPipelineStableDiffusion.invert) method has to be called beforehand. Edits will
 always be performed for the last inverted image(s).
 
 Examples:
@@ -145,7 +145,7 @@ Examples:
 invert(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], source_prompt: str = '', source_guidance_scale: float = 3.5, num_inversion_steps: int = 30, skip: float = 0.15, generator: typing.Optional[torch.Generator] = None, cross_attention_kwargs: dict[str, typing.Any] | None = None, clip_skip: int | None = None, height: int | None = None, width: int | None = None, resize_mode: str | None = 'default', crops_coords: tuple[int, int, int, int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ledits_pp/pipeline_leditspp_stable_diffusion.py#L1224)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ledits_pp/pipeline_leditspp_stable_diffusion.py#L1223)
 
 **Parameters:**
 
@@ -173,13 +173,13 @@ resize_mode (`str`, *optional*, defaults to `default`) : The resize mode, can be
 
 crops_coords (`list[tuple[int, int, int, int]]`, *optional*, defaults to `None`) : The crop coordinates for each image in the batch. If `None`, will not crop the image.
 
-**Returns:** [LEditsPPInversionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ledits_pp#diffusers.pipelines.LEditsPPInversionPipelineOutput)
+**Returns:** [LEditsPPInversionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ledits_pp#diffusers.pipelines.LEditsPPInversionPipelineOutput)
 
 Output will contain the resized input image(s)
 and respective VAE reconstruction(s).
 
 The function to the pipeline for image inversion as described by the [LEDITS++
-Paper](https://huggingface.co/papers/2301.12247). If the scheduler is set to [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler) the
+Paper](https://huggingface.co/papers/2301.12247). If the scheduler is set to [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler) the
 inversion proposed by [edit-friendly DPDM](https://huggingface.co/papers/2304.06140) will be performed instead.
 
 #### encode_prompt[[diffusers.LEditsPPPipelineStableDiffusion.encode_prompt]]
@@ -188,7 +188,7 @@ inversion proposed by [edit-friendly DPDM](https://huggingface.co/papers/2304.06
 encode_prompt(device, num_images_per_prompt, enable_edit_guidance, negative_prompt = None, editing_prompt = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, editing_prompt_embeds: typing.Optional[torch.Tensor] = None, lora_scale: float | None = None, clip_skip: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ledits_pp/pipeline_leditspp_stable_diffusion.py#L521)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ledits_pp/pipeline_leditspp_stable_diffusion.py#L521)
 
 **Parameters:**
 
@@ -220,23 +220,23 @@ Encodes the prompt into text encoder hidden states.
 diffusers.LEditsPPPipelineStableDiffusionXL(vae: AutoencoderKL, text_encoder: CLIPTextModel, text_encoder_2: CLIPTextModelWithProjection, tokenizer: CLIPTokenizer, tokenizer_2: CLIPTokenizer, unet: UNet2DConditionModel, scheduler: diffusers.schedulers.scheduling_dpmsolver_multistep.DPMSolverMultistepScheduler | diffusers.schedulers.scheduling_ddim.DDIMScheduler, image_encoder: CLIPVisionModelWithProjection = None, feature_extractor: CLIPImageProcessorPil = None, force_zeros_for_empty_prompt: bool = True, add_watermarker: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ledits_pp/pipeline_leditspp_stable_diffusion_xl.py#L273)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ledits_pp/pipeline_leditspp_stable_diffusion_xl.py#L273)
 
 **Parameters:**
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
-text_encoder ([CLIPTextModel](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTextModel)) : Frozen text-encoder. Stable Diffusion XL uses the text portion of [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
+text_encoder ([CLIPTextModel](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPTextModel)) : Frozen text-encoder. Stable Diffusion XL uses the text portion of [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
 
-text_encoder_2 ([CLIPTextModelWithProjection](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTextModelWithProjection)) : Second frozen text-encoder. Stable Diffusion XL uses the text and pool portion of [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModelWithProjection), specifically the [laion/CLIP-ViT-bigG-14-laion2B-39B-b160k](https://huggingface.co/laion/CLIP-ViT-bigG-14-laion2B-39B-b160k) variant.
+text_encoder_2 ([CLIPTextModelWithProjection](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPTextModelWithProjection)) : Second frozen text-encoder. Stable Diffusion XL uses the text and pool portion of [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModelWithProjection), specifically the [laion/CLIP-ViT-bigG-14-laion2B-39B-b160k](https://huggingface.co/laion/CLIP-ViT-bigG-14-laion2B-39B-b160k) variant.
 
-tokenizer ([CLIPTokenizer](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTokenizer)) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/v4.21.0/en/model_doc/clip#transformers.CLIPTokenizer).
+tokenizer ([CLIPTokenizer](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPTokenizer)) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/v4.21.0/en/model_doc/clip#transformers.CLIPTokenizer).
 
-tokenizer_2 ([CLIPTokenizer](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTokenizer)) : Second Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/v4.21.0/en/model_doc/clip#transformers.CLIPTokenizer).
+tokenizer_2 ([CLIPTokenizer](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPTokenizer)) : Second Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/v4.21.0/en/model_doc/clip#transformers.CLIPTokenizer).
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the encoded image latents.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the encoded image latents.
 
-scheduler ([DPMSolverMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler) or [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler)) : A scheduler to be used in combination with `unet` to denoise the encoded image latens. Can be one of [DPMSolverMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler) or [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler). If any other scheduler is passed it will automatically be set to [DPMSolverMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler).
+scheduler ([DPMSolverMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler) or [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler)) : A scheduler to be used in combination with `unet` to denoise the encoded image latens. Can be one of [DPMSolverMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler) or [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler). If any other scheduler is passed it will automatically be set to [DPMSolverMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler).
 
 force_zeros_for_empty_prompt (`bool`, *optional*, defaults to `"True"`) : Whether the negative prompt embeddings shall be forced to always be set to 0. Also see the config of `stabilityai/stable-diffusion-xl-base-1-0`.
 
@@ -244,13 +244,13 @@ add_watermarker (`bool`, *optional*) : Whether to use the [invisible_watermark l
 
 Pipeline for textual image editing using LEDits++ with Stable Diffusion XL.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) and builds on the [StableDiffusionXLPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLPipeline). Check the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) and builds on the [StableDiffusionXLPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLPipeline). Check the
 superclass documentation for the generic methods implemented for all pipelines (downloading, saving, running on a
 particular device, etc.).
 
 In addition the pipeline inherits the following loading methods:
-- *LoRA*: [LEditsPPPipelineStableDiffusionXL.load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionXLLoraLoaderMixin.load_lora_weights)
-- *Ckpt*: [loaders.FromSingleFileMixin.from_single_file()](/docs/diffusers/v0.40.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file)
+- *LoRA*: [LEditsPPPipelineStableDiffusionXL.load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionXLLoraLoaderMixin.load_lora_weights)
+- *Ckpt*: [loaders.FromSingleFileMixin.from_single_file()](/docs/diffusers/v0.41.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file)
 
 as well as the following saving methods:
 - *LoRA*: `loaders.StableDiffusionXLPipeline.save_lora_weights`
@@ -261,7 +261,7 @@ as well as the following saving methods:
 __call__(denoising_end: float | None = None, negative_prompt: str | list[str] | None = None, negative_prompt_2: str | list[str] | None = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_pooled_prompt_embeds: typing.Optional[torch.Tensor] = None, ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, output_type: str | None = 'pil', return_dict: bool = True, cross_attention_kwargs: dict[str, typing.Any] | None = None, guidance_rescale: float = 0.0, crops_coords_top_left: tuple = (0, 0), target_size: tuple[int, int] | None = None, editing_prompt: str | list[str] | None = None, editing_prompt_embeddings: typing.Optional[torch.Tensor] = None, editing_pooled_prompt_embeds: typing.Optional[torch.Tensor] = None, reverse_editing_direction: bool | list[bool] | None = False, edit_guidance_scale: float | list[float] | None = 5, edit_warmup_steps: int | list[int] | None = 0, edit_cooldown_steps: int | list[int] | None = None, edit_threshold: float | list[float] | None = 0.9, sem_guidance: list[torch.Tensor] | None = None, use_cross_attn_mask: bool = False, use_intersect_mask: bool = False, user_mask: typing.Optional[torch.Tensor] = None, attn_store_steps: list[int] | None = [], store_averaged_over_steps: bool = True, clip_skip: int | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ledits_pp/pipeline_leditspp_stable_diffusion_xl.py#L783)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ledits_pp/pipeline_leditspp_stable_diffusion_xl.py#L782)
 
 **Parameters:**
 
@@ -323,13 +323,13 @@ callback_on_step_end (`Callable`, *optional*) : A function that calls at the end
 
 callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
 
-**Returns:** [LEditsPPDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ledits_pp#diffusers.pipelines.LEditsPPDiffusionPipelineOutput) or `tuple`
+**Returns:** [LEditsPPDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ledits_pp#diffusers.pipelines.LEditsPPDiffusionPipelineOutput) or `tuple`
 
-[LEditsPPDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ledits_pp#diffusers.pipelines.LEditsPPDiffusionPipelineOutput) if `return_dict` is True, otherwise a `tuple. When
+[LEditsPPDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ledits_pp#diffusers.pipelines.LEditsPPDiffusionPipelineOutput) if `return_dict` is True, otherwise a `tuple. When
 returning a tuple, the first element is a list with the generated images.
 
 The call function to the pipeline for editing. The
-[invert()](/docs/diffusers/v0.40.0/en/api/pipelines/ledits_pp#diffusers.LEditsPPPipelineStableDiffusionXL.invert) method has to be called beforehand. Edits
+[invert()](/docs/diffusers/v0.41.0/en/api/pipelines/ledits_pp#diffusers.LEditsPPPipelineStableDiffusionXL.invert) method has to be called beforehand. Edits
 will always be performed for the last inverted image(s).
 
 Examples:
@@ -364,7 +364,7 @@ Examples:
 invert(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], source_prompt: str = '', source_guidance_scale = 3.5, negative_prompt: str = None, negative_prompt_2: str = None, num_inversion_steps: int = 50, skip: float = 0.15, generator: typing.Optional[torch.Generator] = None, crops_coords_top_left: tuple = (0, 0), num_zero_noise_steps: int = 3, cross_attention_kwargs: dict[str, typing.Any] | None = None, height: int | None = None, width: int | None = None, resize_mode: str | None = 'default', crops_coords: tuple[int, int, int, int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ledits_pp/pipeline_leditspp_stable_diffusion_xl.py#L1416)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ledits_pp/pipeline_leditspp_stable_diffusion_xl.py#L1414)
 
 **Parameters:**
 
@@ -386,17 +386,17 @@ generator (`torch.Generator`, *optional*) : A [`torch.Generator`](https://pytorc
 
 crops_coords_top_left (`tuple[int]`, *optional*, defaults to (0, 0)) : `crops_coords_top_left` can be used to generate an image that appears to be "cropped" from the position `crops_coords_top_left` downwards. Favorable, well-centered images are usually achieved by setting `crops_coords_top_left` to (0, 0). Part of SDXL's micro-conditioning as explained in section 2.2 of [https://huggingface.co/papers/2307.01952](https://huggingface.co/papers/2307.01952).
 
-num_zero_noise_steps (`int`, defaults to `3`) : Number of final diffusion steps that will not renoise the current image. If no steps are set to zero SD-XL in combination with [DPMSolverMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler) will produce noise artifacts.
+num_zero_noise_steps (`int`, defaults to `3`) : Number of final diffusion steps that will not renoise the current image. If no steps are set to zero SD-XL in combination with [DPMSolverMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler) will produce noise artifacts.
 
 cross_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
 
-**Returns:** [LEditsPPInversionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ledits_pp#diffusers.pipelines.LEditsPPInversionPipelineOutput)
+**Returns:** [LEditsPPInversionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ledits_pp#diffusers.pipelines.LEditsPPInversionPipelineOutput)
 
 Output will contain the resized input image(s)
 and respective VAE reconstruction(s).
 
 The function to the pipeline for image inversion as described by the [LEDITS++
-Paper](https://huggingface.co/papers/2301.12247). If the scheduler is set to [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler) the
+Paper](https://huggingface.co/papers/2301.12247). If the scheduler is set to [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler) the
 inversion proposed by [edit-friendly DPDM](https://huggingface.co/papers/2304.06140) will be performed instead.
 
 #### encode_prompt[[diffusers.LEditsPPPipelineStableDiffusionXL.encode_prompt]]
@@ -405,7 +405,7 @@ inversion proposed by [edit-friendly DPDM](https://huggingface.co/papers/2304.06
 encode_prompt(device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, negative_prompt: str | None = None, negative_prompt_2: str | None = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_pooled_prompt_embeds: typing.Optional[torch.Tensor] = None, lora_scale: float | None = None, clip_skip: int | None = None, enable_edit_guidance: bool = True, editing_prompt: str | None = None, editing_prompt_embeds: typing.Optional[torch.Tensor] = None, editing_pooled_prompt_embeds: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ledits_pp/pipeline_leditspp_stable_diffusion_xl.py#L400)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ledits_pp/pipeline_leditspp_stable_diffusion_xl.py#L399)
 
 **Parameters:**
 
@@ -441,7 +441,7 @@ Encodes the prompt into text encoder hidden states.
 get_guidance_scale_embedding(w: Tensor, embedding_dim: int = 512, dtype: dtype = torch.float32)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ledits_pp/pipeline_leditspp_stable_diffusion_xl.py#L697)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ledits_pp/pipeline_leditspp_stable_diffusion_xl.py#L696)
 
 **Parameters:**
 
@@ -465,7 +465,7 @@ See https://github.com/google-research/vdm/blob/dc27b98a554f65cdc654b800da5aa184
 diffusers.pipelines.LEditsPPDiffusionPipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray, nsfw_content_detected: list[bool] | None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ledits_pp/pipeline_output.py#L10)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ledits_pp/pipeline_output.py#L10)
 
 **Parameters:**
 
@@ -483,7 +483,7 @@ Output class for LEdits++ Diffusion pipelines.
 diffusers.pipelines.LEditsPPInversionPipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray, vae_reconstruction_images: list[PIL.Image.Image] | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ledits_pp/pipeline_output.py#L28)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ledits_pp/pipeline_output.py#L28)
 
 **Parameters:**
 
@@ -494,4 +494,4 @@ vae_reconstruction_images (`list[PIL.Image.Image]` or `np.ndarray`) : list of VA
 Output class for LEdits++ Diffusion pipelines.
 
 ### ControlNetUnion
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/controlnet_union.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/controlnet_union.md

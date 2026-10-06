@@ -4,12 +4,12 @@ Stable Audio 3 (SA3) is a text-to-audio model from [Stability AI](https://stabil
 stereo audio at 44.1 kHz. It uses a rectified-flow DiT conditioned on two signals:
 
 * **Text** — encoded by a frozen T5Gemma encoder and injected via cross-attention.
-* **Duration** — a float (seconds) embedded by [StableAudio3DurationEmbedder](/docs/diffusers/v0.40.0/en/api/pipelines/stable_audio_3#diffusers.StableAudio3DurationEmbedder) and used as a global conditioning
+* **Duration** — a float (seconds) embedded by [StableAudio3DurationEmbedder](/docs/diffusers/v0.41.0/en/api/pipelines/stable_audio_3#diffusers.StableAudio3DurationEmbedder) and used as a global conditioning
   vector for adaptive layer normalisation.
 
-Audio is decoded by the SAME (Semantically-Aligned Music Encoder) autoencoder, [AutoencoderSAME](/docs/diffusers/v0.40.0/en/api/models/autoencoder_same#diffusers.AutoencoderSAME).
+Audio is decoded by the SAME (Semantically-Aligned Music Encoder) autoencoder, [AutoencoderSAME](/docs/diffusers/v0.41.0/en/api/models/autoencoder_same#diffusers.AutoencoderSAME).
 
-Both checkpoints use [FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler) with a log-SNR-uniform sigma schedule, differing only in
+Both checkpoints use [FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler) with a log-SNR-uniform sigma schedule, differing only in
 `stochastic_sampling` and the default step count:
 
 | Checkpoint | `diffusion_objective` | `stochastic_sampling` | `num_inference_steps` |
@@ -50,7 +50,7 @@ import soundfile as sf
 from diffusers import StableAudio3Pipeline
 
 pipe = StableAudio3Pipeline.from_pretrained("/tmp/sa3-diffusers-euler", torch_dtype=torch.float32)
-pipe = pipe.to("cuda")
+pipe = pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 generator = torch.Generator("cuda").manual_seed(0)
 audio = pipe(
@@ -62,7 +62,7 @@ audio = pipe(
 sf.write("sa3_output.wav", audio[0].T.cpu().float().numpy(), samplerate=44100)
 ```
 
-The pipeline is also registered with [AutoPipelineForText2Audio](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Audio), which resolves the checkpoint to
+The pipeline is also registered with [AutoPipelineForText2Audio](/docs/diffusers/v0.41.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Audio), which resolves the checkpoint to
 `StableAudio3Pipeline` automatically:
 
 ```py
@@ -95,7 +95,7 @@ pipe = AutoPipelineForText2Audio.from_pretrained("/tmp/sa3-diffusers-euler", tor
 diffusers.StableAudio3Pipeline(vae: AutoencoderSAME, text_encoder: T5GemmaEncoderModel, tokenizer: GemmaTokenizer, duration_embedder: StableAudio3DurationEmbedder, transformer: StableAudio3DiTModel, scheduler: FlowMatchEulerDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3.py#L157)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3.py#L157)
 
 **Parameters:**
 
@@ -126,7 +126,7 @@ implemented for all pipelines.
 __call__(prompt: typing.Union[str, typing.List[str], NoneType] = None, duration: float = 10.0, num_inference_steps: typing.Optional[int] = None, logsnr_min: float = -6.2, logsnr_max: float = 2.0, silence_padding_duration: float = 0.0, guidance_scale: float = 1.0, negative_prompt: typing.Union[str, typing.List[str], NoneType] = None, num_waveforms_per_prompt: int = 1, generator: typing.Union[torch.Generator, typing.List[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, encoder_attention_mask: typing.Optional[torch.LongTensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_encoder_attention_mask: typing.Optional[torch.LongTensor] = None, return_dict: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int, dict], dict]] = None, callback_on_step_end_tensor_inputs: typing.List[str] = ['latents'], output_type: str = 'pt')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3.py#L398)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3.py#L398)
 
 **Parameters:**
 
@@ -199,7 +199,7 @@ Examples:
 encode_duration(duration: float, device: device, num_waveforms_per_prompt: int, batch_size: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3.py#L289)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3.py#L289)
 
 **Parameters:**
 
@@ -223,7 +223,7 @@ Embed the duration value into the global conditioning vector.
 encode_prompt(prompt: typing.Union[str, typing.List[str], NoneType], device: device, num_waveforms_per_prompt: int, prompt_embeds: typing.Optional[torch.Tensor] = None, encoder_attention_mask: typing.Optional[torch.LongTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3.py#L223)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3.py#L223)
 
 **Parameters:**
 
@@ -249,7 +249,7 @@ Encode text prompt(s) into cross-attention conditioning tensors.
 prepare_cross_attention(prompt_embeds: Tensor, encoder_attention_mask: Tensor, global_hidden_states: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3.py#L313)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3.py#L313)
 
 **Returns:**
 
@@ -269,7 +269,7 @@ text tokens, and the attention mask is extended with one valid entry.
 diffusers.StableAudio3InpaintPipeline(vae: AutoencoderSAME, text_encoder: T5GemmaEncoderModel, tokenizer: GemmaTokenizer, duration_embedder: StableAudio3DurationEmbedder, transformer: StableAudio3DiTModel, scheduler: FlowMatchEulerDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3_inpaint.py#L158)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3_inpaint.py#L158)
 
 **Parameters:**
 
@@ -303,7 +303,7 @@ Per-frame binary mask in latent space. `1` = preserve original audio; `0` = regi
 __call__(prompt: typing.Union[str, typing.List[str], NoneType] = None, duration: float = 10.0, audio: typing.Optional[torch.Tensor] = None, mask: typing.Optional[torch.Tensor] = None, mask_start_seconds: typing.Union[float, typing.List[float], NoneType] = None, mask_end_seconds: typing.Union[float, typing.List[float], NoneType] = None, num_inference_steps: typing.Optional[int] = None, logsnr_min: float = -6.2, logsnr_max: float = 2.0, silence_padding_duration: float = 0.0, num_waveforms_per_prompt: int = 1, generator: typing.Union[torch.Generator, typing.List[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, encoder_attention_mask: typing.Optional[torch.LongTensor] = None, return_dict: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int, dict], dict]] = None, callback_on_step_end_tensor_inputs: typing.List[str] = ['latents'], output_type: str = 'pt')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3_inpaint.py#L455)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3_inpaint.py#L455)
 
 **Parameters:**
 
@@ -385,7 +385,7 @@ Examples:
 encode_duration(duration: float, device: device, num_waveforms_per_prompt: int, batch_size: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3_inpaint.py#L290)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3_inpaint.py#L290)
 
 **Parameters:**
 
@@ -409,7 +409,7 @@ Embed the duration value into the global conditioning vector.
 encode_prompt(prompt: typing.Union[str, typing.List[str], NoneType], device: device, num_waveforms_per_prompt: int, prompt_embeds: typing.Optional[torch.Tensor] = None, encoder_attention_mask: typing.Optional[torch.LongTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3_inpaint.py#L223)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3_inpaint.py#L223)
 
 **Parameters:**
 
@@ -435,7 +435,7 @@ Encode text prompt(s) into cross-attention conditioning tensors.
 prepare_cross_attention(prompt_embeds: Tensor, encoder_attention_mask: Tensor, global_hidden_states: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3_inpaint.py#L315)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3_inpaint.py#L315)
 
 **Returns:**
 
@@ -450,7 +450,7 @@ text tokens, and the attention mask is extended with one valid entry.
 ## StableAudio3AudioToAudioPipeline[[diffusers.StableAudio3AudioToAudioPipeline]]
 
 Generates a variation of a reference audio clip: the whole reference is noised to `init_noise_level` and denoised
-from there, unlike [StableAudio3InpaintPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_audio_3#diffusers.StableAudio3InpaintPipeline)'s per-frame local-additive conditioning which preserves specific
+from there, unlike [StableAudio3InpaintPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_audio_3#diffusers.StableAudio3InpaintPipeline)'s per-frame local-additive conditioning which preserves specific
 frames exactly.
 
 #### diffusers.StableAudio3AudioToAudioPipeline[[diffusers.StableAudio3AudioToAudioPipeline]]
@@ -459,7 +459,7 @@ frames exactly.
 diffusers.StableAudio3AudioToAudioPipeline(vae: AutoencoderSAME, text_encoder: T5GemmaEncoderModel, tokenizer: GemmaTokenizer, duration_embedder: StableAudio3DurationEmbedder, transformer: StableAudio3DiTModel, scheduler: FlowMatchEulerDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3_audio2audio.py#L154)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3_audio2audio.py#L154)
 
 **Parameters:**
 
@@ -495,7 +495,7 @@ text-to-audio); lower values retain more of the reference.
 __call__(prompt: typing.Union[str, typing.List[str], NoneType] = None, duration: float = 10.0, audio: typing.Optional[torch.Tensor] = None, init_noise_level: float = 1.0, num_inference_steps: typing.Optional[int] = None, logsnr_min: float = -6.2, logsnr_max: float = 2.0, silence_padding_duration: float = 0.0, num_waveforms_per_prompt: int = 1, generator: typing.Union[torch.Generator, typing.List[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, encoder_attention_mask: typing.Optional[torch.LongTensor] = None, return_dict: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int, dict], dict]] = None, callback_on_step_end_tensor_inputs: typing.List[str] = ['latents'], output_type: str = 'pt')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3_audio2audio.py#L424)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3_audio2audio.py#L424)
 
 **Parameters:**
 
@@ -572,7 +572,7 @@ Examples:
 encode_duration(duration: float, device: device, num_waveforms_per_prompt: int, batch_size: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3_audio2audio.py#L287)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3_audio2audio.py#L287)
 
 **Parameters:**
 
@@ -596,7 +596,7 @@ Embed the duration value into the global conditioning vector.
 encode_prompt(prompt: typing.Union[str, typing.List[str], NoneType], device: device, num_waveforms_per_prompt: int, prompt_embeds: typing.Optional[torch.Tensor] = None, encoder_attention_mask: typing.Optional[torch.LongTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3_audio2audio.py#L220)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3_audio2audio.py#L220)
 
 **Parameters:**
 
@@ -622,7 +622,7 @@ Encode text prompt(s) into cross-attention conditioning tensors.
 prepare_cross_attention(prompt_embeds: Tensor, encoder_attention_mask: Tensor, global_hidden_states: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3_audio2audio.py#L312)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_audio_3/pipeline_stable_audio_3_audio2audio.py#L312)
 
 **Returns:**
 
@@ -642,7 +642,7 @@ text tokens, and the attention mask is extended with one valid entry.
 diffusers.StableAudio3DurationEmbedder(output_dim: int = 768, fourier_dim: int = 256, min_val: float = 0.0, max_val: float = 384.0, min_freq: float = 0.5, max_freq: float = 10000.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_audio_3/modeling_stable_audio_3.py#L43)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_audio_3/modeling_stable_audio_3.py#L43)
 
 **Parameters:**
 
@@ -669,7 +669,7 @@ Replicates `NumberConditioner(fourier_features_type="expo")` from the SA3 refere
 forward(seconds: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_audio_3/modeling_stable_audio_3.py#L90)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_audio_3/modeling_stable_audio_3.py#L90)
 
 **Parameters:**
 
@@ -680,4 +680,4 @@ seconds (`torch.Tensor` of shape `(batch,)`) : Duration values in seconds.
 `torch.Tensor` of shape `(batch, output_dim)` — duration embeddings.
 
 ### ControlNet
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/controlnet.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/controlnet.md

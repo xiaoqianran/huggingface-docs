@@ -4,7 +4,7 @@ Image-to-image is similar to [text-to-image](conditional_image_generation), but 
 
 With 🤗 Diffusers, this is as easy as 1-2-3:
 
-1. Load a checkpoint into the [AutoPipelineForImage2Image](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image) class; this pipeline automatically handles loading the correct pipeline class  based on the checkpoint:
+1. Load a checkpoint into the [AutoPipelineForImage2Image](/docs/diffusers/v0.41.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image) class; this pipeline automatically handles loading the correct pipeline class  based on the checkpoint:
 
 ```py
 import torch
@@ -20,7 +20,7 @@ pipeline.enable_xformers_memory_efficient_attention()
 ```
 
 > [!TIP]
-> You'll notice throughout the guide, we use [enable_model_cpu_offload()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) and [enable_xformers_memory_efficient_attention()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_xformers_memory_efficient_attention), to save memory and increase inference speed. If you're using PyTorch 2.0, then you don't need to call [enable_xformers_memory_efficient_attention()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_xformers_memory_efficient_attention) on your pipeline because it'll already be using PyTorch 2.0's native [scaled-dot product attention](../optimization/fp16#scaled-dot-product-attention).
+> You'll notice throughout the guide, we use [enable_model_cpu_offload()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) and [enable_xformers_memory_efficient_attention()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_xformers_memory_efficient_attention), to save memory and increase inference speed. If you're using PyTorch 2.0, then you don't need to call [enable_xformers_memory_efficient_attention()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_xformers_memory_efficient_attention) on your pipeline because it'll already be using PyTorch 2.0's native [scaled-dot product attention](../optimization/fp16#scaled-dot-product-attention).
 
 2. Load an image to pass to the pipeline:
 
@@ -455,7 +455,7 @@ Trying to generate an image that looks exactly the way you want can be difficult
 
 Prompt weighting allows you to scale the representation of each concept in a prompt. For example, in a prompt like "Astronaut in a jungle, cold color palette, muted colors, detailed, 8k", you can choose to increase or decrease the embeddings of "astronaut" and "jungle". The [Compel](https://github.com/damian0815/compel) library provides a simple syntax for adjusting prompt weights and generating the embeddings. You can learn how to create the embeddings in the [Prompt weighting](weighted_prompts) guide.
 
-[AutoPipelineForImage2Image](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image) has a `prompt_embeds` (and `negative_prompt_embeds` if you're using a negative prompt) parameter where you can pass the embeddings which replaces the `prompt` parameter.
+[AutoPipelineForImage2Image](/docs/diffusers/v0.41.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image) has a `prompt_embeds` (and `negative_prompt_embeds` if you're using a negative prompt) parameter where you can pass the embeddings which replaces the `prompt` parameter.
 
 ```py
 from diffusers import AutoPipelineForImage2Image
@@ -491,7 +491,7 @@ depth_image = load_image("https://huggingface.co/lllyasviel/control_v11f1p_sd15_
 make_image_grid([init_image, depth_image], rows=1, cols=2)
 ```
 
-Load a ControlNet model conditioned on depth maps and the [AutoPipelineForImage2Image](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image):
+Load a ControlNet model conditioned on depth maps and the [AutoPipelineForImage2Image](/docs/diffusers/v0.41.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image):
 
 ```py
 from diffusers import ControlNetModel, AutoPipelineForImage2Image
@@ -564,4 +564,4 @@ pipeline.unet = torch.compile(pipeline.unet, mode="reduce-overhead", fullgraph=T
 To learn more, take a look at the [Reduce memory usage](../optimization/memory) and [Accelerate inference](../optimization/fp16) guides.
 
 ### Unconditional image generation
-https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/unconditional_image_generation.md
+https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/unconditional_image_generation.md

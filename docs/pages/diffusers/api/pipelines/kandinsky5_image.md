@@ -37,7 +37,7 @@ from diffusers import Kandinsky5T2IPipeline
 # Load the pipeline
 model_id = "kandinskylab/Kandinsky-5.0-T2I-Lite-sft-Diffusers"
 pipe = Kandinsky5T2IPipeline.from_pretrained(model_id)
-_ = pipe.to(device='cuda',dtype=torch.bfloat16)
+_ = pipe.to(device='cuda',dtype=torch.bfloat16)  # or "mps", "xpu", "cpu"
 
 # Generate image
 prompt = "A fluffy, expressive cat wearing a bright red hat with a soft, slightly textured fabric. The hat should look cozy and well-fitted on the cat’s head. On the front of the hat, add clean, bold white text that reads “SWEET”, clearly visible and neatly centered. Ensure the overall lighting highlights the hat’s color and the cat’s fur details."
@@ -62,7 +62,7 @@ from diffusers.utils import load_image
 model_id = "kandinskylab/Kandinsky-5.0-I2I-Lite-sft-Diffusers"
 pipe = Kandinsky5I2IPipeline.from_pretrained(model_id)
 
-_ = pipe.to(device='cuda',dtype=torch.bfloat16)
+_ = pipe.to(device='cuda',dtype=torch.bfloat16)  # or "mps", "xpu", "cpu"
 pipe.enable_model_cpu_offload()                                               # <--- Enable CPU offloading for single GPU inference
 
 # Edit the input image
@@ -89,13 +89,13 @@ output = pipe(
 diffusers.Kandinsky5T2IPipeline(transformer: Kandinsky5Transformer3DModel, vae: AutoencoderKL, text_encoder: Qwen2_5_VLForConditionalGeneration, tokenizer: Qwen2VLProcessor, text_encoder_2: CLIPTextModel, tokenizer_2: CLIPTokenizer, scheduler: FlowMatchEulerDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_t2i.py#L120)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_t2i.py#L120)
 
 **Parameters:**
 
 transformer (`Kandinsky5Transformer3DModel`) : Conditional Transformer to denoise the encoded image latents.
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder Model [black-forest-labs/FLUX.1-dev (vae)](https://huggingface.co/black-forest-labs/FLUX.1-dev) to encode and decode videos to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder Model [black-forest-labs/FLUX.1-dev (vae)](https://huggingface.co/black-forest-labs/FLUX.1-dev) to encode and decode videos to and from latent representations.
 
 text_encoder (`Qwen2_5_VLForConditionalGeneration`) : Frozen text-encoder [Qwen2.5-VL](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct).
 
@@ -105,11 +105,11 @@ text_encoder_2 (`CLIPTextModel`) : Frozen [CLIP](https://huggingface.co/docs/tra
 
 tokenizer_2 (`CLIPTokenizer`) : Tokenizer for CLIP.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
 Pipeline for text-to-image generation using Kandinsky 5.0.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.Kandinsky5T2IPipeline.__call__]]
@@ -118,7 +118,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(prompt: str | list[str] = None, negative_prompt: str | list[str] | None = None, height: int = 1024, width: int = 1024, num_inference_steps: int = 50, guidance_scale: float = 3.5, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds_qwen: typing.Optional[torch.Tensor] = None, prompt_embeds_clip: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_qwen: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_clip: typing.Optional[torch.Tensor] = None, prompt_cu_seqlens: typing.Optional[torch.Tensor] = None, negative_prompt_cu_seqlens: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int, NoneType], diffusers.callbacks.PipelineCallback | diffusers.callbacks.MultiPipelineCallbacks]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_t2i.py#L534)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_t2i.py#L534)
 
 **Parameters:**
 
@@ -201,7 +201,7 @@ Examples:
 check_inputs(prompt, negative_prompt, height, width, prompt_embeds_qwen = None, prompt_embeds_clip = None, negative_prompt_embeds_qwen = None, negative_prompt_embeds_clip = None, prompt_cu_seqlens = None, negative_prompt_cu_seqlens = None, callback_on_step_end_tensor_inputs = None, max_sequence_length = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_t2i.py#L380)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_t2i.py#L380)
 
 **Parameters:**
 
@@ -239,7 +239,7 @@ Validate input parameters for the pipeline.
 encode_prompt(prompt: str | list[str], num_images_per_prompt: int = 1, max_sequence_length: int = 512, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_t2i.py#L289)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_t2i.py#L289)
 
 **Parameters:**
 
@@ -271,7 +271,7 @@ representations for image generation.
 prepare_latents(batch_size: int, num_channels_latents: int = 16, height: int = 1024, width: int = 1024, dtype: typing.Optional[torch.dtype] = None, device: typing.Optional[torch.device] = None, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_t2i.py#L469)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_t2i.py#L469)
 
 **Parameters:**
 
@@ -307,13 +307,13 @@ This method creates random noise latents
 diffusers.Kandinsky5I2IPipeline(transformer: Kandinsky5Transformer3DModel, vae: AutoencoderKL, text_encoder: Qwen2_5_VLForConditionalGeneration, tokenizer: Qwen2VLProcessor, text_encoder_2: CLIPTextModel, tokenizer_2: CLIPTokenizer, scheduler: FlowMatchEulerDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2i.py#L120)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2i.py#L120)
 
 **Parameters:**
 
 transformer (`Kandinsky5Transformer3DModel`) : Conditional Transformer to denoise the encoded image latents.
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder Model [black-forest-labs/FLUX.1-dev (vae)](https://huggingface.co/black-forest-labs/FLUX.1-dev) to encode and decode videos to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder Model [black-forest-labs/FLUX.1-dev (vae)](https://huggingface.co/black-forest-labs/FLUX.1-dev) to encode and decode videos to and from latent representations.
 
 text_encoder (`Qwen2_5_VLForConditionalGeneration`) : Frozen text-encoder [Qwen2.5-VL](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct).
 
@@ -323,11 +323,11 @@ text_encoder_2 (`CLIPTextModel`) : Frozen [CLIP](https://huggingface.co/docs/tra
 
 tokenizer_2 (`CLIPTokenizer`) : Tokenizer for CLIP.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
 Pipeline for image-to-image generation using Kandinsky 5.0.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.Kandinsky5I2IPipeline.__call__]]
@@ -336,7 +336,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], prompt: str | list[str] = None, negative_prompt: str | list[str] | None = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, guidance_scale: float = 3.5, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds_qwen: typing.Optional[torch.Tensor] = None, prompt_embeds_clip: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_qwen: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_clip: typing.Optional[torch.Tensor] = None, prompt_cu_seqlens: typing.Optional[torch.Tensor] = None, negative_prompt_cu_seqlens: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int, NoneType], diffusers.callbacks.PipelineCallback | diffusers.callbacks.MultiPipelineCallbacks]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 1024)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2i.py#L567)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2i.py#L567)
 
 **Parameters:**
 
@@ -421,7 +421,7 @@ Examples:
 check_inputs(prompt, negative_prompt, image, height, width, prompt_embeds_qwen = None, prompt_embeds_clip = None, negative_prompt_embeds_qwen = None, negative_prompt_embeds_clip = None, prompt_cu_seqlens = None, negative_prompt_cu_seqlens = None, callback_on_step_end_tensor_inputs = None, max_sequence_length = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2i.py#L388)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2i.py#L388)
 
 **Parameters:**
 
@@ -461,7 +461,7 @@ Validate input parameters for the pipeline.
 encode_prompt(prompt: str | list[str], image: Tensor, num_images_per_prompt: int = 1, max_sequence_length: int = 1024, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2i.py#L295)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2i.py#L295)
 
 **Parameters:**
 
@@ -493,7 +493,7 @@ representations for image generation.
 prepare_latents(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], batch_size: int, num_channels_latents: int = 16, height: int = 1024, width: int = 1024, dtype: typing.Optional[torch.dtype] = None, device: typing.Optional[torch.device] = None, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2i.py#L482)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2i.py#L482)
 
 **Parameters:**
 
@@ -534,4 +534,4 @@ This method creates random noise latents with encoded image,
 ```
 
 ### MiniMax Music 3
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/minimax_music3.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/minimax_music3.md

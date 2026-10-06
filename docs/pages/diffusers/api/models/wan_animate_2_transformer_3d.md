@@ -18,7 +18,7 @@ transformer = WanAnimate2Transformer3DModel.from_pretrained("Wan-AI/Wan2.2-Anima
 diffusers.WanAnimate2Transformer3DModel(patch_size: tuple = (1, 2, 2), text_len: int = 512, in_dim: int = 36, dim: int = 5120, ffn_dim: int = 13824, freq_dim: int = 256, text_dim: int = 4096, out_dim: int = 16, num_heads: int = 40, num_layers: int = 40, cross_attn_norm: bool = True, eps: float = 1e-06, use_img_emb: bool = True, refer_offset_t: int = 1, refer_offset_h: int = 0, refer_offset_w: int = -1, refer_stride: int = 1)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_wan_animate_2.py#L570)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_wan_animate_2.py#L570)
 
 **Parameters:**
 
@@ -70,7 +70,7 @@ attention in the model works on any backend.
 forward(hidden_states: list, timestep: Tensor, encoder_hidden_states: list, condition_latents: list, kv_cache: WanAnimate2KVCache, kv_cache_mode: str, seq_len: int, encoder_hidden_states_image: typing.Optional[torch.Tensor] = None, offset_grid_sizes: typing.Optional[torch.Tensor] = None, reference_grid_sizes: typing.Optional[torch.Tensor] = None, origin_len: int | None = None, origin_area: list[int] | None = None, is_uncondtion: bool = False, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_wan_animate_2.py#L766)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_wan_animate_2.py#L766)
 
 **Parameters:**
 
@@ -102,7 +102,7 @@ is_uncondtion (`bool`, *optional*) : Whether this is the unconditional branch of
 
 return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain tuple.
 
-**Returns:** [Transformer2DModelOutput](/docs/diffusers/v0.40.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) or `tuple(list[torch.Tensor])`
+**Returns:** [Transformer2DModelOutput](/docs/diffusers/v0.41.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) or `tuple(list[torch.Tensor])`
 
 The predicted sample per input latent, unpatchified; a plain tuple if `return_dict` is `False`.
 
@@ -114,13 +114,13 @@ The predicted sample per input latent, unpatchified; a plain tuple if `return_di
 diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L21)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-The output of [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+The output of [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
 
 ### VQModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/vq.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/vq.md

@@ -16,7 +16,7 @@ transformer = OvisImageTransformer2DModel.from_pretrained("AIDC-AI/Ovis-Image-7B
 diffusers.OvisImageTransformer2DModel(patch_size: int = 1, in_channels: int = 64, out_channels: int | None = 64, num_layers: int = 6, num_single_layers: int = 27, attention_head_dim: int = 128, num_attention_heads: int = 24, joint_attention_dim: int = 2048, axes_dims_rope: tuple = (16, 56, 56))
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_ovis_image.py#L384)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_ovis_image.py#L384)
 
 **Parameters:**
 
@@ -48,7 +48,7 @@ Reference: https://github.com/AIDC-AI/Ovis-Image
 forward(hidden_states: Tensor, encoder_hidden_states: Tensor = None, timestep: LongTensor = None, img_ids: Tensor = None, txt_ids: Tensor = None, joint_attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_ovis_image.py#L476)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_ovis_image.py#L476)
 
 **Parameters:**
 
@@ -71,7 +71,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
-The [OvisImageTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/ovisimage_transformer2d#diffusers.OvisImageTransformer2DModel) forward method.
+The [OvisImageTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/ovisimage_transformer2d#diffusers.OvisImageTransformer2DModel) forward method.
 
 ### Cosmos3OmniTransformer
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/cosmos3_omni_transformer.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/cosmos3_omni_transformer.md

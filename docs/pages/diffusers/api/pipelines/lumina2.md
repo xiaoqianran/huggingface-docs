@@ -9,7 +9,7 @@ The abstract from the paper is:
 *We introduce Lumina-Image 2.0, an advanced text-to-image model that surpasses previous state-of-the-art methods across multiple benchmarks, while also shedding light on its potential to evolve into a generalist vision intelligence model. Lumina-Image 2.0 exhibits three key properties: (1) Unification – it adopts a unified architecture that treats text and image tokens as a joint sequence, enabling natural cross-modal interactions and facilitating task expansion. Besides, since high-quality captioners can provide semantically better-aligned text-image training pairs, we introduce a unified captioning system, UniCaptioner, which generates comprehensive and precise captions for the model. This not only accelerates model convergence but also enhances prompt adherence, variable-length prompt handling, and task generalization via prompt templates. (2) Efficiency – to improve the efficiency of the unified architecture, we develop a set of optimization techniques that improve semantic learning and fine-grained texture generation during training while incorporating inference-time acceleration strategies without compromising image quality. (3) Transparency – we open-source all training details, code, and models to ensure full reproducibility, aiming to bridge the gap between well-resourced closed-source research teams and independent developers.*
 
 > [!TIP]
-> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reuse-a-pipeline) section to learn how to efficiently load the same components into multiple pipelines.
+> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reusing-models-in-multiple-pipelines) section to learn how to efficiently load the same components into multiple pipelines.
 
 ## Using Single File loading with Lumina Image 2.0
 
@@ -69,23 +69,23 @@ image.save("lumina-gguf.png")
 diffusers.Lumina2Pipeline(transformer: Lumina2Transformer2DModel, scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: Gemma2PreTrainedModel, tokenizer: GemmaTokenizer)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/lumina2/pipeline_lumina2.py#L137)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/lumina2/pipeline_lumina2.py#L136)
 
 **Parameters:**
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
 text_encoder (`Gemma2PreTrainedModel`) : Frozen Gemma2 text-encoder.
 
 tokenizer (`GemmaTokenizer` or `GemmaTokenizerFast`) : Gemma tokenizer.
 
-transformer ([Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel)) : A text conditioned `Transformer2DModel` to denoise the encoded image latents.
+transformer ([Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel)) : A text conditioned `Transformer2DModel` to denoise the encoded image latents.
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
 Pipeline for text-to-image generation using Lumina-T2I.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.Lumina2Pipeline.__call__]]
@@ -94,7 +94,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str] = None, width: int | None = None, height: int | None = None, num_inference_steps: int = 30, guidance_scale: float = 4.0, negative_prompt: str | list[str] = None, sigmas: list = None, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], system_prompt: str | None = None, cfg_trunc_ratio: float = 1.0, cfg_normalization: bool = True, max_sequence_length: int = 256)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/lumina2/pipeline_lumina2.py#L471)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/lumina2/pipeline_lumina2.py#L470)
 
 **Parameters:**
 
@@ -144,9 +144,9 @@ cfg_normalization (`bool`, *optional*, defaults to `True`) : Whether to apply no
 
 max_sequence_length (`int`, defaults to `256`) : Maximum sequence length to use with the `prompt`.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) is returned, otherwise a `tuple` is
+If `return_dict` is `True`, [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) is returned, otherwise a `tuple` is
 returned where the first element is a list with the generated images
 
 Function invoked when calling the pipeline for generation.
@@ -170,7 +170,7 @@ Examples:
 encode_prompt(prompt: str | list[str], do_classifier_free_guidance: bool = True, negative_prompt: str | list[str] = None, num_images_per_prompt: int = 1, device: typing.Optional[torch.device] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, system_prompt: str | None = None, max_sequence_length: int = 256)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/lumina2/pipeline_lumina2.py#L238)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/lumina2/pipeline_lumina2.py#L237)
 
 **Parameters:**
 
@@ -192,5 +192,5 @@ max_sequence_length (`int`, defaults to `256`) : Maximum sequence length to use 
 
 Encodes the prompt into text encoder hidden states.
 
-### Ideogram 4
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/ideogram4.md
+### Qwen-Image 2.1
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/qwenimage21.md

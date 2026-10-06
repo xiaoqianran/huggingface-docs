@@ -16,7 +16,7 @@ The original codebase can be found at [jabir-zheng/TCD](https://github.com/jabir
 diffusers.TCDScheduler(num_train_timesteps: int = 1000, beta_start: float = 0.00085, beta_end: float = 0.012, beta_schedule: str = 'scaled_linear', trained_betas: numpy.ndarray | list[float] | None = None, original_inference_steps: int = 50, clip_sample: bool = False, clip_sample_range: float = 1.0, set_alpha_to_one: bool = True, steps_offset: int = 0, prediction_type: str = 'epsilon', thresholding: bool = False, dynamic_thresholding_ratio: float = 0.995, sample_max_value: float = 1.0, timestep_spacing: str = 'leading', timestep_scaling: float = 10.0, rescale_betas_zero_snr: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_tcd.py#L141)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_tcd.py#L141)
 
 **Parameters:**
 
@@ -59,10 +59,10 @@ Distillation`, extending the original Multistep Consistency Sampling to enable u
 
 This code is based on the official repo of TCD(https://github.com/jabir-zheng/TCD).
 
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). [~ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin) takes care of storing all config
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin). [~ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin) takes care of storing all config
 attributes that are passed in the scheduler's `__init__` function, such as `num_train_timesteps`. They can be
-accessed via `scheduler.config.num_train_timesteps`. [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) provides general loading and saving
-functionality via the [SchedulerMixin.save_pretrained()](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin.save_pretrained) and [from_pretrained()](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin.from_pretrained) functions.
+accessed via `scheduler.config.num_train_timesteps`. [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) provides general loading and saving
+functionality via the [SchedulerMixin.save_pretrained()](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin.save_pretrained) and [from_pretrained()](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin.from_pretrained) functions.
 
 #### add_noise[[diffusers.TCDScheduler.add_noise]]
 
@@ -70,7 +70,7 @@ functionality via the [SchedulerMixin.save_pretrained()](/docs/diffusers/v0.40.0
 add_noise(original_samples: Tensor, noise: Tensor, timesteps: IntTensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_tcd.py#L702)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_tcd.py#L702)
 
 **Parameters:**
 
@@ -93,7 +93,7 @@ diffusion process).
 get_velocity(sample: Tensor, noise: Tensor, timesteps: IntTensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_tcd.py#L745)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_tcd.py#L745)
 
 **Parameters:**
 
@@ -115,7 +115,7 @@ Compute the velocity prediction from the sample and noise according to the veloc
 index_for_timestep(timestep: typing.Union[float, torch.Tensor], schedule_timesteps: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_tcd.py#L263)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_tcd.py#L263)
 
 **Parameters:**
 
@@ -136,7 +136,7 @@ Find the index of a given timestep in the timestep schedule.
 previous_timestep(timestep: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_tcd.py#L790)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_tcd.py#L790)
 
 **Parameters:**
 
@@ -154,7 +154,7 @@ Compute the previous timestep in the diffusion chain.
 scale_model_input(sample: Tensor, timestep: typing.Union[int, torch.Tensor, NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_tcd.py#L342)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_tcd.py#L342)
 
 **Parameters:**
 
@@ -175,7 +175,7 @@ current timestep.
 set_begin_index(begin_index: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_tcd.py#L332)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_tcd.py#L332)
 
 **Parameters:**
 
@@ -189,7 +189,7 @@ Sets the begin index for the scheduler. This function should be run from pipelin
 set_timesteps(num_inference_steps: int | None = None, device: typing.Union[str, torch.device, NoneType] = None, original_inference_steps: int | None = None, timesteps: list[int] | None = None, strength: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_tcd.py#L432)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_tcd.py#L432)
 
 **Parameters:**
 
@@ -211,7 +211,7 @@ Sets the discrete timesteps used for the diffusion chain (to be run before infer
 step(model_output: Tensor, timestep: typing.Union[int, torch.Tensor], sample: Tensor, eta: float = 0.3, generator: typing.Optional[torch.Generator] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_tcd.py#L594)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_tcd.py#L594)
 
 **Parameters:**
 
@@ -225,11 +225,11 @@ eta (`float`, defaults to `0.3`) : A stochastic parameter (referred to as `gamma
 
 generator (`torch.Generator`, *optional*) : A random number generator.
 
-return_dict (`bool`, defaults to `True`) : Whether or not to return a [TCDSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/tcd#diffusers.schedulers.scheduling_tcd.TCDSchedulerOutput) or `tuple`.
+return_dict (`bool`, defaults to `True`) : Whether or not to return a [TCDSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/tcd#diffusers.schedulers.scheduling_tcd.TCDSchedulerOutput) or `tuple`.
 
-**Returns:** [TCDSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/tcd#diffusers.schedulers.scheduling_tcd.TCDSchedulerOutput) or `tuple[torch.Tensor, torch.Tensor]`
+**Returns:** [TCDSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/tcd#diffusers.schedulers.scheduling_tcd.TCDSchedulerOutput) or `tuple[torch.Tensor, torch.Tensor]`
 
-If return_dict is `True`, [TCDSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/tcd#diffusers.schedulers.scheduling_tcd.TCDSchedulerOutput) is returned, otherwise a
+If return_dict is `True`, [TCDSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/tcd#diffusers.schedulers.scheduling_tcd.TCDSchedulerOutput) is returned, otherwise a
 tuple is returned containing the previous sample and the predicted noised sample.
 
 Predict the sample from the previous timestep by reversing the SDE. This function propagates the diffusion
@@ -243,7 +243,7 @@ process from the learned model outputs (most often the predicted noise).
 diffusers.schedulers.scheduling_tcd.TCDSchedulerOutput(prev_sample: Tensor, pred_noised_sample: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_tcd.py#L35)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_tcd.py#L35)
 
 **Parameters:**
 
@@ -254,4 +254,4 @@ pred_noised_sample (`torch.Tensor` of shape `(batch_size, num_channels, height, 
 Output class for the scheduler's `step` function output.
 
 ### DPMSolverMultistepInverse
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/multistep_dpm_solver_inverse.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/multistep_dpm_solver_inverse.md

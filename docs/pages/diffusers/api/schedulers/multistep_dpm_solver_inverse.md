@@ -19,7 +19,7 @@ Stable Diffusion.
 diffusers.DPMSolverMultistepInverseScheduler(num_train_timesteps: int = 1000, beta_start: float = 0.0001, beta_end: float = 0.02, beta_schedule: typing.Literal['linear', 'scaled_linear', 'squaredcos_cap_v2'] = 'linear', trained_betas: numpy.ndarray | list[float] | None = None, solver_order: int = 2, prediction_type: typing.Literal['epsilon', 'sample', 'v_prediction', 'flow_prediction'] = 'epsilon', thresholding: bool = False, dynamic_thresholding_ratio: float = 0.995, sample_max_value: float = 1.0, algorithm_type: typing.Literal['dpmsolver', 'dpmsolver++', 'sde-dpmsolver', 'sde-dpmsolver++'] = 'dpmsolver++', solver_type: typing.Literal['midpoint', 'heun'] = 'midpoint', lower_order_final: bool = True, euler_at_final: bool = False, use_karras_sigmas: bool = False, use_exponential_sigmas: bool = False, use_beta_sigmas: bool = False, use_flow_sigmas: bool = False, flow_shift: float = 1.0, lambda_min_clipped: float = -inf, variance_type: typing.Optional[typing.Literal['learned', 'learned_range']] = None, timestep_spacing: typing.Literal['linspace', 'leading', 'trailing'] = 'linspace', steps_offset: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_multistep_inverse.py#L86)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_dpmsolver_multistep_inverse.py#L86)
 
 **Parameters:**
 
@@ -69,9 +69,9 @@ timestep_spacing (`str`, defaults to `"linspace"`) : The way the timesteps shoul
 
 steps_offset (`int`, defaults to 0) : An offset added to the inference steps, as required by some model families.
 
-`DPMSolverMultistepInverseScheduler` is the reverse scheduler of [DPMSolverMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler).
+`DPMSolverMultistepInverseScheduler` is the reverse scheduler of [DPMSolverMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler).
 
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
 methods the library implements for all schedulers such as loading and saving.
 
 #### add_noise[[diffusers.DPMSolverMultistepInverseScheduler.add_noise]]
@@ -80,7 +80,7 @@ methods the library implements for all schedulers such as loading and saving.
 add_noise(original_samples: Tensor, noise: Tensor, timesteps: IntTensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_multistep_inverse.py#L1118)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_dpmsolver_multistep_inverse.py#L1118)
 
 **Parameters:**
 
@@ -102,7 +102,7 @@ Add noise to the clean `original_samples` using the scheduler's equivalent funct
 convert_model_output(model_output: Tensor, *args, sample: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_multistep_inverse.py#L600)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_dpmsolver_multistep_inverse.py#L600)
 
 **Parameters:**
 
@@ -127,7 +127,7 @@ noise > prediction and data prediction models.
 dpm_solver_first_order_update(model_output: Tensor, *args, sample: typing.Optional[torch.Tensor] = None, noise: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_multistep_inverse.py#L699)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_dpmsolver_multistep_inverse.py#L699)
 
 **Parameters:**
 
@@ -149,7 +149,7 @@ One step for the first-order DPMSolver (equivalent to DDIM).
 multistep_dpm_solver_second_order_update(model_output_list: list, *args, sample: typing.Optional[torch.Tensor] = None, noise: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_multistep_inverse.py#L774)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_dpmsolver_multistep_inverse.py#L774)
 
 **Parameters:**
 
@@ -171,7 +171,7 @@ One step for the second-order multistep DPMSolver.
 multistep_dpm_solver_third_order_update(model_output_list: list, *args, sample: typing.Optional[torch.Tensor] = None, noise: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_multistep_inverse.py#L901)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_dpmsolver_multistep_inverse.py#L901)
 
 **Parameters:**
 
@@ -193,7 +193,7 @@ One step for the third-order multistep DPMSolver.
 scale_model_input(sample: Tensor, *args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_multistep_inverse.py#L1103)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_dpmsolver_multistep_inverse.py#L1103)
 
 **Parameters:**
 
@@ -212,7 +212,7 @@ current timestep.
 set_timesteps(num_inference_steps: int | None = None, device: typing.Union[str, torch.device, NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_multistep_inverse.py#L283)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_dpmsolver_multistep_inverse.py#L283)
 
 **Parameters:**
 
@@ -228,7 +228,7 @@ Sets the discrete timesteps used for the diffusion chain (to be run before infer
 step(model_output: Tensor, timestep: typing.Union[int, torch.Tensor], sample: Tensor, generator: typing.Optional[torch.Generator] = None, variance_noise: typing.Optional[torch.Tensor] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_multistep_inverse.py#L1017)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_dpmsolver_multistep_inverse.py#L1017)
 
 **Parameters:**
 
@@ -242,11 +242,11 @@ generator (`torch.Generator`, *optional*) : A random number generator.
 
 variance_noise (`torch.Tensor`) : Alternative to generating noise with `generator` by directly providing the noise for the variance itself. Useful for methods such as `CycleDiffusion`.
 
-return_dict (`bool`) : Whether or not to return a [SchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple`.
+return_dict (`bool`) : Whether or not to return a [SchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple`.
 
-**Returns:** [SchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple`
+**Returns:** [SchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple`
 
-If return_dict is `True`, [SchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) is returned, otherwise a
+If return_dict is `True`, [SchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) is returned, otherwise a
 tuple is returned where the first element is the sample tensor.
 
 Predict the sample from the previous timestep by reversing the SDE. This function propagates the sample with
@@ -260,7 +260,7 @@ the multistep DPMSolver.
 diffusers.schedulers.scheduling_utils.SchedulerOutput(prev_sample: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_utils.py#L66)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_utils.py#L66)
 
 **Parameters:**
 
@@ -269,4 +269,4 @@ prev_sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`
 Base class for the output of a scheduler's `step` function.
 
 ### BlockRefinementScheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/block_refinement.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/block_refinement.md

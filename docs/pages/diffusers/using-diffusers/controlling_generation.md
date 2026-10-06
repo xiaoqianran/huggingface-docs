@@ -14,29 +14,26 @@ Depending on the use case, one should choose a technique accordingly. In many ca
 
 Unless otherwise mentioned, these are techniques that work with existing models and don't require their own weights.
 
-1. [InstructPix2Pix](#instruct-pix2pix)
-2. [Pix2Pix Zero](#pix2pix-zero)
-3. [Attend and Excite](#attend-and-excite)
-4. [Semantic Guidance](#semantic-guidance-sega)
-5. [Self-attention Guidance](#self-attention-guidance-sag)
-6. [Depth2Image](#depth2image)
-7. [MultiDiffusion Panorama](#multidiffusion-panorama)
-8. [DreamBooth](#dreambooth)
-9. [Textual Inversion](#textual-inversion)
-10. [ControlNet](#controlnet)
-11. [Prompt Weighting](#prompt-weighting)
-12. [Custom Diffusion](#custom-diffusion)
-13. [Model Editing](#model-editing)
-14. [DiffEdit](#diffedit)
-15. [T2I-Adapter](#t2i-adapter)
-16. [FABRIC](#fabric)
+1. [InstructPix2Pix](#instructpix2pix)
+2. [Attend and Excite](#attend-and-excite)
+3. [Semantic Guidance](#semantic-guidance-sega)
+4. [Self-attention Guidance](#self-attention-guidance-sag)
+5. [Depth2Image](#depth2image)
+6. [MultiDiffusion Panorama](#multidiffusion-panorama)
+7. [DreamBooth](#dreambooth)
+8. [Textual Inversion](#textual-inversion)
+9. [ControlNet](#controlnet)
+10. [Prompt Weighting](#prompt-weighting)
+11. [Custom Diffusion](#custom-diffusion)
+12. [DiffEdit](#diffedit)
+13. [T2I-Adapter](#t2i-adapter)
+14. [FABRIC](#fabric)
 
 For convenience, we provide a table to denote which methods are inference-only and which require fine-tuning/training.
 
 |                     **Method**                      | **Inference only** | **Requires training / fine-tuning** |                                          **Comments**                                           |
 | :-------------------------------------------------: | :----------------: | :-------------------------------------: | :---------------------------------------------------------------------------------------------: |
-|        [InstructPix2Pix](#instruct-pix2pix)        |         ✅         |                   ❌                    | Can additionally befine-tuned for better performance on specific edit instructions. |
-|            [Pix2Pix Zero](#pix2pix-zero)            |         ✅         |                   ❌                    |                                                                                                 |
+|        [InstructPix2Pix](#instructpix2pix)        |         ✅         |                   ❌                    | Can additionally befine-tuned for better performance on specific edit instructions. |
 |       [Attend and Excite](#attend-and-excite)       |         ✅         |                   ❌                    |                                                                                                 |
 |       [Semantic Guidance](#semantic-guidance-sega)       |         ✅         |                   ❌                    |                                                                                                 |
 | [Self-attention Guidance](#self-attention-guidance-sag) |         ✅         |                   ❌                    |                                                                                                 |
@@ -47,7 +44,6 @@ For convenience, we provide a table to denote which methods are inference-only a
 |              [ControlNet](#controlnet)              |         ✅         |                   ❌                    |             A ControlNet can be trained/fine-tuned ona custom conditioning.             |
 |        [Prompt Weighting](#prompt-weighting)        |         ✅         |                   ❌                    |                                                                                                 |
 |        [Custom Diffusion](#custom-diffusion)        |         ❌         |                   ✅                    |                                                                                                 |
-|           [Model Editing](#model-editing)           |         ✅         |                   ❌                    |                                                                                                 |
 |                [DiffEdit](#diffedit)                |         ✅         |                   ❌                    |                                                                                                 |
 |             [T2I-Adapter](#t2i-adapter)             |         ✅         |                   ❌                    |                                                                                                 |
 |                [Fabric](#fabric)                    |         ✅         |                   ❌                    |                                                                                                 |
@@ -165,4 +161,4 @@ the self-attention layer present in the most widely used architectures to condit
 the diffusion process on a set of feedback images.
 
 ### DreamBooth
-https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/dreambooth.md
+https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/dreambooth.md

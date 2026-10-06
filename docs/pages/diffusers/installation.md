@@ -1,6 +1,6 @@
 # Installation
 
-Diffusers is tested on Python 3.8+ and PyTorch 2.6+. Install [PyTorch](https://pytorch.org/get-started/locally/) according to your system and setup.
+Diffusers requires Python 3.10+ and is tested with PyTorch 2.6+. Install [PyTorch](https://pytorch.org/get-started/locally/) according to your system and setup.
 
 Create a [virtual environment](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/) for easier management of separate projects and to avoid compatibility issues between dependencies. Use [uv](https://docs.astral.sh/uv/), a Rust-based Python package and project manager, to create a virtual environment and install Diffusers.
 
@@ -10,8 +10,6 @@ source my-env/bin/activate
 ```
 
 Install Diffusers with one of the following methods.
-
-PyTorch only supports Python 3.8 - 3.11 on Windows.
 
 ```bash
 uv pip install diffusers["torch"] transformers
@@ -50,6 +48,25 @@ Install Diffusers from source with the command below.
 uv pip install git+https://github.com/huggingface/diffusers
 ```
 
+Install with extras when you need them. `diffusers["torch"]` pulls PyTorch and Accelerate. Other extras cover quantization backends, training, and docs. See [`setup.py`](https://github.com/huggingface/diffusers/blob/main/setup.py) for the full list.
+
+## Devices
+
+Diffusers runs on any accelerator supported by PyTorch. The examples throughout the docs use `"cuda"` because it is the most common setup, but nothing is CUDA-specific. Swap in the device string for your hardware, such as `"xpu"` for Intel GPUs, `"mps"` for Apple silicon, or `"cpu"`.
+
+```py
+device = "cuda"  # or "mps", "xpu", "cpu"
+pipeline.to(device)
+```
+
+To pick the device at runtime instead of hardcoding it, use [torch.accelerator](https://docs.pytorch.org/docs/stable/accelerator.html).
+
+```py
+import torch
+
+device = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
+```
+
 ## Editable install
 
 An editable install is recommended for development workflows or if you're using the `main` version of the source code. A special link is created between the cloned repository and the Python library paths. This avoids reinstalling a package after every change.
@@ -74,7 +91,7 @@ git pull
 
 ## Cache
 
-Model weights and files are downloaded from the Hub to a cache, which is usually your home directory. Change the cache location with the [HF_HOME](https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfhome) or [HF_HUB_CACHE](https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfhubcache) environment variables or configuring the `cache_dir` parameter in methods like [from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained).
+Model weights and files are downloaded from the Hub to a cache, which is usually your home directory. Change the cache location with the [HF_HOME](https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfhome) or [HF_HUB_CACHE](https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfhubcache) environment variables or configuring the `cache_dir` parameter in methods like [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained).
 
 ```bash
 export HF_HOME="/path/to/your/cache"
@@ -100,7 +117,7 @@ For more details about managing and cleaning the cache, take a look at the [Unde
 
 ## Telemetry logging
 
-Diffusers gathers telemetry information during [from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) requests.
+Diffusers gathers telemetry information during [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) requests.
 The data gathered includes the Diffusers and PyTorch version, the requested model or pipeline class,
 and the path to a pretrained checkpoint if it is hosted on the Hub.
 
@@ -119,4 +136,4 @@ set HF_HUB_DISABLE_TELEMETRY=1
 ```
 
 ### Basic performance
-https://huggingface.co/docs/diffusers/v0.40.0/stable_diffusion.md
+https://huggingface.co/docs/diffusers/v0.41.0/stable_diffusion.md

@@ -1,6 +1,6 @@
 # UNet
 
-Some training methods - like LoRA and Custom Diffusion - typically target the UNet's attention layers, but these training methods can also target other non-attention layers. Instead of training all of a model's parameters, only a subset of the parameters are trained, which is faster and more efficient. This class is useful if you're *only* loading weights into a UNet. If you need to load weights into the text encoder or a text encoder and UNet, try using the [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) function instead.
+Some training methods - like LoRA and Custom Diffusion - typically target the UNet's attention layers, but these training methods can also target other non-attention layers. Instead of training all of a model's parameters, only a subset of the parameters are trained, which is faster and more efficient. This class is useful if you're *only* loading weights into a UNet. If you need to load weights into the text encoder or a text encoder and UNet, try using the [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) function instead.
 
 The `UNet2DConditionLoadersMixin` class provides functions for loading and saving weights, fusing and unfusing LoRAs, disabling and enabling LoRAs, and setting and deleting adapters.
 
@@ -15,7 +15,7 @@ The `UNet2DConditionLoadersMixin` class provides functions for loading and savin
 diffusers.loaders.UNet2DConditionLoadersMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/unet.py#L54)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/unet.py#L54)
 
 Load LoRA layers into a `UNet2DCondtionModel`.
 
@@ -25,11 +25,11 @@ Load LoRA layers into a `UNet2DCondtionModel`.
 load_attn_procs(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/unet.py#L62)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/unet.py#L62)
 
 **Parameters:**
 
-pretrained_model_name_or_path_or_dict (`str` or `os.PathLike` or `dict`) : Can be either:  - A string, the model id (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a directory (for example `./my_model_directory`) containing the model weights saved with [ModelMixin.save_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained). - A [torch state dict](https://pytorch.org/tutorials/beginner/saving_loading_models.html#what-is-a-state-dict). 
+pretrained_model_name_or_path_or_dict (`str` or `os.PathLike` or `dict`) : Can be either:  - A string, the model id (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a directory (for example `./my_model_directory`) containing the model weights saved with [ModelMixin.save_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained). - A [torch state dict](https://pytorch.org/tutorials/beginner/saving_loading_models.html#what-is-a-state-dict). 
 
 cache_dir (`str | os.PathLike`, *optional*) : Path to a directory where a downloaded pretrained model configuration is cached if the standard cache is not used.
 
@@ -47,10 +47,10 @@ subfolder (`str`, *optional*, defaults to `""`) : The subfolder location of a mo
 
 weight_name (`str`, *optional*, defaults to None) : Name of the serialized state dict file.
 
-Load pretrained Custom Diffusion attention processor layers into [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel). Attention processor
+Load pretrained Custom Diffusion attention processor layers into [UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel). Attention processor
 layers have to be defined in
 [`attention_processor.py`](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py)
-and be a `torch.nn.Module` class. To load LoRA layers, use [load_lora_adapter()](/docs/diffusers/v0.40.0/en/api/loaders/peft#diffusers.loaders.PeftAdapterMixin.load_lora_adapter)
+and be a `torch.nn.Module` class. To load LoRA layers, use [load_lora_adapter()](/docs/diffusers/v0.41.0/en/api/loaders/peft#diffusers.loaders.PeftAdapterMixin.load_lora_adapter)
 instead.
 
 Example:
@@ -72,7 +72,7 @@ pipeline.unet.load_attn_procs("path-to-save-model", weight_name="pytorch_custom_
 save_attn_procs(save_directory: str | os.PathLike, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/unet.py#L253)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/unet.py#L253)
 
 **Parameters:**
 
@@ -85,8 +85,8 @@ save_function (`Callable`) : The function to use to save the state dictionary. U
 safe_serialization (`bool`, *optional*, defaults to `True`) : Whether to save the model using `safetensors` or with `pickle`.
 
 Save Custom Diffusion attention processor layers to a directory so that it can be reloaded with the
-[load_attn_procs()](/docs/diffusers/v0.40.0/en/api/loaders/unet#diffusers.loaders.UNet2DConditionLoadersMixin.load_attn_procs) method. To save LoRA layers, use
-[save_lora_adapter()](/docs/diffusers/v0.40.0/en/api/loaders/peft#diffusers.loaders.PeftAdapterMixin.save_lora_adapter) instead.
+[load_attn_procs()](/docs/diffusers/v0.41.0/en/api/loaders/unet#diffusers.loaders.UNet2DConditionLoadersMixin.load_attn_procs) method. To save LoRA layers, use
+[save_lora_adapter()](/docs/diffusers/v0.41.0/en/api/loaders/peft#diffusers.loaders.PeftAdapterMixin.save_lora_adapter) instead.
 
 Example:
 
@@ -103,4 +103,4 @@ pipeline.unet.save_attn_procs("path-to-save-model", weight_name="pytorch_custom_
 ```
 
 ### Single files
-https://huggingface.co/docs/diffusers/v0.40.0/api/loaders/single_file.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/loaders/single_file.md

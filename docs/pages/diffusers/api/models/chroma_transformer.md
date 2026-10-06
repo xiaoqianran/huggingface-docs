@@ -10,7 +10,7 @@ A modified flux Transformer model from [Chroma](https://huggingface.co/lodestone
 diffusers.ChromaTransformer2DModel(patch_size: int = 1, in_channels: int = 64, out_channels: int | None = None, num_layers: int = 19, num_single_layers: int = 38, attention_head_dim: int = 128, num_attention_heads: int = 24, joint_attention_dim: int = 4096, axes_dims_rope: tuple = (16, 56, 56), approximator_num_channels: int = 64, approximator_hidden_dim: int = 5120, approximator_layers: int = 5)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_chroma.py#L370)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_chroma.py#L359)
 
 **Parameters:**
 
@@ -42,7 +42,7 @@ Reference: https://huggingface.co/lodestones/Chroma1-HD
 forward(hidden_states: Tensor, encoder_hidden_states: Tensor = None, timestep: LongTensor = None, img_ids: Tensor = None, txt_ids: Tensor = None, attention_mask: Tensor = None, joint_attention_kwargs: dict[str, typing.Any] | None = None, controlnet_block_samples = None, controlnet_single_block_samples = None, return_dict: bool = True, controlnet_blocks_repeat: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_chroma.py#L476)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_chroma.py#L465)
 
 **Parameters:**
 
@@ -73,7 +73,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
-The [FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel) forward method.
+The [FluxTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel) forward method.
 
 ### ControlNetUnionModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/controlnet_union.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/controlnet_union.md

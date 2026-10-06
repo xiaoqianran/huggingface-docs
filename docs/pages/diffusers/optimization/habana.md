@@ -19,4 +19,4 @@ image = pipeline("An image of a squirrel in Picasso style").images[0]
 > For Gaudi-optimized diffusion pipeline implementations, we recommend using [Optimum for Intel Gaudi](https://huggingface.co/docs/optimum/main/en/habana/index).
 
 ### xFormers
-https://huggingface.co/docs/diffusers/v0.40.0/optimization/xformers.md
+https://huggingface.co/docs/diffusers/v0.41.0/optimization/xformers.md

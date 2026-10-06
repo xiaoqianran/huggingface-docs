@@ -64,5 +64,5 @@ This is useful if you want more control over the data schema or want to predefin
 select ai.load_dataset('rajpurkar/squad', table_name => 'squad', if_table_exists => 'append');
 ```
 
-### Pandas
-https://huggingface.co/docs/dataset-viewer/pandas.md
+### PySpark
+https://huggingface.co/docs/dataset-viewer/pyspark.md

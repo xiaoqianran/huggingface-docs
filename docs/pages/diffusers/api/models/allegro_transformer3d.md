@@ -7,7 +7,7 @@ The model can be loaded with the following code snippet.
 ```python
 from diffusers import AllegroTransformer3DModel
 
-transformer = AllegroTransformer3DModel.from_pretrained("rhymes-ai/Allegro", subfolder="transformer", dtype=torch.bfloat16).to("cuda")
+transformer = AllegroTransformer3DModel.from_pretrained("rhymes-ai/Allegro", subfolder="transformer", dtype=torch.bfloat16).to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 ## AllegroTransformer3DModel[[diffusers.AllegroTransformer3DModel]]
@@ -18,7 +18,7 @@ transformer = AllegroTransformer3DModel.from_pretrained("rhymes-ai/Allegro", sub
 diffusers.AllegroTransformer3DModel(patch_size: int = 2, patch_size_t: int = 1, num_attention_heads: int = 24, attention_head_dim: int = 96, in_channels: int = 4, out_channels: int = 4, num_layers: int = 32, dropout: float = 0.0, cross_attention_dim: int = 2304, attention_bias: bool = True, sample_height: int = 90, sample_width: int = 160, sample_frames: int = 22, activation_fn: str = 'gelu-approximate', norm_elementwise_affine: bool = False, norm_eps: float = 1e-06, caption_channels: int = 4096, interpolation_scale_h: float = 2.0, interpolation_scale_w: float = 2.0, interpolation_scale_t: float = 2.2)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_allegro.py#L174)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_allegro.py#L174)
 
 #### forward[[diffusers.AllegroTransformer3DModel.forward]]
 
@@ -26,7 +26,7 @@ diffusers.AllegroTransformer3DModel(patch_size: int = 2, patch_size_t: int = 1, 
 forward(hidden_states: Tensor, encoder_hidden_states: Tensor, timestep: LongTensor, attention_mask: typing.Optional[torch.Tensor] = None, encoder_attention_mask: typing.Optional[torch.Tensor] = None, image_rotary_emb: tuple[torch.Tensor, torch.Tensor] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_allegro.py#L305)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_allegro.py#L305)
 
 **Parameters:**
 
@@ -49,7 +49,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
-The [AllegroTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/allegro_transformer3d#diffusers.AllegroTransformer3DModel) forward method.
+The [AllegroTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/allegro_transformer3d#diffusers.AllegroTransformer3DModel) forward method.
 
 ## Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
@@ -59,13 +59,13 @@ The [AllegroTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/allegro_tr
 diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L21)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-The output of [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+The output of [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
 
 ### AutoencoderKLLTX2Audio
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoderkl_audio_ltx_2.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_audio_ltx_2.md

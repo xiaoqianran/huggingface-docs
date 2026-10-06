@@ -10,7 +10,7 @@ Each `StableAudio3DiTBlock` performs:
 3. **Feed-forward** — SwiGLU projection.
 
 The model is conditioned on a **timestep** (exponential Fourier features → linear projection) and a **global
-conditioning vector** (duration embedding from [StableAudio3DurationEmbedder](/docs/diffusers/v0.40.0/en/api/pipelines/stable_audio_3#diffusers.StableAudio3DurationEmbedder)).
+conditioning vector** (duration embedding from [StableAudio3DurationEmbedder](/docs/diffusers/v0.41.0/en/api/pipelines/stable_audio_3#diffusers.StableAudio3DurationEmbedder)).
 
 ## StableAudio3DiTModel[[diffusers.StableAudio3DiTModel]]
 
@@ -20,7 +20,7 @@ conditioning vector** (duration embedding from [StableAudio3DurationEmbedder](/d
 diffusers.StableAudio3DiTModel(io_channels: int = 256, patch_size: int = 1, embed_dim: int = 1536, depth: int = 24, num_heads: int = 24, cond_token_dim: int = 768, global_cond_dim: int = 768, local_add_cond_dim: int = 257, timestep_features_dim: int = 256, ff_mult: float = 4.0, num_memory_tokens: int = 64, use_differential_attention: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_stable_audio3.py#L403)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_stable_audio3.py#L403)
 
 **Parameters:**
 
@@ -68,7 +68,7 @@ the output projection.
 forward(hidden_states: Tensor, timestep: Tensor, encoder_hidden_states: Tensor, global_hidden_states: Tensor, encoder_attention_mask: typing.Optional[torch.Tensor] = None, local_add_cond: typing.Optional[torch.Tensor] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_stable_audio3.py#L521)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_stable_audio3.py#L521)
 
 **Parameters:**
 
@@ -98,7 +98,7 @@ the predicted velocity field, same shape as `hidden_states`.
 diffusers.models.transformers.transformer_stable_audio3.StableAudio3DiTBlock(dim: int, context_dim: int, dim_heads: int = 64, use_differential: bool = True, ff_mult: float = 4.0, local_add_cond_dim: int = 257)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_stable_audio3.py#L316)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_stable_audio3.py#L316)
 
 Single SA3 DiT transformer block.
 
@@ -122,13 +122,13 @@ positions of the residual stream after cross-attention (and before the feed-forw
 diffusers.models.transformers.transformer_stable_audio3.StableAudio3DiTModelOutput(sample: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_stable_audio3.py#L34)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_stable_audio3.py#L34)
 
 **Parameters:**
 
 sample (`torch.Tensor`) : The predicted velocity field, of the same shape as the input `hidden_states`.
 
-The output of [StableAudio3DiTModel](/docs/diffusers/v0.40.0/en/api/models/stable_audio_3_transformer#diffusers.StableAudio3DiTModel).
+The output of [StableAudio3DiTModel](/docs/diffusers/v0.41.0/en/api/models/stable_audio_3_transformer#diffusers.StableAudio3DiTModel).
 
 ### Consistency Decoder
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/consistency_decoder_vae.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/consistency_decoder_vae.md

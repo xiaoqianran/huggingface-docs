@@ -282,7 +282,7 @@ from diffusers import DiffusionPipeline
 
 pipeline = DiffusionPipeline.from_pretrained(
     "CompVis/stable-diffusion-v1-4", dtype=torch.float16,
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline.unet.load_attn_procs("path-to-save-model", weight_name="pytorch_custom_diffusion_weights.bin")
 pipeline.load_textual_inversion("path-to-save-model", weight_name="<new1>.bin")
 
@@ -302,7 +302,7 @@ from diffusers import DiffusionPipeline
 
 pipeline = DiffusionPipeline.from_pretrained(
     "CompVis/stable-diffusion-v1-4", dtype=torch.float16,
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 model_id = "sayakpaul/custom-diffusion-cat-wooden-pot"
 pipeline.unet.load_attn_procs(model_id, weight_name="pytorch_custom_diffusion_weights.bin")
 pipeline.load_textual_inversion(model_id, weight_name="<new1>.bin")
@@ -324,4 +324,4 @@ Congratulations on training a model with Custom Diffusion! 🎉 To learn more:
 - Read the [Multi-Concept Customization of Text-to-Image Diffusion](https://www.cs.cmu.edu/~custom-diffusion/) blog post to learn more details about the experimental results from the Custom Diffusion team.
 
 ### ControlNet
-https://huggingface.co/docs/diffusers/v0.40.0/training/controlnet.md
+https://huggingface.co/docs/diffusers/v0.41.0/training/controlnet.md

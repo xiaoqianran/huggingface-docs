@@ -10,7 +10,7 @@ The abstract from the paper is:
 
 ## Loading from the original format
 
-By default the [FluxControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet_flux#diffusers.FluxControlNetModel) should be loaded with [from_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained).
+By default the [FluxControlNetModel](/docs/diffusers/v0.41.0/en/api/models/controlnet_flux#diffusers.FluxControlNetModel) should be loaded with [from_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained).
 
 ```py
 from diffusers import FluxControlNetPipeline
@@ -32,7 +32,7 @@ pipe = FluxControlNetPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", co
 diffusers.FluxControlNetModel(patch_size: int = 1, in_channels: int = 64, num_layers: int = 19, num_single_layers: int = 38, attention_head_dim: int = 128, num_attention_heads: int = 24, joint_attention_dim: int = 4096, pooled_projection_dim: int = 768, guidance_embeds: bool = False, axes_dims_rope: list = [16, 56, 56], num_mode: int = None, conditioning_embedding_channels: int = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_flux.py#L45)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/controlnets/controlnet_flux.py#L45)
 
 #### forward[[diffusers.FluxControlNetModel.forward]]
 
@@ -40,7 +40,7 @@ diffusers.FluxControlNetModel(patch_size: int = 1, in_channels: int = 64, num_la
 forward(hidden_states: Tensor, controlnet_cond: Tensor, controlnet_mode: Tensor = None, conditioning_scale: float = 1.0, encoder_hidden_states: Tensor = None, pooled_projections: Tensor = None, timestep: LongTensor = None, img_ids: Tensor = None, txt_ids: Tensor = None, guidance: Tensor = None, joint_attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_flux.py#L157)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/controlnets/controlnet_flux.py#L157)
 
 **Parameters:**
 
@@ -73,7 +73,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
-The [FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel) forward method.
+The [FluxTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel) forward method.
 
 ## FluxControlNetOutput[[diffusers.models.controlnets.FluxControlNetOutput]]
 
@@ -83,7 +83,7 @@ The [FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transfor
 diffusers.models.controlnets.FluxControlNetOutput(controlnet_block_samples: tuple, controlnet_single_block_samples: tuple)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_flux.py#L40)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/controlnets/controlnet_flux.py#L40)
 
 ### OmniGenTransformer2DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/omnigen_transformer.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/omnigen_transformer.md

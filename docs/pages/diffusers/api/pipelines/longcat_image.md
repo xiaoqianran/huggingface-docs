@@ -22,7 +22,7 @@ from diffusers import LongCatImagePipeline
 
 weight_dtype = torch.bfloat16
 pipe = LongCatImagePipeline.from_pretrained("meituan-longcat/LongCat-Image", dtype=torch.bfloat16 )
-pipe.to('cuda')
+pipe.to('cuda')  # or "mps", "xpu", "cpu"
 # pipe.enable_model_cpu_offload()
 
 prompt = '一个年轻的亚裔女性，身穿黄色针织衫，搭配白色项链。她的双手放在膝盖上，表情恬静。背景是一堵粗糙的砖墙，午后的阳光温暖地洒在她身上，营造出一种宁静而温馨的氛围。镜头采用中距离视角，突出她的神态和服饰的细节。光线柔和地打在她的脸上，强调她的五官和饰品的质感，增加画面的层次感与亲和力。整个画面构图简洁，砖墙的纹理与阳光的光影效果相得益彰，突显出人物的优雅与从容。'
@@ -89,7 +89,7 @@ Available models:
 diffusers.LongCatImagePipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: Qwen2_5_VLForConditionalGeneration, tokenizer: Qwen2Tokenizer, text_processor: Qwen2VLProcessor, transformer: LongCatImageTransformer2DModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/longcat_image/pipeline_longcat_image.py#L205)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/longcat_image/pipeline_longcat_image.py#L205)
 
 The pipeline for text-to-image generation.
 
@@ -104,7 +104,7 @@ The pipeline for text-to-image generation.
 diffusers.pipelines.longcat_image.LongCatImagePipelineOutput(images: list)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/longcat_image/pipeline_output.py#L10)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/longcat_image/pipeline_output.py#L10)
 
 **Parameters:**
 
@@ -113,4 +113,4 @@ images (`list[PIL.Image.Image]` or `np.ndarray`) : List of denoised PIL images o
 Output class for Stable Diffusion pipelines.
 
 ### LLaDA2
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/llada2.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/llada2.md

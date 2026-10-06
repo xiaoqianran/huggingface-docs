@@ -10,7 +10,7 @@ The Transformer model introduced in [Stable Diffusion 3](https://hf.co/papers/24
 diffusers.SD3Transformer2DModel(sample_size: int = 128, patch_size: int = 2, in_channels: int = 16, num_layers: int = 18, attention_head_dim: int = 64, num_attention_heads: int = 18, joint_attention_dim: int = 4096, caption_projection_dim: int = 1152, pooled_projection_dim: int = 2048, out_channels: int = 16, pos_embed_max_size: int = 96, dual_attention_layers: tuple = (), qk_norm: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_sd3.py#L79)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_sd3.py#L79)
 
 **Parameters:**
 
@@ -48,7 +48,7 @@ The Transformer model introduced in [Stable Diffusion 3](https://huggingface.co/
 enable_forward_chunking(chunk_size: int | None = None, dim: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_sd3.py#L175)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_sd3.py#L175)
 
 **Parameters:**
 
@@ -65,7 +65,7 @@ chunking](https://huggingface.co/blog/reformer#2-chunked-feed-forward-layers).
 forward(hidden_states: Tensor, encoder_hidden_states: Tensor = None, pooled_projections: Tensor = None, timestep: LongTensor = None, block_controlnet_hidden_states: list = None, joint_attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True, skip_layers: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_sd3.py#L248)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_sd3.py#L248)
 
 **Parameters:**
 
@@ -90,7 +90,7 @@ skip_layers (`list` of `int`, *optional*) : A list of layer indices to skip duri
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
-The [SD3Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/sd3_transformer2d#diffusers.SD3Transformer2DModel) forward method.
+The [SD3Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/sd3_transformer2d#diffusers.SD3Transformer2DModel) forward method.
 
 #### fuse_qkv_projections[[diffusers.SD3Transformer2DModel.fuse_qkv_projections]]
 
@@ -98,7 +98,7 @@ The [SD3Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/sd3_transforme
 fuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_sd3.py#L217)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_sd3.py#L217)
 
 Enables fused QKV projections. For self-attention modules, all projection matrices (i.e., query, key, value)
 are fused. For cross-attention modules, key and value projection matrices are fused.
@@ -111,11 +111,11 @@ are fused. For cross-attention modules, key and value projection matrices are fu
 unfuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_sd3.py#L239)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_sd3.py#L239)
 
 Disables the fused QKV projection if enabled.
 
 > [!WARNING] > This API is 🧪 experimental.
 
 ### AutoencoderKLKVAE
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoder_kl_kvae.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_kl_kvae.md

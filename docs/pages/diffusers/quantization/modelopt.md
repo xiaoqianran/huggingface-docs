@@ -8,7 +8,7 @@ Before you begin, make sure you have nvidia_modelopt installed.
 pip install -U "nvidia_modelopt[hf]"
 ```
 
-Quantize a model by passing `NVIDIAModelOptConfig` to [from_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained) (you can also load pre-quantized models). This works for any model in any modality, as long as it supports loading with [Accelerate](https://hf.co/docs/accelerate/index) and contains `torch.nn.Linear` layers.
+Quantize a model by passing `NVIDIAModelOptConfig` to [from_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained) (you can also load pre-quantized models). This works for any model in any modality, as long as it supports loading with [Accelerate](https://hf.co/docs/accelerate/index) and contains `torch.nn.Linear` layers.
 
 The example below only quantizes the weights to FP8.
 
@@ -31,7 +31,7 @@ pipe = SanaPipeline.from_pretrained(
     transformer=transformer,
     dtype=dtype,
 )
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 print(f"Pipeline memory usage: {torch.cuda.max_memory_reserved() / 1024**3:.3f} GB")
 
@@ -52,7 +52,7 @@ image.save("output.png")
 
 The `NVIDIAModelOptConfig` class accepts three parameters:
 - `quant_type`: A string value mentioning one of the quantization types below.
-- `modules_to_not_convert`: A list of module full/partial module names for which quantization should not be performed. For example, to not perform any quantization of the [SD3Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/sd3_transformer2d#diffusers.SD3Transformer2DModel)'s pos_embed projection blocks, one would specify: `modules_to_not_convert=["pos_embed.proj.weight"]`.
+- `modules_to_not_convert`: A list of module full/partial module names for which quantization should not be performed. For example, to not perform any quantization of the [SD3Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/sd3_transformer2d#diffusers.SD3Transformer2DModel)'s pos_embed projection blocks, one would specify: `modules_to_not_convert=["pos_embed.proj.weight"]`.
 - `disable_conv_quantization`: A boolean value which when set to `True` disables quantization for all convolutional layers in the model. This is useful as channel and block quantization generally don't work well with convolutional layers (used with INT4, NF4, NVFP4). If you want to disable quantization for specific convolutional layers, use `modules_to_not_convert` instead.
 - `algorithm`: The algorithm to use for determining scale, defaults to `"max"`. You can check modelopt documentation for more algorithms and details.
 - `forward_loop`: The forward loop function to use for calibrating activation during quantization. If not provided, it relies on static scale values computed using the weights only.
@@ -78,7 +78,7 @@ Refer to the [official modelopt documentation](https://nvidia.github.io/Model-Op
 
 ## Serializing and Deserializing quantized models
 
-To serialize a quantized model in a given dtype, first load the model with the desired quantization dtype and then save it using the [save_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained) method.
+To serialize a quantized model in a given dtype, first load the model with the desired quantization dtype and then save it using the [save_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained) method.
 
 ```python
 import torch
@@ -99,7 +99,7 @@ model = AutoModel.from_pretrained(
 model.save_pretrained('path/to/sana_fp8', safe_serialization=False)
 ```
 
-To load a serialized quantized model, use the [from_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained) method.
+To load a serialized quantized model, use the [from_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained) method.
 
 ```python
 import torch
@@ -120,7 +120,7 @@ pipe = SanaPipeline.from_pretrained(
     transformer=transformer,
     dtype=torch.bfloat16,
 )
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 prompt = "A cat holding a sign that says hello world"
 image = pipe(
     prompt, num_inference_steps=50, guidance_scale=4.5, max_sequence_length=512
@@ -129,4 +129,4 @@ image.save("output.png")
 ```
 
 ### bitsandbytes
-https://huggingface.co/docs/diffusers/v0.40.0/quantization/bitsandbytes.md
+https://huggingface.co/docs/diffusers/v0.41.0/quantization/bitsandbytes.md

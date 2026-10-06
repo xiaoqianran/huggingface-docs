@@ -14,7 +14,7 @@ The abstract from the paper is:
 diffusers.UNet1DModel(sample_size: int = 65536, sample_rate: int | None = None, in_channels: int = 2, out_channels: int = 2, extra_in_channels: int = 0, time_embedding_type: str = 'fourier', time_embedding_dim: int | None = None, flip_sin_to_cos: bool = True, use_timestep_embedding: bool = False, freq_shift: float = 0.0, down_block_types: tuple = ('DownBlock1DNoSkip', 'DownBlock1D', 'AttnDownBlock1D'), up_block_types: tuple = ('AttnUpBlock1D', 'UpBlock1D', 'UpBlock1DNoSkip'), mid_block_type: str = 'UNetMidBlock1D', out_block_type: str = None, block_out_channels: tuple = (32, 32, 64), act_fn: str = None, norm_num_groups: int = 8, layers_per_block: int = 1, downsample_each_block: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_1d.py#L40)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_1d.py#L40)
 
 **Parameters:**
 
@@ -52,7 +52,7 @@ downsample_each_block (`int`, *optional*, defaults to `False`) : Experimental fe
 
 A 1D UNet model that takes a noisy sample and a timestep and returns a sample shaped output.
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
+This model inherits from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
 for all models (such as downloading or saving).
 
 #### forward[[diffusers.UNet1DModel.forward]]
@@ -61,7 +61,7 @@ for all models (such as downloading or saving).
 forward(sample: Tensor, timestep: typing.Union[torch.Tensor, float, int], return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_1d.py#L205)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_1d.py#L205)
 
 **Parameters:**
 
@@ -69,14 +69,14 @@ sample (`torch.Tensor`) : The noisy input tensor with the following shape `(batc
 
 timestep (`torch.Tensor` or `float` or `int`) : The number of timesteps to denoise an input.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [UNet1DOutput](/docs/diffusers/v0.40.0/en/api/models/unet#diffusers.models.unets.unet_1d.UNet1DOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [UNet1DOutput](/docs/diffusers/v0.41.0/en/api/models/unet#diffusers.models.unets.unet_1d.UNet1DOutput) instead of a plain tuple.
 
-**Returns:** [UNet1DOutput](/docs/diffusers/v0.40.0/en/api/models/unet#diffusers.models.unets.unet_1d.UNet1DOutput) or `tuple`
+**Returns:** [UNet1DOutput](/docs/diffusers/v0.41.0/en/api/models/unet#diffusers.models.unets.unet_1d.UNet1DOutput) or `tuple`
 
-If `return_dict` is True, an [UNet1DOutput](/docs/diffusers/v0.40.0/en/api/models/unet#diffusers.models.unets.unet_1d.UNet1DOutput) is returned, otherwise a `tuple` is
+If `return_dict` is True, an [UNet1DOutput](/docs/diffusers/v0.41.0/en/api/models/unet#diffusers.models.unets.unet_1d.UNet1DOutput) is returned, otherwise a `tuple` is
 returned where the first element is the sample tensor.
 
-The [UNet1DModel](/docs/diffusers/v0.40.0/en/api/models/unet#diffusers.UNet1DModel) forward method.
+The [UNet1DModel](/docs/diffusers/v0.41.0/en/api/models/unet#diffusers.UNet1DModel) forward method.
 
 ## UNet1DOutput[[diffusers.models.unets.unet_1d.UNet1DOutput]]
 
@@ -86,13 +86,13 @@ The [UNet1DModel](/docs/diffusers/v0.40.0/en/api/models/unet#diffusers.UNet1DMod
 diffusers.models.unets.unet_1d.UNet1DOutput(sample: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_1d.py#L28)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_1d.py#L28)
 
 **Parameters:**
 
 sample (`torch.Tensor` of shape `(batch_size, num_channels, sample_size)`) : The hidden states output from the last layer of the model.
 
-The output of [UNet1DModel](/docs/diffusers/v0.40.0/en/api/models/unet#diffusers.UNet1DModel).
+The output of [UNet1DModel](/docs/diffusers/v0.41.0/en/api/models/unet#diffusers.UNet1DModel).
 
 ### Krea2Transformer2DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/krea2_transformer2d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/krea2_transformer2d.md

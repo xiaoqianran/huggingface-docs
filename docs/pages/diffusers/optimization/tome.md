@@ -1,6 +1,6 @@
 # Token merging
 
-[Token merging](https://huggingface.co/papers/2303.17604) (ToMe) merges redundant tokens/patches progressively in the forward pass of a Transformer-based network which can speed-up the inference latency of [StableDiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline).
+[Token merging](https://huggingface.co/papers/2303.17604) (ToMe) merges redundant tokens/patches progressively in the forward pass of a Transformer-based network which can speed-up the inference latency of [StableDiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline).
 
 Install ToMe from `pip`:
 
@@ -17,7 +17,7 @@ You can use ToMe from the [`tomesd`](https://github.com/dbolya/tomesd) library w
 
   pipeline = StableDiffusionPipeline.from_pretrained(
         "stable-diffusion-v1-5/stable-diffusion-v1-5", dtype=torch.float16, use_safetensors=True,
-  ).to("cuda")
+  ).to("cuda")  # or "mps", "xpu", "cpu"
 + tomesd.apply_patch(pipeline, ratio=0.5)
 
   image = pipeline("a photo of an astronaut riding a horse on mars").images[0]
@@ -27,7 +27,7 @@ The `apply_patch` function exposes a number of [arguments](https://github.com/db
 
 As reported in the [paper](https://huggingface.co/papers/2303.17604), ToMe can greatly preserve the quality of the generated images while boosting inference speed. By increasing the `ratio`, you can speed-up inference even further, but at the cost of some degraded image quality.
 
-To test the quality of the generated images, we sampled a few prompts from [Parti Prompts](https://parti.research.google/) and performed inference with the [StableDiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline) with the following settings:
+To test the quality of the generated images, we sampled a few prompts from [Parti Prompts](https://parti.research.google/) and performed inference with the [StableDiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline) with the following settings:
 
       
 
@@ -35,7 +35,7 @@ We didn’t notice any significant decrease in the quality of the generated samp
 
 ## Benchmarks
 
-We also benchmarked the impact of `tomesd` on the [StableDiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline) with [xFormers](https://huggingface.co/docs/diffusers/optimization/xformers) enabled across several image resolutions. The results are obtained from A100 and V100 GPUs in the following development environment:
+We also benchmarked the impact of `tomesd` on the [StableDiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline) with [xFormers](https://huggingface.co/docs/diffusers/optimization/xformers) enabled across several image resolutions. The results are obtained from A100 and V100 GPUs in the following development environment:
 
 ```bash
 - `diffusers` version: 0.15.1
@@ -82,4 +82,4 @@ To reproduce this benchmark, feel free to use this [script](https://gist.github.
 As seen in the tables above, the speed-up from `tomesd` becomes more pronounced for larger image resolutions. It is also interesting to note that with `tomesd`, it is possible to run the pipeline on a higher resolution like 1024x1024. You may be able to speed-up inference even more with [`torch.compile`](fp16#torchcompile).
 
 ### NVIDIA ModelOpt
-https://huggingface.co/docs/diffusers/v0.40.0/quantization/modelopt.md
+https://huggingface.co/docs/diffusers/v0.41.0/quantization/modelopt.md

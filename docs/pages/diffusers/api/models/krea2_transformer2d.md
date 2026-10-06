@@ -10,7 +10,7 @@ The single-stream MMDiT flow-matching transformer used by [Krea 2](https://githu
 diffusers.Krea2Transformer2DModel(in_channels: int = 64, num_layers: int = 28, attention_head_dim: int = 128, num_attention_heads: int = 48, num_key_value_heads: int = 12, intermediate_size: int = 16384, timestep_embed_dim: int = 256, text_hidden_dim: int = 2560, num_text_layers: int = 12, text_num_attention_heads: int = 20, text_num_key_value_heads: int = 20, text_intermediate_size: int = 6912, num_layerwise_text_blocks: int = 2, num_refiner_text_blocks: int = 2, axes_dims_rope: tuple = (32, 48, 48), rope_theta: float = 1000.0, norm_eps: float = 1e-05)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_krea2.py#L338)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_krea2.py#L339)
 
 **Parameters:**
 
@@ -61,7 +61,7 @@ timestep conditions every block through one shared modulation vector plus per-bl
 forward(hidden_states: Tensor, encoder_hidden_states: Tensor, timestep: Tensor, position_ids: Tensor, encoder_attention_mask: typing.Optional[torch.Tensor] = None, attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_krea2.py#L455)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_krea2.py#L456)
 
 **Parameters:**
 
@@ -77,14 +77,14 @@ encoder_attention_mask (`torch.Tensor` of shape `(batch_size, text_seq_len)`, *o
 
 attention_kwargs (`dict`, *optional*) : A kwargs dictionary that, when it contains a `scale` entry, sets the LoRA scale applied to this transformer's adapters for the duration of the forward pass.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a [Transformer2DModelOutput](/docs/diffusers/v0.40.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a [Transformer2DModelOutput](/docs/diffusers/v0.41.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) instead of a plain tuple.
 
 **Returns:**
 
-[Transformer2DModelOutput](/docs/diffusers/v0.40.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) or a `tuple` whose first element is the velocity
+[Transformer2DModelOutput](/docs/diffusers/v0.41.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) or a `tuple` whose first element is the velocity
 tensor of shape `(batch_size, image_seq_len, in_channels)`.
 
 Predict the flow-matching velocity for the image tokens.
 
 ### SparseControlNetModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/controlnet_sparsectrl.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/controlnet_sparsectrl.md

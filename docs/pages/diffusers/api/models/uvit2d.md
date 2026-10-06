@@ -14,7 +14,7 @@ The abstract from the paper is:
 diffusers.UVit2DModel(hidden_size: int = 1024, use_bias: bool = False, hidden_dropout: float = 0.0, cond_embed_dim: int = 768, micro_cond_encode_dim: int = 256, micro_cond_embed_dim: int = 1280, encoder_hidden_size: int = 768, vocab_size: int = 8256, codebook_size: int = 8192, in_channels: int = 768, block_out_channels: int = 768, num_res_blocks: int = 3, downsample: bool = False, upsample: bool = False, block_num_heads: int = 12, num_hidden_layers: int = 22, num_attention_heads: int = 16, attention_dropout: float = 0.0, intermediate_size: int = 2816, layer_norm_eps: float = 1e-06, ln_elementwise_affine: bool = True, sample_size: int = 64)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/uvit_2d.py#L38)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/uvit_2d.py#L38)
 
 #### forward[[diffusers.UVit2DModel.forward]]
 
@@ -22,7 +22,7 @@ diffusers.UVit2DModel(hidden_size: int = 1024, use_bias: bool = False, hidden_dr
 forward(input_ids, encoder_hidden_states, pooled_text_emb, micro_conds, cross_attention_kwargs = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/uvit_2d.py#L150)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/uvit_2d.py#L150)
 
 **Parameters:**
 
@@ -36,13 +36,18 @@ micro_conds (`torch.Tensor`) : Micro-conditioning values that are embedded and c
 
 cross_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor`.
 
+**Returns:** `torch.Tensor`
+
+The logits over the codebook for each image token, of shape `(batch_size, codebook_size,
+height, width)`.
+
 #### set_default_attn_processor[[diffusers.UVit2DModel.set_default_attn_processor]]
 
 ```python
 set_default_attn_processor()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/uvit_2d.py#L226)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/uvit_2d.py#L232)
 
 Disables custom attention processors and sets the default attention implementation.
 
@@ -54,7 +59,7 @@ Disables custom attention processors and sets the default attention implementati
 diffusers.models.unets.uvit_2d.UVit2DConvEmbed(in_channels, block_out_channels, vocab_size, elementwise_affine, eps, bias)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/uvit_2d.py#L242)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/uvit_2d.py#L248)
 
 ## UVitBlock[[diffusers.models.unets.uvit_2d.UVitBlock]]
 
@@ -64,7 +69,7 @@ diffusers.models.unets.uvit_2d.UVit2DConvEmbed(in_channels, block_out_channels, 
 diffusers.models.unets.uvit_2d.UVitBlock(channels, num_res_blocks: int, hidden_size, hidden_dropout, ln_elementwise_affine, layer_norm_eps, use_bias, block_num_heads, attention_dropout, downsample: bool, upsample: bool)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/uvit_2d.py#L257)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/uvit_2d.py#L263)
 
 ## ConvNextBlock[[diffusers.models.unets.uvit_2d.ConvNextBlock]]
 
@@ -74,7 +79,7 @@ diffusers.models.unets.uvit_2d.UVitBlock(channels, num_res_blocks: int, hidden_s
 diffusers.models.unets.uvit_2d.ConvNextBlock(channels, layer_norm_eps, ln_elementwise_affine, use_bias, hidden_dropout, hidden_size, res_ffn_factor = 4)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/uvit_2d.py#L356)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/uvit_2d.py#L362)
 
 ## ConvMlmLayer[[diffusers.models.unets.uvit_2d.ConvMlmLayer]]
 
@@ -84,7 +89,7 @@ diffusers.models.unets.uvit_2d.ConvNextBlock(channels, layer_norm_eps, ln_elemen
 diffusers.models.unets.uvit_2d.ConvMlmLayer(block_out_channels: int, in_channels: int, use_bias: bool, ln_elementwise_affine: bool, layer_norm_eps: float, codebook_size: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/uvit_2d.py#L401)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/uvit_2d.py#L407)
 
 ### ZImageTransformer2DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/z_image_transformer2d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/z_image_transformer2d.md

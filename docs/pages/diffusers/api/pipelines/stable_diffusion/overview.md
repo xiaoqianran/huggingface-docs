@@ -70,7 +70,7 @@ The table below summarizes the available Stable Diffusion pipelines, their suppo
         
         
             
-            StableDiffusionPipelineSafe
+            StableDiffusionPipelineSafe (deprecated; no doc page)
             
             filtered text-to-image
             
@@ -130,7 +130,7 @@ To help you get the most out of the Stable Diffusion pipelines, here are a few t
 
 ### Explore tradeoff between speed and quality
 
-[StableDiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline) uses the [PNDMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/pndm#diffusers.PNDMScheduler) by default, but 🤗 Diffusers provides many other schedulers (some of which are faster or output better quality) that are compatible. For example, if you want to use the [EulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/euler#diffusers.EulerDiscreteScheduler) instead of the default:
+[StableDiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline) uses the [PNDMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/pndm#diffusers.PNDMScheduler) by default, but 🤗 Diffusers provides many other schedulers (some of which are faster or output better quality) that are compatible. For example, if you want to use the [EulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/euler#diffusers.EulerDiscreteScheduler) instead of the default:
 
 ```py
 from diffusers import StableDiffusionPipeline, EulerDiscreteScheduler
@@ -199,4 +199,4 @@ By default, the web demo runs on a local server. If you'd like to share it with 
 link by setting `share=True` in `launch()`. Or, you can host your demo on [Hugging Face Spaces](https://huggingface.co/spaces)https://huggingface.co/spaces for a permanent link.
 
 ### Inpainting
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/stable_diffusion/inpaint.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_diffusion/inpaint.md

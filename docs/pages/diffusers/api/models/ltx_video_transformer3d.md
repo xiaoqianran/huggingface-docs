@@ -7,7 +7,7 @@ The model can be loaded with the following code snippet.
 ```python
 from diffusers import LTXVideoTransformer3DModel
 
-transformer = LTXVideoTransformer3DModel.from_pretrained("Lightricks/LTX-Video", subfolder="transformer", dtype=torch.bfloat16).to("cuda")
+transformer = LTXVideoTransformer3DModel.from_pretrained("Lightricks/LTX-Video", subfolder="transformer", dtype=torch.bfloat16).to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 ## LTXVideoTransformer3DModel[[diffusers.LTXVideoTransformer3DModel]]
@@ -18,7 +18,7 @@ transformer = LTXVideoTransformer3DModel.from_pretrained("Lightricks/LTX-Video",
 diffusers.LTXVideoTransformer3DModel(in_channels: int = 128, out_channels: int = 128, patch_size: int = 1, patch_size_t: int = 1, num_attention_heads: int = 32, attention_head_dim: int = 64, cross_attention_dim: int = 2048, num_layers: int = 28, activation_fn: str = 'gelu-approximate', qk_norm: str = 'rms_norm_across_heads', norm_elementwise_affine: bool = False, norm_eps: float = 1e-06, caption_channels: int = 4096, attention_bias: bool = True, attention_out_bias: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_ltx.py#L385)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_ltx.py#L385)
 
 **Parameters:**
 
@@ -50,7 +50,7 @@ A Transformer model for video-like data used in [LTX](https://huggingface.co/Lig
 forward(hidden_states: Tensor, encoder_hidden_states: Tensor, timestep: LongTensor, encoder_attention_mask: Tensor, num_frames: int | None = None, height: int | None = None, width: int | None = None, rope_interpolation_scale: typing.Union[tuple[float, float, float], torch.Tensor, NoneType] = None, video_coords: typing.Optional[torch.Tensor] = None, attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_ltx.py#L494)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_ltx.py#L494)
 
 **Parameters:**
 
@@ -80,7 +80,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 
 The denoised output tensor of shape `(batch_size, sequence_length, out_channels)`.
 
-The [LTXVideoTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/ltx_video_transformer3d#diffusers.LTXVideoTransformer3DModel) forward method.
+The [LTXVideoTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/ltx_video_transformer3d#diffusers.LTXVideoTransformer3DModel) forward method.
 
 ## Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
@@ -90,13 +90,13 @@ The [LTXVideoTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/ltx_video
 diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L21)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-The output of [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+The output of [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
 
 ### AllegroTransformer3DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/allegro_transformer3d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/allegro_transformer3d.md

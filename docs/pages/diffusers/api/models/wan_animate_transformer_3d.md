@@ -18,7 +18,7 @@ transformer = WanAnimateTransformer3DModel.from_pretrained("Wan-AI/Wan2.2-Animat
 diffusers.WanAnimateTransformer3DModel(patch_size: tuple = (1, 2, 2), num_attention_heads: int = 40, attention_head_dim: int = 128, in_channels: int | None = 36, latent_channels: int | None = 16, out_channels: int | None = 16, text_dim: int = 4096, freq_dim: int = 256, ffn_dim: int = 13824, num_layers: int = 40, cross_attn_norm: bool = True, qk_norm: str | None = 'rms_norm_across_heads', eps: float = 1e-06, image_dim: int | None = 1280, added_kv_proj_dim: int | None = None, rope_max_seq_len: int = 1024, pos_embed_seq_len: int | None = None, motion_encoder_channel_sizes: dict[str, int] | None = None, motion_encoder_size: int = 512, motion_style_dim: int = 512, motion_dim: int = 20, motion_encoder_dim: int = 512, face_encoder_hidden_dim: int = 1024, face_encoder_num_heads: int = 4, inject_face_latents_blocks: int = 5, motion_encoder_batch_size: int = 8)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_wan_animate.py#L986)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_wan_animate.py#L986)
 
 **Parameters:**
 
@@ -60,7 +60,7 @@ A Transformer model for video-like data used in the WanAnimate model.
 forward(hidden_states: Tensor, timestep: LongTensor, encoder_hidden_states: Tensor, encoder_hidden_states_image: typing.Optional[torch.Tensor] = None, pose_hidden_states: typing.Optional[torch.Tensor] = None, face_pixel_values: typing.Optional[torch.Tensor] = None, motion_encode_batch_size: int | None = None, return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_wan_animate.py#L1154)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_wan_animate.py#L1154)
 
 **Parameters:**
 
@@ -98,13 +98,13 @@ Forward pass of Wan2.2-Animate transformer model.
 diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L21)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-The output of [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+The output of [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
 
 ### AutoencoderKLMochi
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoderkl_mochi.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_mochi.md

@@ -19,7 +19,7 @@ The original codebase can be found at [ai-forever/Kandinsky-3](https://github.co
 > Check out the [Kandinsky Community](https://huggingface.co/kandinsky-community) organization on the Hub for the official model checkpoints for tasks like text-to-image, image-to-image, and inpainting.
 
 > [!TIP]
-> Make sure to check out the schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reuse-a-pipeline) section to learn how to efficiently load the same components into multiple pipelines.
+> Make sure to check out the schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reusing-models-in-multiple-pipelines) section to learn how to efficiently load the same components into multiple pipelines.
 
 ## Kandinsky3Pipeline[[diffusers.Kandinsky3Pipeline]]
 
@@ -29,7 +29,7 @@ The original codebase can be found at [ai-forever/Kandinsky-3](https://github.co
 diffusers.Kandinsky3Pipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, unet: Kandinsky3UNet, scheduler: DDPMScheduler, movq: VQModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky3/pipeline_kandinsky3.py#L59)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky3/pipeline_kandinsky3.py#L59)
 
 #### __call__[[diffusers.Kandinsky3Pipeline.__call__]]
 
@@ -37,7 +37,7 @@ diffusers.Kandinsky3Pipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderMode
 __call__(prompt: str | list[str] = None, num_inference_steps: int = 25, guidance_scale: float = 3.0, negative_prompt: str | list[str] | None = None, num_images_per_prompt: int | None = 1, height: int | None = 1024, width: int | None = 1024, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, negative_attention_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, latents = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky3/pipeline_kandinsky3.py#L334)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky3/pipeline_kandinsky3.py#L334)
 
 **Parameters:**
 
@@ -75,7 +75,7 @@ callback_on_step_end (`Callable`, *optional*) : A function that calls at the end
 
 callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
 Function invoked when calling the pipeline for generation.
 
@@ -101,7 +101,7 @@ Examples:
 encode_prompt(prompt, do_classifier_free_guidance = True, num_images_per_prompt = 1, device = None, negative_prompt = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, _cut_context = False, attention_mask: typing.Optional[torch.Tensor] = None, negative_attention_mask: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky3/pipeline_kandinsky3.py#L91)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky3/pipeline_kandinsky3.py#L91)
 
 **Parameters:**
 
@@ -133,7 +133,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.Kandinsky3Img2ImgPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, unet: Kandinsky3UNet, scheduler: DDPMScheduler, movq: VQModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky3/pipeline_kandinsky3_img2img.py#L56)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky3/pipeline_kandinsky3_img2img.py#L56)
 
 #### __call__[[diffusers.Kandinsky3Img2ImgPipeline.__call__]]
 
@@ -141,7 +141,7 @@ diffusers.Kandinsky3Img2ImgPipeline(tokenizer: T5Tokenizer, text_encoder: T5Enco
 __call__(prompt: str | list[str] = None, image: typing.Union[torch.Tensor, list[torch.Tensor], PIL.Image.Image, list[PIL.Image.Image]] = None, strength: float = 0.3, num_inference_steps: int = 25, guidance_scale: float = 3.0, negative_prompt: str | list[str] | None = None, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, negative_attention_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky3/pipeline_kandinsky3_img2img.py#L400)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky3/pipeline_kandinsky3_img2img.py#L400)
 
 **Parameters:**
 
@@ -177,7 +177,7 @@ callback_on_step_end (`Callable`, *optional*) : A function that calls at the end
 
 callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
 Function invoked when calling the pipeline for generation.
 
@@ -207,7 +207,7 @@ Examples:
 encode_prompt(prompt, do_classifier_free_guidance = True, num_images_per_prompt = 1, device = None, negative_prompt = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, _cut_context = True, attention_mask: typing.Optional[torch.Tensor] = None, negative_attention_mask: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky3/pipeline_kandinsky3_img2img.py#L106)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky3/pipeline_kandinsky3_img2img.py#L106)
 
 **Parameters:**
 
@@ -238,4 +238,4 @@ negative_attention_mask (`torch.Tensor`, *optional*):
 Pre-generated negative attention mask. Must provide if passing `negative_prompt_embeds` directly.
 
 ### Ovis-Image
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/ovis_image.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/ovis_image.md

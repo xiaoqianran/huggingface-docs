@@ -19,7 +19,7 @@ pip install -U accelerate
 
 Loading large checkpoints in several shards in useful because the shards are loaded one at a time. This keeps memory usage low, only requiring enough memory for the model size and the largest shard size. We recommend sharding when the fp32 checkpoint is greater than 5GB. The default shard size is 5GB.
 
-Shard a checkpoint in [save_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained) with the `max_shard_size` parameter.
+Shard a checkpoint in [save_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained) with the `max_shard_size` parameter.
 
 ```py
 from diffusers import AutoModel
@@ -43,7 +43,7 @@ pipeline = StableDiffusionXLPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
     unet=unet,
     dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 ### Device placement
@@ -73,7 +73,7 @@ print(pipeline.hf_device_map)
 {'unet': 1, 'vae': 1, 'safety_checker': 0, 'text_encoder': 0}
 ```
 
-The `device_map` is useful for loading large models, such as the Flux diffusion transformer which has 12.5B parameters. Set it to `"auto"` to automatically distribute a model across the fastest device first before moving to slower devices. Refer to the [Model sharding](../training/distributed_inference#model-sharding) docs for more details.
+The `device_map` is useful for loading large models, such as the Flux diffusion transformer which has 12.5B parameters. Set it to `"auto"` to automatically distribute a model across the fastest device first before moving to slower devices. Refer to the [Sharded checkpoints](#sharded-checkpoints) section for more details.
 
 ```py
 import torch
@@ -135,12 +135,12 @@ pipeline = StableDiffusionXLPipeline.from_pretrained(
 )
 ```
 
-Diffusers uses the maxmium memory of all devices by default, but if they don't fit on the GPUs, then you'll need to use a single GPU and offload to the CPU with the methods below.
+Diffusers uses the maximum memory of all devices by default, but if they don't fit on the GPUs, then you'll need to use a single GPU and offload to the CPU with the methods below.
 
-- [enable_model_cpu_offload()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) only works on a single GPU but a very large model may not fit on it
-- [enable_sequential_cpu_offload()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_sequential_cpu_offload) may work but it is extremely slow and also limited to a single GPU
+- [enable_model_cpu_offload()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) only works on a single GPU but a very large model may not fit on it
+- [enable_sequential_cpu_offload()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_sequential_cpu_offload) may work but it is extremely slow and also limited to a single GPU
 
-Use the [reset_device_map()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.reset_device_map) method to reset the `device_map`. This is necessary if you want to use methods like `.to()`, [enable_sequential_cpu_offload()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_sequential_cpu_offload), and [enable_model_cpu_offload()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) on a pipeline that was device-mapped.
+Use the [reset_device_map()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.reset_device_map) method to reset the `device_map`. This is necessary if you want to use methods like `.to()`, [enable_sequential_cpu_offload()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_sequential_cpu_offload), and [enable_model_cpu_offload()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) on a pipeline that was device-mapped.
 
 ```py
 pipeline.reset_device_map()
@@ -161,20 +161,20 @@ from diffusers import AutoModel, StableDiffusionXLPipeline
 pipeline = StableDiffusionXLPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
     dtype=torch.float16,
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline.vae.enable_slicing()
 pipeline(["An astronaut riding a horse on Mars"]*32).images[0]
 print(f"Max memory reserved: {torch.cuda.max_memory_allocated() / 1024**3:.2f} GB")
 ```
 
 > [!WARNING]
-> The [AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan) and [AsymmetricAutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/asymmetricautoencoderkl#diffusers.AsymmetricAutoencoderKL) classes don't support slicing.
+> The [AutoencoderKLWan](/docs/diffusers/v0.41.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan) and [AsymmetricAutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/asymmetricautoencoderkl#diffusers.AsymmetricAutoencoderKL) classes don't support slicing.
 
 ## VAE tiling
 
 VAE tiling saves memory by dividing an image into smaller overlapping tiles instead of processing the entire image at once. This also reduces peak memory usage because the GPU is only processing a tile at a time.
 
-Call `enable_tiling()` to enable VAE tiling. The generated image may have some tone variation from tile-to-tile because they're decoded separately, but there shouldn't be any obvious seams between the tiles. Tiling is disabled for resolutions lower than a pre-specified (but configurable) limit. For example, this limit is 512x512 for the VAE in [StableDiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline).
+Call `enable_tiling()` to enable VAE tiling. The generated image may have some tone variation from tile-to-tile because they're decoded separately, but there shouldn't be any obvious seams between the tiles. Tiling is disabled for resolutions lower than a pre-specified (but configurable) limit. For example, this limit is 512x512 for the VAE in [StableDiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline).
 
 ```py
 import torch
@@ -183,7 +183,7 @@ from diffusers.utils import load_image
 
 pipeline = AutoPipelineForImage2Image.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0", dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline.vae.enable_tiling()
 
 init_image = load_image("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/img2img-sdxl-init.png")
@@ -193,7 +193,7 @@ print(f"Max memory reserved: {torch.cuda.max_memory_allocated() / 1024**3:.2f} G
 ```
 
 > [!WARNING]
-> [AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan) and [AsymmetricAutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/asymmetricautoencoderkl#diffusers.AsymmetricAutoencoderKL) don't support tiling.
+> [AutoencoderKLWan](/docs/diffusers/v0.41.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan) and [AsymmetricAutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/asymmetricautoencoderkl#diffusers.AsymmetricAutoencoderKL) don't support tiling.
 
 ## Offloading
 
@@ -208,9 +208,9 @@ CPU offloading selectively moves weights from the GPU to the CPU. When a compone
 CPU offloading dramatically reduces memory usage, but it is also **extremely slow** because submodules are passed back and forth multiple times between devices. It can often be impractical due to how slow it is.
 
 > [!WARNING]
-> Don't move the pipeline to CUDA before calling [enable_sequential_cpu_offload()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_sequential_cpu_offload), otherwise the amount of memory saved is only minimal (refer to this [issue](https://github.com/huggingface/diffusers/issues/1934) for more details). This is a stateful operation that installs hooks on the model.
+> Don't move the pipeline to CUDA before calling [enable_sequential_cpu_offload()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_sequential_cpu_offload), otherwise the amount of memory saved is only minimal (refer to this [issue](https://github.com/huggingface/diffusers/issues/1934) for more details). This is a stateful operation that installs hooks on the model.
 
-Call [enable_sequential_cpu_offload()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_sequential_cpu_offload) to enable it on a pipeline.
+Call [enable_sequential_cpu_offload()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_sequential_cpu_offload) to enable it on a pipeline.
 
 ```py
 import torch
@@ -239,7 +239,7 @@ Model offloading moves entire models to the GPU instead of selectively moving *s
 > [!WARNING]
 > Keep in mind that if models are reused outside the pipeline after hookes have been installed (see [Removing Hooks](https://huggingface.co/docs/accelerate/en/package_reference/big_modeling#accelerate.hooks.remove_hook_from_module) for more details), you need to run the entire pipeline and models in the expected order to properly offload them. This is a stateful operation that installs hooks on the model.
 
-Call [enable_model_cpu_offload()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) to enable it on a pipeline.
+Call [enable_model_cpu_offload()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) to enable it on a pipeline.
 
 ```py
 import torch
@@ -261,7 +261,7 @@ pipeline(
 print(f"Max memory reserved: {torch.cuda.max_memory_allocated() / 1024**3:.2f} GB")
 ```
 
-[enable_model_cpu_offload()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) also helps when you're using the [encode_prompt()](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLPipeline.encode_prompt) method on its own to generate the text encoders hidden state.
+[enable_model_cpu_offload()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) also helps when you're using the [encode_prompt()](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLPipeline.encode_prompt) method on its own to generate the text encoders hidden state.
 
 ### Group offloading
 
@@ -277,7 +277,7 @@ Enable group offloading by configuring the `offload_type` parameter to `block_le
 
 Group offloading is supported for entire pipelines or individual models. Applying group offloading to the entire pipeline is the easiest option while selectively applying it to individual models gives users more flexibility to use different offloading techniques for different models.
 
-Call [enable_group_offload()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_group_offload) on a pipeline.
+Call [enable_group_offload()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_group_offload) on a pipeline.
 
 ```py
 import torch
@@ -309,7 +309,7 @@ print(f"Max memory reserved: {torch.cuda.max_memory_allocated() / 1024**3:.2f} G
 export_to_video(video, "output.mp4", fps=8)
 ```
 
-Call [enable_group_offload()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.enable_group_offload) on standard Diffusers model components that inherit from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). For other model components that don't inherit from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin), such as a generic [torch.nn.Module](https://pytorch.org/docs/stable/generated/torch.nn.Module.html), use [apply_group_offloading()](/docs/diffusers/v0.40.0/en/api/utilities#diffusers.hooks.apply_group_offloading) instead.
+Call [enable_group_offload()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.enable_group_offload) on standard Diffusers model components that inherit from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). For other model components that don't inherit from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin), such as a generic [torch.nn.Module](https://pytorch.org/docs/stable/generated/torch.nn.Module.html), use [apply_group_offloading()](/docs/diffusers/v0.41.0/en/api/utilities#diffusers.hooks.apply_group_offloading) instead.
 
 ```py
 import torch
@@ -362,7 +362,7 @@ The `low_cpu_mem_usage` parameter can be set to `True` to reduce CPU memory usag
 
 Group offloading can consume significant system memory depending on the model size. On systems with limited memory, try group offloading onto the disk as a secondary memory.
 
-Set the `offload_to_disk_path` argument in either [enable_group_offload()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.enable_group_offload) or [apply_group_offloading()](/docs/diffusers/v0.40.0/en/api/utilities#diffusers.hooks.apply_group_offloading) to offload the model to the disk.
+Set the `offload_to_disk_path` argument in either [enable_group_offload()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.enable_group_offload) or [apply_group_offloading()](/docs/diffusers/v0.41.0/en/api/utilities#diffusers.hooks.apply_group_offloading) to offload the model to the disk.
 
 ```py
 pipeline.transformer.enable_group_offload(onload_device=onload_device, offload_device=offload_device, offload_type="leaf_level", offload_to_disk_path="path/to/disk")
@@ -384,7 +384,7 @@ Layerwise casting stores weights in a smaller data format (for example, `torch.f
 >
 > Layerwise casting may also fail on custom modeling implementations with [PEFT](https://huggingface.co/docs/peft/index) layers. There are some checks available but they are not extensively tested or guaranteed to work in all cases.
 
-Call [enable_layerwise_casting()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.enable_layerwise_casting) to set the storage and computation datatypes.
+Call [enable_layerwise_casting()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.enable_layerwise_casting) to set the storage and computation datatypes.
 
 ```py
 import torch
@@ -401,7 +401,7 @@ transformer.enable_layerwise_casting(storage_dtype=torch.float8_e4m3fn, compute_
 pipeline = CogVideoXPipeline.from_pretrained("THUDM/CogVideoX-5b",
     transformer=transformer,
     dtype=torch.bfloat16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 prompt = (
     "A panda, dressed in a small, red jacket and a tiny hat, sits on a wooden stool in a serene bamboo forest. "
     "The panda's fluffy paws strum a miniature acoustic guitar, producing soft, melodic tunes. Nearby, a few other "
@@ -415,7 +415,7 @@ print(f"Max memory reserved: {torch.cuda.max_memory_allocated() / 1024**3:.2f} G
 export_to_video(video, "output.mp4", fps=8)
 ```
 
-The [apply_layerwise_casting()](/docs/diffusers/v0.40.0/en/api/utilities#diffusers.hooks.apply_layerwise_casting) method can also be used if you need more control and flexibility. It can be partially applied to model layers by calling it on specific internal modules. Use the `skip_modules_pattern` or `skip_modules_classes` parameters to specify modules to avoid, such as the normalization and modulation layers.
+The [apply_layerwise_casting()](/docs/diffusers/v0.41.0/en/api/utilities#diffusers.hooks.apply_layerwise_casting) method can also be used if you need more control and flexibility. It can be partially applied to model layers by calling it on specific internal modules. Use the `skip_modules_pattern` or `skip_modules_classes` parameters to specify modules to avoid, such as the normalization and modulation layers.
 
 ```python
 import torch
@@ -440,7 +440,7 @@ apply_layerwise_casting(
 
 ## torch.channels_last
 
-[torch.channels_last](https://pytorch.org/tutorials/intermediate/memory_format_tutorial.html) flips how tensors are stored from `(batch size, channels, height, width)` to `(batch size, heigh, width, channels)`. This aligns the tensors with how the hardware sequentially accesses the tensors stored in memory and avoids skipping around in memory to access the pixel values.
+[torch.channels_last](https://pytorch.org/tutorials/intermediate/memory_format_tutorial.html) flips how tensors are stored from `(batch size, channels, height, width)` to `(batch size, height, width, channels)`. This aligns the tensors with how the hardware sequentially accesses the tensors stored in memory and avoids skipping around in memory to access the pixel values.
 
 Not all operators currently support the channels-last format and may result in worst performance, but it is still worth trying.
 
@@ -454,7 +454,7 @@ print(
 
 ## Memory-efficient attention
 
-Diffusers supports multiple memory-efficient attention backends (FlashAttention, xFormers, SageAttention, and more) through [set_attention_backend()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.set_attention_backend). Refer to the [Attention backends](./attention_backends) guide to learn how to switch between them.
+Diffusers supports multiple memory-efficient attention backends (FlashAttention, xFormers, SageAttention, and more) through [set_attention_backend()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.set_attention_backend). Refer to the [Attention backends](./attention_backends) guide to learn how to switch between them.
 
 ### Token merging
-https://huggingface.co/docs/diffusers/v0.40.0/optimization/tome.md
+https://huggingface.co/docs/diffusers/v0.41.0/optimization/tome.md

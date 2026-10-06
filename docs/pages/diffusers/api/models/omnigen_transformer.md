@@ -21,7 +21,7 @@ transformer = OmniGenTransformer2DModel.from_pretrained("Shitao/OmniGen-v1-diffu
 diffusers.OmniGenTransformer2DModel(in_channels: int = 4, patch_size: int = 2, hidden_size: int = 3072, rms_norm_eps: float = 1e-05, num_attention_heads: int = 32, num_key_value_heads: int = 32, intermediate_size: int = 8192, num_layers: int = 32, pad_token_id: int = 32000, vocab_size: int = 32064, max_position_embeddings: int = 131072, original_max_position_embeddings: int = 4096, rope_base: int = 10000, rope_scaling: dict = None, pos_embed_max_size: int = 192, time_step_dim: int = 256, flip_sin_to_cos: bool = True, downscale_freq_shift: int = 0, timestep_activation_fn: str = 'silu')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_omnigen.py#L283)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_omnigen.py#L283)
 
 **Parameters:**
 
@@ -67,7 +67,7 @@ The Transformer model introduced in OmniGen (https://huggingface.co/papers/2409.
 forward(hidden_states: Tensor, timestep: typing.Union[int, float, torch.FloatTensor], input_ids: Tensor, input_img_latents: list, input_image_sizes: dict, attention_mask: Tensor, position_ids: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_omnigen.py#L407)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_omnigen.py#L407)
 
 **Parameters:**
 
@@ -92,7 +92,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 If `return_dict` is True, a `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise
 a plain `tuple` is returned.
 
-The [OmniGenTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/omnigen_transformer#diffusers.OmniGenTransformer2DModel) forward method.
+The [OmniGenTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/omnigen_transformer#diffusers.OmniGenTransformer2DModel) forward method.
 
 ### JoyImageEditPlusTransformer3DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/transformer_joyimage_edit_plus.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/transformer_joyimage_edit_plus.md

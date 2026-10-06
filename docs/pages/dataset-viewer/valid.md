@@ -134,5 +134,5 @@ Some cases where a dataset is not valid are:
   Remember if a dataset is gated,
   you'll need to provide your user token to submit a successful query!
 
-### Server infrastructure
-https://huggingface.co/docs/dataset-viewer/server.md
+### cuDF
+https://huggingface.co/docs/dataset-viewer/cudf.md

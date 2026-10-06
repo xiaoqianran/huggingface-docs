@@ -13,11 +13,11 @@ The `AutoPipeline` is designed to make it easy to load a checkpoint for a task w
 diffusers.AutoPipelineForText2Image(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/auto_pipeline.py#L373)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/auto_pipeline.py#L376)
 
-[AutoPipelineForText2Image](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Image) is a generic pipeline class that instantiates a text-to-image pipeline class. The
+[AutoPipelineForText2Image](/docs/diffusers/v0.41.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Image) is a generic pipeline class that instantiates a text-to-image pipeline class. The
 specific underlying pipeline class is automatically selected from either the
-[from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Image.from_pretrained) or [from_pipe()](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Image.from_pipe) methods.
+[from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Image.from_pretrained) or [from_pipe()](/docs/diffusers/v0.41.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Image.from_pipe) methods.
 
 This class cannot be instantiated using `__init__()` (throws an error).
 
@@ -32,11 +32,11 @@ Class attributes:
 from_pretrained(pretrained_model_or_path, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/auto_pipeline.py#L398)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/auto_pipeline.py#L401)
 
 **Parameters:**
 
-pretrained_model_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *repo id* (for example `CompVis/ldm-text2im-large-256`) of a pretrained pipeline hosted on the Hub. - A path to a *directory* (for example `./my_pipeline_directory/`) containing pipeline weights saved using [save_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained).
+pretrained_model_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *repo id* (for example `CompVis/ldm-text2im-large-256`) of a pretrained pipeline hosted on the Hub. - A path to a *directory* (for example `./my_pipeline_directory/`) containing pipeline weights saved using [save_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained).
 
 dtype (`torch.dtype`, *optional*) : Override the default `torch.dtype` and load the model with another dtype.
 
@@ -82,7 +82,7 @@ The from_pretrained() method takes care of returning the correct pipeline class 
 2. Find the text-to-image pipeline linked to the pipeline class using pattern matching on pipeline class
    name.
 
-If a `controlnet` argument is passed, it will instantiate a [StableDiffusionControlNetPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/controlnet#diffusers.StableDiffusionControlNetPipeline) object.
+If a `controlnet` argument is passed, it will instantiate a [StableDiffusionControlNetPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/controlnet#diffusers.StableDiffusionControlNetPipeline) object.
 
 The pipeline is set in evaluation mode (`model.eval()`) by default.
 
@@ -112,7 +112,7 @@ Examples:
 from_pipe(pipeline, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/auto_pipeline.py#L545)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/auto_pipeline.py#L557)
 
 **Parameters:**
 
@@ -147,11 +147,11 @@ The pipeline is set in evaluation mode (`model.eval()`) by default.
 diffusers.AutoPipelineForImage2Image(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/auto_pipeline.py#L662)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/auto_pipeline.py#L674)
 
-[AutoPipelineForImage2Image](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image) is a generic pipeline class that instantiates an image-to-image pipeline class. The
+[AutoPipelineForImage2Image](/docs/diffusers/v0.41.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image) is a generic pipeline class that instantiates an image-to-image pipeline class. The
 specific underlying pipeline class is automatically selected from either the
-[from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image.from_pretrained) or [from_pipe()](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image.from_pipe) methods.
+[from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image.from_pretrained) or [from_pipe()](/docs/diffusers/v0.41.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image.from_pipe) methods.
 
 This class cannot be instantiated using `__init__()` (throws an error).
 
@@ -166,11 +166,11 @@ Class attributes:
 from_pretrained(pretrained_model_or_path, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/auto_pipeline.py#L687)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/auto_pipeline.py#L699)
 
 **Parameters:**
 
-pretrained_model_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *repo id* (for example `CompVis/ldm-text2im-large-256`) of a pretrained pipeline hosted on the Hub. - A path to a *directory* (for example `./my_pipeline_directory/`) containing pipeline weights saved using [save_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained).
+pretrained_model_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *repo id* (for example `CompVis/ldm-text2im-large-256`) of a pretrained pipeline hosted on the Hub. - A path to a *directory* (for example `./my_pipeline_directory/`) containing pipeline weights saved using [save_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained).
 
 dtype (`str` or `torch.dtype`, *optional*) : Override the default `torch.dtype` and load the model with another dtype.
 
@@ -216,7 +216,7 @@ The from_pretrained() method takes care of returning the correct pipeline class 
 2. Find the image-to-image pipeline linked to the pipeline class using pattern matching on pipeline class
    name.
 
-If a `controlnet` argument is passed, it will instantiate a [StableDiffusionControlNetImg2ImgPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/controlnet#diffusers.StableDiffusionControlNetImg2ImgPipeline)
+If a `controlnet` argument is passed, it will instantiate a [StableDiffusionControlNetImg2ImgPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/controlnet#diffusers.StableDiffusionControlNetImg2ImgPipeline)
 object.
 
 The pipeline is set in evaluation mode (`model.eval()`) by default.
@@ -247,7 +247,7 @@ Examples:
 from_pipe(pipeline, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/auto_pipeline.py#L845)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/auto_pipeline.py#L866)
 
 **Parameters:**
 
@@ -284,11 +284,11 @@ Examples:
 diffusers.AutoPipelineForInpainting(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/auto_pipeline.py#L967)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/auto_pipeline.py#L988)
 
-[AutoPipelineForInpainting](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForInpainting) is a generic pipeline class that instantiates an inpainting pipeline class. The
+[AutoPipelineForInpainting](/docs/diffusers/v0.41.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForInpainting) is a generic pipeline class that instantiates an inpainting pipeline class. The
 specific underlying pipeline class is automatically selected from either the
-[from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForInpainting.from_pretrained) or [from_pipe()](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForInpainting.from_pipe) methods.
+[from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForInpainting.from_pretrained) or [from_pipe()](/docs/diffusers/v0.41.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForInpainting.from_pipe) methods.
 
 This class cannot be instantiated using `__init__()` (throws an error).
 
@@ -303,11 +303,11 @@ Class attributes:
 from_pretrained(pretrained_model_or_path, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/auto_pipeline.py#L992)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/auto_pipeline.py#L1013)
 
 **Parameters:**
 
-pretrained_model_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *repo id* (for example `CompVis/ldm-text2im-large-256`) of a pretrained pipeline hosted on the Hub. - A path to a *directory* (for example `./my_pipeline_directory/`) containing pipeline weights saved using [save_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained).
+pretrained_model_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *repo id* (for example `CompVis/ldm-text2im-large-256`) of a pretrained pipeline hosted on the Hub. - A path to a *directory* (for example `./my_pipeline_directory/`) containing pipeline weights saved using [save_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained).
 
 dtype (`str` or `torch.dtype`, *optional*) : Override the default `torch.dtype` and load the model with another dtype.
 
@@ -352,7 +352,7 @@ The from_pretrained() method takes care of returning the correct pipeline class 
    config object
 2. Find the inpainting pipeline linked to the pipeline class using pattern matching on pipeline class name.
 
-If a `controlnet` argument is passed, it will instantiate a [StableDiffusionControlNetInpaintPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/controlnet#diffusers.StableDiffusionControlNetInpaintPipeline)
+If a `controlnet` argument is passed, it will instantiate a [StableDiffusionControlNetInpaintPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/controlnet#diffusers.StableDiffusionControlNetInpaintPipeline)
 object.
 
 The pipeline is set in evaluation mode (`model.eval()`) by default.
@@ -383,7 +383,7 @@ Examples:
 from_pipe(pipeline, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/auto_pipeline.py#L1147)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/auto_pipeline.py#L1177)
 
 **Parameters:**
 
@@ -420,11 +420,11 @@ Examples:
 diffusers.AutoPipelineForText2Audio(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/auto_pipeline.py#L1266)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/auto_pipeline.py#L1296)
 
-[AutoPipelineForText2Audio](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Audio) is a generic pipeline class that instantiates a text-to-audio pipeline class. The
+[AutoPipelineForText2Audio](/docs/diffusers/v0.41.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Audio) is a generic pipeline class that instantiates a text-to-audio pipeline class. The
 specific underlying pipeline class is automatically selected from either the
-[from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Audio.from_pretrained) or [from_pipe()](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Audio.from_pipe) methods.
+[from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Audio.from_pretrained) or [from_pipe()](/docs/diffusers/v0.41.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Audio.from_pipe) methods.
 
 This class cannot be instantiated using `__init__()` (throws an error).
 
@@ -439,11 +439,11 @@ Class attributes:
 from_pretrained(pretrained_model_or_path, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/auto_pipeline.py#L1291)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/auto_pipeline.py#L1321)
 
 **Parameters:**
 
-pretrained_model_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *repo id* (for example `stabilityai/stable-audio-open-1.0`) of a pretrained pipeline hosted on the Hub. - A path to a *directory* (for example `./my_pipeline_directory/`) containing pipeline weights saved using [save_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained).
+pretrained_model_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *repo id* (for example `stabilityai/stable-audio-open-1.0`) of a pretrained pipeline hosted on the Hub. - A path to a *directory* (for example `./my_pipeline_directory/`) containing pipeline weights saved using [save_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained).
 
 dtype (`torch.dtype`, *optional*) : Override the default `torch.dtype` and load the model with another dtype.
 
@@ -521,7 +521,7 @@ Examples:
 from_pipe(pipeline, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/auto_pipeline.py#L1426)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/auto_pipeline.py#L1465)
 
 **Parameters:**
 
@@ -555,4 +555,4 @@ The pipeline is set in evaluation mode (`model.eval()`) by default.
 ```
 
 ### Marigold Computer Vision
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/marigold.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/marigold.md

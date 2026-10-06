@@ -18,7 +18,7 @@ providing stable training dynamics.
 diffusers.AutoencoderSAME(audio_channels: int = 2, patch_size: int = 256, encoder_channels: int = 128, encoder_c_mults: typing.List[int] = (6,), encoder_strides: typing.List[int] = (16,), encoder_transformer_depths: typing.List[int] = (6,), latent_dim: int = 256, use_differential_attention: bool = True, dim_heads: int = 64, ff_mult: int = 3, sliding_window: int = 1, encoder_sinusoidal_blocks: typing.List[int] = (0,), decoder_sinusoidal_blocks: typing.List[int] = (0,), sampling_rate: int = 44100)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_same.py#L608)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_same.py#L608)
 
 **Parameters:**
 
@@ -79,7 +79,7 @@ encoder_transformer_depths=(12,))
 encode(sample: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_same.py#L733)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_same.py#L733)
 
 **Parameters:**
 
@@ -100,7 +100,7 @@ Encode stereo audio to latents.
 decode(latents: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_same.py#L758)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_same.py#L758)
 
 **Parameters:**
 
@@ -121,7 +121,7 @@ Decode latents back to stereo audio.
 forward(sample: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_same.py#L783)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_same.py#L783)
 
 **Parameters:**
 
@@ -144,7 +144,7 @@ Encode and immediately decode *sample* (reconstruction).
 diffusers.models.autoencoders.autoencoder_same.SAMETransformerResamplingBlock(in_channels: int, out_channels: int, stride: int, mode: str = 'encoder', transformer_depth: int = 3, dim_heads: int = 128, use_differential: bool = True, ff_mult: int = 3, sliding_window: int = 1, sinusoidal_blocks: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_same.py#L294)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_same.py#L294)
 
 **Parameters:**
 
@@ -191,9 +191,9 @@ matches the reference implementation exactly (a single non-overlapping chunk wou
 diffusers.models.autoencoders.autoencoder_same.AutoencoderSAMEOutput(latents: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_same.py#L52)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_same.py#L52)
 
-Output of [AutoencoderSAME.encode()](/docs/diffusers/v0.40.0/en/api/models/autoencoder_same#diffusers.AutoencoderSAME.encode).
+Output of [AutoencoderSAME.encode()](/docs/diffusers/v0.41.0/en/api/models/autoencoder_same#diffusers.AutoencoderSAME.encode).
 
 ## AutoencoderSAMEDecoderOutput[[diffusers.models.autoencoders.autoencoder_same.AutoencoderSAMEDecoderOutput]]
 
@@ -203,9 +203,9 @@ Output of [AutoencoderSAME.encode()](/docs/diffusers/v0.40.0/en/api/models/autoe
 diffusers.models.autoencoders.autoencoder_same.AutoencoderSAMEDecoderOutput(sample: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_same.py#L59)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_same.py#L59)
 
-Output of [AutoencoderSAME.decode()](/docs/diffusers/v0.40.0/en/api/models/autoencoder_same#diffusers.AutoencoderSAME.decode).
+Output of [AutoencoderSAME.decode()](/docs/diffusers/v0.41.0/en/api/models/autoencoder_same#diffusers.AutoencoderSAME.decode).
 
 ### ChromaTransformer2DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/chroma_transformer.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/chroma_transformer.md

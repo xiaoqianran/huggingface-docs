@@ -8,12 +8,12 @@
 diffusers.ModularPipelineBlocks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline.py#L326)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline.py#L372)
 
 Base class for all Pipeline Blocks: ConditionalPipelineBlocks, AutoPipelineBlocks, SequentialPipelineBlocks,
 LoopSequentialPipelineBlocks
 
-[ModularPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) provides method to load and save the definition of pipeline blocks.
+[ModularPipelineBlocks](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) provides method to load and save the definition of pipeline blocks.
 
 #### get_block_state[[diffusers.ModularPipelineBlocks.get_block_state]]
 
@@ -21,7 +21,7 @@ LoopSequentialPipelineBlocks
 get_block_state(state: PipelineState)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline.py#L513)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline.py#L568)
 
 Get all inputs and intermediates in one dictionary
 
@@ -31,7 +31,7 @@ Get all inputs and intermediates in one dictionary
 get_execution_blocks(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline.py#L395)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline.py#L441)
 
 **Parameters:**
 
@@ -46,7 +46,7 @@ conditional block selection.
 get_workflow(workflow_name: str)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline.py#L413)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline.py#L459)
 
 **Parameters:**
 
@@ -61,7 +61,7 @@ Get the execution blocks for a specific workflow. Must be implemented by subclas
 init_pipeline(pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline.py#L491)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline.py#L546)
 
 create a ModularPipeline, optionally accept pretrained_model_name_or_path to load from hub.
 
@@ -73,7 +73,7 @@ create a ModularPipeline, optionally accept pretrained_model_name_or_path to loa
 diffusers.SequentialPipelineBlocks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline.py#L965)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline.py#L1020)
 
 **Parameters:**
 
@@ -84,7 +84,7 @@ block_names : list of prefixes for each block
 A Pipeline Blocks that combines multiple pipeline block classes into one. When called, it will call each block in
 sequence.
 
-This class inherits from [ModularPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks). Check the superclass documentation for the generic methods the
+This class inherits from [ModularPipelineBlocks](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks). Check the superclass documentation for the generic methods the
 library implements for all the pipeline blocks (such as loading or saving etc.)
 
 #### from_blocks_dict[[diffusers.SequentialPipelineBlocks.from_blocks_dict]]
@@ -93,7 +93,7 @@ library implements for all the pipeline blocks (such as loading or saving etc.)
 from_blocks_dict(blocks_dict: dict, description: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline.py#L1037)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline.py#L1092)
 
 **Parameters:**
 
@@ -111,7 +111,7 @@ Creates a SequentialPipelineBlocks instance from a dictionary of blocks.
 get_execution_blocks(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline.py#L1180)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline.py#L1235)
 
 **Parameters:**
 
@@ -136,7 +136,7 @@ not on the actual value.
 diffusers.LoopSequentialPipelineBlocks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline.py#L1325)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline.py#L1380)
 
 **Parameters:**
 
@@ -147,7 +147,7 @@ block_names : list of prefixes for each block
 A Pipeline blocks that combines multiple pipeline block classes into a For Loop. When called, it will call each
 block in sequence.
 
-This class inherits from [ModularPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks). Check the superclass documentation for the generic methods the
+This class inherits from [ModularPipelineBlocks](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks). Check the superclass documentation for the generic methods the
 library implements for all the pipeline blocks (such as loading or saving etc.)
 
 #### from_blocks_dict[[diffusers.LoopSequentialPipelineBlocks.from_blocks_dict]]
@@ -156,7 +156,7 @@ library implements for all the pipeline blocks (such as loading or saving etc.)
 from_blocks_dict(blocks_dict: dict)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline.py#L1486)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline.py#L1541)
 
 **Parameters:**
 
@@ -176,7 +176,7 @@ Creates a LoopSequentialPipelineBlocks instance from a dictionary of blocks.
 diffusers.AutoPipelineBlocks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline.py#L904)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline.py#L959)
 
 **Parameters:**
 
@@ -214,7 +214,7 @@ With this definition:
 select_block(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline.py#L957)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline.py#L1012)
 
 Select block based on which trigger input is present (not None).
 
@@ -226,7 +226,7 @@ Select block based on which trigger input is present (not None).
 diffusers.ConditionalPipelineBlocks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline.py#L605)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline.py#L660)
 
 **Parameters:**
 
@@ -242,7 +242,7 @@ A Pipeline Blocks that conditionally selects a block to run based on the inputs.
 `select_block` method to define the logic for selecting the block. Currently, we only support selection logic based
 on the presence or absence of inputs (i.e., whether they are `None` or not)
 
-This class inherits from [ModularPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks). Check the superclass documentation for the generic methods the
+This class inherits from [ModularPipelineBlocks](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks). Check the superclass documentation for the generic methods the
 library implements for all the pipeline blocks (such as loading or saving etc.)
 
 #### get_execution_blocks[[diffusers.ConditionalPipelineBlocks.get_execution_blocks]]
@@ -251,7 +251,7 @@ library implements for all the pipeline blocks (such as loading or saving etc.)
 get_execution_blocks(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline.py#L795)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline.py#L850)
 
 **Parameters:**
 
@@ -275,7 +275,7 @@ a `SequentialPipelineBlocks` containing the resolved execution blocks
 select_block(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline.py#L751)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline.py#L806)
 
 **Parameters:**
 
@@ -294,4 +294,4 @@ is because `get_execution_blocks()` resolves conditions statically by propagatin
 without their runtime values.
 
 ### Pipeline
-https://huggingface.co/docs/diffusers/v0.40.0/api/modular_diffusers/pipeline.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/modular_diffusers/pipeline.md

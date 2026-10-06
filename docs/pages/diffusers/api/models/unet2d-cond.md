@@ -14,7 +14,7 @@ The abstract from the paper is:
 diffusers.UNet2DConditionModel(sample_size: int | tuple[int, int] | None = None, in_channels: int = 4, out_channels: int = 4, center_input_sample: bool = False, flip_sin_to_cos: bool = True, freq_shift: int = 0, down_block_types: tuple = ('CrossAttnDownBlock2D', 'CrossAttnDownBlock2D', 'CrossAttnDownBlock2D', 'DownBlock2D'), mid_block_type: str | None = 'UNetMidBlock2DCrossAttn', up_block_types: tuple = ('UpBlock2D', 'CrossAttnUpBlock2D', 'CrossAttnUpBlock2D', 'CrossAttnUpBlock2D'), only_cross_attention: bool | tuple[bool] = False, block_out_channels: tuple = (320, 640, 1280, 1280), layers_per_block: int | tuple[int] = 2, downsample_padding: int = 1, mid_block_scale_factor: float = 1, dropout: float = 0.0, act_fn: str = 'silu', norm_num_groups: int | None = 32, norm_eps: float = 1e-05, cross_attention_dim: int | tuple[int] = 1280, transformer_layers_per_block: int | tuple[int] | tuple[tuple] = 1, reverse_transformer_layers_per_block: tuple[tuple[int]] | None = None, encoder_hid_dim: int | None = None, encoder_hid_dim_type: str | None = None, attention_head_dim: int | tuple[int] = 8, num_attention_heads: int | tuple[int] | None = None, dual_cross_attention: bool = False, use_linear_projection: bool = False, class_embed_type: str | None = None, addition_embed_type: str | None = None, addition_time_embed_dim: int | None = None, num_class_embeds: int | None = None, upcast_attention: bool = False, resnet_time_scale_shift: str = 'default', resnet_skip_time_act: bool = False, resnet_out_scale_factor: float = 1.0, time_embedding_type: str = 'positional', time_embedding_dim: int | None = None, time_embedding_act_fn: str | None = None, timestep_post_act: str | None = None, time_cond_proj_dim: int | None = None, conv_in_kernel: int = 3, conv_out_kernel: int = 3, projection_class_embeddings_input_dim: int | None = None, attention_type: str = 'default', class_embeddings_concat: bool = False, mid_block_only_cross_attention: bool | None = None, cross_attention_norm: str | None = None, addition_embed_type_num_heads: int = 64)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_2d_condition.py#L76)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_2d_condition.py#L76)
 
 **Parameters:**
 
@@ -101,7 +101,7 @@ mid_block_only_cross_attention (`bool`, *optional*, defaults to `None`) : Whethe
 A conditional 2D UNet model that takes a noisy sample, conditional state, and a timestep and returns a sample
 shaped output.
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
+This model inherits from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
 for all models (such as downloading or saving).
 
 #### disable_freeu[[diffusers.UNet2DConditionModel.disable_freeu]]
@@ -110,7 +110,7 @@ for all models (such as downloading or saving).
 disable_freeu()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_2d_condition.py#L814)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_2d_condition.py#L814)
 
 Disables the FreeU mechanism.
 
@@ -120,7 +120,7 @@ Disables the FreeU mechanism.
 enable_freeu(s1: float, s2: float, b1: float, b2: float)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_2d_condition.py#L790)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_2d_condition.py#L790)
 
 **Parameters:**
 
@@ -145,7 +145,7 @@ are known to work well for different pipelines such as Stable Diffusion v1, v2, 
 forward(sample: Tensor, timestep: typing.Union[torch.Tensor, float, int], encoder_hidden_states: Tensor, class_labels: typing.Optional[torch.Tensor] = None, timestep_cond: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, cross_attention_kwargs: dict[str, typing.Any] | None = None, added_cond_kwargs: dict[str, torch.Tensor] | None = None, down_block_additional_residuals: tuple[torch.Tensor] | None = None, mid_block_additional_residual: typing.Optional[torch.Tensor] = None, down_intrablock_additional_residuals: tuple[torch.Tensor] | None = None, encoder_attention_mask: typing.Optional[torch.Tensor] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_2d_condition.py#L978)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_2d_condition.py#L978)
 
 **Parameters:**
 
@@ -173,14 +173,14 @@ down_intrablock_additional_residuals (`tuple` of `torch.Tensor`, *optional*) : a
 
 encoder_attention_mask (`torch.Tensor`) : A cross-attention mask of shape `(batch, sequence_length)` is applied to `encoder_hidden_states`. If `True` the mask is kept, otherwise if `False` it is discarded. Mask will be converted into a bias, which adds large negative values to the attention scores corresponding to "discard" tokens.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [UNet2DConditionOutput](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.models.unets.unet_2d_condition.UNet2DConditionOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [UNet2DConditionOutput](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.models.unets.unet_2d_condition.UNet2DConditionOutput) instead of a plain tuple.
 
-**Returns:** [UNet2DConditionOutput](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.models.unets.unet_2d_condition.UNet2DConditionOutput) or `tuple`
+**Returns:** [UNet2DConditionOutput](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.models.unets.unet_2d_condition.UNet2DConditionOutput) or `tuple`
 
-If `return_dict` is True, an [UNet2DConditionOutput](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.models.unets.unet_2d_condition.UNet2DConditionOutput) is returned,
+If `return_dict` is True, an [UNet2DConditionOutput](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.models.unets.unet_2d_condition.UNet2DConditionOutput) is returned,
 otherwise a `tuple` is returned where the first element is the sample tensor.
 
-The [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) forward method.
+The [UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) forward method.
 
 #### fuse_qkv_projections[[diffusers.UNet2DConditionModel.fuse_qkv_projections]]
 
@@ -188,7 +188,7 @@ The [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#dif
 fuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_2d_condition.py#L822)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_2d_condition.py#L822)
 
 Enables fused QKV projections. For self-attention modules, all projection matrices (i.e., query, key, value)
 are fused. For cross-attention modules, key and value projection matrices are fused.
@@ -201,7 +201,7 @@ are fused. For cross-attention modules, key and value projection matrices are fu
 set_attention_slice(slice_size: str | int | list[int] = 'auto')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_2d_condition.py#L725)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_2d_condition.py#L725)
 
 **Parameters:**
 
@@ -218,7 +218,7 @@ several steps. This is useful for saving some memory in exchange for a small dec
 set_default_attn_processor()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_2d_condition.py#L710)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_2d_condition.py#L710)
 
 Disables custom attention processors and sets the default attention implementation.
 
@@ -228,7 +228,7 @@ Disables custom attention processors and sets the default attention implementati
 unfuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_2d_condition.py#L843)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_2d_condition.py#L843)
 
 Disables the fused QKV projection if enabled.
 
@@ -242,13 +242,13 @@ Disables the fused QKV projection if enabled.
 diffusers.models.unets.unet_2d_condition.UNet2DConditionOutput(sample: Tensor = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_2d_condition.py#L64)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_2d_condition.py#L64)
 
 **Parameters:**
 
 sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) : The hidden states output conditioned on `encoder_hidden_states` input. Output of last layer of model.
 
-The output of [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel).
+The output of [UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel).
 
 ### LuminaNextDiT2DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/lumina_nextdit2d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/lumina_nextdit2d.md

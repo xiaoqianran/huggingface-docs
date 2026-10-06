@@ -14,7 +14,7 @@ The abstract from the paper is:
 diffusers.ScoreSdeVeScheduler(num_train_timesteps: int = 2000, snr: float = 0.15, sigma_min: float = 0.01, sigma_max: float = 1348.0, sampling_eps: float = 1e-05, correct_steps: int = 1)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_sde_ve.py#L45)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_sde_ve.py#L45)
 
 **Parameters:**
 
@@ -32,7 +32,7 @@ correct_steps (`int`, defaults to 1) : The number of correction steps performed 
 
 `ScoreSdeVeScheduler` is a variance exploding stochastic differential equation (SDE) scheduler.
 
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
 methods the library implements for all schedulers such as loading and saving.
 
 #### add_noise[[diffusers.ScoreSdeVeScheduler.add_noise]]
@@ -41,7 +41,7 @@ methods the library implements for all schedulers such as loading and saving.
 add_noise(original_samples: Tensor, noise: Tensor, timesteps: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_sde_ve.py#L300)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_sde_ve.py#L300)
 
 **Parameters:**
 
@@ -64,7 +64,7 @@ forward diffusion process.
 get_adjacent_sigma(timesteps: Tensor, t: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_sde_ve.py#L156)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_sde_ve.py#L156)
 
 **Parameters:**
 
@@ -85,7 +85,7 @@ timestep), returns zero.
 scale_model_input(sample: Tensor, timestep: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_sde_ve.py#L88)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_sde_ve.py#L88)
 
 **Parameters:**
 
@@ -106,7 +106,7 @@ current timestep.
 set_sigmas(num_inference_steps: int, sigma_min: float | None = None, sigma_max: float | None = None, sampling_eps: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_sde_ve.py#L124)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_sde_ve.py#L124)
 
 **Parameters:**
 
@@ -127,7 +127,7 @@ of the `drift` and `diffusion` components of the sample update.
 set_timesteps(num_inference_steps: int, sampling_eps: float | None = None, device: typing.Union[str, torch.device, NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_sde_ve.py#L105)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_sde_ve.py#L105)
 
 **Parameters:**
 
@@ -145,7 +145,7 @@ Sets the continuous timesteps used for the diffusion chain (to be run before inf
 step_correct(model_output: Tensor, sample: Tensor, generator: typing.Optional[torch.Generator] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_sde_ve.py#L245)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_sde_ve.py#L245)
 
 **Parameters:**
 
@@ -155,11 +155,11 @@ sample (`torch.Tensor`) : A current instance of a sample created by the diffusio
 
 generator (`torch.Generator`, *optional*) : A random number generator.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [SchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple`.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [SchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple`.
 
-**Returns:** [SchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple`
+**Returns:** [SchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple`
 
-If return_dict is `True`, [SchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) is returned, otherwise a
+If return_dict is `True`, [SchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) is returned, otherwise a
 tuple is returned where the first element is the sample tensor.
 
 Correct the predicted sample based on the `model_output` of the network. This is often run repeatedly after
@@ -171,7 +171,7 @@ making the prediction for the previous timestep.
 step_pred(model_output: Tensor, timestep: int, sample: Tensor, generator: typing.Optional[torch.Generator] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_sde_ve.py#L177)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_sde_ve.py#L177)
 
 **Parameters:**
 
@@ -183,11 +183,11 @@ sample (`torch.Tensor`) : A current instance of a sample created by the diffusio
 
 generator (`torch.Generator`, *optional*) : A random number generator.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [SdeVeOutput](/docs/diffusers/v0.40.0/en/api/schedulers/score_sde_ve#diffusers.schedulers.scheduling_sde_ve.SdeVeOutput) or `tuple`.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [SdeVeOutput](/docs/diffusers/v0.41.0/en/api/schedulers/score_sde_ve#diffusers.schedulers.scheduling_sde_ve.SdeVeOutput) or `tuple`.
 
-**Returns:** [SdeVeOutput](/docs/diffusers/v0.40.0/en/api/schedulers/score_sde_ve#diffusers.schedulers.scheduling_sde_ve.SdeVeOutput) or `tuple`
+**Returns:** [SdeVeOutput](/docs/diffusers/v0.41.0/en/api/schedulers/score_sde_ve#diffusers.schedulers.scheduling_sde_ve.SdeVeOutput) or `tuple`
 
-If return_dict is `True`, [SdeVeOutput](/docs/diffusers/v0.40.0/en/api/schedulers/score_sde_ve#diffusers.schedulers.scheduling_sde_ve.SdeVeOutput) is returned, otherwise a tuple
+If return_dict is `True`, [SdeVeOutput](/docs/diffusers/v0.41.0/en/api/schedulers/score_sde_ve#diffusers.schedulers.scheduling_sde_ve.SdeVeOutput) is returned, otherwise a tuple
 is returned where the first element is the sample tensor.
 
 Predict the sample from the previous timestep by reversing the SDE. This function propagates the diffusion
@@ -201,7 +201,7 @@ process from the learned model outputs (most often the predicted noise).
 diffusers.schedulers.scheduling_sde_ve.SdeVeOutput(prev_sample: Tensor, prev_sample_mean: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_sde_ve.py#L29)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_sde_ve.py#L29)
 
 **Parameters:**
 
@@ -212,4 +212,4 @@ prev_sample_mean (`torch.Tensor` of shape `(batch_size, num_channels, height, wi
 Output class for the scheduler's `step` function output.
 
 ### FlowMatchHeunDiscreteScheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/flow_match_heun_discrete.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/flow_match_heun_discrete.md

@@ -20,12 +20,12 @@ The following DCAE models are released and supported in Diffusers.
 
 This model was contributed by [lawrence-cj](https://github.com/lawrence-cj).
 
-Load a model in Diffusers format with [from_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained).
+Load a model in Diffusers format with [from_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained).
 
 ```python
 from diffusers import AutoencoderDC
 
-ae = AutoencoderDC.from_pretrained("mit-han-lab/dc-ae-f32c32-sana-1.0-diffusers", dtype=torch.float32).to("cuda")
+ae = AutoencoderDC.from_pretrained("mit-han-lab/dc-ae-f32c32-sana-1.0-diffusers", dtype=torch.float32).to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 ## Load a model in Diffusers via `from_single_file`
@@ -55,7 +55,7 @@ model = AutoencoderDC.from_single_file(ckpt_path, config="mit-han-lab/dc-ae-f128
 diffusers.AutoencoderDC(in_channels: int = 3, latent_channels: int = 32, attention_head_dim: int = 32, encoder_block_types: str | tuple[str] = 'ResBlock', decoder_block_types: str | tuple[str] = 'ResBlock', encoder_block_out_channels: tuple = (128, 256, 512, 512, 1024, 1024), decoder_block_out_channels: tuple = (128, 256, 512, 512, 1024, 1024), encoder_layers_per_block: tuple = (2, 2, 2, 3, 3, 3), decoder_layers_per_block: tuple = (3, 3, 3, 3, 3, 3), encoder_qkv_multiscales: tuple = ((), (), (), (5,), (5,), (5,)), decoder_qkv_multiscales: tuple = ((), (), (), (5,), (5,), (5,)), upsample_block_type: str = 'pixel_shuffle', downsample_block_type: str = 'pixel_unshuffle', decoder_norm_types: str | tuple[str] = 'rms_norm', decoder_act_fns: str | tuple[str] = 'silu', encoder_out_shortcut: bool = True, decoder_in_shortcut: bool = True, decoder_conv_act_fn: str = 'relu', scaling_factor: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_dc.py#L380)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_dc.py#L380)
 
 **Parameters:**
 
@@ -98,7 +98,7 @@ scaling_factor (`float`, defaults to `1.0`) : The multiplicative inverse of the 
 An Autoencoder model introduced in [DCAE](https://huggingface.co/papers/2410.10733) and used in
 [SANA](https://huggingface.co/papers/2410.10629).
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
+This model inherits from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
 for all models (such as downloading or saving).
 
 #### encode[[diffusers.AutoencoderDC.encode]]
@@ -107,7 +107,7 @@ for all models (such as downloading or saving).
 encode(x: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_dc.py#L548)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_dc.py#L548)
 
 **Parameters:**
 
@@ -128,7 +128,7 @@ Encode a batch of images into latents.
 decode(z: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_dc.py#L582)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_dc.py#L582)
 
 **Parameters:**
 
@@ -149,7 +149,7 @@ Decode a batch of images.
 enable_tiling(tile_sample_min_height: int | None = None, tile_sample_min_width: int | None = None, tile_sample_stride_height: float | None = None, tile_sample_stride_width: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_dc.py#L506)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_dc.py#L506)
 
 **Parameters:**
 
@@ -171,7 +171,7 @@ processing larger images.
 forward(sample: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_dc.py#L708)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_dc.py#L708)
 
 **Parameters:**
 
@@ -192,7 +192,7 @@ returned.
 diffusers.models.autoencoders.vae.DecoderOutput(sample: Tensor, commit_loss: typing.Optional[torch.FloatTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/vae.py#L46)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/vae.py#L49)
 
 **Parameters:**
 
@@ -201,4 +201,4 @@ sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) : T
 Output of decoding method.
 
 ### AutoencoderKL
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoderkl.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl.md

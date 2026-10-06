@@ -1,6 +1,6 @@
 # Configuration
 
-Schedulers from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and models from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin) inherit from [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin) which stores all the parameters that are passed to their respective `__init__` methods in a JSON-configuration file.
+Schedulers from [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and models from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin) inherit from [ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin) which stores all the parameters that are passed to their respective `__init__` methods in a JSON-configuration file.
 
 > [!TIP]
 > To use private or [gated](https://huggingface.co/docs/hub/models-gated#gated-models) models, log-in with `hf auth login`.
@@ -13,15 +13,15 @@ Schedulers from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overv
 diffusers.ConfigMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/configuration_utils.py#L87)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/configuration_utils.py#L87)
 
 Base class for all configuration classes. All configuration parameters are stored under `self.config`. Also
-provides the [from_config()](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin.from_config) and [save_config()](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin.save_config) methods for loading, downloading, and
-saving classes that inherit from [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin).
+provides the [from_config()](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin.from_config) and [save_config()](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin.save_config) methods for loading, downloading, and
+saving classes that inherit from [ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin).
 
 Class attributes:
 - **config_name** (`str`) -- A filename under which the config should stored when calling
-  [save_config()](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin.save_config) (should be overridden by parent class).
+  [save_config()](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin.save_config) (should be overridden by parent class).
 - **ignore_for_config** (`list[str]`) -- A list of attributes that should not be saved in the config (should be
   overridden by subclass).
 - **has_compatibles** (`bool`) -- Whether the class has compatible classes (should be overridden by subclass).
@@ -35,11 +35,11 @@ Class attributes:
 load_config(pretrained_model_name_or_path: str | os.PathLike, return_unused_kwargs = False, return_commit_hash = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/configuration_utils.py#L322)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/configuration_utils.py#L322)
 
 **Parameters:**
 
-pretrained_model_name_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *model id* (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a *directory* (for example `./my_model_directory`) containing model weights saved with [save_config()](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin.save_config). 
+pretrained_model_name_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *model id* (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a *directory* (for example `./my_model_directory`) containing model weights saved with [save_config()](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin.save_config). 
 
 cache_dir (`str | os.PathLike`, *optional*) : Path to a directory where a downloaded pretrained model configuration is cached if the standard cache is not used.
 
@@ -73,7 +73,7 @@ Load a model or scheduler configuration.
 from_config(config: diffusers.configuration_utils.FrozenDict | dict[str, typing.Any] = None, return_unused_kwargs = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/configuration_utils.py#L221)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/configuration_utils.py#L221)
 
 **Parameters:**
 
@@ -83,7 +83,7 @@ return_unused_kwargs (`bool`, *optional*, defaults to `False`) : Whether kwargs 
 
 kwargs (remaining dictionary of keyword arguments, *optional*) : Can be used to update the configuration object (after it is loaded) and initiate the Python class. `**kwargs` are passed directly to the underlying scheduler/model's `__init__` method and eventually overwrite the same named arguments in `config`.
 
-**Returns:** [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin) or [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)
+**Returns:** [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin) or [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin)
 
 A model or scheduler object instantiated from a config dictionary.
 
@@ -110,7 +110,7 @@ Examples:
 save_config(save_directory: str | os.PathLike, push_to_hub: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/configuration_utils.py#L177)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/configuration_utils.py#L177)
 
 **Parameters:**
 
@@ -118,10 +118,10 @@ save_directory (`str` or `os.PathLike`) : Directory where the configuration JSON
 
 push_to_hub (`bool`, *optional*, defaults to `False`) : Whether or not to push your model to the Hugging Face Hub after saving it. You can specify the repository you want to push to with `repo_id` (will default to the name of `save_directory` in your namespace).
 
-kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments passed along to the [push_to_hub()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method.
+kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments passed along to the [push_to_hub()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method.
 
 Save a configuration object to the directory specified in `save_directory` so that it can be reloaded using the
-[from_config()](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin.from_config) class method.
+[from_config()](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin.from_config) class method.
 
 #### to_json_file[[diffusers.ConfigMixin.to_json_file]]
 
@@ -129,7 +129,7 @@ Save a configuration object to the directory specified in `save_directory` so th
 to_json_file(json_file_path: str | os.PathLike)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/configuration_utils.py#L659)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/configuration_utils.py#L647)
 
 **Parameters:**
 
@@ -143,7 +143,7 @@ Save the configuration instance's parameters to a JSON file.
 to_json_string()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/configuration_utils.py#L614)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/configuration_utils.py#L602)
 
 **Returns:** `str`
 
@@ -152,4 +152,4 @@ String containing all the attributes that make up the configuration instance in 
 Serializes the configuration instance to a JSON string.
 
 ### Normalization layers
-https://huggingface.co/docs/diffusers/v0.40.0/api/normalization.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/normalization.md

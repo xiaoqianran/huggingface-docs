@@ -58,7 +58,7 @@ dataset = load_dataset(
 )
 ```
 
-Then use the [push_to_hub](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset.push_to_hub) method to upload the dataset to the Hub:
+Then use the `push_to_hub` method to upload the dataset to the Hub:
 
 ```python
 # assuming you have ran the hf auth login command in a terminal
@@ -84,4 +84,4 @@ Now that you've created a dataset, you can plug it into the `train_data_dir` (if
 For your next steps, feel free to try and use your dataset to train a model for [unconditional generation](unconditional_training) or [text-to-image generation](text2image)!
 
 ### DreamBooth
-https://huggingface.co/docs/diffusers/v0.40.0/training/dreambooth.md
+https://huggingface.co/docs/diffusers/v0.41.0/training/dreambooth.md

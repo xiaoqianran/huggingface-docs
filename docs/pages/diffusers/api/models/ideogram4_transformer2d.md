@@ -10,7 +10,7 @@ A transformer for image-like data from [Ideogram 4](https://github.com/ideogram-
 diffusers.Ideogram4Transformer2DModel(in_channels: int = 128, num_layers: int = 34, attention_head_dim: int = 256, num_attention_heads: int = 18, intermediate_size: int = 12288, adaln_dim: int = 512, llm_features_dim: int = 53248, rope_theta: int = 5000000, mrope_section: tuple = (24, 20, 20), norm_eps: float = 1e-05)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_ideogram4.py#L278)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_ideogram4.py#L278)
 
 **Parameters:**
 
@@ -47,7 +47,7 @@ packed batch.
 forward(hidden_states: Tensor, timestep: Tensor, encoder_hidden_states: Tensor, position_ids: Tensor, segment_ids: Tensor, indicator: Tensor, attention_kwargs: dict | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_ideogram4.py#L373)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_ideogram4.py#L373)
 
 **Parameters:**
 
@@ -65,15 +65,15 @@ indicator (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Per-token 
 
 attention_kwargs (`dict`, *optional*) : A kwargs dictionary passed along to the attention processor. A `"scale"` entry scales the LoRA weights (when the PEFT backend is active).
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a [Transformer2DModelOutput](/docs/diffusers/v0.40.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a [Transformer2DModelOutput](/docs/diffusers/v0.41.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) instead of a plain tuple.
 
 **Returns:**
 
-[Transformer2DModelOutput](/docs/diffusers/v0.40.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) or a `tuple` whose first element is a tensor of shape
+[Transformer2DModelOutput](/docs/diffusers/v0.41.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) or a `tuple` whose first element is a tensor of shape
 `(batch_size, sequence_length, in_channels)` in the model's compute dtype. Only positions tagged with
 `OUTPUT_IMAGE_INDICATOR` carry meaningful velocity predictions.
 
 Predict the flow-matching velocity for the image-token positions of the packed sequence.
 
 ### ChronoEditTransformer3DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/chronoedit_transformer_3d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/chronoedit_transformer_3d.md

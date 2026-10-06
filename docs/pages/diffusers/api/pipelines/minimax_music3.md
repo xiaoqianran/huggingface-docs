@@ -19,7 +19,7 @@ from diffusers import ModularPipeline
 
 pipe = ModularPipeline.from_pretrained("MiniMaxAI/MiniMax-Music3")
 pipe.load_components(dtype=torch.bfloat16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 lyrics = """[verse]
 Morning light filtering through the pine
@@ -58,7 +58,7 @@ from diffusers import ComponentsManager, ModularPipeline
 from diffusers.hooks.group_offloading import apply_group_offloading
 
 manager = ComponentsManager()
-manager.enable_auto_cpu_offload(device="cuda")
+manager.enable_auto_cpu_offload(device="cuda")  # or "mps", "xpu", "cpu"
 pipe = ModularPipeline.from_pretrained("MiniMaxAI/MiniMax-Music3", components_manager=manager)
 pipe.load_components(dtype=torch.bfloat16)
 
@@ -91,7 +91,7 @@ apply_group_offloading(
 diffusers.MiniMaxMusic3ModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/minimax_music3/modular_pipeline.py#L22)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/minimax_music3/modular_pipeline.py#L22)
 
 A ModularPipeline for lyrics- and caption-conditioned music generation with MiniMax Music 3.
 
@@ -103,7 +103,7 @@ A ModularPipeline for lyrics- and caption-conditioned music generation with Mini
 diffusers.MiniMaxMusic3Blocks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/minimax_music3/modular_blocks_minimax_music3.py#L130)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/minimax_music3/modular_blocks_minimax_music3.py#L130)
 
 Modular pipeline for lyrics- and caption-conditioned music generation using MiniMax Music 3. An autoregressive
 Qwen3 language model generates per-frame semantic codes and hidden states from the lyrics and the music
@@ -144,7 +144,7 @@ The generated stereo waveform of shape `(batch, channels, samples)` in `[-1, 1]`
 diffusers.MiniMaxMusic3ConditionEncoder(condition_hidden_dim: int = 4096, num_condition_layers: int = 8, out_dim: int = 2048, input_sampling_rate: int = 24000, input_hop_length: int = 960, output_sampling_rate: int = 44100, output_hop_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/condition_embedders/condition_embedder_minimax_music3.py#L23)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/condition_embedders/condition_embedder_minimax_music3.py#L23)
 
 Projects the per-frame hidden states of the autoregressive stage onto the Flow-VAE latent timeline.
 
@@ -158,7 +158,7 @@ resampled from the language-model frame rate to the latent frame rate with neare
 forward(hidden_states: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/condition_embedders/condition_embedder_minimax_music3.py#L48)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/condition_embedders/condition_embedder_minimax_music3.py#L48)
 
 **Parameters:**
 
@@ -176,7 +176,7 @@ the latent-aligned conditioning sequence.
 diffusers.MiniMaxMusic3RVQDepthDecoder(hidden_size: int = 4096, num_layers: int = 4, num_attention_heads: int = 16, intermediate_size: int = 6144, audio_vocab_size: int = 1024, num_codebooks: int = 8, max_position_embeddings: int = 16)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/minimax_music3_rvq_depth_decoder.py#L91)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/minimax_music3_rvq_depth_decoder.py#L91)
 
 The local language model of MiniMax Music 3. Within each audio frame it autoregressively predicts the seven
 residual RVQ codebooks (c1..c7) from the global language model's hidden state and the frame's semantic code, and
@@ -191,7 +191,7 @@ the global language model's feedback loop.
 forward(inputs_embeds: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/minimax_music3_rvq_depth_decoder.py#L127)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/minimax_music3_rvq_depth_decoder.py#L127)
 
 **Parameters:**
 
@@ -210,7 +210,7 @@ next codebook head.
 diffusers.MiniMaxMusic3Vocoder(latent_channels: int = 128, decoder_input_dim: int = 1024, decoder_hidden_dim: int = 1536, upsampling_ratios: tuple = (8, 8, 4, 2), sampling_rate: int = 44100)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/minimax_music3_vocoder.py#L71)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/minimax_music3_vocoder.py#L71)
 
 The Flow-VAE waveform decoder of MiniMax Music 3 (a DAC-style decoder). It decodes flow-matched latents of shape
 `(batch, latent_channels, length)` into stereo waveforms at `sampling_rate`; the two audio channels are decoded as
@@ -222,7 +222,7 @@ two folded `latent_channels // 2` streams.
 forward(latents: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/minimax_music3_vocoder.py#L100)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/minimax_music3_vocoder.py#L100)
 
 **Parameters:**
 
@@ -233,7 +233,7 @@ latents (`torch.Tensor` of shape `(batch, latent_channels, length)`) : Flow-matc
 the stereo waveform in `[-1, 1]`.
 
 ### Cogview3
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/cogview3.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/cogview3.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -258,7 +258,7 @@ The abstract from the paper is:
 *Recent advancements in text-to-image generative systems have been largely driven by diffusion models. However, single-stage text-to-image diffusion models still face challenges, in terms of computational efficiency and the refinement of image details. To tackle the issue, we propose CogView3, an innovative cascaded framework that enhances the performance of text-to-image diffusion. CogView3 is the first model implementing relay diffusion in the realm of text-to-image generation, executing the task by first creating low-resolution images and subsequently applying relay-based super-resolution. This methodology not only results in competitive text-to-image outputs but also greatly reduces both training and inference costs. Our experimental results demonstrate that CogView3 outperforms SDXL, the current state-of-the-art open-source text-to-image diffusion model, by 77.0% in human evaluations, all while requiring only about 1/2 of the inference time. The distilled variant of CogView3 achieves comparable performance while only utilizing 1/10 of the inference time by SDXL.*
 
 > [!TIP]
-> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reuse-a-pipeline) section to learn how to efficiently load the same components into multiple pipelines.
+> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reusing-models-in-multiple-pipelines) section to learn how to efficiently load the same components into multiple pipelines.
 
 This pipeline was contributed by [zRzRzRzRzRzRzR](https://github.com/zRzRzRzRzRzRzR). The original codebase can be found [here](https://huggingface.co/THUDM). The original weights can be found under [hf.co/THUDM](https://huggingface.co/THUDM).
 
@@ -270,23 +270,23 @@ This pipeline was contributed by [zRzRzRzRzRzRzR](https://github.com/zRzRzRzRzRz
 diffusers.CogView3PlusPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, vae: AutoencoderKL, transformer: CogView3PlusTransformer2DModel, scheduler: diffusers.schedulers.scheduling_ddim_cogvideox.CogVideoXDDIMScheduler | diffusers.schedulers.scheduling_dpm_cogvideox.CogVideoXDPMScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogview3/pipeline_cogview3plus.py#L118)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogview3/pipeline_cogview3plus.py#L118)
 
 **Parameters:**
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
 text_encoder (`T5EncoderModel`) : Frozen text-encoder. CogView3Plus uses [T5](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5EncoderModel); specifically the [t5-v1_1-xxl](https://huggingface.co/PixArt-alpha/PixArt-alpha/tree/main/t5-v1_1-xxl) variant.
 
 tokenizer (`T5Tokenizer`) : Tokenizer of class [T5Tokenizer](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5Tokenizer).
 
-transformer ([CogView3PlusTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/cogview3plus_transformer2d#diffusers.CogView3PlusTransformer2DModel)) : A text conditioned `CogView3PlusTransformer2DModel` to denoise the encoded image latents.
+transformer ([CogView3PlusTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/cogview3plus_transformer2d#diffusers.CogView3PlusTransformer2DModel)) : A text conditioned `CogView3PlusTransformer2DModel` to denoise the encoded image latents.
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
 Pipeline for text-to-image generation using CogView3Plus.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.CogView3PlusPipeline.__call__]]
@@ -295,7 +295,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str] | None = None, negative_prompt: str | list[str] | None = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, timesteps: list[int] | None = None, guidance_scale: float = 5.0, num_images_per_prompt: int = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, original_size: tuple[int, int] | None = None, crops_coords_top_left: tuple = (0, 0), output_type: str = 'pil', return_dict: bool = True, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 224)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogview3/pipeline_cogview3plus.py#L407)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogview3/pipeline_cogview3plus.py#L407)
 
 **Parameters:**
 
@@ -315,7 +315,7 @@ guidance_scale (`float`, *optional*, defaults to `5.0`) : Guidance scale as defi
 
 num_images_per_prompt (`int`, *optional*, defaults to `1`) : The number of images to generate per prompt.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://arxiv.org/abs/2010.02502) paper. Only applies to [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://arxiv.org/abs/2010.02502) paper. Only applies to [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -339,9 +339,9 @@ callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inp
 
 max_sequence_length (`int`, defaults to `224`) : Maximum sequence length in encoded prompt. Can be set to other values but may lead to poorer results.
 
-**Returns:** [CogView3PipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/cogview3#diffusers.pipelines.cogview3.pipeline_output.CogView3PipelineOutput) or `tuple`
+**Returns:** [CogView3PipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/cogview3#diffusers.pipelines.cogview3.pipeline_output.CogView3PipelineOutput) or `tuple`
 
-[CogView3PipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/cogview3#diffusers.pipelines.cogview3.pipeline_output.CogView3PipelineOutput) if `return_dict` is True, otherwise a
+[CogView3PipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/cogview3#diffusers.pipelines.cogview3.pipeline_output.CogView3PipelineOutput) if `return_dict` is True, otherwise a
 `tuple`. When returning a tuple, the first element is a list with the generated images.
 
 Function invoked when calling the pipeline for generation.
@@ -365,7 +365,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 224, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogview3/pipeline_cogview3plus.py#L210)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogview3/pipeline_cogview3plus.py#L210)
 
 **Parameters:**
 
@@ -397,7 +397,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.pipelines.cogview3.pipeline_output.CogView3PipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogview3/pipeline_output.py#L10)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogview3/pipeline_output.py#L10)
 
 **Parameters:**
 
@@ -406,4 +406,4 @@ images (`list[PIL.Image.Image]` or `np.ndarray`) : list of denoised PIL images o
 Output class for CogView3 pipelines.
 
 ### DiT
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/dit.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/dit.md

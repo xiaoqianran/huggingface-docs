@@ -14,7 +14,7 @@ Z-Image-Turbo is a distilled version of Z-Image that matches or exceeds leading 
 
 ## Image-to-image
 
-Use [ZImageImg2ImgPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/z_image#diffusers.ZImageImg2ImgPipeline) to transform an existing image based on a text prompt.
+Use [ZImageImg2ImgPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/z_image#diffusers.ZImageImg2ImgPipeline) to transform an existing image based on a text prompt.
 
 ```python
 import torch
@@ -22,7 +22,7 @@ from diffusers import ZImageImg2ImgPipeline
 from diffusers.utils import load_image
 
 pipe = ZImageImg2ImgPipeline.from_pretrained("Tongyi-MAI/Z-Image-Turbo", dtype=torch.bfloat16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 url = "https://raw.githubusercontent.com/CompVis/stable-diffusion/main/assets/stable-samples/img2img/sketch-mountains-input.jpg"
 init_image = load_image(url).resize((1024, 1024))
@@ -41,7 +41,7 @@ image.save("zimage_img2img.png")
 
 ## Inpainting
 
-Use [ZImageInpaintPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/z_image#diffusers.ZImageInpaintPipeline) to inpaint specific regions of an image based on a text prompt and mask.
+Use [ZImageInpaintPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/z_image#diffusers.ZImageInpaintPipeline) to inpaint specific regions of an image based on a text prompt and mask.
 
 ```python
 import torch
@@ -51,7 +51,7 @@ from diffusers import ZImageInpaintPipeline
 from diffusers.utils import load_image
 
 pipe = ZImageInpaintPipeline.from_pretrained("Tongyi-MAI/Z-Image-Turbo", dtype=torch.bfloat16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 url = "https://raw.githubusercontent.com/CompVis/stable-diffusion/main/assets/stable-samples/img2img/sketch-mountains-input.jpg"
 init_image = load_image(url).resize((1024, 1024))
@@ -82,7 +82,7 @@ image.save("zimage_inpaint.png")
 diffusers.ZImagePipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: PreTrainedModel, tokenizer: AutoTokenizer, transformer: ZImageTransformer2DModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/z_image/pipeline_z_image.py#L141)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/z_image/pipeline_z_image.py#L141)
 
 #### __call__[[diffusers.ZImagePipeline.__call__]]
 
@@ -90,7 +90,7 @@ diffusers.ZImagePipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: Autoen
 __call__(prompt: str | list[str] = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, sigmas: list[float] | None = None, guidance_scale: float = 5.0, cfg_normalization: bool = False, cfg_truncation: float = 1.0, negative_prompt: str | list[str] | None = None, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: list[torch.FloatTensor] | None = None, negative_prompt_embeds: list[torch.FloatTensor] | None = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/z_image/pipeline_z_image.py#L297)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/z_image/pipeline_z_image.py#L297)
 
 **Parameters:**
 
@@ -176,19 +176,19 @@ Examples:
 diffusers.ZImageImg2ImgPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: PreTrainedModel, tokenizer: AutoTokenizer, transformer: ZImageTransformer2DModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/z_image/pipeline_z_image_img2img.py#L154)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/z_image/pipeline_z_image_img2img.py#L154)
 
 **Parameters:**
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
 text_encoder (`PreTrainedModel`) : A text encoder model to encode text prompts.
 
 tokenizer (`AutoTokenizer`) : A tokenizer to tokenize text prompts.
 
-transformer ([ZImageTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/z_image_transformer2d#diffusers.ZImageTransformer2DModel)) : A ZImage transformer model to denoise the encoded image latents.
+transformer ([ZImageTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/z_image_transformer2d#diffusers.ZImageTransformer2DModel)) : A ZImage transformer model to denoise the encoded image latents.
 
 The ZImage pipeline for image-to-image generation.
 
@@ -198,7 +198,7 @@ The ZImage pipeline for image-to-image generation.
 __call__(prompt: str | list[str] = None, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, strength: float = 0.6, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, sigmas: list[float] | None = None, guidance_scale: float = 5.0, cfg_normalization: bool = False, cfg_truncation: float = 1.0, negative_prompt: str | list[str] | None = None, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: list[torch.FloatTensor] | None = None, negative_prompt_embeds: list[torch.FloatTensor] | None = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/z_image/pipeline_z_image_img2img.py#L369)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/z_image/pipeline_z_image_img2img.py#L369)
 
 **Parameters:**
 
@@ -286,19 +286,19 @@ Examples:
 diffusers.ZImageInpaintPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: PreTrainedModel, tokenizer: AutoTokenizer, transformer: ZImageTransformer2DModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/z_image/pipeline_z_image_inpaint.py#L170)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/z_image/pipeline_z_image_inpaint.py#L170)
 
 **Parameters:**
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
 text_encoder (`PreTrainedModel`) : A text encoder model to encode text prompts.
 
 tokenizer (`AutoTokenizer`) : A tokenizer to tokenize text prompts.
 
-transformer ([ZImageTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/z_image_transformer2d#diffusers.ZImageTransformer2DModel)) : A ZImage transformer model to denoise the encoded image latents.
+transformer ([ZImageTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/z_image_transformer2d#diffusers.ZImageTransformer2DModel)) : A ZImage transformer model to denoise the encoded image latents.
 
 The ZImage pipeline for inpainting.
 
@@ -308,7 +308,7 @@ The ZImage pipeline for inpainting.
 __call__(prompt: typing.Union[str, typing.List[str]] = None, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, mask_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, masked_image_latents: typing.Optional[torch.FloatTensor] = None, strength: float = 1.0, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, sigmas: list[float] | None = None, guidance_scale: float = 5.0, cfg_normalization: bool = False, cfg_truncation: float = 1.0, negative_prompt: typing.Union[str, typing.List[str], NoneType] = None, num_images_per_prompt: typing.Optional[int] = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[typing.List[torch.FloatTensor]] = None, negative_prompt_embeds: typing.Optional[typing.List[torch.FloatTensor]] = None, output_type: str = 'pil', return_dict: bool = True, joint_attention_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int, typing.Dict], NoneType]] = None, callback_on_step_end_tensor_inputs: typing.List[str] = ['latents'], max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/z_image/pipeline_z_image_inpaint.py#L535)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/z_image/pipeline_z_image_inpaint.py#L535)
 
 **Parameters:**
 
@@ -407,7 +407,7 @@ Examples:
 prepare_latents(image, timestep, batch_size, num_channels_latents, height, width, dtype, device, generator, latents = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/z_image/pipeline_z_image_inpaint.py#L386)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/z_image/pipeline_z_image_inpaint.py#L386)
 
 **Returns:** `Tuple of (latents, noise, image_latents) where`
 
@@ -423,7 +423,7 @@ Prepare latents for inpainting, returning noise and image_latents for blending.
 prepare_mask_latents(mask, masked_image, batch_size, height, width, dtype, device, generator)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/z_image/pipeline_z_image_inpaint.py#L318)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/z_image/pipeline_z_image_inpaint.py#L318)
 
 **Parameters:**
 
@@ -450,4 +450,4 @@ Tuple of (mask, masked_image_latents) prepared for the denoising loop.
 Prepare mask and masked image latents for inpainting.
 
 ### Stable Audio 3
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/stable_audio_3.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_audio_3.md

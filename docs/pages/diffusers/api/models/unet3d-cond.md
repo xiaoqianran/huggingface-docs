@@ -14,7 +14,7 @@ The abstract from the paper is:
 diffusers.UNet3DConditionModel(sample_size: int | None = None, in_channels: int = 4, out_channels: int = 4, down_block_types: tuple = ('CrossAttnDownBlock3D', 'CrossAttnDownBlock3D', 'CrossAttnDownBlock3D', 'DownBlock3D'), up_block_types: tuple = ('UpBlock3D', 'CrossAttnUpBlock3D', 'CrossAttnUpBlock3D', 'CrossAttnUpBlock3D'), block_out_channels: tuple = (320, 640, 1280, 1280), layers_per_block: int = 2, downsample_padding: int = 1, mid_block_scale_factor: float = 1, act_fn: str = 'silu', norm_num_groups: int | None = 32, norm_eps: float = 1e-05, cross_attention_dim: int = 1024, attention_head_dim: int | tuple[int] = 64, num_attention_heads: int | tuple[int] | None = None, time_cond_proj_dim: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_3d_condition.py#L62)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_3d_condition.py#L62)
 
 **Parameters:**
 
@@ -53,7 +53,7 @@ time_cond_proj_dim (`int`, *optional*, defaults to `None`) : The dimension of `c
 A conditional 3D UNet model that takes a noisy sample, conditional state, and a timestep and returns a sample
 shaped output.
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
+This model inherits from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
 for all models (such as downloading or saving).
 
 #### disable_freeu[[diffusers.UNet3DConditionModel.disable_freeu]]
@@ -62,7 +62,7 @@ for all models (such as downloading or saving).
 disable_freeu()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_3d_condition.py#L437)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_3d_condition.py#L437)
 
 Disables the FreeU mechanism.
 
@@ -72,7 +72,7 @@ Disables the FreeU mechanism.
 enable_forward_chunking(chunk_size: int | None = None, dim: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_3d_condition.py#L355)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_3d_condition.py#L355)
 
 **Parameters:**
 
@@ -89,7 +89,7 @@ chunking](https://huggingface.co/blog/reformer#2-chunked-feed-forward-layers).
 enable_freeu(s1, s2, b1, b2)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_3d_condition.py#L412)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_3d_condition.py#L412)
 
 **Parameters:**
 
@@ -114,7 +114,7 @@ are known to work well for different pipelines such as Stable Diffusion v1, v2, 
 forward(sample: Tensor, timestep: typing.Union[torch.Tensor, float, int], encoder_hidden_states: Tensor, class_labels: typing.Optional[torch.Tensor] = None, timestep_cond: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, cross_attention_kwargs: dict[str, typing.Any] | None = None, down_block_additional_residuals: tuple[torch.Tensor] | None = None, mid_block_additional_residual: typing.Optional[torch.Tensor] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_3d_condition.py#L477)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_3d_condition.py#L477)
 
 **Parameters:**
 
@@ -136,16 +136,16 @@ down_block_additional_residuals : (`tuple` of `torch.Tensor`, *optional*): A tup
 
 mid_block_additional_residual : (`torch.Tensor`, *optional*): A tensor that if specified is added to the residual of the middle unet block.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [UNet3DConditionOutput](/docs/diffusers/v0.40.0/en/api/models/unet3d-cond#diffusers.models.unets.unet_3d_condition.UNet3DConditionOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [UNet3DConditionOutput](/docs/diffusers/v0.41.0/en/api/models/unet3d-cond#diffusers.models.unets.unet_3d_condition.UNet3DConditionOutput) instead of a plain tuple.
 
 cross_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttnProcessor`.
 
-**Returns:** [UNet3DConditionOutput](/docs/diffusers/v0.40.0/en/api/models/unet3d-cond#diffusers.models.unets.unet_3d_condition.UNet3DConditionOutput) or `tuple`
+**Returns:** [UNet3DConditionOutput](/docs/diffusers/v0.41.0/en/api/models/unet3d-cond#diffusers.models.unets.unet_3d_condition.UNet3DConditionOutput) or `tuple`
 
-If `return_dict` is True, an [UNet3DConditionOutput](/docs/diffusers/v0.40.0/en/api/models/unet3d-cond#diffusers.models.unets.unet_3d_condition.UNet3DConditionOutput) is returned,
+If `return_dict` is True, an [UNet3DConditionOutput](/docs/diffusers/v0.41.0/en/api/models/unet3d-cond#diffusers.models.unets.unet_3d_condition.UNet3DConditionOutput) is returned,
 otherwise a `tuple` is returned where the first element is the sample tensor.
 
-The [UNet3DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet3d-cond#diffusers.UNet3DConditionModel) forward method.
+The [UNet3DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet3d-cond#diffusers.UNet3DConditionModel) forward method.
 
 #### fuse_qkv_projections[[diffusers.UNet3DConditionModel.fuse_qkv_projections]]
 
@@ -153,7 +153,7 @@ The [UNet3DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet3d-cond#dif
 fuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_3d_condition.py#L446)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_3d_condition.py#L446)
 
 Enables fused QKV projections. For self-attention modules, all projection matrices (i.e., query, key, value)
 are fused. For cross-attention modules, key and value projection matrices are fused.
@@ -166,7 +166,7 @@ are fused. For cross-attention modules, key and value projection matrices are fu
 set_attention_slice(slice_size: str | int | list[int])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_3d_condition.py#L290)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_3d_condition.py#L290)
 
 **Parameters:**
 
@@ -183,7 +183,7 @@ several steps. This is useful for saving some memory in exchange for a small dec
 set_default_attn_processor()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_3d_condition.py#L396)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_3d_condition.py#L396)
 
 Disables custom attention processors and sets the default attention implementation.
 
@@ -193,7 +193,7 @@ Disables custom attention processors and sets the default attention implementati
 unfuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_3d_condition.py#L468)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_3d_condition.py#L468)
 
 Disables the fused QKV projection if enabled.
 
@@ -207,13 +207,13 @@ Disables the fused QKV projection if enabled.
 diffusers.models.unets.unet_3d_condition.UNet3DConditionOutput(sample: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_3d_condition.py#L50)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_3d_condition.py#L50)
 
 **Parameters:**
 
 sample (`torch.Tensor` of shape `(batch_size, num_channels, num_frames, height, width)`) : The hidden states output conditioned on `encoder_hidden_states` input. Output of last layer of model.
 
-The output of [UNet3DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet3d-cond#diffusers.UNet3DConditionModel).
+The output of [UNet3DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet3d-cond#diffusers.UNet3DConditionModel).
 
 ### AutoencoderRAE
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoder_rae.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_rae.md

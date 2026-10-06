@@ -196,7 +196,7 @@ import torch
 from diffusers import StableDiffusionInstructPix2PixPipeline
 from diffusers.utils import load_image
 
-pipeline = StableDiffusionInstructPix2PixPipeline.from_pretrained("your_cool_model", dtype=torch.float16).to("cuda")
+pipeline = StableDiffusionInstructPix2PixPipeline.from_pretrained("your_cool_model", dtype=torch.float16).to("cuda")  # or "mps", "xpu", "cpu"
 generator = torch.Generator("cuda").manual_seed(0)
 
 image = load_image("https://huggingface.co/datasets/sayakpaul/sample-datasets/resolve/main/test_pix2pix_4.png")
@@ -231,4 +231,4 @@ Congratulations on training your own InstructPix2Pix model! 🥳 To learn more a
 - Read the [Instruction-tuning Stable Diffusion with InstructPix2Pix](https://huggingface.co/blog/instruction-tuning-sd) blog post to learn more about some experiments we've done with InstructPix2Pix, dataset preparation, and results for different instructions.
 
 ### Adapt a model to a new task
-https://huggingface.co/docs/diffusers/v0.40.0/training/adapt_a_model.md
+https://huggingface.co/docs/diffusers/v0.41.0/training/adapt_a_model.md

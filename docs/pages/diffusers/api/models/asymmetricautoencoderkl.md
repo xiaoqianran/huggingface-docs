@@ -28,7 +28,7 @@ mask_image = load_image(mask_url).resize((512, 512))
 
 pipe = StableDiffusionInpaintPipeline.from_pretrained("stable-diffusion-v1-5/stable-diffusion-inpainting")
 pipe.vae = AsymmetricAutoencoderKL.from_pretrained("cross-attention/asymmetric-autoencoder-kl-x-1-5")
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 image = pipe(prompt=prompt, image=original_image, mask_image=mask_image).images[0]
 make_image_grid([original_image, mask_image, image], rows=1, cols=3)
@@ -42,7 +42,7 @@ make_image_grid([original_image, mask_image, image], rows=1, cols=3)
 diffusers.AsymmetricAutoencoderKL(in_channels: int = 3, out_channels: int = 3, down_block_types: tuple = ('DownEncoderBlock2D',), down_block_out_channels: tuple = (64,), layers_per_down_block: int = 1, up_block_types: tuple = ('UpDecoderBlock2D',), up_block_out_channels: tuple = (64,), layers_per_up_block: int = 1, act_fn: str = 'silu', latent_channels: int = 4, norm_num_groups: int = 32, sample_size: int = 32, scaling_factor: float = 0.18215)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_asym_kl.py#L24)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_asym_kl.py#L24)
 
 **Parameters:**
 
@@ -75,7 +75,7 @@ scaling_factor (`float`, *optional*, defaults to 0.18215) : The component-wise s
 Designing a Better Asymmetric VQGAN for StableDiffusion https://huggingface.co/papers/2306.04632 . A VAE model with
 KL loss for encoding images into latents and decoding latent representations into images.
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
+This model inherits from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
 for all models (such as downloading or saving).
 
 #### forward[[diffusers.AsymmetricAutoencoderKL.forward]]
@@ -84,7 +84,7 @@ for all models (such as downloading or saving).
 forward(sample: Tensor, mask: typing.Optional[torch.Tensor] = None, sample_posterior: bool = False, return_dict: bool = True, generator: typing.Optional[torch.Generator] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_asym_kl.py#L153)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_asym_kl.py#L153)
 
 **Parameters:**
 
@@ -110,7 +110,7 @@ If `return_dict` is True, a `DecoderOutput` is returned, otherwise a plain `tupl
 diffusers.models.modeling_outputs.AutoencoderKLOutput(latent_dist: DiagonalGaussianDistribution)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L7)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/modeling_outputs.py#L7)
 
 **Parameters:**
 
@@ -126,7 +126,7 @@ Output of AutoencoderKL encoding method.
 diffusers.models.autoencoders.vae.DecoderOutput(sample: Tensor, commit_loss: typing.Optional[torch.FloatTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/vae.py#L46)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/vae.py#L49)
 
 **Parameters:**
 
@@ -135,4 +135,4 @@ sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) : T
 Output of decoding method.
 
 ### ControlNetModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/controlnet.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/controlnet.md

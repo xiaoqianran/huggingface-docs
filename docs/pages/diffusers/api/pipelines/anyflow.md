@@ -29,7 +29,7 @@ from diffusers.utils import export_to_video
 
 pipe = AnyFlowPipeline.from_pretrained(
     "nvidia/AnyFlow-Wan2.1-T2V-1.3B-Diffusers", dtype=torch.bfloat16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt = (
     "An astronaut runs smoothly and appears almost weightless on the lunar surface, "
@@ -62,7 +62,7 @@ from diffusers.utils import export_to_video
 
 pipe = AnyFlowFARPipeline.from_pretrained(
     "nvidia/AnyFlow-FAR-Wan2.1-1.3B-Diffusers", dtype=torch.bfloat16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt = (
     "An astronaut runs smoothly and appears almost weightless on the lunar surface, "
@@ -80,7 +80,7 @@ from diffusers.utils import export_to_video, load_image
 
 pipe = AnyFlowFARPipeline.from_pretrained(
     "nvidia/AnyFlow-FAR-Wan2.1-1.3B-Diffusers", dtype=torch.bfloat16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 # Example conditioning image from the AnyFlow repo.
 first_frame = load_image(
@@ -111,7 +111,7 @@ from diffusers.utils import export_to_video, load_video
 
 pipe = AnyFlowFARPipeline.from_pretrained(
     "nvidia/AnyFlow-FAR-Wan2.1-1.3B-Diffusers", dtype=torch.bfloat16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 # Example conditioning clip from the AnyFlow repo — take the first 9 frames (3 latent frames at VAE temporal stride 4).
 context_frames = load_video(
@@ -151,7 +151,7 @@ export_to_video(video, "anyflow_far_v2v.mp4", fps=16)
 diffusers.AnyFlowPipeline(tokenizer: AutoTokenizer, text_encoder: UMT5EncoderModel, transformer: AnyFlowTransformer3DModel, vae: AutoencoderKLWan, scheduler: FlowMapEulerDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/anyflow/pipeline_anyflow.py#L80)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/anyflow/pipeline_anyflow.py#L80)
 
 **Parameters:**
 
@@ -186,7 +186,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(prompt: typing.Union[str, typing.List[str]] = None, video: typing.Optional[torch.Tensor] = None, video_latents: typing.Optional[torch.Tensor] = None, negative_prompt: typing.Union[str, typing.List[str]] = None, height: int = 480, width: int = 832, num_frames: int = 81, num_inference_steps: int = 50, sigmas: typing.Optional[typing.List[float]] = None, timesteps: typing.Optional[typing.List[float]] = None, guidance_scale: float = 1.0, num_videos_per_prompt: typing.Optional[int] = 1, generator: typing.Union[torch.Generator, typing.List[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: typing.Optional[str] = 'np', return_dict: bool = True, attention_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None, callback_on_step_end: typing.Union[typing.Callable[[int, int, typing.Dict], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: typing.List[str] = ['latents'], max_sequence_length: int = 512, use_mean_velocity: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/anyflow/pipeline_anyflow.py#L379)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/anyflow/pipeline_anyflow.py#L380)
 
 **Parameters:**
 
@@ -264,7 +264,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/anyflow/pipeline_anyflow.py#L179)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/anyflow/pipeline_anyflow.py#L180)
 
 **Parameters:**
 
@@ -292,7 +292,7 @@ Encodes the prompt into text encoder hidden states.
 encode_video(video: Tensor, height: int, width: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/anyflow/pipeline_anyflow.py#L359)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/anyflow/pipeline_anyflow.py#L360)
 
 Encode a pixel-space video into AnyFlow's latent layout.
 
@@ -309,7 +309,7 @@ conditioning frames.
 diffusers.AnyFlowFARPipeline(tokenizer: AutoTokenizer, text_encoder: UMT5EncoderModel, transformer: AnyFlowFARTransformer3DModel, vae: AutoencoderKLWan, scheduler: FlowMapEulerDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/anyflow/pipeline_anyflow_far.py#L92)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/anyflow/pipeline_anyflow_far.py#L92)
 
 **Parameters:**
 
@@ -350,7 +350,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(prompt: typing.Union[str, typing.List[str]] = None, video: typing.Optional[torch.Tensor] = None, video_latents: typing.Optional[torch.Tensor] = None, negative_prompt: typing.Union[str, typing.List[str]] = None, height: int = 480, width: int = 832, num_frames: int = 81, num_inference_steps: int = 50, sigmas: typing.Optional[typing.List[float]] = None, timesteps: typing.Optional[typing.List[float]] = None, guidance_scale: float = 1.0, num_videos_per_prompt: typing.Optional[int] = 1, generator: typing.Union[torch.Generator, typing.List[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: typing.Optional[str] = 'np', return_dict: bool = True, attention_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None, callback_on_step_end: typing.Union[typing.Callable[[int, int, typing.Dict], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: typing.List[str] = ['latents'], max_sequence_length: int = 512, use_mean_velocity: bool = True, use_kv_cache: bool = True, chunk_partition: typing.Optional[typing.List[int]] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/anyflow/pipeline_anyflow_far.py#L447)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/anyflow/pipeline_anyflow_far.py#L448)
 
 **Parameters:**
 
@@ -442,7 +442,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/anyflow/pipeline_anyflow_far.py#L196)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/anyflow/pipeline_anyflow_far.py#L197)
 
 **Parameters:**
 
@@ -470,7 +470,7 @@ Encodes the prompt into text encoder hidden states.
 encode_video(video: Tensor, height: int, width: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/anyflow/pipeline_anyflow_far.py#L379)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/anyflow/pipeline_anyflow_far.py#L380)
 
 Encode a pixel-space video into AnyFlow's latent layout.
 
@@ -487,7 +487,7 @@ conditioning frames.
 diffusers.pipelines.anyflow.pipeline_output.AnyFlowPipelineOutput(frames: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/anyflow/pipeline_output.py#L23)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/anyflow/pipeline_output.py#L23)
 
 **Parameters:**
 
@@ -496,4 +496,4 @@ frames (`torch.Tensor`, `np.ndarray`, or list[list[PIL.Image.Image]]) : list of 
 Output class for AnyFlow pipelines.
 
 ### AutoPipeline
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/auto_pipeline.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/auto_pipeline.md

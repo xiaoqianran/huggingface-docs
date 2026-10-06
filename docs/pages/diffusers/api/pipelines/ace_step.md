@@ -2,7 +2,7 @@
 
 ACE-Step 1.5 was introduced in [ACE-Step 1.5: Pushing the Boundaries of Open-Source Music Generation](https://arxiv.org/abs/2602.00744) by the ACE-Step Team (ACE Studio and StepFun). It is an open-source music foundation model that generates commercial-grade stereo music with lyrics from text prompts.
 
-ACE-Step 1.5 generates variable-length stereo audio at 48 kHz (10 seconds to 10 minutes) from text prompts and optional lyrics. The full system pairs a Language Model planner with a Diffusion Transformer (DiT) synthesizer; this pipeline wraps the DiT half of that stack, and consists of three components: an [AutoencoderOobleck](/docs/diffusers/v0.40.0/en/api/models/autoencoder_oobleck#diffusers.AutoencoderOobleck) VAE that compresses waveforms into 25 Hz stereo latents, a Qwen3-based text encoder for prompt and lyric conditioning, and an [AceStepTransformer1DModel](/docs/diffusers/v0.40.0/en/api/models/ace_step_transformer#diffusers.AceStepTransformer1DModel) DiT that operates in the VAE latent space using flow matching.
+ACE-Step 1.5 generates variable-length stereo audio at 48 kHz (10 seconds to 10 minutes) from text prompts and optional lyrics. The full system pairs a Language Model planner with a Diffusion Transformer (DiT) synthesizer; this pipeline wraps the DiT half of that stack, and consists of three components: an [AutoencoderOobleck](/docs/diffusers/v0.41.0/en/api/models/autoencoder_oobleck#diffusers.AutoencoderOobleck) VAE that compresses waveforms into 25 Hz stereo latents, a Qwen3-based text encoder for prompt and lyric conditioning, and an [AceStepTransformer1DModel](/docs/diffusers/v0.41.0/en/api/models/ace_step_transformer#diffusers.AceStepTransformer1DModel) DiT that operates in the VAE latent space using flow matching.
 
 The model supports 50+ languages for lyrics — including English, Chinese, Japanese, Korean, French, German, Spanish, Italian, Portuguese, and Russian — and runs on consumer GPUs (under 4 GB of VRAM when offloaded).
 
@@ -43,7 +43,7 @@ import soundfile as sf
 from diffusers import AceStepPipeline
 
 pipe = AceStepPipeline.from_pretrained("ACE-Step/acestep-v15-xl-turbo-diffusers", dtype=torch.bfloat16)
-pipe = pipe.to("cuda")
+pipe = pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 audio = pipe(
     prompt="A beautiful piano piece with soft melodies and gentle rhythm",
@@ -62,25 +62,25 @@ sf.write("output.wav", audio[0].T.cpu().float().numpy(), pipe.sample_rate)
 diffusers.AceStepPipeline(vae: AutoencoderOobleck, text_encoder: PreTrainedModel, tokenizer: TokenizersBackend, transformer: AceStepTransformer1DModel, condition_encoder: AceStepConditionEncoder, scheduler: FlowMatchEulerDiscreteScheduler, audio_tokenizer: typing.Optional[diffusers.pipelines.ace_step.modeling_ace_step.AceStepAudioTokenizer] = None, audio_token_detokenizer: typing.Optional[diffusers.pipelines.ace_step.modeling_ace_step.AceStepAudioTokenDetokenizer] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ace_step/pipeline_ace_step.py#L133)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ace_step/pipeline_ace_step.py#L133)
 
 **Parameters:**
 
-vae ([AutoencoderOobleck](/docs/diffusers/v0.40.0/en/api/models/autoencoder_oobleck#diffusers.AutoencoderOobleck)) : Variational Auto-Encoder (VAE) model to encode and decode audio waveforms to and from latent representations.
+vae ([AutoencoderOobleck](/docs/diffusers/v0.41.0/en/api/models/autoencoder_oobleck#diffusers.AutoencoderOobleck)) : Variational Auto-Encoder (VAE) model to encode and decode audio waveforms to and from latent representations.
 
-text_encoder ([AutoModel](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel)) : Text encoder model (e.g., Qwen3-Embedding-0.6B) for encoding text prompts and lyrics.
+text_encoder ([AutoModel](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/auto#transformers.AutoModel)) : Text encoder model (e.g., Qwen3-Embedding-0.6B) for encoding text prompts and lyrics.
 
-tokenizer ([AutoTokenizer](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer)) : Tokenizer for the text encoder.
+tokenizer ([AutoTokenizer](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/auto#transformers.AutoTokenizer)) : Tokenizer for the text encoder.
 
-transformer ([AceStepTransformer1DModel](/docs/diffusers/v0.40.0/en/api/models/ace_step_transformer#diffusers.AceStepTransformer1DModel)) : The Diffusion Transformer (DiT) model for denoising audio latents.
+transformer ([AceStepTransformer1DModel](/docs/diffusers/v0.41.0/en/api/models/ace_step_transformer#diffusers.AceStepTransformer1DModel)) : The Diffusion Transformer (DiT) model for denoising audio latents.
 
 condition_encoder (`AceStepConditionEncoder`) : Condition encoder that combines text, lyric, and timbre embeddings for cross-attention.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : Flow-matching Euler scheduler. ACE-Step feeds the DiT timesteps in `[0, 1]`, so the scheduler is configured with `num_train_timesteps=1` and `shift=1.0` — the pipeline computes its shifted / turbo sigma schedule itself and passes it via `set_timesteps(sigmas=...)`.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : Flow-matching Euler scheduler. ACE-Step feeds the DiT timesteps in `[0, 1]`, so the scheduler is configured with `num_train_timesteps=1` and `shift=1.0` — the pipeline computes its shifted / turbo sigma schedule itself and passes it via `set_timesteps(sigmas=...)`.
 
 Pipeline for text-to-music generation using ACE-Step 1.5.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 The pipeline uses flow matching with a custom timestep schedule for the diffusion process. The turbo model variant
@@ -100,7 +100,7 @@ Supported task types:
 __call__(prompt: typing.Union[str, typing.List[str]] = None, lyrics: typing.Union[str, typing.List[str]] = '', audio_duration: float = 60.0, vocal_language: typing.Union[str, typing.List[str]] = 'en', num_inference_steps: int = 8, guidance_scale: float = 7.0, shift: float = 3.0, generator: typing.Union[torch.Generator, typing.List[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: typing.Optional[str] = 'pt', return_dict: bool = True, callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: typing.Optional[int] = 1, callback_on_step_end: typing.Optional[typing.Callable[..., dict]] = None, callback_on_step_end_tensor_inputs: typing.List[str] = ('latents',), instruction: typing.Optional[str] = None, max_text_length: int = 256, max_lyric_length: int = 2048, bpm: typing.Optional[int] = None, keyscale: typing.Optional[str] = None, timesignature: typing.Optional[str] = None, task_type: str = 'text2music', track_name: typing.Optional[str] = None, complete_track_classes: typing.Optional[typing.List[str]] = None, src_audio: typing.Optional[torch.Tensor] = None, reference_audio: typing.Optional[torch.Tensor] = None, audio_codes: typing.Union[str, typing.List[str], NoneType] = None, repainting_start: typing.Optional[float] = None, repainting_end: typing.Optional[float] = None, audio_cover_strength: float = 1.0, cfg_interval_start: float = 0.0, cfg_interval_end: float = 1.0, timesteps: typing.Optional[typing.List[float]] = None, attention_kwargs: typing.Optional[dict] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ace_step/pipeline_ace_step.py#L784)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ace_step/pipeline_ace_step.py#L784)
 
 **Parameters:**
 
@@ -172,7 +172,7 @@ timesteps (`List[float]`, *optional*) : Custom timestep schedule. If provided, o
 
 attention_kwargs (`dict`, *optional*) : A kwargs dictionary passed along to the `AttentionProcessor`. Used to pass the LoRA scale via `{"scale": float}`.
 
-**Returns:** [AudioPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/audioldm2#diffusers.AudioPipelineOutput) or `tuple`
+**Returns:** [AudioPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/audioldm2#diffusers.AudioPipelineOutput) or `tuple`
 
 If `return_dict` is `True`, an `AudioPipelineOutput` is returned, otherwise a tuple with the generated
 audio.
@@ -234,7 +234,7 @@ Examples:
 check_inputs(prompt: typing.Union[str, typing.List[str]], lyrics: typing.Union[str, typing.List[str]], task_type: str, num_inference_steps: int, guidance_scale: float, shift: float, audio_cover_strength: float, cfg_interval_start: float, cfg_interval_end: float, repainting_start: typing.Optional[float], repainting_end: typing.Optional[float])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ace_step/pipeline_ace_step.py#L232)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ace_step/pipeline_ace_step.py#L232)
 
 Validate user-facing arguments before we start allocating noise tensors.
 
@@ -244,7 +244,7 @@ Validate user-facing arguments before we start allocating noise tensors.
 encode_prompt(prompt: typing.Union[str, typing.List[str]], lyrics: typing.Union[str, typing.List[str]], device: device, vocal_language: typing.Union[str, typing.List[str]] = 'en', audio_duration: float = 60.0, instruction: typing.Optional[str] = None, bpm: typing.Optional[int] = None, keyscale: typing.Optional[str] = None, timesignature: typing.Optional[str] = None, max_text_length: int = 256, max_lyric_length: int = 2048)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ace_step/pipeline_ace_step.py#L401)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ace_step/pipeline_ace_step.py#L401)
 
 **Parameters:**
 
@@ -286,7 +286,7 @@ encoder handles the contextual encoding.
 prepare_latents(batch_size: int, audio_duration: float, dtype: dtype, device: device, generator: typing.Union[torch.Generator, typing.List[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ace_step/pipeline_ace_step.py#L506)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ace_step/pipeline_ace_step.py#L506)
 
 **Parameters:**
 
@@ -314,7 +314,7 @@ Prepare initial noise latents for the flow matching process.
 prepare_reference_audio_latents(reference_audio: Tensor, batch_size: int, device: device, dtype: dtype)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ace_step/pipeline_ace_step.py#L580)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ace_step/pipeline_ace_step.py#L580)
 
 **Parameters:**
 
@@ -341,7 +341,7 @@ back), encoded through the VAE, and then transposed for the timbre encoder.
 prepare_src_latents(device: device, dtype: dtype, batch_size: int = 1, src_audio: typing.Optional[torch.Tensor] = None, audio_codes: typing.Union[str, typing.List[str], NoneType] = None, latent_length: typing.Optional[int] = None, task_type: str = 'text2music')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ace_step/pipeline_ace_step.py#L633)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ace_step/pipeline_ace_step.py#L633)
 
 **Parameters:**
 
@@ -366,4 +366,4 @@ Tuple of `(src_latents, latent_length)` where `src_latents` has shape `[batch, T
 Prepare source latents for text-to-music and audio-to-audio tasks.
 
 ### AudioLDM 2
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/audioldm2.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/audioldm2.md

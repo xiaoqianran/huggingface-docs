@@ -14,7 +14,7 @@ The abstract from the paper is:
 diffusers.PriorTransformer(num_attention_heads: int = 32, attention_head_dim: int = 64, num_layers: int = 20, embedding_dim: int = 768, num_embeddings = 77, additional_embeddings = 4, dropout: float = 0.0, time_embed_act_fn: str = 'silu', norm_in_type: str | None = None, embedding_proj_norm_type: str | None = None, encoder_hid_proj_type: str | None = 'linear', added_emb_type: str | None = 'prd', time_embed_dim: int | None = None, embedding_proj_dim: int | None = None, clip_embed_dim: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/prior_transformer.py#L34)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/prior_transformer.py#L34)
 
 **Parameters:**
 
@@ -56,7 +56,7 @@ A Prior Transformer model.
 forward(hidden_states, timestep: typing.Union[torch.Tensor, float, int], proj_embedding: Tensor, encoder_hidden_states: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.BoolTensor] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/prior_transformer.py#L183)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/prior_transformer.py#L183)
 
 **Parameters:**
 
@@ -70,14 +70,14 @@ encoder_hidden_states (`torch.Tensor` of shape `(batch_size, num_embeddings, emb
 
 attention_mask (`torch.BoolTensor` of shape `(batch_size, num_embeddings)`) : Text mask for the text embeddings.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [PriorTransformerOutput](/docs/diffusers/v0.40.0/en/api/models/prior_transformer#diffusers.models.transformers.prior_transformer.PriorTransformerOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [PriorTransformerOutput](/docs/diffusers/v0.41.0/en/api/models/prior_transformer#diffusers.models.transformers.prior_transformer.PriorTransformerOutput) instead of a plain tuple.
 
-**Returns:** [PriorTransformerOutput](/docs/diffusers/v0.40.0/en/api/models/prior_transformer#diffusers.models.transformers.prior_transformer.PriorTransformerOutput) or `tuple`
+**Returns:** [PriorTransformerOutput](/docs/diffusers/v0.41.0/en/api/models/prior_transformer#diffusers.models.transformers.prior_transformer.PriorTransformerOutput) or `tuple`
 
-If return_dict is True, a [PriorTransformerOutput](/docs/diffusers/v0.40.0/en/api/models/prior_transformer#diffusers.models.transformers.prior_transformer.PriorTransformerOutput) is
+If return_dict is True, a [PriorTransformerOutput](/docs/diffusers/v0.41.0/en/api/models/prior_transformer#diffusers.models.transformers.prior_transformer.PriorTransformerOutput) is
 returned, otherwise a tuple is returned where the first element is the sample tensor.
 
-The [PriorTransformer](/docs/diffusers/v0.40.0/en/api/models/prior_transformer#diffusers.PriorTransformer) forward method.
+The [PriorTransformer](/docs/diffusers/v0.41.0/en/api/models/prior_transformer#diffusers.PriorTransformer) forward method.
 
 #### set_default_attn_processor[[diffusers.PriorTransformer.set_default_attn_processor]]
 
@@ -85,7 +85,7 @@ The [PriorTransformer](/docs/diffusers/v0.40.0/en/api/models/prior_transformer#d
 set_default_attn_processor()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/prior_transformer.py#L168)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/prior_transformer.py#L168)
 
 Disables custom attention processors and sets the default attention implementation.
 
@@ -97,13 +97,13 @@ Disables custom attention processors and sets the default attention implementati
 diffusers.models.transformers.prior_transformer.PriorTransformerOutput(predicted_image_embedding: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/prior_transformer.py#L22)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/prior_transformer.py#L22)
 
 **Parameters:**
 
 predicted_image_embedding (`torch.Tensor` of shape `(batch_size, embedding_dim)`) : The predicted CLIP image embedding conditioned on the CLIP text embedding input.
 
-The output of [PriorTransformer](/docs/diffusers/v0.40.0/en/api/models/prior_transformer#diffusers.PriorTransformer).
+The output of [PriorTransformer](/docs/diffusers/v0.41.0/en/api/models/prior_transformer#diffusers.PriorTransformer).
 
 ### HunyuanImageTransformer2DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/hunyuanimage_transformer_2d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/hunyuanimage_transformer_2d.md

@@ -596,5 +596,5 @@ This returns the size of the dataset, and for every subset and split:
 }
 ```
 
-### PySpark
-https://huggingface.co/docs/dataset-viewer/pyspark.md
+### Preview a dataset
+https://huggingface.co/docs/dataset-viewer/first_rows.md

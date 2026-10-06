@@ -8,7 +8,7 @@
 diffusers.ComponentSpec(name: str | None = None, type_hint: typing.Optional[typing.Type] = None, description: str | None = None, config: diffusers.configuration_utils.FrozenDict | None = None, pretrained_model_name_or_path: str | list[str] | None = None, subfolder: str | None = '', variant: str | None = None, revision: str | None = None, default_creation_method: typing.Literal['from_config', 'from_pretrained'] = 'from_pretrained', repo: str | list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline_utils.py#L98)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline_utils.py#L98)
 
 **Parameters:**
 
@@ -42,7 +42,7 @@ A component can be created in two ways:
 create(config: diffusers.configuration_utils.FrozenDict | dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline_utils.py#L267)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline_utils.py#L267)
 
 Create component using from_config with config.
 
@@ -52,7 +52,7 @@ Create component using from_config with config.
 decode_load_id(load_id: str)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline_utils.py#L228)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline_utils.py#L228)
 
 **Parameters:**
 
@@ -74,7 +74,7 @@ Decode a load_id string back into a dictionary of loading fields and values.
 from_component(name: str, component: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline_utils.py#L149)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline_utils.py#L149)
 
 **Parameters:**
 
@@ -102,7 +102,7 @@ Currently supports:
 load(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline_utils.py#L295)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline_utils.py#L295)
 
 Load component using from_pretrained.
 
@@ -112,7 +112,7 @@ Load component using from_pretrained.
 loading_fields()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline_utils.py#L209)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline_utils.py#L209)
 
 Return the names of all loading‐related fields (i.e. those whose field.metadata["loading"] is True).
 
@@ -124,7 +124,7 @@ Return the names of all loading‐related fields (i.e. those whose field.metadat
 diffusers.ConfigSpec(name: str, default: typing.Any, description: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline_utils.py#L360)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline_utils.py#L360)
 
 Specification for a pipeline configuration parameter.
 
@@ -136,11 +136,11 @@ Specification for a pipeline configuration parameter.
 diffusers.ComponentsManager()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/components_manager.py#L302)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/components_manager.py#L296)
 
 A central registry and management system for model components across multiple pipelines.
 
-[ComponentsManager](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) provides a unified way to register, track, and reuse model components (like UNet, VAE, text
+[ComponentsManager](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) provides a unified way to register, track, and reuse model components (like UNet, VAE, text
 encoders, etc.) across different modular pipelines. It includes features for duplicate detection, memory
 management, and component organization.
 
@@ -170,7 +170,7 @@ unet = cm.get_one(name="unet", collection="sdxl")
 add(name: str, component: Any, collection: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/components_manager.py#L399)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/components_manager.py#L393)
 
 **Parameters:**
 
@@ -193,7 +193,7 @@ Add a component to the ComponentsManager.
 disable_auto_cpu_offload()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/components_manager.py#L806)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/components_manager.py#L793)
 
 Disable automatic CPU offloading for all components.
 
@@ -203,7 +203,7 @@ Disable automatic CPU offloading for all components.
 enable_auto_cpu_offload(device: str | int | torch.device = None, memory_reserve_margin = '3GB', offload_strategy = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/components_manager.py#L708)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/components_manager.py#L699)
 
 **Parameters:**
 
@@ -233,7 +233,7 @@ holding one group at a time, so pass an `offload_strategy` that decides from the
 get_components_by_ids(ids: list[str], return_dict_with_names: bool | None = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/components_manager.py#L1115)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/components_manager.py#L1102)
 
 **Parameters:**
 
@@ -259,7 +259,7 @@ Get components by a list of IDs.
 get_components_by_names(names: list[str], collection: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/components_manager.py#L1148)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/components_manager.py#L1135)
 
 **Parameters:**
 
@@ -283,7 +283,7 @@ Get components by a list of names, optionally filtered by collection.
 get_ids(names: str | list[str] = None, collection: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/components_manager.py#L1097)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/components_manager.py#L1084)
 
 **Parameters:**
 
@@ -303,7 +303,7 @@ Get component IDs by a list of names, optionally filtered by collection.
 get_model_info(component_id: str, fields: str | list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/components_manager.py#L823)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/components_manager.py#L810)
 
 **Parameters:**
 
@@ -324,7 +324,7 @@ Get comprehensive information about a component.
 get_one(component_id: str | None = None, name: str | None = None, collection: str | None = None, load_id: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/components_manager.py#L1052)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/components_manager.py#L1039)
 
 **Parameters:**
 
@@ -355,7 +355,7 @@ Raises an error if multiple components match or none are found.
 remove(component_id: str = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/components_manager.py#L489)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/components_manager.py#L483)
 
 **Parameters:**
 
@@ -369,7 +369,7 @@ Remove a component from the ComponentsManager.
 remove_from_collection(component_id: str, collection: str)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/components_manager.py#L471)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/components_manager.py#L465)
 
 Remove a component from a collection.
 
@@ -379,7 +379,7 @@ Remove a component from a collection.
 search_components(names: str | None = None, collection: str | None = None, load_id: str | None = None, return_dict_with_names: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/components_manager.py#L522)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/components_manager.py#L513)
 
 **Parameters:**
 
@@ -404,7 +404,7 @@ Search components by name with simple pattern matching. Optionally filter by col
 set_offload_strategy(offload_strategy)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/components_manager.py#L790)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/components_manager.py#L777)
 
 **Parameters:**
 
@@ -416,7 +416,7 @@ Replace the offload strategy on all managed models. Only valid while auto CPU of
 
 #### diffusers.modular_pipelines.InsertableDict[[diffusers.modular_pipelines.InsertableDict]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/modular_pipeline_utils.py#L60)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/modular_pipeline_utils.py#L60)
 
 ### Guiders
-https://huggingface.co/docs/diffusers/v0.40.0/api/modular_diffusers/guiders.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/modular_diffusers/guiders.md

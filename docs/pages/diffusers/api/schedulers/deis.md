@@ -10,7 +10,7 @@ The abstract from the paper is:
 
 ## Tips
 
-It is recommended to set `solver_order` to 2 or 3, while `solver_order=1` is equivalent to [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler).
+It is recommended to set `solver_order` to 2 or 3, while `solver_order=1` is equivalent to [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler).
 
 Dynamic thresholding from [Imagen](https://huggingface.co/papers/2205.11487) is supported, and for pixel-space
 diffusion models, you can set `thresholding=True` to use the dynamic thresholding.
@@ -23,7 +23,7 @@ diffusion models, you can set `thresholding=True` to use the dynamic thresholdin
 diffusers.DEISMultistepScheduler(num_train_timesteps: int = 1000, beta_start: float = 0.0001, beta_end: float = 0.02, beta_schedule: typing.Literal['linear', 'scaled_linear', 'squaredcos_cap_v2'] = 'linear', trained_betas: numpy.ndarray | list[float] | None = None, solver_order: int = 2, prediction_type: typing.Literal['epsilon', 'sample', 'v_prediction', 'flow_prediction'] = 'epsilon', thresholding: bool = False, dynamic_thresholding_ratio: float = 0.995, sample_max_value: float = 1.0, algorithm_type: typing.Literal['deis'] = 'deis', solver_type: typing.Literal['logrho'] = 'logrho', lower_order_final: bool = True, use_karras_sigmas: bool = False, use_exponential_sigmas: bool = False, use_beta_sigmas: bool = False, use_flow_sigmas: bool = False, flow_shift: float = 1.0, timestep_spacing: typing.Literal['linspace', 'leading', 'trailing'] = 'linspace', steps_offset: int = 0, use_dynamic_shifting: bool = False, time_shift_type: typing.Literal['exponential'] = 'exponential')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L86)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L86)
 
 **Parameters:**
 
@@ -73,7 +73,7 @@ time_shift_type (`"exponential"`, defaults to `"exponential"`) : The type of tim
 
 `DEISMultistepScheduler` is a fast high order solver for diffusion ordinary differential equations (ODEs).
 
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
 methods the library implements for all schedulers such as loading and saving.
 
 #### add_noise[[diffusers.DEISMultistepScheduler.add_noise]]
@@ -82,7 +82,7 @@ methods the library implements for all schedulers such as loading and saving.
 add_noise(original_samples: Tensor, noise: Tensor, timesteps: IntTensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L997)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L997)
 
 **Parameters:**
 
@@ -104,7 +104,7 @@ Add noise to the original samples according to the noise schedule at the specifi
 convert_model_output(model_output: Tensor, *args, sample: Tensor = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L581)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L581)
 
 **Parameters:**
 
@@ -126,7 +126,7 @@ Convert the model output to the corresponding type the DEIS algorithm needs.
 deis_first_order_update(model_output: Tensor, *args, sample: Tensor = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L641)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L641)
 
 **Parameters:**
 
@@ -150,7 +150,7 @@ One step for the first-order DEIS (equivalent to DDIM).
 index_for_timestep(timestep: typing.Union[int, torch.Tensor], schedule_timesteps: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L864)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L864)
 
 **Parameters:**
 
@@ -170,7 +170,7 @@ Find the index for a given timestep in the schedule.
 multistep_deis_second_order_update(model_output_list: list, *args, sample: Tensor = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L702)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L702)
 
 **Parameters:**
 
@@ -190,7 +190,7 @@ One step for the second-order multistep DEIS.
 multistep_deis_third_order_update(model_output_list: list, *args, sample: Tensor = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L775)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L775)
 
 **Parameters:**
 
@@ -210,7 +210,7 @@ One step for the third-order multistep DEIS.
 scale_model_input(sample: Tensor, *args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L981)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L981)
 
 **Parameters:**
 
@@ -229,7 +229,7 @@ current timestep.
 set_begin_index(begin_index: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L262)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L262)
 
 **Parameters:**
 
@@ -243,7 +243,7 @@ Sets the begin index for the scheduler. This function should be run from pipelin
 set_timesteps(num_inference_steps: int, device: typing.Union[str, torch.device] = None, mu: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L272)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L272)
 
 **Parameters:**
 
@@ -261,7 +261,7 @@ Sets the discrete timesteps used for the diffusion chain (to be run before infer
 step(model_output: Tensor, timestep: typing.Union[int, torch.Tensor], sample: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L917)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_deis_multistep.py#L917)
 
 **Parameters:**
 
@@ -271,11 +271,11 @@ timestep (`int` or `torch.Tensor`) : The current discrete timestep in the diffus
 
 sample (`torch.Tensor`) : A current instance of a sample created by the diffusion process.
 
-return_dict (`bool`, defaults to `True`) : Whether or not to return a [SchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple`.
+return_dict (`bool`, defaults to `True`) : Whether or not to return a [SchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple`.
 
-**Returns:** [SchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple`
+**Returns:** [SchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple`
 
-If return_dict is `True`, [SchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) is returned, otherwise a
+If return_dict is `True`, [SchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) is returned, otherwise a
 tuple is returned where the first element is the sample tensor.
 
 Predict the sample from the previous timestep by reversing the SDE. This function propagates the sample with
@@ -289,7 +289,7 @@ the multistep DEIS.
 diffusers.schedulers.scheduling_utils.SchedulerOutput(prev_sample: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_utils.py#L66)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_utils.py#L66)
 
 **Parameters:**
 
@@ -298,4 +298,4 @@ prev_sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`
 Base class for the output of a scheduler's `step` function.
 
 ### HeunDiscreteScheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/heun.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/heun.md

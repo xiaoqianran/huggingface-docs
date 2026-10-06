@@ -1,6 +1,6 @@
 # AnyFlowFARTransformer3DModel
 
-The causal (FAR) 3D Transformer used by [`AnyFlowFARPipeline`](../pipelines/anyflow#anyflowfarpipeline) —
+The causal (FAR) 3D Transformer used by [`AnyFlowFARPipeline`](../pipelines/anyflow#diffusers.AnyFlowFARPipeline) —
 the FAR variant of [AnyFlow](https://huggingface.co/papers/2605.13724). See the
 [`AnyFlowFARPipeline`](../pipelines/anyflow) page for paper, authors, and released checkpoints. It extends
 the v0.35.1 Wan2.1 backbone with three additions:
@@ -35,7 +35,7 @@ transformer = AnyFlowFARTransformer3DModel.from_pretrained(
 diffusers.AnyFlowFARTransformer3DModel(patch_size: typing.Tuple[int] = (1, 2, 2), compressed_patch_size: typing.Tuple[int] = (1, 4, 4), full_chunk_limit: int = 3, num_attention_heads: int = 40, attention_head_dim: int = 128, in_channels: int = 16, out_channels: int = 16, text_dim: int = 4096, freq_dim: int = 256, ffn_dim: int = 13824, num_layers: int = 40, cross_attn_norm: bool = True, eps: float = 1e-06, image_dim: typing.Optional[int] = None, rope_max_seq_len: int = 1024, gate_value: float = 0.25, deltatime_type: str = 'r', chunk_partition: typing.Tuple[int, ...] = (1, 3, 3, 3, 3, 3, 3, 2))
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_anyflow_far.py#L961)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_anyflow_far.py#L961)
 
 **Parameters:**
 
@@ -73,7 +73,7 @@ gate_value (*float*, defaults to *0.25*) : Mixing gate between source-timestep a
 
 deltatime_type (*str*, defaults to *'r'*) : Either `"r"` (delta is the target timestep) or `"t-r"` (delta is the absolute interval).
 
-chunk_partition (*Tuple[int, ...]*, defaults to *(1, 3, 3, 3, 3, 3, 3, 2)*) : Default per-chunk frame counts used by the pipeline. The released NVIDIA AnyFlow-FAR checkpoints target `num_frames=81` (21 latent frames at VAE temporal stride 4) split as `1 + 3*6 + 2`. A different `num_frames` requires a matching `chunk_partition` override passed to [AnyFlowFARPipeline.__call__()](/docs/diffusers/v0.40.0/en/api/pipelines/anyflow#diffusers.AnyFlowFARPipeline.__call__) (and likewise to `forward`).
+chunk_partition (*Tuple[int, ...]*, defaults to *(1, 3, 3, 3, 3, 3, 3, 2)*) : Default per-chunk frame counts used by the pipeline. The released NVIDIA AnyFlow-FAR checkpoints target `num_frames=81` (21 latent frames at VAE temporal stride 4) split as `1 + 3*6 + 2`. A different `num_frames` requires a matching `chunk_partition` override passed to [AnyFlowFARPipeline.__call__()](/docs/diffusers/v0.41.0/en/api/pipelines/anyflow#diffusers.AnyFlowFARPipeline.__call__) (and likewise to `forward`).
 
 Causal (FAR) 3D Transformer for AnyFlow flow-map sampling with chunk-wise autoregressive generation.
 
@@ -95,7 +95,7 @@ and `far_patch_embedding` and is ~5–10% smaller.
 build_attention_mask(chunk_partition: typing.List[int], height: int, width: int, has_clean_context: bool = False, device: typing.Optional[torch.device] = None, mode: str = 'train')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_anyflow_far.py#L1232)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_anyflow_far.py#L1232)
 
 **Parameters:**
 
@@ -130,7 +130,7 @@ internally — that path uses `flex_attention.create_block_mask(_compile=False)`
 forward(hidden_states: Tensor, timestep: Tensor, r_timestep: Tensor, encoder_hidden_states: Tensor, chunk_partition: typing.List[int], encoder_hidden_states_image: typing.Optional[torch.Tensor] = None, clean_hidden_states: typing.Optional[torch.Tensor] = None, clean_timestep: typing.Optional[torch.Tensor] = None, kv_cache: typing.Optional[typing.List[typing.Dict[str, torch.Tensor]]] = None, kv_cache_flag: typing.Optional[typing.Dict[str, typing.Any]] = None, attention_mask: typing.Optional[torch.nn.attention.flex_attention.BlockMask] = None, attention_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_anyflow_far.py#L1098)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_anyflow_far.py#L1098)
 
 **Parameters:**
 
@@ -181,7 +181,7 @@ FAR causal forward pass. Dispatches to one of three internal paths:
 diffusers.models.transformers.transformer_anyflow_far.AnyFlowFARTransformerOutput(sample: typing.Optional[torch.Tensor] = None, kv_cache: typing.Optional[typing.List[typing.Dict[str, torch.Tensor]]] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_anyflow_far.py#L55)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_anyflow_far.py#L55)
 
 **Parameters:**
 
@@ -192,4 +192,4 @@ kv_cache (*list[dict[str, torch.Tensor]]*, *optional*) : Per-block KV cache stat
 Output dataclass for `AnyFlowFARTransformer3DModel`'s causal forward paths.
 
 ### AutoencoderKLMiniMaxH3Audio
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoderkl_minimax_h3_audio.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_minimax_h3_audio.md

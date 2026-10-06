@@ -4,7 +4,7 @@ A Diffusion Transformer model for joint video and audio generation, introduced i
 
 MiniMax-H3 runs a single stack of blocks over **one packed 1-D sequence** that holds the text conditioning, the conditioning image and video rows, the audio rows and the target video rows at once. Attention is full self-attention over that sequence, so there is no cross-attention and no per-modality block weights. Modality-specific behaviour comes only from the two input patch projections, the per-row modality tag that selects the AdaLN modulation parameters, and the two output heads.
 
-Building the packed layout is the caller's job, which is why the forward signature takes the layout apart from the latents: the `(t, h, w)` position grid, the per-row modality tags, the per-row timestep indices and the three index tensors that address the video, audio and text rows. [MiniMaxH3Blocks](/docs/diffusers/v0.40.0/en/api/pipelines/minimax_h3#diffusers.MiniMaxH3Blocks) and `MiniMaxH3Ref2VABlocks` build all of it.
+Building the packed layout is the caller's job, which is why the forward signature takes the layout apart from the latents: the `(t, h, w)` position grid, the per-row modality tags, the per-row timestep indices and the three index tensors that address the video, audio and text rows. [MiniMaxH3Blocks](/docs/diffusers/v0.41.0/en/api/pipelines/minimax_h3#diffusers.MiniMaxH3Blocks) and `MiniMaxH3Ref2VABlocks` build all of it.
 
 A layout that carries padding rows (tag `-1`) needs a masked attention backend, since those rows are kept in their own attention document by a boolean mask; a padless sequence needs no mask and keeps every backend available.
 
@@ -16,7 +16,7 @@ from diffusers import MiniMaxH3Transformer3DModel
 
 transformer = MiniMaxH3Transformer3DModel.from_pretrained(
     "MiniMaxAI/MiniMax-H3", subfolder="transformer", dtype=torch.bfloat16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 The checkpoint is mixed precision: the two input patch projections, the timestep MLP and the two output heads are float32 while the block stack is bfloat16. `from_pretrained` keeps that layout through `_keep_in_fp32_modules`, so pass `dtype=torch.bfloat16` and let it place the float32 modules rather than casting the model with `.to(torch.bfloat16)` afterwards.
@@ -29,7 +29,7 @@ The checkpoint is mixed precision: the two input patch projections, the timestep
 diffusers.MiniMaxH3Transformer3DModel(num_attention_heads: int = 56, attention_head_dim: int = 128, hidden_size: int = 5376, num_layers: int = 50, num_refiner_layers: int = 2, ffn_dim: int = 14336, in_channels: int = 24, audio_in_channels: int = 32, patch_size: tuple = (1, 2, 2), text_dim: int = 5120, freq_dim: int = 256, time_embed_hidden_dim: int = 5376, time_embed_dim: int = 2688, rope_freq_dim: int = 16, rope_theta: float = 10000.0, norm_eps: float = 1e-05, qk_norm_eps: float = 1e-05, final_norm_eps: float = 1e-05)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_minimax_h3.py#L376)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_minimax_h3.py#L376)
 
 **Parameters:**
 
@@ -92,7 +92,7 @@ is a single attention document.
 forward(hidden_states: Tensor, audio_hidden_states: Tensor, encoder_hidden_states: Tensor, timestep: Tensor, timestep_indices: Tensor, token_tags: Tensor, position_ids: Tensor, video_indices: Tensor, audio_indices: Tensor, text_indices: Tensor, attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_minimax_h3.py#L561)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_minimax_h3.py#L563)
 
 **Parameters:**
 
@@ -134,7 +134,7 @@ audio velocity of shape `(batch_size, num_audio_tokens, audio_in_channels)`, in 
 diffusers.models.transformers.transformer_minimax_h3.MiniMaxH3TransformerOutput(sample: Tensor, audio_sample: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_minimax_h3.py#L41)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_minimax_h3.py#L41)
 
 **Parameters:**
 
@@ -142,7 +142,7 @@ sample (`torch.Tensor` of shape `(batch_size, num_video_tokens, in_channels * pr
 
 audio_sample (`torch.Tensor` of shape `(batch_size, num_audio_tokens, audio_in_channels)`, defaults to `None`) : The audio velocity prediction for the rows addressed by `audio_indices`, in the same order. `forward` always populates it; it only defaults to `None` so that the output can be rebuilt from a plain dict of its fields, which is how the accelerate offload hooks move a `BaseOutput` back to the input device.
 
-The output of [MiniMaxH3Transformer3DModel](/docs/diffusers/v0.40.0/en/api/models/minimax_h3_transformer3d#diffusers.MiniMaxH3Transformer3DModel).
+The output of [MiniMaxH3Transformer3DModel](/docs/diffusers/v0.41.0/en/api/models/minimax_h3_transformer3d#diffusers.MiniMaxH3Transformer3DModel).
 
 ### AnyFlowTransformer3DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/anyflow_transformer3d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/anyflow_transformer3d.md

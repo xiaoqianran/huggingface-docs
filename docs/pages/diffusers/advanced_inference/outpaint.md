@@ -90,7 +90,7 @@ image_zoe
 
 Once your image is ready, you can generate content in the white area around the shoes with [controlnet-inpaint-dreamer-sdxl](https://hf.co/destitech/controlnet-inpaint-dreamer-sdxl), a SDXL ControlNet trained for inpainting.
 
-Load the inpainting ControlNet, ZoeDepth model, VAE and pass them to the [StableDiffusionXLControlNetPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/controlnet_sdxl#diffusers.StableDiffusionXLControlNetPipeline). Then you can create an optional `generate_image` function (for convenience) to outpaint an initial image.
+Load the inpainting ControlNet, ZoeDepth model, VAE and pass them to the [StableDiffusionXLControlNetPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/controlnet_sdxl#diffusers.StableDiffusionXLControlNetPipeline). Then you can create an optional `generate_image` function (for convenience) to outpaint an initial image.
 
 ```py
 controlnets = [
@@ -101,7 +101,7 @@ controlnets = [
         "diffusers/controlnet-zoe-depth-sdxl-1.0", dtype=torch.float16
     ),
 ]
-vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", dtype=torch.float16).to("cuda")
+vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", dtype=torch.float16).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline = StableDiffusionXLControlNetPipeline.from_pretrained(
     "SG161222/RealVisXL_V4.0", dtype=torch.float16, variant="fp16", controlnet=controlnets, vae=vae
 ).to("cuda")
@@ -150,7 +150,7 @@ temp_image
 > torch.cuda.empty_cache()
 > ```
 
-Now that you have an initial outpainted image, load the [StableDiffusionXLInpaintPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLInpaintPipeline) with the [RealVisXL](https://hf.co/SG161222/RealVisXL_V4.0) model to generate the final outpainted image with better quality.
+Now that you have an initial outpainted image, load the [StableDiffusionXLInpaintPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLInpaintPipeline) with the [RealVisXL](https://hf.co/SG161222/RealVisXL_V4.0) model to generate the final outpainted image with better quality.
 
 ```py
 pipeline = StableDiffusionXLInpaintPipeline.from_pretrained(
@@ -158,7 +158,7 @@ pipeline = StableDiffusionXLInpaintPipeline.from_pretrained(
     dtype=torch.float16,
     variant="fp16",
     vae=vae,
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 Prepare a mask for the final outpainted image. To create a more natural transition between the original image and the outpainted background, blur the mask to help it blend better.

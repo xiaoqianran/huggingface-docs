@@ -1,6 +1,6 @@
 # AutoModel
 
-[AutoModel](/docs/diffusers/v0.40.0/en/api/models/auto_model#diffusers.AutoModel) automatically retrieves the correct model class from the checkpoint `config.json` file.
+[AutoModel](/docs/diffusers/v0.41.0/en/api/models/auto_model#diffusers.AutoModel) automatically retrieves the correct model class from the checkpoint `config.json` file.
 
 ## AutoModel[[diffusers.AutoModel]]
 
@@ -10,7 +10,7 @@
 diffusers.AutoModel(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/auto_model.py#L27)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/auto_model.py#L27)
 
 #### from_pretrained[[diffusers.AutoModel.from_pretrained]]
 
@@ -18,11 +18,11 @@ diffusers.AutoModel(*args, **kwargs)
 from_pretrained(pretrained_model_or_path: str | os.PathLike | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/auto_model.py#L155)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/auto_model.py#L155)
 
 **Parameters:**
 
-pretrained_model_name_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *model id* (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a *directory* (for example `./my_model_directory`) containing the model weights saved with [save_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained). 
+pretrained_model_name_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *model id* (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a *directory* (for example `./my_model_directory`) containing the model weights saved with [save_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained). 
 
 cache_dir (`str | os.PathLike`, *optional*) : Path to a directory where a downloaded pretrained model configuration is cached if the standard cache is not used.
 
@@ -94,7 +94,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 from_config(pretrained_model_name_or_path_or_dict: str | os.PathLike | dict | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/auto_model.py#L38)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/auto_model.py#L38)
 
 **Parameters:**
 
@@ -132,4 +132,4 @@ model = AutoModel.from_config("stable-diffusion-v1-5/stable-diffusion-v1-5", sub
 ```
 
 ### MiniMaxMusic3Transformer1DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/minimax_music3_transformer.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/minimax_music3_transformer.md

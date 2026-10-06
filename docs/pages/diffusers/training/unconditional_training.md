@@ -172,12 +172,12 @@ The training script creates and saves a checkpoint file in your repository. Now 
 from diffusers import DiffusionPipeline
 import torch
 
-pipeline = DiffusionPipeline.from_pretrained("anton-l/ddpm-butterflies-128").to("cuda")
+pipeline = DiffusionPipeline.from_pretrained("anton-l/ddpm-butterflies-128").to("cuda")  # or "mps", "xpu", "cpu"
 image = pipeline().images[0]
 ```
 
 ### CogVideoX
-https://huggingface.co/docs/diffusers/v0.40.0/training/cogvideox.md
+https://huggingface.co/docs/diffusers/v0.41.0/training/cogvideox.md
 
 # CogVideoX
 
@@ -244,7 +244,7 @@ You could use a single CSV file. For the sake of this example, assume you have a
 ...
 ```
 
-In this case, the `--instance_data_root` should be the location where the videos are stored and `--dataset_name` should be either a path to local folder or a [load_dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/loading_methods#datasets.load_dataset) compatible dataset hosted on the Hub. Assuming you have videos of Minecraft gameplay at `https://huggingface.co/datasets/my-awesome-username/minecraft-videos`, you would have to specify `my-awesome-username/minecraft-videos`.
+In this case, the `--instance_data_root` should be the location where the videos are stored and `--dataset_name` should be either a path to local folder or a `load_dataset` compatible dataset hosted on the Hub. Assuming you have videos of Minecraft gameplay at `https://huggingface.co/datasets/my-awesome-username/minecraft-videos`, you would have to specify `my-awesome-username/minecraft-videos`.
 
 When using this format, the `--caption_column` must be `<CAPTION_COLUMN>` and `--video_column` must be `<PATH_TO_VIDEO_COLUMN>`.
 
@@ -401,7 +401,7 @@ from diffusers.utils import export_to_video
 pipe = CogVideoXPipeline.from_pretrained("THUDM/CogVideoX-2b", dtype=torch.float16)
 # pipe.load_lora_weights("/path/to/lora/weights", adapter_name="cogvideox-lora") # Or,
 pipe.load_lora_weights("my-awesome-hf-username/my-awesome-lora-name", adapter_name="cogvideox-lora") # If loading from the HF Hub
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 # Assuming lora_alpha=32 and rank=64 for training. If different, set accordingly
 pipe.set_adapters(["cogvideox-lora"], [32 / 64])
@@ -455,4 +455,4 @@ pipe.vae.enable_tiling()
 | **Fine-tuning VRAM Consumption**     | 47 GB (bs=1, LORA) 61 GB (bs=2, LORA) 62GB (bs=1, SFT)                 | 63 GB (bs=1, LORA) 80 GB (bs=2, LORA) 75GB (bs=1, SFT)                 |
 
 ### Stable Diffusion XL
-https://huggingface.co/docs/diffusers/v0.40.0/training/sdxl.md
+https://huggingface.co/docs/diffusers/v0.41.0/training/sdxl.md

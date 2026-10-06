@@ -13,14 +13,14 @@ This guide shows you how to use the caching methods supported in Diffusers.
 
 PAB can be combined with other techniques like sequence parallelism and classifier-free guidance parallelism (data parallelism) for near real-time video generation.
 
-Set up and pass a [PyramidAttentionBroadcastConfig](/docs/diffusers/v0.40.0/en/api/cache#diffusers.PyramidAttentionBroadcastConfig) to a pipeline's transformer to enable it. The `spatial_attention_block_skip_range` controls how often to skip attention calculations in the spatial attention blocks and the `spatial_attention_timestep_skip_range` is the range of timesteps to skip. Take care to choose an appropriate range because a smaller interval can lead to slower inference speeds and a larger interval can result in lower generation quality.
+Set up and pass a [PyramidAttentionBroadcastConfig](/docs/diffusers/v0.41.0/en/api/cache#diffusers.PyramidAttentionBroadcastConfig) to a pipeline's transformer to enable it. The `spatial_attention_block_skip_range` controls how often to skip attention calculations in the spatial attention blocks and the `spatial_attention_timestep_skip_range` is the range of timesteps to skip. Take care to choose an appropriate range because a smaller interval can lead to slower inference speeds and a larger interval can result in lower generation quality.
 
 ```python
 import torch
 from diffusers import CogVideoXPipeline, PyramidAttentionBroadcastConfig
 
 pipeline = CogVideoXPipeline.from_pretrained("THUDM/CogVideoX-5b", dtype=torch.bfloat16)
-pipeline.to("cuda")
+pipeline.to("cuda")  # or "mps", "xpu", "cpu"
 
 config = PyramidAttentionBroadcastConfig(
     spatial_attention_block_skip_range=2,
@@ -36,14 +36,14 @@ pipeline.transformer.enable_cache(config)
 
 This method may also choose to skip the unconditional branch prediction, when using classifier-free guidance for sampling (common in most base models), and estimate it from the conditional branch prediction if there is significant redundancy in the predicted latent outputs between successive timesteps.
 
-Set up and pass a [FasterCacheConfig](/docs/diffusers/v0.40.0/en/api/cache#diffusers.FasterCacheConfig) to a pipeline's transformer to enable it.
+Set up and pass a [FasterCacheConfig](/docs/diffusers/v0.41.0/en/api/cache#diffusers.FasterCacheConfig) to a pipeline's transformer to enable it.
 
 ```python
 import torch
 from diffusers import CogVideoXPipeline, FasterCacheConfig
 
 pipe line= CogVideoXPipeline.from_pretrained("THUDM/CogVideoX-5b", dtype=torch.bfloat16)
-pipeline.to("cuda")
+pipeline.to("cuda")  # or "mps", "xpu", "cpu"
 
 config = FasterCacheConfig(
     spatial_attention_block_skip_range=2,
@@ -56,6 +56,51 @@ config = FasterCacheConfig(
 )
 pipeline.transformer.enable_cache(config)
 ```
+
+## SeaCache
+
+[SeaCache](https://huggingface.co/papers/2602.18993) compares Spectral-Evolution-Aware (SEA) indicators between
+successive denoising steps. When the accumulated indicator change remains below a threshold, it skips the expensive
+transformer block stack and predicts its output from cached residuals. Build the indicator from the visual latents that
+form the generated output. Include clean conditioning frames when they are part of that output trajectory, as in
+image-to-video and video-to-video generation. Exclude separate visual hints that condition the generation but are not
+part of the output. Text conditioning is excluded because it is not a visual latent.
+
+Cosmos 3 Transfer packs control hints as separate visual sequences, so its adapter excludes them from the indicator.
+Control-CFG branches compare the same output trajectory while retaining their own cached residuals. Control hints still
+condition the transformer.
+
+The implementation provides built-in adapters for the following models:
+
+- **Cosmos 3** is the primary optimized and benchmarked integration. It caches the complete decoder stack through a
+  post-normalization boundary.
+- **Wan T2V** uses the generic repeated-block path in eager mode. This integration demonstrates how another
+  single-stream video transformer can provide raw vision latents to SeaCache; it is not a claim that the same cache
+  parameters are optimal for Wan or that other Wan variants are supported.
+
+Other video transformers can integrate with the generic path when they use `CacheMixin`, expose a recognized repeated
+block list, and register the block input/output layout in `TransformerBlockRegistry`. The pipeline must enter a
+`cache_context` for every transformer call, attach `step_index`, `sigma`, and `num_inference_steps`, and use separate
+context names for independent trajectories such as conditional and unconditional guidance. Pass a `raw_vision_callback`
+that returns the visual latents forming the generated output when no built-in adapter is available. Validate output
+quality and tune the cache parameters for each model and scheduler; support and benchmark results do not transfer
+automatically from Cosmos 3.
+
+### Cosmos 3
+
+SeaCache is disabled by default. Enable it on the transformer; the Cosmos 3 denoising loop attaches the active
+scheduler step, sigma, and step count to each `cache_context` call, so no extra wiring is needed:
+
+```python
+from diffusers import Cosmos3OmniPipeline, SeaCacheConfig
+
+pipe = Cosmos3OmniPipeline.from_pretrained("nvidia/Cosmos3-Nano")
+pipe.transformer.enable_cache(SeaCacheConfig(threshold=0.2, max_consecutive_cached=2))
+```
+
+This model-level API works with [Cosmos3OmniPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniPipeline), [Cosmos3OmniModularPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniModularPipeline), and
+[Cosmos3DistilledModularPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/cosmos3#diffusers.Cosmos3DistilledModularPipeline). SeaCache is an approximate optimization and may change generated outputs. Call
+`pipe.transformer.disable_cache()` when you need every denoising step to execute the full transformer.
 
 ## FirstBlockCache
 
@@ -77,7 +122,7 @@ apply_first_block_cache(pipeline.transformer, FirstBlockCacheConfig(threshold=0.
 
 This caching mechanism delivers strong results with minimal additional memory overhead. For detailed performance analysis, see [our findings here](https://github.com/huggingface/diffusers/pull/12648#issuecomment-3610615080).
 
-To enable TaylorSeer Cache, create a [TaylorSeerCacheConfig](/docs/diffusers/v0.40.0/en/api/cache#diffusers.TaylorSeerCacheConfig) and pass it to your pipeline's transformer:
+To enable TaylorSeer Cache, create a [TaylorSeerCacheConfig](/docs/diffusers/v0.41.0/en/api/cache#diffusers.TaylorSeerCacheConfig) and pass it to your pipeline's transformer:
 
 - `cache_interval`: Number of steps to reuse cached outputs before performing a full forward pass
 - `disable_cache_before_step`: Initial steps that use full computations to gather data for approximations
@@ -90,7 +135,7 @@ from diffusers import FluxPipeline, TaylorSeerCacheConfig
 pipe = FluxPipeline.from_pretrained(
     "black-forest-labs/FLUX.1-dev",
     dtype=torch.bfloat16,
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 config = TaylorSeerCacheConfig(
     cache_interval=5,
@@ -119,7 +164,7 @@ from diffusers import FluxPipeline, MagCacheConfig
 pipe = FluxPipeline.from_pretrained(
     "black-forest-labs/FLUX.1-schnell",
     dtype=torch.bfloat16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 # 1. Calibration Step
 # Run full inference to measure model behavior.
@@ -154,4 +199,4 @@ image = pipe("A cat playing chess", num_inference_steps=4).images[0]
 > For pipelines that run Classifier-Free Guidance in a **batched** manner (like SDXL or Flux), the `hidden_states` processed by the model contain both conditional and unconditional branches concatenated together. The calibration process automatically accounts for this, producing a single array of ratios that represents the joint behavior. You can use this resulting array directly without modification.
 
 ### AWS Neuron
-https://huggingface.co/docs/diffusers/v0.40.0/optimization/neuron.md
+https://huggingface.co/docs/diffusers/v0.41.0/optimization/neuron.md

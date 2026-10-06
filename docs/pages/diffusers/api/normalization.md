@@ -10,7 +10,7 @@ Customized normalization layers for supporting various models in 🤗 Diffusers.
 diffusers.models.normalization.AdaLayerNorm(embedding_dim: int, num_embeddings: int | None = None, output_dim: int | None = None, norm_elementwise_affine: bool = False, norm_eps: float = 1e-05, chunk_dim: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/normalization.py#L27)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/normalization.py#L27)
 
 **Parameters:**
 
@@ -36,7 +36,7 @@ Norm layer modified to incorporate timestep embeddings.
 diffusers.models.normalization.AdaLayerNormZero(embedding_dim: int, num_embeddings: int | None = None, norm_type = 'layer_norm', bias = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/normalization.py#L130)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/normalization.py#L130)
 
 **Parameters:**
 
@@ -54,7 +54,7 @@ Norm layer adaptive layer norm zero (adaLN-Zero).
 diffusers.models.normalization.AdaLayerNormSingle(embedding_dim: int, use_additional_conditions: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/normalization.py#L235)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/normalization.py#L235)
 
 **Parameters:**
 
@@ -74,7 +74,7 @@ As proposed in PixArt-Alpha (see: https://huggingface.co/papers/2310.00426; Sect
 diffusers.models.normalization.AdaGroupNorm(embedding_dim: int, out_dim: int, num_groups: int, act_fn: str | None = None, eps: float = 1e-05)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/normalization.py#L269)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/normalization.py#L269)
 
 **Parameters:**
 
@@ -98,7 +98,7 @@ GroupNorm layer modified to incorporate timestep embeddings.
 diffusers.models.normalization.AdaLayerNormContinuous(embedding_dim: int, conditioning_embedding_dim: int, elementwise_affine = True, eps = 1e-05, bias = True, norm_type = 'layer_norm')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/normalization.py#L307)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/normalization.py#L307)
 
 **Parameters:**
 
@@ -124,7 +124,7 @@ Adaptive normalization layer with a norm layer (layer_norm or rms_norm).
 diffusers.models.normalization.RMSNorm(dim, eps: float, elementwise_affine: bool = True, bias: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/normalization.py#L510)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/normalization.py#L510)
 
 **Parameters:**
 
@@ -146,7 +146,7 @@ RMS Norm as introduced in https://huggingface.co/papers/1910.07467 by Zhang et a
 diffusers.models.normalization.GlobalResponseNorm(dim)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/normalization.py#L600)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/normalization.py#L601)
 
 **Parameters:**
 
@@ -162,7 +162,7 @@ Global response normalization as introduced in ConvNeXt-v2 (https://huggingface.
 diffusers.models.normalization.LuminaLayerNormContinuous(embedding_dim: int, conditioning_embedding_dim: int, elementwise_affine = True, eps = 1e-05, bias = True, norm_type = 'layer_norm', out_dim: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/normalization.py#L354)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/normalization.py#L354)
 
 ## SD35AdaLayerNormZeroX[[diffusers.models.normalization.SD35AdaLayerNormZeroX]]
 
@@ -172,7 +172,7 @@ diffusers.models.normalization.LuminaLayerNormContinuous(embedding_dim: int, con
 diffusers.models.normalization.SD35AdaLayerNormZeroX(embedding_dim: int, norm_type: str = 'layer_norm', bias: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/normalization.py#L96)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/normalization.py#L96)
 
 **Parameters:**
 
@@ -190,7 +190,7 @@ Norm layer adaptive layer norm zero (AdaLN-Zero).
 diffusers.models.normalization.AdaLayerNormZeroSingle(embedding_dim: int, norm_type = 'layer_norm', bias = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/normalization.py#L173)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/normalization.py#L173)
 
 **Parameters:**
 
@@ -208,7 +208,7 @@ Norm layer adaptive layer norm zero (adaLN-Zero).
 diffusers.models.normalization.LuminaRMSNormZero(embedding_dim: int, norm_eps: float, norm_elementwise_affine: bool)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/normalization.py#L205)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/normalization.py#L205)
 
 **Parameters:**
 
@@ -224,7 +224,7 @@ Norm layer adaptive RMS normalization zero.
 diffusers.models.normalization.LpNorm(p: int = 2, dim: int = -1, eps: float = 1e-12)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/normalization.py#L620)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/normalization.py#L621)
 
 ## CogView3PlusAdaLayerNormZeroTextImage[[diffusers.models.normalization.CogView3PlusAdaLayerNormZeroTextImage]]
 
@@ -234,7 +234,7 @@ diffusers.models.normalization.LpNorm(p: int = 2, dim: int = -1, eps: float = 1e
 diffusers.models.normalization.CogView3PlusAdaLayerNormZeroTextImage(embedding_dim: int, dim: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/normalization.py#L403)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/normalization.py#L403)
 
 **Parameters:**
 
@@ -252,7 +252,7 @@ Norm layer adaptive layer norm zero (adaLN-Zero).
 diffusers.models.normalization.CogVideoXLayerNormZero(conditioning_dim: int, embedding_dim: int, elementwise_affine: bool = True, eps: float = 1e-05, bias: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/normalization.py#L448)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/normalization.py#L448)
 
 ## MochiRMSNormZero[[diffusers.models.transformers.transformer_mochi.MochiRMSNormZero]]
 
@@ -262,7 +262,7 @@ diffusers.models.normalization.CogVideoXLayerNormZero(conditioning_dim: int, emb
 diffusers.models.transformers.transformer_mochi.MochiRMSNormZero(embedding_dim: int, hidden_dim: int, eps: float = 1e-05, elementwise_affine: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_mochi.py#L88)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_mochi.py#L88)
 
 **Parameters:**
 
@@ -278,7 +278,7 @@ Adaptive RMS Norm used in Mochi.
 diffusers.models.normalization.MochiRMSNorm(dim, eps: float, elementwise_affine: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/normalization.py#L572)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/normalization.py#L573)
 
 ### Video Processor
-https://huggingface.co/docs/diffusers/v0.40.0/api/video_processor.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/video_processor.md

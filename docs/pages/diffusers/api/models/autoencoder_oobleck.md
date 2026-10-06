@@ -14,7 +14,7 @@ The abstract from the paper is:
 diffusers.AutoencoderOobleck(encoder_hidden_size = 128, downsampling_ratios = [2, 4, 4, 8, 8], channel_multiples = [1, 2, 4, 8, 16], decoder_channels = 128, decoder_input_channels = 64, audio_channels = 2, sampling_rate = 44100)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L294)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L294)
 
 **Parameters:**
 
@@ -35,7 +35,7 @@ sampling_rate (`int`, *optional*, defaults to 44100) : The sampling rate at whic
 An autoencoder for encoding waveforms into latents and decoding latent representations into waveforms. First
 introduced in Stable Audio.
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
+This model inherits from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
 for all models (such as downloading or saving).
 
 #### decode[[diffusers.AutoencoderOobleck.decode]]
@@ -44,7 +44,7 @@ for all models (such as downloading or saving).
 decode(z: FloatTensor, return_dict: bool = True, generator = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L488)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L488)
 
 **Parameters:**
 
@@ -65,7 +65,7 @@ Decode a batch of images.
 encode(x: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L377)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L377)
 
 **Parameters:**
 
@@ -86,7 +86,7 @@ Encode a batch of images into latents.
 forward(sample: Tensor, sample_posterior: bool = False, return_dict: bool = True, generator: typing.Optional[torch.Generator] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L517)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L517)
 
 **Parameters:**
 
@@ -111,7 +111,7 @@ is returned.
 diffusers.models.autoencoders.autoencoder_oobleck.OobleckDecoderOutput(sample: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L202)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L202)
 
 **Parameters:**
 
@@ -127,7 +127,7 @@ Output of decoding method.
 diffusers.models.autoencoders.autoencoder_oobleck.AutoencoderOobleckOutput(latent_dist: OobleckDiagonalGaussianDistribution)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L187)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L187)
 
 **Parameters:**
 
@@ -136,4 +136,4 @@ latent_dist (`OobleckDiagonalGaussianDistribution`) : Encoded outputs of `Encode
 Output of AutoencoderOobleck encoding method.
 
 ### PriorTransformer
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/prior_transformer.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/prior_transformer.md

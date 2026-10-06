@@ -7,7 +7,7 @@ These models are trained on an aesthetic subset of the [LAION-5B dataset](https:
 
 For more details about how Stable Diffusion 2 works and how it differs from the original Stable Diffusion, please refer to the official [announcement post](https://stability.ai/blog/stable-diffusion-v2-release).
 
-The architecture of Stable Diffusion 2 is more or less identical to the original [Stable Diffusion model](./text2img) so check out it's API documentation for how to use Stable Diffusion 2. We recommend using the [DPMSolverMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler) as it gives a reasonable speed/quality trade-off and can be run with as little as 20 steps.
+The architecture of Stable Diffusion 2 is more or less identical to the original [Stable Diffusion model](./text2img) so check out it's API documentation for how to use Stable Diffusion 2. We recommend using the [DPMSolverMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler) as it gives a reasonable speed/quality trade-off and can be run with as little as 20 steps.
 
 Stable Diffusion 2 is available for tasks like text-to-image, inpainting, super-resolution, and depth-to-image:
 
@@ -36,7 +36,7 @@ repo_id = "stabilityai/stable-diffusion-2-base"
 pipe = DiffusionPipeline.from_pretrained(repo_id, dtype=torch.float16, variant="fp16")
 
 pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
-pipe = pipe.to("cuda")
+pipe = pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt = "High quality photo of an astronaut riding a horse in space"
 image = pipe(prompt, num_inference_steps=25).images[0]
@@ -60,7 +60,7 @@ repo_id = "stabilityai/stable-diffusion-2-inpainting"
 pipe = DiffusionPipeline.from_pretrained(repo_id, dtype=torch.float16, variant="fp16")
 
 pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
-pipe = pipe.to("cuda")
+pipe = pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt = "Face of a yellow cat, high resolution, sitting on a park bench"
 image = pipe(prompt=prompt, image=init_image, mask_image=mask_image, num_inference_steps=25).images[0]
@@ -77,7 +77,7 @@ import torch
 # load model and scheduler
 model_id = "stabilityai/stable-diffusion-x4-upscaler"
 pipeline = StableDiffusionUpscalePipeline.from_pretrained(model_id, dtype=torch.float16)
-pipeline = pipeline.to("cuda")
+pipeline = pipeline.to("cuda")  # or "mps", "xpu", "cpu"
 
 # let's download an  image
 url = "https://huggingface.co/datasets/hf-internal-testing/diffusers-images/resolve/main/sd2-upscale/low_res_cat.png"
@@ -98,7 +98,7 @@ from diffusers.utils import load_image, make_image_grid
 pipe = StableDiffusionDepth2ImgPipeline.from_pretrained(
     "stabilityai/stable-diffusion-2-depth",
     dtype=torch.float16,
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 url = "http://images.cocodataset.org/val2017/000000039769.jpg"
 init_image = load_image(url)
@@ -109,4 +109,4 @@ make_image_grid([init_image, image], rows=1, cols=2)
 ```
 
 ### Stable Video Diffusion
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/stable_diffusion/svd.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_diffusion/svd.md

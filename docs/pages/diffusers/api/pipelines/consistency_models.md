@@ -18,7 +18,7 @@ For an additional speed-up, use `torch.compile` to generate multiple images in <
   import torch
   from diffusers import ConsistencyModelPipeline
 
-  device = "cuda"
+  device = "cuda"  # or "mps", "xpu", "cpu"
   # Load the cd_bedroom256_lpips checkpoint.
   model_id_or_path = "openai/diffusers-cd_bedroom256_lpips"
   pipe = ConsistencyModelPipeline.from_pretrained(model_id_or_path, dtype=torch.float16)
@@ -42,17 +42,17 @@ For an additional speed-up, use `torch.compile` to generate multiple images in <
 diffusers.ConsistencyModelPipeline(unet: UNet2DModel, scheduler: CMStochasticIterativeScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/consistency_models/pipeline_consistency_models.py#L67)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/consistency_models/pipeline_consistency_models.py#L67)
 
 **Parameters:**
 
-unet ([UNet2DModel](/docs/diffusers/v0.40.0/en/api/models/unet2d#diffusers.UNet2DModel)) : A `UNet2DModel` to denoise the encoded image latents.
+unet ([UNet2DModel](/docs/diffusers/v0.41.0/en/api/models/unet2d#diffusers.UNet2DModel)) : A `UNet2DModel` to denoise the encoded image latents.
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Currently only compatible with [CMStochasticIterativeScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/cm_stochastic_iterative#diffusers.CMStochasticIterativeScheduler).
+scheduler ([SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Currently only compatible with [CMStochasticIterativeScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/cm_stochastic_iterative#diffusers.CMStochasticIterativeScheduler).
 
 Pipeline for unconditional or class-conditional image generation.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.ConsistencyModelPipeline.__call__]]
@@ -61,7 +61,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(batch_size: int = 1, class_labels: typing.Union[torch.Tensor, list[int], int, NoneType] = None, num_inference_steps: int = 1, timesteps: list = None, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int = 1)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/consistency_models/pipeline_consistency_models.py#L171)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/consistency_models/pipeline_consistency_models.py#L171)
 
 **Parameters:**
 
@@ -79,15 +79,15 @@ latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents sampled from 
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated image. Choose between `PIL.Image` or `np.array`.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
 callback (`Callable`, *optional*) : A function that calls every `callback_steps` steps during inference. The function is called with the following arguments: `callback(step: int, timestep: int, latents: torch.Tensor)`.
 
 callback_steps (`int`, *optional*, defaults to 1) : The frequency at which the `callback` function is called. If not specified, the callback is called at every step.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) is returned, otherwise a `tuple` is
+If `return_dict` is `True`, [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) is returned, otherwise a `tuple` is
 returned where the first element is a list with the generated images.
 
 Examples:
@@ -126,7 +126,7 @@ Examples:
 diffusers.ImagePipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L135)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L135)
 
 **Parameters:**
 
@@ -135,7 +135,7 @@ images (`List[PIL.Image.Image]` or `np.ndarray`) : List of denoised PIL images o
 Output class for image pipelines.
 
 ### Wan Animate 2
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/wan_animate_2.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/wan_animate_2.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -173,7 +173,7 @@ pipe.transformer.enable_group_offload(
     offload_type="block_level",
     use_stream=True,
 )
-pipe.text_encoder.to("cuda")
+pipe.text_encoder.to("cuda")  # or "mps", "xpu", "cpu"
 pipe.image_encoder.to("cuda")
 pipe.vae.to("cuda")
 pipe.transformer.compile_repeated_blocks(fullgraph=False)
@@ -206,7 +206,7 @@ For the distilled checkpoint, load `Wan-AI/Wan2.2-Animate-2-14B-Distilled-Diffus
 diffusers.WanAnimate2ModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/wan_animate_2/modular_pipeline.py#L23)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/wan_animate_2/modular_pipeline.py#L23)
 
 A ModularPipeline for Wan-Animate-2 character animation.
 
@@ -218,7 +218,7 @@ A ModularPipeline for Wan-Animate-2 character animation.
 diffusers.WanAnimate2DistilledModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/wan_animate_2/modular_pipeline.py#L62)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/wan_animate_2/modular_pipeline.py#L62)
 
 A ModularPipeline for the distilled Wan-Animate-2 model, which samples in few steps without classifier-free
 guidance.
@@ -231,7 +231,7 @@ guidance.
 diffusers.WanAnimate2Blocks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/wan_animate_2/modular_blocks_wan_animate_2.py#L252)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/wan_animate_2/modular_blocks_wan_animate_2.py#L252)
 
 Modular pipeline blocks for Wan-Animate-2 character animation: a reference character image and a driving video
 produce a video of the character following the driving motion.
@@ -289,7 +289,7 @@ The generated videos.
 diffusers.WanAnimate2DistilledBlocks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/wan_animate_2/modular_blocks_wan_animate_2_distilled.py#L254)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/wan_animate_2/modular_blocks_wan_animate_2_distilled.py#L254)
 
 Modular pipeline blocks for distilled Wan-Animate-2 character animation, sampling in few steps without
 classifier-free guidance.
@@ -340,4 +340,4 @@ videos (`list`):
 The generated videos.
 
 ### Kolors: Effective Training of Diffusion Model for Photorealistic Text-to-Image Synthesis
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/kolors.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/kolors.md

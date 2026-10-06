@@ -11,27 +11,27 @@ Many schedulers are implemented from the [k-diffusion](https://github.com/crowso
 
 | A1111/k-diffusion    | 🤗 Diffusers                         | Usage                                                                                                         |
 |---------------------|-------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| DPM++ 2M            | [DPMSolverMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler)     |                                                                                                               |
-| DPM++ 2M Karras     | [DPMSolverMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler)     | init with `use_karras_sigmas=True`                                                                            |
-| DPM++ 2M SDE        | [DPMSolverMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler)     | init with `algorithm_type="sde-dpmsolver++"`                                                                  |
-| DPM++ 2M SDE Karras | [DPMSolverMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler)     | init with `use_karras_sigmas=True` and `algorithm_type="sde-dpmsolver++"`                                     |
+| DPM++ 2M            | [DPMSolverMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler)     |                                                                                                               |
+| DPM++ 2M Karras     | [DPMSolverMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler)     | init with `use_karras_sigmas=True`                                                                            |
+| DPM++ 2M SDE        | [DPMSolverMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler)     | init with `algorithm_type="sde-dpmsolver++"`                                                                  |
+| DPM++ 2M SDE Karras | [DPMSolverMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler)     | init with `use_karras_sigmas=True` and `algorithm_type="sde-dpmsolver++"`                                     |
 | DPM++ 2S a          | N/A                                 | very similar to  `DPMSolverSinglestepScheduler`                         |
 | DPM++ 2S a Karras   | N/A                                 | very similar to  `DPMSolverSinglestepScheduler(use_karras_sigmas=True, ...)` |
-| DPM++ SDE           | [DPMSolverSinglestepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/singlestep_dpm_solver#diffusers.DPMSolverSinglestepScheduler)    |                                                                                                               |
-| DPM++ SDE Karras    | [DPMSolverSinglestepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/singlestep_dpm_solver#diffusers.DPMSolverSinglestepScheduler)    | init with `use_karras_sigmas=True`                                                                            |
-| DPM2                | [KDPM2DiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete#diffusers.KDPM2DiscreteScheduler)          |                                                                                                               |
-| DPM2 Karras         | [KDPM2DiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete#diffusers.KDPM2DiscreteScheduler)          | init with `use_karras_sigmas=True`                                                                            |
-| DPM2 a              | [KDPM2AncestralDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.KDPM2AncestralDiscreteScheduler) |                                                                                                               |
-| DPM2 a Karras       | [KDPM2AncestralDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.KDPM2AncestralDiscreteScheduler) | init with `use_karras_sigmas=True`                                                                            |
+| DPM++ SDE           | [DPMSolverSinglestepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/singlestep_dpm_solver#diffusers.DPMSolverSinglestepScheduler)    |                                                                                                               |
+| DPM++ SDE Karras    | [DPMSolverSinglestepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/singlestep_dpm_solver#diffusers.DPMSolverSinglestepScheduler)    | init with `use_karras_sigmas=True`                                                                            |
+| DPM2                | [KDPM2DiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/dpm_discrete#diffusers.KDPM2DiscreteScheduler)          |                                                                                                               |
+| DPM2 Karras         | [KDPM2DiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/dpm_discrete#diffusers.KDPM2DiscreteScheduler)          | init with `use_karras_sigmas=True`                                                                            |
+| DPM2 a              | [KDPM2AncestralDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.KDPM2AncestralDiscreteScheduler) |                                                                                                               |
+| DPM2 a Karras       | [KDPM2AncestralDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.KDPM2AncestralDiscreteScheduler) | init with `use_karras_sigmas=True`                                                                            |
 | DPM adaptive        | N/A                                 |                                                                                                               |
 | DPM fast            | N/A                                 |                                                                                                               |
-| Euler               | [EulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/euler#diffusers.EulerDiscreteScheduler)          |                                                                                                               |
-| Euler a             | [EulerAncestralDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/euler_ancestral#diffusers.EulerAncestralDiscreteScheduler) |                                                                                                               |
-| Heun                | [HeunDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/heun#diffusers.HeunDiscreteScheduler)           |                                                                                                               |
-| LMS                 | [LMSDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler)            |                                                                                                               |
-| LMS Karras          | [LMSDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler)            | init with `use_karras_sigmas=True`                                                                            |
-| N/A                 | [DEISMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/deis#diffusers.DEISMultistepScheduler)          |                                                                                                               |
-| N/A                 | [UniPCMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)         |                                                                                                               |
+| Euler               | [EulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/euler#diffusers.EulerDiscreteScheduler)          |                                                                                                               |
+| Euler a             | [EulerAncestralDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/euler_ancestral#diffusers.EulerAncestralDiscreteScheduler) |                                                                                                               |
+| Heun                | [HeunDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/heun#diffusers.HeunDiscreteScheduler)           |                                                                                                               |
+| LMS                 | [LMSDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler)            |                                                                                                               |
+| LMS Karras          | [LMSDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler)            | init with `use_karras_sigmas=True`                                                                            |
+| N/A                 | [DEISMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/deis#diffusers.DEISMultistepScheduler)          |                                                                                                               |
+| N/A                 | [UniPCMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)         |                                                                                                               |
 
 ## Noise schedules and schedule types
 | A1111/k-diffusion        | 🤗 Diffusers                                                               |
@@ -42,7 +42,7 @@ Many schedulers are implemented from the [k-diffusion](https://github.com/crowso
 | exponential              | init with `timestep_spacing="linspace"`, `use_exponential_sigmas=True`     |
 | beta                     | init with `timestep_spacing="linspace"`, `use_beta_sigmas=True`            |
 
-All schedulers are built from the base [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) class which implements low level utilities shared by all schedulers.
+All schedulers are built from the base [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) class which implements low level utilities shared by all schedulers.
 
 ## SchedulerMixin[[diffusers.SchedulerMixin]]
 
@@ -52,19 +52,19 @@ All schedulers are built from the base [SchedulerMixin](/docs/diffusers/v0.40.0/
 diffusers.SchedulerMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_utils.py#L79)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_utils.py#L79)
 
 Base class for all schedulers.
 
-[SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) contains common functions shared by all schedulers such as general loading and saving
+[SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) contains common functions shared by all schedulers such as general loading and saving
 functionalities.
 
-[ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin) takes care of storing the configuration attributes (like `num_train_timesteps`) that are passed to
+[ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin) takes care of storing the configuration attributes (like `num_train_timesteps`) that are passed to
 the scheduler's `__init__` function, and the attributes can be accessed by `scheduler.config.num_train_timesteps`.
 
 Class attributes:
 - **_compatibles** (`list[str]`) -- A list of scheduler classes that are compatible with the parent scheduler
-  class. Use [from_config()](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin.from_config) to load a different compatible scheduler class (should be overridden
+  class. Use [from_config()](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin.from_config) to load a different compatible scheduler class (should be overridden
   by parent class).
 
 #### from_pretrained[[diffusers.SchedulerMixin.from_pretrained]]
@@ -73,11 +73,11 @@ Class attributes:
 from_pretrained(pretrained_model_name_or_path: str | os.PathLike | None = None, subfolder: str | None = None, return_unused_kwargs: bool = False, **kwargs: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_utils.py#L99)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_utils.py#L99)
 
 **Parameters:**
 
-pretrained_model_name_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *model id* (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a *directory* (for example `./my_model_directory`) containing the scheduler configuration saved with [save_pretrained()](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin.save_pretrained).
+pretrained_model_name_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *model id* (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a *directory* (for example `./my_model_directory`) containing the scheduler configuration saved with [save_pretrained()](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin.save_pretrained).
 
 subfolder (`str`, *optional*) : The subfolder location of a model file within a larger model repository on the Hub or locally.
 
@@ -97,7 +97,7 @@ token (`str` or `bool`, *optional*) : The token to use as HTTP bearer authorizat
 
 revision (`str`, *optional*, defaults to `"main"`) : The specific model version to use. It can be a branch name, a tag name, a commit id, or any identifier allowed by Git.
 
-**Returns:** [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) or `tuple[SchedulerMixin, dict[str, Any]]`
+**Returns:** [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) or `tuple[SchedulerMixin, dict[str, Any]]`
 
 The scheduler instantiated from the configuration. If `return_unused_kwargs` is `True`, a tuple is
 returned where the second element is a dictionary of unused keyword arguments.
@@ -115,7 +115,7 @@ firewalled environment.
 save_pretrained(save_directory: str | os.PathLike, push_to_hub: bool = False, **kwargs: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_utils.py#L164)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_utils.py#L164)
 
 **Parameters:**
 
@@ -123,10 +123,10 @@ save_directory (`str` or `os.PathLike`) : Directory where the configuration JSON
 
 push_to_hub (`bool`, *optional*, defaults to `False`) : Whether or not to push your model to the Hugging Face Hub after saving it. You can specify the repository you want to push to with `repo_id` (will default to the name of `save_directory` in your namespace).
 
-kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments passed along to the [push_to_hub()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method.
+kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments passed along to the [push_to_hub()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method.
 
 Save a scheduler configuration object to a directory so that it can be reloaded using the
-[from_pretrained()](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin.from_pretrained) class method.
+[from_pretrained()](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin.from_pretrained) class method.
 
 ## SchedulerOutput[[diffusers.schedulers.scheduling_utils.SchedulerOutput]]
 
@@ -136,7 +136,7 @@ Save a scheduler configuration object to a directory so that it can be reloaded 
 diffusers.schedulers.scheduling_utils.SchedulerOutput(prev_sample: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_utils.py#L66)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_utils.py#L66)
 
 **Parameters:**
 
@@ -158,7 +158,7 @@ The different schedulers in this class, depending on the ordinary differential e
 diffusers.utils.PushToHubMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/hub_utils.py#L484)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/hub_utils.py#L491)
 
 A Mixin to push a model, scheduler, or pipeline to the Hugging Face Hub.
 
@@ -168,7 +168,7 @@ A Mixin to push a model, scheduler, or pipeline to the Hugging Face Hub.
 push_to_hub(repo_id: str, commit_message: str | None = None, private: bool | None = None, token: str | None = None, create_pr: bool = False, safe_serialization: bool = True, variant: str | None = None, subfolder: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/hub_utils.py#L519)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/hub_utils.py#L526)
 
 **Parameters:**
 
@@ -203,4 +203,4 @@ unet.push_to_hub("your-org/my-finetuned-unet")
 ```
 
 ### ConsistencyDecoderScheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/consistency_decoder.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/consistency_decoder.md

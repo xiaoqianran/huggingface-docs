@@ -18,7 +18,7 @@ transformer = HunyuanVideoTransformer3DModel.from_pretrained("hunyuanvideo-commu
 diffusers.HunyuanVideoTransformer3DModel(in_channels: int = 16, out_channels: int = 16, num_attention_heads: int = 24, attention_head_dim: int = 128, num_layers: int = 20, num_single_layers: int = 40, num_refiner_layers: int = 2, mlp_ratio: float = 4.0, patch_size: int = 2, patch_size_t: int = 1, qk_norm: str = 'rms_norm', guidance_embeds: bool = True, text_embed_dim: int = 4096, pooled_projection_dim: int = 768, rope_theta: float = 256.0, rope_axes_dim: tuple = (16, 56, 56), image_condition_type: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_hunyuan_video.py#L841)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_hunyuan_video.py#L841)
 
 **Parameters:**
 
@@ -64,7 +64,7 @@ A Transformer model for video-like data used in [HunyuanVideo](https://huggingfa
 forward(hidden_states: Tensor, timestep: LongTensor, encoder_hidden_states: Tensor, encoder_attention_mask: Tensor, pooled_projections: Tensor, guidance: Tensor = None, attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_hunyuan_video.py#L994)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_hunyuan_video.py#L994)
 
 **Parameters:**
 
@@ -89,7 +89,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
-The [HunyuanVideoTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/hunyuan_video_transformer_3d#diffusers.HunyuanVideoTransformer3DModel) forward method.
+The [HunyuanVideoTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/hunyuan_video_transformer_3d#diffusers.HunyuanVideoTransformer3DModel) forward method.
 
 ## Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
@@ -99,13 +99,13 @@ The [HunyuanVideoTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/hunyu
 diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L21)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-The output of [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+The output of [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
 
 ### LTX2VideoDiffusionDecoderModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/ltx2_diffusion_decoder.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/ltx2_diffusion_decoder.md

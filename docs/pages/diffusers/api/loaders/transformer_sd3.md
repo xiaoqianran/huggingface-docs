@@ -1,6 +1,6 @@
 # SD3Transformer2D
 
-This class is useful when *only* loading weights into a [SD3Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/sd3_transformer2d#diffusers.SD3Transformer2DModel). If you need to load weights into the text encoder or a text encoder and SD3Transformer2DModel, check [`SD3LoraLoaderMixin`](lora#diffusers.loaders.SD3LoraLoaderMixin) class instead.
+This class is useful when *only* loading weights into a [SD3Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/sd3_transformer2d#diffusers.SD3Transformer2DModel). If you need to load weights into the text encoder or a text encoder and SD3Transformer2DModel, check [`SD3LoraLoaderMixin`](lora#diffusers.loaders.SD3LoraLoaderMixin) class instead.
 
 The `SD3Transformer2DLoadersMixin` class currently only loads IP-Adapter weights, but will be used in the future to save weights and load LoRAs.
 
@@ -15,7 +15,7 @@ The `SD3Transformer2DLoadersMixin` class currently only loads IP-Adapter weights
 diffusers.loaders.SD3Transformer2DLoadersMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/transformer_sd3.py#L27)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/transformer_sd3.py#L27)
 
 Load IP-Adapters and LoRA layers into a `[SD3Transformer2DModel]`.
 
@@ -25,7 +25,7 @@ Load IP-Adapters and LoRA layers into a `[SD3Transformer2DModel]`.
 _load_ip_adapter_weights(state_dict: dict, low_cpu_mem_usage: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/transformer_sd3.py#L157)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/transformer_sd3.py#L157)
 
 **Parameters:**
 
@@ -36,4 +36,4 @@ low_cpu_mem_usage (`bool`, *optional*, defaults to `True` if torch version >= 1.
 Sets IP-Adapter attention processors, image projection, and loads state_dict.
 
 ### LoRA
-https://huggingface.co/docs/diffusers/v0.40.0/api/loaders/lora.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/loaders/lora.md

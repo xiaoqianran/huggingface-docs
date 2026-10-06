@@ -30,7 +30,7 @@ pipeline = FluxPipeline.from_pretrained(
     "black-forest-labs/FLUX.1-schnell",
     dtype=torch.float16,
     vae=None,
-    device_map="cuda"
+    device_map="cuda"  # or "mps", "xpu", "cpu"
 )
 
 init_image = load_image(
@@ -50,7 +50,7 @@ init_latent = remote_encode(
 
 Decoding converts latent representations back into images or videos. Refer to the table below for the available and supported VAEs.
 
-Set the output type to `"latent"` in the pipeline and set the `vae` to `None`. Pass the latents to the [remote_decode()](/docs/diffusers/v0.40.0/en/hybrid_inference/api_reference#diffusers.utils.remote_decode) function. For Flux, the latents are packed so the `height` and `width` also need to be passed. The specific `scaling_factor` and `shift_factor` values for each model can be found in the [Remote inference](../hybrid_inference/api_reference) API reference.
+Set the output type to `"latent"` in the pipeline and set the `vae` to `None`. Pass the latents to the [remote_decode()](/docs/diffusers/v0.41.0/en/hybrid_inference/api_reference#diffusers.utils.remote_decode) function. For Flux, the latents are packed so the `height` and `width` also need to be passed. The specific `scaling_factor` and `shift_factor` values for each model can be found in the [Remote inference](../hybrid_inference/api_reference) API reference.
 
 ```py
 from diffusers import FluxPipeline
@@ -59,7 +59,7 @@ pipeline = FluxPipeline.from_pretrained(
     "black-forest-labs/FLUX.1-schnell",
     dtype=torch.bfloat16,
     vae=None,
-    device_map="cuda"
+    device_map="cuda"  # or "mps", "xpu", "cpu"
 )
 
 prompt = """
@@ -91,7 +91,7 @@ transformer = HunyuanVideoTransformer3DModel.from_pretrained(
     "hunyuanvideo-community/HunyuanVideo", subfolder="transformer", dtype=torch.bfloat16
 )
 pipeline = HunyuanVideoPipeline.from_pretrained(
-    model_id, transformer=transformer, vae=None, dtype=torch.float16, device_map="cuda"
+    model_id, transformer=transformer, vae=None, dtype=torch.float16, device_map="cuda"  # or "mps", "xpu", "cpu"
 )
 
 latent = pipeline(
@@ -156,7 +156,7 @@ pipeline = StableDiffusionXLPipeline.from_pretrained(
     "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
     dtype=torch.float16,
     vae=None,
-    device_map="cuda"
+    device_map="cuda"  # or "mps", "xpu", "cpu"
 )
 
 pipeline.unet = pipeline.unet.to(memory_format=torch.channels_last)
@@ -274,4 +274,4 @@ Decoding SDXL
 - Refer to the [Remote VAEs for decoding with Inference Endpoints](https://huggingface.co/blog/remote_vae) blog post to learn more.
 
 ### Model formats
-https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/other-formats.md
+https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/other-formats.md

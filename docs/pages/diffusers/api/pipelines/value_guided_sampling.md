@@ -14,7 +14,7 @@ You can find additional information about the model on the [project page](https:
 The script to run the model is available [here](https://github.com/huggingface/diffusers/tree/main/examples/reinforcement_learning).
 
 > [!TIP]
-> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reuse-a-pipeline) section to learn how to efficiently load the same components into multiple pipelines.
+> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reusing-models-in-multiple-pipelines) section to learn how to efficiently load the same components into multiple pipelines.
 
 ## ValueGuidedRLPipeline[[diffusers.experimental.ValueGuidedRLPipeline]]
 
@@ -24,25 +24,25 @@ The script to run the model is available [here](https://github.com/huggingface/d
 diffusers.experimental.ValueGuidedRLPipeline(value_function: UNet1DModel, unet: UNet1DModel, scheduler: DDPMScheduler, env)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/experimental/rl/value_guided_sampling.py#L25)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/experimental/rl/value_guided_sampling.py#L25)
 
 **Parameters:**
 
-value_function ([UNet1DModel](/docs/diffusers/v0.40.0/en/api/models/unet#diffusers.UNet1DModel)) : A specialized UNet for fine-tuning trajectories base on reward.
+value_function ([UNet1DModel](/docs/diffusers/v0.41.0/en/api/models/unet#diffusers.UNet1DModel)) : A specialized UNet for fine-tuning trajectories base on reward.
 
-unet ([UNet1DModel](/docs/diffusers/v0.40.0/en/api/models/unet#diffusers.UNet1DModel)) : UNet architecture to denoise the encoded trajectories.
+unet ([UNet1DModel](/docs/diffusers/v0.41.0/en/api/models/unet#diffusers.UNet1DModel)) : UNet architecture to denoise the encoded trajectories.
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded trajectories. Default for this application is [DDPMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddpm#diffusers.DDPMScheduler).
+scheduler ([SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded trajectories. Default for this application is [DDPMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddpm#diffusers.DDPMScheduler).
 
 env () : An environment following the OpenAI gym API to act in. For now only Hopper has pretrained models.
 
 Pipeline for value-guided sampling from a diffusion model trained to predict sequences of states.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 ### Nucleusmoe Image
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/nucleusmoe_image.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/nucleusmoe_image.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -62,7 +62,7 @@ https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/nucleusmoe_image.md
 [NucleusMoE-Image](https://huggingface.co/NucleusAI/NucleusMoE-Image) is a text-to-image model that pairs a single-stream DiT with Mixture-of-Experts feed-forward layers, cross-attention to a Qwen3-VL text encoder, and a flow-matching Euler discrete scheduler.
 
 > [!TIP]
-> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reuse-a-pipeline) section to learn how to efficiently load the same components into multiple pipelines.
+> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reusing-models-in-multiple-pipelines) section to learn how to efficiently load the same components into multiple pipelines.
 
 ## NucleusMoEImagePipeline[[diffusers.NucleusMoEImagePipeline]]
 
@@ -72,15 +72,15 @@ https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/nucleusmoe_image.md
 diffusers.NucleusMoEImagePipeline(transformer: NucleusMoEImageTransformer2DModel, scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKLQwenImage, text_encoder: Qwen3VLForConditionalGeneration, processor: Qwen3VLProcessor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/nucleusmoe_image/pipeline_nucleusmoe_image.py#L132)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/nucleusmoe_image/pipeline_nucleusmoe_image.py#L132)
 
 **Parameters:**
 
 transformer (`NucleusMoEImageTransformer2DModel`) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKLQwenImage](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl_qwenimage#diffusers.AutoencoderKLQwenImage)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+vae ([AutoencoderKLQwenImage](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_qwenimage#diffusers.AutoencoderKLQwenImage)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
 text_encoder (`Qwen3VLForConditionalGeneration`) : Text encoder for computing prompt embeddings.
 
@@ -97,7 +97,7 @@ text encoder, and a flow-matching Euler discrete scheduler.
 __call__(prompt: str | list[str] = None, negative_prompt: str | list[str] = None, guidance_scale: float = 4.0, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, sigmas: list[float] | None = None, num_images_per_prompt: int = 1, max_sequence_length: int | None = None, return_index: int | None = None, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_embeds_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int, dict], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/nucleusmoe_image/pipeline_nucleusmoe_image.py#L379)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/nucleusmoe_image/pipeline_nucleusmoe_image.py#L379)
 
 **Parameters:**
 
@@ -168,7 +168,7 @@ Examples:
 encode_prompt(prompt: str | list[str] = None, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_embeds_mask: typing.Optional[torch.Tensor] = None, max_sequence_length: int | None = None, return_index: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/nucleusmoe_image/pipeline_nucleusmoe_image.py#L187)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/nucleusmoe_image/pipeline_nucleusmoe_image.py#L187)
 
 **Parameters:**
 
@@ -194,7 +194,7 @@ Encode text prompt(s) into embeddings using the Qwen3-VL text encoder.
 diffusers.pipelines.nucleusmoe_image.pipeline_output.NucleusMoEImagePipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/nucleusmoe_image/pipeline_output.py#L10)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/nucleusmoe_image/pipeline_output.py#L10)
 
 **Parameters:**
 
@@ -203,4 +203,4 @@ images (`list[PIL.Image.Image]` or `np.ndarray`) : List of denoised PIL images o
 Output class for NucleusMoE Image pipelines.
 
 ### ControlNet with Stable Diffusion XL
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/controlnet_sdxl.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/controlnet_sdxl.md

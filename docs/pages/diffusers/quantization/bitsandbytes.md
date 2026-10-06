@@ -17,17 +17,17 @@ To use bitsandbytes, make sure you have the following libraries installed:
 pip install diffusers transformers accelerate bitsandbytes -U
 ```
 
-Now you can quantize a model by passing a [BitsAndBytesConfig](/docs/diffusers/v0.40.0/en/api/quantization#diffusers.BitsAndBytesConfig) to [from_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained). This works for any model in any modality, as long as it supports loading with [Accelerate](https://hf.co/docs/accelerate/index) and contains `torch.nn.Linear` layers.
+Now you can quantize a model by passing a [BitsAndBytesConfig](/docs/diffusers/v0.41.0/en/api/quantization#diffusers.BitsAndBytesConfig) to [from_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained). This works for any model in any modality, as long as it supports loading with [Accelerate](https://hf.co/docs/accelerate/index) and contains `torch.nn.Linear` layers.
 
 Quantizing a model in 8-bit halves the memory-usage:
 
 bitsandbytes is supported in both Transformers and Diffusers, so you can quantize both the
-[FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel) and [T5EncoderModel](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/t5#transformers.T5EncoderModel).
+[FluxTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel) and [T5EncoderModel](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/t5#transformers.T5EncoderModel).
 
 For Ada and higher-series GPUs. we recommend changing `dtype` to `torch.bfloat16`.
 
 > [!TIP]
-> The `CLIPTextModel` and [AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL) aren't quantized because they're already small in size and because [AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL) only has a few `torch.nn.Linear` layers.
+> The `CLIPTextModel` and [AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL) aren't quantized because they're already small in size and because [AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL) only has a few `torch.nn.Linear` layers.
 
 ```py
 from diffusers import BitsAndBytesConfig as DiffusersBitsAndBytesConfig
@@ -96,19 +96,19 @@ image = pipe(**pipe_kwargs, generator=torch.manual_seed(0),).images[0]
 
    
 
-When there is enough memory, you can also directly move the pipeline to the GPU with `.to("cuda")` and apply [enable_model_cpu_offload()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) to optimize GPU memory usage.
+When there is enough memory, you can also directly move the pipeline to the GPU with `.to("cuda")` and apply [enable_model_cpu_offload()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) to optimize GPU memory usage.
 
-Once a model is quantized, you can push the model to the Hub with the [push_to_hub()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method. The quantization `config.json` file is pushed first, followed by the quantized model weights. You can also save the serialized 8-bit models locally with [save_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained).
+Once a model is quantized, you can push the model to the Hub with the [push_to_hub()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method. The quantization `config.json` file is pushed first, followed by the quantized model weights. You can also save the serialized 8-bit models locally with [save_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained).
 
 Quantizing a model in 4-bit reduces your memory-usage by 4x:
 
 bitsandbytes is supported in both Transformers and Diffusers, so you can can quantize both the
-[FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel) and [T5EncoderModel](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/t5#transformers.T5EncoderModel).
+[FluxTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel) and [T5EncoderModel](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/t5#transformers.T5EncoderModel).
 
 For Ada and higher-series GPUs. we recommend changing `dtype` to `torch.bfloat16`.
 
 > [!TIP]
-> The `CLIPTextModel` and [AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL) aren't quantized because they're already small in size and because [AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL) only has a few `torch.nn.Linear` layers.
+> The `CLIPTextModel` and [AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL) aren't quantized because they're already small in size and because [AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL) only has a few `torch.nn.Linear` layers.
 
 ```py
 from diffusers import BitsAndBytesConfig as DiffusersBitsAndBytesConfig
@@ -176,9 +176,9 @@ image = pipe(**pipe_kwargs, generator=torch.manual_seed(0),).images[0]
 
    
 
-When there is enough memory, you can also directly move the pipeline to the GPU with `.to("cuda")` and apply [enable_model_cpu_offload()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) to optimize GPU memory usage.
+When there is enough memory, you can also directly move the pipeline to the GPU with `.to("cuda")` and apply [enable_model_cpu_offload()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) to optimize GPU memory usage.
 
-Once a model is quantized, you can push the model to the Hub with the [push_to_hub()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method. The quantization `config.json` file is pushed first, followed by the quantized model weights. You can also save the serialized 4-bit models locally with [save_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained).
+Once a model is quantized, you can push the model to the Hub with the [push_to_hub()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method. The quantization `config.json` file is pushed first, followed by the quantized model weights. You can also save the serialized 4-bit models locally with [save_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained).
 
 > [!WARNING]
 > Training with 8-bit and 4-bit weights are only supported for training *extra* parameters.
@@ -191,7 +191,7 @@ print(model.get_memory_footprint())
 
 Note that this only tells you the memory footprint of the model params and does _not_ estimate the inference memory requirements.
 
-Quantized models can be loaded from the [from_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained) method without needing to specify the `quantization_config` parameters:
+Quantized models can be loaded from the [from_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained) method without needing to specify the `quantization_config` parameters:
 
 ```py
 from diffusers import AutoModel, BitsAndBytesConfig
@@ -214,7 +214,7 @@ This section explores some of the specific features of 8-bit models, such as out
 
 An "outlier" is a hidden state value greater than a certain threshold, and these values are computed in fp16. While the values are usually normally distributed ([-3.5, 3.5]), this distribution can be very different for large models ([-60, 6] or [6, 60]). 8-bit quantization works well for values ~5, but beyond that, there is a significant performance penalty. A good default threshold value is 6, but a lower threshold may be needed for more unstable models (small models or finetuning).
 
-To find the best threshold for your model, we recommend experimenting with the `llm_int8_threshold` parameter in [BitsAndBytesConfig](/docs/diffusers/v0.40.0/en/api/quantization#diffusers.BitsAndBytesConfig):
+To find the best threshold for your model, we recommend experimenting with the `llm_int8_threshold` parameter in [BitsAndBytesConfig](/docs/diffusers/v0.41.0/en/api/quantization#diffusers.BitsAndBytesConfig):
 
 ```py
 from diffusers import AutoModel, BitsAndBytesConfig
@@ -232,7 +232,7 @@ model_8bit = AutoModel.from_pretrained(
 
 ### Skip module conversion
 
-For some models, you don't need to quantize every module to 8-bit which can actually cause instability. For example, for diffusion models like [Stable Diffusion 3](../api/pipelines/stable_diffusion/stable_diffusion_3), the `proj_out` module can be skipped using the `llm_int8_skip_modules` parameter in [BitsAndBytesConfig](/docs/diffusers/v0.40.0/en/api/quantization#diffusers.BitsAndBytesConfig):
+For some models, you don't need to quantize every module to 8-bit which can actually cause instability. For example, for diffusion models like [Stable Diffusion 3](../api/pipelines/stable_diffusion/stable_diffusion_3), the `proj_out` module can be skipped using the `llm_int8_skip_modules` parameter in [BitsAndBytesConfig](/docs/diffusers/v0.41.0/en/api/quantization#diffusers.BitsAndBytesConfig):
 
 ```py
 from diffusers import SD3Transformer2DModel, BitsAndBytesConfig
@@ -257,7 +257,7 @@ This section explores some of the specific features of 4-bit models, such as cha
 
 ### Compute data type
 
-To speedup computation, you can change the data type from float32 (the default value) to bf16 using the `bnb_4bit_compute_dtype` parameter in [BitsAndBytesConfig](/docs/diffusers/v0.40.0/en/api/quantization#diffusers.BitsAndBytesConfig):
+To speedup computation, you can change the data type from float32 (the default value) to bf16 using the `bnb_4bit_compute_dtype` parameter in [BitsAndBytesConfig](/docs/diffusers/v0.41.0/en/api/quantization#diffusers.BitsAndBytesConfig):
 
 ```py
 import torch
@@ -268,7 +268,7 @@ quantization_config = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dty
 
 ### Normal Float 4 (NF4)
 
-NF4 is a 4-bit data type from the [QLoRA](https://hf.co/papers/2305.14314) paper, adapted for weights initialized from a normal distribution. You should use NF4 for training 4-bit base models. This can be configured with the `bnb_4bit_quant_type` parameter in the [BitsAndBytesConfig](/docs/diffusers/v0.40.0/en/api/quantization#diffusers.BitsAndBytesConfig):
+NF4 is a 4-bit data type from the [QLoRA](https://hf.co/papers/2305.14314) paper, adapted for weights initialized from a normal distribution. You should use NF4 for training 4-bit base models. This can be configured with the `bnb_4bit_quant_type` parameter in the [BitsAndBytesConfig](/docs/diffusers/v0.41.0/en/api/quantization#diffusers.BitsAndBytesConfig):
 
 ```py
 from diffusers import BitsAndBytesConfig as DiffusersBitsAndBytesConfig
@@ -417,4 +417,4 @@ Check out the [benchmarking script](https://gist.github.com/sayakpaul/0db9d8eeeb
 * [Training](https://github.com/huggingface/diffusers/blob/8c661ea586bf11cb2440da740dd3c4cf84679b85/examples/dreambooth/README_hidream.md#using-quantization)
 
 ### AutoRound
-https://huggingface.co/docs/diffusers/v0.40.0/quantization/autoround.md
+https://huggingface.co/docs/diffusers/v0.41.0/quantization/autoround.md

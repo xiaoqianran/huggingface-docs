@@ -230,6 +230,7 @@ https://huggingface.co/docs/diffusers/api/models/autoencoderkl_minimax_h3.md
 https://huggingface.co/docs/diffusers/api/models/autoencoderkl_minimax_h3_audio.md
 https://huggingface.co/docs/diffusers/api/models/autoencoderkl_mochi.md
 https://huggingface.co/docs/diffusers/api/models/autoencoderkl_qwenimage.md
+https://huggingface.co/docs/diffusers/api/models/autoencoderkl_qwenimage21.md
 https://huggingface.co/docs/diffusers/api/models/bria_transformer.md
 https://huggingface.co/docs/diffusers/api/models/chroma_transformer.md
 https://huggingface.co/docs/diffusers/api/models/chronoedit_transformer_3d.md
@@ -276,6 +277,7 @@ https://huggingface.co/docs/diffusers/api/models/overview.md
 https://huggingface.co/docs/diffusers/api/models/ovisimage_transformer2d.md
 https://huggingface.co/docs/diffusers/api/models/pixart_transformer2d.md
 https://huggingface.co/docs/diffusers/api/models/prior_transformer.md
+https://huggingface.co/docs/diffusers/api/models/qwenimage21_transformer2d.md
 https://huggingface.co/docs/diffusers/api/models/qwenimage_transformer2d.md
 https://huggingface.co/docs/diffusers/api/models/sana_transformer2d.md
 https://huggingface.co/docs/diffusers/api/models/sana_video_transformer3d.md
@@ -337,6 +339,7 @@ https://huggingface.co/docs/diffusers/api/pipelines/deepfloyd_if.md
 https://huggingface.co/docs/diffusers/api/pipelines/diffusion_gemma.md
 https://huggingface.co/docs/diffusers/api/pipelines/dit.md
 https://huggingface.co/docs/diffusers/api/pipelines/dreamlite.md
+https://huggingface.co/docs/diffusers/api/pipelines/echo.md
 https://huggingface.co/docs/diffusers/api/pipelines/ernie_image.md
 https://huggingface.co/docs/diffusers/api/pipelines/flux.md
 https://huggingface.co/docs/diffusers/api/pipelines/flux2.md
@@ -373,6 +376,7 @@ https://huggingface.co/docs/diffusers/api/pipelines/pag.md
 https://huggingface.co/docs/diffusers/api/pipelines/pix2pix.md
 https://huggingface.co/docs/diffusers/api/pipelines/pixart.md
 https://huggingface.co/docs/diffusers/api/pipelines/pixart_sigma.md
+https://huggingface.co/docs/diffusers/api/pipelines/qwenimage21.md
 https://huggingface.co/docs/diffusers/api/pipelines/sana.md
 https://huggingface.co/docs/diffusers/api/pipelines/shap_e.md
 https://huggingface.co/docs/diffusers/api/pipelines/stable_audio.md
@@ -432,9 +436,7 @@ https://huggingface.co/docs/diffusers/api/schedulers/overview.md
 https://huggingface.co/docs/diffusers/api/schedulers/pndm.md
 https://huggingface.co/docs/diffusers/api/schedulers/repaint.md
 https://huggingface.co/docs/diffusers/api/schedulers/score_sde_ve.md
-https://huggingface.co/docs/diffusers/api/schedulers/score_sde_vp.md
 https://huggingface.co/docs/diffusers/api/schedulers/singlestep_dpm_solver.md
-https://huggingface.co/docs/diffusers/api/schedulers/stochastic_karras_ve.md
 https://huggingface.co/docs/diffusers/api/schedulers/tcd.md
 https://huggingface.co/docs/diffusers/api/schedulers/unipc.md
 https://huggingface.co/docs/diffusers/api/schedulers/vq_diffusion.md
@@ -507,7 +509,6 @@ https://huggingface.co/docs/diffusers/training/t2i_adapters.md
 https://huggingface.co/docs/diffusers/training/text2image.md
 https://huggingface.co/docs/diffusers/training/text_inversion.md
 https://huggingface.co/docs/diffusers/training/unconditional_training.md
-https://huggingface.co/docs/diffusers/training/wuerstchen.md
 https://huggingface.co/docs/diffusers/tutorials/autopipeline.md
 https://huggingface.co/docs/diffusers/tutorials/basic_training.md
 https://huggingface.co/docs/diffusers/tutorials/using_peft_for_inference.md
@@ -527,14 +528,14 @@ https://huggingface.co/docs/diffusers/using-diffusers/image_quality.md
 https://huggingface.co/docs/diffusers/using-diffusers/img2img.md
 https://huggingface.co/docs/diffusers/using-diffusers/inpaint.md
 https://huggingface.co/docs/diffusers/using-diffusers/ip_adapter.md
+https://huggingface.co/docs/diffusers/using-diffusers/legacy_adapters.md
+https://huggingface.co/docs/diffusers/using-diffusers/legacy_checkpoints.md
 https://huggingface.co/docs/diffusers/using-diffusers/loading.md
 https://huggingface.co/docs/diffusers/using-diffusers/other-formats.md
 https://huggingface.co/docs/diffusers/using-diffusers/push_to_hub.md
 https://huggingface.co/docs/diffusers/using-diffusers/reusing_seeds.md
 https://huggingface.co/docs/diffusers/using-diffusers/schedulers.md
-https://huggingface.co/docs/diffusers/using-diffusers/t2i_adapter.md
 https://huggingface.co/docs/diffusers/using-diffusers/text-img2vid.md
-https://huggingface.co/docs/diffusers/using-diffusers/textual_inversion_inference.md
 https://huggingface.co/docs/diffusers/using-diffusers/unconditional_image_generation.md
 https://huggingface.co/docs/diffusers/using-diffusers/weighted_prompts.md
 https://huggingface.co/docs/diffusers/using-diffusers/write_own_pipeline.md

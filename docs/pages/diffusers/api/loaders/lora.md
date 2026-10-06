@@ -1,6 +1,6 @@
 # LoRA
 
-LoRA is a fast and lightweight training method that inserts and trains a significantly smaller number of parameters instead of all the model parameters. This produces a smaller file (~100 MBs) and makes it easier to quickly train a model to learn a new concept. LoRA weights are typically loaded into the denoiser, text encoder or both. The denoiser usually corresponds to a UNet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel), for example) or a Transformer ([SD3Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/sd3_transformer2d#diffusers.SD3Transformer2DModel), for example). There are several classes for loading LoRA weights:
+LoRA is a fast and lightweight training method that inserts and trains a significantly smaller number of parameters instead of all the model parameters. This produces a smaller file (~100 MBs) and makes it easier to quickly train a model to learn a new concept. LoRA weights are typically loaded into the denoiser, text encoder or both. The denoiser usually corresponds to a UNet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel), for example) or a Transformer ([SD3Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/sd3_transformer2d#diffusers.SD3Transformer2DModel), for example). There are several classes for loading LoRA weights:
 
 - `StableDiffusionLoraLoaderMixin` provides functions for loading and unloading, fusing and unfusing, enabling and disabling, and more functions for managing LoRA weights. This class can be used with any model.
 - `StableDiffusionXLLoraLoaderMixin` is a [Stable Diffusion (SDXL)](../../api/pipelines/stable_diffusion/stable_diffusion_xl) version of the `StableDiffusionLoraLoaderMixin` class for loading and saving LoRA weights. It can only be used with the SDXL model.
@@ -40,7 +40,7 @@ LoRA is a fast and lightweight training method that inserts and trains a signifi
 diffusers.loaders.lora_base.LoraBaseMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L486)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L491)
 
 Utility class for handling LoRAs.
 
@@ -50,7 +50,7 @@ Utility class for handling LoRAs.
 delete_adapters(adapter_names: list[str] | str)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L856)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L861)
 
 **Parameters:**
 
@@ -79,7 +79,7 @@ pipeline.delete_adapters("cinematic")
 disable_lora()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L796)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L801)
 
 Disables the active LoRA layers of the pipeline.
 
@@ -104,7 +104,7 @@ pipeline.disable_lora()
 enable_lora()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L826)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L831)
 
 Enables the active LoRA layers of the pipeline.
 
@@ -129,7 +129,7 @@ pipeline.enable_lora()
 enable_lora_hotswap(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L1003)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L1008)
 
 **Parameters:**
 
@@ -146,7 +146,7 @@ different.
 fuse_lora(components: list[str] | None = None, lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L544)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L549)
 
 **Parameters:**
 
@@ -179,7 +179,7 @@ pipeline.fuse_lora(lora_scale=0.7)
 get_active_adapters()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L894)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L899)
 
 Gets the list of the current active adapters.
 
@@ -201,7 +201,7 @@ pipeline.get_active_adapters()
 get_list_adapters()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L927)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L932)
 
 Gets the current list of all available adapters in the pipeline.
 
@@ -211,7 +211,7 @@ Gets the current list of all available adapters in the pipeline.
 set_adapters(adapter_names: list[str] | str, adapter_weights: float | dict | list[float] | list[dict] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L693)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L698)
 
 **Parameters:**
 
@@ -243,7 +243,7 @@ pipeline.set_adapters(["cinematic", "pixel"], adapter_weights=[0.5, 0.5])
 set_lora_device(adapter_names: list[str], device: torch.device | str | int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L949)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L954)
 
 **Parameters:**
 
@@ -281,7 +281,7 @@ GPU before using those LoRA adapters for inference.
 unfuse_lora(components: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L631)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L636)
 
 **Parameters:**
 
@@ -300,7 +300,7 @@ Reverses the effect of
 unload_lora_weights()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L521)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L526)
 
 Unloads the LoRA parameters.
 
@@ -318,7 +318,7 @@ Examples:
 write_lora_layers(state_dict: dict[str, torch.Tensor], save_directory: str, is_main_process: bool, weight_name: str, save_function: Callable, safe_serialization: bool, lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L1026)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L1031)
 
 Writes the state dict of the LoRA layers (optionally with metadata) to disk.
 
@@ -330,9 +330,9 @@ Writes the state dict of the LoRA layers (optionally with metadata) to disk.
 diffusers.loaders.StableDiffusionLoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L133)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L134)
 
-Load LoRA layers into Stable Diffusion [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) and
+Load LoRA layers into Stable Diffusion [UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) and
 [`CLIPTextModel`](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel).
 
 #### load_lora_into_text_encoder[[diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_text_encoder]]
@@ -341,7 +341,7 @@ Load LoRA layers into Stable Diffusion [UNet2DConditionModel](/docs/diffusers/v0
 load_lora_into_text_encoder(state_dict, network_alphas, text_encoder, prefix = None, lora_scale = 1.0, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L403)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L404)
 
 **Parameters:**
 
@@ -359,7 +359,7 @@ adapter_name (`str`, *optional*) : Adapter name to be used for referencing the l
 
 low_cpu_mem_usage (`bool`, *optional*) : Speed up model loading by only loading the pretrained LoRA weights and not initializing the random weights.
 
-hotswap (`bool`, *optional*) : See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights).
+hotswap (`bool`, *optional*) : See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights).
 
 metadata (`dict`) : Optional LoRA adapter metadata. When supplied, the `LoraConfig` arguments of `peft` won't be derived from the state dict.
 
@@ -371,7 +371,7 @@ This will load the LoRA layers specified in `state_dict` into `text_encoder`
 load_lora_into_unet(state_dict, network_alphas, unet, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L349)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L350)
 
 **Parameters:**
 
@@ -385,7 +385,7 @@ adapter_name (`str`, *optional*) : Adapter name to be used for referencing the l
 
 low_cpu_mem_usage (`bool`, *optional*) : Speed up model loading only loading the pretrained LoRA weights and not initializing the random weights.
 
-hotswap (`bool`, *optional*) : See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights).
+hotswap (`bool`, *optional*) : See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights).
 
 metadata (`dict`) : Optional LoRA adapter metadata. When supplied, the `LoraConfig` arguments of `peft` won't be derived from the state dict.
 
@@ -397,11 +397,11 @@ This will load the LoRA layers specified in `state_dict` into `unet`.
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L143)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L144)
 
 **Parameters:**
 
-pretrained_model_name_or_path_or_dict (`str` or `os.PathLike` or `dict`) : See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict).
+pretrained_model_name_or_path_or_dict (`str` or `os.PathLike` or `dict`) : See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict).
 
 adapter_name (`str`, *optional*) : Adapter name to be used for referencing the loaded adapter model. If not specified, it will use `default_{i}` where i is the total number of adapters being loaded.
 
@@ -409,20 +409,20 @@ low_cpu_mem_usage (`bool`, *optional*) : Speed up model loading by only loading 
 
 hotswap (`bool`, *optional*) : Defaults to `False`. Whether to substitute an existing (LoRA) adapter with the newly loaded adapter in-place. This means that, instead of loading an additional adapter, this will take the existing adapter weights and replace them with the weights of the new adapter. This can be faster and more memory efficient. However, the main advantage of hotswapping is that when the model is compiled with torch.compile, loading the new adapter does not require recompilation of the model. When using hotswapping, the passed `adapter_name` should be the name of an already loaded adapter.  If the new adapter and the old adapter have different ranks and/or LoRA alphas (i.e. scaling), you need to call an additional method before loading the adapter:  ```py pipeline = ...  # load diffusers pipeline max_rank = ...  # the highest rank among all LoRAs that you want to load # call *before* compiling and loading the LoRA adapter pipeline.enable_lora_hotswap(target_rank=max_rank) pipeline.load_lora_weights(file_name) # optionally compile the model now ```  Note that hotswapping adapters of the text encoder is not yet supported. There are some further limitations to this technique, which are documented here: https://huggingface.co/docs/peft/main/en/package_reference/hotswap
 
-kwargs (`dict`, *optional*) : See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict).
+kwargs (`dict`, *optional*) : See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict).
 
 Load LoRA weights specified in `pretrained_model_name_or_path_or_dict` into `self.unet` and
 `self.text_encoder`.
 
 All kwargs are forwarded to `self.lora_state_dict`.
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details on how the state dict is
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details on how the state dict is
 loaded.
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details on how the state dict is
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details on how the state dict is
 loaded into `self.unet`.
 
-See [load_lora_into_text_encoder()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_text_encoder) for more details on how the state
+See [load_lora_into_text_encoder()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_text_encoder) for more details on how the state
 dict is loaded into `self.text_encoder`.
 
 #### lora_state_dict[[diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict]]
@@ -431,11 +431,11 @@ dict is loaded into `self.text_encoder`.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L238)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L239)
 
 **Parameters:**
 
-pretrained_model_name_or_path_or_dict (`str` or `os.PathLike` or `dict`) : Can be either:  - A string, the *model id* (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a *directory* (for example `./my_model_directory`) containing the model weights saved with [ModelMixin.save_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained). - A [torch state dict](https://pytorch.org/tutorials/beginner/saving_loading_models.html#what-is-a-state-dict). 
+pretrained_model_name_or_path_or_dict (`str` or `os.PathLike` or `dict`) : Can be either:  - A string, the *model id* (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a *directory* (for example `./my_model_directory`) containing the model weights saved with [ModelMixin.save_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained). - A [torch state dict](https://pytorch.org/tutorials/beginner/saving_loading_models.html#what-is-a-state-dict). 
 
 cache_dir (`str | os.PathLike`, *optional*) : Path to a directory where a downloaded pretrained model configuration is cached if the standard cache is not used.
 
@@ -466,7 +466,7 @@ experimental and might change in the future.
 save_lora_weights(save_directory: str | os.PathLike, unet_lora_layers: dict = None, text_encoder_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, unet_lora_adapter_metadata = None, text_encoder_lora_adapter_metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L461)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L462)
 
 **Parameters:**
 
@@ -496,9 +496,9 @@ Save the LoRA parameters corresponding to the UNet and text encoder.
 diffusers.loaders.StableDiffusionXLLoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L580)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L581)
 
-Load LoRA layers into Stable Diffusion XL [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel),
+Load LoRA layers into Stable Diffusion XL [UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel),
 [`CLIPTextModel`](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), and
 [`CLIPTextModelWithProjection`](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModelWithProjection).
 
@@ -508,7 +508,7 @@ Load LoRA layers into Stable Diffusion XL [UNet2DConditionModel](/docs/diffusers
 fuse_lora(components: list = ['unet', 'text_encoder', 'text_encoder_2'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L933)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L934)
 
 See `fuse_lora()` for more details.
 
@@ -518,7 +518,7 @@ See `fuse_lora()` for more details.
 load_lora_into_text_encoder(state_dict, network_alphas, text_encoder, prefix = None, lora_scale = 1.0, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L826)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L827)
 
 **Parameters:**
 
@@ -536,7 +536,7 @@ adapter_name (`str`, *optional*) : Adapter name to be used for referencing the l
 
 low_cpu_mem_usage (`bool`, *optional*) : Speed up model loading by only loading the pretrained LoRA weights and not initializing the random weights.
 
-hotswap (`bool`, *optional*) : See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights).
+hotswap (`bool`, *optional*) : See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights).
 
 metadata (`dict`) : Optional LoRA adapter metadata. When supplied, the `LoraConfig` arguments of `peft` won't be derived from the state dict.
 
@@ -548,7 +548,7 @@ This will load the LoRA layers specified in `state_dict` into `text_encoder`
 load_lora_into_unet(state_dict, network_alphas, unet, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L771)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L772)
 
 **Parameters:**
 
@@ -562,7 +562,7 @@ adapter_name (`str`, *optional*) : Adapter name to be used for referencing the l
 
 low_cpu_mem_usage (`bool`, *optional*) : Speed up model loading only loading the pretrained LoRA weights and not initializing the random weights.
 
-hotswap (`bool`, *optional*) : See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights).
+hotswap (`bool`, *optional*) : See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights).
 
 metadata (`dict`) : Optional LoRA adapter metadata. When supplied, the `LoraConfig` arguments of `peft` won't be derived from the state dict.
 
@@ -574,9 +574,9 @@ This will load the LoRA layers specified in `state_dict` into `unet`.
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L591)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L592)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.StableDiffusionXLLoraLoaderMixin.lora_state_dict]]
 
@@ -584,11 +584,11 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L659)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L660)
 
 **Parameters:**
 
-pretrained_model_name_or_path_or_dict (`str` or `os.PathLike` or `dict`) : Can be either:  - A string, the *model id* (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a *directory* (for example `./my_model_directory`) containing the model weights saved with [ModelMixin.save_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained). - A [torch state dict](https://pytorch.org/tutorials/beginner/saving_loading_models.html#what-is-a-state-dict). 
+pretrained_model_name_or_path_or_dict (`str` or `os.PathLike` or `dict`) : Can be either:  - A string, the *model id* (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a *directory* (for example `./my_model_directory`) containing the model weights saved with [ModelMixin.save_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained). - A [torch state dict](https://pytorch.org/tutorials/beginner/saving_loading_models.html#what-is-a-state-dict). 
 
 cache_dir (`str | os.PathLike`, *optional*) : Path to a directory where a downloaded pretrained model configuration is cached if the standard cache is not used.
 
@@ -619,9 +619,9 @@ experimental and might change in the future.
 save_lora_weights(save_directory: str | os.PathLike, unet_lora_layers: dict = None, text_encoder_lora_layers: dict = None, text_encoder_2_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, unet_lora_adapter_metadata = None, text_encoder_lora_adapter_metadata = None, text_encoder_2_lora_adapter_metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L885)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L886)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.StableDiffusionXLLoraLoaderMixin.unfuse_lora]]
 
@@ -629,7 +629,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['unet', 'text_encoder', 'text_encoder_2'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L952)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L953)
 
 See `unfuse_lora()` for more details.
 
@@ -641,13 +641,13 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.SD3LoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L959)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L960)
 
-Load LoRA layers into [SD3Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/sd3_transformer2d#diffusers.SD3Transformer2DModel),
+Load LoRA layers into [SD3Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/sd3_transformer2d#diffusers.SD3Transformer2DModel),
 [`CLIPTextModel`](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), and
 [`CLIPTextModelWithProjection`](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModelWithProjection).
 
-Specific to [StableDiffusion3Pipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/stable_diffusion_3#diffusers.StableDiffusion3Pipeline).
+Specific to [StableDiffusion3Pipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/stable_diffusion_3#diffusers.StableDiffusion3Pipeline).
 
 #### fuse_lora[[diffusers.loaders.SD3LoraLoaderMixin.fuse_lora]]
 
@@ -655,7 +655,7 @@ Specific to [StableDiffusion3Pipeline](/docs/diffusers/v0.40.0/en/api/pipelines/
 fuse_lora(components: list = ['transformer', 'text_encoder', 'text_encoder_2'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1220)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1221)
 
 See `fuse_lora()` for more details.
 
@@ -665,7 +665,7 @@ See `fuse_lora()` for more details.
 load_lora_into_text_encoder(state_dict, network_alphas, text_encoder, prefix = None, lora_scale = 1.0, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1111)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1112)
 
 **Parameters:**
 
@@ -683,7 +683,7 @@ adapter_name (`str`, *optional*) : Adapter name to be used for referencing the l
 
 low_cpu_mem_usage (`bool`, *optional*) : Speed up model loading by only loading the pretrained LoRA weights and not initializing the random weights.
 
-hotswap (`bool`, *optional*) : See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights).
+hotswap (`bool`, *optional*) : See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights).
 
 metadata (`dict`) : Optional LoRA adapter metadata. When supplied, the `LoraConfig` arguments of `peft` won't be derived from the state dict.
 
@@ -695,9 +695,9 @@ This will load the LoRA layers specified in `state_dict` into `text_encoder`
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1085)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1086)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.SD3LoraLoaderMixin.load_lora_weights]]
 
@@ -705,9 +705,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1026)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1027)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.SD3LoraLoaderMixin.lora_state_dict]]
 
@@ -715,9 +715,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L972)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L973)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.SD3LoraLoaderMixin.save_lora_weights]]
 
@@ -725,9 +725,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, text_encoder_lora_layers: dict = None, text_encoder_2_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata = None, text_encoder_lora_adapter_metadata = None, text_encoder_2_lora_adapter_metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1170)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1171)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.SD3LoraLoaderMixin.unfuse_lora]]
 
@@ -735,7 +735,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer', 'text_encoder', 'text_encoder_2'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1240)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1241)
 
 See `unfuse_lora()` for more details.
 
@@ -747,12 +747,12 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.FluxLoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1436)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1437)
 
-Load LoRA layers into [FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel),
+Load LoRA layers into [FluxTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel),
 [`CLIPTextModel`](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel).
 
-Specific to [FluxPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/flux#diffusers.FluxPipeline).
+Specific to [FluxPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/flux#diffusers.FluxPipeline).
 
 #### fuse_lora[[diffusers.loaders.FluxLoraLoaderMixin.fuse_lora]]
 
@@ -760,9 +760,9 @@ Specific to [FluxPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/flux#diffuse
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1874)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1875)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### load_lora_into_text_encoder[[diffusers.loaders.FluxLoraLoaderMixin.load_lora_into_text_encoder]]
 
@@ -770,7 +770,7 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 load_lora_into_text_encoder(state_dict, network_alphas, text_encoder, prefix = None, lora_scale = 1.0, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1751)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1752)
 
 **Parameters:**
 
@@ -788,7 +788,7 @@ adapter_name (`str`, *optional*) : Adapter name to be used for referencing the l
 
 low_cpu_mem_usage (`bool`, *optional*) : Speed up model loading by only loading the pretrained LoRA weights and not initializing the random weights.
 
-hotswap (`bool`, *optional*) : See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights).
+hotswap (`bool`, *optional*) : See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights).
 
 metadata (`dict`) : Optional LoRA adapter metadata. When supplied, the `LoraConfig` arguments of `peft` won't be derived from the state dict.
 
@@ -800,9 +800,9 @@ This will load the LoRA layers specified in `state_dict` into `text_encoder`
 load_lora_into_transformer(state_dict, network_alphas, transformer, adapter_name = None, metadata = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1670)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1671)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.FluxLoraLoaderMixin.load_lora_weights]]
 
@@ -810,9 +810,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1574)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1575)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.FluxLoraLoaderMixin.lora_state_dict]]
 
@@ -820,9 +820,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], return_alphas: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1449)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1450)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.FluxLoraLoaderMixin.save_lora_weights]]
 
@@ -830,7 +830,7 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, text_encoder_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata = None, text_encoder_lora_adapter_metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1810)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1811)
 
 **Parameters:**
 
@@ -858,7 +858,7 @@ Save the LoRA parameters corresponding to the UNet and text encoder.
 unfuse_lora(components: list = ['transformer', 'text_encoder'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1906)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1907)
 
 **Parameters:**
 
@@ -873,7 +873,7 @@ Reverses the effect of
 unload_lora_weights(reset_to_overwritten_params = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1921)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1922)
 
 **Parameters:**
 
@@ -897,9 +897,9 @@ Examples:
 diffusers.loaders.Flux2LoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5763)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5764)
 
-Load LoRA layers into [Flux2Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux2_transformer#diffusers.Flux2Transformer2DModel). Specific to [Flux2Pipeline](/docs/diffusers/v0.40.0/en/api/pipelines/flux2#diffusers.Flux2Pipeline).
+Load LoRA layers into [Flux2Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/flux2_transformer#diffusers.Flux2Transformer2DModel). Specific to [Flux2Pipeline](/docs/diffusers/v0.41.0/en/api/pipelines/flux2#diffusers.Flux2Pipeline).
 
 #### fuse_lora[[diffusers.loaders.Flux2LoraLoaderMixin.fuse_lora]]
 
@@ -907,7 +907,7 @@ Load LoRA layers into [Flux2Transformer2DModel](/docs/diffusers/v0.40.0/en/api/m
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5939)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5940)
 
 See `fuse_lora()` for more details.
 
@@ -917,9 +917,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5876)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5877)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.Flux2LoraLoaderMixin.load_lora_weights]]
 
@@ -927,9 +927,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5840)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5841)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.Flux2LoraLoaderMixin.lora_state_dict]]
 
@@ -937,9 +937,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5771)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5772)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.Flux2LoraLoaderMixin.save_lora_weights]]
 
@@ -947,9 +947,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5903)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5904)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.Flux2LoraLoaderMixin.unfuse_lora]]
 
@@ -957,7 +957,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5959)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5960)
 
 See `unfuse_lora()` for more details.
 
@@ -969,9 +969,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.ErnieImageLoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6162)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6163)
 
-Load LoRA layers into [ErnieImageTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/ernie_image_transformer2d#diffusers.ErnieImageTransformer2DModel). Specific to `ErnieImagePipeline`.
+Load LoRA layers into [ErnieImageTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/ernie_image_transformer2d#diffusers.ErnieImageTransformer2DModel). Specific to `ErnieImagePipeline`.
 
 #### fuse_lora[[diffusers.loaders.ErnieImageLoraLoaderMixin.fuse_lora]]
 
@@ -979,7 +979,7 @@ Load LoRA layers into [ErnieImageTransformer2DModel](/docs/diffusers/v0.40.0/en/
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6335)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6336)
 
 See `fuse_lora()` for more details.
 
@@ -989,9 +989,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6272)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6273)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.ErnieImageLoraLoaderMixin.load_lora_weights]]
 
@@ -999,9 +999,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6236)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6237)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.ErnieImageLoraLoaderMixin.lora_state_dict]]
 
@@ -1009,9 +1009,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6170)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6171)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.ErnieImageLoraLoaderMixin.save_lora_weights]]
 
@@ -1019,9 +1019,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6299)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6300)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.ErnieImageLoraLoaderMixin.unfuse_lora]]
 
@@ -1029,7 +1029,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6355)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6356)
 
 See `unfuse_lora()` for more details.
 
@@ -1041,9 +1041,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.LTX2LoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2914)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2915)
 
-Load LoRA layers into [LTX2VideoTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/ltx2_video_transformer3d#diffusers.LTX2VideoTransformer3DModel). Specific to [LTX2Pipeline](/docs/diffusers/v0.40.0/en/api/pipelines/ltx2#diffusers.LTX2Pipeline).
+Load LoRA layers into [LTX2VideoTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/ltx2_video_transformer3d#diffusers.LTX2VideoTransformer3DModel). Specific to [LTX2Pipeline](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2Pipeline).
 
 #### fuse_lora[[diffusers.loaders.LTX2LoraLoaderMixin.fuse_lora]]
 
@@ -1051,7 +1051,7 @@ Load LoRA layers into [LTX2VideoTransformer3DModel](/docs/diffusers/v0.40.0/en/a
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3103)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3104)
 
 See `fuse_lora()` for more details.
 
@@ -1061,9 +1061,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None, prefix: str = 'transformer')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3039)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3040)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.LTX2LoraLoaderMixin.load_lora_weights]]
 
@@ -1071,9 +1071,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2987)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2988)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.LTX2LoraLoaderMixin.lora_state_dict]]
 
@@ -1081,9 +1081,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2923)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2924)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.LTX2LoraLoaderMixin.save_lora_weights]]
 
@@ -1091,9 +1091,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3067)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3068)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.LTX2LoraLoaderMixin.unfuse_lora]]
 
@@ -1101,7 +1101,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3123)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3124)
 
 See `unfuse_lora()` for more details.
 
@@ -1113,9 +1113,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.CogVideoXLoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2348)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2349)
 
-Load LoRA layers into [CogVideoXTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/cogvideox_transformer3d#diffusers.CogVideoXTransformer3DModel). Specific to [CogVideoXPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/cogvideox#diffusers.CogVideoXPipeline).
+Load LoRA layers into [CogVideoXTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/cogvideox_transformer3d#diffusers.CogVideoXTransformer3DModel). Specific to [CogVideoXPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/cogvideox#diffusers.CogVideoXPipeline).
 
 #### fuse_lora[[diffusers.loaders.CogVideoXLoraLoaderMixin.fuse_lora]]
 
@@ -1123,7 +1123,7 @@ Load LoRA layers into [CogVideoXTransformer3DModel](/docs/diffusers/v0.40.0/en/a
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2507)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2508)
 
 See `fuse_lora()` for more details.
 
@@ -1133,9 +1133,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2446)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2447)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.CogVideoXLoraLoaderMixin.load_lora_weights]]
 
@@ -1143,9 +1143,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2411)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2412)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.CogVideoXLoraLoaderMixin.lora_state_dict]]
 
@@ -1153,9 +1153,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2356)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2357)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.CogVideoXLoraLoaderMixin.save_lora_weights]]
 
@@ -1163,9 +1163,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2473)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2474)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.CogVideoXLoraLoaderMixin.unfuse_lora]]
 
@@ -1173,7 +1173,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2526)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2527)
 
 See `unfuse_lora()` for more details.
 
@@ -1185,9 +1185,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.Mochi1LoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2533)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2534)
 
-Load LoRA layers into [MochiTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/mochi_transformer3d#diffusers.MochiTransformer3DModel). Specific to [MochiPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/mochi#diffusers.MochiPipeline).
+Load LoRA layers into [MochiTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/mochi_transformer3d#diffusers.MochiTransformer3DModel). Specific to [MochiPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/mochi#diffusers.MochiPipeline).
 
 #### fuse_lora[[diffusers.loaders.Mochi1LoraLoaderMixin.fuse_lora]]
 
@@ -1195,7 +1195,7 @@ Load LoRA layers into [MochiTransformer3DModel](/docs/diffusers/v0.40.0/en/api/m
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2695)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2696)
 
 See `fuse_lora()` for more details.
 
@@ -1205,9 +1205,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2632)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2633)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.Mochi1LoraLoaderMixin.load_lora_weights]]
 
@@ -1215,9 +1215,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2596)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2597)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.Mochi1LoraLoaderMixin.lora_state_dict]]
 
@@ -1225,9 +1225,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2541)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2542)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.Mochi1LoraLoaderMixin.save_lora_weights]]
 
@@ -1235,9 +1235,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2659)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2660)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.Mochi1LoraLoaderMixin.unfuse_lora]]
 
@@ -1245,7 +1245,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2715)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2716)
 
 See `unfuse_lora()` for more details.
 
@@ -1257,9 +1257,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.AuraFlowLoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1247)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1248)
 
-Load LoRA layers into [AuraFlowTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/aura_flow_transformer2d#diffusers.AuraFlowTransformer2DModel) Specific to [AuraFlowPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/aura_flow#diffusers.AuraFlowPipeline).
+Load LoRA layers into [AuraFlowTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/aura_flow_transformer2d#diffusers.AuraFlowTransformer2DModel) Specific to [AuraFlowPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/aura_flow#diffusers.AuraFlowPipeline).
 
 #### fuse_lora[[diffusers.loaders.AuraFlowLoraLoaderMixin.fuse_lora]]
 
@@ -1267,7 +1267,7 @@ Load LoRA layers into [AuraFlowTransformer2DModel](/docs/diffusers/v0.40.0/en/ap
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1409)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1410)
 
 See `fuse_lora()` for more details.
 
@@ -1277,9 +1277,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1346)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1347)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.AuraFlowLoraLoaderMixin.load_lora_weights]]
 
@@ -1287,9 +1287,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1310)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1311)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.AuraFlowLoraLoaderMixin.lora_state_dict]]
 
@@ -1297,9 +1297,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1255)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1256)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.AuraFlowLoraLoaderMixin.save_lora_weights]]
 
@@ -1307,9 +1307,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1373)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1374)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.AuraFlowLoraLoaderMixin.unfuse_lora]]
 
@@ -1317,7 +1317,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer', 'text_encoder'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L1429)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L1430)
 
 See `unfuse_lora()` for more details.
 
@@ -1329,9 +1329,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.LTXVideoLoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2722)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2723)
 
-Load LoRA layers into [LTXVideoTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/ltx_video_transformer3d#diffusers.LTXVideoTransformer3DModel). Specific to [LTXPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/ltx_video#diffusers.LTXPipeline).
+Load LoRA layers into [LTXVideoTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/ltx_video_transformer3d#diffusers.LTXVideoTransformer3DModel). Specific to [LTXPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/ltx_video#diffusers.LTXPipeline).
 
 #### fuse_lora[[diffusers.loaders.LTXVideoLoraLoaderMixin.fuse_lora]]
 
@@ -1339,7 +1339,7 @@ Load LoRA layers into [LTXVideoTransformer3DModel](/docs/diffusers/v0.40.0/en/ap
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2887)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2888)
 
 See `fuse_lora()` for more details.
 
@@ -1349,9 +1349,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2824)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2825)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.LTXVideoLoraLoaderMixin.load_lora_weights]]
 
@@ -1359,9 +1359,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2788)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2789)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.LTXVideoLoraLoaderMixin.lora_state_dict]]
 
@@ -1369,9 +1369,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2730)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2731)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.LTXVideoLoraLoaderMixin.save_lora_weights]]
 
@@ -1379,9 +1379,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2851)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2852)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.LTXVideoLoraLoaderMixin.unfuse_lora]]
 
@@ -1389,7 +1389,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2907)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2908)
 
 See `unfuse_lora()` for more details.
 
@@ -1401,9 +1401,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.SanaLoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3130)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3131)
 
-Load LoRA layers into [SanaTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/sana_transformer2d#diffusers.SanaTransformer2DModel). Specific to [SanaPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/sana#diffusers.SanaPipeline).
+Load LoRA layers into [SanaTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/sana_transformer2d#diffusers.SanaTransformer2DModel). Specific to [SanaPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/sana#diffusers.SanaPipeline).
 
 #### fuse_lora[[diffusers.loaders.SanaLoraLoaderMixin.fuse_lora]]
 
@@ -1411,7 +1411,7 @@ Load LoRA layers into [SanaTransformer2DModel](/docs/diffusers/v0.40.0/en/api/mo
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3292)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3293)
 
 See `fuse_lora()` for more details.
 
@@ -1421,9 +1421,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3229)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3230)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.SanaLoraLoaderMixin.load_lora_weights]]
 
@@ -1431,9 +1431,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3193)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3194)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.SanaLoraLoaderMixin.lora_state_dict]]
 
@@ -1441,9 +1441,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3138)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3139)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.SanaLoraLoaderMixin.save_lora_weights]]
 
@@ -1451,9 +1451,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3256)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3257)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.SanaLoraLoaderMixin.unfuse_lora]]
 
@@ -1461,7 +1461,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3312)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3313)
 
 See `unfuse_lora()` for more details.
 
@@ -1473,9 +1473,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.HeliosLoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3319)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3320)
 
-Load LoRA layers into [HeliosTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/helios_transformer3d#diffusers.HeliosTransformer3DModel). Specific to [HeliosPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/helios#diffusers.HeliosPipeline) and [HeliosPyramidPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/helios#diffusers.HeliosPyramidPipeline).
+Load LoRA layers into [HeliosTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/helios_transformer3d#diffusers.HeliosTransformer3DModel). Specific to [HeliosPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/helios#diffusers.HeliosPipeline) and [HeliosPyramidPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/helios#diffusers.HeliosPyramidPipeline).
 
 #### fuse_lora[[diffusers.loaders.HeliosLoraLoaderMixin.fuse_lora]]
 
@@ -1483,7 +1483,7 @@ Load LoRA layers into [HeliosTransformer3DModel](/docs/diffusers/v0.40.0/en/api/
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3482)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3483)
 
 See `fuse_lora()` for more details.
 
@@ -1493,9 +1493,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3419)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3420)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.HeliosLoraLoaderMixin.load_lora_weights]]
 
@@ -1503,9 +1503,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3385)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3386)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.HeliosLoraLoaderMixin.lora_state_dict]]
 
@@ -1513,9 +1513,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3327)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3328)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.HeliosLoraLoaderMixin.save_lora_weights]]
 
@@ -1523,9 +1523,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3446)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3447)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.HeliosLoraLoaderMixin.unfuse_lora]]
 
@@ -1533,7 +1533,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3502)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3503)
 
 See `unfuse_lora()` for more details.
 
@@ -1545,9 +1545,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.HunyuanVideoLoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3509)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3510)
 
-Load LoRA layers into [HunyuanVideoTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/hunyuan_video_transformer_3d#diffusers.HunyuanVideoTransformer3DModel). Specific to [HunyuanVideoPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/hunyuan_video#diffusers.HunyuanVideoPipeline).
+Load LoRA layers into [HunyuanVideoTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/hunyuan_video_transformer_3d#diffusers.HunyuanVideoTransformer3DModel). Specific to [HunyuanVideoPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/hunyuan_video#diffusers.HunyuanVideoPipeline).
 
 #### fuse_lora[[diffusers.loaders.HunyuanVideoLoraLoaderMixin.fuse_lora]]
 
@@ -1555,7 +1555,7 @@ Load LoRA layers into [HunyuanVideoTransformer3DModel](/docs/diffusers/v0.40.0/e
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3674)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3675)
 
 See `fuse_lora()` for more details.
 
@@ -1565,9 +1565,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3611)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3612)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.HunyuanVideoLoraLoaderMixin.load_lora_weights]]
 
@@ -1575,9 +1575,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3575)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3576)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.HunyuanVideoLoraLoaderMixin.lora_state_dict]]
 
@@ -1585,9 +1585,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3517)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3518)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.HunyuanVideoLoraLoaderMixin.save_lora_weights]]
 
@@ -1595,9 +1595,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3638)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3639)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.HunyuanVideoLoraLoaderMixin.unfuse_lora]]
 
@@ -1605,7 +1605,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3694)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3695)
 
 See `unfuse_lora()` for more details.
 
@@ -1617,9 +1617,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.Lumina2LoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3701)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3702)
 
-Load LoRA layers into [Lumina2Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/lumina2_transformer2d#diffusers.Lumina2Transformer2DModel). Specific to `Lumina2Text2ImgPipeline`.
+Load LoRA layers into [Lumina2Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/lumina2_transformer2d#diffusers.Lumina2Transformer2DModel). Specific to [Lumina2Pipeline](/docs/diffusers/v0.41.0/en/api/pipelines/lumina2#diffusers.Lumina2Pipeline).
 
 #### fuse_lora[[diffusers.loaders.Lumina2LoraLoaderMixin.fuse_lora]]
 
@@ -1627,7 +1627,7 @@ Load LoRA layers into [Lumina2Transformer2DModel](/docs/diffusers/v0.40.0/en/api
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3867)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3868)
 
 See `fuse_lora()` for more details.
 
@@ -1637,9 +1637,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3804)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3805)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.Lumina2LoraLoaderMixin.load_lora_weights]]
 
@@ -1647,9 +1647,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3768)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3769)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.Lumina2LoraLoaderMixin.lora_state_dict]]
 
@@ -1657,9 +1657,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3709)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3710)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.Lumina2LoraLoaderMixin.save_lora_weights]]
 
@@ -1667,9 +1667,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3831)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3832)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.Lumina2LoraLoaderMixin.unfuse_lora]]
 
@@ -1677,7 +1677,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3887)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3888)
 
 See `unfuse_lora()` for more details.
 
@@ -1689,9 +1689,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.CogView4LoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4612)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4613)
 
-Load LoRA layers into [WanTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel). Specific to [CogView4Pipeline](/docs/diffusers/v0.40.0/en/api/pipelines/cogview4#diffusers.CogView4Pipeline).
+Load LoRA layers into [WanTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel). Specific to [CogView4Pipeline](/docs/diffusers/v0.41.0/en/api/pipelines/cogview4#diffusers.CogView4Pipeline).
 
 #### fuse_lora[[diffusers.loaders.CogView4LoraLoaderMixin.fuse_lora]]
 
@@ -1699,7 +1699,7 @@ Load LoRA layers into [WanTransformer3DModel](/docs/diffusers/v0.40.0/en/api/mod
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4774)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4775)
 
 See `fuse_lora()` for more details.
 
@@ -1709,9 +1709,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4711)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4712)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.CogView4LoraLoaderMixin.load_lora_weights]]
 
@@ -1719,9 +1719,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4675)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4676)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.CogView4LoraLoaderMixin.lora_state_dict]]
 
@@ -1729,9 +1729,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4620)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4621)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.CogView4LoraLoaderMixin.save_lora_weights]]
 
@@ -1739,9 +1739,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4738)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4739)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.CogView4LoraLoaderMixin.unfuse_lora]]
 
@@ -1749,7 +1749,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4794)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4795)
 
 See `unfuse_lora()` for more details.
 
@@ -1761,9 +1761,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.WanLoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4083)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4084)
 
-Load LoRA layers into [WanTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel). Specific to [WanPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/wan#diffusers.WanPipeline) and `[WanImageToVideoPipeline`].
+Load LoRA layers into [WanTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel). Specific to [WanPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/wan#diffusers.WanPipeline) and `[WanImageToVideoPipeline`].
 
 #### fuse_lora[[diffusers.loaders.WanLoraLoaderMixin.fuse_lora]]
 
@@ -1771,7 +1771,7 @@ Load LoRA layers into [WanTransformer3DModel](/docs/diffusers/v0.40.0/en/api/mod
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4319)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4320)
 
 See `fuse_lora()` for more details.
 
@@ -1781,9 +1781,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4256)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4257)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.WanLoraLoaderMixin.load_lora_weights]]
 
@@ -1791,9 +1791,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4197)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4198)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.WanLoraLoaderMixin.lora_state_dict]]
 
@@ -1801,9 +1801,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4091)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4092)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.WanLoraLoaderMixin.save_lora_weights]]
 
@@ -1811,9 +1811,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4283)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4284)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.WanLoraLoaderMixin.unfuse_lora]]
 
@@ -1821,7 +1821,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4339)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4340)
 
 See `unfuse_lora()` for more details.
 
@@ -1833,9 +1833,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.SkyReelsV2LoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4346)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4347)
 
-Load LoRA layers into [SkyReelsV2Transformer3DModel](/docs/diffusers/v0.40.0/en/api/models/skyreels_v2_transformer_3d#diffusers.SkyReelsV2Transformer3DModel).
+Load LoRA layers into [SkyReelsV2Transformer3DModel](/docs/diffusers/v0.41.0/en/api/models/skyreels_v2_transformer_3d#diffusers.SkyReelsV2Transformer3DModel).
 
 #### fuse_lora[[diffusers.loaders.SkyReelsV2LoraLoaderMixin.fuse_lora]]
 
@@ -1843,7 +1843,7 @@ Load LoRA layers into [SkyReelsV2Transformer3DModel](/docs/diffusers/v0.40.0/en/
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4585)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4586)
 
 See `fuse_lora()` for more details.
 
@@ -1853,9 +1853,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4522)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4523)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.SkyReelsV2LoraLoaderMixin.load_lora_weights]]
 
@@ -1863,9 +1863,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4462)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4463)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.SkyReelsV2LoraLoaderMixin.lora_state_dict]]
 
@@ -1873,9 +1873,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4354)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4355)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.SkyReelsV2LoraLoaderMixin.save_lora_weights]]
 
@@ -1883,9 +1883,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4549)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4550)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.SkyReelsV2LoraLoaderMixin.unfuse_lora]]
 
@@ -1893,7 +1893,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4605)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4606)
 
 See `unfuse_lora()` for more details.
 
@@ -1905,7 +1905,7 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.AmusedLoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2201)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2202)
 
 #### load_lora_into_transformer[[diffusers.loaders.AmusedLoraLoaderMixin.load_lora_into_transformer]]
 
@@ -1913,9 +1913,9 @@ diffusers.loaders.AmusedLoraLoaderMixin()
 load_lora_into_transformer(state_dict, network_alphas, transformer, adapter_name = None, metadata = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2206)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2207)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### save_lora_weights[[diffusers.loaders.AmusedLoraLoaderMixin.save_lora_weights]]
 
@@ -1923,7 +1923,7 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 save_lora_weights(save_directory: str | os.PathLike, text_encoder_lora_layers: dict = None, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L2293)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L2294)
 
 **Parameters:**
 
@@ -1949,9 +1949,9 @@ Save the LoRA parameters corresponding to the UNet and text encoder.
 diffusers.loaders.AnimaLoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5577)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5578)
 
-Load LoRA layers into [CosmosTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/cosmos_transformer3d#diffusers.CosmosTransformer3DModel) and [AnimaTextConditioner](/docs/diffusers/v0.40.0/en/api/pipelines/anima#diffusers.AnimaTextConditioner).
+Load LoRA layers into [CosmosTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/cosmos_transformer3d#diffusers.CosmosTransformer3DModel) and [AnimaTextConditioner](/docs/diffusers/v0.41.0/en/api/pipelines/anima#diffusers.AnimaTextConditioner).
 
 #### fuse_lora[[diffusers.loaders.AnimaLoraLoaderMixin.fuse_lora]]
 
@@ -1959,7 +1959,7 @@ Load LoRA layers into [CosmosTransformer3DModel](/docs/diffusers/v0.40.0/en/api/
 fuse_lora(components: list = ['transformer', 'text_conditioner'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5737)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5738)
 
 See `fuse_lora()` for more details.
 
@@ -1969,9 +1969,9 @@ See `fuse_lora()` for more details.
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5642)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5643)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.AnimaLoraLoaderMixin.lora_state_dict]]
 
@@ -1979,9 +1979,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5586)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5587)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### unfuse_lora[[diffusers.loaders.AnimaLoraLoaderMixin.unfuse_lora]]
 
@@ -1989,7 +1989,7 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 unfuse_lora(components: list = ['transformer', 'text_conditioner'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5756)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5757)
 
 See `unfuse_lora()` for more details.
 
@@ -2001,9 +2001,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.AceStepLoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6552)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6553)
 
-Load LoRA layers into [AceStepTransformer1DModel](/docs/diffusers/v0.40.0/en/api/models/ace_step_transformer#diffusers.AceStepTransformer1DModel). Specific to [AceStepPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/ace_step#diffusers.AceStepPipeline).
+Load LoRA layers into [AceStepTransformer1DModel](/docs/diffusers/v0.41.0/en/api/models/ace_step_transformer#diffusers.AceStepTransformer1DModel). Specific to [AceStepPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/ace_step#diffusers.AceStepPipeline).
 
 #### fuse_lora[[diffusers.loaders.AceStepLoraLoaderMixin.fuse_lora]]
 
@@ -2011,7 +2011,7 @@ Load LoRA layers into [AceStepTransformer1DModel](/docs/diffusers/v0.40.0/en/api
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6716)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6717)
 
 See `fuse_lora()` for more details.
 
@@ -2021,9 +2021,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6653)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6654)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.AceStepLoraLoaderMixin.load_lora_weights]]
 
@@ -2031,9 +2031,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6617)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6618)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.AceStepLoraLoaderMixin.lora_state_dict]]
 
@@ -2041,9 +2041,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6560)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6561)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.AceStepLoraLoaderMixin.save_lora_weights]]
 
@@ -2051,9 +2051,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6680)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6681)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.AceStepLoraLoaderMixin.unfuse_lora]]
 
@@ -2061,7 +2061,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6736)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6737)
 
 See `unfuse_lora()` for more details.
 
@@ -2073,9 +2073,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.HiDreamImageLoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4801)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4802)
 
-Load LoRA layers into [HiDreamImageTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/hidream_image_transformer#diffusers.HiDreamImageTransformer2DModel). Specific to [HiDreamImagePipeline](/docs/diffusers/v0.40.0/en/api/pipelines/hidream#diffusers.HiDreamImagePipeline).
+Load LoRA layers into [HiDreamImageTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/hidream_image_transformer#diffusers.HiDreamImageTransformer2DModel). Specific to [HiDreamImagePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/hidream#diffusers.HiDreamImagePipeline).
 
 #### fuse_lora[[diffusers.loaders.HiDreamImageLoraLoaderMixin.fuse_lora]]
 
@@ -2083,7 +2083,7 @@ Load LoRA layers into [HiDreamImageTransformer2DModel](/docs/diffusers/v0.40.0/e
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4966)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4967)
 
 See `fuse_lora()` for more details.
 
@@ -2093,9 +2093,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4903)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4904)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.HiDreamImageLoraLoaderMixin.load_lora_weights]]
 
@@ -2103,9 +2103,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4867)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4868)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.HiDreamImageLoraLoaderMixin.lora_state_dict]]
 
@@ -2113,9 +2113,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4809)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4810)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.HiDreamImageLoraLoaderMixin.save_lora_weights]]
 
@@ -2123,9 +2123,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4930)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4931)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.HiDreamImageLoraLoaderMixin.unfuse_lora]]
 
@@ -2133,7 +2133,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4986)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4987)
 
 See `unfuse_lora()` for more details.
 
@@ -2145,9 +2145,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.QwenImageLoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4993)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4994)
 
-Load LoRA layers into [QwenImageTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/qwenimage_transformer2d#diffusers.QwenImageTransformer2DModel). Specific to [QwenImagePipeline](/docs/diffusers/v0.40.0/en/api/pipelines/qwenimage#diffusers.QwenImagePipeline).
+Load LoRA layers into [QwenImageTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/qwenimage_transformer2d#diffusers.QwenImageTransformer2DModel). Specific to [QwenImagePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/qwenimage#diffusers.QwenImagePipeline).
 
 #### fuse_lora[[diffusers.loaders.QwenImageLoraLoaderMixin.fuse_lora]]
 
@@ -2155,7 +2155,7 @@ Load LoRA layers into [QwenImageTransformer2DModel](/docs/diffusers/v0.40.0/en/a
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5161)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5162)
 
 See `fuse_lora()` for more details.
 
@@ -2165,9 +2165,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5098)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5099)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.QwenImageLoraLoaderMixin.load_lora_weights]]
 
@@ -2175,9 +2175,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5062)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5063)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.QwenImageLoraLoaderMixin.lora_state_dict]]
 
@@ -2185,9 +2185,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5001)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5002)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.QwenImageLoraLoaderMixin.save_lora_weights]]
 
@@ -2195,9 +2195,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5125)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5126)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.QwenImageLoraLoaderMixin.unfuse_lora]]
 
@@ -2205,7 +2205,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5181)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5182)
 
 See `unfuse_lora()` for more details.
 
@@ -2217,9 +2217,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.ZImageLoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5382)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5383)
 
-Load LoRA layers into [ZImageTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/z_image_transformer2d#diffusers.ZImageTransformer2DModel). Specific to [ZImagePipeline](/docs/diffusers/v0.40.0/en/api/pipelines/z_image#diffusers.ZImagePipeline).
+Load LoRA layers into [ZImageTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/z_image_transformer2d#diffusers.ZImageTransformer2DModel). Specific to [ZImagePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/z_image#diffusers.ZImagePipeline).
 
 #### fuse_lora[[diffusers.loaders.ZImageLoraLoaderMixin.fuse_lora]]
 
@@ -2227,7 +2227,7 @@ Load LoRA layers into [ZImageTransformer2DModel](/docs/diffusers/v0.40.0/en/api/
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5550)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5551)
 
 See `fuse_lora()` for more details.
 
@@ -2237,9 +2237,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5487)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5488)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.ZImageLoraLoaderMixin.load_lora_weights]]
 
@@ -2247,9 +2247,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5451)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5452)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.ZImageLoraLoaderMixin.lora_state_dict]]
 
@@ -2257,9 +2257,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5390)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5391)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.ZImageLoraLoaderMixin.save_lora_weights]]
 
@@ -2267,9 +2267,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5514)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5515)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.ZImageLoraLoaderMixin.unfuse_lora]]
 
@@ -2277,7 +2277,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5570)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5571)
 
 See `unfuse_lora()` for more details.
 
@@ -2289,9 +2289,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.CosmosLoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6362)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6363)
 
-Load LoRA layers into [CosmosTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/cosmos_transformer3d#diffusers.CosmosTransformer3DModel), Specific to [Cosmos2_5_PredictBasePipeline](/docs/diffusers/v0.40.0/en/api/pipelines/cosmos#diffusers.Cosmos2_5_PredictBasePipeline).
+Load LoRA layers into [CosmosTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/cosmos_transformer3d#diffusers.CosmosTransformer3DModel), Specific to [Cosmos2_5_PredictBasePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/cosmos#diffusers.Cosmos2_5_PredictBasePipeline).
 
 #### fuse_lora[[diffusers.loaders.CosmosLoraLoaderMixin.fuse_lora]]
 
@@ -2299,7 +2299,7 @@ Load LoRA layers into [CosmosTransformer3DModel](/docs/diffusers/v0.40.0/en/api/
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6525)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6526)
 
 See `fuse_lora()` for more details.
 
@@ -2309,9 +2309,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6462)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6463)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.CosmosLoraLoaderMixin.load_lora_weights]]
 
@@ -2319,9 +2319,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6426)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6427)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.CosmosLoraLoaderMixin.lora_state_dict]]
 
@@ -2329,9 +2329,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6371)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6372)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.CosmosLoraLoaderMixin.save_lora_weights]]
 
@@ -2339,9 +2339,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6489)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6490)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.CosmosLoraLoaderMixin.unfuse_lora]]
 
@@ -2349,7 +2349,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6545)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6546)
 
 See `unfuse_lora()` for more details.
 
@@ -2361,7 +2361,7 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.KandinskyLoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3894)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3895)
 
 Load LoRA layers into `Kandinsky5Transformer3DModel`,
 
@@ -2371,7 +2371,7 @@ Load LoRA layers into `Kandinsky5Transformer3DModel`,
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4056)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4057)
 
 See `fuse_lora()` for more details.
 
@@ -2381,9 +2381,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3993)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3994)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.KandinskyLoraLoaderMixin.load_lora_weights]]
 
@@ -2391,9 +2391,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3957)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3958)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.KandinskyLoraLoaderMixin.lora_state_dict]]
 
@@ -2401,9 +2401,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L3902)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L3903)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.KandinskyLoraLoaderMixin.save_lora_weights]]
 
@@ -2411,9 +2411,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4020)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4021)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.KandinskyLoraLoaderMixin.unfuse_lora]]
 
@@ -2421,7 +2421,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L4076)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L4077)
 
 See `unfuse_lora()` for more details.
 
@@ -2433,9 +2433,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.Ideogram4LoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5966)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5967)
 
-Load LoRA layers into [Ideogram4Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/ideogram4_transformer2d#diffusers.Ideogram4Transformer2DModel). Specific to [Ideogram4Pipeline](/docs/diffusers/v0.40.0/en/api/pipelines/ideogram4#diffusers.Ideogram4Pipeline).
+Load LoRA layers into [Ideogram4Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/ideogram4_transformer2d#diffusers.Ideogram4Transformer2DModel). Specific to [Ideogram4Pipeline](/docs/diffusers/v0.41.0/en/api/pipelines/ideogram4#diffusers.Ideogram4Pipeline).
 
 #### fuse_lora[[diffusers.loaders.Ideogram4LoraLoaderMixin.fuse_lora]]
 
@@ -2443,7 +2443,7 @@ Load LoRA layers into [Ideogram4Transformer2DModel](/docs/diffusers/v0.40.0/en/a
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6135)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6136)
 
 See `fuse_lora()` for more details.
 
@@ -2453,9 +2453,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6072)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6073)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.Ideogram4LoraLoaderMixin.load_lora_weights]]
 
@@ -2463,9 +2463,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6036)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6037)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.Ideogram4LoraLoaderMixin.lora_state_dict]]
 
@@ -2473,9 +2473,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5974)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5975)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.Ideogram4LoraLoaderMixin.save_lora_weights]]
 
@@ -2483,9 +2483,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6099)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6100)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.Ideogram4LoraLoaderMixin.unfuse_lora]]
 
@@ -2493,7 +2493,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6155)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6156)
 
 See `unfuse_lora()` for more details.
 
@@ -2505,9 +2505,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.Krea2LoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5188)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5189)
 
-Load LoRA layers into [Krea2Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/krea2_transformer2d#diffusers.Krea2Transformer2DModel). Specific to [Krea2Pipeline](/docs/diffusers/v0.40.0/en/api/pipelines/krea2#diffusers.Krea2Pipeline).
+Load LoRA layers into [Krea2Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/krea2_transformer2d#diffusers.Krea2Transformer2DModel). Specific to [Krea2Pipeline](/docs/diffusers/v0.41.0/en/api/pipelines/krea2#diffusers.Krea2Pipeline).
 
 #### fuse_lora[[diffusers.loaders.Krea2LoraLoaderMixin.fuse_lora]]
 
@@ -2515,7 +2515,7 @@ Load LoRA layers into [Krea2Transformer2DModel](/docs/diffusers/v0.40.0/en/api/m
 fuse_lora(components: list = ['transformer'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5355)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5356)
 
 See `fuse_lora()` for more details.
 
@@ -2525,9 +2525,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5292)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5293)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_weights[[diffusers.loaders.Krea2LoraLoaderMixin.load_lora_weights]]
 
@@ -2535,9 +2535,9 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5256)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5257)
 
-See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.Krea2LoraLoaderMixin.lora_state_dict]]
 
@@ -2545,9 +2545,9 @@ See [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5196)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5197)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.Krea2LoraLoaderMixin.save_lora_weights]]
 
@@ -2555,9 +2555,9 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5319)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5320)
 
-See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+See [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.Krea2LoraLoaderMixin.unfuse_lora]]
 
@@ -2565,7 +2565,7 @@ See [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.
 unfuse_lora(components: list = ['transformer'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L5375)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L5376)
 
 See `unfuse_lora()` for more details.
 
@@ -2577,9 +2577,9 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.MiniMaxH3LoraLoaderMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6743)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6744)
 
-Load LoRA layers into [MiniMaxH3Transformer3DModel](/docs/diffusers/v0.40.0/en/api/models/minimax_h3_transformer3d#diffusers.MiniMaxH3Transformer3DModel). Specific to [MiniMaxH3ModularPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/minimax_h3#diffusers.MiniMaxH3ModularPipeline).
+Load LoRA layers into [MiniMaxH3Transformer3DModel](/docs/diffusers/v0.41.0/en/api/models/minimax_h3_transformer3d#diffusers.MiniMaxH3Transformer3DModel). Specific to [MiniMaxH3ModularPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/minimax_h3#diffusers.MiniMaxH3ModularPipeline).
 
 MiniMax-H3 ships two independent DiT partitions with identical module names (a LoRA for one loads into the other
 and degrades output), so routing is explicit: converted state dicts target `transformer.`; reach `transformer_ref`
@@ -2605,7 +2605,7 @@ present, is honored instead.
 fuse_lora(components: list = ['transformer', 'transformer_ref'], lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L7100)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L7101)
 
 See `fuse_lora()` for more details.
 
@@ -2615,9 +2615,9 @@ See `fuse_lora()` for more details.
 load_lora_into_transformer(state_dict, transformer, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L7000)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L7001)
 
-See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
+See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more details.
 
 #### load_lora_into_transformer_ref[[diffusers.loaders.MiniMaxH3LoraLoaderMixin.load_lora_into_transformer_ref]]
 
@@ -2625,11 +2625,11 @@ See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffuser
 load_lora_into_transformer_ref(state_dict, transformer_ref, prefix, adapter_name = None, _pipeline = None, low_cpu_mem_usage = False, hotswap: bool = False, metadata = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L7027)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L7028)
 
 Load LoRA layers into the `transformer_ref` partition. `prefix` is the component name the keys carry, which is
 `transformer_ref` for a file that names the partition and `transformer` for one routed here by
-`load_into_transformer_ref=True`. See [load_lora_into_unet()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more
+`load_into_transformer_ref=True`. See [load_lora_into_unet()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_into_unet) for more
 details.
 
 #### load_lora_weights[[diffusers.loaders.MiniMaxH3LoraLoaderMixin.load_lora_weights]]
@@ -2638,14 +2638,14 @@ details.
 load_lora_weights(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], adapter_name: str | None = None, hotswap: bool = False, load_into_transformer_ref: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6885)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6886)
 
 **Parameters:**
 
 load_into_transformer_ref (`bool`, defaults to `False`) : Load the `transformer.`-prefixed layers into the `transformer_ref` partition — the one the `ref2va` workflow denoises with — instead of `transformer`. Only needed when both partitions are loaded: a pipeline that holds `transformer_ref` alone routes there on its own.
 
 Load LoRA layers into `transformer` or, with `load_into_transformer_ref=True`, into `transformer_ref`. See
-[load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
+[load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for more details.
 
 #### lora_state_dict[[diffusers.loaders.MiniMaxH3LoraLoaderMixin.lora_state_dict]]
 
@@ -2653,9 +2653,9 @@ Load LoRA layers into `transformer` or, with `load_into_transformer_ref=True`, i
 lora_state_dict(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L6770)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L6771)
 
-See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
+See [lora_state_dict()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.lora_state_dict) for more details.
 
 #### save_lora_weights[[diffusers.loaders.MiniMaxH3LoraLoaderMixin.save_lora_weights]]
 
@@ -2663,11 +2663,11 @@ See [lora_state_dict()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.lo
 save_lora_weights(save_directory: str | os.PathLike, transformer_lora_layers: dict = None, transformer_ref_lora_layers: dict = None, is_main_process: bool = True, weight_name: str = None, save_function: typing.Callable = None, safe_serialization: bool = True, transformer_lora_adapter_metadata: dict | None = None, transformer_ref_lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L7057)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L7058)
 
 Save the LoRA layers of one or both MiniMax-H3 partitions. Which partition a LoRA belongs to is not recoverable
 from its keys, so this is the only way to publish an H3 LoRA that records it. See
-[save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
+[save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for more information.
 
 #### unfuse_lora[[diffusers.loaders.MiniMaxH3LoraLoaderMixin.unfuse_lora]]
 
@@ -2675,7 +2675,7 @@ from its keys, so this is the only way to publish an H3 LoRA that records it. Se
 unfuse_lora(components: list = ['transformer', 'transformer_ref'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_pipeline.py#L7119)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_pipeline.py#L7120)
 
 See `unfuse_lora()` for more details.
 
@@ -2687,7 +2687,7 @@ See `unfuse_lora()` for more details.
 diffusers.loaders.lora_base.LoraBaseMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L486)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L491)
 
 Utility class for handling LoRAs.
 
@@ -2697,7 +2697,7 @@ Utility class for handling LoRAs.
 delete_adapters(adapter_names: list[str] | str)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L856)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L861)
 
 **Parameters:**
 
@@ -2726,7 +2726,7 @@ pipeline.delete_adapters("cinematic")
 disable_lora()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L796)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L801)
 
 Disables the active LoRA layers of the pipeline.
 
@@ -2751,7 +2751,7 @@ pipeline.disable_lora()
 enable_lora()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L826)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L831)
 
 Enables the active LoRA layers of the pipeline.
 
@@ -2776,7 +2776,7 @@ pipeline.enable_lora()
 enable_lora_hotswap(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L1003)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L1008)
 
 **Parameters:**
 
@@ -2793,7 +2793,7 @@ different.
 fuse_lora(components: list[str] | None = None, lora_scale: float = 1.0, safe_fusing: bool = False, adapter_names: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L544)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L549)
 
 **Parameters:**
 
@@ -2826,7 +2826,7 @@ pipeline.fuse_lora(lora_scale=0.7)
 get_active_adapters()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L894)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L899)
 
 Gets the list of the current active adapters.
 
@@ -2848,7 +2848,7 @@ pipeline.get_active_adapters()
 get_list_adapters()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L927)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L932)
 
 Gets the current list of all available adapters in the pipeline.
 
@@ -2858,7 +2858,7 @@ Gets the current list of all available adapters in the pipeline.
 set_adapters(adapter_names: list[str] | str, adapter_weights: float | dict | list[float] | list[dict] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L693)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L698)
 
 **Parameters:**
 
@@ -2890,7 +2890,7 @@ pipeline.set_adapters(["cinematic", "pixel"], adapter_weights=[0.5, 0.5])
 set_lora_device(adapter_names: list[str], device: torch.device | str | int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L949)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L954)
 
 **Parameters:**
 
@@ -2928,7 +2928,7 @@ GPU before using those LoRA adapters for inference.
 unfuse_lora(components: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L631)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L636)
 
 **Parameters:**
 
@@ -2947,7 +2947,7 @@ Reverses the effect of
 unload_lora_weights()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L521)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L526)
 
 Unloads the LoRA parameters.
 
@@ -2965,9 +2965,9 @@ Examples:
 write_lora_layers(state_dict: dict[str, torch.Tensor], save_directory: str, is_main_process: bool, weight_name: str, save_function: Callable, safe_serialization: bool, lora_adapter_metadata: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/lora_base.py#L1026)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/lora_base.py#L1031)
 
 Writes the state dict of the LoRA layers (optionally with metadata) to disk.
 
 ### Textual Inversion
-https://huggingface.co/docs/diffusers/v0.40.0/api/loaders/textual_inversion.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/loaders/textual_inversion.md

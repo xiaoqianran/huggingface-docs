@@ -12,7 +12,7 @@ The original codebase can be found at [ai-forever/Kandinsky-2](https://github.co
 > Check out the [Kandinsky Community](https://huggingface.co/kandinsky-community) organization on the Hub for the official model checkpoints for tasks like text-to-image, image-to-image, and inpainting.
 
 > [!TIP]
-> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reuse-a-pipeline) section to learn how to efficiently load the same components into multiple pipelines.
+> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reusing-models-in-multiple-pipelines) section to learn how to efficiently load the same components into multiple pipelines.
 
 Make sure you have the following libraries installed.
 
@@ -36,7 +36,7 @@ To use the Kandinsky models for any task, you always start by setting up the pri
 from diffusers import KandinskyPriorPipeline, KandinskyPipeline
 import torch
 
-prior_pipeline = KandinskyPriorPipeline.from_pretrained("kandinsky-community/kandinsky-2-1-prior", dtype=torch.float16).to("cuda")
+prior_pipeline = KandinskyPriorPipeline.from_pretrained("kandinsky-community/kandinsky-2-1-prior", dtype=torch.float16).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline = KandinskyPipeline.from_pretrained("kandinsky-community/kandinsky-2-1", dtype=torch.float16).to("cuda")
 
 prompt = "A alien cheeseburger creature eating itself, claymation, cinematic, moody lighting"
@@ -44,7 +44,7 @@ negative_prompt = "low quality, bad quality" # optional to include a negative pr
 image_embeds, negative_image_embeds = prior_pipeline(prompt, negative_prompt, guidance_scale=1.0).to_tuple()
 ```
 
-Now pass all the prompts and embeddings to the [KandinskyPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/kandinsky#diffusers.KandinskyPipeline) to generate an image:
+Now pass all the prompts and embeddings to the [KandinskyPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/kandinsky#diffusers.KandinskyPipeline) to generate an image:
 
 ```py
 image = pipeline(prompt, image_embeds=image_embeds, negative_prompt=negative_prompt, negative_image_embeds=negative_image_embeds, height=768, width=768).images[0]
@@ -57,7 +57,7 @@ image
 from diffusers import KandinskyV22PriorPipeline, KandinskyV22Pipeline
 import torch
 
-prior_pipeline = KandinskyV22PriorPipeline.from_pretrained("kandinsky-community/kandinsky-2-2-prior", dtype=torch.float16).to("cuda")
+prior_pipeline = KandinskyV22PriorPipeline.from_pretrained("kandinsky-community/kandinsky-2-2-prior", dtype=torch.float16).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline = KandinskyV22Pipeline.from_pretrained("kandinsky-community/kandinsky-2-2-decoder", dtype=torch.float16).to("cuda")
 
 prompt = "A alien cheeseburger creature eating itself, claymation, cinematic, moody lighting"
@@ -65,7 +65,7 @@ negative_prompt = "low quality, bad quality" # optional to include a negative pr
 image_embeds, negative_image_embeds = prior_pipeline(prompt, guidance_scale=1.0).to_tuple()
 ```
 
-Pass the `image_embeds` and `negative_image_embeds` to the [KandinskyV22Pipeline](/docs/diffusers/v0.40.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22Pipeline) to generate an image:
+Pass the `image_embeds` and `negative_image_embeds` to the [KandinskyV22Pipeline](/docs/diffusers/v0.41.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22Pipeline) to generate an image:
 
 ```py
 image = pipeline(image_embeds=image_embeds, negative_image_embeds=negative_image_embeds, height=768, width=768).images[0]
@@ -74,7 +74,7 @@ image
 
     
 
-Kandinsky 3 doesn't require a prior model so you can directly load the [Kandinsky3Pipeline](/docs/diffusers/v0.40.0/en/api/pipelines/kandinsky3#diffusers.Kandinsky3Pipeline) and pass a prompt to generate an image:
+Kandinsky 3 doesn't require a prior model so you can directly load the [Kandinsky3Pipeline](/docs/diffusers/v0.41.0/en/api/pipelines/kandinsky3#diffusers.Kandinsky3Pipeline) and pass a prompt to generate an image:
 
 ```py
 from diffusers import Kandinsky3Pipeline
@@ -88,9 +88,9 @@ image = pipeline(prompt).images[0]
 image
 ```
 
-🤗 Diffusers also provides an end-to-end API with the [KandinskyCombinedPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/kandinsky#diffusers.KandinskyCombinedPipeline) and [KandinskyV22CombinedPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22CombinedPipeline), meaning you don't have to separately load the prior and text-to-image pipeline. The combined pipeline automatically loads both the prior model and the decoder. You can still set different values for the prior pipeline with the `prior_guidance_scale` and `prior_num_inference_steps` parameters if you want.
+🤗 Diffusers also provides an end-to-end API with the [KandinskyCombinedPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/kandinsky#diffusers.KandinskyCombinedPipeline) and [KandinskyV22CombinedPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22CombinedPipeline), meaning you don't have to separately load the prior and text-to-image pipeline. The combined pipeline automatically loads both the prior model and the decoder. You can still set different values for the prior pipeline with the `prior_guidance_scale` and `prior_num_inference_steps` parameters if you want.
 
-Use the [AutoPipelineForText2Image](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Image) to automatically call the combined pipelines under the hood:
+Use the [AutoPipelineForText2Image](/docs/diffusers/v0.41.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Image) to automatically call the combined pipelines under the hood:
 
 ```py
 from diffusers import AutoPipelineForText2Image
@@ -128,7 +128,7 @@ For image-to-image, pass the initial image and text prompt to condition the imag
 import torch
 from diffusers import KandinskyImg2ImgPipeline, KandinskyPriorPipeline
 
-prior_pipeline = KandinskyPriorPipeline.from_pretrained("kandinsky-community/kandinsky-2-1-prior", dtype=torch.float16, use_safetensors=True).to("cuda")
+prior_pipeline = KandinskyPriorPipeline.from_pretrained("kandinsky-community/kandinsky-2-1-prior", dtype=torch.float16, use_safetensors=True).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline = KandinskyImg2ImgPipeline.from_pretrained("kandinsky-community/kandinsky-2-1", dtype=torch.float16, use_safetensors=True).to("cuda")
 ```
 
@@ -136,7 +136,7 @@ pipeline = KandinskyImg2ImgPipeline.from_pretrained("kandinsky-community/kandins
 import torch
 from diffusers import KandinskyV22Img2ImgPipeline, KandinskyPriorPipeline
 
-prior_pipeline = KandinskyPriorPipeline.from_pretrained("kandinsky-community/kandinsky-2-2-prior", dtype=torch.float16, use_safetensors=True).to("cuda")
+prior_pipeline = KandinskyPriorPipeline.from_pretrained("kandinsky-community/kandinsky-2-2-prior", dtype=torch.float16, use_safetensors=True).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline = KandinskyV22Img2ImgPipeline.from_pretrained("kandinsky-community/kandinsky-2-2-decoder", dtype=torch.float16, use_safetensors=True).to("cuda")
 ```
 
@@ -198,9 +198,9 @@ image = pipeline(prompt, negative_prompt=negative_prompt, image=image, strength=
 image
 ```
 
-🤗 Diffusers also provides an end-to-end API with the [KandinskyImg2ImgCombinedPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/kandinsky#diffusers.KandinskyImg2ImgCombinedPipeline) and [KandinskyV22Img2ImgCombinedPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22Img2ImgCombinedPipeline), meaning you don't have to separately load the prior and image-to-image pipeline. The combined pipeline automatically loads both the prior model and the decoder. You can still set different values for the prior pipeline with the `prior_guidance_scale` and `prior_num_inference_steps` parameters if you want.
+🤗 Diffusers also provides an end-to-end API with the [KandinskyImg2ImgCombinedPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/kandinsky#diffusers.KandinskyImg2ImgCombinedPipeline) and [KandinskyV22Img2ImgCombinedPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22Img2ImgCombinedPipeline), meaning you don't have to separately load the prior and image-to-image pipeline. The combined pipeline automatically loads both the prior model and the decoder. You can still set different values for the prior pipeline with the `prior_guidance_scale` and `prior_num_inference_steps` parameters if you want.
 
-Use the [AutoPipelineForImage2Image](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image) to automatically call the combined pipelines under the hood:
+Use the [AutoPipelineForImage2Image](/docs/diffusers/v0.41.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image) to automatically call the combined pipelines under the hood:
 
 ```py
 from diffusers import AutoPipelineForImage2Image
@@ -245,7 +245,7 @@ make_image_grid([original_image.resize((512, 512)), image.resize((512, 512))], r
 ## Inpainting
 
 > [!WARNING]
-> ⚠️ The Kandinsky models use ⬜️ **white pixels** to represent the masked area now instead of black pixels. If you are using [KandinskyInpaintPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/kandinsky#diffusers.KandinskyInpaintPipeline) in production, you need to change the mask to use white pixels:
+> ⚠️ The Kandinsky models use ⬜️ **white pixels** to represent the masked area now instead of black pixels. If you are using [KandinskyInpaintPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/kandinsky#diffusers.KandinskyInpaintPipeline) in production, you need to change the mask to use white pixels:
 >
 > ```py
 > # For PIL input
@@ -265,7 +265,7 @@ import torch
 import numpy as np
 from PIL import Image
 
-prior_pipeline = KandinskyPriorPipeline.from_pretrained("kandinsky-community/kandinsky-2-1-prior", dtype=torch.float16, use_safetensors=True).to("cuda")
+prior_pipeline = KandinskyPriorPipeline.from_pretrained("kandinsky-community/kandinsky-2-1-prior", dtype=torch.float16, use_safetensors=True).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline = KandinskyInpaintPipeline.from_pretrained("kandinsky-community/kandinsky-2-1-inpaint", dtype=torch.float16, use_safetensors=True).to("cuda")
 ```
 
@@ -276,7 +276,7 @@ import torch
 import numpy as np
 from PIL import Image
 
-prior_pipeline = KandinskyV22PriorPipeline.from_pretrained("kandinsky-community/kandinsky-2-2-prior", dtype=torch.float16, use_safetensors=True).to("cuda")
+prior_pipeline = KandinskyV22PriorPipeline.from_pretrained("kandinsky-community/kandinsky-2-2-prior", dtype=torch.float16, use_safetensors=True).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline = KandinskyV22InpaintPipeline.from_pretrained("kandinsky-community/kandinsky-2-2-decoder-inpaint", dtype=torch.float16, use_safetensors=True).to("cuda")
 ```
 
@@ -314,7 +314,7 @@ make_image_grid([init_image, mask, output_image], rows=1, cols=3)
 
     
 
-You can also use the end-to-end [KandinskyInpaintCombinedPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/kandinsky#diffusers.KandinskyInpaintCombinedPipeline) and [KandinskyV22InpaintCombinedPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22InpaintCombinedPipeline) to call the prior and decoder pipelines together under the hood. Use the [AutoPipelineForInpainting](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForInpainting) for this:
+You can also use the end-to-end [KandinskyInpaintCombinedPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/kandinsky#diffusers.KandinskyInpaintCombinedPipeline) and [KandinskyV22InpaintCombinedPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22InpaintCombinedPipeline) to call the prior and decoder pipelines together under the hood. Use the [AutoPipelineForInpainting](/docs/diffusers/v0.41.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForInpainting) for this:
 
 ```py
 import torch
@@ -367,7 +367,7 @@ from diffusers import KandinskyPriorPipeline, KandinskyPipeline
 from diffusers.utils import load_image, make_image_grid
 import torch
 
-prior_pipeline = KandinskyPriorPipeline.from_pretrained("kandinsky-community/kandinsky-2-1-prior", dtype=torch.float16, use_safetensors=True).to("cuda")
+prior_pipeline = KandinskyPriorPipeline.from_pretrained("kandinsky-community/kandinsky-2-1-prior", dtype=torch.float16, use_safetensors=True).to("cuda")  # or "mps", "xpu", "cpu"
 img_1 = load_image("https://huggingface.co/datasets/hf-internal-testing/diffusers-images/resolve/main/kandinsky/cat.png")
 img_2 = load_image("https://huggingface.co/datasets/hf-internal-testing/diffusers-images/resolve/main/kandinsky/starry_night.jpeg")
 make_image_grid([img_1.resize((512,512)), img_2.resize((512,512))], rows=1, cols=2)
@@ -378,7 +378,7 @@ from diffusers import KandinskyV22PriorPipeline, KandinskyV22Pipeline
 from diffusers.utils import load_image, make_image_grid
 import torch
 
-prior_pipeline = KandinskyV22PriorPipeline.from_pretrained("kandinsky-community/kandinsky-2-2-prior", dtype=torch.float16, use_safetensors=True).to("cuda")
+prior_pipeline = KandinskyV22PriorPipeline.from_pretrained("kandinsky-community/kandinsky-2-2-prior", dtype=torch.float16, use_safetensors=True).to("cuda")  # or "mps", "xpu", "cpu"
 img_1 = load_image("https://huggingface.co/datasets/hf-internal-testing/diffusers-images/resolve/main/kandinsky/cat.png")
 img_2 = load_image("https://huggingface.co/datasets/hf-internal-testing/diffusers-images/resolve/main/kandinsky/starry_night.jpeg")
 make_image_grid([img_1.resize((512,512)), img_2.resize((512,512))], rows=1, cols=2)
@@ -407,7 +407,7 @@ Call the `interpolate` function to generate the embeddings, and then pass them t
 prompt = ""
 prior_out = prior_pipeline.interpolate(images_texts, weights)
 
-pipeline = KandinskyPipeline.from_pretrained("kandinsky-community/kandinsky-2-1", dtype=torch.float16, use_safetensors=True).to("cuda")
+pipeline = KandinskyPipeline.from_pretrained("kandinsky-community/kandinsky-2-1", dtype=torch.float16, use_safetensors=True).to("cuda")  # or "mps", "xpu", "cpu"
 
 image = pipeline(prompt, **prior_out, height=768, width=768).images[0]
 image
@@ -420,7 +420,7 @@ image
 prompt = ""
 prior_out = prior_pipeline.interpolate(images_texts, weights)
 
-pipeline = KandinskyV22Pipeline.from_pretrained("kandinsky-community/kandinsky-2-2-decoder", dtype=torch.float16, use_safetensors=True).to("cuda")
+pipeline = KandinskyV22Pipeline.from_pretrained("kandinsky-community/kandinsky-2-2-decoder", dtype=torch.float16, use_safetensors=True).to("cuda")  # or "mps", "xpu", "cpu"
 
 image = pipeline(prompt, **prior_out, height=768, width=768).images[0]
 image
@@ -448,7 +448,7 @@ img
 
     
 
-Then you can use the `depth-estimation` [Pipeline](https://huggingface.co/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) from 🤗 Transformers to process the image and retrieve the depth map:
+Then you can use the `depth-estimation` [Pipeline](https://huggingface.co/docs/transformers/v5.18.0/en/main_classes/pipelines#transformers.Pipeline) from 🤗 Transformers to process the image and retrieve the depth map:
 
 ```py
 import torch
@@ -466,19 +466,19 @@ def make_hint(image, depth_estimator):
     return hint
 
 depth_estimator = pipeline("depth-estimation")
-hint = make_hint(img, depth_estimator).unsqueeze(0).half().to("cuda")
+hint = make_hint(img, depth_estimator).unsqueeze(0).half().to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 ### Text-to-image [[controlnet-text-to-image]]
 
-Load the prior pipeline and the [KandinskyV22ControlnetPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22ControlnetPipeline):
+Load the prior pipeline and the [KandinskyV22ControlnetPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22ControlnetPipeline):
 
 ```py
 from diffusers import KandinskyV22PriorPipeline, KandinskyV22ControlnetPipeline
 
 prior_pipeline = KandinskyV22PriorPipeline.from_pretrained(
     "kandinsky-community/kandinsky-2-2-prior", dtype=torch.float16, use_safetensors=True
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 pipeline = KandinskyV22ControlnetPipeline.from_pretrained(
     "kandinsky-community/kandinsky-2-2-controlnet-depth", dtype=torch.float16
@@ -491,14 +491,14 @@ Generate the image embeddings from a prompt and negative prompt:
 prompt = "A robot, 4k photo"
 negative_prior_prompt = "lowres, text, error, cropped, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, out of frame, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck, username, watermark, signature"
 
-generator = torch.Generator(device="cuda").manual_seed(43)
+generator = torch.Generator(device="cuda").manual_seed(43)  # or "mps", "xpu", "cpu"
 
 image_emb, zero_image_emb = prior_pipeline(
     prompt=prompt, negative_prompt=negative_prior_prompt, generator=generator
 ).to_tuple()
 ```
 
-Finally, pass the image embeddings and the depth image to the [KandinskyV22ControlnetPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22ControlnetPipeline) to generate an image:
+Finally, pass the image embeddings and the depth image to the [KandinskyV22ControlnetPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22ControlnetPipeline) to generate an image:
 
 ```py
 image = pipeline(image_embeds=image_emb, negative_image_embeds=zero_image_emb, hint=hint, num_inference_steps=50, generator=generator, height=768, width=768).images[0]
@@ -511,10 +511,10 @@ image
 
 For image-to-image with ControlNet, you'll need to use the:
 
-- [KandinskyV22PriorEmb2EmbPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22PriorEmb2EmbPipeline) to generate the image embeddings from a text prompt and an image
-- [KandinskyV22ControlnetImg2ImgPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22ControlnetImg2ImgPipeline) to generate an image from the initial image and the image embeddings
+- [KandinskyV22PriorEmb2EmbPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22PriorEmb2EmbPipeline) to generate the image embeddings from a text prompt and an image
+- [KandinskyV22ControlnetImg2ImgPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22ControlnetImg2ImgPipeline) to generate an image from the initial image and the image embeddings
 
-Process and extract a depth map of an initial image of a cat with the `depth-estimation` [Pipeline](https://huggingface.co/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) from 🤗 Transformers:
+Process and extract a depth map of an initial image of a cat with the `depth-estimation` [Pipeline](https://huggingface.co/docs/transformers/v5.18.0/en/main_classes/pipelines#transformers.Pipeline) from 🤗 Transformers:
 
 ```py
 import torch
@@ -538,15 +538,15 @@ def make_hint(image, depth_estimator):
     return hint
 
 depth_estimator = pipeline("depth-estimation")
-hint = make_hint(img, depth_estimator).unsqueeze(0).half().to("cuda")
+hint = make_hint(img, depth_estimator).unsqueeze(0).half().to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
-Load the prior pipeline and the [KandinskyV22ControlnetImg2ImgPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22ControlnetImg2ImgPipeline):
+Load the prior pipeline and the [KandinskyV22ControlnetImg2ImgPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22ControlnetImg2ImgPipeline):
 
 ```py
 prior_pipeline = KandinskyV22PriorEmb2EmbPipeline.from_pretrained(
     "kandinsky-community/kandinsky-2-2-prior", dtype=torch.float16, use_safetensors=True
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 pipeline = KandinskyV22ControlnetImg2ImgPipeline.from_pretrained(
     "kandinsky-community/kandinsky-2-2-controlnet-depth", dtype=torch.float16
@@ -559,13 +559,13 @@ Pass a text prompt and the initial image to the prior pipeline to generate the i
 prompt = "A robot, 4k photo"
 negative_prior_prompt = "lowres, text, error, cropped, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, out of frame, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck, username, watermark, signature"
 
-generator = torch.Generator(device="cuda").manual_seed(43)
+generator = torch.Generator(device="cuda").manual_seed(43)  # or "mps", "xpu", "cpu"
 
 img_emb = prior_pipeline(prompt=prompt, image=img, strength=0.85, generator=generator)
 negative_emb = prior_pipeline(prompt=negative_prior_prompt, image=img, strength=1, generator=generator)
 ```
 
-Now you can run the [KandinskyV22ControlnetImg2ImgPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22ControlnetImg2ImgPipeline) to generate an image from the initial image and the image embeddings:
+Now you can run the [KandinskyV22ControlnetImg2ImgPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22ControlnetImg2ImgPipeline) to generate an image from the initial image and the image embeddings:
 
 ```py
 image = pipeline(image=img, strength=0.5, image_embeds=img_emb.image_embeds, negative_image_embeds=negative_emb.image_embeds, hint=hint, num_inference_steps=50, generator=generator, height=768, width=768).images[0]
@@ -595,7 +595,7 @@ Kandinsky is unique because it requires a prior pipeline to generate the mapping
 + pipe.unet = torch.compile(pipe.unet, mode="reduce-overhead", fullgraph=True)
 ```
 
-This is the same as explicitly setting the attention processor to use [AttnAddedKVProcessor2_0](/docs/diffusers/v0.40.0/en/api/attnprocessor#diffusers.models.attention_processor.AttnAddedKVProcessor2_0):
+This is the same as explicitly setting the attention processor to use [AttnAddedKVProcessor2_0](/docs/diffusers/v0.41.0/en/api/attnprocessor#diffusers.models.attention_processor.AttnAddedKVProcessor2_0):
 
 ```py
 from diffusers.models.attention_processor import AttnAddedKVProcessor2_0
@@ -603,7 +603,7 @@ from diffusers.models.attention_processor import AttnAddedKVProcessor2_0
 pipe.unet.set_attn_processor(AttnAddedKVProcessor2_0())
 ```
 
-3. Offload the model to the CPU with [enable_model_cpu_offload()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) to avoid out-of-memory errors:
+3. Offload the model to the CPU with [enable_model_cpu_offload()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) to avoid out-of-memory errors:
 
 ```diff
   from diffusers import DiffusionPipeline
@@ -613,14 +613,14 @@ pipe.unet.set_attn_processor(AttnAddedKVProcessor2_0())
 + pipe.enable_model_cpu_offload()
 ```
 
-4. By default, the text-to-image pipeline uses the [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler) but you can replace it with another scheduler like [DDPMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddpm#diffusers.DDPMScheduler) to see how that affects the tradeoff between inference speed and image quality:
+4. By default, the text-to-image pipeline uses the [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler) but you can replace it with another scheduler like [DDPMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddpm#diffusers.DDPMScheduler) to see how that affects the tradeoff between inference speed and image quality:
 
 ```py
 from diffusers import DDPMScheduler
 from diffusers import DiffusionPipeline
 
 scheduler = DDPMScheduler.from_pretrained("kandinsky-community/kandinsky-2-1", subfolder="ddpm_scheduler")
-pipe = DiffusionPipeline.from_pretrained("kandinsky-community/kandinsky-2-1", scheduler=scheduler, dtype=torch.float16, use_safetensors=True).to("cuda")
+pipe = DiffusionPipeline.from_pretrained("kandinsky-community/kandinsky-2-1", scheduler=scheduler, dtype=torch.float16, use_safetensors=True).to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 ## KandinskyPriorPipeline[[diffusers.KandinskyPriorPipeline]]
@@ -631,11 +631,11 @@ pipe = DiffusionPipeline.from_pretrained("kandinsky-community/kandinsky-2-1", sc
 diffusers.KandinskyPriorPipeline(prior: PriorTransformer, image_encoder: CLIPVisionModelWithProjection, text_encoder: CLIPTextModelWithProjection, tokenizer: CLIPTokenizer, scheduler: UnCLIPScheduler, image_processor: CLIPImageProcessorPil)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_prior.py#L136)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_prior.py#L136)
 
 **Parameters:**
 
-prior ([PriorTransformer](/docs/diffusers/v0.40.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
+prior ([PriorTransformer](/docs/diffusers/v0.41.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
 
 image_encoder (`CLIPVisionModelWithProjection`) : Frozen image-encoder.
 
@@ -647,7 +647,7 @@ scheduler (`UnCLIPScheduler`) : A scheduler to be used in combination with `prio
 
 Pipeline for generating image prior for Kandinsky
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.KandinskyPriorPipeline.__call__]]
@@ -656,7 +656,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str], negative_prompt: str | list[str] | None = None, num_images_per_prompt: int = 1, num_inference_steps: int = 25, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, guidance_scale: float = 4.0, output_type: str | None = 'pt', return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_prior.py#L405)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_prior.py#L405)
 
 **Parameters:**
 
@@ -676,7 +676,7 @@ guidance_scale (`float`, *optional*, defaults to 4.0) : Guidance scale as define
 
 output_type (`str`, *optional*, defaults to `"pt"`) : The output format of the generate image. Choose between: `"np"` (`np.array`) or `"pt"` (`torch.Tensor`).
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
 **Returns:** `KandinskyPriorPipelineOutput` or `tuple`
 
@@ -716,7 +716,7 @@ Examples:
 interpolate(images_and_prompts: list, weights: list, num_images_per_prompt: int = 1, num_inference_steps: int = 25, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, negative_prior_prompt: str | None = None, negative_prompt: str = '', guidance_scale: float = 4.0, device = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_prior.py#L180)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_prior.py#L180)
 
 **Parameters:**
 
@@ -793,7 +793,7 @@ Examples:
 diffusers.KandinskyPipeline(text_encoder: MultilingualCLIP, tokenizer: XLMRobertaTokenizer, unet: UNet2DConditionModel, scheduler: diffusers.schedulers.scheduling_ddim.DDIMScheduler | diffusers.schedulers.scheduling_ddpm.DDPMScheduler, movq: VQModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky.py#L81)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky.py#L81)
 
 **Parameters:**
 
@@ -803,13 +803,13 @@ tokenizer (`XLMRobertaTokenizer`) : Tokenizer of class
 
 scheduler (`DDIMScheduler` | `DDPMScheduler`) : A scheduler to be used in combination with `unet` to generate image latents.
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
 
-movq ([VQModel](/docs/diffusers/v0.40.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
+movq ([VQModel](/docs/diffusers/v0.41.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
 
 Pipeline for text-to-image generation using Kandinsky
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.KandinskyPipeline.__call__]]
@@ -818,7 +818,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str], image_embeds: typing.Union[torch.Tensor, list[torch.Tensor]], negative_image_embeds: typing.Union[torch.Tensor, list[torch.Tensor]], negative_prompt: str | list[str] | None = None, height: int = 512, width: int = 512, num_inference_steps: int = 100, guidance_scale: float = 4.0, num_images_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int = 1, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky.py#L236)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky.py#L236)
 
 **Parameters:**
 
@@ -850,9 +850,9 @@ callback (`Callable`, *optional*) : A function that calls every `callback_steps`
 
 callback_steps (`int`, *optional*, defaults to 1) : The frequency at which the `callback` function is called. If not specified, the callback is called at every step.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
 Function invoked when calling the pipeline for generation.
 
@@ -892,7 +892,7 @@ Examples:
 diffusers.KandinskyCombinedPipeline(text_encoder: MultilingualCLIP, tokenizer: XLMRobertaTokenizer, unet: UNet2DConditionModel, scheduler: diffusers.schedulers.scheduling_ddim.DDIMScheduler | diffusers.schedulers.scheduling_ddpm.DDPMScheduler, movq: VQModel, prior_prior: PriorTransformer, prior_image_encoder: CLIPVisionModelWithProjection, prior_text_encoder: CLIPTextModelWithProjection, prior_tokenizer: CLIPTokenizer, prior_scheduler: UnCLIPScheduler, prior_image_processor: CLIPImageProcessorPil)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_combined.py#L113)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_combined.py#L113)
 
 **Parameters:**
 
@@ -902,11 +902,11 @@ tokenizer (`XLMRobertaTokenizer`) : Tokenizer of class
 
 scheduler (`DDIMScheduler` | `DDPMScheduler`) : A scheduler to be used in combination with `unet` to generate image latents.
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
 
-movq ([VQModel](/docs/diffusers/v0.40.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
+movq ([VQModel](/docs/diffusers/v0.41.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
 
-prior_prior ([PriorTransformer](/docs/diffusers/v0.40.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
+prior_prior ([PriorTransformer](/docs/diffusers/v0.41.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
 
 prior_image_encoder (`CLIPVisionModelWithProjection`) : Frozen image-encoder.
 
@@ -918,7 +918,7 @@ prior_scheduler (`UnCLIPScheduler`) : A scheduler to be used in combination with
 
 Combined Pipeline for text-to-image generation using Kandinsky
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.KandinskyCombinedPipeline.__call__]]
@@ -927,7 +927,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str], negative_prompt: str | list[str] | None = None, num_inference_steps: int = 100, guidance_scale: float = 4.0, num_images_per_prompt: int = 1, height: int = 512, width: int = 512, prior_guidance_scale: float = 4.0, prior_num_inference_steps: int = 25, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int = 1, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_combined.py#L215)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_combined.py#L215)
 
 **Parameters:**
 
@@ -959,9 +959,9 @@ callback (`Callable`, *optional*) : A function that calls every `callback_steps`
 
 callback_steps (`int`, *optional*, defaults to 1) : The frequency at which the `callback` function is called. If not specified, the callback is called at every step.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
 Function invoked when calling the pipeline for generation.
 
@@ -986,7 +986,7 @@ image = pipe(prompt=prompt, num_inference_steps=25).images[0]
 enable_sequential_cpu_offload(gpu_id: int | None = None, device: typing.Union[torch.device, str] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_combined.py#L196)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_combined.py#L196)
 
 Offloads all models (`unet`, `text_encoder`, `vae`, and `safety checker` state dicts) to CPU using 🤗
 Accelerate, significantly reducing memory usage. Models are moved to a `torch.device('meta')` and loaded on a
@@ -1001,7 +1001,7 @@ Memory savings are higher than using `enable_model_cpu_offload`, but performance
 diffusers.KandinskyImg2ImgPipeline(text_encoder: MultilingualCLIP, movq: VQModel, tokenizer: XLMRobertaTokenizer, unet: UNet2DConditionModel, scheduler: DDIMScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_img2img.py#L93)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_img2img.py#L93)
 
 **Parameters:**
 
@@ -1009,15 +1009,15 @@ text_encoder (`MultilingualCLIP`) : Frozen text-encoder.
 
 tokenizer (`XLMRobertaTokenizer`) : Tokenizer of class
 
-scheduler ([DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler)) : A scheduler to be used in combination with `unet` to generate image latents.
+scheduler ([DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler)) : A scheduler to be used in combination with `unet` to generate image latents.
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
 
-movq ([VQModel](/docs/diffusers/v0.40.0/en/api/models/vq#diffusers.VQModel)) : MoVQ image encoder and decoder
+movq ([VQModel](/docs/diffusers/v0.41.0/en/api/models/vq#diffusers.VQModel)) : MoVQ image encoder and decoder
 
 Pipeline for image-to-image generation using Kandinsky
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.KandinskyImg2ImgPipeline.__call__]]
@@ -1026,7 +1026,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str], image: typing.Union[torch.Tensor, list[torch.Tensor], PIL.Image.Image, list[PIL.Image.Image]], image_embeds: Tensor, negative_image_embeds: Tensor, negative_prompt: str | list[str] | None = None, height: int = 512, width: int = 512, num_inference_steps: int = 100, strength: float = 0.3, guidance_scale: float = 7.0, num_images_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, output_type: str | None = 'pil', callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int = 1, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_img2img.py#L297)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_img2img.py#L297)
 
 **Parameters:**
 
@@ -1060,9 +1060,9 @@ callback (`Callable`, *optional*) : A function that calls every `callback_steps`
 
 callback_steps (`int`, *optional*, defaults to 1) : The frequency at which the `callback` function is called. If not specified, the callback is called at every step.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
 Function invoked when calling the pipeline for generation.
 
@@ -1112,7 +1112,7 @@ Examples:
 diffusers.KandinskyImg2ImgCombinedPipeline(text_encoder: MultilingualCLIP, tokenizer: XLMRobertaTokenizer, unet: UNet2DConditionModel, scheduler: diffusers.schedulers.scheduling_ddim.DDIMScheduler | diffusers.schedulers.scheduling_ddpm.DDPMScheduler, movq: VQModel, prior_prior: PriorTransformer, prior_image_encoder: CLIPVisionModelWithProjection, prior_text_encoder: CLIPTextModelWithProjection, prior_tokenizer: CLIPTokenizer, prior_scheduler: UnCLIPScheduler, prior_image_processor: CLIPImageProcessorPil)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_combined.py#L331)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_combined.py#L331)
 
 **Parameters:**
 
@@ -1122,11 +1122,11 @@ tokenizer (`XLMRobertaTokenizer`) : Tokenizer of class
 
 scheduler (`DDIMScheduler` | `DDPMScheduler`) : A scheduler to be used in combination with `unet` to generate image latents.
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
 
-movq ([VQModel](/docs/diffusers/v0.40.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
+movq ([VQModel](/docs/diffusers/v0.41.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
 
-prior_prior ([PriorTransformer](/docs/diffusers/v0.40.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
+prior_prior ([PriorTransformer](/docs/diffusers/v0.41.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
 
 prior_image_encoder (`CLIPVisionModelWithProjection`) : Frozen image-encoder.
 
@@ -1138,7 +1138,7 @@ prior_scheduler (`UnCLIPScheduler`) : A scheduler to be used in combination with
 
 Combined Pipeline for image-to-image generation using Kandinsky
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.KandinskyImg2ImgCombinedPipeline.__call__]]
@@ -1147,7 +1147,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str], image: typing.Union[torch.Tensor, list[torch.Tensor], PIL.Image.Image, list[PIL.Image.Image]], negative_prompt: str | list[str] | None = None, num_inference_steps: int = 100, guidance_scale: float = 4.0, num_images_per_prompt: int = 1, strength: float = 0.3, height: int = 512, width: int = 512, prior_guidance_scale: float = 4.0, prior_num_inference_steps: int = 25, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int = 1, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_combined.py#L434)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_combined.py#L434)
 
 **Parameters:**
 
@@ -1183,9 +1183,9 @@ callback (`Callable`, *optional*) : A function that calls every `callback_steps`
 
 callback_steps (`int`, *optional*, defaults to 1) : The frequency at which the `callback` function is called. If not specified, the callback is called at every step.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
 Function invoked when calling the pipeline for generation.
 
@@ -1221,7 +1221,7 @@ image = pipe(prompt=prompt, image=original_image, num_inference_steps=25).images
 enable_sequential_cpu_offload(gpu_id: int | None = None, device: typing.Union[torch.device, str] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_combined.py#L414)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_combined.py#L414)
 
 Offloads all models to CPU using accelerate, significantly reducing memory usage. When called, unet,
 text_encoder, vae and safety checker have their state dicts saved to CPU and then are moved to a
@@ -1237,7 +1237,7 @@ Note that offloading happens on a submodule basis. Memory savings are higher tha
 diffusers.KandinskyInpaintPipeline(text_encoder: MultilingualCLIP, movq: VQModel, tokenizer: XLMRobertaTokenizer, unet: UNet2DConditionModel, scheduler: DDIMScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_inpaint.py#L245)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_inpaint.py#L245)
 
 **Parameters:**
 
@@ -1245,15 +1245,15 @@ text_encoder (`MultilingualCLIP`) : Frozen text-encoder.
 
 tokenizer (`XLMRobertaTokenizer`) : Tokenizer of class
 
-scheduler ([DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler)) : A scheduler to be used in combination with `unet` to generate image latents.
+scheduler ([DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler)) : A scheduler to be used in combination with `unet` to generate image latents.
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
 
-movq ([VQModel](/docs/diffusers/v0.40.0/en/api/models/vq#diffusers.VQModel)) : MoVQ image encoder and decoder
+movq ([VQModel](/docs/diffusers/v0.41.0/en/api/models/vq#diffusers.VQModel)) : MoVQ image encoder and decoder
 
 Pipeline for text-guided image inpainting using Kandinsky2.1
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.KandinskyInpaintPipeline.__call__]]
@@ -1262,7 +1262,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str], image: typing.Union[torch.Tensor, PIL.Image.Image], mask_image: typing.Union[PIL.Image.Image, torch.Tensor, numpy.ndarray], image_embeds: Tensor, negative_image_embeds: Tensor, negative_prompt: str | list[str] | None = None, height: int = 512, width: int = 512, num_inference_steps: int = 100, guidance_scale: float = 4.0, num_images_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int = 1, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_inpaint.py#L401)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_inpaint.py#L401)
 
 **Parameters:**
 
@@ -1298,9 +1298,9 @@ callback (`Callable`, *optional*) : A function that calls every `callback_steps`
 
 callback_steps (`int`, *optional*, defaults to 1) : The frequency at which the `callback` function is called. If not specified, the callback is called at every step.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
 Function invoked when calling the pipeline for generation.
 
@@ -1355,7 +1355,7 @@ Examples:
 diffusers.KandinskyInpaintCombinedPipeline(text_encoder: MultilingualCLIP, tokenizer: XLMRobertaTokenizer, unet: UNet2DConditionModel, scheduler: diffusers.schedulers.scheduling_ddim.DDIMScheduler | diffusers.schedulers.scheduling_ddpm.DDPMScheduler, movq: VQModel, prior_prior: PriorTransformer, prior_image_encoder: CLIPVisionModelWithProjection, prior_text_encoder: CLIPTextModelWithProjection, prior_tokenizer: CLIPTokenizer, prior_scheduler: UnCLIPScheduler, prior_image_processor: CLIPImageProcessorPil)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_combined.py#L572)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_combined.py#L572)
 
 **Parameters:**
 
@@ -1365,11 +1365,11 @@ tokenizer (`XLMRobertaTokenizer`) : Tokenizer of class
 
 scheduler (`DDIMScheduler` | `DDPMScheduler`) : A scheduler to be used in combination with `unet` to generate image latents.
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
 
-movq ([VQModel](/docs/diffusers/v0.40.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
+movq ([VQModel](/docs/diffusers/v0.41.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
 
-prior_prior ([PriorTransformer](/docs/diffusers/v0.40.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
+prior_prior ([PriorTransformer](/docs/diffusers/v0.41.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
 
 prior_image_encoder (`CLIPVisionModelWithProjection`) : Frozen image-encoder.
 
@@ -1381,7 +1381,7 @@ prior_scheduler (`UnCLIPScheduler`) : A scheduler to be used in combination with
 
 Combined Pipeline for generation using Kandinsky
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.KandinskyInpaintCombinedPipeline.__call__]]
@@ -1390,7 +1390,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str], image: typing.Union[torch.Tensor, list[torch.Tensor], PIL.Image.Image, list[PIL.Image.Image]], mask_image: typing.Union[torch.Tensor, list[torch.Tensor], PIL.Image.Image, list[PIL.Image.Image]], negative_prompt: str | list[str] | None = None, num_inference_steps: int = 100, guidance_scale: float = 4.0, num_images_per_prompt: int = 1, height: int = 512, width: int = 512, prior_guidance_scale: float = 4.0, prior_num_inference_steps: int = 25, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int = 1, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_combined.py#L675)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_combined.py#L675)
 
 **Parameters:**
 
@@ -1426,9 +1426,9 @@ callback (`Callable`, *optional*) : A function that calls every `callback_steps`
 
 callback_steps (`int`, *optional*, defaults to 1) : The frequency at which the `callback` function is called. If not specified, the callback is called at every step.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
 Function invoked when calling the pipeline for generation.
 
@@ -1464,7 +1464,7 @@ image = pipe(prompt=prompt, image=original_image, mask_image=mask, num_inference
 enable_sequential_cpu_offload(gpu_id: int | None = None, device: typing.Union[torch.device, str] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_combined.py#L655)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky/pipeline_kandinsky_combined.py#L655)
 
 Offloads all models to CPU using accelerate, significantly reducing memory usage. When called, unet,
 text_encoder, vae and safety checker have their state dicts saved to CPU and then are moved to a
@@ -1473,4 +1473,4 @@ Note that offloading happens on a submodule basis. Memory savings are higher tha
 `enable_model_cpu_offload`, but performance is lower.
 
 ### ControlNet
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/controlnet_sana.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/controlnet_sana.md

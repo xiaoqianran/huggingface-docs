@@ -16,7 +16,7 @@ transformer = LongCatImageTransformer2DModel.from_pretrained("meituan-longcat/Lo
 diffusers.LongCatImageTransformer2DModel(patch_size: int = 1, in_channels: int = 64, num_layers: int = 19, num_single_layers: int = 38, attention_head_dim: int = 128, num_attention_heads: int = 24, joint_attention_dim: int = 3584, pooled_projection_dim: int = 3584, axes_dims_rope: list = [16, 56, 56])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_longcat_image.py#L395)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_longcat_image.py#L395)
 
 The Transformer model introduced in Longcat-Image.
 
@@ -26,7 +26,7 @@ The Transformer model introduced in Longcat-Image.
 forward(hidden_states: Tensor, encoder_hidden_states: Tensor = None, timestep: LongTensor = None, img_ids: Tensor = None, txt_ids: Tensor = None, guidance: Tensor = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_longcat_image.py#L464)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_longcat_image.py#L464)
 
 **Parameters:**
 
@@ -52,4 +52,4 @@ If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` i
 The forward method.
 
 ### WanTransformer3DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/wan_transformer_3d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/wan_transformer_3d.md

@@ -16,7 +16,7 @@ from diffusers.utils import load_image
 pipeline = JoyImageEditPipeline.from_pretrained(
     "jdopensource/JoyAI-Image-Edit-Diffusers", dtype=torch.bfloat16
 )
-pipeline.to("cuda")
+pipeline.to("cuda")  # or "mps", "xpu", "cpu"
 
 image = load_image("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/astronaut.jpg")
 prompt = "Add wings to the astronaut."
@@ -70,7 +70,7 @@ Move the camera.
 diffusers.JoyImageEditPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKLWan, text_encoder: Qwen3VLForConditionalGeneration, tokenizer: Qwen2Tokenizer, transformer: JoyImageEditTransformer3DModel, processor: Qwen3VLProcessor, text_token_max_length: int = 2048)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit.py#L100)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit.py#L100)
 
 Diffusion pipeline for image editing using the JoyImage architecture.
 
@@ -85,7 +85,7 @@ Model offloading order: text_encoder -> transformer -> vae.
 __call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, prompt: str | list[str] = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 40, timesteps: typing.List[int] = None, sigmas: typing.List[float] = None, guidance_scale: float = 4.0, negative_prompt: typing.Union[str, typing.List[str], NoneType] = None, num_images_per_prompt: typing.Optional[int] = 1, generator: typing.Union[torch.Generator, typing.List[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_embeds_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_mask: typing.Optional[torch.Tensor] = None, output_type: typing.Optional[str] = 'pil', return_dict: bool = True, callback_on_step_end: typing.Union[typing.Callable[[int, int, typing.Dict], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: typing.List[str] = ['latents'], max_sequence_length: int = 4096, enable_denormalization: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit.py#L600)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit.py#L600)
 
 **Parameters:**
 
@@ -123,7 +123,7 @@ negative_prompt_embeds_mask (*torch.Tensor*, *optional*) : Attention mask for `n
 
 output_type (*str*, *optional*, defaults to `"pil"`) : Output format. Pass `"latent"` to return raw latents.
 
-return_dict (*bool*, *optional*, defaults to *True*) : Whether to return a [JoyImageEditPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/joyimage_edit#diffusers.JoyImageEditPipelineOutput) or a plain tensor.
+return_dict (*bool*, *optional*, defaults to *True*) : Whether to return a [JoyImageEditPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/joyimage_edit#diffusers.JoyImageEditPipelineOutput) or a plain tensor.
 
 callback_on_step_end (*Callable*, *PipelineCallback*, *MultiPipelineCallbacks*, *optional*) : Callback invoked at the end of each denoising step with signature `(self, step: int, timestep: int, callback_kwargs: Dict)`.
 
@@ -167,7 +167,7 @@ Examples:
 check_inputs(prompt, height, width, negative_prompt = None, prompt_embeds = None, negative_prompt_embeds = None, prompt_embeds_mask = None, negative_prompt_embeds_mask = None, callback_on_step_end_tensor_inputs = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit.py#L409)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit.py#L409)
 
 **Raises:** ``ValueError``
 
@@ -181,7 +181,7 @@ Validate pipeline inputs before the forward pass.
 denormalize_latents(latent: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit.py#L476)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit.py#L476)
 
 **Parameters:**
 
@@ -199,7 +199,7 @@ Invert `normalize_latents` to recover the original latent scale.
 encode_prompt(prompt: typing.Union[str, typing.List[str]], device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_embeds_mask: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 1024, template_type: str = 'image')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit.py#L364)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit.py#L364)
 
 **Parameters:**
 
@@ -231,7 +231,7 @@ Pre-computed `prompt_embeds` bypass encoding entirely.
 encode_prompt_multiple_images(prompt: typing.Union[str, typing.List[str]], device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, images: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_embeds_mask: typing.Optional[torch.Tensor] = None, template_type: typing.Optional[str] = 'multiple_images', max_sequence_length: typing.Optional[int] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit.py#L286)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit.py#L286)
 
 **Parameters:**
 
@@ -266,7 +266,7 @@ fed to the multimodal encoder.
 normalize_latents(latent: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit.py#L447)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit.py#L447)
 
 **Parameters:**
 
@@ -287,7 +287,7 @@ scaling by `scaling_factor`.
 prepare_latents(batch_size: int, num_channels_latents: int, height: int, width: int, video_length: int, dtype: dtype, device: device, generator: typing.Union[torch.Generator, typing.List[torch.Generator], NoneType], latents: typing.Optional[torch.Tensor] = None, image: typing.Optional[typing.List[PIL.Image.Image]] = None, enable_denormalization: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit.py#L502)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit.py#L502)
 
 **Parameters:**
 
@@ -332,9 +332,9 @@ Prepare the initial noisy latent tensor for the denoising loop.
 diffusers.JoyImageEditPipelineOutput(images: typing.Union[typing.List[PIL.Image.Image], numpy.ndarray])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/joyimage/pipeline_output.py#L11)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/joyimage/pipeline_output.py#L11)
 
 Output class for JoyImageEdit generation pipelines.
 
 ### DeepFloyd IF
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/deepfloyd_if.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/deepfloyd_if.md

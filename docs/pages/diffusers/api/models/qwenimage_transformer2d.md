@@ -16,7 +16,7 @@ transformer = QwenImageTransformer2DModel.from_pretrained("Qwen/QwenImage-20B", 
 diffusers.QwenImageTransformer2DModel(patch_size: int = 2, in_channels: int = 64, out_channels: int | None = 16, num_layers: int = 60, attention_head_dim: int = 128, num_attention_heads: int = 24, joint_attention_dim: int = 3584, guidance_embeds: bool = False, axes_dims_rope: tuple = (16, 56, 56), zero_cond_t: bool = False, use_additional_t_cond: bool = False, use_layer3d_rope: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_qwenimage.py#L791)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_qwenimage.py#L791)
 
 **Parameters:**
 
@@ -46,7 +46,7 @@ The Transformer model introduced in Qwen.
 forward(hidden_states: Tensor, encoder_hidden_states: Tensor = None, encoder_hidden_states_mask: Tensor = None, timestep: LongTensor = None, img_shapes: list[tuple[int, int, int]] | None = None, guidance: Tensor = None, attention_kwargs: dict[str, typing.Any] | None = None, controlnet_block_samples = None, additional_t_cond = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_qwenimage.py#L911)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_qwenimage.py#L911)
 
 **Parameters:**
 
@@ -85,13 +85,13 @@ The `QwenTransformer2DModel` forward method.
 diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L21)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-The output of [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+The output of [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
 
 ### LongCatImageTransformer2DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/longcat_image_transformer2d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/longcat_image_transformer2d.md

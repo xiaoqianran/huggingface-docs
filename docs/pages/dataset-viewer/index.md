@@ -2,8 +2,16 @@
 
 The dataset page includes a table with the dataset's contents, arranged by pages of 100 rows. You can navigate between pages using the buttons at the bottom of the table, filter, search, look at basic statistics, and more.
 
-  
-  
+  <img
+    style="margin-bottom: 0;"
+    class="block dark:hidden"
+    src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/datasets-server/openbookqa_light.png"
+  />
+  <img
+    style="margin-bottom: 0;"
+    class="hidden dark:block"
+    src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/datasets-server/openbookqa_dark.png"
+  />
 
   Dataset viewer of the
   
@@ -37,5 +45,5 @@ Let the dataset viewer take care of the heavy lifting so you can use a simple **
 
 Join the growing community on the [forum](https://discuss.huggingface.co/) or [Discord](https://discord.com/invite/JfAtkvEtRb) today, and give the [dataset viewer repository](https://github.com/huggingface/dataset-viewer) a ⭐️ if you're interested in the latest updates!
 
-### Splits and subsets
-https://huggingface.co/docs/dataset-viewer/configs_and_splits.md
+### Get the number of rows and the size in bytes
+https://huggingface.co/docs/dataset-viewer/size.md

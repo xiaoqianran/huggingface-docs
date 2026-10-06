@@ -8,7 +8,7 @@ The abstract from the paper is:
 
 ## Loading from the original format
 
-By default the [AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL) should be loaded with [from_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained), but it can also be loaded
+By default the [AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL) should be loaded with [from_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained), but it can also be loaded
 from the original format using `FromOriginalModelMixin.from_single_file` as follows:
 
 ```py
@@ -26,7 +26,7 @@ model = AutoencoderKL.from_single_file(url)
 diffusers.AutoencoderKL(in_channels: int = 3, out_channels: int = 3, down_block_types: tuple = ('DownEncoderBlock2D',), up_block_types: tuple = ('UpDecoderBlock2D',), block_out_channels: tuple = (64,), layers_per_block: int = 1, act_fn: str = 'silu', latent_channels: int = 4, norm_num_groups: int = 32, sample_size: int = 32, scaling_factor: float = 0.18215, shift_factor: float | None = None, latents_mean: tuple[float] | None = None, latents_std: tuple[float] | None = None, force_upcast: bool = True, use_quant_conv: bool = True, use_post_quant_conv: bool = True, mid_block_add_attention: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl.py#L36)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl.py#L36)
 
 **Parameters:**
 
@@ -54,7 +54,7 @@ mid_block_add_attention (`bool`, *optional*, default to `True`) : If enabled, th
 
 A VAE model with KL loss for encoding images into latents and decoding latent representations into images.
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
+This model inherits from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
 for all models (such as downloading or saving).
 
 #### decode[[diffusers.AutoencoderKL.decode]]
@@ -63,7 +63,7 @@ for all models (such as downloading or saving).
 decode(z: FloatTensor, return_dict: bool = True, generator = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl.py#L213)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl.py#L213)
 
 **Parameters:**
 
@@ -84,7 +84,7 @@ Decode a batch of images.
 encode(x: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl.py#L170)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl.py#L170)
 
 **Parameters:**
 
@@ -105,7 +105,7 @@ Encode a batch of images into latents.
 forward(sample: Tensor, sample_posterior: bool = False, return_dict: bool = True, generator: typing.Optional[torch.Generator] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl.py#L413)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl.py#L413)
 
 **Parameters:**
 
@@ -128,7 +128,7 @@ returned.
 fuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl.py#L450)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl.py#L450)
 
 Enables fused QKV projections. For self-attention modules, all projection matrices (i.e., query, key, value)
 are fused. For cross-attention modules, key and value projection matrices are fused.
@@ -141,7 +141,7 @@ are fused. For cross-attention modules, key and value projection matrices are fu
 set_default_attn_processor()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl.py#L143)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl.py#L143)
 
 Disables custom attention processors and sets the default attention implementation.
 
@@ -151,7 +151,7 @@ Disables custom attention processors and sets the default attention implementati
 tiled_decode(z: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl.py#L364)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl.py#L364)
 
 **Parameters:**
 
@@ -172,7 +172,7 @@ Decode a batch of images using a tiled decoder.
 tiled_encode(x: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl.py#L302)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl.py#L302)
 
 **Parameters:**
 
@@ -199,7 +199,7 @@ output, but they should be much less noticeable.
 unfuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl.py#L472)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl.py#L472)
 
 Disables the fused QKV projection if enabled.
 
@@ -213,7 +213,7 @@ Disables the fused QKV projection if enabled.
 diffusers.models.modeling_outputs.AutoencoderKLOutput(latent_dist: DiagonalGaussianDistribution)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L7)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/modeling_outputs.py#L7)
 
 **Parameters:**
 
@@ -229,7 +229,7 @@ Output of AutoencoderKL encoding method.
 diffusers.models.autoencoders.vae.DecoderOutput(sample: Tensor, commit_loss: typing.Optional[torch.FloatTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/vae.py#L46)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/vae.py#L49)
 
 **Parameters:**
 
@@ -238,4 +238,4 @@ sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) : T
 Output of decoding method.
 
 ### MiniMaxH3Transformer3DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/minimax_h3_transformer3d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/minimax_h3_transformer3d.md

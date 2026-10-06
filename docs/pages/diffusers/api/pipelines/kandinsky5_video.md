@@ -54,7 +54,7 @@ from diffusers.utils import export_to_video
 model_id = "kandinskylab/Kandinsky-5.0-T2V-Pro-sft-5s-Diffusers"
 pipe = Kandinsky5T2VPipeline.from_pretrained(model_id, dtype=torch.bfloat16)
 
-pipe = pipe.to("cuda")
+pipe = pipe.to("cuda")  # or "mps", "xpu", "cpu"
 pipeline.transformer.set_attention_backend("flex")                            # <--- Set attention backend to Flex
 pipeline.enable_model_cpu_offload()                                           # <--- Enable cpu offloading for single GPU inference
 pipeline.transformer.compile(mode="max-autotune-no-cudagraphs", dynamic=True) # <--- Compile with max-autotune-no-cudagraphs
@@ -85,7 +85,7 @@ from diffusers.utils import export_to_video
 # Load the pipeline
 model_id = "kandinskylab/Kandinsky-5.0-T2V-Lite-sft-5s-Diffusers"
 pipe = Kandinsky5T2VPipeline.from_pretrained(model_id, dtype=torch.bfloat16)
-pipe = pipe.to("cuda")
+pipe = pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 # Generate video
 prompt = "A cat and a dog baking a cake together in a kitchen."
@@ -112,7 +112,7 @@ pipe = Kandinsky5T2VPipeline.from_pretrained(
     "kandinskylab/Kandinsky-5.0-T2V-Lite-sft-10s-Diffusers", 
     dtype=torch.bfloat16
 )
-pipe = pipe.to("cuda")
+pipe = pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 pipe.transformer.set_attention_backend(
     "flex"
@@ -144,7 +144,7 @@ export_to_video(output, "output.mp4", fps=24, quality=9)
 ```python
 model_id = "kandinskylab/Kandinsky-5.0-T2V-Lite-distilled16steps-5s-Diffusers"
 pipe = Kandinsky5T2VPipeline.from_pretrained(model_id, dtype=torch.bfloat16)
-pipe = pipe.to("cuda")
+pipe = pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 output = pipe(
     prompt="A beautiful sunset over mountains",
@@ -166,7 +166,7 @@ from diffusers.utils import export_to_video
 model_id = "kandinskylab/Kandinsky-5.0-I2V-Pro-sft-5s-Diffusers"
 pipe = Kandinsky5T2VPipeline.from_pretrained(model_id, dtype=torch.bfloat16)
 
-pipe = pipe.to("cuda")
+pipe = pipe.to("cuda")  # or "mps", "xpu", "cpu"
 pipeline.transformer.set_attention_backend("flex")                            # <--- Set attention backend to Flex
 pipeline.enable_model_cpu_offload()                                           # <--- Enable cpu offloading for single GPU inference
 pipeline.transformer.compile(mode="max-autotune-no-cudagraphs", dynamic=True) # <--- Compile with max-autotune-no-cudagraphs
@@ -268,13 +268,13 @@ The evaluation is based on the expanded prompts from the [Movie Gen benchmark](h
 diffusers.Kandinsky5T2VPipeline(transformer: Kandinsky5Transformer3DModel, vae: AutoencoderKLHunyuanVideo, text_encoder: Qwen2_5_VLForConditionalGeneration, tokenizer: Qwen2VLProcessor, text_encoder_2: CLIPTextModel, tokenizer_2: CLIPTokenizer, scheduler: FlowMatchEulerDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky.py#L131)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky.py#L131)
 
 **Parameters:**
 
 transformer (`Kandinsky5Transformer3DModel`) : Conditional Transformer to denoise the encoded video latents.
 
-vae ([AutoencoderKLHunyuanVideo](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_hunyuan_video#diffusers.AutoencoderKLHunyuanVideo)) : Variational Auto-Encoder Model [hunyuanvideo-community/HunyuanVideo (vae)](https://huggingface.co/hunyuanvideo-community/HunyuanVideo) to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLHunyuanVideo](/docs/diffusers/v0.41.0/en/api/models/autoencoder_kl_hunyuan_video#diffusers.AutoencoderKLHunyuanVideo)) : Variational Auto-Encoder Model [hunyuanvideo-community/HunyuanVideo (vae)](https://huggingface.co/hunyuanvideo-community/HunyuanVideo) to encode and decode videos to and from latent representations.
 
 text_encoder (`Qwen2_5_VLForConditionalGeneration`) : Frozen text-encoder [Qwen2.5-VL](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct).
 
@@ -284,11 +284,11 @@ text_encoder_2 (`CLIPTextModel`) : Frozen [CLIP](https://huggingface.co/docs/tra
 
 tokenizer_2 (`CLIPTokenizer`) : Tokenizer for CLIP.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
 
 Pipeline for text-to-video generation using Kandinsky 5.0.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.Kandinsky5T2VPipeline.__call__]]
@@ -297,7 +297,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(prompt: str | list[str] = None, negative_prompt: str | list[str] | None = None, height: int = 512, width: int = 768, num_frames: int = 121, num_inference_steps: int = 50, guidance_scale: float = 5.0, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds_qwen: typing.Optional[torch.Tensor] = None, prompt_embeds_clip: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_qwen: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_clip: typing.Optional[torch.Tensor] = None, prompt_cu_seqlens: typing.Optional[torch.Tensor] = None, negative_prompt_cu_seqlens: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky.py#L682)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky.py#L680)
 
 **Parameters:**
 
@@ -394,7 +394,7 @@ Examples:
 check_inputs(prompt, negative_prompt, height, width, prompt_embeds_qwen = None, prompt_embeds_clip = None, negative_prompt_embeds_qwen = None, negative_prompt_embeds_clip = None, prompt_cu_seqlens = None, negative_prompt_cu_seqlens = None, callback_on_step_end_tensor_inputs = None, max_sequence_length = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky.py#L513)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky.py#L511)
 
 **Parameters:**
 
@@ -432,7 +432,7 @@ Validate input parameters for the pipeline.
 encode_prompt(prompt: str | list[str], num_videos_per_prompt: int = 1, max_sequence_length: int = 512, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky.py#L420)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky.py#L418)
 
 **Parameters:**
 
@@ -464,7 +464,7 @@ representations for video generation.
 fast_sta_nabla(T: int, H: int, W: int, wT: int = 3, wH: int = 3, wW: int = 3, device = 'cuda')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky.py#L229)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky.py#L229)
 
 **Parameters:**
 
@@ -497,7 +497,7 @@ computational complexity for video generation.
 get_sparse_params(sample, device)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky.py#L264)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky.py#L264)
 
 **Parameters:**
 
@@ -520,7 +520,7 @@ transformer model.
 prepare_latents(batch_size: int, num_channels_latents: int = 16, height: int = 480, width: int = 832, num_frames: int = 81, dtype: typing.Optional[torch.dtype] = None, device: typing.Optional[torch.device] = None, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky.py#L599)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky.py#L597)
 
 **Parameters:**
 
@@ -558,13 +558,13 @@ This method creates random noise latents or uses provided latents as starting po
 diffusers.Kandinsky5I2VPipeline(transformer: Kandinsky5Transformer3DModel, vae: AutoencoderKLHunyuanVideo, text_encoder: Qwen2_5_VLForConditionalGeneration, tokenizer: Qwen2VLProcessor, text_encoder_2: CLIPTextModel, tokenizer_2: CLIPTokenizer, scheduler: FlowMatchEulerDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2v.py#L128)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2v.py#L128)
 
 **Parameters:**
 
 transformer (`Kandinsky5Transformer3DModel`) : Conditional Transformer to denoise the encoded video latents.
 
-vae ([AutoencoderKLHunyuanVideo](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_hunyuan_video#diffusers.AutoencoderKLHunyuanVideo)) : Variational Auto-Encoder Model [hunyuanvideo-community/HunyuanVideo (vae)](https://huggingface.co/hunyuanvideo-community/HunyuanVideo) to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLHunyuanVideo](/docs/diffusers/v0.41.0/en/api/models/autoencoder_kl_hunyuan_video#diffusers.AutoencoderKLHunyuanVideo)) : Variational Auto-Encoder Model [hunyuanvideo-community/HunyuanVideo (vae)](https://huggingface.co/hunyuanvideo-community/HunyuanVideo) to encode and decode videos to and from latent representations.
 
 text_encoder (`Qwen2_5_VLForConditionalGeneration`) : Frozen text-encoder [Qwen2.5-VL](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct).
 
@@ -574,11 +574,11 @@ text_encoder_2 (`CLIPTextModel`) : Frozen [CLIP](https://huggingface.co/docs/tra
 
 tokenizer_2 (`CLIPTokenizer`) : Tokenizer for CLIP.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
 
 Pipeline for image-to-video generation using Kandinsky 5.0.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.Kandinsky5I2VPipeline.__call__]]
@@ -587,7 +587,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], prompt: str | list[str] = None, negative_prompt: str | list[str] | None = None, height: int = 512, width: int = 768, num_frames: int = 121, num_inference_steps: int = 50, guidance_scale: float = 5.0, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds_qwen: typing.Optional[torch.Tensor] = None, prompt_embeds_clip: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_qwen: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_clip: typing.Optional[torch.Tensor] = None, prompt_cu_seqlens: typing.Optional[torch.Tensor] = None, negative_prompt_cu_seqlens: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int, NoneType], diffusers.callbacks.PipelineCallback | diffusers.callbacks.MultiPipelineCallbacks]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2v.py#L748)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2v.py#L748)
 
 **Parameters:**
 
@@ -682,7 +682,7 @@ Examples:
 check_inputs(prompt, negative_prompt, image, height, width, prompt_embeds_qwen = None, prompt_embeds_clip = None, negative_prompt_embeds_qwen = None, negative_prompt_embeds_clip = None, prompt_cu_seqlens = None, negative_prompt_cu_seqlens = None, callback_on_step_end_tensor_inputs = None, max_sequence_length = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2v.py#L545)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2v.py#L545)
 
 **Parameters:**
 
@@ -722,7 +722,7 @@ Validate input parameters for the pipeline.
 encode_prompt(prompt: str | list[str], num_videos_per_prompt: int = 1, max_sequence_length: int = 512, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2v.py#L454)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2v.py#L454)
 
 **Parameters:**
 
@@ -754,7 +754,7 @@ representations for video generation.
 fast_sta_nabla(T: int, H: int, W: int, wT: int = 3, wH: int = 3, wW: int = 3, device = 'cuda')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2v.py#L226)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2v.py#L226)
 
 **Parameters:**
 
@@ -787,7 +787,7 @@ computational complexity for video generation.
 get_sparse_params(sample, device)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2v.py#L261)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2v.py#L261)
 
 **Parameters:**
 
@@ -810,7 +810,7 @@ transformer model.
 prepare_latents(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], batch_size: int, num_channels_latents: int = 16, height: int = 480, width: int = 832, num_frames: int = 81, dtype: typing.Optional[torch.dtype] = None, device: typing.Optional[torch.device] = None, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2v.py#L636)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky5/pipeline_kandinsky_i2v.py#L636)
 
 **Parameters:**
 
@@ -854,7 +854,7 @@ encoded input image.
 ```
 
 ### Cogvideox
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/cogvideox.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/cogvideox.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");

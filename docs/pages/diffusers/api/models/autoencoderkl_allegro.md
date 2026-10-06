@@ -7,7 +7,7 @@ The model can be loaded with the following code snippet.
 ```python
 from diffusers import AutoencoderKLAllegro
 
-vae = AutoencoderKLAllegro.from_pretrained("rhymes-ai/Allegro", subfolder="vae", dtype=torch.float32).to("cuda")
+vae = AutoencoderKLAllegro.from_pretrained("rhymes-ai/Allegro", subfolder="vae", dtype=torch.float32).to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 ## AutoencoderKLAllegro[[diffusers.AutoencoderKLAllegro]]
@@ -18,7 +18,7 @@ vae = AutoencoderKLAllegro.from_pretrained("rhymes-ai/Allegro", subfolder="vae",
 diffusers.AutoencoderKLAllegro(in_channels: int = 3, out_channels: int = 3, down_block_types: tuple = ('AllegroDownBlock3D', 'AllegroDownBlock3D', 'AllegroDownBlock3D', 'AllegroDownBlock3D'), up_block_types: tuple = ('AllegroUpBlock3D', 'AllegroUpBlock3D', 'AllegroUpBlock3D', 'AllegroUpBlock3D'), block_out_channels: tuple = (128, 256, 512, 512), temporal_downsample_blocks: tuple = (True, True, False, False), temporal_upsample_blocks: tuple = (False, True, True, False), latent_channels: int = 4, layers_per_block: int = 2, act_fn: str = 'silu', norm_num_groups: int = 32, temporal_compression_ratio: float = 4, sample_size: int = 320, scaling_factor: float = 0.13, force_upcast: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_allegro.py#L676)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_allegro.py#L676)
 
 **Parameters:**
 
@@ -53,7 +53,7 @@ force_upcast (`bool`, default to `True`) : If enabled it will force the VAE to r
 A VAE model with KL loss for encoding videos into latents and decoding latent representations into videos. Used in
 [Allegro](https://github.com/rhymes-ai/Allegro).
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
+This model inherits from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
 for all models (such as downloading or saving).
 
 #### decode[[diffusers.AutoencoderKLAllegro.decode]]
@@ -62,7 +62,7 @@ for all models (such as downloading or saving).
 decode(z: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_allegro.py#L843)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_allegro.py#L843)
 
 **Parameters:**
 
@@ -83,7 +83,7 @@ Decode a batch of videos.
 encode(x: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_allegro.py#L806)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_allegro.py#L806)
 
 **Parameters:**
 
@@ -104,7 +104,7 @@ Encode a batch of videos into latents.
 forward(sample: Tensor, sample_posterior: bool = False, return_dict: bool = True, generator: typing.Optional[torch.Generator] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_allegro.py#L1041)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_allegro.py#L1041)
 
 **Parameters:**
 
@@ -129,7 +129,7 @@ returned.
 diffusers.models.modeling_outputs.AutoencoderKLOutput(latent_dist: DiagonalGaussianDistribution)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L7)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/modeling_outputs.py#L7)
 
 **Parameters:**
 
@@ -145,7 +145,7 @@ Output of AutoencoderKL encoding method.
 diffusers.models.autoencoders.vae.DecoderOutput(sample: Tensor, commit_loss: typing.Optional[torch.FloatTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/vae.py#L46)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/vae.py#L49)
 
 **Parameters:**
 
@@ -154,4 +154,4 @@ sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) : T
 Output of decoding method.
 
 ### UNet2DConditionModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/unet2d-cond.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/unet2d-cond.md

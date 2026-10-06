@@ -78,5 +78,5 @@ con.all(`SELECT sign, count(*), AVG(LENGTH(text)) AS avg_blog_length FROM read_p
 
 [DuckDB-Wasm](https://duckdb.org/docs/api/wasm), a package powered by [WebAssembly](https://webassembly.org/), is also available for running DuckDB in any browser. This could be useful, for instance, if you want to create a web app to query Parquet files from the browser!
 
-### Get Croissant metadata
-https://huggingface.co/docs/dataset-viewer/croissant.md
+### Filter rows in a dataset
+https://huggingface.co/docs/dataset-viewer/filter.md

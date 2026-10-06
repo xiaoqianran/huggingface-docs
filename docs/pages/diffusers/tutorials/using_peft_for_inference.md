@@ -1,8 +1,8 @@
 # LoRA
 
-[LoRA (Low-Rank Adaptation)](https://huggingface.co/papers/2106.09685) is a method for quickly training a model for a new task. It works by freezing the original model weights and adding a small number of *new* trainable parameters. This means it is significantly faster and cheaper to adapt an existing model to new tasks, such as generating images in a new style.
+[LoRA (Low-Rank Adaptation)](https://huggingface.co/papers/2106.09685) adapts a pretrained model to a new task by freezing the original weights and training a small set of new parameters. Adaptation is faster and cheaper than full fine-tuning, which makes it practical for tasks like generating images in a new style.
 
-LoRA checkpoints are typically only a couple hundred MBs in size, so they're very lightweight and easy to store. Load these smaller set of weights into an existing base model with [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) and specify the file name.
+LoRA checkpoints are typically only a couple hundred MBs. Load them with `pipeline.load_lora_weights` and set `weight_name` to the checkpoint filename. See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for the shared parameters.
 
 ```py
 import torch
@@ -11,7 +11,7 @@ from diffusers import AutoPipelineForText2Image
 pipeline = AutoPipelineForText2Image.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
     dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline.load_lora_weights(
     "ostris/super-cereal-sdxl-lora",
     weight_name="cereal_box_sdxl_v1.safetensors",
@@ -27,7 +27,7 @@ from diffusers.utils import export_to_video, load_image
 
 pipeline = LTXConditionPipeline.from_pretrained(
     "Lightricks/LTX-Video-0.9.5", dtype=torch.bfloat16
-)
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 pipeline.load_lora_weights(
     "Lightricks/LTX-Video-Cakeify-LoRA",
@@ -53,14 +53,16 @@ video = pipeline(
 export_to_video(video, "output.mp4", fps=26)
 ```
 
-The [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) method is the preferred way to load LoRA weights into the UNet and text encoder because it can handle cases where:
+The pipeline LoRA APIs on this page work the same across model families. The denoising module is `pipeline.unet` on [Stable Diffusion](../api/pipelines/stable_diffusion/overview) and [SDXL](../api/pipelines/stable_diffusion/stable_diffusion_xl), and `pipeline.transformer` on DiT-style models such as [Flux](../api/pipelines/flux), [Stable Diffusion 3](../api/pipelines/stable_diffusion/stable_diffusion_3), [AuraFlow](../api/pipelines/aura_flow), and [LTX](../api/pipelines/ltx_video). The same pattern applies to video models such as [CogVideoX](../api/pipelines/cogvideox), [HunyuanVideo](../api/pipelines/hunyuan_video), and [Wan](../api/pipelines/wan). Model-level PEFT methods use that attribute and a matching `prefix` (`"unet"` or `"transformer"`).
 
-- the LoRA weights don't have separate UNet and text encoder identifiers
-- the LoRA weights have separate UNet and text encoder identifiers
+`pipeline.load_lora_weights` is the preferred way to load LoRA weights into the denoiser (UNet or transformer) and text encoders. See [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for the shared parameters. It can handle cases where:
 
-The [load_lora_adapter()](/docs/diffusers/v0.40.0/en/api/loaders/peft#diffusers.loaders.PeftAdapterMixin.load_lora_adapter) method is used to directly load a LoRA adapter at the *model-level*, as long as the model is a Diffusers model that is a subclass of `PeftAdapterMixin`. It builds and prepares the necessary model configuration for the adapter. This method also loads the LoRA adapter into the UNet.
+- the checkpoint shares keys across the denoiser and text encoders
+- the checkpoint uses separate denoiser and text-encoder keys
 
-For example, if you're only loading a LoRA into the UNet, [load_lora_adapter()](/docs/diffusers/v0.40.0/en/api/loaders/peft#diffusers.loaders.PeftAdapterMixin.load_lora_adapter) ignores the text encoder keys. Use the `prefix` parameter to filter and load the appropriate state dicts, `"unet"` to load.
+The [load_lora_adapter()](/docs/diffusers/v0.41.0/en/api/loaders/peft#diffusers.loaders.PeftAdapterMixin.load_lora_adapter) method loads a LoRA adapter at the *model-level* on any Diffusers model that subclasses `PeftAdapterMixin`, such as a UNet or transformer. It builds and prepares the adapter configuration and loads the weights into that module.
+
+Use `prefix` to filter state dict keys for the target module (`"unet"` or `"transformer"`). The default is `"transformer"`, so Stable Diffusion and SDXL must pass `prefix="unet"`.
 
 ```py
 import torch
@@ -69,7 +71,7 @@ from diffusers import AutoPipelineForText2Image
 pipeline = AutoPipelineForText2Image.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
     dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline.unet.load_lora_adapter(
     "jbilcke-hf/sdxl-cinematic-1",
     weight_name="pytorch_lora_weights.safetensors",
@@ -78,6 +80,20 @@ pipeline.unet.load_lora_adapter(
 )
 # use cnmt in the prompt to trigger the LoRA
 pipeline("A cute cnmt eating a slice of pizza, stunning color scheme, masterpiece, illustration").images[0]
+```
+
+```py
+import torch
+from diffusers import FluxPipeline
+
+pipeline = FluxPipeline.from_pretrained(
+    "black-forest-labs/FLUX.1-dev", dtype=torch.bfloat16
+).to("cuda")  # or "mps", "xpu", "cpu"
+pipeline.transformer.load_lora_adapter(
+    "alvarobartt/ghibli-characters-flux-lora",
+    adapter_name="lora",
+    prefix="transformer",
+)
 ```
 
 ## torch.compile
@@ -92,7 +108,7 @@ from diffusers import DiffusionPipeline
 pipeline = DiffusionPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
     dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline.load_lora_weights(
     "ostris/ikea-instructions-lora-sdxl",
     weight_name="ikea_instructions_xl_v1_5.safetensors",
@@ -107,7 +123,7 @@ pipeline.fuse_lora(adapter_names=["ikea"], lora_scale=1.0)
 pipeline.unload_lora_weights()
 ```
 
-Typically, the UNet is compiled because its the most compute intensive component of the pipeline.
+Typically, compile the denoiser because it's the most compute intensive component of the pipeline.
 
 ```py
 pipeline.unet.to(memory_format=torch.channels_last)
@@ -116,13 +132,19 @@ pipeline.unet = torch.compile(pipeline.unet, mode="reduce-overhead", fullgraph=T
 pipeline("A bowl of ramen shaped like a cute kawaii bear").images[0]
 ```
 
+For Flux and other DiT pipelines, compile `pipeline.transformer` instead.
+
+```py
+pipeline.transformer = torch.compile(pipeline.transformer, mode="reduce-overhead", fullgraph=True)
+```
+
 Refer to the [hotswapping](#hotswapping) section to learn how to avoid recompilation when working with compiled models and multiple LoRAs.
 
 ## Weight scale
 
-The `scale` parameter is used to control how much of a LoRA to apply. A value of `0` is equivalent to only using the base model weights and a value of `1` is equivalent to fully using the LoRA.
+Use the `adapter_weights` parameter on [set_adapters()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.set_adapters) to control how much of a LoRA to apply. A weight of `0` is equivalent to only using the base model weights and a weight of `1` is equivalent to fully using the LoRA.
 
-For simple use cases, you can pass `cross_attention_kwargs={"scale": 1.0}` to the pipeline.
+Pass a scalar to `adapter_weights` on [set_adapters()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.set_adapters) to control how strongly the LoRA applies.
 
 ```py
 import torch
@@ -131,19 +153,24 @@ from diffusers import AutoPipelineForText2Image
 pipeline = AutoPipelineForText2Image.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
     dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline.load_lora_weights(
     "ostris/super-cereal-sdxl-lora",
     weight_name="cereal_box_sdxl_v1.safetensors",
     adapter_name="cereal"
 )
-pipeline("bears, pizza bites", cross_attention_kwargs={"scale": 1.0}).images[0]
+pipeline.set_adapters("cereal", adapter_weights=1.0)
+pipeline("bears, pizza bites").images[0]
 ```
 
-> [!WARNING]
-> The [set_adapters()](/docs/diffusers/v0.40.0/en/api/loaders/peft#diffusers.loaders.PeftAdapterMixin.set_adapters) method only scales attention weights. If a LoRA has ResNets or down and upsamplers, these components keep a scale value of `1.0`.
+`set_adapters` as the primary pattern, but some pipelines also accept `cross_attention_kwargs={"scale": 1.0}` on the call as a secondary way to scale attention. Pipelines that do not use cross-attention typically expose `attention_kwargs` instead (or `joint_attention_kwargs` on Flux and Stable Diffusion 3).
 
-For finer control over each individual component of the UNet or text encoder, pass a dictionary instead. In the example below, the `"down"` block in the UNet is scaled by 0.9 and you can further specify in the `"up"` block the scales of the transformers in `"block_0"` and `"block_1"`. If a block like `"mid"` isn't specified, the default value `1.0` is used.
+> [!WARNING]
+> The [set_adapters()](/docs/diffusers/v0.41.0/en/api/loaders/peft#diffusers.loaders.PeftAdapterMixin.set_adapters) method only scales attention weights. If a LoRA has ResNets or down and upsamplers, these components keep a scale value of `1.0`.
+
+Pass a dictionary to scale each text encoder or denoiser block. Dictionary keys follow the pipeline modules. The example below is SDXL (`unet` plus text encoders). Flux uses `transformer` and `text_encoder`. SD3 uses `transformer` and multiple text encoders.
+
+In this SDXL example, the `"down"` block in the UNet is scaled by 0.9 and you can further specify attention-block scales in `"block_0"` and `"block_1"` under `"up"`. If a block like `"mid"` isn't specified, the default value `1.0` is used.
 
 ```py
 import torch
@@ -152,7 +179,7 @@ from diffusers import AutoPipelineForText2Image
 pipeline = AutoPipelineForText2Image.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
     dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline.load_lora_weights(
     "ostris/super-cereal-sdxl-lora",
     weight_name="cereal_box_sdxl_v1.safetensors",
@@ -177,7 +204,7 @@ pipeline("bears, pizza bites").images[0]
 
 Dynamically adjusting the LoRA scale during sampling gives you better control over the overall composition and layout because certain steps may benefit more from an increased or reduced scale.
 
-The [character LoRA](https://huggingface.co/alvarobartt/ghibli-characters-flux-lora) in the example below starts with a higher scale that gradually decays over the first 20 steps to establish the character generation. In the later steps, only a scale of 0.2 is applied to avoid adding too much of the LoRA features to other parts of the image the LoRA wasn't trained on.
+The [character LoRA](https://huggingface.co/alvarobartt/ghibli-characters-flux-lora) in the example below starts with a higher scale that gradually decays over the first 20 steps to establish the character generation. In the later steps, only a scale of `0.2` is applied to avoid adding too much of the LoRA features to other parts of the image the LoRA wasn't trained on.
 
 ```py
 import torch
@@ -185,9 +212,9 @@ from diffusers import FluxPipeline
 
 pipeline = FluxPipeline.from_pretrained(
     "black-forest-labs/FLUX.1-dev", dtype=torch.bfloat16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
-pipelne.load_lora_weights("alvarobartt/ghibli-characters-flux-lora", "lora")
+pipeline.load_lora_weights("alvarobartt/ghibli-characters-flux-lora", adapter_name="lora")
 
 num_inference_steps = 30
 lora_steps = 20
@@ -215,7 +242,7 @@ pipeline(
 
 ## Hotswapping
 
-Hotswapping LoRAs is an efficient way to work with multiple LoRAs while avoiding accumulating memory from multiple calls to [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) and in some cases, recompilation, if a model is compiled. This workflow requires a loaded LoRA because the new LoRA weights are swapped in place for the existing loaded LoRA.
+Hotswapping LoRAs is an efficient way to work with multiple LoRAs while avoiding accumulating memory from multiple calls to `load_lora_weights` and in some cases, recompilation, if a model is compiled. This workflow requires a loaded LoRA because the new LoRA weights are swapped in place for the existing loaded LoRA.
 
 ```py
 import torch
@@ -225,7 +252,7 @@ from diffusers import DiffusionPipeline
 pipeline = DiffusionPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
     dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline.load_lora_weights(
     "ostris/ikea-instructions-lora-sdxl",
     weight_name="ikea_instructions_xl_v1_5.safetensors",
@@ -236,7 +263,7 @@ pipeline.load_lora_weights(
 > [!WARNING]
 > Hotswapping is unsupported for LoRAs that target the text encoder.
 
-Set `hotswap=True` in [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) to swap the second LoRA. Use the `adapter_name` parameter to indicate which LoRA to swap (`default_0` is the default name).
+Set `hotswap=True` on `load_lora_weights` to swap the second LoRA. Use the `adapter_name` parameter to indicate which LoRA to swap. If you omit `adapter_name` when loading, Diffusers names adapters `default_0`, `default_1`, and so on. Named adapters are easier to target explicitly.
 
 ```py
 pipeline.load_lora_weights(
@@ -248,12 +275,12 @@ pipeline.load_lora_weights(
 
 ### Compiled models
 
-For compiled models, use [enable_lora_hotswap()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.enable_lora_hotswap) to avoid recompilation when hotswapping LoRAs. This method should be called *before* loading the first LoRA and `torch.compile` should be called *after* loading the first LoRA.
+For compiled models, use [enable_lora_hotswap()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.enable_lora_hotswap) to avoid recompilation when hotswapping LoRAs. This method should be called *before* loading the first LoRA and `torch.compile` should be called *after* loading the first LoRA.
 
 > [!TIP]
-> The [enable_lora_hotswap()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.enable_lora_hotswap) method isn't always necessary if the second LoRA targets the identical LoRA ranks and scales as the first LoRA.
+> The [enable_lora_hotswap()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.enable_lora_hotswap) method isn't always necessary if the second LoRA targets the identical LoRA ranks and scales as the first LoRA.
 
-Within [enable_lora_hotswap()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.enable_lora_hotswap), the `target_rank` parameter is important for setting the rank for all LoRA adapters. Setting it to `max_rank` sets it to the highest value. For LoRAs with different ranks, you set it to a higher rank value. The default rank value is 128.
+Within [enable_lora_hotswap()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.enable_lora_hotswap), set `target_rank` to the highest rank among the adapters you plan to load (default 128).
 
 ```py
 import torch
@@ -263,9 +290,9 @@ from diffusers import DiffusionPipeline
 pipeline = DiffusionPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
     dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 # 1. enable_lora_hotswap
-pipeline.enable_lora_hotswap(target_rank=max_rank)
+pipeline.enable_lora_hotswap(target_rank=128)
 pipeline.load_lora_weights(
     "ostris/ikea-instructions-lora-sdxl",
     weight_name="ikea_instructions_xl_v1_5.safetensors",
@@ -285,30 +312,30 @@ pipeline.load_lora_weights(
 > [!TIP]
 > Move your code inside the `with torch._dynamo.config.patch(error_on_recompile=True)` context manager to detect if a model was recompiled. If a model is recompiled despite following all the steps above, please open an [issue](https://github.com/huggingface/diffusers/issues) with a reproducible example.
 
-If you expect to varied resolutions during inference with this feature, then make sure set `dynamic=True` during compilation. Refer to [this document](../optimization/fp16#dynamic-shape-compilation) for more details.
+If you expect varied resolutions during inference with this feature, then make sure to set `dynamic=True` during compilation. Refer to [dynamic shape compilation](../optimization/fp16#dynamic-shape-compilation) for more details.
 
-There are still scenarios where recompulation is unavoidable, such as when the hotswapped LoRA targets more layers than the initial adapter. Try to load the LoRA that targets the most layers *first*. For more details about this limitation, refer to the PEFT [hotswapping](https://huggingface.co/docs/peft/main/en/package_reference/hotswap#peft.utils.hotswap.hotswap_adapter) docs.
+There are still scenarios where recompilation is unavoidable, such as when the hotswapped LoRA targets more layers than the initial adapter. Try to load the LoRA that targets the most layers *first*. For more details about this limitation, refer to the PEFT [hotswapping](https://huggingface.co/docs/peft/main/en/package_reference/hotswap#peft.utils.hotswap.hotswap_adapter) docs.
 
-Technical details of hotswapping
+Why `target_rank` and load order matter
 
-The [enable_lora_hotswap()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.enable_lora_hotswap) method converts the LoRA scaling factor from floats to torch.tensors and pads the shape of the weights to the largest required shape to avoid reassigning the whole attribute when the data in the weights are replaced.
+The [enable_lora_hotswap()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.enable_lora_hotswap) method converts the LoRA scaling factor from floats to torch.tensors and pads the shape of the weights to the largest required shape to avoid reassigning the whole attribute when the data in the weights are replaced.
 
-This is why the `max_rank` argument is important. The results are unchanged even when the values are padded with zeros. Computation may be slower though depending on the padding size.
+This is why the `target_rank` argument is important. The results are unchanged even when the values are padded with zeros. Computation may be slower though depending on the padding size.
 
 Since no new LoRA attributes are added, each subsequent LoRA is only allowed to target the same layers, or subset of layers, the first LoRA targets. Choosing the LoRA loading order is important because if the LoRAs target disjoint layers, you may end up creating a dummy LoRA that targets the union of all target layers.
 
-For more implementation details, take a look at the [`hotswap.py`](https://github.com/huggingface/peft/blob/92d65cafa51c829484ad3d95cf71d09de57ff066/src/peft/utils/hotswap.py) file.
+See the [LoRA fast](https://huggingface.co/blog/lora-fast) blog post for more on LoRA hotswapping with compiled models, and for more implementation details, take a look at the [`hotswap.py`](https://github.com/huggingface/peft/blob/92d65cafa51c829484ad3d95cf71d09de57ff066/src/peft/utils/hotswap.py) file.
 
 ## Merge
 
 The weights from each LoRA can be merged together to produce a blend of multiple existing styles. There are several methods for merging LoRAs, each of which differ in *how* the weights are merged (may affect generation quality).
 
-### set_adapters
+### set_adapters[[merge]]
 
-The [set_adapters()](/docs/diffusers/v0.40.0/en/api/loaders/peft#diffusers.loaders.PeftAdapterMixin.set_adapters) method merges LoRAs by concatenating their weighted matrices. Pass the LoRA names to [set_adapters()](/docs/diffusers/v0.40.0/en/api/loaders/peft#diffusers.loaders.PeftAdapterMixin.set_adapters) and use the `adapter_weights` parameter to control the scaling of each LoRA. For example, if `adapter_weights=[0.5, 0.5]`, the output is an average of both LoRAs.
+The [set_adapters()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.set_adapters) method merges LoRAs by concatenating their weighted matrices. Pass the LoRA names to [set_adapters()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.set_adapters) and use the `adapter_weights` parameter to control the scaling of each LoRA. For example, if `adapter_weights=[0.5, 0.5]`, the output is an average of both LoRAs.
 
 > [!TIP]
-> The `"scale"` parameter determines how much of the merged LoRA to apply. See the [Weight scale](#weight-scale) section for more details.
+> Prefer `adapter_weights` on [set_adapters()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.set_adapters) to control how much of each merged LoRA to apply. See the [Weight scale](#weight-scale) section for more details.
 
 ```py
 import torch
@@ -317,7 +344,7 @@ from diffusers import DiffusionPipeline
 pipeline = DiffusionPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
     dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline.load_lora_weights(
     "ostris/ikea-instructions-lora-sdxl",
     weight_name="ikea_instructions_xl_v1_5.safetensors",
@@ -330,17 +357,15 @@ pipeline.load_lora_weights(
 )
 pipeline.set_adapters(["ikea", "feng"], adapter_weights=[0.7, 0.8])
 # use by Feng Zikai to activate the lordjia/by-feng-zikai LoRA
-pipeline("A bowl of ramen shaped like a cute kawaii bear, by Feng Zikai", cross_attention_kwargs={"scale": 1.0}).images[0]
+pipeline("A bowl of ramen shaped like a cute kawaii bear, by Feng Zikai").images[0]
 ```
-
-    
 
 ### add_weighted_adapter
 
 > [!TIP]
-> This is an experimental method and you can refer to PEFTs [Model merging](https://huggingface.co/docs/peft/developer_guides/model_merging) for more details. Take a look at this [issue](https://github.com/huggingface/diffusers/issues/6892) if you're interested in the motivation and design behind this integration.
+> This is an experimental method and you can refer to PEFT's [Model merging](https://huggingface.co/docs/peft/developer_guides/model_merging) for more details. Take a look at this [issue](https://github.com/huggingface/diffusers/issues/6892) if you're interested in the motivation and design behind this integration.
 
-The [add_weighted_adapter](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraModel.add_weighted_adapter) method enables more efficient merging methods like [TIES](https://huggingface.co/papers/2306.01708) or [DARE](https://huggingface.co/papers/2311.03099). These merging methods remove redundant and potentially interfering parameters from merged models. Keep in mind the LoRA ranks need to have identical ranks to be merged.
+The `add_weighted_adapter` method enables more efficient merging methods like [TIES](https://huggingface.co/papers/2306.01708) or [DARE](https://huggingface.co/papers/2311.03099). These merging methods remove redundant and potentially interfering parameters from merged models. Keep in mind the LoRA ranks need to have identical ranks to be merged. The walkthrough below uses SDXL's UNet.
 
 Make sure the latest stable version of Diffusers and PEFT is installed.
 
@@ -348,7 +373,7 @@ Make sure the latest stable version of Diffusers and PEFT is installed.
 pip install -U -q diffusers peft
 ```
 
-Load a UNET that corresponds to the LoRA UNet.
+Load a UNet that corresponds to the LoRA UNet.
 
 ```py
 import copy
@@ -362,7 +387,7 @@ unet = AutoModel.from_pretrained(
     use_safetensors=True,
     variant="fp16",
     subfolder="unet",
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 Load a pipeline, pass the UNet to it, and load a LoRA.
@@ -373,7 +398,7 @@ pipeline = DiffusionPipeline.from_pretrained(
     variant="fp16",
     dtype=torch.float16,
     unet=unet
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline.load_lora_weights(
     "ostris/ikea-instructions-lora-sdxl",
     weight_name="ikea_instructions_xl_v1_5.safetensors",
@@ -381,7 +406,7 @@ pipeline.load_lora_weights(
 )
 ```
 
-Create a [PeftModel](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel) from the LoRA checkpoint by combining the first UNet you loaded and the LoRA UNet from the pipeline.
+Create a `PeftModel` from the LoRA checkpoint by combining the first UNet you loaded and the LoRA UNet from the pipeline.
 
 ```py
 sdxl_unet = copy.deepcopy(unet)
@@ -401,7 +426,7 @@ ikea_peft_model.load_state_dict(original_state_dict, strict=True)
 > ikea_peft_model.push_to_hub("ikea_peft_model", token=TOKEN)
 > ```
 
-Repeat this process and create a [PeftModel](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel) for the second LoRA.
+Repeat this process and create a `PeftModel` for the second LoRA.
 
 ```py
 pipeline.delete_adapters("ikea")
@@ -420,7 +445,7 @@ feng_peft_model = get_peft_model(
     adapter_name="feng"
 )
 
-original_state_dict = {f"base_model.model.{k}": v for k, v in pipe.unet.state_dict().items()}
+original_state_dict = {f"base_model.model.{k}": v for k, v in pipeline.unet.state_dict().items()}
 feng_peft_model.load_state_dict(original_state_dict, strict=True)
 ```
 
@@ -433,7 +458,7 @@ base_unet = AutoModel.from_pretrained(
     use_safetensors=True,
     variant="fp16",
     subfolder="unet",
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 model = PeftModel.from_pretrained(
     base_unet,
@@ -450,9 +475,9 @@ model.load_adapter(
 )
 ```
 
-Merge the LoRAs with [add_weighted_adapter](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraModel.add_weighted_adapter) and specify how you want to merge them with `combination_type`. The example below uses the `"dare_linear"` method (refer to this [blog post](https://huggingface.co/blog/peft_merging) to learn more about these merging methods), which randomly prunes some weights and then performs a weighted sum of the tensors based on the set weightage of each LoRA in `weights`.
+Merge the LoRAs with `add_weighted_adapter` and specify how you want to merge them with `combination_type`. The example below uses the `"dare_linear"` method (refer to this [blog post](https://huggingface.co/blog/peft_merging) to learn more about these merging methods), which randomly prunes some weights and then performs a weighted sum of the tensors based on the set weightage of each LoRA in `weights`.
 
-Activate the merged LoRAs with [set_adapters()](/docs/diffusers/v0.40.0/en/api/loaders/peft#diffusers.loaders.PeftAdapterMixin.set_adapters).
+Activate the merged LoRAs with [set_adapters()](/docs/diffusers/v0.41.0/en/api/loaders/peft#diffusers.loaders.PeftAdapterMixin.set_adapters).
 
 ```py
 model.add_weighted_adapter(
@@ -468,15 +493,13 @@ pipeline = DiffusionPipeline.from_pretrained(
     unet=model,
     variant="fp16",
     dtype=torch.float16,
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline("A bowl of ramen shaped like a cute kawaii bear, by Feng Zikai").images[0]
 ```
 
-    
-
 ### fuse_lora
 
-The [fuse_lora()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.fuse_lora) method fuses the LoRA weights directly with the original UNet and text encoder weights of the underlying model. This reduces the overhead of loading the underlying model for each LoRA because it only loads the model once, which lowers memory usage and increases inference speed.
+The [fuse_lora()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.fuse_lora) method fuses the LoRA weights directly with the original denoiser (UNet or transformer) and text encoder weights of the underlying model. This reduces the overhead of loading the underlying model for each LoRA because it only loads the model once, which lowers memory usage and increases inference speed.
 
 ```py
 import torch
@@ -485,7 +508,7 @@ from diffusers import DiffusionPipeline
 pipeline = DiffusionPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
     dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline.load_lora_weights(
     "ostris/ikea-instructions-lora-sdxl",
     weight_name="ikea_instructions_xl_v1_5.safetensors",
@@ -499,13 +522,13 @@ pipeline.load_lora_weights(
 pipeline.set_adapters(["ikea", "feng"], adapter_weights=[0.7, 0.8])
 ```
 
-Call [fuse_lora()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.fuse_lora) to fuse them. The `lora_scale` parameter controls how much to scale the output by with the LoRA weights. It is important to make this adjustment now because passing `scale` to `cross_attention_kwargs` won't work in the pipeline.
+Call [fuse_lora()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.fuse_lora) to fuse them. The `lora_scale` parameter controls how much to scale the output by with the LoRA weights. It is important to make this adjustment now because passing `scale` to `cross_attention_kwargs` won't work in the pipeline.
 
 ```py
 pipeline.fuse_lora(adapter_names=["ikea", "feng"], lora_scale=1.0)
 ```
 
-Unload the LoRA weights since they're already fused with the underlying model. Save the fused pipeline with either [save_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained) to save it locally or `~PushToHubMixin.push_to_hub` to save it to the Hub.
+Unload the LoRA weights since they're already fused with the underlying model. Save the fused pipeline with either [save_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained) to save it locally or `~PushToHubMixin.push_to_hub` to save it to the Hub.
 
 ```py
 pipeline.unload_lora_weights()
@@ -522,25 +545,23 @@ The fused pipeline can now be quickly loaded for inference without requiring eac
 ```py
 pipeline = DiffusionPipeline.from_pretrained(
     "username/fused-ikea-feng", dtype=torch.float16,
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline("A bowl of ramen shaped like a cute kawaii bear, by Feng Zikai").images[0]
 ```
 
-Use `unfuse_lora()` to restore the underlying models weights, for example, if you want to use a different `lora_scale` value. You can only unfuse if there is a single LoRA fused. For example, it won't work with the pipeline from above because there are multiple fused LoRAs. In these cases, you'll need to reload the entire model.
+Use [unfuse_lora()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.unfuse_lora) to restore the underlying model's weights, for example, if you want to use a different `lora_scale` value. You can only unfuse if there is a single LoRA fused. For example, it won't work with the pipeline from above because there are multiple fused LoRAs. In these cases, you'll need to reload the entire model.
 
 ```py
 pipeline.unfuse_lora()
 ```
 
-    
-
 ## Manage
 
 Diffusers provides several methods to help you manage working with LoRAs. These methods can be especially useful if you're working with multiple LoRAs.
 
-### set_adapters
+### set_adapters[[manage]]
 
-[set_adapters()](/docs/diffusers/v0.40.0/en/api/loaders/peft#diffusers.loaders.PeftAdapterMixin.set_adapters) also activates the current LoRA to use if there are multiple active LoRAs. This allows you to switch between different LoRAs by specifying their name.
+[set_adapters()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.set_adapters) also activates the current LoRA to use if there are multiple active LoRAs. This allows you to switch between different LoRAs by specifying their name.
 
 ```py
 import torch
@@ -549,7 +570,7 @@ from diffusers import DiffusionPipeline
 pipeline = DiffusionPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
     dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline.load_lora_weights(
     "ostris/ikea-instructions-lora-sdxl",
     weight_name="ikea_instructions_xl_v1_5.safetensors",
@@ -566,7 +587,7 @@ pipeline.set_adapters("feng")
 
 ### save_lora_adapter
 
-Save an adapter with [save_lora_adapter()](/docs/diffusers/v0.40.0/en/api/loaders/peft#diffusers.loaders.PeftAdapterMixin.save_lora_adapter).
+Save an adapter with [save_lora_adapter()](/docs/diffusers/v0.41.0/en/api/loaders/peft#diffusers.loaders.PeftAdapterMixin.save_lora_adapter) on the same module you loaded into (`pipeline.unet` or `pipeline.transformer`).
 
 ```py
 import torch
@@ -575,19 +596,19 @@ from diffusers import AutoPipelineForText2Image
 pipeline = AutoPipelineForText2Image.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
     dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline.unet.load_lora_adapter(
     "jbilcke-hf/sdxl-cinematic-1",
     weight_name="pytorch_lora_weights.safetensors",
-    adapter_name="cinematic"
+    adapter_name="cinematic",
     prefix="unet"
 )
-pipeline.save_lora_adapter("path/to/save", adapter_name="cinematic")
+pipeline.unet.save_lora_adapter("path/to/save", adapter_name="cinematic")
 ```
 
 ### unload_lora_weights
 
-The [unload_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.unload_lora_weights) method unloads any LoRA weights in the pipeline to restore the underlying model weights.
+The [unload_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.unload_lora_weights) method unloads any LoRA weights in the pipeline to restore the underlying model weights.
 
 ```py
 pipeline.unload_lora_weights()
@@ -595,7 +616,7 @@ pipeline.unload_lora_weights()
 
 ### disable_lora
 
-The [disable_lora()](/docs/diffusers/v0.40.0/en/api/loaders/peft#diffusers.loaders.PeftAdapterMixin.disable_lora) method disables all LoRAs (but they're still kept on the pipeline) and restores the pipeline to the underlying model weights.
+The [disable_lora()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.disable_lora) method disables all LoRAs (but they're still kept on the pipeline) and restores the pipeline to the underlying model weights.
 
 ```py
 pipeline.disable_lora()
@@ -603,33 +624,33 @@ pipeline.disable_lora()
 
 ### get_active_adapters
 
-The [get_active_adapters()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.get_active_adapters) method returns a list of active LoRAs attached to a pipeline.
+The [get_active_adapters()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.get_active_adapters) method returns a list of active LoRAs attached to a pipeline.
 
 ```py
 pipeline.get_active_adapters()
-["cereal", "ikea"]
+# ["cereal", "ikea"]
 ```
 
 ### get_list_adapters
 
-The [get_list_adapters()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.get_list_adapters) method returns the active LoRAs for each component in the pipeline.
+The [get_list_adapters()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.get_list_adapters) method returns all loaded LoRAs for each component in the pipeline. The dictionary keys match the loaded modules, such as `unet` or `transformer` and any text encoders.
 
 ```py
 pipeline.get_list_adapters()
-{"unet": ["cereal", "ikea"], "text_encoder_2": ["cereal"]}
+# {"unet": ["cereal", "ikea"], "text_encoder_2": ["cereal"]}
 ```
 
 ### delete_adapters
 
-The [delete_adapters()](/docs/diffusers/v0.40.0/en/api/loaders/peft#diffusers.loaders.PeftAdapterMixin.delete_adapters) method completely removes a LoRA and its layers from a model.
+The [delete_adapters()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.lora_base.LoraBaseMixin.delete_adapters) method completely removes a LoRA and its layers from a model.
 
 ```py
 pipeline.delete_adapters("ikea")
 ```
 
-## Resources
+## Next steps
 
-Browse the [LoRA Studio](https://lorastudio.co/models) for different LoRAs to use or you can upload your favorite LoRAs from Civitai to the Hub with the Space below.
+- Browse the [LoRA Studio](https://lorastudio.co/models) for different LoRAs to use or you can upload your favorite LoRAs from Civitai to the Hub with the Space below.
 
 <iframe
 	src="https://multimodalart-civitai-to-hf.hf.space"
@@ -638,9 +659,9 @@ Browse the [LoRA Studio](https://lorastudio.co/models) for different LoRAs to us
 	height="450"
 >
 
-You can find additional LoRAs in the [FLUX LoRA the Explorer](https://huggingface.co/spaces/multimodalart/flux-lora-the-explorer) and [LoRA the Explorer](https://huggingface.co/spaces/multimodalart/LoraTheExplorer) Spaces.
+- You can find additional LoRAs in the [FLUX LoRA the Explorer](https://huggingface.co/spaces/multimodalart/flux-lora-the-explorer) and [LoRA the Explorer](https://huggingface.co/spaces/multimodalart/LoraTheExplorer) Spaces.
 
-Check out the [Fast LoRA inference for Flux with Diffusers and PEFT](https://huggingface.co/blog/lora-fast) blog post to learn how to optimize LoRA inference with methods like FlashAttention-3 and fp8 quantization.
+- Check out the [Fast LoRA inference for Flux with Diffusers and PEFT](https://huggingface.co/blog/lora-fast) blog post to learn how to optimize LoRA inference with methods like FlashAttention-3 and fp8 quantization.
 
 ### AutoPipeline
-https://huggingface.co/docs/diffusers/v0.40.0/tutorials/autopipeline.md
+https://huggingface.co/docs/diffusers/v0.41.0/tutorials/autopipeline.md

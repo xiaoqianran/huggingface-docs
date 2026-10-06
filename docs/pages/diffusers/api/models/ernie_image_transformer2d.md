@@ -12,7 +12,7 @@ A Transformer model for image-like data from [ERNIE-Image-Turbo](https://hugging
 diffusers.ErnieImageTransformer2DModel(hidden_size: int = 3072, num_attention_heads: int = 24, num_layers: int = 24, ffn_hidden_size: int = 8192, in_channels: int = 128, out_channels: int = 128, patch_size: int = 1, text_in_dim: int = 2560, rope_theta: int = 256, rope_axes_dim: typing.Tuple[int, int, int] = (32, 48, 48), eps: float = 1e-06, qk_layernorm: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_ernie_image.py#L296)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_ernie_image.py#L296)
 
 #### forward[[diffusers.ErnieImageTransformer2DModel.forward]]
 
@@ -20,7 +20,7 @@ diffusers.ErnieImageTransformer2DModel(hidden_size: int = 3072, num_attention_he
 forward(hidden_states: Tensor, timestep: Tensor, text_bth: Tensor, text_lens: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_ernie_image.py#L348)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_ernie_image.py#L348)
 
 **Parameters:**
 
@@ -34,7 +34,13 @@ text_lens (`torch.Tensor`) : Per-sample text sequence lengths used to build the 
 
 return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain tuple.
 
-The [ErnieImageTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/ernie_image_transformer2d#diffusers.ErnieImageTransformer2DModel) forward method.
+**Returns:**
+
+If `return_dict` is True, a
+`ErnieImageTransformer2DModelOutput` is returned, otherwise
+a `tuple` where the first element is the sample tensor.
+
+The [ErnieImageTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/ernie_image_transformer2d#diffusers.ErnieImageTransformer2DModel) forward method.
 
 ### AutoencoderKLWan
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoder_kl_wan.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_kl_wan.md

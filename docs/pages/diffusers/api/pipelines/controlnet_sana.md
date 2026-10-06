@@ -21,7 +21,7 @@ The original codebase can be found at [NVlabs/Sana](https://github.com/NVlabs/Sa
 diffusers.SanaControlNetPipeline(tokenizer: GemmaTokenizer, text_encoder: Gemma2PreTrainedModel, vae: AutoencoderDC, transformer: SanaTransformer2DModel, controlnet: SanaControlNetModel, scheduler: DPMSolverMultistepScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/sana/pipeline_sana_controlnet.py#L196)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/sana/pipeline_sana_controlnet.py#L196)
 
 Pipeline for text-to-image generation using [Sana](https://huggingface.co/papers/2410.10629).
 
@@ -31,7 +31,7 @@ Pipeline for text-to-image generation using [Sana](https://huggingface.co/papers
 __call__(prompt: str | list[str] = None, negative_prompt: str = '', num_inference_steps: int = 20, timesteps: list = None, sigmas: list = None, guidance_scale: float = 4.5, control_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, controlnet_conditioning_scale: float | list[float] = 1.0, num_images_per_prompt: int | None = 1, height: int = 1024, width: int = 1024, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, clean_caption: bool = False, use_resolution_binning: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 300, complex_human_instruction: list = ["Given a user prompt, generate an 'Enhanced prompt' that provides detailed visual descriptions suitable for image generation. Evaluate the level of detail in the user prompt:", '- If the prompt is simple, focus on adding specifics about colors, shapes, sizes, textures, and spatial relationships to create vivid and concrete scenes.', '- If the prompt is already detailed, refine and enhance the existing details slightly without overcomplicating.', 'Here are examples of how to transform or refine prompts:', '- User Prompt: A cat sleeping -> Enhanced: A small, fluffy white cat curled up in a round shape, sleeping peacefully on a warm sunny windowsill, surrounded by pots of blooming red flowers.', '- User Prompt: A busy city street -> Enhanced: A bustling city street scene at dusk, featuring glowing street lamps, a diverse crowd of people in colorful clothing, and a double-decker bus passing by towering glass skyscrapers.', 'Please generate only the enhanced description for the prompt below and avoid including any additional commentary or evaluations:', 'User Prompt: '])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/sana/pipeline_sana_controlnet.py#L722)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/sana/pipeline_sana_controlnet.py#L722)
 
 **Parameters:**
 
@@ -57,7 +57,7 @@ height (`int`, *optional*, defaults to self.unet.config.sample_size) : The heigh
 
 width (`int`, *optional*, defaults to self.unet.config.sample_size) : The width in pixels of the generated image.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -89,9 +89,9 @@ max_sequence_length (`int` defaults to `300`) : Maximum sequence length to use w
 
 complex_human_instruction (`list[str]`, *optional*) : Instructions for complex human attention: https://github.com/NVlabs/Sana/blob/main/configs/sana_app_config/Sana_1600M_app.yaml#L55.
 
-**Returns:** [SanaPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/sana_sprint#diffusers.pipelines.sana.pipeline_output.SanaPipelineOutput) or `tuple`
+**Returns:** [SanaPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/sana_sprint#diffusers.pipelines.sana.pipeline_output.SanaPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [SanaPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/sana_sprint#diffusers.pipelines.sana.pipeline_output.SanaPipelineOutput) is returned,
+If `return_dict` is `True`, [SanaPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/sana_sprint#diffusers.pipelines.sana.pipeline_output.SanaPipelineOutput) is returned,
 otherwise a `tuple` is returned where the first element is a list with the generated images
 
 Function invoked when calling the pipeline for generation.
@@ -125,7 +125,7 @@ Examples:
 encode_prompt(prompt: str | list[str], do_classifier_free_guidance: bool = True, negative_prompt: str = '', num_images_per_prompt: int = 1, device: typing.Optional[torch.device] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, clean_caption: bool = False, max_sequence_length: int = 300, complex_human_instruction: list[str] | None = None, lora_scale: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/sana/pipeline_sana_controlnet.py#L295)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/sana/pipeline_sana_controlnet.py#L295)
 
 **Parameters:**
 
@@ -159,7 +159,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.pipelines.sana.pipeline_output.SanaPipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/sana/pipeline_output.py#L10)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/sana/pipeline_output.py#L10)
 
 **Parameters:**
 
@@ -168,7 +168,7 @@ images (`list[PIL.Image.Image]` or `np.ndarray`) : list of denoised PIL images o
 Output class for Sana pipelines.
 
 ### Easyanimate
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/easyanimate.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/easyanimate.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -220,7 +220,7 @@ For the EasyAnimateV5.1 series:
 
 Quantization helps reduce the memory requirements of very large models by storing model weights in a lower precision data type. However, quantization may have varying impact on video quality depending on the video model.
 
-Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [EasyAnimatePipeline](/docs/diffusers/v0.40.0/en/api/pipelines/easyanimate#diffusers.EasyAnimatePipeline) for inference with bitsandbytes.
+Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [EasyAnimatePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/easyanimate#diffusers.EasyAnimatePipeline) for inference with bitsandbytes.
 
 ```py
 import torch
@@ -256,23 +256,23 @@ export_to_video(video, "cat.mp4", fps=8)
 diffusers.EasyAnimatePipeline(vae: AutoencoderKLMagvit, text_encoder: transformers.models.qwen2_vl.modeling_qwen2_vl.Qwen2VLForConditionalGeneration | transformers.models.bert.modeling_bert.BertModel, tokenizer: transformers.models.qwen2.tokenization_qwen2.Qwen2Tokenizer | transformers.models.bert.tokenization_bert.BertTokenizer, transformer: EasyAnimateTransformer3DModel, scheduler: FlowMatchEulerDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/easyanimate/pipeline_easyanimate.py#L186)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/easyanimate/pipeline_easyanimate.py#L186)
 
 **Parameters:**
 
-vae ([AutoencoderKLMagvit](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl_magvit#diffusers.AutoencoderKLMagvit)) : Variational Auto-Encoder (VAE) Model to encode and decode video to and from latent representations.
+vae ([AutoencoderKLMagvit](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_magvit#diffusers.AutoencoderKLMagvit)) : Variational Auto-Encoder (VAE) Model to encode and decode video to and from latent representations.
 
 text_encoder (`~transformers.Qwen2VLForConditionalGeneration`, `~transformers.BertModel` | None) : EasyAnimate uses [qwen2 vl](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct) in V5.1.
 
 tokenizer (`~transformers.Qwen2Tokenizer`, `~transformers.BertTokenizer` | None) : A `Qwen2Tokenizer` or `BertTokenizer` to tokenize text.
 
-transformer ([EasyAnimateTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/easyanimate_transformer3d#diffusers.EasyAnimateTransformer3DModel)) : The EasyAnimate model designed by EasyAnimate Team.
+transformer ([EasyAnimateTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/easyanimate_transformer3d#diffusers.EasyAnimateTransformer3DModel)) : The EasyAnimate model designed by EasyAnimate Team.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with EasyAnimate to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with EasyAnimate to denoise the encoded image latents.
 
 Pipeline for text-to-video generation using EasyAnimate.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 EasyAnimate uses one text encoder [qwen2 vl](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct) in V5.1.
@@ -283,7 +283,7 @@ EasyAnimate uses one text encoder [qwen2 vl](https://huggingface.co/Qwen/Qwen2-V
 __call__(prompt: str | list[str] = None, num_frames: int | None = 49, height: int | None = 512, width: int | None = 512, num_inference_steps: int | None = 50, guidance_scale: float | None = 5.0, negative_prompt: str | list[str] | None = None, num_images_per_prompt: int | None = 1, eta: float | None = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, timesteps: list[int] | None = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], guidance_rescale: float = 0.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/easyanimate/pipeline_easyanimate.py#L524)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/easyanimate/pipeline_easyanimate.py#L524)
 
 **Parameters:**
 
@@ -329,9 +329,9 @@ guidance_rescale (`float`, *optional*, defaults to 0.0) : Adjusts noise levels b
 
 timesteps (`list[int]`, *optional*) : Custom timesteps to use for the denoising process. If not defined, the scheduler's default schedule for `num_inference_steps` is used.
 
-**Returns:** [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) or `tuple`
+**Returns:** [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) is returned,
+If `return_dict` is `True`, [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) is returned,
 otherwise a `tuple` is returned where the first element is a list with the generated images and the
 second element is a list of `bool`s indicating whether the corresponding generated image contains
 "not-safe-for-work" (nsfw) content.
@@ -374,7 +374,7 @@ Examples:
 encode_prompt(prompt: str | list[str], num_images_per_prompt: int = 1, do_classifier_free_guidance: bool = True, negative_prompt: str | list[str] | None = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None, max_sequence_length: int = 256)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/easyanimate/pipeline_easyanimate.py#L241)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/easyanimate/pipeline_easyanimate.py#L241)
 
 **Parameters:**
 
@@ -410,7 +410,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.pipelines.easyanimate.pipeline_output.EasyAnimatePipelineOutput(frames: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/easyanimate/pipeline_output.py#L9)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/easyanimate/pipeline_output.py#L9)
 
 **Parameters:**
 
@@ -419,7 +419,7 @@ frames (`torch.Tensor`, `np.ndarray`, or list[list[PIL.Image.Image]]) : list of 
 Output class for EasyAnimate pipelines.
 
 ### Hunyuanimage21
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/hunyuanimage21.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/hunyuanimage21.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -461,7 +461,7 @@ pipe = HunyuanImagePipeline.from_pretrained(
     "hunyuanvideo-community/HunyuanImage-2.1-Diffusers", 
     dtype=torch.bfloat16
 )
-pipe = pipe.to("cuda")
+pipe = pipe.to("cuda")  # or "mps", "xpu", "cpu"
 ``` 
 
 You can inspect the `guider` object:
@@ -506,7 +506,7 @@ pipe = HunyuanImagePipeline.from_pretrained(
     "hunyuanvideo-community/HunyuanImage-2.1-Diffusers", 
     dtype=torch.bfloat16
 )
-pipe = pipe.to("cuda")
+pipe = pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 # Update the guider configuration
 pipe.guider = pipe.guider.new(guidance_scale=5.0)
@@ -534,7 +534,7 @@ use `distilled_guidance_scale` with the guidance-distilled checkpoint,
 import torch
 from diffusers import HunyuanImagePipeline
 pipe = HunyuanImagePipeline.from_pretrained("hunyuanvideo-community/HunyuanImage-2.1-Distilled-Diffusers", dtype=torch.bfloat16)
-pipe = pipe.to("cuda")
+pipe = pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt = (
     "A cute, cartoon-style anthropomorphic penguin plush toy with fluffy fur, standing in a painting studio, "
@@ -561,15 +561,15 @@ out = pipe(
 diffusers.HunyuanImagePipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKLHunyuanImage, text_encoder: Qwen2_5_VLForConditionalGeneration, tokenizer: Qwen2Tokenizer, text_encoder_2: T5EncoderModel, tokenizer_2: ByT5Tokenizer, transformer: HunyuanImageTransformer2DModel, guider: AdaptiveProjectedMixGuidance | None = None, ocr_guider: AdaptiveProjectedMixGuidance | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/hunyuan_image/pipeline_hunyuanimage.py#L160)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/hunyuan_image/pipeline_hunyuanimage.py#L160)
 
 **Parameters:**
 
-transformer ([HunyuanImageTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/hunyuanimage_transformer_2d#diffusers.HunyuanImageTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+transformer ([HunyuanImageTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/hunyuanimage_transformer_2d#diffusers.HunyuanImageTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKLHunyuanImage](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_hunyuanimage#diffusers.AutoencoderKLHunyuanImage)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+vae ([AutoencoderKLHunyuanImage](/docs/diffusers/v0.41.0/en/api/models/autoencoder_kl_hunyuanimage#diffusers.AutoencoderKLHunyuanImage)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
 text_encoder (`Qwen2.5-VL-7B-Instruct`) : [Qwen2.5-VL-7B-Instruct](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct), specifically the [Qwen2.5-VL-7B-Instruct](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct) variant.
 
@@ -591,7 +591,7 @@ The HunyuanImage pipeline for text-to-image generation.
 __call__(prompt: str | list[str] = None, negative_prompt: str | list[str] = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, distilled_guidance_scale: float | None = 3.25, sigmas: list[float] | None = None, num_images_per_prompt: int = 1, generator: torch.Generator | list[torch.Generator] | None = None, latents: torch.Tensor | None = None, prompt_embeds: torch.Tensor | None = None, prompt_embeds_mask: torch.Tensor | None = None, negative_prompt_embeds: torch.Tensor | None = None, negative_prompt_embeds_mask: torch.Tensor | None = None, prompt_embeds_2: torch.Tensor | None = None, prompt_embeds_mask_2: torch.Tensor | None = None, negative_prompt_embeds_2: torch.Tensor | None = None, negative_prompt_embeds_mask_2: torch.Tensor | None = None, output_type: str | None = 'pil', return_dict: bool = True, attention_kwargs: dict[str, Any] | None = None, callback_on_step_end: Callable[[int, int], None] | None = None, callback_on_step_end_tensor_inputs: list[str] = ['latents'])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/hunyuan_image/pipeline_hunyuanimage.py#L504)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/hunyuan_image/pipeline_hunyuanimage.py#L504)
 
 **Parameters:**
 
@@ -670,7 +670,7 @@ Examples:
 encode_prompt(prompt: str | list[str], device: torch.device | None = None, batch_size: int = 1, num_images_per_prompt: int = 1, prompt_embeds: torch.Tensor | None = None, prompt_embeds_mask: torch.Tensor | None = None, prompt_embeds_2: torch.Tensor | None = None, prompt_embeds_mask_2: torch.Tensor | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/hunyuan_image/pipeline_hunyuanimage.py#L296)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/hunyuan_image/pipeline_hunyuanimage.py#L296)
 
 **Parameters:**
 
@@ -698,15 +698,15 @@ prompt_embeds_mask_2 (`torch.Tensor`, *optional*) : Pre-generated glyph text mas
 diffusers.HunyuanImageRefinerPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKLHunyuanImageRefiner, text_encoder: Qwen2_5_VLForConditionalGeneration, tokenizer: Qwen2Tokenizer, transformer: HunyuanImageTransformer2DModel, guider: AdaptiveProjectedMixGuidance | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/hunyuan_image/pipeline_hunyuanimage_refiner.py#L138)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/hunyuan_image/pipeline_hunyuanimage_refiner.py#L138)
 
 **Parameters:**
 
-transformer ([HunyuanImageTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/hunyuanimage_transformer_2d#diffusers.HunyuanImageTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+transformer ([HunyuanImageTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/hunyuanimage_transformer_2d#diffusers.HunyuanImageTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKLHunyuanImageRefiner](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_hunyuanimage_refiner#diffusers.AutoencoderKLHunyuanImageRefiner)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+vae ([AutoencoderKLHunyuanImageRefiner](/docs/diffusers/v0.41.0/en/api/models/autoencoder_kl_hunyuanimage_refiner#diffusers.AutoencoderKLHunyuanImageRefiner)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
 text_encoder (`Qwen2.5-VL-7B-Instruct`) : [Qwen2.5-VL-7B-Instruct](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct), specifically the [Qwen2.5-VL-7B-Instruct](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct) variant.
 
@@ -720,7 +720,7 @@ The HunyuanImage pipeline for text-to-image generation.
 __call__(prompt: str | list[str] = None, negative_prompt: str | list[str] = None, distilled_guidance_scale: float | None = 3.25, image: PipelineImageInput | None = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 4, sigmas: list[float] | None = None, num_images_per_prompt: int = 1, generator: torch.Generator | list[torch.Generator] | None = None, latents: torch.Tensor | None = None, prompt_embeds: torch.Tensor | None = None, prompt_embeds_mask: torch.Tensor | None = None, negative_prompt_embeds: torch.Tensor | None = None, negative_prompt_embeds_mask: torch.Tensor | None = None, output_type: str | None = 'pil', return_dict: bool = True, attention_kwargs: dict[str, Any] | None = None, callback_on_step_end: Callable[[int, int], None] | None = None, callback_on_step_end_tensor_inputs: list[str] = ['latents'])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/hunyuan_image/pipeline_hunyuanimage_refiner.py#L436)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/hunyuan_image/pipeline_hunyuanimage_refiner.py#L436)
 
 **Parameters:**
 
@@ -796,7 +796,7 @@ Examples:
 encode_prompt(prompt: str | list[str] | None = None, device: torch.device | None = None, batch_size: int = 1, num_images_per_prompt: int = 1, prompt_embeds: torch.Tensor | None = None, prompt_embeds_mask: torch.Tensor | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/hunyuan_image/pipeline_hunyuanimage_refiner.py#L225)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/hunyuan_image/pipeline_hunyuanimage_refiner.py#L225)
 
 **Parameters:**
 
@@ -824,7 +824,7 @@ prompt_embeds_mask_2 (`torch.Tensor`, *optional*) : Pre-generated glyph text mas
 diffusers.pipelines.hunyuan_image.pipeline_output.HunyuanImagePipelineOutput(images: list)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/hunyuan_image/pipeline_output.py#L10)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/hunyuan_image/pipeline_output.py#L10)
 
 **Parameters:**
 
@@ -833,7 +833,7 @@ images (`list[PIL.Image.Image]` or `np.ndarray`) : List of denoised PIL images o
 Output class for HunyuanImage pipelines.
 
 ### Cogview4
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/cogview4.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/cogview4.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -852,7 +852,7 @@ https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/cogview4.md
 # CogView4
 
 > [!TIP]
-> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reuse-a-pipeline) section to learn how to efficiently load the same components into multiple pipelines.
+> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reusing-models-in-multiple-pipelines) section to learn how to efficiently load the same components into multiple pipelines.
 
 This pipeline was contributed by [zRzRzRzRzRzRzR](https://github.com/zRzRzRzRzRzRzR). The original codebase can be found [here](https://huggingface.co/THUDM). The original weights can be found under [hf.co/THUDM](https://huggingface.co/THUDM).
 
@@ -864,23 +864,23 @@ This pipeline was contributed by [zRzRzRzRzRzRzR](https://github.com/zRzRzRzRzRz
 diffusers.CogView4Pipeline(tokenizer: AutoTokenizer, text_encoder: GlmModel, vae: AutoencoderKL, transformer: CogView4Transformer2DModel, scheduler: FlowMatchEulerDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogview4/pipeline_cogview4.py#L137)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogview4/pipeline_cogview4.py#L137)
 
 **Parameters:**
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
 text_encoder (`GLMModel`) : Frozen text-encoder. CogView4 uses [glm-4-9b-hf](https://huggingface.co/THUDM/glm-4-9b-hf).
 
 tokenizer (`PreTrainedTokenizer`) : Tokenizer of class [PreTrainedTokenizer](https://huggingface.co/docs/transformers/main/en/main_classes/tokenizer#transformers.PreTrainedTokenizer).
 
-transformer ([CogView4Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/cogview4_transformer2d#diffusers.CogView4Transformer2DModel)) : A text conditioned `CogView4Transformer2DModel` to denoise the encoded image latents.
+transformer ([CogView4Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/cogview4_transformer2d#diffusers.CogView4Transformer2DModel)) : A text conditioned `CogView4Transformer2DModel` to denoise the encoded image latents.
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
 Pipeline for text-to-image generation using CogView4.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.CogView4Pipeline.__call__]]
@@ -889,7 +889,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str] | None = None, negative_prompt: str | list[str] | None = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, timesteps: list[int] | None = None, sigmas: list[float] | None = None, guidance_scale: float = 5.0, num_images_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, original_size: tuple[int, int] | None = None, crops_coords_top_left: tuple = (0, 0), output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 1024)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogview4/pipeline_cogview4.py#L402)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogview4/pipeline_cogview4.py#L402)
 
 **Parameters:**
 
@@ -961,7 +961,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None, max_sequence_length: int = 1024)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogview4/pipeline_cogview4.py#L221)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogview4/pipeline_cogview4.py#L221)
 
 **Parameters:**
 
@@ -993,7 +993,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.pipelines.cogview4.pipeline_output.CogView4PipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogview4/pipeline_output.py#L10)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogview4/pipeline_output.py#L10)
 
 **Parameters:**
 
@@ -1002,4 +1002,4 @@ images (`list[PIL.Image.Image]` or `np.ndarray`) : list of denoised PIL images o
 Output class for CogView3 pipelines.
 
 ### AnyFlow
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/anyflow.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/anyflow.md

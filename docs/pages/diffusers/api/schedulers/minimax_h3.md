@@ -12,7 +12,7 @@ The MiniMax-H3 pipelines register **two** of them, because video and audio laten
 diffusers.MiniMaxH3Scheduler(shift: float = 12.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L60)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L60)
 
 **Parameters:**
 
@@ -26,7 +26,7 @@ Rectified-flow Euler scheduler (`eta = 0`) with an exponential sigma shift, as u
 index_for_timestep(timestep: typing.Union[float, torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L172)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L172)
 
 **Parameters:**
 
@@ -44,7 +44,7 @@ Map a timestep value to its index in the schedule.
 scale_noise(sample: FloatTensor, timestep: typing.Union[float, torch.FloatTensor], noise: FloatTensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L193)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L193)
 
 **Parameters:**
 
@@ -69,7 +69,7 @@ schedule entry, so `timestep` is taken at face value and is *not* looked up in `
 set_begin_index(begin_index: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L100)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L100)
 
 **Parameters:**
 
@@ -83,13 +83,13 @@ Sets the begin index for the scheduler.
 set_shift(shift: float)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L110)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L110)
 
 **Parameters:**
 
 shift (`float`) : The exponential shift to use for the next schedule.
 
-Overrides the configured sigma shift; call before [set_timesteps()](/docs/diffusers/v0.40.0/en/api/schedulers/minimax_h3#diffusers.MiniMaxH3Scheduler.set_timesteps).
+Overrides the configured sigma shift; call before [set_timesteps()](/docs/diffusers/v0.41.0/en/api/schedulers/minimax_h3#diffusers.MiniMaxH3Scheduler.set_timesteps).
 
 MiniMax-H3 exposes this per request as `flow_shift` (video) / `audio_flow_shift` (audio).
 
@@ -99,7 +99,7 @@ MiniMax-H3 exposes this per request as `flow_shift` (video) / `audio_flow_shift`
 set_timesteps(num_inference_steps: int | None = None, device: typing.Union[str, torch.device, NoneType] = None, sigmas: typing.Union[list[float], torch.Tensor, NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L124)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L124)
 
 **Parameters:**
 
@@ -122,7 +122,7 @@ as `self.timesteps = 1 - sigmas[:-1]`.
 step(model_output: FloatTensor, timestep: typing.Union[float, torch.FloatTensor], sample: FloatTensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L223)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L223)
 
 **Parameters:**
 
@@ -152,7 +152,7 @@ with `r = sigma_next / sigma`, evaluated in float32 for half-precision samples.
 diffusers.schedulers.scheduling_minimax_h3.MiniMaxH3SchedulerOutput(prev_sample: FloatTensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L48)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L48)
 
 **Parameters:**
 
@@ -161,4 +161,4 @@ prev_sample (`torch.FloatTensor`) : Computed sample `x_{t+1}` for the next step 
 Output class for the scheduler's `step` function output.
 
 ### TCDScheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/tcd.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/tcd.md

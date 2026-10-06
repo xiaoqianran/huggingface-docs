@@ -7,7 +7,7 @@ The model can be loaded with the following code snippet.
 ```python
 from diffusers import CogView3PlusTransformer2DModel
 
-transformer = CogView3PlusTransformer2DModel.from_pretrained("THUDM/CogView3Plus-3b", subfolder="transformer", dtype=torch.bfloat16).to("cuda")
+transformer = CogView3PlusTransformer2DModel.from_pretrained("THUDM/CogView3Plus-3b", subfolder="transformer", dtype=torch.bfloat16).to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 ## CogView3PlusTransformer2DModel[[diffusers.CogView3PlusTransformer2DModel]]
@@ -18,7 +18,7 @@ transformer = CogView3PlusTransformer2DModel.from_pretrained("THUDM/CogView3Plus
 diffusers.CogView3PlusTransformer2DModel(patch_size: int = 2, in_channels: int = 16, num_layers: int = 30, attention_head_dim: int = 40, num_attention_heads: int = 64, out_channels: int = 16, text_embed_dim: int = 4096, time_embed_dim: int = 512, condition_dim: int = 256, pos_embed_max_size: int = 128, sample_size: int = 128)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_cogview3plus.py#L126)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_cogview3plus.py#L126)
 
 **Parameters:**
 
@@ -53,7 +53,7 @@ Diffusion](https://huggingface.co/papers/2403.05121).
 forward(hidden_states: Tensor, encoder_hidden_states: Tensor, timestep: LongTensor, original_size: Tensor, target_size: Tensor, crop_coords: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_cogview3plus.py#L225)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_cogview3plus.py#L225)
 
 **Parameters:**
 
@@ -75,7 +75,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 
 The denoised latents using provided inputs as conditioning.
 
-The [CogView3PlusTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/cogview3plus_transformer2d#diffusers.CogView3PlusTransformer2DModel) forward method.
+The [CogView3PlusTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/cogview3plus_transformer2d#diffusers.CogView3PlusTransformer2DModel) forward method.
 
 ## Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
@@ -85,13 +85,13 @@ The [CogView3PlusTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/cogvi
 diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L21)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-The output of [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+The output of [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
 
 ### AutoencoderSAME
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoder_same.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_same.md

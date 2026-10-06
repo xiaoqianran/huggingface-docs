@@ -10,7 +10,7 @@ The Karras formulation of the Euler scheduler (Algorithm 2) from the [Elucidatin
 diffusers.EDMEulerScheduler(sigma_min: float = 0.002, sigma_max: float = 80.0, sigma_data: float = 0.5, sigma_schedule: typing.Literal['karras', 'exponential'] = 'karras', num_train_timesteps: int = 1000, prediction_type: typing.Literal['epsilon', 'v_prediction'] = 'epsilon', rho: float = 7.0, final_sigmas_type: typing.Literal['zero', 'sigma_min'] = 'zero')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_edm_euler.py#L49)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_edm_euler.py#L49)
 
 **Parameters:**
 
@@ -35,7 +35,7 @@ Implements the Euler scheduler in EDM formulation as presented in Karras et al. 
 [1] Karras, Tero, et al. "Elucidating the Design Space of Diffusion-Based Generative Models."
 https://huggingface.co/papers/2206.00364
 
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
 methods the library implements for all schedulers such as loading and saving.
 
 #### add_noise[[diffusers.EDMEulerScheduler.add_noise]]
@@ -44,7 +44,7 @@ methods the library implements for all schedulers such as loading and saving.
 add_noise(original_samples: Tensor, noise: Tensor, timesteps: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_edm_euler.py#L536)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_edm_euler.py#L536)
 
 **Parameters:**
 
@@ -66,7 +66,7 @@ Add noise to the original samples according to the noise schedule at the specifi
 index_for_timestep(timestep: typing.Union[float, torch.Tensor], schedule_timesteps: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_edm_euler.py#L381)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_edm_euler.py#L381)
 
 **Parameters:**
 
@@ -87,7 +87,7 @@ Find the index of a given timestep in the timestep schedule.
 precondition_inputs(sample: Tensor, sigma: typing.Union[float, torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_edm_euler.py#L177)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_edm_euler.py#L177)
 
 **Parameters:**
 
@@ -107,7 +107,7 @@ Precondition the input sample by scaling it according to the EDM formulation.
 precondition_noise(sigma: typing.Union[float, torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_edm_euler.py#L195)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_edm_euler.py#L195)
 
 **Parameters:**
 
@@ -125,7 +125,7 @@ Precondition the noise level by applying a logarithmic transformation.
 precondition_outputs(sample: Tensor, model_output: Tensor, sigma: typing.Union[float, torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_edm_euler.py#L214)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_edm_euler.py#L214)
 
 **Parameters:**
 
@@ -147,7 +147,7 @@ Precondition the model outputs according to the EDM formulation.
 scale_model_input(sample: Tensor, timestep: typing.Union[float, torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_edm_euler.py#L249)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_edm_euler.py#L249)
 
 **Parameters:**
 
@@ -168,7 +168,7 @@ need to scale the denoising model input depending on the current timestep.
 set_begin_index(begin_index: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_edm_euler.py#L167)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_edm_euler.py#L167)
 
 **Parameters:**
 
@@ -182,7 +182,7 @@ Sets the begin index for the scheduler. This function should be run from pipelin
 set_timesteps(num_inference_steps: int = None, device: typing.Union[str, torch.device] = None, sigmas: typing.Union[list[float], torch.Tensor, NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_edm_euler.py#L273)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_edm_euler.py#L273)
 
 **Parameters:**
 
@@ -200,7 +200,7 @@ Sets the discrete timesteps used for the diffusion chain (to be run before infer
 step(model_output: Tensor, timestep: typing.Union[float, torch.Tensor], sample: Tensor, s_churn: float = 0.0, s_tmin: float = 0.0, s_tmax: float = inf, s_noise: float = 1.0, generator: typing.Optional[torch.Generator] = None, return_dict: bool = True, pred_original_sample: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_edm_euler.py#L427)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_edm_euler.py#L427)
 
 **Parameters:**
 
@@ -220,13 +220,13 @@ s_noise (`float`, *optional*, defaults to `1.0`) : Scaling factor for noise adde
 
 generator (`torch.Generator`, *optional*) : A random number generator for reproducibility.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return an [EDMEulerSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/edm_euler#diffusers.schedulers.scheduling_edm_euler.EDMEulerSchedulerOutput) or tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return an [EDMEulerSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/edm_euler#diffusers.schedulers.scheduling_edm_euler.EDMEulerSchedulerOutput) or tuple.
 
 pred_original_sample (`torch.Tensor`, *optional*) : The predicted denoised sample from a previous step. If provided, skips recomputation.
 
-**Returns:** [EDMEulerSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/edm_euler#diffusers.schedulers.scheduling_edm_euler.EDMEulerSchedulerOutput) or `tuple`
+**Returns:** [EDMEulerSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/edm_euler#diffusers.schedulers.scheduling_edm_euler.EDMEulerSchedulerOutput) or `tuple`
 
-If `return_dict` is `True`, an [EDMEulerSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/edm_euler#diffusers.schedulers.scheduling_edm_euler.EDMEulerSchedulerOutput) is
+If `return_dict` is `True`, an [EDMEulerSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/edm_euler#diffusers.schedulers.scheduling_edm_euler.EDMEulerSchedulerOutput) is
 returned, otherwise a tuple is returned where the first element is the previous sample tensor and the
 second element is the predicted original sample tensor.
 
@@ -241,7 +241,7 @@ process from the learned model outputs (most often the predicted noise).
 diffusers.schedulers.scheduling_edm_euler.EDMEulerSchedulerOutput(prev_sample: Tensor, pred_original_sample: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_edm_euler.py#L32)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_edm_euler.py#L32)
 
 **Parameters:**
 
@@ -252,4 +252,4 @@ pred_original_sample (`torch.Tensor` of shape `(batch_size, num_channels, height
 Output class for the scheduler's `step` function output.
 
 ### FlowMapEulerDiscreteScheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/flow_map_euler_discrete.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/flow_map_euler_discrete.md

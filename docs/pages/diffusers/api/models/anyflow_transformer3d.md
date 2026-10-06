@@ -1,6 +1,6 @@
 # AnyFlowTransformer3DModel
 
-The bidirectional 3D Transformer used by [`AnyFlowPipeline`](../pipelines/anyflow#anyflowpipeline). It is the
+The bidirectional 3D Transformer used by [`AnyFlowPipeline`](../pipelines/anyflow#diffusers.AnyFlowPipeline). It is the
 v0.35.1 Wan2.1 backbone with one structural change: the timestep embedder is replaced by
 ``AnyFlowDualTimestepTextImageEmbedding``, so every forward call conditions on both the source timestep
 ``t`` and the target timestep ``r``. This is the embedding required to learn the flow map
@@ -28,7 +28,7 @@ transformer = AnyFlowTransformer3DModel.from_pretrained(
 diffusers.AnyFlowTransformer3DModel(patch_size: typing.Tuple[int] = (1, 2, 2), num_attention_heads: int = 40, attention_head_dim: int = 128, in_channels: int = 16, out_channels: int = 16, text_dim: int = 4096, freq_dim: int = 256, ffn_dim: int = 13824, num_layers: int = 40, cross_attn_norm: bool = True, eps: float = 1e-06, image_dim: typing.Optional[int] = None, rope_max_seq_len: int = 1024, gate_value: float = 0.25, deltatime_type: str = 'r')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_anyflow.py#L507)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_anyflow.py#L507)
 
 **Parameters:**
 
@@ -78,7 +78,7 @@ adds the FAR causal block-mask and a compressed-frame patch embedding on top of 
 forward(hidden_states: Tensor, timestep: Tensor, r_timestep: Tensor, encoder_hidden_states: Tensor, encoder_hidden_states_image: typing.Optional[torch.Tensor] = None, attention_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_anyflow.py#L626)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_anyflow.py#L626)
 
 **Parameters:**
 
@@ -106,4 +106,4 @@ The input is patchified with the standard `patch_embedding` (kernel = stride = `
 with global bidirectional self-attention over the resulting flat token sequence.
 
 ### MotifVideoTransformer3DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/motif_video_transformer_3d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/motif_video_transformer_3d.md

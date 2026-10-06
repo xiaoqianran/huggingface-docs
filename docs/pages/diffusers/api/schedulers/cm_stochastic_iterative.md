@@ -16,7 +16,7 @@ The original codebase can be found at [openai/consistency_models](https://github
 diffusers.CMStochasticIterativeScheduler(num_train_timesteps: int = 40, sigma_min: float = 0.002, sigma_max: float = 80.0, sigma_data: float = 0.5, s_noise: float = 1.0, rho: float = 7.0, clip_denoised: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_consistency_models.py#L43)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_consistency_models.py#L43)
 
 **Parameters:**
 
@@ -38,7 +38,7 @@ timesteps (`list` or `np.ndarray` or `torch.Tensor`, *optional*) : An explicit t
 
 Multistep and onestep sampling for consistency models.
 
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
 methods the library implements for all schedulers such as loading and saving.
 
 #### add_noise[[diffusers.CMStochasticIterativeScheduler.add_noise]]
@@ -47,7 +47,7 @@ methods the library implements for all schedulers such as loading and saving.
 add_noise(original_samples: Tensor, noise: Tensor, timesteps: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_consistency_models.py#L461)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_consistency_models.py#L461)
 
 **Parameters:**
 
@@ -69,7 +69,7 @@ Add noise to the original samples according to the noise schedule at the specifi
 get_scalings(sigma: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_consistency_models.py#L276)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_consistency_models.py#L276)
 
 **Parameters:**
 
@@ -87,7 +87,7 @@ Computes the scaling factors for the consistency model output.
 get_scalings_for_boundary_condition(sigma: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_consistency_models.py#L294)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_consistency_models.py#L294)
 
 **Parameters:**
 
@@ -109,7 +109,7 @@ Gets the scalings used in the consistency model parameterization (from Appendix 
 index_for_timestep(timestep: typing.Union[float, torch.Tensor], schedule_timesteps: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_consistency_models.py#L318)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_consistency_models.py#L318)
 
 **Parameters:**
 
@@ -130,7 +130,7 @@ Find the index of a given timestep in the timestep schedule.
 scale_model_input(sample: Tensor, timestep: typing.Union[float, torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_consistency_models.py#L136)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_consistency_models.py#L136)
 
 **Parameters:**
 
@@ -150,7 +150,7 @@ Scales the consistency model input by `(sigma**2 + sigma_data**2) ** 0.5`.
 set_begin_index(begin_index: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_consistency_models.py#L126)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_consistency_models.py#L126)
 
 **Parameters:**
 
@@ -164,7 +164,7 @@ Sets the begin index for the scheduler. This function should be run from pipelin
 set_timesteps(num_inference_steps: int | None = None, device: typing.Union[str, torch.device] = None, timesteps: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_consistency_models.py#L180)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_consistency_models.py#L180)
 
 **Parameters:**
 
@@ -182,7 +182,7 @@ Sets the timesteps used for the diffusion chain (to be run before inference).
 sigma_to_t(sigmas: float | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_consistency_models.py#L161)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_consistency_models.py#L161)
 
 **Parameters:**
 
@@ -200,7 +200,7 @@ Gets scaled timesteps from the Karras sigmas for input to the consistency model.
 step(model_output: Tensor, timestep: typing.Union[float, torch.Tensor], sample: Tensor, generator: typing.Optional[torch.Generator] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_consistency_models.py#L364)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_consistency_models.py#L364)
 
 **Parameters:**
 
@@ -212,12 +212,12 @@ sample (`torch.Tensor`) : A current instance of a sample created by the diffusio
 
 generator (`torch.Generator`, *optional*) : A random number generator.
 
-return_dict (`bool`, defaults to `True`) : Whether or not to return a [CMStochasticIterativeSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/cm_stochastic_iterative#diffusers.schedulers.scheduling_consistency_models.CMStochasticIterativeSchedulerOutput) or `tuple`.
+return_dict (`bool`, defaults to `True`) : Whether or not to return a [CMStochasticIterativeSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/cm_stochastic_iterative#diffusers.schedulers.scheduling_consistency_models.CMStochasticIterativeSchedulerOutput) or `tuple`.
 
-**Returns:** [CMStochasticIterativeSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/cm_stochastic_iterative#diffusers.schedulers.scheduling_consistency_models.CMStochasticIterativeSchedulerOutput) or `tuple`
+**Returns:** [CMStochasticIterativeSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/cm_stochastic_iterative#diffusers.schedulers.scheduling_consistency_models.CMStochasticIterativeSchedulerOutput) or `tuple`
 
 If return_dict is `True`,
-[CMStochasticIterativeSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/cm_stochastic_iterative#diffusers.schedulers.scheduling_consistency_models.CMStochasticIterativeSchedulerOutput) is returned,
+[CMStochasticIterativeSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/cm_stochastic_iterative#diffusers.schedulers.scheduling_consistency_models.CMStochasticIterativeSchedulerOutput) is returned,
 otherwise a tuple is returned where the first element is the sample tensor.
 
 Predict the sample from the previous timestep by reversing the SDE. This function propagates the diffusion
@@ -231,7 +231,7 @@ process from the learned model outputs (most often the predicted noise).
 diffusers.schedulers.scheduling_consistency_models.CMStochasticIterativeSchedulerOutput(prev_sample: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_consistency_models.py#L30)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_consistency_models.py#L30)
 
 **Parameters:**
 
@@ -240,4 +240,4 @@ prev_sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`
 Output class for the scheduler's `step` function.
 
 ### Schedulers
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/overview.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/overview.md

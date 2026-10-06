@@ -139,5 +139,5 @@ DESC LIMIT(5)
 └───────────┴────────┴────────────────────┘
 ```
 
-### Check dataset validity
-https://huggingface.co/docs/dataset-viewer/valid.md
+### mlcroissant
+https://huggingface.co/docs/dataset-viewer/mlcroissant.md

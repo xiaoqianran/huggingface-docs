@@ -13,7 +13,7 @@ The abstract from the paper is:
 This code is implemented by Tencent Hunyuan Team. You can find pre-trained checkpoints for Hunyuan-DiT ControlNets on [Tencent Hunyuan](https://huggingface.co/Tencent-Hunyuan).
 
 > [!TIP]
-> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reuse-a-pipeline) section to learn how to efficiently load the same components into multiple pipelines.
+> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reusing-models-in-multiple-pipelines) section to learn how to efficiently load the same components into multiple pipelines.
 
 ## HunyuanDiTControlNetPipeline[[diffusers.HunyuanDiTControlNetPipeline]]
 
@@ -23,29 +23,29 @@ This code is implemented by Tencent Hunyuan Team. You can find pre-trained check
 diffusers.HunyuanDiTControlNetPipeline(vae: AutoencoderKL, text_encoder: BertModel, tokenizer: BertTokenizer, transformer: HunyuanDiT2DModel, scheduler: DDPMScheduler, safety_checker: StableDiffusionSafetyChecker, feature_extractor: CLIPImageProcessorPil, controlnet: diffusers.models.controlnets.controlnet_hunyuan.HunyuanDiT2DControlNetModel | list[diffusers.models.controlnets.controlnet_hunyuan.HunyuanDiT2DControlNetModel] | tuple[diffusers.models.controlnets.controlnet_hunyuan.HunyuanDiT2DControlNetModel] | diffusers.models.controlnets.controlnet_hunyuan.HunyuanDiT2DMultiControlNetModel, text_encoder_2: transformers.models.t5.modeling_t5.T5EncoderModel | None = None, tokenizer_2: transformers.models.t5.tokenization_t5.T5Tokenizer | None = None, requires_safety_checker: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/controlnet_hunyuandit/pipeline_hunyuandit_controlnet.py#L165)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/controlnet_hunyuandit/pipeline_hunyuandit_controlnet.py#L165)
 
 **Parameters:**
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations. We use `sdxl-vae-fp16-fix`.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations. We use `sdxl-vae-fp16-fix`.
 
 text_encoder (`~transformers.BertModel`, `~transformers.CLIPTextModel` | None) : Frozen text-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)). HunyuanDiT uses a fine-tuned [bilingual CLIP].
 
 tokenizer (`~transformers.BertTokenizer`, `~transformers.CLIPTokenizer` | None) : A `BertTokenizer` or `CLIPTokenizer` to tokenize text.
 
-transformer ([HunyuanDiT2DModel](/docs/diffusers/v0.40.0/en/api/models/hunyuan_transformer2d#diffusers.HunyuanDiT2DModel)) : The HunyuanDiT model designed by Tencent Hunyuan.
+transformer ([HunyuanDiT2DModel](/docs/diffusers/v0.41.0/en/api/models/hunyuan_transformer2d#diffusers.HunyuanDiT2DModel)) : The HunyuanDiT model designed by Tencent Hunyuan.
 
 text_encoder_2 (`T5EncoderModel`) : The mT5 embedder. Specifically, it is 't5-v1_1-xxl'.
 
 tokenizer_2 (`T5Tokenizer`) : The tokenizer for the mT5 embedder.
 
-scheduler ([DDPMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddpm#diffusers.DDPMScheduler)) : A scheduler to be used in combination with HunyuanDiT to denoise the encoded image latents.
+scheduler ([DDPMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddpm#diffusers.DDPMScheduler)) : A scheduler to be used in combination with HunyuanDiT to denoise the encoded image latents.
 
-controlnet ([HunyuanDiT2DControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet_hunyuandit#diffusers.HunyuanDiT2DControlNetModel) or `list[HunyuanDiT2DControlNetModel]` or [HunyuanDiT2DControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet_hunyuandit#diffusers.HunyuanDiT2DControlNetModel)) : Provides additional conditioning to the `unet` during the denoising process. If you set multiple ControlNets as a list, the outputs from each ControlNet are added together to create one combined additional conditioning.
+controlnet ([HunyuanDiT2DControlNetModel](/docs/diffusers/v0.41.0/en/api/models/controlnet_hunyuandit#diffusers.HunyuanDiT2DControlNetModel) or `list[HunyuanDiT2DControlNetModel]` or [HunyuanDiT2DControlNetModel](/docs/diffusers/v0.41.0/en/api/models/controlnet_hunyuandit#diffusers.HunyuanDiT2DControlNetModel)) : Provides additional conditioning to the `unet` during the denoising process. If you set multiple ControlNets as a list, the outputs from each ControlNet are added together to create one combined additional conditioning.
 
 Pipeline for English/Chinese-to-image generation using HunyuanDiT.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 HunyuanDiT uses two text encoders: [mT5](https://huggingface.co/google/mt5-base) and [bilingual CLIP](fine-tuned by
@@ -57,7 +57,7 @@ ourselves)
 __call__(prompt: str | list[str] = None, height: int | None = None, width: int | None = None, num_inference_steps: int | None = 50, guidance_scale: float | None = 5.0, control_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, controlnet_conditioning_scale: float | list[float] = 1.0, negative_prompt: str | list[str] | None = None, num_images_per_prompt: int | None = 1, eta: float | None = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_embeds_2: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_2: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, prompt_attention_mask_2: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask_2: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], guidance_rescale: float = 0.0, original_size: tuple[int, int] | None = (1024, 1024), target_size: tuple[int, int] | None = None, crops_coords_top_left: tuple = (0, 0), use_resolution_binning: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/controlnet_hunyuandit/pipeline_hunyuandit_controlnet.py#L632)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/controlnet_hunyuandit/pipeline_hunyuandit_controlnet.py#L632)
 
 **Parameters:**
 
@@ -79,7 +79,7 @@ negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to gu
 
 num_images_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://huggingface.co/papers/2010.02502) paper. Only applies to the [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://huggingface.co/papers/2010.02502) paper. Only applies to the [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -103,7 +103,7 @@ negative_prompt_attention_mask_2 (`torch.Tensor`, *optional*) : Attention mask f
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated image. Choose between `PIL.Image` or `np.array`.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) instead of a plain tuple.
 
 callback_on_step_end (`Callable[[int, int], None]`, `PipelineCallback`, `MultiPipelineCallbacks`, *optional*) : A callback function or a list of callback functions to be called at the end of each denoising step.
 
@@ -119,9 +119,9 @@ crops_coords_top_left (`tuple[int, int]`, *optional*, defaults to `(0, 0)`) : Th
 
 use_resolution_binning (`bool`, *optional*, defaults to `True`) : Whether to use resolution binning or not. If `True`, the input resolution will be mapped to the closest standard resolution. Supported resolutions are 1024x1024, 1280x1280, 1024x768, 1152x864, 1280x960, 768x1024, 864x1152, 960x1280, 1280x768, and 768x1280. It is recommended to set this to `True`.
 
-**Returns:** [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) or `tuple`
+**Returns:** [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) is returned,
+If `return_dict` is `True`, [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) is returned,
 otherwise a `tuple` is returned where the first element is a list with the generated images and the
 second element is a list of `bool`s indicating whether the corresponding generated image contains
 "not-safe-for-work" (nsfw) content.
@@ -166,7 +166,7 @@ image = pipe(
 encode_prompt(prompt: str, device: device = None, dtype: dtype = None, num_images_per_prompt: int = 1, do_classifier_free_guidance: bool = True, negative_prompt: str | None = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, max_sequence_length: int | None = None, text_encoder_index: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/controlnet_hunyuandit/pipeline_hunyuandit_controlnet.py#L276)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/controlnet_hunyuandit/pipeline_hunyuandit_controlnet.py#L276)
 
 **Parameters:**
 
@@ -197,4 +197,4 @@ text_encoder_index (`int`, *optional*) : Index of the text encoder to use. `0` f
 Encodes the prompt into text encoder hidden states.
 
 ### LongCat-Image
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/longcat_image.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/longcat_image.md

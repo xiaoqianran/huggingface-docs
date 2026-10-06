@@ -7,7 +7,7 @@
 *We present a neural network structure, FramePack, to train next-frame (or next-frame-section) prediction models for video generation. The FramePack compresses input frames to make the transformer context length a fixed number regardless of the video length. As a result, we are able to process a large number of frames using video diffusion with computation bottleneck similar to image diffusion. This also makes the training video batch sizes significantly higher (batch sizes become comparable to image diffusion training). We also propose an anti-drifting sampling method that generates frames in inverted temporal order with early-established endpoints to avoid exposure bias (error accumulation over iterations). Finally, we show that existing video diffusion models can be finetuned with FramePack, and their visual quality may be improved because the next-frame prediction supports more balanced diffusion schedulers with less extreme flow shift timesteps.*
 
 > [!TIP]
-> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reuse-a-pipeline) section to learn how to efficiently load the same components into multiple pipelines.
+> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reusing-models-in-multiple-pipelines) section to learn how to efficiently load the same components into multiple pipelines.
 
 ## Available models
 
@@ -123,7 +123,7 @@ export_to_video(output, "output.mp4", fps=30)
 
 ### Group offloading
 
-Group offloading ([apply_group_offloading()](/docs/diffusers/v0.40.0/en/api/utilities#diffusers.hooks.apply_group_offloading)) provides aggressive memory optimizations for offloading internal parts of any model to the CPU, with possibly no additional overhead to generation time. If you have very low VRAM available, this approach may be suitable for you depending on the amount of CPU RAM available.
+Group offloading ([apply_group_offloading()](/docs/diffusers/v0.41.0/en/api/utilities#diffusers.hooks.apply_group_offloading)) provides aggressive memory optimizations for offloading internal parts of any model to the CPU, with possibly no additional overhead to generation time. If you have very low VRAM available, this approach may be suitable for you depending on the amount of CPU RAM available.
 
 ```python
 import torch
@@ -186,7 +186,7 @@ export_to_video(output, "output.mp4", fps=30)
 diffusers.HunyuanVideoFramepackPipeline(text_encoder: LlamaModel, tokenizer: LlamaTokenizer, transformer: HunyuanVideoFramepackTransformer3DModel, vae: AutoencoderKLHunyuanVideo, scheduler: FlowMatchEulerDiscreteScheduler, text_encoder_2: CLIPTextModel, tokenizer_2: CLIPTokenizer, image_encoder: SiglipVisionModel, feature_extractor: SiglipImageProcessorPil)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/hunyuan_video/pipeline_hunyuan_video_framepack.py#L243)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/hunyuan_video/pipeline_hunyuan_video_framepack.py#L243)
 
 **Parameters:**
 
@@ -194,11 +194,11 @@ text_encoder (`LlamaModel`) : [Llava Llama3-8B](https://huggingface.co/xtuner/ll
 
 tokenizer (`LlamaTokenizer`) : Tokenizer from [Llava Llama3-8B](https://huggingface.co/xtuner/llava-llama-3-8b-v1_1-transformers).
 
-transformer ([HunyuanVideoTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/hunyuan_video_transformer_3d#diffusers.HunyuanVideoTransformer3DModel)) : Conditional Transformer to denoise the encoded image latents.
+transformer ([HunyuanVideoTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/hunyuan_video_transformer_3d#diffusers.HunyuanVideoTransformer3DModel)) : Conditional Transformer to denoise the encoded image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKLHunyuanVideo](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_hunyuan_video#diffusers.AutoencoderKLHunyuanVideo)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLHunyuanVideo](/docs/diffusers/v0.41.0/en/api/models/autoencoder_kl_hunyuan_video#diffusers.AutoencoderKLHunyuanVideo)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 text_encoder_2 (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
 
@@ -206,7 +206,7 @@ tokenizer_2 (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggi
 
 Pipeline for text-to-video generation using HunyuanVideo.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.HunyuanVideoFramepackPipeline.__call__]]
@@ -215,7 +215,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], last_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, prompt: str | list[str] = None, prompt_2: str | list[str] = None, negative_prompt: str | list[str] = None, negative_prompt_2: str | list[str] = None, height: int = 720, width: int = 1280, num_frames: int = 129, latent_window_size: int = 9, num_inference_steps: int = 50, sigmas: list = None, true_cfg_scale: float = 1.0, guidance_scale: float = 6.0, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, image_latents: typing.Optional[torch.Tensor] = None, last_image_latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, pooled_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_pooled_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], prompt_template: dict = {'template': '<|start_header_id|>system<|end_header_id|>\n\nDescribe the video by detailing the following aspects: 1. The main content and theme of the video.2. The color, shape, size, texture, quantity, text, and spatial relationships of the objects.3. Actions, events, behaviors temporal relationships, physical movement changes of the objects.4. background environment, light, style and atmosphere.5. camera angles, movements, and transitions used in the video:<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{}<|eot_id|>', 'crop_start': 95}, max_sequence_length: int = 256, sampling_type: FramepackSamplingType = <FramepackSamplingType.INVERTED_ANTI_DRIFTING: 'inverted_anti_drifting'>)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/hunyuan_video/pipeline_hunyuan_video_framepack.py#L586)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/hunyuan_video/pipeline_hunyuan_video_framepack.py#L586)
 
 **Parameters:**
 
@@ -393,7 +393,7 @@ Examples:
 diffusers.pipelines.hunyuan_video.pipeline_output.HunyuanVideoPipelineOutput(frames: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/hunyuan_video/pipeline_output.py#L11)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/hunyuan_video/pipeline_output.py#L11)
 
 **Parameters:**
 
@@ -402,7 +402,7 @@ frames (`torch.Tensor`, `np.ndarray`, or list[list[PIL.Image.Image]]) : list of 
 Output class for HunyuanVideo pipelines.
 
 ### Sana Sprint
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/sana_sprint.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/sana_sprint.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -444,7 +444,7 @@ Note: The recommended dtype mentioned is for the transformer weights. The text e
 
 Quantization helps reduce the memory requirements of very large models by storing model weights in a lower precision data type. However, quantization may have varying impact on video quality depending on the video model.
 
-Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [SanaSprintPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/sana_sprint#diffusers.SanaSprintPipeline) for inference with bitsandbytes.
+Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [SanaSprintPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/sana_sprint#diffusers.SanaSprintPipeline) for inference with bitsandbytes.
 
 ```py
 import torch
@@ -486,7 +486,7 @@ Users can tweak the `max_timesteps` value for experimenting with the visual qual
 
 ## Image to Image 
 
-The [SanaSprintImg2ImgPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/sana_sprint#diffusers.SanaSprintImg2ImgPipeline) is a pipeline for image-to-image generation. It takes an input image and a prompt, and generates a new image based on the input image and the prompt.
+The [SanaSprintImg2ImgPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/sana_sprint#diffusers.SanaSprintImg2ImgPipeline) is a pipeline for image-to-image generation. It takes an input image and a prompt, and generates a new image based on the input image and the prompt.
 
 ```py
 import torch
@@ -500,7 +500,7 @@ image = load_image(
 pipe = SanaSprintImg2ImgPipeline.from_pretrained(
     "Efficient-Large-Model/Sana_Sprint_1.6B_1024px_diffusers", 
     dtype=torch.bfloat16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 image = pipe(
     prompt="a cute pink bear", 
@@ -520,7 +520,7 @@ image.save("output.png")
 diffusers.SanaSprintPipeline(tokenizer: GemmaTokenizer, text_encoder: Gemma2PreTrainedModel, vae: AutoencoderDC, transformer: SanaTransformer2DModel, scheduler: DPMSolverMultistepScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/sana/pipeline_sana_sprint.py#L140)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/sana/pipeline_sana_sprint.py#L140)
 
 Pipeline for text-to-image generation using [SANA-Sprint](https://huggingface.co/papers/2503.09641).
 
@@ -530,7 +530,7 @@ Pipeline for text-to-image generation using [SANA-Sprint](https://huggingface.co
 __call__(prompt: str | list[str] = None, num_inference_steps: int = 2, timesteps: list = None, max_timesteps: float = 1.5708, intermediate_timesteps: float = 1.3, guidance_scale: float = 4.5, num_images_per_prompt: int | None = 1, height: int = 1024, width: int = 1024, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, clean_caption: bool = False, use_resolution_binning: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 300, complex_human_instruction: list = ["Given a user prompt, generate an 'Enhanced prompt' that provides detailed visual descriptions suitable for image generation. Evaluate the level of detail in the user prompt:", '- If the prompt is simple, focus on adding specifics about colors, shapes, sizes, textures, and spatial relationships to create vivid and concrete scenes.', '- If the prompt is already detailed, refine and enhance the existing details slightly without overcomplicating.', 'Here are examples of how to transform or refine prompts:', '- User Prompt: A cat sleeping -> Enhanced: A small, fluffy white cat curled up in a round shape, sleeping peacefully on a warm sunny windowsill, surrounded by pots of blooming red flowers.', '- User Prompt: A busy city street -> Enhanced: A bustling city street scene at dusk, featuring glowing street lamps, a diverse crowd of people in colorful clothing, and a double-decker bus passing by towering glass skyscrapers.', 'Please generate only the enhanced description for the prompt below and avoid including any additional commentary or evaluations:', 'User Prompt: '])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/sana/pipeline_sana_sprint.py#L561)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/sana/pipeline_sana_sprint.py#L561)
 
 **Parameters:**
 
@@ -552,7 +552,7 @@ height (`int`, *optional*, defaults to self.unet.config.sample_size) : The heigh
 
 width (`int`, *optional*, defaults to self.unet.config.sample_size) : The width in pixels of the generated image.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -580,9 +580,9 @@ max_sequence_length (`int` defaults to `300`) : Maximum sequence length to use w
 
 complex_human_instruction (`list[str]`, *optional*) : Instructions for complex human attention: https://github.com/NVlabs/Sana/blob/main/configs/sana_app_config/Sana_1600M_app.yaml#L55.
 
-**Returns:** [SanaPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/sana_sprint#diffusers.pipelines.sana.pipeline_output.SanaPipelineOutput) or `tuple`
+**Returns:** [SanaPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/sana_sprint#diffusers.pipelines.sana.pipeline_output.SanaPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [SanaPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/sana_sprint#diffusers.pipelines.sana.pipeline_output.SanaPipelineOutput) is returned,
+If `return_dict` is `True`, [SanaPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/sana_sprint#diffusers.pipelines.sana.pipeline_output.SanaPipelineOutput) is returned,
 otherwise a `tuple` is returned where the first element is a list with the generated images
 
 Function invoked when calling the pipeline for generation.
@@ -607,7 +607,7 @@ Examples:
 encode_prompt(prompt: str | list[str], num_images_per_prompt: int = 1, device: typing.Optional[torch.device] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, clean_caption: bool = False, max_sequence_length: int = 300, complex_human_instruction: list[str] | None = None, lora_scale: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/sana/pipeline_sana_sprint.py#L232)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/sana/pipeline_sana_sprint.py#L232)
 
 **Parameters:**
 
@@ -635,7 +635,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.SanaSprintImg2ImgPipeline(tokenizer: GemmaTokenizer, text_encoder: Gemma2PreTrainedModel, vae: AutoencoderDC, transformer: SanaTransformer2DModel, scheduler: DPMSolverMultistepScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/sana/pipeline_sana_sprint_img2img.py#L146)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/sana/pipeline_sana_sprint_img2img.py#L146)
 
 Pipeline for text-to-image generation using [SANA-Sprint](https://huggingface.co/papers/2503.09641).
 
@@ -645,7 +645,7 @@ Pipeline for text-to-image generation using [SANA-Sprint](https://huggingface.co
 __call__(prompt: str | list[str] = None, num_inference_steps: int = 2, timesteps: list = None, max_timesteps: float = 1.5708, intermediate_timesteps: float = 1.3, guidance_scale: float = 4.5, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, strength: float = 0.6, num_images_per_prompt: int | None = 1, height: int = 1024, width: int = 1024, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, clean_caption: bool = False, use_resolution_binning: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 300, complex_human_instruction: list = ["Given a user prompt, generate an 'Enhanced prompt' that provides detailed visual descriptions suitable for image generation. Evaluate the level of detail in the user prompt:", '- If the prompt is simple, focus on adding specifics about colors, shapes, sizes, textures, and spatial relationships to create vivid and concrete scenes.', '- If the prompt is already detailed, refine and enhance the existing details slightly without overcomplicating.', 'Here are examples of how to transform or refine prompts:', '- User Prompt: A cat sleeping -> Enhanced: A small, fluffy white cat curled up in a round shape, sleeping peacefully on a warm sunny windowsill, surrounded by pots of blooming red flowers.', '- User Prompt: A busy city street -> Enhanced: A bustling city street scene at dusk, featuring glowing street lamps, a diverse crowd of people in colorful clothing, and a double-decker bus passing by towering glass skyscrapers.', 'Please generate only the enhanced description for the prompt below and avoid including any additional commentary or evaluations:', 'User Prompt: '])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/sana/pipeline_sana_sprint_img2img.py#L629)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/sana/pipeline_sana_sprint_img2img.py#L629)
 
 **Parameters:**
 
@@ -671,7 +671,7 @@ height (`int`, *optional*, defaults to self.unet.config.sample_size) : The heigh
 
 width (`int`, *optional*, defaults to self.unet.config.sample_size) : The width in pixels of the generated image.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://arxiv.org/abs/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://arxiv.org/abs/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -699,9 +699,9 @@ max_sequence_length (`int` defaults to `300`) : Maximum sequence length to use w
 
 complex_human_instruction (`list[str]`, *optional*) : Instructions for complex human attention: https://github.com/NVlabs/Sana/blob/main/configs/sana_app_config/Sana_1600M_app.yaml#L55.
 
-**Returns:** [SanaPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/sana_sprint#diffusers.pipelines.sana.pipeline_output.SanaPipelineOutput) or `tuple`
+**Returns:** [SanaPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/sana_sprint#diffusers.pipelines.sana.pipeline_output.SanaPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [SanaPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/sana_sprint#diffusers.pipelines.sana.pipeline_output.SanaPipelineOutput) is returned,
+If `return_dict` is `True`, [SanaPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/sana_sprint#diffusers.pipelines.sana.pipeline_output.SanaPipelineOutput) is returned,
 otherwise a `tuple` is returned where the first element is a list with the generated images
 
 Function invoked when calling the pipeline for generation.
@@ -731,7 +731,7 @@ Examples:
 encode_prompt(prompt: str | list[str], num_images_per_prompt: int = 1, device: typing.Optional[torch.device] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, clean_caption: bool = False, max_sequence_length: int = 300, complex_human_instruction: list[str] | None = None, lora_scale: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/sana/pipeline_sana_sprint_img2img.py#L240)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/sana/pipeline_sana_sprint_img2img.py#L240)
 
 **Parameters:**
 
@@ -759,7 +759,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.pipelines.sana.pipeline_output.SanaPipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/sana/pipeline_output.py#L10)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/sana/pipeline_output.py#L10)
 
 **Parameters:**
 
@@ -768,7 +768,7 @@ images (`list[PIL.Image.Image]` or `np.ndarray`) : list of denoised PIL images o
 Output class for Sana pipelines.
 
 ### Sana Video
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/sana_video.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/sana_video.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");

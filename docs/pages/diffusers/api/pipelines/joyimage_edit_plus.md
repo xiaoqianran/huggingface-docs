@@ -16,7 +16,7 @@ from diffusers import JoyImageEditPlusPipeline
 pipeline = JoyImageEditPlusPipeline.from_pretrained(
     "jdopensource/JoyAI-Image-Edit-Plus-Diffusers", dtype=torch.bfloat16
 )
-pipeline.to("cuda")
+pipeline.to("cuda")  # or "mps", "xpu", "cpu"
 
 images = [
     Image.open("reference_0.png").convert("RGB"),
@@ -46,19 +46,19 @@ output.save("joyimage_edit_plus_output.png")
 diffusers.JoyImageEditPlusPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKLWan, text_encoder: Qwen3VLForConditionalGeneration, tokenizer: Qwen2Tokenizer, transformer: JoyImageEditPlusTransformer3DModel, processor: Qwen3VLProcessor, text_token_max_length: int = 2048)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit_plus.py#L129)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit_plus.py#L129)
 
 **Parameters:**
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) model to encode and decode images to and from latent representations.
+vae ([AutoencoderKLWan](/docs/diffusers/v0.41.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) model to encode and decode images to and from latent representations.
 
 text_encoder (`Qwen3VLForConditionalGeneration`) : Multimodal text encoder for prompt encoding with inline image understanding.
 
 tokenizer (`Qwen2Tokenizer`) : Tokenizer for text processing.
 
-transformer ([JoyImageEditPlusTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/transformer_joyimage_edit_plus#diffusers.JoyImageEditPlusTransformer3DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+transformer ([JoyImageEditPlusTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/transformer_joyimage_edit_plus#diffusers.JoyImageEditPlusTransformer3DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
 
 processor (`Qwen3VLProcessor`) : Processor for multimodal inputs (text + images).
 
@@ -75,7 +75,7 @@ and patchified, then concatenated with the target noise patches for joint denois
 __call__(images: list[PIL.Image.Image] | list[list[PIL.Image.Image]] | None = None, prompt: str | list[str] = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 30, timesteps: list = None, sigmas: list = None, guidance_scale: float = 4.0, negative_prompt: str | list[str] | None = None, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_embeds_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Union[typing.Callable[[int, int, dict], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 4096)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit_plus.py#L441)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit_plus.py#L441)
 
 **Parameters:**
 
@@ -111,7 +111,7 @@ negative_prompt_embeds_mask (`torch.Tensor`, *optional*) : Attention mask for pr
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated image. Choose between `"pil"` (`PIL.Image.Image`), `"np"` (`np.ndarray`), `"pt"` (`torch.Tensor`), or `"latent"` for raw latent output.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [JoyImageEditPlusPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/joyimage_edit_plus#diffusers.JoyImageEditPlusPipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [JoyImageEditPlusPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/joyimage_edit_plus#diffusers.JoyImageEditPlusPipelineOutput) instead of a plain tuple.
 
 callback_on_step_end (`Callable`, *optional*) : A function called at the end of each denoising step with arguments: the pipeline, step index, timestep, and a dict of callback tensor inputs.
 
@@ -119,9 +119,9 @@ callback_on_step_end_tensor_inputs (`list[str]`, *optional*, defaults to `["late
 
 max_sequence_length (`int`, *optional*, defaults to `4096`) : Maximum sequence length for the text encoder.
 
-**Returns:** [JoyImageEditPlusPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/joyimage_edit_plus#diffusers.JoyImageEditPlusPipelineOutput) or `tuple`
+**Returns:** [JoyImageEditPlusPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/joyimage_edit_plus#diffusers.JoyImageEditPlusPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [JoyImageEditPlusPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/joyimage_edit_plus#diffusers.JoyImageEditPlusPipelineOutput) is returned, otherwise a `tuple` is
+If `return_dict` is `True`, [JoyImageEditPlusPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/joyimage_edit_plus#diffusers.JoyImageEditPlusPipelineOutput) is returned, otherwise a `tuple` is
 returned where the first element is a list of generated images.
 
 Function invoked when calling the pipeline for generation.
@@ -158,7 +158,7 @@ Examples:
 encode_prompt_multiple_images(prompt: str | list[str], device: typing.Optional[torch.device] = None, images: list[PIL.Image.Image] | None = None, max_sequence_length: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit_plus.py#L229)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit_plus.py#L229)
 
 Encode prompts with inline  tokens via the Qwen3-VL processor.
 
@@ -168,7 +168,7 @@ Encode prompts with inline  tokens via the Qwen3-VL processor.
 prepare_latents(batch_size: int, num_channels_latents: int, height: int, width: int, dtype: dtype, device: device, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType], reference_images: list[list[PIL.Image.Image]] | None = None, latents: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit_plus.py#L274)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/joyimage/pipeline_joyimage_edit_plus.py#L274)
 
 **Parameters:**
 
@@ -189,9 +189,9 @@ Prepare 6D padded latent tensor with target noise + reference image latents.
 diffusers.JoyImageEditPlusPipelineOutput(images: typing.Union[typing.List[PIL.Image.Image], numpy.ndarray])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/joyimage/pipeline_output.py#L20)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/joyimage/pipeline_output.py#L20)
 
 Output class for JoyImage Edit Plus multi-image editing pipelines.
 
 ### PixArt-α
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/pixart.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/pixart.md

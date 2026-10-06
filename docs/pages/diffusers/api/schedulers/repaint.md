@@ -16,7 +16,7 @@ The original implementation can be found at [andreas128/RePaint](https://github.
 diffusers.RePaintScheduler(num_train_timesteps: int = 1000, beta_start: float = 0.0001, beta_end: float = 0.02, beta_schedule: str = 'linear', eta: float = 0.0, trained_betas: numpy.ndarray | None = None, clip_sample: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_repaint.py#L99)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_repaint.py#L99)
 
 **Parameters:**
 
@@ -36,7 +36,7 @@ clip_sample (`bool`, defaults to `True`) : Clip the predicted sample between -1 
 
 `RePaintScheduler` is a scheduler for DDPM inpainting inside a given mask.
 
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
 methods the library implements for all schedulers such as loading and saving.
 
 #### add_noise[[diffusers.RePaintScheduler.add_noise]]
@@ -45,7 +45,7 @@ methods the library implements for all schedulers such as loading and saving.
 add_noise(original_samples: Tensor, noise: Tensor, timesteps: IntTensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_repaint.py#L395)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_repaint.py#L395)
 
 **Parameters:**
 
@@ -58,7 +58,7 @@ timesteps (`torch.IntTensor`) : The timesteps that would determine the noise lev
 **Raises:** ``NotImplementedError``
 
 - ``NotImplementedError`` -- 
-  RePaint training should use [DDPMScheduler.add_noise()](/docs/diffusers/v0.40.0/en/api/schedulers/ddpm#diffusers.DDPMScheduler.add_noise) instead.
+  RePaint training should use [DDPMScheduler.add_noise()](/docs/diffusers/v0.41.0/en/api/schedulers/ddpm#diffusers.DDPMScheduler.add_noise) instead.
 
 Indicate that adding noise for RePaint training is not supported by this scheduler.
 
@@ -68,7 +68,7 @@ Indicate that adding noise for RePaint training is not supported by this schedul
 scale_model_input(sample: Tensor, timestep: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_repaint.py#L171)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_repaint.py#L171)
 
 **Parameters:**
 
@@ -89,7 +89,7 @@ current timestep.
 set_timesteps(num_inference_steps: int, jump_length: int = 10, jump_n_sample: int = 10, device: typing.Union[str, torch.device, NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_repaint.py#L188)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_repaint.py#L188)
 
 **Parameters:**
 
@@ -109,7 +109,7 @@ Sets the discrete timesteps used for the diffusion chain (to be run before infer
 step(model_output: Tensor, timestep: int, sample: Tensor, original_image: Tensor, mask: Tensor, generator: typing.Optional[torch.Generator] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_repaint.py#L264)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_repaint.py#L264)
 
 **Parameters:**
 
@@ -125,11 +125,11 @@ mask (`torch.Tensor`) : The mask where a value of 0.0 indicates which part of th
 
 generator (`torch.Generator`, *optional*) : A random number generator.
 
-return_dict (`bool`, defaults to `True`) : Whether or not to return a [RePaintSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/repaint#diffusers.schedulers.scheduling_repaint.RePaintSchedulerOutput) instead of a tuple.
+return_dict (`bool`, defaults to `True`) : Whether or not to return a [RePaintSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/repaint#diffusers.schedulers.scheduling_repaint.RePaintSchedulerOutput) instead of a tuple.
 
-**Returns:** [RePaintSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/repaint#diffusers.schedulers.scheduling_repaint.RePaintSchedulerOutput) or `tuple[torch.Tensor, torch.Tensor]`
+**Returns:** [RePaintSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/repaint#diffusers.schedulers.scheduling_repaint.RePaintSchedulerOutput) or `tuple[torch.Tensor, torch.Tensor]`
 
-If return_dict is `True`, [RePaintSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/repaint#diffusers.schedulers.scheduling_repaint.RePaintSchedulerOutput) is returned,
+If return_dict is `True`, [RePaintSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/repaint#diffusers.schedulers.scheduling_repaint.RePaintSchedulerOutput) is returned,
 otherwise a tuple is returned where the first element is the previous sample and the second is the
 predicted original sample.
 
@@ -142,7 +142,7 @@ process from the learned model outputs (most often the predicted noise).
 undo_step(sample: Tensor, timestep: int, generator: typing.Optional[torch.Generator] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_repaint.py#L358)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_repaint.py#L358)
 
 **Parameters:**
 
@@ -166,7 +166,7 @@ Add noise to a sample to move it forward by one diffusion step.
 diffusers.schedulers.scheduling_repaint.RePaintSchedulerOutput(prev_sample: Tensor, pred_original_sample: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_repaint.py#L29)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_repaint.py#L29)
 
 **Parameters:**
 
@@ -177,4 +177,4 @@ pred_original_sample (`torch.Tensor` of shape `(batch_size, num_channels, height
 Output class for the scheduler's step function output.
 
 ### DPMSolverSDEScheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/dpm_sde.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/dpm_sde.md

@@ -12,7 +12,7 @@ The original codebase can be found at [crowsonkb/k-diffusion](https://github.com
 diffusers.KDPM2AncestralDiscreteScheduler(num_train_timesteps: int = 1000, beta_start: float = 0.00085, beta_end: float = 0.012, beta_schedule: str = 'linear', trained_betas: numpy.ndarray | list[float] | None = None, use_karras_sigmas: bool = False, use_exponential_sigmas: bool = False, use_beta_sigmas: bool = False, prediction_type: str = 'epsilon', timestep_spacing: str = 'linspace', steps_offset: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_k_dpm_2_ancestral_discrete.py#L104)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_k_dpm_2_ancestral_discrete.py#L104)
 
 **Parameters:**
 
@@ -41,7 +41,7 @@ steps_offset (`int`, defaults to 0) : An offset added to the inference steps, as
 KDPM2DiscreteScheduler with ancestral sampling is inspired by the DPMSolver2 and Algorithm 2 from the [Elucidating
 the Design Space of Diffusion-Based Generative Models](https://huggingface.co/papers/2206.00364) paper.
 
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
 methods the library implements for all schedulers such as loading and saving.
 
 #### add_noise[[diffusers.KDPM2AncestralDiscreteScheduler.add_noise]]
@@ -50,7 +50,7 @@ methods the library implements for all schedulers such as loading and saving.
 add_noise(original_samples: Tensor, noise: Tensor, timesteps: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_k_dpm_2_ancestral_discrete.py#L694)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_k_dpm_2_ancestral_discrete.py#L694)
 
 **Parameters:**
 
@@ -72,7 +72,7 @@ Add noise to the original samples according to the noise schedule at the specifi
 index_for_timestep(timestep: typing.Union[float, torch.Tensor], schedule_timesteps: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_k_dpm_2_ancestral_discrete.py#L539)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_k_dpm_2_ancestral_discrete.py#L539)
 
 **Parameters:**
 
@@ -93,7 +93,7 @@ Find the index of a given timestep in the timestep schedule.
 scale_model_input(sample: Tensor, timestep: typing.Union[float, torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_k_dpm_2_ancestral_discrete.py#L236)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_k_dpm_2_ancestral_discrete.py#L236)
 
 **Parameters:**
 
@@ -114,7 +114,7 @@ current timestep.
 set_begin_index(begin_index: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_k_dpm_2_ancestral_discrete.py#L226)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_k_dpm_2_ancestral_discrete.py#L226)
 
 **Parameters:**
 
@@ -128,7 +128,7 @@ Sets the begin index for the scheduler. This function should be run from pipelin
 set_timesteps(num_inference_steps: int, device: typing.Union[str, torch.device, NoneType] = None, num_train_timesteps: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_k_dpm_2_ancestral_discrete.py#L266)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_k_dpm_2_ancestral_discrete.py#L266)
 
 **Parameters:**
 
@@ -146,7 +146,7 @@ Sets the discrete timesteps used for the diffusion chain (to be run before infer
 step(model_output: typing.Union[torch.Tensor, numpy.ndarray], timestep: typing.Union[float, torch.Tensor], sample: typing.Union[torch.Tensor, numpy.ndarray], generator: typing.Optional[torch.Generator] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_k_dpm_2_ancestral_discrete.py#L585)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_k_dpm_2_ancestral_discrete.py#L585)
 
 **Parameters:**
 
@@ -179,7 +179,7 @@ process from the learned model outputs (most often the predicted noise).
 diffusers.schedulers.scheduling_utils.SchedulerOutput(prev_sample: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_utils.py#L66)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_utils.py#L66)
 
 **Parameters:**
 
@@ -188,4 +188,4 @@ prev_sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`
 Base class for the output of a scheduler's `step` function.
 
 ### MiniMaxH3Scheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/minimax_h3.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/minimax_h3.md

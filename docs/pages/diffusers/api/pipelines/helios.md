@@ -82,7 +82,7 @@ pipeline = HeliosPipeline.from_pretrained(
     vae=vae,
     dtype=torch.bfloat16
 )
-pipeline.to("cuda")
+pipeline.to("cuda")  # or "mps", "xpu", "cpu"
 
 # attention backend
 # pipeline.transformer.set_attention_backend("flash")
@@ -135,7 +135,7 @@ pipeline = HeliosPipeline.from_pretrained(
     vae=vae,
     dtype=torch.bfloat16
 )
-pipeline.to("cuda")
+pipeline.to("cuda")  # or "mps", "xpu", "cpu"
 
 negative_prompt = """
 Bright tones, overexposed, static, blurred details, subtitles, style, works, paintings, images, static, overall gray, worst quality,
@@ -223,7 +223,7 @@ pipeline = HeliosPyramidPipeline.from_pretrained(
     vae=vae,
     dtype=torch.bfloat16
 )
-pipeline.to("cuda")
+pipeline.to("cuda")  # or "mps", "xpu", "cpu"
 
 negative_prompt = """
 Bright tones, overexposed, static, blurred details, subtitles, style, works, paintings, images, static, overall gray, worst quality,
@@ -317,7 +317,7 @@ pipeline = HeliosPyramidPipeline.from_pretrained(
     vae=vae,
     dtype=torch.bfloat16
 )
-pipeline.to("cuda")
+pipeline.to("cuda")  # or "mps", "xpu", "cpu"
 
 negative_prompt = """
 Bright tones, overexposed, static, blurred details, subtitles, style, works, paintings, images, static, overall gray, worst quality,
@@ -482,7 +482,7 @@ Learn more about Helios with the following resources.
 diffusers.HeliosPipeline(tokenizer: AutoTokenizer, text_encoder: UMT5EncoderModel, vae: AutoencoderKLWan, scheduler: HeliosScheduler, transformer: HeliosTransformer3DModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/helios/pipeline_helios.py#L108)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/helios/pipeline_helios.py#L108)
 
 **Parameters:**
 
@@ -490,15 +490,15 @@ tokenizer (`T5Tokenizer`) : Tokenizer from [T5](https://huggingface.co/docs/tran
 
 text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
 
-transformer ([HeliosTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/helios_transformer3d#diffusers.HeliosTransformer3DModel)) : Conditional Transformer to denoise the input latents.
+transformer ([HeliosTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/helios_transformer3d#diffusers.HeliosTransformer3DModel)) : Conditional Transformer to denoise the input latents.
 
-scheduler ([HeliosScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/helios#diffusers.HeliosScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([HeliosScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/helios#diffusers.HeliosScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLWan](/docs/diffusers/v0.41.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 Pipeline for text-to-video / image-to-video / video-to-video generation using Helios.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.HeliosPipeline.__call__]]
@@ -507,7 +507,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(prompt: str | list[str] = None, negative_prompt: str | list[str] = None, height: int = 384, width: int = 640, num_frames: int = 132, num_inference_steps: int = 50, sigmas: list = None, guidance_scale: float = 5.0, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'np', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, image_latents: typing.Optional[torch.Tensor] = None, fake_image_latents: typing.Optional[torch.Tensor] = None, add_noise_to_image_latents: bool = True, image_noise_sigma_min: float = 0.111, image_noise_sigma_max: float = 0.135, video: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, video_latents: typing.Optional[torch.Tensor] = None, add_noise_to_video_latents: bool = True, video_noise_sigma_min: float = 0.111, video_noise_sigma_max: float = 0.135, history_sizes: list = [16, 2, 1], num_latent_frames_per_chunk: int = 9, keep_first_frame: bool = True, is_skip_first_chunk: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/helios/pipeline_helios.py#L445)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/helios/pipeline_helios.py#L445)
 
 **Parameters:**
 
@@ -619,7 +619,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/helios/pipeline_helios.py#L196)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/helios/pipeline_helios.py#L196)
 
 **Parameters:**
 
@@ -649,7 +649,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.HeliosPyramidPipeline(tokenizer: AutoTokenizer, text_encoder: UMT5EncoderModel, vae: AutoencoderKLWan, scheduler: diffusers.schedulers.scheduling_helios.HeliosScheduler | diffusers.schedulers.scheduling_helios_dmd.HeliosDMDScheduler, transformer: HeliosTransformer3DModel, is_cfg_zero_star: bool = False, is_distilled: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/helios/pipeline_helios_pyramid.py#L121)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/helios/pipeline_helios_pyramid.py#L121)
 
 **Parameters:**
 
@@ -657,15 +657,15 @@ tokenizer (`T5Tokenizer`) : Tokenizer from [T5](https://huggingface.co/docs/tran
 
 text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
 
-transformer ([HeliosTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/helios_transformer3d#diffusers.HeliosTransformer3DModel)) : Conditional Transformer to denoise the input latents.
+transformer ([HeliosTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/helios_transformer3d#diffusers.HeliosTransformer3DModel)) : Conditional Transformer to denoise the input latents.
 
 scheduler ([`HeliosScheduler`, `HeliosDMDScheduler`]) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLWan](/docs/diffusers/v0.41.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 Pipeline for text-to-video / image-to-video / video-to-video generation using Helios.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.HeliosPyramidPipeline.__call__]]
@@ -674,7 +674,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(prompt: str | list[str] = None, negative_prompt: str | list[str] = None, height: int = 384, width: int = 640, num_frames: int = 132, sigmas: list = None, guidance_scale: float = 5.0, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'np', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, image_latents: typing.Optional[torch.Tensor] = None, fake_image_latents: typing.Optional[torch.Tensor] = None, add_noise_to_image_latents: bool = True, image_noise_sigma_min: float = 0.111, image_noise_sigma_max: float = 0.135, video: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, video_latents: typing.Optional[torch.Tensor] = None, add_noise_to_video_latents: bool = True, video_noise_sigma_min: float = 0.111, video_noise_sigma_max: float = 0.135, history_sizes: list = [16, 2, 1], num_latent_frames_per_chunk: int = 9, keep_first_frame: bool = True, is_skip_first_chunk: bool = False, pyramid_num_inference_steps_list: list = [10, 10, 10], use_zero_init: bool | None = True, zero_steps: int | None = 1, is_amplify_first_chunk: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/helios/pipeline_helios_pyramid.py#L508)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/helios/pipeline_helios_pyramid.py#L508)
 
 **Parameters:**
 
@@ -792,7 +792,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/helios/pipeline_helios_pyramid.py#L214)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/helios/pipeline_helios_pyramid.py#L214)
 
 **Parameters:**
 
@@ -822,7 +822,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.pipelines.helios.pipeline_output.HeliosPipelineOutput(frames: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/helios/pipeline_output.py#L9)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/helios/pipeline_output.py#L9)
 
 **Parameters:**
 
@@ -831,4 +831,4 @@ frames (`torch.Tensor`, `np.ndarray`, or List[List[PIL.Image.Image]]) : List of 
 Output class for Helios pipelines.
 
 ### ControlNet with Hunyuan-DiT
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/controlnet_hunyuandit.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/controlnet_hunyuandit.md

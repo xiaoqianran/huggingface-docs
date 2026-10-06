@@ -1,6 +1,6 @@
 # Tiny AutoEncoder
 
-Tiny AutoEncoder for Stable Diffusion (TAESD) was introduced in [madebyollin/taesd](https://github.com/madebyollin/taesd) by Ollin Boer Bohan. It is a tiny distilled version of Stable Diffusion's VAE that can quickly decode the latents in a [StableDiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline) or [StableDiffusionXLPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLPipeline) almost instantly.
+Tiny AutoEncoder for Stable Diffusion (TAESD) was introduced in [madebyollin/taesd](https://github.com/madebyollin/taesd) by Ollin Boer Bohan. It is a tiny distilled version of Stable Diffusion's VAE that can quickly decode the latents in a [StableDiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline) or [StableDiffusionXLPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLPipeline) almost instantly.
 
 To use with Stable Diffusion v-2.1:
 
@@ -12,7 +12,7 @@ pipe = DiffusionPipeline.from_pretrained(
     "stabilityai/stable-diffusion-2-1-base", dtype=torch.float16
 )
 pipe.vae = AutoencoderTiny.from_pretrained("madebyollin/taesd", dtype=torch.float16)
-pipe = pipe.to("cuda")
+pipe = pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt = "slice of delicious New York-style berry cheesecake"
 image = pipe(prompt, num_inference_steps=25).images[0]
@@ -29,7 +29,7 @@ pipe = DiffusionPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0", dtype=torch.float16
 )
 pipe.vae = AutoencoderTiny.from_pretrained("madebyollin/taesdxl", dtype=torch.float16)
-pipe = pipe.to("cuda")
+pipe = pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt = "slice of delicious New York-style berry cheesecake"
 image = pipe(prompt, num_inference_steps=25).images[0]
@@ -44,7 +44,7 @@ image
 diffusers.AutoencoderTiny(in_channels: int = 3, out_channels: int = 3, encoder_block_out_channels: tuple = (64, 64, 64, 64), decoder_block_out_channels: tuple = (64, 64, 64, 64), act_fn: str = 'relu', upsample_fn: str = 'nearest', latent_channels: int = 4, upsampling_scaling_factor: int = 2, num_encoder_blocks: tuple = (1, 3, 3, 3), num_decoder_blocks: tuple = (3, 3, 3, 1), latent_magnitude: int = 3, latent_shift: float = 0.5, force_upcast: bool = False, scaling_factor: float = 1.0, shift_factor: float = 0.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_tiny.py#L40)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_tiny.py#L40)
 
 **Parameters:**
 
@@ -76,9 +76,9 @@ force_upcast (`bool`, *optional*, default to `False`) : If enabled it will force
 
 A tiny distilled VAE model for encoding images into latents and decoding latent representations into images.
 
-[AutoencoderTiny](/docs/diffusers/v0.40.0/en/api/models/autoencoder_tiny#diffusers.AutoencoderTiny) is a wrapper around the original implementation of `TAESD`.
+[AutoencoderTiny](/docs/diffusers/v0.41.0/en/api/models/autoencoder_tiny#diffusers.AutoencoderTiny) is a wrapper around the original implementation of `TAESD`.
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for its generic methods implemented for
+This model inherits from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for its generic methods implemented for
 all models (such as downloading or saving).
 
 #### forward[[diffusers.AutoencoderTiny.forward]]
@@ -87,7 +87,7 @@ all models (such as downloading or saving).
 forward(sample: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_tiny.py#L291)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_tiny.py#L291)
 
 **Parameters:**
 
@@ -105,7 +105,7 @@ If `return_dict` is True, a `DecoderOutput` is returned, otherwise a plain `tupl
 scale_latents(x: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_tiny.py#L156)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_tiny.py#L156)
 
 raw latents -> [0, 1]
 
@@ -115,7 +115,7 @@ raw latents -> [0, 1]
 unscale_latents(x: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_tiny.py#L160)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_tiny.py#L160)
 
 [0, 1] -> raw latents
 
@@ -127,7 +127,7 @@ unscale_latents(x: Tensor)
 diffusers.models.autoencoders.autoencoder_tiny.AutoencoderTinyOutput(latents: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_tiny.py#L28)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_tiny.py#L28)
 
 **Parameters:**
 
@@ -136,4 +136,4 @@ latents (`torch.Tensor`) : Encoded outputs of the `Encoder`.
 Output of AutoencoderTiny encoding method.
 
 ### UNet3DConditionModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/unet3d-cond.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/unet3d-cond.md

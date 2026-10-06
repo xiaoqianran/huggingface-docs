@@ -29,5 +29,5 @@ df = (
 )
 ```
 
-### Filter rows in a dataset
-https://huggingface.co/docs/dataset-viewer/filter.md
+### Pandas
+https://huggingface.co/docs/dataset-viewer/pandas.md

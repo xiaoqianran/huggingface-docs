@@ -12,7 +12,7 @@ The original codebase can be found at [ai-forever/Kandinsky-2](https://github.co
 > Check out the [Kandinsky Community](https://huggingface.co/kandinsky-community) organization on the Hub for the official model checkpoints for tasks like text-to-image, image-to-image, and inpainting.
 
 > [!TIP]
-> Make sure to check out the schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reuse-a-pipeline) section to learn how to efficiently load the same components into multiple pipelines.
+> Make sure to check out the schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reusing-models-in-multiple-pipelines) section to learn how to efficiently load the same components into multiple pipelines.
 
 ## KandinskyV22PriorPipeline[[diffusers.KandinskyV22PriorPipeline]]
 
@@ -22,11 +22,11 @@ The original codebase can be found at [ai-forever/Kandinsky-2](https://github.co
 diffusers.KandinskyV22PriorPipeline(prior: PriorTransformer, image_encoder: CLIPVisionModelWithProjection, text_encoder: CLIPTextModelWithProjection, tokenizer: CLIPTokenizer, scheduler: UnCLIPScheduler, image_processor: CLIPImageProcessorPil)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_prior.py#L89)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_prior.py#L89)
 
 **Parameters:**
 
-prior ([PriorTransformer](/docs/diffusers/v0.40.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
+prior ([PriorTransformer](/docs/diffusers/v0.41.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
 
 image_encoder (`CLIPVisionModelWithProjection`) : Frozen image-encoder.
 
@@ -40,7 +40,7 @@ image_processor (`CLIPImageProcessor`) : A image_processor to be used to preproc
 
 Pipeline for generating image prior for Kandinsky
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.KandinskyV22PriorPipeline.__call__]]
@@ -49,7 +49,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str], negative_prompt: str | list[str] | None = None, num_images_per_prompt: int = 1, num_inference_steps: int = 25, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, guidance_scale: float = 4.0, output_type: str | None = 'pt', return_dict: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_prior.py#L375)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_prior.py#L375)
 
 **Parameters:**
 
@@ -69,7 +69,7 @@ guidance_scale (`float`, *optional*, defaults to 4.0) : Guidance scale as define
 
 output_type (`str`, *optional*, defaults to `"pt"`) : The output format of the generate image. Choose between: `"np"` (`np.array`) or `"pt"` (`torch.Tensor`).
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
 callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
 
@@ -107,7 +107,7 @@ Examples:
 interpolate(images_and_prompts: list, weights: list, num_images_per_prompt: int = 1, num_inference_steps: int = 25, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, negative_prior_prompt: str | None = None, negative_prompt: str = '', guidance_scale: float = 4.0, device = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_prior.py#L136)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_prior.py#L136)
 
 **Parameters:**
 
@@ -178,19 +178,19 @@ Examples:
 diffusers.KandinskyV22Pipeline(unet: UNet2DConditionModel, scheduler: DDPMScheduler, movq: VQModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2.py#L72)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2.py#L72)
 
 **Parameters:**
 
 scheduler (`DDIMScheduler` | `DDPMScheduler`) : A scheduler to be used in combination with `unet` to generate image latents.
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
 
-movq ([VQModel](/docs/diffusers/v0.40.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
+movq ([VQModel](/docs/diffusers/v0.41.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
 
 Pipeline for text-to-image generation using Kandinsky
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.KandinskyV22Pipeline.__call__]]
@@ -199,7 +199,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(image_embeds: typing.Union[torch.Tensor, list[torch.Tensor]], negative_image_embeds: typing.Union[torch.Tensor, list[torch.Tensor]], height: int = 512, width: int = 512, num_inference_steps: int = 100, guidance_scale: float = 4.0, num_images_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2.py#L130)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2.py#L130)
 
 **Parameters:**
 
@@ -223,13 +223,13 @@ latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents, sampled from
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between: `"pil"` (`PIL.Image.Image`), `"np"` (`np.array`) or `"pt"` (`torch.Tensor`).
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
 callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
 
 callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
 Function invoked when calling the pipeline for generation.
 
@@ -264,17 +264,17 @@ Examples:
 diffusers.KandinskyV22CombinedPipeline(unet: UNet2DConditionModel, scheduler: DDPMScheduler, movq: VQModel, prior_prior: PriorTransformer, prior_image_encoder: CLIPVisionModelWithProjection, prior_text_encoder: CLIPTextModelWithProjection, prior_tokenizer: CLIPTokenizer, prior_scheduler: UnCLIPScheduler, prior_image_processor: CLIPImageProcessorPil)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_combined.py#L107)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_combined.py#L107)
 
 **Parameters:**
 
 scheduler (`DDIMScheduler` | `DDPMScheduler`) : A scheduler to be used in combination with `unet` to generate image latents.
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
 
-movq ([VQModel](/docs/diffusers/v0.40.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
+movq ([VQModel](/docs/diffusers/v0.41.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
 
-prior_prior ([PriorTransformer](/docs/diffusers/v0.40.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
+prior_prior ([PriorTransformer](/docs/diffusers/v0.41.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
 
 prior_image_encoder (`CLIPVisionModelWithProjection`) : Frozen image-encoder.
 
@@ -288,7 +288,7 @@ prior_image_processor (`CLIPImageProcessor`) : A image_processor to be used to p
 
 Combined Pipeline for text-to-image generation using Kandinsky
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.KandinskyV22CombinedPipeline.__call__]]
@@ -297,7 +297,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str], negative_prompt: str | list[str] | None = None, num_inference_steps: int = 100, guidance_scale: float = 4.0, num_images_per_prompt: int = 1, height: int = 512, width: int = 512, prior_guidance_scale: float = 4.0, prior_num_inference_steps: int = 25, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int = 1, return_dict: bool = True, prior_callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, prior_callback_on_step_end_tensor_inputs: list = ['latents'], callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_combined.py#L202)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_combined.py#L202)
 
 **Parameters:**
 
@@ -329,7 +329,7 @@ callback (`Callable`, *optional*) : A function that calls every `callback_steps`
 
 callback_steps (`int`, *optional*, defaults to 1) : The frequency at which the `callback` function is called. If not specified, the callback is called at every step.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
 prior_callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference of the prior pipeline. The function is called with the following arguments: `prior_callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`.
 
@@ -339,7 +339,7 @@ callback_on_step_end (`Callable`, *optional*) : A function that calls at the end
 
 callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
 Function invoked when calling the pipeline for generation.
 
@@ -364,7 +364,7 @@ image = pipe(prompt=prompt, num_inference_steps=25).images[0]
 enable_sequential_cpu_offload(gpu_id: int | None = None, device: typing.Union[torch.device, str] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_combined.py#L182)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_combined.py#L182)
 
 Offloads all models to CPU using accelerate, significantly reducing memory usage. When called, unet,
 text_encoder, vae and safety checker have their state dicts saved to CPU and then are moved to a
@@ -380,19 +380,19 @@ Note that offloading happens on a submodule basis. Memory savings are higher tha
 diffusers.KandinskyV22ControlnetPipeline(unet: UNet2DConditionModel, scheduler: DDPMScheduler, movq: VQModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_controlnet.py#L115)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_controlnet.py#L115)
 
 **Parameters:**
 
-scheduler ([DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler)) : A scheduler to be used in combination with `unet` to generate image latents.
+scheduler ([DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler)) : A scheduler to be used in combination with `unet` to generate image latents.
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
 
-movq ([VQModel](/docs/diffusers/v0.40.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
+movq ([VQModel](/docs/diffusers/v0.41.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
 
 Pipeline for text-to-image generation using Kandinsky
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.KandinskyV22ControlnetPipeline.__call__]]
@@ -401,7 +401,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(image_embeds: typing.Union[torch.Tensor, list[torch.Tensor]], negative_image_embeds: typing.Union[torch.Tensor, list[torch.Tensor]], hint: Tensor, height: int = 512, width: int = 512, num_inference_steps: int = 100, guidance_scale: float = 4.0, num_images_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int = 1, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_controlnet.py#L160)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_controlnet.py#L160)
 
 **Parameters:**
 
@@ -431,9 +431,9 @@ callback (`Callable`, *optional*) : A function that calls every `callback_steps`
 
 callback_steps (`int`, *optional*, defaults to 1) : The frequency at which the `callback` function is called. If not specified, the callback is called at every step.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
 Function invoked when calling the pipeline for generation.
 
@@ -447,11 +447,11 @@ Examples:
 diffusers.KandinskyV22PriorEmb2EmbPipeline(prior: PriorTransformer, image_encoder: CLIPVisionModelWithProjection, text_encoder: CLIPTextModelWithProjection, tokenizer: CLIPTokenizer, scheduler: UnCLIPScheduler, image_processor: CLIPImageProcessorPil)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_prior_emb2emb.py#L105)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_prior_emb2emb.py#L105)
 
 **Parameters:**
 
-prior ([PriorTransformer](/docs/diffusers/v0.40.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
+prior ([PriorTransformer](/docs/diffusers/v0.41.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
 
 image_encoder (`CLIPVisionModelWithProjection`) : Frozen image-encoder.
 
@@ -463,7 +463,7 @@ scheduler (`UnCLIPScheduler`) : A scheduler to be used in combination with `prio
 
 Pipeline for generating image prior for Kandinsky
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.KandinskyV22PriorEmb2EmbPipeline.__call__]]
@@ -472,7 +472,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str], image: typing.Union[torch.Tensor, list[torch.Tensor], PIL.Image.Image, list[PIL.Image.Image]], strength: float = 0.3, negative_prompt: str | list[str] | None = None, num_images_per_prompt: int = 1, num_inference_steps: int = 25, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, guidance_scale: float = 4.0, output_type: str | None = 'pt', return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_prior_emb2emb.py#L399)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_prior_emb2emb.py#L399)
 
 **Parameters:**
 
@@ -494,7 +494,7 @@ guidance_scale (`float`, *optional*, defaults to 4.0) : Guidance scale as define
 
 output_type (`str`, *optional*, defaults to `"pt"`) : The output format of the generate image. Choose between: `"np"` (`np.array`) or `"pt"` (`torch.Tensor`).
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
 **Returns:** `KandinskyPriorPipelineOutput` or `tuple`
 
@@ -539,7 +539,7 @@ Examples:
 interpolate(images_and_prompts: list, weights: list, num_images_per_prompt: int = 1, num_inference_steps: int = 25, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, negative_prior_prompt: str | None = None, negative_prompt: str = '', guidance_scale: float = 4.0, device = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_prior_emb2emb.py#L158)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_prior_emb2emb.py#L158)
 
 **Parameters:**
 
@@ -617,19 +617,19 @@ Examples:
 diffusers.KandinskyV22Img2ImgPipeline(unet: UNet2DConditionModel, scheduler: DDPMScheduler, movq: VQModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_img2img.py#L78)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_img2img.py#L78)
 
 **Parameters:**
 
-scheduler ([DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler)) : A scheduler to be used in combination with `unet` to generate image latents.
+scheduler ([DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler)) : A scheduler to be used in combination with `unet` to generate image latents.
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
 
-movq ([VQModel](/docs/diffusers/v0.40.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
+movq ([VQModel](/docs/diffusers/v0.41.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
 
 Pipeline for image-to-image generation using Kandinsky
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.KandinskyV22Img2ImgPipeline.__call__]]
@@ -638,7 +638,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(image_embeds: typing.Union[torch.Tensor, list[torch.Tensor]], image: typing.Union[torch.Tensor, list[torch.Tensor], PIL.Image.Image, list[PIL.Image.Image]], negative_image_embeds: typing.Union[torch.Tensor, list[torch.Tensor]], height: int = 512, width: int = 512, num_inference_steps: int = 100, guidance_scale: float = 4.0, strength: float = 0.3, num_images_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_img2img.py#L183)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_img2img.py#L183)
 
 **Parameters:**
 
@@ -664,13 +664,13 @@ generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a 
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between: `"pil"` (`PIL.Image.Image`), `"np"` (`np.array`) or `"pt"` (`torch.Tensor`).
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
 callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
 
 callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
 Function invoked when calling the pipeline for generation.
 
@@ -684,17 +684,17 @@ Examples:
 diffusers.KandinskyV22Img2ImgCombinedPipeline(unet: UNet2DConditionModel, scheduler: DDPMScheduler, movq: VQModel, prior_prior: PriorTransformer, prior_image_encoder: CLIPVisionModelWithProjection, prior_text_encoder: CLIPTextModelWithProjection, prior_tokenizer: CLIPTokenizer, prior_scheduler: UnCLIPScheduler, prior_image_processor: CLIPImageProcessorPil)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_combined.py#L341)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_combined.py#L341)
 
 **Parameters:**
 
 scheduler (`DDIMScheduler` | `DDPMScheduler`) : A scheduler to be used in combination with `unet` to generate image latents.
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
 
-movq ([VQModel](/docs/diffusers/v0.40.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
+movq ([VQModel](/docs/diffusers/v0.41.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
 
-prior_prior ([PriorTransformer](/docs/diffusers/v0.40.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
+prior_prior ([PriorTransformer](/docs/diffusers/v0.41.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
 
 prior_image_encoder (`CLIPVisionModelWithProjection`) : Frozen image-encoder.
 
@@ -708,7 +708,7 @@ prior_image_processor (`CLIPImageProcessor`) : A image_processor to be used to p
 
 Combined Pipeline for image-to-image generation using Kandinsky
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.KandinskyV22Img2ImgCombinedPipeline.__call__]]
@@ -717,7 +717,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str], image: typing.Union[torch.Tensor, list[torch.Tensor], PIL.Image.Image, list[PIL.Image.Image]], negative_prompt: str | list[str] | None = None, num_inference_steps: int = 100, guidance_scale: float = 4.0, strength: float = 0.3, num_images_per_prompt: int = 1, height: int = 512, width: int = 512, prior_guidance_scale: float = 4.0, prior_num_inference_steps: int = 25, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int = 1, return_dict: bool = True, prior_callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, prior_callback_on_step_end_tensor_inputs: list = ['latents'], callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_combined.py#L446)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_combined.py#L446)
 
 **Parameters:**
 
@@ -753,7 +753,7 @@ callback (`Callable`, *optional*) : A function that calls every `callback_steps`
 
 callback_steps (`int`, *optional*, defaults to 1) : The frequency at which the `callback` function is called. If not specified, the callback is called at every step.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
 prior_callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference of the prior pipeline. The function is called with the following arguments: `prior_callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`.
 
@@ -763,7 +763,7 @@ callback_on_step_end (`Callable`, *optional*) : A function that calls at the end
 
 callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
 Function invoked when calling the pipeline for generation.
 
@@ -799,7 +799,7 @@ image = pipe(prompt=prompt, image=original_image, num_inference_steps=25).images
 enable_model_cpu_offload(gpu_id: int | None = None, device: typing.Union[torch.device, str] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_combined.py#L416)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_combined.py#L416)
 
 Offloads all models to CPU using accelerate, reducing memory usage with a low impact on performance. Compared
 to `enable_sequential_cpu_offload`, this method moves one whole model at a time to the GPU when its `forward`
@@ -812,7 +812,7 @@ method is called, and the model remains in GPU until the next model runs. Memory
 enable_sequential_cpu_offload(gpu_id: int | None = None, device: typing.Union[torch.device, str] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_combined.py#L426)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_combined.py#L426)
 
 Offloads all models to CPU using accelerate, significantly reducing memory usage. When called, unet,
 text_encoder, vae and safety checker have their state dicts saved to CPU and then are moved to a
@@ -828,19 +828,19 @@ Note that offloading happens on a submodule basis. Memory savings are higher tha
 diffusers.KandinskyV22ControlnetImg2ImgPipeline(unet: UNet2DConditionModel, scheduler: DDPMScheduler, movq: VQModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_controlnet_img2img.py#L107)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_controlnet_img2img.py#L107)
 
 **Parameters:**
 
-scheduler ([DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler)) : A scheduler to be used in combination with `unet` to generate image latents.
+scheduler ([DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler)) : A scheduler to be used in combination with `unet` to generate image latents.
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
 
-movq ([VQModel](/docs/diffusers/v0.40.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
+movq ([VQModel](/docs/diffusers/v0.41.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
 
 Pipeline for image-to-image generation using Kandinsky
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.KandinskyV22ControlnetImg2ImgPipeline.__call__]]
@@ -849,7 +849,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(image_embeds: typing.Union[torch.Tensor, list[torch.Tensor]], image: typing.Union[torch.Tensor, list[torch.Tensor], PIL.Image.Image, list[PIL.Image.Image]], negative_image_embeds: typing.Union[torch.Tensor, list[torch.Tensor]], hint: Tensor, height: int = 512, width: int = 512, num_inference_steps: int = 100, guidance_scale: float = 4.0, strength: float = 0.3, num_images_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, output_type: str | None = 'pil', callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int = 1, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_controlnet_img2img.py#L200)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_controlnet_img2img.py#L200)
 
 **Parameters:**
 
@@ -881,9 +881,9 @@ callback (`Callable`, *optional*) : A function that calls every `callback_steps`
 
 callback_steps (`int`, *optional*, defaults to 1) : The frequency at which the `callback` function is called. If not specified, the callback is called at every step.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
 Function invoked when calling the pipeline for generation.
 
@@ -897,19 +897,19 @@ Examples:
 diffusers.KandinskyV22InpaintPipeline(unet: UNet2DConditionModel, scheduler: DDPMScheduler, movq: VQModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_inpainting.py#L243)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_inpainting.py#L243)
 
 **Parameters:**
 
-scheduler ([DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler)) : A scheduler to be used in combination with `unet` to generate image latents.
+scheduler ([DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler)) : A scheduler to be used in combination with `unet` to generate image latents.
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
 
-movq ([VQModel](/docs/diffusers/v0.40.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
+movq ([VQModel](/docs/diffusers/v0.41.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
 
 Pipeline for text-guided image inpainting using Kandinsky2.1
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.KandinskyV22InpaintPipeline.__call__]]
@@ -918,7 +918,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(image_embeds: typing.Union[torch.Tensor, list[torch.Tensor]], image: typing.Union[torch.Tensor, PIL.Image.Image], mask_image: typing.Union[PIL.Image.Image, torch.Tensor, numpy.ndarray], negative_image_embeds: typing.Union[torch.Tensor, list[torch.Tensor]], height: int = 512, width: int = 512, num_inference_steps: int = 100, guidance_scale: float = 4.0, num_images_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_inpainting.py#L302)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_inpainting.py#L302)
 
 **Parameters:**
 
@@ -946,13 +946,13 @@ latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents, sampled from
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between: `"pil"` (`PIL.Image.Image`), `"np"` (`np.array`) or `"pt"` (`torch.Tensor`).
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
 callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
 
 callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
 Function invoked when calling the pipeline for generation.
 
@@ -966,17 +966,17 @@ Examples:
 diffusers.KandinskyV22InpaintCombinedPipeline(unet: UNet2DConditionModel, scheduler: DDPMScheduler, movq: VQModel, prior_prior: PriorTransformer, prior_image_encoder: CLIPVisionModelWithProjection, prior_text_encoder: CLIPTextModelWithProjection, prior_tokenizer: CLIPTokenizer, prior_scheduler: UnCLIPScheduler, prior_image_processor: CLIPImageProcessorPil)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_combined.py#L607)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_combined.py#L607)
 
 **Parameters:**
 
 scheduler (`DDIMScheduler` | `DDPMScheduler`) : A scheduler to be used in combination with `unet` to generate image latents.
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the image embedding.
 
-movq ([VQModel](/docs/diffusers/v0.40.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
+movq ([VQModel](/docs/diffusers/v0.41.0/en/api/models/vq#diffusers.VQModel)) : MoVQ Decoder to generate the image from the latents.
 
-prior_prior ([PriorTransformer](/docs/diffusers/v0.40.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
+prior_prior ([PriorTransformer](/docs/diffusers/v0.41.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
 
 prior_image_encoder (`CLIPVisionModelWithProjection`) : Frozen image-encoder.
 
@@ -990,7 +990,7 @@ prior_image_processor (`CLIPImageProcessor`) : A image_processor to be used to p
 
 Combined Pipeline for inpainting generation using Kandinsky
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.KandinskyV22InpaintCombinedPipeline.__call__]]
@@ -999,7 +999,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str], image: typing.Union[torch.Tensor, list[torch.Tensor], PIL.Image.Image, list[PIL.Image.Image]], mask_image: typing.Union[torch.Tensor, list[torch.Tensor], PIL.Image.Image, list[PIL.Image.Image]], negative_prompt: str | list[str] | None = None, num_inference_steps: int = 100, guidance_scale: float = 4.0, num_images_per_prompt: int = 1, height: int = 512, width: int = 512, prior_guidance_scale: float = 4.0, prior_num_inference_steps: int = 25, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, prior_callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, prior_callback_on_step_end_tensor_inputs: list = ['latents'], callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_combined.py#L702)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_combined.py#L702)
 
 **Parameters:**
 
@@ -1031,7 +1031,7 @@ latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents, sampled from
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between: `"pil"` (`PIL.Image.Image`), `"np"` (`np.array`) or `"pt"` (`torch.Tensor`).
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
 prior_callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `prior_callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`.
 
@@ -1041,7 +1041,7 @@ callback_on_step_end (`Callable`, *optional*) : A function that calls at the end
 
 callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
 Function invoked when calling the pipeline for generation.
 
@@ -1077,7 +1077,7 @@ image = pipe(prompt=prompt, image=original_image, mask_image=mask, num_inference
 enable_sequential_cpu_offload(gpu_id: int | None = None, device: typing.Union[torch.device, str] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_combined.py#L682)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/kandinsky2_2/pipeline_kandinsky2_2_combined.py#L682)
 
 Offloads all models to CPU using accelerate, significantly reducing memory usage. When called, unet,
 text_encoder, vae and safety checker have their state dicts saved to CPU and then are moved to a
@@ -1086,7 +1086,7 @@ Note that offloading happens on a submodule basis. Memory savings are higher tha
 `enable_model_cpu_offload`, but performance is lower.
 
 ### Hunyuan Video15
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/hunyuan_video15.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/hunyuan_video15.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -1149,7 +1149,7 @@ Refer to the [Attention backends](../../optimization/attention_backends) guide f
 pipe.transformer.set_attention_backend("flash_hub")  # or your preferred backend
 ```
 
-- [HunyuanVideo15Pipeline](/docs/diffusers/v0.40.0/en/api/pipelines/hunyuan_video15#diffusers.HunyuanVideo15Pipeline) use guider and does not take `guidance_scale` parameter at runtime. 
+- [HunyuanVideo15Pipeline](/docs/diffusers/v0.41.0/en/api/pipelines/hunyuan_video15#diffusers.HunyuanVideo15Pipeline) use guider and does not take `guidance_scale` parameter at runtime. 
 
 You can check the default guider configuration using `pipe.guider`:
 
@@ -1191,15 +1191,15 @@ Read more on Guider [here](../../using-diffusers/guiders).
 diffusers.HunyuanVideo15Pipeline(text_encoder: Qwen2_5_VLTextModel, tokenizer: Qwen2Tokenizer, transformer: HunyuanVideo15Transformer3DModel, vae: AutoencoderKLHunyuanVideo15, scheduler: FlowMatchEulerDiscreteScheduler, text_encoder_2: T5EncoderModel, tokenizer_2: ByT5Tokenizer, guider: ClassifierFreeGuidance)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/hunyuan_video1_5/pipeline_hunyuan_video1_5.py#L166)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/hunyuan_video1_5/pipeline_hunyuan_video1_5.py#L166)
 
 **Parameters:**
 
-transformer ([HunyuanVideo15Transformer3DModel](/docs/diffusers/v0.40.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.HunyuanVideo15Transformer3DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded video latents.
+transformer ([HunyuanVideo15Transformer3DModel](/docs/diffusers/v0.41.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.HunyuanVideo15Transformer3DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded video latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
 
-vae ([AutoencoderKLHunyuanVideo15](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_hunyuan_video15#diffusers.AutoencoderKLHunyuanVideo15)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLHunyuanVideo15](/docs/diffusers/v0.41.0/en/api/models/autoencoder_kl_hunyuan_video15#diffusers.AutoencoderKLHunyuanVideo15)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 text_encoder (`Qwen2.5-VL-7B-Instruct`) : [Qwen2.5-VL-7B-Instruct](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct), specifically the [Qwen2.5-VL-7B-Instruct](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct) variant.
 
@@ -1209,11 +1209,11 @@ text_encoder_2 (`T5EncoderModel`) : [T5EncoderModel](https://huggingface.co/docs
 
 tokenizer_2 (`ByT5Tokenizer`) : Tokenizer of class [ByT5Tokenizer]
 
-guider ([ClassifierFreeGuidance](/docs/diffusers/v0.40.0/en/api/modular_diffusers/guiders#diffusers.ClassifierFreeGuidance)) : [ClassifierFreeGuidance]for classifier free guidance.
+guider ([ClassifierFreeGuidance](/docs/diffusers/v0.41.0/en/api/modular_diffusers/guiders#diffusers.ClassifierFreeGuidance)) : [ClassifierFreeGuidance]for classifier free guidance.
 
 Pipeline for text-to-video generation using HunyuanVideo1.5.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.HunyuanVideo15Pipeline.__call__]]
@@ -1222,7 +1222,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(prompt: str | list[str] = None, negative_prompt: str | list[str] = None, height: int | None = None, width: int | None = None, num_frames: int = 121, num_inference_steps: int = 50, sigmas: list = None, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_embeds_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_mask: typing.Optional[torch.Tensor] = None, prompt_embeds_2: typing.Optional[torch.Tensor] = None, prompt_embeds_mask_2: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_2: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_mask_2: typing.Optional[torch.Tensor] = None, output_type: str | None = 'np', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/hunyuan_video1_5/pipeline_hunyuan_video1_5.py#L542)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/hunyuan_video1_5/pipeline_hunyuan_video1_5.py#L542)
 
 **Parameters:**
 
@@ -1299,7 +1299,7 @@ Examples:
 encode_prompt(prompt: str | list[str], device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None, batch_size: int = 1, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_embeds_mask: typing.Optional[torch.Tensor] = None, prompt_embeds_2: typing.Optional[torch.Tensor] = None, prompt_embeds_mask_2: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/hunyuan_video1_5/pipeline_hunyuan_video1_5.py#L334)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/hunyuan_video1_5/pipeline_hunyuan_video1_5.py#L334)
 
 **Parameters:**
 
@@ -1309,7 +1309,7 @@ device : (`torch.device`): torch device
 
 batch_size (`int`) : batch size of prompts, defaults to 1
 
-num_images_per_prompt (`int`) : number of images that should be generated per prompt
+num_videos_per_prompt (`int`) : number of images that should be generated per prompt
 
 prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. If not provided, text embeddings will be generated from `prompt` input argument.
 
@@ -1325,7 +1325,7 @@ prompt_embeds_mask_2 (`torch.Tensor`, *optional*) : Pre-generated glyph text mas
 prepare_cond_latents_and_mask(latents, dtype: typing.Optional[torch.dtype], device: typing.Optional[torch.device])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/hunyuan_video1_5/pipeline_hunyuan_video1_5.py#L508)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/hunyuan_video1_5/pipeline_hunyuan_video1_5.py#L508)
 
 **Parameters:**
 
@@ -1345,15 +1345,15 @@ Prepare conditional latents and mask for t2v generation.
 diffusers.HunyuanVideo15ImageToVideoPipeline(text_encoder: Qwen2_5_VLTextModel, tokenizer: Qwen2Tokenizer, transformer: HunyuanVideo15Transformer3DModel, vae: AutoencoderKLHunyuanVideo15, scheduler: FlowMatchEulerDiscreteScheduler, text_encoder_2: T5EncoderModel, tokenizer_2: ByT5Tokenizer, guider: ClassifierFreeGuidance, image_encoder: SiglipVisionModel, feature_extractor: SiglipImageProcessorPil)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/hunyuan_video1_5/pipeline_hunyuan_video1_5_image2video.py#L193)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/hunyuan_video1_5/pipeline_hunyuan_video1_5_image2video.py#L193)
 
 **Parameters:**
 
-transformer ([HunyuanVideo15Transformer3DModel](/docs/diffusers/v0.40.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.HunyuanVideo15Transformer3DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded video latents.
+transformer ([HunyuanVideo15Transformer3DModel](/docs/diffusers/v0.41.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.HunyuanVideo15Transformer3DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded video latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
 
-vae ([AutoencoderKLHunyuanVideo15](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_hunyuan_video15#diffusers.AutoencoderKLHunyuanVideo15)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLHunyuanVideo15](/docs/diffusers/v0.41.0/en/api/models/autoencoder_kl_hunyuan_video15#diffusers.AutoencoderKLHunyuanVideo15)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 text_encoder (`Qwen2.5-VL-7B-Instruct`) : [Qwen2.5-VL-7B-Instruct](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct), specifically the [Qwen2.5-VL-7B-Instruct](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct) variant.
 
@@ -1363,7 +1363,7 @@ text_encoder_2 (`T5EncoderModel`) : [T5EncoderModel](https://huggingface.co/docs
 
 tokenizer_2 (`ByT5Tokenizer`) : Tokenizer of class [ByT5Tokenizer]
 
-guider ([ClassifierFreeGuidance](/docs/diffusers/v0.40.0/en/api/modular_diffusers/guiders#diffusers.ClassifierFreeGuidance)) : [ClassifierFreeGuidance]for classifier free guidance.
+guider ([ClassifierFreeGuidance](/docs/diffusers/v0.41.0/en/api/modular_diffusers/guiders#diffusers.ClassifierFreeGuidance)) : [ClassifierFreeGuidance]for classifier free guidance.
 
 image_encoder (`SiglipVisionModel`) : [SiglipVisionModel](https://huggingface.co/docs/transformers/en/model_doc/siglip#transformers.SiglipVisionModel) variant.
 
@@ -1371,7 +1371,7 @@ feature_extractor (`SiglipImageProcessor`) : [SiglipImageProcessor](https://hugg
 
 Pipeline for image-to-video generation using HunyuanVideo1.5.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.HunyuanVideo15ImageToVideoPipeline.__call__]]
@@ -1380,7 +1380,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(image: Image, prompt: str | list[str] = None, negative_prompt: str | list[str] = None, num_frames: int = 121, num_inference_steps: int = 50, sigmas: list = None, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_embeds_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_mask: typing.Optional[torch.Tensor] = None, prompt_embeds_2: typing.Optional[torch.Tensor] = None, prompt_embeds_mask_2: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_2: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_mask_2: typing.Optional[torch.Tensor] = None, output_type: str | None = 'np', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/hunyuan_video1_5/pipeline_hunyuan_video1_5_image2video.py#L650)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/hunyuan_video1_5/pipeline_hunyuan_video1_5_image2video.py#L650)
 
 **Parameters:**
 
@@ -1458,7 +1458,7 @@ Examples:
 encode_prompt(prompt: str | list[str], device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None, batch_size: int = 1, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_embeds_mask: typing.Optional[torch.Tensor] = None, prompt_embeds_2: typing.Optional[torch.Tensor] = None, prompt_embeds_mask_2: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/hunyuan_video1_5/pipeline_hunyuan_video1_5_image2video.py#L422)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/hunyuan_video1_5/pipeline_hunyuan_video1_5_image2video.py#L422)
 
 **Parameters:**
 
@@ -1468,7 +1468,7 @@ device : (`torch.device`): torch device
 
 batch_size (`int`) : batch size of prompts, defaults to 1
 
-num_images_per_prompt (`int`) : number of images that should be generated per prompt
+num_videos_per_prompt (`int`) : number of images that should be generated per prompt
 
 prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. If not provided, text embeddings will be generated from `prompt` input argument.
 
@@ -1484,7 +1484,7 @@ prompt_embeds_mask_2 (`torch.Tensor`, *optional*) : Pre-generated glyph text mas
 prepare_cond_latents_and_mask(latents: Tensor, image: Image, batch_size: int, height: int, width: int, dtype: dtype, device: device)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/hunyuan_video1_5/pipeline_hunyuan_video1_5_image2video.py#L594)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/hunyuan_video1_5/pipeline_hunyuan_video1_5_image2video.py#L594)
 
 **Parameters:**
 
@@ -1504,7 +1504,7 @@ Prepare conditional latents and mask for t2v generation.
 diffusers.pipelines.hunyuan_video1_5.pipeline_output.HunyuanVideo15PipelineOutput(frames: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/hunyuan_video1_5/pipeline_output.py#L9)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/hunyuan_video1_5/pipeline_output.py#L9)
 
 **Parameters:**
 
@@ -1513,7 +1513,7 @@ frames (`torch.Tensor`, `np.ndarray`, or list[list[PIL.Image.Image]]) : List of 
 Output class for HunyuanVideo1.5 pipelines.
 
 ### Omnigen
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/omnigen.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/omnigen.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -1538,13 +1538,13 @@ The abstract from the paper is:
 *The emergence of Large Language Models (LLMs) has unified language  generation tasks and revolutionized human-machine interaction.  However, in the realm of image generation, a unified model capable of handling various tasks within a single framework remains largely unexplored. In this work, we introduce OmniGen, a new diffusion model for unified image generation. OmniGen is characterized by the following features: 1) Unification: OmniGen not only demonstrates text-to-image generation capabilities but also inherently supports various downstream tasks, such as image editing, subject-driven generation, and visual conditional generation. 2) Simplicity: The architecture of OmniGen is highly simplified, eliminating the need for additional plugins. Moreover, compared to existing diffusion models, it is more user-friendly and can complete complex tasks end-to-end through instructions without the need for extra intermediate steps, greatly simplifying the image generation workflow. 3) Knowledge Transfer: Benefit from learning in a unified format, OmniGen effectively transfers knowledge across different tasks, manages unseen tasks and domains, and exhibits novel capabilities. We also explore the model’s reasoning capabilities and potential applications of the chain-of-thought mechanism.  This work represents the first attempt at a general-purpose image generation model,  and we will release our resources at https://github.com/VectorSpaceLab/OmniGen to foster future advancements.*
 
 > [!TIP]
-> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reuse-a-pipeline) section to learn how to efficiently load the same components into multiple pipelines.
+> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reusing-models-in-multiple-pipelines) section to learn how to efficiently load the same components into multiple pipelines.
 
 This pipeline was contributed by [staoxiao](https://github.com/staoxiao). The original codebase can be found [here](https://github.com/VectorSpaceLab/OmniGen). The original weights can be found under [hf.co/shitao](https://huggingface.co/Shitao/OmniGen-v1).
 
 ## Load model checkpoints
 
-Model weights may be stored in separate subfolders on the Hub or locally, in which case, you should use the [from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) method.
+Model weights may be stored in separate subfolders on the Hub or locally, in which case, you should use the [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) method.
 
 ```python
 import torch
@@ -1566,7 +1566,7 @@ pipe = OmniGenPipeline.from_pretrained(
     "Shitao/OmniGen-v1-diffusers",
     dtype=torch.bfloat16
 )
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt = "Realistic photo. A young woman sits on a sofa, holding a book and facing the camera. She wears delicate silver hoop earrings adorned with tiny, sparkling diamonds that catch the light, with her long chestnut hair cascading over her shoulders. Her eyes are focused and gentle, framed by long, dark lashes. She is dressed in a cozy cream sweater, which complements her warm, inviting smile. Behind her, there is a table with a cup of water in a sleek, minimalist blue mug. The background is a serene indoor setting with soft natural light filtering through a window, adorned with tasteful art and flowers, creating a cozy and peaceful ambiance. 4K, HD."
 image = pipe(
@@ -1596,7 +1596,7 @@ pipe = OmniGenPipeline.from_pretrained(
     "Shitao/OmniGen-v1-diffusers",
     dtype=torch.bfloat16
 )
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt="<img><|image_1|></img> Remove the woman's earrings. Replace the mug with a clear glass filled with sparkling iced cola."
 input_images=[load_image("https://raw.githubusercontent.com/VectorSpaceLab/OmniGen/main/imgs/docs_img/t2i_woman_with_book.png")]
@@ -1651,7 +1651,7 @@ pipe = OmniGenPipeline.from_pretrained(
     "Shitao/OmniGen-v1-diffusers",
     dtype=torch.bfloat16
 )
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt="Detect the skeleton of human in this image: <img><|image_1|></img>"
 input_images=[load_image("https://raw.githubusercontent.com/VectorSpaceLab/OmniGen/main/imgs/docs_img/edit.png")]
@@ -1702,7 +1702,7 @@ pipe = OmniGenPipeline.from_pretrained(
     "Shitao/OmniGen-v1-diffusers",
     dtype=torch.bfloat16
 )
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt="Following the pose of this image <img><|image_1|></img>, generate a new photo: A young boy is sitting on a sofa in the library, holding a book. His hair is neatly combed, and a faint smile plays on his lips, with a few freckles scattered across his cheeks. The library is quiet, with rows of shelves filled with books stretching out behind him."
 input_images=[load_image("https://raw.githubusercontent.com/VectorSpaceLab/OmniGen/main/imgs/docs_img/edit.png")]
@@ -1736,7 +1736,7 @@ pipe = OmniGenPipeline.from_pretrained(
     "Shitao/OmniGen-v1-diffusers",
     dtype=torch.bfloat16
 )
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt="A man and a woman are sitting at a classroom desk. The man is the man with yellow hair in <img><|image_1|></img>. The woman is the woman on the left of <img><|image_2|></img>"
 input_image_1 = load_image("https://raw.githubusercontent.com/VectorSpaceLab/OmniGen/main/imgs/docs_img/3.png")
@@ -1776,7 +1776,7 @@ pipe = OmniGenPipeline.from_pretrained(
     "Shitao/OmniGen-v1-diffusers",
     dtype=torch.bfloat16
 )
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt="A woman is walking down the street, wearing a white long-sleeve blouse with lace details on the sleeves, paired with a blue pleated skirt. The woman is <img><|image_1|></img>. The long-sleeve blouse and a pleated skirt are <img><|image_2|></img>."
 input_image_1 = load_image("https://raw.githubusercontent.com/VectorSpaceLab/OmniGen/main/imgs/docs_img/emma.jpeg")
@@ -1832,15 +1832,15 @@ The memory consumption for different image sizes is shown in the table below:
 diffusers.OmniGenPipeline(transformer: OmniGenTransformer2DModel, scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, tokenizer: LlamaTokenizer)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/omnigen/pipeline_omnigen.py#L119)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/omnigen/pipeline_omnigen.py#L119)
 
 **Parameters:**
 
-transformer ([OmniGenTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/omnigen_transformer#diffusers.OmniGenTransformer2DModel)) : Autoregressive Transformer architecture for OmniGen.
+transformer ([OmniGenTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/omnigen_transformer#diffusers.OmniGenTransformer2DModel)) : Autoregressive Transformer architecture for OmniGen.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
 tokenizer (`LlamaTokenizer`) : Text tokenizer of class. [LlamaTokenizer](https://huggingface.co/docs/transformers/main/model_doc/llama#transformers.LlamaTokenizer).
 
@@ -1854,7 +1854,7 @@ Reference: https://huggingface.co/papers/2409.11340
 __call__(prompt: str | list[str], input_images: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], list[typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]]] = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, max_input_image_size: int = 1024, timesteps: list = None, guidance_scale: float = 2.5, img_guidance_scale: float = 1.6, use_input_image_size_as_output: bool = False, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/omnigen/pipeline_omnigen.py#L277)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/omnigen/pipeline_omnigen.py#L275)
 
 **Parameters:**
 
@@ -1892,6 +1892,11 @@ callback_on_step_end (`Callable`, *optional*) : A function that calls at the end
 
 callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
 
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+
+[ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) if `return_dict` is True,
+otherwise a `tuple`. When returning a tuple, the first element is a list with the generated images.
+
 Function invoked when calling the pipeline for generation.
 
 Examples:
@@ -1909,8 +1914,8 @@ Examples:
 >>> image.save("output.png")
 ```
 
-Returns: [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`:
-If `return_dict` is `True`, [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) is returned, otherwise a `tuple` is returned
+Returns: [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`:
+If `return_dict` is `True`, [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) is returned, otherwise a `tuple` is returned
 where the first element is a list with the generated images.
 
 #### encode_input_images[[diffusers.OmniGenPipeline.encode_input_images]]
@@ -1919,7 +1924,7 @@ where the first element is a list with the generated images.
 encode_input_images(input_pixel_values: list, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/omnigen/pipeline_omnigen.py#L171)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/omnigen/pipeline_omnigen.py#L169)
 
 **Parameters:**
 
@@ -1932,7 +1937,7 @@ get the continue embedding of input images by VAE
 Returns: torch.Tensor
 
 ### Chronoedit
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/chronoedit.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/chronoedit.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -1983,7 +1988,7 @@ image_encoder = CLIPVisionModel.from_pretrained(model_id, subfolder="image_encod
 vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", dtype=torch.float32)
 transformer = ChronoEditTransformer3DModel.from_pretrained(model_id, subfolder="transformer", dtype=torch.bfloat16)
 pipe = ChronoEditPipeline.from_pretrained(model_id, image_encoder=image_encoder, transformer=transformer, vae=vae, dtype=torch.bfloat16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 image = load_image(
     "https://huggingface.co/spaces/nvidia/ChronoEdit/resolve/main/examples/3.png"
@@ -2050,7 +2055,7 @@ pipe = ChronoEditPipeline.from_pretrained(model_id, image_encoder=image_encoder,
 pipe.load_lora_weights("nvidia/ChronoEdit-14B-Diffusers", weight_name="lora/chronoedit_distill_lora.safetensors", adapter_name="distill")
 pipe.fuse_lora(adapter_names=["distill"], lora_scale=1.0)
 pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config, flow_shift=2.0)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 image = load_image(
     "https://huggingface.co/spaces/nvidia/ChronoEdit/resolve/main/examples/3.png"
@@ -2102,7 +2107,7 @@ pipe.load_lora_weights("nvidia/ChronoEdit-14B-Diffusers-Paint-Brush-Lora", weigh
 pipe.load_lora_weights("nvidia/ChronoEdit-14B-Diffusers", weight_name="lora/chronoedit_distill_lora.safetensors", adapter_name="distill")
 pipe.fuse_lora(adapter_names=["paintbrush", "distill"], lora_scale=1.0)
 pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config, flow_shift=2.0)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 image = load_image(
     "https://raw.githubusercontent.com/nv-tlabs/ChronoEdit/refs/heads/main/assets/images/input_paintbrush.png"
@@ -2141,7 +2146,7 @@ Image.fromarray((output[-1] * 255).clip(0, 255).astype("uint8")).save("output_1.
 diffusers.ChronoEditPipeline(tokenizer: AutoTokenizer, text_encoder: UMT5EncoderModel, image_encoder: CLIPVisionModel, image_processor: CLIPImageProcessorPil, transformer: ChronoEditTransformer3DModel, vae: AutoencoderKLWan, scheduler: FlowMatchEulerDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/chronoedit/pipeline_chronoedit.py#L128)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/chronoedit/pipeline_chronoedit.py#L128)
 
 **Parameters:**
 
@@ -2151,15 +2156,15 @@ text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/
 
 image_encoder (`CLIPVisionModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPVisionModel), specifically the [clip-vit-huge-patch14](https://github.com/mlfoundations/open_clip/blob/main/docs/PRETRAINED.md#vit-h14-xlm-roberta-large) variant.
 
-transformer ([WanTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel)) : Conditional Transformer to denoise the input latents.
+transformer ([WanTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel)) : Conditional Transformer to denoise the input latents.
 
-scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLWan](/docs/diffusers/v0.41.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 Pipeline for image-to-video generation using Wan.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.ChronoEditPipeline.__call__]]
@@ -2168,7 +2173,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], prompt: str | list[str] = None, negative_prompt: str | list[str] = None, height: int = 480, width: int = 832, num_frames: int = 81, num_inference_steps: int = 50, guidance_scale: float = 5.0, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, image_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'np', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int, NoneType], diffusers.callbacks.PipelineCallback | diffusers.callbacks.MultiPipelineCallbacks]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512, enable_temporal_reasoning: bool = False, num_temporal_reasoning_steps: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/chronoedit/pipeline_chronoedit.py#L467)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/chronoedit/pipeline_chronoedit.py#L470)
 
 **Parameters:**
 
@@ -2277,7 +2282,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/chronoedit/pipeline_chronoedit.py#L239)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/chronoedit/pipeline_chronoedit.py#L242)
 
 **Parameters:**
 
@@ -2307,7 +2312,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.pipelines.chronoedit.pipeline_output.ChronoEditPipelineOutput(frames: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/chronoedit/pipeline_output.py#L9)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/chronoedit/pipeline_output.py#L9)
 
 **Parameters:**
 
@@ -2316,7 +2321,7 @@ frames (`torch.Tensor`, `np.ndarray`, or list[list[PIL.Image.Image]]) : List of 
 Output class for ChronoEdit pipelines.
 
 ### Consisid
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/consisid.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/consisid.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -2343,7 +2348,7 @@ The abstract from the paper is:
 *Identity-preserving text-to-video (IPT2V) generation aims to create high-fidelity videos with consistent human identity. It is an important task in video generation but remains an open problem for generative models. This paper pushes the technical frontier of IPT2V in two directions that have not been resolved in the literature: (1) A tuning-free pipeline without tedious case-by-case finetuning, and (2) A frequency-aware heuristic identity-preserving Diffusion Transformer (DiT)-based control scheme. To achieve these goals, we propose **ConsisID**, a tuning-free DiT-based controllable IPT2V model to keep human-**id**entity **consis**tent in the generated video. Inspired by prior findings in frequency analysis of vision/diffusion transformers, it employs identity-control signals in the frequency domain, where facial features can be decomposed into low-frequency global features (e.g., profile, proportions) and high-frequency intrinsic features (e.g., identity markers that remain unaffected by pose changes). First, from a low-frequency perspective, we introduce a global facial extractor, which encodes the reference image and facial key points into a latent space, generating features enriched with low-frequency information. These features are then integrated into the shallow layers of the network to alleviate training challenges associated with DiT. Second, from a high-frequency perspective, we design a local facial extractor to capture high-frequency details and inject them into the transformer blocks, enhancing the model's ability to preserve fine-grained features. To leverage the frequency information for identity preservation, we propose a hierarchical training strategy, transforming a vanilla pre-trained video generation model into an IPT2V model. Extensive experiments demonstrate that our frequency-aware heuristic scheme provides an optimal control solution for DiT-based models. Thanks to this scheme, our **ConsisID** achieves excellent results in generating high-quality, identity-preserving videos, making strides towards more effective IPT2V. The model weight of ConsID is publicly available at https://github.com/PKU-YuanGroup/ConsisID.*
 
 > [!TIP]
-> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reuse-a-pipeline) section to learn how to efficiently load the same components into multiple pipelines.
+> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reusing-models-in-multiple-pipelines) section to learn how to efficiently load the same components into multiple pipelines.
 
 This pipeline was contributed by [SHYuanBest](https://github.com/SHYuanBest). The original codebase can be found [here](https://github.com/PKU-YuanGroup/ConsisID). The original weights can be found under [hf.co/BestWishYsh](https://huggingface.co/BestWishYsh).
 
@@ -2368,7 +2373,7 @@ ConsisID requires about 44 GB of GPU memory to decode 49 frames (6 seconds of vi
 
 ## Load Model Checkpoints
 
-Model weights may be stored in separate subfolders on the Hub or locally, in which case, you should use the [from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) method.
+Model weights may be stored in separate subfolders on the Hub or locally, in which case, you should use the [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) method.
 
 ```python
 # !pip install consisid_eva_clip insightface facexlib
@@ -2381,7 +2386,7 @@ from huggingface_hub import snapshot_download
 snapshot_download(repo_id="BestWishYsh/ConsisID-preview", local_dir="BestWishYsh/ConsisID-preview")
 
 # Load face helper model to preprocess input face image
-face_helper_1, face_helper_2, face_clip_model, face_main_model, eva_transform_mean, eva_transform_std = prepare_face_models("BestWishYsh/ConsisID-preview", device="cuda", dtype=torch.bfloat16)
+face_helper_1, face_helper_2, face_clip_model, face_main_model, eva_transform_mean, eva_transform_std = prepare_face_models("BestWishYsh/ConsisID-preview", device="cuda", dtype=torch.bfloat16)  # or "mps", "xpu", "cpu"
 
 # Load consisid base model
 pipe = ConsisIDPipeline.from_pretrained("BestWishYsh/ConsisID-preview", dtype=torch.bfloat16)
@@ -2449,7 +2454,7 @@ Learn more about ConsisID with the following resources.
 diffusers.ConsisIDPipeline(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/dummy_torch_and_transformers_and_opencv_objects.py#L5)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/dummy_torch_and_transformers_and_opencv_objects.py#L5)
 
 #### __call__[[diffusers.ConsisIDPipeline.__call__]]
 
@@ -2467,7 +2472,7 @@ Call self as a function.
 diffusers.pipelines.consisid.pipeline_output.ConsisIDPipelineOutput(frames: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/consisid/pipeline_output.py#L9)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/consisid/pipeline_output.py#L9)
 
 **Parameters:**
 
@@ -2476,7 +2481,7 @@ frames (`torch.Tensor`, `np.ndarray`, or list[list[PIL.Image.Image]]) : list of 
 Output class for ConsisID pipelines.
 
 ### Prx
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/prx.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/prx.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -2514,14 +2519,14 @@ Refer to [this](https://huggingface.co/collections/Photoroom/prx-models-68e66254
 
 ## Loading the pipeline
 
-Load the pipeline with [from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained).
+Load the pipeline with [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained).
 
 ```py
 from diffusers.pipelines.prx import PRXPipeline
 
 # Load pipeline - VAE and text encoder will be loaded from HuggingFace
 pipe = PRXPipeline.from_pretrained("Photoroom/prx-512-t2i-sft", dtype=torch.bfloat16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt = "A front-facing portrait of a lion the golden savanna at sunset."
 image = pipe(prompt, num_inference_steps=28, guidance_scale=5.0).images[0]
@@ -2578,7 +2583,7 @@ pipe = PRXPipeline(
     tokenizer=tokenizer,
     vae=vae
 )
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 ## Memory Optimization
@@ -2604,23 +2609,23 @@ pipe.enable_sequential_cpu_offload()
 diffusers.PRXPipeline(transformer: PRXTransformer2DModel, scheduler: FlowMatchEulerDiscreteScheduler, text_encoder: T5GemmaEncoder, tokenizer: transformers.models.t5.tokenization_t5.T5Tokenizer | transformers.models.gemma.tokenization_gemma.GemmaTokenizer | transformers.models.auto.tokenization_auto.AutoTokenizer, vae: diffusers.models.autoencoders.autoencoder_kl.AutoencoderKL | diffusers.models.autoencoders.autoencoder_dc.AutoencoderDC | None = None, default_sample_size: int | None = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/prx/pipeline_prx.py#L257)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/prx/pipeline_prx.py#L257)
 
 **Parameters:**
 
 transformer (`PRXTransformer2DModel`) : The PRX transformer model to denoise the encoded image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
 text_encoder (`T5GemmaEncoder`) : Text encoder model for encoding prompts.
 
 tokenizer ([`T5TokenizerFast` or `GemmaTokenizerFast`]) : Tokenizer for the text encoder.
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL) or [AutoencoderDC](/docs/diffusers/v0.40.0/en/api/models/autoencoder_dc#diffusers.AutoencoderDC)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations. Supports both AutoencoderKL (8x compression) and AutoencoderDC (32x compression).
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL) or [AutoencoderDC](/docs/diffusers/v0.41.0/en/api/models/autoencoder_dc#diffusers.AutoencoderDC)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations. Supports both AutoencoderKL (8x compression) and AutoencoderDC (32x compression).
 
 Pipeline for text-to-image generation using PRX Transformer.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.PRXPipeline.__call__]]
@@ -2629,7 +2634,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str] = None, negative_prompt: str = '', height: int | None = None, width: int | None = None, num_inference_steps: int = 28, timesteps: list = None, guidance_scale: float = 4.0, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, prompt_attention_mask: typing.Optional[torch.BoolTensor] = None, negative_prompt_attention_mask: typing.Optional[torch.BoolTensor] = None, output_type: str | None = 'pil', return_dict: bool = True, use_resolution_binning: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], tokenizer_max_length: int | None = None, skip_text_cleaning: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/prx/pipeline_prx.py#L554)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/prx/pipeline_prx.py#L554)
 
 **Parameters:**
 
@@ -2702,7 +2707,7 @@ Examples:
 check_inputs(prompt: str | list[str], height: int, width: int, guidance_scale: float, callback_on_step_end_tensor_inputs: list[str] | None = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/prx/pipeline_prx.py#L500)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/prx/pipeline_prx.py#L500)
 
 Check that all inputs are in correct format.
 
@@ -2712,7 +2717,7 @@ Check that all inputs are in correct format.
 encode_prompt(prompt: str | list[str], device: typing.Optional[torch.device] = None, do_classifier_free_guidance: bool = True, negative_prompt: str = '', num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, prompt_attention_mask: typing.Optional[torch.BoolTensor] = None, negative_prompt_attention_mask: typing.Optional[torch.BoolTensor] = None, tokenizer_max_length: int | None = None, skip_text_cleaning: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/prx/pipeline_prx.py#L376)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/prx/pipeline_prx.py#L376)
 
 Encode text prompt using standard text encoder and tokenizer, or use precomputed embeddings.
 
@@ -2722,7 +2727,7 @@ Encode text prompt using standard text encoder and tokenizer, or use precomputed
 get_default_resolution()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/prx/pipeline_prx.py#L340)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/prx/pipeline_prx.py#L340)
 
 **Returns:** `int`
 
@@ -2736,7 +2741,7 @@ Determine the default resolution based on the loaded VAE and config.
 prepare_latents(batch_size: int, num_channels_latents: int, height: int, width: int, dtype: dtype, device: device, generator: typing.Optional[torch.Generator] = None, latents: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/prx/pipeline_prx.py#L352)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/prx/pipeline_prx.py#L352)
 
 Prepare initial latents for the diffusion process.
 
@@ -2748,7 +2753,7 @@ Prepare initial latents for the diffusion process.
 diffusers.pipelines.prx.PRXPipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/prx/pipeline_output.py#L24)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/prx/pipeline_output.py#L24)
 
 **Parameters:**
 
@@ -2757,4 +2762,4 @@ images (`list[PIL.Image.Image]` or `np.ndarray`) : list of denoised PIL images o
 Output class for PRX pipelines.
 
 ### Kandinsky 2.1
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/kandinsky.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/kandinsky.md

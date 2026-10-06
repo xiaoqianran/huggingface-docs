@@ -19,7 +19,7 @@ vae = AutoencoderKLKVAE.from_pretrained("kandinskylab/KVAE-2D-1.0", subfolder="d
 diffusers.AutoencoderKLKVAE(in_channels: int = 3, channels: int = 128, num_enc_blocks: int = 2, num_dec_blocks: int = 2, z_channels: int = 16, double_z: bool = True, ch_mult: typing.Tuple[int, ...] = (1, 2, 4, 8), sample_size: int = 1024)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae.py#L521)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae.py#L521)
 
 **Parameters:**
 
@@ -41,7 +41,7 @@ sample_size (`int`, *optional*, defaults to `1024`) : Sample input size.
 
 A VAE model with KL loss for encoding images into latents and decoding latent representations into images.
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for its generic methods implemented for
+This model inherits from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for its generic methods implemented for
 all models (such as downloading or saving).
 
 #### decode[[diffusers.AutoencoderKLKVAE.decode]]
@@ -50,7 +50,7 @@ all models (such as downloading or saving).
 decode(z: FloatTensor, return_dict: bool = True, generator = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae.py#L642)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae.py#L642)
 
 **Parameters:**
 
@@ -71,7 +71,7 @@ Decode a batch of images.
 encode(x: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae.py#L602)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae.py#L602)
 
 **Parameters:**
 
@@ -92,7 +92,7 @@ Encode a batch of images into latents.
 forward(sample: Tensor, sample_posterior: bool = False, return_dict: bool = True, generator: typing.Optional[torch.Generator] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae.py#L776)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae.py#L776)
 
 **Parameters:**
 
@@ -115,7 +115,7 @@ returned.
 tiled_decode(z: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae.py#L729)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae.py#L729)
 
 **Parameters:**
 
@@ -131,4 +131,4 @@ returned.
 Decode a batch of images using a tiled decoder.
 
 ### MochiTransformer3DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/mochi_transformer3d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/mochi_transformer3d.md

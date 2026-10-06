@@ -10,7 +10,7 @@
 diffusers.LMSDiscreteScheduler(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/dummy_torch_and_scipy_objects.py#L5)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/dummy_torch_and_scipy_objects.py#L5)
 
 ## LMSDiscreteSchedulerOutput[[diffusers.schedulers.scheduling_lms_discrete.LMSDiscreteSchedulerOutput]]
 
@@ -20,7 +20,7 @@ diffusers.LMSDiscreteScheduler(*args, **kwargs)
 diffusers.schedulers.scheduling_lms_discrete.LMSDiscreteSchedulerOutput(prev_sample: Tensor, pred_original_sample: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_lms_discrete.py#L34)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_lms_discrete.py#L34)
 
 **Parameters:**
 
@@ -31,4 +31,4 @@ pred_original_sample (`torch.Tensor` of shape `(batch_size, num_channels, height
 Output class for the scheduler's `step` function output.
 
 ### DPMSolverMultistepScheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/multistep_dpm_solver.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/multistep_dpm_solver.md

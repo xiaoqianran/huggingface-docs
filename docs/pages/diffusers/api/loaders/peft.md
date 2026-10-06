@@ -1,6 +1,6 @@
 # PEFT
 
-Diffusers supports loading adapters such as [LoRA](../../tutorials/using_peft_for_inference) with the [PEFT](https://huggingface.co/docs/peft/index) library with the [PeftAdapterMixin](/docs/diffusers/v0.40.0/en/api/loaders/peft#diffusers.loaders.PeftAdapterMixin) class. This allows modeling classes in Diffusers like [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel), [SD3Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/sd3_transformer2d#diffusers.SD3Transformer2DModel) to operate with an adapter.
+Diffusers supports loading adapters such as [LoRA](../../tutorials/using_peft_for_inference) with the [PEFT](https://huggingface.co/docs/peft/index) library with the [PeftAdapterMixin](/docs/diffusers/v0.41.0/en/api/loaders/peft#diffusers.loaders.PeftAdapterMixin) class. This allows modeling classes in Diffusers like [UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel), [SD3Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/sd3_transformer2d#diffusers.SD3Transformer2DModel) to operate with an adapter.
 
 > [!TIP]
 > Refer to the [Inference with PEFT](../../tutorials/using_peft_for_inference) tutorial for an overview of how to use PEFT in Diffusers for inference.
@@ -13,7 +13,7 @@ Diffusers supports loading adapters such as [LoRA](../../tutorials/using_peft_fo
 diffusers.loaders.PeftAdapterMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/peft.py#L56)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/peft.py#L56)
 
 A class containing all functions for loading and using adapters weights that are supported in PEFT library. For
 more details about adapters and injecting them in a base model, check out the PEFT
@@ -32,7 +32,7 @@ Install the latest version of PEFT, and use this mixin to:
 active_adapters()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/peft.py#L625)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/peft.py#L635)
 
 Gets the current list of active adapters of the model.
 
@@ -45,7 +45,7 @@ If you are not familiar with adapters and PEFT methods, we invite you to read mo
 add_adapter(adapter_config, adapter_name: str = 'default')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/peft.py#L493)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/peft.py#L503)
 
 **Parameters:**
 
@@ -65,7 +65,7 @@ If you are not familiar with adapters and PEFT methods, we invite you to read mo
 delete_adapters(adapter_names: list[str] | str)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/peft.py#L748)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/peft.py#L758)
 
 **Parameters:**
 
@@ -94,7 +94,7 @@ pipeline.unet.delete_adapters("cinematic")
 disable_adapters()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/peft.py#L580)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/peft.py#L590)
 
 Disable all adapters attached to the model and fallback to inference with the base model only.
 
@@ -107,7 +107,7 @@ If you are not familiar with adapters and PEFT methods, we invite you to read mo
 disable_lora()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/peft.py#L702)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/peft.py#L712)
 
 Disables the active LoRA layers of the underlying model.
 
@@ -132,7 +132,7 @@ pipeline.unet.disable_lora()
 enable_adapters()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/peft.py#L602)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/peft.py#L612)
 
 Enable adapters that are attached to the model. The model uses `self.active_adapters()` to retrieve the list of
 adapters to enable.
@@ -146,7 +146,7 @@ If you are not familiar with adapters and PEFT methods, we invite you to read mo
 enable_lora()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/peft.py#L725)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/peft.py#L735)
 
 Enables the active LoRA layers of the underlying model.
 
@@ -171,7 +171,7 @@ pipeline.unet.enable_lora()
 enable_lora_hotswap(target_rank: int = 128, check_compiled: typing.Literal['error', 'warn', 'ignore'] = 'error')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/peft.py#L786)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/peft.py#L796)
 
 **Parameters:**
 
@@ -190,11 +190,11 @@ the loaded adapters differ.
 load_lora_adapter(pretrained_model_name_or_path_or_dict, prefix = 'transformer', hotswap: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/peft.py#L79)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/peft.py#L79)
 
 **Parameters:**
 
-pretrained_model_name_or_path_or_dict (`str` or `os.PathLike` or `dict`) : Can be either:  - A string, the *model id* (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a *directory* (for example `./my_model_directory`) containing the model weights saved with [ModelMixin.save_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained). - A [torch state dict](https://pytorch.org/tutorials/beginner/saving_loading_models.html#what-is-a-state-dict). 
+pretrained_model_name_or_path_or_dict (`str` or `os.PathLike` or `dict`) : Can be either:  - A string, the *model id* (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a *directory* (for example `./my_model_directory`) containing the model weights saved with [ModelMixin.save_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained). - A [torch state dict](https://pytorch.org/tutorials/beginner/saving_loading_models.html#what-is-a-state-dict). 
 
 prefix (`str`, *optional*) : Prefix to filter the state dict. 
 
@@ -228,7 +228,7 @@ Loads a LoRA adapter into the underlying model.
 save_lora_adapter(save_directory, adapter_name: str = 'default', upcast_before_saving: bool = False, safe_serialization: bool = True, weight_name: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/peft.py#L369)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/peft.py#L379)
 
 **Parameters:**
 
@@ -250,7 +250,7 @@ Save the LoRA parameters corresponding to the underlying model.
 set_adapter(adapter_name: str | list[str])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/peft.py#L531)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/peft.py#L541)
 
 **Parameters:**
 
@@ -267,7 +267,7 @@ If you are not familiar with adapters and PEFT methods, we invite you to read mo
 set_adapters(adapter_names: list[str] | str, weights: float | dict | list[float] | list[dict] | list[None] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/peft.py#L437)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/peft.py#L447)
 
 **Parameters:**
 
@@ -294,4 +294,4 @@ pipeline.unet.set_adapters(["cinematic", "pixel"], weights=[0.5, 0.5])
 ```
 
 ### SD3Transformer2D
-https://huggingface.co/docs/diffusers/v0.40.0/api/loaders/transformer_sd3.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/loaders/transformer_sd3.md

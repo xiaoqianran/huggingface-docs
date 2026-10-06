@@ -47,45 +47,45 @@ See table below for details on the three checkpoints:
 The following example demonstrates how to construct good music and speech generation using the aforementioned tips: [example](https://huggingface.co/docs/diffusers/main/en/api/pipelines/audioldm2#diffusers.AudioLDM2Pipeline.__call__.example).
 
 > [!TIP]
-> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reuse-a-pipeline) section to learn how to efficiently load the same components into multiple pipelines.
+> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reusing-models-in-multiple-pipelines) section to learn how to efficiently load the same components into multiple pipelines.
 
 ## AudioLDM2Pipeline[[diffusers.AudioLDM2Pipeline]]
 
 #### diffusers.AudioLDM2Pipeline[[diffusers.AudioLDM2Pipeline]]
 
 ```python
-diffusers.AudioLDM2Pipeline(vae: AutoencoderKL, text_encoder: ClapModel, text_encoder_2: transformers.models.t5.modeling_t5.T5EncoderModel | transformers.models.vits.modeling_vits.VitsModel, projection_model: AudioLDM2ProjectionModel, language_model: GPT2LMHeadModel, tokenizer: transformers.models.roberta.tokenization_roberta.RobertaTokenizer | transformers.models.roberta.tokenization_roberta_old.RobertaTokenizerFast, tokenizer_2: transformers.models.t5.tokenization_t5.T5Tokenizer | transformers.models.vits.tokenization_vits.VitsTokenizer, feature_extractor: ClapFeatureExtractor, unet: AudioLDM2UNet2DConditionModel, scheduler: KarrasDiffusionSchedulers, vocoder: SpeechT5HifiGan)
+diffusers.AudioLDM2Pipeline(vae: AutoencoderKL, text_encoder: ClapModel, text_encoder_2: transformers.models.t5.modeling_t5.T5EncoderModel | transformers.models.vits.modeling_vits.VitsModel, projection_model: AudioLDM2ProjectionModel, language_model: GPT2LMHeadModel, tokenizer: RobertaTokenizer, tokenizer_2: transformers.models.t5.tokenization_t5.T5Tokenizer | transformers.models.vits.tokenization_vits.VitsTokenizer, feature_extractor: ClapFeatureExtractor, unet: AudioLDM2UNet2DConditionModel, scheduler: KarrasDiffusionSchedulers, vocoder: SpeechT5HifiGan)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/audioldm2/pipeline_audioldm2.py#L149)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/audioldm2/pipeline_audioldm2.py#L149)
 
 **Parameters:**
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) model to encode and decode images to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) model to encode and decode images to and from latent representations.
 
-text_encoder ([ClapModel](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapModel)) : First frozen text-encoder. AudioLDM2 uses the joint audio-text embedding model [CLAP](https://huggingface.co/docs/transformers/model_doc/clap#transformers.CLAPTextModelWithProjection), specifically the [laion/clap-htsat-unfused](https://huggingface.co/laion/clap-htsat-unfused) variant. The text branch is used to encode the text prompt to a prompt embedding. The full audio-text model is used to rank generated waveforms against the text prompt by computing similarity scores.
+text_encoder ([ClapModel](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clap#transformers.ClapModel)) : First frozen text-encoder. AudioLDM2 uses the joint audio-text embedding model [CLAP](https://huggingface.co/docs/transformers/model_doc/clap#transformers.CLAPTextModelWithProjection), specifically the [laion/clap-htsat-unfused](https://huggingface.co/laion/clap-htsat-unfused) variant. The text branch is used to encode the text prompt to a prompt embedding. The full audio-text model is used to rank generated waveforms against the text prompt by computing similarity scores.
 
 text_encoder_2 ([`~transformers.T5EncoderModel`, `~transformers.VitsModel`]) : Second frozen text-encoder. AudioLDM2 uses the encoder of [T5](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5EncoderModel), specifically the [google/flan-t5-large](https://huggingface.co/google/flan-t5-large) variant. Second frozen text-encoder use for TTS. AudioLDM2 uses the encoder of [Vits](https://huggingface.co/docs/transformers/model_doc/vits#transformers.VitsModel).
 
-projection_model ([AudioLDM2ProjectionModel](/docs/diffusers/v0.40.0/en/api/pipelines/audioldm2#diffusers.AudioLDM2ProjectionModel)) : A trained model used to linearly project the hidden-states from the first and second text encoder models and insert learned SOS and EOS token embeddings. The projected hidden-states from the two text encoders are concatenated to give the input to the language model. A Learned Position Embedding for the Vits hidden-states
+projection_model ([AudioLDM2ProjectionModel](/docs/diffusers/v0.41.0/en/api/pipelines/audioldm2#diffusers.AudioLDM2ProjectionModel)) : A trained model used to linearly project the hidden-states from the first and second text encoder models and insert learned SOS and EOS token embeddings. The projected hidden-states from the two text encoders are concatenated to give the input to the language model. A Learned Position Embedding for the Vits hidden-states
 
-language_model ([GPT2Model](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/gpt2#transformers.GPT2Model)) : An auto-regressive language model used to generate a sequence of hidden-states conditioned on the projected outputs from the two text encoders.
+language_model ([GPT2Model](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/gpt2#transformers.GPT2Model)) : An auto-regressive language model used to generate a sequence of hidden-states conditioned on the projected outputs from the two text encoders.
 
-tokenizer ([RobertaTokenizer](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/roberta#transformers.RobertaTokenizer)) : Tokenizer to tokenize text for the first frozen text-encoder.
+tokenizer ([RobertaTokenizer](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/roberta#transformers.RobertaTokenizer)) : Tokenizer to tokenize text for the first frozen text-encoder.
 
 tokenizer_2 ([`~transformers.T5Tokenizer`, `~transformers.VitsTokenizer`]) : Tokenizer to tokenize text for the second frozen text-encoder.
 
-feature_extractor ([ClapFeatureExtractor](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapFeatureExtractor)) : Feature extractor to pre-process generated audio waveforms to log-mel spectrograms for automatic scoring.
+feature_extractor ([ClapFeatureExtractor](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clap#transformers.ClapFeatureExtractor)) : Feature extractor to pre-process generated audio waveforms to log-mel spectrograms for automatic scoring.
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : A `UNet2DConditionModel` to denoise the encoded audio latents.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : A `UNet2DConditionModel` to denoise the encoded audio latents.
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded audio latents. Can be one of [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), [LMSDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler), or [PNDMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/pndm#diffusers.PNDMScheduler).
+scheduler ([SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded audio latents. Can be one of [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), [LMSDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler), or [PNDMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/pndm#diffusers.PNDMScheduler).
 
-vocoder ([SpeechT5HifiGan](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/speecht5#transformers.SpeechT5HifiGan)) : Vocoder of class `SpeechT5HifiGan` to convert the mel-spectrogram latents to the final audio waveform.
+vocoder ([SpeechT5HifiGan](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/speecht5#transformers.SpeechT5HifiGan)) : Vocoder of class `SpeechT5HifiGan` to convert the mel-spectrogram latents to the final audio waveform.
 
 Pipeline for text-to-audio generation using AudioLDM2.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.AudioLDM2Pipeline.__call__]]
@@ -94,7 +94,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(prompt: str | list[str] = None, transcription: str | list[str] = None, audio_length_in_s: float | None = None, num_inference_steps: int = 200, guidance_scale: float = 3.5, negative_prompt: str | list[str] | None = None, num_waveforms_per_prompt: int | None = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, generated_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_generated_prompt_embeds: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, negative_attention_mask: typing.Optional[torch.LongTensor] = None, max_new_tokens: int | None = None, return_dict: bool = True, callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int | None = 1, cross_attention_kwargs: dict[str, typing.Any] | None = None, output_type: str | None = 'np')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/audioldm2/pipeline_audioldm2.py#L841)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/audioldm2/pipeline_audioldm2.py#L841)
 
 **Parameters:**
 
@@ -112,7 +112,7 @@ negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to gu
 
 num_waveforms_per_prompt (`int`, *optional*, defaults to 1) : The number of waveforms to generate per prompt. If `num_waveforms_per_prompt > 1`, then automatic scoring is performed between the generated outputs and the text prompt. This scoring ranks the generated waveforms based on their cosine similarity with the text input in the joint text-audio embedding space.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://huggingface.co/papers/2010.02502) paper. Only applies to the [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://huggingface.co/papers/2010.02502) paper. Only applies to the [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -132,7 +132,7 @@ negative_attention_mask (`torch.LongTensor`, *optional*) : Pre-computed attentio
 
 max_new_tokens (`int`, *optional*, defaults to None) : Number of new tokens to generate with the GPT2 language model. If not provided, number of tokens will be taken from the config of the model.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) instead of a plain tuple.
 
 callback (`Callable`, *optional*) : A function that calls every `callback_steps` steps during inference. The function is called with the following arguments: `callback(step: int, timestep: int, latents: torch.Tensor)`.
 
@@ -142,9 +142,9 @@ cross_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specif
 
 output_type (`str`, *optional*, defaults to `"np"`) : The output format of the generated audio. Choose between `"np"` to return a NumPy `np.ndarray` or `"pt"` to return a PyTorch `torch.Tensor` object. Set to `"latent"` to return the latent diffusion model (LDM) output.
 
-**Returns:** [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) or `tuple`
+**Returns:** [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) is returned,
+If `return_dict` is `True`, [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) is returned,
 otherwise a `tuple` is returned where the first element is a list with the generated audio.
 
 The call function to the pipeline for generation.
@@ -218,7 +218,7 @@ Examples:
 enable_model_cpu_offload(gpu_id: int | None = None, device: typing.Union[torch.device, str] = 'cuda')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/audioldm2/pipeline_audioldm2.py#L225)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/audioldm2/pipeline_audioldm2.py#L225)
 
 Offloads all models to CPU using accelerate, reducing memory usage with a low impact on performance. Compared
 to `enable_sequential_cpu_offload`, this method moves one whole model at a time to the GPU when its `forward`
@@ -231,7 +231,7 @@ method is called, and the model remains in GPU until the next model runs. Memory
 encode_prompt(prompt, device, num_waveforms_per_prompt, do_classifier_free_guidance, transcription = None, negative_prompt = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, generated_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_generated_prompt_embeds: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, negative_attention_mask: typing.Optional[torch.LongTensor] = None, max_new_tokens: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/audioldm2/pipeline_audioldm2.py#L328)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/audioldm2/pipeline_audioldm2.py#L328)
 
 **Parameters:**
 
@@ -308,7 +308,7 @@ Example:
 generate_language_model(inputs_embeds: Tensor = None, max_new_tokens: int = 8, **model_kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/audioldm2/pipeline_audioldm2.py#L275)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/audioldm2/pipeline_audioldm2.py#L275)
 
 **Parameters:**
 
@@ -332,7 +332,7 @@ Generates a sequence of hidden-states from the language model, conditioned on th
 diffusers.AudioLDM2ProjectionModel(text_encoder_dim, text_encoder_1_dim, langauge_model_dim, use_learned_position_embedding = None, max_seq_length = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/audioldm2/modeling_audioldm2.py#L78)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/audioldm2/modeling_audioldm2.py#L78)
 
 **Parameters:**
 
@@ -352,7 +352,7 @@ embedding vectors at the start and end of each text embedding sequence respectiv
 forward(hidden_states: typing.Optional[torch.Tensor] = None, hidden_states_1: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, attention_mask_1: typing.Optional[torch.LongTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/audioldm2/modeling_audioldm2.py#L122)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/audioldm2/modeling_audioldm2.py#L122)
 
 ## AudioLDM2UNet2DConditionModel[[diffusers.AudioLDM2UNet2DConditionModel]]
 
@@ -362,7 +362,7 @@ forward(hidden_states: typing.Optional[torch.Tensor] = None, hidden_states_1: ty
 diffusers.AudioLDM2UNet2DConditionModel(sample_size: int | None = None, in_channels: int = 4, out_channels: int = 4, flip_sin_to_cos: bool = True, freq_shift: int = 0, down_block_types: tuple = ('CrossAttnDownBlock2D', 'CrossAttnDownBlock2D', 'CrossAttnDownBlock2D', 'DownBlock2D'), mid_block_type: str = 'UNetMidBlock2DCrossAttn', up_block_types: tuple = ('UpBlock2D', 'CrossAttnUpBlock2D', 'CrossAttnUpBlock2D', 'CrossAttnUpBlock2D'), only_cross_attention: bool | tuple[bool] = False, block_out_channels: tuple = (320, 640, 1280, 1280), layers_per_block: int | tuple[int] = 2, downsample_padding: int = 1, mid_block_scale_factor: float = 1, act_fn: str = 'silu', norm_num_groups: int | None = 32, norm_eps: float = 1e-05, cross_attention_dim: int | tuple[int] = 1280, transformer_layers_per_block: int | tuple[int] = 1, attention_head_dim: int | tuple[int] = 8, num_attention_heads: int | tuple[int] | None = None, use_linear_projection: bool = False, class_embed_type: str | None = None, num_class_embeds: int | None = None, upcast_attention: bool = False, resnet_time_scale_shift: str = 'default', time_embedding_type: str = 'positional', time_embedding_dim: int | None = None, time_embedding_act_fn: str | None = None, timestep_post_act: str | None = None, time_cond_proj_dim: int | None = None, conv_in_kernel: int = 3, conv_out_kernel: int = 3, projection_class_embeddings_input_dim: int | None = None, class_embeddings_concat: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/audioldm2/modeling_audioldm2.py#L163)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/audioldm2/modeling_audioldm2.py#L163)
 
 **Parameters:**
 
@@ -431,11 +431,11 @@ projection_class_embeddings_input_dim (`int`, *optional*) : The dimension of the
 class_embeddings_concat (`bool`, *optional*, defaults to `False`) : Whether to concatenate the time embeddings with the class embeddings.
 
 A conditional 2D UNet model that takes a noisy sample, conditional state, and a timestep and returns a sample
-shaped output. Compared to the vanilla [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel), this variant optionally includes an additional
+shaped output. Compared to the vanilla [UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel), this variant optionally includes an additional
 self-attention layer in each Transformer block, as well as multiple cross-attention layers. It also allows for up
 to two cross-attention embeddings, `encoder_hidden_states` and `encoder_hidden_states_1`.
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
+This model inherits from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
 for all models (such as downloading or saving).
 
 #### forward[[diffusers.AudioLDM2UNet2DConditionModel.forward]]
@@ -444,7 +444,7 @@ for all models (such as downloading or saving).
 forward(sample: Tensor, timestep: typing.Union[torch.Tensor, float, int], encoder_hidden_states: Tensor, class_labels: typing.Optional[torch.Tensor] = None, timestep_cond: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, cross_attention_kwargs: dict[str, typing.Any] | None = None, encoder_attention_mask: typing.Optional[torch.Tensor] = None, return_dict: bool = True, encoder_hidden_states_1: typing.Optional[torch.Tensor] = None, encoder_attention_mask_1: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/audioldm2/modeling_audioldm2.py#L612)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/audioldm2/modeling_audioldm2.py#L612)
 
 **Parameters:**
 
@@ -456,7 +456,7 @@ encoder_hidden_states (`torch.Tensor`) : The encoder hidden states with shape `(
 
 encoder_attention_mask (`torch.Tensor`) : A cross-attention mask of shape `(batch, sequence_length)` is applied to `encoder_hidden_states`. If `True` the mask is kept, otherwise if `False` it is discarded. Mask will be converted into a bias, which adds large negative values to the attention scores corresponding to "discard" tokens.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [UNet2DConditionOutput](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.models.unets.unet_2d_condition.UNet2DConditionOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [UNet2DConditionOutput](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.models.unets.unet_2d_condition.UNet2DConditionOutput) instead of a plain tuple.
 
 cross_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttnProcessor`.
 
@@ -464,12 +464,12 @@ encoder_hidden_states_1 (`torch.Tensor`, *optional*) : A second set of encoder h
 
 encoder_attention_mask_1 (`torch.Tensor`, *optional*) : A cross-attention mask of shape `(batch, sequence_length_2)` is applied to `encoder_hidden_states_1`. If `True` the mask is kept, otherwise if `False` it is discarded. Mask will be converted into a bias, which adds large negative values to the attention scores corresponding to "discard" tokens.
 
-**Returns:** [UNet2DConditionOutput](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.models.unets.unet_2d_condition.UNet2DConditionOutput) or `tuple`
+**Returns:** [UNet2DConditionOutput](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.models.unets.unet_2d_condition.UNet2DConditionOutput) or `tuple`
 
-If `return_dict` is True, an [UNet2DConditionOutput](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.models.unets.unet_2d_condition.UNet2DConditionOutput) is returned,
+If `return_dict` is True, an [UNet2DConditionOutput](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.models.unets.unet_2d_condition.UNet2DConditionOutput) is returned,
 otherwise a `tuple` is returned where the first element is the sample tensor.
 
-The [AudioLDM2UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/pipelines/audioldm2#diffusers.AudioLDM2UNet2DConditionModel) forward method.
+The [AudioLDM2UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/pipelines/audioldm2#diffusers.AudioLDM2UNet2DConditionModel) forward method.
 
 ## AudioPipelineOutput[[diffusers.AudioPipelineOutput]]
 
@@ -479,7 +479,7 @@ The [AudioLDM2UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/pipelines/aud
 diffusers.AudioPipelineOutput(audios: ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L149)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L149)
 
 **Parameters:**
 
@@ -488,7 +488,7 @@ audios (`np.ndarray`) : List of denoised audio samples of a NumPy array of shape
 Output class for audio pipelines.
 
 ### Visualcloze
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/visualcloze.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/visualcloze.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -561,7 +561,7 @@ from diffusers import VisualClozePipeline
 from diffusers.utils import load_image
 
 pipe = VisualClozePipeline.from_pretrained("VisualCloze/VisualClozePipeline-384", resolution=384, dtype=torch.bfloat16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 # Load in-context images (make sure the paths are correct and accessible)
 image_paths = [
@@ -613,7 +613,7 @@ from diffusers import VisualClozePipeline
 from diffusers.utils import load_image
 
 pipe = VisualClozePipeline.from_pretrained("VisualCloze/VisualClozePipeline-384", resolution=384, dtype=torch.bfloat16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 # Load in-context images (make sure the paths are correct and accessible)
 image_paths = [
@@ -663,7 +663,7 @@ from diffusers import VisualClozePipeline
 from diffusers.utils import load_image
 
 pipe = VisualClozePipeline.from_pretrained("VisualCloze/VisualClozePipeline-384", resolution=384, dtype=torch.bfloat16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 # Load in-context images (make sure the paths are correct and accessible)
 image_paths = [
@@ -722,7 +722,7 @@ from PIL import Image
 pipe = VisualClozeGenerationPipeline.from_pretrained(
     "VisualCloze/VisualClozePipeline-384", resolution=384, dtype=torch.bfloat16
 )
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 image_paths = [
     # in-context examples
@@ -786,15 +786,15 @@ image.save("visualcloze.png")
 diffusers.VisualClozePipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, text_encoder_2: T5EncoderModel, tokenizer_2: T5Tokenizer, transformer: FluxTransformer2DModel, resolution: int = 384)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/visualcloze/pipeline_visualcloze_combined.py#L89)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/visualcloze/pipeline_visualcloze_combined.py#L89)
 
 **Parameters:**
 
-transformer ([FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+transformer ([FluxTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
 text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
 
@@ -816,7 +816,7 @@ in-context examples.
 __call__(task_prompt: str | list[str] = None, content_prompt: str | list[str] = None, image: typing.Optional[torch.FloatTensor] = None, upsampling_height: int | None = None, upsampling_width: int | None = None, num_inference_steps: int = 50, sigmas: list[float] | None = None, guidance_scale: float = 30.0, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512, upsampling_strength: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/visualcloze/pipeline_visualcloze_combined.py#L249)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/visualcloze/pipeline_visualcloze_combined.py#L252)
 
 **Parameters:**
 
@@ -922,15 +922,15 @@ Examples:
 diffusers.VisualClozeGenerationPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, text_encoder_2: T5EncoderModel, tokenizer_2: T5Tokenizer, transformer: FluxTransformer2DModel, resolution: int = 384)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/visualcloze/pipeline_visualcloze_generation.py#L118)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/visualcloze/pipeline_visualcloze_generation.py#L118)
 
 **Parameters:**
 
-transformer ([FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+transformer ([FluxTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
 text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
 
@@ -952,7 +952,7 @@ in-context examples.
 __call__(task_prompt: str | list[str] = None, content_prompt: str | list[str] = None, image: typing.Optional[torch.FloatTensor] = None, num_inference_steps: int = 50, sigmas: list[float] | None = None, guidance_scale: float = 30.0, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/visualcloze/pipeline_visualcloze_generation.py#L654)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/visualcloze/pipeline_visualcloze_generation.py#L659)
 
 **Parameters:**
 
@@ -978,7 +978,7 @@ prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated text embeddings.
 
 pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, pooled text embeddings will be generated from `prompt` input argument.
 
-output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between `"pil"` ([PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image`), `"np"` (`np.array`) or `"pt"` (`torch.Tensor`).
 
 return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
 
@@ -1068,7 +1068,7 @@ Examples:
 encode_prompt(layout_prompt: str | list[str], task_prompt: str | list[str], content_prompt: str | list[str], device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, max_sequence_length: int = 512, lora_scale: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/visualcloze/pipeline_visualcloze_generation.py#L287)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/visualcloze/pipeline_visualcloze_generation.py#L292)
 
 **Parameters:**
 
@@ -1089,4 +1089,4 @@ pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated pooled te
 lora_scale (`float`, *optional*) : A lora scale that will be applied to all LoRA layers of the text encoder if LoRA layers are loaded.
 
 ### JoyAI-Image-Edit-Plus
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/joyimage_edit_plus.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/joyimage_edit_plus.md

@@ -33,5 +33,5 @@ Once the workers complete a job, the results are stored - or _cached_ - in a Mon
 
 As a result, users can get their requested information about a dataset (even large ones) nearly instantaneously!
 
-### mlcroissant
-https://huggingface.co/docs/dataset-viewer/mlcroissant.md
+### Download slices of rows
+https://huggingface.co/docs/dataset-viewer/rows.md

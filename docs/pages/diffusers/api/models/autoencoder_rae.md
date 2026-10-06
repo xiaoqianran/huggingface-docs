@@ -22,7 +22,7 @@ from diffusers import AutoencoderRAE
 
 model = AutoencoderRAE.from_pretrained(
     "nyu-visionx/RAE-dinov2-wReg-base-ViTXL-n08"
-).to("cuda").eval()
+).to("cuda").eval()  # or "mps", "xpu", "cpu"
 ```
 
 ## Encoding and decoding a real image
@@ -35,7 +35,7 @@ from torchvision.transforms.functional import to_tensor, to_pil_image
 
 model = AutoencoderRAE.from_pretrained(
     "nyu-visionx/RAE-dinov2-wReg-base-ViTXL-n08"
-).to("cuda").eval()
+).to("cuda").eval()  # or "mps", "xpu", "cpu"
 
 image = load_image("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/cat.png")
 image = image.convert("RGB").resize((224, 224))
@@ -56,7 +56,7 @@ Some pretrained checkpoints include per-channel `latents_mean` and `latents_std`
 ```python
 model = AutoencoderRAE.from_pretrained(
     "nyu-visionx/RAE-dinov2-wReg-base-ViTXL-n08"
-).to("cuda").eval()
+).to("cuda").eval()  # or "mps", "xpu", "cpu"
 
 # Latent normalization is handled automatically inside encode/decode
 # when the checkpoint config includes latents_mean/latents_std.
@@ -73,7 +73,7 @@ with torch.no_grad():
 diffusers.AutoencoderRAE(encoder_type: str = 'dinov2', encoder_hidden_size: int = 768, encoder_patch_size: int = 14, encoder_num_hidden_layers: int = 12, decoder_hidden_size: int = 512, decoder_num_hidden_layers: int = 8, decoder_num_attention_heads: int = 16, decoder_intermediate_size: int = 2048, patch_size: int = 16, encoder_input_size: int = 224, image_size: int | None = None, num_channels: int = 3, encoder_norm_mean: list | None = None, encoder_norm_std: list | None = None, latents_mean: typing.Union[list, tuple, torch.Tensor, NoneType] = None, latents_std: typing.Union[list, tuple, torch.Tensor, NoneType] = None, noise_tau: float = 0.0, reshape_to_2d: bool = True, use_encoder_loss: bool = False, scaling_factor: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_rae.py#L393)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_rae.py#L393)
 
 **Parameters:**
 
@@ -112,7 +112,7 @@ Representation Autoencoder (RAE) model for encoding images to latents and decodi
 This model uses a frozen pretrained encoder (DINOv2, SigLIP2, or MAE) with a trainable ViT decoder to reconstruct
 images from learned representations.
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for its generic methods implemented for
+This model inherits from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for its generic methods implemented for
 all models (such as downloading or saving).
 
 #### encode[[diffusers.AutoencoderRAE.encode]]
@@ -121,7 +121,7 @@ all models (such as downloading or saving).
 encode(x: Tensor, return_dict: bool = True, generator: typing.Optional[torch.Generator] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_rae.py#L640)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_rae.py#L640)
 
 #### decode[[diffusers.AutoencoderRAE.decode]]
 
@@ -129,7 +129,7 @@ encode(x: Tensor, return_dict: bool = True, generator: typing.Optional[torch.Gen
 decode(z: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_rae.py#L671)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_rae.py#L671)
 
 #### forward[[diffusers.AutoencoderRAE.forward]]
 
@@ -137,7 +137,7 @@ decode(z: Tensor, return_dict: bool = True)
 forward(sample: Tensor, return_dict: bool = True, generator: typing.Optional[torch.Generator] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_rae.py#L682)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_rae.py#L682)
 
 **Parameters:**
 
@@ -159,7 +159,7 @@ If `return_dict` is True, a `DecoderOutput` is returned, otherwise a plain `tupl
 diffusers.models.autoencoders.vae.DecoderOutput(sample: Tensor, commit_loss: typing.Optional[torch.FloatTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/vae.py#L46)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/vae.py#L49)
 
 **Parameters:**
 
@@ -167,5 +167,5 @@ sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) : T
 
 Output of decoding method.
 
-### HeliosTransformer3DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/helios_transformer3d.md
+### AutoencoderKLQwenImage21
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_qwenimage21.md

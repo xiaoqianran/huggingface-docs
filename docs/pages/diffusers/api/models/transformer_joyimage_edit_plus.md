@@ -16,7 +16,7 @@ transformer = JoyImageEditPlusTransformer3DModel.from_pretrained("jdopensource/J
 diffusers.JoyImageEditPlusTransformer3DModel(patch_size: list = [1, 2, 2], in_channels: int = 16, out_channels: int | None = None, hidden_size: int = 3072, num_attention_heads: int = 24, text_dim: int = 4096, mlp_width_ratio: float = 4.0, num_layers: int = 20, rope_dim_list: list = [16, 56, 56], rope_type: str = 'rope', theta: int = 256)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_joyimage_edit_plus.py#L317)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_joyimage_edit_plus.py#L317)
 
 **Parameters:**
 
@@ -55,7 +55,7 @@ Input format: `[B, max_patches, C, pt, ph, pw]` (6D padded patches).
 forward(hidden_states: Tensor, timestep: Tensor, encoder_hidden_states: Tensor, encoder_hidden_states_mask: typing.Optional[torch.Tensor] = None, shape_list: list = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_joyimage_edit_plus.py#L444)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_joyimage_edit_plus.py#L444)
 
 **Parameters:**
 
@@ -73,7 +73,7 @@ return_dict : Whether to return a dict or tuple.
 
 **Returns:**
 
-If `return_dict` is True, an [Transformer2DModelOutput](/docs/diffusers/v0.40.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) is returned, otherwise a
+If `return_dict` is True, an [Transformer2DModelOutput](/docs/diffusers/v0.41.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
 ## Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
@@ -84,13 +84,13 @@ If `return_dict` is True, an [Transformer2DModelOutput](/docs/diffusers/v0.40.0/
 diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L21)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-The output of [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+The output of [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
 
 ### HunyuanVideoTransformer3DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/hunyuan_video_transformer_3d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/hunyuan_video_transformer_3d.md

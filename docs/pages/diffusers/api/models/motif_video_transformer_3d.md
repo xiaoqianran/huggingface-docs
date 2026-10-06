@@ -20,7 +20,7 @@ transformer = MotifVideoTransformer3DModel.from_pretrained("Motif-Technologies/M
 diffusers.MotifVideoTransformer3DModel(in_channels: int = 33, out_channels: int = 16, num_attention_heads: int = 24, attention_head_dim: int = 128, num_layers: int = 20, num_single_layers: int = 40, num_decoder_layers: int = 0, mlp_ratio: float = 4.0, patch_size: int = 2, patch_size_t: int = 1, qk_norm: str = 'rms_norm', norm_type: str = 'layer_norm', text_embed_dim: int = 4096, image_embed_dim: int | None = None, rope_theta: float = 256.0, rope_axes_dim: typing.Tuple[int, ...] = (16, 56, 56), enable_text_cross_attention_dual: bool = False, enable_text_cross_attention_single: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_motif_video.py#L730)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_motif_video.py#L730)
 
 **Parameters:**
 
@@ -62,7 +62,7 @@ A Transformer model for video-like data used in the Motif-Video model.
 forward(hidden_states: Tensor, timestep: LongTensor, encoder_hidden_states: Tensor, encoder_attention_mask: typing.Optional[torch.Tensor] = None, image_embeds: typing.Optional[torch.Tensor] = None, attention_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_motif_video.py#L888)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_motif_video.py#L888)
 
 **Parameters:**
 
@@ -78,9 +78,9 @@ image_embeds (`torch.Tensor`, *optional*) : Image embeddings from vision encoder
 
 attention_kwargs (`dict`, *optional*) : Additional arguments for attention processors.
 
-return_dict (`bool`, defaults to `True`) : Whether to return a [Transformer2DModelOutput](/docs/diffusers/v0.40.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput).
+return_dict (`bool`, defaults to `True`) : Whether to return a [Transformer2DModelOutput](/docs/diffusers/v0.41.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput).
 
-**Returns:** [Transformer2DModelOutput](/docs/diffusers/v0.40.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) or `tuple`
+**Returns:** [Transformer2DModelOutput](/docs/diffusers/v0.41.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) or `tuple`
 
 The predicted samples.
 
@@ -94,13 +94,13 @@ Forward pass of the MotifVideoTransformer3DModel.
 diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L21)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-The output of [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+The output of [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
 
 ### Lumina2Transformer2DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/lumina2_transformer2d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/lumina2_transformer2d.md

@@ -8,8 +8,8 @@ Two pipelines are exposed:
 
 | Pipeline | Modes | CFG | Use case |
 |---|---|---|---|
-| [DreamLitePipeline](/docs/diffusers/v0.40.0/en/api/pipelines/dreamlite#diffusers.DreamLitePipeline) | text-to-image **and** image-editing (auto-selected by whether `image` is `None`) | 3-branch dual CFG (`guidance_scale` on text branch, `image_guidance_scale` on image branch, à la InstructPix2Pix) | Highest quality |
-| [DreamLiteMobilePipeline](/docs/diffusers/v0.40.0/en/api/pipelines/dreamlite#diffusers.DreamLiteMobilePipeline) | text-to-image **and** image-editing (auto-selected by whether `image` is `None`) | None — distilled, single UNet forward per step | On-device / low-latency |
+| [DreamLitePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/dreamlite#diffusers.DreamLitePipeline) | text-to-image **and** image-editing (auto-selected by whether `image` is `None`) | 3-branch dual CFG (`guidance_scale` on text branch, `image_guidance_scale` on image branch, à la InstructPix2Pix) | Highest quality |
+| [DreamLiteMobilePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/dreamlite#diffusers.DreamLiteMobilePipeline) | text-to-image **and** image-editing (auto-selected by whether `image` is `None`) | None — distilled, single UNet forward per step | On-device / low-latency |
 
 Official checkpoints:
 
@@ -33,7 +33,7 @@ import torch
 from diffusers import DreamLitePipeline
 
 pipe = DreamLitePipeline.from_pretrained("carlofkl/DreamLite-base", revision="diffusers", dtype=torch.bfloat16)
-pipe = pipe.to("cuda")
+pipe = pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 image = pipe(
     prompt="a dog running on the grass",
@@ -57,7 +57,7 @@ from diffusers import DreamLitePipeline
 from diffusers.utils import load_image
 
 pipe = DreamLitePipeline.from_pretrained("carlofkl/DreamLite-base", revision="diffusers", dtype=torch.bfloat16)
-pipe = pipe.to("cuda")
+pipe = pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 source = load_image("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/cat.png")
 
@@ -83,7 +83,7 @@ import torch
 from diffusers import DreamLiteMobilePipeline
 
 pipe = DreamLiteMobilePipeline.from_pretrained("carlofkl/DreamLite-mobile", revision="diffusers", dtype=torch.bfloat16)
-pipe = pipe.to("cuda")
+pipe = pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 image = pipe(
     prompt="a dog running on the grass",
@@ -103,7 +103,7 @@ from diffusers import DreamLiteMobilePipeline
 from diffusers.utils import load_image
 
 pipe = DreamLiteMobilePipeline.from_pretrained("carlofkl/DreamLite-mobile", revision="diffusers", dtype=torch.bfloat16)
-pipe = pipe.to("cuda")
+pipe = pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 source = load_image("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/cat.png")
 
@@ -136,7 +136,7 @@ image.save("dreamlite_mobile_edit.png")
 diffusers.DreamLitePipeline(text_encoder: Qwen3VLForConditionalGeneration, tokenizer: AutoTokenizer, processor: Qwen3VLProcessor, vae: AutoencoderTiny, unet: DreamLiteUNetModel, scheduler: FlowMatchEulerDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/dreamlite/pipeline_dreamlite.py#L155)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/dreamlite/pipeline_dreamlite.py#L155)
 
 DreamLite pipeline for text-to-image and instruction-based image editing.
 
@@ -168,7 +168,7 @@ Note:
 __call__(prompt: typing.Optional[str] = None, negative_prompt: typing.Optional[str] = None, image: typing.Optional[PIL.Image.Image] = None, height: typing.Optional[int] = None, width: typing.Optional[int] = None, guidance_scale: float = 3.5, image_guidance_scale: float = 1.5, num_inference_steps: int = 30, sigmas: typing.Optional[typing.List[float]] = None, num_images_per_prompt: typing.Optional[int] = 1, generator: typing.Union[torch.Generator, typing.List[torch.Generator], NoneType] = None, output_type: typing.Optional[str] = 'pil', return_dict: bool = True, max_sequence_length: int = 200, text_pad_embedding: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/dreamlite/pipeline_dreamlite.py#L388)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/dreamlite/pipeline_dreamlite.py#L388)
 
 **Parameters:**
 
@@ -196,7 +196,7 @@ generator : Random generator(s).
 
 output_type : `"pil"`, `"np"`, `"pt"` or `"latent"`.
 
-return_dict : If True, returns a [DreamLitePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/dreamlite#diffusers.DreamLitePipelineOutput); else a tuple `(images,)`.
+return_dict : If True, returns a [DreamLitePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/dreamlite#diffusers.DreamLitePipelineOutput); else a tuple `(images,)`.
 
 max_sequence_length : Maximum number of user-prompt tokens kept after dropping the chat-template prefix. Only applies to `generate` mode (the `edit` mode uses the multimodal processor's native padding).
 
@@ -204,7 +204,7 @@ text_pad_embedding : Optional learned pad embedding for masked positions.
 
 **Returns:**
 
-[DreamLitePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/dreamlite#diffusers.DreamLitePipelineOutput) or `tuple`.
+[DreamLitePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/dreamlite#diffusers.DreamLitePipelineOutput) or `tuple`.
 
 Run the DreamLite pipeline.
 
@@ -216,10 +216,10 @@ Run the DreamLite pipeline.
 diffusers.DreamLiteMobilePipeline(text_encoder: Qwen3VLForConditionalGeneration, tokenizer: AutoTokenizer, processor: Qwen3VLProcessor, vae: AutoencoderTiny, unet: DreamLiteUNetModel, scheduler: FlowMatchEulerDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/dreamlite/pipeline_dreamlite_mobile.py#L156)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/dreamlite/pipeline_dreamlite_mobile.py#L156)
 
 DreamLite **Mobile** pipeline: a distilled, classifier-free-guidance-free variant of
-[DreamLitePipeline](/docs/diffusers/v0.40.0/en/api/pipelines/dreamlite#diffusers.DreamLitePipeline) for fast few-step inference (default 4 steps).
+[DreamLitePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/dreamlite#diffusers.DreamLitePipeline) for fast few-step inference (default 4 steps).
 
 The operating mode is auto-detected from inputs (same as the base pipeline):
 
@@ -227,7 +227,7 @@ The operating mode is auto-detected from inputs (same as the base pipeline):
 - `image is not None` -> image-to-image / instruction edit.
 
 Because classifier-free guidance is **distilled away**, `guidance_scale` and `image_guidance_scale` are
-accepted for API parity with [DreamLitePipeline](/docs/diffusers/v0.40.0/en/api/pipelines/dreamlite#diffusers.DreamLitePipeline) but are ignored in the denoising loop. `negative_prompt`
+accepted for API parity with [DreamLitePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/dreamlite#diffusers.DreamLitePipeline) but are ignored in the denoising loop. `negative_prompt`
 is intentionally absent.
 
 Components (identical to the base pipeline):
@@ -253,7 +253,7 @@ Note:
 __call__(prompt: typing.Union[str, typing.List[str]] = None, image: typing.Optional[PIL.Image.Image] = None, height: typing.Optional[int] = None, width: typing.Optional[int] = None, num_inference_steps: int = 4, guidance_scale: typing.Optional[float] = None, image_guidance_scale: typing.Optional[float] = None, sigmas: typing.Optional[typing.List[float]] = None, num_images_per_prompt: typing.Optional[int] = 1, generator: typing.Union[torch.Generator, typing.List[torch.Generator], NoneType] = None, output_type: typing.Optional[str] = 'pil', return_dict: bool = True, max_sequence_length: int = 200, text_pad_embedding: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/dreamlite/pipeline_dreamlite_mobile.py#L384)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/dreamlite/pipeline_dreamlite_mobile.py#L384)
 
 **Parameters:**
 
@@ -267,9 +267,9 @@ width : Output resolution (width). Defaults to `default_sample_size * vae_scale_
 
 num_inference_steps : Number of denoising steps. Defaults to **4** (distilled).
 
-guidance_scale : Accepted for API parity with [DreamLitePipeline](/docs/diffusers/v0.40.0/en/api/pipelines/dreamlite#diffusers.DreamLitePipeline); **ignored** because CFG was distilled away.
+guidance_scale : Accepted for API parity with [DreamLitePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/dreamlite#diffusers.DreamLitePipeline); **ignored** because CFG was distilled away.
 
-image_guidance_scale : Accepted for API parity with [DreamLitePipeline](/docs/diffusers/v0.40.0/en/api/pipelines/dreamlite#diffusers.DreamLitePipeline); **ignored** because CFG was distilled away.
+image_guidance_scale : Accepted for API parity with [DreamLitePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/dreamlite#diffusers.DreamLitePipeline); **ignored** because CFG was distilled away.
 
 sigmas : Optional explicit FlowMatch sigmas; defaults to a uniform linspace.
 
@@ -279,7 +279,7 @@ generator : Random generator(s).
 
 output_type : `"pil"`, `"np"`, `"pt"` or `"latent"`.
 
-return_dict : If True, returns a [DreamLitePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/dreamlite#diffusers.DreamLitePipelineOutput); else `(images,)`.
+return_dict : If True, returns a [DreamLitePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/dreamlite#diffusers.DreamLitePipelineOutput); else `(images,)`.
 
 max_sequence_length : Maximum number of user-prompt tokens kept after dropping the chat-template prefix. Only applies to `generate` mode (the `edit` mode uses the multimodal processor's native padding).
 
@@ -287,7 +287,7 @@ text_pad_embedding : Optional learned pad embedding for masked positions.
 
 **Returns:**
 
-[DreamLitePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/dreamlite#diffusers.DreamLitePipelineOutput) or `tuple`.
+[DreamLitePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/dreamlite#diffusers.DreamLitePipelineOutput) or `tuple`.
 
 Run the distilled DreamLite Mobile pipeline.
 
@@ -299,7 +299,7 @@ Run the distilled DreamLite Mobile pipeline.
 diffusers.DreamLitePipelineOutput(images: typing.Union[typing.List[PIL.Image.Image], numpy.ndarray])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/dreamlite/pipeline_output.py#L25)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/dreamlite/pipeline_output.py#L25)
 
 **Parameters:**
 
@@ -308,4 +308,4 @@ images (`List[PIL.Image.Image]` or `np.ndarray`) : List of denoised PIL images o
 Output class for DreamLite pipelines.
 
 ### Chroma
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/chroma.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/chroma.md

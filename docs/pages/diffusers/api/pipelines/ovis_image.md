@@ -34,15 +34,15 @@ Refer to [this](https://huggingface.co/collections/AIDC-AI/ovis-image) collectio
 diffusers.OvisImagePipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: Qwen3Model, tokenizer: Qwen2Tokenizer, transformer: OvisImageTransformer2DModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ovis_image/pipeline_ovis_image.py#L129)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ovis_image/pipeline_ovis_image.py#L129)
 
 **Parameters:**
 
-transformer ([OvisImageTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/ovisimage_transformer2d#diffusers.OvisImageTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+transformer ([OvisImageTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/ovisimage_transformer2d#diffusers.OvisImageTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
 text_encoder (`Qwen3Model`) : Text encoder of class [Qwen3Model](https://huggingface.co/docs/transformers/en/model_doc/qwen3#transformers.Qwen3Model).
 
@@ -58,7 +58,7 @@ Reference: https://github.com/AIDC-AI/Ovis-Image
 __call__(prompt: str | list[str] = None, negative_prompt: str | list[str] = '', guidance_scale: float = 5.0, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, sigmas: list[float] | None = None, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 256)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ovis_image/pipeline_ovis_image.py#L457)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ovis_image/pipeline_ovis_image.py#L457)
 
 **Parameters:**
 
@@ -98,9 +98,9 @@ callback_on_step_end_tensor_inputs (`List`, *optional*) : The list of tensor inp
 
 max_sequence_length (`int` defaults to 512) : Maximum sequence length to use with the `prompt`.
 
-**Returns:** [OvisImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ovis_image#diffusers.pipelines.ovis_image.OvisImagePipelineOutput) or `tuple`
+**Returns:** [OvisImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ovis_image#diffusers.pipelines.ovis_image.OvisImagePipelineOutput) or `tuple`
 
-[OvisImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ovis_image#diffusers.pipelines.ovis_image.OvisImagePipelineOutput) if `return_dict` is True, otherwise a `tuple`. When
+[OvisImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ovis_image#diffusers.pipelines.ovis_image.OvisImagePipelineOutput) if `return_dict` is True, otherwise a `tuple`. When
 returning a tuple, the first element is a list with the generated images.
 
 Function invoked when calling the pipeline for generation.
@@ -123,7 +123,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, max_sequence_length: int = 256, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ovis_image/pipeline_ovis_image.py#L269)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ovis_image/pipeline_ovis_image.py#L269)
 
 **Parameters:**
 
@@ -151,7 +151,7 @@ negative_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negativ
 diffusers.pipelines.ovis_image.OvisImagePipelineOutput(images: list)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/ovis_image/pipeline_output.py#L24)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ovis_image/pipeline_output.py#L24)
 
 **Parameters:**
 
@@ -160,4 +160,4 @@ images (`list[PIL.Image.Image]` or `np.ndarray`) : List of denoised PIL images o
 Output class for Ovis-Image pipelines.
 
 ### Latent Consistency Models
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/latent_consistency_models.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/latent_consistency_models.md

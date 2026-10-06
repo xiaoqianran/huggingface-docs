@@ -10,7 +10,7 @@
 diffusers.IPNDMScheduler(num_train_timesteps: int = 1000, trained_betas: numpy.ndarray | list[float] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ipndm.py#L24)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_ipndm.py#L24)
 
 **Parameters:**
 
@@ -20,7 +20,7 @@ trained_betas (`np.ndarray` or `List[float]`, *optional*) : Pass an array of bet
 
 A fourth-order Improved Pseudo Linear Multistep scheduler.
 
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
 methods the library implements for all schedulers such as loading and saving.
 
 #### index_for_timestep[[diffusers.IPNDMScheduler.index_for_timestep]]
@@ -29,7 +29,7 @@ methods the library implements for all schedulers such as loading and saving.
 index_for_timestep(timestep: typing.Union[float, torch.Tensor], schedule_timesteps: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ipndm.py#L124)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_ipndm.py#L124)
 
 **Parameters:**
 
@@ -50,7 +50,7 @@ Find the index of a given timestep in the timestep schedule.
 scale_model_input(sample: Tensor, *args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ipndm.py#L228)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_ipndm.py#L228)
 
 **Parameters:**
 
@@ -69,7 +69,7 @@ current timestep.
 set_begin_index(begin_index: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ipndm.py#L85)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_ipndm.py#L85)
 
 **Parameters:**
 
@@ -83,7 +83,7 @@ Sets the begin index for the scheduler. This function should be run from pipelin
 set_timesteps(num_inference_steps: int, device: typing.Union[str, torch.device, NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ipndm.py#L95)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_ipndm.py#L95)
 
 **Parameters:**
 
@@ -99,7 +99,7 @@ Sets the discrete timesteps used for the diffusion chain (to be run before infer
 step(model_output: Tensor, timestep: typing.Union[int, torch.Tensor], sample: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ipndm.py#L170)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_ipndm.py#L170)
 
 **Parameters:**
 
@@ -109,11 +109,11 @@ timestep (`int` or `torch.Tensor`) : The current discrete timestep in the diffus
 
 sample (`torch.Tensor`) : A current instance of a sample created by the diffusion process.
 
-return_dict (`bool`) : Whether or not to return a [SchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) or tuple.
+return_dict (`bool`) : Whether or not to return a [SchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) or tuple.
 
-**Returns:** [SchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple`
+**Returns:** [SchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple`
 
-If return_dict is `True`, [SchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) is returned, otherwise a
+If return_dict is `True`, [SchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) is returned, otherwise a
 tuple is returned where the first element is the sample tensor.
 
 Predict the sample from the previous timestep by reversing the SDE. This function propagates the sample with
@@ -127,7 +127,7 @@ the linear multistep method. It performs one forward pass multiple times to appr
 diffusers.schedulers.scheduling_utils.SchedulerOutput(prev_sample: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_utils.py#L66)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_utils.py#L66)
 
 **Parameters:**
 
@@ -136,4 +136,4 @@ prev_sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`
 Base class for the output of a scheduler's `step` function.
 
 ### Latent Consistency Model Multistep Scheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/lcm.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/lcm.md

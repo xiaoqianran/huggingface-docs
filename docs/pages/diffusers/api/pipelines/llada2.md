@@ -77,7 +77,7 @@ For all models: `block_length=32`, `temperature=0.0`, `num_inference_steps=32`.
 diffusers.LLaDA2Pipeline(model: Any, scheduler: BlockRefinementScheduler, tokenizer: Any | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/llada2/pipeline_llada2.py#L59)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/llada2/pipeline_llada2.py#L59)
 
 Pipeline for LLaDA2-style discrete diffusion text generation via block-wise iterative refinement.
 
@@ -93,7 +93,7 @@ vocab_size]`.
 __call__(prompt: str | list[str] | None = None, messages: list[dict[str, str]] | None = None, input_ids: torch.LongTensor | None = None, attention_mask: torch.LongTensor | None = None, use_chat_template: bool = True, add_generation_prompt: bool = True, gen_length: int = 2048, block_length: int | None = None, num_inference_steps: int = 32, temperature: float = 0.0, top_p: float | None = None, top_k: int | None = None, sampling_method: str = 'multinomial', threshold: float = 0.7, editing_threshold: float | None = 0.5, max_post_steps: int = 16, minimal_topk: int = 1, eos_early_stop: bool = True, eos_token_id: int | None = None, mask_token_id: int | None = None, generator: torch.Generator | None = None, output_type: str = 'text', return_dict: bool = True, callback_on_step_end: Callable[[int, int, dict], None] | PipelineCallback | MultiPipelineCallbacks | None = None, callback_on_step_end_tensor_inputs: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/llada2/pipeline_llada2.py#L242)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/llada2/pipeline_llada2.py#L242)
 
 **Parameters:**
 
@@ -141,15 +141,15 @@ generator (`torch.Generator`, *optional*) : RNG for sampling.
 
 output_type (`str`, defaults to `"text"`) : Output format. `"text"` decodes sequences into strings (requires a tokenizer). `"seq"` returns raw token ID sequences only.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a [LLaDA2PipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/llada2#diffusers.LLaDA2PipelineOutput) instead of a tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a [LLaDA2PipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/llada2#diffusers.LLaDA2PipelineOutput) instead of a tuple.
 
 callback_on_step_end (`Callable` or `PipelineCallback`, *optional*) : Callback executed after each refinement step with signature `callback_on_step_end(self, step: int, timestep: int, callback_kwargs: Dict)`.
 
 callback_on_step_end_tensor_inputs (`List[str]`, *optional*) : Tensor keys to pass to the callback. Allowed keys: `block_x`, `transfer_index`, `editing_transfer_index`, `sampled_tokens`, `sampled_probs`, `active_block`.
 
-**Returns:** [LLaDA2PipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/llada2#diffusers.LLaDA2PipelineOutput) or `tuple`
+**Returns:** [LLaDA2PipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/llada2#diffusers.LLaDA2PipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [LLaDA2PipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/llada2#diffusers.LLaDA2PipelineOutput) is returned,
+If `return_dict` is `True`, [LLaDA2PipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/llada2#diffusers.LLaDA2PipelineOutput) is returned,
 otherwise a `tuple` is returned where the first element is the generated token IDs (`torch.LongTensor`)
 and the second element is the decoded texts (`list[str]`), or `None` when `output_type` is `"seq"`.
 
@@ -181,7 +181,7 @@ Examples:
 diffusers.LLaDA2PipelineOutput(sequences: torch.LongTensor, texts: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/llada2/pipeline_llada2.py#L54)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/llada2/pipeline_llada2.py#L54)
 
 ### Consistency Models
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/consistency_models.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/consistency_models.md

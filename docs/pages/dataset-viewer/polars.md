@@ -103,6 +103,3 @@ q = (
 )
 df = q.collect()
 ```
-
-### Quickstart
-https://huggingface.co/docs/dataset-viewer/quick_start.md

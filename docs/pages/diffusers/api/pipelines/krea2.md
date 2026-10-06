@@ -24,7 +24,7 @@ from diffusers import Krea2Pipeline
 
 # Load from a local directory produced by the Krea 2 conversion (no hub repo yet).
 pipe = Krea2Pipeline.from_pretrained("krea/Krea-2-Raw", dtype=torch.bfloat16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt = "a fox in the snow"
 image = pipe(
@@ -45,7 +45,7 @@ import torch
 from diffusers import Krea2Pipeline
 
 pipe = Krea2Pipeline.from_pretrained("krea/Krea-2-Turbo", dtype=torch.bfloat16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 image = pipe(
     "a fox in the snow",
@@ -58,6 +58,18 @@ image = pipe(
 image.save("krea2_turbo.png")
 ```
 
+## Loading single-file checkpoints
+
+```python
+import torch
+from diffusers import Krea2Pipeline, Krea2Transformer2DModel
+
+transformer = Krea2Transformer2DModel.from_single_file(
+    "https://huggingface.co/krea/Krea-2-Turbo/blob/main/turbo.safetensors", dtype=torch.bfloat16
+)
+pipe = Krea2Pipeline.from_pretrained("krea/Krea-2-Turbo", transformer=transformer, dtype=torch.bfloat16).to("cuda")
+```
+
 ## Krea2Pipeline[[diffusers.Krea2Pipeline]]
 
 #### diffusers.Krea2Pipeline[[diffusers.Krea2Pipeline]]
@@ -66,19 +78,19 @@ image.save("krea2_turbo.png")
 diffusers.Krea2Pipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKLQwenImage, text_encoder: Qwen3VLModel, tokenizer: AutoTokenizer, transformer: Krea2Transformer2DModel, text_encoder_select_layers: tuple[int, ...] | list[int] | None = None, is_distilled: bool = False, patch_size: int = 2)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/krea2/pipeline_krea2.py#L134)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/krea2/pipeline_krea2.py#L134)
 
 **Parameters:**
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : Euler flow-matching scheduler. The Krea 2 sigma schedule is the resolution-aware exponential time shift, so the scheduler config is expected to set `use_dynamic_shifting=True` together with the Krea 2 shift parameters (`base_shift=0.5`, `max_shift=1.15`, `base_image_seq_len=256`, `max_image_seq_len=6400`).
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : Euler flow-matching scheduler. The Krea 2 sigma schedule is the resolution-aware exponential time shift, so the scheduler config is expected to set `use_dynamic_shifting=True` together with the Krea 2 shift parameters (`base_shift=0.5`, `max_shift=1.15`, `base_image_seq_len=256`, `max_image_seq_len=6400`).
 
-vae ([AutoencoderKLQwenImage](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl_qwenimage#diffusers.AutoencoderKLQwenImage)) : The Qwen-Image variational auto-encoder (f8, 16 latent channels) used to decode latents to images.
+vae ([AutoencoderKLQwenImage](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_qwenimage#diffusers.AutoencoderKLQwenImage)) : The Qwen-Image variational auto-encoder (f8, 16 latent channels) used to decode latents to images.
 
-text_encoder ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel)) : A Qwen3-VL model (e.g. `Qwen3VLModel` of `Qwen/Qwen3-VL-4B-Instruct`). The pipeline consumes a stack of hidden states tapped from several decoder layers rather than the last hidden state.
+text_encoder ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.18.0/en/main_classes/model#transformers.PreTrainedModel)) : A Qwen3-VL model (e.g. `Qwen3VLModel` of `Qwen/Qwen3-VL-4B-Instruct`). The pipeline consumes a stack of hidden states tapped from several decoder layers rather than the last hidden state.
 
-tokenizer ([AutoTokenizer](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer)) : The tokenizer paired with the text encoder.
+tokenizer ([AutoTokenizer](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/auto#transformers.AutoTokenizer)) : The tokenizer paired with the text encoder.
 
-transformer ([Krea2Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/krea2_transformer2d#diffusers.Krea2Transformer2DModel)) : The Krea 2 single-stream MMDiT that predicts the flow-matching velocity.
+transformer ([Krea2Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/krea2_transformer2d#diffusers.Krea2Transformer2DModel)) : The Krea 2 single-stream MMDiT that predicts the flow-matching velocity.
 
 text_encoder_select_layers (`tuple[int, ...]`, *optional*) : Indices into the text encoder's `hidden_states` tuple (0 is the embedding output) whose states are stacked per token as the transformer's text conditioning. Must have `transformer.config.num_text_layers` entries.
 
@@ -94,7 +106,7 @@ The Krea 2 pipeline for text-to-image generation.
 __call__(prompt: str | list[str] | None = None, negative_prompt: str | list[str] | None = None, height: int = 1024, width: int = 1024, num_inference_steps: int = 28, sigmas: list[float] | None = None, guidance_scale: float = 4.5, num_images_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_embeds_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int, dict], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], attention_kwargs: dict[str, typing.Any] | None = None, max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/krea2/pipeline_krea2.py#L445)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/krea2/pipeline_krea2.py#L445)
 
 **Parameters:**
 
@@ -128,7 +140,7 @@ negative_prompt_embeds_mask (`torch.Tensor`, *optional*) : Boolean mask for `neg
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated image. Choose between `"pil"`, `"np"`, `"pt"` or `"latent"`.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [Krea2PipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/krea2#diffusers.pipelines.krea2.Krea2PipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [Krea2PipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/krea2#diffusers.pipelines.krea2.Krea2PipelineOutput) instead of a plain tuple.
 
 callback_on_step_end (`Callable`, *optional*) : A function that is called at the end of each denoising step with `callback_on_step_end(self, step, timestep, callback_kwargs)`.
 
@@ -138,9 +150,9 @@ attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is
 
 max_sequence_length (`int`, defaults to 512) : Fixed text sequence length consumed by the transformer; prompts are padded or truncated to it.
 
-**Returns:** [Krea2PipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/krea2#diffusers.pipelines.krea2.Krea2PipelineOutput) or `tuple`
+**Returns:** [Krea2PipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/krea2#diffusers.pipelines.krea2.Krea2PipelineOutput) or `tuple`
 
-[Krea2PipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/krea2#diffusers.pipelines.krea2.Krea2PipelineOutput) if
+[Krea2PipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/krea2#diffusers.pipelines.krea2.Krea2PipelineOutput) if
 `return_dict` is True, otherwise a `tuple`, whose first element is a list with the generated images.
 
 Function invoked when calling the pipeline for generation.
@@ -166,7 +178,7 @@ Examples:
 encode_prompt(prompt: str | list[str], device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_embeds_mask: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/krea2/pipeline_krea2.py#L263)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/krea2/pipeline_krea2.py#L263)
 
 **Parameters:**
 
@@ -188,7 +200,7 @@ max_sequence_length (`int`, defaults to 512) : Fixed text sequence length consum
 get_text_hidden_states(prompt: str | list[str], max_sequence_length: int = 512, device: typing.Optional[torch.device] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/krea2/pipeline_krea2.py#L214)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/krea2/pipeline_krea2.py#L214)
 
 Tokenize `prompt` into the fixed-length Krea 2 layout and tap the selected encoder hidden states.
 
@@ -201,7 +213,7 @@ text_hidden_dim)` and `(batch_size, text_seq_len)` (bool).
 prepare_position_ids(text_seq_len: int, grid_height: int, grid_width: int, device: device)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/krea2/pipeline_krea2.py#L381)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/krea2/pipeline_krea2.py#L381)
 
 Build the `(text_seq_len + grid_height * grid_width, 3)` rotary coordinates for the combined sequence:
 text tokens sit at the origin, image tokens carry their `(0, h, w)` latent-grid coordinates.
@@ -214,7 +226,7 @@ text tokens sit at the origin, image tokens carry their `(0, h, w)` latent-grid 
 diffusers.pipelines.krea2.Krea2PipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/krea2/pipeline_output.py#L24)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/krea2/pipeline_output.py#L24)
 
 **Parameters:**
 
@@ -226,7 +238,7 @@ Output class for the Krea 2 pipeline.
 
 Krea 2 is also available as a [modular pipeline](../../modular_diffusers/overview). Classifier-free guidance is
 configured through the `guider` component rather than a `guidance_scale` call argument. Krea 2 uses cond-anchored CFG,
-which is [ClassifierFreeGuidance](/docs/diffusers/v0.40.0/en/api/modular_diffusers/guiders#diffusers.ClassifierFreeGuidance) with `use_original_formulation=True`.
+which is [ClassifierFreeGuidance](/docs/diffusers/v0.41.0/en/api/modular_diffusers/guiders#diffusers.ClassifierFreeGuidance) with `use_original_formulation=True`.
 
 ```python
 import torch
@@ -234,7 +246,7 @@ from diffusers import ClassifierFreeGuidance, ModularPipeline
 
 pipe = ModularPipeline.from_pretrained("krea/Krea-2-Raw")
 pipe.load_components(dtype=torch.bfloat16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 image = pipe(
     prompt="a fox in the snow",
@@ -247,7 +259,7 @@ image.save("krea2.png")
 ```
 
 We additionally provide an example for using Krea2 Turbo. The distilled checkpoint maps to its own set of blocks
-([Krea2TurboAutoBlocks](/docs/diffusers/v0.40.0/en/api/pipelines/krea2#diffusers.Krea2TurboAutoBlocks)): it runs guidance-free (no `guider`), takes no negative prompt, and samples in a few steps.
+([Krea2TurboAutoBlocks](/docs/diffusers/v0.41.0/en/api/pipelines/krea2#diffusers.Krea2TurboAutoBlocks)): it runs guidance-free (no `guider`), takes no negative prompt, and samples in a few steps.
 `ModularPipeline.from_pretrained` picks the turbo blocks automatically from the checkpoint's `is_distilled` config, so
 no guidance configuration is needed:
 
@@ -257,7 +269,7 @@ from diffusers import ModularPipeline
 
 pipe = ModularPipeline.from_pretrained("krea/Krea-2-Turbo")
 pipe.load_components(dtype=torch.bfloat16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 image = pipe(
     prompt="a fox in the snow",
@@ -277,7 +289,7 @@ image.save("krea2_turbo.png")
 diffusers.Krea2ModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/krea2/modular_pipeline.py#L19)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/krea2/modular_pipeline.py#L19)
 
 A ModularPipeline for Krea 2.
 
@@ -289,7 +301,7 @@ A ModularPipeline for Krea 2.
 diffusers.Krea2AutoBlocks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/krea2/modular_blocks_krea2.py#L105)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/krea2/modular_blocks_krea2.py#L105)
 
 Auto Modular pipeline for text-to-image generation using Krea 2: encode text -> core denoise (symmetric CFG) ->
 decode.
@@ -340,7 +352,7 @@ Generated images.
 diffusers.Krea2TurboModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/krea2/modular_pipeline.py#L54)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/krea2/modular_pipeline.py#L54)
 
 A ModularPipeline for the distilled Krea 2 turbo (TDM) checkpoint. It runs without classifier-free guidance, so it
 takes no negative prompt and has no guider.
@@ -353,7 +365,7 @@ takes no negative prompt and has no guider.
 diffusers.Krea2TurboAutoBlocks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/krea2/modular_blocks_krea2_turbo.py#L101)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/krea2/modular_blocks_krea2_turbo.py#L101)
 
 Auto Modular pipeline for text-to-image generation using the distilled Krea 2 turbo checkpoint: encode text -> core
 denoise (guidance-free) -> decode.
@@ -395,4 +407,4 @@ images (`list`):
 Generated images.
 
 ### Pipelines
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/overview.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/overview.md

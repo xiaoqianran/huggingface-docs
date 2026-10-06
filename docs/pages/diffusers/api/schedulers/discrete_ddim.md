@@ -6,7 +6,7 @@ It is parameter free, and the final step deterministically commits the predicted
 mode adds the leave-one-out Gibbs sweeps of [Uniform Diffusion Models Revisited: Leave-One-Out Denoiser and Absorbing State Reformulation](https://huggingface.co/papers/2605.22765)
 through `corrector_steps`.
 
-This scheduler is used by [DiffusionGemmaPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/diffusion_gemma#diffusers.DiffusionGemmaPipeline).
+This scheduler is used by [DiffusionGemmaPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/diffusion_gemma#diffusers.DiffusionGemmaPipeline).
 
 ## DiscreteDDIMScheduler[[diffusers.DiscreteDDIMScheduler]]
 
@@ -16,7 +16,7 @@ This scheduler is used by [DiffusionGemmaPipeline](/docs/diffusers/v0.40.0/en/ap
 diffusers.DiscreteDDIMScheduler(num_inference_steps: int = 32, corrector_steps: int = 0, corrector_k: int = 1, corrector_selection: str = 'lowest_log_margin', corrector_selection_tau: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_discrete_ddim.py#L49)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_discrete_ddim.py#L49)
 
 **Parameters:**
 
@@ -42,7 +42,7 @@ random tokens.
 An optional predictor-corrector mode follows "Uniform Diffusion Models Revisited: Leave-One-Out Denoiser and
 Absorbing State Reformulation" via the leave-one-out (LOO) denoiser (https://huggingface.co/papers/2605.22765).
 When `corrector_steps > 0`, the pipeline runs that many Gibbs corrector sweeps after each predictor step (see
-[step_correct()](/docs/diffusers/v0.40.0/en/api/schedulers/discrete_ddim#diffusers.DiscreteDDIMScheduler.step_correct)), resampling the least-confident positions from the one-coordinate
+[step_correct()](/docs/diffusers/v0.41.0/en/api/schedulers/discrete_ddim#diffusers.DiscreteDDIMScheduler.step_correct)), resampling the least-confident positions from the one-coordinate
 conditional `Cat(alpha_s * x0_loo + (1 - alpha_s) / K)` while holding the rest fixed, which leaves the marginal
 `p_s` invariant and improves generation at no training cost.
 
@@ -52,7 +52,7 @@ conditional `Cat(alpha_s * x0_loo + (1 - alpha_s) / K)` while holding the rest f
 step(model_output: torch.Tensor, timestep: int | torch.Tensor, sample: torch.LongTensor, temperature: float = 0.0, generator: torch.Generator | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_discrete_ddim.py#L145)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_discrete_ddim.py#L145)
 
 **Parameters:**
 
@@ -66,7 +66,7 @@ temperature (`float`) : Sampling temperature applied to the logits when drawing 
 
 generator (`torch.Generator`, *optional*) : RNG for sampling.
 
-return_dict (`bool`) : Whether to return a [DiscreteDDIMSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/discrete_ddim#diffusers.DiscreteDDIMSchedulerOutput) or a plain tuple.
+return_dict (`bool`) : Whether to return a [DiscreteDDIMSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/discrete_ddim#diffusers.DiscreteDDIMSchedulerOutput) or a plain tuple.
 
 Sample the next block from the posterior `q(x_s | x_t, x0)` of the uniform corruption process.
 
@@ -83,7 +83,7 @@ so the last step (`b = 1`) deterministically commits the predicted clean tokens.
 step_correct(model_output: torch.Tensor, timestep: int | torch.Tensor, sample: torch.LongTensor, generator: torch.Generator | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_discrete_ddim.py#L248)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_discrete_ddim.py#L248)
 
 **Parameters:**
 
@@ -95,7 +95,7 @@ sample (`torch.LongTensor` of shape `(batch_size, block_length)`) : Current bloc
 
 generator (`torch.Generator`, *optional*) : RNG for sampling.
 
-return_dict (`bool`) : Whether to return a [DiscreteDDIMSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/discrete_ddim#diffusers.DiscreteDDIMSchedulerOutput) or a plain tuple.
+return_dict (`bool`) : Whether to return a [DiscreteDDIMSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/discrete_ddim#diffusers.DiscreteDDIMSchedulerOutput) or a plain tuple.
 
 Run one Gibbs corrector sweep at the post-predictor time `s`, following the leave-one-out predictor-corrector
 of https://huggingface.co/papers/2605.22765.
@@ -113,7 +113,7 @@ sweep preserves `p_s`, so it refines the sample without changing its marginal an
 diffusers.DiscreteDDIMSchedulerOutput(prev_sample: torch.LongTensor, sampled_tokens: torch.LongTensor, sampled_probs: torch.Tensor, pred_logits: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_discrete_ddim.py#L28)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_discrete_ddim.py#L28)
 
 **Parameters:**
 
@@ -128,4 +128,4 @@ pred_logits (`torch.Tensor` of shape `(batch_size, block_length, vocab_size)`) :
 Output class for the discrete DDIM scheduler.
 
 ### KDPM2AncestralDiscreteScheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/dpm_discrete_ancestral.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/dpm_discrete_ancestral.md

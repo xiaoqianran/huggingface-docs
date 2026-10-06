@@ -1,8 +1,8 @@
 # VAE Image Processor
 
-The [VaeImageProcessor](/docs/diffusers/v0.40.0/en/api/image_processor#diffusers.VaeImageProcessor) provides a unified API for [StableDiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline)s to prepare image inputs for VAE encoding and post-processing outputs once they're decoded. This includes transformations such as resizing, normalization, and conversion between PIL Image, PyTorch, and NumPy arrays.
+The [VaeImageProcessor](/docs/diffusers/v0.41.0/en/api/image_processor#diffusers.VaeImageProcessor) provides a unified API for [StableDiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline)s to prepare image inputs for VAE encoding and post-processing outputs once they're decoded. This includes transformations such as resizing, normalization, and conversion between PIL Image, PyTorch, and NumPy arrays.
 
-All pipelines with [VaeImageProcessor](/docs/diffusers/v0.40.0/en/api/image_processor#diffusers.VaeImageProcessor) accept PIL Image, PyTorch tensor, or NumPy arrays as image inputs and return outputs based on the `output_type` argument by the user. You can pass encoded image latents directly to the pipeline and return latents from the pipeline as a specific output with the `output_type` argument (for example `output_type="latent"`). This allows you to take the generated latents from one pipeline and pass it to another pipeline as input without leaving the latent space. It also makes it much easier to use multiple pipelines together by passing PyTorch tensors directly between different pipelines.
+All pipelines with [VaeImageProcessor](/docs/diffusers/v0.41.0/en/api/image_processor#diffusers.VaeImageProcessor) accept PIL Image, PyTorch tensor, or NumPy arrays as image inputs and return outputs based on the `output_type` argument by the user. You can pass encoded image latents directly to the pipeline and return latents from the pipeline as a specific output with the `output_type` argument (for example `output_type="latent"`). This allows you to take the generated latents from one pipeline and pass it to another pipeline as input without leaving the latent space. It also makes it much easier to use multiple pipelines together by passing PyTorch tensors directly between different pipelines.
 
 ## VaeImageProcessor[[diffusers.VaeImageProcessor]]
 
@@ -12,11 +12,11 @@ All pipelines with [VaeImageProcessor](/docs/diffusers/v0.40.0/en/api/image_proc
 diffusers.VaeImageProcessor(do_resize: bool = True, vae_scale_factor: int = 8, vae_latent_channels: int = 4, resample: str = 'lanczos', reducing_gap: int | None = None, do_normalize: bool = True, do_binarize: bool = False, do_convert_rgb: bool = False, do_convert_grayscale: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L82)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L82)
 
 **Parameters:**
 
-do_resize (`bool`, *optional*, defaults to `True`) : Whether to downscale the image's (height, width) dimensions to multiples of `vae_scale_factor`. Can accept `height` and `width` arguments from [image_processor.VaeImageProcessor.preprocess()](/docs/diffusers/v0.40.0/en/api/image_processor#diffusers.VaeImageProcessor.preprocess) method.
+do_resize (`bool`, *optional*, defaults to `True`) : Whether to downscale the image's (height, width) dimensions to multiples of `vae_scale_factor`. Can accept `height` and `width` arguments from [image_processor.VaeImageProcessor.preprocess()](/docs/diffusers/v0.41.0/en/api/image_processor#diffusers.VaeImageProcessor.preprocess) method.
 
 vae_scale_factor (`int`, *optional*, defaults to `8`) : VAE scale factor. If `do_resize` is `True`, the image is automatically resized to multiples of this factor.
 
@@ -38,7 +38,7 @@ Image processor for VAE.
 apply_overlay(mask: Image, init_image: Image, image: Image, crop_coords: tuple[int, int, int, int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L788)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L788)
 
 **Parameters:**
 
@@ -62,7 +62,7 @@ Applies an overlay of the mask and the inpainted image on the original image.
 binarize(image: Image)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L523)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L523)
 
 **Parameters:**
 
@@ -80,7 +80,7 @@ Create a mask.
 blur(image: Image, blur_factor: int = 4)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L270)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L270)
 
 **Parameters:**
 
@@ -98,7 +98,7 @@ Applies Gaussian blur to an image.
 convert_to_grayscale(image: Image)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L253)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L253)
 
 **Parameters:**
 
@@ -116,7 +116,7 @@ Converts a given PIL image to grayscale.
 convert_to_rgb(image: Image)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L236)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L236)
 
 **Parameters:**
 
@@ -134,7 +134,7 @@ Converts a PIL image to RGB format.
 denormalize(images: typing.Union[numpy.ndarray, torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L221)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L221)
 
 **Parameters:**
 
@@ -152,7 +152,7 @@ Denormalize an image array to [0,1].
 get_crop_region(mask_image: Image, width: int, height: int, pad = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L287)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L287)
 
 **Parameters:**
 
@@ -179,7 +179,7 @@ processing are 512x512, the region will be expanded to 128x128.
 get_default_height_width(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor], height: int | None = None, width: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L560)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L560)
 
 **Parameters:**
 
@@ -202,7 +202,7 @@ Returns the height and width of the image, downscaled to the next integer multip
 normalize(images: typing.Union[numpy.ndarray, torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L206)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L206)
 
 **Parameters:**
 
@@ -220,7 +220,7 @@ Normalize an image array to [-1,1].
 numpy_to_pil(images: ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L127)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L127)
 
 **Parameters:**
 
@@ -238,7 +238,7 @@ Convert a numpy image or a batch of images to a PIL image.
 numpy_to_pt(images: ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L171)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L171)
 
 **Parameters:**
 
@@ -256,7 +256,7 @@ Convert a NumPy image to a PyTorch tensor.
 pil_to_numpy(images: list[PIL.Image.Image] | PIL.Image.Image)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L151)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L151)
 
 **Parameters:**
 
@@ -274,7 +274,7 @@ Convert a PIL image or a list of PIL images to NumPy arrays.
 postprocess(image: Tensor, output_type: str = 'pil', do_denormalize: list[bool] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L738)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L738)
 
 **Parameters:**
 
@@ -296,7 +296,7 @@ Postprocess the image output from tensor to `output_type`.
 preprocess(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], height: int | None = None, width: int | None = None, resize_mode: str = 'default', crops_coords: tuple[int, int, int, int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L607)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L607)
 
 **Parameters:**
 
@@ -322,7 +322,7 @@ Preprocess the image input.
 pt_to_numpy(images: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L190)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L190)
 
 **Parameters:**
 
@@ -340,7 +340,7 @@ Convert a PyTorch tensor to a NumPy image.
 resize(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor], height: int, width: int, resize_mode: str = 'default')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L462)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L462)
 
 **Parameters:**
 
@@ -360,7 +360,7 @@ Resize image.
 
 ## InpaintProcessor[[diffusers.InpaintProcessor]]
 
-The [InpaintProcessor](/docs/diffusers/v0.40.0/en/api/image_processor#diffusers.InpaintProcessor) accepts `mask` and `image` inputs and process them together. Optionally, it can accept padding_mask_crop and apply mask overlay.
+The [InpaintProcessor](/docs/diffusers/v0.41.0/en/api/image_processor#diffusers.InpaintProcessor) accepts `mask` and `image` inputs and process them together. Optionally, it can accept padding_mask_crop and apply mask overlay.
 
 #### diffusers.InpaintProcessor[[diffusers.InpaintProcessor]]
 
@@ -368,7 +368,7 @@ The [InpaintProcessor](/docs/diffusers/v0.40.0/en/api/image_processor#diffusers.
 diffusers.InpaintProcessor(do_resize: bool = True, vae_scale_factor: int = 8, vae_latent_channels: int = 4, resample: str = 'lanczos', reducing_gap: int | None = None, do_normalize: bool = True, do_binarize: bool = False, do_convert_grayscale: bool = False, mask_do_normalize: bool = False, mask_do_binarize: bool = True, mask_do_convert_grayscale: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L836)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L836)
 
 Image processor for inpainting image and mask.
 
@@ -378,7 +378,7 @@ Image processor for inpainting image and mask.
 postprocess(image: Tensor, output_type: str = 'pil', original_image: PIL.Image.Image | None = None, original_mask: PIL.Image.Image | None = None, crops_coords: tuple[int, int, int, int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L937)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L937)
 
 Postprocess the image, optionally apply mask overlay
 
@@ -388,13 +388,13 @@ Postprocess the image, optionally apply mask overlay
 preprocess(image: Image, mask: PIL.Image.Image | None = None, height: int | None = None, width: int | None = None, padding_mask_crop: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L881)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L881)
 
 Preprocess the image and mask.
 
 ## VaeImageProcessorLDM3D[[diffusers.VaeImageProcessorLDM3D]]
 
-The [VaeImageProcessorLDM3D](/docs/diffusers/v0.40.0/en/api/image_processor#diffusers.VaeImageProcessorLDM3D) accepts RGB and depth inputs and returns RGB and depth outputs.
+The [VaeImageProcessorLDM3D](/docs/diffusers/v0.41.0/en/api/image_processor#diffusers.VaeImageProcessorLDM3D) accepts RGB and depth inputs and returns RGB and depth outputs.
 
 #### diffusers.VaeImageProcessorLDM3D[[diffusers.VaeImageProcessorLDM3D]]
 
@@ -402,7 +402,7 @@ The [VaeImageProcessorLDM3D](/docs/diffusers/v0.40.0/en/api/image_processor#diff
 diffusers.VaeImageProcessorLDM3D(do_resize: bool = True, vae_scale_factor: int = 8, resample: str = 'lanczos', do_normalize: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L967)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L967)
 
 **Parameters:**
 
@@ -422,7 +422,7 @@ Image processor for VAE LDM3D.
 depth_pil_to_numpy(images: list[PIL.Image.Image] | PIL.Image.Image)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L1018)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L1018)
 
 **Parameters:**
 
@@ -440,7 +440,7 @@ Convert a PIL image or a list of PIL images to NumPy arrays.
 numpy_to_depth(images: ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L1076)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L1076)
 
 **Parameters:**
 
@@ -458,7 +458,7 @@ Convert a NumPy depth image or a batch of images to a list of PIL images.
 numpy_to_pil(images: ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L994)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L994)
 
 **Parameters:**
 
@@ -476,7 +476,7 @@ Convert a NumPy image or a batch of images to a list of PIL images.
 preprocess(rgb: typing.Union[torch.Tensor, PIL.Image.Image, numpy.ndarray], depth: typing.Union[torch.Tensor, PIL.Image.Image, numpy.ndarray], height: int | None = None, width: int | None = None, target_res: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L1154)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L1154)
 
 **Parameters:**
 
@@ -502,7 +502,7 @@ Preprocess the image input. Accepted formats are PIL images, NumPy arrays, or Py
 rgblike_to_depthmap(image: typing.Union[numpy.ndarray, torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L1038)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L1038)
 
 Convert an RGB-like depth image to a depth map.
 
@@ -514,11 +514,11 @@ Convert an RGB-like depth image to a depth map.
 diffusers.PixArtImageProcessor(do_resize: bool = True, vae_scale_factor: int = 8, resample: str = 'lanczos', do_normalize: bool = True, do_binarize: bool = False, do_convert_grayscale: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L1374)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L1374)
 
 **Parameters:**
 
-do_resize (`bool`, *optional*, defaults to `True`) : Whether to downscale the image's (height, width) dimensions to multiples of `vae_scale_factor`. Can accept `height` and `width` arguments from [image_processor.VaeImageProcessor.preprocess()](/docs/diffusers/v0.40.0/en/api/image_processor#diffusers.VaeImageProcessor.preprocess) method.
+do_resize (`bool`, *optional*, defaults to `True`) : Whether to downscale the image's (height, width) dimensions to multiples of `vae_scale_factor`. Can accept `height` and `width` arguments from [image_processor.VaeImageProcessor.preprocess()](/docs/diffusers/v0.41.0/en/api/image_processor#diffusers.VaeImageProcessor.preprocess) method.
 
 vae_scale_factor (`int`, *optional*, defaults to `8`) : VAE scale factor. If `do_resize` is `True`, the image is automatically resized to multiples of this factor.
 
@@ -540,7 +540,7 @@ Image processor for PixArt image resize and crop.
 classify_height_width_bin(height: int, width: int, ratios: dict)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L1415)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L1415)
 
 **Parameters:**
 
@@ -562,7 +562,7 @@ Returns the binned height and width based on the aspect ratio.
 resize_and_crop_tensor(samples: Tensor, new_width: int, new_height: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L1433)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L1433)
 
 **Parameters:**
 
@@ -586,7 +586,7 @@ Resizes and crops a tensor of images to the specified dimensions.
 diffusers.IPAdapterMaskProcessor(do_resize: bool = True, vae_scale_factor: int = 8, resample: str = 'lanczos', do_normalize: bool = False, do_binarize: bool = True, do_convert_grayscale: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L1270)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L1270)
 
 **Parameters:**
 
@@ -610,7 +610,7 @@ Image processor for IP Adapter image masks.
 downsample(mask: Tensor, batch_size: int, num_queries: int, value_embed_dim: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L1311)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L1311)
 
 **Parameters:**
 
@@ -630,4 +630,4 @@ Downsamples the provided mask tensor to match the expected dimensions for scaled
 aspect ratio of the mask does not match the aspect ratio of the output image, a warning is issued.
 
 ### PEFT
-https://huggingface.co/docs/diffusers/v0.40.0/api/loaders/peft.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/loaders/peft.md

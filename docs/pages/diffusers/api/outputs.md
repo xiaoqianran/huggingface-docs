@@ -1,6 +1,6 @@
 # Outputs
 
-All model outputs are subclasses of [BaseOutput](/docs/diffusers/v0.40.0/en/api/outputs#diffusers.utils.BaseOutput), data structures containing all the information returned by the model. The outputs can also be used as tuples or dictionaries.
+All model outputs are subclasses of [BaseOutput](/docs/diffusers/v0.41.0/en/api/outputs#diffusers.utils.BaseOutput), data structures containing all the information returned by the model. The outputs can also be used as tuples or dictionaries.
 
 For example:
 
@@ -11,7 +11,7 @@ pipeline = DDIMPipeline.from_pretrained("google/ddpm-cifar10-32")
 outputs = pipeline()
 ```
 
-The `outputs` object is a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) which means it has an image attribute.
+The `outputs` object is a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) which means it has an image attribute.
 
 You can access each attribute as you normally would or with a keyword lookup, and if that attribute is not returned by the model, you will get `None`:
 
@@ -34,13 +34,13 @@ outputs[:1]
 
 #### diffusers.utils.BaseOutput[[diffusers.utils.BaseOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/outputs.py#L40)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/outputs.py#L40)
 
 Base class for all model outputs as dataclass. Has a `__getitem__` that allows indexing by integer or slice (like a
 tuple) or strings (like a dictionary) that will ignore the `None` attributes. Otherwise behaves like a regular
 Python dictionary.
 
-> [!WARNING] > You can't unpack a `BaseOutput` directly. Use the [to_tuple()](/docs/diffusers/v0.40.0/en/api/outputs#diffusers.utils.BaseOutput.to_tuple) method to convert
+> [!WARNING] > You can't unpack a `BaseOutput` directly. Use the [to_tuple()](/docs/diffusers/v0.41.0/en/api/outputs#diffusers.utils.BaseOutput.to_tuple) method to convert
 it to a tuple > first.
 
 #### to_tuple[[diffusers.utils.BaseOutput.to_tuple]]
@@ -49,7 +49,7 @@ it to a tuple > first.
 to_tuple()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/outputs.py#L130)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/outputs.py#L130)
 
 Convert self to a tuple containing all the attributes/keys that are not `None`.
 
@@ -61,7 +61,7 @@ Convert self to a tuple containing all the attributes/keys that are not `None`.
 diffusers.ImagePipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L135)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L135)
 
 **Parameters:**
 
@@ -77,7 +77,7 @@ Output class for image pipelines.
 diffusers.AudioPipelineOutput(audios: ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L149)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L149)
 
 **Parameters:**
 
@@ -93,7 +93,7 @@ Output class for audio pipelines.
 diffusers.ImageTextPipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray | None, text: list[str] | list[list[str]] | None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/deprecated/unidiffuser/pipeline_unidiffuser.py#L48)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/deprecated/unidiffuser/pipeline_unidiffuser.py#L48)
 
 **Parameters:**
 
@@ -104,4 +104,4 @@ text (`list[str]` or `list[list[str]]`) : list of generated text strings of leng
 Output class for joint image-text pipelines.
 
 ### Logging
-https://huggingface.co/docs/diffusers/v0.40.0/api/logging.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/logging.md

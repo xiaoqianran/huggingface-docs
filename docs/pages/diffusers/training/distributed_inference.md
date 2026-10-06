@@ -14,9 +14,9 @@ Install Accelerate with the following command.
 uv pip install accelerate
 ```
 
-Initialize a [accelerate.PartialState](https://huggingface.co/docs/accelerate/v1.14.0/en/package_reference/state#accelerate.PartialState) class in a Python file to create a distributed environment. The [accelerate.PartialState](https://huggingface.co/docs/accelerate/v1.14.0/en/package_reference/state#accelerate.PartialState) class manages process management, device control and distribution, and process coordination.
+Initialize a [accelerate.PartialState](https://huggingface.co/docs/accelerate/v1.15.0/en/package_reference/state#accelerate.PartialState) class in a Python file to create a distributed environment. The [accelerate.PartialState](https://huggingface.co/docs/accelerate/v1.15.0/en/package_reference/state#accelerate.PartialState) class manages process management, device control and distribution, and process coordination.
 
-Move the [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) to `accelerate.PartialState.device` to assign a GPU to each process.
+Move the [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) to `accelerate.PartialState.device` to assign a GPU to each process.
 
 ```py
 import torch
@@ -30,7 +30,7 @@ distributed_state = PartialState()
 pipeline.to(distributed_state.device)
 ```
 
-Use the [split_between_processes](https://huggingface.co/docs/accelerate/v1.14.0/en/package_reference/state#accelerate.PartialState.split_between_processes) utility as a context manager to automatically distribute the prompts between the number of processes.
+Use the [split_between_processes](https://huggingface.co/docs/accelerate/v1.15.0/en/package_reference/state#accelerate.PartialState.split_between_processes) utility as a context manager to automatically distribute the prompts between the number of processes.
 
 ```py
 with distributed_state.split_between_processes(["a dog", "a cat"]) as prompt:
@@ -202,7 +202,7 @@ import torch
 from diffusers import AutoencoderKL
 from diffusers.image_processor import VaeImageProcessor
 
-vae = AutoencoderKL.from_pretrained(ckpt_id, subfolder="vae", dtype=torch.bfloat16).to("cuda")
+vae = AutoencoderKL.from_pretrained(ckpt_id, subfolder="vae", dtype=torch.bfloat16).to("cuda")  # or "mps", "xpu", "cpu"
 vae_scale_factor = 2 ** (len(vae.config.block_out_channels) - 1)
 image_processor = VaeImageProcessor(vae_scale_factor=vae_scale_factor)
 
@@ -222,7 +222,7 @@ By selectively loading and unloading the models you need at a given stage and sh
 
 [Context parallelism](https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=context_parallelism) splits input sequences across multiple GPUs to reduce memory usage. Each GPU processes its own slice of the sequence.
 
-Use [set_attention_backend()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.set_attention_backend) to switch to a more optimized attention backend. Refer to this [table](../optimization/attention_backends#available-backends) for a complete list of available backends.
+Use [set_attention_backend()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.set_attention_backend) to switch to a more optimized attention backend. Refer to this [table](../optimization/attention_backends#available-backends) for a complete list of available backends.
 
 Most attention backends are compatible with context parallelism. Open an [issue](https://github.com/huggingface/diffusers/issues/new) if a backend is not compatible.
 
@@ -230,7 +230,7 @@ Most attention backends are compatible with context parallelism. Open an [issue]
 
 Key (K) and value (V) representations communicate between devices using [Ring Attention](https://huggingface.co/papers/2310.01889). This ensures each split sees every other token's K/V. Each GPU computes attention for its local K/V and passes it to the next GPU in the ring. No single GPU holds the full sequence, which reduces communication latency.
 
-Pass a [ContextParallelConfig](/docs/diffusers/v0.40.0/en/api/parallel#diffusers.ContextParallelConfig) to the `parallel_config` argument of the transformer model. The config supports the `ring_degree` argument that determines how many devices to use for Ring Attention.
+Pass a [ContextParallelConfig](/docs/diffusers/v0.41.0/en/api/parallel#diffusers.ContextParallelConfig) to the `parallel_config` argument of the transformer model. The config supports the `ring_degree` argument that determines how many devices to use for Ring Attention.
 
 ```py
 import torch
@@ -291,9 +291,9 @@ torchrun --nproc-per-node 2 above_script.py
 
 [Ulysses Attention](https://huggingface.co/papers/2309.14509) splits a sequence across GPUs and performs an *all-to-all* communication (every device sends/receives data to every other device). Each GPU ends up with all tokens for only a subset of attention heads. Each GPU computes attention locally on all tokens for its head, then performs another all-to-all to regroup results by tokens for the next layer.
 
-[ContextParallelConfig](/docs/diffusers/v0.40.0/en/api/parallel#diffusers.ContextParallelConfig) supports Ulysses Attention through the `ulysses_degree` argument. This determines how many devices to use for Ulysses Attention.
+[ContextParallelConfig](/docs/diffusers/v0.41.0/en/api/parallel#diffusers.ContextParallelConfig) supports Ulysses Attention through the `ulysses_degree` argument. This determines how many devices to use for Ulysses Attention.
 
-Pass the [ContextParallelConfig](/docs/diffusers/v0.40.0/en/api/parallel#diffusers.ContextParallelConfig) to `enable_parallelism()`.
+Pass the [ContextParallelConfig](/docs/diffusers/v0.41.0/en/api/parallel#diffusers.ContextParallelConfig) to `enable_parallelism()`.
 
 ```py
 # Depending on the number of GPUs available.
@@ -309,8 +309,8 @@ This hybrid approach leverages the strengths of both methods:
 - **Ring Attention** handles very long sequences with minimal memory overhead
 - Together, they enable 2D parallelization across both heads and sequence dimensions
 
-[ContextParallelConfig](/docs/diffusers/v0.40.0/en/api/parallel#diffusers.ContextParallelConfig) supports Unified Attention by specifying both `ulysses_degree` and `ring_degree`. The total number of devices used is `ulysses_degree * ring_degree`, arranged in a 2D grid where Ulysses and Ring groups are orthogonal (non-overlapping).
-Pass the [ContextParallelConfig](/docs/diffusers/v0.40.0/en/api/parallel#diffusers.ContextParallelConfig) with both `ulysses_degree` and `ring_degree` set to bigger than 1 to `enable_parallelism()`.
+[ContextParallelConfig](/docs/diffusers/v0.41.0/en/api/parallel#diffusers.ContextParallelConfig) supports Unified Attention by specifying both `ulysses_degree` and `ring_degree`. The total number of devices used is `ulysses_degree * ring_degree`, arranged in a 2D grid where Ulysses and Ring groups are orthogonal (non-overlapping).
+Pass the [ContextParallelConfig](/docs/diffusers/v0.41.0/en/api/parallel#diffusers.ContextParallelConfig) with both `ulysses_degree` and `ring_degree` set to bigger than 1 to `enable_parallelism()`.
 
 ```py
 pipeline.transformer.enable_parallelism(config=ContextParallelConfig(ulysses_degree=2, ring_degree=2))
@@ -333,7 +333,7 @@ From the above table, it's clear that Ulysses provides better throughput, but th
 
 The default Ulysses Attention mechanism requires that the sequence length of hidden states must be divisible by the number of devices. This imposes significant limitations on the practical application of Ulysses Attention. [Ulysses Anything Attention](https://github.com/huggingface/diffusers/pull/12996) is a variant of Ulysses Attention that supports arbitrary sequence lengths and arbitrary numbers of attention heads, thereby enhancing the versatility of Ulysses Attention in practical use.
 
-[ContextParallelConfig](/docs/diffusers/v0.40.0/en/api/parallel#diffusers.ContextParallelConfig) supports Ulysses Anything Attention by specifying both `ulysses_degree` and `ulysses_anything`. Please note that Ulysses Anything Attention is not currently supported by Unified Attention. Pass the [ContextParallelConfig](/docs/diffusers/v0.40.0/en/api/parallel#diffusers.ContextParallelConfig) with both `ulysses_degree` set to bigger than 1 and `ulysses_anything=True` to `enable_parallelism()`.
+[ContextParallelConfig](/docs/diffusers/v0.41.0/en/api/parallel#diffusers.ContextParallelConfig) supports Ulysses Anything Attention by specifying both `ulysses_degree` and `ulysses_anything`. Please note that Ulysses Anything Attention is not currently supported by Unified Attention. Pass the [ContextParallelConfig](/docs/diffusers/v0.41.0/en/api/parallel#diffusers.ContextParallelConfig) with both `ulysses_degree` set to bigger than 1 and `ulysses_anything=True` to `enable_parallelism()`.
 
 ```py
 pipeline.transformer.enable_parallelism(config=ContextParallelConfig(ulysses_degree=2, ulysses_anything=True))
@@ -420,43 +420,49 @@ pipeline = DiffusionPipeline.from_pretrained(
 
 [Tensor parallelism](https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=tensor_parallelism) shards the weight matrices of a model across devices. Each device holds a column-wise (`"colwise"`) or row-wise (`"rowwise"`) slice of each layer, computes a partial result, and an `AllReduce`/`AllGather` at the layer boundary reconstructs the full output. Unlike context parallelism, it reduces the per-device *weight* memory, which is useful for models that do not fit on a single device.
 
-Pass a [TensorParallelConfig](/docs/diffusers/v0.40.0/en/api/parallel#diffusers.TensorParallelConfig) to `enable_parallelism()`. `tp_degree` is the number of devices to shard across and must divide the model's number of attention heads. The model must define a `_tp_plan` (a flat mapping of module-name globs to a `"colwise"`/`"rowwise"` style).
+Pass a [TensorParallelConfig](/docs/diffusers/v0.41.0/en/api/parallel#diffusers.TensorParallelConfig) to the `parallel_config` argument of the model's [from_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained). `tp_degree` is the number of devices to shard across and must divide the model's number of attention heads. The model must define a `_tp_plan` (a flat mapping of module-name globs to a `"colwise"`/`"rowwise"` style).
+
+Loading this way shards the checkpoint *while reading it*: each rank reads only its own slice of each sharded weight and places it straight onto its own device. Nothing full-size is ever materialized, so per-rank memory falls as `tp_degree` rises.
+
+Compared to loading the full model and then calling `enable_parallelism()`, it loads faster and uses less CPU memory per rank, with the gap growing as `tp_degree` rises. Numbers below are for [black-forest-labs/FLUX.2-dev](https://huggingface.co/black-forest-labs/FLUX.2-dev) (transformer only, 32B params, bf16) on 4x A10G (23GB).
+
+| tp_degree | method | load time | peak CPU/rank |
+|---|---|---|---|
+| 4 | `from_pretrained(parallel_config=...)` | 12.5s | 6.8GB |
+| 4 | `from_pretrained` + `enable_parallelism` | 30.4s | 64.1GB |
 
 ```py
 import torch
 from torch import distributed as dist
-from diffusers import DiffusionPipeline, TensorParallelConfig
-
-def setup_distributed():
-    if not dist.is_initialized():
-        dist.init_process_group(backend="nccl")
-    rank = dist.get_rank()
-    device = torch.device(f"cuda:{rank}")
-    torch.cuda.set_device(device)
-    return device
+from diffusers import DiffusionPipeline, Flux2Transformer2DModel, TensorParallelConfig
 
 def main():
-    device = setup_distributed()
-    world_size = dist.get_world_size()
+    dist.init_process_group(backend="nccl")
+    rank, world_size = dist.get_rank(), dist.get_world_size()
+    device = torch.device(f"cuda:{rank}")
+    torch.cuda.set_device(device)
+
+    # Each rank reads only its own shard of every planned weight, straight onto `cuda:rank`.
+    transformer = Flux2Transformer2DModel.from_pretrained(
+        "black-forest-labs/FLUX.2-dev",
+        subfolder="transformer",
+        torch_dtype=torch.bfloat16,
+        parallel_config=TensorParallelConfig(tp_degree=world_size),
+    )
 
     pipeline = DiffusionPipeline.from_pretrained(
-        "black-forest-labs/FLUX.2-dev", torch_dtype=torch.bfloat16
-    )  # weights stay on CPU
-
-    # Shard the transformer first, then move only each rank's slice onto the accelerator.
-    pipeline.transformer.enable_parallelism(config=TensorParallelConfig(tp_degree=world_size))
-    pipeline.transformer.to(device)
-
-    # Move the remaining, non-sharded components onto the accelerator individually.
+        "black-forest-labs/FLUX.2-dev", transformer=transformer, torch_dtype=torch.bfloat16
+    )
+    # The transformer is already on its device; move the remaining components individually. Do not call
+    # `pipeline.to(device)` — that would move every rank's shards onto the same device.
     pipeline.text_encoder.to(device)
     pipeline.vae.to(device)
 
     generator = torch.Generator().manual_seed(42)
     image = pipeline(prompt="a cat holding a sign that says hello", generator=generator).images[0]
-    if dist.get_rank() == 0:
+    if rank == 0:
         image.save("output.png")
-    if dist.is_initialized():
-        dist.destroy_process_group()
+    dist.destroy_process_group()
 
 if __name__ == "__main__":
     main()
@@ -467,6 +473,15 @@ torchrun --nproc-per-node 4 tensor_parallel_flux.py
 ```
 
 `tp_degree` is taken from `world_size` above, so `--nproc-per-node 4` shards the transformer across 4 devices.
+
+> [!CAUTION]
+> Loading with a tensor-parallel `parallel_config` isn't supported yet with `device_map`, `quantization_config`, `low_cpu_mem_usage=False`, `use_flashpack=True`, or non-safetensors weights; each raises rather than quietly falling back to loading the full checkpoint.
+>
+> Combining tensor parallelism with quantization, offloading, or LoRA adapters isn't supported yet either, so those raise however the model is sharded.
+>
+> To shard a model that is already in memory, call `enable_parallelism()` with the same config instead — that loads everything first and reshards it, so it costs full checkpoint memory on every rank.
+
+Saving a tensor-parallel model isn't supported yet, and [save_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained) raises on one. Save the model before sharding it.
 
 ### Writing a tensor parallelism plan
 
@@ -520,13 +535,15 @@ Anything absent from the plan stays replicated on every rank, which is the right
 
 #### Constraints and verification
 
-- `tp_degree` must divide `config.num_attention_heads`. This is validated in `enable_parallelism()`.
+- `tp_degree` must divide `config.num_attention_heads`.
 - Every packed block must *individually* be divisible by `tp_degree`, not just their sum.
+
+Both are validated by [from_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained) and `enable_parallelism()` before any weight is loaded or sharded.
 
 Validate a new plan numerically rather than by eye: generate with a fixed seed on a single device, then again under tensor parallelism, and compare the outputs. A misplaced `"colwise"`/`"rowwise"` usually still runs and produces a plausible but wrong image.
 
 > [!TIP]
-> Start from an existing plan for a similar architecture. [QwenImageTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/qwenimage_transformer2d#diffusers.QwenImageTransformer2DModel) is fully unfused and every entry is plain `"colwise"`/`"rowwise"`, [FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel) adds a single packed row-wise projection, and [Flux2Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux2_transformer#diffusers.Flux2Transformer2DModel) covers both packed styles — see [`transformer_qwenimage.py`](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/transformers/transformer_qwenimage.py), [`transformer_flux.py`](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/transformers/transformer_flux.py), and [`transformer_flux2.py`](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/transformers/transformer_flux2.py) respectively.
+> Start from an existing plan for a similar architecture. [QwenImageTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/qwenimage_transformer2d#diffusers.QwenImageTransformer2DModel) is fully unfused and every entry is plain `"colwise"`/`"rowwise"`, [FluxTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel) adds a single packed row-wise projection, and [Flux2Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/flux2_transformer#diffusers.Flux2Transformer2DModel) covers both packed styles — see [`transformer_qwenimage.py`](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/transformers/transformer_qwenimage.py), [`transformer_flux.py`](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/transformers/transformer_flux.py), and [`transformer_flux2.py`](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/transformers/transformer_flux2.py) respectively.
 
 ## Choosing a strategy
 
@@ -535,7 +552,7 @@ The strategies above solve different problems, and the useful question is not wh
 | Strategy | Splits | Reduces | Latency for one prompt | Best when |
 |---|---|---|---|---|
 | [Accelerate](#accelerate) / [DDP](#pytorch-distributed) | prompts across replicas | nothing — each device holds a full copy | unchanged | the model already fits and you have many prompts |
-| [`device_map`](#device_map) | components across devices | weight memory | slightly worse | the model doesn't fit and the interconnect is slow |
+| [`device_map`](#devicemap) | components across devices | weight memory | slightly worse | the model doesn't fit and the interconnect is slow |
 | [Context parallelism](#context-parallelism) | the input sequence | activation memory | lower | sequences are long — high resolution or video |
 | [Tensor parallelism](#tensor-parallelism) | weight matrices | weight memory | lower | one component's weights don't fit and the interconnect is fast |
 
@@ -544,7 +561,7 @@ Some practical guidance:
 - **Throughput on many prompts, model already fits.** Use data parallelism. It is the only strategy here that scales throughput linearly without touching the model, and it leaves single-prompt latency alone.
 - **A single component's weights don't fit.** Reach for tensor parallelism first, since it lowers both memory and latency. It communicates at every block boundary, so it wants a fast interconnect like NVLink; over PCIe that per-layer traffic can outweigh the compute it saves, and `device_map` becomes the better choice. `device_map` also handles the case where the components are individually fine but collectively too large.
 - **Activations, not weights, are the problem.** This is the long-sequence regime — large images, many frames — and context parallelism is the direct answer. Pick a backend from the [Ulysses/Ring benchmarks](#ulysses-attention) above.
-- **Both weights and sequence are too large.** Combine tensor and context parallelism. [TensorParallelConfig](/docs/diffusers/v0.40.0/en/api/parallel#diffusers.TensorParallelConfig) accepts a `mesh` argument so both can share one device mesh. This combination is not yet validated, so treat it as experimental.
+- **Both weights and sequence are too large.** Combine tensor and context parallelism. [TensorParallelConfig](/docs/diffusers/v0.41.0/en/api/parallel#diffusers.TensorParallelConfig) accepts a `mesh` argument so both can share one device mesh. This combination is not yet validated, so treat it as experimental.
 
 ### Kandinsky 2.2
-https://huggingface.co/docs/diffusers/v0.40.0/training/kandinsky.md
+https://huggingface.co/docs/diffusers/v0.41.0/training/kandinsky.md

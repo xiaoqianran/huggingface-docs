@@ -4,7 +4,7 @@ DiffusionGemma is a block-diffusion encoder-decoder language model. A causal enc
 previously generated blocks) into a KV cache, and a bidirectional decoder denoises a fixed-size "canvas" of
 `canvas_length` tokens by cross-attending to that cache. Generation alternates an outer autoregressive loop over
 canvases with an inner denoising loop, where each step samples candidate tokens, commits the most confident ones via
-[BlockRefinementScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/block_refinement#diffusers.BlockRefinementScheduler) in uniform corruption mode, and renoises the rest. The model itself lives in
+[BlockRefinementScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/block_refinement#diffusers.BlockRefinementScheduler) in uniform corruption mode, and renoises the rest. The model itself lives in
 `transformers` as `DiffusionGemmaForBlockDiffusion`; the released checkpoint is
 [`google/diffusiongemma-26B-A4B-it`](https://huggingface.co/google/diffusiongemma-26B-A4B-it).
 
@@ -64,11 +64,11 @@ the model's image inputs automatically.
 The scheduler is the sampler that denoises each canvas, and it is interchangeable: swap it to change the sampling
 strategy without touching anything else. Three schedulers are available:
 
-- [BlockRefinementScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/block_refinement#diffusers.BlockRefinementScheduler) (default): commits the most confident tokens each step (above `threshold`, plus an even
+- [BlockRefinementScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/block_refinement#diffusers.BlockRefinementScheduler) (default): commits the most confident tokens each step (above `threshold`, plus an even
   per-step quota) and renoises the rest. `editing_threshold` additionally lets it re-edit already committed tokens.
-- [DiscreteDDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/discrete_ddim#diffusers.DiscreteDDIMScheduler): samples each position from the exact discrete posterior of the uniform corruption process
+- [DiscreteDDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/discrete_ddim#diffusers.DiscreteDDIMScheduler): samples each position from the exact discrete posterior of the uniform corruption process
   (D3PM). It is parameter free, and the final step deterministically commits the predicted tokens.
-- [EntropyBoundScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/entropy_bound#diffusers.EntropyBoundScheduler): commits the lowest-entropy positions whose joint entropy stays under `entropy_bound`, so
+- [EntropyBoundScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/entropy_bound#diffusers.EntropyBoundScheduler): commits the lowest-entropy positions whose joint entropy stays under `entropy_bound`, so
   roughly independent tokens are accepted together. It anneals its sampling temperature from `t_max` (`0.8`) on the
   first step down to `t_min` (`0.4`) on the last, matching the released checkpoint's sampler.
 
@@ -170,15 +170,15 @@ out = pipe(
 diffusers.DiffusionGemmaPipeline(model: Any, scheduler: BlockRefinementScheduler | DiscreteDDIMScheduler | EntropyBoundScheduler, processor: Any)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/diffusion_gemma/pipeline_diffusion_gemma.py#L53)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/diffusion_gemma/pipeline_diffusion_gemma.py#L53)
 
 **Parameters:**
 
-model ([DiffusionGemmaForBlockDiffusion](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaForBlockDiffusion)) : The block-diffusion denoiser (causal encoder + bidirectional decoder with tied weights).
+model ([DiffusionGemmaForBlockDiffusion](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaForBlockDiffusion)) : The block-diffusion denoiser (causal encoder + bidirectional decoder with tied weights).
 
-scheduler ([BlockRefinementScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/block_refinement#diffusers.BlockRefinementScheduler), [DiscreteDDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/discrete_ddim#diffusers.DiscreteDDIMScheduler) or [EntropyBoundScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/entropy_bound#diffusers.EntropyBoundScheduler)) : The sampler that commits and renoises canvas tokens each denoising step.
+scheduler ([BlockRefinementScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/block_refinement#diffusers.BlockRefinementScheduler), [DiscreteDDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/discrete_ddim#diffusers.DiscreteDDIMScheduler) or [EntropyBoundScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/entropy_bound#diffusers.EntropyBoundScheduler)) : The sampler that commits and renoises canvas tokens each denoising step.
 
-processor ([ProcessorMixin](https://huggingface.co/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessorMixin)) : The processor used to apply the chat template and decode the generated tokens.
+processor ([ProcessorMixin](https://huggingface.co/docs/transformers/v5.18.0/en/main_classes/processors#transformers.ProcessorMixin)) : The processor used to apply the chat template and decode the generated tokens.
 
 Pipeline for DiffusionGemma block-diffusion text generation.
 
@@ -186,7 +186,7 @@ DiffusionGemma is a block-diffusion encoder-decoder model: a causal encoder read
 previously generated blocks) into a KV cache, and a bidirectional decoder denoises a fixed-size "canvas" of
 `canvas_length` tokens by cross-attending to that cache. Generation alternates an outer autoregressive loop over
 canvases with an inner denoising loop, where each step samples candidate tokens, commits the most confident ones
-via [BlockRefinementScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/block_refinement#diffusers.BlockRefinementScheduler) (uniform corruption mode, `mask_token_id=None`), and renoises the rest.
+via [BlockRefinementScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/block_refinement#diffusers.BlockRefinementScheduler) (uniform corruption mode, `mask_token_id=None`), and renoises the rest.
 
 The model is expected to be a `DiffusionGemmaForBlockDiffusion` instance exposing `forward(input_ids,
 decoder_input_ids=..., self_conditioning_logits=..., ...)` and returning logits of shape `[batch, canvas_length,
@@ -198,7 +198,7 @@ vocab_size]` over the canvas. See the model card at https://huggingface.co/googl
 __call__(prompt: str | list[str] | None = None, messages: list[dict] | None = None, image: Any | list[Any] | None = None, add_generation_prompt: bool = True, gen_length: int = 256, num_inference_steps: int = 48, temperature: float = 0.0, cache_implementation: str | None = None, eos_early_stop: bool = True, eos_token_id: int | None = None, stability_threshold: int = 1, confidence_threshold: float | None = 0.005, generator: torch.Generator | None = None, output_type: str = 'text', return_dict: bool = True, callback_on_step_end: Callable[[Any, int, int, dict], dict] | PipelineCallback | MultiPipelineCallbacks | None = None, callback_on_step_end_tensor_inputs: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/diffusion_gemma/pipeline_diffusion_gemma.py#L163)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/diffusion_gemma/pipeline_diffusion_gemma.py#L163)
 
 **Parameters:**
 
@@ -230,13 +230,13 @@ generator (`torch.Generator`, *optional*) : RNG for sampling.
 
 output_type (`str`, defaults to `"text"`) : `"text"` decodes sequences into strings (requires a processor); `"seq"` returns token IDs only.
 
-return_dict (`bool`, defaults to `True`) : Whether to return a [DiffusionGemmaPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/diffusion_gemma#diffusers.DiffusionGemmaPipelineOutput) instead of a tuple.
+return_dict (`bool`, defaults to `True`) : Whether to return a [DiffusionGemmaPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/diffusion_gemma#diffusers.DiffusionGemmaPipelineOutput) instead of a tuple.
 
 callback_on_step_end (`Callable` or `PipelineCallback`, *optional*) : Callback run after each denoising step with signature `callback_on_step_end(self, step, timestep, callback_kwargs)`. Allowed tensor keys: `canvas`, `logits`.
 
 callback_on_step_end_tensor_inputs (`List[str]`, *optional*) : Tensor keys to pass to the callback.
 
-**Returns:** [DiffusionGemmaPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/diffusion_gemma#diffusers.DiffusionGemmaPipelineOutput) or `tuple`
+**Returns:** [DiffusionGemmaPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/diffusion_gemma#diffusers.DiffusionGemmaPipelineOutput) or `tuple`
 
 The generated token IDs (`sequences`) and, for `output_type="text"`, the decoded `texts`.
 
@@ -266,7 +266,7 @@ Examples:
 diffusers.DiffusionGemmaPipelineOutput(sequences: torch.LongTensor, texts: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/diffusion_gemma/pipeline_output.py#L25)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/diffusion_gemma/pipeline_output.py#L25)
 
 **Parameters:**
 
@@ -277,4 +277,4 @@ texts (`list[str]`, *optional*) : The decoded text, one string per sequence. Onl
 Output class for DiffusionGemma block-diffusion generation.
 
 ### Flux
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/flux.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/flux.md

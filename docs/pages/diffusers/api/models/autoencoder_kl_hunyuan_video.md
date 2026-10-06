@@ -18,12 +18,12 @@ vae = AutoencoderKLHunyuanVideo.from_pretrained("hunyuanvideo-community/HunyuanV
 diffusers.AutoencoderKLHunyuanVideo(in_channels: int = 3, out_channels: int = 3, latent_channels: int = 16, down_block_types: tuple = ('HunyuanVideoDownBlock3D', 'HunyuanVideoDownBlock3D', 'HunyuanVideoDownBlock3D', 'HunyuanVideoDownBlock3D'), up_block_types: tuple = ('HunyuanVideoUpBlock3D', 'HunyuanVideoUpBlock3D', 'HunyuanVideoUpBlock3D', 'HunyuanVideoUpBlock3D'), block_out_channels: tuple = (128, 256, 512, 512), layers_per_block: int = 2, act_fn: str = 'silu', norm_num_groups: int = 32, scaling_factor: float = 0.476986, spatial_compression_ratio: int = 8, temporal_compression_ratio: int = 4, mid_block_add_attention: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_hunyuan_video.py#L625)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_hunyuan_video.py#L625)
 
 A VAE model with KL loss for encoding videos into latents and decoding latent representations into videos.
 Introduced in [HunyuanVideo](https://huggingface.co/papers/2412.03603).
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
+This model inherits from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
 for all models (such as downloading or saving).
 
 #### decode[[diffusers.AutoencoderKLHunyuanVideo.decode]]
@@ -32,7 +32,7 @@ for all models (such as downloading or saving).
 decode(z: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_hunyuan_video.py#L825)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_hunyuan_video.py#L825)
 
 **Parameters:**
 
@@ -53,7 +53,7 @@ Decode a batch of images.
 enable_tiling(tile_sample_min_height: int | None = None, tile_sample_min_width: int | None = None, tile_sample_min_num_frames: int | None = None, tile_sample_stride_height: float | None = None, tile_sample_stride_width: float | None = None, tile_sample_stride_num_frames: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_hunyuan_video.py#L724)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_hunyuan_video.py#L724)
 
 **Parameters:**
 
@@ -79,7 +79,7 @@ processing larger images.
 encode(x: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_hunyuan_video.py#L777)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_hunyuan_video.py#L777)
 
 **Parameters:**
 
@@ -100,7 +100,7 @@ Encode a batch of images into latents.
 forward(sample: Tensor, sample_posterior: bool = False, return_dict: bool = True, generator: typing.Optional[torch.Generator] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_hunyuan_video.py#L1050)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_hunyuan_video.py#L1050)
 
 **Parameters:**
 
@@ -123,7 +123,7 @@ returned.
 tiled_decode(z: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_hunyuan_video.py#L925)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_hunyuan_video.py#L925)
 
 **Parameters:**
 
@@ -144,7 +144,7 @@ Decode a batch of images using a tiled decoder.
 tiled_encode(x: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_hunyuan_video.py#L875)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_hunyuan_video.py#L875)
 
 **Parameters:**
 
@@ -164,7 +164,7 @@ Encode a batch of images using a tiled encoder.
 diffusers.models.autoencoders.vae.DecoderOutput(sample: Tensor, commit_loss: typing.Optional[torch.FloatTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/vae.py#L46)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/vae.py#L49)
 
 **Parameters:**
 
@@ -173,4 +173,4 @@ sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) : T
 Output of decoding method.
 
 ### GlmImageTransformer2DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/glm_image_transformer2d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/glm_image_transformer2d.md

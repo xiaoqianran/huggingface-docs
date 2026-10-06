@@ -10,7 +10,7 @@ Guiders are components in Modular Diffusers that control how the diffusion proce
 diffusers.BaseGuidance(start: float = 0.0, stop: float = 1.0, enabled: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/guiders/guider_utils.py#L38)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/guiders/guider_utils.py#L38)
 
 Base class providing the skeleton for implementing guidance techniques.
 
@@ -20,7 +20,7 @@ Base class providing the skeleton for implementing guidance techniques.
 cleanup_models(denoiser: torch.nn.Module)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/guiders/guider_utils.py#L160)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/guiders/guider_utils.py#L160)
 
 Cleans up the models for the guidance technique after a given batch of data. This method should be overridden
 in subclasses to implement specific model cleanup logic. It is useful for removing any hooks or other stateful
@@ -32,11 +32,11 @@ modifications made during `prepare_models`.
 from_pretrained(pretrained_model_name_or_path: str | os.PathLike | None = None, subfolder: str | None = None, return_unused_kwargs = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/guiders/guider_utils.py#L289)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/guiders/guider_utils.py#L289)
 
 **Parameters:**
 
-pretrained_model_name_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *model id* (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a *directory* (for example `./my_model_directory`) containing the guider configuration saved with [save_pretrained()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/guiders#diffusers.BaseGuidance.save_pretrained).
+pretrained_model_name_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *model id* (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a *directory* (for example `./my_model_directory`) containing the guider configuration saved with [save_pretrained()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/guiders#diffusers.BaseGuidance.save_pretrained).
 
 subfolder (`str`, *optional*) : The subfolder location of a model file within a larger model repository on the Hub or locally.
 
@@ -69,7 +69,7 @@ firewalled environment.
 get_state()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/guiders/guider_utils.py#L106)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/guiders/guider_utils.py#L106)
 
 Returns the current state of the guidance technique as a dictionary. The state variables will be included in
 the __repr__ method. Returns:
@@ -87,7 +87,7 @@ the __repr__ method. Returns:
 new(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/guiders/guider_utils.py#L69)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/guiders/guider_utils.py#L69)
 
 **Parameters:**
 
@@ -117,7 +117,7 @@ new_guider = guider.new(guidance_scale=5)
 prepare_models(denoiser: torch.nn.Module)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/guiders/guider_utils.py#L153)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/guiders/guider_utils.py#L153)
 
 Prepares the models for the guidance technique on a given batch of data. This method should be overridden in
 subclasses to implement specific model preparation logic.
@@ -128,7 +128,7 @@ subclasses to implement specific model preparation logic.
 save_pretrained(save_directory: str | os.PathLike, push_to_hub: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/guiders/guider_utils.py#L350)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/guiders/guider_utils.py#L350)
 
 **Parameters:**
 
@@ -136,10 +136,10 @@ save_directory (`str` or `os.PathLike`) : Directory where the configuration JSON
 
 push_to_hub (`bool`, *optional*, defaults to `False`) : Whether or not to push your model to the Hugging Face Hub after saving it. You can specify the repository you want to push to with `repo_id` (will default to the name of `save_directory` in your namespace).
 
-kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments passed along to the [push_to_hub()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method.
+kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments passed along to the [push_to_hub()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method.
 
 Save a guider configuration object to a directory so that it can be reloaded using the
-[from_pretrained()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/guiders#diffusers.BaseGuidance.from_pretrained) class method.
+[from_pretrained()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/guiders#diffusers.BaseGuidance.from_pretrained) class method.
 
 ## ClassifierFreeGuidance[[diffusers.ClassifierFreeGuidance]]
 
@@ -149,7 +149,7 @@ Save a guider configuration object to a directory so that it can be reloaded usi
 diffusers.ClassifierFreeGuidance(guidance_scale: float = 7.5, guidance_rescale: float = 0.0, use_original_formulation: bool = False, start: float = 0.0, stop: float = 1.0, enabled: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/guiders/classifier_free_guidance.py#L30)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/guiders/classifier_free_guidance.py#L30)
 
 **Parameters:**
 
@@ -200,7 +200,7 @@ Use `use_original_formulation=True` to switch to the original formulation.
 diffusers.ClassifierFreeZeroStarGuidance(guidance_scale: float = 7.5, zero_init_steps: int = 1, guidance_rescale: float = 0.0, use_original_formulation: bool = False, start: float = 0.0, stop: float = 1.0, enabled: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/guiders/classifier_free_zero_star_guidance.py#L30)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/guiders/classifier_free_zero_star_guidance.py#L30)
 
 **Parameters:**
 
@@ -233,7 +233,7 @@ The authors of the paper suggest setting zero initialization in the first 4% of 
 diffusers.SkipLayerGuidance(guidance_scale: float = 7.5, skip_layer_guidance_scale: float = 2.8, skip_layer_guidance_start: float = 0.01, skip_layer_guidance_stop: float = 0.2, skip_layer_guidance_layers: int | list[int] | None = None, skip_layer_config: LayerSkipConfig | list[LayerSkipConfig] | dict[str, Any] = None, guidance_rescale: float = 0.0, use_original_formulation: bool = False, start: float = 0.0, stop: float = 1.0, enabled: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/guiders/skip_layer_guidance.py#L32)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/guiders/skip_layer_guidance.py#L32)
 
 **Parameters:**
 
@@ -288,7 +288,7 @@ defaulted to the recommendations by StabilityAI for Stable Diffusion 3.5 Medium.
 diffusers.SmoothedEnergyGuidance(guidance_scale: float = 7.5, seg_guidance_scale: float = 2.8, seg_blur_sigma: float = 9999999.0, seg_blur_threshold_inf: float = 9999.0, seg_guidance_start: float = 0.0, seg_guidance_stop: float = 1.0, seg_guidance_layers: int | list[int] | None = None, seg_guidance_config: SmoothedEnergyGuidanceConfig | list[SmoothedEnergyGuidanceConfig] = None, guidance_rescale: float = 0.0, use_original_formulation: bool = False, start: float = 0.0, stop: float = 1.0, enabled: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/guiders/smoothed_energy_guidance.py#L32)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/guiders/smoothed_energy_guidance.py#L32)
 
 **Parameters:**
 
@@ -332,7 +332,7 @@ future without warning or guarantee of reproducibility. This implementation assu
 diffusers.PerturbedAttentionGuidance(guidance_scale: float = 7.5, perturbed_guidance_scale: float = 2.8, perturbed_guidance_start: float = 0.01, perturbed_guidance_stop: float = 0.2, perturbed_guidance_layers: int | list[int] | None = None, perturbed_guidance_config: LayerSkipConfig | list[LayerSkipConfig] | dict[str, Any] = None, guidance_rescale: float = 0.0, use_original_formulation: bool = False, start: float = 0.0, stop: float = 1.0, enabled: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/guiders/perturbed_attention_guidance.py#L36)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/guiders/perturbed_attention_guidance.py#L36)
 
 **Parameters:**
 
@@ -378,7 +378,7 @@ and implementation details.
 diffusers.AdaptiveProjectedGuidance(guidance_scale: float = 7.5, adaptive_projected_guidance_momentum: float | None = None, adaptive_projected_guidance_rescale: float = 15.0, adaptive_projected_guidance_norm_dim: int | tuple[int, ...] | None = None, eta: float = 1.0, guidance_rescale: float = 0.0, use_original_formulation: bool = False, start: float = 0.0, stop: float = 1.0, enabled: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/guiders/adaptive_projected_guidance.py#L30)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/guiders/adaptive_projected_guidance.py#L30)
 
 **Parameters:**
 
@@ -408,7 +408,7 @@ Adaptive Projected Guidance (APG): https://huggingface.co/papers/2410.02416
 diffusers.AutoGuidance(guidance_scale: float = 7.5, auto_guidance_layers: int | list[int] | None = None, auto_guidance_config: LayerSkipConfig | list[LayerSkipConfig] | dict[str, Any] = None, dropout: float | None = None, guidance_rescale: float = 0.0, use_original_formulation: bool = False, start: float = 0.0, stop: float = 1.0, enabled: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/guiders/auto_guidance.py#L32)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/guiders/auto_guidance.py#L32)
 
 **Parameters:**
 
@@ -438,7 +438,7 @@ AutoGuidance: https://huggingface.co/papers/2406.02507
 diffusers.TangentialClassifierFreeGuidance(guidance_scale: float = 7.5, guidance_rescale: float = 0.0, use_original_formulation: bool = False, start: float = 0.0, stop: float = 1.0, enabled: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/guiders/tangential_classifier_free_guidance.py#L30)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/guiders/tangential_classifier_free_guidance.py#L30)
 
 **Parameters:**
 
@@ -454,5 +454,48 @@ stop (`float`, defaults to `1.0`) : The fraction of the total number of denoisin
 
 Tangential Classifier Free Guidance (TCFG): https://huggingface.co/papers/2503.18137
 
+## LTX2Guidance[[diffusers.LTX2Guidance]]
+
+#### diffusers.LTX2Guidance[[diffusers.LTX2Guidance]]
+
+```python
+diffusers.LTX2Guidance(guidance_scale: float = 1.0, stg_scale: float = 0.0, modality_scale: float = 1.0, guidance_rescale: float = 0.0, spatio_temporal_guidance_blocks: list[int] | None = None, start: float = 0.0, stop: float = 1.0, enabled: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/guiders/ltx2_guidance.py#L28)
+
+**Parameters:**
+
+guidance_scale (`float`, defaults to `1.0`) : CFG scale for this modality. The CFG pass is skipped entirely at `1.0`.
+
+stg_scale (`float`, defaults to `0.0`) : Spatio-temporal guidance scale for this modality. The STG pass is skipped entirely at `0.0`.
+
+modality_scale (`float`, defaults to `1.0`) : Modality-isolation guidance scale for this modality. That pass is skipped entirely at `1.0`.
+
+guidance_rescale (`float`, defaults to `0.0`) : Rescaling factor to prevent overexposure from high guidance scales. Based on [Common Diffusion Noise Schedules and Sample Steps are Flawed](https://huggingface.co/papers/2305.08891). Range: 0.0 (no rescaling) to 1.0 (full rescaling).
+
+spatio_temporal_guidance_blocks (`list[int]`, *optional*) : Transformer blocks to perturb on the STG pass. How the value is consumed is up to the denoiser block: LTX-2's perturbs whole blocks in a single forward that feeds every modality, so it reads this off the video guider alone — setting it on the audio guider has no effect, and that guider joins the same STG forward through its own `stg_scale`.
+
+start (`float`, defaults to `0.0`) : Fraction of denoising steps (0.0-1.0) after which guidance starts.
+
+stop (`float`, defaults to `1.0`) : Fraction of denoising steps (0.0-1.0) after which guidance stops.
+
+enabled (`bool`, defaults to `True`) : Whether this guider applies guidance at all. When `False`, only the conditional pass runs.
+
+Single-modality guider for LTX-2.X. Combines up to three terms via the delta formulation:
+- classifier-free guidance (CFG),
+- spatio-temporal guidance (STG), an extra pass with a set of transformer blocks perturbed,
+- modality-isolation guidance, an extra pass with A2V/V2A cross-attention disabled.
+
+One instance drives one modality, so a multimodal checkpoint carries several: LTX-2.X pairs a video `guider`
+with an `audio_guider`, each holding its own scales. The final guidance estimate is computed in whatever space
+the caller feeds it — the LTX-2 denoiser converts velocity->x0 before calling this and back afterwards, so
+`forward` operates on x0 predictions.
+
+Unlike `SkipLayerGuidance`, which applies its perturbations with hooks, `LTX2Guidance` expects its non-CFG
+perturbations to be configurable through model forward arguments (`spatio_temporal_guidance_blocks` and
+`isolate_modalities` in `LTX2VideoTransformer3DModel`). The calling denoiser block is responsible for setting
+those per pass identifier; see `LTX2LoopDenoiser` for a usage example.
+
 ### Pipeline blocks
-https://huggingface.co/docs/diffusers/v0.40.0/api/modular_diffusers/pipeline_blocks.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/modular_diffusers/pipeline_blocks.md

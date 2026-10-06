@@ -153,5 +153,5 @@ Indeed, the indexing for `/search` can be partial if the dataset is bigger than 
 Unlike `/first-rows`, there is currently no truncation in `/search`.
 The `truncated_cells` field is still there but is always empty.
 
-### Overview
-https://huggingface.co/docs/dataset-viewer/parquet_process.md
+### List splits and subsets
+https://huggingface.co/docs/dataset-viewer/splits.md

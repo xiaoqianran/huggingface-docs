@@ -10,7 +10,7 @@
 diffusers.HeliosDMDScheduler(num_train_timesteps: int = 1000, shift: float = 1.0, stages: int = 3, stage_range: list = [0, 0.3333333333333333, 0.6666666666666666, 1], gamma: float = 0.3333333333333333, prediction_type: str = 'flow_prediction', use_flow_sigmas: bool = True, use_dynamic_shifting: bool = False, time_shift_type: typing.Literal['exponential', 'linear'] = 'linear')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios_dmd.py#L35)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_helios_dmd.py#L35)
 
 #### init_sigmas[[diffusers.HeliosDMDScheduler.init_sigmas]]
 
@@ -18,7 +18,7 @@ diffusers.HeliosDMDScheduler(num_train_timesteps: int = 1000, shift: float = 1.0
 init_sigmas()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios_dmd.py#L69)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_helios_dmd.py#L69)
 
 initialize the global timesteps and sigmas
 
@@ -28,7 +28,7 @@ initialize the global timesteps and sigmas
 init_sigmas_for_each_stage()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios_dmd.py#L87)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_helios_dmd.py#L87)
 
 Init the timesteps for each stage
 
@@ -38,7 +38,7 @@ Init the timesteps for each stage
 set_begin_index(begin_index: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios_dmd.py#L161)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_helios_dmd.py#L161)
 
 **Parameters:**
 
@@ -52,7 +52,7 @@ Sets the begin index for the scheduler. This function should be run from pipelin
 set_timesteps(num_inference_steps: int, stage_index: int | None = None, device: typing.Union[str, torch.device] = None, sigmas: bool | None = None, mu: bool | None = None, is_amplify_first_chunk: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios_dmd.py#L174)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_helios_dmd.py#L174)
 
 Setting the timesteps and sigmas for each stage
 
@@ -62,7 +62,7 @@ Setting the timesteps and sigmas for each stage
 time_shift(mu: float, sigma: float, t: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios_dmd.py#L236)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_helios_dmd.py#L236)
 
 **Parameters:**
 
@@ -81,4 +81,4 @@ Apply time shifting to the sigmas.
 scheduling_helios_dmd
 
 ### DDIMScheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/ddim.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/ddim.md

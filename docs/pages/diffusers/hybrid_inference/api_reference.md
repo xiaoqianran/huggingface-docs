@@ -10,7 +10,7 @@ Remote inference provides access to an [Inference Endpoint](https://huggingface.
 diffusers.utils.remote_decode(endpoint: str, tensor: 'torch.Tensor', processor: 'VaeImageProcessor' | 'VideoProcessor' | None = None, do_scaling: bool = True, scaling_factor: float | None = None, shift_factor: float | None = None, output_type: Literal['mp4', 'pil', 'pt'] = 'pil', return_type: Literal['mp4', 'pil', 'pt'] = 'pil', image_format: Literal['png', 'jpg'] = 'jpg', partial_postprocess: bool = False, input_tensor_type: Literal['binary'] = 'binary', output_tensor_type: Literal['binary'] = 'binary', height: int | None = None, width: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/remote_utils.py#L190)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/remote_utils.py#L190)
 
 **Parameters:**
 
@@ -56,7 +56,7 @@ Hugging Face Hybrid Inference that allow running VAE decode remotely.
 diffusers.utils.remote_utils.remote_encode(endpoint: str, image: 'torch.Tensor' | Image.Image, scaling_factor: float | None = None, shift_factor: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/remote_utils.py#L382)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/remote_utils.py#L382)
 
 **Parameters:**
 
@@ -75,4 +75,4 @@ output (`torch.Tensor`).
 Hugging Face Hybrid Inference that allow running VAE encode remotely.
 
 ### Remote inference
-https://huggingface.co/docs/diffusers/v0.40.0/hybrid_inference/overview.md
+https://huggingface.co/docs/diffusers/v0.41.0/hybrid_inference/overview.md

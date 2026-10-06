@@ -26,13 +26,13 @@ The [official implementation](https://github.com/black-forest-labs/flux2/blob/5a
 diffusers.Flux2Pipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKLFlux2, text_encoder: Mistral3ForConditionalGeneration, tokenizer: AutoProcessor, transformer: Flux2Transformer2DModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux2/pipeline_flux2.py#L251)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/flux2/pipeline_flux2.py#L251)
 
 **Parameters:**
 
-transformer ([Flux2Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux2_transformer#diffusers.Flux2Transformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+transformer ([Flux2Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/flux2_transformer#diffusers.Flux2Transformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
 vae (`AutoencoderKLFlux2`) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
@@ -50,7 +50,7 @@ Reference: [https://bfl.ai/blog/flux-2](https://bfl.ai/blog/flux-2)
 __call__(image: PIL.Image.Image | list[PIL.Image.Image] | None = None, prompt: str | list[str] = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, sigmas: list[float] | None = None, guidance_scale: float | None = 4.0, num_images_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512, text_encoder_out_layers: tuple = (10, 20, 30), caption_upsample_temperature: float = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux2/pipeline_flux2.py#L745)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/flux2/pipeline_flux2.py#L746)
 
 **Parameters:**
 
@@ -122,13 +122,13 @@ Examples:
 diffusers.Flux2KleinPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKLFlux2, text_encoder: Qwen3ForCausalLM, tokenizer: Qwen2Tokenizer, transformer: Flux2Transformer2DModel, is_distilled: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux2/pipeline_flux2_klein.py#L155)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/flux2/pipeline_flux2_klein.py#L155)
 
 **Parameters:**
 
-transformer ([Flux2Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux2_transformer#diffusers.Flux2Transformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+transformer ([Flux2Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/flux2_transformer#diffusers.Flux2Transformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
 vae (`AutoencoderKLFlux2`) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
@@ -147,7 +147,7 @@ Reference:
 __call__(image: list[PIL.Image.Image] | PIL.Image.Image | None = None, prompt: str | list[str] = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, sigmas: list[float] | None = None, guidance_scale: float = 4.0, num_images_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: str | list[str] | None = None, output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int, dict], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512, text_encoder_out_layers: tuple = (9, 18, 27))
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux2/pipeline_flux2_klein.py#L612)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/flux2/pipeline_flux2_klein.py#L614)
 
 **Parameters:**
 
@@ -221,13 +221,13 @@ Examples:
 diffusers.Flux2KleinKVPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKLFlux2, text_encoder: Qwen3ForCausalLM, tokenizer: Qwen2Tokenizer, transformer: Flux2Transformer2DModel, is_distilled: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux2/pipeline_flux2_klein_kv.py#L155)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/flux2/pipeline_flux2_klein_kv.py#L155)
 
 **Parameters:**
 
-transformer ([Flux2Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux2_transformer#diffusers.Flux2Transformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+transformer ([Flux2Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/flux2_transformer#diffusers.Flux2Transformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
 vae (`AutoencoderKLFlux2`) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
@@ -250,7 +250,7 @@ Reference:
 __call__(image: list[PIL.Image.Image] | PIL.Image.Image | None = None, prompt: str | list[str] = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 4, sigmas: list[float] | None = None, num_images_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int, dict], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512, text_encoder_out_layers: tuple = (9, 18, 27))
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux2/pipeline_flux2_klein_kv.py#L609)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/flux2/pipeline_flux2_klein_kv.py#L610)
 
 **Parameters:**
 
@@ -310,4 +310,4 @@ Examples:
 ```
 
 ### Ernie-Image
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/ernie_image.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/ernie_image.md

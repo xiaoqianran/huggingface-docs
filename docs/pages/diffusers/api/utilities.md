@@ -10,7 +10,7 @@ Utility and helper functions for working with 🤗 Diffusers.
 diffusers.utils.numpy_to_pil(images)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/pil_utils.py#L35)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/pil_utils.py#L35)
 
 Convert a numpy image or a batch of images to a PIL image.
 
@@ -22,7 +22,7 @@ Convert a numpy image or a batch of images to a PIL image.
 diffusers.utils.pt_to_pil(images)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/pil_utils.py#L25)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/pil_utils.py#L25)
 
 Convert a torch image to a PIL image.
 
@@ -34,7 +34,7 @@ Convert a torch image to a PIL image.
 diffusers.utils.load_image(image: str | PIL.Image.Image, convert_method: typing.Optional[typing.Callable[[PIL.Image.Image], PIL.Image.Image]] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/loading_utils.py#L14)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/loading_utils.py#L14)
 
 **Parameters:**
 
@@ -56,7 +56,7 @@ Loads `image` to a PIL Image.
 diffusers.utils.load_video(video: str, convert_method: typing.Optional[typing.Callable[[list[PIL.Image.Image]], list[PIL.Image.Image]]] = None, return_fps: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/loading_utils.py#L57)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/loading_utils.py#L57)
 
 **Parameters:**
 
@@ -80,7 +80,7 @@ Loads `video` to a list of PIL Image.
 diffusers.utils.export_to_gif(image: list[PIL.Image.Image], output_gif_path: str = None, fps: int = 10)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/export_utils.py#L37)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/export_utils.py#L37)
 
 ## export_to_video[[diffusers.utils.export_to_video]]
 
@@ -90,7 +90,7 @@ diffusers.utils.export_to_gif(image: list[PIL.Image.Image], output_gif_path: str
 diffusers.utils.export_to_video(video_frames: list[np.ndarray] | list[PIL.Image.Image], output_video_path: str = None, fps: int = 10, quality: float = 5.0, bitrate: int | None = None, macro_block_size: int | None = 16)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/export_utils.py#L150)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/export_utils.py#L150)
 
 quality:
 Video output quality. Default is 5. Uses variable bit rate. Highest quality is 10, lowest is 0. Set to None to
@@ -117,7 +117,7 @@ codecs will produce poor results or fail. See https://en.wikipedia.org/wiki/Macr
 diffusers.utils.encode_video(video: list[PIL.Image.Image] | np.ndarray | 'torch.Tensor' | Iterator['torch.Tensor'], fps: int, output_path: str, audio: 'torch.Tensor' | None = None, audio_sample_rate: int | None = None, video_chunks_number: int = 1)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/export_utils.py#L303)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/export_utils.py#L303)
 
 **Parameters:**
 
@@ -144,7 +144,7 @@ https://github.com/Lightricks/LTX-2/blob/4f410820b198e05074a1e92de793e3b59e9ab5a
 diffusers.utils.make_image_grid(images: list, rows: int, cols: int, resize: int = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/pil_utils.py#L51)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/pil_utils.py#L51)
 
 Prepares a single grid of images. Useful for visualization purposes.
 
@@ -156,11 +156,48 @@ Prepares a single grid of images. Useful for visualization purposes.
 diffusers.utils.torch_utils.randn_tensor(shape: tuple | list, generator: list['torch.Generator'] | 'torch.Generator' | None = None, device: str | 'torch.device' | None = None, dtype: 'torch.dtype' | None = None, layout: 'torch.layout' | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/torch_utils.py#L183)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/torch_utils.py#L61)
 
 A helper function to create random tensors on the desired `device` with the desired `dtype`. When
 passing a list of generators, you can seed each batch size individually. If CPU generators are passed, the tensor
 is always created on the CPU.
+
+## TorchDeviceBackend[[diffusers.utils.torch_utils.TorchDeviceBackend]]
+
+#### diffusers.utils.torch_utils.TorchDeviceBackend[[diffusers.utils.torch_utils.TorchDeviceBackend]]
+
+```python
+diffusers.utils.torch_utils.TorchDeviceBackend(device: str | torch.device | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/torch_utils.py#L228)
+
+A proxy for the `torch.<backend>` namespace (`torch.cuda`, `torch.xpu`, `torch.mps`, ...) of one device. Attributes
+the class does not define are the module's own (`synchronize`, `device_count`, `Stream`, `current_stream`, ...);
+the methods defined here override the operations whose availability differs between backends and need a fallback:
+cache clearing, seeding and memory queries. With no `device`, detects the host accelerator through
+`torch.accelerator`. Raises if torch has no module for the backend rather than silently falling back to
+`torch.cuda`.
+
+#### max_memory_allocated[[diffusers.utils.torch_utils.TorchDeviceBackend.max_memory_allocated]]
+
+```python
+max_memory_allocated()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/torch_utils.py#L291)
+
+Peak memory allocated on the device in bytes since the last reset; 0 where the backend keeps no statistics.
+
+#### mem_get_info[[diffusers.utils.torch_utils.TorchDeviceBackend.mem_get_info]]
+
+```python
+mem_get_info()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/torch_utils.py#L279)
+
+Free and total device memory in bytes.
 
 ## apply_layerwise_casting[[diffusers.hooks.apply_layerwise_casting]]
 
@@ -170,7 +207,7 @@ is always created on the CPU.
 diffusers.hooks.apply_layerwise_casting(module: Module, storage_dtype: dtype, compute_dtype: dtype, skip_modules_pattern: str | tuple[str, ...] = 'auto', skip_modules_classes: tuple[typing.Type[torch.nn.Module], ...] | None = None, non_blocking: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/hooks/layerwise_casting.py#L101)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/hooks/layerwise_casting.py#L101)
 
 **Parameters:**
 
@@ -216,7 +253,7 @@ Example:
 diffusers.hooks.apply_group_offloading(module: Module, onload_device: typing.Union[str, torch.device], offload_device: typing.Union[str, torch.device] = torch.device(), offload_type: str | diffusers.hooks.group_offloading.GroupOffloadingType = 'block_level', num_blocks_per_group: int | None = None, non_blocking: bool = False, use_stream: bool = False, record_stream: bool = False, low_cpu_mem_usage: bool = False, offload_to_disk_path: str | None = None, block_modules: list[str] | None = None, exclude_kwargs: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/hooks/group_offloading.py#L565)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/hooks/group_offloading.py#L567)
 
 **Parameters:**
 
@@ -290,4 +327,4 @@ Example:
 ```
 
 ### VAE Image Processor
-https://huggingface.co/docs/diffusers/v0.40.0/api/image_processor.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/image_processor.md

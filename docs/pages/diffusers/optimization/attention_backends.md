@@ -19,7 +19,7 @@ This guide will show you how to set and use the different attention backends.
 
 ## set_attention_backend
 
-The [set_attention_backend()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.set_attention_backend) method iterates through all the modules in the model and sets the appropriate attention backend to use. The attention backend setting persists until [reset_attention_backend()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.reset_attention_backend) is called.
+The [set_attention_backend()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.set_attention_backend) method iterates through all the modules in the model and sets the appropriate attention backend to use. The attention backend setting persists until [reset_attention_backend()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.reset_attention_backend) is called.
 
 The example below demonstrates how to enable the `_flash_3_hub` implementation for FlashAttention-3 from the [`kernels`](https://github.com/huggingface/kernels) library, which allows you to instantly use optimized compute kernels from the Hub without requiring any setup.
 
@@ -31,7 +31,7 @@ import torch
 from diffusers import QwenImagePipeline
 
 pipeline = QwenImagePipeline.from_pretrained(
-    "Qwen/Qwen-Image", dtype=torch.bfloat16, device_map="cuda"
+    "Qwen/Qwen-Image", dtype=torch.bfloat16, device_map="cuda"  # or "mps", "xpu", "cpu"
 )
 pipeline.transformer.set_attention_backend("_flash_3_hub")
 
@@ -42,7 +42,7 @@ highly detailed, high budget hollywood movie, cinemascope, moody, epic, gorgeous
 pipeline(prompt).images[0]
 ```
 
-To restore the default attention backend, call [reset_attention_backend()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.reset_attention_backend).
+To restore the default attention backend, call [reset_attention_backend()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.reset_attention_backend).
 
 ```py
 pipeline.transformer.reset_attention_backend()
@@ -57,7 +57,7 @@ import torch
 from diffusers import QwenImagePipeline
 
 pipeline = QwenImagePipeline.from_pretrained(
-    "Qwen/Qwen-Image", dtype=torch.bfloat16, device_map="cuda"
+    "Qwen/Qwen-Image", dtype=torch.bfloat16, device_map="cuda"  # or "mps", "xpu", "cpu"
 )
 prompt = """
 cinematic film still of a cat sipping a margarita in a pool in Palm Springs, California
@@ -104,7 +104,7 @@ The checks are run now before every attention operation.
 ```py
 import torch
 
-query = torch.randn(1, 10, 8, 64, dtype=torch.bfloat16, device="cuda")
+query = torch.randn(1, 10, 8, 64, dtype=torch.bfloat16, device="cuda")  # or "mps", "xpu", "cpu"
 key = torch.randn(1, 10, 8, 64, dtype=torch.bfloat16, device="cuda")
 value = torch.randn(1, 10, 8, 64, dtype=torch.bfloat16, device="cuda")
 
@@ -152,6 +152,7 @@ Expand
 | `_flash_3_varlen_hub` | [FlashAttention](https://github.com/Dao-AILab/flash-attention) | Variable length FlashAttention-3 from kernels |
 | `sage` | [SageAttention](https://github.com/thu-ml/SageAttention) | Quantized attention (INT8 QK) |
 | `sage_hub` | [SageAttention](https://github.com/thu-ml/SageAttention) | Quantized attention (INT8 QK) from kernels |
+| `sage_blackwell_hub` | [SageAttention](https://github.com/thu-ml/SageAttention) | SageAttention3 FP4 attention for SM120 Blackwell GPUs from kernels |
 | `sage_varlen` | [SageAttention](https://github.com/thu-ml/SageAttention) | Variable length SageAttention |
 | `_sage_qk_int8_pv_fp8_cuda` | [SageAttention](https://github.com/thu-ml/SageAttention) | INT8 QK + FP8 PV (CUDA) |
 | `_sage_qk_int8_pv_fp8_cuda_sm90` | [SageAttention](https://github.com/thu-ml/SageAttention) | INT8 QK + FP8 PV (SM90) |
@@ -160,4 +161,4 @@ Expand
 | `xformers` | [xFormers](https://github.com/facebookresearch/xformers) | Memory-efficient attention |
 
 ### Pruna
-https://huggingface.co/docs/diffusers/v0.40.0/optimization/pruna.md
+https://huggingface.co/docs/diffusers/v0.41.0/optimization/pruna.md

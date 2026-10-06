@@ -2,7 +2,7 @@
 
 Unconditional image generation is a popular application of diffusion models that generates images that look like those in the dataset used for training. Typically, the best results are obtained from finetuning a pretrained model on a specific dataset. You can find many of these checkpoints on the [Hub](https://huggingface.co/search/full-text?q=unconditional-image-generation&type=model), but if you can't find one you like, you can always train your own!
 
-This tutorial will teach you how to train a [UNet2DModel](/docs/diffusers/v0.40.0/en/api/models/unet2d#diffusers.UNet2DModel) from scratch on a subset of the [Smithsonian Butterflies](https://huggingface.co/datasets/huggan/smithsonian_butterflies_subset) dataset to generate your own 🦋 butterflies 🦋.
+This tutorial will teach you how to train a [UNet2DModel](/docs/diffusers/v0.41.0/en/api/models/unet2d#diffusers.UNet2DModel) from scratch on a subset of the [Smithsonian Butterflies](https://huggingface.co/datasets/huggan/smithsonian_butterflies_subset) dataset to generate your own 🦋 butterflies 🦋.
 
 > [!TIP]
 > 💡 This training tutorial is based on the [Training with 🧨 Diffusers](https://colab.research.google.com/github/huggingface/notebooks/blob/main/diffusers/training_example.ipynb) notebook. For additional details and context about diffusion models like how they work, check out the notebook!
@@ -79,7 +79,7 @@ You can easily load the [Smithsonian Butterflies](https://huggingface.co/dataset
 > [!TIP]
 > 💡 You can find additional datasets from the [HugGan Community Event](https://huggingface.co/huggan) or you can use your own dataset by creating a local [`ImageFolder`](https://huggingface.co/docs/datasets/image_dataset#imagefolder). Set `config.dataset_name` to the repository id of the dataset if it is from the HugGan Community Event, or `imagefolder` if you're using your own images.
 
-🤗 Datasets uses the [Image](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Image) feature to automatically decode the image data and load it as a [`PIL.Image`](https://pillow.readthedocs.io/en/stable/reference/Image.html) which we can visualize:
+🤗 Datasets uses the `Image` feature to automatically decode the image data and load it as a [`PIL.Image`](https://pillow.readthedocs.io/en/stable/reference/Image.html) which we can visualize:
 
 ```py
 >>> import matplotlib.pyplot as plt
@@ -112,7 +112,7 @@ The images are all different sizes though, so you'll need to preprocess them fir
 ... )
 ```
 
-Use 🤗 Datasets' [set_transform](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset.set_transform) method to apply the `preprocess` function on the fly during training:
+Use 🤗 Datasets' `set_transform` method to apply the `preprocess` function on the fly during training:
 
 ```py
 >>> def transform(examples):
@@ -132,7 +132,7 @@ Feel free to visualize the images again to confirm that they've been resized. No
 
 ## Create a UNet2DModel
 
-Pretrained models in 🧨 Diffusers are easily created from their model class with the parameters you want. For example, to create a [UNet2DModel](/docs/diffusers/v0.40.0/en/api/models/unet2d#diffusers.UNet2DModel):
+Pretrained models in 🧨 Diffusers are easily created from their model class with the parameters you want. For example, to create a [UNet2DModel](/docs/diffusers/v0.41.0/en/api/models/unet2d#diffusers.UNet2DModel):
 
 ```py
 >>> from diffusers import UNet2DModel
@@ -179,7 +179,7 @@ Great! Next, you'll need a scheduler to add some noise to the image.
 
 The scheduler behaves differently depending on whether you're using the model for training or inference. During inference, the scheduler generates image from the noise. During training, the scheduler takes a model output - or a sample - from a specific point in the diffusion process and applies noise to the image according to a *noise schedule* and an *update rule*.
 
-Let's take a look at the [DDPMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddpm#diffusers.DDPMScheduler) and use the `add_noise` method to add some random noise to the `sample_image` from before:
+Let's take a look at the [DDPMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddpm#diffusers.DDPMScheduler) and use the `add_noise` method to add some random noise to the `sample_image` from before:
 
 ```py
 >>> import torch
@@ -222,7 +222,7 @@ First, you'll need an optimizer and a learning rate scheduler:
 ... )
 ```
 
-Then, you'll need a way to evaluate the model. For evaluation, you can use the [DDPMPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/ddpm#diffusers.DDPMPipeline) to generate a batch of sample images and save it as a grid:
+Then, you'll need a way to evaluate the model. For evaluation, you can use the [DDPMPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/ddpm#diffusers.DDPMPipeline) to generate a batch of sample images and save it as a grid:
 
 ```py
 >>> from diffusers import DDPMPipeline
@@ -342,7 +342,7 @@ Now you can wrap all these components together in a training loop with 🤗 Acce
 ...                     pipeline.save_pretrained(config.output_dir)
 ```
 
-Phew, that was quite a bit of code! But you're finally ready to launch the training with 🤗 Accelerate's [notebook_launcher](https://huggingface.co/docs/accelerate/v1.14.0/en/package_reference/launchers#accelerate.notebook_launcher) function. Pass the function the training loop, all the training arguments, and the number of processes (you can change this value to the number of GPUs available to you) to use for training:
+Phew, that was quite a bit of code! But you're finally ready to launch the training with 🤗 Accelerate's [notebook_launcher](https://huggingface.co/docs/accelerate/v1.15.0/en/package_reference/launchers#accelerate.notebook_launcher) function. Pass the function the training loop, all the training arguments, and the number of processes (you can change this value to the number of GPUs available to you) to use for training:
 
 ```py
 >>> from accelerate import notebook_launcher
@@ -373,4 +373,4 @@ Unconditional image generation is one example of a task that can be trained. You
 * [Guide](../training/lora) to using LoRA, a memory-efficient technique for finetuning really large models faster.
 
 ### How to run Stable Diffusion with Core ML
-https://huggingface.co/docs/diffusers/v0.40.0/optimization/coreml.md
+https://huggingface.co/docs/diffusers/v0.41.0/optimization/coreml.md

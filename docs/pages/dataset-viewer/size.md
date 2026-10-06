@@ -141,5 +141,5 @@ If the size has `partial: true` it means that the actual size of the dataset cou
 
 In that case the number of rows and bytes can be inferior to the actual numbers.
 
-### DuckDB
-https://huggingface.co/docs/dataset-viewer/duckdb.md
+### PostgreSQL
+https://huggingface.co/docs/dataset-viewer/postgresql.md

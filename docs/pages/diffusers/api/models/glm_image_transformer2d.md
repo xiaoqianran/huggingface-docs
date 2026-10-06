@@ -10,7 +10,7 @@ A Diffusion Transformer model for 2D data from [GlmImageTransformer2DModel] (TOD
 diffusers.GlmImageTransformer2DModel(patch_size: int = 2, in_channels: int = 16, out_channels: int = 16, num_layers: int = 30, attention_head_dim: int = 40, num_attention_heads: int = 64, text_embed_dim: int = 1472, time_embed_dim: int = 512, condition_dim: int = 256, prior_vq_quantizer_codebook_size: int = 16384)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_glm_image.py#L503)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_glm_image.py#L503)
 
 **Parameters:**
 
@@ -42,7 +42,7 @@ sample_size (`int`, defaults to `128`) : The base resolution of input latents. I
 forward(hidden_states: Tensor, encoder_hidden_states: Tensor, prior_token_id: Tensor, prior_token_drop: Tensor, timestep: LongTensor, target_size: Tensor, crop_coords: Tensor, attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True, attention_mask: typing.Optional[torch.Tensor] = None, kv_caches: diffusers.models.transformers.transformer_glm_image.GlmImageKVCache | None = None, image_rotary_emb: tuple[torch.Tensor, torch.Tensor] | list[tuple[torch.Tensor, torch.Tensor]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_glm_image.py#L597)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_glm_image.py#L597)
 
 **Parameters:**
 
@@ -75,7 +75,7 @@ image_rotary_emb (`tuple` of `torch.Tensor`, *optional*) : Pre-computed rotary p
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
-The [GlmImageTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/glm_image_transformer2d#diffusers.GlmImageTransformer2DModel) forward method.
+The [GlmImageTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/glm_image_transformer2d#diffusers.GlmImageTransformer2DModel) forward method.
 
 ### UNetMotionModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/unet-motion.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/unet-motion.md

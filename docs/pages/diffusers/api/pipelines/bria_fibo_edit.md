@@ -4,8 +4,11 @@ Fibo Edit is an 8B parameter image-to-image model that introduces a new paradigm
 Featuring native masking for granular precision, it moves beyond simple prompt-based diffusion to offer explicit, interpretable control optimized for production environments.
 Its lightweight architecture is designed for deep customization, empowering researchers to build specialized "Edit" models for domain-specific tasks while delivering top-tier aesthetic quality
 
+Refer to the Bria Fibo Edit Hugging Face [page](https://huggingface.co/briaai/Fibo-Edit-1.5-base) to learn more. A distilled checkpoint is available at [Fibo-Edit-1.5-turbo](https://huggingface.co/briaai/Fibo-Edit-1.5-turbo).
+
 ## Usage
-_As the model is gated, before using it with diffusers you first need to go to the [Bria Fibo Hugging Face page](https://huggingface.co/briaai/Fibo-Edit), fill in the form and accept the gate. Once you are in, you need to login so that your system knows you’ve accepted the gate._
+
+_As the model is gated, before using it with diffusers you first need to go to the [Bria Fibo Edit Hugging Face page](https://huggingface.co/briaai/Fibo-Edit-1.5-base), fill in the form and accept the gate. Once you are in, you need to login so that your system knows you’ve accepted the gate._
 
 Use the command below to log in:
 
@@ -21,7 +24,7 @@ hf auth login
 diffusers.BriaFiboEditPipeline(transformer: BriaFiboTransformer2DModel, scheduler: typing.Union[diffusers.schedulers.scheduling_flow_match_euler_discrete.FlowMatchEulerDiscreteScheduler, diffusers.schedulers.scheduling_utils.KarrasDiffusionSchedulers], vae: AutoencoderKLWan, text_encoder: SmolLM3ForCausalLM, tokenizer: AutoTokenizer)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo_edit.py#L234)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo_edit.py#L240)
 
 **Parameters:**
 
@@ -38,16 +41,16 @@ tokenizer (`AutoTokenizer`) : Tokenizer used for processing the input text promp
 #### __call__[[diffusers.BriaFiboEditPipeline.__call__]]
 
 ```python
-__call__(prompt: typing.Union[str, typing.List[str]] = None, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, mask: typing.Union[torch.FloatTensor, PIL.Image.Image, typing.List[PIL.Image.Image], typing.List[torch.FloatTensor], numpy.ndarray, typing.List[numpy.ndarray], NoneType] = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 30, timesteps: typing.List[int] = None, seed: int | None = None, guidance_scale: float = 5, negative_prompt: typing.Union[str, typing.List[str], NoneType] = None, num_images_per_prompt: typing.Optional[int] = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, output_type: str = 'pil', return_dict: bool = True, joint_attention_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int, typing.Dict], NoneType]] = None, callback_on_step_end_tensor_inputs: typing.List[str] = ['latents'], max_sequence_length: int = 3000, do_patching = False, _auto_resize: bool = True)
+__call__(prompt: typing.Union[str, typing.List[str]] = None, image: typing.Union[PIL.Image.Image, typing.List[PIL.Image.Image], NoneType] = None, mask: typing.Union[torch.FloatTensor, PIL.Image.Image, typing.List[PIL.Image.Image], typing.List[torch.FloatTensor], numpy.ndarray, typing.List[numpy.ndarray], NoneType] = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 30, timesteps: typing.List[int] = None, seed: int | None = None, guidance_scale: float = 5, negative_prompt: typing.Union[str, typing.List[str], NoneType] = None, num_images_per_prompt: typing.Optional[int] = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, output_type: str = 'pil', return_dict: bool = True, joint_attention_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int, typing.Dict], NoneType]] = None, callback_on_step_end_tensor_inputs: typing.List[str] = ['latents'], max_sequence_length: int = 3000, do_patching = False, _auto_resize: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo_edit.py#L603)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo_edit.py#L599)
 
 **Parameters:**
 
 prompt (`str` or `List[str]`) : The prompt or prompts to guide the image generation.
 
-image (`PIL.Image.Image` or `torch.FloatTensor`, *optional*) : The image to guide the image generation. If not defined, the pipeline will generate an image from scratch.
+image (`PIL.Image.Image` or `List[PIL.Image.Image]`, *optional*) : One or more reference images to guide the image generation. A list is interpreted as multiple references (not a batch): each reference is VAE-encoded at its own aspect ratio and placed on its own RoPE time plane 1, 2, ... . If not defined, the pipeline generates an image from scratch.
 
 mask (`PipelineMaskInput`, *optional*) : Optional mask defining the region of `image` to be edited. Pixels covered by the mask are regenerated while the rest of the image is preserved.
 
@@ -55,7 +58,7 @@ height (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_s
 
 width (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The width in pixels of the generated image. This is set to 1024 by default for the best results.
 
-num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+num_inference_steps (`int`, *optional*, defaults to 30) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
 
 seed (`int`, *optional*) : A seed used to make generation deterministic.
 
@@ -85,7 +88,7 @@ max_sequence_length (`int` defaults to 3000) : Maximum sequence length to use wi
 
 do_patching (`bool`, *optional*, defaults to `False`) : Whether to use patching.
 
-_auto_resize (`bool`, *optional*, defaults to `True`) : Whether to automatically resize the input image to the preferred resolutions.
+_auto_resize (`bool`, *optional*, defaults to `True`) : Whether to snap the default output resolution (taken from the first reference image) to the preferred resolutions.
 
 **Returns:** `~pipelines.flux.BriaFiboPipelineOutput` or `tuple`
 
@@ -98,33 +101,43 @@ Function invoked when calling the pipeline for generation.
 Example:
 ```python
 import torch
-from diffusers import BriaFiboEditPipeline
-from diffusers.modular_pipelines import ModularPipeline
+from PIL import Image
 
-torch.set_grad_enabled(False)
-vlm_pipe = ModularPipelineBlocks.from_pretrained("briaai/FIBO-VLM-prompt-to-JSON", trust_remote_code=True)
+from diffusers import BriaFiboEditPipeline
+from diffusers.modular_pipelines import ModularPipelineBlocks
+
+# This prompt-to-JSON block calls Gemini and needs GEMINI_API_KEY in the environment.
+vlm_pipe = ModularPipelineBlocks.from_pretrained("briaai/FIBO-edit-gemini-prompt-to-JSON", trust_remote_code=True)
 vlm_pipe = vlm_pipe.init_pipeline()
 
 pipe = BriaFiboEditPipeline.from_pretrained(
-    "briaai/fibo-edit",
+    "briaai/Fibo-Edit-1.5-base",
     torch_dtype=torch.bfloat16,
 )
 pipe.to("cuda")
 
-output = vlm_pipe(
-    prompt="A hyper-detailed, ultra-fluffy owl sitting in the trees at night, looking directly at the camera with wide, adorable, expressive eyes. Its feathers are soft and voluminous, catching the cool moonlight with subtle silver highlights. The owl's gaze is curious and full of charm, giving it a whimsical, storybook-like personality."
+image = Image.open("owl.png")
+json_prompt = vlm_pipe(image=image, prompt="Make the owl into a cat").values["json_prompt"]
+
+result = pipe(prompt=json_prompt, image=image, num_inference_steps=30, guidance_scale=5)
+
+# Multiple reference images: pass a list. Each reference conditions the edit at its
+# own aspect ratio; the output resolution follows the first reference.
+owl, forest = Image.open("owl.png"), Image.open("forest.png")
+json_prompt = vlm_pipe(
+    image=[owl, forest], prompt="Place the owl from the first image in the forest from the second image"
+).values["json_prompt"]
+result = pipe(
+    prompt=json_prompt,
+    image=[owl, forest],
+    num_inference_steps=30,
+    guidance_scale=5,
 )
-json_prompt_generate = json.loads(output.values["json_prompt"])
 
-image = Image.open("image_generate.png")
-
-edit_prompt = "Make the owl to be a cat"
-
-json_prompt_generate["edit_instruction"] = edit_prompt
-
-results_generate = pipe(
-    prompt=json_prompt_generate, num_inference_steps=50, guidance_scale=3.5, image=image, output_type="np"
-)
+# The distilled Turbo checkpoint edits in 4 steps without classifier-free guidance.
+pipe = BriaFiboEditPipeline.from_pretrained("briaai/Fibo-Edit-1.5-turbo", torch_dtype=torch.bfloat16)
+pipe.to("cuda")
+result = pipe(prompt=json_prompt, image=[owl, forest], num_inference_steps=4, guidance_scale=1)
 ```
 
 #### encode_prompt[[diffusers.BriaFiboEditPipeline.encode_prompt]]
@@ -133,7 +146,7 @@ results_generate = pipe(
 encode_prompt(prompt: typing.Union[str, typing.List[str]], device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, guidance_scale: float = 5, negative_prompt: typing.Union[str, typing.List[str], NoneType] = None, max_sequence_length: int = 3000, lora_scale: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo_edit.py#L359)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo_edit.py#L365)
 
 **Parameters:**
 
@@ -147,5 +160,15 @@ guidance_scale (`float`) : Guidance scale for classifier free guidance.
 
 negative_prompt (`str` or `List[str]`, *optional*) : The prompt or prompts not to guide the image generation. Ignored when not using guidance (i.e., ignored if `guidance_scale` is less than `1`).
 
+#### prepare_reference_latents[[diffusers.BriaFiboEditPipeline.prepare_reference_latents]]
+
+```python
+prepare_reference_latents(image: Image, num_channels_latents: int, dtype: dtype, device: device, do_patching: bool = False, reference_index: int = 1)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo_edit.py#L992)
+
+VAE-encode one PIL reference at its own size and pack it as an edit-context token stream.
+
 ### Flux2
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/flux2.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/flux2.md

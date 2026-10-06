@@ -3,7 +3,7 @@
 ## Overview
 
 Multistep and onestep scheduler (Algorithm 3) introduced alongside latent consistency models in the paper [Latent Consistency Models: Synthesizing High-Resolution Images with Few-Step Inference](https://huggingface.co/papers/2310.04378) by Simian Luo, Yiqin Tan, Longbo Huang, Jian Li, and Hang Zhao.
-This scheduler should be able to generate good samples from [LatentConsistencyModelPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/latent_consistency_models#diffusers.LatentConsistencyModelPipeline) in 1-8 steps.
+This scheduler should be able to generate good samples from [LatentConsistencyModelPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/latent_consistency_models#diffusers.LatentConsistencyModelPipeline) in 1-8 steps.
 
 ## LCMScheduler[[diffusers.LCMScheduler]]
 
@@ -13,7 +13,7 @@ This scheduler should be able to generate good samples from [LatentConsistencyMo
 diffusers.LCMScheduler(num_train_timesteps: int = 1000, beta_start: float = 0.00085, beta_end: float = 0.012, beta_schedule: str = 'scaled_linear', trained_betas: numpy.ndarray | list[float] | None = None, original_inference_steps: int = 50, clip_sample: bool = False, clip_sample_range: float = 1.0, set_alpha_to_one: bool = True, steps_offset: int = 0, prediction_type: str = 'epsilon', thresholding: bool = False, dynamic_thresholding_ratio: float = 0.995, sample_max_value: float = 1.0, timestep_spacing: str = 'leading', timestep_scaling: float = 10.0, rescale_betas_zero_snr: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_lcm.py#L142)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_lcm.py#L142)
 
 **Parameters:**
 
@@ -54,10 +54,10 @@ rescale_betas_zero_snr (`bool`, defaults to `False`) : Whether to rescale the be
 `LCMScheduler` extends the denoising procedure introduced in denoising diffusion probabilistic models (DDPMs) with
 non-Markovian guidance.
 
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). [~ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin) takes care of storing all config
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin). [~ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin) takes care of storing all config
 attributes that are passed in the scheduler's `__init__` function, such as `num_train_timesteps`. They can be
-accessed via `scheduler.config.num_train_timesteps`. [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) provides general loading and saving
-functionality via the [SchedulerMixin.save_pretrained()](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin.save_pretrained) and [from_pretrained()](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin.from_pretrained) functions.
+accessed via `scheduler.config.num_train_timesteps`. [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) provides general loading and saving
+functionality via the [SchedulerMixin.save_pretrained()](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin.save_pretrained) and [from_pretrained()](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin.from_pretrained) functions.
 
 #### add_noise[[diffusers.LCMScheduler.add_noise]]
 
@@ -65,7 +65,7 @@ functionality via the [SchedulerMixin.save_pretrained()](/docs/diffusers/v0.40.0
 add_noise(original_samples: Tensor, noise: Tensor, timesteps: IntTensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_lcm.py#L667)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_lcm.py#L667)
 
 **Parameters:**
 
@@ -88,7 +88,7 @@ diffusion process).
 get_scalings_for_boundary_condition_discrete(timestep: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_lcm.py#L548)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_lcm.py#L548)
 
 **Parameters:**
 
@@ -108,7 +108,7 @@ Latent Consistency Model.
 get_velocity(sample: Tensor, noise: Tensor, timesteps: IntTensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_lcm.py#L710)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_lcm.py#L710)
 
 **Parameters:**
 
@@ -130,7 +130,7 @@ Compute the velocity prediction from the sample and noise according to the veloc
 index_for_timestep(timestep: typing.Union[float, torch.Tensor], schedule_timesteps: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_lcm.py#L262)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_lcm.py#L262)
 
 **Parameters:**
 
@@ -151,7 +151,7 @@ Find the index of a given timestep in the timestep schedule.
 previous_timestep(timestep)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_lcm.py#L755)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_lcm.py#L755)
 
 **Parameters:**
 
@@ -169,7 +169,7 @@ Compute the previous timestep in the diffusion chain.
 scale_model_input(sample: Tensor, timestep: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_lcm.py#L341)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_lcm.py#L341)
 
 **Parameters:**
 
@@ -190,7 +190,7 @@ current timestep.
 set_begin_index(begin_index: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_lcm.py#L331)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_lcm.py#L331)
 
 **Parameters:**
 
@@ -204,7 +204,7 @@ Sets the begin index for the scheduler. This function should be run from pipelin
 set_timesteps(num_inference_steps: int | None = None, device: typing.Union[str, torch.device, NoneType] = None, original_inference_steps: int | None = None, timesteps: list[int] | None = None, strength: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_lcm.py#L402)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_lcm.py#L402)
 
 **Parameters:**
 
@@ -228,7 +228,7 @@ Sets the discrete timesteps used for the diffusion chain (to be run before infer
 step(model_output: Tensor, timestep: int, sample: Tensor, generator: typing.Optional[torch.Generator] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_lcm.py#L569)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_lcm.py#L569)
 
 **Parameters:**
 
@@ -251,4 +251,4 @@ Predict the sample from the previous timestep by reversing the SDE. This functio
 process from the learned model outputs (most often the predicted noise).
 
 ### PixArtTransformer2DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/pixart_transformer2d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/pixart_transformer2d.md

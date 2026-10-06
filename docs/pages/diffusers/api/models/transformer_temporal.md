@@ -10,7 +10,7 @@ A Transformer model for video-like data.
 diffusers.TransformerTemporalModel(num_attention_heads: int = 16, attention_head_dim: int = 88, in_channels: int | None = None, out_channels: int | None = None, num_layers: int = 1, dropout: float = 0.0, norm_num_groups: int = 32, cross_attention_dim: int | None = None, attention_bias: bool = False, sample_size: int | None = None, activation_fn: str = 'geglu', norm_elementwise_affine: bool = True, double_self_attention: bool = True, positional_embeddings: str | None = None, num_positional_embeddings: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_temporal.py#L41)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_temporal.py#L41)
 
 **Parameters:**
 
@@ -48,7 +48,7 @@ A Transformer model for video-like data.
 forward(hidden_states: Tensor, encoder_hidden_states: typing.Optional[torch.LongTensor] = None, timestep: typing.Optional[torch.LongTensor] = None, class_labels: LongTensor = None, num_frames: int = 1, cross_attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_temporal.py#L123)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_temporal.py#L123)
 
 **Parameters:**
 
@@ -64,12 +64,12 @@ num_frames (`int`, *optional*, defaults to 1) : The number of frames to be proce
 
 cross_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [TransformerTemporalModelOutput](/docs/diffusers/v0.40.0/en/api/models/transformer_temporal#diffusers.models.transformers.transformer_temporal.TransformerTemporalModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [TransformerTemporalModelOutput](/docs/diffusers/v0.41.0/en/api/models/transformer_temporal#diffusers.models.transformers.transformer_temporal.TransformerTemporalModelOutput) instead of a plain tuple.
 
-**Returns:** [TransformerTemporalModelOutput](/docs/diffusers/v0.40.0/en/api/models/transformer_temporal#diffusers.models.transformers.transformer_temporal.TransformerTemporalModelOutput) or `tuple`
+**Returns:** [TransformerTemporalModelOutput](/docs/diffusers/v0.41.0/en/api/models/transformer_temporal#diffusers.models.transformers.transformer_temporal.TransformerTemporalModelOutput) or `tuple`
 
 If `return_dict` is True, an
-[TransformerTemporalModelOutput](/docs/diffusers/v0.40.0/en/api/models/transformer_temporal#diffusers.models.transformers.transformer_temporal.TransformerTemporalModelOutput) is returned, otherwise a
+[TransformerTemporalModelOutput](/docs/diffusers/v0.41.0/en/api/models/transformer_temporal#diffusers.models.transformers.transformer_temporal.TransformerTemporalModelOutput) is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
 The `TransformerTemporal` forward method.
@@ -82,13 +82,13 @@ The `TransformerTemporal` forward method.
 diffusers.models.transformers.transformer_temporal.TransformerTemporalModelOutput(sample: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_temporal.py#L29)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_temporal.py#L29)
 
 **Parameters:**
 
 sample (`torch.Tensor` of shape `(batch_size x num_frames, num_channels, height, width)`) : The hidden states output conditioned on `encoder_hidden_states` input.
 
-The output of [TransformerTemporalModel](/docs/diffusers/v0.40.0/en/api/models/transformer_temporal#diffusers.TransformerTemporalModel).
+The output of [TransformerTemporalModel](/docs/diffusers/v0.41.0/en/api/models/transformer_temporal#diffusers.TransformerTemporalModel).
 
 ### AutoencoderOobleck
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoder_oobleck.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_oobleck.md

@@ -10,7 +10,7 @@ An attention processor is a class for applying different types of attention mech
 diffusers.models.attention_processor.AttnProcessor()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L1103)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L1103)
 
 Default processor for performing attention-related computations.
 
@@ -20,7 +20,7 @@ Default processor for performing attention-related computations.
 diffusers.models.attention_processor.AttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L2696)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L2696)
 
 Processor for implementing scaled dot-product attention (enabled by default if you're using PyTorch 2.0).
 
@@ -30,7 +30,7 @@ Processor for implementing scaled dot-product attention (enabled by default if y
 diffusers.models.attention_processor.AttnAddedKVProcessor()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L1279)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L1279)
 
 Processor for performing attention-related computations with extra learnable key and value matrices for the text
 encoder.
@@ -41,7 +41,7 @@ encoder.
 diffusers.models.attention_processor.AttnAddedKVProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L1346)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L1346)
 
 Processor for performing scaled dot-product attention (enabled by default if you're using PyTorch 2.0), with extra
 learnable key and value matrices for the text encoder.
@@ -52,7 +52,7 @@ learnable key and value matrices for the text encoder.
 diffusers.models.attention_processor.AttnProcessorNPU()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L2582)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L2582)
 
 Processor for implementing flash attention using torch_npu. Torch_npu supports only fp16 and bf16 data types. If
 fp32 is used, F.scaled_dot_product_attention will be used for computation, but the acceleration effect on NPU is
@@ -64,7 +64,7 @@ not significant.
 diffusers.models.attention_processor.FusedAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L3668)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L3668)
 
 Processor for implementing scaled dot-product attention (enabled by default if you're using PyTorch 2.0). It uses
 fused projection layers. For self-attention modules, all projection matrices (i.e., query, key, value) are fused.
@@ -80,7 +80,7 @@ For cross-attention modules, key and value projection matrices are fused.
 diffusers.models.attention_processor.AllegroAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L1993)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L1993)
 
 Processor for implementing scaled dot-product attention (enabled by default if you're using PyTorch 2.0). This is
 used in the Allegro model. It applies a normalization layer and rotary embedding on the query and key vector.
@@ -93,7 +93,7 @@ used in the Allegro model. It applies a normalization layer and rotary embedding
 diffusers.models.attention_processor.AuraFlowAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L2087)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L2087)
 
 Attention processor used typically in processing Aura Flow.
 
@@ -103,7 +103,7 @@ Attention processor used typically in processing Aura Flow.
 diffusers.models.attention_processor.FusedAuraFlowAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L2180)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L2180)
 
 Attention processor used typically in processing Aura Flow with fused projections.
 
@@ -115,7 +115,7 @@ Attention processor used typically in processing Aura Flow with fused projection
 diffusers.models.attention_processor.CogVideoXAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L2277)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L2277)
 
 Processor for implementing scaled dot-product attention for the CogVideoX model. It applies a rotary embedding on
 query and key vectors, but does not include spatial normalization.
@@ -126,7 +126,7 @@ query and key vectors, but does not include spatial normalization.
 diffusers.models.attention_processor.FusedCogVideoXAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L2346)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L2346)
 
 Processor for implementing scaled dot-product attention for the CogVideoX model. It applies a rotary embedding on
 query and key vectors, but does not include spatial normalization.
@@ -139,7 +139,7 @@ query and key vectors, but does not include spatial normalization.
 diffusers.models.unets.unet_dreamlite.DreamLiteAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/unets/unet_dreamlite.py#L285)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/unet_dreamlite.py#L285)
 
 Processor for implementing scaled dot-product attention with Grouped Query Attention (GQA / MQA) support.
 
@@ -147,22 +147,6 @@ Identical to `AttnProcessor2_0` except the key/value reshape branch correctly ha
 required by the DreamLite UNet, which combines GQA with `qk_norm` — a combination the default
 `AttnProcessor2_0` does not handle. SDPA is delegated to `dispatch_attention_fn` so any of the
 diffusers attention backends (native PyTorch SDPA, FlashAttention, etc.) can be used.
-
-## CrossFrameAttnProcessor[[diffusers.pipelines.deprecated.text_to_video_synthesis.pipeline_text_to_video_zero.CrossFrameAttnProcessor]]
-
-#### diffusers.pipelines.deprecated.text_to_video_synthesis.pipeline_text_to_video_zero.CrossFrameAttnProcessor[[diffusers.pipelines.deprecated.text_to_video_synthesis.pipeline_text_to_video_zero.CrossFrameAttnProcessor]]
-
-```python
-diffusers.pipelines.deprecated.text_to_video_synthesis.pipeline_text_to_video_zero.CrossFrameAttnProcessor(batch_size = 2)
-```
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/deprecated/text_to_video_synthesis/pipeline_text_to_video_zero.py#L62)
-
-**Parameters:**
-
-batch_size : The number that represents actual batch size, other than the frames. For example, calling unet with a single prompt and num_images_per_prompt=1, batch_size should be equal to 2, due to classifier-free guidance.
-
-Cross frame attention processor. Each frame attends the first frame.
 
 ## Custom Diffusion[[diffusers.models.attention_processor.CustomDiffusionAttnProcessor]]
 
@@ -172,7 +156,7 @@ Cross frame attention processor. Each frame attends the first frame.
 diffusers.models.attention_processor.CustomDiffusionAttnProcessor(train_kv: bool = True, train_q_out: bool = True, hidden_size: int | None = None, cross_attention_dim: int | None = None, out_bias: bool = True, dropout: float = 0.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L1175)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L1175)
 
 **Parameters:**
 
@@ -196,7 +180,7 @@ Processor for implementing attention for the Custom Diffusion method.
 diffusers.models.attention_processor.CustomDiffusionAttnProcessor2_0(train_kv: bool = True, train_q_out: bool = True, hidden_size: int | None = None, cross_attention_dim: int | None = None, out_bias: bool = True, dropout: float = 0.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L3886)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L3886)
 
 **Parameters:**
 
@@ -221,7 +205,7 @@ dot-product attention.
 diffusers.models.attention_processor.CustomDiffusionXFormersAttnProcessor(train_kv: bool = True, train_q_out: bool = False, hidden_size: int | None = None, cross_attention_dim: int | None = None, out_bias: bool = True, dropout: float = 0.0, attention_op: Callable | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L3770)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L3770)
 
 **Parameters:**
 
@@ -249,7 +233,7 @@ Processor for implementing memory efficient attention using xFormers for the Cus
 diffusers.models.attention_processor.FluxAttnProcessor2_0(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L5505)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L5505)
 
 #### diffusers.models.attention_processor.FusedFluxAttnProcessor2_0[[diffusers.models.attention_processor.FusedFluxAttnProcessor2_0]]
 
@@ -257,7 +241,7 @@ diffusers.models.attention_processor.FluxAttnProcessor2_0(*args, **kwargs)
 diffusers.models.attention_processor.FusedFluxAttnProcessor2_0(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L5529)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L5529)
 
 #### diffusers.models.attention_processor.FluxSingleAttnProcessor2_0[[diffusers.models.attention_processor.FluxSingleAttnProcessor2_0]]
 
@@ -265,7 +249,7 @@ diffusers.models.attention_processor.FusedFluxAttnProcessor2_0(*args, **kwargs)
 diffusers.models.attention_processor.FluxSingleAttnProcessor2_0(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L5515)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L5515)
 
 Processor for implementing scaled dot-product attention (enabled by default if you're using PyTorch 2.0).
 
@@ -277,7 +261,7 @@ Processor for implementing scaled dot-product attention (enabled by default if y
 diffusers.models.attention_processor.HunyuanAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L3124)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L3124)
 
 Processor for implementing scaled dot-product attention (enabled by default if you're using PyTorch 2.0). This is
 used in the HunyuanDiT model. It applies a s normalization layer and rotary embedding on query and key vector.
@@ -288,7 +272,7 @@ used in the HunyuanDiT model. It applies a s normalization layer and rotary embe
 diffusers.models.attention_processor.FusedHunyuanAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L3222)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L3222)
 
 Processor for implementing scaled dot-product attention (enabled by default if you're using PyTorch 2.0) with fused
 projection layers. This is used in the HunyuanDiT model. It applies a s normalization layer and rotary embedding on
@@ -300,7 +284,7 @@ query and key vector.
 diffusers.models.attention_processor.PAGHunyuanAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L3325)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L3325)
 
 Processor for implementing scaled dot-product attention (enabled by default if you're using PyTorch 2.0). This is
 used in the HunyuanDiT model. It applies a normalization layer and rotary embedding on query and key vector. This
@@ -312,7 +296,7 @@ variant of the processor employs [Pertubed Attention Guidance](https://huggingfa
 diffusers.models.attention_processor.PAGCFGHunyuanAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L3448)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L3448)
 
 Processor for implementing scaled dot-product attention (enabled by default if you're using PyTorch 2.0). This is
 used in the HunyuanDiT model. It applies a normalization layer and rotary embedding on query and key vector. This
@@ -326,7 +310,7 @@ variant of the processor employs [Pertubed Attention Guidance](https://huggingfa
 diffusers.models.attention_processor.PAGIdentitySelfAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L5043)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L5043)
 
 Processor for implementing PAG using scaled dot-product attention (enabled by default if you're using PyTorch 2.0).
 PAG reference: https://huggingface.co/papers/2403.17377
@@ -337,7 +321,7 @@ PAG reference: https://huggingface.co/papers/2403.17377
 diffusers.models.attention_processor.PAGCFGIdentitySelfAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L5142)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L5142)
 
 Processor for implementing PAG using scaled dot-product attention (enabled by default if you're using PyTorch 2.0).
 PAG reference: https://huggingface.co/papers/2403.17377
@@ -350,7 +334,7 @@ PAG reference: https://huggingface.co/papers/2403.17377
 diffusers.models.attention_processor.IPAdapterAttnProcessor(hidden_size, cross_attention_dim = None, num_tokens = (4,), scale = 1.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L4208)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L4208)
 
 **Parameters:**
 
@@ -370,7 +354,7 @@ Attention processor for Multiple IP-Adapters.
 diffusers.models.attention_processor.IPAdapterAttnProcessor2_0(hidden_size, cross_attention_dim = None, num_tokens = (4,), scale = 1.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L4408)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L4408)
 
 **Parameters:**
 
@@ -390,7 +374,7 @@ Attention processor for IP-Adapter for PyTorch 2.0.
 diffusers.models.attention_processor.SD3IPAdapterJointAttnProcessor2_0(hidden_size: int, ip_hidden_states_dim: int, head_dim: int, timesteps_emb_dim: int = 1280, scale: float = 0.5)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L4872)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L4872)
 
 **Parameters:**
 
@@ -415,7 +399,7 @@ additional image-based information and timestep embeddings.
 diffusers.models.attention_processor.JointAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L1422)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L1422)
 
 Attention processor used typically in processing the SD3-like self-attention projections.
 
@@ -425,7 +409,7 @@ Attention processor used typically in processing the SD3-like self-attention pro
 diffusers.models.attention_processor.PAGJointAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L1508)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L1508)
 
 Attention processor used typically in processing the SD3-like self-attention projections.
 
@@ -435,7 +419,7 @@ Attention processor used typically in processing the SD3-like self-attention pro
 diffusers.models.attention_processor.PAGCFGJointAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L1664)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L1664)
 
 Attention processor used typically in processing the SD3-like self-attention projections.
 
@@ -445,7 +429,7 @@ Attention processor used typically in processing the SD3-like self-attention pro
 diffusers.models.attention_processor.FusedJointAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L1829)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L1829)
 
 Attention processor used typically in processing the SD3-like self-attention projections.
 
@@ -457,7 +441,7 @@ Attention processor used typically in processing the SD3-like self-attention pro
 diffusers.models.attention_processor.LoRAAttnProcessor()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L5305)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L5305)
 
 Processor for implementing attention with LoRA.
 
@@ -467,7 +451,7 @@ Processor for implementing attention with LoRA.
 diffusers.models.attention_processor.LoRAAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L5314)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L5314)
 
 Processor for implementing attention with LoRA (enabled by default if you're using PyTorch 2.0).
 
@@ -477,7 +461,7 @@ Processor for implementing attention with LoRA (enabled by default if you're usi
 diffusers.models.attention_processor.LoRAAttnAddedKVProcessor()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L5332)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L5332)
 
 Processor for implementing attention with LoRA with extra learnable key and value matrices for the text encoder.
 
@@ -487,7 +471,7 @@ Processor for implementing attention with LoRA with extra learnable key and valu
 diffusers.models.attention_processor.LoRAXFormersAttnProcessor()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L5323)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L5323)
 
 Processor for implementing attention with LoRA using xFormers.
 
@@ -499,7 +483,7 @@ Processor for implementing attention with LoRA using xFormers.
 diffusers.models.attention_processor.LuminaAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L3572)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L3572)
 
 Processor for implementing scaled dot-product attention (enabled by default if you're using PyTorch 2.0). This is
 used in the LuminaNextDiT model. It applies a s normalization layer and rotary embedding on query and key vector.
@@ -512,7 +496,7 @@ used in the LuminaNextDiT model. It applies a s normalization layer and rotary e
 diffusers.models.attention_processor.MochiAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L998)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L998)
 
 Attention processor used in Mochi.
 
@@ -522,7 +506,7 @@ Attention processor used in Mochi.
 diffusers.models.attention_processor.MochiVaeAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L2906)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L2906)
 
 Attention processor used in Mochi VAE.
 
@@ -534,7 +518,7 @@ Attention processor used in Mochi VAE.
 diffusers.models.attention_processor.SanaLinearAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L5341)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L5341)
 
 Processor for implementing scaled dot-product linear attention.
 
@@ -544,7 +528,7 @@ Processor for implementing scaled dot-product linear attention.
 diffusers.models.attention_processor.SanaMultiscaleAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L5245)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L5245)
 
 Processor for implementing multiscale quadratic attention.
 
@@ -554,7 +538,7 @@ Processor for implementing multiscale quadratic attention.
 diffusers.models.attention_processor.PAGCFGSanaLinearAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L5393)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L5393)
 
 Processor for implementing scaled dot-product linear attention.
 
@@ -564,7 +548,7 @@ Processor for implementing scaled dot-product linear attention.
 diffusers.models.attention_processor.PAGIdentitySanaLinearAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L5448)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L5448)
 
 Processor for implementing scaled dot-product linear attention.
 
@@ -576,7 +560,7 @@ Processor for implementing scaled dot-product linear attention.
 diffusers.models.attention_processor.StableAudioAttnProcessor2_0()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L2991)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L2991)
 
 Processor for implementing scaled dot-product attention (enabled by default if you're using PyTorch 2.0). This is
 used in the Stable Audio model. It applies rotary embedding on query and key vector, and allows MHA, GQA or MQA.
@@ -589,7 +573,7 @@ used in the Stable Audio model. It applies rotary embedding on query and key vec
 diffusers.models.attention_processor.SlicedAttnProcessor(slice_size: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L4000)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L4000)
 
 **Parameters:**
 
@@ -603,7 +587,7 @@ Processor for implementing sliced attention.
 diffusers.models.attention_processor.SlicedAttnAddedKVProcessor(slice_size)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L4087)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L4087)
 
 **Parameters:**
 
@@ -619,7 +603,7 @@ Processor for implementing sliced attention with extra learnable key and value m
 diffusers.models.attention_processor.XFormersAttnProcessor(attention_op: Callable | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L2488)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L2488)
 
 **Parameters:**
 
@@ -633,7 +617,7 @@ Processor for implementing memory efficient attention using xFormers.
 diffusers.models.attention_processor.XFormersAttnAddedKVProcessor(attention_op: Callable | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L2417)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L2417)
 
 **Parameters:**
 
@@ -649,7 +633,7 @@ Processor for implementing memory efficient attention using xFormers.
 diffusers.models.attention_processor.XLAFlashAttnProcessor2_0(partition_spec: tuple[str | None, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L2790)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L2790)
 
 Processor for implementing scaled dot-product attention with pallas flash attention kernel if using `torch_xla`.
 
@@ -661,7 +645,7 @@ Processor for implementing scaled dot-product attention with pallas flash attent
 diffusers.models.attention_processor.XFormersJointAttnProcessor(attention_op: Callable | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L1908)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L1908)
 
 **Parameters:**
 
@@ -677,7 +661,7 @@ Processor for implementing memory efficient attention using xFormers.
 diffusers.models.attention_processor.IPAdapterXFormersAttnProcessor(hidden_size, cross_attention_dim = None, num_tokens = (4,), scale = 1.0, attention_op: Callable | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L4640)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L4640)
 
 **Parameters:**
 
@@ -701,7 +685,7 @@ Attention processor for IP-Adapter using xFormers.
 diffusers.models.attention_processor.FluxIPAdapterJointAttnProcessor2_0(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L5539)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L5539)
 
 ## XLAFluxFlashAttnProcessor2_0[[diffusers.models.attention_processor.XLAFluxFlashAttnProcessor2_0]]
 
@@ -711,9 +695,9 @@ diffusers.models.attention_processor.FluxIPAdapterJointAttnProcessor2_0(*args, *
 diffusers.models.attention_processor.XLAFluxFlashAttnProcessor2_0(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/attention_processor.py#L5579)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/attention_processor.py#L5579)
 
 Processor for implementing scaled dot-product attention with pallas flash attention kernel if using `torch_xla`.
 
 ### Outputs
-https://huggingface.co/docs/diffusers/v0.40.0/api/outputs.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/outputs.md

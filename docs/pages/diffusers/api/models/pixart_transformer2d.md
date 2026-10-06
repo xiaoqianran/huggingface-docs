@@ -10,7 +10,7 @@ A Transformer model for image-like data from [PixArt-Alpha](https://huggingface.
 diffusers.PixArtTransformer2DModel(num_attention_heads: int = 16, attention_head_dim: int = 72, in_channels: int = 4, out_channels: int | None = 8, num_layers: int = 28, dropout: float = 0.0, norm_num_groups: int = 32, cross_attention_dim: int | None = 1152, attention_bias: bool = True, sample_size: int = 128, patch_size: int = 2, activation_fn: str = 'gelu-approximate', num_embeds_ada_norm: int | None = 1000, upcast_attention: bool = False, norm_type: str = 'ada_norm_single', norm_elementwise_affine: bool = False, norm_eps: float = 1e-06, interpolation_scale: int | None = None, use_additional_conditions: bool | None = None, caption_channels: int | None = None, attention_type: str | None = 'default')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/pixart_transformer_2d.py#L32)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/pixart_transformer_2d.py#L32)
 
 **Parameters:**
 
@@ -69,7 +69,7 @@ https://huggingface.co/papers/2403.04692).
 forward(hidden_states: Tensor, encoder_hidden_states: typing.Optional[torch.Tensor] = None, timestep: typing.Optional[torch.LongTensor] = None, added_cond_kwargs: dict = None, cross_attention_kwargs: dict = None, attention_mask: typing.Optional[torch.Tensor] = None, encoder_attention_mask: typing.Optional[torch.Tensor] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/pixart_transformer_2d.py#L227)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/pixart_transformer_2d.py#L227)
 
 **Parameters:**
 
@@ -87,14 +87,14 @@ attention_mask ( `torch.Tensor`, *optional*) : An attention mask of shape `(batc
 
 encoder_attention_mask ( `torch.Tensor`, *optional*) : Cross-attention mask applied to `encoder_hidden_states`. Two formats supported:  * Mask `(batch, sequence_length)` True = keep, False = discard. * Bias `(batch, 1, sequence_length)` 0 = keep, -10000 = discard.  If `ndim == 2`: will be interpreted as a mask, then converted into a bias consistent with the format above. This bias will be added to the cross-attention scores.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [UNet2DConditionOutput](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.models.unets.unet_2d_condition.UNet2DConditionOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [UNet2DConditionOutput](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.models.unets.unet_2d_condition.UNet2DConditionOutput) instead of a plain tuple.
 
 **Returns:**
 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
-The [PixArtTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/pixart_transformer2d#diffusers.PixArtTransformer2DModel) forward method.
+The [PixArtTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/pixart_transformer2d#diffusers.PixArtTransformer2DModel) forward method.
 
 #### fuse_qkv_projections[[diffusers.PixArtTransformer2DModel.fuse_qkv_projections]]
 
@@ -102,7 +102,7 @@ The [PixArtTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/pixart_tran
 fuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/pixart_transformer_2d.py#L196)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/pixart_transformer_2d.py#L196)
 
 Enables fused QKV projections. For self-attention modules, all projection matrices (i.e., query, key, value)
 are fused. For cross-attention modules, key and value projection matrices are fused.
@@ -115,7 +115,7 @@ are fused. For cross-attention modules, key and value projection matrices are fu
 set_default_attn_processor()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/pixart_transformer_2d.py#L187)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/pixart_transformer_2d.py#L187)
 
 Disables custom attention processors and sets the default attention implementation.
 
@@ -127,11 +127,11 @@ Safe to just use `AttnProcessor()` as PixArt doesn't have any exotic attention p
 unfuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/pixart_transformer_2d.py#L218)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/pixart_transformer_2d.py#L218)
 
 Disables the fused QKV projection if enabled.
 
 > [!WARNING] > This API is 🧪 experimental.
 
 ### EasyAnimateTransformer3DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/easyanimate_transformer3d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/easyanimate_transformer3d.md

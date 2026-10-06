@@ -10,7 +10,7 @@ The abstract from the paper is:
 
 ## Loading from the original format
 
-By default the [SD3ControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet_sd3#diffusers.SD3ControlNetModel) should be loaded with [from_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained).
+By default the [SD3ControlNetModel](/docs/diffusers/v0.41.0/en/api/models/controlnet_sd3#diffusers.SD3ControlNetModel) should be loaded with [from_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained).
 
 ```py
 from diffusers import StableDiffusion3ControlNetPipeline
@@ -28,7 +28,7 @@ pipe = StableDiffusion3ControlNetPipeline.from_pretrained("stabilityai/stable-di
 diffusers.SD3ControlNetModel(sample_size: int = 128, patch_size: int = 2, in_channels: int = 16, num_layers: int = 18, attention_head_dim: int = 64, num_attention_heads: int = 18, joint_attention_dim: int = 4096, caption_projection_dim: int = 1152, pooled_projection_dim: int = 2048, out_channels: int = 16, pos_embed_max_size: int = 96, extra_conditioning_channels: int = 0, dual_attention_layers: tuple = (), qk_norm: str | None = None, pos_embed_type: str | None = 'sincos', use_pos_embed: bool = True, force_zeros_for_pooled_projection: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sd3.py#L42)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/controlnets/controlnet_sd3.py#L42)
 
 **Parameters:**
 
@@ -74,7 +74,7 @@ ControlNet model for [Stable Diffusion 3](https://huggingface.co/papers/2403.032
 enable_forward_chunking(chunk_size: int | None = None, dim: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sd3.py#L178)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/controlnets/controlnet_sd3.py#L178)
 
 **Parameters:**
 
@@ -91,7 +91,7 @@ chunking](https://huggingface.co/blog/reformer#2-chunked-feed-forward-layers).
 forward(hidden_states: Tensor, controlnet_cond: Tensor, conditioning_scale: float = 1.0, encoder_hidden_states: Tensor = None, pooled_projections: Tensor = None, timestep: LongTensor = None, joint_attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sd3.py#L272)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/controlnets/controlnet_sd3.py#L272)
 
 **Parameters:**
 
@@ -116,7 +116,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
-The [SD3Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/sd3_transformer2d#diffusers.SD3Transformer2DModel) forward method.
+The [SD3Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/sd3_transformer2d#diffusers.SD3Transformer2DModel) forward method.
 
 #### fuse_qkv_projections[[diffusers.SD3ControlNetModel.fuse_qkv_projections]]
 
@@ -124,7 +124,7 @@ The [SD3Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/sd3_transforme
 fuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sd3.py#L208)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/controlnets/controlnet_sd3.py#L208)
 
 Enables fused QKV projections. For self-attention modules, all projection matrices (i.e., query, key, value)
 are fused. For cross-attention modules, key and value projection matrices are fused.
@@ -137,7 +137,7 @@ are fused. For cross-attention modules, key and value projection matrices are fu
 unfuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sd3.py#L230)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/controlnets/controlnet_sd3.py#L230)
 
 Disables the fused QKV projection if enabled.
 
@@ -151,7 +151,7 @@ Disables the fused QKV projection if enabled.
 diffusers.models.controlnets.SD3ControlNetOutput(controlnet_block_samples: tuple)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sd3.py#L38)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/controlnets/controlnet_sd3.py#L38)
 
 ### AutoencoderDC
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoder_dc.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_dc.md

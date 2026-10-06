@@ -60,14 +60,14 @@ The following is a summary of the recommended checkpoints, all of which produce 
 |-----------------------------------------------------------------------------------------------------|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [prs-eth/marigold-depth-v1-1](https://huggingface.co/prs-eth/marigold-depth-v1-1)                   | Depth        | Affine-invariant depth prediction assigns each pixel a value between 0 (near plane) and 1 (far plane), with both planes determined by the model during inference.                    |
 | [prs-eth/marigold-normals-v0-1](https://huggingface.co/prs-eth/marigold-normals-v0-1)               | Normals      | The surface normals predictions are unit-length 3D vectors in the screen space camera, with values in the range from -1 to 1.                                                        |
-| [prs-eth/marigold-iid-appearance-v1-1](https://huggingface.co/prs-eth/marigold-iid-appearance-v1-1) | Intrinsics   | InteriorVerse decomposition is comprised of Albedo and two BRDF material properties: Roughness and Metallicity.                                                                      | 
+| [prs-eth/marigold-iid-appearance-v1-1](https://huggingface.co/prs-eth/marigold-iid-appearance-v1-1) | Intrinsics   | InteriorVerse decomposition is comprised of Albedo and two BRDF material properties: Roughness and Metallicity.                                                                      |
 | [prs-eth/marigold-iid-lighting-v1-1](https://huggingface.co/prs-eth/marigold-iid-lighting-v1-1)     | Intrinsics   | HyperSim decomposition of an image $I$ is comprised of Albedo $A$, Diffuse shading $S$, and Non-diffuse residual $R$: $I = A*S+R$. |
 
 > [!TIP]
-> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff 
-> between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reuse-a-pipeline) section to learn how to 
-> efficiently load the same components into multiple pipelines. 
-> Also, to know more about reducing the memory usage of this pipeline, refer to the ["Reduce memory usage"] section 
+> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff
+> between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reusing-models-in-multiple-pipelines) section to learn how to
+> efficiently load the same components into multiple pipelines.
+> Also, to know more about reducing the memory usage of this pipeline, refer to the ["Reduce memory usage"] section
 > [here](./stable_diffusion/svd#reduce-memory-usage).
 
 > [!WARNING]
@@ -93,7 +93,7 @@ This makes it easier to compare visualizations of the predictions across various
 
 ## Depth Prediction
 
-To get a depth prediction, load the `prs-eth/marigold-depth-v1-1` checkpoint into [MarigoldDepthPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.MarigoldDepthPipeline), 
+To get a depth prediction, load the `prs-eth/marigold-depth-v1-1` checkpoint into [MarigoldDepthPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/marigold#diffusers.MarigoldDepthPipeline), 
 put the image through the pipeline, and save the predictions:
 
 ```python
@@ -102,7 +102,7 @@ import torch
 
 pipe = diffusers.MarigoldDepthPipeline.from_pretrained(
     "prs-eth/marigold-depth-v1-1", variant="fp16", dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 image = diffusers.utils.load_image("https://marigoldmonodepth.github.io/images/einstein.jpg")
 
@@ -115,7 +115,7 @@ depth_16bit = pipe.image_processor.export_depth_to_16bit_png(depth.prediction)
 depth_16bit[0].save("einstein_depth_16bit.png")
 ```
 
-The [visualize_depth()](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_depth) function applies one of 
+The [visualize_depth()](/docs/diffusers/v0.41.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_depth) function applies one of 
 [matplotlib's colormaps](https://matplotlib.org/stable/users/explain/colors/colormaps.html) (`Spectral` by default) to map the predicted pixel values from a single-channel `[0, 1]` 
 depth range into an RGB image.
 With the `Spectral` colormap, pixels with near depth are painted red, and far pixels are blue.
@@ -138,7 +138,7 @@ the visualization.
 
 ## Surface Normals Estimation
 
-Load the `prs-eth/marigold-normals-v1-1` checkpoint into [MarigoldNormalsPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.MarigoldNormalsPipeline), put the image through the 
+Load the `prs-eth/marigold-normals-v1-1` checkpoint into [MarigoldNormalsPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/marigold#diffusers.MarigoldNormalsPipeline), put the image through the 
 pipeline, and save the predictions:
 
 ```python
@@ -147,7 +147,7 @@ import torch
 
 pipe = diffusers.MarigoldNormalsPipeline.from_pretrained(
     "prs-eth/marigold-normals-v1-1", variant="fp16", dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 image = diffusers.utils.load_image("https://marigoldmonodepth.github.io/images/einstein.jpg")
 
@@ -157,7 +157,7 @@ vis = pipe.image_processor.visualize_normals(normals.prediction)
 vis[0].save("einstein_normals.png")
 ```
 
-The [visualize_normals()](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_normals) maps the three-dimensional 
+The [visualize_normals()](/docs/diffusers/v0.41.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_normals) maps the three-dimensional 
 prediction with pixel values in the range `[-1, 1]` into an RGB image.
 The visualization function supports flipping surface normals axes to make the visualization compatible with other 
 choices of the frame of reference.
@@ -195,7 +195,7 @@ import torch
 
 pipe = diffusers.MarigoldIntrinsicsPipeline.from_pretrained(
     "prs-eth/marigold-iid-appearance-v1-1", variant="fp16", dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 image = diffusers.utils.load_image("https://marigoldmonodepth.github.io/images/einstein.jpg")
 
@@ -215,7 +215,7 @@ import torch
 
 pipe = diffusers.MarigoldIntrinsicsPipeline.from_pretrained(
     "prs-eth/marigold-iid-lighting-v1-1", variant="fp16", dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 image = diffusers.utils.load_image("https://marigoldmonodepth.github.io/images/einstein.jpg")
 
@@ -230,7 +230,7 @@ vis[0]["residual"].save("einstein_residual.png")
 Both models share the same pipeline while supporting different decomposition types.
 The exact decomposition parameterization (e.g., sRGB vs. linear space) is stored in the 
 `pipe.target_properties` dictionary, which is passed into the 
-[visualize_intrinsics()](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_intrinsics) function.
+[visualize_intrinsics()](/docs/diffusers/v0.41.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_intrinsics) function.
 
 Below are some examples showcasing the predicted decomposition outputs. 
 All modalities can be inspected in the 
@@ -262,7 +262,7 @@ steps to the minimum:
 
   pipe = diffusers.MarigoldDepthPipeline.from_pretrained(
       "prs-eth/marigold-depth-v1-1", variant="fp16", dtype=torch.float16
-  ).to("cuda")
+  ).to("cuda")  # or "mps", "xpu", "cpu"
 
   image = diffusers.utils.load_image("https://marigoldmonodepth.github.io/images/einstein.jpg")
   
@@ -285,7 +285,7 @@ Note that using a lightweight VAE may slightly reduce the visual quality of the 
 
   pipe = diffusers.MarigoldDepthPipeline.from_pretrained(
       "prs-eth/marigold-depth-v1-1", variant="fp16", dtype=torch.float16
-  ).to("cuda")
+  ).to("cuda")  # or "mps", "xpu", "cpu"
 
 + pipe.vae = diffusers.AutoencoderTiny.from_pretrained(
 +     "madebyollin/taesd", dtype=torch.float16
@@ -307,7 +307,7 @@ Speeding them up can be achieved by using a more efficient attention processor:
 
   pipe = diffusers.MarigoldDepthPipeline.from_pretrained(
       "prs-eth/marigold-depth-v1-1", variant="fp16", dtype=torch.float16
-  ).to("cuda")
+  ).to("cuda")  # or "mps", "xpu", "cpu"
 
 + pipe.vae.set_attn_processor(AttnProcessor2_0()) 
 + pipe.unet.set_attn_processor(AttnProcessor2_0())
@@ -329,7 +329,7 @@ the same pipeline instance is called repeatedly, such as within a loop.
 
   pipe = diffusers.MarigoldDepthPipeline.from_pretrained(
       "prs-eth/marigold-depth-v1-1", variant="fp16", dtype=torch.float16
-  ).to("cuda")
+  ).to("cuda")  # or "mps", "xpu", "cpu"
 
   pipe.vae.set_attn_processor(AttnProcessor2_0()) 
   pipe.unet.set_attn_processor(AttnProcessor2_0())
@@ -354,7 +354,7 @@ The effect of ensembling is particularly well-seen with surface normals:
 ```diff
   import diffusers
 
-  pipe = diffusers.MarigoldNormalsPipeline.from_pretrained("prs-eth/marigold-normals-v1-1").to("cuda")
+  pipe = diffusers.MarigoldNormalsPipeline.from_pretrained("prs-eth/marigold-normals-v1-1").to("cuda")  # or "mps", "xpu", "cpu"
 
   image = diffusers.utils.load_image("https://marigoldmonodepth.github.io/images/einstein.jpg")
 
@@ -411,7 +411,7 @@ from diffusers.models.attention_processor import AttnProcessor2_0
 from PIL import Image
 from tqdm import tqdm
 
-device = "cuda"
+device = "cuda"  # or "mps", "xpu", "cpu"
 path_in = "https://huggingface.co/spaces/prs-eth/marigold-lcm/resolve/c7adb5427947d2680944f898cd91d386bf0d4924/files/video/obama.mp4"
 path_out = "obama_depth.gif"
 
@@ -478,7 +478,7 @@ The snippet below demonstrates how to load an image, compute depth, and pass it 
 import torch
 import diffusers
 
-device = "cuda"
+device = "cuda"  # or "mps", "xpu", "cpu"
 generator = torch.Generator(device=device).manual_seed(2024)
 image = diffusers.utils.load_image(
     "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/controlnet_depth_source.png"
@@ -544,7 +544,7 @@ Maximizing `batch_size` will deliver maximum device utilization.
 import diffusers
 import torch
 
-device = "cuda"
+device = "cuda"  # or "mps", "xpu", "cpu"
 seed = 2024
 
 generator = torch.Generator(device=device).manual_seed(seed)
@@ -577,7 +577,7 @@ import torch
 
 pipe = diffusers.MarigoldDepthPipeline.from_pretrained(
     "prs-eth/marigold-depth-v1-1", variant="fp16", dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 image = diffusers.utils.load_image("https://marigoldmonodepth.github.io/images/einstein.jpg")
 
@@ -626,7 +626,7 @@ unlike depth and surface normals. It is also higher in shaded regions and at dis
 diffusers.MarigoldDepthPipeline(unet: UNet2DConditionModel, vae: AutoencoderKL, scheduler: diffusers.schedulers.scheduling_ddim.DDIMScheduler | diffusers.schedulers.scheduling_lcm.LCMScheduler, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, prediction_type: str | None = None, scale_invariant: bool | None = True, shift_invariant: bool | None = True, default_denoising_steps: int | None = None, default_processing_resolution: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/pipeline_marigold_depth.py#L104)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/marigold/pipeline_marigold_depth.py#L104)
 
 **Parameters:**
 
@@ -652,7 +652,7 @@ default_processing_resolution (`int`, *optional*) : The recommended value of the
 
 Pipeline for monocular depth estimation using the Marigold method: https://marigoldmonodepth.github.io.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.MarigoldDepthPipeline.__call__]]
@@ -661,7 +661,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], num_inference_steps: int | None = None, ensemble_size: int = 1, processing_resolution: int | None = None, match_input_resolution: bool = True, resample_method_input: str = 'bilinear', resample_method_output: str = 'bilinear', batch_size: int = 1, ensembling_kwargs: dict[str, typing.Any] | None = None, latents: typing.Union[torch.Tensor, list[torch.Tensor], NoneType] = None, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, output_type: str = 'np', output_uncertainty: bool = False, output_latent: bool = False, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/pipeline_marigold_depth.py#L347)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/marigold/pipeline_marigold_depth.py#L347)
 
 **Parameters:**
 
@@ -693,11 +693,11 @@ output_uncertainty (`bool`, *optional*, defaults to `False`) : When enabled, the
 
 output_latent (`bool`, *optional*, defaults to `False`) : When enabled, the output's `latent` field contains the latent codes corresponding to the predictions within the ensemble. These codes can be saved, modified, and used for subsequent calls with the `latents` argument.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [MarigoldDepthOutput](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldDepthOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [MarigoldDepthOutput](/docs/diffusers/v0.41.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldDepthOutput) instead of a plain tuple.
 
-**Returns:** [MarigoldDepthOutput](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldDepthOutput) or `tuple`
+**Returns:** [MarigoldDepthOutput](/docs/diffusers/v0.41.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldDepthOutput) or `tuple`
 
-If `return_dict` is `True`, [MarigoldDepthOutput](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldDepthOutput) is returned, otherwise a
+If `return_dict` is `True`, [MarigoldDepthOutput](/docs/diffusers/v0.41.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldDepthOutput) is returned, otherwise a
 `tuple` is returned where the first element is the prediction, the second element is the uncertainty
 (or `None`), and the third is the latent (or `None`).
 
@@ -728,7 +728,7 @@ Examples:
 diffusers.pipelines.marigold.MarigoldDepthOutput(prediction: typing.Union[numpy.ndarray, torch.Tensor], uncertainty: typing.Union[NoneType, numpy.ndarray, torch.Tensor], latent: typing.Optional[torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/pipeline_marigold_depth.py#L83)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/marigold/pipeline_marigold_depth.py#L83)
 
 **Parameters:**
 
@@ -746,7 +746,7 @@ Output class for Marigold monocular depth prediction pipeline.
 diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_depth(depth: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], val_min: float = 0.0, val_max: float = 1.0, color_map: str = 'Spectral')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/marigold_image_processing.py#L387)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/marigold/marigold_image_processing.py#L387)
 
 **Parameters:**
 
@@ -770,7 +770,7 @@ Returns: `list[PIL.Image.Image]` with depth maps visualization.
 diffusers.MarigoldNormalsPipeline(unet: UNet2DConditionModel, vae: AutoencoderKL, scheduler: diffusers.schedulers.scheduling_ddim.DDIMScheduler | diffusers.schedulers.scheduling_lcm.LCMScheduler, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, prediction_type: str | None = None, use_full_z_range: bool | None = True, default_denoising_steps: int | None = None, default_processing_resolution: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/pipeline_marigold_normals.py#L99)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/marigold/pipeline_marigold_normals.py#L99)
 
 **Parameters:**
 
@@ -794,7 +794,7 @@ default_processing_resolution (`int`, *optional*) : The recommended value of the
 
 Pipeline for monocular normals estimation using the Marigold method: https://marigoldmonodepth.github.io.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.MarigoldNormalsPipeline.__call__]]
@@ -803,7 +803,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], num_inference_steps: int | None = None, ensemble_size: int = 1, processing_resolution: int | None = None, match_input_resolution: bool = True, resample_method_input: str = 'bilinear', resample_method_output: str = 'bilinear', batch_size: int = 1, ensembling_kwargs: dict[str, typing.Any] | None = None, latents: typing.Union[torch.Tensor, list[torch.Tensor], NoneType] = None, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, output_type: str = 'np', output_uncertainty: bool = False, output_latent: bool = False, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/pipeline_marigold_normals.py#L332)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/marigold/pipeline_marigold_normals.py#L332)
 
 **Parameters:**
 
@@ -835,11 +835,11 @@ output_uncertainty (`bool`, *optional*, defaults to `False`) : When enabled, the
 
 output_latent (`bool`, *optional*, defaults to `False`) : When enabled, the output's `latent` field contains the latent codes corresponding to the predictions within the ensemble. These codes can be saved, modified, and used for subsequent calls with the `latents` argument.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [MarigoldNormalsOutput](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldNormalsOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [MarigoldNormalsOutput](/docs/diffusers/v0.41.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldNormalsOutput) instead of a plain tuple.
 
-**Returns:** [MarigoldNormalsOutput](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldNormalsOutput) or `tuple`
+**Returns:** [MarigoldNormalsOutput](/docs/diffusers/v0.41.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldNormalsOutput) or `tuple`
 
-If `return_dict` is `True`, [MarigoldNormalsOutput](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldNormalsOutput) is returned, otherwise a
+If `return_dict` is `True`, [MarigoldNormalsOutput](/docs/diffusers/v0.41.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldNormalsOutput) is returned, otherwise a
 `tuple` is returned where the first element is the prediction, the second element is the uncertainty
 (or `None`), and the third is the latent (or `None`).
 
@@ -867,7 +867,7 @@ Examples:
 diffusers.pipelines.marigold.MarigoldNormalsOutput(prediction: typing.Union[numpy.ndarray, torch.Tensor], uncertainty: typing.Union[NoneType, numpy.ndarray, torch.Tensor], latent: typing.Optional[torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/pipeline_marigold_normals.py#L78)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/marigold/pipeline_marigold_normals.py#L78)
 
 **Parameters:**
 
@@ -885,7 +885,7 @@ Output class for Marigold monocular normals prediction pipeline.
 diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_normals(normals: typing.Union[numpy.ndarray, torch.Tensor, list[numpy.ndarray], list[torch.Tensor]], flip_x: bool = False, flip_y: bool = False, flip_z: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/marigold_image_processing.py#L486)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/marigold/marigold_image_processing.py#L486)
 
 **Parameters:**
 
@@ -909,7 +909,7 @@ Returns: `list[PIL.Image.Image]` with surface normals visualization.
 diffusers.MarigoldIntrinsicsPipeline(unet: UNet2DConditionModel, vae: AutoencoderKL, scheduler: diffusers.schedulers.scheduling_ddim.DDIMScheduler | diffusers.schedulers.scheduling_lcm.LCMScheduler, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, prediction_type: str | None = None, target_properties: dict[str, typing.Any] | None = None, default_denoising_steps: int | None = None, default_processing_resolution: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/pipeline_marigold_intrinsics.py#L120)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/marigold/pipeline_marigold_intrinsics.py#L120)
 
 **Parameters:**
 
@@ -934,7 +934,7 @@ default_processing_resolution (`int`, *optional*) : The recommended value of the
 Pipeline for Intrinsic Image Decomposition (IID) using the Marigold method:
 https://marigoldcomputervision.github.io.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.MarigoldIntrinsicsPipeline.__call__]]
@@ -943,7 +943,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], num_inference_steps: int | None = None, ensemble_size: int = 1, processing_resolution: int | None = None, match_input_resolution: bool = True, resample_method_input: str = 'bilinear', resample_method_output: str = 'bilinear', batch_size: int = 1, ensembling_kwargs: dict[str, typing.Any] | None = None, latents: typing.Union[torch.Tensor, list[torch.Tensor], NoneType] = None, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, output_type: str = 'np', output_uncertainty: bool = False, output_latent: bool = False, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/pipeline_marigold_intrinsics.py#L359)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/marigold/pipeline_marigold_intrinsics.py#L359)
 
 **Parameters:**
 
@@ -975,11 +975,11 @@ output_uncertainty (`bool`, *optional*, defaults to `False`) : When enabled, the
 
 output_latent (`bool`, *optional*, defaults to `False`) : When enabled, the output's `latent` field contains the latent codes corresponding to the predictions within the ensemble. These codes can be saved, modified, and used for subsequent calls with the `latents` argument.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [MarigoldIntrinsicsOutput](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldIntrinsicsOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [MarigoldIntrinsicsOutput](/docs/diffusers/v0.41.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldIntrinsicsOutput) instead of a plain tuple.
 
-**Returns:** [MarigoldIntrinsicsOutput](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldIntrinsicsOutput) or `tuple`
+**Returns:** [MarigoldIntrinsicsOutput](/docs/diffusers/v0.41.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldIntrinsicsOutput) or `tuple`
 
-If `return_dict` is `True`, [MarigoldIntrinsicsOutput](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldIntrinsicsOutput) is returned, otherwise a
+If `return_dict` is `True`, [MarigoldIntrinsicsOutput](/docs/diffusers/v0.41.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldIntrinsicsOutput) is returned, otherwise a
 `tuple` is returned where the first element is the prediction, the second element is the uncertainty
 (or `None`), and the third is the latent (or `None`).
 
@@ -1026,7 +1026,7 @@ Examples:
 diffusers.pipelines.marigold.MarigoldIntrinsicsOutput(prediction: typing.Union[numpy.ndarray, torch.Tensor], uncertainty: typing.Union[NoneType, numpy.ndarray, torch.Tensor], latent: typing.Optional[torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/pipeline_marigold_intrinsics.py#L96)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/marigold/pipeline_marigold_intrinsics.py#L96)
 
 **Parameters:**
 
@@ -1044,7 +1044,7 @@ Output class for Marigold Intrinsic Image Decomposition pipeline.
 diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_intrinsics(prediction: typing.Union[numpy.ndarray, torch.Tensor, list[numpy.ndarray], list[torch.Tensor]], target_properties: dict, color_map: str | dict[str, str] = 'binary')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/marigold_image_processing.py#L542)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/marigold/marigold_image_processing.py#L542)
 
 **Parameters:**
 
@@ -1059,4 +1059,4 @@ Visualizes intrinsic image decomposition, such as predictions of the `MarigoldIn
 Returns: `list[dict[str, PIL.Image.Image]]` with intrinsic image decomposition visualization.
 
 ### InstructPix2Pix
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/pix2pix.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/pix2pix.md

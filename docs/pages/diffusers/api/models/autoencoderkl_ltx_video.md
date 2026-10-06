@@ -7,7 +7,7 @@ The model can be loaded with the following code snippet.
 ```python
 from diffusers import AutoencoderKLLTXVideo
 
-vae = AutoencoderKLLTXVideo.from_pretrained("Lightricks/LTX-Video", subfolder="vae", dtype=torch.float32).to("cuda")
+vae = AutoencoderKLLTXVideo.from_pretrained("Lightricks/LTX-Video", subfolder="vae", dtype=torch.float32).to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 ## AutoencoderKLLTXVideo[[diffusers.AutoencoderKLLTXVideo]]
@@ -18,7 +18,7 @@ vae = AutoencoderKLLTXVideo.from_pretrained("Lightricks/LTX-Video", subfolder="v
 diffusers.AutoencoderKLLTXVideo(in_channels: int = 3, out_channels: int = 3, latent_channels: int = 128, block_out_channels: tuple = (128, 256, 512, 512), down_block_types: tuple = ('LTXVideoDownBlock3D', 'LTXVideoDownBlock3D', 'LTXVideoDownBlock3D', 'LTXVideoDownBlock3D'), decoder_block_out_channels: tuple = (128, 256, 512, 512), layers_per_block: tuple = (4, 3, 3, 3, 4), decoder_layers_per_block: tuple = (4, 3, 3, 3, 4), spatio_temporal_scaling: tuple = (True, True, True, False), decoder_spatio_temporal_scaling: tuple = (True, True, True, False), decoder_inject_noise: tuple = (False, False, False, False, False), downsample_type: tuple = ('conv', 'conv', 'conv', 'conv'), upsample_residual: tuple = (False, False, False, False), upsample_factor: tuple = (1, 1, 1, 1), timestep_conditioning: bool = False, patch_size: int = 4, patch_size_t: int = 1, resnet_norm_eps: float = 1e-06, scaling_factor: float = 1.0, encoder_causal: bool = True, decoder_causal: bool = False, spatial_compression_ratio: int = None, temporal_compression_ratio: int = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx.py#L1035)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx.py#L1035)
 
 **Parameters:**
 
@@ -49,7 +49,7 @@ decoder_causal (`bool`, defaults to `False`) : Whether the decoder should behave
 A VAE model with KL loss for encoding images into latents and decoding latent representations into images. Used in
 [LTX](https://huggingface.co/Lightricks/LTX-Video).
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
+This model inherits from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
 for all models (such as downloading or saving).
 
 #### decode[[diffusers.AutoencoderKLLTXVideo.decode]]
@@ -58,7 +58,7 @@ for all models (such as downloading or saving).
 decode(z: Tensor, temb: typing.Optional[torch.Tensor] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx.py#L1281)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx.py#L1281)
 
 **Parameters:**
 
@@ -79,7 +79,7 @@ Decode a batch of images.
 encode(x: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx.py#L1233)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx.py#L1233)
 
 **Parameters:**
 
@@ -100,7 +100,7 @@ Encode a batch of images into latents.
 enable_tiling(tile_sample_min_height: int | None = None, tile_sample_min_width: int | None = None, tile_sample_min_num_frames: int | None = None, tile_sample_stride_height: float | None = None, tile_sample_stride_width: float | None = None, tile_sample_stride_num_frames: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx.py#L1186)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx.py#L1186)
 
 **Parameters:**
 
@@ -122,7 +122,7 @@ processing larger images.
 forward(sample: Tensor, temb: typing.Optional[torch.Tensor] = None, sample_posterior: bool = False, return_dict: bool = True, generator: typing.Optional[torch.Generator] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx.py#L1517)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx.py#L1517)
 
 **Parameters:**
 
@@ -147,7 +147,7 @@ returned.
 tiled_decode(z: Tensor, temb: typing.Optional[torch.Tensor], return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx.py#L1389)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx.py#L1389)
 
 **Parameters:**
 
@@ -168,7 +168,7 @@ Decode a batch of images using a tiled decoder.
 tiled_encode(x: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx.py#L1338)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_ltx.py#L1338)
 
 **Parameters:**
 
@@ -188,7 +188,7 @@ Encode a batch of images using a tiled encoder.
 diffusers.models.modeling_outputs.AutoencoderKLOutput(latent_dist: DiagonalGaussianDistribution)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L7)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/modeling_outputs.py#L7)
 
 **Parameters:**
 
@@ -204,7 +204,7 @@ Output of AutoencoderKL encoding method.
 diffusers.models.autoencoders.vae.DecoderOutput(sample: Tensor, commit_loss: typing.Optional[torch.FloatTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/vae.py#L46)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/vae.py#L49)
 
 **Parameters:**
 
@@ -213,4 +213,4 @@ sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) : T
 Output of decoding method.
 
 ### CogView3PlusTransformer2DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/cogview3plus_transformer2d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/cogview3plus_transformer2d.md

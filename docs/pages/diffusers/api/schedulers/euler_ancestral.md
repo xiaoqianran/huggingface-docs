@@ -10,7 +10,7 @@ A scheduler that uses ancestral sampling with Euler method steps. This is a fast
 diffusers.EulerAncestralDiscreteScheduler(num_train_timesteps: int = 1000, beta_start: float = 0.0001, beta_end: float = 0.02, beta_schedule: str = 'linear', trained_betas: numpy.ndarray | list[float] | None = None, prediction_type: str = 'epsilon', timestep_spacing: str = 'linspace', steps_offset: int = 0, rescale_betas_zero_snr: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_euler_ancestral_discrete.py#L140)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_euler_ancestral_discrete.py#L140)
 
 **Parameters:**
 
@@ -34,7 +34,7 @@ rescale_betas_zero_snr (`bool`, defaults to `False`) : Whether to rescale the be
 
 Ancestral sampling with Euler method steps.
 
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
 methods the library implements for all schedulers such as loading and saving.
 
 #### add_noise[[diffusers.EulerAncestralDiscreteScheduler.add_noise]]
@@ -43,7 +43,7 @@ methods the library implements for all schedulers such as loading and saving.
 add_noise(original_samples: Tensor, noise: Tensor, timesteps: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_euler_ancestral_discrete.py#L479)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_euler_ancestral_discrete.py#L479)
 
 **Parameters:**
 
@@ -65,7 +65,7 @@ Add noise to the original samples according to the noise schedule at the specifi
 index_for_timestep(timestep: typing.Union[float, torch.Tensor], schedule_timesteps: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_euler_ancestral_discrete.py#L330)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_euler_ancestral_discrete.py#L330)
 
 **Parameters:**
 
@@ -86,7 +86,7 @@ Find the index of a given timestep in the timestep schedule.
 scale_model_input(sample: Tensor, timestep: typing.Union[float, torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_euler_ancestral_discrete.py#L261)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_euler_ancestral_discrete.py#L261)
 
 **Parameters:**
 
@@ -107,7 +107,7 @@ current timestep. Scales the denoising model input by `(sigma**2 + 1) ** 0.5` to
 set_begin_index(begin_index: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_euler_ancestral_discrete.py#L251)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_euler_ancestral_discrete.py#L251)
 
 **Parameters:**
 
@@ -121,7 +121,7 @@ Sets the begin index for the scheduler. This function should be run from pipelin
 set_timesteps(num_inference_steps: int, device: typing.Union[str, torch.device] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_euler_ancestral_discrete.py#L285)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_euler_ancestral_discrete.py#L285)
 
 **Parameters:**
 
@@ -137,7 +137,7 @@ Sets the discrete timesteps used for the diffusion chain (to be run before infer
 step(model_output: Tensor, timestep: typing.Union[float, torch.Tensor], sample: Tensor, generator: typing.Optional[torch.Generator] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_euler_ancestral_discrete.py#L376)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_euler_ancestral_discrete.py#L376)
 
 **Parameters:**
 
@@ -149,12 +149,12 @@ sample (`torch.Tensor`) : A current instance of a sample created by the diffusio
 
 generator (`torch.Generator`, *optional*) : A random number generator.
 
-return_dict (`bool`, defaults to `True`) : Whether or not to return a [EulerAncestralDiscreteSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/euler_ancestral#diffusers.schedulers.scheduling_euler_ancestral_discrete.EulerAncestralDiscreteSchedulerOutput) or tuple.
+return_dict (`bool`, defaults to `True`) : Whether or not to return a [EulerAncestralDiscreteSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/euler_ancestral#diffusers.schedulers.scheduling_euler_ancestral_discrete.EulerAncestralDiscreteSchedulerOutput) or tuple.
 
-**Returns:** [EulerAncestralDiscreteSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/euler_ancestral#diffusers.schedulers.scheduling_euler_ancestral_discrete.EulerAncestralDiscreteSchedulerOutput) or `tuple`
+**Returns:** [EulerAncestralDiscreteSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/euler_ancestral#diffusers.schedulers.scheduling_euler_ancestral_discrete.EulerAncestralDiscreteSchedulerOutput) or `tuple`
 
 If return_dict is `True`,
-[EulerAncestralDiscreteSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/euler_ancestral#diffusers.schedulers.scheduling_euler_ancestral_discrete.EulerAncestralDiscreteSchedulerOutput) is returned,
+[EulerAncestralDiscreteSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/euler_ancestral#diffusers.schedulers.scheduling_euler_ancestral_discrete.EulerAncestralDiscreteSchedulerOutput) is returned,
 otherwise a tuple is returned where the first element is the sample tensor.
 
 Predict the sample from the previous timestep by reversing the SDE. This function propagates the diffusion
@@ -168,7 +168,7 @@ process from the learned model outputs (most often the predicted noise).
 diffusers.schedulers.scheduling_euler_ancestral_discrete.EulerAncestralDiscreteSchedulerOutput(prev_sample: Tensor, pred_original_sample: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_euler_ancestral_discrete.py#L33)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_euler_ancestral_discrete.py#L33)
 
 **Parameters:**
 
@@ -179,4 +179,4 @@ pred_original_sample (`torch.Tensor` of shape `(batch_size, num_channels, height
 Output class for the scheduler's `step` function output.
 
 ### VQDiffusionScheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/vq_diffusion.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/vq_diffusion.md

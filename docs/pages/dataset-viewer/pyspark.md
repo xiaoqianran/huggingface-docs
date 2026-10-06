@@ -53,3 +53,6 @@ df.describe().show()
 df.printSchema()
 
 ```
+
+### Search text in a dataset
+https://huggingface.co/docs/dataset-viewer/search.md

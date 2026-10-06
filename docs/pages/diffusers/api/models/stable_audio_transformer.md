@@ -10,7 +10,7 @@ A Transformer model for audio waveforms from [Stable Audio Open](https://hugging
 diffusers.StableAudioDiTModel(sample_size: int = 1024, in_channels: int = 64, num_layers: int = 24, attention_head_dim: int = 64, num_attention_heads: int = 24, num_key_value_attention_heads: int = 12, out_channels: int = 64, cross_attention_dim: int = 768, time_proj_dim: int = 256, global_states_input_dim: int = 1536, cross_attention_input_dim: int = 768)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/stable_audio_transformer.py#L183)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/stable_audio_transformer.py#L183)
 
 **Parameters:**
 
@@ -46,7 +46,7 @@ Reference: https://github.com/Stability-AI/stable-audio-tools
 forward(hidden_states: FloatTensor, timestep: LongTensor = None, encoder_hidden_states: FloatTensor = None, global_hidden_states: FloatTensor = None, rotary_embedding: FloatTensor = None, return_dict: bool = True, attention_mask: typing.Optional[torch.LongTensor] = None, encoder_attention_mask: typing.Optional[torch.LongTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/stable_audio_transformer.py#L282)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/stable_audio_transformer.py#L282)
 
 **Parameters:**
 
@@ -71,7 +71,7 @@ encoder_attention_mask (`torch.Tensor` of shape `(batch_size, sequence_len)`, *o
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
-The [StableAudioDiTModel](/docs/diffusers/v0.40.0/en/api/models/stable_audio_transformer#diffusers.StableAudioDiTModel) forward method.
+The [StableAudioDiTModel](/docs/diffusers/v0.41.0/en/api/models/stable_audio_transformer#diffusers.StableAudioDiTModel) forward method.
 
 #### set_default_attn_processor[[diffusers.StableAudioDiTModel.set_default_attn_processor]]
 
@@ -79,9 +79,9 @@ The [StableAudioDiTModel](/docs/diffusers/v0.40.0/en/api/models/stable_audio_tra
 set_default_attn_processor()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/stable_audio_transformer.py#L276)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/stable_audio_transformer.py#L276)
 
 Disables custom attention processors and sets the default attention implementation.
 
 ### AutoencoderKLLTXVideo
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoderkl_ltx_video.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_ltx_video.md

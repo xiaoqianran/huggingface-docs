@@ -190,13 +190,13 @@ Please have a look at [this page](https://github.com/huggingface/diffusers/tree/
 ### 6. Contribute a community pipeline
 
 > [!TIP]
-> Read the [Community pipelines](../using-diffusers/custom_pipeline_overview#community-pipelines) guide to learn more about the difference between a GitHub and Hugging Face Hub community pipeline. If you're interested in why we have community pipelines, take a look at GitHub Issue [#841](https://github.com/huggingface/diffusers/issues/841) (basically, we can't maintain all the possible ways diffusion models can be used for inference but we also don't want to prevent the community from building them).
+> Read the [Community pipelines](../using-diffusers/custom_pipeline_overview#community-pipelines-and-components) guide to learn more about the difference between a GitHub and Hugging Face Hub community pipeline. If you're interested in why we have community pipelines, take a look at GitHub Issue [#841](https://github.com/huggingface/diffusers/issues/841) (basically, we can't maintain all the possible ways diffusion models can be used for inference but we also don't want to prevent the community from building them).
 
-Contributing a community pipeline is a great way to share your creativity and work with the community. It lets you build on top of the [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) so that anyone can load and use it by setting the `custom_pipeline` parameter. This section will walk you through how to create a simple pipeline where the UNet only does a single forward pass and calls the scheduler once (a "one-step" pipeline).
+Contributing a community pipeline is a great way to share your creativity and work with the community. It lets you build on top of the [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) so that anyone can load and use it by setting the `custom_pipeline` parameter. This section will walk you through how to create a simple pipeline where the UNet only does a single forward pass and calls the scheduler once (a "one-step" pipeline).
 
-1. Create a one_step_unet.py file for your community pipeline. This file can contain whatever package you want to use as long as it's installed by the user. Make sure you only have one pipeline class that inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) to load model weights and the scheduler configuration from the Hub. Add a UNet and scheduler to the `__init__` function.
+1. Create a one_step_unet.py file for your community pipeline. This file can contain whatever package you want to use as long as it's installed by the user. Make sure you only have one pipeline class that inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) to load model weights and the scheduler configuration from the Hub. Add a UNet and scheduler to the `__init__` function.
 
-    You should also add the `register_modules` function to ensure your pipeline and its components can be saved with [save_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained).
+    You should also add the `register_modules` function to ensure your pipeline and its components can be saved with [save_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained).
 
 ```py
 from diffusers import DiffusionPipeline
@@ -321,6 +321,16 @@ build powerful generative AI applications.
 
 By adding a new model, pipeline, or scheduler you might enable a new powerful use case for any of the user interfaces relying on Diffusers which can be of immense value for the whole generative AI ecosystem.
 
+#### When new model or pipeline support is released
+
+A new model or pipeline may be included in a release if you coordinate the integration with the Diffusers team in advance. Feel free to reach out to us, either via an issue on the Diffusers repository or by emailing to `diffusers@huggingface.co`.
+
+A release does not happen automatically when a model or pipeline pull request is merged. Before a release, maintainers first check that the integration is complete and that release tests pass.
+
+New model or pipeline support normally goes into the next minor release. The integration is merged into `main` and the release branch is created from it. The release contains all changes merged since the previous release, rather than only the model or pipeline integration.
+
+Release notes highlight the new model or pipeline and also summarize the other changes included in the release. Patch releases are normally reserved for fixes to an existing release.
+
 Diffusers has a couple of open feature requests for all three components - feel free to gloss over them
 if you don't know yet what specific component you would like to add:
 - [Model or pipeline](https://github.com/huggingface/diffusers/issues?q=is%3Aopen+is%3Aissue+label%3A%22New+pipeline%2Fmodel%22)
@@ -337,7 +347,7 @@ If you are unsure or stuck in the PR, don't hesitate to leave a message to ask f
 
 A unique and important feature to understand when adding any pipeline, model or scheduler code is the `# Copied from` mechanism. You'll see this all over the Diffusers codebase, and the reason we use it is to keep the codebase easy to understand and maintain. Marking code with the `# Copied from` mechanism forces the marked code to be identical to the code it was copied from. This makes it easy to update and propagate changes across many files whenever you run `make fix-copies`.
 
-For example, in the code example below, [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) is the original code and `AltDiffusionPipelineOutput` uses the `# Copied from` mechanism to copy it. The only difference is changing the class prefix from `Stable` to `Alt`.
+For example, in the code example below, [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) is the original code and `AltDiffusionPipelineOutput` uses the `# Copied from` mechanism to copy it. The only difference is changing the class prefix from `Stable` to `Alt`.
 
 ```py
 # Copied from diffusers.pipelines.stable_diffusion.pipeline_output.StableDiffusionPipelineOutput with Stable->Alt
@@ -585,6 +595,7 @@ AI-assisted contributions are welcome, but they must be coordinated, scoped, and
 - **Fix patterns, not one-offs.** If you spot an recurring issue, search the codebase for similar instances and open a *single* issue with a clear, systematic scope (e.g. "fix mutable defaults across all schedulers") rather than many issues or PRs for individual instances.
 - **Self-review before opening.** Run the [`self-review`](https://github.com/huggingface/diffusers/blob/main/.ai/skills/self-review/SKILL.md) skill — it reviews your diff against [`.ai/references/review-rules.md`](https://github.com/huggingface/diffusers/blob/main/.ai/references/review-rules.md), the same rubric the `@claude` CI reviewer uses — and address what it reports — it's a helper, not authoritative, and can be wrong. Focus on the blocking issues that make sense to you, and clean up dead/unused code as much as possible. If you disagree with a suggestion, it's fine to leave it for the reviewer to discuss after the PR is opened — the notes you share (see below) tell the reviewer it was a deliberate call.
 - **Share your self-review notes.** Please post the final self-review report — the round that reflects the diff you're submitting — on the PR, in the description or as a comment, including findings you intentionally did not fix and why. It helps the reviewer see what has already been checked and which calls were deliberate, and usually saves a few rounds of back-and-forth.
+- **Keep your PR communication concise.** Everything a reviewer reads on your PR — the description, commit messages, comments and replies, code comments — must be easy for a human to understand. If your agent drafted it, don't just skim it. Read it, and ask the agent to revise until it says something sensible and concise that you would write yourself. You are the author of everything you post.
 - **Include in the PR description:**
   - A **coordination link** to the issue or discussion where a maintainer acknowledged the work.
   - The **test commands you ran** and their results (paste relevant output, not just "tests pass").
@@ -593,4 +604,4 @@ AI-assisted contributions are welcome, but they must be coordinated, scoped, and
 If you are a model author or part of a team that officially maintains a model, we encourage you to use agents for a new model integration. Follow the repository's [recommended setup](https://github.com/huggingface/diffusers/blob/main/.ai/AGENTS.md) and use the [`model-integration`](https://github.com/huggingface/diffusers/blob/main/.ai/skills/model-integration/SKILL.md) skill. Coordinate the scope with maintainers before opening a PR — see [Adding pipelines, models, schedulers](#9-adding-pipelines-models-schedulers).
 
 ### 🧨 Diffusers’ Ethical Guidelines
-https://huggingface.co/docs/diffusers/v0.40.0/conceptual/ethical_guidelines.md
+https://huggingface.co/docs/diffusers/v0.41.0/conceptual/ethical_guidelines.md

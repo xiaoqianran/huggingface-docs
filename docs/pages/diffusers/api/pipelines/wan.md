@@ -68,7 +68,7 @@ pipeline = WanPipeline.from_pretrained(
     text_encoder=text_encoder,
     dtype=torch.bfloat16
 )
-pipeline.to("cuda")
+pipeline.to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt = """
 The camera rushes from far to near in a low-angle shot,
@@ -114,7 +114,7 @@ pipeline = WanPipeline.from_pretrained(
     text_encoder=text_encoder,
     dtype=torch.bfloat16
 )
-pipeline.to("cuda")
+pipeline.to("cuda")  # or "mps", "xpu", "cpu"
 
 # torch.compile
 pipeline.transformer.to(memory_format=torch.channels_last)
@@ -162,7 +162,7 @@ vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", dtype=torch.fl
 pipe = WanImageToVideoPipeline.from_pretrained(
     model_id, vae=vae, image_encoder=image_encoder, dtype=torch.bfloat16
 )
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 first_frame = load_image("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/flf2v_input_first_frame.png")
 last_frame = load_image("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/flf2v_input_last_frame.png")
@@ -253,7 +253,7 @@ from diffusers.utils import export_to_video, load_image, load_video
 model_id = "Wan-AI/Wan2.2-Animate-14B-Diffusers"
 vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", dtype=torch.float32)
 pipe = WanAnimatePipeline.from_pretrained(model_id, vae=vae, dtype=torch.bfloat16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 # Load character image and preprocessed videos
 image = load_image("path/to/character.jpg")
@@ -299,7 +299,7 @@ from diffusers.utils import export_to_video, load_image, load_video
 model_id = "Wan-AI/Wan2.2-Animate-14B-Diffusers"
 vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", dtype=torch.float32)
 pipe = WanAnimatePipeline.from_pretrained(model_id, vae=vae, dtype=torch.bfloat16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 # Load all required inputs for replacement mode
 image = load_image("path/to/new_character.jpg")
@@ -349,7 +349,7 @@ from diffusers.utils import export_to_video, load_image, load_video
 model_id = "Wan-AI/Wan2.2-Animate-14B-Diffusers"
 vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", dtype=torch.float32)
 pipe = WanAnimatePipeline.from_pretrained(model_id, vae=vae, dtype=torch.bfloat16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 image = load_image("path/to/character.jpg")
 pose_video = load_video("path/to/pose_video.mp4")
@@ -400,7 +400,7 @@ export_to_video(output, "animated_advanced.mp4", fps=30)
 
 ## Notes
 
-- Wan2.1 supports LoRAs with [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.WanLoraLoaderMixin.load_lora_weights).
+- Wan2.1 supports LoRAs with [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.WanLoraLoaderMixin.load_lora_weights).
 
   
   Show example code
@@ -421,7 +421,7 @@ export_to_video(output, "animated_advanced.mp4", fps=30)
   pipeline.scheduler = UniPCMultistepScheduler.from_config(
       pipeline.scheduler.config, flow_shift=5.0
   )
-  pipeline.to("cuda")
+  pipeline.to("cuda")  # or "mps", "xpu", "cpu"
 
   pipeline.load_lora_weights("benjamin-paine/steamboat-willie-1.3b", adapter_name="steamboat-willie")
   pipeline.set_adapters("steamboat-willie")
@@ -447,7 +447,7 @@ export_to_video(output, "animated_advanced.mp4", fps=30)
 
   
 
-- [WanTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel) and [AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan) supports loading from single files with [from_single_file()](/docs/diffusers/v0.40.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file).
+- [WanTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel) and [AutoencoderKLWan](/docs/diffusers/v0.41.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan) supports loading from single files with [from_single_file()](/docs/diffusers/v0.41.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file).
 
   
   Show example code
@@ -474,13 +474,13 @@ export_to_video(output, "animated_advanced.mp4", fps=30)
 
   
 
-- Set the [AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan) dtype to `torch.float32` for better decoding quality.
+- Set the [AutoencoderKLWan](/docs/diffusers/v0.41.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan) dtype to `torch.float32` for better decoding quality.
 
 - The number of frames per second (fps) or `k` should be calculated by `4 * k + 1`.
 
 - Try lower `shift` values (`2.0` to `5.0`) for lower resolution videos and higher `shift` values (`7.0` to `12.0`) for higher resolution images.
 
-- Wan 2.1 and 2.2 support using [LightX2V LoRAs](https://huggingface.co/Kijai/WanVideo_comfy/tree/main/Lightx2v) to speed up inference. Using them on Wan 2.2 is slightly more involed. Refer to [this code snippet](https://github.com/huggingface/diffusers/pull/12040#issuecomment-3144185272) to learn more.
+- Wan 2.1 and 2.2 support using [LightX2V LoRAs](https://huggingface.co/Kijai/WanVideo_comfy/tree/main/Lightx2v) to speed up inference. Using them on Wan 2.2 is slightly more involved. Refer to [this code snippet](https://github.com/huggingface/diffusers/pull/12040#issuecomment-3144185272) to learn more.
 
 - Wan 2.2 has two denoisers. By default, LoRAs are only loaded into the first denoiser. One can set `load_into_transformer_2=True` to load LoRAs into the second denoiser. Refer to [this](https://github.com/huggingface/diffusers/pull/12074#issue-3292620048) and [this](https://github.com/huggingface/diffusers/pull/12074#issuecomment-3155896144) examples to learn more.
 
@@ -492,7 +492,7 @@ export_to_video(output, "animated_advanced.mp4", fps=30)
 diffusers.WanPipeline(tokenizer: AutoTokenizer, text_encoder: UMT5EncoderModel, vae: AutoencoderKLWan, scheduler: FlowMatchEulerDiscreteScheduler, transformer: diffusers.models.transformers.transformer_wan.WanTransformer3DModel | None = None, transformer_2: diffusers.models.transformers.transformer_wan.WanTransformer3DModel | None = None, boundary_ratio: float | None = None, expand_timesteps: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan.py#L96)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/wan/pipeline_wan.py#L96)
 
 **Parameters:**
 
@@ -500,19 +500,19 @@ tokenizer (`T5Tokenizer`) : Tokenizer from [T5](https://huggingface.co/docs/tran
 
 text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
 
-transformer ([WanTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel)) : Conditional Transformer to denoise the input latents.
+transformer ([WanTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel)) : Conditional Transformer to denoise the input latents.
 
-scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLWan](/docs/diffusers/v0.41.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
-transformer_2 ([WanTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel), *optional*) : Conditional Transformer to denoise the input latents during the low-noise stage. If provided, enables two-stage denoising where `transformer` handles high-noise stages and `transformer_2` handles low-noise stages. If not provided, only `transformer` is used.
+transformer_2 ([WanTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel), *optional*) : Conditional Transformer to denoise the input latents during the low-noise stage. If provided, enables two-stage denoising where `transformer` handles high-noise stages and `transformer_2` handles low-noise stages. If not provided, only `transformer` is used.
 
 boundary_ratio (`float`, *optional*, defaults to `None`) : Ratio of total timesteps to use as the boundary for switching between transformers in two-stage denoising. The actual boundary timestep is calculated as `boundary_ratio * num_train_timesteps`. When provided, `transformer` handles timesteps >= boundary_timestep and `transformer_2` handles timesteps < boundary_timestep. If `None`, only `transformer` is used for the entire denoising process.
 
 Pipeline for text-to-video generation using Wan.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.WanPipeline.__call__]]
@@ -521,7 +521,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(prompt: str | list[str] = None, negative_prompt: str | list[str] = None, height: int = 480, width: int = 832, num_frames: int = 81, num_inference_steps: int = 50, guidance_scale: float = 5.0, guidance_scale_2: float | None = None, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'np', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan.py#L381)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/wan/pipeline_wan.py#L382)
 
 **Parameters:**
 
@@ -606,7 +606,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan.py#L199)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/wan/pipeline_wan.py#L200)
 
 **Parameters:**
 
@@ -636,7 +636,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.WanImageToVideoPipeline(tokenizer: AutoTokenizer, text_encoder: UMT5EncoderModel, vae: AutoencoderKLWan, scheduler: FlowMatchEulerDiscreteScheduler, image_processor: CLIPImageProcessorPil = None, image_encoder: CLIPVisionModel = None, transformer: WanTransformer3DModel = None, transformer_2: WanTransformer3DModel = None, boundary_ratio: float | None = None, expand_timesteps: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_i2v.py#L127)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/wan/pipeline_wan_i2v.py#L127)
 
 **Parameters:**
 
@@ -646,19 +646,19 @@ text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/
 
 image_encoder (`CLIPVisionModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPVisionModel), specifically the [clip-vit-huge-patch14](https://github.com/mlfoundations/open_clip/blob/main/docs/PRETRAINED.md#vit-h14-xlm-roberta-large) variant.
 
-transformer ([WanTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel)) : Conditional Transformer to denoise the input latents.
+transformer ([WanTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel)) : Conditional Transformer to denoise the input latents.
 
-scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLWan](/docs/diffusers/v0.41.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
-transformer_2 ([WanTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel), *optional*) : Conditional Transformer to denoise the input latents during the low-noise stage. In two-stage denoising, `transformer` handles high-noise stages and `transformer_2` handles low-noise stages. If not provided, only `transformer` is used.
+transformer_2 ([WanTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel), *optional*) : Conditional Transformer to denoise the input latents during the low-noise stage. In two-stage denoising, `transformer` handles high-noise stages and `transformer_2` handles low-noise stages. If not provided, only `transformer` is used.
 
 boundary_ratio (`float`, *optional*, defaults to `None`) : Ratio of total timesteps to use as the boundary for switching between transformers in two-stage denoising. The actual boundary timestep is calculated as `boundary_ratio * num_train_timesteps`. When provided, `transformer` handles timesteps >= boundary_timestep and `transformer_2` handles timesteps < boundary_timestep. If `None`, only `transformer` is used for the entire denoising process.
 
 Pipeline for image-to-video generation using Wan.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.WanImageToVideoPipeline.__call__]]
@@ -667,7 +667,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], prompt: str | list[str] = None, negative_prompt: str | list[str] = None, height: int = 480, width: int = 832, num_frames: int = 81, num_inference_steps: int = 50, guidance_scale: float = 5.0, guidance_scale_2: float | None = None, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, image_embeds: typing.Optional[torch.Tensor] = None, last_image: typing.Optional[torch.Tensor] = None, output_type: str | None = 'np', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_i2v.py#L507)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/wan/pipeline_wan_i2v.py#L510)
 
 **Parameters:**
 
@@ -775,7 +775,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_i2v.py#L251)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/wan/pipeline_wan_i2v.py#L254)
 
 **Parameters:**
 
@@ -805,7 +805,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.WanVACEPipeline(tokenizer: AutoTokenizer, text_encoder: UMT5EncoderModel, vae: AutoencoderKLWan, scheduler: FlowMatchEulerDiscreteScheduler, transformer: WanVACETransformer3DModel = None, transformer_2: WanVACETransformer3DModel = None, boundary_ratio: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_vace.py#L141)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/wan/pipeline_wan_vace.py#L141)
 
 **Parameters:**
 
@@ -813,9 +813,9 @@ tokenizer (`T5Tokenizer`) : Tokenizer from [T5](https://huggingface.co/docs/tran
 
 text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
 
-vae ([AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLWan](/docs/diffusers/v0.41.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
-scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
 transformer (`WanVACETransformer3DModel`, *optional*) : Conditional Transformer to denoise the input latents during the high-noise stage. In two-stage denoising, `transformer` handles high-noise stages and `transformer_2` handles low-noise stages. At least one of `transformer` or `transformer_2` must be provided.
 
@@ -825,7 +825,7 @@ boundary_ratio (`float`, *optional*, defaults to `None`) : Ratio of total timest
 
 Pipeline for controllable generation using Wan.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.WanVACEPipeline.__call__]]
@@ -834,7 +834,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(prompt: str | list[str] = None, negative_prompt: str | list[str] = None, video: list[typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]] | None = None, mask: list[typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]] | None = None, reference_images: list[typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]] | None = None, conditioning_scale: typing.Union[float, list[float], torch.Tensor] = 1.0, height: int = 480, width: int = 832, num_frames: int = 81, num_inference_steps: int = 50, guidance_scale: float = 5.0, guidance_scale_2: float | None = None, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'np', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_vace.py#L689)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/wan/pipeline_wan_vace.py#L690)
 
 **Parameters:**
 
@@ -957,7 +957,7 @@ def prepare_video_and_mask(first_img: PIL.Image.Image, last_img: PIL.Image.Image
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_vace.py#L246)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/wan/pipeline_wan_vace.py#L247)
 
 **Parameters:**
 
@@ -987,7 +987,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.WanVideoToVideoPipeline(tokenizer: AutoTokenizer, text_encoder: UMT5EncoderModel, transformer: WanTransformer3DModel, vae: AutoencoderKLWan, scheduler: FlowMatchEulerDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_video2video.py#L174)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/wan/pipeline_wan_video2video.py#L174)
 
 **Parameters:**
 
@@ -995,15 +995,15 @@ tokenizer (`T5Tokenizer`) : Tokenizer from [T5](https://huggingface.co/docs/tran
 
 text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
 
-transformer ([WanTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel)) : Conditional Transformer to denoise the input latents.
+transformer ([WanTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel)) : Conditional Transformer to denoise the input latents.
 
-scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLWan](/docs/diffusers/v0.41.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 Pipeline for video-to-video generation using Wan.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.WanVideoToVideoPipeline.__call__]]
@@ -1012,7 +1012,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(video: list = None, prompt: str | list[str] = None, negative_prompt: str | list[str] = None, height: int = 480, width: int = 832, num_inference_steps: int = 50, timesteps: list[int] | None = None, guidance_scale: float = 5.0, strength: float = 0.8, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'np', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_video2video.py#L480)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/wan/pipeline_wan_video2video.py#L481)
 
 **Parameters:**
 
@@ -1102,7 +1102,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_video2video.py#L264)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/wan/pipeline_wan_video2video.py#L265)
 
 **Parameters:**
 
@@ -1132,7 +1132,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.WanAnimatePipeline(tokenizer: AutoTokenizer, text_encoder: UMT5EncoderModel, vae: AutoencoderKLWan, scheduler: UniPCMultistepScheduler, image_processor: CLIPImageProcessorPil, image_encoder: CLIPVisionModel, transformer: WanAnimateTransformer3DModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_animate.py#L150)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/wan/pipeline_wan_animate.py#L150)
 
 **Parameters:**
 
@@ -1142,11 +1142,11 @@ text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/
 
 image_encoder (`CLIPVisionModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPVisionModel), specifically the [clip-vit-huge-patch14](https://github.com/mlfoundations/open_clip/blob/main/docs/PRETRAINED.md#vit-h14-xlm-roberta-large) variant.
 
-transformer ([WanAnimateTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/wan_animate_transformer_3d#diffusers.WanAnimateTransformer3DModel)) : Conditional Transformer to denoise the input latents.
+transformer ([WanAnimateTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/wan_animate_transformer_3d#diffusers.WanAnimateTransformer3DModel)) : Conditional Transformer to denoise the input latents.
 
-scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLWan](/docs/diffusers/v0.41.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 image_processor (`CLIPImageProcessor`) : Image processor for preprocessing images before encoding.
 
@@ -1164,11 +1164,11 @@ modes:
    `mask_video` inputs. The mask video should have black regions where the original content should be preserved and
    white regions where the new character should be generated.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 The pipeline also inherits the following loading methods:
-- [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.WanLoraLoaderMixin.load_lora_weights) for loading LoRA weights
+- [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.WanLoraLoaderMixin.load_lora_weights) for loading LoRA weights
 
 #### __call__[[diffusers.WanAnimatePipeline.__call__]]
 
@@ -1176,7 +1176,7 @@ The pipeline also inherits the following loading methods:
 __call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], pose_video: list, face_video: list, background_video: list[PIL.Image.Image] | None = None, mask_video: list[PIL.Image.Image] | None = None, prompt: str | list[str] = None, negative_prompt: str | list[str] = None, height: int = 720, width: int = 1280, segment_frame_length: int = 77, num_inference_steps: int = 20, mode: str = 'animate', prev_segment_conditioning_frames: int = 1, motion_encode_batch_size: int | None = None, guidance_scale: float = 1.0, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, image_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'np', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int, NoneType], diffusers.callbacks.PipelineCallback | diffusers.callbacks.MultiPipelineCallbacks]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_animate.py#L760)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/wan/pipeline_wan_animate.py#L763)
 
 **Parameters:**
 
@@ -1314,7 +1314,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_animate.py#L288)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/wan/pipeline_wan_animate.py#L291)
 
 **Parameters:**
 
@@ -1342,7 +1342,7 @@ Encodes the prompt into text encoder hidden states.
 pad_video_frames(frames: list, num_target_frames: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_animate.py#L715)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/wan/pipeline_wan_animate.py#L718)
 
 Pads an array-like video `frames` to `num_target_frames` using a "reflect"-like strategy. The frame dimension
 is assumed to be the first dimension. In the 1D case, we can visualize this strategy as follows:
@@ -1357,7 +1357,7 @@ pad_video_frames([1, 2, 3, 4, 5], 10) -> [1, 2, 3, 4, 5, 4, 3, 2, 1, 2]
 diffusers.pipelines.wan.pipeline_output.WanPipelineOutput(frames: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_output.py#L9)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/wan/pipeline_output.py#L9)
 
 **Parameters:**
 
@@ -1366,4 +1366,4 @@ frames (`torch.Tensor`, `np.ndarray`, or list[list[PIL.Image.Image]]) : list of 
 Output class for Wan pipelines.
 
 ### LongCat-AudioDiT
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/longcat_audio_dit.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/longcat_audio_dit.md

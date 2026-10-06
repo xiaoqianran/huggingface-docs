@@ -7,13 +7,13 @@ The abstract from the paper is:
 *Significant advancements have been made in the field of video generation, with the open-source community contributing a wealth of research papers and tools for training high-quality models. However, despite these efforts, the available information and resources remain insufficient for achieving commercial-level performance. In this report, we open the black box and introduce Allegro, an advanced video generation model that excels in both quality and temporal consistency. We also highlight the current limitations in the field and present a comprehensive methodology for training high-performance, commercial-level video generation models, addressing key aspects such as data, model architecture, training pipeline, and evaluation. Our user study shows that Allegro surpasses existing open-source models and most commercial models, ranking just behind Hailuo and Kling. Code: https://github.com/rhymes-ai/Allegro , Model: https://huggingface.co/rhymes-ai/Allegro , Gallery: https://rhymes.ai/allegro_gallery .*
 
 > [!TIP]
-> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reuse-a-pipeline) section to learn how to efficiently load the same components into multiple pipelines.
+> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reusing-models-in-multiple-pipelines) section to learn how to efficiently load the same components into multiple pipelines.
 
 ## Quantization
 
 Quantization helps reduce the memory requirements of very large models by storing model weights in a lower precision data type. However, quantization may have varying impact on video quality depending on the video model.
 
-Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [AllegroPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/allegro#diffusers.AllegroPipeline) for inference with bitsandbytes.
+Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [AllegroPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/allegro#diffusers.AllegroPipeline) for inference with bitsandbytes.
 
 ```py
 import torch
@@ -62,7 +62,7 @@ export_to_video(video, "harbor.mp4", fps=15)
 diffusers.AllegroPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, vae: AutoencoderKLAllegro, transformer: AllegroTransformer3DModel, scheduler: KarrasDiffusionSchedulers)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/allegro/pipeline_allegro.py#L144)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/allegro/pipeline_allegro.py#L144)
 
 **Parameters:**
 
@@ -72,13 +72,13 @@ text_encoder (`T5EncoderModel`) : Frozen text-encoder. PixArt-Alpha uses [T5](ht
 
 tokenizer (`T5Tokenizer`) : Tokenizer of class [T5Tokenizer](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5Tokenizer).
 
-transformer ([AllegroTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/allegro_transformer3d#diffusers.AllegroTransformer3DModel)) : A text conditioned `AllegroTransformer3DModel` to denoise the encoded video latents.
+transformer ([AllegroTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/allegro_transformer3d#diffusers.AllegroTransformer3DModel)) : A text conditioned `AllegroTransformer3DModel` to denoise the encoded video latents.
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
+scheduler ([SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
 
 Pipeline for text-to-video generation using Allegro.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.AllegroPipeline.__call__]]
@@ -87,7 +87,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str] = None, negative_prompt: str = '', num_inference_steps: int = 100, timesteps: list = None, guidance_scale: float = 7.5, num_frames: int | None = None, height: int | None = None, width: int | None = None, num_videos_per_prompt: int = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], clean_caption: bool = True, max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/allegro/pipeline_allegro.py#L665)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/allegro/pipeline_allegro.py#L665)
 
 **Parameters:**
 
@@ -109,7 +109,7 @@ height (`int`, *optional*, defaults to self.unet.config.sample_size) : The heigh
 
 width (`int`, *optional*, defaults to self.unet.config.sample_size) : The width in pixels of the generated video.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -135,9 +135,9 @@ clean_caption (`bool`, *optional*, defaults to `True`) : Whether or not to clean
 
 max_sequence_length (`int` defaults to `512`) : Maximum sequence length to use with the `prompt`.
 
-**Returns:** [AllegroPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/allegro#diffusers.pipelines.allegro.pipeline_output.AllegroPipelineOutput) or `tuple`
+**Returns:** [AllegroPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/allegro#diffusers.pipelines.allegro.pipeline_output.AllegroPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [AllegroPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/allegro#diffusers.pipelines.allegro.pipeline_output.AllegroPipelineOutput) is returned,
+If `return_dict` is `True`, [AllegroPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/allegro#diffusers.pipelines.allegro.pipeline_output.AllegroPipelineOutput) is returned,
 otherwise a `tuple` is returned where the first element is a list with the generated videos.
 
 Function invoked when calling the pipeline for generation.
@@ -167,7 +167,7 @@ Examples:
 encode_prompt(prompt: str | list[str], do_classifier_free_guidance: bool = True, negative_prompt: str = '', num_videos_per_prompt: int = 1, device: typing.Optional[torch.device] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, clean_caption: bool = False, max_sequence_length: int = 512, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/allegro/pipeline_allegro.py#L215)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/allegro/pipeline_allegro.py#L215)
 
 **Parameters:**
 
@@ -199,7 +199,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.pipelines.allegro.pipeline_output.AllegroPipelineOutput(frames: typing.Union[torch.Tensor, numpy.ndarray, list[list[PIL.Image.Image]]])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/allegro/pipeline_output.py#L11)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/allegro/pipeline_output.py#L11)
 
 **Parameters:**
 
@@ -208,4 +208,4 @@ frames (`torch.Tensor`, `np.ndarray`, or list[list[PIL.Image.Image]]) : list of 
 Output class for Allegro pipelines.
 
 ### ControlNet with Flux.1
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/controlnet_flux.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/controlnet_flux.md

@@ -9,7 +9,7 @@ The abstract from the paper is:
 The original codebase can be found at [openai/shap-e](https://github.com/openai/shap-e).
 
 > [!TIP]
-> See the [reuse components across pipelines](../../using-diffusers/loading#reuse-a-pipeline) section to learn how to efficiently load the same components into multiple pipelines.
+> See the [reuse components across pipelines](../../using-diffusers/loading#reusing-models-in-multiple-pipelines) section to learn how to efficiently load the same components into multiple pipelines.
 
 Make sure you have the following libraries installed.
 
@@ -20,7 +20,7 @@ Make sure you have the following libraries installed.
 
 ## Text-to-3D
 
-To generate a gif of a 3D object, pass a text prompt to the [ShapEPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/shap_e#diffusers.ShapEPipeline). The pipeline generates a list of image frames which are used to create the 3D object.
+To generate a gif of a 3D object, pass a text prompt to the [ShapEPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/shap_e#diffusers.ShapEPipeline). The pipeline generates a list of image frames which are used to create the 3D object.
 
 ```py
 import torch
@@ -42,7 +42,7 @@ images = pipe(
 ).images
 ```
 
-Now use the [export_to_gif()](/docs/diffusers/v0.40.0/en/api/utilities#diffusers.utils.export_to_gif) function to convert the list of image frames to a gif of the 3D object.
+Now use the [export_to_gif()](/docs/diffusers/v0.41.0/en/api/utilities#diffusers.utils.export_to_gif) function to convert the list of image frames to a gif of the 3D object.
 
 ```py
 from diffusers.utils import export_to_gif
@@ -62,13 +62,13 @@ export_to_gif(images[1], "cake_3d.gif")
 
 ## Image-to-3D
 
-To generate a 3D object from another image, use the [ShapEImg2ImgPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/shap_e#diffusers.ShapEImg2ImgPipeline). You can use an existing image or generate an entirely new one. Let's use the [Kandinsky 2.1](./kandinsky) model to generate a new image.
+To generate a 3D object from another image, use the [ShapEImg2ImgPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/shap_e#diffusers.ShapEImg2ImgPipeline). You can use an existing image or generate an entirely new one. Let's use the [Kandinsky 2.1](./kandinsky) model to generate a new image.
 
 ```py
 from diffusers import DiffusionPipeline
 import torch
 
-prior_pipeline = DiffusionPipeline.from_pretrained("kandinsky-community/kandinsky-2-1-prior", dtype=torch.float16, use_safetensors=True).to("cuda")
+prior_pipeline = DiffusionPipeline.from_pretrained("kandinsky-community/kandinsky-2-1-prior", dtype=torch.float16, use_safetensors=True).to("cuda")  # or "mps", "xpu", "cpu"
 pipeline = DiffusionPipeline.from_pretrained("kandinsky-community/kandinsky-2-1", dtype=torch.float16, use_safetensors=True).to("cuda")
 
 prompt = "A cheeseburger, white background"
@@ -83,14 +83,14 @@ image = pipeline(
 image.save("burger.png")
 ```
 
-Pass the cheeseburger to the [ShapEImg2ImgPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/shap_e#diffusers.ShapEImg2ImgPipeline) to generate a 3D representation of it.
+Pass the cheeseburger to the [ShapEImg2ImgPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/shap_e#diffusers.ShapEImg2ImgPipeline) to generate a 3D representation of it.
 
 ```py
 from PIL import Image
 from diffusers import ShapEImg2ImgPipeline
 from diffusers.utils import export_to_gif
 
-pipe = ShapEImg2ImgPipeline.from_pretrained("openai/shap-e-img2img", dtype=torch.float16, variant="fp16").to("cuda")
+pipe = ShapEImg2ImgPipeline.from_pretrained("openai/shap-e-img2img", dtype=torch.float16, variant="fp16").to("cuda")  # or "mps", "xpu", "cpu"
 
 guidance_scale = 3.0
 image = Image.open("burger.png").resize((256, 256))
@@ -118,7 +118,7 @@ gif_path = export_to_gif(images[0], "burger_3d.gif")
 
 Shap-E is a flexible model that can also generate textured mesh outputs to be rendered for downstream applications. In this example, you'll convert the output into a `glb` file because the 🤗 Datasets library supports mesh visualization of `glb` files which can be rendered by the [Dataset viewer](https://huggingface.co/docs/hub/datasets-viewer#dataset-preview).
 
-You can generate mesh outputs for both the [ShapEPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/shap_e#diffusers.ShapEPipeline) and [ShapEImg2ImgPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/shap_e#diffusers.ShapEImg2ImgPipeline) by specifying the `output_type` parameter as `"mesh"`:
+You can generate mesh outputs for both the [ShapEPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/shap_e#diffusers.ShapEPipeline) and [ShapEImg2ImgPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/shap_e#diffusers.ShapEImg2ImgPipeline) by specifying the `output_type` parameter as `"mesh"`:
 
 ```py
 import torch
@@ -180,23 +180,23 @@ Upload the mesh file to your dataset repository to visualize it with the Dataset
 diffusers.ShapEPipeline(prior: PriorTransformer, text_encoder: CLIPTextModelWithProjection, tokenizer: CLIPTokenizer, scheduler: HeunDiscreteScheduler, shap_e_renderer: ShapERenderer)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/shap_e/pipeline_shap_e.py#L87)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/shap_e/pipeline_shap_e.py#L87)
 
 **Parameters:**
 
-prior ([PriorTransformer](/docs/diffusers/v0.40.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
+prior ([PriorTransformer](/docs/diffusers/v0.41.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
 
-text_encoder ([CLIPTextModelWithProjection](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTextModelWithProjection)) : Frozen text-encoder.
+text_encoder ([CLIPTextModelWithProjection](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPTextModelWithProjection)) : Frozen text-encoder.
 
-tokenizer ([CLIPTokenizer](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTokenizer)) : A `CLIPTokenizer` to tokenize text.
+tokenizer ([CLIPTokenizer](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPTokenizer)) : A `CLIPTokenizer` to tokenize text.
 
-scheduler ([HeunDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/heun#diffusers.HeunDiscreteScheduler)) : A scheduler to be used in combination with the `prior` model to generate image embedding.
+scheduler ([HeunDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/heun#diffusers.HeunDiscreteScheduler)) : A scheduler to be used in combination with the `prior` model to generate image embedding.
 
 shap_e_renderer (`ShapERenderer`) : Shap-E renderer projects the generated latents into parameters of a MLP to create 3D objects with the NeRF rendering method.
 
 Pipeline for generating latent representation of a 3D asset and rendering with the NeRF method.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.ShapEPipeline.__call__]]
@@ -205,7 +205,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(prompt: str, num_images_per_prompt: int = 1, num_inference_steps: int = 25, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, guidance_scale: float = 4.0, frame_size: int = 64, output_type: str | None = 'pil', return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/shap_e/pipeline_shap_e.py#L190)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/shap_e/pipeline_shap_e.py#L190)
 
 **Parameters:**
 
@@ -225,11 +225,11 @@ frame_size (`int`, *optional*, default to 64) : The width and height of each ima
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated image. Choose between `"pil"` (`PIL.Image.Image`), `"np"` (`np.array`), `"latent"` (`torch.Tensor`), or mesh (`MeshDecoderOutput`).
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ShapEPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/shap_e#diffusers.pipelines.shap_e.pipeline_shap_e.ShapEPipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ShapEPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/shap_e#diffusers.pipelines.shap_e.pipeline_shap_e.ShapEPipelineOutput) instead of a plain tuple.
 
-**Returns:** [ShapEPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/shap_e#diffusers.pipelines.shap_e.pipeline_shap_e.ShapEPipelineOutput) or `tuple`
+**Returns:** [ShapEPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/shap_e#diffusers.pipelines.shap_e.pipeline_shap_e.ShapEPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [ShapEPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/shap_e#diffusers.pipelines.shap_e.pipeline_shap_e.ShapEPipelineOutput) is returned,
+If `return_dict` is `True`, [ShapEPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/shap_e#diffusers.pipelines.shap_e.pipeline_shap_e.ShapEPipelineOutput) is returned,
 otherwise a `tuple` is returned where the first element is a list with the generated images.
 
 The call function to the pipeline for generation.
@@ -267,23 +267,23 @@ Examples:
 diffusers.ShapEImg2ImgPipeline(prior: PriorTransformer, image_encoder: CLIPVisionModel, image_processor: CLIPImageProcessorPil, scheduler: HeunDiscreteScheduler, shap_e_renderer: ShapERenderer)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/shap_e/pipeline_shap_e_img2img.py#L88)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/shap_e/pipeline_shap_e_img2img.py#L88)
 
 **Parameters:**
 
-prior ([PriorTransformer](/docs/diffusers/v0.40.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
+prior ([PriorTransformer](/docs/diffusers/v0.41.0/en/api/models/prior_transformer#diffusers.PriorTransformer)) : The canonical unCLIP prior to approximate the image embedding from the text embedding.
 
-image_encoder ([CLIPVisionModel](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPVisionModel)) : Frozen image-encoder.
+image_encoder ([CLIPVisionModel](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPVisionModel)) : Frozen image-encoder.
 
-image_processor ([CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPImageProcessor)) : A `CLIPImageProcessor` to process images.
+image_processor ([CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPImageProcessor)) : A `CLIPImageProcessor` to process images.
 
-scheduler ([HeunDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/heun#diffusers.HeunDiscreteScheduler)) : A scheduler to be used in combination with the `prior` model to generate image embedding.
+scheduler ([HeunDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/heun#diffusers.HeunDiscreteScheduler)) : A scheduler to be used in combination with the `prior` model to generate image embedding.
 
 shap_e_renderer (`ShapERenderer`) : Shap-E renderer projects the generated latents into parameters of a MLP to create 3D objects with the NeRF rendering method.
 
 Pipeline for generating latent representation of a 3D asset and rendering with the NeRF method from an image.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.ShapEImg2ImgPipeline.__call__]]
@@ -292,7 +292,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(image: PIL.Image.Image | list[PIL.Image.Image], num_images_per_prompt: int = 1, num_inference_steps: int = 25, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, guidance_scale: float = 4.0, frame_size: int = 64, output_type: str | None = 'pil', return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/shap_e/pipeline_shap_e_img2img.py#L172)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/shap_e/pipeline_shap_e_img2img.py#L172)
 
 **Parameters:**
 
@@ -312,11 +312,11 @@ frame_size (`int`, *optional*, default to 64) : The width and height of each ima
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated image. Choose between `"pil"` (`PIL.Image.Image`), `"np"` (`np.array`), `"latent"` (`torch.Tensor`), or mesh (`MeshDecoderOutput`).
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ShapEPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/shap_e#diffusers.pipelines.shap_e.pipeline_shap_e.ShapEPipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ShapEPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/shap_e#diffusers.pipelines.shap_e.pipeline_shap_e.ShapEPipelineOutput) instead of a plain tuple.
 
-**Returns:** [ShapEPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/shap_e#diffusers.pipelines.shap_e.pipeline_shap_e.ShapEPipelineOutput) or `tuple`
+**Returns:** [ShapEPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/shap_e#diffusers.pipelines.shap_e.pipeline_shap_e.ShapEPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [ShapEPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/shap_e#diffusers.pipelines.shap_e.pipeline_shap_e.ShapEPipelineOutput) is returned,
+If `return_dict` is `True`, [ShapEPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/shap_e#diffusers.pipelines.shap_e.pipeline_shap_e.ShapEPipelineOutput) is returned,
 otherwise a `tuple` is returned where the first element is a list with the generated images.
 
 The call function to the pipeline for generation.
@@ -356,13 +356,13 @@ Examples:
 diffusers.pipelines.shap_e.pipeline_shap_e.ShapEPipelineOutput(images: list[list[PIL.Image.Image]] | list[list[numpy.ndarray]])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/shap_e/pipeline_shap_e.py#L75)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/shap_e/pipeline_shap_e.py#L75)
 
 **Parameters:**
 
 images (`torch.Tensor`) : A list of images for 3D rendering.
 
-Output class for [ShapEPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/shap_e#diffusers.ShapEPipeline) and [ShapEImg2ImgPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/shap_e#diffusers.ShapEImg2ImgPipeline).
+Output class for [ShapEPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/shap_e#diffusers.ShapEPipeline) and [ShapEImg2ImgPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/shap_e#diffusers.ShapEImg2ImgPipeline).
 
 ### DiffusionGemma
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/diffusion_gemma.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/diffusion_gemma.md

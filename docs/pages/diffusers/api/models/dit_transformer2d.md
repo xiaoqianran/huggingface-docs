@@ -10,7 +10,7 @@ A Transformer model for image-like data from [DiT](https://huggingface.co/papers
 diffusers.DiTTransformer2DModel(num_attention_heads: int = 16, attention_head_dim: int = 72, in_channels: int = 4, out_channels: int | None = None, num_layers: int = 28, dropout: float = 0.0, norm_num_groups: int = 32, attention_bias: bool = True, sample_size: int = 32, patch_size: int = 2, activation_fn: str = 'gelu-approximate', num_embeds_ada_norm: int | None = 1000, upcast_attention: bool = False, norm_type: str = 'ada_norm_zero', norm_elementwise_affine: bool = False, norm_eps: float = 1e-05)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/dit_transformer_2d.py#L31)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/dit_transformer_2d.py#L31)
 
 **Parameters:**
 
@@ -54,7 +54,7 @@ A 2D Transformer model as introduced in DiT (https://huggingface.co/papers/2212.
 forward(hidden_states: Tensor, timestep: typing.Optional[torch.LongTensor] = None, class_labels: typing.Optional[torch.LongTensor] = None, cross_attention_kwargs: dict = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/dit_transformer_2d.py#L148)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/dit_transformer_2d.py#L148)
 
 **Parameters:**
 
@@ -66,14 +66,14 @@ class_labels ( `torch.LongTensor` of shape `(batch size, num classes)`, *optiona
 
 cross_attention_kwargs ( `dict[str, Any]`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [UNet2DConditionOutput](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.models.unets.unet_2d_condition.UNet2DConditionOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [UNet2DConditionOutput](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.models.unets.unet_2d_condition.UNet2DConditionOutput) instead of a plain tuple.
 
 **Returns:**
 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
-The [DiTTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/dit_transformer2d#diffusers.DiTTransformer2DModel) forward method.
+The [DiTTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/dit_transformer2d#diffusers.DiTTransformer2DModel) forward method.
 
 ### QwenImageTransformer2DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/qwenimage_transformer2d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/qwenimage_transformer2d.md

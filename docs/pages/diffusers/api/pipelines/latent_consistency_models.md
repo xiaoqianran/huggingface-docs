@@ -17,7 +17,7 @@ The pipelines were contributed by [luosiallen](https://luosiallen.github.io/), [
 
 ## Text-to-image
 
-To use LCMs, you need to load the LCM checkpoint for your supported model into [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) and replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lcm#diffusers.LCMScheduler). Then you can use the pipeline as usual, and pass a text prompt to generate an image in just 4 steps.
+To use LCMs, you need to load the LCM checkpoint for your supported model into [UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) and replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/lcm#diffusers.LCMScheduler). Then you can use the pipeline as usual, and pass a text prompt to generate an image in just 4 steps.
 
 A couple of notes to keep in mind when using LCMs are:
 
@@ -35,7 +35,7 @@ unet = UNet2DConditionModel.from_pretrained(
 )
 pipe = StableDiffusionXLPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0", unet=unet, dtype=torch.float16, variant="fp16",
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
 
 prompt = "Self-portrait oil painting, a beautiful cyborg with golden hair, 8k"
@@ -48,7 +48,7 @@ image
 
     
 
-To use LCM-LoRAs, you need to replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lcm#diffusers.LCMScheduler) and load the LCM-LoRA weights with the [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) method. Then you can use the pipeline as usual, and pass a text prompt to generate an image in just 4 steps.
+To use LCM-LoRAs, you need to replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/lcm#diffusers.LCMScheduler) and load the LCM-LoRA weights with the [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) method. Then you can use the pipeline as usual, and pass a text prompt to generate an image in just 4 steps.
 
 A couple of notes to keep in mind when using LCM-LoRAs are:
 
@@ -64,7 +64,7 @@ pipe = DiffusionPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
     variant="fp16",
     dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
 pipe.load_lora_weights("latent-consistency/lcm-lora-sdxl")
 
@@ -80,7 +80,7 @@ image
 
 ## Image-to-image
 
-To use LCMs for image-to-image, you need to load the LCM checkpoint for your supported model into [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) and replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lcm#diffusers.LCMScheduler). Then you can use the pipeline as usual, and pass a text prompt and initial image to generate an image in just 4 steps.
+To use LCMs for image-to-image, you need to load the LCM checkpoint for your supported model into [UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) and replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/lcm#diffusers.LCMScheduler). Then you can use the pipeline as usual, and pass a text prompt and initial image to generate an image in just 4 steps.
 
 > [!TIP]
 > Experiment with different values for `num_inference_steps`, `strength`, and `guidance_scale` to get the best results.
@@ -101,7 +101,7 @@ pipe = AutoPipelineForImage2Image.from_pretrained(
     unet=unet,
     dtype=torch.float16,
     variant="fp16",
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
 
 init_image = load_image("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/img2img-init.png")
@@ -127,7 +127,7 @@ image
     generated image
   
 
-To use LCM-LoRAs for image-to-image, you need to replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lcm#diffusers.LCMScheduler) and load the LCM-LoRA weights with the [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) method. Then you can use the pipeline as usual, and pass a text prompt and initial image to generate an image in just 4 steps.
+To use LCM-LoRAs for image-to-image, you need to replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/lcm#diffusers.LCMScheduler) and load the LCM-LoRA weights with the [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) method. Then you can use the pipeline as usual, and pass a text prompt and initial image to generate an image in just 4 steps.
 
 > [!TIP]
 > Experiment with different values for `num_inference_steps`, `strength`, and `guidance_scale` to get the best results.
@@ -141,7 +141,7 @@ pipe = AutoPipelineForImage2Image.from_pretrained(
     "Lykon/dreamshaper-7",
     dtype=torch.float16,
     variant="fp16",
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
 
@@ -173,7 +173,7 @@ image
 
 ## Inpainting
 
-To use LCM-LoRAs for inpainting, you need to replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lcm#diffusers.LCMScheduler) and load the LCM-LoRA weights with the [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) method. Then you can use the pipeline as usual, and pass a text prompt, initial image, and mask image to generate an image in just 4 steps.
+To use LCM-LoRAs for inpainting, you need to replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/lcm#diffusers.LCMScheduler) and load the LCM-LoRA weights with the [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) method. Then you can use the pipeline as usual, and pass a text prompt, initial image, and mask image to generate an image in just 4 steps.
 
 ```py
 import torch
@@ -184,7 +184,7 @@ pipe = AutoPipelineForInpainting.from_pretrained(
     "stable-diffusion-v1-5/stable-diffusion-inpainting",
     dtype=torch.float16,
     variant="fp16",
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
 
@@ -223,7 +223,7 @@ LCMs are compatible with adapters like LoRA, ControlNet, T2I-Adapter, and Animat
 
 [LoRA](../../tutorials/using_peft_for_inference) adapters can be rapidly finetuned to learn a new style from just a few images and plugged into a pretrained model to generate images in that style.
 
-Load the LCM checkpoint for your supported model into [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) and replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lcm#diffusers.LCMScheduler). Then you can use the [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) method to load the LoRA weights into the LCM and generate a styled image in a few steps.
+Load the LCM checkpoint for your supported model into [UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) and replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/lcm#diffusers.LCMScheduler). Then you can use the [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) method to load the LoRA weights into the LCM and generate a styled image in a few steps.
 
 ```python
 from diffusers import StableDiffusionXLPipeline, UNet2DConditionModel, LCMScheduler
@@ -236,7 +236,7 @@ unet = UNet2DConditionModel.from_pretrained(
 )
 pipe = StableDiffusionXLPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0", unet=unet, dtype=torch.float16, variant="fp16",
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
 pipe.load_lora_weights("TheLastBen/Papercut_SDXL", weight_name="papercut.safetensors", adapter_name="papercut")
 
@@ -250,7 +250,7 @@ image
 
     
 
-Replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lcm#diffusers.LCMScheduler). Then you can use the [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) method to load the LCM-LoRA weights and the style LoRA you want to use. Combine both LoRA adapters with the `~loaders.UNet2DConditionLoadersMixin.set_adapters` method and generate a styled image in a few steps.
+Replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/lcm#diffusers.LCMScheduler). Then you can use the [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) method to load the LCM-LoRA weights and the style LoRA you want to use. Combine both LoRA adapters with the `~loaders.UNet2DConditionLoadersMixin.set_adapters` method and generate a styled image in a few steps.
 
 ```py
 import torch
@@ -260,7 +260,7 @@ pipe = DiffusionPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
     variant="fp16",
     dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
 
@@ -283,7 +283,7 @@ image
 
 You can find additional ControlNet models trained on other inputs in [lllyasviel's](https://hf.co/lllyasviel) repository.
 
-Load a ControlNet model trained on canny images and pass it to the [ControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet#diffusers.ControlNetModel). Then you can load a LCM model into [StableDiffusionControlNetPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/controlnet#diffusers.StableDiffusionControlNetPipeline) and replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lcm#diffusers.LCMScheduler). Now pass the canny image to the pipeline and generate an image.
+Load a ControlNet model trained on canny images and pass it to the [ControlNetModel](/docs/diffusers/v0.41.0/en/api/models/controlnet#diffusers.ControlNetModel). Then you can load a LCM model into [StableDiffusionControlNetPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/controlnet#diffusers.StableDiffusionControlNetPipeline) and replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/lcm#diffusers.LCMScheduler). Now pass the canny image to the pipeline and generate an image.
 
 > [!TIP]
 > Experiment with different values for `num_inference_steps`, `controlnet_conditioning_scale`, `cross_attention_kwargs`, and `guidance_scale` to get the best results.
@@ -317,7 +317,7 @@ pipe = StableDiffusionControlNetPipeline.from_pretrained(
     controlnet=controlnet,
     dtype=torch.float16,
     safety_checker=None,
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
 
 generator = torch.manual_seed(0)
@@ -332,7 +332,7 @@ make_image_grid([canny_image, image], rows=1, cols=2)
 
     
 
-Load a ControlNet model trained on canny images and pass it to the [ControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet#diffusers.ControlNetModel). Then you can load a Stable Diffusion v1.5 model into [StableDiffusionControlNetPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/controlnet#diffusers.StableDiffusionControlNetPipeline) and replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lcm#diffusers.LCMScheduler). Use the [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) method to load the LCM-LoRA weights, and pass the canny image to the pipeline and generate an image.
+Load a ControlNet model trained on canny images and pass it to the [ControlNetModel](/docs/diffusers/v0.41.0/en/api/models/controlnet#diffusers.ControlNetModel). Then you can load a Stable Diffusion v1.5 model into [StableDiffusionControlNetPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/controlnet#diffusers.StableDiffusionControlNetPipeline) and replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/lcm#diffusers.LCMScheduler). Use the [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) method to load the LCM-LoRA weights, and pass the canny image to the pipeline and generate an image.
 
 > [!TIP]
 > Experiment with different values for `num_inference_steps`, `controlnet_conditioning_scale`, `cross_attention_kwargs`, and `guidance_scale` to get the best results.
@@ -367,7 +367,7 @@ pipe = StableDiffusionControlNetPipeline.from_pretrained(
     dtype=torch.float16,
     safety_checker=None,
     variant="fp16"
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
 
@@ -390,11 +390,11 @@ image
 
 ### T2I-Adapter
 
-[T2I-Adapter](../../using-diffusers/t2i_adapter) is an even more lightweight adapter than ControlNet, that provides an additional input to condition a pretrained model with. It is faster than ControlNet but the results may be slightly worse.
+[T2I-Adapter](../../using-diffusers/legacy_adapters#t2i-adapter) is an even more lightweight adapter than ControlNet, that provides an additional input to condition a pretrained model with. It is faster than ControlNet but the results may be slightly worse.
 
 You can find additional T2I-Adapter checkpoints trained on other inputs in [TencentArc's](https://hf.co/TencentARC) repository.
 
-Load a T2IAdapter trained on canny images and pass it to the [StableDiffusionXLAdapterPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/adapter#diffusers.StableDiffusionXLAdapterPipeline). Then load a LCM checkpoint into [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) and replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lcm#diffusers.LCMScheduler). Now pass the canny image to the pipeline and generate an image.
+Load a T2IAdapter trained on canny images and pass it to the [StableDiffusionXLAdapterPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/adapter#diffusers.StableDiffusionXLAdapterPipeline). Then load a LCM checkpoint into [UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) and replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/lcm#diffusers.LCMScheduler). Now pass the canny image to the pipeline and generate an image.
 
 ```python
 import torch
@@ -420,7 +420,7 @@ image = image[:, :, None]
 image = np.concatenate([image, image, image], axis=2)
 canny_image = Image.fromarray(image).resize((1024, 1216))
 
-adapter = T2IAdapter.from_pretrained("TencentARC/t2i-adapter-canny-sdxl-1.0", dtype=torch.float16, variant="fp16").to("cuda")
+adapter = T2IAdapter.from_pretrained("TencentARC/t2i-adapter-canny-sdxl-1.0", dtype=torch.float16, variant="fp16").to("cuda")  # or "mps", "xpu", "cpu"
 
 unet = UNet2DConditionModel.from_pretrained(
     "latent-consistency/lcm-sdxl",
@@ -455,7 +455,7 @@ image = pipe(
 
     
 
-Load a T2IAdapter trained on canny images and pass it to the [StableDiffusionXLAdapterPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/adapter#diffusers.StableDiffusionXLAdapterPipeline). Replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lcm#diffusers.LCMScheduler), and use the [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) method to load the LCM-LoRA weights. Pass the canny image to the pipeline and generate an image.
+Load a T2IAdapter trained on canny images and pass it to the [StableDiffusionXLAdapterPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/adapter#diffusers.StableDiffusionXLAdapterPipeline). Replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/lcm#diffusers.LCMScheduler), and use the [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) method to load the LCM-LoRA weights. Pass the canny image to the pipeline and generate an image.
 
 ```py
 import torch
@@ -481,7 +481,7 @@ image = image[:, :, None]
 image = np.concatenate([image, image, image], axis=2)
 canny_image = Image.fromarray(image).resize((1024, 1024))
 
-adapter = T2IAdapter.from_pretrained("TencentARC/t2i-adapter-canny-sdxl-1.0", dtype=torch.float16, variant="fp16").to("cuda")
+adapter = T2IAdapter.from_pretrained("TencentARC/t2i-adapter-canny-sdxl-1.0", dtype=torch.float16, variant="fp16").to("cuda")  # or "mps", "xpu", "cpu"
 
 pipe = StableDiffusionXLAdapterPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
@@ -516,7 +516,7 @@ image = pipe(
 
 [AnimateDiff](./animatediff) is an adapter that adds motion to an image. It can be used with most Stable Diffusion models, effectively turning them into "video generation" models. Generating good results with a video model usually requires generating multiple frames (16-24), which can be very slow with a regular Stable Diffusion model. LCM-LoRA can speed up this process by only taking 4-8 steps for each frame.
 
-Load a [AnimateDiffPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/animatediff#diffusers.AnimateDiffPipeline) and pass a `MotionAdapter` to it. Then replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lcm#diffusers.LCMScheduler), and combine both LoRA adapters with the `~loaders.UNet2DConditionLoadersMixin.set_adapters` method. Now you can pass a prompt to the pipeline and generate an animated image.
+Load a [AnimateDiffPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/animatediff#diffusers.AnimateDiffPipeline) and pass a `MotionAdapter` to it. Then replace the scheduler with the [LCMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/lcm#diffusers.LCMScheduler), and combine both LoRA adapters with the `~loaders.UNet2DConditionLoadersMixin.set_adapters` method. Now you can pass a prompt to the pipeline and generate an animated image.
 
 ```py
 import torch
@@ -527,7 +527,7 @@ adapter = MotionAdapter.from_pretrained("guoyww/animatediff-motion-adapter-v1-5"
 pipe = AnimateDiffPipeline.from_pretrained(
     "frankjoshua/toonyou_beta6",
     motion_adapter=adapter,
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 # set scheduler
 pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
@@ -561,37 +561,37 @@ export_to_gif(frames, "animation.gif")
 diffusers.LatentConsistencyModelPipeline(vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, unet: UNet2DConditionModel, scheduler: LCMScheduler, safety_checker: StableDiffusionSafetyChecker, feature_extractor: CLIPImageProcessorPil, image_encoder: transformers.models.clip.modeling_clip.CLIPVisionModelWithProjection | None = None, requires_safety_checker: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/latent_consistency_models/pipeline_latent_consistency_text2img.py#L133)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/latent_consistency_models/pipeline_latent_consistency_text2img.py#L133)
 
 **Parameters:**
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) model to encode and decode images to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) model to encode and decode images to and from latent representations.
 
-text_encoder ([CLIPTextModel](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTextModel)) : Frozen text-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)).
+text_encoder ([CLIPTextModel](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPTextModel)) : Frozen text-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)).
 
-tokenizer ([CLIPTokenizer](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTokenizer)) : A `CLIPTokenizer` to tokenize text.
+tokenizer ([CLIPTokenizer](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPTokenizer)) : A `CLIPTokenizer` to tokenize text.
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : A `UNet2DConditionModel` to denoise the encoded image latents.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : A `UNet2DConditionModel` to denoise the encoded image latents.
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Currently only supports [LCMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lcm#diffusers.LCMScheduler).
+scheduler ([SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Currently only supports [LCMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/lcm#diffusers.LCMScheduler).
 
 safety_checker (`StableDiffusionSafetyChecker`) : Classification module that estimates whether generated images could be considered offensive or harmful. Please refer to the [model card](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5) for more details about a model's potential harms.
 
-feature_extractor ([CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPImageProcessor)) : A `CLIPImageProcessor` to extract features from generated images; used as inputs to the `safety_checker`.
+feature_extractor ([CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPImageProcessor)) : A `CLIPImageProcessor` to extract features from generated images; used as inputs to the `safety_checker`.
 
 requires_safety_checker (`bool`, *optional*, defaults to `True`) : Whether the pipeline requires a safety checker component.
 
 Pipeline for text-to-image generation using a latent consistency model.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 The pipeline also inherits the following loading methods:
-- [load_textual_inversion()](/docs/diffusers/v0.40.0/en/api/loaders/textual_inversion#diffusers.loaders.TextualInversionLoaderMixin.load_textual_inversion) for loading textual inversion embeddings
-- [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for loading LoRA weights
-- [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for saving LoRA weights
-- [from_single_file()](/docs/diffusers/v0.40.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) for loading `.ckpt` files
-- [load_ip_adapter()](/docs/diffusers/v0.40.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.load_ip_adapter) for loading IP Adapters
+- [load_textual_inversion()](/docs/diffusers/v0.41.0/en/api/loaders/textual_inversion#diffusers.loaders.TextualInversionLoaderMixin.load_textual_inversion) for loading textual inversion embeddings
+- [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for loading LoRA weights
+- [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for saving LoRA weights
+- [from_single_file()](/docs/diffusers/v0.41.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) for loading `.ckpt` files
+- [load_ip_adapter()](/docs/diffusers/v0.41.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.load_ip_adapter) for loading IP Adapters
 
 #### __call__[[diffusers.LatentConsistencyModelPipeline.__call__]]
 
@@ -599,7 +599,7 @@ The pipeline also inherits the following loading methods:
 __call__(prompt: str | list[str] = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 4, original_inference_steps: int = None, timesteps: list = None, guidance_scale: float = 8.5, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, ip_adapter_image_embeds: list[torch.Tensor] | None = None, output_type: str | None = 'pil', return_dict: bool = True, cross_attention_kwargs: dict[str, typing.Any] | None = None, clip_skip: int | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/latent_consistency_models/pipeline_latent_consistency_text2img.py#L640)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/latent_consistency_models/pipeline_latent_consistency_text2img.py#L640)
 
 **Parameters:**
 
@@ -631,7 +631,7 @@ ip_adapter_image_embeds (`list[torch.Tensor]`, *optional*) : Pre-generated image
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated image. Choose between `PIL.Image` or `np.array`.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) instead of a plain tuple.
 
 cross_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined in [`self.processor`](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
 
@@ -641,9 +641,9 @@ callback_on_step_end (`Callable`, *optional*) : A function that calls at the end
 
 callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
 
-**Returns:** [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) or `tuple`
+**Returns:** [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) is returned,
+If `return_dict` is `True`, [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) is returned,
 otherwise a `tuple` is returned where the first element is a list with the generated images and the
 second element is a list of `bool`s indicating whether the corresponding generated image contains
 "not-safe-for-work" (nsfw) content.
@@ -673,7 +673,7 @@ Examples:
 enable_freeu(s1: float, s2: float, b1: float, b2: float)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L2296)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L2285)
 
 **Parameters:**
 
@@ -698,7 +698,7 @@ that are known to work well for different pipelines such as Stable Diffusion v1,
 disable_freeu()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L2318)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L2307)
 
 Disables the FreeU mechanism if enabled.
 
@@ -708,7 +708,7 @@ Disables the FreeU mechanism if enabled.
 encode_prompt(prompt, device, num_images_per_prompt, do_classifier_free_guidance, negative_prompt = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, lora_scale: float | None = None, clip_skip: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/latent_consistency_models/pipeline_latent_consistency_text2img.py#L226)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/latent_consistency_models/pipeline_latent_consistency_text2img.py#L226)
 
 **Parameters:**
 
@@ -738,7 +738,7 @@ Encodes the prompt into text encoder hidden states.
 get_guidance_scale_embedding(w: Tensor, embedding_dim: int = 512, dtype: dtype = torch.float32)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/latent_consistency_models/pipeline_latent_consistency_text2img.py#L517)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/latent_consistency_models/pipeline_latent_consistency_text2img.py#L517)
 
 **Parameters:**
 
@@ -762,37 +762,37 @@ See https://github.com/google-research/vdm/blob/dc27b98a554f65cdc654b800da5aa184
 diffusers.LatentConsistencyModelImg2ImgPipeline(vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, unet: UNet2DConditionModel, scheduler: LCMScheduler, safety_checker: StableDiffusionSafetyChecker, feature_extractor: CLIPImageProcessorPil, image_encoder: transformers.models.clip.modeling_clip.CLIPVisionModelWithProjection | None = None, requires_safety_checker: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/latent_consistency_models/pipeline_latent_consistency_img2img.py#L154)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/latent_consistency_models/pipeline_latent_consistency_img2img.py#L154)
 
 **Parameters:**
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) model to encode and decode images to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) model to encode and decode images to and from latent representations.
 
-text_encoder ([CLIPTextModel](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTextModel)) : Frozen text-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)).
+text_encoder ([CLIPTextModel](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPTextModel)) : Frozen text-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)).
 
-tokenizer ([CLIPTokenizer](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTokenizer)) : A `CLIPTokenizer` to tokenize text.
+tokenizer ([CLIPTokenizer](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPTokenizer)) : A `CLIPTokenizer` to tokenize text.
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : A `UNet2DConditionModel` to denoise the encoded image latents.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : A `UNet2DConditionModel` to denoise the encoded image latents.
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Currently only supports [LCMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lcm#diffusers.LCMScheduler).
+scheduler ([SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Currently only supports [LCMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/lcm#diffusers.LCMScheduler).
 
 safety_checker (`StableDiffusionSafetyChecker`) : Classification module that estimates whether generated images could be considered offensive or harmful. Please refer to the [model card](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5) for more details about a model's potential harms.
 
-feature_extractor ([CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPImageProcessor)) : A `CLIPImageProcessor` to extract features from generated images; used as inputs to the `safety_checker`.
+feature_extractor ([CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPImageProcessor)) : A `CLIPImageProcessor` to extract features from generated images; used as inputs to the `safety_checker`.
 
 requires_safety_checker (`bool`, *optional*, defaults to `True`) : Whether the pipeline requires a safety checker component.
 
 Pipeline for image-to-image generation using a latent consistency model.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 The pipeline also inherits the following loading methods:
-- [load_textual_inversion()](/docs/diffusers/v0.40.0/en/api/loaders/textual_inversion#diffusers.loaders.TextualInversionLoaderMixin.load_textual_inversion) for loading textual inversion embeddings
-- [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for loading LoRA weights
-- [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for saving LoRA weights
-- [from_single_file()](/docs/diffusers/v0.40.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) for loading `.ckpt` files
-- [load_ip_adapter()](/docs/diffusers/v0.40.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.load_ip_adapter) for loading IP Adapters
+- [load_textual_inversion()](/docs/diffusers/v0.41.0/en/api/loaders/textual_inversion#diffusers.loaders.TextualInversionLoaderMixin.load_textual_inversion) for loading textual inversion embeddings
+- [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for loading LoRA weights
+- [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for saving LoRA weights
+- [from_single_file()](/docs/diffusers/v0.41.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) for loading `.ckpt` files
+- [load_ip_adapter()](/docs/diffusers/v0.41.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.load_ip_adapter) for loading IP Adapters
 
 #### __call__[[diffusers.LatentConsistencyModelImg2ImgPipeline.__call__]]
 
@@ -800,7 +800,7 @@ The pipeline also inherits the following loading methods:
 __call__(prompt: str | list[str] = None, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, num_inference_steps: int = 4, strength: float = 0.8, original_inference_steps: int = None, timesteps: list = None, guidance_scale: float = 8.5, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, ip_adapter_image_embeds: list[torch.Tensor] | None = None, output_type: str | None = 'pil', return_dict: bool = True, cross_attention_kwargs: dict[str, typing.Any] | None = None, clip_skip: int | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/latent_consistency_models/pipeline_latent_consistency_img2img.py#L709)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/latent_consistency_models/pipeline_latent_consistency_img2img.py#L709)
 
 **Parameters:**
 
@@ -832,7 +832,7 @@ ip_adapter_image_embeds (`list[torch.Tensor]`, *optional*) : Pre-generated image
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated image. Choose between `PIL.Image` or `np.array`.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) instead of a plain tuple.
 
 cross_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined in [`self.processor`](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
 
@@ -842,9 +842,9 @@ callback_on_step_end (`Callable`, *optional*) : A function that calls at the end
 
 callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
 
-**Returns:** [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) or `tuple`
+**Returns:** [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) is returned,
+If `return_dict` is `True`, [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) is returned,
 otherwise a `tuple` is returned where the first element is a list with the generated images and the
 second element is a list of `bool`s indicating whether the corresponding generated image contains
 "not-safe-for-work" (nsfw) content.
@@ -879,7 +879,7 @@ Examples:
 enable_freeu(s1: float, s2: float, b1: float, b2: float)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L2296)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L2285)
 
 **Parameters:**
 
@@ -904,7 +904,7 @@ that are known to work well for different pipelines such as Stable Diffusion v1,
 disable_freeu()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L2318)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L2307)
 
 Disables the FreeU mechanism if enabled.
 
@@ -914,7 +914,7 @@ Disables the FreeU mechanism if enabled.
 encode_prompt(prompt, device, num_images_per_prompt, do_classifier_free_guidance, negative_prompt = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, lora_scale: float | None = None, clip_skip: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/latent_consistency_models/pipeline_latent_consistency_img2img.py#L241)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/latent_consistency_models/pipeline_latent_consistency_img2img.py#L241)
 
 **Parameters:**
 
@@ -944,7 +944,7 @@ Encodes the prompt into text encoder hidden states.
 get_guidance_scale_embedding(w: Tensor, embedding_dim: int = 512, dtype: dtype = torch.float32)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/latent_consistency_models/pipeline_latent_consistency_img2img.py#L576)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/latent_consistency_models/pipeline_latent_consistency_img2img.py#L576)
 
 **Parameters:**
 
@@ -968,7 +968,7 @@ See https://github.com/google-research/vdm/blob/dc27b98a554f65cdc654b800da5aa184
 diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray, nsfw_content_detected: list[bool] | None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_diffusion/pipeline_output.py#L10)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_diffusion/pipeline_output.py#L10)
 
 **Parameters:**
 
@@ -979,4 +979,4 @@ nsfw_content_detected (`list[bool]`) : list indicating whether the corresponding
 Output class for Stable Diffusion pipelines.
 
 ### Lumina-T2X
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/lumina.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/lumina.md

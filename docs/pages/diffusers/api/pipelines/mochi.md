@@ -10,13 +10,13 @@
 *Mochi 1 preview is an open state-of-the-art video generation model with high-fidelity motion and strong prompt adherence in preliminary evaluation. This model dramatically closes the gap between closed and open video generation systems. The model is released under a permissive Apache 2.0 license.*
 
 > [!TIP]
-> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reuse-a-pipeline) section to learn how to efficiently load the same components into multiple pipelines.
+> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reusing-models-in-multiple-pipelines) section to learn how to efficiently load the same components into multiple pipelines.
 
 ## Quantization
 
 Quantization helps reduce the memory requirements of very large models by storing model weights in a lower precision data type. However, quantization may have varying impact on video quality depending on the video model.
 
-Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [MochiPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/mochi#diffusers.MochiPipeline) for inference with bitsandbytes.
+Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [MochiPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/mochi#diffusers.MochiPipeline) for inference with bitsandbytes.
 
 ```py
 import torch
@@ -200,7 +200,7 @@ with torch.autocast(device_type="cuda", dtype=torch.bfloat16, cache_enabled=Fals
         num_inference_steps=50,
         guidance_scale=4.5,
         num_videos_per_prompt=1,
-        generator=torch.Generator(device="cuda").manual_seed(0),
+        generator=torch.Generator(device="cuda").manual_seed(0),  # or "mps", "xpu", "cpu"
         max_sequence_length=256,
         output_type="pil",
     ).frames[0]
@@ -240,7 +240,7 @@ with torch.autocast(device_type="cuda", dtype=torch.bfloat16, cache_enabled=Fals
         num_inference_steps=50,
         guidance_scale=4.5,
         num_videos_per_prompt=1,
-        generator=torch.Generator(device="cuda").manual_seed(0),
+        generator=torch.Generator(device="cuda").manual_seed(0),  # or "mps", "xpu", "cpu"
         max_sequence_length=256,
         output_type="pil",
     ).frames[0]
@@ -256,15 +256,15 @@ export_to_video(frames, "output.mp4", fps=30)
 diffusers.MochiPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKLMochi, text_encoder: T5EncoderModel, tokenizer: T5Tokenizer, transformer: MochiTransformer3DModel, force_zeros_for_empty_prompt: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/mochi/pipeline_mochi.py#L138)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/mochi/pipeline_mochi.py#L138)
 
 **Parameters:**
 
-transformer ([MochiTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/mochi_transformer3d#diffusers.MochiTransformer3DModel)) : Conditional Transformer architecture to denoise the encoded video latents.
+transformer ([MochiTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/mochi_transformer3d#diffusers.MochiTransformer3DModel)) : Conditional Transformer architecture to denoise the encoded video latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKLMochi](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl_mochi#diffusers.AutoencoderKLMochi)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLMochi](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_mochi#diffusers.AutoencoderKLMochi)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
 
@@ -282,7 +282,7 @@ Reference: https://github.com/genmoai/models
 __call__(prompt: str | list[str] = None, negative_prompt: str | list[str] | None = None, height: int | None = None, width: int | None = None, num_frames: int = 19, num_inference_steps: int = 64, timesteps: list = None, guidance_scale: float = 4.5, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 256)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/mochi/pipeline_mochi.py#L444)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/mochi/pipeline_mochi.py#L444)
 
 **Parameters:**
 
@@ -355,7 +355,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 256, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/mochi/pipeline_mochi.py#L254)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/mochi/pipeline_mochi.py#L254)
 
 **Parameters:**
 
@@ -385,7 +385,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.pipelines.mochi.pipeline_output.MochiPipelineOutput(frames: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/mochi/pipeline_output.py#L9)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/mochi/pipeline_output.py#L9)
 
 **Parameters:**
 
@@ -394,4 +394,4 @@ frames (`torch.Tensor`, `np.ndarray`, or list[list[PIL.Image.Image]]) : list of 
 Output class for Mochi pipelines.
 
 ### Latent Diffusion
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/latent_diffusion.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/latent_diffusion.md

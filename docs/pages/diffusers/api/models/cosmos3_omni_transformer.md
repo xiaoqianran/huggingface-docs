@@ -26,7 +26,7 @@ transformer = Cosmos3OmniTransformer.from_pretrained(
 diffusers.Cosmos3OmniTransformer(attention_bias: bool = False, attention_dropout: float = 0.0, dtype: str = 'bfloat16', head_dim: int = 128, hidden_size: int = 4096, intermediate_size: int = 12288, base_fps: int = 24, enable_fps_modulation: bool = True, latent_channel: int = 48, unified_3d_mrope_reset_spatial_ids: bool = True, unified_3d_mrope_temporal_modality_margin: int = 15000, latent_patch_size: int = 2, num_attention_heads: int = 32, num_hidden_layers: int = 36, num_key_value_heads: int = 8, patch_latent_dim: int = 192, rms_norm_eps: float = 1e-06, rope_scaling: dict | None = None, rope_theta: float = 5000000.0, action_dim: int | None = None, action_gen: bool = False, num_embodiment_domains: int = 32, sound_dim: int | None = None, sound_gen: bool = False, sound_latent_fps: float = 25.0, timestep_scale: float = 0.001, vocab_size: int = 151936, hidden_act: str = 'silu', qk_norm_for_text: bool = True, use_und_k_norm_for_gen: bool = False, rope_axes_dim: tuple[int, int, int] | list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_cosmos3.py#L373)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_cosmos3.py#L374)
 
 #### forward[[diffusers.Cosmos3OmniTransformer.forward]]
 
@@ -34,7 +34,7 @@ diffusers.Cosmos3OmniTransformer(attention_bias: bool = False, attention_dropout
 forward(input_ids: Tensor, text_indexes: Tensor, position_ids: Tensor, und_len: int, sequence_length: int, vision_tokens: list, vision_token_shapes: list, vision_sequence_indexes: Tensor, vision_mse_loss_indexes: Tensor, vision_timesteps: Tensor, vision_noisy_frame_indexes: list, sound_tokens: list[torch.Tensor] | None = None, sound_token_shapes: list[tuple[int, int, int]] | None = None, sound_sequence_indexes: typing.Optional[torch.Tensor] = None, sound_mse_loss_indexes: typing.Optional[torch.Tensor] = None, sound_timesteps: typing.Optional[torch.Tensor] = None, sound_noisy_frame_indexes: list[torch.Tensor] | None = None, action_tokens: list[torch.Tensor] | None = None, action_token_shapes: list[tuple[int, int, int]] | None = None, action_sequence_indexes: typing.Optional[torch.Tensor] = None, action_mse_loss_indexes: typing.Optional[torch.Tensor] = None, action_timesteps: typing.Optional[torch.Tensor] = None, action_noisy_frame_indexes: list[torch.Tensor] | None = None, action_domain_ids: list[torch.Tensor] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_cosmos3.py#L654)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_cosmos3.py#L671)
 
 **Parameters:**
 
@@ -96,4 +96,4 @@ A [*Cosmos3OmniTransformerOutput*] or a tuple of per-modality prediction lists. 
 Run a full denoising-step forward pass.
 
 ### TransformerTemporalModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/transformer_temporal.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/transformer_temporal.md

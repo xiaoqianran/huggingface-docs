@@ -1,6 +1,6 @@
 # Single files
 
-The [from_single_file()](/docs/diffusers/v0.40.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) method allows you to load:
+The [from_single_file()](/docs/diffusers/v0.41.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) method allows you to load:
 
 * a model stored in a single file, which is useful if you're working with models from the diffusion ecosystem, like Automatic1111, and commonly rely on a single-file layout to store and share models
 * a model stored in their originally distributed layout, which is useful if you're working with models finetuned with other services, and want to load it directly into Diffusers model objects and pipelines
@@ -10,36 +10,36 @@ The [from_single_file()](/docs/diffusers/v0.40.0/en/api/loaders/single_file#diff
 
 ## Supported pipelines
 
-- [StableDiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline)
-- [StableDiffusionImg2ImgPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/img2img#diffusers.StableDiffusionImg2ImgPipeline)
-- [StableDiffusionInpaintPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/inpaint#diffusers.StableDiffusionInpaintPipeline)
-- [StableDiffusionControlNetPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/controlnet#diffusers.StableDiffusionControlNetPipeline)
-- [StableDiffusionControlNetImg2ImgPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/controlnet#diffusers.StableDiffusionControlNetImg2ImgPipeline)
-- [StableDiffusionControlNetInpaintPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/controlnet#diffusers.StableDiffusionControlNetInpaintPipeline)
-- [StableDiffusionUpscalePipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/upscale#diffusers.StableDiffusionUpscalePipeline)
-- [StableDiffusionXLPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLPipeline)
-- [StableDiffusionXLImg2ImgPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLImg2ImgPipeline)
-- [StableDiffusionXLInpaintPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLInpaintPipeline)
-- [StableDiffusionXLInstructPix2PixPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/pix2pix#diffusers.StableDiffusionXLInstructPix2PixPipeline)
-- [StableDiffusionXLControlNetPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/controlnet_sdxl#diffusers.StableDiffusionXLControlNetPipeline)
+- [StableDiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline)
+- [StableDiffusionImg2ImgPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/img2img#diffusers.StableDiffusionImg2ImgPipeline)
+- [StableDiffusionInpaintPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/inpaint#diffusers.StableDiffusionInpaintPipeline)
+- [StableDiffusionControlNetPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/controlnet#diffusers.StableDiffusionControlNetPipeline)
+- [StableDiffusionControlNetImg2ImgPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/controlnet#diffusers.StableDiffusionControlNetImg2ImgPipeline)
+- [StableDiffusionControlNetInpaintPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/controlnet#diffusers.StableDiffusionControlNetInpaintPipeline)
+- [StableDiffusionUpscalePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/upscale#diffusers.StableDiffusionUpscalePipeline)
+- [StableDiffusionXLPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLPipeline)
+- [StableDiffusionXLImg2ImgPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLImg2ImgPipeline)
+- [StableDiffusionXLInpaintPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLInpaintPipeline)
+- [StableDiffusionXLInstructPix2PixPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/pix2pix#diffusers.StableDiffusionXLInstructPix2PixPipeline)
+- [StableDiffusionXLControlNetPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/controlnet_sdxl#diffusers.StableDiffusionXLControlNetPipeline)
 - `StableDiffusionXLKDiffusionPipeline`
-- [StableDiffusion3Pipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/stable_diffusion_3#diffusers.StableDiffusion3Pipeline)
-- [LatentConsistencyModelPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/latent_consistency_models#diffusers.LatentConsistencyModelPipeline)
-- [LatentConsistencyModelImg2ImgPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/latent_consistency_models#diffusers.LatentConsistencyModelImg2ImgPipeline)
+- [StableDiffusion3Pipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/stable_diffusion_3#diffusers.StableDiffusion3Pipeline)
+- [LatentConsistencyModelPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/latent_consistency_models#diffusers.LatentConsistencyModelPipeline)
+- [LatentConsistencyModelImg2ImgPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/latent_consistency_models#diffusers.LatentConsistencyModelImg2ImgPipeline)
 - `StableDiffusionControlNetXSPipeline`
 - `StableDiffusionXLControlNetXSPipeline`
-- [LEditsPPPipelineStableDiffusion](/docs/diffusers/v0.40.0/en/api/pipelines/ledits_pp#diffusers.LEditsPPPipelineStableDiffusion)
-- [LEditsPPPipelineStableDiffusionXL](/docs/diffusers/v0.40.0/en/api/pipelines/ledits_pp#diffusers.LEditsPPPipelineStableDiffusionXL)
+- [LEditsPPPipelineStableDiffusion](/docs/diffusers/v0.41.0/en/api/pipelines/ledits_pp#diffusers.LEditsPPPipelineStableDiffusion)
+- [LEditsPPPipelineStableDiffusionXL](/docs/diffusers/v0.41.0/en/api/pipelines/ledits_pp#diffusers.LEditsPPPipelineStableDiffusionXL)
 - `PIAPipeline`
 
 ## Supported models
 
-- [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)
+- [UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)
 - `StableCascadeUNet`
-- [AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)
-- [ControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet#diffusers.ControlNetModel)
-- [SD3Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/sd3_transformer2d#diffusers.SD3Transformer2DModel)
-- [FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)
+- [AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)
+- [ControlNetModel](/docs/diffusers/v0.41.0/en/api/models/controlnet#diffusers.ControlNetModel)
+- [SD3Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/sd3_transformer2d#diffusers.SD3Transformer2DModel)
+- [FluxTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)
 
 ## FromSingleFileMixin[[diffusers.loaders.FromSingleFileMixin]]
 
@@ -49,9 +49,9 @@ The [from_single_file()](/docs/diffusers/v0.40.0/en/api/loaders/single_file#diff
 diffusers.loaders.FromSingleFileMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/single_file.py#L266)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/single_file.py#L266)
 
-Load model weights saved in the `.ckpt` format into a [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline).
+Load model weights saved in the `.ckpt` format into a [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline).
 
 #### from_single_file[[diffusers.loaders.FromSingleFileMixin.from_single_file]]
 
@@ -59,7 +59,7 @@ Load model weights saved in the `.ckpt` format into a [DiffusionPipeline](/docs/
 from_single_file(pretrained_model_link_or_path, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/single_file.py#L271)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/single_file.py#L271)
 
 **Parameters:**
 
@@ -87,7 +87,7 @@ disable_mmap ('bool', *optional*, defaults to 'False') : Whether to disable mmap
 
 kwargs (remaining dictionary of keyword arguments, *optional*) : Can be used to overwrite load and saveable variables (the pipeline components of the specific pipeline class). The overwritten components are passed directly to the pipelines `__init__` method. See example below for more information.
 
-Instantiate a [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) from pretrained pipeline weights saved in the `.ckpt` or `.safetensors`
+Instantiate a [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) from pretrained pipeline weights saved in the `.ckpt` or `.safetensors`
 format. The pipeline is set in evaluation mode (`model.eval()`) by default.
 
 Examples:
@@ -120,7 +120,7 @@ Examples:
 diffusers.loaders.FromOriginalModelMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/single_file_model.py#L256)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/single_file_model.py#L271)
 
 Load pretrained weights saved in the `.ckpt` or `.safetensors` format into a model.
 
@@ -130,7 +130,7 @@ Load pretrained weights saved in the `.ckpt` or `.safetensors` format into a mod
 from_single_file(pretrained_model_link_or_path_or_dict: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/single_file_model.py#L261)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/single_file_model.py#L276)
 
 **Parameters:**
 
@@ -173,4 +173,4 @@ is set in evaluation mode (`model.eval()`) by default.
 ```
 
 ### IP-Adapter
-https://huggingface.co/docs/diffusers/v0.40.0/api/loaders/ip_adapter.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/loaders/ip_adapter.md

@@ -3,16 +3,16 @@
 The diffusion video decoder introduced in LTX-2.5 by Lightricks. Neighborhood-attention stages
 upsample the latent into a context volume, and a final stage denoises pixels conditioned on that context.
 
-It is a decoder, not an autoencoder: encoding stays with [AutoencoderKLLTX2Video](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl_ltx_2#diffusers.AutoencoderKLLTX2Video), whose latent space this
+It is a decoder, not an autoencoder: encoding stays with [AutoencoderKLLTX2Video](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_ltx_2#diffusers.AutoencoderKLLTX2Video), whose latent space this
 consumes unchanged, so latents are interchangeable between the convolutional decoder and this one. Because it is
-itself a diffusion model it is driven by [LTX2VideoDiffusionDecodePipeline](/docs/diffusers/v0.40.0/en/api/pipelines/ltx2#diffusers.LTX2VideoDiffusionDecodePipeline) rather than being passed as a
+itself a diffusion model it is driven by [LTX2VideoDiffusionDecodePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2VideoDiffusionDecodePipeline) rather than being passed as a
 pipeline's `vae`: run any LTX-2 pipeline with `output_type="latent"`, then decode.
 
 ```python
 import torch
 from diffusers import LTX2Pipeline, LTX2VideoDiffusionDecodePipeline, LTX2VideoDiffusionDecoderModel
 
-pipe = LTX2Pipeline.from_pretrained("Lightricks/LTX-2.5-Diffusers", dtype=torch.bfloat16).to("cuda")
+pipe = LTX2Pipeline.from_pretrained("Lightricks/LTX-2.5-Diffusers", dtype=torch.bfloat16).to("cuda")  # or "mps", "xpu", "cpu"
 latents = pipe(prompt="a potter shaping a clay vase", output_type="latent").frames
 
 decoder = LTX2VideoDiffusionDecoderModel.from_pretrained(
@@ -76,22 +76,22 @@ neighbor rather than decoded on its own.
 diffusers.LTX2VideoDiffusionDecoderModel(out_channels: int = 3, latent_channels: int = 128, patch_size: int = 4, scaling_factor: float = 1.0, decoder_head_dim: int = 64, decoder_stage_channels: tuple = (2048, 1024, 512, 512, 256), decoder_stage_depths: tuple = (4, 6, 4, 2, 8), decoder_stage_kernels: tuple = ((3, 7, 7), (3, 7, 7), (3, 5, 5), (3, 5, 5)), decoder_upsample_strides: tuple = ((1, 2, 2), (2, 1, 1), (2, 2, 2), (2, 2, 2)), decoder_upsample_channel_reductions: tuple = (2, 2, 1, 2), decoder_stage5_kernel: tuple = (11, 11, 11), decoder_t_emb_dim: int = 384, decoder_timestep_scale_multiplier: float = 1000.0, decoder_model_output_type: str = 'x0', decoder_num_inference_steps: int = 1, spatial_compression_ratio: int = 32, temporal_compression_ratio: int = 8)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/ltx2_diffusion_decoder.py#L700)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/ltx2_diffusion_decoder.py#L700)
 
 The LTX-2 diffusion video decoder, introduced in LTX-2.5.
 
 This is a decoder, not an autoencoder: it has no encoder and cannot produce latents. Encoding stays with
-[AutoencoderKLLTX2Video](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl_ltx_2#diffusers.AutoencoderKLLTX2Video), whose latent space this consumes unchanged, so latents are interchangeable between the
+[AutoencoderKLLTX2Video](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_ltx_2#diffusers.AutoencoderKLLTX2Video), whose latent space this consumes unchanged, so latents are interchangeable between the
 convolutional decoder and this one.
 
 It is also a diffusion model rather than a deterministic decoder — it denoises pixels conditioned on a context
-volume built from the latents — which is why it is driven by [LTX2VideoDiffusionDecodePipeline](/docs/diffusers/v0.40.0/en/api/pipelines/ltx2#diffusers.LTX2VideoDiffusionDecodePipeline) rather than being
+volume built from the latents — which is why it is driven by [LTX2VideoDiffusionDecodePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2VideoDiffusionDecodePipeline) rather than being
 passed as a pipeline's `vae`.
 
 The latent statistics are carried here as buffers so the decode pipeline can denormalize without loading a second
 autoencoder just for two vectors.
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
+This model inherits from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
 for all models (such as downloading or saving).
 
 #### decode[[diffusers.LTX2VideoDiffusionDecoderModel.decode]]
@@ -100,12 +100,12 @@ for all models (such as downloading or saving).
 decode(z: Tensor, generator: typing.Optional[torch.Generator] = None, num_inference_steps: int | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/ltx2_diffusion_decoder.py#L988)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/ltx2_diffusion_decoder.py#L988)
 
 Decode a batch of latents.
 
 `z` is expected to be denormalized already (the pipeline applies `latents_mean` / `latents_std`), matching
-[AutoencoderKLLTX2Video](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl_ltx_2#diffusers.AutoencoderKLLTX2Video). This decoder denoises, so pass `generator` for reproducibility.
+[AutoencoderKLLTX2Video](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_ltx_2#diffusers.AutoencoderKLLTX2Video). This decoder denoises, so pass `generator` for reproducibility.
 
 #### enable_tiling[[diffusers.LTX2VideoDiffusionDecoderModel.enable_tiling]]
 
@@ -113,7 +113,7 @@ Decode a batch of latents.
 enable_tiling(tile_sample_min_height: int | None = None, tile_sample_min_width: int | None = None, tile_sample_min_num_frames: int | None = None, tile_sample_stride_height: int | None = None, tile_sample_stride_width: int | None = None, tile_sample_stride_num_frames: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/ltx2_diffusion_decoder.py#L787)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/ltx2_diffusion_decoder.py#L787)
 
 **Parameters:**
 
@@ -139,7 +139,7 @@ decode memory — run on overlapping tiles whose seams are blended linearly.
 disable_tiling()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/ltx2_diffusion_decoder.py#L824)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/ltx2_diffusion_decoder.py#L824)
 
 Disable tiled decoding, returning to decoding the whole video in one pass.
 
@@ -149,19 +149,19 @@ Disable tiled decoding, returning to decoding the whole video in one pass.
 forward(z: Tensor, generator: typing.Optional[torch.Generator] = None, num_inference_steps: int | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/ltx2_diffusion_decoder.py#L1017)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/ltx2_diffusion_decoder.py#L1017)
 
 **Parameters:**
 
-z (`torch.Tensor`) : Latents of shape `(B, C, F, H, W)`, expected to be denormalized already (the pipeline applies `latents_mean` / `latents_std`), matching [AutoencoderKLLTX2Video](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl_ltx_2#diffusers.AutoencoderKLLTX2Video).
+z (`torch.Tensor`) : Latents of shape `(B, C, F, H, W)`, expected to be denormalized already (the pipeline applies `latents_mean` / `latents_std`), matching [AutoencoderKLLTX2Video](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_ltx_2#diffusers.AutoencoderKLLTX2Video).
 
 generator (`torch.Generator`, *optional*) : This decoder denoises, so pass a generator to make decoding reproducible.
 
 num_inference_steps (`int`, *optional*) : Number of denoising steps. Defaults to the decoder's `decoder_num_inference_steps` config value.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a [DecoderOutput](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.models.autoencoders.vae.DecoderOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a [DecoderOutput](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_qwenimage21#diffusers.models.autoencoders.vae.DecoderOutput) instead of a plain tuple.
 
-**Returns:** [DecoderOutput](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.models.autoencoders.vae.DecoderOutput) or `tuple`
+**Returns:** [DecoderOutput](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_qwenimage21#diffusers.models.autoencoders.vae.DecoderOutput) or `tuple`
 
 #### tiled_decode[[diffusers.LTX2VideoDiffusionDecoderModel.tiled_decode]]
 
@@ -169,7 +169,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a [Deco
 tiled_decode(z: Tensor, generator: typing.Optional[torch.Generator] = None, num_inference_steps: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/ltx2_diffusion_decoder.py#L855)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/ltx2_diffusion_decoder.py#L855)
 
 Decode a batch of latents with the last deterministic stage and the diffusion stage running per tile.
 
@@ -180,4 +180,4 @@ mapping: the tile containing t=0 drops the temporal upsample's duplicate leading
 containing the video end carries the NATTEN border padding.
 
 ### AutoencoderKLHunyuanVideo15
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoder_kl_hunyuan_video15.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_kl_hunyuan_video15.md

@@ -316,5 +316,5 @@ curl https://huggingface.co/api/datasets/ibm/duorc/parquet/ParaphraseRC/train \
 
 Each parquet file can also be accessed using its shard index: `https://huggingface.co/api/datasets/ibm/duorc/parquet/ParaphraseRC/train/0.parquet` redirects to `https://huggingface.co/datasets/ibm/duorc/resolve/refs%2Fconvert%2Fparquet/ParaphraseRC/train/0000.parquet` for example.
 
-### Get the number of rows and the size in bytes
-https://huggingface.co/docs/dataset-viewer/size.md
+### 🤗 Dataset viewer
+https://huggingface.co/docs/dataset-viewer/index.md

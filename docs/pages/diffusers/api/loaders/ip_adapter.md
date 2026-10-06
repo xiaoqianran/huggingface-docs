@@ -13,7 +13,7 @@
 diffusers.loaders.IPAdapterMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/ip_adapter.py#L55)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/ip_adapter.py#L55)
 
 Mixin for handling IP Adapters.
 
@@ -23,11 +23,11 @@ Mixin for handling IP Adapters.
 load_ip_adapter(pretrained_model_name_or_path_or_dict: str | list[str] | dict[str, torch.Tensor], subfolder: str | list[str], weight_name: str | list[str], image_encoder_folder: str | None = 'image_encoder', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/ip_adapter.py#L58)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/ip_adapter.py#L58)
 
 **Parameters:**
 
-pretrained_model_name_or_path_or_dict (`str` or `list[str]` or `os.PathLike` or `list[os.PathLike]` or `dict` or `list[dict]`) : Can be either:  - A string, the *model id* (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a *directory* (for example `./my_model_directory`) containing the model weights saved with [ModelMixin.save_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained). - A [torch state dict](https://pytorch.org/tutorials/beginner/saving_loading_models.html#what-is-a-state-dict).
+pretrained_model_name_or_path_or_dict (`str` or `list[str]` or `os.PathLike` or `list[os.PathLike]` or `dict` or `list[dict]`) : Can be either:  - A string, the *model id* (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a *directory* (for example `./my_model_directory`) containing the model weights saved with [ModelMixin.save_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained). - A [torch state dict](https://pytorch.org/tutorials/beginner/saving_loading_models.html#what-is-a-state-dict).
 
 subfolder (`str` or `list[str]`) : The subfolder location of a model file within a larger model repository on the Hub or locally. If a list is passed, it should have the same length as `weight_name`.
 
@@ -55,7 +55,7 @@ low_cpu_mem_usage (`bool`, *optional*, defaults to `True` if torch version >= 1.
 set_ip_adapter_scale(scale)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/ip_adapter.py#L259)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/ip_adapter.py#L259)
 
 Set IP-Adapter scales per-transformer block. Input `scale` could be a single config or a list of configs for
 granular control over each IP-Adapter behavior. A config can be a float or a dictionary.
@@ -91,7 +91,7 @@ pipeline.set_ip_adapter_scale(scales)
 unload_ip_adapter()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/ip_adapter.py#L312)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/ip_adapter.py#L312)
 
 Unloads the IP Adapter weights
 
@@ -111,7 +111,7 @@ Examples:
 diffusers.loaders.SD3IPAdapterMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/ip_adapter.py#L904)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/ip_adapter.py#L904)
 
 Mixin for handling StableDiffusion 3 IP Adapters.
 
@@ -121,7 +121,7 @@ Mixin for handling StableDiffusion 3 IP Adapters.
 is_ip_adapter_active()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/ip_adapter.py#L907)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/ip_adapter.py#L907)
 
 **Returns:** `bool`
 
@@ -138,11 +138,11 @@ the image context is irrelevant.
 load_ip_adapter(pretrained_model_name_or_path_or_dict: str | dict[str, torch.Tensor], weight_name: str = 'ip-adapter.safetensors', subfolder: str | None = None, image_encoder_folder: str | None = 'image_encoder', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/ip_adapter.py#L925)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/ip_adapter.py#L925)
 
 **Parameters:**
 
-pretrained_model_name_or_path_or_dict (`str` or `os.PathLike` or `dict`) : Can be either: - A string, the *model id* (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a *directory* (for example `./my_model_directory`) containing the model weights saved with [ModelMixin.save_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained). - A [torch state dict](https://pytorch.org/tutorials/beginner/saving_loading_models.html#what-is-a-state-dict).
+pretrained_model_name_or_path_or_dict (`str` or `os.PathLike` or `dict`) : Can be either: - A string, the *model id* (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a *directory* (for example `./my_model_directory`) containing the model weights saved with [ModelMixin.save_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained). - A [torch state dict](https://pytorch.org/tutorials/beginner/saving_loading_models.html#what-is-a-state-dict).
 
 weight_name (`str`, defaults to "ip-adapter.safetensors") : The name of the weight file to load. If a list is passed, it should have the same length as `subfolder`.
 
@@ -170,7 +170,7 @@ low_cpu_mem_usage (`bool`, *optional*, defaults to `True` if torch version >= 1.
 set_ip_adapter_scale(scale: float)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/ip_adapter.py#L1079)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/ip_adapter.py#L1079)
 
 **Parameters:**
 
@@ -194,7 +194,7 @@ Example:
 unload_ip_adapter()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/loaders/ip_adapter.py#L1102)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/loaders/ip_adapter.py#L1102)
 
 Unloads the IP Adapter weights.
 
@@ -214,7 +214,7 @@ Example:
 diffusers.IPAdapterMaskProcessor(do_resize: bool = True, vae_scale_factor: int = 8, resample: str = 'lanczos', do_normalize: bool = False, do_binarize: bool = True, do_convert_grayscale: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L1270)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L1270)
 
 **Parameters:**
 
@@ -238,7 +238,7 @@ Image processor for IP Adapter image masks.
 downsample(mask: Tensor, batch_size: int, num_queries: int, value_embed_dim: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/image_processor.py#L1311)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/image_processor.py#L1311)
 
 **Parameters:**
 
@@ -258,4 +258,4 @@ Downsamples the provided mask tensor to match the expected dimensions for scaled
 aspect ratio of the mask does not match the aspect ratio of the output image, a warning is issued.
 
 ### Components and configs
-https://huggingface.co/docs/diffusers/v0.40.0/api/modular_diffusers/pipeline_components.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/modular_diffusers/pipeline_components.md

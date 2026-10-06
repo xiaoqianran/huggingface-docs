@@ -18,7 +18,7 @@ Nunchaku Lite loads its kernels from the [`rootonchair/nunchaku-lite-kernels`](h
 
 ## Load a quantized pipeline
 
-Load the prequantized pipeline with [from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained), which reads the quantization
+Load the prequantized pipeline with [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained), which reads the quantization
 config from `config.json`.
 
 ```python
@@ -29,7 +29,7 @@ model_id = "rootonchair/ERNIE-Image-Turbo-nunchaku-lite-nvfp4"
 
 pipe = DiffusionPipeline.from_pretrained(
     model_id, dtype=torch.bfloat16,
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt = "A modern red armchair in a quiet studio, soft window light, realistic product photography"
 image = pipe(
@@ -76,7 +76,7 @@ The CUDA kernels currently support the following NVIDIA GPU architectures:
 
 ## NunchakuLiteQuantizationConfig
 
-The `config.json` file must include a [NunchakuLiteQuantizationConfig](/docs/diffusers/v0.40.0/en/api/quantization#diffusers.NunchakuLiteQuantizationConfig). It defines the runtime
+The `config.json` file must include a [NunchakuLiteQuantizationConfig](/docs/diffusers/v0.41.0/en/api/quantization#diffusers.NunchakuLiteQuantizationConfig). It defines the runtime
 `compute_dtype` and the target modules for each Nunchaku Lite quantization method.
 
 - `compute_dtype`: runtime dtype for floating-point buffers in quantized modules, typically `torch.bfloat16`.
@@ -141,4 +141,4 @@ The compiled Nunchaku Lite NVFP4 pipeline runs 1.8x faster than the original BF1
 - [Nunchaku installation requirements](https://nunchaku.tech/docs/nunchaku/installation/installation.html)
 
 ### Quanto
-https://huggingface.co/docs/diffusers/v0.40.0/quantization/quanto.md
+https://huggingface.co/docs/diffusers/v0.41.0/quantization/quanto.md

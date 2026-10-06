@@ -10,7 +10,7 @@ A Transformer model for image-like data from [AuraFlow](https://blog.fal.ai/aura
 diffusers.AuraFlowTransformer2DModel(sample_size: int = 64, patch_size: int = 2, in_channels: int = 4, num_mmdit_layers: int = 4, num_single_dit_layers: int = 32, attention_head_dim: int = 256, num_attention_heads: int = 12, joint_attention_dim: int = 2048, caption_projection_dim: int = 3072, out_channels: int = 4, pos_embed_max_size: int = 1024)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/auraflow_transformer_2d.py#L278)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/auraflow_transformer_2d.py#L278)
 
 **Parameters:**
 
@@ -44,7 +44,7 @@ A 2D Transformer model as introduced in AuraFlow (https://blog.fal.ai/auraflow/)
 forward(hidden_states: FloatTensor, encoder_hidden_states: FloatTensor = None, timestep: LongTensor = None, attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/auraflow_transformer_2d.py#L400)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/auraflow_transformer_2d.py#L400)
 
 **Parameters:**
 
@@ -63,7 +63,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
-The [AuraFlowTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/aura_flow_transformer2d#diffusers.AuraFlowTransformer2DModel) forward method.
+The [AuraFlowTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/aura_flow_transformer2d#diffusers.AuraFlowTransformer2DModel) forward method.
 
 #### fuse_qkv_projections[[diffusers.AuraFlowTransformer2DModel.fuse_qkv_projections]]
 
@@ -71,7 +71,7 @@ The [AuraFlowTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/aura_flow
 fuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/auraflow_transformer_2d.py#L369)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/auraflow_transformer_2d.py#L369)
 
 Enables fused QKV projections. For self-attention modules, all projection matrices (i.e., query, key, value)
 are fused. For cross-attention modules, key and value projection matrices are fused.
@@ -84,11 +84,11 @@ are fused. For cross-attention modules, key and value projection matrices are fu
 unfuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/auraflow_transformer_2d.py#L391)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/auraflow_transformer_2d.py#L391)
 
 Disables the fused QKV projection if enabled.
 
 > [!WARNING] > This API is 🧪 experimental.
 
 ### UNet1DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/unet.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/unet.md

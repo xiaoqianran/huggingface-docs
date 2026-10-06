@@ -93,5 +93,5 @@ The endpoint response is a JSON with the `dataset_info` key. Its structure and c
 }
 ```
 
-### PostgreSQL
-https://huggingface.co/docs/dataset-viewer/postgresql.md
+### Overview
+https://huggingface.co/docs/dataset-viewer/parquet_process.md

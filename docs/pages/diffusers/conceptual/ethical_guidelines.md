@@ -48,4 +48,4 @@ The team works daily to make the technical and non-technical tools available to 
 - **Licensing**: [OpenRAILs](https://huggingface.co/blog/open_rail), a new type of licensing, allow us to ensure free access while having a set of restrictions that ensure more responsible use.
 
 ### Outpainting
-https://huggingface.co/docs/diffusers/v0.40.0/advanced_inference/outpaint.md
+https://huggingface.co/docs/diffusers/v0.41.0/advanced_inference/outpaint.md

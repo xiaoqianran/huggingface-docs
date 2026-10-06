@@ -10,7 +10,7 @@ A Next Version of Diffusion Transformer model for 2D data from [Lumina-T2X](http
 diffusers.LuminaNextDiT2DModel(sample_size: int = 128, patch_size: int | None = 2, in_channels: int | None = 4, hidden_size: int | None = 2304, num_layers: int | None = 32, num_attention_heads: int | None = 32, num_kv_heads: int | None = None, multiple_of: int | None = 256, ffn_dim_multiplier: float | None = None, norm_eps: float | None = 1e-05, learn_sigma: bool | None = True, qk_norm: bool | None = True, cross_attention_dim: int | None = 2048, scaling_factor: float | None = 1.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/lumina_nextdit2d.py#L178)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/lumina_nextdit2d.py#L178)
 
 **Parameters:**
 
@@ -52,7 +52,7 @@ Inherit ModelMixin and ConfigMixin to be compatible with the sampler StableDiffu
 forward(hidden_states: Tensor, timestep: Tensor, encoder_hidden_states: Tensor, encoder_mask: Tensor, image_rotary_emb: Tensor, cross_attention_kwargs: dict = None, return_dict = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/lumina_nextdit2d.py#L291)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/lumina_nextdit2d.py#L291)
 
 **Parameters:**
 
@@ -78,4 +78,4 @@ a plain `tuple` is returned.
 Forward pass of LuminaNextDiT.
 
 ### AutoencoderKLKVAEVideo
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoder_kl_kvae_video.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_kl_kvae_video.md

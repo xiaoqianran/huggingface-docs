@@ -210,7 +210,7 @@ unet = UNet2DConditionModel.from_pretrained("your-username/your-model", dtype=to
 pipeline = DiffusionPipeline.from_pretrained("stable-diffusion-v1-5/stable-diffusion-v1-5", unet=unet, dtype=torch.float16, variant="fp16")
 
 pipeline.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
-pipeline.to("cuda")
+pipeline.to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt = "sushi rolls in the form of panda heads, sushi platter"
 
@@ -237,4 +237,4 @@ Congratulations on distilling a LCM model! To learn more about LCM, the followin
 - Read the [SDXL in 4 steps with Latent Consistency LoRAs](https://huggingface.co/blog/lcm_lora) blog post to learn more about SDXL LCM-LoRA's for super fast inference, quality comparisons, benchmarks, and more.
 
 ### Custom Diffusion
-https://huggingface.co/docs/diffusers/v0.40.0/training/custom_diffusion.md
+https://huggingface.co/docs/diffusers/v0.41.0/training/custom_diffusion.md

@@ -10,7 +10,7 @@
 diffusers.FlowMatchHeunDiscreteScheduler(num_train_timesteps: int = 1000, shift: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_match_heun_discrete.py#L43)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_flow_match_heun_discrete.py#L43)
 
 **Parameters:**
 
@@ -20,7 +20,7 @@ shift (`float`, defaults to 1.0) : The shift value for the timestep schedule.
 
 Heun scheduler.
 
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
 methods the library implements for all schedulers such as loading and saving.
 
 #### index_for_timestep[[diffusers.FlowMatchHeunDiscreteScheduler.index_for_timestep]]
@@ -29,7 +29,7 @@ methods the library implements for all schedulers such as loading and saving.
 index_for_timestep(timestep: typing.Union[float, torch.FloatTensor], schedule_timesteps: typing.Optional[torch.FloatTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_match_heun_discrete.py#L179)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_flow_match_heun_discrete.py#L179)
 
 **Parameters:**
 
@@ -49,7 +49,7 @@ Find the index of a given timestep in the timestep schedule.
 scale_noise(sample: FloatTensor, timestep: typing.Union[float, torch.FloatTensor], noise: FloatTensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_match_heun_discrete.py#L106)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_flow_match_heun_discrete.py#L106)
 
 **Parameters:**
 
@@ -71,7 +71,7 @@ Forward process in flow-matching
 set_begin_index(begin_index: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_match_heun_discrete.py#L96)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_flow_match_heun_discrete.py#L96)
 
 **Parameters:**
 
@@ -85,7 +85,7 @@ Sets the begin index for the scheduler. This function should be run from pipelin
 set_timesteps(num_inference_steps: int, device: typing.Union[str, torch.device] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_match_heun_discrete.py#L139)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_flow_match_heun_discrete.py#L139)
 
 **Parameters:**
 
@@ -101,7 +101,7 @@ Sets the discrete timesteps used for the diffusion chain (to be run before infer
 step(model_output: FloatTensor, timestep: typing.Union[float, torch.FloatTensor], sample: FloatTensor, s_churn: float = 0.0, s_tmin: float = 0.0, s_tmax: float = inf, s_noise: float = 1.0, generator: typing.Optional[torch.Generator] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_match_heun_discrete.py#L225)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_flow_match_heun_discrete.py#L225)
 
 **Parameters:**
 
@@ -133,4 +133,4 @@ Predict the sample from the previous timestep by reversing the SDE. This functio
 process from the learned model outputs (most often the predicted noise).
 
 ### CMStochasticIterativeScheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/cm_stochastic_iterative.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/cm_stochastic_iterative.md

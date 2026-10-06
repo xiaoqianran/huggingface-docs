@@ -17,7 +17,7 @@ The original codebase can be found at [NVlabs/Sana](https://github.com/NVlabs/Sa
 diffusers.SanaControlNetModel(in_channels: int = 32, out_channels: int | None = 32, num_attention_heads: int = 70, attention_head_dim: int = 32, num_layers: int = 7, num_cross_attention_heads: int | None = 20, cross_attention_head_dim: int | None = 112, cross_attention_dim: int | None = 2240, caption_channels: int = 2304, mlp_ratio: float = 2.5, dropout: float = 0.0, attention_bias: bool = False, sample_size: int = 32, patch_size: int = 1, norm_elementwise_affine: bool = False, norm_eps: float = 1e-06, interpolation_scale: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sana.py#L41)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/controlnets/controlnet_sana.py#L41)
 
 #### forward[[diffusers.SanaControlNetModel.forward]]
 
@@ -25,7 +25,7 @@ diffusers.SanaControlNetModel(in_channels: int = 32, out_channels: int | None = 
 forward(hidden_states: Tensor, encoder_hidden_states: Tensor, timestep: LongTensor, controlnet_cond: Tensor, conditioning_scale: float = 1.0, encoder_attention_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sana.py#L120)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/controlnets/controlnet_sana.py#L120)
 
 **Parameters:**
 
@@ -60,7 +60,7 @@ a plain `tuple` is returned.
 diffusers.models.controlnets.controlnet_sana.SanaControlNetOutput(controlnet_block_samples: tuple)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sana.py#L37)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/controlnets/controlnet_sana.py#L37)
 
 ### AutoencoderKLCogVideoX
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoderkl_cogvideox.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_cogvideox.md

@@ -4,7 +4,7 @@ The `BlockRefinementScheduler` manages block-wise iterative refinement for discr
 commits the most confident tokens and optionally edits already-committed tokens when the model predicts a different
 token with high confidence.
 
-This scheduler is used by [LLaDA2Pipeline](/docs/diffusers/v0.40.0/en/api/pipelines/llada2#diffusers.LLaDA2Pipeline).
+This scheduler is used by [LLaDA2Pipeline](/docs/diffusers/v0.41.0/en/api/pipelines/llada2#diffusers.LLaDA2Pipeline).
 
 ## BlockRefinementScheduler[[diffusers.BlockRefinementScheduler]]
 
@@ -14,7 +14,7 @@ This scheduler is used by [LLaDA2Pipeline](/docs/diffusers/v0.40.0/en/api/pipeli
 diffusers.BlockRefinementScheduler(block_length: int = 32, num_inference_steps: int = 32, threshold: float = 0.95, editing_threshold: float | None = None, minimal_topk: int = 1)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_block_refinement.py#L54)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_block_refinement.py#L54)
 
 Scheduler for block-wise iterative refinement (commit-by-confidence).
 
@@ -31,7 +31,7 @@ different token with confidence above a positive `editing_threshold` (`None`, `0
 add_noise(original_samples: torch.LongTensor, attention_mask: torch.LongTensor, prompt_length: int, block_length: int, mask_token_id: int, generator: torch.Generator | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_block_refinement.py#L456)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_block_refinement.py#L456)
 
 **Parameters:**
 
@@ -64,7 +64,7 @@ one are the unmasked positions in the other.
 check_block_should_continue(step_idx: int, masks_remaining: bool, editing_enabled: bool, editing_transfer_index: torch.BoolTensor, post_steps: int, max_post_steps: int, finished: torch.BoolTensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_block_refinement.py#L412)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_block_refinement.py#L412)
 
 **Parameters:**
 
@@ -94,7 +94,7 @@ Determine whether the inner refinement loop should continue for the current bloc
 check_eos_finished(cur_x: torch.LongTensor, sampled_tokens: torch.LongTensor, final_transfer: torch.BoolTensor, finished: torch.BoolTensor, eos_token_id: int, mask_token_id: int, prompt_length: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_block_refinement.py#L362)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_block_refinement.py#L362)
 
 **Parameters:**
 
@@ -124,7 +124,7 @@ Update per-batch finished flags when EOS tokens are committed.
 get_num_transfer_tokens(block_length: int, num_inference_steps: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_block_refinement.py#L102)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_block_refinement.py#L102)
 
 Evenly distribute `block_length` token commits across `num_inference_steps` steps.
 
@@ -134,7 +134,7 @@ Evenly distribute `block_length` token commits across `num_inference_steps` step
 step(model_output: torch.Tensor, timestep: int | torch.Tensor, sample: torch.LongTensor, mask_token_id: int | None = None, temperature: float = 0.0, top_p: float | None = None, top_k: int | None = None, sampling_method: str = 'auto', threshold: float | None = None, editing_threshold: float | None = None, minimal_topk: int | None = None, prompt_mask: torch.BoolTensor | None = None, generator: torch.Generator | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_block_refinement.py#L181)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_block_refinement.py#L181)
 
 **Parameters:**
 
@@ -177,7 +177,7 @@ ones.
 diffusers.BlockRefinementSchedulerOutput(prev_sample: torch.LongTensor, transfer_index: torch.BoolTensor, editing_transfer_index: torch.BoolTensor, sampled_tokens: torch.LongTensor, sampled_probs: torch.Tensor, pred_logits: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_block_refinement.py#L27)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_block_refinement.py#L27)
 
 **Parameters:**
 
@@ -196,4 +196,4 @@ pred_logits (`torch.Tensor` of shape `(batch_size, block_length, vocab_size)`) :
 Output class for block refinement scheduling.
 
 ### UniPCMultistepScheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/unipc.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/unipc.md

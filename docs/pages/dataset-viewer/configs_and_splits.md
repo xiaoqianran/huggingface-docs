@@ -20,5 +20,5 @@ A *subset* (also called *configuration*) is a higher-level internal structure th
 
 Subsets are flexible, and can be used to organize a dataset along whatever objective you'd like. For example, the [SceneParse150](https://huggingface.co/datasets/scene_parse_150) dataset uses subsets to organize the dataset by task. One subset is dedicated to segmenting the whole image, while the other subset is for instance segmentation.
 
-### ClickHouse
-https://huggingface.co/docs/dataset-viewer/clickhouse.md
+### Quickstart
+https://huggingface.co/docs/dataset-viewer/quick_start.md

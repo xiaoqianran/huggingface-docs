@@ -1,6 +1,6 @@
 # Anima
 
-Anima is a text-to-image model that reuses the [CosmosTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/cosmos_transformer3d#diffusers.CosmosTransformer3DModel) with a Qwen3 text encoder, a T5-token text conditioner, and the [AutoencoderKLQwenImage](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl_qwenimage#diffusers.AutoencoderKLQwenImage) VAE.
+Anima is a text-to-image model that reuses the [CosmosTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/cosmos_transformer3d#diffusers.CosmosTransformer3DModel) with a Qwen3 text encoder, a T5-token text conditioner, and the [AutoencoderKLQwenImage](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_qwenimage#diffusers.AutoencoderKLQwenImage) VAE.
 
 ```python
 import torch
@@ -8,7 +8,7 @@ from diffusers import ModularPipeline
 
 pipe = ModularPipeline.from_pretrained("circlestone-labs/Anima-Base-v1.0-Diffusers")
 pipe.load_components(dtype=torch.bfloat16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 image = pipe(prompt="masterpiece, best quality, 1girl, solo, city lights").images[0]
 ```
@@ -21,7 +21,7 @@ image = pipe(prompt="masterpiece, best quality, 1girl, solo, city lights").image
 diffusers.AnimaModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/anima/modular_pipeline.py#L19)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/anima/modular_pipeline.py#L19)
 
 A ModularPipeline for Anima.
 
@@ -33,7 +33,7 @@ A ModularPipeline for Anima.
 diffusers.AnimaAutoBlocks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/modular_pipelines/anima/modular_blocks_anima.py#L312)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/anima/modular_blocks_anima.py#L312)
 
 Auto Modular pipeline for text-to-image and image-to-image generation using Anima.
 
@@ -91,7 +91,7 @@ Generated images.
 diffusers.AnimaTextConditioner(source_dim: int = 1024, target_dim: int = 1024, model_dim: int = 1024, num_layers: int = 6, num_attention_heads: int = 16, mlp_ratio: float = 4.0, target_vocab_size: int = 32128, use_self_attention: bool = True, use_layer_norm: bool = False, min_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/condition_embedders/condition_embedder_anima.py#L229)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/condition_embedders/condition_embedder_anima.py#L229)
 
 Text conditioner used by Anima to map Qwen3 hidden states and T5 token ids to Cosmos text embeddings.
 
@@ -105,7 +105,7 @@ cross-attends from learned T5 token embeddings to Qwen3 text encoder hidden stat
 forward(source_hidden_states: Tensor, target_input_ids: Tensor, target_attention_mask: typing.Optional[torch.Tensor] = None, source_attention_mask: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/condition_embedders/condition_embedder_anima.py#L285)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/condition_embedders/condition_embedder_anima.py#L285)
 
 **Parameters:**
 
@@ -122,4 +122,4 @@ source_attention_mask (`torch.Tensor`, *optional*) : Attention mask for the sour
 Text conditioning embeddings for the Cosmos transformer.
 
 ### Bria Fibo
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/bria_fibo.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/bria_fibo.md

@@ -38,7 +38,7 @@ pipe = TgatePixArtLoader(
        pipe,
        gate_step=gate_step,
        num_inference_steps=inference_step,
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 image = pipe.tgate(
        "An alpaca made of colorful building blocks, cyberpunk.",
@@ -69,7 +69,7 @@ pipe = TgateSDXLLoader(
        pipe,
        gate_step=gate_step,
        num_inference_steps=inference_step,
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 image = pipe.tgate(
        "Astronaut in a jungle, cold color palette, muted colors, detailed, 8k.",
@@ -100,7 +100,7 @@ pipe = TgateSDXLDeepCacheLoader(
        pipe,
        cache_interval=3,
        cache_branch_id=0,
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 image = pipe.tgate(
        "Astronaut in a jungle, cold color palette, muted colors, detailed, 8k.",
@@ -138,7 +138,7 @@ pipe = TgateSDXLLoader(
        gate_step=gate_step,
        num_inference_steps=inference_step,
        lcm=True
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 image = pipe.tgate(
        "Astronaut in a jungle, cold color palette, muted colors, detailed, 8k.",
@@ -147,7 +147,7 @@ image = pipe.tgate(
 ).images[0]
 ```
 
-T-GATE also supports [StableDiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline) and [PixArt-alpha/PixArt-LCM-XL-2-1024-MS](https://hf.co/PixArt-alpha/PixArt-LCM-XL-2-1024-MS).
+T-GATE also supports [StableDiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline) and [PixArt-alpha/PixArt-LCM-XL-2-1024-MS](https://hf.co/PixArt-alpha/PixArt-LCM-XL-2-1024-MS).
 
 ## Benchmarks
 | Model                 | MACs     | Param     | Latency | Zero-shot 10K-FID on MS-COCO |
@@ -170,4 +170,4 @@ T-GATE also supports [StableDiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pi
 The latency is tested on an NVIDIA 1080TI, MACs and Params are calculated with [calflops](https://github.com/MrYxJ/calculate-flops.pytorch), and the FID is calculated with [PytorchFID](https://github.com/mseitzer/pytorch-fid).
 
 ### Attention backends
-https://huggingface.co/docs/diffusers/v0.40.0/optimization/attention_backends.md
+https://huggingface.co/docs/diffusers/v0.41.0/optimization/attention_backends.md

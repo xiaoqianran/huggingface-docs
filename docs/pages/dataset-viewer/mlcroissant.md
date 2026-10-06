@@ -41,5 +41,5 @@ b'Aries'         918.666667
 Name: default/text, dtype: float64
 ```
 
-### List splits and subsets
-https://huggingface.co/docs/dataset-viewer/splits.md
+### DuckDB
+https://huggingface.co/docs/dataset-viewer/duckdb.md

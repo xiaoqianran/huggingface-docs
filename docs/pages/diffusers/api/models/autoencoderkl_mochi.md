@@ -7,7 +7,7 @@ The model can be loaded with the following code snippet.
 ```python
 from diffusers import AutoencoderKLMochi
 
-vae = AutoencoderKLMochi.from_pretrained("genmo/mochi-1-preview", subfolder="vae", dtype=torch.float32).to("cuda")
+vae = AutoencoderKLMochi.from_pretrained("genmo/mochi-1-preview", subfolder="vae", dtype=torch.float32).to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 ## AutoencoderKLMochi[[diffusers.AutoencoderKLMochi]]
@@ -18,7 +18,7 @@ vae = AutoencoderKLMochi.from_pretrained("genmo/mochi-1-preview", subfolder="vae
 diffusers.AutoencoderKLMochi(in_channels: int = 15, out_channels: int = 3, encoder_block_out_channels: tuple = (64, 128, 256, 384), decoder_block_out_channels: tuple = (128, 256, 512, 768), latent_channels: int = 12, layers_per_block: tuple = (3, 3, 4, 6, 3), act_fn: str = 'silu', temporal_expansions: tuple = (1, 2, 3), spatial_expansions: tuple = (2, 2, 2), add_attention_block: tuple = (False, True, True, True, True), latents_mean: tuple = (-0.06730895953510081, -0.038011381506090416, -0.07477820912866141, -0.05565264470995561, 0.012767231469026969, -0.04703542746246419, 0.043896967884726704, -0.09346305707025976, -0.09918314763016893, -0.008729793427399178, -0.011931556316503654, -0.0321993391887285), latents_std: tuple = (0.9263795028493863, 0.9248894543193766, 0.9393059390890617, 0.959253732819592, 0.8244560132752793, 0.917259975397747, 0.9294154431013696, 1.3720942357788521, 0.881393668867029, 0.9168315692124348, 0.9185249279345552, 0.9274757570805041), scaling_factor: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_mochi.py#L655)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_mochi.py#L655)
 
 **Parameters:**
 
@@ -35,7 +35,7 @@ scaling_factor (`float`, *optional*, defaults to `1.15258426`) : The component-w
 A VAE model with KL loss for encoding images into latents and decoding latent representations into images. Used in
 [Mochi 1 preview](https://github.com/genmoai/models).
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
+This model inherits from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
 for all models (such as downloading or saving).
 
 #### decode[[diffusers.AutoencoderKLMochi.decode]]
@@ -44,7 +44,7 @@ for all models (such as downloading or saving).
 decode(z: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_mochi.py#L912)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_mochi.py#L912)
 
 **Parameters:**
 
@@ -65,7 +65,7 @@ Decode a batch of images.
 enable_tiling(tile_sample_min_height: int | None = None, tile_sample_min_width: int | None = None, tile_sample_stride_height: float | None = None, tile_sample_stride_width: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_mochi.py#L786)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_mochi.py#L786)
 
 **Parameters:**
 
@@ -87,7 +87,7 @@ processing larger images.
 encode(x: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_mochi.py#L855)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_mochi.py#L855)
 
 **Parameters:**
 
@@ -108,7 +108,7 @@ Encode a batch of images into latents.
 forward(sample: Tensor, sample_posterior: bool = False, return_dict: bool = True, generator: typing.Optional[torch.Generator] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_mochi.py#L1089)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_mochi.py#L1089)
 
 **Parameters:**
 
@@ -131,7 +131,7 @@ returned.
 tiled_decode(z: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_mochi.py#L1011)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_mochi.py#L1011)
 
 **Parameters:**
 
@@ -152,7 +152,7 @@ Decode a batch of images using a tiled decoder.
 tiled_encode(x: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_mochi.py#L954)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_mochi.py#L954)
 
 **Parameters:**
 
@@ -172,7 +172,7 @@ Encode a batch of images using a tiled encoder.
 diffusers.models.autoencoders.vae.DecoderOutput(sample: Tensor, commit_loss: typing.Optional[torch.FloatTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/vae.py#L46)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/vae.py#L49)
 
 **Parameters:**
 
@@ -181,4 +181,4 @@ sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) : T
 Output of decoding method.
 
 ### HunyuanVideo15Transformer3DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/hunyuan_video15_transformer_3d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/hunyuan_video15_transformer_3d.md

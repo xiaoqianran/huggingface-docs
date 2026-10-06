@@ -19,7 +19,7 @@ vae = AutoencoderKLKVAEVideo.from_pretrained("kandinskylab/KVAE-3D-1.0", subfold
 diffusers.AutoencoderKLKVAEVideo(ch: int = 128, ch_mult: typing.Tuple[int, ...] = (1, 2, 4, 8), num_res_blocks: int = 2, in_channels: int = 3, out_ch: int = 3, z_channels: int = 16, temporal_compress_times: int = 4)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae_video.py#L707)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae_video.py#L707)
 
 **Parameters:**
 
@@ -40,7 +40,7 @@ temporal_compress_times (`int`, *optional*, defaults to 4) : Temporal compressio
 A VAE model with KL loss for encoding videos into latents and decoding latent representations into videos. Used in
 [KVAE](https://github.com/kandinskylab/kvae-1).
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for its generic methods implemented for
+This model inherits from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for its generic methods implemented for
 all models (such as downloading or saving).
 
 #### decode[[diffusers.AutoencoderKLKVAEVideo.decode]]
@@ -49,7 +49,7 @@ all models (such as downloading or saving).
 decode(z: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae_video.py#L915)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae_video.py#L915)
 
 **Parameters:**
 
@@ -69,7 +69,7 @@ Decode a batch of videos.
 disable_slicing()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae_video.py#L844)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae_video.py#L844)
 
 Disable sliced VAE decoding.
 
@@ -79,7 +79,7 @@ Disable sliced VAE decoding.
 enable_slicing()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae_video.py#L840)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae_video.py#L840)
 
 Enable sliced VAE decoding.
 
@@ -89,7 +89,7 @@ Enable sliced VAE decoding.
 encode(x: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae_video.py#L867)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae_video.py#L867)
 
 **Parameters:**
 
@@ -109,7 +109,7 @@ Encode a batch of videos into latents.
 forward(sample: Tensor, sample_posterior: bool = False, return_dict: bool = True, generator: typing.Optional[torch.Generator] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae_video.py#L938)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae_video.py#L938)
 
 **Parameters:**
 
@@ -127,4 +127,4 @@ If `return_dict` is True, a `~models.vae.DecoderOutput` is returned, otherwise a
 returned.
 
 ### ErnieImageTransformer2DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/ernie_image_transformer2d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/ernie_image_transformer2d.md

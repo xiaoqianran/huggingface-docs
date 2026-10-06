@@ -197,7 +197,7 @@ The model should not be used in any way that violates Stability AI's [Acceptable
 diffusers.StableCascadeCombinedPipeline(tokenizer: CLIPTokenizer, text_encoder: CLIPTextModelWithProjection, decoder: StableCascadeUNet, scheduler: DDPMWuerstchenScheduler, vqgan: PaellaVQModel, prior_prior: StableCascadeUNet, prior_text_encoder: CLIPTextModelWithProjection, prior_tokenizer: CLIPTokenizer, prior_scheduler: DDPMWuerstchenScheduler, prior_feature_extractor: transformers.models.clip.image_processing_pil_clip.CLIPImageProcessorPil | None = None, prior_image_encoder: transformers.models.clip.modeling_clip.CLIPVisionModelWithProjection | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_cascade/pipeline_stable_cascade_combined.py#L45)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_cascade/pipeline_stable_cascade_combined.py#L46)
 
 **Parameters:**
 
@@ -219,13 +219,13 @@ prior_tokenizer (`CLIPTokenizer`) : The prior tokenizer to be used for text inpu
 
 prior_scheduler (`DDPMWuerstchenScheduler`) : The scheduler to be used for prior pipeline.
 
-prior_feature_extractor ([CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPImageProcessor)) : Model that extracts features from generated images to be used as inputs for the `image_encoder`.
+prior_feature_extractor ([CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPImageProcessor)) : Model that extracts features from generated images to be used as inputs for the `image_encoder`.
 
 prior_image_encoder (`CLIPVisionModelWithProjection`) : Frozen CLIP image-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)).
 
 Combined Pipeline for text-to-image generation using Stable Cascade.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.StableCascadeCombinedPipeline.__call__]]
@@ -234,7 +234,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str] | None = None, images: typing.Union[torch.Tensor, list[torch.Tensor], PIL.Image.Image, list[PIL.Image.Image]] = None, height: int = 512, width: int = 512, prior_num_inference_steps: int = 60, prior_guidance_scale: float = 4.0, num_inference_steps: int = 12, decoder_guidance_scale: float = 0.0, negative_prompt: str | list[str] | None = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_embeds_pooled: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_pooled: typing.Optional[torch.Tensor] = None, num_images_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, prior_callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, prior_callback_on_step_end_tensor_inputs: list = ['latents'], callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_cascade/pipeline_stable_cascade_combined.py#L158)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_cascade/pipeline_stable_cascade_combined.py#L159)
 
 **Parameters:**
 
@@ -272,7 +272,7 @@ latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents, sampled from
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between: `"pil"` (`PIL.Image.Image`), `"np"` (`np.array`) or `"pt"` (`torch.Tensor`).
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
 prior_callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `prior_callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`.
 
@@ -284,7 +284,7 @@ callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inp
 
 **Returns:**
 
-[ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple` [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) if `return_dict` is True,
+[ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple` [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) if `return_dict` is True,
 otherwise a `tuple`. When returning a tuple, the first element is a list with the generated images.
 
 Function invoked when calling the pipeline for generation.
@@ -308,7 +308,7 @@ Examples:
 enable_model_cpu_offload(gpu_id: int | None = None, device: typing.Union[torch.device, str] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_cascade/pipeline_stable_cascade_combined.py#L130)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_cascade/pipeline_stable_cascade_combined.py#L131)
 
 Offloads all models to CPU using accelerate, reducing memory usage with a low impact on performance. Compared
 to `enable_sequential_cpu_offload`, this method moves one whole model at a time to the GPU when its `forward`
@@ -321,7 +321,7 @@ method is called, and the model remains in GPU until the next model runs. Memory
 enable_sequential_cpu_offload(gpu_id: int | None = None, device: typing.Union[torch.device, str] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_cascade/pipeline_stable_cascade_combined.py#L140)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_cascade/pipeline_stable_cascade_combined.py#L141)
 
 Offloads all models (`unet`, `text_encoder`, `vae`, and `safety checker` state dicts) to CPU using 🤗
 Accelerate, significantly reducing memory usage. Models are moved to a `torch.device('meta')` and loaded on a
@@ -336,7 +336,7 @@ Memory savings are higher than using `enable_model_cpu_offload`, but performance
 diffusers.StableCascadePriorPipeline(tokenizer: CLIPTokenizer, text_encoder: CLIPTextModelWithProjection, prior: StableCascadeUNet, scheduler: DDPMWuerstchenScheduler, resolution_multiple: float = 42.67, feature_extractor: transformers.models.clip.image_processing_pil_clip.CLIPImageProcessorPil | None = None, image_encoder: transformers.models.clip.modeling_clip.CLIPVisionModelWithProjection | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_cascade/pipeline_stable_cascade_prior.py#L80)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_cascade/pipeline_stable_cascade_prior.py#L80)
 
 **Parameters:**
 
@@ -344,7 +344,7 @@ prior (`StableCascadeUNet`) : The Stable Cascade prior to approximate the image 
 
 text_encoder (`CLIPTextModelWithProjection`) : Frozen text-encoder ([laion/CLIP-ViT-bigG-14-laion2B-39B-b160k](https://huggingface.co/laion/CLIP-ViT-bigG-14-laion2B-39B-b160k)).
 
-feature_extractor ([CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPImageProcessor)) : Model that extracts features from generated images to be used as inputs for the `image_encoder`.
+feature_extractor ([CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPImageProcessor)) : Model that extracts features from generated images to be used as inputs for the `image_encoder`.
 
 image_encoder (`CLIPVisionModelWithProjection`) : Frozen CLIP image-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)).
 
@@ -356,7 +356,7 @@ resolution_multiple ('float', *optional*, defaults to 42.67) : Default resolutio
 
 Pipeline for generating image prior for Stable Cascade.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.StableCascadePriorPipeline.__call__]]
@@ -365,7 +365,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str] | None = None, images: typing.Union[torch.Tensor, list[torch.Tensor], PIL.Image.Image, list[PIL.Image.Image]] = None, height: int = 1024, width: int = 1024, num_inference_steps: int = 20, timesteps: list = None, guidance_scale: float = 4.0, negative_prompt: str | list[str] | None = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_embeds_pooled: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_pooled: typing.Optional[torch.Tensor] = None, image_embeds: typing.Optional[torch.Tensor] = None, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pt', return_dict: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_cascade/pipeline_stable_cascade_prior.py#L375)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_cascade/pipeline_stable_cascade_prior.py#L375)
 
 **Parameters:**
 
@@ -403,7 +403,7 @@ latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents, sampled from
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between: `"pil"` (`PIL.Image.Image`), `"np"` (`np.array`) or `"pt"` (`torch.Tensor`).
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
 callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
 
@@ -438,7 +438,7 @@ Examples:
 diffusers.pipelines.stable_cascade.pipeline_stable_cascade_prior.StableCascadePriorPipelineOutput(image_embeddings: typing.Union[torch.Tensor, numpy.ndarray], prompt_embeds: typing.Union[torch.Tensor, numpy.ndarray], prompt_embeds_pooled: typing.Union[torch.Tensor, numpy.ndarray], negative_prompt_embeds: typing.Union[torch.Tensor, numpy.ndarray], negative_prompt_embeds_pooled: typing.Union[torch.Tensor, numpy.ndarray])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_cascade/pipeline_stable_cascade_prior.py#L60)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_cascade/pipeline_stable_cascade_prior.py#L60)
 
 **Parameters:**
 
@@ -458,7 +458,7 @@ Output class for WuerstchenPriorPipeline.
 diffusers.StableCascadeDecoderPipeline(decoder: StableCascadeUNet, tokenizer: CLIPTokenizer, text_encoder: CLIPTextModelWithProjection, scheduler: DDPMWuerstchenScheduler, vqgan: PaellaVQModel, latent_dim_scale: float = 10.67)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_cascade/pipeline_stable_cascade.py#L58)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_cascade/pipeline_stable_cascade.py#L60)
 
 **Parameters:**
 
@@ -476,7 +476,7 @@ latent_dim_scale (float, `optional`, defaults to 10.67) : Multiplier to determin
 
 Pipeline for generating images from the Stable Cascade model.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.StableCascadeDecoderPipeline.__call__]]
@@ -485,7 +485,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(image_embeddings: typing.Union[torch.Tensor, list[torch.Tensor]], prompt: str | list[str] = None, num_inference_steps: int = 10, guidance_scale: float = 0.0, negative_prompt: str | list[str] | None = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_embeds_pooled: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_pooled: typing.Optional[torch.Tensor] = None, num_images_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_cascade/pipeline_stable_cascade.py#L304)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_cascade/pipeline_stable_cascade.py#L306)
 
 **Parameters:**
 
@@ -515,7 +515,7 @@ latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents, sampled from
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between: `"pil"` (`PIL.Image.Image`), `"np"` (`np.array`) or `"pt"` (`torch.Tensor`).
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
 callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
 
@@ -523,7 +523,7 @@ callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inp
 
 **Returns:**
 
-[ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple` [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) if `return_dict` is True,
+[ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple` [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) if `return_dict` is True,
 otherwise a `tuple`. When returning a tuple, the first element is a list with the generated image
 embeddings.
 
@@ -547,4 +547,4 @@ Examples:
 ```
 
 ### AuraFlow
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/aura_flow.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/aura_flow.md

@@ -10,7 +10,7 @@ A modified flux Transformer model from [Bria](https://huggingface.co/briaai/FIBO
 diffusers.BriaFiboTransformer2DModel(patch_size: int = 1, in_channels: int = 64, num_layers: int = 19, num_single_layers: int = 38, attention_head_dim: int = 128, num_attention_heads: int = 24, joint_attention_dim: int = 4096, pooled_projection_dim: int = None, guidance_embeds: bool = False, axes_dims_rope: list = [16, 56, 56], rope_theta = 10000, time_theta = 10000, text_encoder_dim: int = 2048)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_bria_fibo.py#L428)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_bria_fibo.py#L428)
 
 **Parameters:**
 
@@ -40,7 +40,7 @@ guidance_embeds (`bool`, defaults to False) : Whether to use guidance embeddings
 forward(hidden_states: Tensor, encoder_hidden_states: Tensor = None, text_encoder_layers: list = None, pooled_projections: Tensor = None, timestep: LongTensor = None, img_ids: Tensor = None, txt_ids: Tensor = None, guidance: Tensor = None, joint_attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_bria_fibo.py#L509)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_bria_fibo.py#L510)
 
 **Parameters:**
 
@@ -70,4 +70,4 @@ If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` i
 `tuple` where the first element is the sample tensor.
 
 ### AceStepTransformer1DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/ace_step_transformer.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/ace_step_transformer.md

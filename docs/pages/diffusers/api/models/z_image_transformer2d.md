@@ -10,7 +10,7 @@ A Transformer model for image-like data from [Z-Image](https://huggingface.co/To
 diffusers.ZImageTransformer2DModel(all_patch_size = (2,), all_f_patch_size = (1,), in_channels = 16, dim = 3840, n_layers = 30, n_refiner_layers = 2, n_heads = 30, n_kv_heads = 30, norm_eps = 1e-05, qk_norm = True, cap_feat_dim = 2560, siglip_feat_dim = None, rope_theta = 256.0, t_scale = 1000.0, axes_dims = [32, 48, 48], axes_lens = [1024, 512, 512])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_z_image.py#L359)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_z_image.py#L359)
 
 #### forward[[diffusers.ZImageTransformer2DModel.forward]]
 
@@ -18,7 +18,7 @@ diffusers.ZImageTransformer2DModel(all_patch_size = (2,), all_f_patch_size = (1,
 forward(x: list, t, cap_feats: list, return_dict: bool = True, controlnet_block_samples: dict[int, torch.Tensor] | None = None, siglip_feats: list[list[torch.Tensor]] | None = None, image_noise_mask: list[list[int]] | None = None, patch_size: int = 2, f_patch_size: int = 1)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_z_image.py#L894)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_z_image.py#L894)
 
 **Parameters:**
 
@@ -40,7 +40,12 @@ patch_size (`int`, *optional*, defaults to 2) : Spatial patch size used to patch
 
 f_patch_size (`int`, *optional*, defaults to 1) : Temporal patch size used to patchify the input latents.
 
-The [ZImageTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/z_image_transformer2d#diffusers.ZImageTransformer2DModel) forward method.
+**Returns:**
+
+If `return_dict` is True, a `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
+`tuple` where the first element is the sample tensor.
+
+The [ZImageTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/z_image_transformer2d#diffusers.ZImageTransformer2DModel) forward method.
 
 Flow: patchify -> t_embed -> x_embed -> x_refine -> cap_embed -> cap_refine
 -> [siglip_embed -> siglip_refine] -> build_unified -> main_layers -> final_layer -> unpatchify
@@ -51,7 +56,7 @@ Flow: patchify -> t_embed -> x_embed -> x_refine -> cap_embed -> cap_refine
 patchify_and_embed(all_image: list, all_cap_feats: list, patch_size: int, f_patch_size: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_z_image.py#L588)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_z_image.py#L588)
 
 Patchify for basic mode: single image per batch item.
 
@@ -61,9 +66,9 @@ Patchify for basic mode: single image per batch item.
 patchify_and_embed_omni(all_x: list, all_cap_feats: list, all_siglip_feats: list, patch_size: int, f_patch_size: int, images_noise_mask: list)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_z_image.py#L625)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_z_image.py#L625)
 
 Patchify for omni mode: multiple images per batch item with noise masks.
 
 ### AsymmetricAutoencoderKL
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/asymmetricautoencoderkl.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/asymmetricautoencoderkl.md

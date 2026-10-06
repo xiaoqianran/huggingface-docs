@@ -231,7 +231,7 @@ import torch
 controlnet = ControlNetModel.from_pretrained("path/to/controlnet", dtype=torch.float16)
 pipeline = StableDiffusionControlNetPipeline.from_pretrained(
     "path/to/base/model", controlnet=controlnet, dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 control_image = load_image("./conditioning_image_1.png")
 prompt = "pale golden rod circle with old lace background"
@@ -254,4 +254,4 @@ Congratulations on training your own ControlNet! To learn more about how to use 
 - Learn how to [use a ControlNet](../using-diffusers/controlnet) for inference on a variety of tasks.
 
 ### LoRA
-https://huggingface.co/docs/diffusers/v0.40.0/training/lora.md
+https://huggingface.co/docs/diffusers/v0.41.0/training/lora.md

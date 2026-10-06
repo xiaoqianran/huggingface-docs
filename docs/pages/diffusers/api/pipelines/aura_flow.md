@@ -11,7 +11,7 @@ It was developed by the Fal team and more details about it can be found in [this
 
 Quantization helps reduce the memory requirements of very large models by storing model weights in a lower precision data type. However, quantization may have varying impact on video quality depending on the video model.
 
-Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [AuraFlowPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/aura_flow#diffusers.AuraFlowPipeline) for inference with bitsandbytes.
+Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [AuraFlowPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/aura_flow#diffusers.AuraFlowPipeline) for inference with bitsandbytes.
 
 ```py
 import torch
@@ -89,7 +89,7 @@ Specifying `use_duck_shape` to be `False` instructs the compiler if it should us
 
 This enables from 100% (on low resolutions) to a 30% (on 1536x1536 resolution) speed improvements.
 
-Thanks to [AstraliteHeart](https://github.com/huggingface/diffusers/pull/11297/) who helped us rewrite the [AuraFlowTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/aura_flow_transformer2d#diffusers.AuraFlowTransformer2DModel) class so that the above works for different resolutions ([PR](https://github.com/huggingface/diffusers/pull/11297/)).
+Thanks to [AstraliteHeart](https://github.com/huggingface/diffusers/pull/11297/) who helped us rewrite the [AuraFlowTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/aura_flow_transformer2d#diffusers.AuraFlowTransformer2DModel) class so that the above works for different resolutions ([PR](https://github.com/huggingface/diffusers/pull/11297/)).
 
 ## AuraFlowPipeline[[diffusers.AuraFlowPipeline]]
 
@@ -99,7 +99,7 @@ Thanks to [AstraliteHeart](https://github.com/huggingface/diffusers/pull/11297/)
 diffusers.AuraFlowPipeline(tokenizer: T5Tokenizer, text_encoder: UMT5EncoderModel, vae: AutoencoderKL, transformer: AuraFlowTransformer2DModel, scheduler: FlowMatchEulerDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/aura_flow/pipeline_aura_flow.py#L123)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/aura_flow/pipeline_aura_flow.py#L123)
 
 **Parameters:**
 
@@ -107,11 +107,11 @@ tokenizer (`T5TokenizerFast`) : Tokenizer of class [T5Tokenizer](https://hugging
 
 text_encoder (`T5EncoderModel`) : Frozen text-encoder. AuraFlow uses [T5](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5EncoderModel), specifically the [EleutherAI/pile-t5-xl](https://huggingface.co/EleutherAI/pile-t5-xl) variant.
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
-transformer ([AuraFlowTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/aura_flow_transformer2d#diffusers.AuraFlowTransformer2DModel)) : Conditional Transformer (MMDiT and DiT) architecture to denoise the encoded image latents.
+transformer ([AuraFlowTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/aura_flow_transformer2d#diffusers.AuraFlowTransformer2DModel)) : Conditional Transformer (MMDiT and DiT) architecture to denoise the encoded image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
 #### __call__[[diffusers.AuraFlowPipeline.__call__]]
 
@@ -119,7 +119,7 @@ scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/sche
 __call__(prompt: str | list[str] = None, negative_prompt: str | list[str] = None, num_inference_steps: int = 50, sigmas: list = None, guidance_scale: float = 3.5, num_images_per_prompt: int | None = 1, height: int | None = 1024, width: int | None = 1024, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 256, output_type: str | None = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/aura_flow/pipeline_aura_flow.py#L428)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/aura_flow/pipeline_aura_flow.py#L428)
 
 **Parameters:**
 
@@ -163,9 +163,9 @@ callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inp
 
 max_sequence_length (`int` defaults to 256) : Maximum sequence length to use with the `prompt`.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) is returned, otherwise a `tuple` is
+If `return_dict` is `True`, [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) is returned, otherwise a `tuple` is
 returned where the first element is a list with the generated images.
 
 Function invoked when calling the pipeline for generation.
@@ -188,7 +188,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] = None, do_classifier_free_guidance: bool = True, num_images_per_prompt: int = 1, device: typing.Optional[torch.device] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 256, lora_scale: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/aura_flow/pipeline_aura_flow.py#L232)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/aura_flow/pipeline_aura_flow.py#L232)
 
 **Parameters:**
 
@@ -217,7 +217,7 @@ lora_scale (`float`, *optional*) : A lora scale that will be applied to all LoRA
 Encodes the prompt into text encoder hidden states.
 
 ### Wan
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/wan.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/wan.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");

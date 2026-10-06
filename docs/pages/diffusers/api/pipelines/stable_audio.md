@@ -27,7 +27,7 @@ During inference:
 
 Quantization helps reduce the memory requirements of very large models by storing model weights in a lower precision data type. However, quantization may have varying impact on video quality depending on the video model.
 
-Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [StableAudioPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_audio#diffusers.StableAudioPipeline) for inference with bitsandbytes.
+Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [StableAudioPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_audio#diffusers.StableAudioPipeline) for inference with bitsandbytes.
 
 ```py
 import torch
@@ -82,25 +82,25 @@ sf.write("hammer.wav", output, pipeline.vae.sampling_rate)
 diffusers.StableAudioPipeline(vae: AutoencoderOobleck, text_encoder: T5EncoderModel, projection_model: StableAudioProjectionModel, tokenizer: T5Tokenizer, transformer: StableAudioDiTModel, scheduler: EDMDPMSolverMultistepScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_audio/pipeline_stable_audio.py#L78)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_audio/pipeline_stable_audio.py#L78)
 
 **Parameters:**
 
-vae ([AutoencoderOobleck](/docs/diffusers/v0.40.0/en/api/models/autoencoder_oobleck#diffusers.AutoencoderOobleck)) : Variational Auto-Encoder (VAE) model to encode and decode images to and from latent representations.
+vae ([AutoencoderOobleck](/docs/diffusers/v0.41.0/en/api/models/autoencoder_oobleck#diffusers.AutoencoderOobleck)) : Variational Auto-Encoder (VAE) model to encode and decode images to and from latent representations.
 
-text_encoder ([T5EncoderModel](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/t5#transformers.T5EncoderModel)) : Frozen text-encoder. StableAudio uses the encoder of [T5](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5EncoderModel), specifically the [google-t5/t5-base](https://huggingface.co/google-t5/t5-base) variant.
+text_encoder ([T5EncoderModel](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/t5#transformers.T5EncoderModel)) : Frozen text-encoder. StableAudio uses the encoder of [T5](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5EncoderModel), specifically the [google-t5/t5-base](https://huggingface.co/google-t5/t5-base) variant.
 
 projection_model (`StableAudioProjectionModel`) : A trained model used to linearly project the hidden-states from the text encoder model and the start and end seconds. The projected hidden-states from the encoder and the conditional seconds are concatenated to give the input to the transformer model.
 
-tokenizer ([T5Tokenizer](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/t5#transformers.T5Tokenizer)) : Tokenizer to tokenize text for the frozen text-encoder.
+tokenizer ([T5Tokenizer](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/t5#transformers.T5Tokenizer)) : Tokenizer to tokenize text for the frozen text-encoder.
 
-transformer ([StableAudioDiTModel](/docs/diffusers/v0.40.0/en/api/models/stable_audio_transformer#diffusers.StableAudioDiTModel)) : A `StableAudioDiTModel` to denoise the encoded audio latents.
+transformer ([StableAudioDiTModel](/docs/diffusers/v0.41.0/en/api/models/stable_audio_transformer#diffusers.StableAudioDiTModel)) : A `StableAudioDiTModel` to denoise the encoded audio latents.
 
-scheduler ([EDMDPMSolverMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/edm_multistep_dpm_solver#diffusers.EDMDPMSolverMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded audio latents.
+scheduler ([EDMDPMSolverMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/edm_multistep_dpm_solver#diffusers.EDMDPMSolverMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded audio latents.
 
 Pipeline for text-to-audio generation using StableAudio.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.StableAudioPipeline.__call__]]
@@ -109,7 +109,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(prompt: str | list[str] = None, audio_end_in_s: float | None = None, audio_start_in_s: float | None = 0.0, num_inference_steps: int = 100, guidance_scale: float = 7.0, negative_prompt: str | list[str] | None = None, num_waveforms_per_prompt: int | None = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, initial_audio_waveforms: typing.Optional[torch.Tensor] = None, initial_audio_sampling_rate: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, negative_attention_mask: typing.Optional[torch.LongTensor] = None, return_dict: bool = True, callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int | None = 1, output_type: str | None = 'pt')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_audio/pipeline_stable_audio.py#L462)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/stable_audio/pipeline_stable_audio.py#L462)
 
 **Parameters:**
 
@@ -127,7 +127,7 @@ negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to gu
 
 num_waveforms_per_prompt (`int`, *optional*, defaults to 1) : The number of waveforms to generate per prompt.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://huggingface.co/papers/2010.02502) paper. Only applies to the [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://huggingface.co/papers/2010.02502) paper. Only applies to the [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -145,7 +145,7 @@ attention_mask (`torch.LongTensor`, *optional*) : Pre-computed attention mask to
 
 negative_attention_mask (`torch.LongTensor`, *optional*) : Pre-computed attention mask to be applied to the `negative_text_audio_duration_embeds`.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) instead of a plain tuple.
 
 callback (`Callable`, *optional*) : A function that calls every `callback_steps` steps during inference. The function is called with the following arguments: `callback(step: int, timestep: int, latents: torch.Tensor)`.
 
@@ -153,9 +153,9 @@ callback_steps (`int`, *optional*, defaults to 1) : The frequency at which the `
 
 output_type (`str`, *optional*, defaults to `"pt"`) : The output format of the generated audio. Choose between `"np"` to return a NumPy `np.ndarray` or `"pt"` to return a PyTorch `torch.Tensor` object. Set to `"latent"` to return the latent diffusion model (LDM) output.
 
-**Returns:** [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) or `tuple`
+**Returns:** [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [StableDiffusionPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) is returned,
+If `return_dict` is `True`, [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) is returned,
 otherwise a `tuple` is returned where the first element is a list with the generated audio.
 
 The call function to the pipeline for generation.
@@ -193,4 +193,4 @@ Examples:
 ```
 
 ### Perturbed-Attention Guidance
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/pag.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/pag.md

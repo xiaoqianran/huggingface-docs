@@ -20,7 +20,13 @@ The `/filter` endpoint accepts the following query parameters:
 
 The `where` parameter must be expressed as a comparison predicate, which can be:
 - a simple predicate composed of a column name in double quotes, a comparison operator, and a value
-  - the comparison operators are: `=`, `<>`, `>`, `>=`, `30 AND ("name"='Simone' OR "children"=0)
+  - the comparison operators are: `=`, `<>`, `>`, `>=`, `<`, `<=`
+- a composite predicate composed of two or more simple predicates (optionally grouped with parentheses to indicate the order of evaluation), combined with logical operators
+  - the logical operators are: `AND`, `OR`, `NOT`
+
+For example, the following `where` parameter value
+```
+where="age">30 AND ("name"='Simone' OR "children"=0)
 ```
 will filter the data to select only those rows where the float "age" column is larger than 30 and,
 either the string "name" column is equal to 'Simone' or the integer "children" column is equal to 0.

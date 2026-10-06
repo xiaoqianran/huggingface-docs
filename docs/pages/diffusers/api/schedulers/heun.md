@@ -10,7 +10,7 @@ The Heun scheduler (Algorithm 1) is from the [Elucidating the Design Space of Di
 diffusers.HeunDiscreteScheduler(num_train_timesteps: int = 1000, beta_start: float = 0.00085, beta_end: float = 0.012, beta_schedule: str = 'linear', trained_betas: numpy.ndarray | list[float] | None = None, prediction_type: str = 'epsilon', use_karras_sigmas: bool = False, use_exponential_sigmas: bool = False, use_beta_sigmas: bool = False, clip_sample: bool = False, clip_sample_range: float = 1.0, timestep_spacing: typing.Literal['linspace', 'leading', 'trailing'] = 'linspace', steps_offset: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_heun_discrete.py#L103)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_heun_discrete.py#L103)
 
 **Parameters:**
 
@@ -42,7 +42,7 @@ steps_offset (`int`, defaults to 0) : An offset added to the inference steps, as
 
 Scheduler with Heun steps for discrete beta schedules.
 
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
 methods the library implements for all schedulers such as loading and saving.
 
 #### add_noise[[diffusers.HeunDiscreteScheduler.add_noise]]
@@ -51,7 +51,7 @@ methods the library implements for all schedulers such as loading and saving.
 add_noise(original_samples: Tensor, noise: Tensor, timesteps: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_heun_discrete.py#L662)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_heun_discrete.py#L662)
 
 **Parameters:**
 
@@ -73,7 +73,7 @@ Add noise to the original samples according to the noise schedule at the specifi
 index_for_timestep(timestep: typing.Union[float, torch.Tensor], schedule_timesteps: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_heun_discrete.py#L198)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_heun_discrete.py#L198)
 
 **Parameters:**
 
@@ -94,7 +94,7 @@ Find the index of a given timestep in the timestep schedule.
 scale_model_input(sample: Tensor, timestep: typing.Union[float, torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_heun_discrete.py#L261)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_heun_discrete.py#L261)
 
 **Parameters:**
 
@@ -115,7 +115,7 @@ current timestep.
 set_begin_index(begin_index: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_heun_discrete.py#L251)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_heun_discrete.py#L251)
 
 **Parameters:**
 
@@ -129,7 +129,7 @@ Sets the begin index for the scheduler. This function should be run from pipelin
 set_timesteps(num_inference_steps: int | None = None, device: typing.Union[str, torch.device] = None, num_train_timesteps: int | None = None, timesteps: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_heun_discrete.py#L287)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_heun_discrete.py#L287)
 
 **Parameters:**
 
@@ -149,7 +149,7 @@ Sets the discrete timesteps used for the diffusion chain (to be run before infer
 step(model_output: typing.Union[torch.Tensor, numpy.ndarray], timestep: typing.Union[float, torch.Tensor], sample: typing.Union[torch.Tensor, numpy.ndarray], return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_heun_discrete.py#L558)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_heun_discrete.py#L558)
 
 **Parameters:**
 
@@ -177,7 +177,7 @@ process from the learned model outputs (most often the predicted noise).
 diffusers.schedulers.scheduling_utils.SchedulerOutput(prev_sample: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_utils.py#L66)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_utils.py#L66)
 
 **Parameters:**
 
@@ -186,4 +186,4 @@ prev_sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`
 Base class for the output of a scheduler's `step` function.
 
 ### CogVideoXDPMScheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/multistep_dpm_solver_cogvideox.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/multistep_dpm_solver_cogvideox.md

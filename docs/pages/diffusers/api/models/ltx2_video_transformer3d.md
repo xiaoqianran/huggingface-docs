@@ -7,7 +7,7 @@ The model can be loaded with the following code snippet.
 ```python
 from diffusers import LTX2VideoTransformer3DModel
 
-transformer = LTX2VideoTransformer3DModel.from_pretrained("Lightricks/LTX-2", subfolder="transformer", dtype=torch.bfloat16).to("cuda")
+transformer = LTX2VideoTransformer3DModel.from_pretrained("Lightricks/LTX-2", subfolder="transformer", dtype=torch.bfloat16).to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 ## LTX2VideoTransformer3DModel[[diffusers.LTX2VideoTransformer3DModel]]
@@ -18,7 +18,7 @@ transformer = LTX2VideoTransformer3DModel.from_pretrained("Lightricks/LTX-2", su
 diffusers.LTX2VideoTransformer3DModel(in_channels: int = 128, out_channels: int | None = 128, patch_size: int = 1, patch_size_t: int = 1, num_attention_heads: int = 32, attention_head_dim: int = 128, cross_attention_dim: int = 4096, vae_scale_factors: tuple = (8, 32, 32), pos_embed_max_pos: int = 20, base_height: int = 2048, base_width: int = 2048, gated_attn: bool = False, cross_attn_mod: bool = False, audio_in_channels: int = 128, audio_out_channels: int | None = 128, audio_patch_size: int = 1, audio_patch_size_t: int = 1, audio_num_attention_heads: int = 32, audio_attention_head_dim: int = 64, audio_cross_attention_dim: int = 2048, audio_scale_factor: int = 4, audio_pos_embed_max_pos: int = 20, audio_sampling_rate: int = 16000, audio_hop_length: int = 160, audio_gated_attn: bool = False, audio_cross_attn_mod: bool = False, num_layers: int = 48, activation_fn: str = 'gelu-approximate', qk_norm: str = 'rms_norm_across_heads', norm_elementwise_affine: bool = False, norm_eps: float = 1e-06, caption_channels: int = 3840, attention_bias: bool = True, attention_out_bias: bool = True, rope_theta: float = 10000.0, rope_double_precision: bool = True, causal_offset: int = 1, timestep_scale_multiplier: int = 1000, cross_attn_timestep_scale_multiplier: int = 1000, rope_type: str = 'interleaved', use_prompt_embeddings = True, perturbed_attn: bool = False, ff_bias: bool = True, audio_ff_bias: bool = True, use_prompt_adaln_single: bool = True, use_keyframes_abs_pos_embedding: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_ltx2.py#L1081)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_ltx2.py#L1081)
 
 **Parameters:**
 
@@ -48,17 +48,17 @@ audio_ff_bias (`bool`, defaults to `True`) : Whether the audio feed-forward laye
 
 use_prompt_adaln_single (`bool`, defaults to `True`) : Whether the prompt's cross-attention Key/Value modulation is timestep-dependent. When `False`, it uses a fixed per-layer table instead, making the cross-attention Key/Value values cacheable across denoising steps for a given prompt.
 
-use_keyframes_abs_pos_embedding (`bool`, defaults to `False`) : Whether to store a learned `(1, inner_dim)` absolute-position embedding for generated-keyframe tokens (LTX-2.5.1+). When `True`, the weight is kept on the module for load/save; the regular distilled forward path does not consume it until a dedicated keyframes pipeline wires it in.
+use_keyframes_abs_pos_embedding (`bool`, defaults to `False`) : Whether to store a learned `(1, inner_dim)` absolute-position embedding for generated-keyframe tokens (LTX-2.5). When `True`, tokens selected by `video_keyframes_mask` receive this embedding. The argument is optional; omitting it leaves the distilled forward path unchanged.
 
 A Transformer model for video-like data used in [LTX](https://huggingface.co/Lightricks/LTX-Video).
 
 #### forward[[diffusers.LTX2VideoTransformer3DModel.forward]]
 
 ```python
-forward(hidden_states: Tensor, audio_hidden_states: Tensor, encoder_hidden_states: Tensor, audio_encoder_hidden_states: Tensor, timestep: LongTensor, audio_timestep: typing.Optional[torch.LongTensor] = None, sigma: typing.Optional[torch.Tensor] = None, audio_sigma: typing.Optional[torch.Tensor] = None, encoder_attention_mask: typing.Optional[torch.Tensor] = None, audio_encoder_attention_mask: typing.Optional[torch.Tensor] = None, num_frames: int | None = None, height: int | None = None, width: int | None = None, fps: float = 24.0, audio_num_frames: int | None = None, video_coords: typing.Optional[torch.Tensor] = None, audio_coords: typing.Optional[torch.Tensor] = None, isolate_modalities: bool = False, spatio_temporal_guidance_blocks: list[int] | None = None, perturbation_mask: typing.Optional[torch.Tensor] = None, use_cross_timestep: bool = False, attention_kwargs: dict[str, typing.Any] | None = None, video_self_attention_mask: typing.Optional[torch.Tensor] = None, return_dict: bool = True)
+forward(hidden_states: Tensor, audio_hidden_states: Tensor, encoder_hidden_states: Tensor, audio_encoder_hidden_states: Tensor, timestep: LongTensor, audio_timestep: typing.Optional[torch.LongTensor] = None, sigma: typing.Optional[torch.Tensor] = None, audio_sigma: typing.Optional[torch.Tensor] = None, encoder_attention_mask: typing.Optional[torch.Tensor] = None, audio_encoder_attention_mask: typing.Optional[torch.Tensor] = None, num_frames: int | None = None, height: int | None = None, width: int | None = None, fps: float = 24.0, audio_num_frames: int | None = None, video_coords: typing.Optional[torch.Tensor] = None, audio_coords: typing.Optional[torch.Tensor] = None, isolate_modalities: bool = False, spatio_temporal_guidance_blocks: list[int] | None = None, perturbation_mask: typing.Optional[torch.Tensor] = None, use_cross_timestep: bool = False, attention_kwargs: dict[str, typing.Any] | None = None, video_self_attention_mask: typing.Optional[torch.Tensor] = None, video_keyframes_mask: typing.Optional[torch.Tensor] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_ltx2.py#L1365)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_ltx2.py#L1365)
 
 **Parameters:**
 
@@ -100,13 +100,15 @@ isolate_modalities (`bool`, *optional*, defaults to `False`) : Whether to isolat
 
 spatio_temporal_guidance_blocks (`list[int]`, *optional*, defaults to `None`) : The transformer block indices at which to apply spatio-temporal guidance (STG), which shortcuts the self-attention operations by simply using the values rather than the full scaled dot-product attention (SDPA) operation. If `None` or empty, STG will not be applied to any block.
 
-perturbation_mask (`torch.Tensor`, *optional*) : Perturbation mask for STG of shape `(batch_size,)` or `(batch_size, 1, 1)`. Should be 0 at batch elements where STG should be applied and 1 elsewhere. If STG is being used but `peturbation_mask` is not supplied, will default to applying STG (perturbing) all batch elements.
+perturbation_mask (`torch.Tensor`, *optional*) : Perturbation mask for STG of shape `(batch_size,)` or `(batch_size, 1, 1)`. Should be 0 at batch elements where STG should be applied and 1 elsewhere. If STG is being used but `perturbation_mask` is not supplied, will default to applying STG (perturbing) all batch elements.
 
 use_cross_timestep (`bool` *optional*, defaults to `False`) : Whether to use the cross modality (audio is the cross modality of video, and vice versa) sigma when calculating the cross attention modulation parameters. `True` is the newer (e.g. LTX-2.3) behavior; `False` is the legacy LTX-2.0 behavior.
 
 attention_kwargs (`dict[str, Any]`, *optional*) : Optional dict of keyword args to be passed to the attention processor.
 
 video_self_attention_mask (`torch.Tensor`, *optional*) : Optional multiplicative self-attention mask of shape `(batch_size, num_video_tokens, num_video_tokens)` applied to the video self-attention in each transformer block. Values in `[0, 1]` where `1` means full attention and `0` means masked. Used e.g. by the IC-LoRA pipeline to control attention strength between noisy tokens and appended reference tokens. Audio self-attention is not affected.
+
+video_keyframes_mask (`torch.Tensor`, *optional*) : Optional per-token marker of shape `(batch_size, num_video_tokens, 1)`, non-zero on video tokens whose latent frame encodes a single pixel frame. Those tokens receive `keyframes_abs_pos_embedding`. Ignored when the model was built without `use_keyframes_abs_pos_embedding`.
 
 return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a dict-like structured output of type `AudioVisualModelOutput` or a tuple.
 
@@ -119,4 +121,4 @@ element is the denoised audio latent patch sequence.
 Forward pass for LTX-2.0 audiovisual video transformer.
 
 ### AutoencoderKLLTX2Video
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoderkl_ltx_2.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_ltx_2.md

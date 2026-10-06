@@ -30,5 +30,5 @@ df = (
 )
 ```
 
-### Preview a dataset
-https://huggingface.co/docs/dataset-viewer/first_rows.md
+### Server infrastructure
+https://huggingface.co/docs/dataset-viewer/server.md

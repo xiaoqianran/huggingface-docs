@@ -10,7 +10,7 @@
 diffusers.HeliosScheduler(num_train_timesteps: int = 1000, shift: float = 1.0, stages: int = 3, stage_range: list = [0, 0.3333333333333333, 0.6666666666666666, 1], gamma: float = 0.3333333333333333, thresholding: bool = False, prediction_type: str = 'flow_prediction', solver_order: int = 2, predict_x0: bool = True, solver_type: str = 'bh2', lower_order_final: bool = True, disable_corrector: list = [], solver_p: SchedulerMixin = None, use_flow_sigmas: bool = True, scheduler_type: str = 'unipc', use_dynamic_shifting: bool = False, time_shift_type: typing.Literal['exponential', 'linear'] = 'exponential')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios.py#L35)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_helios.py#L35)
 
 #### convert_model_output[[diffusers.HeliosScheduler.convert_model_output]]
 
@@ -18,7 +18,7 @@ diffusers.HeliosScheduler(num_train_timesteps: int = 1000, shift: float = 1.0, s
 convert_model_output(model_output: Tensor, *args, sample: Tensor = None, sigma: Tensor = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios.py#L371)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_helios.py#L371)
 
 **Parameters:**
 
@@ -42,7 +42,7 @@ Convert the model output to the corresponding type the UniPC algorithm needs.
 init_sigmas()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios.py#L90)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_helios.py#L90)
 
 initialize the global timesteps and sigmas
 
@@ -52,7 +52,7 @@ initialize the global timesteps and sigmas
 init_sigmas_for_each_stage()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios.py#L108)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_helios.py#L108)
 
 Init the timesteps for each stage
 
@@ -62,7 +62,7 @@ Init the timesteps for each stage
 multistep_uni_c_bh_update(this_model_output: Tensor, *args, last_sample: Tensor = None, this_sample: Tensor = None, order: int = None, sigma_before: Tensor = None, sigma: Tensor = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios.py#L591)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_helios.py#L591)
 
 **Parameters:**
 
@@ -92,7 +92,7 @@ One step for the UniC (B(h) version).
 multistep_uni_p_bh_update(model_output: Tensor, *args, sample: Tensor = None, order: int = None, sigma: Tensor = None, sigma_next: Tensor = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios.py#L453)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_helios.py#L453)
 
 **Parameters:**
 
@@ -120,7 +120,7 @@ One step for the UniP (B(h) version). Alternatively, `self.solver_p` is used if 
 set_begin_index(begin_index: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios.py#L182)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_helios.py#L182)
 
 **Parameters:**
 
@@ -134,7 +134,7 @@ Sets the begin index for the scheduler. This function should be run from pipelin
 set_timesteps(num_inference_steps: int, stage_index: int | None = None, device: typing.Union[str, torch.device] = None, sigmas: bool | None = None, mu: bool | None = None, is_amplify_first_chunk: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios.py#L195)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_helios.py#L195)
 
 Setting the timesteps and sigmas for each stage
 
@@ -144,7 +144,7 @@ Setting the timesteps and sigmas for each stage
 time_shift(mu: float, sigma: float, t: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios.py#L259)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_helios.py#L259)
 
 **Parameters:**
 
@@ -163,4 +163,4 @@ Apply time shifting to the sigmas.
 scheduling_helios
 
 ### LMSDiscreteScheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/lms_discrete.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/lms_discrete.md

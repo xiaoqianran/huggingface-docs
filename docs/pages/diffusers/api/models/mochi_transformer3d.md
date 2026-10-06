@@ -7,7 +7,7 @@ The model can be loaded with the following code snippet.
 ```python
 from diffusers import MochiTransformer3DModel
 
-transformer = MochiTransformer3DModel.from_pretrained("genmo/mochi-1-preview", subfolder="transformer", dtype=torch.float16).to("cuda")
+transformer = MochiTransformer3DModel.from_pretrained("genmo/mochi-1-preview", subfolder="transformer", dtype=torch.float16).to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 ## MochiTransformer3DModel[[diffusers.MochiTransformer3DModel]]
@@ -18,7 +18,7 @@ transformer = MochiTransformer3DModel.from_pretrained("genmo/mochi-1-preview", s
 diffusers.MochiTransformer3DModel(patch_size: int = 2, num_attention_heads: int = 24, attention_head_dim: int = 128, num_layers: int = 48, pooled_projection_dim: int = 1536, in_channels: int = 12, out_channels: int | None = None, qk_norm: str = 'rms_norm', text_embed_dim: int = 4096, time_embed_dim: int = 256, activation_fn: str = 'swiglu', max_sequence_length: int = 256)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_mochi.py#L309)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_mochi.py#L309)
 
 **Parameters:**
 
@@ -52,7 +52,7 @@ A Transformer model for video-like data introduced in [Mochi](https://huggingfac
 forward(hidden_states: Tensor, encoder_hidden_states: Tensor, timestep: LongTensor, encoder_attention_mask: Tensor, attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_mochi.py#L407)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_mochi.py#L407)
 
 **Parameters:**
 
@@ -72,7 +72,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 
 The denoised output tensor of shape `(batch_size, out_channels, num_frames, height, width)`.
 
-The [MochiTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/mochi_transformer3d#diffusers.MochiTransformer3DModel) forward method.
+The [MochiTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/mochi_transformer3d#diffusers.MochiTransformer3DModel) forward method.
 
 ## Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
@@ -82,13 +82,13 @@ The [MochiTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/mochi_transf
 diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L21)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-The output of [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+The output of [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
 
 ### Models
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/overview.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/overview.md

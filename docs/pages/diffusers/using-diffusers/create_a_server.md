@@ -2,7 +2,7 @@
 
 Diffusers' pipelines can be used as an inference engine for a server. It supports concurrent and multithreaded requests to generate images that may be requested by multiple users at the same time.
 
-This guide will show you how to use the [StableDiffusion3Pipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/stable_diffusion_3#diffusers.StableDiffusion3Pipeline) in a server, but feel free to use any pipeline you want.
+This guide will show you how to use the [StableDiffusion3Pipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/stable_diffusion_3#diffusers.StableDiffusion3Pipeline) in a server, but feel free to use any pipeline you want.
 
 Start by navigating to the `examples/server` folder and installing all of the dependencies.
 
@@ -36,7 +36,7 @@ async def generate_image(image_input: TextToImageInput):
         loop = asyncio.get_event_loop()
         scheduler = shared_pipeline.pipeline.scheduler.from_config(shared_pipeline.pipeline.scheduler.config)
         pipeline = StableDiffusion3Pipeline.from_pipe(shared_pipeline.pipeline, scheduler=scheduler)
-        generator = torch.Generator(device="cuda")
+        generator = torch.Generator(device="cuda")  # or "mps", "xpu", "cpu"
         generator.manual_seed(random.randint(0, 10000000))
         output = await loop.run_in_executor(None, lambda: pipeline(image_input.prompt, generator = generator))
         logger.info(f"output: {output}")
@@ -58,4 +58,4 @@ At this point, the execution of the pipeline function is placed onto a [new thre
 Another important aspect of this implementation is creating a `pipeline` from `shared_pipeline`. The goal behind this is to avoid loading the underlying model more than once onto the GPU while still allowing for each new request that is running on a separate thread to have its own generator and scheduler. The scheduler, in particular, is not thread-safe, and it will cause errors like: `IndexError: index 21 is out of bounds for dimension 0 with size 21` if you try to use the same scheduler across multiple threads.
 
 ### DiffusionPipeline
-https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/loading.md
+https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/loading.md

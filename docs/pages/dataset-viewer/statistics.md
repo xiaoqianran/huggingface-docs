@@ -598,5 +598,5 @@ Example
 }
 ```
 
-### Download slices of rows
-https://huggingface.co/docs/dataset-viewer/rows.md
+### Get dataset information
+https://huggingface.co/docs/dataset-viewer/info.md

@@ -13,7 +13,7 @@ continuous transformer with partial rotary attention and GLU feedforwards).
 diffusers.MiniMaxMusic3Transformer1DModel(in_channels: int = 128, condition_dim: int = 2048, num_layers: int = 36, num_attention_heads: int = 32, attention_head_dim: int = 64, ff_inner_dim: int = 8192, rotary_dim: int = 32, fourier_embedding_dim: int = 256)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_minimax_music3.py#L147)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_minimax_music3.py#L147)
 
 The flow-matching diffusion transformer of MiniMax Music 3. It denoises Flow-VAE audio latents conditioned on
 per-frame hidden states produced by the autoregressive language-model stage.
@@ -28,7 +28,7 @@ see `MiniMaxMusic3ConditionEncoder`. The flow-matching `timestep` runs from 0 (n
 forward(hidden_states: Tensor, timestep: Tensor, encoder_hidden_states: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_minimax_music3.py#L196)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_minimax_music3.py#L196)
 
 **Parameters:**
 
@@ -38,11 +38,11 @@ timestep (`torch.Tensor` of shape `(batch,)`) : Flow-matching time in `[0, 1]`, 
 
 encoder_hidden_states (`torch.Tensor` of shape `(batch, length, condition_dim)`) : Frame-aligned conditioning from `MiniMaxMusic3ConditionEncoder`. Pass zeros for the unconditional branch of classifier-free guidance.
 
-return_dict (`bool`, defaults to `True`) : Whether to return a [Transformer2DModelOutput](/docs/diffusers/v0.40.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) instead of a plain tuple.
+return_dict (`bool`, defaults to `True`) : Whether to return a [Transformer2DModelOutput](/docs/diffusers/v0.41.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) instead of a plain tuple.
 
 **Returns:**
 
 The predicted flow-matching velocity with the same shape as `hidden_states`.
 
 ### Ideogram4Transformer2DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/ideogram4_transformer2d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/ideogram4_transformer2d.md

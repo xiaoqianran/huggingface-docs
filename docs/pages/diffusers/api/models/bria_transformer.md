@@ -10,7 +10,7 @@ A modified flux Transformer model from [Bria](https://huggingface.co/briaai/BRIA
 diffusers.BriaTransformer2DModel(patch_size: int = 1, in_channels: int = 64, num_layers: int = 19, num_single_layers: int = 38, attention_head_dim: int = 128, num_attention_heads: int = 24, joint_attention_dim: int = 4096, pooled_projection_dim: int = None, guidance_embeds: bool = False, axes_dims_rope: list = [16, 56, 56], rope_theta = 10000, time_theta = 10000)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_bria.py#L504)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_bria.py#L504)
 
 **Parameters:**
 
@@ -44,7 +44,7 @@ Reference: https://blackforestlabs.ai/announcing-black-forest-labs/
 forward(hidden_states: Tensor, encoder_hidden_states: Tensor = None, pooled_projections: Tensor = None, timestep: LongTensor = None, img_ids: Tensor = None, txt_ids: Tensor = None, guidance: Tensor = None, attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True, controlnet_block_samples = None, controlnet_single_block_samples = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_bria.py#L582)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_bria.py#L582)
 
 **Parameters:**
 
@@ -75,7 +75,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
-The [BriaTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/bria_transformer#diffusers.BriaTransformer2DModel) forward method.
+The [BriaTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/bria_transformer#diffusers.BriaTransformer2DModel) forward method.
 
 ### HunyuanDiT2DControlNetModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/controlnet_hunyuandit.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/controlnet_hunyuandit.md

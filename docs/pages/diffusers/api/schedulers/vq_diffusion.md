@@ -14,7 +14,7 @@ The abstract from the paper is:
 diffusers.VQDiffusionScheduler(num_vec_classes: int, num_train_timesteps: int = 100, alpha_cum_start: float = 0.99999, alpha_cum_end: float = 9e-06, gamma_cum_start: float = 9e-06, gamma_cum_end: float = 0.99999)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_vq_diffusion.py#L142)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_vq_diffusion.py#L142)
 
 **Parameters:**
 
@@ -32,7 +32,7 @@ gamma_cum_end (`float`, defaults to `0.99999`) : The ending cumulative gamma val
 
 A scheduler for vector quantized diffusion.
 
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
 methods the library implements for all schedulers such as loading and saving.
 
 #### apply_cumulative_transitions[[diffusers.VQDiffusionScheduler.apply_cumulative_transitions]]
@@ -41,7 +41,7 @@ methods the library implements for all schedulers such as loading and saving.
 apply_cumulative_transitions(q: Tensor, t: typing.Union[int, torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_vq_diffusion.py#L491)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_vq_diffusion.py#L491)
 
 **Parameters:**
 
@@ -61,7 +61,7 @@ Apply the cumulative transition matrix at a timestep to log probabilities over n
 log_Q_t_transitioning_to_known_class(t: typing.Union[int, torch.Tensor], x_t: LongTensor, log_onehot_x_t: Tensor, cumulative: bool)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_vq_diffusion.py#L392)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_vq_diffusion.py#L392)
 
 **Parameters:**
 
@@ -113,7 +113,7 @@ latent pixel in `x_t`.
 q_posterior(log_p_x_0: Tensor, x_t: LongTensor, t: typing.Union[int, torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_vq_diffusion.py#L281)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_vq_diffusion.py#L281)
 
 **Parameters:**
 
@@ -139,7 +139,7 @@ p(x_{t-1} | x_t) = sum( q(x_t | x_{t-1}) * q(x_{t-1} | x_0) * p(x_0) / q(x_t | x
 set_timesteps(num_inference_steps: int, device: typing.Union[str, torch.device, NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_vq_diffusion.py#L214)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_vq_diffusion.py#L214)
 
 **Parameters:**
 
@@ -155,7 +155,7 @@ Sets the discrete timesteps used for the diffusion chain (to be run before infer
 step(model_output: Tensor, timestep: typing.Union[int, torch.Tensor], sample: LongTensor, generator: typing.Optional[torch.Generator] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_vq_diffusion.py#L236)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_vq_diffusion.py#L236)
 
 **Parameters:**
 
@@ -167,15 +167,15 @@ sample (`torch.LongTensor` of shape `(batch size, num latent pixels)`) : The cla
 
 generator (`torch.Generator`, *optional*) : A random number generator for the noise applied to `p(x_{t-1} | x_t)` before it is sampled from.
 
-return_dict (`bool`, defaults to `True`) : Whether or not to return a [VQDiffusionSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/vq_diffusion#diffusers.schedulers.scheduling_vq_diffusion.VQDiffusionSchedulerOutput) or `tuple`.
+return_dict (`bool`, defaults to `True`) : Whether or not to return a [VQDiffusionSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/vq_diffusion#diffusers.schedulers.scheduling_vq_diffusion.VQDiffusionSchedulerOutput) or `tuple`.
 
-**Returns:** [VQDiffusionSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/vq_diffusion#diffusers.schedulers.scheduling_vq_diffusion.VQDiffusionSchedulerOutput) or `tuple[torch.LongTensor]`
+**Returns:** [VQDiffusionSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/vq_diffusion#diffusers.schedulers.scheduling_vq_diffusion.VQDiffusionSchedulerOutput) or `tuple[torch.LongTensor]`
 
-If return_dict is `True`, [VQDiffusionSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/vq_diffusion#diffusers.schedulers.scheduling_vq_diffusion.VQDiffusionSchedulerOutput) is
+If return_dict is `True`, [VQDiffusionSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/vq_diffusion#diffusers.schedulers.scheduling_vq_diffusion.VQDiffusionSchedulerOutput) is
 returned, otherwise a tuple is returned where the first element is the sample tensor.
 
 Predict the sample from the previous timestep by the reverse transition distribution. See
-[q_posterior()](/docs/diffusers/v0.40.0/en/api/schedulers/vq_diffusion#diffusers.VQDiffusionScheduler.q_posterior) for more details about how the distribution is computed.
+[q_posterior()](/docs/diffusers/v0.41.0/en/api/schedulers/vq_diffusion#diffusers.VQDiffusionScheduler.q_posterior) for more details about how the distribution is computed.
 
 ## VQDiffusionSchedulerOutput[[diffusers.schedulers.scheduling_vq_diffusion.VQDiffusionSchedulerOutput]]
 
@@ -185,7 +185,7 @@ Predict the sample from the previous timestep by the reverse transition distribu
 diffusers.schedulers.scheduling_vq_diffusion.VQDiffusionSchedulerOutput(prev_sample: LongTensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_vq_diffusion.py#L27)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_vq_diffusion.py#L27)
 
 **Parameters:**
 
@@ -194,4 +194,4 @@ prev_sample (`torch.LongTensor` of shape `(batch size, num latent pixels)`) : Th
 Output class for the scheduler's step function output.
 
 ### CogVideoXDDIMScheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/ddim_cogvideox.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/ddim_cogvideox.md

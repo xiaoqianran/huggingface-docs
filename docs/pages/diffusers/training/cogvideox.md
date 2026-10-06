@@ -42,7 +42,7 @@ pipeline = CogVideoXPipeline.from_pretrained(
     quantization_config=pipeline_quant_config,
     dtype=torch.bfloat16
 )
-pipeline.to("cuda")
+pipeline.to("cuda")  # or "mps", "xpu", "cpu"
 
 # model-offloading
 pipeline.enable_model_cpu_offload()
@@ -74,7 +74,7 @@ from diffusers.utils import export_to_video
 pipeline = CogVideoXPipeline.from_pretrained(
     "THUDM/CogVideoX-2b",
     dtype=torch.float16
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 
 # torch.compile
 pipeline.transformer.to(memory_format=torch.channels_last)
@@ -99,7 +99,7 @@ export_to_video(video, "output.mp4", fps=8)
 
 ## Notes
 
-- CogVideoX supports LoRAs with [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.CogVideoXLoraLoaderMixin.load_lora_weights).
+- CogVideoX supports LoRAs with [load_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.CogVideoXLoraLoaderMixin.load_lora_weights).
 
   
   Show example code
@@ -114,7 +114,7 @@ export_to_video(video, "output.mp4", fps=8)
       "THUDM/CogVideoX-5b",
       dtype=torch.bfloat16
   )
-  pipeline.to("cuda")
+  pipeline.to("cuda")  # or "mps", "xpu", "cpu"
 
   # load LoRA weights
   pipeline.load_lora_weights("finetrainers/CogVideoX-1.5-crush-smol-v0", adapter_name="crush-lora")
@@ -163,23 +163,23 @@ export_to_video(video, "output.mp4", fps=8)
 diffusers.CogVideoXPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, vae: AutoencoderKLCogVideoX, transformer: CogVideoXTransformer3DModel, scheduler: diffusers.schedulers.scheduling_ddim_cogvideox.CogVideoXDDIMScheduler | diffusers.schedulers.scheduling_dpm_cogvideox.CogVideoXDPMScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox.py#L147)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox.py#L147)
 
 **Parameters:**
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 text_encoder (`T5EncoderModel`) : Frozen text-encoder. CogVideoX uses [T5](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5EncoderModel); specifically the [t5-v1_1-xxl](https://huggingface.co/PixArt-alpha/PixArt-alpha/tree/main/t5-v1_1-xxl) variant.
 
 tokenizer (`T5Tokenizer`) : Tokenizer of class [T5Tokenizer](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5Tokenizer).
 
-transformer ([CogVideoXTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/cogvideox_transformer3d#diffusers.CogVideoXTransformer3DModel)) : A text conditioned `CogVideoXTransformer3DModel` to denoise the encoded video latents.
+transformer ([CogVideoXTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/cogvideox_transformer3d#diffusers.CogVideoXTransformer3DModel)) : A text conditioned `CogVideoXTransformer3DModel` to denoise the encoded video latents.
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
+scheduler ([SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
 
 Pipeline for text-to-video generation using CogVideoX.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.CogVideoXPipeline.__call__]]
@@ -188,7 +188,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str] | None = None, negative_prompt: str | list[str] | None = None, height: int | None = None, width: int | None = None, num_frames: int | None = None, num_inference_steps: int = 50, timesteps: list[int] | None = None, guidance_scale: float = 6, use_dynamic_cfg: bool = False, num_videos_per_prompt: int = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 226)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox.py#L505)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox.py#L505)
 
 **Parameters:**
 
@@ -212,7 +212,7 @@ use_dynamic_cfg (`bool`, *optional*, defaults to `False`) : If True, dynamically
 
 num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of videos to generate per prompt.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://arxiv.org/abs/2010.02502) paper. Only applies to [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://arxiv.org/abs/2010.02502) paper. Only applies to [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -234,9 +234,9 @@ callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inp
 
 max_sequence_length (`int`, defaults to `226`) : Maximum sequence length in encoded prompt. Must be consistent with `self.transformer.config.max_text_seq_length` otherwise may lead to poor results.
 
-**Returns:** [CogVideoXPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) or `tuple`
+**Returns:** [CogVideoXPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) or `tuple`
 
-[CogVideoXPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) if `return_dict` is True, otherwise a
+[CogVideoXPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) if `return_dict` is True, otherwise a
 `tuple`. When returning a tuple, the first element is a list with the generated images.
 
 Function invoked when calling the pipeline for generation.
@@ -267,7 +267,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox.py#L244)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox.py#L244)
 
 **Parameters:**
 
@@ -295,7 +295,7 @@ Encodes the prompt into text encoder hidden states.
 fuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox.py#L428)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox.py#L428)
 
 Enables fused QKV projections.
 
@@ -305,7 +305,7 @@ Enables fused QKV projections.
 unfuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox.py#L433)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox.py#L433)
 
 Disable QKV projection fusion if enabled.
 
@@ -317,23 +317,23 @@ Disable QKV projection fusion if enabled.
 diffusers.CogVideoXImageToVideoPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, vae: AutoencoderKLCogVideoX, transformer: CogVideoXTransformer3DModel, scheduler: diffusers.schedulers.scheduling_ddim_cogvideox.CogVideoXDDIMScheduler | diffusers.schedulers.scheduling_dpm_cogvideox.CogVideoXDPMScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_image2video.py#L160)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_image2video.py#L160)
 
 **Parameters:**
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 text_encoder (`T5EncoderModel`) : Frozen text-encoder. CogVideoX uses [T5](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5EncoderModel); specifically the [t5-v1_1-xxl](https://huggingface.co/PixArt-alpha/PixArt-alpha/tree/main/t5-v1_1-xxl) variant.
 
 tokenizer (`T5Tokenizer`) : Tokenizer of class [T5Tokenizer](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5Tokenizer).
 
-transformer ([CogVideoXTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/cogvideox_transformer3d#diffusers.CogVideoXTransformer3DModel)) : A text conditioned `CogVideoXTransformer3DModel` to denoise the encoded video latents.
+transformer ([CogVideoXTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/cogvideox_transformer3d#diffusers.CogVideoXTransformer3DModel)) : A text conditioned `CogVideoXTransformer3DModel` to denoise the encoded video latents.
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
+scheduler ([SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
 
 Pipeline for image-to-video generation using CogVideoX.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.CogVideoXImageToVideoPipeline.__call__]]
@@ -342,7 +342,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], prompt: str | list[str] | None = None, negative_prompt: str | list[str] | None = None, height: int | None = None, width: int | None = None, num_frames: int = 49, num_inference_steps: int = 50, timesteps: list[int] | None = None, guidance_scale: float = 6, use_dynamic_cfg: bool = False, num_videos_per_prompt: int = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 226)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_image2video.py#L598)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_image2video.py#L598)
 
 **Parameters:**
 
@@ -368,7 +368,7 @@ use_dynamic_cfg (`bool`, *optional*, defaults to `False`) : If True, dynamically
 
 num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of videos to generate per prompt.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://arxiv.org/abs/2010.02502) paper. Only applies to [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://arxiv.org/abs/2010.02502) paper. Only applies to [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -390,9 +390,9 @@ callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inp
 
 max_sequence_length (`int`, defaults to `226`) : Maximum sequence length in encoded prompt. Must be consistent with `self.transformer.config.max_text_seq_length` otherwise may lead to poor results.
 
-**Returns:** [CogVideoXPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) or `tuple`
+**Returns:** [CogVideoXPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) or `tuple`
 
-[CogVideoXPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) if `return_dict` is True, otherwise a
+[CogVideoXPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) if `return_dict` is True, otherwise a
 `tuple`. When returning a tuple, the first element is a list with the generated images.
 
 Function invoked when calling the pipeline for generation.
@@ -420,7 +420,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_image2video.py#L263)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_image2video.py#L263)
 
 **Parameters:**
 
@@ -448,7 +448,7 @@ Encodes the prompt into text encoder hidden states.
 fuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_image2video.py#L519)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_image2video.py#L519)
 
 Enables fused QKV projections.
 
@@ -458,7 +458,7 @@ Enables fused QKV projections.
 unfuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_image2video.py#L525)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_image2video.py#L525)
 
 Disable QKV projection fusion if enabled.
 
@@ -470,23 +470,23 @@ Disable QKV projection fusion if enabled.
 diffusers.CogVideoXVideoToVideoPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, vae: AutoencoderKLCogVideoX, transformer: CogVideoXTransformer3DModel, scheduler: diffusers.schedulers.scheduling_ddim_cogvideox.CogVideoXDDIMScheduler | diffusers.schedulers.scheduling_dpm_cogvideox.CogVideoXDPMScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_video2video.py#L169)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_video2video.py#L169)
 
 **Parameters:**
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 text_encoder (`T5EncoderModel`) : Frozen text-encoder. CogVideoX uses [T5](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5EncoderModel); specifically the [t5-v1_1-xxl](https://huggingface.co/PixArt-alpha/PixArt-alpha/tree/main/t5-v1_1-xxl) variant.
 
 tokenizer (`T5Tokenizer`) : Tokenizer of class [T5Tokenizer](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5Tokenizer).
 
-transformer ([CogVideoXTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/cogvideox_transformer3d#diffusers.CogVideoXTransformer3DModel)) : A text conditioned `CogVideoXTransformer3DModel` to denoise the encoded video latents.
+transformer ([CogVideoXTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/cogvideox_transformer3d#diffusers.CogVideoXTransformer3DModel)) : A text conditioned `CogVideoXTransformer3DModel` to denoise the encoded video latents.
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
+scheduler ([SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
 
 Pipeline for video-to-video generation using CogVideoX.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.CogVideoXVideoToVideoPipeline.__call__]]
@@ -495,7 +495,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(video: list = None, prompt: str | list[str] | None = None, negative_prompt: str | list[str] | None = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, timesteps: list[int] | None = None, strength: float = 0.8, guidance_scale: float = 6, use_dynamic_cfg: bool = False, num_videos_per_prompt: int = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 226)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_video2video.py#L575)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_video2video.py#L575)
 
 **Parameters:**
 
@@ -521,7 +521,7 @@ use_dynamic_cfg (`bool`, *optional*, defaults to `False`) : If True, dynamically
 
 num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of videos to generate per prompt.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://arxiv.org/abs/2010.02502) paper. Only applies to [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://arxiv.org/abs/2010.02502) paper. Only applies to [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -543,9 +543,9 @@ callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inp
 
 max_sequence_length (`int`, defaults to `226`) : Maximum sequence length in encoded prompt. Must be consistent with `self.transformer.config.max_text_seq_length` otherwise may lead to poor results.
 
-**Returns:** [CogVideoXPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) or `tuple`
+**Returns:** [CogVideoXPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) or `tuple`
 
-[CogVideoXPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) if `return_dict` is True, otherwise a
+[CogVideoXPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) if `return_dict` is True, otherwise a
 `tuple`. When returning a tuple, the first element is a list with the generated images.
 
 Function invoked when calling the pipeline for generation.
@@ -583,7 +583,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_video2video.py#L269)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_video2video.py#L269)
 
 **Parameters:**
 
@@ -611,7 +611,7 @@ Encodes the prompt into text encoder hidden states.
 fuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_video2video.py#L496)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_video2video.py#L496)
 
 Enables fused QKV projections.
 
@@ -621,7 +621,7 @@ Enables fused QKV projections.
 unfuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_video2video.py#L502)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_video2video.py#L502)
 
 Disable QKV projection fusion if enabled.
 
@@ -633,23 +633,23 @@ Disable QKV projection fusion if enabled.
 diffusers.CogVideoXFunControlPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, vae: AutoencoderKLCogVideoX, transformer: CogVideoXTransformer3DModel, scheduler: KarrasDiffusionSchedulers)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_fun_control.py#L154)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_fun_control.py#L154)
 
 **Parameters:**
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 text_encoder (`T5EncoderModel`) : Frozen text-encoder. CogVideoX uses [T5](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5EncoderModel); specifically the [t5-v1_1-xxl](https://huggingface.co/PixArt-alpha/PixArt-alpha/tree/main/t5-v1_1-xxl) variant.
 
 tokenizer (`T5Tokenizer`) : Tokenizer of class [T5Tokenizer](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5Tokenizer).
 
-transformer ([CogVideoXTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/cogvideox_transformer3d#diffusers.CogVideoXTransformer3DModel)) : A text conditioned `CogVideoXTransformer3DModel` to denoise the encoded video latents.
+transformer ([CogVideoXTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/cogvideox_transformer3d#diffusers.CogVideoXTransformer3DModel)) : A text conditioned `CogVideoXTransformer3DModel` to denoise the encoded video latents.
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
+scheduler ([SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
 
 Pipeline for controlled text-to-video generation using CogVideoX Fun.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 #### __call__[[diffusers.CogVideoXFunControlPipeline.__call__]]
@@ -658,7 +658,7 @@ library implements for all the pipelines (such as downloading or saving, running
 __call__(prompt: str | list[str] | None = None, negative_prompt: str | list[str] | None = None, control_video: list[PIL.Image.Image] | None = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, timesteps: list[int] | None = None, guidance_scale: float = 6, use_dynamic_cfg: bool = False, num_videos_per_prompt: int = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, control_video_latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 226)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_fun_control.py#L551)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_fun_control.py#L551)
 
 **Parameters:**
 
@@ -682,7 +682,7 @@ use_dynamic_cfg (`bool`, *optional*, defaults to `False`) : If True, dynamically
 
 num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of videos to generate per prompt.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://arxiv.org/abs/2010.02502) paper. Only applies to [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://arxiv.org/abs/2010.02502) paper. Only applies to [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -706,9 +706,9 @@ callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inp
 
 max_sequence_length (`int`, defaults to `226`) : Maximum sequence length in encoded prompt. Must be consistent with `self.transformer.config.max_text_seq_length` otherwise may lead to poor results.
 
-**Returns:** [CogVideoXPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) or `tuple`
+**Returns:** [CogVideoXPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) or `tuple`
 
-[CogVideoXPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) if `return_dict` is True, otherwise a
+[CogVideoXPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) if `return_dict` is True, otherwise a
 `tuple`. When returning a tuple, the first element is a list with the generated images.
 
 Function invoked when calling the pipeline for generation.
@@ -745,7 +745,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_fun_control.py#L253)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_fun_control.py#L253)
 
 **Parameters:**
 
@@ -773,7 +773,7 @@ Encodes the prompt into text encoder hidden states.
 fuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_fun_control.py#L473)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_fun_control.py#L473)
 
 Enables fused QKV projections.
 
@@ -783,7 +783,7 @@ Enables fused QKV projections.
 unfuse_qkv_projections()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_fun_control.py#L478)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_fun_control.py#L478)
 
 Disable QKV projection fusion if enabled.
 
@@ -795,7 +795,7 @@ Disable QKV projection fusion if enabled.
 diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput(frames: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_output.py#L9)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cogvideo/pipeline_output.py#L9)
 
 **Parameters:**
 
@@ -804,4 +804,4 @@ frames (`torch.Tensor`, `np.ndarray`, or list[list[PIL.Image.Image]]) : list of 
 Output class for CogVideo pipelines.
 
 ### DreamLite
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/dreamlite.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/dreamlite.md

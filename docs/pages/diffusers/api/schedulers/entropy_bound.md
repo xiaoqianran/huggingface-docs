@@ -5,7 +5,7 @@ roughly independent tokens are accepted together and the rest are renoised. It a
 `t_max` on the first step down to `t_min` on the last, matching the released checkpoint's sampler. Proposed in
 [Accelerated Sampling from Masked Diffusion Models via Entropy Bounded Unmasking](https://huggingface.co/papers/2505.24857).
 
-This scheduler is used by [DiffusionGemmaPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/diffusion_gemma#diffusers.DiffusionGemmaPipeline).
+This scheduler is used by [DiffusionGemmaPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/diffusion_gemma#diffusers.DiffusionGemmaPipeline).
 
 ## EntropyBoundScheduler[[diffusers.EntropyBoundScheduler]]
 
@@ -15,7 +15,7 @@ This scheduler is used by [DiffusionGemmaPipeline](/docs/diffusers/v0.40.0/en/ap
 diffusers.EntropyBoundScheduler(entropy_bound: float = 0.1, t_max: float = 0.8, t_min: float = 0.4, num_inference_steps: int = 32)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_entropy_bound.py#L51)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_entropy_bound.py#L51)
 
 **Parameters:**
 
@@ -47,7 +47,7 @@ candidate sampling and the entropy that drives acceptance.
 step(model_output: torch.Tensor, timestep: int | torch.Tensor, sample: torch.LongTensor, entropy_bound: float | None = None, generator: torch.Generator | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_entropy_bound.py#L118)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_entropy_bound.py#L118)
 
 **Parameters:**
 
@@ -61,7 +61,7 @@ entropy_bound (`float`, *optional*) : Overrides the configured entropy bound for
 
 generator (`torch.Generator`, *optional*) : RNG for sampling.
 
-return_dict (`bool`) : Whether to return an [EntropyBoundSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/entropy_bound#diffusers.EntropyBoundSchedulerOutput) or a plain tuple.
+return_dict (`bool`) : Whether to return an [EntropyBoundSchedulerOutput](/docs/diffusers/v0.41.0/en/api/schedulers/entropy_bound#diffusers.EntropyBoundSchedulerOutput) or a plain tuple.
 
 Accept the lowest-entropy positions under the entropy bound and renoise the rest.
 
@@ -73,7 +73,7 @@ Accept the lowest-entropy positions under the entropy bound and renoise the rest
 diffusers.EntropyBoundSchedulerOutput(prev_sample: torch.LongTensor, accepted_index: torch.BoolTensor, sampled_tokens: torch.LongTensor, sampled_probs: torch.Tensor, pred_logits: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_entropy_bound.py#L27)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_entropy_bound.py#L27)
 
 **Parameters:**
 
@@ -90,4 +90,4 @@ pred_logits (`torch.Tensor` of shape `(batch_size, block_length, vocab_size)`) :
 Output class for the entropy bound scheduler.
 
 ### PNDMScheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/pndm.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/pndm.md

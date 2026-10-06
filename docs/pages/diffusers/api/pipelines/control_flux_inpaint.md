@@ -40,7 +40,7 @@ pipe.transformer = transformer
 pipe.text_encoder_2 = text_encoder_2
 pipe.enable_model_cpu_offload()
 # ---------------------------------------------------------------
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt = "a blue robot singing opera with human-like expressions"
 image = load_image("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/robot.png")
@@ -73,15 +73,15 @@ make_image_grid([image, control_image, mask_image, output.resize(image.size)], r
 diffusers.FluxControlInpaintPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, text_encoder_2: T5EncoderModel, tokenizer_2: T5Tokenizer, transformer: FluxTransformer2DModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_control_inpaint.py#L204)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/flux/pipeline_flux_control_inpaint.py#L204)
 
 **Parameters:**
 
-transformer ([FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+transformer ([FluxTransformer2DModel](/docs/diffusers/v0.41.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
 text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
 
@@ -101,7 +101,7 @@ Reference: https://blackforestlabs.ai/announcing-black-forest-labs/
 __call__(prompt: str | list[str] = None, prompt_2: str | list[str] | None = None, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, control_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, mask_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, masked_image_latents: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, height: int | None = None, width: int | None = None, strength: float = 0.6, num_inference_steps: int = 28, sigmas: list[float] | None = None, guidance_scale: float = 7.0, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_control_inpaint.py#L751)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/flux/pipeline_flux_control_inpaint.py#L753)
 
 **Parameters:**
 
@@ -219,7 +219,7 @@ make_image_grid([image, control_image, mask_image, output.resize(image.size)], r
 encode_prompt(prompt: str | list[str], prompt_2: str | list[str] | None = None, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, max_sequence_length: int = 512, lora_scale: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_control_inpaint.py#L374)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/flux/pipeline_flux_control_inpaint.py#L376)
 
 **Parameters:**
 
@@ -245,7 +245,7 @@ lora_scale (`float`, *optional*) : A lora scale that will be applied to all LoRA
 diffusers.pipelines.flux.pipeline_output.FluxPipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_output.py#L11)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/flux/pipeline_output.py#L11)
 
 **Parameters:**
 
@@ -254,7 +254,7 @@ images (`list[PIL.Image.Image]` or `torch.Tensor` or `np.ndarray`) : list of den
 Output class for Flux image generation pipelines.
 
 ### Prx Pixel
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/prx_pixel.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/prx_pixel.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -284,14 +284,14 @@ generation resolution is fed into the timestep modulation so the model is aware 
 
 ## Loading the pipeline
 
-[PRXPixelPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/prx_pixel#diffusers.PRXPixelPipeline) requires `transformers >= 4.57` (the version that introduced `Qwen3VLTextModel`). Load it with [from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained):
+[PRXPixelPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/prx_pixel#diffusers.PRXPixelPipeline) requires `transformers >= 4.57` (the version that introduced `Qwen3VLTextModel`). Load it with [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained):
 
 ```py
 import torch
 from diffusers import PRXPixelPipeline
 
 pipe = PRXPixelPipeline.from_pretrained("Photoroom/prxpixel-t2i", dtype=torch.bfloat16)
-pipe.to("cuda")
+pipe.to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt = "A front-facing portrait of a lion in the golden savanna at sunset."
 image = pipe(prompt, num_inference_steps=28, guidance_scale=5.0).images[0]
@@ -321,13 +321,13 @@ pipe.enable_sequential_cpu_offload()
 diffusers.PRXPixelPipeline(transformer: PRXTransformer2DModel, scheduler: FlowMatchEulerDiscreteScheduler, text_encoder: PreTrainedModel, tokenizer: transformers.models.auto.tokenization_auto.AutoTokenizer | transformers.tokenization_utils_base.PreTrainedTokenizerBase, default_sample_size: int | None = 1024, prompt_max_tokens: int = 256, noise_scale: float = 2.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/prx/pipeline_prx_pixel.py#L98)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/prx/pipeline_prx_pixel.py#L98)
 
 **Parameters:**
 
 transformer (`PRXTransformer2DModel`) : The ~7B-parameter PRX denoiser. For PRXPixel this is built with `in_channels=3`, a bottleneck `img_in`, and `resolution_embeds=True`, and it is trained to predict the clean image `x0`.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : Flow-matching scheduler used to denoise the (pixel-space) latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : Flow-matching scheduler used to denoise the (pixel-space) latents.
 
 text_encoder (`PreTrainedModel`) : The Qwen3-VL text backbone used to encode prompts (the vision tower is discarded). Must return a `last_hidden_state`.
 
@@ -344,11 +344,11 @@ Pipeline for text-to-image generation with the PRXPixel model.
 PRXPixel is a standalone, pixel-space text-to-image pipeline. It denoises raw RGB directly with a ~7B-parameter
 `PRXTransformer2DModel` and has no VAE (generation happens entirely in pixel space, so the denoised output *is*
 the image). Prompts are encoded with a Qwen3-VL text encoder (the vision tower is discarded). Unlike
-[PRXPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/prx#diffusers.PRXPipeline) the transformer is trained with x-prediction: at every step it predicts the clean image `x0`, which
+[PRXPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/prx#diffusers.PRXPipeline) the transformer is trained with x-prediction: at every step it predicts the clean image `x0`, which
 is converted to a flow-matching velocity before the scheduler step. Sampling starts from `randn * noise_scale`
 (`noise_scale=2.0` by default) and the default resolution is 1024px.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 Examples:
@@ -370,7 +370,7 @@ Examples:
 __call__(prompt: str | list[str] = None, negative_prompt: str = '', height: int | None = None, width: int | None = None, num_inference_steps: int = 28, timesteps: list = None, guidance_scale: float = 4.0, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, prompt_attention_mask: typing.Optional[torch.BoolTensor] = None, negative_prompt_attention_mask: typing.Optional[torch.BoolTensor] = None, output_type: str | None = 'pil', return_dict: bool = True, use_resolution_binning: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/prx/pipeline_prx_pixel.py#L406)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/prx/pipeline_prx_pixel.py#L406)
 
 **Parameters:**
 
@@ -404,7 +404,7 @@ negative_prompt_attention_mask (`torch.BoolTensor`, *optional*) : Pre-generated 
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [PRXPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/prx_pixel#diffusers.pipelines.prx.PRXPipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [PRXPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/prx_pixel#diffusers.pipelines.prx.PRXPipelineOutput) instead of a plain tuple.
 
 use_resolution_binning (`bool`, *optional*, defaults to `True`) : If set to `True`, the requested height and width are first mapped to the closest resolutions using predefined aspect ratio bins. After the produced latents are decoded into images, they are resized back to the requested resolution. Useful for generating non-square images at optimal resolutions.
 
@@ -412,9 +412,9 @@ callback_on_step_end (`Callable`, *optional*) : A function that calls at the end
 
 callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include tensors that are listed in the `._callback_tensor_inputs` attribute.
 
-**Returns:** [PRXPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/prx_pixel#diffusers.pipelines.prx.PRXPipelineOutput) or `tuple`
+**Returns:** [PRXPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/prx_pixel#diffusers.pipelines.prx.PRXPipelineOutput) or `tuple`
 
-[PRXPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/prx_pixel#diffusers.pipelines.prx.PRXPipelineOutput) if `return_dict` is
+[PRXPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/prx_pixel#diffusers.pipelines.prx.PRXPipelineOutput) if `return_dict` is
 True, otherwise a `tuple. When returning a tuple, the first element is a list with the generated images.
 
 Function invoked when calling the pipeline for generation.
@@ -438,7 +438,7 @@ Examples:
 check_inputs(prompt: str | list[str], height: int, width: int, guidance_scale: float, callback_on_step_end_tensor_inputs: list[str] | None = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/prx/pipeline_prx_pixel.py#L324)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/prx/pipeline_prx_pixel.py#L324)
 
 Check that all inputs are in correct format.
 
@@ -448,7 +448,7 @@ Check that all inputs are in correct format.
 encode_prompt(prompt: str | list[str], device: typing.Optional[torch.device] = None, do_classifier_free_guidance: bool = True, negative_prompt: str = '', num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, prompt_attention_mask: typing.Optional[torch.BoolTensor] = None, negative_prompt_attention_mask: typing.Optional[torch.BoolTensor] = None, tokenizer_max_length: int | None = None, skip_text_cleaning: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/prx/pipeline_prx_pixel.py#L263)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/prx/pipeline_prx_pixel.py#L263)
 
 Encode text prompt using standard text encoder and tokenizer, or use precomputed embeddings.
 
@@ -458,7 +458,7 @@ Encode text prompt using standard text encoder and tokenizer, or use precomputed
 prepare_latents(batch_size: int, num_channels_latents: int, height: int, width: int, dtype: dtype, device: device, generator: typing.Optional[torch.Generator] = None, latents: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/prx/pipeline_prx_pixel.py#L378)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/prx/pipeline_prx_pixel.py#L378)
 
 Prepare initial latents for the diffusion process.
 
@@ -473,7 +473,7 @@ PRXPixel trains with a non-unit initial-noise scale, so the sampled noise is mul
 diffusers.pipelines.prx.PRXPipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/prx/pipeline_output.py#L24)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/prx/pipeline_output.py#L24)
 
 **Parameters:**
 
@@ -482,7 +482,7 @@ images (`list[PIL.Image.Image]` or `np.ndarray`) : list of denoised PIL images o
 Output class for PRX pipelines.
 
 ### Lumina2
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/lumina2.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/lumina2.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");

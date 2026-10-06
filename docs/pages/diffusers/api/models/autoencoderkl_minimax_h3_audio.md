@@ -14,7 +14,7 @@ from diffusers import AutoencoderKLMiniMaxH3Audio
 
 audio_vae = AutoencoderKLMiniMaxH3Audio.from_pretrained(
     "MiniMaxAI/MiniMax-H3", subfolder="audio_vae", dtype=torch.float32
-).to("cuda")
+).to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
 ## AutoencoderKLMiniMaxH3Audio[[diffusers.AutoencoderKLMiniMaxH3Audio]]
@@ -25,7 +25,7 @@ audio_vae = AutoencoderKLMiniMaxH3Audio.from_pretrained(
 diffusers.AutoencoderKLMiniMaxH3Audio(encoder_dim: int = 64, encoder_rates: tuple = (2, 4, 4, 5, 5), latent_dim: int = 2048, latent_channels: int = 32, num_attention_heads: int = 8, decoder_dim: int = 1024, decoder_rates: tuple = (5, 5, 2, 2, 2, 2, 2), decoder_kernel_sizes: tuple = (9, 9, 4, 4, 4, 4, 4), resblock_kernel_sizes: tuple = (3, 7, 11), resblock_dilation_sizes: tuple = ((1, 3, 5), (1, 3, 5), (1, 3, 5)), sampling_rate: int = 32000, latents_mean: list[float] | None = None, latents_std: list[float] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_minimax_h3_audio.py#L489)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_minimax_h3_audio.py#L489)
 
 **Parameters:**
 
@@ -58,7 +58,7 @@ latents_std (`list[float]`, *optional*) : Per-channel latent standard deviation 
 The audio autoencoder used by [MiniMax-H3](https://huggingface.co/MiniMaxAI): a DAC-lineage convolutional encoder
 and a BigVGAN decoder, operating directly on mono 32 kHz waveforms.
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for the generic methods the library
+This model inherits from [ModelMixin](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for the generic methods the library
 implements for all models (such as downloading or saving).
 
 #### encode[[diffusers.AutoencoderKLMiniMaxH3Audio.encode]]
@@ -67,7 +67,7 @@ implements for all models (such as downloading or saving).
 encode(sample: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_minimax_h3_audio.py#L583)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_minimax_h3_audio.py#L583)
 
 **Parameters:**
 
@@ -90,15 +90,15 @@ posterior **mean** (`latent_dist.mode()`) — the `logs_proj` head is never eval
 decode(latents: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_minimax_h3_audio.py#L623)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_minimax_h3_audio.py#L623)
 
 **Parameters:**
 
 latents (`torch.Tensor`) : Denormalized latents of shape `[batch_size, latent_channels, num_frames]`. MiniMax-H3 passes the two stereo channels as `batch_size = 2`.
 
-return_dict (`bool`, defaults to `True`) : Whether to return a [DecoderOutput](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.models.autoencoders.vae.DecoderOutput) instead of a plain tuple.
+return_dict (`bool`, defaults to `True`) : Whether to return a [DecoderOutput](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_qwenimage21#diffusers.models.autoencoders.vae.DecoderOutput) instead of a plain tuple.
 
-**Returns:** [DecoderOutput](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.models.autoencoders.vae.DecoderOutput) or `tuple`
+**Returns:** [DecoderOutput](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_qwenimage21#diffusers.models.autoencoders.vae.DecoderOutput) or `tuple`
 
 Waveform of shape `[batch_size, 1, num_frames * 800]`, clamped to `[-1, 1]`.
 
@@ -110,7 +110,7 @@ Decode audio latents into a waveform.
 forward(sample: Tensor, sample_posterior: bool = False, return_dict: bool = True, generator: typing.Optional[torch.Generator] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_minimax_h3_audio.py#L653)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/autoencoders/autoencoder_kl_minimax_h3_audio.py#L653)
 
 **Parameters:**
 
@@ -118,15 +118,15 @@ sample (`torch.Tensor`) : Mono waveform of shape `[batch_size, 1, samples]`.
 
 sample_posterior (`bool`, defaults to `False`) : Whether to sample the posterior instead of taking its mode. MiniMax-H3 uses the mode.
 
-return_dict (`bool`, defaults to `True`) : Whether to return a [DecoderOutput](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.models.autoencoders.vae.DecoderOutput) instead of a plain tuple.
+return_dict (`bool`, defaults to `True`) : Whether to return a [DecoderOutput](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_qwenimage21#diffusers.models.autoencoders.vae.DecoderOutput) instead of a plain tuple.
 
 generator (`torch.Generator`, *optional*) : Generator used when `sample_posterior=True`.
 
-**Returns:** [DecoderOutput](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.models.autoencoders.vae.DecoderOutput) or `tuple`
+**Returns:** [DecoderOutput](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_qwenimage21#diffusers.models.autoencoders.vae.DecoderOutput) or `tuple`
 
 The round-tripped waveform of shape `[batch_size, 1, num_frames * 800]`, clamped to `[-1, 1]`.
 
 Encode then decode a waveform.
 
 ### FluxControlNetModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/controlnet_flux.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/controlnet_flux.md

@@ -1,6 +1,6 @@
 # LongCat-AudioDiT
 
-LongCat-AudioDiT is a text-to-audio diffusion model from Meituan LongCat. The diffusers integration exposes a standard [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) interface for text-conditioned audio generation.
+LongCat-AudioDiT is a text-to-audio diffusion model from Meituan LongCat. The diffusers integration exposes a standard [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) interface for text-conditioned audio generation.
 
 This pipeline was adapted from the LongCat-AudioDiT reference implementation: https://github.com/meituan-longcat/LongCat-AudioDiT
 
@@ -17,7 +17,7 @@ pipeline = LongCatAudioDiTPipeline.from_pretrained(
     "ruixiangma/LongCat-AudioDiT-1B-Diffusers",
     dtype=torch.float16,
 )
-pipeline = pipeline.to("cuda")
+pipeline = pipeline.to("cuda")  # or "mps", "xpu", "cpu"
 
 prompt = "A calm ocean wave ambience with soft wind in the background."
 audio = pipeline(
@@ -46,7 +46,7 @@ sf.write("longcat.wav", audio, pipeline.sample_rate)
 diffusers.LongCatAudioDiTPipeline(vae: LongCatAudioDiTVae, text_encoder: UMT5EncoderModel, tokenizer: PreTrainedTokenizerBase, transformer: LongCatAudioDiTTransformer, scheduler: diffusers.schedulers.scheduling_flow_match_euler_discrete.FlowMatchEulerDiscreteScheduler | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/longcat_audio_dit/pipeline_longcat_audio_dit.py#L99)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/longcat_audio_dit/pipeline_longcat_audio_dit.py#L99)
 
 #### __call__[[diffusers.LongCatAudioDiTPipeline.__call__]]
 
@@ -54,7 +54,7 @@ diffusers.LongCatAudioDiTPipeline(vae: LongCatAudioDiTVae, text_encoder: UMT5Enc
 __call__(prompt: str | list[str], negative_prompt: str | list[str] | None = None, audio_duration_s: float | None = None, latents: typing.Optional[torch.Tensor] = None, num_inference_steps: int = 16, guidance_scale: float = 4.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, output_type: str = 'np', return_dict: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/longcat_audio_dit/pipeline_longcat_audio_dit.py#L219)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/longcat_audio_dit/pipeline_longcat_audio_dit.py#L219)
 
 **Parameters:**
 
@@ -79,6 +79,11 @@ return_dict (`bool`, defaults to `True`) : Whether to return `AudioPipelineOutpu
 callback_on_step_end (`Callable`, *optional*) : A function called at the end of each denoising step with the pipeline, step index, timestep, and tensor inputs specified by `callback_on_step_end_tensor_inputs`.
 
 callback_on_step_end_tensor_inputs (`list`, defaults to `["latents"]`) : Tensor inputs passed to `callback_on_step_end`.
+
+**Returns:** [AudioPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/audioldm2#diffusers.AudioPipelineOutput) or `tuple`
+
+[AudioPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/audioldm2#diffusers.AudioPipelineOutput) if `return_dict` is True,
+otherwise a `tuple`. When returning a tuple, the first element is the generated audio waveform.
 
 Function invoked when calling the pipeline for generation.
 
@@ -108,11 +113,11 @@ Examples:
 from_pretrained(pretrained_model_name_or_path: str | os.PathLike, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L638)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L638)
 
 **Parameters:**
 
-pretrained_model_name_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *repo id* (for example `CompVis/ldm-text2im-large-256`) of a pretrained pipeline hosted on the Hub. - A path to a *directory* (for example `./my_pipeline_directory/`) containing pipeline weights saved using [save_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained). - A path to a *directory* (for example `./my_pipeline_directory/`) containing a dduf file
+pretrained_model_name_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *repo id* (for example `CompVis/ldm-text2im-large-256`) of a pretrained pipeline hosted on the Hub. - A path to a *directory* (for example `./my_pipeline_directory/`) containing pipeline weights saved using [save_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained).
 
 dtype (`torch.dtype` or `dict[str, Union[str, torch.dtype]]`, *optional*) : Override the default `torch.dtype` and load the model with another dtype. To load submodels with different dtype pass a `dict` (for example `{'transformer': torch.bfloat16, 'vae': torch.float16}`). Set the default dtype for unspecified components with `default` (for example `{'transformer': torch.bfloat16, 'default': torch.float16}`). If a component is not specified and no default is set, `torch.float32` is used.
 
@@ -154,8 +159,6 @@ kwargs (remaining dictionary of keyword arguments, *optional*) : Can be used to 
 
 variant (`str`, *optional*) : Load weights from a specified variant filename such as `"fp16"` or `"ema"`.
 
-dduf_file(`str`, *optional*) : Load weights from the specified dduf file.  This argument is deprecated and will be removed in version 0.41.0. 
-
 disable_mmap ('bool', *optional*, defaults to 'False') : Whether to disable mmap when loading a Safetensors model. This option can perform better when the model is on a network mount or hard drive, which may not handle the seeky-ness of mmap very well.
 
 Instantiate a PyTorch diffusion pipeline from pretrained pipeline weights.
@@ -194,4 +197,4 @@ Examples:
 ```
 
 ### Stable unCLIP
-https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/stable_unclip.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_unclip.md

@@ -60,7 +60,7 @@ By default, `tqdm` progress bars are displayed during model download. `logging.d
 diffusers.utils.logging.set_verbosity_error()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/logging.py#L201)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/logging.py#L201)
 
 Set the verbosity to the `ERROR` level.
 
@@ -70,7 +70,7 @@ Set the verbosity to the `ERROR` level.
 diffusers.utils.logging.set_verbosity_warning()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/logging.py#L191)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/logging.py#L191)
 
 Set the verbosity to the `WARNING` level.
 
@@ -80,7 +80,7 @@ Set the verbosity to the `WARNING` level.
 diffusers.utils.logging.set_verbosity_info()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/logging.py#L186)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/logging.py#L186)
 
 Set the verbosity to the `INFO` level.
 
@@ -90,7 +90,7 @@ Set the verbosity to the `INFO` level.
 diffusers.utils.logging.set_verbosity_debug()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/logging.py#L196)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/logging.py#L196)
 
 Set the verbosity to the `DEBUG` level.
 
@@ -102,7 +102,7 @@ Set the verbosity to the `DEBUG` level.
 diffusers.utils.logging.get_verbosity()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/logging.py#L147)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/logging.py#L147)
 
 **Returns:** `int`
 
@@ -122,7 +122,7 @@ Return the current level for the 🤗 Diffusers' root logger as an `int`.
 diffusers.utils.logging.set_verbosity(verbosity: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/logging.py#L167)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/logging.py#L167)
 
 **Parameters:**
 
@@ -136,7 +136,7 @@ Set the verbosity level for the 🤗 Diffusers' root logger.
 diffusers.utils.get_logger(name: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/logging.py#L131)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/logging.py#L131)
 
 Return a logger with the specified name.
 
@@ -148,7 +148,7 @@ This function is not supposed to be directly accessed unless you are writing a c
 diffusers.utils.logging.enable_default_handler()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/logging.py#L215)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/logging.py#L215)
 
 Enable the default handler of the 🤗 Diffusers' root logger.
 
@@ -158,7 +158,7 @@ Enable the default handler of the 🤗 Diffusers' root logger.
 diffusers.utils.logging.disable_default_handler()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/logging.py#L206)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/logging.py#L206)
 
 Disable the default handler of the 🤗 Diffusers' root logger.
 
@@ -168,7 +168,7 @@ Disable the default handler of the 🤗 Diffusers' root logger.
 diffusers.utils.logging.enable_explicit_format()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/logging.py#L261)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/logging.py#L261)
 
 Enable explicit formatting for every 🤗 Diffusers' logger. The explicit formatter is as follows:
 ```
@@ -183,7 +183,7 @@ All handlers currently bound to the root logger are affected by this method.
 diffusers.utils.logging.reset_format()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/logging.py#L276)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/logging.py#L276)
 
 Resets the formatting for 🤗 Diffusers' loggers.
 
@@ -195,7 +195,7 @@ All handlers currently bound to the root logger are affected by this method.
 diffusers.utils.logging.enable_progress_bar()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/logging.py#L352)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/logging.py#L352)
 
 Enable tqdm progress bar.
 
@@ -205,9 +205,9 @@ Enable tqdm progress bar.
 diffusers.utils.logging.disable_progress_bar()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/logging.py#L358)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/logging.py#L358)
 
 Disable tqdm progress bar.
 
 ### Overview
-https://huggingface.co/docs/diffusers/v0.40.0/api/internal_classes_overview.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/internal_classes_overview.md

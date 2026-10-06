@@ -18,7 +18,7 @@ transformer = Lumina2Transformer2DModel.from_pretrained("Alpha-VLLM/Lumina-Image
 diffusers.Lumina2Transformer2DModel(sample_size: int = 128, patch_size: int = 2, in_channels: int = 16, out_channels: int | None = None, hidden_size: int = 2304, num_layers: int = 26, num_refiner_layers: int = 2, num_attention_heads: int = 24, num_kv_heads: int = 8, multiple_of: int = 256, ffn_dim_multiplier: float | None = None, norm_eps: float = 1e-05, scaling_factor: float = 1.0, axes_dim_rope: tuple = (32, 32, 32), axes_lens: tuple = (300, 512, 512), cap_feat_dim: int = 1024)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_lumina2.py#L325)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_lumina2.py#L327)
 
 **Parameters:**
 
@@ -52,7 +52,7 @@ Lumina2NextDiT: Diffusion model with a Transformer backbone.
 forward(hidden_states: Tensor, timestep: Tensor, encoder_hidden_states: Tensor, encoder_attention_mask: Tensor, attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_lumina2.py#L458)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_lumina2.py#L460)
 
 **Parameters:**
 
@@ -73,7 +73,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
-The [Lumina2Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/lumina2_transformer2d#diffusers.Lumina2Transformer2DModel) forward method.
+The [Lumina2Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/lumina2_transformer2d#diffusers.Lumina2Transformer2DModel) forward method.
 
 ## Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
@@ -83,13 +83,13 @@ The [Lumina2Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/lumina2_tr
 diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L21)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-The output of [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+The output of [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
 
 ### UNet2DModel
-https://huggingface.co/docs/diffusers/v0.40.0/api/models/unet2d.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/models/unet2d.md

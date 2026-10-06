@@ -197,5 +197,5 @@ If a certain asset is not available, you may have to call `/rows` again.
 Unlike `/first-rows`, there is currently no truncation in `/rows`.
 The `truncated_cells` field is still there but is always empty.
 
-### Polars
-https://huggingface.co/docs/dataset-viewer/polars.md
+### List Parquet files
+https://huggingface.co/docs/dataset-viewer/parquet.md

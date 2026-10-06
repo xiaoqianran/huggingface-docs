@@ -12,7 +12,7 @@ The original codebase can be found at [openai/consistency_models](https://github
 diffusers.schedulers.ConsistencyDecoderScheduler(num_train_timesteps: int = 1024, sigma_data: float = 0.5)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_consistency_decoder.py#L80)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_consistency_decoder.py#L80)
 
 **Parameters:**
 
@@ -25,7 +25,7 @@ A scheduler for the consistency decoder used in Stable Diffusion pipelines.
 This scheduler implements a two-step denoising process using consistency models for decoding latent representations
 into images.
 
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
 methods the library implements for all schedulers such as loading and saving.
 
 #### scale_model_input[[diffusers.schedulers.ConsistencyDecoderScheduler.scale_model_input]]
@@ -34,7 +34,7 @@ methods the library implements for all schedulers such as loading and saving.
 scale_model_input(sample: Tensor, timestep: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_consistency_decoder.py#L148)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_consistency_decoder.py#L148)
 
 **Parameters:**
 
@@ -55,7 +55,7 @@ current timestep.
 step(model_output: Tensor, timestep: typing.Union[float, torch.Tensor], sample: Tensor, generator: typing.Optional[torch.Generator] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_consistency_decoder.py#L165)
+[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/schedulers/scheduling_consistency_decoder.py#L165)
 
 **Parameters:**
 
@@ -79,4 +79,4 @@ Predict the sample from the previous timestep by reversing the SDE. This functio
 process from the learned model outputs (most often the predicted noise).
 
 ### FlowMatchEulerDiscreteScheduler
-https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/flow_match_euler_discrete.md
+https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/flow_match_euler_discrete.md

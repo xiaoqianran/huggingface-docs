@@ -15,5 +15,5 @@ There are several different libraries you can use to work with the published Par
 - [mlcroissant](https://github.com/mlcommons/croissant/tree/main/python/mlcroissant), a library for loading datasets from Croissant metadata
 - [pyspark](https://spark.apache.org/docs/latest/api/python), the Python API for Apache Spark
 
-### List Parquet files
-https://huggingface.co/docs/dataset-viewer/parquet.md
+### Check dataset validity
+https://huggingface.co/docs/dataset-viewer/valid.md

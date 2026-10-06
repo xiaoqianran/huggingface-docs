@@ -48,7 +48,7 @@ Here's an example of using xDiT to accelerate inference of a Diffusers model.
          prompt=input_config.prompt,
          num_inference_steps=input_config.num_inference_steps,
          output_type=input_config.output_type,
-         generator=torch.Generator(device="cuda").manual_seed(input_config.seed),
+         generator=torch.Generator(device="cuda").manual_seed(input_config.seed),  # or "mps", "xpu", "cpu"
      )
 
 +    if input_config.output_type == "pil":
@@ -107,4 +107,4 @@ More detailed performance metric can be found on our [github page](https://githu
 [PipeFusion: Displaced Patch Pipeline Parallelism for Inference of Diffusion Transformer Models](https://huggingface.co/papers/2405.14430)
 
 ### OpenVINO
-https://huggingface.co/docs/diffusers/v0.40.0/optimization/open_vino.md
+https://huggingface.co/docs/diffusers/v0.41.0/optimization/open_vino.md
