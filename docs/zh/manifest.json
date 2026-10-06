@@ -453,8 +453,8 @@
       "translatedAt": "2026-08-14T08:24:28.359Z"
     },
     "hub/local-cache.md": {
-      "hash": "5b193ff790500a1a94055031d7fb15491ac8c0a7",
-      "translatedAt": "2026-08-14T08:24:29.055Z"
+      "hash": "3e5735dc35aa907ad7dae16fc54e54ece219ab8a",
+      "translatedAt": "2026-10-06T14:06:55.988Z"
     },
     "hub/mlx-image.md": {
       "hash": "e3a658c3feb95e504103af5396e2d3b8c5dd1858",
@@ -677,8 +677,8 @@
       "translatedAt": "2026-08-14T08:25:17.015Z"
     },
     "hub/security-malware.md": {
-      "hash": "b89fe43fd3fff9d9e76c44ac67cf6f015f7ad526",
-      "translatedAt": "2026-08-14T08:25:18.023Z"
+      "hash": "50556dd344723b497739bd0fbc9c838f4a096f1b",
+      "translatedAt": "2026-10-06T14:06:54.029Z"
     },
     "hub/security-gpg.md": {
       "hash": "4cc032afb7b72e193707a6c18f3100b02679b48b",
@@ -2018,10 +2018,10 @@
       "translatedAt": "2026-10-01T14:23:56.989Z"
     }
   },
-  "updatedAt": "2026-10-05T15:50:39.383Z",
+  "updatedAt": "2026-10-06T14:06:55.988Z",
   "stats": {
-    "translated": 0,
-    "skipped": 400,
+    "translated": 2,
+    "skipped": 398,
     "failed": 0,
     "total": 400
   }

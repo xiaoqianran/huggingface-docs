@@ -21,7 +21,7 @@
 |应用 |语言 |笔记|
 |------------|---------|--------|
 | [⟦T23⟧](https://github.com/ggml-org/llama.cpp) | C++ |自 [#20775](https://github.com/ggml-org/llama.cpp/pull/20775) |
-| [⟦T24⟧](https://github.com/ggml-org/LlamaBarn) |斯威夫特 | macOS 应用程序，基于 `llama.cpp` 构建 |
+| [⟦T24⟧](https://github.com/ggml-org/Llama-macOS) |斯威夫特 | macOS 应用程序，基于 `llama.cpp` 构建 |
 | [⟦T26⟧](https://github.com/bodaay/HuggingFaceModelDownloader) |去 | |
 | [⟦T27⟧](https://github.com/jundot/omlx) |蟒蛇 | macOS MLX 推理服务器，自 [v0.4.0](https://github.com/jundot/omlx/commit/341aebbeaba1ca3452f83dedf03a0d102cef9fd4) |
 
@@ -90,7 +90,7 @@
 示例：
 
 |集线器存储库 ID |回购类型 |缓存文件夹名称 |
-|--------------------------------------|------------------------|---------------------------------------------------------|
+|--------------------------------------------------|------------------------|----------------------------------------------------------|
 | `julien-c/EsperBERTo-small` |型号| `models--julien-c--EsperBERTo-small` |
 | `huggingface/DataMeasurementsFiles` |数据集| `datasets--huggingface--DataMeasurementsFiles` |
 | `dalle-mini/dalle-mini` |空间| `spaces--dalle-mini--dalle-mini` |
@@ -241,7 +241,7 @@ snapshots/
 
 缓存依赖于**符号链接**。在符号链接不可用的 Windows 系统上，缓存以 **降级模式** 运行：实际文件副本直接放置在 `snapshots/` 而不是符号链接中。该模式下不使用`blobs/`目录。
 
-这意味着相同的文件内容可能会在各个版本之间重复，从而增加磁盘使用量。要在 Windows 上启用符号链接支持，请激活 [Developer Mode](https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development) 或以管理员身份运行。
+这意味着相同的文件内容可能会在各个修订版本中重复，从而增加磁盘使用量。要在 Windows 上启用符号链接支持，请激活 [Developer Mode](https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development) 或以管理员身份运行。
 
 ### 使用 Keras 拥抱脸部
 https://huggingface.co/docs/hub/keras.md
