@@ -15,15 +15,15 @@ A longer, in-depth article with examples, visualizations and timelines is availa
 
 ## What you can expect
 
-- Three core classes are required for each model: [configuration](main_classes/configuration),
-    [models](main_classes/model), and a preprocessing class. [Tokenizers](main_classes/tokenizer) handle NLP, [image processors](main_classes/image_processor) handle images, [video processors](main_classes/video_processor) handle videos, [feature extractors](main_classes/feature_extractor) handle audio, and [processors](main_classes/processors) handle multimodal inputs.
+- Three core classes are required for each model: [configuration](./main_classes/configuration),
+    [models](./main_classes/model), and a preprocessing class. [Tokenizers](./main_classes/tokenizer) handle NLP, [image processors](./main_classes/image_processor) handle images, [video processors](./main_classes/video_processor) handle videos, [feature extractors](./main_classes/feature_extractor) handle audio, and [processors](./main_classes/processors) handle multimodal inputs.
 
 - All of these classes can be initialized in a simple and unified way from pretrained instances by using a common
     `from_pretrained()` method which downloads (if needed), caches and
     loads the related class instance and associated data (configurations' hyperparameters, tokenizers' vocabulary, processors' parameters
     and models' weights) from a pretrained checkpoint provided on [Hugging Face Hub](https://huggingface.co/models) or your own saved checkpoint.
-- On top of those three base classes, the library provides two APIs: [pipeline()](/docs/transformers/v5.17.0/en/main_classes/pipelines#transformers.pipeline) for quickly
-    using a model for inference on a given task and [Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer) to quickly train or fine-tune a PyTorch model.
+- On top of those three base classes, the library provides two APIs: [pipeline()](/docs/transformers/v5.19.0/en/main_classes/pipelines#transformers.pipeline) for quickly
+    using a model for inference on a given task and [Trainer](/docs/transformers/v5.19.0/en/main_classes/trainer#transformers.Trainer) to quickly train or fine-tune a PyTorch model.
 
 ## Core tenets
 
@@ -40,12 +40,12 @@ The following tenets solidified over time, and they're detailed in our new philo
 
 ## Main classes
 
-- [**Configuration classes**](main_classes/configuration) store the hyperparameters required to build a model. These include the number of layers and hidden size. You don't always need to instantiate these yourself. When using a pretrained model without modification, creating the model automatically instantiates the configuration.
-- **Model classes** are PyTorch models ([torch.nn.Module](https://pytorch.org/docs/stable/nn.html#torch.nn.Module)), wrapped by at least a [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel).
+- [**Configuration classes**](./main_classes/configuration) store the hyperparameters required to build a model. These include the number of layers and hidden size. You don't always need to instantiate these yourself. When using a pretrained model without modification, creating the model automatically instantiates the configuration.
+- **Model classes** are PyTorch models ([torch.nn.Module](https://pytorch.org/docs/stable/nn.html#torch.nn.Module)), wrapped by at least a [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel).
 
-- **Modular transformers.** Contributors write a small `modular_*.py` shard that declares reuse from existing components. The library auto-expands this into the visible `modeling_*.py` file that users read/debug. Maintainers review the shard; users hack the expanded file. This preserves “One Model, One File” without boilerplate drift. See [the contributing documentation](https://huggingface.co/docs/transformers/en/modular_transformers) for more information.
+- **Modular transformers.** Contributors write a small `modular_*.py` shard that declares reuse from existing components. The library auto-expands this into the visible `modeling_*.py` file that users read/debug. Maintainers review the shard; users hack the expanded file. This preserves “One Model, One File” without boilerplate drift. See [the contributing documentation](./modular_transformers) for more information.
 
-- **Preprocessing classes** convert the raw data into a format accepted by the model. A [tokenizer](main_classes/tokenizer) stores the vocabulary for each model and provides methods for encoding and decoding strings in a list of token embedding indices. [Image processors](main_classes/image_processor) preprocess vision inputs, [video processors](https://huggingface.co/docs/transformers/en/main_classes/video_processor) preprocess videos inputs, [feature extractors](main_classes/feature_extractor) preprocess audio inputs, and [processors](main_classes/processors) preprocess multimodal inputs.
+- **Preprocessing classes** convert the raw data into a format accepted by the model. A [tokenizer](./main_classes/tokenizer) stores the vocabulary for each model and provides methods for encoding and decoding strings in a list of token embedding indices. [Image processors](./main_classes/image_processor) preprocess vision inputs, [video processors](./main_classes/video_processor) preprocess videos inputs, [feature extractors](./main_classes/feature_extractor) preprocess audio inputs, and [processors](./main_classes/processors) preprocess multimodal inputs.
 
 All these classes can be instantiated from pretrained instances, saved locally, and shared on the Hub with three methods:
 
@@ -57,4 +57,4 @@ All these classes can be instantiated from pretrained instances, saved locally, 
 - `push_to_hub()` lets you share a model, configuration, and a preprocessing class to the Hub, so it is easily accessible to everyone.
 
 ### Kernels for training
-https://huggingface.co/docs/transformers/v5.17.0/kernels.md
+https://huggingface.co/docs/transformers/v5.19.0/kernels.md

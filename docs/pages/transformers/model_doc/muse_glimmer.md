@@ -75,9 +75,9 @@ print(response)
     )
     ```
 
-- Videos are processed as frames, and [MuseGlimmerProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerProcessor) writes a `Time: <seconds>s` marker before each temporal group so the model can reason about ordering. The timestamps come from the video metadata, so pass `video_metadata` when the frame rate can't be inferred. Otherwise the processor warns and falls back to 24 fps, which shifts every timestamp in the prompt.
+- Videos are processed as frames, and [MuseGlimmerProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerProcessor) writes a `Time: <seconds>s` marker before each temporal group so the model can reason about ordering. The timestamps come from the video metadata, so pass `video_metadata` when the frame rate can't be inferred. Otherwise the processor warns and falls back to 24 fps, which shifts every timestamp in the prompt.
 - Images and videos are expanded into token spans by the processor. An image becomes `<|image_start|>` followed by one `<|patch|>` per merged patch and `<|image_end|>`. Only include `{"type": "image"}` in the chat messages.
-- [MuseGlimmerTextConfig](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerTextConfig) derives `layer_types` and `layer_rope_theta` from `num_hidden_layers` in its `__post_init__`, counting the NoPE layers backward from the last layer. Set both explicitly if you change the layer count and want a different pattern.
+- [MuseGlimmerTextConfig](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerTextConfig) derives `layer_types` and `layer_rope_theta` from `num_hidden_layers` in its `__post_init__`, counting the NoPE layers backward from the last layer. Set both explicitly if you change the layer count and want a different pattern.
 - See the [Meta is back with Muse Glimmer: local, agentic, multimodal, and open source!](https://huggingface.co/blog/muse-glimmer) blog post for more details and example usage.
 
 ## MuseGlimmerConfig[[transformers.MuseGlimmerConfig]]
@@ -85,10 +85,10 @@ print(response)
 #### transformers.MuseGlimmerConfig[[transformers.MuseGlimmerConfig]]
 
 ```python
-transformers.MuseGlimmerConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, image_token_id: int = 200092, video_token_id: int = 200091, out_hidden_size: int = 6144, projector_hidden_size: int = 4096, projector_hidden_act: str = 'gelu')
+transformers.MuseGlimmerConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, image_token_id: int = 200092, video_token_id: int = 200091, out_hidden_size: int = 6144, projector_hidden_size: int = 4096, projector_hidden_act: str = 'gelu')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/configuration_muse_glimmer.py#L178)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/configuration_muse_glimmer.py#L178)
 
 **Parameters:**
 
@@ -110,8 +110,8 @@ This is the configuration class to store the configuration of a MuseGlimmerModel
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [meta-models/Muse-Glimmer-30B](https://huggingface.co/meta-models/Muse-Glimmer-30B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -133,10 +133,10 @@ Example:
 #### transformers.MuseGlimmerTextConfig[[transformers.MuseGlimmerTextConfig]]
 
 ```python
-transformers.MuseGlimmerTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 202048, hidden_size: int = 6656, intermediate_size: int = 19968, num_hidden_layers: int = 52, num_attention_heads: int = 32, num_key_value_heads: int = 2, head_dim: int = 128, hidden_activation: str = 'silu', max_position_embeddings: int = 131072, initializer_range: float = 0.02, rms_norm_eps: float = 1e-05, use_cache: bool = True, pad_token_id: int | None = None, eos_token_id: int | list[int] | None = 200001, bos_token_id: int | None = 200000, tie_word_embeddings: bool = False, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, attention_bias: bool = False, attention_dropout: int | float | None = 0.0, sliding_window: int | None = 2048, layer_types: list[str] | None = None, final_logit_softcapping: float = 20.0, qk_scale_factor: float = 3.87, output_multiplier: float = 0.19611613513818404, post_norm_eps: float = 1e-08, layer_rope_theta: list[float | int] | None = None)
+transformers.MuseGlimmerTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 202048, hidden_size: int = 6656, intermediate_size: int = 19968, num_hidden_layers: int = 52, num_attention_heads: int = 32, num_key_value_heads: int = 2, head_dim: int = 128, hidden_activation: str = 'silu', max_position_embeddings: int = 131072, initializer_range: float = 0.02, rms_norm_eps: float = 1e-05, use_cache: bool = True, pad_token_id: int | None = None, eos_token_id: int | list[int] | None = 200001, bos_token_id: int | None = 200000, tie_word_embeddings: bool = False, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, attention_bias: bool = False, attention_dropout: int | float | None = 0.0, sliding_window: int | None = 2048, layer_types: list[str] | None = None, final_logit_softcapping: float = 20.0, qk_scale_factor: float = 3.87, output_multiplier: float = 0.19611613513818404, post_norm_eps: float = 1e-08, layer_rope_theta: list[float | int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/configuration_muse_glimmer.py#L83)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/configuration_muse_glimmer.py#L83)
 
 **Parameters:**
 
@@ -196,18 +196,18 @@ This is the configuration class to store the configuration of a MuseGlimmerModel
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [meta-models/Muse-Glimmer-30B](https://huggingface.co/meta-models/Muse-Glimmer-30B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## MuseGlimmerVisionConfig[[transformers.MuseGlimmerVisionConfig]]
 
 #### transformers.MuseGlimmerVisionConfig[[transformers.MuseGlimmerVisionConfig]]
 
 ```python
-transformers.MuseGlimmerVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, patch_size: int = 14, pos_emb_height: int = 32, pos_emb_width: int = 32, num_attention_heads: int = 16, num_hidden_layers: int = 50, hidden_size: int = 1536, intermediate_size: int = 8960, hidden_act: str = 'gelu', rope_parameters: dict | None = None, patch_temporal: int = 2, merge_size: int = 2, max_position_embeddings: int = 1024, layer_norm_eps: float = 1e-05, layer_types: list[str] | None = None)
+transformers.MuseGlimmerVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, patch_size: int = 14, pos_emb_height: int = 32, pos_emb_width: int = 32, num_attention_heads: int = 16, num_hidden_layers: int = 50, hidden_size: int = 1536, intermediate_size: int = 8960, hidden_act: str = 'gelu', rope_parameters: dict | None = None, patch_temporal: int = 2, merge_size: int = 2, max_position_embeddings: int = 1024, layer_norm_eps: float = 1e-05, layer_types: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/configuration_muse_glimmer.py#L32)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/configuration_muse_glimmer.py#L32)
 
 **Parameters:**
 
@@ -243,8 +243,8 @@ This is the configuration class to store the configuration of a MuseGlimmerModel
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [meta-models/Muse-Glimmer-30B](https://huggingface.co/meta-models/Muse-Glimmer-30B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## MuseGlimmerImageProcessor[[transformers.MuseGlimmerImageProcessor]]
 
@@ -254,7 +254,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes
 transformers.MuseGlimmerImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/image_processing_muse_glimmer.py#L91)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/image_processing_muse_glimmer.py#L91)
 
 **Parameters:**
 
@@ -376,7 +376,7 @@ Added for backward compatibility but this should be set as a processor attribute
 get_number_of_image_patches(height: int, width: int, images_kwargs = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/image_processing_muse_glimmer.py#L228)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/image_processing_muse_glimmer.py#L228)
 
 **Parameters:**
 
@@ -401,7 +401,7 @@ without an image input.
 patchify(images: Tensor, patch_size: int, temporal_patch_size: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/image_processing_muse_glimmer.py#L137)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/image_processing_muse_glimmer.py#L137)
 
 Patchifies each image into flat layout of shape (`seq_len`, `patch_dim`) so we can concat dynamically shaped pixels.
 
@@ -411,7 +411,7 @@ Patchifies each image into flat layout of shape (`seq_len`, `patch_dim`) so we c
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/image_processing_muse_glimmer.py#L109)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/image_processing_muse_glimmer.py#L109)
 
 **Parameters:**
 
@@ -477,7 +477,7 @@ max_image_tokens (`int`, *kwargs*, *optional*, defaults to 4096) : The maximum n
 resize(images: Tensor, patch_size: int, merge_size: int, max_tokens: int, resample: typing.Union[PIL.Image.Resampling, torchvision.transforms.v2.functional.InterpolationMode, int, NoneType], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/image_processing_muse_glimmer.py#L113)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/image_processing_muse_glimmer.py#L113)
 
 Resize dynamically based on input image aspect ratio.
 
@@ -489,11 +489,11 @@ Resize dynamically based on input image aspect ratio.
 transformers.MuseGlimmerVideoProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/video_processing_muse_glimmer.py#L93)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/video_processing_muse_glimmer.py#L93)
 
 **Parameters:**
 
-- ****kwargs** (`MuseGlimmerVideoProcessorInitKwargs`, *optional*) : Additional image preprocessing options. Model-specific kwargs are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** (`MuseGlimmerVideoProcessorInitKwargs`, *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 Constructs a MuseGlimmerVideoProcessor video processor.
 
@@ -503,7 +503,7 @@ Constructs a MuseGlimmerVideoProcessor video processor.
 patchify(videos: Tensor, patch_size: int, temporal_patch_size: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/video_processing_muse_glimmer.py#L148)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/video_processing_muse_glimmer.py#L148)
 
 Patchifies each video into flat layout of shape (`seq_len`, `patch_dim`) so we can concat dynamically shaped pixels.
 
@@ -513,7 +513,7 @@ Patchifies each video into flat layout of shape (`seq_len`, `patch_dim`) so we c
 resize(videos: Tensor, resample: typing.Union[PIL.Image.Resampling, torchvision.transforms.v2.functional.InterpolationMode, int, NoneType], patch_size: int, merge_size: int, max_tokens: int, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/video_processing_muse_glimmer.py#L123)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/video_processing_muse_glimmer.py#L123)
 
 Resize dynamically based on input video aspect ratio.
 
@@ -523,7 +523,7 @@ Resize dynamically based on input video aspect ratio.
 sample_frames(metadata: VideoMetadata, temporal_patch_size: int | None = None, num_frames: int | None = None, fps: int | float | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/video_processing_muse_glimmer.py#L186)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/video_processing_muse_glimmer.py#L186)
 
 **Parameters:**
 
@@ -535,7 +535,7 @@ num_frames (`int`, *optional*) : Maximum number of frames to sample. Defaults to
 
 fps (`int` or `float`, *optional*) : Target frames to sample per second. Defaults to `self.fps`.
 
-**Returns:** `np.ndarray`
+**Returns:** `torch.Tensor`
 
 Indices to sample video frames.
 
@@ -551,7 +551,7 @@ and `fps` are mutually exclusive.
 transformers.MuseGlimmerProcessor(image_processor = None, video_processor = None, tokenizer = None, chat_template = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/processing_muse_glimmer.py#L22)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/processing_muse_glimmer.py#L22)
 
 **Parameters:**
 
@@ -565,8 +565,8 @@ chat_template (`str`) : A Jinja template to convert lists of messages in a chat 
 
 Constructs a MuseGlimmerProcessor which wraps a image processor, a video processor, and a tokenizer into a single processor.
 
-[MuseGlimmerProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerProcessor) offers all the functionalities of [MuseGlimmerImageProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor), [MuseGlimmerVideoProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor), and `tokenizer_class`. See the
-[~MuseGlimmerImageProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor), [~MuseGlimmerVideoProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor), and `~tokenizer_class` for more information.
+[MuseGlimmerProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerProcessor) offers all the functionalities of [MuseGlimmerImageProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor), [MuseGlimmerVideoProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor), and `tokenizer_class`. See the
+[~MuseGlimmerImageProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor), [~MuseGlimmerVideoProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor), and `~tokenizer_class` for more information.
 
 ## MuseGlimmerPreTrainedModel[[transformers.MuseGlimmerPreTrainedModel]]
 
@@ -576,13 +576,13 @@ Constructs a MuseGlimmerProcessor which wraps a image processor, a video process
 transformers.MuseGlimmerPreTrainedModel(config: PreTrainedConfig, *inputs, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/modeling_muse_glimmer.py#L420)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/modeling_muse_glimmer.py#L410)
 
 **Parameters:**
 
-config ([PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -598,15 +598,15 @@ and behavior.
 transformers.MuseGlimmerTextModel(config: MuseGlimmerTextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/modeling_muse_glimmer.py#L450)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/modeling_muse_glimmer.py#L440)
 
 **Parameters:**
 
-config ([MuseGlimmerTextConfig](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MuseGlimmerTextConfig](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Muse Glimmer Text Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -620,29 +620,29 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/modeling_muse_glimmer.py#L474)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/modeling_muse_glimmer.py#L464)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.19.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.19.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPast](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
+A [BaseModelOutputWithPast](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MuseGlimmerConfig](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerConfig)) and inputs.
+elements depending on the configuration ([MuseGlimmerConfig](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerConfig)) and inputs.
 
-The [MuseGlimmerTextModel](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerTextModel) forward method, overrides the `__call__` special method.
+The [MuseGlimmerTextModel](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -652,7 +652,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.19.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -675,15 +675,15 @@ the latter silently ignores them.
 transformers.MuseGlimmerVisionModel(config: MuseGlimmerVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/modeling_muse_glimmer.py#L814)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/modeling_muse_glimmer.py#L802)
 
 **Parameters:**
 
-config ([MuseGlimmerVisionConfig](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MuseGlimmerVisionConfig](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Muse Glimmer Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -697,21 +697,21 @@ and behavior.
 forward(pixel_values: FloatTensor, grid_thw: LongTensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/modeling_muse_glimmer.py#L845)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/modeling_muse_glimmer.py#L833)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [MuseGlimmerImageProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor). See `MuseGlimmerImageProcessor.__call__()` for details ([MuseGlimmerProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerProcessor) uses [MuseGlimmerImageProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [MuseGlimmerImageProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor). See `MuseGlimmerImageProcessor.__call__()` for details ([MuseGlimmerProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerProcessor) uses [MuseGlimmerImageProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor) for processing images).
 
 grid_thw (`torch.LongTensor` of shape `(num_images_or_videos, 3)`) : The temporal, height and width patch-grid dimensions for each packed image or video.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MuseGlimmerConfig](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerConfig)) and inputs.
+elements depending on the configuration ([MuseGlimmerConfig](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerConfig)) and inputs.
 
-The [MuseGlimmerVisionModel](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerVisionModel) forward method, overrides the `__call__` special method.
+The [MuseGlimmerVisionModel](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -740,15 +740,15 @@ the latter silently ignores them.
 transformers.MuseGlimmerModel(config: MuseGlimmerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/modeling_muse_glimmer.py#L909)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/modeling_muse_glimmer.py#L897)
 
 **Parameters:**
 
-config ([MuseGlimmerConfig](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MuseGlimmerConfig](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Muse Glimmer Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -759,40 +759,42 @@ and behavior.
 #### forward[[transformers.MuseGlimmerModel.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, pixel_values: typing.Optional[torch.Tensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, pixel_values_videos: typing.Optional[torch.Tensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, pixel_values: typing.Optional[torch.Tensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, pixel_values_videos: typing.Optional[torch.Tensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/modeling_muse_glimmer.py#L999)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/modeling_muse_glimmer.py#L987)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.19.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.19.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MuseGlimmerImageProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor). See `MuseGlimmerImageProcessor.__call__()` for details ([MuseGlimmerProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerProcessor) uses [MuseGlimmerImageProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MuseGlimmerImageProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor). See `MuseGlimmerImageProcessor.__call__()` for details ([MuseGlimmerProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerProcessor) uses [MuseGlimmerImageProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor) for processing images).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [MuseGlimmerVideoProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor). See `MuseGlimmerVideoProcessor.__call__()` for details ([MuseGlimmerProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerProcessor) uses [MuseGlimmerVideoProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor) for processing videos).
+pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [MuseGlimmerVideoProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor). See `MuseGlimmerVideoProcessor.__call__()` for details ([MuseGlimmerProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerProcessor) uses [MuseGlimmerVideoProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor) for processing videos).
 
 video_grid_thw (`torch.LongTensor` of shape `(num_videos, 3)`, *optional*) : The temporal, height and width of feature shape of each video in LLM.
+
+mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *optional*) : Dict where keys are supported modalities and values are encoded outputs for that modality. Each encoded output is a tuple that consists of (`pooler_output`, *optional*: `last_hidden_states`, *optional*: `hidden_states`, *optional*: `attentions`) `pooler_output` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of multimmodal features of the encoder merged into text embeddings.
 
 **Returns:** `MuseGlimmerModelOutputWithPast` or `tuple(torch.FloatTensor)`
 
 A `MuseGlimmerModelOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MuseGlimmerConfig](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerConfig)) and inputs.
+elements depending on the configuration ([MuseGlimmerConfig](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerConfig)) and inputs.
 
-The [MuseGlimmerModel](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerModel) forward method, overrides the `__call__` special method.
+The [MuseGlimmerModel](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -802,7 +804,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.19.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -827,15 +829,15 @@ the latter silently ignores them.
 transformers.MuseGlimmerForConditionalGeneration(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/modeling_muse_glimmer.py#L1055)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/modeling_muse_glimmer.py#L1062)
 
 **Parameters:**
 
-config ([MuseGlimmerForConditionalGeneration](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerForConditionalGeneration)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MuseGlimmerForConditionalGeneration](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerForConditionalGeneration)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Muse Glimmer Model for token generation conditioned on other modalities (e.g. image-text-to-text generation).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -846,20 +848,20 @@ and behavior.
 #### forward[[transformers.MuseGlimmerForConditionalGeneration.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, pixel_values_videos: typing.Optional[torch.FloatTensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: Unpack)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, pixel_values_videos: typing.Optional[torch.FloatTensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/muse_glimmer/modeling_muse_glimmer.py#L1094)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/muse_glimmer/modeling_muse_glimmer.py#L1101)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MuseGlimmerImageProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor). See `MuseGlimmerImageProcessor.__call__()` for details ([MuseGlimmerProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerProcessor) uses [MuseGlimmerImageProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MuseGlimmerImageProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor). See `MuseGlimmerImageProcessor.__call__()` for details ([MuseGlimmerProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerProcessor) uses [MuseGlimmerImageProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor) for processing images).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [MuseGlimmerVideoProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor). See `MuseGlimmerVideoProcessor.__call__()` for details ([MuseGlimmerProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerProcessor) uses [MuseGlimmerVideoProcessor](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor) for processing videos).
+pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [MuseGlimmerVideoProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor). See `MuseGlimmerVideoProcessor.__call__()` for details ([MuseGlimmerProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerProcessor) uses [MuseGlimmerVideoProcessor](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor) for processing videos).
 
 video_grid_thw (`torch.LongTensor` of shape `(num_videos, 3)`, *optional*) : The temporal, height and width of feature shape of each video in LLM.
 
@@ -867,7 +869,7 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.19.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.19.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -877,13 +879,15 @@ use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value s
 
 logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
 
+mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *optional*) : Dict where keys are supported modalities and values are encoded outputs for that modality. Each encoded output is a tuple that consists of (`pooler_output`, *optional*: `last_hidden_states`, *optional*: `hidden_states`, *optional*: `attentions`) `pooler_output` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of multimmodal features of the encoder merged into text embeddings.
+
 **Returns:** `MuseGlimmerCausalLMOutputWithPast` or `tuple(torch.FloatTensor)`
 
 A `MuseGlimmerCausalLMOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MuseGlimmerConfig](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerConfig)) and inputs.
+elements depending on the configuration ([MuseGlimmerConfig](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerConfig)) and inputs.
 
-The [MuseGlimmerForConditionalGeneration](/docs/transformers/v5.17.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [MuseGlimmerForConditionalGeneration](/docs/transformers/v5.19.0/en/model_doc/muse_glimmer#transformers.MuseGlimmerForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -891,7 +895,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.text_config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.19.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -944,4 +948,4 @@ Example:
 ```
 
 ### FalconH1
-https://huggingface.co/docs/transformers/v5.17.0/model_doc/falcon_h1.md
+https://huggingface.co/docs/transformers/v5.19.0/model_doc/falcon_h1.md

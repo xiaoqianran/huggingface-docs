@@ -1,7 +1,7 @@
 # NeoMME
 
 [![Hugging Face](https://img.shields.io/badge/Collection-FFD21E?style=for-the-badge&logo=huggingface&logoColor=000)](https://huggingface.co/collections/Hcompany/neomme)
-[![arXiv](https://img.shields.io/badge/arXiv-coming_soon-b31b1b.svg?style=for-the-badge)](https://arxiv.org)
+[![arXiv](https://img.shields.io/badge/arXiv-2609.01657-b31b1b.svg?style=for-the-badge)](https://arxiv.org/abs/2609.01657)
 
 NeoMME is a family of efficient 260M and 800M parameter multimodal-native multilingual foundation encoders from H Company. It processes multilingual text tokens and raw image patches in a single bidirectional Transformer encoder, without a separately pretrained vision tower or causal language model.
 
@@ -145,10 +145,10 @@ print(late_scores, dense_scores)
 #### transformers.NeoMMEConfig[[transformers.NeoMMEConfig]]
 
 ```python
-transformers.NeoMMEConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 131072, embedding_rank: int = 256, hidden_size: int = 1024, intermediate_size: int = 3584, hidden_act: typing.Literal['relu2'] = 'relu2', mlp_bias: bool = False, num_hidden_layers: int = 17, num_attention_heads: int = 16, num_key_value_heads: int = 4, head_dim: int = 64, max_position_embeddings: int = 16384, norm_eps: float = 1e-06, initializer_range: float = 0.02, attention_dropout: float | int = 0.0, attention_bias: bool = False, layer_types: list[str] | None = None, rope_parameters: dict[typing.Literal['full_attention', 'sliding_attention'], dict] | None = None, sliding_window: int | None = 256, residual_multiplier: float | None = None, patch_size: int = 32, embedding_dim: int = 128, pad_token_id: int | None = 0, document_token_id: int | None = 5, image_token_id: int | None = 6, tie_word_embeddings: bool = True)
+transformers.NeoMMEConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 131072, embedding_rank: int = 256, hidden_size: int = 1024, intermediate_size: int = 3584, hidden_act: typing.Literal['relu2'] = 'relu2', mlp_bias: bool = False, num_hidden_layers: int = 17, num_attention_heads: int = 16, num_key_value_heads: int = 4, head_dim: int = 64, max_position_embeddings: int = 16384, norm_eps: float = 1e-06, initializer_range: float = 0.02, attention_dropout: float | int = 0.0, attention_bias: bool = False, layer_types: list[str] | None = None, rope_parameters: dict[typing.Literal['full_attention', 'sliding_attention'], dict] | None = None, sliding_window: int | None = 256, residual_multiplier: float | None = None, patch_size: int = 32, embedding_dim: int = 128, pad_token_id: int | None = 0, document_token_id: int | None = 5, image_token_id: int | None = 6, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/neomme/configuration_neomme.py#L33)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/neomme/configuration_neomme.py#L33)
 
 **Parameters:**
 
@@ -192,7 +192,7 @@ residual_multiplier (`float`, *optional*) : Scale applied to attention and MLP r
 
 patch_size (`int`, *optional*, defaults to `32`) : The size (resolution) of each patch.
 
-embedding_dim (`int`, *optional*, defaults to 128) : Width of the token-level embeddings returned by [NeoMMEForRetrieval](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEForRetrieval). This setting is unrelated to `embedding_rank`.
+embedding_dim (`int`, *optional*, defaults to 128) : Width of the token-level embeddings returned by [NeoMMEForRetrieval](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEForRetrieval). This setting is unrelated to `embedding_rank`.
 
 pad_token_id (`int`, *optional*, defaults to `0`) : Token id used for padding in the vocabulary.
 
@@ -206,8 +206,8 @@ This is the configuration class to store the configuration of a NeoMMEModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [Hcompany/NeoMME-260M](https://huggingface.co/Hcompany/NeoMME-260M)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ```python
 >>> from transformers import NeoMMEModel, NeoMMEConfig
@@ -224,7 +224,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes
 transformers.NeoMMEImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/neomme/image_processing_neomme.py#L107)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/neomme/image_processing_neomme.py#L107)
 
 **Parameters:**
 
@@ -280,7 +280,7 @@ Constructs a NeoMMEImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/neomme/image_processing_neomme.py#L136)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/neomme/image_processing_neomme.py#L136)
 
 **Parameters:**
 
@@ -332,7 +332,7 @@ max_side (`int`, *kwargs*, *optional*) : Longest-side cap in pixels. Unset means
 
 **Returns:**
 
-[BatchFeature](/docs/transformers/v5.17.0/en/main_classes/image_processor#transformers.BatchFeature) with `pixel_values` of shape `(total_patches, 3 * patch_size ** 2)` and
+[BatchFeature](/docs/transformers/v5.19.0/en/main_classes/image_processor#transformers.BatchFeature) with `pixel_values` of shape `(total_patches, 3 * patch_size ** 2)` and
 `image_grid_hw` of shape `(batch_size, 2)`. `pixel_values` concatenates patches from every image in the
 batch.
 
@@ -344,7 +344,7 @@ batch.
 transformers.NeoMMEProcessor(image_processor = None, tokenizer = None, chat_template = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/neomme/processing_neomme.py#L32)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/neomme/processing_neomme.py#L32)
 
 **Parameters:**
 
@@ -356,8 +356,8 @@ chat_template (`str`) : A Jinja template to convert lists of messages in a chat 
 
 Constructs a NeoMMEProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[NeoMMEProcessor](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEProcessor) offers all the functionalities of [NeoMMEImageProcessor](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEImageProcessor) and `tokenizer_class`. See the
-[~NeoMMEImageProcessor](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEImageProcessor) and `~tokenizer_class` for more information.
+[NeoMMEProcessor](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEProcessor) offers all the functionalities of [NeoMMEImageProcessor](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEImageProcessor) and `tokenizer_class`. See the
+[~NeoMMEImageProcessor](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEImageProcessor) and `~tokenizer_class` for more information.
 
 #### __call__[[transformers.NeoMMEProcessor.__call__]]
 
@@ -365,7 +365,7 @@ Constructs a NeoMMEProcessor which wraps a image processor and a tokenizer into 
 __call__(images: ImageInput | None = None, text: TextInput | list[TextInput] | None = None, **kwargs: Unpack[ProcessingKwargs])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/neomme/processing_neomme.py#L53)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/neomme/processing_neomme.py#L53)
 
 **Parameters:**
 
@@ -373,11 +373,11 @@ images (`ImageInput`, *optional*) : Image to preprocess. Expects a single or bat
 
 text (`TextInput | list[TextInput]`, *optional*) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.17.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.19.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
 **Returns:**
 
-A [BatchFeature](/docs/transformers/v5.17.0/en/main_classes/image_processor#transformers.BatchFeature) with `input_ids` and `attention_mask`. Image inputs also return `position_ids`,
+A [BatchFeature](/docs/transformers/v5.19.0/en/main_classes/image_processor#transformers.BatchFeature) with `input_ids` and `attention_mask`. Image inputs also return `position_ids`,
 and `pixel_values`.
 
 #### apply_chat_template[[transformers.NeoMMEProcessor.apply_chat_template]]
@@ -386,7 +386,7 @@ and `pixel_values`.
 apply_chat_template(conversation: list[dict[str, str]] | list[list[dict[str, str]]], chat_template: str | None = None, task: Literal['query', 'document'] | None = None, processor_kwargs: dict | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/neomme/processing_neomme.py#L136)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/neomme/processing_neomme.py#L136)
 
 Apply the configured retrieval template and optionally tokenize its output.
 
@@ -401,15 +401,15 @@ options such as `max_length` or `max_side` through `processor_kwargs`.
 transformers.NeoMMEModel(config: NeoMMEConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/neomme/modeling_neomme.py#L498)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/neomme/modeling_neomme.py#L492)
 
 **Parameters:**
 
-config ([NeoMMEConfig](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([NeoMMEConfig](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare NeoMME model. It encodes text tokens and image patches with one bidirectional Transformer encoder.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -423,25 +423,25 @@ and behavior.
 forward(input_ids: LongTensor, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/neomme/modeling_neomme.py#L541)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/neomme/modeling_neomme.py#L535)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-position_ids (`torch.LongTensor` of shape `(2, batch_size, sequence_length)` or `(batch_size, sequence_length)`, *optional*) : Positions for the input tokens. [NeoMMEProcessor](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEProcessor) returns two-axis positions for document images. A one-axis position tensor is used for text inputs.
+position_ids (`torch.LongTensor` of shape `(2, batch_size, sequence_length)` or `(batch_size, sequence_length)`, *optional*) : Positions for the input tokens. [NeoMMEProcessor](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEProcessor) returns two-axis positions for document images. A one-axis position tensor is used for text inputs.
 
-pixel_values (`torch.Tensor` of shape `(num_patches, 3 * patch_size ** 2)`, *optional*) : Flattened image patches returned by [NeoMMEProcessor](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEProcessor). The model places these patches at image placeholders in `input_ids`.
+pixel_values (`torch.Tensor` of shape `(num_patches, 3 * patch_size ** 2)`, *optional*) : Flattened image patches returned by [NeoMMEProcessor](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEProcessor). The model places these patches at image placeholders in `input_ids`.
 
-**Returns:** [BaseModelOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+A [BaseModelOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([NeoMMEConfig](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEConfig)) and inputs.
+elements depending on the configuration ([NeoMMEConfig](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEConfig)) and inputs.
 
-The [NeoMMEModel](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEModel) forward method, overrides the `__call__` special method.
+The [NeoMMEModel](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -466,15 +466,15 @@ the latter silently ignores them.
 transformers.NeoMMEForMaskedLM(config: NeoMMEConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/neomme/modeling_neomme.py#L618)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/neomme/modeling_neomme.py#L612)
 
 **Parameters:**
 
-config ([NeoMMEConfig](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([NeoMMEConfig](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The NeoMME model with a factorized masked token decoder.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -488,27 +488,27 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/neomme/modeling_neomme.py#L631)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/neomme/modeling_neomme.py#L625)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [NeoMMEImageProcessor](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEImageProcessor). See `NeoMMEImageProcessor.__call__()` for details ([NeoMMEProcessor](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEProcessor) uses [NeoMMEImageProcessor](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [NeoMMEImageProcessor](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEImageProcessor). See `NeoMMEImageProcessor.__call__()` for details ([NeoMMEProcessor](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEProcessor) uses [NeoMMEImageProcessor](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for the masked-language-modeling loss. Indices should be in `[0, ..., config.vocab_size - 1]` or `-100`; only tokens with a label different from `-100` contribute.
 
-**Returns:** [MaskedLMOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [MaskedLMOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or `tuple(torch.FloatTensor)`
 
-A [MaskedLMOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or a tuple of
+A [MaskedLMOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([NeoMMEConfig](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEConfig)) and inputs.
+elements depending on the configuration ([NeoMMEConfig](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEConfig)) and inputs.
 
-The [NeoMMEForMaskedLM](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEForMaskedLM) forward method, overrides the `__call__` special method.
+The [NeoMMEForMaskedLM](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEForMaskedLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -564,16 +564,16 @@ Example:
 transformers.NeoMMEForRetrieval(config: NeoMMEConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/neomme/modeling_neomme.py#L724)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/neomme/modeling_neomme.py#L718)
 
 **Parameters:**
 
-config ([NeoMMEConfig](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([NeoMMEConfig](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The NeoMME model with multi-vector and dense retrieval heads. One forward pass can return token embeddings for
 MaxSim scoring and mean-pooled embeddings for cosine similarity.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -587,17 +587,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, output_multivector: bool = True, output_dense: bool = True, dense_dim: int | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/neomme/modeling_neomme.py#L732)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/neomme/modeling_neomme.py#L726)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [NeoMMEImageProcessor](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEImageProcessor). See `NeoMMEImageProcessor.__call__()` for details ([NeoMMEProcessor](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEProcessor) uses [NeoMMEImageProcessor](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [NeoMMEImageProcessor](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEImageProcessor). See `NeoMMEImageProcessor.__call__()` for details ([NeoMMEProcessor](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEProcessor) uses [NeoMMEImageProcessor](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEImageProcessor) for processing images).
 
 output_multivector (`bool`, *optional*, defaults to `True`) : Whether to return token embeddings for late-interaction retrieval.
 
@@ -609,9 +609,9 @@ dense_dim (`int`, *optional*) : Width of the Matryoshka prefix to return for den
 
 A `NeoMMEForRetrievalOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([NeoMMEConfig](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEConfig)) and inputs.
+elements depending on the configuration ([NeoMMEConfig](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEConfig)) and inputs.
 
-The [NeoMMEForRetrieval](/docs/transformers/v5.17.0/en/model_doc/neomme#transformers.NeoMMEForRetrieval) forward method, overrides the `__call__` special method.
+The [NeoMMEForRetrieval](/docs/transformers/v5.19.0/en/model_doc/neomme#transformers.NeoMMEForRetrieval) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -632,5 +632,19 @@ the latter silently ignores them.
 - **dense_embeddings** (`torch.FloatTensor` of shape `(batch_size, hidden_size)` or `(batch_size, dense_dim)`, *optional*) -- A normalized mean-pooled embedding for each input. When `dense_dim` is set, the last dimension is `dense_dim`.
   Score them with cosine similarity.
 
+## Citation
+
+```bibtex
+@misc{lac2026neommesingletowermultimodalnativemultilingual,
+      title={NeoMME: A Single-Tower Multimodal-Native Multilingual Foundation Encoder for Efficient Fine-Tuning and Inference},
+      author={Aurélien Lac and Tony Wu},
+      year={2026},
+      eprint={2609.01657},
+      archivePrefix={arXiv},
+      primaryClass={cs.IR},
+      url={https://arxiv.org/abs/2609.01657},
+}
+```
+
 ### VoxtralRealtime
-https://huggingface.co/docs/transformers/v5.17.0/model_doc/voxtral_realtime.md
+https://huggingface.co/docs/transformers/v5.19.0/model_doc/voxtral_realtime.md

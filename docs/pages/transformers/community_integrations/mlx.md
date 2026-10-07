@@ -38,4 +38,4 @@ print(output)
 - [mlx-vlm](https://github.com/Blaizzy/mlx-vlm) community library with VLM implementations
 
 ### LiteRT
-https://huggingface.co/docs/transformers/v5.17.0/community_integrations/litert.md
+https://huggingface.co/docs/transformers/v5.19.0/community_integrations/litert.md

@@ -10,7 +10,7 @@ Install Transformers with the supported version of the [kernels](https://github.
 pip install -U "transformers[kernels]"
 ```
 
-Set `use_kernels=True` in [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to load the most performant kernels available on the Hub for your device. This replaces supported PyTorch operations with the kernel implementation.
+Set `use_kernels=True` in [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to load the most performant kernels available on the Hub for your device. This replaces supported PyTorch operations with the kernel implementation.
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -137,7 +137,7 @@ loss = model(input_ids, labels=labels).loss
 loss.backward()
 ```
 
-Explicitly enable training and inference modes with the `mode` argument in the [kernelize()](/docs/transformers/v5.17.0/en/main_classes/kernels#transformers.kernelize) function. Training mode also supports an additional torch.compile mode.
+Explicitly enable training and inference modes with the `mode` argument in the [kernelize()](/docs/transformers/v5.19.0/en/main_classes/kernels#transformers.kernelize) function. Training mode also supports an additional torch.compile mode.
 
 ```py
 from kernels import Mode
@@ -155,7 +155,7 @@ kernelize(model, mode=Mode.TRAINING | Mode.TORCH_COMPILE)
 
 ## KernelConfig
 
-[KernelConfig](/docs/transformers/v5.17.0/en/main_classes/kernels#transformers.KernelConfig) customizes which kernels are used in a model.
+[KernelConfig](/docs/transformers/v5.19.0/en/main_classes/kernels#transformers.KernelConfig) customizes which kernels are used in a model.
 
 The `kernel_mapping` keys are names registered by the model. They can refer to a layer, such as `"RMSNorm"`, or a
 registered function, such as `"rotary_pos_emb"`. The `:` separator names a specific kernel entry inside the repository
@@ -248,7 +248,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 ## Module fusion
 
-Fuse adjacent modules into a single kernel by passing a tuple of `(class_name, path_pattern)` pairs as the key in [KernelConfig](/docs/transformers/v5.17.0/en/main_classes/kernels#transformers.KernelConfig). All patterns must share the same parent module. `*` matches any single path segment.
+Fuse adjacent modules into a single kernel by passing a tuple of `(class_name, path_pattern)` pairs as the key in [KernelConfig](/docs/transformers/v5.19.0/en/main_classes/kernels#transformers.KernelConfig). All patterns must share the same parent module. `*` matches any single path segment.
 
 ```python
 from transformers import AutoModelForCausalLM, KernelConfig
@@ -273,7 +273,7 @@ Fusion requires the kernel repo to provide a companion `KernelNameLayout` class 
 
 ## Local kernels
 
-Load kernels from local file paths with `use_local_kernel=True` in [KernelConfig](/docs/transformers/v5.17.0/en/main_classes/kernels#transformers.KernelConfig). This loads from a local filesystem path instead of a Hub repository.
+Load kernels from local file paths with `use_local_kernel=True` in [KernelConfig](/docs/transformers/v5.19.0/en/main_classes/kernels#transformers.KernelConfig). This loads from a local filesystem path instead of a Hub repository.
 
 Local kernels use `/abs/path:layer_name` instead of the Hub format `org/repo:layer_name`.
 
@@ -333,4 +333,4 @@ Not all kernels support all devices. The library falls back to standard PyTorch 
 - Discover kernels in the [kernels-community](https://huggingface.co/kernels-community) org
 
 ### Kernels
-https://huggingface.co/docs/transformers/v5.17.0/kernel_doc/overview.md
+https://huggingface.co/docs/transformers/v5.19.0/kernel_doc/overview.md

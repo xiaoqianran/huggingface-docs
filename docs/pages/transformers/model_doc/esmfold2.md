@@ -7,7 +7,7 @@ ESMFold2 is an all-atom protein structure prediction model. It predicts 3D coord
 backbone. The architecture combines a sliding-window atom encoder with 3D rotary position embeddings, a pairwise
 folding trunk applied iteratively, a diffusion-based structure head, and a confidence head.
 
-The model checkpoint is available on the Hugging Face Hub at [`biohub/ESMFold2-hf`](https://huggingface.co/biohub/ESMFold2-hf).
+The model checkpoint is available on the Hugging Face Hub at [`biohub/ESMFold2`](https://huggingface.co/biohub/ESMFold2).
 
 ## Usage example
 
@@ -18,14 +18,14 @@ from transformers import EsmFold2Model
 
 # The ESMC backbone is bundled in the checkpoint and loaded with the model.
 # bf16 is the recommended inference precision.
-model = EsmFold2Model.from_pretrained("biohub/ESMFold2-hf", dtype=torch.bfloat16, device_map="auto")
+model = EsmFold2Model.from_pretrained("biohub/ESMFold2", dtype=torch.bfloat16, device_map="auto")
 
 pdb_string = model.infer_protein_as_pdb("MKTAYIAKQRQISFVKSHFSRQLEERLGLIEVQ")
 print(pdb_string)
 ```
 
 `infer_protein` returns the raw outputs (atom coordinates, distogram logits and confidence metrics) as an
-[EsmFold2Output](/docs/transformers/v5.17.0/en/model_doc/esmfold2#transformers.models.esmfold2.modeling_esmfold2.EsmFold2Output) if you need them instead of a PDB string. You may get
+[EsmFold2Output](/docs/transformers/v5.19.0/en/model_doc/esmfold2#transformers.models.esmfold2.modeling_esmfold2.EsmFold2Output) if you need them instead of a PDB string. You may get
 slightly different predictions if you run the same sequence multiple times. Set a manual seed if you want exactly
 reproducible structures.
 
@@ -37,14 +37,14 @@ b-factor column, on the same 0-1 scale as the `plddt` output.
 
 A structure prediction has two halves. `EsmFold2Model.forward` is the first: it runs the folding trunk over the
 featurized inputs and returns the refined pair representation plus the distogram, as an
-[EsmFold2TrunkOutput](/docs/transformers/v5.17.0/en/model_doc/esmfold2#transformers.models.esmfold2.modeling_esmfold2.EsmFold2TrunkOutput). It does not produce 3D coordinates — ESMFold2 gets those
+[EsmFold2TrunkOutput](/docs/transformers/v5.19.0/en/model_doc/esmfold2#transformers.models.esmfold2.modeling_esmfold2.EsmFold2TrunkOutput). It does not produce 3D coordinates — ESMFold2 gets those
 by iterative denoising, and that sampling loop (the noise schedule, Kabsch alignment and the ODE/SDE update) lives in
 `EsmFold2FoldingMixin` along with the confidence head call:
 
 | Method | Use it for |
 | --- | --- |
 | `infer_protein_as_pdb(sequence)` | a PDB string, straight from an amino-acid sequence |
-| `infer_protein(sequence)` | the raw [EsmFold2Output](/docs/transformers/v5.17.0/en/model_doc/esmfold2#transformers.models.esmfold2.modeling_esmfold2.EsmFold2Output) |
+| `infer_protein(sequence)` | the raw [EsmFold2Output](/docs/transformers/v5.19.0/en/model_doc/esmfold2#transformers.models.esmfold2.modeling_esmfold2.EsmFold2Output) |
 | `fold(**features)` | pre-featurized inputs (what `infer_protein` calls) |
 | `forward(**features)` | the trunk alone — a distogram and pair representation, no sampling |
 
@@ -55,7 +55,7 @@ you want to drive the diffusion sampler yourself: `fold` calls `forward` once an
 ## Faster inference with a fused kernel
 
 The folding trunk's dominant cost is the triangle-multiplication update. Passing `use_kernels=True` to
-[from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) swaps it for a fused Triton kernel loaded from the Hub via the
+[from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) swaps it for a fused Triton kernel loaded from the Hub via the
 [`kernels`](https://github.com/huggingface/kernels) library, leaving the prediction unchanged. It is inference-only and
 CUDA-only; on CPU or without the kernel installed the model transparently falls back to the pure-PyTorch implementation.
 Make sure the model is on a CUDA device when kernelization happens (e.g. with `device_map`).
@@ -66,7 +66,7 @@ import torch
 from transformers import EsmFold2Model
 
 model = EsmFold2Model.from_pretrained(
-    "biohub/ESMFold2-hf", dtype=torch.bfloat16, device_map="cuda", use_kernels=True
+    "biohub/ESMFold2", dtype=torch.bfloat16, device_map="cuda", use_kernels=True
 )
 
 pdb_string = model.infer_protein_as_pdb("MKTAYIAKQRQISFVKSHFSRQLEERLGLIEVQ")
@@ -77,10 +77,10 @@ pdb_string = model.infer_protein_as_pdb("MKTAYIAKQRQISFVKSHFSRQLEERLGLIEVQ")
 #### transformers.EsmFold2Config[[transformers.EsmFold2Config]]
 
 ```python
-transformers.EsmFold2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int | None = 384, pairwise_hidden_size: int | None = 256, single_inputs_size: int | None = 451, pair_transition_intermediate_size: int | None = 1024, sliding_window: int | None = 128, chunk_size: int | None = 64, num_relative_residx_bins: int | None = 32, num_relative_chain_bins: int | None = 2, num_loops: int | None = 10, num_res_types: int | None = 33, max_atomic_number: int | None = 128, char_vocab_size: int | None = 64, max_chars: int | None = 4, max_atoms_per_token: int | None = 23, atom_feature_dim: int | None = None, folding_trunk_num_hidden_layers: int | None = 24, parcae_num_coda_layers: int | None = 2, atom_encoder: dict | transformers.models.esmfold2.configuration_esmfold2.EsmFold2AtomEncoderConfig | None = None, structure_head: dict | transformers.models.esmfold2.configuration_esmfold2.EsmFold2StructureHeadConfig | None = None, confidence_head: dict | transformers.models.esmfold2.configuration_esmfold2.EsmFold2ConfidenceHeadConfig | None = None, msa_encoder: dict | transformers.models.esmfold2.configuration_esmfold2.EsmFold2MsaEncoderConfig | None = None, lm_encoder: dict | transformers.models.esmfold2.configuration_esmfold2.EsmFold2LmEncoderConfig | None = None, esmc_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None)
+transformers.EsmFold2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int | None = 384, pairwise_hidden_size: int | None = 256, single_inputs_size: int | None = 451, pair_transition_intermediate_size: int | None = 1024, sliding_window: int | None = 128, chunk_size: int | None = 64, num_relative_residx_bins: int | None = 32, num_relative_chain_bins: int | None = 2, num_loops: int | None = 10, num_res_types: int | None = 33, max_atomic_number: int | None = 128, char_vocab_size: int | None = 64, max_chars: int | None = 4, max_atoms_per_token: int | None = 23, atom_feature_dim: int | None = None, folding_trunk_num_hidden_layers: int | None = 24, parcae_num_coda_layers: int | None = 2, atom_encoder: dict | transformers.models.esmfold2.configuration_esmfold2.EsmFold2AtomEncoderConfig | None = None, structure_head: dict | transformers.models.esmfold2.configuration_esmfold2.EsmFold2StructureHeadConfig | None = None, confidence_head: dict | transformers.models.esmfold2.configuration_esmfold2.EsmFold2ConfidenceHeadConfig | None = None, msa_encoder: dict | transformers.models.esmfold2.configuration_esmfold2.EsmFold2MsaEncoderConfig | None = None, lm_encoder: dict | transformers.models.esmfold2.configuration_esmfold2.EsmFold2LmEncoderConfig | None = None, esmc_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/esmfold2/configuration_esmfold2.py#L297)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/esmfold2/configuration_esmfold2.py#L297)
 
 **Parameters:**
 
@@ -128,14 +128,14 @@ msa_encoder (`EsmFold2MsaEncoderConfig`, *optional*) : Configuration for the MSA
 
 lm_encoder (`EsmFold2LmEncoderConfig`, *optional*) : Configuration for the language-model hidden-state encoder.
 
-esmc_config ([EsmcConfig](/docs/transformers/v5.17.0/en/model_doc/esmc#transformers.EsmcConfig), *optional*) : Configuration for the bundled ESMC backbone.
+esmc_config ([EsmcConfig](/docs/transformers/v5.19.0/en/model_doc/esmc#transformers.EsmcConfig), *optional*) : Configuration for the bundled ESMC backbone.
 
 This is the configuration class to store the configuration of a Esmfold2Model. It is used to instantiate a Esmfold2
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
-defaults will yield a similar configuration to that of the [biohub/ESMFold2-hf](https://huggingface.co/biohub/ESMFold2-hf)
+defaults will yield a similar configuration to that of the [biohub/ESMFold2](https://huggingface.co/biohub/ESMFold2)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 #### validate_architecture[[transformers.EsmFold2Config.validate_architecture]]
 
@@ -143,7 +143,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes
 validate_architecture()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/esmfold2/configuration_esmfold2.py#L406)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/esmfold2/configuration_esmfold2.py#L406)
 
 Checks the width relations that span sub-configs; each sub-config checks its own.
 
@@ -155,13 +155,13 @@ Checks the width relations that span sub-configs; each sub-config checks its own
 transformers.EsmFold2PreTrainedModel(config: PreTrainedConfig, *inputs, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/esmfold2/modeling_esmfold2.py#L1848)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/esmfold2/modeling_esmfold2.py#L1848)
 
 **Parameters:**
 
-config ([PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -177,17 +177,17 @@ and behavior.
 transformers.EsmFold2Model(config: EsmFold2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/esmfold2/modeling_esmfold2.py#L1903)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/esmfold2/modeling_esmfold2.py#L1903)
 
 **Parameters:**
 
-config ([EsmFold2Config](/docs/transformers/v5.17.0/en/model_doc/esmfold2#transformers.EsmFold2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([EsmFold2Config](/docs/transformers/v5.19.0/en/model_doc/esmfold2#transformers.EsmFold2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 ESMFold2 all-atom protein structure predictor with a bundled ESMC protein-language-model backbone. This is the
 standard released ESMFold2 architecture, whose trunk is a linear-recurrent stack (internally referred to as
 "parcae").
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -201,7 +201,7 @@ and behavior.
 forward(token_index: Tensor, residue_index: Tensor, asym_id: Tensor, sym_id: Tensor, entity_id: Tensor, mol_type: Tensor, res_type: Tensor, token_bonds: Tensor, attention_mask: Tensor, atom_inputs: EsmFold2AtomInputs, deletion_mean: typing.Optional[torch.Tensor] = None, msa: typing.Optional[torch.Tensor] = None, has_deletion: typing.Optional[torch.Tensor] = None, deletion_value: typing.Optional[torch.Tensor] = None, msa_attention_mask: typing.Optional[torch.Tensor] = None, input_ids: typing.Optional[torch.Tensor] = None, lm_hidden_states: typing.Optional[torch.Tensor] = None, num_loops: int | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/esmfold2/modeling_esmfold2.py#L2187)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/esmfold2/modeling_esmfold2.py#L2187)
 
 **Parameters:**
 
@@ -215,7 +215,7 @@ sym_id (*torch.Tensor* of shape *(batch_size, num_tokens)*) : Symmetry-copy ID d
 
 entity_id (*torch.Tensor* of shape *(batch_size, num_tokens)*) : Entity ID grouping tokens that belong to the same molecular entity.
 
-mol_type (*torch.Tensor* of shape *(batch_size, num_tokens)*) : Molecule-type code for each token (`0` = protein).
+mol_type (*torch.Tensor* of shape *(batch_size, num_tokens)*) : Molecule-type code for each token: `0` = protein, `1` = DNA, `2` = RNA, `3` = non-polymer (ligand).
 
 res_type (*torch.Tensor* of shape *(batch_size, num_tokens)*) : Residue-type (amino-acid identity) index for each token.
 
@@ -266,7 +266,7 @@ coordinates lives in *EsmFold2FoldingMixin* — call [*~EsmFold2Model.fold*] or
 fold(attention_mask: Tensor, asym_id: Tensor, mol_type: Tensor, distogram_atom_idx: Tensor, num_diffusion_samples: int | None = None, num_sampling_steps: int | None = None, **trunk_kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/esmfold2/generation_esmfold2.py#L103)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/esmfold2/generation_esmfold2.py#L103)
 
 Predict a structure end-to-end from featurized inputs: run the trunk
 ([*EsmFold2Model.forward*], which documents the feature arguments), sample coordinates from the
@@ -280,7 +280,8 @@ Mask marking valid tokens (`1`) versus padding (`0`). Also forwarded to the trun
 asym_id (*torch.Tensor* of shape *(batch_size, num_tokens)*):
 Asymmetric-unit (chain) ID for each token. Also forwarded to the trunk.
 mol_type (*torch.Tensor* of shape *(batch_size, num_tokens)*):
-Molecule-type code for each token (`0` = protein). Also forwarded to the trunk.
+Molecule-type code for each token: `0` = protein, `1` = DNA, `2` = RNA,
+`3` = non-polymer (ligand). Also forwarded to the trunk.
 distogram_atom_idx (*torch.Tensor* of shape *(batch_size, num_tokens)*):
 Index of the representative atom (Cβ, or Cα for glycine) of each token. Used by the
 confidence head; the trunk does not need it.
@@ -299,7 +300,7 @@ below into *atom_inputs*), forwarded to [*EsmFold2Model.forward*], which documen
 infer_protein(sequence: str, **forward_kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/esmfold2/generation_esmfold2.py#L307)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/esmfold2/generation_esmfold2.py#L308)
 
 Featurize `sequence` and fold it. `forward_kwargs` go to [*~EsmFold2Model.fold*].
 
@@ -309,7 +310,7 @@ Featurize `sequence` and fold it. `forward_kwargs` go to [*~EsmFold2Model.fold*]
 infer_protein_as_pdb(sequence: str, sample_idx: int | None = None, **forward_kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/esmfold2/generation_esmfold2.py#L314)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/esmfold2/generation_esmfold2.py#L315)
 
 Fold `sequence` and render the prediction as a PDB string.
 
@@ -323,7 +324,7 @@ Fold `sequence` and render the prediction as a PDB string.
 transformers.models.esmfold2.modeling_esmfold2.EsmFold2Output(distogram_logits: typing.Optional[torch.Tensor] = None, sample_atom_coords: typing.Optional[torch.Tensor] = None, plddt_logits: typing.Optional[torch.Tensor] = None, plddt: typing.Optional[torch.Tensor] = None, plddt_per_atom: typing.Optional[torch.Tensor] = None, plddt_ca: typing.Optional[torch.Tensor] = None, complex_plddt: typing.Optional[torch.Tensor] = None, complex_iplddt: typing.Optional[torch.Tensor] = None, pae_logits: typing.Optional[torch.Tensor] = None, pae: typing.Optional[torch.Tensor] = None, pde_logits: typing.Optional[torch.Tensor] = None, pde: typing.Optional[torch.Tensor] = None, resolved_logits: typing.Optional[torch.Tensor] = None, ptm: typing.Optional[torch.Tensor] = None, iptm: typing.Optional[torch.Tensor] = None, pair_chains_iptm: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/esmfold2/modeling_esmfold2.py#L1227)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/esmfold2/modeling_esmfold2.py#L1227)
 
 **Parameters:**
 
@@ -359,7 +360,7 @@ iptm (`torch.FloatTensor` of shape `(num_diffusion_samples,)`) : Predicted inter
 
 pair_chains_iptm (`torch.FloatTensor` of shape `(num_diffusion_samples, num_chains, num_chains)`) : Predicted interface TM-score for each ordered chain pair.
 
-Output of [EsmFold2Model](/docs/transformers/v5.17.0/en/model_doc/esmfold2#transformers.EsmFold2Model). All confidence scores are on a 0-1 scale; per-sample tensors
+Output of [EsmFold2Model](/docs/transformers/v5.19.0/en/model_doc/esmfold2#transformers.EsmFold2Model). All confidence scores are on a 0-1 scale; per-sample tensors
 have a leading `num_diffusion_samples` axis.
 
 ## EsmFold2TrunkOutput[[transformers.models.esmfold2.modeling_esmfold2.EsmFold2TrunkOutput]]
@@ -370,7 +371,7 @@ have a leading `num_diffusion_samples` axis.
 transformers.models.esmfold2.modeling_esmfold2.EsmFold2TrunkOutput(distogram_logits: typing.Optional[torch.Tensor] = None, pair_states: typing.Optional[torch.Tensor] = None, single_inputs: typing.Optional[torch.Tensor] = None, relative_position_encoding: typing.Optional[torch.Tensor] = None, token_bonds_encoding: typing.Optional[torch.Tensor] = None, atom_inputs: transformers.models.esmfold2.modeling_esmfold2.EsmFold2AtomInputs | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/esmfold2/modeling_esmfold2.py#L1289)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/esmfold2/modeling_esmfold2.py#L1289)
 
 **Parameters:**
 
@@ -386,7 +387,7 @@ token_bonds_encoding (`torch.FloatTensor` of shape `(batch_size, num_tokens, num
 
 atom_inputs (`~models.esmfold2.modeling_esmfold2.EsmFold2AtomInputs`, *optional*) : The featurized reference-conformer atom inputs, reused by the diffusion atom stack.
 
-Output of [EsmFold2Model.forward()](/docs/transformers/v5.17.0/en/model_doc/esmfold2#transformers.EsmFold2Model.forward): the folding trunk's pair representation, the distogram read
+Output of [EsmFold2Model.forward()](/docs/transformers/v5.19.0/en/model_doc/esmfold2#transformers.EsmFold2Model.forward): the folding trunk's pair representation, the distogram read
 off it, and the conditioning tensors that the structure and confidence heads consume. Everything
 here is deterministic given the inputs apart from the trunk's random initial pair state.
 
@@ -398,7 +399,7 @@ here is deterministic given the inputs apart from the trunk's random initial pai
 transformers.models.esmfold2.modeling_esmfold2.EsmFold2AtomInputs(ref_pos: Tensor, ref_charge: Tensor, atom_attention_mask: Tensor, ref_element: Tensor, ref_atom_name_chars: Tensor, ref_space_uid: Tensor, atom_to_token: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/esmfold2/modeling_esmfold2.py#L45)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/esmfold2/modeling_esmfold2.py#L45)
 
 **Parameters:**
 
@@ -430,4 +431,4 @@ default to `None`), which would turn a missing tensor from a constructor error i
 surfacing deep in the atom encoder.
 
 ### Gemma3n
-https://huggingface.co/docs/transformers/v5.17.0/model_doc/gemma3n.md
+https://huggingface.co/docs/transformers/v5.19.0/model_doc/gemma3n.md

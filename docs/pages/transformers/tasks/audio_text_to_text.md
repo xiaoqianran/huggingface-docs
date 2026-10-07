@@ -149,7 +149,7 @@ Instantiate the data collator:
 ## Train
 
 > [!TIP]
-> If you aren't familiar with fine-tuning a model with the [Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training)!
+> If you aren't familiar with fine-tuning a model with the [Trainer](/docs/transformers/v5.19.0/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training)!
 
 Load the Audio Flamingo model. We use `bfloat16` precision and `device_map="auto"` for efficient memory usage:
 
@@ -198,7 +198,7 @@ trainable params: 44,302,336 || all params: 8,311,517,696 || trainable%: 0.5330
 
 ### Setup training
 
-Define training hyperparameters in [TrainingArguments](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments). Note that we use `max_steps` instead of epochs since we're using a streaming dataset:
+Define training hyperparameters in [TrainingArguments](/docs/transformers/v5.19.0/en/main_classes/trainer#transformers.TrainingArguments). Note that we use `max_steps` instead of epochs since we're using a streaming dataset:
 
 ```py
 >>> from transformers import TrainingArguments, Trainer
@@ -224,7 +224,7 @@ Define training hyperparameters in [TrainingArguments](/docs/transformers/v5.17.
 ... )
 ```
 
-Pass the training arguments to [Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer) along with the model, datasets, and data collator:
+Pass the training arguments to [Trainer](/docs/transformers/v5.19.0/en/main_classes/trainer#transformers.Trainer) along with the model, datasets, and data collator:
 
 ```py
 >>> trainer = Trainer(
@@ -316,7 +316,7 @@ Generate a response:
 
 ## Pipeline
 
-For quick inference, use the [Pipeline](/docs/transformers/v5.17.0/en/main_classes/pipelines#transformers.Pipeline) API with an `any-to-any` model. The example below uses [Voxtral](https://huggingface.co/mistralai/Voxtral-Mini-3B-2507), which accepts audio and text inputs and generates text. See the [any-to-any task guide](./any_to_any) for more examples.
+For quick inference, use the [Pipeline](/docs/transformers/v5.19.0/en/main_classes/pipelines#transformers.Pipeline) API with an `any-to-any` model. The example below uses [Voxtral](https://huggingface.co/mistralai/Voxtral-Mini-3B-2507), which accepts audio and text inputs and generates text. See the [any-to-any task guide](./any_to_any) for more examples.
 
 ```python
 from transformers import pipeline
@@ -347,4 +347,4 @@ print(outputs[0]["generated_text"])
 - [Audio Flamingo 3 model card](https://huggingface.co/nvidia/audio-flamingo-3-hf) for model-specific details and capabilities.
 
 ### Keypoint Detection
-https://huggingface.co/docs/transformers/v5.17.0/tasks/keypoint_detection.md
+https://huggingface.co/docs/transformers/v5.19.0/tasks/keypoint_detection.md

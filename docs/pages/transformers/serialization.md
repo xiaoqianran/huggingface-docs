@@ -95,4 +95,4 @@ tokenizer.save_pretrained("onnx/")
 ```
 
 ### Feature extractors
-https://huggingface.co/docs/transformers/v5.17.0/feature_extractors.md
+https://huggingface.co/docs/transformers/v5.19.0/feature_extractors.md

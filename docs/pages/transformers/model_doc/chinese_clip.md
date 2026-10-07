@@ -24,7 +24,7 @@ from transformers import ChineseCLIPModel, ChineseCLIPProcessor
 model = ChineseCLIPModel.from_pretrained("OFA-Sys/chinese-clip-vit-base-patch16", device_map="auto")
 processor = ChineseCLIPProcessor.from_pretrained("OFA-Sys/chinese-clip-vit-base-patch16")
 
-url = "https://clip-cn-beijing.oss-cn-beijing.aliyuncs.com/pokemon.jpeg"
+url = "https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/pokemon.jpeg"
 image = Image.open(requests.get(url, stream=True).raw)
 # Squirtle, Bulbasaur, Charmander, Pikachu in English
 texts = ["杰尼龟", "妙蛙种子", "小火龙", "皮卡丘"]
@@ -58,10 +58,10 @@ Currently, following scales of pretrained Chinese-CLIP models are available on �
 #### transformers.ChineseCLIPConfig[[transformers.ChineseCLIPConfig]]
 
 ```python
-transformers.ChineseCLIPConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: dict | transformers.models.chinese_clip.configuration_chinese_clip.ChineseCLIPTextConfig | None = None, vision_config: dict | transformers.models.chinese_clip.configuration_chinese_clip.ChineseCLIPVisionConfig | None = None, projection_dim: int | None = 512, logit_scale_init_value: float | int | None = 2.6592, initializer_factor: float | None = 1.0, initializer_range: float = 0.02)
+transformers.ChineseCLIPConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, text_config: dict | transformers.models.chinese_clip.configuration_chinese_clip.ChineseCLIPTextConfig | None = None, vision_config: dict | transformers.models.chinese_clip.configuration_chinese_clip.ChineseCLIPVisionConfig | None = None, projection_dim: int | None = 512, logit_scale_init_value: float | int | None = 2.6592, initializer_factor: float | None = 1.0, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/chinese_clip/configuration_chinese_clip.py#L126)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/chinese_clip/configuration_chinese_clip.py#L126)
 
 **Parameters:**
 
@@ -81,8 +81,8 @@ This is the configuration class to store the configuration of a ChineseCLIPModel
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [OFA-Sys/chinese-clip-vit-base-patch16](https://huggingface.co/OFA-Sys/chinese-clip-vit-base-patch16)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -112,10 +112,10 @@ Example:
 #### transformers.ChineseCLIPTextConfig[[transformers.ChineseCLIPTextConfig]]
 
 ```python
-transformers.ChineseCLIPTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 30522, hidden_size: int = 768, intermediate_size: int = 3072, num_hidden_layers: int = 12, num_attention_heads: int = 12, max_position_embeddings: int = 512, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-12, initializer_range: float = 0.02, initializer_factor: float | None = 1.0, pad_token_id: int | None = 0, bos_token_id: int | None = 0, eos_token_id: int | None = None, hidden_dropout_prob: float | int = 0.1, attention_probs_dropout_prob: float | int = 0.1, type_vocab_size: int = 2)
+transformers.ChineseCLIPTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 30522, hidden_size: int = 768, intermediate_size: int = 3072, num_hidden_layers: int = 12, num_attention_heads: int = 12, max_position_embeddings: int = 512, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-12, initializer_range: float = 0.02, initializer_factor: float | None = 1.0, pad_token_id: int | None = 0, bos_token_id: int | None = 0, eos_token_id: int | None = None, hidden_dropout_prob: float | int = 0.1, attention_probs_dropout_prob: float | int = 0.1, type_vocab_size: int = 2)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/chinese_clip/configuration_chinese_clip.py#L31)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/chinese_clip/configuration_chinese_clip.py#L31)
 
 **Parameters:**
 
@@ -149,14 +149,14 @@ hidden_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.1`) : The d
 
 attention_probs_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.1`) : The dropout ratio for the attention probabilities.
 
-type_vocab_size (`int`, *optional*, defaults to 2) : The vocabulary size of the `token_type_ids` passed when calling [ChineseCLIPModel](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPModel).
+type_vocab_size (`int`, *optional*, defaults to 2) : The vocabulary size of the `token_type_ids` passed when calling [ChineseCLIPModel](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPModel).
 
 This is the configuration class to store the configuration of a ChineseCLIPModel. It is used to instantiate a Chinese Clip
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [OFA-Sys/chinese-clip-vit-base-patch16](https://huggingface.co/OFA-Sys/chinese-clip-vit-base-patch16)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -178,10 +178,10 @@ Example:
 #### transformers.ChineseCLIPVisionConfig[[transformers.ChineseCLIPVisionConfig]]
 
 ```python
-transformers.ChineseCLIPVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, intermediate_size: int = 3072, projection_dim: int = 512, num_hidden_layers: int = 12, num_attention_heads: int = 12, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] | None = 224, patch_size: int | list[int] | tuple[int, int] | None = 32, hidden_act: str = 'quick_gelu', layer_norm_eps: float = 1e-05, attention_dropout: int | float | None = 0.0, initializer_range: float = 0.02, initializer_factor: float = 1.0)
+transformers.ChineseCLIPVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 768, intermediate_size: int = 3072, projection_dim: int = 512, num_hidden_layers: int = 12, num_attention_heads: int = 12, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] | None = 224, patch_size: int | list[int] | tuple[int, int] | None = 32, hidden_act: str = 'quick_gelu', layer_norm_eps: float = 1e-05, attention_dropout: int | float | None = 0.0, initializer_range: float = 0.02, initializer_factor: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/chinese_clip/configuration_chinese_clip.py#L82)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/chinese_clip/configuration_chinese_clip.py#L82)
 
 **Parameters:**
 
@@ -215,8 +215,8 @@ This is the configuration class to store the configuration of a ChineseCLIPModel
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [OFA-Sys/chinese-clip-vit-base-patch16](https://huggingface.co/OFA-Sys/chinese-clip-vit-base-patch16)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 ```python
@@ -240,7 +240,7 @@ Example:
 transformers.ChineseCLIPImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/chinese_clip/image_processing_chinese_clip.py#L22)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/chinese_clip/image_processing_chinese_clip.py#L22)
 
 **Parameters:**
 
@@ -339,14 +339,16 @@ Added for backward compatibility but this should be set as a processor attribute
 #### preprocess[[transformers.ChineseCLIPImageProcessor.preprocess]]
 
 ```python
-preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
+preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, image_like_kwargs: dict[str, typing.Any] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
 images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+image_like_kwargs (`dict[str, Any]`, *optional*) : Developer flag for additional image like inputs that will also be preprocessed. Only use this if passing the inputs as kwarg doesn't work. For example, `preprocess(images, masks=masks)` is the preferred option but results in argument priority issues for some models. In those cases `preprocess(images, image_like_inputs={"masks": masks})` can be used instead.
 
 do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
 
@@ -394,6 +396,8 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 - **tensor_type** (`Union[None, str, TensorType]`, *optional*) -- You can give a tensor_type here to convert the lists of integers in PyTorch/Numpy Tensors at
   initialization.
 
+Preprocess an image or a batch of images.
+
 ## ChineseCLIPImageProcessorPil[[transformers.ChineseCLIPImageProcessorPil]]
 
 #### transformers.ChineseCLIPImageProcessorPil[[transformers.ChineseCLIPImageProcessorPil]]
@@ -402,7 +406,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.ChineseCLIPImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/chinese_clip/image_processing_pil_chinese_clip.py#L22)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/chinese_clip/image_processing_pil_chinese_clip.py#L22)
 
 **Parameters:**
 
@@ -481,14 +485,16 @@ Added for backward compatibility but this should be set as a processor attribute
 #### preprocess[[transformers.ChineseCLIPImageProcessorPil.preprocess]]
 
 ```python
-preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
+preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, image_like_kwargs: dict[str, typing.Any] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
 images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+image_like_kwargs (`dict[str, Any]`, *optional*) : Developer flag for additional image like inputs that will also be preprocessed. Only use this if passing the inputs as kwarg doesn't work. For example, `preprocess(images, masks=masks)` is the preferred option but results in argument priority issues for some models. In those cases `preprocess(images, image_like_inputs={"masks": masks})` can be used instead.
 
 do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
 
@@ -536,6 +542,8 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 - **tensor_type** (`Union[None, str, TensorType]`, *optional*) -- You can give a tensor_type here to convert the lists of integers in PyTorch/Numpy Tensors at
   initialization.
 
+Preprocess an image or a batch of images.
+
 ## ChineseCLIPProcessor[[transformers.ChineseCLIPProcessor]]
 
 #### transformers.ChineseCLIPProcessor[[transformers.ChineseCLIPProcessor]]
@@ -544,7 +552,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.ChineseCLIPProcessor(image_processor = None, tokenizer = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/chinese_clip/processing_chinese_clip.py#L23)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/chinese_clip/processing_chinese_clip.py#L23)
 
 **Parameters:**
 
@@ -554,8 +562,8 @@ tokenizer (`BertTokenizer`) : The tokenizer is a required input.
 
 Constructs a ChineseCLIPProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[ChineseCLIPProcessor](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPProcessor) offers all the functionalities of [ChineseCLIPImageProcessor](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPImageProcessor) and [BertTokenizer](/docs/transformers/v5.17.0/en/model_doc/layoutlm#transformers.BertTokenizer). See the
-[~ChineseCLIPImageProcessor](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPImageProcessor) and [~BertTokenizer](/docs/transformers/v5.17.0/en/model_doc/layoutlm#transformers.BertTokenizer) for more information.
+[ChineseCLIPProcessor](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPProcessor) offers all the functionalities of [ChineseCLIPImageProcessor](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPImageProcessor) and [BertTokenizer](/docs/transformers/v5.19.0/en/model_doc/layoutlm#transformers.BertTokenizer). See the
+[~ChineseCLIPImageProcessor](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPImageProcessor) and [~BertTokenizer](/docs/transformers/v5.19.0/en/model_doc/layoutlm#transformers.BertTokenizer) for more information.
 
 #### __call__[[transformers.ChineseCLIPProcessor.__call__]]
 
@@ -563,7 +571,7 @@ Constructs a ChineseCLIPProcessor which wraps a image processor and a tokenizer 
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/processing_utils.py#L656)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/processing_utils.py#L657)
 
 **Parameters:**
 
@@ -575,9 +583,9 @@ videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.nd
 
 audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.17.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.19.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.17.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.19.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ## ChineseCLIPModel[[transformers.ChineseCLIPModel]]
 
@@ -587,15 +595,15 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.17.0/en/internal/fil
 transformers.ChineseCLIPModel(config: ChineseCLIPConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/chinese_clip/modeling_chinese_clip.py#L814)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/chinese_clip/modeling_chinese_clip.py#L814)
 
 **Parameters:**
 
-config ([ChineseCLIPConfig](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ChineseCLIPConfig](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Chinese Clip Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -609,13 +617,13 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, return_loss: bool | None = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/chinese_clip/modeling_chinese_clip.py#L910)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/chinese_clip/modeling_chinese_clip.py#L910)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ChineseCLIPImageProcessor](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPImageProcessor). See `ChineseCLIPImageProcessor.__call__()` for details ([ChineseCLIPProcessor](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPProcessor) uses [ChineseCLIPImageProcessor](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ChineseCLIPImageProcessor](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPImageProcessor). See `ChineseCLIPImageProcessor.__call__()` for details ([ChineseCLIPProcessor](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPProcessor) uses [ChineseCLIPImageProcessor](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPImageProcessor) for processing images).
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -631,9 +639,9 @@ interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to 
 
 A `ChineseCLIPOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ChineseCLIPConfig](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPConfig)) and inputs.
+elements depending on the configuration ([ChineseCLIPConfig](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPConfig)) and inputs.
 
-The [ChineseCLIPModel](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPModel) forward method, overrides the `__call__` special method.
+The [ChineseCLIPModel](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -644,10 +652,10 @@ the latter silently ignores them.
   similarity scores.
 - **logits_per_text** (`torch.FloatTensor` of shape `(text_batch_size, image_batch_size)`) -- The scaled dot product scores between `text_embeds` and `image_embeds`. This represents the text-image
   similarity scores.
-- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [ChineseCLIPTextModel](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPTextModel).
-- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The image embeddings obtained by applying the projection layer to the pooled output of [ChineseCLIPVisionModel](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPVisionModel).
-- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [ChineseCLIPTextModel](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPTextModel).
-- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [ChineseCLIPVisionModel](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPVisionModel).
+- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [ChineseCLIPTextModel](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPTextModel).
+- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The image embeddings obtained by applying the projection layer to the pooled output of [ChineseCLIPVisionModel](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPVisionModel).
+- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [ChineseCLIPTextModel](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPTextModel).
+- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [ChineseCLIPVisionModel](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPVisionModel).
 
 Examples:
 
@@ -659,7 +667,7 @@ Examples:
 >>> model = ChineseCLIPModel.from_pretrained("OFA-Sys/chinese-clip-vit-base-patch16")
 >>> processor = AutoProcessor.from_pretrained("OFA-Sys/chinese-clip-vit-base-patch16")
 
->>> url = "https://clip-cn-beijing.oss-cn-beijing.aliyuncs.com/pokemon.jpeg"
+>>> url = "https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/pokemon.jpeg"
 >>> image = load_image(url)
 
 >>> inputs = processor(text=["杰尼龟", "妙蛙种子", "小火龙", "皮卡丘"], images=image, return_tensors="pt", padding=True)
@@ -676,11 +684,11 @@ Examples:
 get_text_features(input_ids: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/chinese_clip/modeling_chinese_clip.py#L834)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/chinese_clip/modeling_chinese_clip.py#L834)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -688,11 +696,11 @@ token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ChineseCLIPConfig](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPConfig)) and inputs.
+elements depending on the configuration ([ChineseCLIPConfig](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -730,19 +738,19 @@ Examples:
 get_image_features(pixel_values: FloatTensor, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/chinese_clip/modeling_chinese_clip.py#L871)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/chinese_clip/modeling_chinese_clip.py#L871)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [ChineseCLIPImageProcessor](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPImageProcessor). See `ChineseCLIPImageProcessor.__call__()` for details ([ChineseCLIPProcessor](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPProcessor) uses [ChineseCLIPImageProcessor](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [ChineseCLIPImageProcessor](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPImageProcessor). See `ChineseCLIPImageProcessor.__call__()` for details ([ChineseCLIPProcessor](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPProcessor) uses [ChineseCLIPImageProcessor](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPImageProcessor) for processing images).
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ChineseCLIPConfig](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPConfig)) and inputs.
+elements depending on the configuration ([ChineseCLIPConfig](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -769,7 +777,7 @@ Examples:
 >>> model = ChineseCLIPModel.from_pretrained("OFA-Sys/chinese-clip-vit-base-patch16")
 >>> processor = AutoProcessor.from_pretrained("OFA-Sys/chinese-clip-vit-base-patch16")
 
->>> url = "https://clip-cn-beijing.oss-cn-beijing.aliyuncs.com/pokemon.jpeg"
+>>> url = "https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/pokemon.jpeg"
 >>> image = load_image(url)
 
 >>> inputs = processor(images=image, return_tensors="pt")
@@ -787,17 +795,17 @@ Examples:
 transformers.ChineseCLIPTextModel(config, add_pooling_layer = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/chinese_clip/modeling_chinese_clip.py#L710)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/chinese_clip/modeling_chinese_clip.py#L710)
 
 **Parameters:**
 
-config ([ChineseCLIPTextModel](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPTextModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ChineseCLIPTextModel](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPTextModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
 The text model from CHINESE_CLIP without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -811,11 +819,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/chinese_clip/modeling_chinese_clip.py#L733)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/chinese_clip/modeling_chinese_clip.py#L733)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -825,13 +833,13 @@ position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ChineseCLIPConfig](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPConfig)) and inputs.
+elements depending on the configuration ([ChineseCLIPConfig](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPConfig)) and inputs.
 
-The [ChineseCLIPTextModel](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPTextModel) forward method, overrides the `__call__` special method.
+The [ChineseCLIPTextModel](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -875,15 +883,15 @@ Examples:
 transformers.ChineseCLIPVisionModel(config: ChineseCLIPVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/chinese_clip/modeling_chinese_clip.py#L639)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/chinese_clip/modeling_chinese_clip.py#L639)
 
 **Parameters:**
 
-config ([ChineseCLIPVisionConfig](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ChineseCLIPVisionConfig](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The vision model from CHINESE_CLIP without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -897,21 +905,21 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, interpolate_pos_encoding: bool | None = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/chinese_clip/modeling_chinese_clip.py#L655)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/chinese_clip/modeling_chinese_clip.py#L655)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ChineseCLIPImageProcessor](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPImageProcessor). See `ChineseCLIPImageProcessor.__call__()` for details ([ChineseCLIPProcessor](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPProcessor) uses [ChineseCLIPImageProcessor](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ChineseCLIPImageProcessor](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPImageProcessor). See `ChineseCLIPImageProcessor.__call__()` for details ([ChineseCLIPProcessor](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPProcessor) uses [ChineseCLIPImageProcessor](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPImageProcessor) for processing images).
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ChineseCLIPConfig](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPConfig)) and inputs.
+elements depending on the configuration ([ChineseCLIPConfig](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPConfig)) and inputs.
 
-The [ChineseCLIPVisionModel](/docs/transformers/v5.17.0/en/model_doc/chinese_clip#transformers.ChineseCLIPVisionModel) forward method, overrides the `__call__` special method.
+The [ChineseCLIPVisionModel](/docs/transformers/v5.19.0/en/model_doc/chinese_clip#transformers.ChineseCLIPVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -935,7 +943,7 @@ the latter silently ignores them.
 Examples:
 
 ```python
->>> import httpx
+>>> from huggingface_hub.utils import httpx
 >>> from io import BytesIO
 >>> from PIL import Image
 >>> from transformers import CLIPProcessor, ChineseCLIPVisionModel
@@ -943,7 +951,7 @@ Examples:
 >>> model = ChineseCLIPVisionModel.from_pretrained("OFA-Sys/chinese-clip-vit-base-patch16")
 >>> processor = CLIPProcessor.from_pretrained("OFA-Sys/chinese-clip-vit-base-patch16")
 
->>> url = "https://clip-cn-beijing.oss-cn-beijing.aliyuncs.com/pokemon.jpeg"
+>>> url = "https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/pokemon.jpeg"
 >>> with httpx.stream("GET", url) as response:
 ...     image = Image.open(BytesIO(response.read()))
 
@@ -955,4 +963,4 @@ Examples:
 ```
 
 ### WavLM
-https://huggingface.co/docs/transformers/v5.17.0/model_doc/wavlm.md
+https://huggingface.co/docs/transformers/v5.19.0/model_doc/wavlm.md

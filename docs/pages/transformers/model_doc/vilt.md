@@ -29,11 +29,11 @@ This model was contributed by [nielsr](https://huggingface.co/nielsr). The origi
 
 - The quickest way to get started with ViLT is by checking the [example notebooks](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/ViLT)
   (which showcase both inference and fine-tuning on custom data).
-- ViLT is a model that takes both `pixel_values` and `input_ids` as input. One can use [ViltProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltProcessor) to prepare data for the model.
+- ViLT is a model that takes both `pixel_values` and `input_ids` as input. One can use [ViltProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltProcessor) to prepare data for the model.
   This processor wraps a image processor (for the image modality) and a tokenizer (for the language modality) into one.
 - ViLT is trained with images of various sizes: the authors resize the shorter edge of input images to 384 and limit the longer edge to
   under 640 while preserving the aspect ratio. To make batching of images possible, the authors use a `pixel_mask` that indicates
-  which pixel values are real and which are padding. [ViltProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltProcessor) automatically creates this for you.
+  which pixel values are real and which are padding. [ViltProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltProcessor) automatically creates this for you.
 - The design of ViLT is very similar to that of a standard Vision Transformer (ViT). The only difference is that the model includes
   additional embedding layers for the language modality.
 
@@ -42,10 +42,10 @@ This model was contributed by [nielsr](https://huggingface.co/nielsr). The origi
 #### transformers.ViltConfig[[transformers.ViltConfig]]
 
 ```python
-transformers.ViltConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 30522, type_vocab_size: int = 2, modality_type_vocab_size: int = 2, max_position_embeddings: int = 40, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, image_size: int | list[int] | tuple[int, int] = 384, patch_size: int | list[int] | tuple[int, int] = 32, num_channels: int = 3, qkv_bias: bool = True, max_image_length: int = -1, tie_word_embeddings: bool = True, num_images: int = -1, pad_token_id: int | None = None)
+transformers.ViltConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 30522, type_vocab_size: int = 2, modality_type_vocab_size: int = 2, max_position_embeddings: int = 40, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, image_size: int | list[int] | tuple[int, int] = 384, patch_size: int | list[int] | tuple[int, int] = 32, num_channels: int = 3, qkv_bias: bool = True, max_image_length: int = -1, tie_word_embeddings: bool = True, num_images: int = -1, pad_token_id: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vilt/configuration_vilt.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vilt/configuration_vilt.py#L24)
 
 **Parameters:**
 
@@ -53,7 +53,7 @@ vocab_size (`int`, *optional*, defaults to `30522`) : Vocabulary size of the mod
 
 type_vocab_size (`int`, *optional*, defaults to `2`) : The vocabulary size of the `token_type_ids`.
 
-modality_type_vocab_size (`int`, *optional*, defaults to 2) : The vocabulary size of the modalities passed when calling [ViltModel](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltModel). This is used after concatenating the embeddings of the text and image modalities.
+modality_type_vocab_size (`int`, *optional*, defaults to 2) : The vocabulary size of the modalities passed when calling [ViltModel](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltModel). This is used after concatenating the embeddings of the text and image modalities.
 
 max_position_embeddings (`int`, *optional*, defaults to `40`) : The maximum sequence length that this model might ever be used with.
 
@@ -87,7 +87,7 @@ max_image_length (`int`, *optional*, defaults to -1) : The maximum number of pat
 
 tie_word_embeddings (`bool`, *optional*, defaults to `True`) : Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
 
-num_images (`int`, *optional*, defaults to -1) : The number of images to use for natural language visual reasoning. If set to a positive integer, will be used by [ViltForImagesAndTextClassification](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltForImagesAndTextClassification) for defining the classifier head.
+num_images (`int`, *optional*, defaults to -1) : The number of images to use for natural language visual reasoning. If set to a positive integer, will be used by [ViltForImagesAndTextClassification](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltForImagesAndTextClassification) for defining the classifier head.
 
 pad_token_id (`int`, *optional*) : Token id used for padding in the vocabulary.
 
@@ -95,8 +95,8 @@ This is the configuration class to store the configuration of a ViltModel. It is
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [dandelin/vilt-b32-mlm](https://huggingface.co/dandelin/vilt-b32-mlm)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -121,7 +121,7 @@ Example:
 transformers.ViltImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vilt/image_processing_vilt.py#L52)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vilt/image_processing_vilt.py#L52)
 
 **Parameters:**
 
@@ -196,14 +196,16 @@ Added for backward compatibility but this should be set as a processor attribute
 #### preprocess[[transformers.ViltImageProcessor.preprocess]]
 
 ```python
-preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
+preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, image_like_kwargs: dict[str, typing.Any] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
 images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+image_like_kwargs (`dict[str, Any]`, *optional*) : Developer flag for additional image like inputs that will also be preprocessed. Only use this if passing the inputs as kwarg doesn't work. For example, `preprocess(images, masks=masks)` is the preferred option but results in argument priority issues for some models. In those cases `preprocess(images, image_like_inputs={"masks": masks})` can be used instead.
 
 do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
 
@@ -251,6 +253,8 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 - **tensor_type** (`Union[None, str, TensorType]`, *optional*) -- You can give a tensor_type here to convert the lists of integers in PyTorch/Numpy Tensors at
   initialization.
 
+Preprocess an image or a batch of images.
+
 ## ViltImageProcessorPil[[transformers.ViltImageProcessorPil]]
 
 #### transformers.ViltImageProcessorPil[[transformers.ViltImageProcessorPil]]
@@ -259,7 +263,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.ViltImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vilt/image_processing_pil_vilt.py#L113)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vilt/image_processing_pil_vilt.py#L113)
 
 **Parameters:**
 
@@ -322,14 +326,16 @@ Added for backward compatibility but this should be set as a processor attribute
 #### preprocess[[transformers.ViltImageProcessorPil.preprocess]]
 
 ```python
-preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
+preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, image_like_kwargs: dict[str, typing.Any] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
 images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+image_like_kwargs (`dict[str, Any]`, *optional*) : Developer flag for additional image like inputs that will also be preprocessed. Only use this if passing the inputs as kwarg doesn't work. For example, `preprocess(images, masks=masks)` is the preferred option but results in argument priority issues for some models. In those cases `preprocess(images, image_like_inputs={"masks": masks})` can be used instead.
 
 do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
 
@@ -377,6 +383,8 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 - **tensor_type** (`Union[None, str, TensorType]`, *optional*) -- You can give a tensor_type here to convert the lists of integers in PyTorch/Numpy Tensors at
   initialization.
 
+Preprocess an image or a batch of images.
+
 ## ViltProcessor[[transformers.ViltProcessor]]
 
 #### transformers.ViltProcessor[[transformers.ViltProcessor]]
@@ -385,7 +393,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.ViltProcessor(image_processor = None, tokenizer = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vilt/processing_vilt.py#L38)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vilt/processing_vilt.py#L38)
 
 **Parameters:**
 
@@ -395,8 +403,8 @@ tokenizer (`BertTokenizer`) : The tokenizer is a required input.
 
 Constructs a ViltProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[ViltProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltProcessor) offers all the functionalities of [ViltImageProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltImageProcessor) and [BertTokenizer](/docs/transformers/v5.17.0/en/model_doc/layoutlm#transformers.BertTokenizer). See the
-[~ViltImageProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltImageProcessor) and [~BertTokenizer](/docs/transformers/v5.17.0/en/model_doc/layoutlm#transformers.BertTokenizer) for more information.
+[ViltProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltProcessor) offers all the functionalities of [ViltImageProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltImageProcessor) and [BertTokenizer](/docs/transformers/v5.19.0/en/model_doc/layoutlm#transformers.BertTokenizer). See the
+[~ViltImageProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltImageProcessor) and [~BertTokenizer](/docs/transformers/v5.19.0/en/model_doc/layoutlm#transformers.BertTokenizer) for more information.
 
 #### __call__[[transformers.ViltProcessor.__call__]]
 
@@ -404,7 +412,7 @@ Constructs a ViltProcessor which wraps a image processor and a tokenizer into a 
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/processing_utils.py#L656)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/processing_utils.py#L657)
 
 **Parameters:**
 
@@ -416,9 +424,9 @@ videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.nd
 
 audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.17.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.19.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.17.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.19.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ## ViltModel[[transformers.ViltModel]]
 
@@ -428,17 +436,17 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.17.0/en/internal/fil
 transformers.ViltModel(config, add_pooling_layer = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vilt/modeling_vilt.py#L511)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vilt/modeling_vilt.py#L511)
 
 **Parameters:**
 
-config ([ViltModel](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ViltModel](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
 The bare Vilt Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -452,17 +460,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_mask: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, image_embeds: typing.Optional[torch.FloatTensor] = None, image_token_type_idx: int | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vilt/modeling_vilt.py#L535)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vilt/modeling_vilt.py#L535)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViltImageProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltImageProcessor). See `ViltImageProcessor.__call__()` for details ([ViltProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltProcessor) uses [ViltImageProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViltImageProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltImageProcessor). See `ViltImageProcessor.__call__()` for details ([ViltProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltProcessor) uses [ViltImageProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltImageProcessor) for processing images).
 
 pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
 
@@ -476,15 +484,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ViltConfig](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltConfig)) and inputs.
+elements depending on the configuration ([ViltConfig](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltConfig)) and inputs.
 
-The [ViltModel](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltModel) forward method, overrides the `__call__` special method.
+The [ViltModel](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -510,7 +518,7 @@ Examples:
 ```python
 >>> from transformers import ViltProcessor, ViltModel
 >>> from PIL import Image
->>> import httpx
+>>> from huggingface_hub.utils import httpx
 >>> from io import BytesIO
 
 >>> # prepare image and text
@@ -535,15 +543,15 @@ Examples:
 transformers.ViltForMaskedLM(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vilt/modeling_vilt.py#L671)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vilt/modeling_vilt.py#L671)
 
 **Parameters:**
 
-config ([ViltForMaskedLM](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltForMaskedLM)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ViltForMaskedLM](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltForMaskedLM)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 ViLT Model with a language modeling head on top as done during pretraining.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -557,17 +565,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_mask: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, image_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vilt/modeling_vilt.py#L692)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vilt/modeling_vilt.py#L692)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViltImageProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltImageProcessor). See `ViltImageProcessor.__call__()` for details ([ViltProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltProcessor) uses [ViltImageProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViltImageProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltImageProcessor). See `ViltImageProcessor.__call__()` for details ([ViltProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltProcessor) uses [ViltImageProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltImageProcessor) for processing images).
 
 pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
 
@@ -575,21 +583,21 @@ inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidde
 
 image_embeds (`torch.FloatTensor` of shape `(batch_size, num_patches, hidden_size)`, *optional*) : Optionally, instead of passing `pixel_values`, you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `pixel_values` into patch embeddings.
 
-labels (`*torch.LongTensor*` of shape *(batch_size, sequence_length)*, *optional*) : Labels for computing the masked language modeling loss. Indices should be in *[-100, 0, ..., config.vocab_size]* (see *input_ids* docstring) Tokens with indices set to *-100* are ignored (masked), the loss is only computed for the tokens with labels in *[0, ..., config.vocab_size]*
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should be in `[-100, 0, ..., config.vocab_size]` (see `input_ids` docstring) Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
 
 output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [MaskedLMOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [MaskedLMOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or `tuple(torch.FloatTensor)`
 
-A [MaskedLMOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or a tuple of
+A [MaskedLMOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ViltConfig](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltConfig)) and inputs.
+elements depending on the configuration ([ViltConfig](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltConfig)) and inputs.
 
-The [ViltForMaskedLM](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltForMaskedLM) forward method, overrides the `__call__` special method.
+The [ViltForMaskedLM](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltForMaskedLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -611,7 +619,7 @@ Examples:
 
 ```python
 >>> from transformers import ViltProcessor, ViltForMaskedLM
->>> import httpx
+>>> from huggingface_hub.utils import httpx
 >>> from io import BytesIO
 >>> from PIL import Image
 >>> import re
@@ -666,16 +674,16 @@ a bunch of cats laying on a couch.
 transformers.ViltForQuestionAnswering(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vilt/modeling_vilt.py#L844)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vilt/modeling_vilt.py#L840)
 
 **Parameters:**
 
-config ([ViltForQuestionAnswering](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ViltForQuestionAnswering](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Vilt Model transformer with a classifier head on top (a linear layer on top of the final hidden state of the [CLS]
 token) for visual question answering, e.g. for VQAv2.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -689,17 +697,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_mask: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, image_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vilt/modeling_vilt.py#L862)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vilt/modeling_vilt.py#L858)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViltImageProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltImageProcessor). See `ViltImageProcessor.__call__()` for details ([ViltProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltProcessor) uses [ViltImageProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViltImageProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltImageProcessor). See `ViltImageProcessor.__call__()` for details ([ViltProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltProcessor) uses [ViltImageProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltImageProcessor) for processing images).
 
 pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
 
@@ -713,15 +721,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [SequenceClassifierOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
+A [SequenceClassifierOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ViltConfig](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltConfig)) and inputs.
+elements depending on the configuration ([ViltConfig](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltConfig)) and inputs.
 
-The [ViltForQuestionAnswering](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltForQuestionAnswering) forward method, overrides the `__call__` special method.
+The [ViltForQuestionAnswering](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltForQuestionAnswering) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -743,7 +751,7 @@ Examples:
 
 ```python
 >>> from transformers import ViltProcessor, ViltForQuestionAnswering
->>> import httpx
+>>> from huggingface_hub.utils import httpx
 >>> from io import BytesIO
 >>> from PIL import Image
 
@@ -774,15 +782,15 @@ Predicted answer: 2
 transformers.ViltForImagesAndTextClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vilt/modeling_vilt.py#L1056)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vilt/modeling_vilt.py#L1052)
 
 **Parameters:**
 
-config ([ViltForImagesAndTextClassification](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltForImagesAndTextClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ViltForImagesAndTextClassification](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltForImagesAndTextClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Vilt Model transformer with a classifier head on top for natural language visual reasoning, e.g. NLVR2.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -796,17 +804,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_mask: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, image_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vilt/modeling_vilt.py#L1075)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vilt/modeling_vilt.py#L1071)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViltImageProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltImageProcessor). See `ViltImageProcessor.__call__()` for details ([ViltProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltProcessor) uses [ViltImageProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViltImageProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltImageProcessor). See `ViltImageProcessor.__call__()` for details ([ViltProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltProcessor) uses [ViltImageProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltImageProcessor) for processing images).
 
 pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
 
@@ -820,15 +828,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `ViltForImagesAndTextClassificationOutput` or `tuple(torch.FloatTensor)`
 
 A `ViltForImagesAndTextClassificationOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ViltConfig](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltConfig)) and inputs.
+elements depending on the configuration ([ViltConfig](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltConfig)) and inputs.
 
-The [ViltForImagesAndTextClassification](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltForImagesAndTextClassification) forward method, overrides the `__call__` special method.
+The [ViltForImagesAndTextClassification](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltForImagesAndTextClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -849,7 +857,7 @@ Examples:
 
 ```python
 >>> from transformers import ViltProcessor, ViltForImagesAndTextClassification
->>> import httpx
+>>> from huggingface_hub.utils import httpx
 >>> from io import BytesIO
 >>> from PIL import Image
 
@@ -885,16 +893,16 @@ Predicted answer: True
 transformers.ViltForImageAndTextRetrieval(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vilt/modeling_vilt.py#L957)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vilt/modeling_vilt.py#L953)
 
 **Parameters:**
 
-config ([ViltForImageAndTextRetrieval](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltForImageAndTextRetrieval)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ViltForImageAndTextRetrieval](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltForImageAndTextRetrieval)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Vilt Model transformer with a classifier head on top (a linear layer on top of the final hidden state of the [CLS]
 token) for image-to-text or text-to-image retrieval, e.g. MSCOCO and F30K.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -908,17 +916,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_mask: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, image_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vilt/modeling_vilt.py#L969)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vilt/modeling_vilt.py#L965)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViltImageProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltImageProcessor). See `ViltImageProcessor.__call__()` for details ([ViltProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltProcessor) uses [ViltImageProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViltImageProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltImageProcessor). See `ViltImageProcessor.__call__()` for details ([ViltProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltProcessor) uses [ViltImageProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltImageProcessor) for processing images).
 
 pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
 
@@ -932,15 +940,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [SequenceClassifierOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
+A [SequenceClassifierOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ViltConfig](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltConfig)) and inputs.
+elements depending on the configuration ([ViltConfig](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltConfig)) and inputs.
 
-The [ViltForImageAndTextRetrieval](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltForImageAndTextRetrieval) forward method, overrides the `__call__` special method.
+The [ViltForImageAndTextRetrieval](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltForImageAndTextRetrieval) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -962,7 +970,7 @@ Examples:
 
 ```python
 >>> from transformers import ViltProcessor, ViltForImageAndTextRetrieval
->>> import httpx
+>>> from huggingface_hub.utils import httpx
 >>> from io import BytesIO
 >>> from PIL import Image
 
@@ -991,16 +999,16 @@ Examples:
 transformers.ViltForTokenClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vilt/modeling_vilt.py#L1198)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vilt/modeling_vilt.py#L1194)
 
 **Parameters:**
 
-config ([ViltForTokenClassification](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltForTokenClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ViltForTokenClassification](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltForTokenClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Vilt transformer with a token classification head on top (a linear layer on top of the hidden-states
 output) e.g. for Named-Entity-Recognition (NER) tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1014,17 +1022,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_mask: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, image_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vilt/modeling_vilt.py#L1211)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vilt/modeling_vilt.py#L1207)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViltImageProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltImageProcessor). See `ViltImageProcessor.__call__()` for details ([ViltProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltProcessor) uses [ViltImageProcessor](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViltImageProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltImageProcessor). See `ViltImageProcessor.__call__()` for details ([ViltProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltProcessor) uses [ViltImageProcessor](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltImageProcessor) for processing images).
 
 pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
 
@@ -1038,15 +1046,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [TokenClassifierOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [TokenClassifierOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [TokenClassifierOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
+A [TokenClassifierOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ViltConfig](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltConfig)) and inputs.
+elements depending on the configuration ([ViltConfig](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltConfig)) and inputs.
 
-The [ViltForTokenClassification](/docs/transformers/v5.17.0/en/model_doc/vilt#transformers.ViltForTokenClassification) forward method, overrides the `__call__` special method.
+The [ViltForTokenClassification](/docs/transformers/v5.19.0/en/model_doc/vilt#transformers.ViltForTokenClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1096,4 +1104,4 @@ Example:
 ```
 
 ### YOLOS
-https://huggingface.co/docs/transformers/v5.17.0/model_doc/yolos.md
+https://huggingface.co/docs/transformers/v5.19.0/model_doc/yolos.md

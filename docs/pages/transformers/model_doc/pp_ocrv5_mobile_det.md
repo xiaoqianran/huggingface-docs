@@ -12,7 +12,7 @@ PP-OCRv5_mobile_det is one of the PP-OCRv5_det series, the latest generation of 
 
 ### Single input inference
 
-The example below demonstrates how to detect text with PP-OCRV5_Mobile_Det using the [Pipeline](/docs/transformers/v5.17.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModel).
+The example below demonstrates how to detect text with PP-OCRV5_Mobile_Det using the [Pipeline](/docs/transformers/v5.19.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoModel).
 
 ```python
 import requests
@@ -22,7 +22,7 @@ from transformers import pipeline
 
 image = Image.open(
     requests.get(
-        "https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/general_ocr_001.png", stream=True
+        "https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/paddle_general_ocr_001.png", stream=True
     ).raw)
 detector = pipeline(
     task="object-detection",
@@ -45,7 +45,7 @@ model_path="PaddlePaddle/PP-OCRv5_mobile_det_safetensors"
 model = AutoModelForObjectDetection.from_pretrained(model_path, device_map="auto")
 image_processor = AutoImageProcessor.from_pretrained(model_path)
 
-image = Image.open(requests.get("https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/general_ocr_001.png", stream=True).raw).convert("RGB")
+image = Image.open(requests.get("https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/paddle_general_ocr_001.png", stream=True).raw).convert("RGB")
 inputs = image_processor(images=image, return_tensors="pt").to(model.device)
 outputs = model(**inputs)
 
@@ -58,7 +58,7 @@ for result in results:
 
 ### Batched inference
 
-Here is how you can do it with PP-OCRV5_Mobile_Det using the [Pipeline](/docs/transformers/v5.17.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModel):
+Here is how you can do it with PP-OCRV5_Mobile_Det using the [Pipeline](/docs/transformers/v5.19.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoModel):
 
 ```python
 import requests
@@ -68,7 +68,7 @@ from transformers import pipeline
 
 image = Image.open(
     requests.get(
-        "https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/general_ocr_001.png", stream=True
+        "https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/paddle_general_ocr_001.png", stream=True
     ).raw)
 detector = pipeline(
     task="object-detection",
@@ -91,7 +91,7 @@ model_path="PaddlePaddle/PP-OCRv5_mobile_det_safetensors"
 model = AutoModelForObjectDetection.from_pretrained(model_path, device_map="auto")
 image_processor = AutoImageProcessor.from_pretrained(model_path)
 
-image = Image.open(requests.get("https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/general_ocr_001.png", stream=True).raw).convert("RGB")
+image = Image.open(requests.get("https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/paddle_general_ocr_001.png", stream=True).raw).convert("RGB")
 inputs = image_processor(images=[image, image], return_tensors="pt").to(model.device)
 outputs = model(**inputs)
 
@@ -110,16 +110,16 @@ for result in results:
 transformers.PPOCRV5MobileDetForObjectDetection(config: PPOCRV5MobileDetConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_ocrv5_mobile_det/modeling_pp_ocrv5_mobile_det.py#L296)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_ocrv5_mobile_det/modeling_pp_ocrv5_mobile_det.py#L296)
 
 **Parameters:**
 
-config ([PPOCRV5MobileDetConfig](/docs/transformers/v5.17.0/en/model_doc/pp_ocrv5_mobile_det#transformers.PPOCRV5MobileDetConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPOCRV5MobileDetConfig](/docs/transformers/v5.19.0/en/model_doc/pp_ocrv5_mobile_det#transformers.PPOCRV5MobileDetConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PPOCRV5 Mobile Det model for object (text) detection tasks. Wraps the core PPOCRV5MobileDetModel
 and returns outputs compatible with the Transformers object detection API.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -132,10 +132,10 @@ and behavior.
 #### transformers.PPOCRV5MobileDetConfig[[transformers.PPOCRV5MobileDetConfig]]
 
 ```python
-transformers.PPOCRV5MobileDetConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, reduction: int = 4, neck_out_channels: int = 96, interpolate_mode: str = 'nearest', kernel_list: list[int] | tuple[int, ...] = (3, 2, 2), layer_list_out_channels: list[int] | tuple[int, ...] = (12, 18, 42, 360))
+transformers.PPOCRV5MobileDetConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, reduction: int = 4, neck_out_channels: int = 96, interpolate_mode: str = 'nearest', kernel_list: list[int] | tuple[int, ...] = (3, 2, 2), layer_list_out_channels: list[int] | tuple[int, ...] = (12, 18, 42, 360))
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_ocrv5_mobile_det/configuration_pp_ocrv5_mobile_det.py#L32)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_ocrv5_mobile_det/configuration_pp_ocrv5_mobile_det.py#L32)
 
 **Parameters:**
 
@@ -155,8 +155,8 @@ This is the configuration class to store the configuration of a Pp Ocrv5 Mobile 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/PP-OCRv5_mobile_det_safetensors](https://huggingface.co/PaddlePaddle/PP-OCRv5_mobile_det_safetensors)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## PPOCRV5MobileDetModel[[transformers.PPOCRV5MobileDetModel]]
 
@@ -166,16 +166,16 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes
 transformers.PPOCRV5MobileDetModel(config: PPOCRV5MobileDetConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_ocrv5_mobile_det/modeling_pp_ocrv5_mobile_det.py#L258)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_ocrv5_mobile_det/modeling_pp_ocrv5_mobile_det.py#L258)
 
 **Parameters:**
 
-config ([PPOCRV5MobileDetConfig](/docs/transformers/v5.17.0/en/model_doc/pp_ocrv5_mobile_det#transformers.PPOCRV5MobileDetConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPOCRV5MobileDetConfig](/docs/transformers/v5.19.0/en/model_doc/pp_ocrv5_mobile_det#transformers.PPOCRV5MobileDetConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Core PP-OCRv5_mobile_det, consisting of Backbone, Neck, and Head networks.
 Generates binary text segmentation maps for text detection tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -184,4 +184,4 @@ Use it as a regular PyTorch Module and refer to the PyTorch documentation for al
 and behavior.
 
 ### ModernBERT Decoder
-https://huggingface.co/docs/transformers/v5.17.0/model_doc/modernbert-decoder.md
+https://huggingface.co/docs/transformers/v5.19.0/model_doc/modernbert-decoder.md

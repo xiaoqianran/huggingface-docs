@@ -8,9 +8,9 @@ This document will guide you through the process of using vLLM with TRL for fast
 > [!TIP]
 > The following trainers currently support generation with vLLM:
 >
-> - [GRPOTrainer](/docs/trl/v1.14.1/en/grpo_trainer#trl.GRPOTrainer)
-> - [RLOOTrainer](/docs/trl/v1.14.1/en/rloo_trainer#trl.RLOOTrainer)
-> - [experimental.online_dpo.OnlineDPOTrainer](/docs/trl/v1.14.1/en/online_dpo_trainer#trl.experimental.online_dpo.OnlineDPOTrainer)
+> - [GRPOTrainer](/docs/trl/v1.14.2/en/grpo_trainer#trl.GRPOTrainer)
+> - [RLOOTrainer](/docs/trl/v1.14.2/en/rloo_trainer#trl.RLOOTrainer)
+> - [experimental.online_dpo.OnlineDPOTrainer](/docs/trl/v1.14.2/en/online_dpo_trainer#trl.experimental.online_dpo.OnlineDPOTrainer)
 
 ## 🚀 How can I use vLLM with TRL to speed up training?
 
@@ -239,4 +239,4 @@ training_args = RLOOConfig(
 > To reduce GPU memory usage when running vLLM, consider [enabling vLLM sleep mode](reducing_memory_usage#vllm-sleep-mode).
 
 ### ORPO Trainer
-https://huggingface.co/docs/trl/v1.14.1/orpo_trainer.md
+https://huggingface.co/docs/trl/v1.14.2/orpo_trainer.md

@@ -15,12 +15,12 @@ This guide covers enabling tensor parallelism in Transformers and the available 
 
 ## Partitioning a model
 
-Configure the number of tensor parallel devices with `tp_size` in [DistributedConfig](/docs/transformers/v5.17.0/en/expert_parallelism#transformers.DistributedConfig).
+Configure the number of tensor parallel devices with `tp_size` in [DistributedConfig](/docs/transformers/v5.19.0/en/expert_parallelism#transformers.DistributedConfig).
 
 - Set `DistributedConfig(tp_size=N)` to use the model's predefined plan.
-- Define a manual `tp_plan` and pass it to [DistributedConfig](/docs/transformers/v5.17.0/en/expert_parallelism#transformers.DistributedConfig) along with `tp_size`.
+- Define a manual `tp_plan` and pass it to [DistributedConfig](/docs/transformers/v5.19.0/en/expert_parallelism#transformers.DistributedConfig) along with `tp_size`.
 
-You can also set `tp_plan="auto"` to request the predefined plan explicitly. When `tp_size` is omitted and a `tp_plan` is set, `tp_size` is derived from `WORLD_SIZE` divided by the other parallel sizes. Passing `tp_plan` directly to [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) is deprecated and will be removed in v5.18.
+You can also set `tp_plan="auto"` to request the predefined plan explicitly. When `tp_size` is omitted and a `tp_plan` is set, `tp_size` is derived from `WORLD_SIZE` divided by the other parallel sizes. Passing `tp_plan` directly to [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) is deprecated and will be removed in v5.18.
 
 ```py
 import torch
@@ -49,7 +49,7 @@ Launch the inference script with [torchrun](https://pytorch.org/docs/stable/elas
 torchrun --nproc-per-node 4 demo.py
 ```
 
-Define a tensor parallel plan for each layer in `tp_plan` and pass it through [DistributedConfig](/docs/transformers/v5.17.0/en/expert_parallelism#transformers.DistributedConfig). The example below uses column and row partitioning. See the [Partitioning strategies](#partitioning-strategies) section for other supported strategies.
+Define a tensor parallel plan for each layer in `tp_plan` and pass it through [DistributedConfig](/docs/transformers/v5.19.0/en/expert_parallelism#transformers.DistributedConfig). The example below uses column and row partitioning. See the [Partitioning strategies](#partitioning-strategies) section for other supported strategies.
 
 Manual partitioning requires a deep understanding of model architecture and strategy interactions. Poor partitioning choices create slow models that fail or produce incorrect results. The [Ultra-Scale Playbook](https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=tensor_parallelism) explains partitioning strategies in detail.
 
@@ -293,4 +293,4 @@ The `placements` attribute tells PyTorch how a tensor is laid out across the dev
 - See the [Tensor parallelism](./tensor_parallelism) training guide to learn how to use it in a training setting.
 
 ### Callbacks
-https://huggingface.co/docs/transformers/v5.17.0/trainer_callbacks.md
+https://huggingface.co/docs/transformers/v5.19.0/trainer_callbacks.md

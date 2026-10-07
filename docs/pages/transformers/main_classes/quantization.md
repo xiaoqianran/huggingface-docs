@@ -14,7 +14,7 @@ Learn how to quantize models in the [Quantization](../quantization/overview) gui
 transformers.QuantoConfig(weights = 'int8', activations = None, modules_to_not_convert: list | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1021)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1021)
 
 **Parameters:**
 
@@ -33,7 +33,7 @@ loaded using `quanto`.
 post_init()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1049)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1049)
 
 Safety checker that arguments are correct
 
@@ -45,7 +45,7 @@ Safety checker that arguments are correct
 transformers.AqlmConfig(in_group_size: int = 8, out_group_size: int = 1, num_codebooks: int = 1, nbits_per_codebook: int = 16, linear_weights_not_to_quantize: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L865)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L865)
 
 **Parameters:**
 
@@ -69,7 +69,7 @@ This is a wrapper class about `aqlm` parameters.
 post_init()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L902)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L902)
 
 Safety checker that arguments are correct - also replaces some NoneType arguments with their default values.
 
@@ -81,7 +81,7 @@ Safety checker that arguments are correct - also replaces some NoneType argument
 transformers.VptqConfig(enable_proxy_error: bool = False, config_for_layers: dict = {}, shared_layer_config: dict = {}, modules_to_not_convert: list | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L980)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L980)
 
 **Parameters:**
 
@@ -103,7 +103,7 @@ This is a wrapper class about `vptq` parameters.
 post_init()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1010)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1010)
 
 Safety checker that arguments are correct
 
@@ -115,7 +115,7 @@ Safety checker that arguments are correct
 transformers.AwqConfig(bits: int = 4, group_size: int = 128, zero_point: bool = True, backend: AwqBackend = <AwqBackend.AUTO: 'auto'>, modules_to_not_convert: list | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L799)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L799)
 
 **Parameters:**
 
@@ -140,7 +140,7 @@ loaded using `auto-awq` library awq quantization relying on auto_awq backend.
 transformers.EetqConfig(weights: str = 'int8', modules_to_not_convert: list | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1062)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1062)
 
 **Parameters:**
 
@@ -157,7 +157,7 @@ loaded using `eetq`.
 post_init()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1086)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1086)
 
 Safety checker that arguments are correct
 
@@ -169,13 +169,13 @@ Safety checker that arguments are correct
 transformers.GPTQConfig(bits: int, tokenizer: typing.Any = None, dataset: list[str] | str | None = None, group_size: int = 128, damp_percent: float = 0.1, desc_act: bool = False, act_group_aware: bool = True, sym: bool = True, true_sequential: bool = True, format: str = 'gptq', meta: dict[str, typing.Any] | None = None, backend: str | None = None, model_seqlen: int | None = None, block_name_to_quantize: str | None = None, module_name_preceding_first_block: list[str] | None = None, batch_size: int = 1, pad_token_id: int | None = None, max_input_length: int | None = None, cache_block_outputs: bool = True, modules_in_block_to_quantize: list[list[str]] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L617)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L617)
 
 **Parameters:**
 
 bits (`int`) : The number of bits to quantize to, supported numbers are (2, 3, 4, 8).
 
-tokenizer (`str` or `PreTrainedTokenizerBase`, *optional*) : The tokenizer used to process the dataset. You can pass either: - A custom tokenizer object. - A string, the *model id* of a predefined tokenizer hosted inside a model repo on huggingface.co. - A path to a *directory* containing vocabulary files required by the tokenizer, for instance saved using the [save_pretrained()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.save_pretrained) method, e.g., `./my_model_directory/`.
+tokenizer (`str` or `PreTrainedTokenizerBase`, *optional*) : The tokenizer used to process the dataset. You can pass either: - A custom tokenizer object. - A string, the *model id* of a predefined tokenizer hosted inside a model repo on huggingface.co. - A path to a *directory* containing vocabulary files required by the tokenizer, for instance saved using the [save_pretrained()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.save_pretrained) method, e.g., `./my_model_directory/`.
 
 dataset (`Union[list[str]]`, *optional*) : The dataset used for quantization. You can provide your own dataset in a list of string or just use the original datasets used in GPTQ paper ['wikitext2','c4','c4-new']
 
@@ -222,7 +222,7 @@ loaded using `optimum` api for GPTQ quantization relying on the gptqmodel backen
 from_dict_optimum(config_dict)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L788)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L788)
 
 Get compatible class with optimum gptq config dict
 
@@ -232,7 +232,7 @@ Get compatible class with optimum gptq config dict
 post_init()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L738)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L738)
 
 Safety checker that arguments are correct
 
@@ -242,7 +242,7 @@ Safety checker that arguments are correct
 to_dict_optimum()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L782)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L782)
 
 Get compatible dict for optimum gptq config
 
@@ -254,7 +254,7 @@ Get compatible dict for optimum gptq config
 transformers.BitsAndBytesConfig(load_in_8bit = False, load_in_4bit = False, llm_int8_threshold = 6.0, llm_int8_skip_modules = None, llm_int8_enable_fp32_cpu_offload = False, llm_int8_has_fp16_weight = False, bnb_4bit_compute_dtype = None, bnb_4bit_quant_type = 'fp4', bnb_4bit_use_double_quant = False, bnb_4bit_quant_storage = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L390)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L390)
 
 **Parameters:**
 
@@ -292,7 +292,7 @@ then more arguments will be added to this class.
 is_quantizable()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L551)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L551)
 
 Returns `True` if the model is quantizable, `False` otherwise.
 
@@ -302,7 +302,7 @@ Returns `True` if the model is quantizable, `False` otherwise.
 post_init()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L521)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L521)
 
 Safety checker that arguments are correct - also replaces some NoneType arguments with their default values.
 
@@ -312,7 +312,7 @@ Safety checker that arguments are correct - also replaces some NoneType argument
 quantization_method()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L557)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L557)
 
 This method returns the quantization method used for the model. If the model is not quantizable, it returns
 `None`.
@@ -323,7 +323,7 @@ This method returns the quantization method used for the model. If the model is 
 to_diff_dict()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L588)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L588)
 
 **Returns:** `dict[str, Any]`
 
@@ -340,7 +340,7 @@ serializes to a Python dictionary.
 transformers.quantizers.HfQuantizer(quantization_config: QuantizationConfigMixin, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/quantizers/base.py#L73)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/quantizers/base.py#L73)
 
 Abstract class of the HuggingFace quantizer. Supports for now quantizing HF transformers models for inference and/or quantization.
 This class is used only for transformers.PreTrainedModel.from_pretrained and cannot be easily used outside the scope of that method
@@ -358,7 +358,7 @@ Whether the quantization method requires to calibrate the model before using it.
 adjust_max_memory(max_memory: dict)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/quantizers/base.py#L126)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/quantizers/base.py#L126)
 
 adjust max_memory argument for infer_auto_device_map() if extra memory is needed for quantization
 
@@ -368,7 +368,7 @@ adjust max_memory argument for infer_auto_device_map() if extra memory is needed
 dequantize(model, dtype = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/quantizers/base.py#L208)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/quantizers/base.py#L212)
 
 Potentially dequantize the model to retrieve the original model, with some loss in accuracy / performance.
 Note not all quantization schemes support this.
@@ -379,7 +379,7 @@ Note not all quantization schemes support this.
 get_param_name(param_name: str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/quantizers/base.py#L227)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/quantizers/base.py#L231)
 
 Override this method if you want to adjust the `param_name`.
 
@@ -389,7 +389,7 @@ Override this method if you want to adjust the `param_name`.
 get_state_dict_and_metadata(model)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/quantizers/base.py#L265)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/quantizers/base.py#L269)
 
 Get state dict and metadata. Useful when we need to modify a bit the state dict due to quantization
 
@@ -399,7 +399,7 @@ Get state dict and metadata. Useful when we need to modify a bit the state dict 
 param_needs_quantization(model: PreTrainedModel, param_name: str, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/quantizers/base.py#L130)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/quantizers/base.py#L130)
 
 Check whether a given param needs to be quantized.
 
@@ -409,7 +409,7 @@ Check whether a given param needs to be quantized.
 postprocess_model(model: PreTrainedModel, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/quantizers/base.py#L176)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/quantizers/base.py#L180)
 
 **Parameters:**
 
@@ -426,7 +426,7 @@ Make sure to override the abstract method `_process_model_after_weight_loading`.
 preprocess_model(model: PreTrainedModel, dtype = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/quantizers/base.py#L155)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/quantizers/base.py#L159)
 
 **Parameters:**
 
@@ -444,9 +444,19 @@ of the model in order to replace modules in-place. Make sure to override the abs
 remove_quantization_config(model)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/quantizers/base.py#L196)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/quantizers/base.py#L200)
 
 Remove the quantization config from the model.
+
+#### update_attn_implementation[[transformers.quantizers.HfQuantizer.update_attn_implementation]]
+
+```python
+update_attn_implementation(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/quantizers/base.py#L152)
+
+Sees the requested `attn_implementation` before the model is built, so a quantizer can default it.
 
 #### update_device_map[[transformers.quantizers.HfQuantizer.update_device_map]]
 
@@ -454,7 +464,7 @@ Remove the quantization config from the model.
 update_device_map(device_map: dict[str, typing.Any] | None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/quantizers/base.py#L111)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/quantizers/base.py#L111)
 
 **Parameters:**
 
@@ -470,7 +480,7 @@ passed, the device_map is set to `"auto"``
 update_dtype(dtype: torch.dtype)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/quantizers/base.py#L99)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/quantizers/base.py#L99)
 
 **Parameters:**
 
@@ -486,7 +496,7 @@ preserved
 update_ep_plan(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/quantizers/base.py#L148)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/quantizers/base.py#L148)
 
 updates the tp plan for the scales
 
@@ -496,7 +506,7 @@ updates the tp plan for the scales
 update_tp_plan(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/quantizers/base.py#L144)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/quantizers/base.py#L144)
 
 updates the tp plan for the scales
 
@@ -506,7 +516,7 @@ updates the tp plan for the scales
 update_weight_conversions(weight_conversions)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/quantizers/base.py#L297)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/quantizers/base.py#L301)
 
 Give the quantizer a chance to rewrite the weight conversion pipeline.
 
@@ -515,7 +525,7 @@ has to happen *before* any merge/concat op because those operations aren't
 aware of per-block scales, so the per-expert (weight, scale) pairs need to be
 collapsed into full-precision tensors first. Subclasses (e.g. the FP8
 quantizer in `dequantize=True` mode) override this to inject a dequantize
-op at the start of each model-provided [WeightConverter](/docs/transformers/v5.17.0/en/internal/modeling_utils#transformers.WeightConverter) and attach the
+op at the start of each model-provided [WeightConverter](/docs/transformers/v5.19.0/en/internal/modeling_utils#transformers.WeightConverter) and attach the
 matching scale source patterns. Default: no-op.
 
 #### validate_environment[[transformers.quantizers.HfQuantizer.validate_environment]]
@@ -524,7 +534,7 @@ matching scale source patterns. Default: no-op.
 validate_environment(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/quantizers/base.py#L136)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/quantizers/base.py#L136)
 
 This method is used to potentially check for potential conflicts with arguments that are
 passed in `from_pretrained`. You need to define it for all future quantizers that are integrated with transformers.
@@ -538,7 +548,7 @@ If no explicit check are needed, simply return nothing.
 transformers.HiggsConfig(bits: int = 4, p: int = 2, modules_to_not_convert: list[str] | None = None, hadamard_size: int = 512, group_size: int = 256, tune_metadata: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1323)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1323)
 
 **Parameters:**
 
@@ -562,7 +572,7 @@ HiggsConfig is a configuration class for quantization using the HIGGS method.
 post_init()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1364)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1364)
 
 Safety checker that arguments are correct - also replaces some NoneType arguments with their default values.
 
@@ -574,7 +584,7 @@ Safety checker that arguments are correct - also replaces some NoneType argument
 transformers.HqqConfig(nbits: int = 4, group_size: int = 64, view_as_float: bool = False, axis: int | None = None, dynamic_config: dict | None = None, skip_modules: list = ['lm_head'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L277)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L277)
 
 **Parameters:**
 
@@ -600,7 +610,7 @@ This is wrapper around hqq's BaseQuantizeConfig.
 from_dict(config: dict)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L342)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L342)
 
 Override from_dict, used in AutoQuantizationConfig.from_dict in quantizers/auto.py
 
@@ -610,7 +620,7 @@ Override from_dict, used in AutoQuantizationConfig.from_dict in quantizers/auto.
 post_init()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L337)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L337)
 
 Safety checker that arguments are correct - also replaces some NoneType arguments with their default values.
 
@@ -620,7 +630,7 @@ Safety checker that arguments are correct - also replaces some NoneType argument
 to_diff_dict()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L367)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L367)
 
 **Returns:** `dict[str, Any]`
 
@@ -637,7 +647,7 @@ serializes to a Python dictionary.
 transformers.MetalConfig(bits: int = 4, group_size: int = 64, modules_to_not_convert: list | None = None, dequantize: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1827)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1827)
 
 Configuration class for Metal affine quantization targeting Apple Silicon (MPS) devices.
 
@@ -654,7 +664,7 @@ dequantization + matmul Metal kernels.
 transformers.Mxfp4Config(modules_to_not_convert: list | None = None, dequantize: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1793)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1793)
 
 **Parameters:**
 
@@ -673,7 +683,7 @@ loaded using mxfp4 quantization.
 transformers.NVFP4Config(modules_to_not_convert: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L2069)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L2069)
 
 **Parameters:**
 
@@ -691,7 +701,7 @@ Configuration for on-the-fly NVFP4 weight quantization.
 transformers.FbgemmFp8Config(activation_scale_ub: float = 1200.0, modules_to_not_convert: list | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1292)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1292)
 
 **Parameters:**
 
@@ -710,7 +720,7 @@ loaded using fbgemm fp8 quantization.
 transformers.CompressedTensorsConfig(config_groups: dict[str, typing.Union[ForwardRef('QuantizationScheme'), list[str]]] | None = None, format: str = 'dense', quantization_status: QuantizationStatus = 'initialized', kv_cache_scheme: typing.Optional[ForwardRef('QuantizationArgs')] = None, global_compression_ratio: float | None = None, ignore: list[str] | None = None, quant_method: str = 'compressed-tensors', run_compressed: bool | None = None, dequantize: bool = False, use_optimized_inference: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1095)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1095)
 
 **Parameters:**
 
@@ -732,7 +742,7 @@ run_compressed (`bool`, *optional*) : deprecated, use `dequantize` instead. Its 
 
 dequantize (`bool`, *optional*, defaults to `False`) : when `True`, the quantized weights are dequantized back to the model dtype (e.g. BF16) at load time, which is what fine-tuning or saving the model in its original dtype needs. When `False`, the weights are left in their compressed form and compressed-tensors decompresses them on the first forward pass.
 
-use_optimized_inference (`bool`, *optional*, defaults to `False`) : when `True`, the layers whose scheme we have kernels for keep their quantized weights and run through those kernels (currently W8A8 FP8, on CUDA SM89+ or XPU). Inference only, and opt-in: without it the model goes through the regular compressed-tensors route. Ignored when `dequantize=True`.
+use_optimized_inference (`bool`, *optional*, defaults to `False`) : when `True`, the layers whose scheme we have kernels for keep their quantized weights and run through those kernels (currently W8A8 FP8, on CUDA SM89+, XPU, or MPS with torch >= 2.15). Inference only, and opt-in: without it the model goes through the regular compressed-tensors route. Ignored when `dequantize=True`.
 
 This is a wrapper class that handles compressed-tensors quantization config options.
 It is a wrapper around `compressed_tensors.QuantizationConfig`
@@ -743,7 +753,7 @@ It is a wrapper around `compressed_tensors.QuantizationConfig`
 from_dict(config_dict, return_unused_kwargs = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1200)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1200)
 
 **Parameters:**
 
@@ -757,7 +767,7 @@ kwargs (`dict[str, Any]`) : Additional parameters from which to initialize the c
 
 The configuration object instantiated from those parameters.
 
-Instantiates a [CompressedTensorsConfig](/docs/transformers/v5.17.0/en/main_classes/quantization#transformers.CompressedTensorsConfig) from a Python dictionary of parameters.
+Instantiates a [CompressedTensorsConfig](/docs/transformers/v5.19.0/en/main_classes/quantization#transformers.CompressedTensorsConfig) from a Python dictionary of parameters.
 Optionally unwraps any args from the nested quantization_config
 
 #### to_dict[[transformers.CompressedTensorsConfig.to_dict]]
@@ -766,7 +776,7 @@ Optionally unwraps any args from the nested quantization_config
 to_dict()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1225)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1225)
 
 Quantization config to be added to config.json
 
@@ -779,7 +789,7 @@ Serializes this instance to a Python dictionary. Returns:
 to_diff_dict()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1240)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1240)
 
 **Returns:** `dict[str, Any]`
 
@@ -796,7 +806,7 @@ serializes to a Python dictionary.
 transformers.TorchAoConfig(quant_type: AOBaseConfig, modules_to_not_convert: list | None = None, include_input_output_embeddings: bool = False, untie_embedding_weights: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1468)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1468)
 
 **Parameters:**
 
@@ -827,7 +837,7 @@ model = AutoModelForCausalLM.from_pretrained(
 from_dict(config_dict, return_unused_kwargs = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1551)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1551)
 
 Create configuration from a dictionary.
 
@@ -837,7 +847,7 @@ Create configuration from a dictionary.
 get_apply_tensor_subclass()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1537)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1537)
 
 Return the quantization config to apply.
 
@@ -847,7 +857,7 @@ Return the quantization config to apply.
 post_init()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1519)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1519)
 
 Validate configuration and set defaults.
 
@@ -857,7 +867,7 @@ Validate configuration and set defaults.
 to_dict()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1541)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1541)
 
 Convert configuration to a dictionary.
 
@@ -869,7 +879,7 @@ Convert configuration to a dictionary.
 transformers.BitNetQuantConfig(modules_to_not_convert: list | None = None, linear_class: str = 'bitlinear', quantization_mode: str = 'offline', use_rms_norm: bool = False, rms_norm_eps: float | None = 1e-06, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1571)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1571)
 
 **Parameters:**
 
@@ -893,7 +903,7 @@ Configuration class for applying BitNet quantization.
 post_init()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1620)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1620)
 
 Safety checker that arguments are correct
 
@@ -905,7 +915,7 @@ Safety checker that arguments are correct
 transformers.SpQRConfig(bits: int = 3, beta1: int = 16, beta2: int = 16, shapes: dict[str, int] | None = None, modules_to_not_convert: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1627)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1627)
 
 **Parameters:**
 
@@ -929,7 +939,7 @@ This is a wrapper class about `spqr` parameters. Refer to the original publicati
 post_init()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1668)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1668)
 
 Safety checker that arguments are correct - also replaces some NoneType arguments with their default values.
 
@@ -941,7 +951,7 @@ Safety checker that arguments are correct - also replaces some NoneType argument
 transformers.FineGrainedFP8Config(activation_scheme: str = 'dynamic', weight_block_size: tuple = (128, 128), dequantize: bool = False, modules_to_not_convert: list | None = None, modules_to_convert: list | None = None, scale_fmt: str = 'float', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1690)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1690)
 
 **Parameters:**
 
@@ -965,7 +975,7 @@ FineGrainedFP8Config is a configuration class for fine-grained FP8 quantization 
 post_init()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1733)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1733)
 
 Safety checker that arguments are correct
 
@@ -977,7 +987,7 @@ Safety checker that arguments are correct
 transformers.QuarkConfig(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1751)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1751)
 
 ## FourOverSixConfig[[transformers.FourOverSixConfig]]
 
@@ -987,7 +997,7 @@ transformers.QuarkConfig(**kwargs)
 transformers.FourOverSixConfig(activation_dtype: str | None = None, activation_scale_rule: str | None = None, dtype: str = 'nvfp4', gradient_dtype: str | None = None, gradient_scale_rule: str | None = None, keep_master_weights: bool = False, matmul_backend: str | None = None, output_dtype: str | None = 'bfloat16', quantize_backend: str | None = None, scale_rule: str = 'mse', weight_dtype: str | None = None, weight_scale_2d: bool = False, weight_scale_rule: str | None = None, module_config_overrides: dict[str, dict[str, typing.Any]] | None = None, modules_to_not_convert: list[str] | None = ['lm_head'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1871)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1871)
 
 **Parameters:**
 
@@ -1035,7 +1045,7 @@ error. Refer to the original publication for more details: https://arxiv.org/abs
 transformers.FPQuantConfig(forward_dtype: str = 'nvfp4', forward_method: str = 'abs_max', backward_dtype: str = 'bf16', store_master_weights: bool = False, hadamard_group_size: int | None = None, pseudoquantization: bool = False, transform_init: str = 'hadamard', modules_to_not_convert: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1379)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1379)
 
 **Parameters:**
 
@@ -1063,7 +1073,7 @@ FPQuantConfig is a configuration class for quantization using the FPQuant method
 post_init()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1426)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1426)
 
 Safety checker that arguments are correct - also replaces some NoneType arguments with their default values.
 
@@ -1075,7 +1085,7 @@ Safety checker that arguments are correct - also replaces some NoneType argument
 transformers.AutoRoundConfig(bits: int = 4, group_size: int = 128, sym: bool = True, backend: str = 'auto', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L208)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L208)
 
 **Parameters:**
 
@@ -1096,7 +1106,7 @@ loaded AutoRound quantization.
 post_init()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L239)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L239)
 
 Safety checker that arguments are correct.
 
@@ -1108,7 +1118,7 @@ Safety checker that arguments are correct.
 transformers.SinqConfig(nbits: int = 4, group_size: int = 64, tiling_mode: str = '1D', method: str = 'sinq', modules_to_not_convert: list[str] | None = None, **kwargs: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L1966)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L1966)
 
 **Parameters:**
 
@@ -1138,7 +1148,7 @@ AutoModel.from_pretrained(..., quantization_config=SinqConfig(...))
 transformers.GgufConfig(gguf_file: str | None = None, dequantize: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/quantization_config.py#L2089)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/quantization_config.py#L2089)
 
 **Parameters:**
 
@@ -1149,4 +1159,4 @@ dequantize (`bool`, *optional*, defaults to `False`) : Unpack every weight at lo
 Load a quantized GGUF checkpoint with its weights left in GGUF blocks.
 
 ### Processors
-https://huggingface.co/docs/transformers/v5.17.0/main_classes/processors.md
+https://huggingface.co/docs/transformers/v5.19.0/main_classes/processors.md

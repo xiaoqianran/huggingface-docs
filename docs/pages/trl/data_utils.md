@@ -8,7 +8,7 @@
 trl.is_conversational(example: dict)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.14.1/trl/data_utils.py#L160)
+[Source](https://github.com/huggingface/trl/blob/v1.14.2/trl/data_utils.py#L160)
 
 **Parameters:**
 
@@ -40,7 +40,7 @@ False
 trl.maybe_convert_to_chatml(example: dict)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.14.1/trl/data_utils.py#L976)
+[Source](https://github.com/huggingface/trl/blob/v1.14.2/trl/data_utils.py#L1001)
 
 **Parameters:**
 
@@ -80,7 +80,7 @@ Example:
 trl.extract_prompt(example: dict)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.14.1/trl/data_utils.py#L557)
+[Source](https://github.com/huggingface/trl/blob/v1.14.2/trl/data_utils.py#L582)
 
 **Parameters:**
 
@@ -119,7 +119,7 @@ Examples:
  'rejected': [{'role': 'assistant', 'content': 'It is green.'}]}
 ```
 
-Or, with the `map` method of [Dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset):
+Or, with the `map` method of `Dataset`:
 
 ```python
 >>> from trl import extract_prompt
@@ -163,18 +163,18 @@ Or, with the `map` method of [Dataset](https://huggingface.co/docs/datasets/v5.0
 trl.unpair_preference_dataset(dataset: typing.Union[~DatasetType, ~IterableDatasetType], **map_kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.14.1/trl/data_utils.py#L454)
+[Source](https://github.com/huggingface/trl/blob/v1.14.2/trl/data_utils.py#L479)
 
 **Parameters:**
 
-dataset ([Dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset) or [DatasetDict](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.DatasetDict) or [IterableDataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.IterableDataset) or [IterableDatasetDict](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.IterableDatasetDict)) : Preference dataset to unpair. The dataset must have columns `"chosen"`, `"rejected"` and optionally `"prompt"`.
+dataset (`Dataset` or `DatasetDict` or `IterableDataset` or `IterableDatasetDict`) : Preference dataset to unpair. The dataset must have columns `"chosen"`, `"rejected"` and optionally `"prompt"`.
 
 - ****map_kwargs** (`dict`, *optional*) : Additional keyword arguments to pass to the dataset's map method when unpairing preferences.
 
 **Returns:**
 
-[Dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset) or [DatasetDict](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.DatasetDict) or [IterableDataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.IterableDataset) or
-[IterableDatasetDict](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.IterableDatasetDict):
+`Dataset` or `DatasetDict` or `IterableDataset` or
+`IterableDatasetDict`:
 The unpaired preference dataset.
 
 Unpair a preference dataset.
@@ -205,4 +205,4 @@ Dataset({
 ```
 
 ### Examples
-https://huggingface.co/docs/trl/v1.14.1/example_overview.md
+https://huggingface.co/docs/trl/v1.14.2/example_overview.md

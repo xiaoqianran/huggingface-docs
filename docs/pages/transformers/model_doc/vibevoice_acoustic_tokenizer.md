@@ -132,10 +132,10 @@ print(f"Reconstructed audio saved to : {output_fp}")
 #### transformers.VibeVoiceAcousticTokenizerConfig[[transformers.VibeVoiceAcousticTokenizerConfig]]
 
 ```python
-transformers.VibeVoiceAcousticTokenizerConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, channels: int = 1, hidden_size: int = 64, kernel_size: int = 7, rms_norm_eps: float = 1e-05, layer_scale_init_value: float = 1e-06, initializer_range: float = 0.01, num_filters: int = 32, downsampling_ratios: list[int] | tuple[int, ...] = (2, 2, 4, 5, 5, 8), depths: list[int] | tuple[int, ...] = (3, 3, 3, 3, 3, 3, 8), hidden_act: str = 'gelu', ffn_expansion: int = 4, vae_std: float = 0.625)
+transformers.VibeVoiceAcousticTokenizerConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, channels: int = 1, hidden_size: int = 64, kernel_size: int = 7, rms_norm_eps: float = 1e-05, layer_scale_init_value: float = 1e-06, initializer_range: float = 0.01, num_filters: int = 32, downsampling_ratios: list[int] | tuple[int, ...] = (2, 2, 4, 5, 5, 8), depths: list[int] | tuple[int, ...] = (3, 3, 3, 3, 3, 3, 8), hidden_act: str = 'gelu', ffn_expansion: int = 4, vae_std: float = 0.625)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vibevoice_acoustic_tokenizer/configuration_vibevoice_acoustic_tokenizer.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vibevoice_acoustic_tokenizer/configuration_vibevoice_acoustic_tokenizer.py#L26)
 
 **Parameters:**
 
@@ -167,8 +167,8 @@ This is the configuration class to store the configuration of a VibeVoiceAcousti
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [microsoft/VibeVoice-1.5B](https://huggingface.co/microsoft/VibeVoice-1.5B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -190,10 +190,10 @@ Example:
 #### transformers.VibeVoiceAcousticTokenizerEncoderConfig[[transformers.VibeVoiceAcousticTokenizerEncoderConfig]]
 
 ```python
-transformers.VibeVoiceAcousticTokenizerEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, channels: int = 1, hidden_size: int = 64, kernel_size: int = 7, rms_norm_eps: float = 1e-05, layer_scale_init_value: float = 1e-06, initializer_range: float = 0.01, num_filters: int = 32, downsampling_ratios: list[int] | tuple[int, ...] = (2, 2, 4, 5, 5, 8), depths: list[int] | tuple[int, ...] = (3, 3, 3, 3, 3, 3, 8), hidden_act: str = 'gelu', ffn_expansion: int = 4, vae_std: float = 0.625)
+transformers.VibeVoiceAcousticTokenizerEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, channels: int = 1, hidden_size: int = 64, kernel_size: int = 7, rms_norm_eps: float = 1e-05, layer_scale_init_value: float = 1e-06, initializer_range: float = 0.01, num_filters: int = 32, downsampling_ratios: list[int] | tuple[int, ...] = (2, 2, 4, 5, 5, 8), depths: list[int] | tuple[int, ...] = (3, 3, 3, 3, 3, 3, 8), hidden_act: str = 'gelu', ffn_expansion: int = 4, vae_std: float = 0.625)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vibevoice_acoustic_tokenizer/configuration_vibevoice_acoustic_tokenizer.py#L92)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vibevoice_acoustic_tokenizer/configuration_vibevoice_acoustic_tokenizer.py#L92)
 
 **Parameters:**
 
@@ -225,18 +225,18 @@ This is the configuration class to store the configuration of a VibeVoiceAcousti
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [microsoft/VibeVoice-1.5B](https://huggingface.co/microsoft/VibeVoice-1.5B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## VibeVoiceAcousticTokenizerDecoderConfig[[transformers.VibeVoiceAcousticTokenizerDecoderConfig]]
 
 #### transformers.VibeVoiceAcousticTokenizerDecoderConfig[[transformers.VibeVoiceAcousticTokenizerDecoderConfig]]
 
 ```python
-transformers.VibeVoiceAcousticTokenizerDecoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, channels: int = 1, hidden_size: int = 64, kernel_size: int = 7, rms_norm_eps: float = 1e-05, layer_scale_init_value: float = 1e-06, initializer_range: float = 0.01, num_filters: int = 32, downsampling_ratios: list[int] | tuple[int, ...] = (2, 2, 4, 5, 5, 8), depths: list[int] | tuple[int, ...] = (3, 3, 3, 3, 3, 3, 8), hidden_act: str = 'gelu', ffn_expansion: int = 4, vae_std: float = 0.625)
+transformers.VibeVoiceAcousticTokenizerDecoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, channels: int = 1, hidden_size: int = 64, kernel_size: int = 7, rms_norm_eps: float = 1e-05, layer_scale_init_value: float = 1e-06, initializer_range: float = 0.01, num_filters: int = 32, downsampling_ratios: list[int] | tuple[int, ...] = (2, 2, 4, 5, 5, 8), depths: list[int] | tuple[int, ...] = (3, 3, 3, 3, 3, 3, 8), hidden_act: str = 'gelu', ffn_expansion: int = 4, vae_std: float = 0.625)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vibevoice_acoustic_tokenizer/configuration_vibevoice_acoustic_tokenizer.py#L122)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vibevoice_acoustic_tokenizer/configuration_vibevoice_acoustic_tokenizer.py#L122)
 
 **Parameters:**
 
@@ -268,8 +268,8 @@ This is the configuration class to store the configuration of a VibeVoiceAcousti
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [microsoft/VibeVoice-1.5B](https://huggingface.co/microsoft/VibeVoice-1.5B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## VibeVoiceAcousticTokenizerFeatureExtractor[[transformers.VibeVoiceAcousticTokenizerFeatureExtractor]]
 
@@ -279,7 +279,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes
 transformers.VibeVoiceAcousticTokenizerFeatureExtractor(feature_size = 1, sampling_rate = 24000, padding_value = 0.0, normalize_audio = True, target_dB_FS = -25, eps = 1e-06, pad_to_multiple_of = 3200, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vibevoice_acoustic_tokenizer/feature_extraction_vibevoice_acoustic_tokenizer.py#L29)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vibevoice_acoustic_tokenizer/feature_extraction_vibevoice_acoustic_tokenizer.py#L29)
 
 **Parameters:**
 
@@ -305,7 +305,7 @@ Constructs a VibeVoiceAcousticTokenizer feature extractor.
 __call__(audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor']], sampling_rate: int | None = None, padding: bool | str | transformers.utils.generic.PaddingStrategy | None = True, pad_to_multiple_of: int | None = None, max_length: int | None = None, return_attention_mask: bool | None = True, return_tensors: str | None = 'pt', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vibevoice_acoustic_tokenizer/feature_extraction_vibevoice_acoustic_tokenizer.py#L72)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vibevoice_acoustic_tokenizer/feature_extraction_vibevoice_acoustic_tokenizer.py#L72)
 
 **Parameters:**
 
@@ -313,7 +313,7 @@ audio (`np.ndarray`, `torch.Tensor`, `list[np.ndarray]`, `list[torch.Tensor]` : 
 
 sampling_rate (`int`, *optional*) : The sampling rate at which the `audio` input was sampled. It is strongly recommended to pass `sampling_rate` at the forward call to prevent silent errors.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.17.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.19.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
 
 pad_to_multiple_of (`int`, *optional*) : If set will pad the sequence to a multiple of the provided value. Defaults to `self.pad_to_multiple_of` if not provided.
 
@@ -325,15 +325,15 @@ pad_to_multiple_of (`int`, *optional*) : If set will pad the sequence to a multi
 transformers.VibeVoiceAcousticTokenizerModel(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vibevoice_acoustic_tokenizer/modeling_vibevoice_acoustic_tokenizer.py#L503)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vibevoice_acoustic_tokenizer/modeling_vibevoice_acoustic_tokenizer.py#L503)
 
 **Parameters:**
 
-config ([VibeVoiceAcousticTokenizerModel](/docs/transformers/v5.17.0/en/model_doc/vibevoice_acoustic_tokenizer#transformers.VibeVoiceAcousticTokenizerModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([VibeVoiceAcousticTokenizerModel](/docs/transformers/v5.19.0/en/model_doc/vibevoice_acoustic_tokenizer#transformers.VibeVoiceAcousticTokenizerModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 VibeVoice acoustic tokenizer with an encoder and decoder for continuous acoustic tokens.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -347,7 +347,7 @@ and behavior.
 encode(input_values, padding_cache = None, use_cache = None, sample = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vibevoice_acoustic_tokenizer/modeling_vibevoice_acoustic_tokenizer.py#L510)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vibevoice_acoustic_tokenizer/modeling_vibevoice_acoustic_tokenizer.py#L510)
 
 **Parameters:**
 
@@ -365,7 +365,7 @@ sample (`bool`, *optional*) : Whether to sample from the VAE. If False, no noise
 decode(latents, padding_cache = None, use_cache = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vibevoice_acoustic_tokenizer/modeling_vibevoice_acoustic_tokenizer.py#L536)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vibevoice_acoustic_tokenizer/modeling_vibevoice_acoustic_tokenizer.py#L536)
 
 **Parameters:**
 
@@ -381,7 +381,7 @@ use_cache (`bool`, *optional*) : Whether to use caching for convolution states.
 forward(input_values, padding_cache = None, use_cache = False, sample = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vibevoice_acoustic_tokenizer/modeling_vibevoice_acoustic_tokenizer.py#L550)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vibevoice_acoustic_tokenizer/modeling_vibevoice_acoustic_tokenizer.py#L550)
 
 **Parameters:**
 
@@ -393,7 +393,7 @@ use_cache (`bool`, *optional*) : Whether to use caching for convolution states.
 
 sample (`bool`, *optional*) : Whether to sample from the VAE latent distribution. If False, no noise is added to the latents.
 
-The [VibeVoiceAcousticTokenizerModel](/docs/transformers/v5.17.0/en/model_doc/vibevoice_acoustic_tokenizer#transformers.VibeVoiceAcousticTokenizerModel) forward method, overrides the `__call__` special method.
+The [VibeVoiceAcousticTokenizerModel](/docs/transformers/v5.19.0/en/model_doc/vibevoice_acoustic_tokenizer#transformers.VibeVoiceAcousticTokenizerModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -407,7 +407,7 @@ the latter silently ignores them.
 transformers.VibeVoiceAcousticTokenizerEncoderModel(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vibevoice_acoustic_tokenizer/modeling_vibevoice_acoustic_tokenizer.py#L373)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vibevoice_acoustic_tokenizer/modeling_vibevoice_acoustic_tokenizer.py#L373)
 
 #### forward[[transformers.VibeVoiceAcousticTokenizerEncoderModel.forward]]
 
@@ -415,7 +415,7 @@ transformers.VibeVoiceAcousticTokenizerEncoderModel(config)
 forward(hidden_states, padding_cache = None, use_cache = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vibevoice_acoustic_tokenizer/modeling_vibevoice_acoustic_tokenizer.py#L394)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vibevoice_acoustic_tokenizer/modeling_vibevoice_acoustic_tokenizer.py#L394)
 
 ## VibeVoiceAcousticTokenizerDecoderModel[[transformers.VibeVoiceAcousticTokenizerDecoderModel]]
 
@@ -425,7 +425,7 @@ forward(hidden_states, padding_cache = None, use_cache = False, **kwargs)
 transformers.VibeVoiceAcousticTokenizerDecoderModel(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vibevoice_acoustic_tokenizer/modeling_vibevoice_acoustic_tokenizer.py#L466)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vibevoice_acoustic_tokenizer/modeling_vibevoice_acoustic_tokenizer.py#L466)
 
 #### forward[[transformers.VibeVoiceAcousticTokenizerDecoderModel.forward]]
 
@@ -433,7 +433,7 @@ transformers.VibeVoiceAcousticTokenizerDecoderModel(config)
 forward(hidden_states, padding_cache = None, use_cache = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/vibevoice_acoustic_tokenizer/modeling_vibevoice_acoustic_tokenizer.py#L487)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/vibevoice_acoustic_tokenizer/modeling_vibevoice_acoustic_tokenizer.py#L487)
 
 ### Hiera
-https://huggingface.co/docs/transformers/v5.17.0/model_doc/hiera.md
+https://huggingface.co/docs/transformers/v5.19.0/model_doc/hiera.md

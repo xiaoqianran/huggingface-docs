@@ -37,9 +37,9 @@ print(tokenizer.decode(outputs["logits"][0, mask_index].argmax()))  # capital
 
 ## Transformers integration
 
-1. [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) loads the model weights in safetensors format.
+1. [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) loads the model weights in safetensors format.
 2. litert-torch runs [torch.export](https://docs.pytorch.org/docs/stable/export.html) and lowers the graph to LiteRT operators. `export_hf` adds the KV cache, prefill and decode signatures, and int8 quantization.
-3. [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer) loads the tokenizer. `export_hf` packs it and the chat template into the `.litertlm` file.
+3. [AutoTokenizer](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoTokenizer) loads the tokenizer. `export_hf` packs it and the chat template into the `.litertlm` file.
 4. At runtime, `.tflite` runs on LiteRT and `.litertlm` on LiteRT-LM, from Kotlin, Swift, C++, or Python (`ai-edge-litert` and `litert-lm-api`). The older `tflite-runtime` wheels stop at Python 3.11.
 
 > [!NOTE]
@@ -51,4 +51,4 @@ print(tokenizer.decode(outputs["logits"][0, mask_index].argmax()))  # capital
 - [Convert PyTorch models](https://ai.google.dev/edge/litert/conversion/pytorch/overview) and [GenAI models](https://ai.google.dev/edge/litert/conversion/pytorch/genai) guides
 
 ### Unsloth
-https://huggingface.co/docs/transformers/v5.17.0/community_integrations/unsloth.md
+https://huggingface.co/docs/transformers/v5.19.0/community_integrations/unsloth.md

@@ -16,7 +16,7 @@
 
 ### Single input inference
 
-The example below demonstrates how to classify image with PP-LCNet using [Pipeline](/docs/transformers/v5.17.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModel).
+The example below demonstrates how to classify image with PP-LCNet using [Pipeline](/docs/transformers/v5.19.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoModel).
 
 ```python
 import requests
@@ -27,7 +27,7 @@ from transformers import pipeline
 model_path = "PaddlePaddle/PP-LCNet_x1_0_doc_ori_safetensors"
 image_classifier = pipeline("image-classification", model=model_path, function_to_apply="none", device_map="auto")
 
-image = Image.open(requests.get("https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/img_rot180_demo.jpg", stream=True).raw)
+image = Image.open(requests.get("https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/paddle_img_rot180_demo.jpg", stream=True).raw)
 result = image_classifier(image)
 print(result)
 ```
@@ -42,7 +42,7 @@ model_path = "PaddlePaddle/PP-LCNet_x1_0_doc_ori_safetensors"
 model = AutoModelForImageClassification.from_pretrained(model_path, device_map="auto")
 image_processor = AutoImageProcessor.from_pretrained(model_path)
 
-image = Image.open(requests.get("https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/img_rot180_demo.jpg", stream=True).raw)
+image = Image.open(requests.get("https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/paddle_img_rot180_demo.jpg", stream=True).raw)
 inputs = image_processor(images=image, return_tensors="pt").to(model.device)
 outputs = model(**inputs)
 predicted_label = outputs.logits.argmax(-1).item()
@@ -51,7 +51,7 @@ print(model.config.id2label[predicted_label])
 
 ### Batched inference
 
-Here is how you can do it with PP-LCNet using [Pipeline](/docs/transformers/v5.17.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModel):
+Here is how you can do it with PP-LCNet using [Pipeline](/docs/transformers/v5.19.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoModel):
 
 ```python
 import requests
@@ -62,7 +62,7 @@ from transformers import pipeline
 model_path = "PaddlePaddle/PP-LCNet_x1_0_doc_ori_safetensors"
 image_classifier = pipeline("image-classification", model=model_path, function_to_apply="none", device_map="auto")
 
-image = Image.open(requests.get("https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/img_rot180_demo.jpg", stream=True).raw)
+image = Image.open(requests.get("https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/paddle_img_rot180_demo.jpg", stream=True).raw)
 result = image_classifier([image, image])
 print(result)
 ```
@@ -77,7 +77,7 @@ model_path = "PaddlePaddle/PP-LCNet_x1_0_doc_ori_safetensors"
 model = AutoModelForImageClassification.from_pretrained(model_path, device_map="auto")
 image_processor = AutoImageProcessor.from_pretrained(model_path)
 
-image = Image.open(requests.get("https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/img_rot180_demo.jpg", stream=True).raw)
+image = Image.open(requests.get("https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/paddle_img_rot180_demo.jpg", stream=True).raw)
 inputs = image_processor(images=[image, image], return_tensors="pt").to(model.device)
 outputs = model(**inputs)
 
@@ -97,15 +97,15 @@ for label_id in predicted_labels:
 transformers.PPLCNetForImageClassification(config: PPLCNetConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_lcnet/modeling_pp_lcnet.py#L300)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_lcnet/modeling_pp_lcnet.py#L300)
 
 **Parameters:**
 
-config ([PPLCNetConfig](/docs/transformers/v5.17.0/en/model_doc/pp_lcnet#transformers.PPLCNetConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPLCNetConfig](/docs/transformers/v5.19.0/en/model_doc/pp_lcnet#transformers.PPLCNetConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Pp Lcnet Model with an image classification head on top e.g. for ImageNet.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -119,19 +119,19 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_lcnet/modeling_pp_lcnet.py#L327)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_lcnet/modeling_pp_lcnet.py#L327)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [PPLCNetImageProcessor](/docs/transformers/v5.17.0/en/model_doc/pp_lcnet#transformers.PPLCNetImageProcessor). See `PPLCNetImageProcessor.__call__()` for details (`processor_class` uses [PPLCNetImageProcessor](/docs/transformers/v5.17.0/en/model_doc/pp_lcnet#transformers.PPLCNetImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [PPLCNetImageProcessor](/docs/transformers/v5.19.0/en/model_doc/pp_lcnet#transformers.PPLCNetImageProcessor). See `PPLCNetImageProcessor.__call__()` for details (`processor_class` uses [PPLCNetImageProcessor](/docs/transformers/v5.19.0/en/model_doc/pp_lcnet#transformers.PPLCNetImageProcessor) for processing images).
 
 **Returns:** `BaseModelOutputWithNoAttention` or `tuple(torch.FloatTensor)`
 
 A `BaseModelOutputWithNoAttention` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PPLCNetConfig](/docs/transformers/v5.17.0/en/model_doc/pp_lcnet#transformers.PPLCNetConfig)) and inputs.
+elements depending on the configuration ([PPLCNetConfig](/docs/transformers/v5.19.0/en/model_doc/pp_lcnet#transformers.PPLCNetConfig)) and inputs.
 
-The [PPLCNetForImageClassification](/docs/transformers/v5.17.0/en/model_doc/pp_lcnet#transformers.PPLCNetForImageClassification) forward method, overrides the `__call__` special method.
+The [PPLCNetForImageClassification](/docs/transformers/v5.19.0/en/model_doc/pp_lcnet#transformers.PPLCNetForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -146,7 +146,7 @@ the latter silently ignores them.
 Examples:
 
 ```python
->>> import httpx
+>>> from huggingface_hub.utils import httpx
 >>> from io import BytesIO
 >>> from PIL import Image
 >>> from transformers import AutoModelForImageClassification, AutoImageProcessor
@@ -155,7 +155,7 @@ Examples:
 >>> model = AutoModelForImageClassification.from_pretrained(model_path)
 >>> image_processor = AutoImageProcessor.from_pretrained(model_path)
 
->>> url = "https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/img_rot180_demo.jpg"
+>>> url = "https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/paddle_img_rot180_demo.jpg"
 >>> with httpx.stream("GET", url) as response:
 ...     image = Image.open(BytesIO(response.read()))
 
@@ -171,10 +171,10 @@ wireless_table
 #### transformers.PPLCNetConfig[[transformers.PPLCNetConfig]]
 
 ```python
-transformers.PPLCNetConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, scale: float | int = 1.0, block_configs: list | None = None, stem_channels: int = 16, stem_stride: int = 2, reduction: int = 4, class_expand: int = 1280, divisor: int = 8, hidden_act: str = 'hardswish', _out_features: list[str] | None = None, _out_indices: list[int] | None = None, hidden_dropout_prob: float | int = 0.2)
+transformers.PPLCNetConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, scale: float | int = 1.0, block_configs: list | None = None, stem_channels: int = 16, stem_stride: int = 2, reduction: int = 4, class_expand: int = 1280, divisor: int = 8, hidden_act: str = 'hardswish', _out_features: list[str] | None = None, _out_indices: list[int] | None = None, hidden_dropout_prob: float | int = 0.2)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_lcnet/configuration_pp_lcnet.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_lcnet/configuration_pp_lcnet.py#L30)
 
 **Parameters:**
 
@@ -200,8 +200,8 @@ This is the configuration class to store the configuration of a Pp LcnetModel. I
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/PP-LCNet_x1_0_doc_ori_safetensors](https://huggingface.co/PaddlePaddle/PP-LCNet_x1_0_doc_ori_safetensors)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## PPLCNetBackbone[[transformers.PPLCNetBackbone]]
 
@@ -211,15 +211,15 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes
 transformers.PPLCNetBackbone(config: PPLCNetConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_lcnet/modeling_pp_lcnet.py#L247)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_lcnet/modeling_pp_lcnet.py#L247)
 
 **Parameters:**
 
-config ([PPLCNetConfig](/docs/transformers/v5.17.0/en/model_doc/pp_lcnet#transformers.PPLCNetConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPLCNetConfig](/docs/transformers/v5.19.0/en/model_doc/pp_lcnet#transformers.PPLCNetConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PPLCNet backbone model for feature extraction.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -233,19 +233,19 @@ and behavior.
 forward(pixel_values: Tensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_lcnet/modeling_pp_lcnet.py#L260)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_lcnet/modeling_pp_lcnet.py#L260)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PPLCNetImageProcessor](/docs/transformers/v5.17.0/en/model_doc/pp_lcnet#transformers.PPLCNetImageProcessor). See `PPLCNetImageProcessor.__call__()` for details (`processor_class` uses [PPLCNetImageProcessor](/docs/transformers/v5.17.0/en/model_doc/pp_lcnet#transformers.PPLCNetImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PPLCNetImageProcessor](/docs/transformers/v5.19.0/en/model_doc/pp_lcnet#transformers.PPLCNetImageProcessor). See `PPLCNetImageProcessor.__call__()` for details (`processor_class` uses [PPLCNetImageProcessor](/docs/transformers/v5.19.0/en/model_doc/pp_lcnet#transformers.PPLCNetImageProcessor) for processing images).
 
 **Returns:** `BackboneOutput` or `tuple(torch.FloatTensor)`
 
 A `BackboneOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PPLCNetConfig](/docs/transformers/v5.17.0/en/model_doc/pp_lcnet#transformers.PPLCNetConfig)) and inputs.
+elements depending on the configuration ([PPLCNetConfig](/docs/transformers/v5.19.0/en/model_doc/pp_lcnet#transformers.PPLCNetConfig)) and inputs.
 
-The [PPLCNetBackbone](/docs/transformers/v5.17.0/en/model_doc/pp_lcnet#transformers.PPLCNetBackbone) forward method, overrides the `__call__` special method.
+The [PPLCNetBackbone](/docs/transformers/v5.19.0/en/model_doc/pp_lcnet#transformers.PPLCNetBackbone) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -289,7 +289,7 @@ Examples:
 transformers.PPLCNetImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_lcnet/image_processing_pp_lcnet.py#L50)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_lcnet/image_processing_pp_lcnet.py#L50)
 
 **Parameters:**
 
@@ -420,14 +420,16 @@ Added for backward compatibility but this should be set as a processor attribute
 #### preprocess[[transformers.PPLCNetImageProcessor.preprocess]]
 
 ```python
-preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
+preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, image_like_kwargs: dict[str, typing.Any] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
 images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+image_like_kwargs (`dict[str, Any]`, *optional*) : Developer flag for additional image like inputs that will also be preprocessed. Only use this if passing the inputs as kwarg doesn't work. For example, `preprocess(images, masks=masks)` is the preferred option but results in argument priority issues for some models. In those cases `preprocess(images, image_like_inputs={"masks": masks})` can be used instead.
 
 do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
 
@@ -475,5 +477,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 - **tensor_type** (`Union[None, str, TensorType]`, *optional*) -- You can give a tensor_type here to convert the lists of integers in PyTorch/Numpy Tensors at
   initialization.
 
+Preprocess an image or a batch of images.
+
 ### AltCLIP
-https://huggingface.co/docs/transformers/v5.17.0/model_doc/altclip.md
+https://huggingface.co/docs/transformers/v5.19.0/model_doc/altclip.md

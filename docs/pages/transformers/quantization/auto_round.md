@@ -241,4 +241,4 @@ Contributions to [AutoRound](https://github.com/intel/auto-round/pulls) are welc
 Whether it's fixing bugs, improving documentation, adding new features, or suggesting improvements, your help is always valued.
 
 ### Quantization concepts
-https://huggingface.co/docs/transformers/v5.17.0/quantization/concept_guide.md
+https://huggingface.co/docs/transformers/v5.19.0/quantization/concept_guide.md

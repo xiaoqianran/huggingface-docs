@@ -7,7 +7,7 @@ You can find all the original MobileNet checkpoints under the [Google](https://h
 > [!TIP]
 > Click on the MobileNet V1 models in the right sidebar for more examples of how to apply MobileNet to different vision tasks.
 
-The example below demonstrates how to classify an image with [Pipeline](/docs/transformers/v5.17.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to classify an image with [Pipeline](/docs/transformers/v5.19.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -51,9 +51,9 @@ print(f"The predicted class label is: {predicted_class_label}")
 ## Notes
 
 - Checkpoint names follow the pattern `mobilenet_v1_{depth_multiplier}_{resolution}`, like `mobilenet_v1_1.0_224`. `1.0` is the depth multiplier and `224` is the image resolution.
-- While trained on images of a specific sizes, the model architecture works with images of different sizes (minimum 32x32). The [MobileNetV1ImageProcessor](/docs/transformers/v5.17.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1ImageProcessor) handles the necessary preprocessing.
+- While trained on images of a specific sizes, the model architecture works with images of different sizes (minimum 32x32). The [MobileNetV1ImageProcessor](/docs/transformers/v5.19.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1ImageProcessor) handles the necessary preprocessing.
 - MobileNet is pretrained on [ImageNet-1k](https://huggingface.co/datasets/ILSVRC/imagenet-1k), a dataset with 1000 classes. However, the model actually predicts 1001 classes. The additional class is an extra "background" class (index 0).
-- The original TensorFlow checkpoints determines the padding amount at inference because it depends on the input image size. To use the native PyTorch padding behavior, set `tf_padding=False` in [MobileNetV1Config](/docs/transformers/v5.17.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1Config).
+- The original TensorFlow checkpoints determines the padding amount at inference because it depends on the input image size. To use the native PyTorch padding behavior, set `tf_padding=False` in [MobileNetV1Config](/docs/transformers/v5.19.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1Config).
 
     ```python
     from transformers import MobileNetV1Config
@@ -72,10 +72,10 @@ print(f"The predicted class label is: {predicted_class_label}")
 #### transformers.MobileNetV1Config[[transformers.MobileNetV1Config]]
 
 ```python
-transformers.MobileNetV1Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 224, depth_multiplier: float | int = 1.0, min_depth: int = 8, hidden_act: str = 'relu6', tf_padding: bool = True, classifier_dropout_prob: float | int = 0.999, initializer_range: float = 0.02, layer_norm_eps: float = 0.001)
+transformers.MobileNetV1Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 224, depth_multiplier: float | int = 1.0, min_depth: int = 8, hidden_act: str = 'relu6', tf_padding: bool = True, classifier_dropout_prob: float | int = 0.999, initializer_range: float = 0.02, layer_norm_eps: float = 0.001)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/mobilenet_v1/configuration_mobilenet_v1.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/mobilenet_v1/configuration_mobilenet_v1.py#L24)
 
 **Parameters:**
 
@@ -101,8 +101,8 @@ This is the configuration class to store the configuration of a MobileNetV1Model
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/mobilenet_v1_1.0_224](https://huggingface.co/google/mobilenet_v1_1.0_224)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -127,7 +127,7 @@ Example:
 transformers.MobileNetV1ImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/mobilenet_v1/image_processing_mobilenet_v1.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/mobilenet_v1/image_processing_mobilenet_v1.py#L26)
 
 **Parameters:**
 
@@ -270,14 +270,16 @@ Added for backward compatibility but this should be set as a processor attribute
 #### preprocess[[transformers.MobileNetV1ImageProcessor.preprocess]]
 
 ```python
-preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
+preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, image_like_kwargs: dict[str, typing.Any] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
 images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+image_like_kwargs (`dict[str, Any]`, *optional*) : Developer flag for additional image like inputs that will also be preprocessed. Only use this if passing the inputs as kwarg doesn't work. For example, `preprocess(images, masks=masks)` is the preferred option but results in argument priority issues for some models. In those cases `preprocess(images, image_like_inputs={"masks": masks})` can be used instead.
 
 do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
 
@@ -325,6 +327,8 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 - **tensor_type** (`Union[None, str, TensorType]`, *optional*) -- You can give a tensor_type here to convert the lists of integers in PyTorch/Numpy Tensors at
   initialization.
 
+Preprocess an image or a batch of images.
+
 ## MobileNetV1ImageProcessorPil[[transformers.MobileNetV1ImageProcessorPil]]
 
 #### transformers.MobileNetV1ImageProcessorPil[[transformers.MobileNetV1ImageProcessorPil]]
@@ -333,7 +337,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.MobileNetV1ImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/mobilenet_v1/image_processing_pil_mobilenet_v1.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/mobilenet_v1/image_processing_pil_mobilenet_v1.py#L26)
 
 **Parameters:**
 
@@ -428,14 +432,16 @@ Added for backward compatibility but this should be set as a processor attribute
 #### preprocess[[transformers.MobileNetV1ImageProcessorPil.preprocess]]
 
 ```python
-preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
+preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, image_like_kwargs: dict[str, typing.Any] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
 images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+image_like_kwargs (`dict[str, Any]`, *optional*) : Developer flag for additional image like inputs that will also be preprocessed. Only use this if passing the inputs as kwarg doesn't work. For example, `preprocess(images, masks=masks)` is the preferred option but results in argument priority issues for some models. In those cases `preprocess(images, image_like_inputs={"masks": masks})` can be used instead.
 
 do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
 
@@ -483,6 +489,8 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 - **tensor_type** (`Union[None, str, TensorType]`, *optional*) -- You can give a tensor_type here to convert the lists of integers in PyTorch/Numpy Tensors at
   initialization.
 
+Preprocess an image or a batch of images.
+
 ## MobileNetV1Model[[transformers.MobileNetV1Model]]
 
 #### transformers.MobileNetV1Model[[transformers.MobileNetV1Model]]
@@ -491,17 +499,17 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.MobileNetV1Model(config: MobileNetV1Config, add_pooling_layer: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/mobilenet_v1/modeling_mobilenet_v1.py#L134)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/mobilenet_v1/modeling_mobilenet_v1.py#L134)
 
 **Parameters:**
 
-config ([MobileNetV1Config](/docs/transformers/v5.17.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MobileNetV1Config](/docs/transformers/v5.19.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
 The bare Mobilenet V1 Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -515,23 +523,23 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/mobilenet_v1/modeling_mobilenet_v1.py#L189)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/mobilenet_v1/modeling_mobilenet_v1.py#L189)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileNetV1ImageProcessor](/docs/transformers/v5.17.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1ImageProcessor). See `MobileNetV1ImageProcessor.__call__()` for details (`processor_class` uses [MobileNetV1ImageProcessor](/docs/transformers/v5.17.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileNetV1ImageProcessor](/docs/transformers/v5.19.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1ImageProcessor). See `MobileNetV1ImageProcessor.__call__()` for details (`processor_class` uses [MobileNetV1ImageProcessor](/docs/transformers/v5.19.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1ImageProcessor) for processing images).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `BaseModelOutputWithPoolingAndNoAttention` or `tuple(torch.FloatTensor)`
 
 A `BaseModelOutputWithPoolingAndNoAttention` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MobileNetV1Config](/docs/transformers/v5.17.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1Config)) and inputs.
+elements depending on the configuration ([MobileNetV1Config](/docs/transformers/v5.19.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1Config)) and inputs.
 
-The [MobileNetV1Model](/docs/transformers/v5.17.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1Model) forward method, overrides the `__call__` special method.
+The [MobileNetV1Model](/docs/transformers/v5.19.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -557,16 +565,16 @@ Example:
 transformers.MobileNetV1ForImageClassification(config: MobileNetV1Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/mobilenet_v1/modeling_mobilenet_v1.py#L238)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/mobilenet_v1/modeling_mobilenet_v1.py#L238)
 
 **Parameters:**
 
-config ([MobileNetV1Config](/docs/transformers/v5.17.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MobileNetV1Config](/docs/transformers/v5.19.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 MobileNetV1 model with an image classification head on top (a linear layer on top of the pooled features), e.g. for
 ImageNet.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -580,25 +588,25 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, labels: typing.Optional[torch.Tensor] = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/mobilenet_v1/modeling_mobilenet_v1.py#L254)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/mobilenet_v1/modeling_mobilenet_v1.py#L254)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileNetV1ImageProcessor](/docs/transformers/v5.17.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1ImageProcessor). See `MobileNetV1ImageProcessor.__call__()` for details (`processor_class` uses [MobileNetV1ImageProcessor](/docs/transformers/v5.17.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileNetV1ImageProcessor](/docs/transformers/v5.19.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1ImageProcessor). See `MobileNetV1ImageProcessor.__call__()` for details (`processor_class` uses [MobileNetV1ImageProcessor](/docs/transformers/v5.19.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1ImageProcessor) for processing images).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss). If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or `tuple(torch.FloatTensor)`
+**Returns:** [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or `tuple(torch.FloatTensor)`
 
-A [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or a tuple of
+A [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MobileNetV1Config](/docs/transformers/v5.17.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1Config)) and inputs.
+elements depending on the configuration ([MobileNetV1Config](/docs/transformers/v5.19.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1Config)) and inputs.
 
-The [MobileNetV1ForImageClassification](/docs/transformers/v5.17.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1ForImageClassification) forward method, overrides the `__call__` special method.
+The [MobileNetV1ForImageClassification](/docs/transformers/v5.19.0/en/model_doc/mobilenet_v1#transformers.MobileNetV1ForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -635,4 +643,4 @@ Example:
 ```
 
 ### LED
-https://huggingface.co/docs/transformers/v5.17.0/model_doc/led.md
+https://huggingface.co/docs/transformers/v5.19.0/model_doc/led.md

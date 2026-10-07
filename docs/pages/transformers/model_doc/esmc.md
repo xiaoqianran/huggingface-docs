@@ -11,9 +11,9 @@ backbone of [ESMFold2](./esmfold2), where it generates representations that are 
 
 Pre-trained checkpoints are available on the Hugging Face Hub:
 
-- [`biohub/ESMC-300M-hf`](https://huggingface.co/biohub/ESMC-300M-hf)
-- [`biohub/ESMC-600M-hf`](https://huggingface.co/biohub/ESMC-600M-hf)
-- [`biohub/ESMC-6B-hf`](https://huggingface.co/biohub/ESMC-6B-hf)
+- [`biohub/ESMC-300M`](https://huggingface.co/biohub/ESMC-300M)
+- [`biohub/ESMC-600M`](https://huggingface.co/biohub/ESMC-600M)
+- [`biohub/ESMC-6B`](https://huggingface.co/biohub/ESMC-6B)
 
 ## Usage example
 
@@ -26,7 +26,7 @@ from transformers import pipeline
 
 extractor = pipeline(
     task="feature-extraction",
-    model="biohub/ESMC-300M-hf",
+    model="biohub/ESMC-300M",
 )
 # Per-residue representations of shape (batch, sequence_length, hidden_size).
 representations = extractor("MKTAYIAKQRQISFVKSHFSRQLEERLGLIEVQ", return_tensors="pt")
@@ -36,8 +36,8 @@ representations = extractor("MKTAYIAKQRQISFVKSHFSRQLEERLGLIEVQ", return_tensors=
 import torch
 from transformers import AutoModel, AutoTokenizer
 
-tokenizer = AutoTokenizer.from_pretrained("biohub/ESMC-300M-hf")
-model = AutoModel.from_pretrained("biohub/ESMC-300M-hf")
+tokenizer = AutoTokenizer.from_pretrained("biohub/ESMC-300M")
+model = AutoModel.from_pretrained("biohub/ESMC-300M")
 
 inputs = tokenizer("MKTAYIAKQRQISFVKSHFSRQLEERLGLIEVQ", return_tensors="pt")
 with torch.no_grad():
@@ -52,10 +52,10 @@ representations = outputs.last_hidden_state
 #### transformers.EsmcConfig[[transformers.EsmcConfig]]
 
 ```python
-transformers.EsmcConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 64, hidden_size: int = 2560, intermediate_size: int = 6912, num_hidden_layers: int = 80, num_attention_heads: int = 40, num_key_value_heads: int | None = None, hidden_act: str = 'silu', max_position_embeddings: int = 2048, initializer_range: float = 0.02, pad_token_id: int | None = 1, bos_token_id: int | None = 0, eos_token_id: int | list[int] | None = 2, tie_word_embeddings: bool = False, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, attention_bias: bool = False, attention_dropout: int | float | None = 0.0, mlp_bias: bool = False, head_dim: int | None = None, mask_token_id: int | None = 32, classifier_dropout: float | None = 0.1)
+transformers.EsmcConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 64, hidden_size: int = 2560, intermediate_size: int = 6912, num_hidden_layers: int = 80, num_attention_heads: int = 40, num_key_value_heads: int | None = None, hidden_act: str = 'silu', max_position_embeddings: int = 2048, initializer_range: float = 0.02, pad_token_id: int | None = 1, bos_token_id: int | None = 0, eos_token_id: int | list[int] | None = 2, tie_word_embeddings: bool = False, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, attention_bias: bool = False, attention_dropout: int | float | None = 0.0, mlp_bias: bool = False, head_dim: int | None = None, mask_token_id: int | None = 32, classifier_dropout: float | None = 0.1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/esmc/configuration_esmc.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/esmc/configuration_esmc.py#L30)
 
 **Parameters:**
 
@@ -101,7 +101,7 @@ classifier_dropout (*float*, *optional*, defaults to 0.1) : Dropout ratio for th
 
 This is the configuration class to store the configuration of a EsmcModel. It is used to instantiate a Esmc
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
-defaults will yield a similar configuration to that of the [biohub/ESMC-6B-hf](https://huggingface.co/biohub/ESMC-6B-hf)
+defaults will yield a similar configuration to that of the [biohub/ESMC-6B](https://huggingface.co/biohub/ESMC-6B)
 
 Configuration objects inherit from [*PreTrainedConfig*] and can be used to control the model outputs. Read the
 documentation from [*PreTrainedConfig*] for more information.
@@ -111,7 +111,7 @@ Examples:
 ```python
 >>> from transformers import EsmcConfig, EsmcModel
 
->>> # Initializing an ESMC biohub/ESMC-6B-hf style configuration
+>>> # Initializing an ESMC biohub/ESMC-6B style configuration
 >>> configuration = EsmcConfig()
 
 >>> # Initializing a model (with random weights) from the configuration
@@ -129,7 +129,7 @@ Examples:
 transformers.EsmcTokenizer(unk_token = '<unk>', cls_token = '<cls>', pad_token = '<pad>', mask_token = '<mask>', eos_token = '<eos>', bos_token = None, chain_break_token = '|', extra_special_tokens = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/esmc/tokenization_esmc.py#L67)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/esmc/tokenization_esmc.py#L67)
 
 **Parameters:**
 
@@ -173,15 +173,15 @@ Examples:
 transformers.EsmcModel(config: EsmcConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/esmc/modeling_esmc.py#L317)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/esmc/modeling_esmc.py#L306)
 
 **Parameters:**
 
-config ([EsmcConfig](/docs/transformers/v5.17.0/en/model_doc/esmc#transformers.EsmcConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([EsmcConfig](/docs/transformers/v5.19.0/en/model_doc/esmc#transformers.EsmcConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Esmc Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -195,7 +195,7 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, sequence_id: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/esmc/modeling_esmc.py#L327)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/esmc/modeling_esmc.py#L316)
 
 **Parameters:**
 
@@ -235,8 +235,8 @@ Examples:
 ```python
 >>> from transformers import AutoTokenizer, EsmcModel
 
->>> model = EsmcModel.from_pretrained("biohub/ESMC-300M-hf")
->>> tokenizer = AutoTokenizer.from_pretrained("biohub/ESMC-300M-hf")
+>>> model = EsmcModel.from_pretrained("biohub/ESMC-300M")
+>>> tokenizer = AutoTokenizer.from_pretrained("biohub/ESMC-300M")
 >>> inputs = tokenizer(["MLKNVQVQLV"], return_tensors="pt")
 >>> outputs = model(**inputs)
 >>> outputs.last_hidden_state.shape
@@ -251,15 +251,15 @@ torch.Size([1, 12, 960])
 transformers.EsmcForMaskedLM(config: EsmcConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/esmc/modeling_esmc.py#L425)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/esmc/modeling_esmc.py#L414)
 
 **Parameters:**
 
-config ([EsmcConfig](/docs/transformers/v5.17.0/en/model_doc/esmc#transformers.EsmcConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([EsmcConfig](/docs/transformers/v5.19.0/en/model_doc/esmc#transformers.EsmcConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Esmc Model with a `language modeling` head on top."
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -273,7 +273,7 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, sequence_id: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/esmc/modeling_esmc.py#L441)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/esmc/modeling_esmc.py#L430)
 
 **Parameters:**
 
@@ -283,7 +283,7 @@ attention_mask (*torch.Tensor* of shape *(batch_size, sequence_length)*, *option
 
 position_ids (*torch.Tensor* of shape *(batch_size, sequence_length)*, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range *[0, config.n_positions - 1]*.  [What are position IDs?](../glossary#position-ids)
 
-sequence_id (*torch.Tensor* of shape *(batch_size, sequence_length)*, *optional*) : Integer chain-ID tensor forwarded to the encoder for chain-aware attention masking. See [EsmcModel.forward()](/docs/transformers/v5.17.0/en/model_doc/esmc#transformers.EsmcModel.forward) for the encoding.
+sequence_id (*torch.Tensor* of shape *(batch_size, sequence_length)*, *optional*) : Integer chain-ID tensor forwarded to the encoder for chain-aware attention masking. See [EsmcModel.forward()](/docs/transformers/v5.19.0/en/model_doc/esmc#transformers.EsmcModel.forward) for the encoding.
 
 labels (*torch.LongTensor* of shape *(batch_size, sequence_length)*, *optional*) : Labels for masked language modelling loss.  Positions with label `-100` are ignored.  Other positions must be in `[0, config.vocab_size)`.
 
@@ -317,8 +317,8 @@ Examples:
 >>> from transformers import AutoTokenizer, EsmcForMaskedLM
 >>> import torch
 
->>> model = EsmcForMaskedLM.from_pretrained("biohub/ESMC-300M-hf")
->>> tokenizer = AutoTokenizer.from_pretrained("biohub/ESMC-300M-hf")
+>>> model = EsmcForMaskedLM.from_pretrained("biohub/ESMC-300M")
+>>> tokenizer = AutoTokenizer.from_pretrained("biohub/ESMC-300M")
 >>> inputs = tokenizer(["MLKNVQ&amp;lt;mask>LV"], return_tensors="pt")
 >>> outputs = model(**inputs)
 >>> outputs.logits.shape
@@ -333,16 +333,16 @@ torch.Size([1, 11, 64])
 transformers.EsmcForSequenceClassification(config: EsmcConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/esmc/modeling_esmc.py#L522)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/esmc/modeling_esmc.py#L511)
 
 **Parameters:**
 
-config ([EsmcConfig](/docs/transformers/v5.17.0/en/model_doc/esmc#transformers.EsmcConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([EsmcConfig](/docs/transformers/v5.19.0/en/model_doc/esmc#transformers.EsmcConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 ESMC Model transformer with a sequence classification/regression head on top (a linear layer on top of the pooled
 output) e.g. for GLUE tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -356,11 +356,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/esmc/modeling_esmc.py#L532)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/esmc/modeling_esmc.py#L521)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -370,13 +370,13 @@ inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidde
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the sequence classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
-**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [SequenceClassifierOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
+A [SequenceClassifierOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([EsmcConfig](/docs/transformers/v5.17.0/en/model_doc/esmc#transformers.EsmcConfig)) and inputs.
+elements depending on the configuration ([EsmcConfig](/docs/transformers/v5.19.0/en/model_doc/esmc#transformers.EsmcConfig)) and inputs.
 
-The [EsmcForSequenceClassification](/docs/transformers/v5.17.0/en/model_doc/esmc#transformers.EsmcForSequenceClassification) forward method, overrides the `__call__` special method.
+The [EsmcForSequenceClassification](/docs/transformers/v5.19.0/en/model_doc/esmc#transformers.EsmcForSequenceClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -400,8 +400,8 @@ Example of single-label classification:
 >>> import torch
 >>> from transformers import AutoTokenizer, EsmcForSequenceClassification
 
->>> tokenizer = AutoTokenizer.from_pretrained("biohub/ESMC-6B-hf")
->>> model = EsmcForSequenceClassification.from_pretrained("biohub/ESMC-6B-hf")
+>>> tokenizer = AutoTokenizer.from_pretrained("biohub/ESMC-6B")
+>>> model = EsmcForSequenceClassification.from_pretrained("biohub/ESMC-6B")
 
 >>> inputs = tokenizer("Hello, my dog is cute", return_tensors="pt")
 
@@ -414,7 +414,7 @@ Example of single-label classification:
 
 >>> # To train a model on `num_labels` classes, you can pass `num_labels=num_labels` to `.from_pretrained(...)`
 >>> num_labels = len(model.config.id2label)
->>> model = EsmcForSequenceClassification.from_pretrained("biohub/ESMC-6B-hf", num_labels=num_labels)
+>>> model = EsmcForSequenceClassification.from_pretrained("biohub/ESMC-6B", num_labels=num_labels)
 
 >>> labels = torch.tensor([1])
 >>> loss = model(**inputs, labels=labels).loss
@@ -428,8 +428,8 @@ Example of multi-label classification:
 >>> import torch
 >>> from transformers import AutoTokenizer, EsmcForSequenceClassification
 
->>> tokenizer = AutoTokenizer.from_pretrained("biohub/ESMC-6B-hf")
->>> model = EsmcForSequenceClassification.from_pretrained("biohub/ESMC-6B-hf", problem_type="multi_label_classification")
+>>> tokenizer = AutoTokenizer.from_pretrained("biohub/ESMC-6B")
+>>> model = EsmcForSequenceClassification.from_pretrained("biohub/ESMC-6B", problem_type="multi_label_classification")
 
 >>> inputs = tokenizer("Hello, my dog is cute", return_tensors="pt")
 
@@ -441,7 +441,7 @@ Example of multi-label classification:
 >>> # To train a model on `num_labels` classes, you can pass `num_labels=num_labels` to `.from_pretrained(...)`
 >>> num_labels = len(model.config.id2label)
 >>> model = EsmcForSequenceClassification.from_pretrained(
-...     "biohub/ESMC-6B-hf", num_labels=num_labels, problem_type="multi_label_classification"
+...     "biohub/ESMC-6B", num_labels=num_labels, problem_type="multi_label_classification"
 ... )
 
 >>> labels = torch.sum(
@@ -458,7 +458,7 @@ Example of multi-label classification:
 transformers.EsmcForTokenClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/esmc/modeling_esmc.py#L593)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/esmc/modeling_esmc.py#L575)
 
 #### forward[[transformers.EsmcForTokenClassification.forward]]
 
@@ -466,21 +466,21 @@ transformers.EsmcForTokenClassification(config)
 forward(input_ids: torch.LongTensor | None = None, attention_mask: torch.Tensor | None = None, position_ids: torch.LongTensor | None = None, past_key_values: Cache | None = None, inputs_embeds: torch.FloatTensor | None = None, labels: torch.LongTensor | None = None, use_cache: bool | None = None, **kwargs: Unpack[TransformersKwargs])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/modeling_layers.py#L273)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/modeling_layers.py#L274)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.17.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.19.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.19.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the token classification loss. Indices should be in `[0, ..., config.num_labels - 1]`.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
@@ -493,4 +493,4 @@ instance afterwards instead of this since the former takes care of running the p
 the latter silently ignores them.
 
 ### Dilated Neighborhood Attention Transformer
-https://huggingface.co/docs/transformers/v5.17.0/model_doc/dinat.md
+https://huggingface.co/docs/transformers/v5.19.0/model_doc/dinat.md

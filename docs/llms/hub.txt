@@ -272,5 +272,6 @@
 - [Security Model](https://huggingface.co/docs/hub/xet/security.md)
 - [Backward Compatibility with LFS](https://huggingface.co/docs/hub/xet/legacy-git-lfs.md)
 - [Xet: our Storage Backend](https://huggingface.co/docs/hub/xet/index.md)
+- [Telemetry](https://huggingface.co/docs/hub/xet/telemetry.md)
 - [Using Xet Storage](https://huggingface.co/docs/hub/xet/using-xet-storage.md)
 - [Deduplication](https://huggingface.co/docs/hub/xet/deduplication.md)

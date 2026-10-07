@@ -1,6 +1,6 @@
 # Customizing model components
 
-Another way to customize a model is to modify their components, rather than writing a new model entirely, allowing you to tailor a model to your specific use case. For example, you can add new layers or optimize the attention mechanism of an architecture. Customizations are applied directly to a Transformers model so that you can continue to use features such as [Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer), [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel), and the [PEFT](https://huggingface.co/docs/peft/en/index) library.
+Another way to customize a model is to modify their components, rather than writing a new model entirely, allowing you to tailor a model to your specific use case. For example, you can add new layers or optimize the attention mechanism of an architecture. Customizations are applied directly to a Transformers model so that you can continue to use features such as [Trainer](/docs/transformers/v5.19.0/en/main_classes/trainer#transformers.Trainer), [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel), and the [PEFT](https://huggingface.co/docs/peft/en/index) library.
 
 This guide will show you how to customize a models attention mechanism in order to apply [Low-Rank Adaptation (LoRA)](https://huggingface.co/docs/peft/conceptual_guides/adapter#low-rank-adaptation-lora) to it.
 
@@ -90,7 +90,7 @@ class SamVisionAttentionSplit(SamVisionAttention, nn.Module):
 
 Assign the custom `SamVisionAttentionSplit` class to the original models `SamVisionAttention` module to replace it. All instances of `SamVisionAttention` in the model are replaced with the split attention version.
 
-Swap the class *before* calling [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). The load hook only runs while the checkpoint is loading, so replacing the modules on an already loaded model leaves the new `q`, `k`, and `v` layers randomly initialized.
+Swap the class *before* calling [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). The load hook only runs while the checkpoint is loading, so replacing the modules on an already loaded model leaves the new `q`, `k`, and `v` layers randomly initialized.
 
 ```py
 from transformers import SamModel
@@ -136,4 +136,4 @@ model.print_trainable_parameters()
 ```
 
 ### Attention backends
-https://huggingface.co/docs/transformers/v5.17.0/attention_interface.md
+https://huggingface.co/docs/transformers/v5.19.0/attention_interface.md

@@ -1,6 +1,6 @@
 # Paged attention
 
-This page documents the paged attention forward function used in [continuous batching](./continuous_batching). It wraps two versions of the flash attention kernel to handle different batch configurations efficiently.
+This page documents the paged attention forward function used in [continuous batching](./continuous_batching).
 
 ## Varlen path
 
@@ -12,7 +12,7 @@ This kernel has no mechanism to interact with the paged cache directly, so the c
 
 ### Indexing mechanism
 
-The kernel uses maximum sequence length (`max_seqlen_q`, `max_seqlen_k`) and cumulative sequence lengths (`cu_seq_lens_q`, `cu_seq_lens_k`) to compute attention for each sequence.
+The kernel uses maximum sequence length (`max_length_q`, `max_length_k`) and cumulative sequence lengths (`cu_seq_lens_q`, `cu_seq_lens_k`) to compute attention for each sequence.
 
 ### Example
 
@@ -21,8 +21,8 @@ Consider a batch of 3 sequences with query lengths `[10, 3, 1]` and key lengths 
 ```
 cu_seq_lens_q = [0, 10, 13, 14]
 cu_seq_lens_k = [0, 0, 1, 8]
-max_seqlen_q = 10
-max_seqlen_k = 7
+max_length_q = 10
+max_length_k = 7
 ```
 
 Input shapes:
@@ -79,4 +79,4 @@ Values of `-1` indicate unallocated blocks.
 - **Sequence 2** (70 cached tokens): cache in `KV_cache[3]`, `KV_cache[5]`, and `KV_cache[6]`. Note that blocks are not necessarily contiguous, which is the key advantage of paged cache. The new token fits in the third block.
 
 ### Customizing models
-https://huggingface.co/docs/transformers/v5.17.0/custom_models.md
+https://huggingface.co/docs/transformers/v5.19.0/custom_models.md

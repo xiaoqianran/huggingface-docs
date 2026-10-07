@@ -14,7 +14,7 @@ Unlike its predecessor, PP-DocLayoutV3 eliminates decoupled stages by embedding 
 
 ### Single input inference
 
-The example below demonstrates how to generate text with PP-DocLayoutV3 using [Pipeline](/docs/transformers/v5.17.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModel).
+The example below demonstrates how to generate text with PP-DocLayoutV3 using [Pipeline](/docs/transformers/v5.19.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoModel).
 
 ```python
 import requests
@@ -22,7 +22,7 @@ from PIL import Image
 
 from transformers import pipeline
 
-image = Image.open(requests.get("https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/layout_demo.jpg", stream=True).raw)
+image = Image.open(requests.get("https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/paddle_layout_demo.jpg", stream=True).raw)
 layout_detector = pipeline("object-detection", model="PaddlePaddle/PP-DocLayoutV3_safetensors")
 results = layout_detector(image)
 for idx, res in enumerate(results):
@@ -39,7 +39,7 @@ model_path = "PaddlePaddle/PP-DocLayoutV3_safetensors"
 model = AutoModelForObjectDetection.from_pretrained(model_path, device_map="auto")
 image_processor = AutoImageProcessor.from_pretrained(model_path)
 
-image = Image.open(requests.get("https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/layout_demo.jpg", stream=True).raw)
+image = Image.open(requests.get("https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/paddle_layout_demo.jpg", stream=True).raw)
 inputs = image_processor(images=image, return_tensors="pt").to(model.device)
 
 outputs = model(**inputs)
@@ -53,7 +53,7 @@ for result in results:
 
 ### Batched inference
 
-PP-DocLayoutV3 also supports batched inference. Here is how you can do it with PP-DocLayoutV3 using [Pipeline](/docs/transformers/v5.17.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModel):
+PP-DocLayoutV3 also supports batched inference. Here is how you can do it with PP-DocLayoutV3 using [Pipeline](/docs/transformers/v5.19.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoModel):
 
 ```python
 import requests
@@ -61,7 +61,7 @@ from PIL import Image
 
 from transformers import pipeline
 
-image = Image.open(requests.get("https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/layout_demo.jpg", stream=True).raw)
+image = Image.open(requests.get("https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/paddle_layout_demo.jpg", stream=True).raw)
 layout_detector = pipeline("object-detection", model="PaddlePaddle/PP-DocLayoutV3_safetensors")
 results = layout_detector([image, image])
 for result in results:
@@ -80,7 +80,7 @@ model_path = "PaddlePaddle/PP-DocLayoutV3_safetensors"
 model = AutoModelForObjectDetection.from_pretrained(model_path, device_map="auto")
 image_processor = AutoImageProcessor.from_pretrained(model_path)
 
-image = Image.open(requests.get("https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/layout_demo.jpg", stream=True).raw)
+image = Image.open(requests.get("https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/paddle_layout_demo.jpg", stream=True).raw)
 inputs = image_processor(images=[image, image], return_tensors="pt").to(model.device)
 target_sizes = [image.size[::-1], image.size[::-1]]
 
@@ -102,16 +102,16 @@ for result in results:
 transformers.PPDocLayoutV3ForObjectDetection(config: PPDocLayoutV3Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_doclayout_v3/modeling_pp_doclayout_v3.py#L2016)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_doclayout_v3/modeling_pp_doclayout_v3.py#L2007)
 
 **Parameters:**
 
-config ([PPDocLayoutV3Config](/docs/transformers/v5.17.0/en/model_doc/pp_doclayout_v3#transformers.PPDocLayoutV3Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPDocLayoutV3Config](/docs/transformers/v5.19.0/en/model_doc/pp_doclayout_v3#transformers.PPDocLayoutV3Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PP-DocLayoutV3 Model (consisting of a backbone and encoder-decoder) outputs bounding boxes and logits sorted according to reading order,
 which are further decoded into scores and classes.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -125,7 +125,7 @@ and behavior.
 forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, labels: list[dict] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_doclayout_v3/modeling_pp_doclayout_v3.py#L2034)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_doclayout_v3/modeling_pp_doclayout_v3.py#L2025)
 
 **Parameters:**
 
@@ -143,7 +143,7 @@ A `PPDocLayoutV3ForObjectDetectionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [PPDocLayoutV3ForObjectDetection](/docs/transformers/v5.17.0/en/model_doc/pp_doclayout_v3#transformers.PPDocLayoutV3ForObjectDetection) forward method, overrides the `__call__` special method.
+The [PPDocLayoutV3ForObjectDetection](/docs/transformers/v5.19.0/en/model_doc/pp_doclayout_v3#transformers.PPDocLayoutV3ForObjectDetection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -200,11 +200,11 @@ Examples:
 ```python
 >>> from transformers import AutoModelForObjectDetection, AutoImageProcessor
 >>> from PIL import Image
->>> import httpx
+>>> from huggingface_hub.utils import httpx
 >>> from io import BytesIO
 >>> import torch
 
->>> url = "https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/layout_demo.jpg"
+>>> url = "https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/paddle_layout_demo.jpg"
 >>> with httpx.stream("GET", url) as response:
 ...     image = Image.open(BytesIO(response.read()))
 
@@ -250,15 +250,15 @@ Order 13: footer: 0.93 [338.4, 2255.52, 986.15, 2284.37]
 transformers.PPDocLayoutV3Model(config: PPDocLayoutV3Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_doclayout_v3/modeling_pp_doclayout_v3.py#L1579)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_doclayout_v3/modeling_pp_doclayout_v3.py#L1570)
 
 **Parameters:**
 
-config ([PPDocLayoutV3Config](/docs/transformers/v5.17.0/en/model_doc/pp_doclayout_v3#transformers.PPDocLayoutV3Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPDocLayoutV3Config](/docs/transformers/v5.19.0/en/model_doc/pp_doclayout_v3#transformers.PPDocLayoutV3Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PP-DocLayoutV3 Model (consisting of a backbone and encoder-decoder) outputting raw hidden states without any head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -272,7 +272,7 @@ and behavior.
 forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, labels: list[dict] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_doclayout_v3/modeling_pp_doclayout_v3.py#L1716)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_doclayout_v3/modeling_pp_doclayout_v3.py#L1707)
 
 **Parameters:**
 
@@ -290,7 +290,7 @@ A `PPDocLayoutV3ModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [PPDocLayoutV3Model](/docs/transformers/v5.17.0/en/model_doc/pp_doclayout_v3#transformers.PPDocLayoutV3Model) forward method, overrides the `__call__` special method.
+The [PPDocLayoutV3Model](/docs/transformers/v5.19.0/en/model_doc/pp_doclayout_v3#transformers.PPDocLayoutV3Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -344,7 +344,7 @@ Examples:
 ```python
 >>> from transformers import AutoImageProcessor, PPDocLayoutV2Model
 >>> from PIL import Image
->>> import httpx
+>>> from huggingface_hub.utils import httpx
 >>> from io import BytesIO
 
 >>> url = "http://images.cocodataset.org/val2017/000000039769.jpg"
@@ -368,10 +368,10 @@ Examples:
 #### transformers.PPDocLayoutV3Config[[transformers.PPDocLayoutV3Config]]
 
 ```python
-transformers.PPDocLayoutV3Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, is_encoder_decoder: bool = True, initializer_range: float = 0.01, initializer_bias_prior_prob: float | None = None, layer_norm_eps: float = 1e-05, batch_norm_eps: float = 1e-05, tie_word_embeddings: bool = True, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, freeze_backbone_batch_norms: bool = True, encoder_hidden_dim: int = 256, encoder_in_channels: list[int] | tuple[int, ...] = (512, 1024, 2048), feat_strides: list[int] | tuple[int, ...] = (8, 16, 32), encoder_layers: int = 1, encoder_ffn_dim: int = 1024, encoder_attention_heads: int = 8, dropout: float | int = 0.0, activation_dropout: float | int = 0.0, encode_proj_layers: list[int] | tuple[int, ...] = (2,), positional_encoding_temperature: int = 10000, encoder_activation_function: str = 'gelu', activation_function: str = 'silu', eval_size: int | None = None, normalize_before: bool = False, hidden_expansion: float = 1.0, mask_feature_channels: list[int] | tuple[int, ...] = (64, 64), x4_feat_dim: int = 128, d_model: int = 256, num_prototypes: int = 32, label_noise_ratio: float = 0.4, box_noise_scale: float = 0.4, mask_enhanced: bool = True, num_queries: int = 300, decoder_in_channels: list[int] | tuple[int, ...] = (256, 256, 256), decoder_ffn_dim: int = 1024, num_feature_levels: int = 3, decoder_n_points: int = 4, decoder_layers: int = 6, decoder_attention_heads: int = 8, decoder_activation_function: str = 'relu', attention_dropout: float | int = 0.0, num_denoising: int = 100, learn_initial_query: bool = False, anchor_image_size: int | None = None, disable_custom_kernels: bool = True, global_pointer_head_size: int = 64, gp_dropout_value: float | int = 0.1)
+transformers.PPDocLayoutV3Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, is_encoder_decoder: bool = True, initializer_range: float = 0.01, initializer_bias_prior_prob: float | None = None, layer_norm_eps: float = 1e-05, batch_norm_eps: float = 1e-05, tie_word_embeddings: bool = True, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, freeze_backbone_batch_norms: bool = True, encoder_hidden_dim: int = 256, encoder_in_channels: list[int] | tuple[int, ...] = (512, 1024, 2048), feat_strides: list[int] | tuple[int, ...] = (8, 16, 32), encoder_layers: int = 1, encoder_ffn_dim: int = 1024, encoder_attention_heads: int = 8, dropout: float | int = 0.0, activation_dropout: float | int = 0.0, encode_proj_layers: list[int] | tuple[int, ...] = (2,), positional_encoding_temperature: int = 10000, encoder_activation_function: str = 'gelu', activation_function: str = 'silu', eval_size: int | None = None, normalize_before: bool = False, hidden_expansion: float = 1.0, mask_feature_channels: list[int] | tuple[int, ...] = (64, 64), x4_feat_dim: int = 128, d_model: int = 256, num_prototypes: int = 32, label_noise_ratio: float = 0.4, box_noise_scale: float = 0.4, mask_enhanced: bool = True, num_queries: int = 300, decoder_in_channels: list[int] | tuple[int, ...] = (256, 256, 256), decoder_ffn_dim: int = 1024, num_feature_levels: int = 3, decoder_n_points: int = 4, decoder_layers: int = 6, decoder_attention_heads: int = 8, decoder_activation_function: str = 'relu', attention_dropout: float | int = 0.0, num_denoising: int = 100, learn_initial_query: bool = False, anchor_image_size: int | None = None, disable_custom_kernels: bool = True, global_pointer_head_size: int = 64, gp_dropout_value: float | int = 0.1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_doclayout_v3/configuration_pp_doclayout_v3.py#L31)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_doclayout_v3/configuration_pp_doclayout_v3.py#L31)
 
 **Parameters:**
 
@@ -469,8 +469,8 @@ This is the configuration class to store the configuration of a PPDocLayoutV3Mod
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/PP-DocLayoutV3_safetensors](https://huggingface.co/PaddlePaddle/PP-DocLayoutV3_safetensors)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -495,7 +495,7 @@ Examples:
 transformers.PPDocLayoutV3ImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_doclayout_v3/image_processing_pp_doclayout_v3.py#L39)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_doclayout_v3/image_processing_pp_doclayout_v3.py#L39)
 
 **Parameters:**
 
@@ -566,14 +566,16 @@ Added for backward compatibility but this should be set as a processor attribute
 #### preprocess[[transformers.PPDocLayoutV3ImageProcessor.preprocess]]
 
 ```python
-preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
+preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, image_like_kwargs: dict[str, typing.Any] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
 images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+image_like_kwargs (`dict[str, Any]`, *optional*) : Developer flag for additional image like inputs that will also be preprocessed. Only use this if passing the inputs as kwarg doesn't work. For example, `preprocess(images, masks=masks)` is the preferred option but results in argument priority issues for some models. In those cases `preprocess(images, image_like_inputs={"masks": masks})` can be used instead.
 
 do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
 
@@ -621,5 +623,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 - **tensor_type** (`Union[None, str, TensorType]`, *optional*) -- You can give a tensor_type here to convert the lists of integers in PyTorch/Numpy Tensors at
   initialization.
 
+Preprocess an image or a batch of images.
+
 ### ViTMSN
-https://huggingface.co/docs/transformers/v5.17.0/model_doc/vit_msn.md
+https://huggingface.co/docs/transformers/v5.19.0/model_doc/vit_msn.md

@@ -116,4 +116,4 @@ print(similarity_score)
 ```
 
 ### Instance segmentation
-https://huggingface.co/docs/transformers/v5.17.0/tasks/instance_segmentation.md
+https://huggingface.co/docs/transformers/v5.19.0/tasks/instance_segmentation.md

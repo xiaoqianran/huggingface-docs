@@ -15,7 +15,7 @@ There are two main depth estimation categories:
 
 - **Relative depth estimation**: Relative depth estimation aims to predict the depth order of objects or points in a scene without providing the precise measurements. These models output a depth map that indicates which parts of the scene are closer or farther relative to each other without the actual distances to A and B.
 
-In this guide, we will see how to infer with [Depth Anything V2](https://huggingface.co/depth-anything/Depth-Anything-V2-Large), a state-of-the-art zero-shot relative depth estimation model, and [ZoeDepth](https://huggingface.co/docs/transformers/main/en/model_doc/zoedepth), an absolute depth estimation model.
+In this guide, we will see how to infer with [Depth Anything V2](https://huggingface.co/depth-anything/Depth-Anything-V2-Large), a state-of-the-art zero-shot relative depth estimation model, and [ZoeDepth](../model_doc/zoedepth), an absolute depth estimation model.
 
 Check the [Depth Estimation](https://huggingface.co/tasks/depth-estimation) task page to view all compatible architectures and checkpoints.
 
@@ -27,7 +27,7 @@ pip install -q -U transformers
 
 ## Depth estimation pipeline
 
-The simplest way to try out inference with a model supporting depth estimation is to use the corresponding [pipeline()](/docs/transformers/v5.17.0/en/main_classes/pipelines#transformers.pipeline).
+The simplest way to try out inference with a model supporting depth estimation is to use the corresponding [pipeline()](/docs/transformers/v5.19.0/en/main_classes/pipelines#transformers.pipeline).
 Instantiate a pipeline from a [checkpoint on the Hugging Face Hub](https://huggingface.co/models?pipeline_tag=depth-estimation&sort=downloads):
 
 ```py
@@ -129,4 +129,4 @@ In the original implementation ZoeDepth model performs inference on both the ori
 ... )
 
 ### Automatic speech recognition
-https://huggingface.co/docs/transformers/v5.17.0/tasks/asr.md
+https://huggingface.co/docs/transformers/v5.19.0/tasks/asr.md

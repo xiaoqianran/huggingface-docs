@@ -1,7 +1,7 @@
 # NVFP4
 
 NVFP4 quantization packs full-precision linear weights into NVIDIA's 4-bit floating-point format while a model is
-loaded. [NVFP4Config](/docs/transformers/v5.17.0/en/main_classes/quantization#transformers.NVFP4Config) replaces eligible bias-free `torch.nn.Linear` modules, whose `in_features` and `out_features` are both divisible by 16, with an NVFP4 linear implementation from
+loaded. [NVFP4Config](/docs/transformers/v5.19.0/en/main_classes/quantization#transformers.NVFP4Config) replaces eligible bias-free `torch.nn.Linear` modules, whose `in_features` and `out_features` are both divisible by 16, with an NVFP4 linear implementation from
 the [NVFP4 Hub kernel](https://huggingface.co/kernels-community/nvfp4-gemm). The model's attention and MLP interfaces are
 not replaced.
 
@@ -15,7 +15,7 @@ Install Accelerate and a compatible version of `kernels`.
 pip install --upgrade accelerate kernels
 ```
 
-Pass [NVFP4Config](/docs/transformers/v5.17.0/en/main_classes/quantization#transformers.NVFP4Config) to [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) with a single CUDA device. Weights are quantized as they
+Pass [NVFP4Config](/docs/transformers/v5.19.0/en/main_classes/quantization#transformers.NVFP4Config) to [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) with a single CUDA device. Weights are quantized as they
 are loaded, so the source checkpoint should contain floating-point weights.
 
 ```py
@@ -53,7 +53,7 @@ the model before measuring generation throughput.
   the sharding behavior of the NVFP4 scale metadata is defined.
 - CPU and disk offload are not supported.
 - Pre-quantized NVFP4 checkpoints are not supported.
-- NVFP4 models cannot currently be serialized with [save_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) or trained.
+- NVFP4 models cannot currently be serialized with [save_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) or trained.
 
 ### Optimum
-https://huggingface.co/docs/transformers/v5.17.0/quantization/optimum.md
+https://huggingface.co/docs/transformers/v5.19.0/quantization/optimum.md

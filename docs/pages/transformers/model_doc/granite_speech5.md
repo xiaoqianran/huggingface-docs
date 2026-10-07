@@ -54,18 +54,18 @@ print(processor.batch_decode(outputs, skip_special_tokens=True))
 #### transformers.GraniteSpeech5CTCConfig[[transformers.GraniteSpeech5CTCConfig]]
 
 ```python
-transformers.GraniteSpeech5CTCConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 16384, ctc_loss_reduction: str = 'mean', ctc_zero_infinity: bool = True, encoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, pad_token_id: int | None = 0, tie_word_embeddings: bool = True)
+transformers.GraniteSpeech5CTCConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 16384, ctc_loss_reduction: str = 'mean', ctc_zero_infinity: bool = True, encoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, pad_token_id: int | None = 0, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/granite_speech5/configuration_granite_speech5.py#L97)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/granite_speech5/configuration_granite_speech5.py#L97)
 
 **Parameters:**
 
 vocab_size (`int`, *optional*, defaults to `16384`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
 
-ctc_loss_reduction (`str`, *optional*, defaults to `"mean"`) : Specifies the reduction to apply to the output of `torch.nn.CTCLoss`. Only relevant when training an instance of [GraniteSpeech5ForCTC](/docs/transformers/v5.17.0/en/model_doc/granite_speech5#transformers.GraniteSpeech5ForCTC).
+ctc_loss_reduction (`str`, *optional*, defaults to `"mean"`) : Specifies the reduction to apply to the output of `torch.nn.CTCLoss`. Only relevant when training an instance of [GraniteSpeech5ForCTC](/docs/transformers/v5.19.0/en/model_doc/granite_speech5#transformers.GraniteSpeech5ForCTC).
 
-ctc_zero_infinity (`bool`, *optional*, defaults to `True`) : Whether to zero infinite losses and the associated gradients of `torch.nn.CTCLoss`. Infinite losses mainly occur when the inputs are too short to be aligned to the targets. Only relevant when training an instance of [GraniteSpeech5ForCTC](/docs/transformers/v5.17.0/en/model_doc/granite_speech5#transformers.GraniteSpeech5ForCTC).
+ctc_zero_infinity (`bool`, *optional*, defaults to `True`) : Whether to zero infinite losses and the associated gradients of `torch.nn.CTCLoss`. Infinite losses mainly occur when the inputs are too short to be aligned to the targets. Only relevant when training an instance of [GraniteSpeech5ForCTC](/docs/transformers/v5.19.0/en/model_doc/granite_speech5#transformers.GraniteSpeech5ForCTC).
 
 encoder_config (`Union[dict, GraniteSpeech5EncoderConfig]`, *optional*) : The config object or dictionary of the encoder.
 
@@ -77,8 +77,8 @@ This is the configuration class to store the configuration of a Granite Speech5M
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [ibm-granite/granite-speech-5.0-470m-turboctc](https://huggingface.co/ibm-granite/granite-speech-5.0-470m-turboctc)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -97,10 +97,10 @@ Example:
 #### transformers.GraniteSpeech5EncoderConfig[[transformers.GraniteSpeech5EncoderConfig]]
 
 ```python
-transformers.GraniteSpeech5EncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 16384, hidden_size: int = 1024, intermediate_size: int = 4096, num_hidden_layers: int = 16, num_attention_heads: int = 8, num_key_value_heads: int | None = None, num_mel_bins: int = 80, head_dim: int | None = None, hidden_act: str = 'silu', max_position_embeddings: int = 512, context_size: int = 128, conv_kernel_size: int = 7, conv_expansion_factor: int = 2, subsample_layers: list[int] | None = None, attention_bias: bool = True, attention_dropout: float | int = 0.0, activation_dropout: float | int = 0.0, initializer_range: float = 0.02)
+transformers.GraniteSpeech5EncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 16384, hidden_size: int = 1024, intermediate_size: int = 4096, num_hidden_layers: int = 16, num_attention_heads: int = 8, num_key_value_heads: int | None = None, num_mel_bins: int = 80, head_dim: int | None = None, hidden_act: str = 'silu', max_position_embeddings: int = 512, context_size: int = 128, conv_kernel_size: int = 7, conv_expansion_factor: int = 2, subsample_layers: list[int] | None = None, attention_bias: bool = True, attention_dropout: float | int = 0.0, activation_dropout: float | int = 0.0, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/granite_speech5/configuration_granite_speech5.py#L29)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/granite_speech5/configuration_granite_speech5.py#L29)
 
 **Parameters:**
 
@@ -144,8 +144,8 @@ This is the configuration class to store the configuration of a Granite Speech5M
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [ibm-granite/granite-speech-5.0-470m-turboctc](https://huggingface.co/ibm-granite/granite-speech-5.0-470m-turboctc)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -170,7 +170,7 @@ Example:
 transformers.GraniteSpeech5FeatureExtractor(num_mel_bins: int = 80, sampling_rate: int = 16000, n_fft: int = 512, win_length: int = 400, hop_length: int = 160, delta_win_length: int = 3, logmel_floor_db: float = 8.0, padding_value: float = 0.0, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/granite_speech5/feature_extraction_granite_speech5.py#L33)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/granite_speech5/feature_extraction_granite_speech5.py#L33)
 
 **Parameters:**
 
@@ -192,7 +192,7 @@ padding_value (`float`, *optional*, defaults to 0.0) : Padding value used to pad
 
 Constructs a Granite Speech 5.0 feature extractor.
 
-This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.17.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) which contains
+This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.19.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) which contains
 most of the main methods. Users should refer to this superclass for more information regarding those methods.
 
 ## GraniteSpeech5Processor[[transformers.GraniteSpeech5Processor]]
@@ -203,7 +203,7 @@ most of the main methods. Users should refer to this superclass for more informa
 transformers.GraniteSpeech5Processor(feature_extractor, tokenizer)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/granite_speech5/processing_granite_speech5.py#L32)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/granite_speech5/processing_granite_speech5.py#L32)
 
 **Parameters:**
 
@@ -213,7 +213,7 @@ tokenizer (`tokenizer_class`) : The tokenizer is a required input.
 
 Constructs a GraniteSpeech5Processor which wraps a feature extractor and a tokenizer into a single processor.
 
-[GraniteSpeech5Processor](/docs/transformers/v5.17.0/en/model_doc/granite_speech5#transformers.GraniteSpeech5Processor) offers all the functionalities of `feature_extractor_class` and `tokenizer_class`. See the
+[GraniteSpeech5Processor](/docs/transformers/v5.19.0/en/model_doc/granite_speech5#transformers.GraniteSpeech5Processor) offers all the functionalities of `feature_extractor_class` and `tokenizer_class`. See the
 `~feature_extractor_class` and `~tokenizer_class` for more information.
 
 ## GraniteSpeech5Encoder[[transformers.GraniteSpeech5Encoder]]
@@ -224,16 +224,16 @@ Constructs a GraniteSpeech5Processor which wraps a feature extractor and a token
 transformers.GraniteSpeech5Encoder(config: GraniteSpeech5EncoderConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/granite_speech5/modeling_granite_speech5.py#L368)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/granite_speech5/modeling_granite_speech5.py#L368)
 
 **Parameters:**
 
-config ([GraniteSpeech5EncoderConfig](/docs/transformers/v5.17.0/en/model_doc/granite_speech5#transformers.GraniteSpeech5EncoderConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([GraniteSpeech5EncoderConfig](/docs/transformers/v5.19.0/en/model_doc/granite_speech5#transformers.GraniteSpeech5EncoderConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Granite Speech 5.0 conformer encoder, adapted from the [Granite Speech CTC encoder](https://huggingface.co/papers/2505.08699)
 with block-wise time subsampling and self-conditioned CTC from the middle layer.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -247,7 +247,7 @@ and behavior.
 forward(input_features: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, output_attention_mask: bool = True, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/granite_speech5/modeling_granite_speech5.py#L395)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/granite_speech5/modeling_granite_speech5.py#L395)
 
 **Parameters:**
 
@@ -263,7 +263,7 @@ A `GraniteSpeech5EncoderModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [GraniteSpeech5Encoder](/docs/transformers/v5.17.0/en/model_doc/granite_speech5#transformers.GraniteSpeech5Encoder) forward method, overrides the `__call__` special method.
+The [GraniteSpeech5Encoder](/docs/transformers/v5.19.0/en/model_doc/granite_speech5#transformers.GraniteSpeech5Encoder) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -316,15 +316,15 @@ Example:
 transformers.GraniteSpeech5ForCTC(config: GraniteSpeech5CTCConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/granite_speech5/modeling_granite_speech5.py#L496)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/granite_speech5/modeling_granite_speech5.py#L496)
 
 **Parameters:**
 
-config ([GraniteSpeech5CTCConfig](/docs/transformers/v5.17.0/en/model_doc/granite_speech5#transformers.GraniteSpeech5CTCConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([GraniteSpeech5CTCConfig](/docs/transformers/v5.19.0/en/model_doc/granite_speech5#transformers.GraniteSpeech5CTCConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Granite Speech 5.0 encoder with a Connectionist Temporal Classification (CTC) head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -338,7 +338,7 @@ and behavior.
 forward(input_features: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/granite_speech5/modeling_granite_speech5.py#L511)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/granite_speech5/modeling_granite_speech5.py#L511)
 
 **Parameters:**
 
@@ -348,13 +348,13 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 labels (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
 
-**Returns:** [CausalLMOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [CausalLMOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutput) or `tuple(torch.FloatTensor)`
 
-A [CausalLMOutput](/docs/transformers/v5.17.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutput) or a tuple of
+A [CausalLMOutput](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [GraniteSpeech5ForCTC](/docs/transformers/v5.17.0/en/model_doc/granite_speech5#transformers.GraniteSpeech5ForCTC) forward method, overrides the `__call__` special method.
+The [GraniteSpeech5ForCTC](/docs/transformers/v5.19.0/en/model_doc/granite_speech5#transformers.GraniteSpeech5ForCTC) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -397,9 +397,9 @@ Example:
 generate(input_features: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, return_dict_in_generate: bool = False, compile_config: transformers.generation.configuration_utils.CompileConfig | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/granite_speech5/modeling_granite_speech5.py#L581)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/granite_speech5/modeling_granite_speech5.py#L581)
 
-compile_config ([CompileConfig](/docs/transformers/v5.17.0/en/internal/generation_utils#transformers.CompileConfig), *optional*):
+compile_config ([CompileConfig](/docs/transformers/v5.19.0/en/internal/generation_utils#transformers.CompileConfig), *optional*):
 If provided, `torch.compile` will be applied to the forward calls in the decoding loop.
 
 Example:
@@ -423,4 +423,4 @@ Example:
 ```
 
 ### GraniteMoeSWA
-https://huggingface.co/docs/transformers/v5.17.0/model_doc/granitemoe_swa.md
+https://huggingface.co/docs/transformers/v5.19.0/model_doc/granitemoe_swa.md

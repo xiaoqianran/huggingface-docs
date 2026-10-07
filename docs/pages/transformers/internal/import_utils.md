@@ -112,7 +112,7 @@ If `prefix` is not None, it will add that prefix to all keys in the returned dic
 transformers.utils.import_utils.requires(backends = ())
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/import_utils.py#L2890)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/import_utils.py#L2916)
 
 This decorator enables two things:
 - Attaching a `__backends` tuple to an object to see what are the necessary backends for it
@@ -125,7 +125,7 @@ This decorator enables two things:
 transformers.requires_backends(obj, backends)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/utils/import_utils.py#L2343)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/utils/import_utils.py#L2368)
 
 **Parameters:**
 
@@ -144,4 +144,4 @@ requires_backends(self, ["torch"])
 The backends should be defined in the `BACKEND_MAPPING` defined in `transformers.utils.import_utils`.
 
 ### Environment variables
-https://huggingface.co/docs/transformers/v5.17.0/reference/environment_variables.md
+https://huggingface.co/docs/transformers/v5.19.0/reference/environment_variables.md

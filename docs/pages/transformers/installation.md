@@ -130,9 +130,11 @@ After installation, you can configure the Transformers cache location or set up 
 
 ### Cache directory
 
-When you load a pretrained model with [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), the model is downloaded from the Hub and locally cached.
+When you load a pretrained model with [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), the model is downloaded from the Hub and locally cached.
 
-Every time you load a model, it checks whether the cached model is up-to-date. If it's the same, then the local model is loaded. If it's not the same, the newer model is downloaded and cached.
+If you pass a commit hash, Transformers uses the local cache for that commit's files and does not re-check the Hub for each one (including files that are known to be missing). This is the default behavior when no revision is specified.
+
+If you pass a branch or tag, Transformers contacts the Hub once at the start of the load to pick the commit, then uses the cache the same way for that commit's files.
 
 The default directory given by the shell environment variable `HF_HUB_CACHE` is `~/.cache/huggingface/hub`. On Windows, the default directory is `C:\Users\username\.cache\huggingface\hub`.
 
@@ -144,7 +146,7 @@ Cache a model in a different directory by changing the path in the following she
 
 ### Offline mode
 
-To use Transformers in an offline or firewalled environment requires the downloaded and cached files ahead of time. Download a model repository from the Hub with the [snapshot_download](https://huggingface.co/docs/huggingface_hub/v1.30.0/en/package_reference/file_download#huggingface_hub.snapshot_download) method.
+To use Transformers in an offline or firewalled environment requires the downloaded and cached files ahead of time. Download a model repository from the Hub with the [snapshot_download](https://huggingface.co/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.snapshot_download) method.
 
 > [!TIP]
 > Refer to the [Download files from the Hub](https://hf.co/docs/huggingface_hub/guides/download) guide for more options for downloading files from the Hub. You can download files from specific revisions, download from the CLI, and even filter which files to download from a repository.
@@ -159,10 +161,10 @@ Set the environment variable `HF_HUB_OFFLINE=1` to prevent HTTP calls to the Hub
 
 ```bash
 HF_HUB_OFFLINE=1 \
-python examples/pytorch/language-modeling/run_clm.py --model_name_or_path meta-llama/Llama-2-7b-hf --dataset_name wikitext ...
+python examples/pytorch/language-modeling/run_clm.py --model_name_or_path meta-llama/Llama-2-7b-hf --dataset_name Salesforce/wikitext ...
 ```
 
-Another option for only loading cached files is to set `local_files_only=True` in [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
+Another option for only loading cached files is to set `local_files_only=True` in [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
 
 ```py
 from transformers import LlamaForCausalLM
@@ -170,5 +172,7 @@ from transformers import LlamaForCausalLM
 model = LlamaForCausalLM.from_pretrained("./path/to/local/directory", local_files_only=True)
 ```
 
+Offline mode (or `local_files_only=True`) can still turn a branch or tag into a commit if an earlier online load saved that mapping in the cache. If the mapping was never saved, Transformers keeps the branch or tag you asked for and continues with the regular offline load. You get the same cache hits or missing-file errors as a normal offline load.
+
 ### Debugging
-https://huggingface.co/docs/transformers/v5.17.0/debugging.md
+https://huggingface.co/docs/transformers/v5.19.0/debugging.md

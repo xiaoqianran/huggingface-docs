@@ -16,7 +16,7 @@ Use the Space below to help you pick a quantization method depending on your har
 | [EETQ](./eetq)                            | 🟢                   | 🔴              | 🟢        | 🔴        | 🔴                                 | 🔴              | ?               | 8            | 🟢               | 🟢                          | 🟢                      | https://github.com/NetEase-FuXi/EETQ        |
 | [Four Over Six](./fouroversix)            | 🟢                   | 🟢              | 🟢        | 🔴        | 🔴                                 | 🔴              | 🟢              | 4            | 🔴               | 🟢                          | 🟢                      | https://github.com/mit-han-lab/fouroversix |
 | [FP-Quant](./fp_quant)                          | 🟢                   | 🔴              | 🟢        | 🔴        | 🔴                                 | 🔴              | 🟢              | 4           | 🔴               | 🟢                          | 🟢                      | https://github.com/IST-DASLab/FP-Quant      |
-| [GGUF / GGML (llama.cpp)](./gguf)        | 🟢                   | 🟢              | 🟢        | 🔴        | 🟢                                 | 🟢              | 🟢              | 1/8          | 🔴               | 🔴                          | [See Notes](./gguf) | https://github.com/ggerganov/llama.cpp      |
+| [GGUF / GGML (llama.cpp)](./gguf)        | 🔴                   | 🟢              | 🟢        | 🔴        | 🟢                                 | 🟢              | 🟢              | 1/8          | 🔴               | 🔴                          | [See Notes](./gguf) | https://github.com/ggerganov/llama.cpp      |
 | [GPT-QModel](./gptq)                     | 🔴                   | 🟢 | 🟢        | 🟢        | 🟢                                 | 🟢 | 🔴              | 2/3/4/8      | 🟢               | 🟢                          | 🟢                      | https://github.com/ModelCloud/GPTQModel        |
 | [HIGGS](./higgs)                          | 🟢                   | 🔴              | 🟢        | 🔴        | 🔴                                 | 🔴              | 🟢              | 2/4          | 🔴               | 🟢                          | 🟢                      | https://github.com/HanGuo97/flute           |
 | [HQQ](./hqq)                              | 🟢                   | 🟢              | 🟢        | 🔴        | 🔴                                 | 🟢              | 🟢              | 1/8          | 🟢               | 🔴                          | 🟢                      | https://github.com/mobiusml/hqq/            |
@@ -48,4 +48,4 @@ If you are looking for a user-friendly quantization experience, you can use the 
 * [AutoQuant Notebook](https://colab.research.google.com/drive/1b6nqC7UZVt8bx4MksX7s656GXPM-eWw4?usp=sharing#scrollTo=ZC9Nsr9u5WhN)
 
 ### GPTQ
-https://huggingface.co/docs/transformers/v5.17.0/quantization/gptq.md
+https://huggingface.co/docs/transformers/v5.19.0/quantization/gptq.md

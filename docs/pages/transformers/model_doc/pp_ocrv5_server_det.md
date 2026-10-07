@@ -12,7 +12,7 @@ PP-OCRv5_server_det is one of the PP-OCRv5_det series, the latest generation of 
 
 ### Single input inference
 
-The example below demonstrates how to detect text with PP-OCRV5_Server_Det using [Pipeline](/docs/transformers/v5.17.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModel).
+The example below demonstrates how to detect text with PP-OCRV5_Server_Det using [Pipeline](/docs/transformers/v5.19.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoModel).
 
 ```python
 import requests
@@ -22,7 +22,7 @@ from transformers import pipeline
 
 image = Image.open(
     requests.get(
-        "https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/general_ocr_001.png", stream=True
+        "https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/paddle_general_ocr_001.png", stream=True
     ).raw)
 detector = pipeline(
     task="object-detection",
@@ -48,7 +48,7 @@ model = AutoModelForObjectDetection.from_pretrained(
 )
 image_processor = AutoImageProcessor.from_pretrained(model_path)
 
-image = Image.open(requests.get("https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/general_ocr_001.png", stream=True).raw).convert("RGB")
+image = Image.open(requests.get("https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/paddle_general_ocr_001.png", stream=True).raw).convert("RGB")
 inputs = image_processor(images=image, return_tensors="pt").to(model.device)
 outputs = model(**inputs)
 
@@ -60,7 +60,7 @@ for result in results:
 
 ### Batched inference
 
-Here is how you can do it with PP-OCRV5_Server_Det using [Pipeline](/docs/transformers/v5.17.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModel).
+Here is how you can do it with PP-OCRV5_Server_Det using [Pipeline](/docs/transformers/v5.19.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoModel).
 
 ```python
 import requests
@@ -70,7 +70,7 @@ from transformers import pipeline
 
 image = Image.open(
     requests.get(
-        "https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/general_ocr_001.png", stream=True
+        "https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/paddle_general_ocr_001.png", stream=True
     ).raw)
 detector = pipeline(
     task="object-detection",
@@ -96,7 +96,7 @@ model = AutoModelForObjectDetection.from_pretrained(
 )
 image_processor = AutoImageProcessor.from_pretrained(model_path)
 
-image = Image.open(requests.get("https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/general_ocr_001.png", stream=True).raw).convert("RGB")
+image = Image.open(requests.get("https://huggingface.co/datasets/hf-internal-testing/transformers-synthetic-assets/resolve/main/images/paddle_general_ocr_001.png", stream=True).raw).convert("RGB")
 inputs = image_processor(images=[image, image], return_tensors="pt").to(model.device)
 outputs = model(**inputs)
 
@@ -114,16 +114,16 @@ for result in results:
 transformers.PPOCRV5ServerDetForObjectDetection(config: PPOCRV5ServerDetConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_ocrv5_server_det/modeling_pp_ocrv5_server_det.py#L424)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_ocrv5_server_det/modeling_pp_ocrv5_server_det.py#L424)
 
 **Parameters:**
 
-config ([PPOCRV5ServerDetConfig](/docs/transformers/v5.17.0/en/model_doc/pp_ocrv5_server_det#transformers.PPOCRV5ServerDetConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPOCRV5ServerDetConfig](/docs/transformers/v5.19.0/en/model_doc/pp_ocrv5_server_det#transformers.PPOCRV5ServerDetConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PPOCRV5 Server Det model for object (text) detection tasks. Wraps the core PPOCRV5ServerDetModel
 and returns outputs compatible with the Transformers object detection API.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -136,10 +136,10 @@ and behavior.
 #### transformers.PPOCRV5ServerDetConfig[[transformers.PPOCRV5ServerDetConfig]]
 
 ```python
-transformers.PPOCRV5ServerDetConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, id2label: dict[int, str] | dict[str, str] | None = None, interpolate_mode: str = 'nearest', backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, neck_out_channels: int = 256, reduce_factor: int = 2, intraclass_block_number: int = 4, intraclass_block_config: dict | None = None, scale_factor: int = 2, scale_factor_list: list | None = None, hidden_act: str = 'relu', kernel_list: list | None = None)
+transformers.PPOCRV5ServerDetConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, id2label: dict[int, str] | dict[str, str] | None = None, interpolate_mode: str = 'nearest', backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, neck_out_channels: int = 256, reduce_factor: int = 2, intraclass_block_number: int = 4, intraclass_block_config: dict | None = None, scale_factor: int = 2, scale_factor_list: list | None = None, hidden_act: str = 'relu', kernel_list: list | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_ocrv5_server_det/configuration_pp_ocrv5_server_det.py#L31)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_ocrv5_server_det/configuration_pp_ocrv5_server_det.py#L31)
 
 **Parameters:**
 
@@ -169,8 +169,8 @@ This is the configuration class to store the configuration of a Pp Ocrv5 Server 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/PP-OCRv5_server_det_safetensors](https://huggingface.co/PaddlePaddle/PP-OCRv5_server_det_safetensors)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## PPOCRV5ServerDetModel[[transformers.PPOCRV5ServerDetModel]]
 
@@ -180,15 +180,15 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes
 transformers.PPOCRV5ServerDetModel(config: PPOCRV5ServerDetConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_ocrv5_server_det/modeling_pp_ocrv5_server_det.py#L394)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_ocrv5_server_det/modeling_pp_ocrv5_server_det.py#L394)
 
 **Parameters:**
 
-config ([PPOCRV5ServerDetConfig](/docs/transformers/v5.17.0/en/model_doc/pp_ocrv5_server_det#transformers.PPOCRV5ServerDetConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPOCRV5ServerDetConfig](/docs/transformers/v5.19.0/en/model_doc/pp_ocrv5_server_det#transformers.PPOCRV5ServerDetConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Pp Ocrv5 Server Det Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -202,19 +202,19 @@ and behavior.
 forward(pixel_values: FloatTensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_ocrv5_server_det/modeling_pp_ocrv5_server_det.py#L401)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_ocrv5_server_det/modeling_pp_ocrv5_server_det.py#L401)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PPOCRV5ServerDetImageProcessor](/docs/transformers/v5.17.0/en/model_doc/pp_ocrv5_server_det#transformers.PPOCRV5ServerDetImageProcessor). See `PPOCRV5ServerDetImageProcessor.__call__()` for details (`processor_class` uses [PPOCRV5ServerDetImageProcessor](/docs/transformers/v5.17.0/en/model_doc/pp_ocrv5_server_det#transformers.PPOCRV5ServerDetImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PPOCRV5ServerDetImageProcessor](/docs/transformers/v5.19.0/en/model_doc/pp_ocrv5_server_det#transformers.PPOCRV5ServerDetImageProcessor). See `PPOCRV5ServerDetImageProcessor.__call__()` for details (`processor_class` uses [PPOCRV5ServerDetImageProcessor](/docs/transformers/v5.19.0/en/model_doc/pp_ocrv5_server_det#transformers.PPOCRV5ServerDetImageProcessor) for processing images).
 
 **Returns:** `BaseModelOutputWithNoAttention` or `tuple(torch.FloatTensor)`
 
 A `BaseModelOutputWithNoAttention` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PPOCRV5ServerDetConfig](/docs/transformers/v5.17.0/en/model_doc/pp_ocrv5_server_det#transformers.PPOCRV5ServerDetConfig)) and inputs.
+elements depending on the configuration ([PPOCRV5ServerDetConfig](/docs/transformers/v5.19.0/en/model_doc/pp_ocrv5_server_det#transformers.PPOCRV5ServerDetConfig)) and inputs.
 
-The [PPOCRV5ServerDetModel](/docs/transformers/v5.17.0/en/model_doc/pp_ocrv5_server_det#transformers.PPOCRV5ServerDetModel) forward method, overrides the `__call__` special method.
+The [PPOCRV5ServerDetModel](/docs/transformers/v5.19.0/en/model_doc/pp_ocrv5_server_det#transformers.PPOCRV5ServerDetModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -234,7 +234,7 @@ the latter silently ignores them.
 transformers.PPOCRV5ServerDetImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_ocrv5_server_det/image_processing_pp_ocrv5_server_det.py#L58)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_ocrv5_server_det/image_processing_pp_ocrv5_server_det.py#L58)
 
 **Parameters:**
 
@@ -361,14 +361,16 @@ Added for backward compatibility but this should be set as a processor attribute
 #### preprocess[[transformers.PPOCRV5ServerDetImageProcessor.preprocess]]
 
 ```python
-preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
+preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, image_like_kwargs: dict[str, typing.Any] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
 images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+image_like_kwargs (`dict[str, Any]`, *optional*) : Developer flag for additional image like inputs that will also be preprocessed. Only use this if passing the inputs as kwarg doesn't work. For example, `preprocess(images, masks=masks)` is the preferred option but results in argument priority issues for some models. In those cases `preprocess(images, image_like_inputs={"masks": masks})` can be used instead.
 
 do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
 
@@ -416,13 +418,15 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 - **tensor_type** (`Union[None, str, TensorType]`, *optional*) -- You can give a tensor_type here to convert the lists of integers in PyTorch/Numpy Tensors at
   initialization.
 
+Preprocess an image or a batch of images.
+
 #### post_process_object_detection[[transformers.PPOCRV5ServerDetImageProcessor.post_process_object_detection]]
 
 ```python
 post_process_object_detection(predictions, threshold: float = 0.3, target_sizes: list[tuple[int, int]] | transformers.utils.generic.TensorType | None = None, box_threshold: float = 0.6, max_candidates: int = 1000, min_size: int = 3, unclip_ratio: float = 1.5)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/pp_ocrv5_server_det/image_processing_pp_ocrv5_server_det.py#L365)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/pp_ocrv5_server_det/image_processing_pp_ocrv5_server_det.py#L365)
 
 **Parameters:**
 
@@ -450,4 +454,4 @@ List of detection results per image. Each dict contains:
 Converts model outputs into detected text boxes in corners format (xmin, ymin, xmax, ymax).
 
 ### Mellum
-https://huggingface.co/docs/transformers/v5.17.0/model_doc/mellum.md
+https://huggingface.co/docs/transformers/v5.19.0/model_doc/mellum.md

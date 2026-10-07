@@ -809,6 +809,7 @@ https://huggingface.co/docs/hub/xet/index.md
 https://huggingface.co/docs/hub/xet/legacy-git-lfs.md
 https://huggingface.co/docs/hub/xet/overview.md
 https://huggingface.co/docs/hub/xet/security.md
+https://huggingface.co/docs/hub/xet/telemetry.md
 https://huggingface.co/docs/hub/xet/using-xet-storage.md
 https://huggingface.co/docs/huggingface_hub/concepts/git_vs_http.md
 https://huggingface.co/docs/huggingface_hub/concepts/migration.md
@@ -1581,6 +1582,7 @@ https://huggingface.co/docs/transformers/model_doc/edgetam_video.md
 https://huggingface.co/docs/transformers/model_doc/efficientloftr.md
 https://huggingface.co/docs/transformers/model_doc/efficientnet.md
 https://huggingface.co/docs/transformers/model_doc/electra.md
+https://huggingface.co/docs/transformers/model_doc/embedding_gemma2.md
 https://huggingface.co/docs/transformers/model_doc/emu3.md
 https://huggingface.co/docs/transformers/model_doc/encodec.md
 https://huggingface.co/docs/transformers/model_doc/encoder-decoder.md
@@ -1660,6 +1662,7 @@ https://huggingface.co/docs/transformers/model_doc/granitemoeshared.md
 https://huggingface.co/docs/transformers/model_doc/granitevision.md
 https://huggingface.co/docs/transformers/model_doc/grounding-dino.md
 https://huggingface.co/docs/transformers/model_doc/groupvit.md
+https://huggingface.co/docs/transformers/model_doc/gte.md
 https://huggingface.co/docs/transformers/model_doc/helium.md
 https://huggingface.co/docs/transformers/model_doc/herbert.md
 https://huggingface.co/docs/transformers/model_doc/hgnet_v2.md
@@ -1674,6 +1677,7 @@ https://huggingface.co/docs/transformers/model_doc/hunyuan_vl.md
 https://huggingface.co/docs/transformers/model_doc/hy_v3.md
 https://huggingface.co/docs/transformers/model_doc/hy_v4.md
 https://huggingface.co/docs/transformers/model_doc/hyperclovax.md
+https://huggingface.co/docs/transformers/model_doc/hyperclovax_vision_v2.md
 https://huggingface.co/docs/transformers/model_doc/ibert.md
 https://huggingface.co/docs/transformers/model_doc/idefics.md
 https://huggingface.co/docs/transformers/model_doc/idefics2.md
@@ -1741,6 +1745,7 @@ https://huggingface.co/docs/transformers/model_doc/mimi.md
 https://huggingface.co/docs/transformers/model_doc/mimo_v2_flash.md
 https://huggingface.co/docs/transformers/model_doc/minicpm3.md
 https://huggingface.co/docs/transformers/model_doc/minicpmv4_6.md
+https://huggingface.co/docs/transformers/model_doc/minicpmv4_7.md
 https://huggingface.co/docs/transformers/model_doc/minimax.md
 https://huggingface.co/docs/transformers/model_doc/minimax_m2.md
 https://huggingface.co/docs/transformers/model_doc/minimax_m3_vl.md
@@ -1780,8 +1785,10 @@ https://huggingface.co/docs/transformers/model_doc/myt5.md
 https://huggingface.co/docs/transformers/model_doc/nanochat.md
 https://huggingface.co/docs/transformers/model_doc/nemotron.md
 https://huggingface.co/docs/transformers/model_doc/nemotron3_5_asr.md
+https://huggingface.co/docs/transformers/model_doc/nemotron3_diarization.md
 https://huggingface.co/docs/transformers/model_doc/nemotron_asr_streaming.md
 https://huggingface.co/docs/transformers/model_doc/nemotron_h.md
+https://huggingface.co/docs/transformers/model_doc/nemotron_h_omni.md
 https://huggingface.co/docs/transformers/model_doc/neomme.md
 https://huggingface.co/docs/transformers/model_doc/neucodec.md
 https://huggingface.co/docs/transformers/model_doc/nllb-moe.md

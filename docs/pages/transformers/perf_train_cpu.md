@@ -8,14 +8,14 @@ Scale CPU training across multiple sockets or nodes if a single CPU is too slow.
 - multiple processes on one machine (one per CPU socket)
 - multiple processes across several machines
 
-All distributed examples use [Intel MPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html) from the [Intel oneAPI HPC Toolkit](https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit.html) for communication and a DDP strategy with [Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer).
+All distributed examples use [Intel MPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html) from the [Intel oneAPI HPC Toolkit](https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit.html) for communication and a DDP strategy with [Trainer](/docs/transformers/v5.19.0/en/main_classes/trainer#transformers.Trainer).
 
-[Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer) supports bf16 mixed precision training on CPU. Prefer bf16 over fp16 for CPU training because it's more numerically stable. Pass `--bf16` to enable PyTorch's CPU autocast and `--use_cpu` to force CPU training. The example below runs the [run_qa.py](https://github.com/huggingface/transformers/tree/main/examples/pytorch/question-answering) script.
+[Trainer](/docs/transformers/v5.19.0/en/main_classes/trainer#transformers.Trainer) supports bf16 mixed precision training on CPU. Prefer bf16 over fp16 for CPU training because it's more numerically stable. Pass `--bf16` to enable PyTorch's CPU autocast and `--use_cpu` to force CPU training. The example below runs the [run_qa.py](https://github.com/huggingface/transformers/tree/main/examples/pytorch/question-answering) script.
 
 ```bash
 python run_qa.py \
  --model_name_or_path google-bert/bert-base-uncased \
- --dataset_name squad \
+ --dataset_name rajpurkar/squad \
  --do_train \
  --do_eval \
  --per_device_train_batch_size 12 \
@@ -28,7 +28,7 @@ python run_qa.py \
  --use_cpu
 ```
 
-You can pass the same parameters to [TrainingArguments](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments) directly.
+You can pass the same parameters to [TrainingArguments](/docs/transformers/v5.19.0/en/main_classes/trainer#transformers.TrainingArguments) directly.
 
 ```py
 from transformers import TrainingArguments
@@ -50,7 +50,7 @@ export MASTER_ADDR=127.0.0.1
 mpirun -n 2 -genv OMP_NUM_THREADS=23 \
 python3 run_qa.py \
  --model_name_or_path google-bert/bert-large-uncased \
- --dataset_name squad \
+ --dataset_name rajpurkar/squad \
  --do_train \
  --do_eval \
  --per_device_train_batch_size 12 \
@@ -84,7 +84,7 @@ mpirun -f hostfile -n 4 -ppn 2 \
  -genv OMP_NUM_THREADS=23 \
 python3 run_qa.py \
  --model_name_or_path google-bert/bert-large-uncased \
- --dataset_name squad \
+ --dataset_name rajpurkar/squad \
  --do_train \
  --do_eval \
  --per_device_train_batch_size 12 \
@@ -171,7 +171,7 @@ spec:
                   pip install -r /workspace/transformers/examples/pytorch/question-answering/requirements.txt;
                   torchrun /workspace/transformers/examples/pytorch/question-answering/run_qa.py \
                     --model_name_or_path distilbert/distilbert-base-uncased \
-                    --dataset_name squad \
+                    --dataset_name rajpurkar/squad \
                     --do_train \
                     --do_eval \
                     --per_device_train_batch_size 12 \
@@ -257,4 +257,4 @@ kubectl delete -f pytorchjob.yaml -n ${NAMESPACE}
 - Read the [Accelerating PyTorch Transformers with Intel Sapphire Rapids](https://huggingface.co/blog/intel-sapphire-rapids) blog post for a deeper look at BF16 performance on modern Intel hardware.
 
 ### Pipeline
-https://huggingface.co/docs/transformers/v5.17.0/pipeline_tutorial.md
+https://huggingface.co/docs/transformers/v5.19.0/pipeline_tutorial.md

@@ -4,7 +4,7 @@ A multiple choice task is similar to question answering, except several candidat
 
 This guide will show you how to:
 
-1. Finetune [BERT](https://huggingface.co/google-bert/bert-base-uncased) on the `regular` configuration of the [SWAG](https://huggingface.co/datasets/swag) dataset to select the best answer given multiple options and some context.
+1. Finetune [BERT](https://huggingface.co/google-bert/bert-base-uncased) on the `regular` configuration of the [SWAG](https://huggingface.co/datasets/allenai/swag) dataset to select the best answer given multiple options and some context.
 2. Use your finetuned model for inference.
 
 Before you begin, make sure you have all the necessary libraries installed:
@@ -28,7 +28,7 @@ Start by loading the `regular` configuration of the SWAG dataset from the 🤗 D
 ```py
 >>> from datasets import load_dataset
 
->>> swag = load_dataset("swag", "regular")
+>>> swag = load_dataset("allenai/swag", "regular")
 ```
 
 Then take a look at an example:
@@ -87,13 +87,13 @@ The preprocessing function you want to create needs to:
 ...     return {k: [v[i : i + 4] for i in range(0, len(v), 4)] for k, v in tokenized_examples.items()}
 ```
 
-To apply the preprocessing function over the entire dataset, use 🤗 Datasets [map](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset.map) method. You can speed up the `map` function by setting `batched=True` to process multiple elements of the dataset at once:
+To apply the preprocessing function over the entire dataset, use 🤗 Datasets `map` method. You can speed up the `map` function by setting `batched=True` to process multiple elements of the dataset at once:
 
 ```py
 >>> tokenized_swag = swag.map(preprocess_function, batched=True)
 ```
 
-To create a batch of examples, it's more efficient to *dynamically pad* the sentences to the longest length in a batch during collation, instead of padding the whole dataset to the maximum length. [DataCollatorForMultipleChoice](/docs/transformers/v5.17.0/en/main_classes/data_collator#transformers.DataCollatorForMultipleChoice) flattens all the model inputs, applies padding, and then unflattens the results.
+To create a batch of examples, it's more efficient to *dynamically pad* the sentences to the longest length in a batch during collation, instead of padding the whole dataset to the maximum length. [DataCollatorForMultipleChoice](/docs/transformers/v5.19.0/en/main_classes/data_collator#transformers.DataCollatorForMultipleChoice) flattens all the model inputs, applies padding, and then unflattens the results.
 
 ```py
 >>> from transformers import DataCollatorForMultipleChoice
@@ -125,9 +125,9 @@ Your `compute_metrics` function is ready to go now, and you'll return to it when
 
 ## Train
 
-If you aren't familiar with finetuning a model with the [Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training#train-with-pytorch-trainer)!
+If you aren't familiar with finetuning a model with the [Trainer](/docs/transformers/v5.19.0/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training)!
 
-You're ready to start training your model now! Load BERT with [AutoModelForMultipleChoice](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModelForMultipleChoice):
+You're ready to start training your model now! Load BERT with [AutoModelForMultipleChoice](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoModelForMultipleChoice):
 
 ```py
 >>> from transformers import AutoModelForMultipleChoice, TrainingArguments, Trainer
@@ -137,9 +137,9 @@ You're ready to start training your model now! Load BERT with [AutoModelForMulti
 
 At this point, only three steps remain:
 
-1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.TrainingArguments). The only required parameter is `output_dir` which specifies where to save your model. You'll push this model to the Hub by setting `push_to_hub=True` (you need to be signed in to Hugging Face to upload your model). At the end of each epoch, the [Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer) will evaluate the accuracy and save the training checkpoint.
-2. Pass the training arguments to [Trainer](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, tokenizer, data collator, and `compute_metrics` function.
-3. Call [train()](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
+1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.19.0/en/main_classes/trainer#transformers.TrainingArguments). The only required parameter is `output_dir` which specifies where to save your model. You'll push this model to the Hub by setting `push_to_hub=True` (you need to be signed in to Hugging Face to upload your model). At the end of each epoch, the [Trainer](/docs/transformers/v5.19.0/en/main_classes/trainer#transformers.Trainer) will evaluate the accuracy and save the training checkpoint.
+2. Pass the training arguments to [Trainer](/docs/transformers/v5.19.0/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, tokenizer, data collator, and `compute_metrics` function.
+3. Call [train()](/docs/transformers/v5.19.0/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
 
 ```py
 >>> training_args = TrainingArguments(
@@ -168,7 +168,7 @@ At this point, only three steps remain:
 >>> trainer.train()
 ```
 
-Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.17.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
+Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.19.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
 
 ```py
 >>> trainer.push_to_hub()
@@ -218,4 +218,4 @@ Get the class with the highest probability:
 ```
 
 ### Image Segmentation
-https://huggingface.co/docs/transformers/v5.17.0/tasks/semantic_segmentation.md
+https://huggingface.co/docs/transformers/v5.19.0/tasks/semantic_segmentation.md

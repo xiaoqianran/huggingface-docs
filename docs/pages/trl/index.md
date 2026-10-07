@@ -173,4 +173,4 @@ The documentation is organized into the following sections:
       Fine tuning with TRL
 
 ### MergeModelCallback[[trl.experimental.merge_model_callback.MergeModelCallback]]
-https://huggingface.co/docs/trl/v1.14.1/merge_model_callback.md
+https://huggingface.co/docs/trl/v1.14.2/merge_model_callback.md

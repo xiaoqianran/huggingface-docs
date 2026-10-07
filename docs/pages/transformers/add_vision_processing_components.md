@@ -1,6 +1,6 @@
 # Add vision processing components
 
-Adding a vision model requires image or video processing components on top of the standard [modular](./modular_transformers) approach. Image-only models need image processors and video models need a video processor, both of which are accessible behind the [AutoImageProcessor](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoImageProcessor) and [AutoVideoProcessor](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoVideoProcessor) entry points.
+Adding a vision model requires image or video processing components on top of the standard [modular](./modular_transformers) approach. Image-only models need image processors and video models need a video processor, both of which are accessible behind the [AutoImageProcessor](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoImageProcessor) and [AutoVideoProcessor](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoVideoProcessor) entry points.
 
 > [!NOTE]
 > For the modeling and config steps, follow the [modular](./modular_transformers) guide first.
@@ -9,11 +9,11 @@ Adding a vision model requires image or video processing components on top of th
 
 Create image processors when the model consumes images. The [torchvision](https://docs.pytorch.org/vision/stable/index.html) backend is the default and supports GPU acceleration. [PIL](https://pillow.readthedocs.io/en/stable/index.html) is the fallback when torchvision isn't available.
 
-Both image processor classes share the same preprocessing logic but have different backends. Their constructor signatures and default values must be identical. [AutoImageProcessor.from_pretrained()](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoImageProcessor.from_pretrained) selects the backend at load time and falls back to PIL when torchvision isn't available. Mismatched signatures cause the same saved config to behave differently across environments.
+Both image processor classes share the same preprocessing logic but have different backends. Their constructor signatures and default values must be identical. [AutoImageProcessor.from_pretrained()](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoImageProcessor.from_pretrained) selects the backend at load time and falls back to PIL when torchvision isn't available. Mismatched signatures cause the same saved config to behave differently across environments.
 
 ### torchvision
 
-Create `image_processing_<model_name>.py` with a class that inherits from [TorchvisionBackend](/docs/transformers/v5.17.0/en/main_classes/image_processor#transformers.TorchvisionBackend). If your processor needs custom parameters beyond the standard [ImagesKwargs], define a kwargs class.
+Create `image_processing_<model_name>.py` with a class that inherits from [TorchvisionBackend](/docs/transformers/v5.19.0/en/main_classes/image_processor#transformers.TorchvisionBackend). If your processor needs custom parameters beyond the standard [ImagesKwargs], define a kwargs class.
 
 ```py
 from ...image_processing_backends import TorchvisionBackend
@@ -40,11 +40,11 @@ class MyModelImageProcessor(TorchvisionBackend):
 ```
 
 > [!TIP]
-> See [LlavaOnevisionImageProcessor](/docs/transformers/v5.17.0/en/model_doc/llava_onevision#transformers.LlavaOnevisionImageProcessor) for reference.
+> See [LlavaOnevisionImageProcessor](/docs/transformers/v5.19.0/en/model_doc/llava_onevision#transformers.LlavaOnevisionImageProcessor) for reference.
 
 ### PIL
 
-Create `image_processing_pil_<model_name>.py` with a class that inherits from [PilBackend](/docs/transformers/v5.17.0/en/main_classes/image_processor#transformers.PilBackend). Duplicate the kwargs class here instead of importing it from the torchvision file because it can fail when torchvision isn't installed. Add an `# Adapted from` comment so the two stay in sync. For processors with no custom parameters, use [ImagesKwargs](/docs/transformers/v5.17.0/en/main_classes/processors#transformers.ImagesKwargs) directly.
+Create `image_processing_pil_<model_name>.py` with a class that inherits from [PilBackend](/docs/transformers/v5.19.0/en/main_classes/image_processor#transformers.PilBackend). Duplicate the kwargs class here instead of importing it from the torchvision file because it can fail when torchvision isn't installed. Add an `# Adapted from` comment so the two stay in sync. For processors with no custom parameters, use [ImagesKwargs](/docs/transformers/v5.19.0/en/main_classes/processors#transformers.ImagesKwargs) directly.
 
 ```py
 from ...image_processing_backends import PilBackend
@@ -72,7 +72,7 @@ class MyModelImageProcessorPil(PilBackend):
 ```
 
 > [!TIP]
-> See [LlavaOnevisionImageProcessorPil](/docs/transformers/v5.17.0/en/model_doc/llava_onevision#transformers.LlavaOnevisionImageProcessorPil) for reference.
+> See [LlavaOnevisionImageProcessorPil](/docs/transformers/v5.19.0/en/model_doc/llava_onevision#transformers.LlavaOnevisionImageProcessorPil) for reference.
 
 ### Add post-processing methods
 
@@ -86,7 +86,7 @@ class MyModelImageProcessor(TorchvisionBackend):
         ...
 ```
 
-Post-processors return either a list of simple objects (`list[str]` or `list[torch.Tensor]`) or a list of complex objects (`list[MyTaskPostProcessorOutput]` or `list[dict]`). Post-processor outputs are defined in `src/transformers/image_processing_outputs.py` and inherit from [BatchFeature](/docs/transformers/v5.17.0/en/main_classes/image_processor#transformers.BatchFeature).
+Post-processors return either a list of simple objects (`list[str]` or `list[torch.Tensor]`) or a list of complex objects (`list[MyTaskPostProcessorOutput]` or `list[dict]`). Post-processor outputs are defined in `src/transformers/image_processing_outputs.py` and inherit from [BatchFeature](/docs/transformers/v5.19.0/en/main_classes/image_processor#transformers.BatchFeature).
 
 ```py
 class MyTaskPostProcessorOutput(BatchFeature):
@@ -98,11 +98,11 @@ class MyTaskPostProcessorOutput(BatchFeature):
 
 Add a video processor when the model consumes videos or sampled video frames.
 
-Create `video_processing_<model_name>.py` in the model directory. [BaseVideoProcessor](/docs/transformers/v5.17.0/en/main_classes/video_processor#transformers.BaseVideoProcessor) inherits from the [TorchvisionBackend](/docs/transformers/v5.17.0/en/main_classes/image_processor#transformers.TorchvisionBackend) and provides shared decoding, frame sampling, resizing, rescaling, normalization, saving, and loading behavior.
+Create `video_processing_<model_name>.py` in the model directory. [BaseVideoProcessor](/docs/transformers/v5.19.0/en/main_classes/video_processor#transformers.BaseVideoProcessor) inherits from the [TorchvisionBackend](/docs/transformers/v5.19.0/en/main_classes/image_processor#transformers.TorchvisionBackend) and provides shared decoding, frame sampling, resizing, rescaling, normalization, saving, and loading behavior.
 
-The class attributes are the default preprocessing values. Users can override them at initialization or call time. Use the same names as [VideosKwargs](/docs/transformers/v5.17.0/en/main_classes/processors#transformers.VideosKwargs) when possible, such as `size`, `crop_size`, `do_resize`, `do_sample_frames`, `num_frames`, and `fps`.
+The class attributes are the default preprocessing values. Users can override them at initialization or call time. Use the same names as [VideosKwargs](/docs/transformers/v5.19.0/en/main_classes/processors#transformers.VideosKwargs) when possible, such as `size`, `crop_size`, `do_resize`, `do_sample_frames`, `num_frames`, and `fps`.
 
-Define a kwargs class if your video processor needs custom parameters beyond the standard [VideosKwargs](/docs/transformers/v5.17.0/en/main_classes/processors#transformers.VideosKwargs). Set it as `valid_kwargs` and use it to annotate `__init__` for both runtime validation and the auto-generated docstring.
+Define a kwargs class if your video processor needs custom parameters beyond the standard [VideosKwargs](/docs/transformers/v5.19.0/en/main_classes/processors#transformers.VideosKwargs). Set it as `valid_kwargs` and use it to annotate `__init__` for both runtime validation and the auto-generated docstring.
 
 ```py
 from ...processing_utils import Unpack, VideosKwargs
@@ -129,7 +129,7 @@ class MyModelVideoProcessor(BaseVideoProcessor):
         super().__init__(**kwargs)
 ```
 
-Override [sample_frames()](/docs/transformers/v5.17.0/en/main_classes/video_processor#transformers.BaseVideoProcessor.sample_frames) only when the model requires a sampling rule that the base uniform sampler can't express. For example, some models enforce a minimum or maximum number of frames, or sample based on model-specific constraints.
+Override [sample_frames()](/docs/transformers/v5.19.0/en/main_classes/video_processor#transformers.BaseVideoProcessor.sample_frames) only when the model requires a sampling rule that the base uniform sampler can't express. For example, some models enforce a minimum or maximum number of frames, or sample based on model-specific constraints.
 
 If the model's forward method expects a legacy input name, override `preprocess` and rename the key after calling the base implementation.
 
@@ -143,14 +143,18 @@ class MyModelVideoProcessor(BaseVideoProcessor):
         return batch
 ```
 
-Save the video processor with the checkpoint by instantiating it in the conversion script and calling [save_pretrained()](/docs/transformers/v5.17.0/en/main_classes/video_processor#transformers.BaseVideoProcessor.save_pretrained). If a [ProcessorMixin](/docs/transformers/v5.17.0/en/main_classes/processors#transformers.ProcessorMixin) wraps the video processor, call [save_pretrained()](/docs/transformers/v5.17.0/en/model_doc/donut#transformers.DonutProcessor.save_pretrained) instead. Do not manually create or edit preprocessing config files.
+Save the video processor with the checkpoint by instantiating it in the conversion script and calling [save_pretrained()](/docs/transformers/v5.19.0/en/main_classes/video_processor#transformers.VideoProcessorMixin.save_pretrained). If a [ProcessorMixin](/docs/transformers/v5.19.0/en/main_classes/processors#transformers.ProcessorMixin) wraps the video processor, call [save_pretrained()](/docs/transformers/v5.19.0/en/model_doc/donut#transformers.DonutProcessor.save_pretrained) instead. Do not manually create or edit preprocessing config files.
 
 > [!TIP]
-> See [Qwen3VLVideoProcessor](/docs/transformers/v5.17.0/en/model_doc/qwen3_vl#transformers.Qwen3VLVideoProcessor) for reference.
+> See [Qwen3VLVideoProcessor](/docs/transformers/v5.19.0/en/model_doc/qwen3_vl#transformers.Qwen3VLVideoProcessor) for reference.
 
 ## Register the classes
 
-Expose the processing classes from the model package `__init__.py`. Follow the lazy import pattern used by nearby models and guard imports with the same optional dependencies required by each backend.
+Add the new classes to `__all__` at the bottom of the file, then regenerate `__init__.py` with:
+
+```bash
+python utils/check_inits.py --fix_and_overwrite
+```
 
 Map the new classes to the model config so the `Auto` classes can load them. The generated auto mapping file has a warning at the top. Do not edit it by hand. Add or update the model config, then run:
 
@@ -160,29 +164,53 @@ python utils/check_auto.py --fix_and_overwrite
 
 After the mapping is generated, verify the model type appears in the relevant mappings in `src/transformers/models/auto/auto_mappings.py`.
 
-- `IMAGE_PROCESSOR_MAPPING_NAMES` for [AutoImageProcessor](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoImageProcessor)
-- `VIDEO_PROCESSOR_MAPPING_NAMES` for [AutoVideoProcessor](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoVideoProcessor)
+- `IMAGE_PROCESSOR_MAPPING_NAMES` for [AutoImageProcessor](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoImageProcessor)
+- `VIDEO_PROCESSOR_MAPPING_NAMES` for [AutoVideoProcessor](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoVideoProcessor)
 
 ## Testing
 
-Add tests for each vision processing component in the model test directory. Image and video processor tests follow the same pattern. Inherit from the shared mixin, indicate the fast and slow processing classes when automatic discovery isn't enough, provide model-specific init kwargs, and override the input name when the model uses a non-default output key.
+Add tests for each vision processing component in the model test directory. Use the shared test mixins and provide model-specific initialization kwargs. Image tests discover processor backends automatically through a shared tester, while video tests configure their processor class and fixtures explicitly.
 
 ### Image processor tests
 
-Image processor tests usually live in `tests/models/<model_name>/test_image_processing_<model_name>.py` and inherit from `ImageProcessingTestMixin`.
+Image processor tests live in `tests/models/<model_name>/test_image_processing_<model_name>.py`. Define a tester that inherits from `ImageProcessingTester` and a test class that inherits from `ImageProcessingTestMixin` and `unittest.TestCase`.
 
-The image processing mixin finds the image processor classes from `IMAGE_PROCESSOR_MAPPING_NAMES`. Expose model-specific defaults through `image_processor_dict`. Add a tester object only when you need reusable dummy inputs or helper methods for focused tests.
+The image processing tester defines default test attributes such as the processor initialization arguments and parameters to create random inputs for the tests. Only override arguments if they should be different from the image processor defaults. For example, we usually test with smaller image sizes to keep the tests fast. The image processor classes are automatically inferred from `IMAGE_PROCESSOR_MAPPING_NAMES`.
+
+Set `image_processor_tester_class` on the test class. The mixin creates `self.image_processor_tester` and already covers most required test methods.
 
 ```py
+import unittest
+
 from transformers.testing_utils import require_torch, require_vision
-from ...test_image_processing_common import ImageProcessingTestMixin
+from ...test_image_processing_common import ImageProcessingTestMixin, ImageProcessingTester
+
+class MyModelImageProcessingTester(ImageProcessingTester):
+    def __init__(self, **kwargs):
+        # Random test inputs kwargs
+        kwargs.setdefault("batch_size", 2)          # default: 7     
+        kwargs.setdefault("num_channels", 4)        # default: 3
+        kwargs.setdefault("min_resolution", 20)     # default: 30
+        kwargs.setdefault("max_resolution", 100)    # default: 400
+
+        # Image processor init kwargs
+        kwargs.setdefault("size", {"shortest_edge": 20})
+        kwargs.setdefault("crop_size", {"height": 18, "width": 18})
+
+        super().__init__(**kwargs)
 
 @require_torch
 @require_vision
 class MyModelImageProcessingTest(ImageProcessingTestMixin, unittest.TestCase):
-    @property
-    def image_processor_dict(self):
-        return {"size": {"shortest_edge": 224}, "do_resize": True}
+    image_processor_tester_class = MyModelImageProcessingTester
+
+    def test_inherits_from_mixin(self):
+        # Always iterate over all image processing classes
+        for image_processing_class in self.image_processing_classes.values():
+            # self.image_processor_dict contains the default processor init kwargs
+            # including overrides from the tester.
+            image_processor = image_processing_class(**self.image_processor_dict)
+            self.assertIsInstance(image_processor, ImageProcessingMixin)
 ```
 
 Add focused tests for behavior the mixin can't infer, such as custom resizing rules or model-specific kwargs.
@@ -191,6 +219,7 @@ Post-processing test mixins are available in `tests/test_image_processing_common
 
 ```py
 class MyModelImageProcessingTest(ImageProcessingTestMixin, MyTaskPostProcessTestMixin, unittest.TestCase):
+    image_processor_tester_class = MyModelImageProcessingTester
 ```
 
 The tests automatically verify that the correct mixins are used for your model. Mixins for new tasks must be added to `tests/test_image_processing_common.py`.
@@ -217,7 +246,7 @@ class MyModelVideoProcessingTest(VideoProcessingTestMixin, unittest.TestCase):
 
 Add focused video tests for frame sampling, metadata handling, decoded video inputs, list-of-frame inputs, and output shapes. If your processor renames `pixel_values_videos`, assert the renamed key is returned.
 
-If the model also has a [ProcessorMixin](/docs/transformers/v5.17.0/en/main_classes/processors#transformers.ProcessorMixin) that wraps the image or video processor, add `tests/models/<model_name>/test_processing_<model_name>.py` and inherit from `ProcessorTesterMixin`. Set `processor_class` and override `_setup_<component>()` class methods for components that can't be constructed without arguments. Use `_setup_test_attributes()` to expose placeholder tokens used by the common processor tests.
+If the model also has a [ProcessorMixin](/docs/transformers/v5.19.0/en/main_classes/processors#transformers.ProcessorMixin) that wraps the image or video processor, add `tests/models/<model_name>/test_processing_<model_name>.py` and inherit from `ProcessorTesterMixin`. Set `processor_class` and override `_setup_<component>()` class methods for components that can't be constructed without arguments. Use `_setup_test_attributes()` to expose placeholder tokens used by the common processor tests.
 
 ```py
 from ...test_processing_common import ProcessorTesterMixin
@@ -245,4 +274,4 @@ class MyModelProcessorTest(ProcessorTesterMixin, unittest.TestCase):
 - Read the [Image processors](./image_processors) and [Video processors](./video_processors) guides for user-facing preprocessing behavior.
 
 ### Customizing tokenizers
-https://huggingface.co/docs/transformers/v5.17.0/custom_tokenizers.md
+https://huggingface.co/docs/transformers/v5.19.0/custom_tokenizers.md

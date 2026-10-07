@@ -3,7 +3,7 @@
 Some checkpoints are heterogeneous (not layer-uniform). A smaller MLP in one layer, fewer key-value heads in another, or a different
 layout on selected layers means a single global config doesn't accurately describe the stack.
 
-Use `per_layer_config` on [PreTrainedConfig](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig) to record those diffs when you're authoring or
+Use `per_layer_config` on [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) to record those diffs when you're authoring or
 inspecting a config, and when model code will consume them. Each entry stores only what differs from the
 global configuration, the rest inherits.
 
@@ -23,7 +23,7 @@ The models below are heterogeneous checkpoints. Layers are not uniform across th
 
 ## Define per-layer overrides
 
-Pass `per_layer_config` to [LlamaConfig](/docs/transformers/v5.17.0/en/model_doc/llama2#transformers.LlamaConfig) as a mapping from layer indices to attribute overrides. Layer
+Pass `per_layer_config` to [LlamaConfig](/docs/transformers/v5.19.0/en/model_doc/llama2#transformers.LlamaConfig) as a mapping from layer indices to attribute overrides. Layer
 indices are zero-based. Only attributes that differ from the global configuration need to be specified.
 
 `per_layer_config` records and resolves configuration values. It does not by itself change the modules a model creates
@@ -91,8 +91,8 @@ config.per_layer_config[27].skip
 # ["attention"]
 ```
 
-Configurations that use `per_layer_config` support the same [save_pretrained()](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig.save_pretrained) and
-[from_pretrained()](/docs/transformers/v5.17.0/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained) round trip as other configurations.
+Configurations that use `per_layer_config` support the same [save_pretrained()](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig.save_pretrained) and
+[from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained) round trip as other configurations.
 
 Each architecture defines in its code which attributes it consumes at the layer level. `per_layer_config` provides the
 mechanism for recording those layer-level differences and resolving them against the global config.
@@ -185,4 +185,4 @@ Use sparse serialization for compact configs, and explicit serialization when yo
 readability or tooling.
 
 ### Image processors
-https://huggingface.co/docs/transformers/v5.17.0/image_processors.md
+https://huggingface.co/docs/transformers/v5.19.0/image_processors.md

@@ -1,6 +1,6 @@
 # Prompt engineering
 
-Prompt engineering or prompting, uses natural language to improve large language model (LLM) performance on a variety of tasks. A prompt can steer the model towards generating a desired output. In many cases, you don't even need a [fine-tuned](#finetuning) model for a task. You just need a good prompt.
+Prompt engineering or prompting, uses natural language to improve large language model (LLM) performance on a variety of tasks. A prompt can steer the model towards generating a desired output. In many cases, you don't even need a [fine-tuned](#fine-tuning) model for a task. You just need a good prompt.
 
 Try prompting a LLM to classify some text. When you create a prompt, it's important to provide very specific instructions about the task and what the result should look like.
 
@@ -34,7 +34,7 @@ This guide covers prompt engineering best practices, techniques, and examples fo
     Base models are excellent at completing text given an initial prompt, but they're not as good at following instructions. Instruction-tuned models are specifically trained versions of the base models on instructional or conversational data. This makes instruction-tuned models a better fit for prompting.
 
     > [!WARNING]
-    > Modern LLMs are typically decoder-only models, but there are some encoder-decoder LLMs like [Flan-T5](../model_doc/flan-t5) or [BART](../model_doc/bart) that may be used for prompting. Load these models directly with the [AutoModelForSeq2SeqLM](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModelForSeq2SeqLM) class (instead of using [Pipeline](/docs/transformers/v5.17.0/en/main_classes/pipelines#transformers.Pipeline)) and generate outputs from the model itself.
+    > Modern LLMs are typically decoder-only models, but there are some encoder-decoder LLMs like [Flan-T5](../model_doc/flan-t5) or [BART](../model_doc/bart) that may be used for prompting. Load these models directly with the [AutoModelForSeq2SeqLM](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoModelForSeq2SeqLM) class (instead of using [Pipeline](/docs/transformers/v5.19.0/en/main_classes/pipelines#transformers.Pipeline)) and generate outputs from the model itself.
 
 2. Start with a short and simple prompt, and iterate on it to get better results.
 
@@ -48,7 +48,7 @@ This guide covers prompt engineering best practices, techniques, and examples fo
 
 7. Lead the model to generate the correct output by writing the first word or even the first sentence.
 
-8. Try other techniques like [few-shot](#few-shot) and [chain-of-thought](#chain-of-thought) to improve results.
+8. Try other techniques like [few-shot](#few-shot-prompting) and [chain-of-thought](#chain-of-thought) to improve results.
 
 9. Test your prompts with different models to assess their robustness.
 
@@ -148,7 +148,7 @@ If you eat 6 muffins, how many are left?
 Answer: 6
 ```
 
-Like [few-shot](#few-shot) prompting, the downside of CoT is that it requires more effort to design a series of prompts that help the model reason through a complex task and prompt length increases latency.
+Like [few-shot](#few-shot-prompting) prompting, the downside of CoT is that it requires more effort to design a series of prompts that help the model reason through a complex task and prompt length increases latency.
 
 ## Fine-tuning
 
@@ -233,4 +233,4 @@ Result: A blender or food processor is the modern tool
 ```
 
 ### Image captioning
-https://huggingface.co/docs/transformers/v5.17.0/tasks/image_captioning.md
+https://huggingface.co/docs/transformers/v5.19.0/tasks/image_captioning.md

@@ -18,7 +18,7 @@ print(tokenizer.batch_decode(outputs, skip_special_tokens=True))
 ['Pour a cup of bolognese into a large bowl and add the pasta']
 ```
 
-FLAN-T5 includes the same improvements as T5 version 1.1 (see [here](https://huggingface.co/docs/transformers/model_doc/t5v1.1) for the full details of the model's improvements.)
+FLAN-T5 includes the same improvements as T5 version 1.1 (see [here](./t5v1.1) for the full details of the model's improvements.)
 
 Google has released the following variants:
 
@@ -34,7 +34,7 @@ Google has released the following variants:
 
 The original checkpoints can be found [here](https://github.com/google-research/t5x/blob/main/docs/models.md#flan-t5-checkpoints).
 
-Refer to [T5's documentation page](t5) for all API reference, code examples and notebooks. For more details regarding training and evaluation of the FLAN-T5, refer to the model card.
+Refer to [T5's documentation page](./t5) for all API reference, code examples and notebooks. For more details regarding training and evaluation of the FLAN-T5, refer to the model card.
 
 ### Blenderbot Small
-https://huggingface.co/docs/transformers/v5.17.0/model_doc/blenderbot-small.md
+https://huggingface.co/docs/transformers/v5.19.0/model_doc/blenderbot-small.md

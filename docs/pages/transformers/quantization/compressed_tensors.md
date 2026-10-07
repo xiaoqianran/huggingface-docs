@@ -39,7 +39,7 @@ print(f"{mem_params/2**30:.4f} GB")
 
 ## Loading modes
 
-A compressed-tensors checkpoint stores its weights compressed (fp8, or packed int4/int8). How they are executed is up to two [CompressedTensorsConfig](/docs/transformers/v5.17.0/en/main_classes/quantization#transformers.CompressedTensorsConfig) arguments.
+A compressed-tensors checkpoint stores its weights compressed (fp8, or packed int4/int8). How they are executed is up to two [CompressedTensorsConfig](/docs/transformers/v5.19.0/en/main_classes/quantization#transformers.CompressedTensorsConfig) arguments.
 
 | Configuration | Weights after loading | Execution |
 |---------------|-----------------------|-----------|
@@ -55,7 +55,8 @@ Pass `use_optimized_inference=True` to keep an FP8 compressed-tensors model in F
 |--------|--------|-------|
 | Intel XPU | `torch.nn.functional.scaled_mm` | All XPU devices with FP8 support |
 | NVIDIA CUDA (SM89+) | `torch.nn.functional.scaled_mm` | Ada Lovelace (L4, L40), Hopper (H100), Blackwell and newer |
-| CPU / CUDA SM80 (A100) | Fallback | `use_optimized_inference=True` is ignored, the model runs dequantized |
+| Apple silicon (MPS) | `torch.nn.functional.scaled_mm` | Requires torch >= 2.15 |
+| CPU / CUDA SM80 (A100) / MPS with torch < 2.15 | Fallback | `use_optimized_inference=True` is ignored, the model runs dequantized |
 
 The FP8 kernel path supports these quantization layouts.
 
@@ -205,4 +206,4 @@ print(ct_model.model.layers[0].self_attn.q_proj)
 ```
 
 ### AQLM
-https://huggingface.co/docs/transformers/v5.17.0/quantization/aqlm.md
+https://huggingface.co/docs/transformers/v5.19.0/quantization/aqlm.md

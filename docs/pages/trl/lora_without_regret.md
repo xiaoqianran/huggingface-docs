@@ -322,4 +322,4 @@ Using TRL, you can efficiently implement LoRA adapters to match full fine-tuning
 ```
 
 ### Quickstart
-https://huggingface.co/docs/trl/v1.14.1/quickstart.md
+https://huggingface.co/docs/trl/v1.14.2/quickstart.md

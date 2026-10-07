@@ -8,13 +8,13 @@
 trl.ScriptArguments(dataset_name: str | None = None, dataset_config: str | None = None, dataset_train_split: str = 'train', dataset_test_split: str = 'test', dataset_streaming: bool = False, ignore_bias_buffers: bool = False)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.14.1/trl/scripts/utils.py#L146)
+[Source](https://github.com/huggingface/trl/blob/v1.14.2/trl/scripts/utils.py#L146)
 
 **Parameters:**
 
 dataset_name (`str`,, *optional*) : Path or name of the dataset to load. If `datasets` is provided, this will be ignored.
 
-dataset_config (`str`, *optional*) : Dataset configuration name. Corresponds to the `name` argument of the [load_dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/loading_methods#datasets.load_dataset) function. If `datasets` is provided, this will be ignored.
+dataset_config (`str`, *optional*) : Dataset configuration name. Corresponds to the `name` argument of the `load_dataset` function. If `datasets` is provided, this will be ignored.
 
 dataset_train_split (`str`, *optional*, defaults to `"train"`) : Dataset split to use for training. If `datasets` is provided, this will be ignored.
 
@@ -34,15 +34,15 @@ Arguments common to all scripts.
 trl.TrlParser(dataclass_types: typing.Union[trl.scripts._hf_argparser.DataClassType, collections.abc.Iterable[trl.scripts._hf_argparser.DataClassType], NoneType] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.14.1/trl/scripts/utils.py#L234)
+[Source](https://github.com/huggingface/trl/blob/v1.14.2/trl/scripts/utils.py#L234)
 
 **Parameters:**
 
 dataclass_types (`DataClassType | Iterable[DataClassType]`, *optional*) : Dataclass types to use for argument parsing.
 
-- ****kwargs** : Additional keyword arguments passed to the [transformers.HfArgumentParser](https://huggingface.co/docs/transformers/v5.17.0/en/internal/trainer_utils#transformers.HfArgumentParser) constructor.
+- ****kwargs** : Additional keyword arguments passed to the [transformers.HfArgumentParser](https://huggingface.co/docs/transformers/v5.19.0/en/internal/trainer_utils#transformers.HfArgumentParser) constructor.
 
-A subclass of [transformers.HfArgumentParser](https://huggingface.co/docs/transformers/v5.17.0/en/internal/trainer_utils#transformers.HfArgumentParser) designed for parsing command-line arguments with dataclass-backed
+A subclass of [transformers.HfArgumentParser](https://huggingface.co/docs/transformers/v5.19.0/en/internal/trainer_utils#transformers.HfArgumentParser) designed for parsing command-line arguments with dataclass-backed
 configurations, while also supporting configuration file loading and environment variable management.
 
 Examples:
@@ -85,11 +85,11 @@ $ python main.py --arg1 5 --arg2 beta
 parse_args_and_config(args: collections.abc.Iterable[str] | None = None, return_remaining_strings: bool = False, fail_with_unknown_args: bool = True, separate_remaining_strings: bool = False)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.14.1/trl/scripts/utils.py#L303)
+[Source](https://github.com/huggingface/trl/blob/v1.14.2/trl/scripts/utils.py#L303)
 
 Parse command-line args and config file into instances of the specified dataclass types.
 
-This method wraps [transformers.HfArgumentParser.parse_args_into_dataclasses](https://huggingface.co/docs/transformers/v5.17.0/en/internal/trainer_utils#transformers.HfArgumentParser.parse_args_into_dataclasses) and also parses the config file
+This method wraps [transformers.HfArgumentParser.parse_args_into_dataclasses](https://huggingface.co/docs/transformers/v5.19.0/en/internal/trainer_utils#transformers.HfArgumentParser.parse_args_into_dataclasses) and also parses the config file
 specified with the `--config` flag. The config file (in YAML format) provides argument values that replace the
 default values in the dataclasses. Command line arguments can override values set by the config file. The
 method also sets any environment variables specified in the `env` field of the config file.
@@ -100,7 +100,7 @@ method also sets any environment variables specified in the `env` field of the c
 parse_args_into_dataclasses(args = None, return_remaining_strings = False, look_for_args_file = True, args_filename = None, args_file_flag = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.14.1/trl/scripts/_hf_argparser.py#L298)
+[Source](https://github.com/huggingface/trl/blob/v1.14.2/trl/scripts/_hf_argparser.py#L298)
 
 **Parameters:**
 
@@ -132,7 +132,7 @@ docs.python.org/3/library/argparse.html#argparse.ArgumentParser.parse_args
 set_defaults_with_config(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.14.1/trl/scripts/utils.py#L361)
+[Source](https://github.com/huggingface/trl/blob/v1.14.2/trl/scripts/utils.py#L361)
 
 Overrides the parser's default values with those provided via keyword arguments, including for subparsers.
 
@@ -148,13 +148,13 @@ Returns a list of strings that were not consumed by the parser.
 trl.get_dataset(mixture_config: DatasetMixtureConfig)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.14.1/trl/scripts/utils.py#L414)
+[Source](https://github.com/huggingface/trl/blob/v1.14.2/trl/scripts/utils.py#L414)
 
 **Parameters:**
 
-mixture_config ([DatasetMixtureConfig](/docs/trl/v1.14.1/en/script_utils#trl.DatasetMixtureConfig)) : Script arguments containing dataset configuration.
+mixture_config ([DatasetMixtureConfig](/docs/trl/v1.14.2/en/script_utils#trl.DatasetMixtureConfig)) : Script arguments containing dataset configuration.
 
-**Returns:** [DatasetDict](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.DatasetDict)
+**Returns:** `DatasetDict`
 
 Combined dataset(s) from the mixture configuration, with optional train/test split if `test_split_size` is
 set.
@@ -184,7 +184,7 @@ DatasetDict({
 trl.scripts.utils.DatasetConfig(path: str, name: str | None = None, data_dir: str | None = None, data_files: str | list[str] | dict[str, str] | None = None, split: str = 'train', columns: list[str] | None = None, fraction: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.14.1/trl/scripts/utils.py#L40)
+[Source](https://github.com/huggingface/trl/blob/v1.14.2/trl/scripts/utils.py#L40)
 
 **Parameters:**
 
@@ -204,8 +204,8 @@ fraction (`float`, *optional*) : Target share of this dataset in the final mixtu
 
 Configuration for a dataset.
 
-This class matches the signature of [load_dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/loading_methods#datasets.load_dataset) and the arguments are used directly in the
-[load_dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/loading_methods#datasets.load_dataset) function. You can refer to the [load_dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/loading_methods#datasets.load_dataset) documentation for more
+This class matches the signature of `load_dataset` and the arguments are used directly in the
+`load_dataset` function. You can refer to the `load_dataset` documentation for more
 details.
 
 ## DatasetMixtureConfig[[trl.DatasetMixtureConfig]]
@@ -216,7 +216,7 @@ details.
 trl.DatasetMixtureConfig(datasets: list = <factory>, streaming: bool = False, test_split_size: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.14.1/trl/scripts/utils.py#L81)
+[Source](https://github.com/huggingface/trl/blob/v1.14.2/trl/scripts/utils.py#L81)
 
 **Parameters:**
 
@@ -228,7 +228,7 @@ test_split_size (`float`, *optional*) : Size of the test split. Refer to the `te
 
 Configuration class for a mixture of datasets.
 
-Using [HfArgumentParser](https://huggingface.co/docs/transformers/v5.17.0/en/internal/trainer_utils#transformers.HfArgumentParser) we can turn this class into
+Using [HfArgumentParser](https://huggingface.co/docs/transformers/v5.19.0/en/internal/trainer_utils#transformers.HfArgumentParser) we can turn this class into
 [argparse](https://docs.python.org/3/library/argparse#module-argparse) arguments that can be specified on the
 command line.
 
@@ -256,4 +256,4 @@ test_split_size: ...
 ```
 
 ### Reducing Memory Usage
-https://huggingface.co/docs/trl/v1.14.1/reducing_memory_usage.md
+https://huggingface.co/docs/trl/v1.14.2/reducing_memory_usage.md

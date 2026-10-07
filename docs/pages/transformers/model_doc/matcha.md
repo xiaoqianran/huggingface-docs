@@ -10,7 +10,7 @@ The abstract of the paper states the following:
 
 ## Model description
 
-MatCha is a model that is trained using `Pix2Struct` architecture. You can find more information about `Pix2Struct` in the [Pix2Struct documentation](https://huggingface.co/docs/transformers/main/en/model_doc/pix2struct).
+MatCha is a model that is trained using `Pix2Struct` architecture. You can find more information about `Pix2Struct` in the [Pix2Struct documentation](./pix2struct).
 MatCha is a Visual Question Answering subset of `Pix2Struct` architecture. It renders the input question on the image and predicts the answer.
 
 ## Usage
@@ -55,7 +55,7 @@ optimizer = Adafactor(self.parameters(), scale_parameter=False, relative_step=Fa
 scheduler = get_cosine_schedule_with_warmup(optimizer, num_warmup_steps=1000, num_training_steps=40000)
 ```
 
-MatCha is a model that is trained using `Pix2Struct` architecture. You can find more information about `Pix2Struct` in the [Pix2Struct documentation](https://huggingface.co/docs/transformers/main/en/model_doc/pix2struct).
+MatCha is a model that is trained using `Pix2Struct` architecture. You can find more information about `Pix2Struct` in the [Pix2Struct documentation](./pix2struct).
 
 ### GPT-NeoX
-https://huggingface.co/docs/transformers/v5.17.0/model_doc/gpt_neox.md
+https://huggingface.co/docs/transformers/v5.19.0/model_doc/gpt_neox.md

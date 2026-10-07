@@ -7,7 +7,7 @@ You can find all the original Code Llama checkpoints under the [Code Llama](http
 > [!TIP]
 > Click on the Code Llama models in the right sidebar for more examples of how to apply Code Llama to different coding tasks.
 
-The example below demonstrates how to generate code with [Pipeline](/docs/transformers/v5.17.0/en/main_classes/pipelines#transformers.Pipeline), or the [AutoModel](/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModel), and from the command line.
+The example below demonstrates how to generate code with [Pipeline](/docs/transformers/v5.19.0/en/main_classes/pipelines#transformers.Pipeline), or the [AutoModel](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoModel), and from the command line.
 
 ```python
 from transformers import pipeline
@@ -127,7 +127,7 @@ visualizer("""def func(a, b):
 transformers.CodeLlamaTokenizer(vocab: str | dict[str, int] | None = None, merges: str | list[str] | None = None, clean_up_tokenization_spaces = False, unk_token = '<unk>', bos_token = '<s>', eos_token = '</s>', prefix_token = '▁<PRE>', middle_token = '▁<MID>', suffix_token = '▁<SUF>', eot_token = '▁<EOT>', fill_token = '<FILL_ME>', additional_special_tokens = None, use_default_system_prompt: bool = False, add_prefix_space: bool | None = True, add_bos_token: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/code_llama/tokenization_code_llama.py#L41)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/code_llama/tokenization_code_llama.py#L41)
 
 **Parameters:**
 
@@ -182,7 +182,7 @@ call `tokenizer.update_post_processor()` to make sure that the post-processing i
 values of the first token and final token of an encoded sequence will not be correct). For more details, checkout
 [post-processors] (https://huggingface.co/docs/tokenizers/api/post-processors) documentation.
 
-This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.17.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.19.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods. The default configuration match that of
 [meta-llama/CodeLlama-7b-Instruct-hf](https://huggingface.co/meta-llama/CodeLlama-7b-Instruct-hf/blob/main/tokenizer_config.json)
 which supports prompt infilling.
@@ -193,7 +193,7 @@ which supports prompt infilling.
 get_special_tokens_mask(token_ids_0: list[int], token_ids_1: list[int] | None = None, already_has_special_tokens: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/tokenization_utils_base.py#L1311)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/tokenization_utils_base.py#L1309)
 
 **Parameters:**
 
@@ -218,7 +218,7 @@ already-formatted sequence. In that case, we compute the mask by checking member
 update_post_processor()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/tokenization_utils_tokenizers.py#L637)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/tokenization_utils_tokenizers.py#L626)
 
 Updates the underlying post processor with the current `bos_token` and `eos_token`.
 
@@ -228,7 +228,7 @@ Updates the underlying post processor with the current `bos_token` and `eos_toke
 save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/tokenization_utils_tokenizers.py#L556)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/tokenization_utils_tokenizers.py#L545)
 
 ## CodeLlamaTokenizerFast[[transformers.CodeLlamaTokenizer]]
 
@@ -238,7 +238,7 @@ save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 transformers.CodeLlamaTokenizer(vocab: str | dict[str, int] | None = None, merges: str | list[str] | None = None, clean_up_tokenization_spaces = False, unk_token = '<unk>', bos_token = '<s>', eos_token = '</s>', prefix_token = '▁<PRE>', middle_token = '▁<MID>', suffix_token = '▁<SUF>', eot_token = '▁<EOT>', fill_token = '<FILL_ME>', additional_special_tokens = None, use_default_system_prompt: bool = False, add_prefix_space: bool | None = True, add_bos_token: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/code_llama/tokenization_code_llama.py#L41)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/code_llama/tokenization_code_llama.py#L41)
 
 **Parameters:**
 
@@ -293,7 +293,7 @@ call `tokenizer.update_post_processor()` to make sure that the post-processing i
 values of the first token and final token of an encoded sequence will not be correct). For more details, checkout
 [post-processors] (https://huggingface.co/docs/tokenizers/api/post-processors) documentation.
 
-This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.17.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.19.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods. The default configuration match that of
 [meta-llama/CodeLlama-7b-Instruct-hf](https://huggingface.co/meta-llama/CodeLlama-7b-Instruct-hf/blob/main/tokenizer_config.json)
 which supports prompt infilling.
@@ -304,7 +304,7 @@ which supports prompt infilling.
 set_infilling_processor(reset, suffix_first = False, add_special_tokens = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/code_llama/tokenization_code_llama.py#L229)
+[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/code_llama/tokenization_code_llama.py#L229)
 
 Updates the normalizer to make sure the prompt format for `infilling` is respected. The infilling format is the
 following: if suffix_first
@@ -316,4 +316,4 @@ If `reset` is set to `True`, the `normalizer` and `post_processor` are reset to 
 is to add a prefix space for the normalizer, and add a `bos_token` to the input text for the `post_processor`.
 
 ### Ovis2
-https://huggingface.co/docs/transformers/v5.17.0/model_doc/ovis2.md
+https://huggingface.co/docs/transformers/v5.19.0/model_doc/ovis2.md

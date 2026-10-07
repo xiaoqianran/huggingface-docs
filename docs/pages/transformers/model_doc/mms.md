@@ -26,10 +26,10 @@ The ASR model checkpoints  can be found here : [mms-1b-fl102](https://huggingfac
 
 Tips:
 
-- All ASR models accept a float array corresponding to the raw waveform of the speech signal. The raw waveform should be pre-processed with [Wav2Vec2FeatureExtractor](/docs/transformers/v5.17.0/en/model_doc/wav2vec2#transformers.Wav2Vec2FeatureExtractor).
+- All ASR models accept a float array corresponding to the raw waveform of the speech signal. The raw waveform should be pre-processed with [Wav2Vec2FeatureExtractor](/docs/transformers/v5.19.0/en/model_doc/wav2vec2#transformers.Wav2Vec2FeatureExtractor).
 - The models were trained using connectionist temporal classification (CTC) so the model output has to be decoded using
-  [Wav2Vec2CTCTokenizer](/docs/transformers/v5.17.0/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer).
-- You can load different language adapter weights for different languages via [load_adapter()](/docs/transformers/v5.17.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC.load_adapter). Language adapters only consists of roughly 2 million parameters
+  [Wav2Vec2CTCTokenizer](/docs/transformers/v5.19.0/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer).
+- You can load different language adapter weights for different languages via [load_adapter()](/docs/transformers/v5.19.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC.load_adapter). Language adapters only consists of roughly 2 million parameters
   and can therefore be efficiently loaded on the fly when needed.
 
 #### Loading
@@ -102,7 +102,7 @@ model = Wav2Vec2ForCTC.from_pretrained(model_id, device_map="auto")
 ```
 
 Now we process the audio data, pass the processed audio data to the model and transcribe the model output,
-just like we usually do for [Wav2Vec2ForCTC](/docs/transformers/v5.17.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC).
+just like we usually do for [Wav2Vec2ForCTC](/docs/transformers/v5.19.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC).
 
 ```py
 inputs = processor(en_sample, sampling_rate=16_000, return_tensors="pt").to(model.device)
@@ -116,7 +116,7 @@ transcription = processor.decode(ids)
 ```
 
 We can now keep the same model in memory and simply switch out the language adapters by
-calling the convenient [load_adapter()](/docs/transformers/v5.17.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC.load_adapter) function for the model and [set_target_lang()](/docs/transformers/v5.17.0/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer.set_target_lang) for the tokenizer.
+calling the convenient [load_adapter()](/docs/transformers/v5.19.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC.load_adapter) function for the model and [set_target_lang()](/docs/transformers/v5.19.0/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer.set_target_lang) for the tokenizer.
 We pass the target language as an input - `"fra"` for French.
 
 ```py
@@ -148,7 +148,7 @@ To further improve performance from ASR models, language model decoding can be u
 MMS-TTS uses the same model architecture as VITS, which was added to 🤗 Transformers in v4.33. MMS trains a separate
 model checkpoint for each of the 1100+ languages in the project. All available checkpoints can be found on the Hugging
 Face Hub: [facebook/mms-tts](https://huggingface.co/models?sort=trending&search=facebook%2Fmms-tts), and the inference
-documentation under [VITS](https://huggingface.co/docs/transformers/main/en/model_doc/vits).
+documentation under [VITS](./vits).
 
 #### Inference
 
@@ -366,10 +366,10 @@ processor.id2label.values()
 Pretrained models are available for two different sizes - [300M](https://huggingface.co/facebook/mms-300m) ,
 [1Bil](https://huggingface.co/facebook/mms-1b).
 
-The MMS for ASR architecture is based on the Wav2Vec2 model, refer to [Wav2Vec2's documentation page](wav2vec2) for further
+The MMS for ASR architecture is based on the Wav2Vec2 model, refer to [Wav2Vec2's documentation page](./wav2vec2) for further
 details on how to finetune with models for various downstream tasks.
 
-MMS-TTS uses the same model architecture as VITS, refer to [VITS's documentation page](vits) for API reference.
+MMS-TTS uses the same model architecture as VITS, refer to [VITS's documentation page](./vits) for API reference.
 
 ### TimmWrapper
-https://huggingface.co/docs/transformers/v5.17.0/model_doc/timm_wrapper.md
+https://huggingface.co/docs/transformers/v5.19.0/model_doc/timm_wrapper.md
