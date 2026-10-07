@@ -24,8 +24,9 @@ Hugging Face Hub 上的存储库与软件开发平台上的存储库不同。它
 - [Xet History & Overview](./overview)
 - [Using Xet Storage](./using-xet-storage)
 - [Security](./security)
+- [Telemetry](./telemetry)
 - [Backwards Compatibility & Legacy](./legacy-git-lfs)
 - [Deduplication](./deduplication)
 
-### 使用 Xet 存储
-https://huggingface.co/docs/hub/xet/using-xet-storage.md
+### 遥测
+https://huggingface.co/docs/hub/xet/telemetry.md

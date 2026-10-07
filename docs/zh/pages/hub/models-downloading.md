@@ -12,7 +12,7 @@
 ```bash
 hf download HuggingFaceH4/zephyr-7b-beta
 ```
-请参阅 [CLI download documentation](https://huggingface.co/docs/huggingface_hub/en/guides/cli#download-an-entire-repository) 了解更多信息。
+请参阅[CLI download documentation](https://huggingface.co/docs/huggingface_hub/en/guides/cli#download-an-entire-repository)了解更多信息。
 
 您还可以将其集成到您自己的库中。例如，您可以用几行代码快速加载 Scikit-learn 模型。
 ```py
@@ -54,15 +54,17 @@ hf speedtest
 
 ### hf_xet 的自适应并发
 
-`hf_xet` 是一个基于 Rust 的软件包，利用 [Xet storage backend](https://huggingface.co/docs/hub/en/xet/index) 通过基于块的重复数据删除来优化文件传输。默认情况下，`hf_xet`使用**自适应并发** - 它根据实时网络条件自动调整并行传输流的数量，保守地启动（1个流）并在带宽允许的情况下扩展到64个并发流。
+`hf_xet` 是一个基于 Rust 的软件包，利用 [Xet storage backend](https://huggingface.co/docs/hub/en/xet/index) 通过基于块的重复数据删除来优化文件传输。默认情况下，`hf_xet`使用**自适应并发** - 它根据实时网络条件自动调整并行传输流的数量，保守地开始（1个流）并在带宽允许的情况下扩展到64个并发流。
 
-对于大多数机器（包括数据中心环境），默认设置已经使可用网络带宽饱和。对于使用具有高带宽**和至少 64 GB RAM** 的计算机的高级用户，`HF_XET_HIGH_PERFORMANCE=1` 提高了并发范围并显着增加了内存缓冲区大小，这在并行下载许多大文件时会有所帮助。
+对于大多数机器（包括数据中心环境），默认设置已经使可用网络带宽饱和。对于使用具有高带宽和快速磁盘的计算机的高级用户，`HF_XET_HIGH_PERFORMANCE=1` 提高了并发范围并增加了内存缓冲区大小，这在并行下载许多大文件时会有所帮助。
 
 ```bash
 HF_XET_HIGH_PERFORMANCE=1 hf download ...
-```
+```从 `hf_xet` 1.7.0 开始，下载缓冲区大小基于 `hf_xet` 可用的内存，包括容器内存限制，无论是否有 `HF_XET_HIGH_PERFORMANCE=1`。对于早期版本，仅在 RAM 至少为 64 GB 的计算机上使用 `HF_XET_HIGH_PERFORMANCE=1`。使用的值请参见[Download Buffers](./xet/using-xet-storage#download-buffers)。
 
-## 使用 hf-mount对于大型模型，您可以使用 [hf-mount](https://github.com/huggingface/hf-mount) 将存储库安装为本地文件系统，而不是下载完整的存储库。文件是延迟获取的——只有代码读取的字节才会到达网络。
+## 使用 hf-mount
+
+对于大型模型，您可以使用 [hf-mount](https://github.com/huggingface/hf-mount) 将存储库安装为本地文件系统，而不是下载完整的存储库。文件是延迟获取的——只有代码读取的字节才会到达网络。
 
 ```bash
 brew install hf-mount
@@ -76,7 +78,7 @@ hf-mount start repo openai-community/gpt2 /tmp/gpt2
 如果您的网络通过防火墙或代理限制出站流量，则下载模型和数据集需要的不仅仅是 `huggingface.co`。文件内容由单独的存储和 CDN 主机名提供，如果无法访问，`from_pretrained` / `hf download` 将失败，即使 `huggingface.co` 本身已列入白名单。
 
 将以下主机名列入白名单（全部通过 HTTPS/端口 443）：|主机名 |目的|
-|------------------------------------------|--------------------------------------------------------|
+|------------------------------------------|---------------------------------------------------------|
 | `huggingface.co` | Hub API、元数据和下载重定向 |
 | `cas-server.xethub.hf.co` | Xet 协议 API、下载和上传（美国）|
 | `cas-server.xethub-eu.hf.co` | Xet 协议 API、下载和上传（欧盟）|
@@ -99,7 +101,7 @@ hf-mount start repo openai-community/gpt2 /tmp/gpt2
 >
 > 如果您的代理仅支持单标签通配符（其中 `*.hf.co` 匹配
 > `cdn-lfs-us-1.hf.co` 但不是更深的 `us.aws.cdn.hf.co` 或 `cas-server.xethub.hf.co`），
-> 将上表中的显式主机名列入白名单。请注意 `*.xethub.hf.co` 确实
+> 将上表中的显式主机名列入白名单。请注意，`*.xethub.hf.co`确实
 > 不涵盖`xethub-eu.hf.co`下的欧盟主机，`*.cdn.hf.co`不涵盖
 > 双标签`us.aws.cdn.hf.co` / `us.gcp.cdn.hf.co`。
 
@@ -111,7 +113,7 @@ hf-mount start repo openai-community/gpt2 /tmp/gpt2
 ### 机器可读列表
 
 上面的主机名也以 JSON 形式发布在
-[⟦T42⟧](https://huggingface.co/.well-known/meta.json),
+[⟦T46⟧](https://huggingface.co/.well-known/meta.json),
 因此您可以从中生成代理或防火墙规则，而不是手动复制表。
 
 > [!警告]

@@ -2,7 +2,7 @@
 
 # 推理提供者
 
-Hugging Face 的模型页面具有数千个模型的即用即付推理，因此您可以直接在浏览器中尝试所有模型。该服务由推理提供商提供支持，并包含免费套餐。
+Hugging Face 的模型页面具有数千个模型的即用即付推理，因此您可以直接在浏览器中尝试所有模型。服务由推理提供商提供支持，每月为 PRO 用户以及团队和企业组织提供积分。
 
 推理提供商为开发人员提供了对数百种机器学习模型的简化、统一访问，这些模型由最好的无服务器推理合作伙伴提供支持。 👉 **如需完整文档，请访问 [Inference Providers Documentation](https://huggingface.co/docs/inference-providers)**。
 
@@ -66,7 +66,7 @@ completion = client.chat.completions.create(
 ```
 
 > [!警告]
-> 图像生成不支持 OpenAI API 兼容客户端。
+> OpenAI API 兼容客户端不支持图像生成。
 
 您可以使用我们的 JavaScript SDK 与推理提供程序进行交互。
 

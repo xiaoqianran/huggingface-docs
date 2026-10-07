@@ -1,8 +1,8 @@
 {
   "files": {
     "hub/xet/index.md": {
-      "hash": "7cf20798c1c989859def3ee8b55fcd131fd6b912",
-      "translatedAt": "2026-08-14T08:22:57.434Z"
+      "hash": "c63374d04413f323fd75c853d728aa50e85d0274",
+      "translatedAt": "2026-10-07T14:23:56.114Z"
     },
     "hub/xet/overview.md": {
       "hash": "d650a0561b8df4d0ec885554154ee438b1a48a17",
@@ -513,16 +513,16 @@
       "translatedAt": "2026-08-14T08:24:50.916Z"
     },
     "hub/models-downloading.md": {
-      "hash": "2c7de8f6116e9150dab402e57602ff2314a88dd8",
-      "translatedAt": "2026-08-27T18:13:47.130Z"
+      "hash": "19ae4bf62d286767068e7902d80800308bef7446",
+      "translatedAt": "2026-10-07T14:23:57.118Z"
     },
     "hub/model-card-landscape-analysis.md": {
       "hash": "309aa105d223b419f266b8ffcabfcd8c9ca7f237",
       "translatedAt": "2026-09-28T15:17:35.542Z"
     },
     "hub/models-inference.md": {
-      "hash": "65956882c408f067da9d8e620564b23bcd816882",
-      "translatedAt": "2026-08-14T08:24:52.510Z"
+      "hash": "6e409ebdc74db33ff3fbf8b4f0eebfab6756483b",
+      "translatedAt": "2026-10-07T14:23:55.289Z"
     },
     "hub/models-the-hub.md": {
       "hash": "8f5896024d39145af4d10edd71d53eef48046d0f",
@@ -1093,8 +1093,8 @@
       "translatedAt": "2026-10-01T14:24:03.043Z"
     },
     "hub/xet/using-xet-storage.md": {
-      "hash": "584ccb4827f3607d14a30b55099ff59704d57179",
-      "translatedAt": "2026-09-28T15:18:10.093Z"
+      "hash": "4679dd85e2537b1a6094a9e13607039662847630",
+      "translatedAt": "2026-10-07T14:24:02.228Z"
     },
     "huggingface_hub/concepts/migration.md": {
       "hash": "ab4f14cd9d9556e69c736525cddd7073eb0d8ead",
@@ -2016,12 +2016,16 @@
     "hub/webhooks-guide-bucket-jobs.md": {
       "hash": "d4c262a4c47304e1ffb4bf4a95a84c27607dc538",
       "translatedAt": "2026-10-01T14:23:56.989Z"
+    },
+    "hub/xet/telemetry.md": {
+      "hash": "cd64cc1197b830e237fe7d86b34c2367557896f3",
+      "translatedAt": "2026-10-07T14:23:57.966Z"
     }
   },
-  "updatedAt": "2026-10-06T14:06:55.988Z",
+  "updatedAt": "2026-10-07T14:24:02.228Z",
   "stats": {
-    "translated": 2,
-    "skipped": 398,
+    "translated": 5,
+    "skipped": 395,
     "failed": 0,
     "total": 400
   }
