@@ -2022,10 +2022,10 @@
       "translatedAt": "2026-10-07T14:23:57.966Z"
     }
   },
-  "updatedAt": "2026-10-07T14:24:02.228Z",
+  "updatedAt": "2026-10-08T14:31:13.937Z",
   "stats": {
-    "translated": 5,
-    "skipped": 395,
+    "translated": 0,
+    "skipped": 400,
     "failed": 0,
     "total": 400
   }
