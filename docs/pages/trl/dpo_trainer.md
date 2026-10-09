@@ -14,7 +14,7 @@ This post-training method was contributed by [Kashif Rasul](https://huggingface.
 
 ## Quick start
 
-This example demonstrates how to train a language model using the [DPOTrainer](/docs/trl/v1.14.2/en/bema_for_reference_model#trl.DPOTrainer) from TRL. We train a [Qwen 3 0.6B](https://huggingface.co/Qwen/Qwen3-0.6B) model on the [UltraFeedback dataset](https://huggingface.co/datasets/openbmb/UltraFeedback).
+This example demonstrates how to train a language model using the [DPOTrainer](/docs/trl/v1.15.0/en/bema_for_reference_model#trl.DPOTrainer) from TRL. We train a [Qwen 3 0.6B](https://huggingface.co/Qwen/Qwen3-0.6B) model on the [UltraFeedback dataset](https://huggingface.co/datasets/openbmb/UltraFeedback).
 
 ```python
 from trl import DPOTrainer
@@ -29,7 +29,7 @@ trainer.train()
 
 ## Expected dataset type and format
 
-DPO requires a [preference](dataset_formats#preference) dataset. The [DPOTrainer](/docs/trl/v1.14.2/en/bema_for_reference_model#trl.DPOTrainer) is compatible with both [standard](dataset_formats#standard) and [conversational](dataset_formats#conversational) dataset formats. When provided with a conversational dataset, the trainer will automatically apply the chat template to the dataset.
+DPO requires a [preference](dataset_formats#preference) dataset. The [DPOTrainer](/docs/trl/v1.15.0/en/bema_for_reference_model#trl.DPOTrainer) is compatible with both [standard](dataset_formats#standard) and [conversational](dataset_formats#conversational) dataset formats. When provided with a conversational dataset, the trainer will automatically apply the chat template to the dataset.
 
 ```python
 # Standard format
@@ -85,7 +85,7 @@ This section breaks down how DPO works in practice, covering the key steps: **pr
 ### Preprocessing and tokenization
 
 During training, each example is expected to contain a prompt along with a preferred (`chosen`) and a dispreferred (`rejected`) completion. For more details on the expected formats, see [Dataset formats](dataset_formats).
-The [DPOTrainer](/docs/trl/v1.14.2/en/bema_for_reference_model#trl.DPOTrainer) tokenizes each input using the model's tokenizer.
+The [DPOTrainer](/docs/trl/v1.15.0/en/bema_for_reference_model#trl.DPOTrainer) tokenizes each input using the model's tokenizer.
 
 ### Computing the loss
 
@@ -109,7 +109,7 @@ Several formulations of the objective have been proposed in the literature. Init
 | `"ipo"` | The [IPO](https://huggingface.co/papers/2310.12036) authors argue the logit transform can overfit and propose the identity transform to optimize preferences directly; TRL exposes this as `loss_type="ipo"`. |
 | `"exo_pair"` | The [EXO](https://huggingface.co/papers/2402.00856) authors propose reverse-KL preference optimization. `label_smoothing` must be strictly greater than `0.0`; a recommended value is `1e-3` (see Eq. 16 for the simplified pairwise variant). The full method uses `K>2` SFT completions and approaches PPO as `K` grows. |
 | `"nca_pair"` | The [NCA](https://huggingface.co/papers/2402.05369) authors shows that NCA optimizes the absolute likelihood for each response rather than the relative likelihood. |
-| `"robust"` | The [Robust DPO](https://huggingface.co/papers/2403.00409) authors propose an unbiased DPO loss under noisy preferences. Use `label_smoothing` in [DPOConfig](/docs/trl/v1.14.2/en/dpo_trainer#trl.DPOConfig) to model label-flip probability; valid values are in the range `[0.0, 0.5)`. |
+| `"robust"` | The [Robust DPO](https://huggingface.co/papers/2403.00409) authors propose an unbiased DPO loss under noisy preferences. Use `label_smoothing` in [DPOConfig](/docs/trl/v1.15.0/en/dpo_trainer#trl.DPOConfig) to model label-flip probability; valid values are in the range `[0.0, 0.5)`. |
 | `"bco_pair"` | The [BCO](https://huggingface.co/papers/2404.04656) authors train a binary classifier whose logit serves as a reward so that the classifier maps {prompt, chosen completion} pairs to 1 and {prompt, rejected completion} pairs to 0. |
 | `"sppo_hard"` | The [SPPO](https://huggingface.co/papers/2405.00675) authors claim that SPPO is capable of solving the Nash equilibrium iteratively by pushing the chosen rewards to be as large as 1/2 and the rejected rewards to be as small as -1/2 and can alleviate data sparsity issues. The implementation approximates this algorithm by employing hard label probabilities, assigning 1 to the winner and 0 to the loser. |
 | `"aot"`  or `loss_type="aot_unpaired"` | The [AOT](https://huggingface.co/papers/2406.05882) authors propose Distributional Preference Alignment via Optimal Transport. `loss_type="aot"` is for paired data; `loss_type="aot_unpaired"` is for unpaired data. Both enforce stochastic dominance via sorted quantiles; larger per-GPU batch sizes help. |
@@ -128,11 +128,11 @@ While training and evaluating, we record the following metrics:
 - `loss`: The average DPO loss over the current logging interval.
 - `entropy`: The average entropy of the model's predicted token distribution over non-masked tokens.
 - `aux_loss`: The load-balancing auxiliary loss of a Mixture-of-Experts model, before it is scaled by `router_aux_loss_coef` and added to the loss. Logged only when the model is a MoE model and `router_aux_loss_coef` is nonzero.
-- `mean_token_accuracy`: The proportion of non-masked tokens for which the model’s top-1 prediction matches the token from the chosen completion. This metric is omitted when `use_liger_kernel=True` because the chunked path does not materialize logits.
+- `mean_token_accuracy`: The proportion of non-masked tokens for which the model’s top-1 prediction matches the token from the chosen completion.
 - `learning_rate`: The current learning rate, which may change dynamically if a scheduler is used.
 - `grad_norm`: The L2 norm of the gradients, computed before gradient clipping.
-- `logits/chosen`: The average logit values assigned by the model to the tokens in the chosen completion. This metric is omitted when `use_liger_kernel=True` because the chunked path does not materialize logits.
-- `logits/rejected`: The average logit values assigned by the model to the tokens in the rejected completion. This metric is omitted when `use_liger_kernel=True` because the chunked path does not materialize logits.
+- `logits/chosen`: The average logit values assigned by the model to the tokens in the chosen completion.
+- `logits/rejected`: The average logit values assigned by the model to the tokens in the rejected completion.
 - `logps/chosen`: The average log-probability assigned by the model to the tokens in the chosen completion.
 - `logps/rejected`: The average log-probability assigned by the model to the tokens in the rejected completion.
 - `rewards/chosen`: The average implicit reward computed for the chosen completion, computed as  \\( \beta \log \frac{\pi_{\theta}(y^{+}\!\mid x)}{\pi_{\mathrm{ref}}(y^{+}\!\mid x)} \\).
@@ -144,14 +144,10 @@ While training and evaluating, we record the following metrics:
 
 ### Compatibility and constraints
 
-Some argument combinations are intentionally restricted in the current [DPOTrainer](/docs/trl/v1.14.2/en/bema_for_reference_model#trl.DPOTrainer) implementation:
+Some argument combinations are intentionally restricted in the current [DPOTrainer](/docs/trl/v1.15.0/en/bema_for_reference_model#trl.DPOTrainer) implementation:
 
 - `use_weighting=True` is not supported with `loss_type="aot"` or `loss_type="aot_unpaired"`.
-- With `use_liger_kernel=True`:
-  - `use_weighting=True` is not supported,
-  - `compute_metrics` is not supported,
-  - PEFT adapters targeting `lm_head` and prompt-learning PEFT methods are not supported,
-  - the MoE load-balancing auxiliary loss is not supported.
+- PEFT adapters targeting `lm_head` are not supported (use `modules_to_save=["lm_head"]` instead).
 - `sync_ref_model=True` is not supported when training with PEFT models that do not keep a standalone `ref_model`.
 - `sync_ref_model=True` cannot be combined with `precompute_ref_log_probs=True`.
 - `precompute_ref_log_probs=True` is not supported with `IterableDataset` (train or eval).
@@ -172,13 +168,13 @@ training_args = DPOConfig(
 
 ### Model initialization
 
-You can directly pass the kwargs of the `from_pretrained()` method to the [DPOConfig](/docs/trl/v1.14.2/en/dpo_trainer#trl.DPOConfig). For example, if you want to load a model in a different precision, analogous to
+You can directly pass the kwargs of the `from_pretrained()` method to the [DPOConfig](/docs/trl/v1.15.0/en/dpo_trainer#trl.DPOConfig). For example, if you want to load a model in a different precision, analogous to
 
 ```python
 model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-0.6B", dtype=torch.bfloat16)
 ```
 
-you can do so by passing the `model_init_kwargs={"dtype": torch.bfloat16}` argument to the [DPOConfig](/docs/trl/v1.14.2/en/dpo_trainer#trl.DPOConfig).
+you can do so by passing the `model_init_kwargs={"dtype": torch.bfloat16}` argument to the [DPOConfig](/docs/trl/v1.15.0/en/dpo_trainer#trl.DPOConfig).
 
 ```python
 from trl import DPOConfig
@@ -210,7 +206,7 @@ trainer = DPOTrainer(
 trainer.train()
 ```
 
-You can also continue training your `PeftModel`. For that, first load a `PeftModel` outside [DPOTrainer](/docs/trl/v1.14.2/en/bema_for_reference_model#trl.DPOTrainer) and pass it directly to the trainer without the `peft_config` argument being passed.
+You can also continue training your `PeftModel`. For that, first load a `PeftModel` outside [DPOTrainer](/docs/trl/v1.15.0/en/bema_for_reference_model#trl.DPOTrainer) and pass it directly to the trainer without the `peft_config` argument being passed.
 
 ```python
 from datasets import load_dataset
@@ -235,10 +231,6 @@ trainer.train()
 > DPOConfig(learning_rate=1e-5, ...)
 > ```
 
-### Train with Liger Kernel
-
-Liger Kernel is a collection of Triton kernels for LLM training that boosts multi-GPU throughput by 20%, cuts memory use by 60% (enabling up to 4× longer context), and works seamlessly with tools like FlashAttention, PyTorch FSDP, and DeepSpeed. For more information, see [Liger Kernel Integration](liger_kernel_integration).
-
 ### Rapid Experimentation for DPO
 
 RapidFire AI is an open-source experimentation engine that sits on top of TRL and lets you launch multiple DPO configurations at once, even on a single GPU. Instead of trying configurations sequentially, RapidFire lets you **see all their learning curves earlier, stop underperforming runs, and clone promising ones with new settings in flight** without restarting. For more information, see [RapidFire AI Integration](rapidfire_integration).
@@ -249,7 +241,7 @@ Unsloth is an open‑source framework for fine‑tuning and reinforcement learni
 
 ## Tool Calling with DPO
 
-The [DPOTrainer](/docs/trl/v1.14.2/en/bema_for_reference_model#trl.DPOTrainer) fully supports fine-tuning models with _tool calling_ capabilities. In this case, each dataset example should include:
+The [DPOTrainer](/docs/trl/v1.15.0/en/bema_for_reference_model#trl.DPOTrainer) fully supports fine-tuning models with _tool calling_ capabilities. In this case, each dataset example should include:
 
 - The conversation messages (prompt, chosen and rejected), including any tool calls (`tool_calls`) and tool responses (`tool` role messages)
 - The list of available tools in the `tools` column, typically provided as JSON schemas
@@ -258,7 +250,7 @@ For details on the expected dataset structure, see the [Dataset Format — Tool 
 
 ## Training Vision Language Models
 
-[DPOTrainer](/docs/trl/v1.14.2/en/bema_for_reference_model#trl.DPOTrainer) fully supports training Vision-Language Models (VLMs). To train a VLM, provide a dataset with either an `image` column (single image per sample) or an `images` column (list of images per sample). For more information on the expected dataset structure, see the [Dataset Format — Vision Dataset](dataset_formats#vision-dataset) section.
+[DPOTrainer](/docs/trl/v1.15.0/en/bema_for_reference_model#trl.DPOTrainer) fully supports training Vision-Language Models (VLMs). To train a VLM, provide a dataset with either an `image` column (single image per sample) or an `images` column (list of images per sample). For more information on the expected dataset structure, see the [Dataset Format — Vision Dataset](dataset_formats#vision-dataset) section.
 An example of such a dataset is the [RLAIF-V Dataset](https://huggingface.co/datasets/HuggingFaceH4/rlaif-v_formatted) dataset.
 
 ```python
@@ -274,7 +266,7 @@ trainer.train()
 ```
 
 > [!TIP]
-> For VLMs, truncating may remove image tokens, leading to errors during training. To avoid this, set `max_length=None` in the [DPOConfig](/docs/trl/v1.14.2/en/dpo_trainer#trl.DPOConfig). This allows the model to process the full sequence length without truncating image tokens.
+> For VLMs, truncating may remove image tokens, leading to errors during training. To avoid this, set `max_length=None` in the [DPOConfig](/docs/trl/v1.15.0/en/dpo_trainer#trl.DPOConfig). This allows the model to process the full sequence length without truncating image tokens.
 >
 > ```python
 > DPOConfig(max_length=None, ...)
@@ -290,7 +282,7 @@ trainer.train()
 trl.DPOTrainer(model: str | PreTrainedModel | PeftModel, ref_model: transformers.modeling_utils.PreTrainedModel | None = None, args: trl.trainer.dpo_config.DPOConfig | None = None, data_collator: collections.abc.Callable[[list[typing.Any]], dict[str, typing.Any]] | None = None, train_dataset: datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset | None = None, eval_dataset: datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset | datasets.dataset_dict.DatasetDict | datasets.dataset_dict.IterableDatasetDict | dict[str, datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset] | None = None, processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | transformers.processing_utils.ProcessorMixin | None = None, compute_metrics: collections.abc.Callable[[transformers.trainer_utils.EvalPrediction], dict] | None = None, callbacks: list[transformers.trainer_callback.TrainerCallback] | None = None, optimizers: tuple = (None, None), quantization_config: BitsAndBytesConfig | None = None, peft_config: PeftConfig | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.14.2/trl/trainer/dpo_trainer.py#L410)
+[Source](https://github.com/huggingface/trl/blob/v1.15.0/trl/trainer/dpo_trainer.py#L405)
 
 **Parameters:**
 
@@ -298,7 +290,7 @@ model (`str` or [PreTrainedModel](https://huggingface.co/docs/transformers/v5.19
 
 ref_model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel), *optional*) : Reference model used to compute the reference log probabilities.  - If provided, this model is used directly as the reference policy. - If `None`, the trainer will automatically use the initial policy corresponding to `model`, i.e. the model state before DPO training starts.
 
-args ([DPOConfig](/docs/trl/v1.14.2/en/dpo_trainer#trl.DPOConfig), *optional*) : Configuration for this trainer. If `None`, a default configuration is used.
+args ([DPOConfig](/docs/trl/v1.15.0/en/dpo_trainer#trl.DPOConfig), *optional*) : Configuration for this trainer. If `None`, a default configuration is used.
 
 data_collator (`DataCollator`, *optional*) : Function to use to form a batch from a list of elements of the processed `train_dataset` or `eval_dataset`. Will default to `DataCollatorForPreference` if the model is a language model and `DataCollatorForVisionPreference` if the model is a vision-language model. Custom collators must truncate sequences before padding; the trainer does not apply post-collation truncation.
 
@@ -308,7 +300,7 @@ eval_dataset (`Dataset`, `IterableDataset`, `DatasetDict`, `IterableDatasetDict`
 
 processing_class ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase) or [ProcessorMixin](https://huggingface.co/docs/transformers/v5.19.0/en/main_classes/processors#transformers.ProcessorMixin), *optional*) : Processing class used to process the data. The padding side must be set to "left". If `None`, the processing class is loaded from the model's name with [from_pretrained](https://huggingface.co/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoProcessor.from_pretrained). A padding token, `tokenizer.pad_token`, must be set. If the processing class has not set a padding token, `tokenizer.eos_token` will be used as the default.
 
-compute_metrics (`Callable[[EvalPrediction], dict]`, *optional*) : The function that will be used to compute metrics at evaluation. Must take a [EvalPrediction](https://huggingface.co/docs/transformers/v5.19.0/en/internal/trainer_utils#transformers.EvalPrediction) and return a dictionary string to metric values. When passing [SFTConfig](/docs/trl/v1.14.2/en/sft_trainer#trl.SFTConfig) with `batch_eval_metrics` set to `True`, your `compute_metrics` function must take a boolean `compute_result` argument. This will be triggered after the last eval batch to signal that the function needs to calculate and return the global summary statistics rather than accumulating the batch-level statistics.
+compute_metrics (`Callable[[EvalPrediction], dict]`, *optional*) : The function that will be used to compute metrics at evaluation. Must take a [EvalPrediction](https://huggingface.co/docs/transformers/v5.19.0/en/internal/trainer_utils#transformers.EvalPrediction) and return a dictionary string to metric values. When passing [SFTConfig](/docs/trl/v1.15.0/en/sft_trainer#trl.SFTConfig) with `batch_eval_metrics` set to `True`, your `compute_metrics` function must take a boolean `compute_result` argument. This will be triggered after the last eval batch to signal that the function needs to calculate and return the global summary statistics rather than accumulating the batch-level statistics. The logits it receives are recomputed with an extra forward pass. This is deprecated and will be removed in v2.0.0.
 
 callbacks (list of [TrainerCallback](https://huggingface.co/docs/transformers/v5.19.0/en/main_classes/callback#transformers.TrainerCallback), *optional*) : List of callbacks to customize the training loop. Will add those to the list of default callbacks detailed in [here](https://huggingface.co/docs/transformers/main_classes/callback).  If you want to remove one of the default callbacks used, use the [remove_callback](https://huggingface.co/docs/transformers/v5.19.0/en/main_classes/trainer#transformers.Trainer.remove_callback) method.
 
@@ -343,7 +335,7 @@ Example:
 train(resume_from_checkpoint: str | bool | None = None, trial: optuna.Trial | dict[str, Any] | None = None, ignore_keys_for_eval: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.14.2/transformers/trainer.py#L1450)
+[Source](https://github.com/huggingface/trl/blob/v1.15.0/transformers/trainer.py#L1450)
 
 **Parameters:**
 
@@ -365,7 +357,7 @@ Main training entry point.
 save_model(output_dir: str | None = None, _internal_call: bool = False)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.14.2/transformers/trainer.py#L4039)
+[Source](https://github.com/huggingface/trl/blob/v1.15.0/transformers/trainer.py#L4039)
 
 Will save the model, so you can reload it using `from_pretrained()`.
 
@@ -377,7 +369,7 @@ Will only save from the main process.
 push_to_hub(commit_message: str | None = 'End of training', blocking: bool = True, token: str | None = None, revision: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.14.2/transformers/trainer.py#L4296)
+[Source](https://github.com/huggingface/trl/blob/v1.15.0/transformers/trainer.py#L4296)
 
 **Parameters:**
 
@@ -406,11 +398,11 @@ Upload `self.model` and `self.processing_class` to the 🤗 model hub on the rep
 trl.DPOConfig(output_dir: str | None = None, per_device_train_batch_size: int = 8, num_train_epochs: float = 3.0, max_steps: int = -1, learning_rate: float = 1e-06, lr_scheduler_type: transformers.trainer_utils.SchedulerType | str = 'linear', lr_scheduler_kwargs: dict | str | None = None, warmup_steps: float = 0, optim: transformers.training_args.OptimizerNames | str = 'adamw_torch_fused', optim_args: str | None = None, weight_decay: float = 0.0, adam_beta1: float = 0.9, adam_beta2: float = 0.999, adam_epsilon: float = 1e-08, optim_target_modules: None | str | list[str] = None, gradient_accumulation_steps: int = 1, average_tokens_across_devices: bool = True, max_grad_norm: float = 1.0, label_smoothing_factor: float = 0.0, bf16: bool | None = None, fp16: bool = False, bf16_full_eval: bool = False, fp16_full_eval: bool = False, tf32: bool | None = None, gradient_checkpointing: bool = True, gradient_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, torch_compile: bool = False, torch_compile_backend: str | None = None, torch_compile_mode: str | None = None, use_liger_kernel: bool = False, liger_kernel_config: dict[str, bool] | None = None, use_cache: bool = False, neftune_noise_alpha: float | None = None, torch_empty_cache_steps: int | None = None, auto_find_batch_size: bool = False, logging_strategy: transformers.trainer_utils.IntervalStrategy | str = 'steps', logging_steps: float = 10, logging_first_step: bool = False, log_on_each_node: bool = True, logging_nan_inf_filter: bool = True, include_num_input_tokens_seen: str | bool = 'no', log_level: str = 'passive', log_level_replica: str = 'warning', disable_tqdm: bool | None = None, report_to: None | str | list[str] = 'none', run_name: str | None = None, project: str = 'huggingface', trackio_space_id: str | None = None, trackio_bucket_id: str | None = None, trackio_static_space_id: typing.Union[str, NoneType, typing.Literal[False]] = None, eval_strategy: transformers.trainer_utils.IntervalStrategy | str = 'no', eval_steps: float | None = None, eval_delay: float = 0, per_device_eval_batch_size: int = 8, prediction_loss_only: bool = False, eval_on_start: bool = False, eval_do_concat_batches: bool = True, eval_use_gather_object: bool = False, eval_accumulation_steps: int | None = None, include_for_metrics: list = <factory>, batch_eval_metrics: bool = False, save_only_model: bool = False, save_strategy: transformers.trainer_utils.SaveStrategy | str = 'steps', save_steps: float = 500, save_on_each_node: bool = False, save_total_limit: int | None = None, enable_jit_checkpoint: bool = False, push_to_hub: bool = False, hub_token: str | None = None, hub_private_repo: bool | None = None, hub_model_id: str | None = None, hub_strategy: transformers.trainer_utils.HubStrategy | str = 'every_save', hub_always_push: bool = False, hub_revision: str | None = None, load_best_model_at_end: bool = False, metric_for_best_model: str | None = None, greater_is_better: bool | None = None, ignore_data_skip: bool = False, restore_callback_states_from_checkpoint: bool = False, full_determinism: bool = False, seed: int = 42, data_seed: int | None = None, use_cpu: bool = False, accelerator_config: dict | str | None = None, parallelism_config: accelerate.parallelism_config.ParallelismConfig | None = None, dataloader_drop_last: bool = False, dataloader_num_workers: int = 0, dataloader_pin_memory: bool = True, dataloader_persistent_workers: bool = False, dataloader_prefetch_factor: int | None = None, dataloader_multiprocessing_context: str | None = None, dataloader_in_order: bool = True, remove_unused_columns: bool = True, label_names: list[str] | None = None, train_sampling_strategy: str = 'random', length_column_name: str = 'length', ddp_find_unused_parameters: bool | None = None, ddp_bucket_cap_mb: int | None = None, ddp_broadcast_buffers: bool | None = None, ddp_static_graph: bool | None = None, ddp_backend: str | None = None, ddp_timeout: int = 1800, fsdp: str | None = None, fsdp_config: dict[str, typing.Any] | str | None = None, deepspeed: dict | str | None = None, debug: str | list[transformers.debug_utils.DebugOption] = '', skip_memory_metrics: bool = True, do_train: bool = False, do_eval: bool = False, do_predict: bool = False, resume_from_checkpoint: str | None = None, local_rank: int = -1, model_init_kwargs: dict[str, typing.Any] | str | None = None, trust_remote_code: bool = False, router_aux_loss_coef: float | None = None, disable_dropout: bool = True, dataset_num_proc: int | None = None, max_length: int | None = 1024, truncation_mode: str = 'keep_start', padding_free: bool = False, pad_to_multiple_of: int | None = None, precompute_ref_log_probs: bool = False, precompute_ref_batch_size: int | None = None, loss_type: list = <factory>, loss_weights: list[float] | None = None, ld_alpha: float | None = None, f_divergence_type: str = 'reverse_kl', f_alpha_divergence_coef: float = 0.5, label_smoothing: float = 0.0, beta: float = 0.1, use_weighting: bool = False, discopop_tau: float = 0.05, activation_offloading: bool = False, sync_ref_model: bool = False, ref_model_mixup_alpha: float = 0.6, ref_model_sync_steps: int = 512, pad_token: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.14.2/trl/trainer/dpo_config.py#L23)
+[Source](https://github.com/huggingface/trl/blob/v1.15.0/trl/trainer/dpo_config.py#L23)
 
 **Parameters that control the model:**
 
-model_init_kwargs (`dict[str, Any]`, *optional*) : Keyword arguments for [from_pretrained](https://huggingface.co/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained), used when the `model` argument of the [DPOTrainer](/docs/trl/v1.14.2/en/bema_for_reference_model#trl.DPOTrainer) is provided as a string. The `revision` value is also used when loading the processing class.
+model_init_kwargs (`dict[str, Any]`, *optional*) : Keyword arguments for [from_pretrained](https://huggingface.co/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained), used when the `model` argument of the [DPOTrainer](/docs/trl/v1.15.0/en/bema_for_reference_model#trl.DPOTrainer) is provided as a string. The `revision` value is also used when loading the processing class.
 
 trust_remote_code (`bool`, *optional*, defaults to `False`) : Whether to allow loading models and tokenizers that ship custom Python code from the Hub. Forwarded to [from_pretrained](https://huggingface.co/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) and [from_pretrained](https://huggingface.co/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoProcessor.from_pretrained).
 
@@ -466,7 +458,7 @@ ref_model_sync_steps (`int`, *optional*, defaults to `512`) : τ parameter from 
 
 pad_token :   Parameter `pad_token` is deprecated and will be removed in version v2.0.0. Set `tokenizer.pad_token` directly and pass it as `processing_class` to the trainer instead.  
 
-Configuration class for the [DPOTrainer](/docs/trl/v1.14.2/en/bema_for_reference_model#trl.DPOTrainer).
+Configuration class for the [DPOTrainer](/docs/trl/v1.15.0/en/bema_for_reference_model#trl.DPOTrainer).
 
 This class includes only the parameters that are specific to DPO training. For a full list of training arguments,
 please refer to the [TrainingArguments](https://huggingface.co/docs/transformers/v5.19.0/en/main_classes/trainer#transformers.TrainingArguments) documentation. Note that default values in this class may
@@ -484,4 +476,4 @@ command line.
 > - `learning_rate`: Defaults to `1e-6` instead of `5e-5`.
 
 ### Trackio Integration
-https://huggingface.co/docs/trl/v1.14.2/trackio_integration.md
+https://huggingface.co/docs/trl/v1.15.0/trackio_integration.md

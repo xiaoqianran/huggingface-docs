@@ -122,4 +122,4 @@ You can combine multi-node with DeepSpeed by setting `distributed_type: DEEPSPEE
 - [SLURM Workload Manager Documentation](https://slurm.schedmd.com/) - For cluster job scheduling
 
 ### PEFT Integration
-https://huggingface.co/docs/trl/v1.14.2/peft_integration.md
+https://huggingface.co/docs/trl/v1.15.0/peft_integration.md

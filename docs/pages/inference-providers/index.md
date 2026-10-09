@@ -855,7 +855,7 @@ Find out more about Text To Image [here](../tasks/text-to-image).
 
 <InferenceSnippet
     pipeline=text-to-image
-    providersMapping={ {"fal-ai":{"modelId":"krea/Krea-2-Turbo","providerModelId":"fal-ai/krea-2/turbo"} } }
+    providersMapping={ {"fal-ai":{"modelId":"black-forest-labs/FLUX.1-dev","providerModelId":"fal-ai/flux/dev"} } }
 />
 
 ### Text To Video
@@ -918,7 +918,7 @@ Find out more about Text To Image [here](../tasks/text-to-image).
 
 <InferenceSnippet
     pipeline=text-to-image
-    providersMapping={ {"wavespeed":{"modelId":"krea/Krea-2-Turbo","providerModelId":"wavespeed-ai/krea-v2-medium-turbo/text-to-image"} } }
+    providersMapping={ {"wavespeed":{"modelId":"black-forest-labs/FLUX.1-dev","providerModelId":"wavespeed-ai/flux-dev"} } }
 />
 
 ### Text To Video
@@ -1293,7 +1293,7 @@ Find out more about Text Classification [here](../tasks/text-classification).
 
 <InferenceSnippet
     pipeline=text-classification
-    providersMapping={ {"hf-inference":{"modelId":"BAAI/bge-reranker-v2-m3","providerModelId":"BAAI/bge-reranker-v2-m3"} } }
+    providersMapping={ {"hf-inference":{"modelId":"meta-llama/Llama-Prompt-Guard-2-86M","providerModelId":"meta-llama/Llama-Prompt-Guard-2-86M"} } }
 />
 
 ### Text To Image

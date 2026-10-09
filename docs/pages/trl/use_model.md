@@ -59,4 +59,4 @@ model.save_pretrained("merged_adapters")
 Once you have the model loaded and either merged the adapters or keep them separately on top you can run generation as with a normal model outlined above.
 
 ### LoRA Without Regret
-https://huggingface.co/docs/trl/v1.14.2/lora_without_regret.md
+https://huggingface.co/docs/trl/v1.15.0/lora_without_regret.md

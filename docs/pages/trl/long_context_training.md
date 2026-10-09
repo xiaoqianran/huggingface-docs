@@ -8,7 +8,7 @@ The example in this guide trains on exactly one such sequence per step, on a sin
 
 ## Run it
 
-You need one node with 8 H100s (or better), and transformers from main: the example uses gradient checkpointing's `offload`, which is not in a release yet.
+You need one node with 8 H100s (or better), and `transformers>=5.17.0`: the example uses gradient checkpointing's `offload`, added in that release.
 
 ```sh
 accelerate launch \
@@ -55,7 +55,7 @@ The new profile looks like this.
 
 The peak is gone.
 
-How to enable this in TRL? There is nothing to do: the chunked loss is the default. If you want to opt in to the plain loss, set `loss_type="nll"` in the [SFTConfig](/docs/trl/v1.14.2/en/sft_trainer#trl.SFTConfig).
+How to enable this in TRL? There is nothing to do: the chunked loss is the default. If you want to opt in to the plain loss, set `loss_type="nll"` in the [SFTConfig](/docs/trl/v1.15.0/en/sft_trainer#trl.SFTConfig).
 
 How far does this let us push the sequence? In memory terms, this one change alone takes us from 32k tokens to 160k.
 
@@ -176,7 +176,7 @@ The two knobs do not cross over today: `cp_size` requires FSDP2 and `sp_size` on
 
 Two things change once it is on:
 
-1. Sequences have to be padded to a multiple of `cp_size * 2`, so `pad_to_multiple_of=8` (in the [SFTConfig](/docs/trl/v1.14.2/en/sft_trainer#trl.SFTConfig)) for four GPUs.
+1. Sequences have to be padded to a multiple of `cp_size * 2`, so `pad_to_multiple_of=8` (in the [SFTConfig](/docs/trl/v1.15.0/en/sft_trainer#trl.SFTConfig)) for four GPUs.
 2. The causal-SDPA requirement rules out packing, which relies on a block-diagonal mask to keep documents from reading each other, and TRL raises if you ask for both. It also rules out models whose layers use sliding-window or chunked attention, which accelerate refuses: OpenAI GPT-OSS, Gemma 3 and 4, Qwen3.5 and later. Qwen3 and Qwen3-MoE are full attention throughout, which is why they are the models here.
 
 Passing the slices around costs less than you might expect. At 131k tokens on one node, a step takes 34.6 s across two GPUs, 17.8 s across four and 9.5 s across eight. Each doubling of the group nearly halves the step time, and going from two to eight recovers 3.7x of a possible 4x.
@@ -195,4 +195,4 @@ One card stops just past 256k. Four of them take the whole million!, landing at 
 - [YaRN](https://huggingface.co/papers/2309.00071), the position rescaling used in the RoPE section.
 
 ### SSD
-https://huggingface.co/docs/trl/v1.14.2/ssd_trainer.md
+https://huggingface.co/docs/trl/v1.15.0/ssd_trainer.md

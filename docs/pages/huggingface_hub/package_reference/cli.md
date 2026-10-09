@@ -2252,7 +2252,7 @@ $ hf jobs [OPTIONS] COMMAND [ARGS]...
 * `run`: Run a Job.
 * `scheduled`: Create and manage scheduled Jobs on the Hub.
 * `ssh`: SSH into a running Job.
-* `stats`: Fetch the resource usage statistics and metrics of Jobs
+* `stats`: Fetch the resource usage statistics and metrics of Jobs.
 * `uv`: Run UV scripts (Python with inline dependencies) on HF infrastructure.
 * `wait`: Wait for one or more Jobs to reach a terminal state.
 
@@ -2399,7 +2399,7 @@ Learn more
 
 List Jobs.
 
-Use `--status` to filter by status (see [JobStage](/docs/huggingface_hub/v2.1.1/en/package_reference/jobs#huggingface_hub.JobStage) for possible values) and `--label` to filter by `key=value`
+Use `--status` to filter by status (see [JobStage](/docs/huggingface_hub/v2.2.0/en/package_reference/jobs#huggingface_hub.JobStage) for possible values) and `--label` to filter by `key=value`
 labels. A Job must match every filter to be listed.
 
 **Usage**:
@@ -2963,7 +2963,10 @@ Learn more
 
 ### `hf jobs stats`
 
-Fetch the resource usage statistics and metrics of Jobs
+Fetch the resource usage statistics and metrics of Jobs.
+
+By default, prints a snapshot of the current stats and exits (non-blocking).
+Use --follow/-f to display live stats until the Jobs complete.
 
 **Usage**:
 
@@ -2977,12 +2980,15 @@ $ hf jobs stats [OPTIONS] [JOB_IDS]...
 
 **Options**:
 
+* `-f, --follow`: Follow stats output (live view until the Jobs complete). Without this flag, a single snapshot is printed.
 * `--namespace TEXT`: The namespace where the job will be running. Defaults to the current user's namespace.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
 Examples
+  $ hf jobs stats
   $ hf jobs stats 
+  $ hf jobs stats -f 
 
 Learn more
   Use `hf <command> --help` for more information about a command.
@@ -5577,4 +5583,4 @@ Learn more
   Read the documentation at https://huggingface.co/docs/huggingface_hub/en/guides/cli
 
 ### Interacting with Discussions and Pull Requests
-https://huggingface.co/docs/huggingface_hub/v2.1.1/package_reference/community.md
+https://huggingface.co/docs/huggingface_hub/v2.2.0/package_reference/community.md

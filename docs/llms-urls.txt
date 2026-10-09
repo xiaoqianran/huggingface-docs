@@ -2140,11 +2140,9 @@ https://huggingface.co/docs/trl/iw_opd_trainer.md
 https://huggingface.co/docs/trl/jobs_training.md
 https://huggingface.co/docs/trl/kernels_hub.md
 https://huggingface.co/docs/trl/kto_trainer.md
-https://huggingface.co/docs/trl/liger_kernel_integration.md
 https://huggingface.co/docs/trl/long_context_training.md
 https://huggingface.co/docs/trl/lora_without_regret.md
 https://huggingface.co/docs/trl/merge_model_callback.md
-https://huggingface.co/docs/trl/minillm_trainer.md
 https://huggingface.co/docs/trl/online_dpo_trainer.md
 https://huggingface.co/docs/trl/openenv.md
 https://huggingface.co/docs/trl/openreward.md

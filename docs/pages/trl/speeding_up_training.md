@@ -131,36 +131,6 @@ from trl import SFTConfig
 training_args = SFTConfig(..., model_init_kwargs={"attn_implementation": "flash_attention_2"})
 ```
 
-## Liger Kernel for memory optimization
-
-Liger Kernel is a collection of Triton kernels designed for LLM training that can increase throughput by 20% and reduce memory usage by 60%.
-
-```python
-from trl import SFTConfig
-
-training_args = SFTConfig(..., use_liger_kernel=True)
-```
-
-```python
-from trl import DPOConfig
-
-training_args = DPOConfig(..., use_liger_kernel=True)
-```
-
-```python
-from trl import GRPOConfig
-
-training_args = GRPOConfig(..., use_liger_kernel=True)
-```
-
-```python
-from trl import KTOConfig
-
-training_args = KTOConfig(..., use_liger_kernel=True)
-```
-
-For more information, see [Liger Kernel Integration](liger_kernel_integration).
-
 ## Mixed precision training
 
 Mixed precision training using bf16 or fp16 can speed up training and reduce memory usage with minimal impact on model quality.
@@ -174,4 +144,4 @@ training_args = SFTConfig(..., bf16=True)  # or fp16=True for older GPUs
 Use `bf16=True` for Ampere GPUs (A100, RTX 30xx) or newer, and `fp16=True` for older GPUs. Mixed precision training is supported across all TRL trainers.
 
 ### Usage Stats Collection
-https://huggingface.co/docs/trl/v1.14.2/usage_stats.md
+https://huggingface.co/docs/trl/v1.15.0/usage_stats.md

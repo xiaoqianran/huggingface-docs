@@ -9,7 +9,7 @@ This guide covers **how to integrate OpenReward with TRL**. For more on the stan
 
 ## When to use OpenReward environments
 
-[GRPOTrainer](/docs/trl/v1.14.2/en/grpo_trainer#trl.GRPOTrainer) supports environment-based training via the `environment_factory` slot — see [OpenEnv](openenv) for the general contract. Use OpenReward when you want to train against an ORS-speaking environment: the [OpenReward catalog](https://openreward.ai) (e.g. `Eigent/SETA`, `kanishk/EndlessTerminals`, `nebius/SWE-rebench-V2`), an env you self-host on your own infra, or a local server you're developing.
+[GRPOTrainer](/docs/trl/v1.15.0/en/grpo_trainer#trl.GRPOTrainer) supports environment-based training via the `environment_factory` slot — see [OpenEnv](openenv) for the general contract. Use OpenReward when you want to train against an ORS-speaking environment: the [OpenReward catalog](https://openreward.ai) (e.g. `Eigent/SETA`, `kanishk/EndlessTerminals`, `nebius/SWE-rebench-V2`), an env you self-host on your own infra, or a local server you're developing.
 
 ## Installation
 
@@ -164,7 +164,7 @@ spec = OpenRewardSpec("Eigent/SETA", indices=list(range(50, 100)))      # range
 
 ## How tool binding works
 
-At construction the spec calls the env's `/tools` endpoint to fetch a list of tool specs (each with a name, description, and JSON Schema for arguments). For each tool it generates a Python method on the per-rollout adapter with a typed signature and a docstring derived from the schema. So `transformers.utils.get_json_schema` and TRL's `inspect.getmembers(env, ismethod)` both produce the right tool schema for the model with no per-env wrapper code.
+At construction the spec calls the env's `/tools` endpoint to fetch a list of tool specs (each with a name, description, and JSON Schema for arguments). For each tool it generates a Python method on the per-rollout adapter with a typed signature and a docstring derived from the schema. The methods are set on the adapter's class, where TRL's tool collector finds them, so `transformers.utils.get_json_schema` and TRL's `inspect.getmembers(type(env), isfunction)` both produce the right tool schema for the model with no per-env wrapper code.
 
 If a tool description contains characters that aren't safe to splice into Python source, the binder falls back to a sanitized form so binding never fails on real envs.
 
@@ -172,11 +172,24 @@ If a tool description contains characters that aren't safe to splice into Python
 
 `spec.reward_funcs` defaults to an outcome-only reward — for each rollout it returns the last non-null reward observed during the trajectory. This is the right default for sparse-reward envs (e.g. SETA, where only `submit_solution` returns a non-null reward).
 
+If no tool returns a non-null reward, the default reward function returns `None`, not `0.0`. This includes rollouts
+with no tool calls, only unscored tool calls, or only failed tool calls. An observed `0.0` or negative reward remains
+a valid score. A later unscored or failed tool call does not erase an earlier score.
+
+GRPO excludes rollouts for which **all** reward functions return `None` from the reward baseline and gives them zero
+advantage. This does not remove their tokens from loss normalization or disable other terms such as KL
+regularization. If another reward function scores the rollout, it can still receive a nonzero advantage.
+
+Missing scores do not identify why an episode ended. If giving up or reaching a tool-call limit should count as a
+task failure, return an explicit failure reward from your environment or custom reward function. Infrastructure or
+grader failures can instead remain unscorable; monitor scoring coverage alongside mean reward.
+
 If you want a custom reward, write a regular TRL reward function and pass it directly:
 
 ```python
-def my_reward(environments, **kwargs) -> list[float]:
-    return [env.reward * 2.0 for env in environments]   # double the env reward, etc.
+def my_reward(environments, **kwargs) -> list[float | None]:
+    rewards = spec.reward_funcs(environments=environments)
+    return [2.0 * reward if reward is not None else None for reward in rewards]
 
 trainer = GRPOTrainer(
     ...,
@@ -186,6 +199,9 @@ trainer = GRPOTrainer(
 
 The per-rollout adapter exposes the running state TRL needs — `env.reward`, `env.rewards`, `env.metadata`, `env.finished`, `env.last_output` — for arbitrary post-hoc reward shaping.
 
+For compatibility, `env.reward` still starts at `0.0`. The default reward function checks `env.rewards` to determine
+whether a score was actually observed.
+
 ## OpenRewardSpec[[trl.experimental.openreward.OpenRewardSpec]]
 
 #### trl.experimental.openreward.OpenRewardSpec[[trl.experimental.openreward.OpenRewardSpec]]
@@ -194,7 +210,7 @@ The per-rollout adapter exposes the running state TRL needs — `env.reward`, `e
 trl.experimental.openreward.OpenRewardSpec(target: str, num_tasks: int | None = None, split: str = 'train', indices: list[int] | None = None, api_key: str | None = None, secrets: dict[str, str] | None = None, env_name: str | None = None, include_metadata: bool = True, discover_task_tools: bool = True, task_tools_discovery_index: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.14.2/trl/experimental/openreward/_spec.py#L78)
+[Source](https://github.com/huggingface/trl/blob/v1.15.0/trl/experimental/openreward/_spec.py#L79)
 
 **Parameters:**
 
@@ -234,4 +250,4 @@ Single spec object that wires an ORS environment into a TRL trainer.
 - [Echo env Space — `trl-internal-testing/openreward-echo-env`](https://huggingface.co/spaces/trl-internal-testing/openreward-echo-env)
 
 ### A2PO
-https://huggingface.co/docs/trl/v1.14.2/a2po_trainer.md
+https://huggingface.co/docs/trl/v1.15.0/a2po_trainer.md
