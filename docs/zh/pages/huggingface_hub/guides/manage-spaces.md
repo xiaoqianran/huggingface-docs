@@ -8,7 +8,7 @@
 
 ## 搜索空间
 
-您可以使用 [search_spaces()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.search_spaces) 使用语义搜索来搜索 Hub 上的空间。这对多词查询使用基于嵌入的搜索，对单词查询使用全文搜索。
+您可以使用 [search_spaces()](/docs/huggingface_hub/v2.2.0/en/package_reference/hf_api#huggingface_hub.HfApi.search_spaces) 使用语义搜索来搜索 Hub 上的空间。这对多词查询使用基于嵌入的搜索，对单词查询使用全文搜索。
 
 ```py
 >>> from huggingface_hub import search_spaces
@@ -48,7 +48,7 @@ SpaceSearchResult(id='mrfakename/Z-Image-Turbo', title='Z Image Turbo', sdk='gra
 > [!提示]
 > 静态空间对所有人免费。 Gradio 和 Docker Spaces 在计算上运行：在免费的 `cpu-basic` 硬件上，它们需要订阅（用户为 PRO，组织为团队或企业），而付费硬件仅需要计费（付款方式和预付积分）。如果没有订阅，在 `cpu-basic` 上创建、复制或移动 Gradio 或 Docker Space 将失败并出现付款错误 (HTTP 402)。更多详情请参见[pricing](https://huggingface.co/pricing)。
 
-### 从模板创建空间您可以从 Hub 上提供的官方模板之一（例如 JupyterLab、Gradio 聊天机器人、Streamlit 应用程序等）播种新空间，而不是从空空间开始。使用 [list_space_templates()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.list_space_templates) 列出可用模板，然后将模板的 `repo_id` （或其简称 `name`）作为 `space_template` 传递到 [create_repo()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo)。请注意，`space_sdk` 仍然是必需的：模板在 SDK 设置卡元数据时播种文件。
+### 从模板创建空间您可以从 Hub 上提供的官方模板之一（例如 JupyterLab、Gradio 聊天机器人、Streamlit 应用程序等）播种新空间，而不是从空空间开始。使用 [list_space_templates()](/docs/huggingface_hub/v2.2.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_space_templates) 列出可用模板，然后将模板的 `repo_id` （或其简称 `name`）作为 `space_template` 传递到 [create_repo()](/docs/huggingface_hub/v2.2.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo)。请注意，`space_sdk` 仍然是必需的：模板在 SDK 设置卡元数据时播种文件。
 
 ```py
 >>> from huggingface_hub import HfApi
@@ -89,7 +89,7 @@ Livebook        livebook-dev/livebook                          docker
 ### 复制一个空格
 
 如果您想从现有空间构建而不是从头开始，这可能会很有用。
-如果您想要控制公共空间的配置/设置，它也很有用。更多详情请参见[duplicate_repo()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.duplicate_repo)。
+如果您想要控制公共空间的配置/设置，它也很有用。更多详情请参见[duplicate_repo()](/docs/huggingface_hub/v2.2.0/en/package_reference/hf_api#huggingface_hub.HfApi.duplicate_repo)。
 
 ```py
 >>> api.duplicate_repo("multimodalart/dreambooth-training", repo_type="space")
@@ -210,7 +210,7 @@ Livebook        livebook-dev/livebook                          docker
 
 ### 跟踪您的 ZeroGPU 配额
 
-[ZeroGPU](https://huggingface.co/docs/hub/spaces-zerogpu) 空间在按需分配的共享 GPU 上运行。每次您使用 ZeroGPU 空间（从 UI 或通过其 API）时，都会从您的个人配额中扣除一些 GPU 时间，该配额会定期重置。如果您正在 ZeroGPU Spaces 上构建应用程序、代理或 MCP 服务器，您可以使用 [get_zero_gpu_quota()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.get_zero_gpu_quota) 跟踪您的使用情况。值以 GPU 秒表示。
+[ZeroGPU](https://huggingface.co/docs/hub/spaces-zerogpu) 空间在按需分配的共享 GPU 上运行。每次您使用 ZeroGPU 空间（从 UI 或通过其 API）时，都会从您的个人配额中扣除一些 GPU 时间，该配额会定期重置。如果您正在 ZeroGPU Spaces 上构建应用程序、代理或 MCP 服务器，您可以使用 [get_zero_gpu_quota()](/docs/huggingface_hub/v2.2.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_zero_gpu_quota) 跟踪您的使用情况。值以 GPU 秒表示。
 
 ```py
 >>> quota = api.get_zero_gpu_quota()
@@ -225,8 +225,8 @@ ZeroGpuQuota(base=2400, remaining=1810, resets_at=datetime.datetime(2026, 9, 30,
 ### 暂停并重新启动您的空间
 
 默认情况下，如果您的空间在升级的硬件上运行，它将永远不会停止。但为了避免被扣款，
-当您不使用它时，您可能想暂停它。使用 [pause_space()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.pause_space) 可以实现这一点。暂停的空间将是
-在空间所有者通过 UI 或使用 [restart_space()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.restart_space) 通过 API 重新启动它之前，该空间处于非活动状态。
+当您不使用它时，您可能想暂停它。使用 [pause_space()](/docs/huggingface_hub/v2.2.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_space) 可以实现这一点。暂停的空间将是
+在空间所有者通过 UI 或使用 [restart_space()](/docs/huggingface_hub/v2.2.0/en/package_reference/hf_api#huggingface_hub.HfApi.restart_space) 通过 API 重新启动它之前，该空间处于非活动状态。
 有关暂停模式的更多详细信息，请参阅[this section](https://huggingface.co/docs/hub/spaces-gpus#pause)
 
 ```py
@@ -239,7 +239,7 @@ ZeroGpuQuota(base=2400, remaining=1810, resets_at=datetime.datetime(2026, 9, 30,
 
 另一种可能性是为您的空间设置超时。如果您的空间处于非活动状态的时间超过超时时间，
 它会去睡觉。任何登陆您空间的访客都会将其重新启动。您可以使用设置超时
-[set_space_sleep_time()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.set_space_sleep_time)。有关睡眠模式的更多详细信息，请参阅[this section](https://huggingface.co/docs/hub/spaces-gpus#sleep-time)。
+[set_space_sleep_time()](/docs/huggingface_hub/v2.2.0/en/package_reference/hf_api#huggingface_hub.HfApi.set_space_sleep_time)。有关睡眠模式的更多详细信息，请参阅[this section](https://huggingface.co/docs/hub/spaces-gpus#sleep-time)。
 
 ```py
 # Put your Space to sleep after 1h of inactivity
@@ -277,7 +277,7 @@ ZeroGpuQuota(base=2400, remaining=1810, resets_at=datetime.datetime(2026, 9, 30,
 
 ### 通过读取日志来调试失败的空间
 
-当空间无法构建或在运行时崩溃时，您通常在浏览器中查看的日志也可以通过[fetch_space_logs()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_space_logs)以编程方式获得。这对于无法打开浏览器的脚本或代理工作流程特别有用。
+当空间无法构建或在运行时崩溃时，您通常在浏览器中查看的日志也可以通过[fetch_space_logs()](/docs/huggingface_hub/v2.2.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_space_logs)以编程方式获得。这对于无法打开浏览器的脚本或代理工作流程特别有用。
 
 ```py
 # Drain the currently available run logs and return immediately (like `docker logs`)
@@ -367,7 +367,7 @@ hf spaces dev-mode username/my-space --stop
 [Volume(type='model', source='username/my-model', mount_path='/models', read_only=True), ...]
 ```
 
-如果您需要更新现有空间上的卷，请使用[set_space_volumes()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.set_space_volumes)。请注意，这会替换所有先前安装的卷。
+如果您需要更新现有空间上的卷，请使用[set_space_volumes()](/docs/huggingface_hub/v2.2.0/en/package_reference/hf_api#huggingface_hub.HfApi.set_space_volumes)。请注意，这会替换所有先前安装的卷。
 
 ```py
 >>> api.set_space_volumes(
@@ -431,7 +431,7 @@ hf spaces volumes delete username/my-space
 ### 应用程序骨架您的应用程序如下所示。启动时，检查是否计划了任务，如果是，则在正确的硬件上运行它。完成后，将硬件设置回空闲的 `cpu-basic` CPU 并提示用户执行新任务。
 
 > [!警告]
-> 这样的工作流程不支持像普通演示那样的并发访问。
+> 这样的工作流程不支持普通演示的并发访问。
 > 特别是，当训练发生时，该界面将被禁用。
 > 最好将您的存储库设置为私有，以确保您是唯一的用户。
 
@@ -472,7 +472,7 @@ else:
         api.request_space_hardware(repo_id=TRAINING_SPACE_ID, hardware=SpaceHardware.T4_MEDIUM)
 ```
 
-### 任务调度器
+### 任务调度程序
 
 可以通过多种方式来完成任务安排。这是一个如何使用它来完成的示例
 存储为数据集的简单 CSV。
@@ -528,4 +528,4 @@ def mark_as_done(task):
 ```
 
 ### 搜索中心
-https://huggingface.co/docs/huggingface_hub/v2.1.1/guides/search.md
+https://huggingface.co/docs/huggingface_hub/v2.2.0/guides/search.md

@@ -226,7 +226,7 @@ orgs:  huggingface,eu-test,OAuthTesters,hf-accelerate,HFSmolCluster
 
 ## 高频下载
 
-使用`hf download`命令直接从Hub下载文件。在内部，它使用 [Download](./download) 指南中描述的相同 [hf_hub_download()](/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.hf_hub_download) 和 [snapshot_download()](/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.snapshot_download) 帮助程序，并将返回的路径打印到终端。在下面的示例中，我们将介绍最常见的用例。要获得可用选项的完整列表，您可以运行：
+使用`hf download`命令直接从Hub下载文件。在内部，它使用 [Download](./download) 指南中描述的相同 [hf_hub_download()](/docs/huggingface_hub/v2.2.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) 和 [snapshot_download()](/docs/huggingface_hub/v2.2.0/en/package_reference/file_download#huggingface_hub.snapshot_download) 帮助程序，并将返回的路径打印到终端。在下面的示例中，我们将介绍最常见的用例。要获得可用选项的完整列表，您可以运行：
 
 ```bash
 hf download --help
@@ -263,7 +263,7 @@ Fetching 23 files:   0%|                                                | 0/23 [
 /home/wauplin/.cache/huggingface/hub/models--HuggingFaceH4--zephyr-7b-beta/snapshots/3bac358730f8806e5c3dc7c7e19eb36e045bf720
 ```
 
-### 下载多个文件您还可以使用单个命令从存储库下载文件的子集。这可以通过两种方式完成。如果您已经有了要下载的文件的精确列表，您只需按顺序提供它们即可：
+### 下载多个文件您还可以使用单个命令从存储库下载文件的子集。这可以通过两种方式完成。如果您已经有要下载的文件的精确列表，您只需按顺序提供它们即可：
 
 ```bash
 >>> hf download gpt2 config.json model.safetensors
@@ -423,7 +423,7 @@ export HF_HUB_DOWNLOAD_TIMEOUT=30
 
 ## 高频上传
 
-使用`hf upload`命令直接将文件上传到Hub。在内部，它使用与 [Upload](./upload) 指南中描述的相同的 [upload_file()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) 和 [upload_folder()](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) 帮助器。在下面的示例中，我们将介绍最常见的用例。要获得可用选项的完整列表，您可以运行：
+使用`hf upload`命令直接将文件上传到Hub。在内部，它使用与 [Upload](./upload) 指南中描述的相同的 [upload_file()](/docs/huggingface_hub/v2.2.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) 和 [upload_folder()](/docs/huggingface_hub/v2.2.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) 帮助器。在下面的示例中，我们将介绍最常见的用例。要获得可用选项的完整列表，您可以运行：
 
 ```bash
 >>> hf upload --help
@@ -1411,7 +1411,7 @@ Your repo is now available at https://huggingface.co/Wauplin/my-cool-model
 >>> hf repos duplicate openai/gdpval myorg/my-gdpval --type dataset --private
 ```
 
-命令返回后，新存储库的 LFS/Xet 文件仍可能在后台复制。在这种情况下，会打印一条警告，并且从新存储库下载这些文件可能会失败，直到复制完成。
+命令返回后，新存储库的 LFS/Xet 文件仍可能在后台复制。在这种情况下，会打印一条警告，并且在复制完成之前从新存储库下载这些文件可能会失败。
 
 ### 删除仓库
 
@@ -1832,6 +1832,8 @@ Copy-and-paste the text below in your GitHub issue.
 >>> hf jobs stats
 # View resources usage stats and metrics of some jobs
 >>> hf jobs stats [job_ids]...
+# Follow live stats until the jobs complete
+>>> hf jobs stats -f [job_ids]...
 
 # Cancel a job
 >>> hf jobs cancel <job_id>
@@ -1908,7 +1910,7 @@ This code ran with the following GPU: NVIDIA A10G
 ```bash
 # Or pipe them in, so the values touch neither the command line nor the disk
 >>> printf 'MY_SECRET=psswrd\n' | hf jobs run --secrets-file - python:3.12 python -c 'import os; print(os.environ["MY_SECRET"])'
-```秘密以所有三种形式在服务器端加密。 `-s MY_SECRET=REDACTED
+```秘密以所有三种形式在服务器端进行加密。 `-s MY_SECRET=REDACTED
 最终出现在您的 shell 历史记录和进程列表中（Linux 上的`/proc/<pid>/cmdline`），因此 CLI 会打印
 使用时向 stderr 发出警告；对于不太敏感的值保留该形式。一样的
 适用于 `--token <value>`：更喜欢 `hf auth login` 或 `HF_TOKEN` 环境变量。一个环境或
@@ -2269,7 +2271,7 @@ Job configuration:
 
 ## 高频沙箱
 
-`hf sandbox` 启动基于作业构建的隔离云计算机：创建一个、使用实时流输出运行命令，以及将文件复制进出。任何带有 `/bin/sh` 的 Docker 镜像都可以。请参阅 [Sandboxes guide](./sandbox) 了解 Python API，以及 [conceptual guide](../concepts/sandbox) 了解其底层工作原理。
+`hf sandbox` 启动基于作业构建的隔离云机器：创建一台、使用实时流输出运行命令，以及将文件复制进出。任何带有 `/bin/sh` 的 Docker 镜像都可以。请参阅 [Sandboxes guide](./sandbox) 了解 Python API，以及 [conceptual guide](../concepts/sandbox) 了解其底层工作原理。
 
 > [!注意]
 > 沙箱是实验性的，它们的 API 和行为可能会发生变化，恕不另行通知。共享沙箱的目的是
@@ -2321,7 +2323,7 @@ hi
 
 ## 高频网络钩子
 
-`hf webhooks` 可让您直接从终端管理 Hugging Face Hub 上的 Webhook。 Webhooks 允许您监听存储库、用户或组织上的事件（推送、讨论等）并触发操作 - 通过 ping 远程 URL 或在 Hugging Face 基础设施上运行作业。
+`hf webhooks` 可让您直接从终端管理 Hugging Face Hub 上的 Webhooks。 Webhooks 允许您监听存储库、用户或组织上的事件（推送、讨论等）并触发操作 - 通过 ping 远程 URL 或在 Hugging Face 基础设施上运行作业。
 
 ### 列出网络钩子
 
@@ -2536,7 +2538,7 @@ bartowski/QwQ-32B-Preview-GGUF      text-generation    Apache 2.0 gpu         ll
 >>> hf endpoints catalog deploy --repo meta-llama/Llama-3.2-1B-Instruct --name my-llama-endpoint
 ```
 
-使用`--repo`，可以使用`--accelerator`（`cpu`、`gpu`、`neuron`）和`--gguf-file`（适用于每份只有一个配方的型号）缩小默认配方范围。两者都与`--recipe`一起被拒绝，它已经指定了一个配方。
+使用`--repo`，可以使用`--accelerator`（`cpu`、`gpu`、`neuron`）和`--gguf-file`（适用于每份只有一个配方的型号）缩小默认配方范围。两者都与`--recipe`一起被拒绝，`--recipe`已经指定了一个配方。
 
 ### 与讨论和 Pull 请求互动
-https://huggingface.co/docs/huggingface_hub/v2.1.1/guides/community.md
+https://huggingface.co/docs/huggingface_hub/v2.2.0/guides/community.md

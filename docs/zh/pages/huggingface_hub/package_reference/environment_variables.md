@@ -109,11 +109,11 @@
 
 ### HF_HUB_OFFLINE
 
-如果设置，则不会对 Hugging Face Hub 进行 HTTP 调用。如果您尝试下载文件，则只会访问缓存的文件。如果未检测到缓存文件，则会引发错误。如果您的网络速度较慢并且您不关心文件的最新版本，这非常有用。如果`HF_HUB_OFFLINE=1`设置为环境变量，并且调用[HfApi](/docs/huggingface_hub/v2.1.1/en/package_reference/hf_api#huggingface_hub.HfApi)的任何方法，都会引发[OfflineModeIsEnabled](/docs/huggingface_hub/v2.1.1/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled)异常。
+如果设置，则不会对 Hugging Face Hub 进行 HTTP 调用。如果您尝试下载文件，则只会访问缓存的文件。如果未检测到缓存文件，则会引发错误。如果您的网络速度较慢并且您不关心文件的最新版本，这非常有用。如果`HF_HUB_OFFLINE=1`设置为环境变量，并且调用[HfApi](/docs/huggingface_hub/v2.2.0/en/package_reference/hf_api#huggingface_hub.HfApi)的任何方法，都会引发[OfflineModeIsEnabled](/docs/huggingface_hub/v2.2.0/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled)异常。
 
 **注意：** 即使缓存了文件的最新版本，调用 `hf_hub_download` 仍然会触发 HTTP 请求来检查新版本是否可用。设置 `HF_HUB_OFFLINE=1` 将跳过此调用，从而加快加载时间。
 
-如果你想检查离线模式是否启用，你可以使用[is_offline_mode()](/docs/huggingface_hub/v2.1.1/en/package_reference/utilities#huggingface_hub.is_offline_mode)助手。
+如果你想检查离线模式是否启用，你可以使用[is_offline_mode()](/docs/huggingface_hub/v2.2.0/en/package_reference/utilities#huggingface_hub.is_offline_mode)助手。
 
 ### HF_HUB_DISABLE_IMPLICIT_TOKEN
 
@@ -168,7 +168,7 @@
 
 设置 `HF_HUB_DISABLE_UPDATE_CHECK=1` 跳过 PyPI 请求并完全静音两个提示。在离线 CI 环境中或当您喜欢更安静的 shell 输出时很有用。
 
-### HF_HUB_DISABLE_XET设置为禁用使用 `hf-xet`，即使它在您的 Python 环境中可用。这是因为如果找到`hf-xet`，它将自动使用，这允许显式禁用其使用。如果您要禁用 Xet，请考虑[filing an issue and including the diagnostics](https://github.com/huggingface/xet-core?tab=readme-ov-file#issues-diagnostics--debugging) 信息，以帮助我们了解为什么 Xet 不适合您。
+### HF_HUB_DISABLE_XET设置为禁用使用 `hf-xet`，即使它在您的 Python 环境中可用。这是因为如果找到`hf-xet`，它将自动使用，这允许显式禁用其使用。如果您要禁用 Xet，请考虑 [filing an issue and including the diagnostics](https://github.com/huggingface/xet-core?tab=readme-ov-file#issues-diagnostics--debugging) 信息，以帮助我们了解为什么 Xet 不适合您。
 
 ### HF_HUB_ENABLE_HF_TRANSFER
 
@@ -221,4 +221,4 @@
 `"~/.cache/huggingface"`。
 
 ### HfApi 客户端
-https://huggingface.co/docs/huggingface_hub/v2.1.1/package_reference/hf_api.md
+https://huggingface.co/docs/huggingface_hub/v2.2.0/package_reference/hf_api.md
