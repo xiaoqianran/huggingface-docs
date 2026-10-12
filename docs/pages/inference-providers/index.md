@@ -1046,7 +1046,7 @@ Find out more about Chat Completion (VLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=image-text-to-text
-    providersMapping={ {"novita":{"modelId":"deepseek-ai/DeepSeek-V4.1-Flash","providerModelId":"deepseek/deepseek-v4.1-flash"} } }
+    providersMapping={ {"novita":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"qwen/qwen3.8-27b"} } }
 conversational />
 
 ### Template
@@ -1248,7 +1248,7 @@ Find out more about Image Segmentation [here](../tasks/image-segmentation).
 
 <InferenceSnippet
     pipeline=image-segmentation
-    providersMapping={ {"hf-inference":{"modelId":"sayeed99/segformer_b3_clothes","providerModelId":"sayeed99/segformer_b3_clothes"} } }
+    providersMapping={ {"hf-inference":{"modelId":"jonathandinu/face-parsing","providerModelId":"jonathandinu/face-parsing"} } }
 />
 
 ### Object Detection
@@ -1293,7 +1293,7 @@ Find out more about Text Classification [here](../tasks/text-classification).
 
 <InferenceSnippet
     pipeline=text-classification
-    providersMapping={ {"hf-inference":{"modelId":"BAAI/bge-reranker-v2-m3","providerModelId":"BAAI/bge-reranker-v2-m3"} } }
+    providersMapping={ {"hf-inference":{"modelId":"meta-llama/Llama-Prompt-Guard-2-86M","providerModelId":"meta-llama/Llama-Prompt-Guard-2-86M"} } }
 />
 
 ### Text To Image
@@ -1559,7 +1559,7 @@ Find out more about Chat Completion (VLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=image-text-to-text
-    providersMapping={ {"deepinfra":{"modelId":"deepseek-ai/DeepSeek-V4.1-Flash","providerModelId":"deepseek-ai/DeepSeek-V4.1-Flash"} } }
+    providersMapping={ {"deepinfra":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"Qwen/Qwen3.8-27B"} } }
 conversational />
 
 ### Feature Extraction
@@ -1732,7 +1732,7 @@ Find out more about Chat Completion (VLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=image-text-to-text
-    providersMapping={ {"featherless-ai":{"modelId":"deepseek-ai/DeepSeek-V4.1-Flash","providerModelId":"deepseek-ai/DeepSeek-V4.1-Flash"} } }
+    providersMapping={ {"featherless-ai":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"Qwen/Qwen3.8-27B"} } }
 conversational />
 
 ### Function Calling with Inference Providers
