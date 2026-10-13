@@ -113,8 +113,8 @@
       "translatedAt": "2026-08-14T08:23:28.977Z"
     },
     "hub/datasets-cards.md": {
-      "hash": "953e805234c1cfd5989f4c77382bfdd92b170379",
-      "translatedAt": "2026-09-17T12:33:28.933Z"
+      "hash": "c3e1b13a8a87c7eb240ad63eaacc37c5a8427c2e",
+      "translatedAt": "2026-10-13T14:56:51.651Z"
     },
     "hub/datasets-data-designer.md": {
       "hash": "884e967160566dc7009d68401c82ed8ad0de1b0f",
@@ -2022,10 +2022,10 @@
       "translatedAt": "2026-10-07T14:23:57.966Z"
     }
   },
-  "updatedAt": "2026-10-12T16:40:07.701Z",
+  "updatedAt": "2026-10-13T14:56:51.651Z",
   "stats": {
-    "translated": 0,
-    "skipped": 400,
+    "translated": 1,
+    "skipped": 399,
     "failed": 0,
     "total": 400
   }
