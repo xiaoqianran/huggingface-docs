@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-13T14:56:46.521882+00:00",
+  "fetchedAt": "2026-10-14T12:49:25.752569+00:00",
   "method": "llms-full-split",
   "ok": 2183,
   "failed": 0,
@@ -5583,7 +5583,7 @@
     },
     {
       "rel": "hub/security-sso-okta-saml.md",
-      "bytes": 2643,
+      "bytes": 2872,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/security-sso-okta-saml.md",
       "track": "Hub",
@@ -6006,7 +6006,7 @@
     },
     {
       "rel": "hub/security-sso-entra-id-scim.md",
-      "bytes": 6725,
+      "bytes": 6381,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/security-sso-entra-id-scim.md",
       "track": "Hub",
@@ -6906,7 +6906,7 @@
     },
     {
       "rel": "hub/security-sso-okta-scim.md",
-      "bytes": 6579,
+      "bytes": 5867,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/security-sso-okta-scim.md",
       "track": "Hub",
@@ -7941,7 +7941,7 @@
     },
     {
       "rel": "inference-endpoints/guides/autoscaling.md",
-      "bytes": 4272,
+      "bytes": 6353,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-endpoints/guides/autoscaling.md",
       "track": "Inference Endpoints",
@@ -7950,7 +7950,7 @@
     },
     {
       "rel": "inference-endpoints/guides/analytics.md",
-      "bytes": 14177,
+      "bytes": 14491,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-endpoints/guides/analytics.md",
       "track": "Inference Endpoints",
@@ -8004,7 +8004,7 @@
     },
     {
       "rel": "inference-endpoints/engines/vllm.md",
-      "bytes": 6967,
+      "bytes": 7163,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-endpoints/engines/vllm.md",
       "track": "Inference Endpoints",
@@ -8031,7 +8031,7 @@
     },
     {
       "rel": "inference-endpoints/engines/sglang.md",
-      "bytes": 3299,
+      "bytes": 3607,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-endpoints/engines/sglang.md",
       "track": "Inference Endpoints",
@@ -8085,7 +8085,7 @@
     },
     {
       "rel": "inference-providers/index.md",
-      "bytes": 70906,
+      "bytes": 70903,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/index.md",
       "track": "Inference Providers",
@@ -8175,7 +8175,7 @@
     },
     {
       "rel": "inference-providers/guides/github-actions-code-review.md",
-      "bytes": 99682,
+      "bytes": 99937,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/github-actions-code-review.md",
       "track": "Inference Providers",
@@ -19704,7 +19704,7 @@
       "toc": 273,
       "found": 272,
       "written": 272,
-      "full_bytes": 1507569
+      "full_bytes": 1506746
     },
     {
       "pkg": "huggingface_hub",
@@ -19718,14 +19718,14 @@
       "toc": 25,
       "found": 25,
       "written": 25,
-      "full_bytes": 177933
+      "full_bytes": 180832
     },
     {
       "pkg": "inference-providers",
       "toc": 66,
       "found": 28,
       "written": 28,
-      "full_bytes": 415110
+      "full_bytes": 415362
     },
     {
       "pkg": "kernels",
