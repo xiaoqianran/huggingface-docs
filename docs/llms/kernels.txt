@@ -17,6 +17,7 @@
 - [Overview](https://huggingface.co/docs/kernels/main/cli.md)
 - [Quickstart](https://huggingface.co/docs/kernels/main/basic-usage.md)
 - [Kernel requirements](https://huggingface.co/docs/kernels/main/kernel-requirements.md)
+- [kernels describe-api](https://huggingface.co/docs/kernels/main/cli-describe-api.md)
 - [kernels info](https://huggingface.co/docs/kernels/main/cli-info.md)
 - [CLI reference for kernel-builder](https://huggingface.co/docs/kernels/main/builder-cli.md)
 - [Kernels security](https://huggingface.co/docs/kernels/main/security.md)

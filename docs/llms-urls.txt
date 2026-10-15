@@ -936,6 +936,7 @@ https://huggingface.co/docs/kernels/builder/triton-autotune.md
 https://huggingface.co/docs/kernels/builder/why-nix.md
 https://huggingface.co/docs/kernels/builder/writing-kernels.md
 https://huggingface.co/docs/kernels/cli-benchmark.md
+https://huggingface.co/docs/kernels/cli-describe-api.md
 https://huggingface.co/docs/kernels/cli-download.md
 https://huggingface.co/docs/kernels/cli-info.md
 https://huggingface.co/docs/kernels/cli-lock.md

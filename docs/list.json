@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-10-14T12:49:25.752569+00:00",
+  "fetchedAt": "2026-10-15T12:35:38.624216+00:00",
   "method": "llms-full-split",
-  "ok": 2183,
+  "ok": 2184,
   "failed": 0,
   "pages": [
     {
@@ -8085,7 +8085,7 @@
     },
     {
       "rel": "inference-providers/index.md",
-      "bytes": 70903,
+      "bytes": 70933,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/index.md",
       "track": "Inference Providers",
@@ -8175,7 +8175,7 @@
     },
     {
       "rel": "inference-providers/guides/github-actions-code-review.md",
-      "bytes": 99937,
+      "bytes": 100183,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/github-actions-code-review.md",
       "track": "Inference Providers",
@@ -8292,7 +8292,7 @@
     },
     {
       "rel": "kernels/index.md",
-      "bytes": 3264,
+      "bytes": 3351,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/index.md",
       "track": "Kernels",
@@ -8409,7 +8409,7 @@
     },
     {
       "rel": "kernels/cli.md",
-      "bytes": 837,
+      "bytes": 919,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/cli.md",
       "track": "Kernels",
@@ -8427,12 +8427,21 @@
     },
     {
       "rel": "kernels/kernel-requirements.md",
-      "bytes": 20132,
+      "bytes": 20148,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/kernel-requirements.md",
       "track": "Kernels",
       "package": "kernels",
       "title": "Kernel requirements"
+    },
+    {
+      "rel": "kernels/cli-describe-api.md",
+      "bytes": 2710,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/cli-describe-api.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "kernels describe-api"
     },
     {
       "rel": "kernels/cli-info.md",
@@ -19725,14 +19734,14 @@
       "toc": 66,
       "found": 28,
       "written": 28,
-      "full_bytes": 415362
+      "full_bytes": 415638
     },
     {
       "pkg": "kernels",
-      "toc": 39,
-      "found": 39,
-      "written": 39,
-      "full_bytes": 235154
+      "toc": 40,
+      "found": 40,
+      "written": 40,
+      "full_bytes": 238050
     },
     {
       "pkg": "lerobot",
