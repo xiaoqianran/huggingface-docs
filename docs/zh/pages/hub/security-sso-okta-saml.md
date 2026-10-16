@@ -25,7 +25,9 @@
 URL 如下所示：`https://huggingface.co/organizations/[organizationIdentifier]/saml/consume`。
 
 在 Okta 上，进行以下设置：- 设置受众 URI（SP 实体 ID）以匹配 Hugging Face 上的“SP 实体 ID”值。
-- 将名称 ID 格式设置为电子邮件地址。
+- 将名称 ID 格式设置为 `Unspecified`。
+- 将应用程序用户名设置为`Custom`，表达式为`user.getInternalProperty("id")`。
+- 在“属性语句”下，添加 `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress` 和值 `user.email`。
 - 在“显示高级设置”下，验证响应和断言签名是否设置为：已签名。
 
 保存您的新申请。

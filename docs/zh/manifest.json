@@ -57,8 +57,8 @@
       "translatedAt": "2026-09-28T15:16:25.394Z"
     },
     "hub/api.md": {
-      "hash": "64ea27acb93ba5061b9f53c6f9d30681d6025b0b",
-      "translatedAt": "2026-08-14T08:23:12.043Z"
+      "hash": "63c4f84ab06ce80e7d5ca74155b6e90545058a10",
+      "translatedAt": "2026-10-16T12:15:07.650Z"
     },
     "hub/agents-overview.md": {
       "hash": "86313d62fedae0c2527153121e1d3efd4560d589",
@@ -305,8 +305,8 @@
       "translatedAt": "2026-08-14T08:24:04.116Z"
     },
     "hub/enterprise-blog-articles.md": {
-      "hash": "09e2b5727d33cf45c2645ecbed616645f2f119b9",
-      "translatedAt": "2026-08-14T08:24:04.138Z"
+      "hash": "0208a55119fc5f440c20bbe7366f4ff4a9f7c61a",
+      "translatedAt": "2026-10-16T12:15:09.674Z"
     },
     "hub/dduf.md": {
       "hash": "53c1e4897b82ca5c683f40146064b12642d3c21a",
@@ -733,12 +733,12 @@
       "translatedAt": "2026-09-22T12:32:15.828Z"
     },
     "hub/security-sso-okta-saml.md": {
-      "hash": "d49a3fc3135fae18181edd5c3140b9ac275e4822",
-      "translatedAt": "2026-08-14T08:25:26.857Z"
+      "hash": "d9f734a1205d8be106ddedff3b5534ae25ee8fb5",
+      "translatedAt": "2026-10-16T12:15:10.802Z"
     },
     "hub/security-sso-entra-id-scim.md": {
-      "hash": "788b8c7c07d255ffa3cb4ed187fec302ecfac97a",
-      "translatedAt": "2026-08-14T08:25:26.730Z"
+      "hash": "5deccd1556ce251d3f2203f2ed4eaa3f2eeb05c6",
+      "translatedAt": "2026-10-16T12:15:13.111Z"
     },
     "hub/security-sso.md": {
       "hash": "1658b080a9502e36ce79a43b177dcf468332dbcb",
@@ -757,8 +757,8 @@
       "translatedAt": "2026-08-14T08:25:30.116Z"
     },
     "hub/security-sso-okta-scim.md": {
-      "hash": "e3ee94689e8c945691c361207aba8afea6f09135",
-      "translatedAt": "2026-08-14T08:25:28.723Z"
+      "hash": "b81505acc7fd7c68c56fb165954dab2fd4032506",
+      "translatedAt": "2026-10-16T12:15:14.360Z"
     },
     "hub/session-traces-format.md": {
       "hash": "a6888f6138e1fe95475d566b821d6d5e9d23b173",
@@ -2022,11 +2022,11 @@
       "translatedAt": "2026-10-07T14:23:57.966Z"
     }
   },
-  "updatedAt": "2026-10-15T12:35:44.863Z",
+  "updatedAt": "2026-10-16T12:15:14.360Z",
   "stats": {
-    "translated": 0,
-    "skipped": 397,
-    "failed": 3,
+    "translated": 5,
+    "skipped": 395,
+    "failed": 0,
     "total": 400
   }
 }
