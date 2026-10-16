@@ -64,5 +64,5 @@ trainer.train()
 
 will give you a hosted dashboard at https://huggingface.co/spaces/trl-lib/trackio.
 
-### Paper Index
-https://huggingface.co/docs/trl/v1.15.0/paper_index.md
+### Training on AWS Trainium
+https://huggingface.co/docs/trl/v1.16.0/aws_trainium.md

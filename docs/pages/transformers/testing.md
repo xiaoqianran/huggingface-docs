@@ -421,4 +421,4 @@ class MyModelTest(CausalLMModelTest, unittest.TestCase):
 - Browse the [pytest](https://docs.pytest.org/en/latest/getting-started.html) docs for more about test selection, fixtures, logging, and more.
 
 ### Padding-free training
-https://huggingface.co/docs/transformers/v5.19.0/padding_free.md
+https://huggingface.co/docs/transformers/v5.20.0/padding_free.md

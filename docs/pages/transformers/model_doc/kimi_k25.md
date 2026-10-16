@@ -60,10 +60,10 @@ print(generated_text)
 #### transformers.Kimi_K25ImageProcessor[[transformers.Kimi_K25ImageProcessor]]
 
 ```python
-transformers.Kimi_K25ImageProcessor(**kwargs: Unpack)
+transformers.Kimi_K25ImageProcessor(**kwargs: *<class 'transformers.models.kimi_k25.image_processing_kimi_k25.Kimi_K25ImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/image_processing_kimi_k25.py#L86)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/image_processing_kimi_k25.py#L86)
 
 **Parameters:**
 
@@ -77,7 +77,7 @@ default_to_square (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether t
 
 crop_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Size of the output image after applying `center_crop`.
 
-resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*, defaults to `Resampling.BICUBIC`) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*, defaults to `3`) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
 
 do_rescale (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to rescale the image.
 
@@ -121,7 +121,7 @@ Constructs a Kimi_K25ImageProcessor image processor.
 get_number_of_image_patches(height: int, width: int, images_kwargs: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/image_processing_kimi_k25.py#L218)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/image_processing_kimi_k25.py#L218)
 
 **Parameters:**
 
@@ -146,17 +146,17 @@ without an image input.
 patchify(images: torch.Tensor, patch_size: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/image_processing_kimi_k25.py#L124)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/image_processing_kimi_k25.py#L124)
 
 Patchifies each image into flat layout of shape (`seq_len`, `patch_dim`) so we can concat dynamically shaped pixels.
 
 #### preprocess[[transformers.Kimi_K25ImageProcessor.preprocess]]
 
 ```python
-preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
+preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.kimi_k25.image_processing_kimi_k25.Kimi_K25ImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/image_processing_kimi_k25.py#L116)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/image_processing_kimi_k25.py#L116)
 
 **Parameters:**
 
@@ -222,7 +222,7 @@ merge_size (`int`, *kwargs*, *optional*, defaults to 2) : The merge size of the 
 transformers.Kimi_K25Processor(image_processor = None, tokenizer = None, video_processor = None, chat_template = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/processing_kimi_k25.py#L43)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/processing_kimi_k25.py#L43)
 
 **Parameters:**
 
@@ -236,8 +236,8 @@ chat_template (`str`) : A Jinja template to convert lists of messages in a chat 
 
 Constructs a Kimi_K25Processor which wraps a image processor, a tokenizer, and a video processor into a single processor.
 
-[Kimi_K25Processor](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25Processor) offers all the functionalities of [Kimi_K25ImageProcessor](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25ImageProcessor), [TokenizersBackend](/docs/transformers/v5.19.0/en/main_classes/tokenizer#transformers.TokenizersBackend), and [Kimi_K25VideoProcessor](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25VideoProcessor). See the
-[~Kimi_K25ImageProcessor](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25ImageProcessor), [~TokenizersBackend](/docs/transformers/v5.19.0/en/main_classes/tokenizer#transformers.TokenizersBackend), and [~Kimi_K25VideoProcessor](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25VideoProcessor) for more information.
+[Kimi_K25Processor](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25Processor) offers all the functionalities of [Kimi_K25ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25ImageProcessor), [TokenizersBackend](/docs/transformers/v5.20.0/en/main_classes/tokenizer#transformers.TokenizersBackend), and [Kimi_K25VideoProcessor](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25VideoProcessor). See the
+[~Kimi_K25ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25ImageProcessor), [~TokenizersBackend](/docs/transformers/v5.20.0/en/main_classes/tokenizer#transformers.TokenizersBackend), and [~Kimi_K25VideoProcessor](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25VideoProcessor) for more information.
 
 #### post_process_image_text_to_text[[transformers.Kimi_K25Processor.post_process_image_text_to_text]]
 
@@ -245,7 +245,7 @@ Constructs a Kimi_K25Processor which wraps a image processor, a tokenizer, and a
 post_process_image_text_to_text(generated_outputs, skip_special_tokens = True, clean_up_tokenization_spaces = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/processing_kimi_k25.py#L150)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/processing_kimi_k25.py#L150)
 
 **Parameters:**
 
@@ -268,10 +268,16 @@ Post-process the output of the model to decode the text.
 #### transformers.Kimi_K25VideoProcessor[[transformers.Kimi_K25VideoProcessor]]
 
 ```python
-transformers.Kimi_K25VideoProcessor(**kwargs: Unpack)
+transformers.Kimi_K25VideoProcessor(**kwargs: *<class 'transformers.models.kimi_k25.video_processing_kimi_k25.Kimi_K25VideoProcessorInitKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/video_processing_kimi_k25.py#L90)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/video_processing_kimi_k25.py#L91)
+
+**Parameters:**
+
+- ****kwargs** (`Kimi_K25VideoProcessorInitKwargs`, *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+
+Constructs a Kimi_K25VideoProcessor video processor.
 
 #### get_num_of_video_patches[[transformers.Kimi_K25VideoProcessor.get_num_of_video_patches]]
 
@@ -279,7 +285,7 @@ transformers.Kimi_K25VideoProcessor(**kwargs: Unpack)
 get_num_of_video_patches(num_frames: int, height: int, width: int, videos_kwargs: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/video_processing_kimi_k25.py#L153)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/video_processing_kimi_k25.py#L154)
 
 **Parameters:**
 
@@ -306,7 +312,7 @@ without a video input.
 patchify(videos: torch.Tensor, patch_size: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/video_processing_kimi_k25.py#L123)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/video_processing_kimi_k25.py#L124)
 
 Patchifies each video into flat layout of shape (`seq_len`, `patch_dim`) so we can concat dynamically shaped pixels.
 
@@ -318,7 +324,7 @@ Patchifies each video into flat layout of shape (`seq_len`, `patch_dim`) so we c
 transformers.Kimi_K25Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, projection_hidden_size: int | None = 1152, projection_layer_norm_eps: float = 1e-05, image_token_id: int = 163605, video_token_id: int = 163840, vision_start_token_id: int = 163602, vision_end_token_id: int = 163604, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/configuration_kimi_k25.py#L59)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/configuration_kimi_k25.py#L59)
 
 **Parameters:**
 
@@ -344,8 +350,8 @@ This is the configuration class to store the configuration of a Kimi_K25Model. I
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [moonshotai/Kimi-K2.6](https://huggingface.co/moonshotai/Kimi-K2.6)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Kimi_K25VisionConfig[[transformers.Kimi_K25VisionConfig]]
 
@@ -355,7 +361,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes
 transformers.Kimi_K25VisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, patch_size: int = 14, pos_emb_height: int = 64, pos_emb_width: int = 64, pos_emb_time: int = 4, num_attention_heads: int = 16, num_hidden_layers: int = 27, hidden_size: int = 1152, intermediate_size: int = 4304, hidden_act: str = 'gelu_pytorch_tanh', merge_kernel_size: tuple[int, int] | list[int] = (2, 2), rope_parameters: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/configuration_kimi_k25.py#L29)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/configuration_kimi_k25.py#L29)
 
 **Parameters:**
 
@@ -385,8 +391,8 @@ This is the configuration class to store the configuration of a Kimi_K25Model. I
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [moonshotai/Kimi-K2.6](https://huggingface.co/moonshotai/Kimi-K2.6)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Kimi_K25PreTrainedModel[[transformers.Kimi_K25PreTrainedModel]]
 
@@ -396,13 +402,13 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes
 transformers.Kimi_K25PreTrainedModel(config: PreTrainedConfig, *inputs, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/modeling_kimi_k25.py#L423)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/modeling_kimi_k25.py#L420)
 
 **Parameters:**
 
-config ([PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -430,15 +436,15 @@ real subclasses keep a normal metaclass and `inspect.signature` reads their real
 transformers.Kimi_K25VisionModel(config: Kimi_K25VisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/modeling_kimi_k25.py#L472)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/modeling_kimi_k25.py#L469)
 
 **Parameters:**
 
-config ([Kimi_K25VisionConfig](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25VisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Kimi_K25VisionConfig](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25VisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Kimi K25 Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -449,14 +455,14 @@ and behavior.
 #### forward[[transformers.Kimi_K25VisionModel.forward]]
 
 ```python
-forward(pixel_values: Tensor, grid_thw: Tensor, **kwargs: Unpack)
+forward(pixel_values: Tensor, grid_thw: Tensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/modeling_kimi_k25.py#L518)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/modeling_kimi_k25.py#L515)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Kimi_K25ImageProcessor](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25ImageProcessor). See `Kimi_K25ImageProcessor.__call__()` for details ([Kimi_K25Processor](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25Processor) uses [Kimi_K25ImageProcessor](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Kimi_K25ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25ImageProcessor). See [Kimi_K25ImageProcessor.__call__()](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Kimi_K25Processor](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25Processor) uses [Kimi_K25ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25ImageProcessor) for processing images).
 
 grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
@@ -464,7 +470,7 @@ grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The tempo
 
 `torch.Tensor`
 
-The [Kimi_K25VisionModel](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25VisionModel) forward method, overrides the `__call__` special method.
+The [Kimi_K25VisionModel](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25VisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -476,7 +482,7 @@ the latter silently ignores them.
 temporal_patch_merger(hidden_states: Tensor, grid_thw: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/modeling_kimi_k25.py#L490)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/modeling_kimi_k25.py#L487)
 
 Merges temporal frames by spatially pooling patch embeddings across time, returning
 `(total_merged_patches, kernel_height * kernel_width, hidden_dim)`.
@@ -492,15 +498,15 @@ Kept for backward compatibility: `forward` now pools with the export-friendly
 transformers.Kimi_K25Model(config: Kimi_K25Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/modeling_kimi_k25.py#L579)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/modeling_kimi_k25.py#L576)
 
 **Parameters:**
 
-config ([Kimi_K25Config](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Kimi_K25Config](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Kimi K25 Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -511,30 +517,30 @@ and behavior.
 #### forward[[transformers.Kimi_K25Model.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, pixel_values: typing.Optional[torch.Tensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, pixel_values_videos: typing.Optional[torch.Tensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: Unpack)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, pixel_values: typing.Optional[torch.Tensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, pixel_values_videos: typing.Optional[torch.Tensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/modeling_kimi_k25.py#L662)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/modeling_kimi_k25.py#L659)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.19.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.19.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Kimi_K25ImageProcessor](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25ImageProcessor). See `Kimi_K25ImageProcessor.__call__()` for details ([Kimi_K25Processor](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25Processor) uses [Kimi_K25ImageProcessor](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Kimi_K25ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25ImageProcessor). See [Kimi_K25ImageProcessor.__call__()](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Kimi_K25Processor](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25Processor) uses [Kimi_K25ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25ImageProcessor) for processing images).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [Kimi_K25VideoProcessor](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25VideoProcessor). See `Kimi_K25VideoProcessor.__call__()` for details ([Kimi_K25Processor](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25Processor) uses [Kimi_K25VideoProcessor](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25VideoProcessor) for processing videos).
+pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [Kimi_K25VideoProcessor](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25VideoProcessor). See [Kimi_K25VideoProcessor.__call__()](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([Kimi_K25Processor](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25Processor) uses [Kimi_K25VideoProcessor](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25VideoProcessor) for processing videos).
 
 video_grid_thw (`torch.LongTensor` of shape `(num_videos, 3)`, *optional*) : The temporal, height and width of feature shape of each video in LLM.
 
@@ -544,9 +550,9 @@ mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *
 
 A `Kimi_K25ModelOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Kimi_K25Config](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25Config)) and inputs.
+elements depending on the configuration ([Kimi_K25Config](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25Config)) and inputs.
 
-The [Kimi_K25Model](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25Model) forward method, overrides the `__call__` special method.
+The [Kimi_K25Model](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -556,7 +562,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.19.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -580,15 +586,15 @@ the latter silently ignores them.
 transformers.Kimi_K25ForConditionalGeneration(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/modeling_kimi_k25.py#L737)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/modeling_kimi_k25.py#L734)
 
 **Parameters:**
 
-config ([Kimi_K25ForConditionalGeneration](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25ForConditionalGeneration)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Kimi_K25ForConditionalGeneration](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25ForConditionalGeneration)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Kimi K25 Model for token generation conditioned on other modalities (e.g. image-text-to-text generation).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -599,20 +605,20 @@ and behavior.
 #### forward[[transformers.Kimi_K25ForConditionalGeneration.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, pixel_values: typing.Optional[torch.Tensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, pixel_values_videos: typing.Optional[torch.Tensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: Unpack)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, pixel_values: typing.Optional[torch.Tensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, pixel_values_videos: typing.Optional[torch.Tensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/modeling_kimi_k25.py#L775)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/modeling_kimi_k25.py#L773)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.19.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.19.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.19.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.19.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -620,11 +626,11 @@ labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*)
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Kimi_K25ImageProcessor](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25ImageProcessor). See `Kimi_K25ImageProcessor.__call__()` for details ([Kimi_K25Processor](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25Processor) uses [Kimi_K25ImageProcessor](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Kimi_K25ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25ImageProcessor). See [Kimi_K25ImageProcessor.__call__()](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Kimi_K25Processor](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25Processor) uses [Kimi_K25ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25ImageProcessor) for processing images).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [Kimi_K25VideoProcessor](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25VideoProcessor). See `Kimi_K25VideoProcessor.__call__()` for details ([Kimi_K25Processor](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25Processor) uses [Kimi_K25VideoProcessor](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25VideoProcessor) for processing videos).
+pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [Kimi_K25VideoProcessor](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25VideoProcessor). See [Kimi_K25VideoProcessor.__call__()](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([Kimi_K25Processor](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25Processor) uses [Kimi_K25VideoProcessor](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25VideoProcessor) for processing videos).
 
 video_grid_thw (`torch.LongTensor` of shape `(num_videos, 3)`, *optional*) : The temporal, height and width of feature shape of each video in LLM.
 
@@ -636,9 +642,9 @@ mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *
 
 A `Kimi_K25CausalLMOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Kimi_K25Config](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25Config)) and inputs.
+elements depending on the configuration ([Kimi_K25Config](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25Config)) and inputs.
 
-The [Kimi_K25ForConditionalGeneration](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25ForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [Kimi_K25ForConditionalGeneration](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25ForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -646,7 +652,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.19.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -701,10 +707,10 @@ Example:
 #### get_image_features[[transformers.Kimi_K25ForConditionalGeneration.get_image_features]]
 
 ```python
-get_image_features(pixel_values: FloatTensor, image_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
+get_image_features(pixel_values: FloatTensor, image_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/modeling_kimi_k25.py#L762)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/modeling_kimi_k25.py#L760)
 
 **Parameters:**
 
@@ -712,11 +718,11 @@ pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_siz
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.20.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.20.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Kimi_K25Config](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25Config)) and inputs.
+elements depending on the configuration ([Kimi_K25Config](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25Config)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -766,10 +772,10 @@ Example:
 #### get_video_features[[transformers.Kimi_K25ForConditionalGeneration.get_video_features]]
 
 ```python
-get_video_features(pixel_values_videos: FloatTensor, video_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
+get_video_features(pixel_values_videos: FloatTensor, video_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/kimi_k25/modeling_kimi_k25.py#L749)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/kimi_k25/modeling_kimi_k25.py#L747)
 
 **Parameters:**
 
@@ -777,11 +783,11 @@ pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_channels, im
 
 video_grid_thw (`torch.LongTensor` of shape `(num_videos, 3)`, *optional*) : The temporal, height and width of feature shape of each video in LLM.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.20.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.19.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.20.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Kimi_K25Config](/docs/transformers/v5.19.0/en/model_doc/kimi_k25#transformers.Kimi_K25Config)) and inputs.
+elements depending on the configuration ([Kimi_K25Config](/docs/transformers/v5.20.0/en/model_doc/kimi_k25#transformers.Kimi_K25Config)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -829,4 +835,4 @@ Example:
 ```
 
 ### FocalNet
-https://huggingface.co/docs/transformers/v5.19.0/model_doc/focalnet.md
+https://huggingface.co/docs/transformers/v5.20.0/model_doc/focalnet.md

@@ -24,7 +24,7 @@ processors are model-specific. Load it with the `Auto*` classes (e.g. `AutoModel
 transformers.GlmgaConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, image_token_id: int = 151343, video_token_id: int = 151344, image_start_token_id: int = 151339, image_end_token_id: int = 151340, video_start_token_id: int = 151361, video_end_token_id: int = 151362, tie_word_embeddings: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/glmga/configuration_glmga.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/glmga/configuration_glmga.py#L30)
 
 **Parameters:**
 
@@ -50,8 +50,8 @@ This is the configuration class to store the configuration of a Glm46VModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [zai-org/GLM-4.1V-9B-Thinking](https://huggingface.co/zai-org/GLM-4.1V-9B-Thinking)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ```python
 >>> from transformers import AutoModelForImageTextToText, GlmgaConfig
@@ -71,10 +71,10 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes
 #### transformers.GlmgaImageProcessor[[transformers.GlmgaImageProcessor]]
 
 ```python
-transformers.GlmgaImageProcessor(**kwargs: Unpack)
+transformers.GlmgaImageProcessor(**kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/glmga/image_processing_glmga.py#L89)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/glmga/image_processing_glmga.py#L89)
 
 **Parameters:**
 
@@ -88,7 +88,7 @@ default_to_square (`bool`, *kwargs*, *optional*, defaults to `False`) : Whether 
 
 crop_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Size of the output image after applying `center_crop`.
 
-resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*, defaults to `Resampling.BICUBIC`) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*, defaults to `3`) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
 
 do_rescale (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to rescale the image.
 
@@ -136,6 +136,10 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 
 disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
 
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
 image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models.
 
 Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors. --
@@ -156,7 +160,7 @@ Added for backward compatibility but this should be set as a processor attribute
 get_number_of_image_patches(height: int, width: int, images_kwargs: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/glmga/image_processing_glmga.py#L237)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/glmga/image_processing_glmga.py#L237)
 
 **Parameters:**
 
@@ -178,17 +182,17 @@ A utility that returns number of image patches for a given image size.
 patchify(images: torch.Tensor, patch_size: int, merge_size: int, temporal_patch_size: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/glmga/image_processing_glmga.py#L140)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/glmga/image_processing_glmga.py#L140)
 
 Patchifies each image into flat layout of shape (`seq_len`, `patch_dim`) so we can concat dynamically shaped pixels.
 
 #### preprocess[[transformers.GlmgaImageProcessor.preprocess]]
 
 ```python
-preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
+preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.glmga.image_processing_glmga.GlmgaImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/glmga/image_processing_glmga.py#L107)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/glmga/image_processing_glmga.py#L107)
 
 **Parameters:**
 
@@ -254,7 +258,7 @@ patch_expand_factor (`int`, *kwargs*, *optional*, defaults to 1) : The patch_exp
 resize(images: torch.Tensor, size: SizeDict, resample: PILImageResampling | tvF.InterpolationMode | int | None, factor: int, temporal_factor: int, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/glmga/image_processing_glmga.py#L111)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/glmga/image_processing_glmga.py#L111)
 
 Resize dynamically based on input image aspect ratio.
 
@@ -263,10 +267,10 @@ Resize dynamically based on input image aspect ratio.
 #### transformers.GlmgaVideoProcessor[[transformers.GlmgaVideoProcessor]]
 
 ```python
-transformers.GlmgaVideoProcessor(**kwargs: Unpack)
+transformers.GlmgaVideoProcessor(**kwargs: *<class 'transformers.models.glmga.video_processing_glmga.GlmgaVideoProcessorInitKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/glmga/video_processing_glmga.py#L103)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/glmga/video_processing_glmga.py#L103)
 
 **Parameters:**
 
@@ -280,7 +284,7 @@ Constructs a GlmgaVideoProcessor video processor.
 get_num_of_video_patches(num_frames: int, height: int, width: int, videos_kwargs = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/glmga/video_processing_glmga.py#L224)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/glmga/video_processing_glmga.py#L224)
 
 **Parameters:**
 
@@ -304,7 +308,7 @@ A utility that returns number of video patches a given video size.
 patchify(videos: torch.Tensor, patch_size: int, merge_size: int, temporal_patch_size: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/glmga/video_processing_glmga.py#L260)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/glmga/video_processing_glmga.py#L260)
 
 Patchifies each video into flat layout of shape (`seq_len`, `patch_dim`) so we can concat dynamically shaped pixels.
 
@@ -314,7 +318,7 @@ Patchifies each video into flat layout of shape (`seq_len`, `patch_dim`) so we c
 resize(videos: torch.Tensor, size: SizeDict, resample: PILImageResampling | tvF.InterpolationMode | int | None, factor: int, temporal_factor: int, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/glmga/video_processing_glmga.py#L195)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/glmga/video_processing_glmga.py#L195)
 
 Resize dynamically based on input video aspect ratio.
 
@@ -324,7 +328,7 @@ Resize dynamically based on input video aspect ratio.
 sample_frames(metadata: VideoMetadata, fps: int | float | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/glmga/video_processing_glmga.py#L129)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/glmga/video_processing_glmga.py#L129)
 
 **Parameters:**
 
@@ -341,10 +345,10 @@ Indices to sample video frames.
 #### transformers.GlmgaImageProcessorPil[[transformers.GlmgaImageProcessorPil]]
 
 ```python
-transformers.GlmgaImageProcessorPil(**kwargs: Unpack)
+transformers.GlmgaImageProcessorPil(**kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/glmga/image_processing_pil_glmga.py#L87)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/glmga/image_processing_pil_glmga.py#L87)
 
 **Parameters:**
 
@@ -358,7 +362,7 @@ default_to_square (`bool`, *kwargs*, *optional*, defaults to `False`) : Whether 
 
 crop_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Size of the output image after applying `center_crop`.
 
-resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*, defaults to `Resampling.BICUBIC`) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*, defaults to `3`) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
 
 do_rescale (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to rescale the image.
 
@@ -414,7 +418,7 @@ Added for backward compatibility but this should be set as a processor attribute
 get_number_of_image_patches(height: int, width: int, images_kwargs: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/glmga/image_processing_pil_glmga.py#L234)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/glmga/image_processing_pil_glmga.py#L234)
 
 **Parameters:**
 
@@ -436,17 +440,17 @@ A utility that returns number of image patches for a given image size.
 patchify(image: ndarray, patch_size: int, merge_size: int, temporal_patch_size: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/glmga/image_processing_pil_glmga.py#L138)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/glmga/image_processing_pil_glmga.py#L138)
 
 Patchifies each image into flat layout of shape (`seq_len`, `patch_dim`) so we can concat dynamically shaped pixels.
 
 #### preprocess[[transformers.GlmgaImageProcessorPil.preprocess]]
 
 ```python
-preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
+preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.glmga.image_processing_pil_glmga.GlmgaImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/glmga/image_processing_pil_glmga.py#L105)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/glmga/image_processing_pil_glmga.py#L105)
 
 **Parameters:**
 
@@ -512,9 +516,9 @@ patch_expand_factor (`int`, *kwargs*, *optional*, defaults to 1) : The patch_exp
 resize(image: ndarray, size: SizeDict, resample: PILImageResampling | int | None, factor: int, temporal_factor: int, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/glmga/image_processing_pil_glmga.py#L109)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/glmga/image_processing_pil_glmga.py#L109)
 
 Resize dynamically based on input image aspect ratio.
 
 ### DPR
-https://huggingface.co/docs/transformers/v5.19.0/model_doc/dpr.md
+https://huggingface.co/docs/transformers/v5.20.0/model_doc/dpr.md

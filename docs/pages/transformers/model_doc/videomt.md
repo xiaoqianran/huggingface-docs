@@ -166,10 +166,60 @@ plt.show()
 #### transformers.VideomtVideoProcessor[[transformers.VideomtVideoProcessor]]
 
 ```python
-transformers.VideomtVideoProcessor(**kwargs: Unpack)
+transformers.VideomtVideoProcessor(**kwargs: *<class 'transformers.processing_utils.VideosKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/videomt/video_processing_videomt.py#L146)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/videomt/video_processing_videomt.py#L147)
+
+**Parameters:**
+
+do_convert_rgb (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to convert the image to RGB.
+
+do_resize (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to resize the image.
+
+size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*, defaults to `{'height' : 640, 'width': 640}`): Describes the maximum input dimensions to the model.
+
+default_to_square (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to default to a square image when resizing, if size is an int.
+
+resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*, defaults to `2`) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+
+do_rescale (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to rescale the image.
+
+rescale_factor (`float`, *kwargs*, *optional*, defaults to `0.00392156862745098`) : Rescale factor to rescale the image by if `do_rescale` is set to `True`.
+
+do_normalize (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to normalize the image.
+
+image_mean (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*, defaults to `[0.485, 0.456, 0.406]`) : Image mean to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+image_std (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*, defaults to `[0.229, 0.224, 0.225]`) : Image standard deviation to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+do_center_crop (`bool`, *kwargs*, *optional*, defaults to `False`) : Whether to center crop the image.
+
+do_pad (`bool`, *kwargs*, *optional*) : Whether to pad the image. Padding is done either to the largest size in the batch or to a fixed square size per image. The exact padding strategy depends on the model.
+
+crop_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Size of the output image after applying `center_crop`.
+
+data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : Only `ChannelDimension.FIRST` is supported. Added for compatibility with slow processors.
+
+input_data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : The channel dimension format for the input image. If unset, the channel dimension format is inferred from the input image. Can be one of: - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format. - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
+
+device (`Annotated[Union[str, torch.device, NoneType], None]`, *kwargs*) : The device to process the videos on. If unset, the device is inferred from the input videos.
+
+do_sample_frames (`bool`, *kwargs*, *optional*, defaults to `False`) : Whether to sample frames from the video before processing or to process the whole video.
+
+video_metadata (`Annotated[~video_utils.VideoMetadata | dict | list[dict | ~video_utils.VideoMetadata] | list[list[dict | ~video_utils.VideoMetadata]] | None, None]`, *kwargs*) : Metadata of the video containing information about total duration, fps and total number of frames. It will be used to sample frames from video or compute timestamps. Don't pass any metadata unless you are trying to decode the video manually before processing
+
+fps (`Annotated[int | float | None, None]`, *kwargs*) : Target frames to sample per second when `do_sample_frames=True`.
+
+num_frames (`Annotated[int | None, None]`, *kwargs*) : Maximum number of frames to sample when `do_sample_frames=True`.
+
+return_metadata (`bool`, *kwargs*, *optional*, defaults to `False`) : Whether to return video metadata or not. Video metadats is an object containing info about video duration, fps, decoding backend, etc.
+
+return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwargs*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+
+- ****kwargs** ([VideosKwargs](/docs/transformers/v5.20.0/en/main_classes/processors#transformers.VideosKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+
+Constructs a VideomtVideoProcessor video processor.
 
 #### post_process_semantic_segmentation[[transformers.VideomtVideoProcessor.post_process_semantic_segmentation]]
 
@@ -177,7 +227,7 @@ transformers.VideomtVideoProcessor(**kwargs: Unpack)
 post_process_semantic_segmentation(outputs, target_sizes: list, return_segmentation_scores: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/videomt/video_processing_videomt.py#L177)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/videomt/video_processing_videomt.py#L178)
 
 **Parameters:**
 
@@ -196,7 +246,7 @@ a list of `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (
 `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`). In both cases,
 `(height, width)` corresponds to the target size.
 
-Converts the output of [VideomtForUniversalSegmentation](/docs/transformers/v5.19.0/en/model_doc/videomt#transformers.VideomtForUniversalSegmentation) into semantic segmentation predictions.
+Converts the output of [VideomtForUniversalSegmentation](/docs/transformers/v5.20.0/en/model_doc/videomt#transformers.VideomtForUniversalSegmentation) into semantic segmentation predictions.
 
 #### post_process_instance_segmentation[[transformers.VideomtVideoProcessor.post_process_instance_segmentation]]
 
@@ -204,7 +254,7 @@ Converts the output of [VideomtForUniversalSegmentation](/docs/transformers/v5.1
 post_process_instance_segmentation(outputs, target_sizes: list, threshold: float = 0.5)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/videomt/video_processing_videomt.py#L233)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/videomt/video_processing_videomt.py#L234)
 
 **Parameters:**
 
@@ -220,7 +270,7 @@ A list of dicts (one per frame), each containing:
 - `"segmentation"` -- A `torch.Tensor` of shape `(height, width)` with instance IDs (or -1 for background).
 - `"segments_info"` -- A list of dicts with `"id"`, `"label_id"`, and `"score"` for each instance.
 
-Converts the output of [VideomtForUniversalSegmentation](/docs/transformers/v5.19.0/en/model_doc/videomt#transformers.VideomtForUniversalSegmentation) into instance segmentation predictions.
+Converts the output of [VideomtForUniversalSegmentation](/docs/transformers/v5.20.0/en/model_doc/videomt#transformers.VideomtForUniversalSegmentation) into instance segmentation predictions.
 
 #### post_process_panoptic_segmentation[[transformers.VideomtVideoProcessor.post_process_panoptic_segmentation]]
 
@@ -228,7 +278,7 @@ Converts the output of [VideomtForUniversalSegmentation](/docs/transformers/v5.1
 post_process_panoptic_segmentation(outputs, target_sizes: list, threshold: float = 0.8, mask_threshold: float = 0.5, overlap_mask_area_threshold: float = 0.8, label_ids_to_fuse: set[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/videomt/video_processing_videomt.py#L304)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/videomt/video_processing_videomt.py#L305)
 
 **Parameters:**
 
@@ -250,7 +300,7 @@ A list of dicts (one per frame), each containing:
 - `"segmentation"` -- A `torch.Tensor` of shape `(height, width)` with segment IDs (or -1 for background).
 - `"segments_info"` -- A list of dicts with `"id"`, `"label_id"`, and `"score"` for each segment.
 
-Converts the output of [VideomtForUniversalSegmentation](/docs/transformers/v5.19.0/en/model_doc/videomt#transformers.VideomtForUniversalSegmentation) into panoptic segmentation predictions.
+Converts the output of [VideomtForUniversalSegmentation](/docs/transformers/v5.20.0/en/model_doc/videomt#transformers.VideomtForUniversalSegmentation) into panoptic segmentation predictions.
 
 ## VideomtConfig[[transformers.VideomtConfig]]
 
@@ -260,7 +310,7 @@ Converts the output of [VideomtForUniversalSegmentation](/docs/transformers/v5.1
 transformers.VideomtConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 1024, num_hidden_layers: int = 24, num_attention_heads: int = 16, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-06, image_size: int | list[int] | tuple[int, int] = 640, patch_size: int | list[int] | tuple[int, int] = 16, num_channels: int = 3, mlp_ratio: int = 4, layerscale_value: float = 1.0, drop_path_rate: float | int = 0.0, num_upscale_blocks: int = 2, attention_dropout: float | int = 0.0, use_swiglu_ffn: bool = False, num_blocks: int = 4, no_object_weight: float = 0.1, class_weight: float = 2.0, mask_weight: float = 5.0, dice_weight: float = 5.0, train_num_points: int = 12544, oversample_ratio: float = 3.0, importance_sample_ratio: float = 0.75, num_queries: int = 200, num_register_tokens: int = 4)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/videomt/configuration_videomt.py#L29)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/videomt/configuration_videomt.py#L29)
 
 **Parameters:**
 
@@ -320,8 +370,8 @@ This is the configuration class to store the configuration of a VideomtModel. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [tue-mps/videomt-dinov2-small-ytvis2019](https://huggingface.co/tue-mps/videomt-dinov2-small-ytvis2019)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -346,13 +396,13 @@ Example:
 transformers.VideomtPreTrainedModel(config: PreTrainedConfig, *inputs, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/videomt/modeling_videomt.py#L924)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/videomt/modeling_videomt.py#L924)
 
 **Parameters:**
 
-config ([PreTrainedConfig](/docs/transformers/v5.19.0/en/main_classes/configuration#transformers.PreTrainedConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -380,15 +430,15 @@ real subclasses keep a normal metaclass and `inspect.signature` reads their real
 transformers.VideomtForUniversalSegmentation(config: VideomtConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/videomt/modeling_videomt.py#L1044)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/videomt/modeling_videomt.py#L1044)
 
 **Parameters:**
 
-config ([VideomtConfig](/docs/transformers/v5.19.0/en/model_doc/videomt#transformers.VideomtConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([VideomtConfig](/docs/transformers/v5.20.0/en/model_doc/videomt#transformers.VideomtConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Videomt Model with head on top for instance/semantic/panoptic segmentation.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.19.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -399,10 +449,10 @@ and behavior.
 #### forward[[transformers.VideomtForUniversalSegmentation.forward]]
 
 ```python
-forward(pixel_values_videos: typing.Optional[torch.Tensor] = None, mask_labels: list[torch.Tensor] | None = None, class_labels: list[torch.Tensor] | None = None, patch_offsets: list[torch.Tensor] | None = None, **kwargs: Unpack)
+forward(pixel_values_videos: typing.Optional[torch.Tensor] = None, mask_labels: list[torch.Tensor] | None = None, class_labels: list[torch.Tensor] | None = None, patch_offsets: list[torch.Tensor] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.19.0/src/transformers/models/videomt/modeling_videomt.py#L1103)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/videomt/modeling_videomt.py#L1103)
 
 **Parameters:**
 
@@ -418,9 +468,9 @@ patch_offsets (`list[torch.Tensor]`, *optional*) : Unused for video inputs and o
 
 A `VideomtForUniversalSegmentationOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideomtConfig](/docs/transformers/v5.19.0/en/model_doc/videomt#transformers.VideomtConfig)) and inputs.
+elements depending on the configuration ([VideomtConfig](/docs/transformers/v5.20.0/en/model_doc/videomt#transformers.VideomtConfig)) and inputs.
 
-The [VideomtForUniversalSegmentation](/docs/transformers/v5.19.0/en/model_doc/videomt#transformers.VideomtForUniversalSegmentation) forward method, overrides the `__call__` special method.
+The [VideomtForUniversalSegmentation](/docs/transformers/v5.20.0/en/model_doc/videomt#transformers.VideomtForUniversalSegmentation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -438,4 +488,4 @@ the latter silently ignores them.
   sequence_length)`. Self and Cross Attentions weights from transformer decoder.
 
 ### Conditional DETR
-https://huggingface.co/docs/transformers/v5.19.0/model_doc/conditional_detr.md
+https://huggingface.co/docs/transformers/v5.20.0/model_doc/conditional_detr.md

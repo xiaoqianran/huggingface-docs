@@ -11,6 +11,7 @@ The `transformers serve` command spawns a local server compatible with the [Open
 - `/v1/completions` for legacy text completions from a freeform prompt
 - `/v1/responses` supports the [Responses API](https://platform.openai.com/docs/api-reference/responses)
 - `/v1/audio/transcriptions` for audio transcriptions
+- `/v1/systemone` answers typed questions (choice, score, yes/no) with a probability for every allowed answer
 - `/v1/models` lists available models for third-party integrations
 - `/load_model` streams model loading progress via SSE
 
@@ -28,7 +29,7 @@ transformers serve
 
 ## v1/chat/completions
 
-The `v1/chat/completions` API is based on the [Chat Completions API](https://platform.openai.com/docs/api-reference/chat). It supports text, image, audio, and video requests for LLMs, VLMs, and multimodal models. Use it with `curl`, the [InferenceClient](https://huggingface.co/docs/huggingface_hub/v2.1.1/en/package_reference/inference_client#huggingface_hub.InferenceClient), or the [OpenAI](https://platform.openai.com/docs/quickstart) client.
+The `v1/chat/completions` API is based on the [Chat Completions API](https://platform.openai.com/docs/api-reference/chat). It supports text, image, audio, and video requests for LLMs, VLMs, and multimodal models. Use it with `curl`, the [InferenceClient](https://huggingface.co/docs/huggingface_hub/v2.2.0/en/package_reference/inference_client#huggingface_hub.InferenceClient), or the [OpenAI](https://platform.openai.com/docs/quickstart) client.
 
 ### Text-based completions
 
@@ -42,7 +43,7 @@ result = client.chat_completion(messages, model="Qwen/Qwen2.5-0.5B-Instruct", ma
 print(result.choices[0].message.content)
 ```
 
-The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v2.1.1/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
+The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v2.2.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
 
 ```shell
 The Transformers library is primarily known for its ability to create and manipulate large-scale language models [...]
@@ -61,7 +62,7 @@ for chunk in stream:
         print(token, end="")
 ```
 
-The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v2.1.1/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
+The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v2.2.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
 
 ```shell
 The Transformers library is primarily known for its ability to create and manipulate large-scale language models [...]
@@ -202,7 +203,7 @@ result = client.chat_completion(messages, model="Qwen/Qwen2.5-VL-7B-Instruct", m
 print(result.choices[0].message.content)
 ```
 
-The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v2.1.1/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
+The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v2.2.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
 
 ```xmp
 The image depicts an astronaut in a space suit standing on what appears to be the surface of the moon, given the barren, rocky landscape and the dark sky in the background. The astronaut is holding a large egg that has cracked open, revealing a small creature inside. The scene is imaginative and playful, combining elements of space exploration with a whimsical twist involving the egg and the creature.
@@ -234,7 +235,7 @@ for chunk in stream:
         print(token, end="")
 ```
 
-The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v2.1.1/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
+The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v2.2.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
 
 ```xmp
 The image depicts an astronaut in a space suit standing on what appears to be the surface of the moon, given the barren, rocky landscape and the dark sky in the background. The astronaut is holding a large egg that has cracked open, revealing a small creature inside. The scene is imaginative and playful, combining elements of space exploration with a whimsical twist involving the egg and the creature.
@@ -423,7 +424,7 @@ result = client.chat_completion(messages, model="google/gemma-4-E2B-it", max_tok
 print(result.choices[0].message.content)
 ```
 
-The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v2.1.1/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
+The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v2.2.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
 
 ```
 This week, I traveled to Chicago to deliver my final farewell address to the nation, following in the tradition of presidents before me. It was an opportunity to say thank you. Whether we've seen eye to eye or rarely agreed at all, my conversations with you, the American people, in living rooms and schools, at farms and on factory floors, at diners, and on distant military outposts, all these conversations are what have kept me honest.
@@ -455,7 +456,7 @@ for chunk in stream:
         print(token, end="")
 ```
 
-The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v2.1.1/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
+The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v2.2.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
 
 ```
 This week, I traveled to Chicago to deliver my final farewell address to the nation, following in the tradition of presidents before me. It was an opportunity to say thank you. Whether we've seen eye to eye or rarely agreed at all, my conversations with you, the American people, in living rooms and schools, at farms and on factory floors, at diners, and on distant military outposts, all these conversations are what have kept me honest.
@@ -661,7 +662,7 @@ result = client.chat_completion(messages, model="google/gemma-4-E2B-it", max_tok
 print(result.choices[0].message.content)
 ```
 
-The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v2.1.1/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
+The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v2.2.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
 
 ```
 The video captures a live music performance at a music festival or a large concert. There are several musicians on stage, including a central figure playing an acoustic guitar and singing. The foreground is filled with the backs of the audience, indicating a large crowd watching the show. The stage is dramatically lit with bright spotlights and blue and white stage lighting, with haze and smoke creating an immersive atmosphere.
@@ -690,7 +691,7 @@ for chunk in stream:
         print(token, end="")
 ```
 
-The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v2.1.1/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
+The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v2.2.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
 
 ```
 The video captures a live music performance at a music festival or a large concert. There are several musicians on stage, including a central figure playing an acoustic guitar and singing. The foreground is filled with the backs of the audience, indicating a large crowd watching the show. The stage is dramatically lit with bright spotlights and blue and white stage lighting, with haze and smoke creating an immersive atmosphere.
@@ -1480,6 +1481,135 @@ The follow-up question "How many people live there?" relies on the prior context
 As of 2021, Paris has a population of approximately 2.8 million people.
 ```
 
+## v1/systemone
+
+The `v1/systemone` endpoint answers typed questions about a shared `state`, following [TypeSafe’s System One API](https://api.typesafe.ai/openapi.json). Use it for decisions such as routing a support ticket, rating urgency, or choosing an action.
+
+The model scores the allowed answers in one batched forward pass without generating text. This endpoint supports autoregressive models with a chat template;
+
+Send a model, the state to evaluate, and questions keyed by name:
+
+```shell
+curl http://localhost:8000/v1/systemone \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "state": "Our integration has been failing for 3 days and we are losing sales!",
+    "questions": {
+      "team": {
+        "type": "choice",
+        "instructions": "Which team handles this?",
+        "criteria": {"billing": null, "technical": "Bugs or integration problems"}
+      },
+      "urgency": {
+        "type": "score",
+        "instructions": "How urgent is this ticket?",
+        "criteria": ["low", "medium", "high"]
+      },
+      "upset": {"type": "noul", "instructions": "Is the customer upset?"}
+    }
+  }'
+```
+
+Install the [TypeSafe SDK](https://github.com/typesafe-ai/typesafe-sdk-js) for Node.js 20 or newer:
+
+```shell
+npm install @typesafe-ai/sdk
+```
+
+Set `baseURL` to the server root; the SDK adds `/v1/systemone`. The SDK requires an API key, but a placeholder works with the local server.
+
+```typescript
+import { choice, noul, score, TypeSafeClient } from "@typesafe-ai/sdk";
+
+const client = new TypeSafeClient({
+  baseURL: "http://localhost:8000",
+  apiKey: "REDACTED",
+});
+
+const response = await client.systemOne({
+  model: "Qwen/Qwen2.5-1.5B-Instruct",
+  state: "Our integration has been failing for 3 days and we are losing sales!",
+  questions: {
+    team: choice("Which team handles this?", {
+      billing: null,
+      technical: "Bugs or integration problems",
+    }),
+    urgency: score("How urgent is this ticket?", ["low", "medium", "high"]),
+    upset: noul("Is the customer upset?"),
+  },
+});
+
+console.log(response.answers.team.choice);
+console.log(response.answers.urgency.score);
+console.log(response.answers.upset.noul);
+```
+
+The client prints the selected team, urgency score, and probability that the customer is upset. For example:
+
+```shell
+technical
+1.6739138662815094
+0.851952850818634
+```
+
+Answers use the same question names. For example:
+
+```json
+{
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "answers": {
+    "team": {"type": "choice", "choice": "technical", "probabilities": {"billing": 0.000006962256520637311, "technical": 0.999993085861206}, "confidence": 0.9999861717224121},
+    "urgency": {"type": "score", "score": 1.6739138662815094, "legend": {"0": "low", "1": "medium", "2": "high"}, "probabilities": {"0": 0.0031353600788861513, "1": 0.31981542706489563, "2": 0.6770492196083069}, "confidence": 0.5108707791659981},
+    "upset": {"type": "noul", "noul": 0.851952850818634}
+  },
+  "usage": {"input_tokens": 213, "output_tokens": 0}
+}
+```
+
+| Question type | `criteria` | Answer |
+| :--- | :--- | :--- |
+| `choice` | Option names mapped to descriptions, which can be `null`. | The most likely option, option probabilities, and confidence. |
+| `score` | Level descriptions ordered from lowest to highest. | The probability-weighted level index, probabilities, a legend, and confidence. |
+| `noul` | Optional descriptions for `true` and `false`. | The probability of `true`. |
+
+`state`, optional `instructions`, and descriptions can contain text or JSON objects and arrays. Each request accepts up to 64 questions, with 1–26 choices or score levels per question.
+
+For vision-capable models, add an `images` array with up to four `data:image/...;base64,...` URLs. Every question receives the same images. The model's processor and chat template must support images; remote image URLs are not accepted.
+
+### Decision configuration
+
+Decision models do not yet share a standard for storing prompts, answer labels, and calibration settings. These vary across model implementations, so `--decision-config` lets you provide them explicitly. Models with custom decision heads still require a compatible implementation; this file only configures prompt formatting and next-token scoring.
+
+By default, questions use a fallback prompt and the model's chat template with thinking disabled. Answer labels are `A`–`Z` for choices and scores, and `Yes`/`No` for booleans. Probabilities are the softmax over these labels at temperature 1.
+
+Pass `--decision-config` to override these defaults for a model:
+
+```shell
+transformers serve openjev/openjev --decision-config decision.json
+```
+
+The JSON file supports three optional fields:
+
+| Field | Meaning |
+| :--- | :--- |
+| `labels` | Answer labels by question type, in option order (`true`, then `false` for `noul`). Each must be a distinct, known single token. |
+| `temperature` | Positive temperatures by question type, applied as `softmax(label_logits / temperature)`. |
+| `chat_template` | An inline Jinja template replacing the full prompt, including chat formatting and the assistant prefix. |
+
+For example, to change labels and calibration while keeping the default prompt:
+
+```json
+{
+  "labels": {"noul": ["A", "B"]},
+  "temperature": {"choice": 0.85, "score": 0.85, "noul": 1.5547129}
+}
+```
+
+A custom template receives the usual `messages`, plus raw `state`, `images`, and `question` fields. The question exposes `name`, `type`, `instructions`, `options`, `labels`, `descriptions`, and `legend`; options, labels, and descriptions share the same order. Use these fields to replace the fallback wording, and `tojson` to render structured values. Templates for image inputs must include the model's image placeholders.
+
+The file is loaded at startup and applies to `/v1/systemone` only. Omitted settings keep their defaults; no decision configuration is read automatically from the checkpoint.
+
 ## v1/audio/transcriptions
 
 The `v1/audio/transcriptions` endpoint transcribes audio using speech-to-text models. It follows the [Audio transcription API](https://platform.openai.com/docs/api-reference/audio/createTranscription) format.
@@ -1639,7 +1769,7 @@ tools = [
 ]
 ```
 
-Customize generation by passing [GenerationConfig](/docs/transformers/v5.19.0/en/main_classes/text_generation#transformers.GenerationConfig) parameters to the `extra_body` argument in [create](https://platform.openai.com/docs/api-reference/responses/create).
+Customize generation by passing [GenerationConfig](/docs/transformers/v5.20.0/en/main_classes/text_generation#transformers.GenerationConfig) parameters to the `extra_body` argument in [create](https://platform.openai.com/docs/api-reference/responses/create).
 
 ```py
 generation_config = {
@@ -1931,4 +2061,4 @@ transformers serve Qwen/Qwen2.5-0.5B-Instruct \
 ```
 
 ### Cursor
-https://huggingface.co/docs/transformers/v5.19.0/serve-cli/cursor.md
+https://huggingface.co/docs/transformers/v5.20.0/serve-cli/cursor.md

@@ -59,13 +59,13 @@ These fields control how FSDP2 wraps, shards, and loads the model. `reshard_afte
 
 - `cpu_ram_efficient_loading` loads the checkpoint from disk on rank 0 only. Other GPUs initialize an empty model and receive the weights by broadcast, avoiding multiple processes loading a large model into CPU RAM.
 
-- `activation_checkpointing` recomputes activations during the backward pass instead of storing them. Use this instead of [gradient checkpointing](./grad_checkpointing) in [TrainingArguments](/docs/transformers/v5.19.0/en/main_classes/trainer#transformers.TrainingArguments). Setting both raises an error.
+- `activation_checkpointing` recomputes activations during the backward pass instead of storing them. Use this instead of [gradient checkpointing](./grad_checkpointing) in [TrainingArguments](/docs/transformers/v5.20.0/en/main_classes/trainer#transformers.TrainingArguments). Setting both raises an error.
 
 Configure FSDP training with either an [Accelerate config file](./accelerate#accelerate-config-file) or an FSDP config file passed to `fsdp_config`.
 
 Run the [accelerate config](https://huggingface.co/docs/accelerate/en/package_reference/cli#accelerate-config) command and answer questions about your hardware and training setup. This creates a `default_config.yaml` file in your cache.
 
-Run [accelerate launch](https://huggingface.co/docs/accelerate/en/package_reference/cli#accelerate-launch) with a [Trainer](/docs/transformers/v5.19.0/en/main_classes/trainer#transformers.Trainer)-based script. The `fsdp_config` is unnecessary because the Accelerate config file covers the same settings.
+Run [accelerate launch](https://huggingface.co/docs/accelerate/en/package_reference/cli#accelerate-launch) with a [Trainer](/docs/transformers/v5.20.0/en/main_classes/trainer#transformers.Trainer)-based script. The `fsdp_config` is unnecessary because the Accelerate config file covers the same settings.
 
 ```cli
 accelerate launch train.py
@@ -99,6 +99,20 @@ TrainingArguments(
 > [!TIP]
 > For mixture-of-experts models, `fsdp_size` can be combined with `tp_size` and `ep_size` to shard the experts across one mesh dimension and everything else across the other. See [expert parallelism](./expert_parallelism#combining-with-fsdp2).
 
+## Evaluate with context parallelism
+
+Context parallelism (CP) with FSDP2 is set through Accelerate `ParallelismConfig` `cp_size`. At launch, pass both `--use_parallelism_config` and `--parallelism_config_cp_size`. A non-empty `parallelism_config` in the Accelerate YAML also turns `use_parallelism_config` on. A lone `--parallelism_config_cp_size` is ignored and keeps `cp_size=1`.
+
+Under FSDP2, CP shards the sequence across ranks so each GPU holds a slice of the context (`allgather` or `alltoall`). That differs from [Ulysses sequence parallelism](./deepspeed_alst), which runs through DeepSpeed ALST and uses `sp_size` on the same config. Pick CP or Ulysses SP. Do not set both `cp_size` and `sp_size` above 1.
+
+[evaluate()](/docs/transformers/v5.20.0/en/main_classes/trainer#transformers.Trainer.evaluate) uses the same context-parallel context as [train()](/docs/transformers/v5.20.0/en/main_classes/trainer#transformers.Trainer.train) through [prediction_step()](/docs/transformers/v5.20.0/en/main_classes/trainer#transformers.Trainer.prediction_step). Each rank runs its sequence shard while that context is active. `eval_loss` is the correct loss (not multiplied by `cp_size`). Early stopping and `load_best_model_at_end` use that metric.
+
+Logits stay sharded along the sequence, and nothing reassembles them into full-length predictions. Predictions and `compute_metrics` over logits aren't supported under CP.
+
+Reuse your existing FSDP2 + `cp_size` launch when you need `eval_loss`.
+
+If you subclass [prediction_step()](/docs/transformers/v5.20.0/en/main_classes/trainer#transformers.Trainer.prediction_step) and count tokens yourself, count `num_items_in_batch` before entering the context-parallel context. While that context is active, sequence buffers are sharded in place across ranks. Counting afterward undercounts the batch. The default [Trainer](/docs/transformers/v5.20.0/en/main_classes/trainer#transformers.Trainer) already counts first, and you only need this if you override `prediction_step`.
+
 ## Next steps
 
 - See [DDP](./ddp) for data-parallel training when your model fits on one GPU.
@@ -107,4 +121,4 @@ TrainingArguments(
 - Read the [FSDP chapter](https://nanotron-ultrascale-playbook.static.hf.space/index.html#zero-3:_adding_parameter_partitioning_(fsdp)) from The Ultra-Scale Playbook for more information about how FSDP works.
 
 ### Quickstart
-https://huggingface.co/docs/transformers/v5.19.0/quicktour.md
+https://huggingface.co/docs/transformers/v5.20.0/quicktour.md

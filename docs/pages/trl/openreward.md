@@ -9,7 +9,7 @@ This guide covers **how to integrate OpenReward with TRL**. For more on the stan
 
 ## When to use OpenReward environments
 
-[GRPOTrainer](/docs/trl/v1.15.0/en/grpo_trainer#trl.GRPOTrainer) supports environment-based training via the `environment_factory` slot — see [OpenEnv](openenv) for the general contract. Use OpenReward when you want to train against an ORS-speaking environment: the [OpenReward catalog](https://openreward.ai) (e.g. `Eigent/SETA`, `kanishk/EndlessTerminals`, `nebius/SWE-rebench-V2`), an env you self-host on your own infra, or a local server you're developing.
+[GRPOTrainer](/docs/trl/v1.16.0/en/grpo_trainer#trl.GRPOTrainer) supports environment-based training via the `environment_factory` slot — see [OpenEnv](openenv) for the general contract. Use OpenReward when you want to train against an ORS-speaking environment: the [OpenReward catalog](https://openreward.ai) (e.g. `Eigent/SETA`, `kanishk/EndlessTerminals`, `nebius/SWE-rebench-V2`), an env you self-host on your own infra, or a local server you're developing.
 
 ## Installation
 
@@ -199,9 +199,6 @@ trainer = GRPOTrainer(
 
 The per-rollout adapter exposes the running state TRL needs — `env.reward`, `env.rewards`, `env.metadata`, `env.finished`, `env.last_output` — for arbitrary post-hoc reward shaping.
 
-For compatibility, `env.reward` still starts at `0.0`. The default reward function checks `env.rewards` to determine
-whether a score was actually observed.
-
 ## OpenRewardSpec[[trl.experimental.openreward.OpenRewardSpec]]
 
 #### trl.experimental.openreward.OpenRewardSpec[[trl.experimental.openreward.OpenRewardSpec]]
@@ -210,7 +207,7 @@ whether a score was actually observed.
 trl.experimental.openreward.OpenRewardSpec(target: str, num_tasks: int | None = None, split: str = 'train', indices: list[int] | None = None, api_key: str | None = None, secrets: dict[str, str] | None = None, env_name: str | None = None, include_metadata: bool = True, discover_task_tools: bool = True, task_tools_discovery_index: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.15.0/trl/experimental/openreward/_spec.py#L79)
+[Source](https://github.com/huggingface/trl/blob/v1.16.0/trl/experimental/openreward/_spec.py#L79)
 
 **Parameters:**
 
@@ -250,4 +247,4 @@ Single spec object that wires an ORS environment into a TRL trainer.
 - [Echo env Space — `trl-internal-testing/openreward-echo-env`](https://huggingface.co/spaces/trl-internal-testing/openreward-echo-env)
 
 ### A2PO
-https://huggingface.co/docs/trl/v1.15.0/a2po_trainer.md
+https://huggingface.co/docs/trl/v1.16.0/a2po_trainer.md

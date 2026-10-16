@@ -5,7 +5,9 @@ The library is integrated with 🤗 [transformers](https://github.com/huggingfac
 
 ## 🎉 What's New
 
-**⚡ Up to 6.9× longer sequences on the same GPU:** SFT, DPO, KTO, GRPO and RLOO now score tokens with a [fused LM head](reducing_memory_usage) **by default**. At 8k tokens that is 52% to 82% less peak VRAM.
+**🔥 Muse Spark Open:** Fine-tune [Muse Spark Open](https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B) with [SFTTrainer](/docs/trl/v1.16.0/en/sft_trainer#trl.SFTTrainer), sharded across your GPUs at load time. See the [8-node LoRA example](https://github.com/huggingface/trl/tree/main/examples/sft_muse_spark_open).
+
+**🚀 Training on AWS Trainium:** TRL's trainers now run on [AWS Trainium](aws_trainium) through TorchNeuron, PyTorch's native Neuron backend.
 
 ## Taxonomy
 
@@ -54,7 +56,6 @@ Below is an overview of TRL trainers, organized by maturity and method type.
 - [`IWOPDTrainer`](iw_opd_trainer)
 - [`SDFTTrainer`](sdft_trainer)
 - [`SDPOTrainer`](sdpo_trainer)
-- [`SSDTrainer`](ssd_trainer)
 
 You can also explore TRL-related models, datasets, and demos in the [TRL Hugging Face organization](https://huggingface.co/trl-lib).
 
@@ -172,4 +173,4 @@ The documentation is organized into the following sections:
       Fine tuning with TRL
 
 ### MergeModelCallback[[trl.experimental.merge_model_callback.MergeModelCallback]]
-https://huggingface.co/docs/trl/v1.15.0/merge_model_callback.md
+https://huggingface.co/docs/trl/v1.16.0/merge_model_callback.md

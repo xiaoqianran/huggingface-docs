@@ -222,7 +222,7 @@ Split the assistant message into its own branch so the `&#123;% generation %&#12
 
 ## Related utilities
 
-See [Chat Template Utilities](chat_template_utils) for the helper functions ([clone_chat_template()](/docs/trl/v1.15.0/en/chat_template_utils#trl.clone_chat_template), `is_chat_template_prefix_preserving`, [get_training_chat_template()](/docs/trl/v1.15.0/en/chat_template_utils#trl.get_training_chat_template)) that operate on these templates.
+See [Chat Template Utilities](chat_template_utils) for the helper functions ([clone_chat_template()](/docs/trl/v1.16.0/en/chat_template_utils#trl.clone_chat_template), `is_chat_template_prefix_preserving`, [get_training_chat_template()](/docs/trl/v1.16.0/en/chat_template_utils#trl.get_training_chat_template)) that operate on these templates.
 
 ### General Online Logit Distillation (GOLD) Trainer
-https://huggingface.co/docs/trl/v1.15.0/gold_trainer.md
+https://huggingface.co/docs/trl/v1.16.0/gold_trainer.md
