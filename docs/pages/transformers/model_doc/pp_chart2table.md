@@ -11,7 +11,7 @@ PP-Chart2Table adopts a multimodal fusion architecture that combines a vision to
 
 ### Single input inference
 
-The example below demonstrates how to classify image with PP-Chart2Table using [Pipeline](/docs/transformers/v5.20.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoModel).
+The example below demonstrates how to classify image with PP-Chart2Table using [Pipeline](/docs/transformers/v5.20.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoModel).
 
 ```python
 from transformers import pipeline
@@ -74,7 +74,7 @@ print(result)
 
 ### Batched inference
 
-Here is how you can do it with PP-Chart2Table using [Pipeline](/docs/transformers/v5.20.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoModel):
+Here is how you can do it with PP-Chart2Table using [Pipeline](/docs/transformers/v5.20.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoModel):
 
 ```python
 from transformers import pipeline
@@ -144,7 +144,7 @@ print(result)
 transformers.PPChart2TableConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, image_token_index: int = 151859, image_seq_length: int = 576, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/pp_chart2table/configuration_pp_chart2table.py#L70)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/pp_chart2table/configuration_pp_chart2table.py#L70)
 
 **Parameters:**
 
@@ -162,8 +162,8 @@ This is the configuration class to store the configuration of a Pp Chart2TableMo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/PP-Chart2Table_safetensors](https://huggingface.co/PaddlePaddle/PP-Chart2Table_safetensors)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -188,7 +188,7 @@ Example:
 transformers.PPChart2TableVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 768, output_channels: int = 256, num_hidden_layers: int = 12, num_attention_heads: int = 12, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 1024, patch_size: int | list[int] | tuple[int, int] = 16, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-06, attention_dropout: float | int = 0.0, initializer_range: float = 1e-10, qkv_bias: bool = True, use_abs_pos: bool = True, use_rel_pos: bool = True, window_size: int = 14, global_attn_indexes: list[int] | tuple[int, ...] = (2, 5, 8, 11), mlp_dim: int = 3072)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/pp_chart2table/configuration_pp_chart2table.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/pp_chart2table/configuration_pp_chart2table.py#L30)
 
 **Parameters:**
 
@@ -230,8 +230,8 @@ This is the configuration class to store the configuration of a Pp Chart2TableMo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/sam-vit-huge](https://huggingface.co/facebook/sam-vit-huge)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## PPChart2TableImageProcessor[[transformers.PPChart2TableImageProcessor]]
 
@@ -241,7 +241,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes
 transformers.PPChart2TableImageProcessor(**kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/pp_chart2table/image_processing_pp_chart2table.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/pp_chart2table/image_processing_pp_chart2table.py#L26)
 
 **Parameters:**
 
@@ -357,7 +357,7 @@ Added for backward compatibility but this should be set as a processor attribute
 transformers.PPChart2TableImageProcessorPil(**kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/pp_chart2table/image_processing_pil_pp_chart2table.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/pp_chart2table/image_processing_pil_pp_chart2table.py#L26)
 
 **Parameters:**
 
@@ -445,7 +445,7 @@ Added for backward compatibility but this should be set as a processor attribute
 transformers.PPChart2TableProcessor(image_processor = None, tokenizer = None, chat_template = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/pp_chart2table/processing_pp_chart2table.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/pp_chart2table/processing_pp_chart2table.py#L30)
 
 **Parameters:**
 
@@ -457,8 +457,8 @@ chat_template (`str`) : A Jinja template to convert lists of messages in a chat 
 
 Constructs a PPChart2TableProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[PPChart2TableProcessor](/docs/transformers/v5.20.0/en/model_doc/pp_chart2table#transformers.PPChart2TableProcessor) offers all the functionalities of [PPChart2TableImageProcessor](/docs/transformers/v5.20.0/en/model_doc/pp_chart2table#transformers.PPChart2TableImageProcessor) and `tokenizer_class`. See the
-[~PPChart2TableImageProcessor](/docs/transformers/v5.20.0/en/model_doc/pp_chart2table#transformers.PPChart2TableImageProcessor) and `~tokenizer_class` for more information.
+[PPChart2TableProcessor](/docs/transformers/v5.20.1/en/model_doc/pp_chart2table#transformers.PPChart2TableProcessor) offers all the functionalities of [PPChart2TableImageProcessor](/docs/transformers/v5.20.1/en/model_doc/pp_chart2table#transformers.PPChart2TableImageProcessor) and `tokenizer_class`. See the
+[~PPChart2TableImageProcessor](/docs/transformers/v5.20.1/en/model_doc/pp_chart2table#transformers.PPChart2TableImageProcessor) and `~tokenizer_class` for more information.
 
 ### Inkling
-https://huggingface.co/docs/transformers/v5.20.0/model_doc/inkling.md
+https://huggingface.co/docs/transformers/v5.20.1/model_doc/inkling.md

@@ -6,11 +6,11 @@ FX graph, before any conversion, or on the model a backend converts it into.
 
 | Quantizer | Quantizes | Dynamo | ONNX | ExecuTorch | OpenVINO |
 | --- | --- | --- | --- | --- | --- |
-| [PT2EQuantizer](/docs/transformers/v5.20.0/en/main_classes/exporters#transformers.exporters.PT2EQuantizer) | the FX graph, with PyTorch 2 Export (PT2E) quantization | 🟢 | 🟢 | 🟢 | 🟢 |
-| [NNCFTorchFXQuantizer](/docs/transformers/v5.20.0/en/main_classes/exporters#transformers.exporters.NNCFTorchFXQuantizer) | the FX graph, with [NNCF](https://github.com/openvinotoolkit/nncf) | 🟢 | 🟢 | 🟢 (weight-only) | 🟢 |
-| [OnnxRuntimeQuantizer](/docs/transformers/v5.20.0/en/main_classes/exporters#transformers.exporters.OnnxRuntimeQuantizer) | the ONNX model, with `onnxruntime.quantization` | 🔴 | 🟢 | 🔴 | 🔴 |
-| [NNCFOnnxQuantizer](/docs/transformers/v5.20.0/en/main_classes/exporters#transformers.exporters.NNCFOnnxQuantizer) | the ONNX model, with [NNCF](https://github.com/openvinotoolkit/nncf) | 🔴 | 🟢 | 🔴 | 🔴 |
-| [NNCFOpenVINOQuantizer](/docs/transformers/v5.20.0/en/main_classes/exporters#transformers.exporters.NNCFOpenVINOQuantizer) | the OpenVINO model, with [NNCF](https://github.com/openvinotoolkit/nncf) | 🔴 | 🔴 | 🔴 | 🟢 |
+| [PT2EQuantizer](/docs/transformers/v5.20.1/en/main_classes/exporters#transformers.exporters.PT2EQuantizer) | the FX graph, with PyTorch 2 Export (PT2E) quantization | 🟢 | 🟢 | 🟢 | 🟢 |
+| [NNCFTorchFXQuantizer](/docs/transformers/v5.20.1/en/main_classes/exporters#transformers.exporters.NNCFTorchFXQuantizer) | the FX graph, with [NNCF](https://github.com/openvinotoolkit/nncf) | 🟢 | 🟢 | 🟢 (weight-only) | 🟢 |
+| [OnnxRuntimeQuantizer](/docs/transformers/v5.20.1/en/main_classes/exporters#transformers.exporters.OnnxRuntimeQuantizer) | the ONNX model, with `onnxruntime.quantization` | 🔴 | 🟢 | 🔴 | 🔴 |
+| [NNCFOnnxQuantizer](/docs/transformers/v5.20.1/en/main_classes/exporters#transformers.exporters.NNCFOnnxQuantizer) | the ONNX model, with [NNCF](https://github.com/openvinotoolkit/nncf) | 🔴 | 🟢 | 🔴 | 🔴 |
+| [NNCFOpenVINOQuantizer](/docs/transformers/v5.20.1/en/main_classes/exporters#transformers.exporters.NNCFOpenVINOQuantizer) | the OpenVINO model, with [NNCF](https://github.com/openvinotoolkit/nncf) | 🔴 | 🔴 | 🔴 | 🟢 |
 
 The export checks the quantizer against its backend and installed packages before tracing, so a mismatch fails early.
 Like the exporters, each quantizer lists the package versions it is tested on, and warns when yours differ.
@@ -43,7 +43,7 @@ print(model.config.id2label[int(logits.argmax())])  # POSITIVE
 
 ## PT2E
 
-[PT2EQuantizer](/docs/transformers/v5.20.0/en/main_classes/exporters#transformers.exporters.PT2EQuantizer) wraps a PT2E quantizer, from torchao or from the target runtime, and runs it
+[PT2EQuantizer](/docs/transformers/v5.20.1/en/main_classes/exporters#transformers.exporters.PT2EQuantizer) wraps a PT2E quantizer, from torchao or from the target runtime, and runs it
 on the FX graph (`prepare_pt2e` → calibrate → `convert_pt2e`), so it works with every backend. Each PT2E quantizer
 injects its own quantize/dequantize ops, so pick the one your runtime supports:
 
@@ -97,9 +97,9 @@ On OpenVINO, PT2E weights stay in full precision behind quantize/dequantize pair
 
 ## ONNX Runtime
 
-[OnnxRuntimeQuantizer](/docs/transformers/v5.20.0/en/main_classes/exporters#transformers.exporters.OnnxRuntimeQuantizer) runs `quantize_static` by default (int8 QDQ activations and weights,
+[OnnxRuntimeQuantizer](/docs/transformers/v5.20.1/en/main_classes/exporters#transformers.exporters.OnnxRuntimeQuantizer) runs `quantize_static` by default (int8 QDQ activations and weights,
 calibrated on `calibration_dataset`), as in the example above, with the arguments of an
-[OnnxRuntimeStaticConfig](/docs/transformers/v5.20.0/en/main_classes/exporters#transformers.exporters.OnnxRuntimeStaticConfig). With an [OnnxRuntimeDynamicConfig](/docs/transformers/v5.20.0/en/main_classes/exporters#transformers.exporters.OnnxRuntimeDynamicConfig) it runs
+[OnnxRuntimeStaticConfig](/docs/transformers/v5.20.1/en/main_classes/exporters#transformers.exporters.OnnxRuntimeStaticConfig). With an [OnnxRuntimeDynamicConfig](/docs/transformers/v5.20.1/en/main_classes/exporters#transformers.exporters.OnnxRuntimeDynamicConfig) it runs
 `quantize_dynamic` (int8 weights, activations quantized at runtime, no calibration).
 
 ```python
@@ -115,9 +115,9 @@ config = OnnxConfig(quantizer=OnnxRuntimeQuantizer(OnnxRuntimeDynamicConfig()))
 
 The three NNCF quantizers in the table above run `nncf.quantize` by default (int8 activations and weights, calibrated
 on `calibration_dataset`, with `model_type=nncf.ModelType.TRANSFORMER` unless you pass another), with the arguments of
-an [NNCFQuantizationConfig](/docs/transformers/v5.20.0/en/main_classes/exporters#transformers.exporters.NNCFQuantizationConfig). With an [NNCFWeightCompressionConfig](/docs/transformers/v5.20.0/en/main_classes/exporters#transformers.exporters.NNCFWeightCompressionConfig) they
+an [NNCFQuantizationConfig](/docs/transformers/v5.20.1/en/main_classes/exporters#transformers.exporters.NNCFQuantizationConfig). With an [NNCFWeightCompressionConfig](/docs/transformers/v5.20.1/en/main_classes/exporters#transformers.exporters.NNCFWeightCompressionConfig) they
 run `nncf.compress_weights` (weight-only int8 or int4, with AWQ and scale estimation for int4, plus GPTQ and LoRA
-correction on OpenVINO). ExecuTorch lowers only [NNCFTorchFXQuantizer](/docs/transformers/v5.20.0/en/main_classes/exporters#transformers.exporters.NNCFTorchFXQuantizer)'s weight-only result.
+correction on OpenVINO). ExecuTorch lowers only [NNCFTorchFXQuantizer](/docs/transformers/v5.20.1/en/main_classes/exporters#transformers.exporters.NNCFTorchFXQuantizer)'s weight-only result.
 
 ```python
 import nncf
@@ -171,7 +171,7 @@ config = {
 components = DynamoExporter().export_for_generation(model, inputs, config)
 ```
 
-The dict must name every component [decompose_for_generation()](/docs/transformers/v5.20.0/en/main_classes/exporters#transformers.exporters.utils.decompose_for_generation) produces (a multimodal model adds its
+The dict must name every component [decompose_for_generation()](/docs/transformers/v5.20.1/en/main_classes/exporters#transformers.exporters.utils.decompose_for_generation) produces (a multimodal model adds its
 encoders, and may split out `language_model` and `lm_head`). A component whose config sets no quantizer stays in full
 precision. In this dict, a quantizer's `calibration_dataset` holds the component's forward kwargs, not generate
 kwargs.
@@ -179,7 +179,7 @@ kwargs.
 ## Add a quantizer
 
 Quantizers live in `transformers.exporters.quantizers`, one class per toolchain and representation. Subclass
-[ExportQuantizer](/docs/transformers/v5.20.0/en/main_classes/exporters#transformers.exporters.ExportQuantizer) and declare:
+[ExportQuantizer](/docs/transformers/v5.20.1/en/main_classes/exporters#transformers.exporters.ExportQuantizer) and declare:
 
 - `quantizes_fx_graph`: `True` for the `torch.export` FX graph, before any conversion (so every backend takes the
   result), or `False` (the default) for the model a backend converts it into (`onnx_ir.Model`, `openvino.Model`).
@@ -189,7 +189,7 @@ Quantizers live in `transformers.exporters.quantizers`, one class per toolchain 
   one.
 
 Then implement `quantize(model, sample_inputs, export_format)`. `model` is the FX graph or the backend model, and
-`sample_inputs` are the export's own inputs. Calibrate on a [CalibrationSet](/docs/transformers/v5.20.0/en/main_classes/exporters#transformers.exporters.quantizers.CalibrationSet): it reads the
+`sample_inputs` are the export's own inputs. Calibrate on a [CalibrationSet](/docs/transformers/v5.20.1/en/main_classes/exporters#transformers.exporters.quantizers.CalibrationSet): it reads the
 quantizer's `calibration_dataset` (or `sample_inputs` when there is none) and maps each sample to the model's own
 inputs with a feed from `transformers.exporters.quantizers.utils` (`traced_inputs` for the FX graph, `onnx_feed` for ONNX,
 `openvino_feed` for OpenVINO).
@@ -213,4 +213,4 @@ class MyOnnxQuantizer(ExportQuantizer):
 ```
 
 ### Tensor parallelism for inference
-https://huggingface.co/docs/transformers/v5.20.0/perf_infer_gpu_multi.md
+https://huggingface.co/docs/transformers/v5.20.1/perf_infer_gpu_multi.md

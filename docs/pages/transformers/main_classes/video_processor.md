@@ -35,7 +35,7 @@ processed_video = processor(video, return_tensors="pt")
 
 Built-in video processors use [torchvision](https://pytorch.org/vision/stable/index.html) for batched resizing, rescaling, and normalization. Install PyTorch and torchvision to use them. Unlike image processors, built-in video processors do not provide a PIL backend.
 
-[AutoVideoProcessor](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoVideoProcessor) selects the `torchvision` backend by default. You can also request it explicitly and inspect the loaded processor's `backend` attribute.
+[AutoVideoProcessor](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoVideoProcessor) selects the `torchvision` backend by default. You can also request it explicitly and inspect the loaded processor's `backend` attribute.
 
 ```python
 from transformers import AutoVideoProcessor
@@ -50,9 +50,9 @@ The `backend` argument selects the preprocessing implementation, not the video d
 
 ### Custom backends
 
-[BaseVideoProcessor](/docs/transformers/v5.20.0/en/main_classes/video_processor#transformers.BaseVideoProcessor) provides torchvision-based preprocessing. For a non-torchvision implementation, you can subclass [VideoProcessorMixin](/docs/transformers/v5.20.0/en/main_classes/video_processor#transformers.VideoProcessorMixin) and override `preprocess` to return a [BatchFeature](/docs/transformers/v5.20.0/en/main_classes/image_processor#transformers.BatchFeature) containing the inputs expected by the model.
+[BaseVideoProcessor](/docs/transformers/v5.20.1/en/main_classes/video_processor#transformers.BaseVideoProcessor) provides torchvision-based preprocessing. For a non-torchvision implementation, you can subclass [VideoProcessorMixin](/docs/transformers/v5.20.1/en/main_classes/video_processor#transformers.VideoProcessorMixin) and override `preprocess` to return a [BatchFeature](/docs/transformers/v5.20.1/en/main_classes/image_processor#transformers.BatchFeature) containing the inputs expected by the model.
 
-Register custom classes with [AutoVideoProcessor.register()](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoVideoProcessor.register), and use `video_processor_classes` to map backend names to classes. The example below assumes `NewCustomVideoProcessor` is defined with the preprocessing required by the LLaVA-OneVision checkpoint.
+Register custom classes with [AutoVideoProcessor.register()](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoVideoProcessor.register), and use `video_processor_classes` to map backend names to classes. The example below assumes `NewCustomVideoProcessor` is defined with the preprocessing required by the LLaVA-OneVision checkpoint.
 
 ```python
 from transformers import LlavaOnevisionConfig
@@ -69,7 +69,7 @@ Use `exist_ok=True` because `LlavaOnevisionConfig` is already registered. The su
 
 ### Save and reload
 
-[save_pretrained()](/docs/transformers/v5.20.0/en/main_classes/video_processor#transformers.VideoProcessorMixin.save_pretrained) saves the preprocessing configuration, not the backend mappings added with [AutoVideoProcessor.register()](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoVideoProcessor.register). In the same Python process, reload the saved processor with `backend="custom"`:
+[save_pretrained()](/docs/transformers/v5.20.1/en/main_classes/video_processor#transformers.VideoProcessorMixin.save_pretrained) saves the preprocessing configuration, not the backend mappings added with [AutoVideoProcessor.register()](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoVideoProcessor.register). In the same Python process, reload the saved processor with `backend="custom"`:
 
 ```python
 custom_processor.save_pretrained("./saved-video-processor")
@@ -129,7 +129,7 @@ print(processed_video_inputs.pixel_values_videos.shape)
 transformers.VideoProcessorMixin(**kwargs: *<class 'transformers.processing_utils.VideosKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/video_processing_utils.py#L76)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/video_processing_utils.py#L76)
 
 #### fetch_videos[[transformers.VideoProcessorMixin.fetch_videos]]
 
@@ -137,7 +137,7 @@ transformers.VideoProcessorMixin(**kwargs: *<class 'transformers.processing_util
 fetch_videos(video_url_or_urls: str | list[str] | list[list[str]], sample_indices_fn = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/video_processing_utils.py#L559)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/video_processing_utils.py#L559)
 
 Convert a single or a list of urls into the corresponding `np.array` objects.
 
@@ -150,7 +150,7 @@ returned.
 from_dict(video_processor_dict: dict, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/video_processing_utils.py#L431)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/video_processing_utils.py#L431)
 
 **Parameters:**
 
@@ -171,7 +171,7 @@ Instantiates a type of `~video_processing_utils.VideoProcessorBase` from a Pytho
 from_json_file(json_file: str | os.PathLike)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/video_processing_utils.py#L514)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/video_processing_utils.py#L514)
 
 **Parameters:**
 
@@ -191,7 +191,7 @@ file of parameters.
 from_pretrained(pretrained_model_name_or_path: str | os.PathLike, cache_dir: str | os.PathLike | None = None, force_download: bool = False, local_files_only: bool = False, token: str | bool | None = None, revision: str = 'main', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/video_processing_utils.py#L142)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/video_processing_utils.py#L142)
 
 **Parameters:**
 
@@ -248,7 +248,7 @@ assert unused_kwargs == {"foo": False}
 get_video_processor_dict(pretrained_model_name_or_path: str | os.PathLike, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/video_processing_utils.py#L296)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/video_processing_utils.py#L296)
 
 **Parameters:**
 
@@ -269,7 +269,7 @@ video processor of type `~video_processing_utils.VideoProcessorBase` using `from
 preprocess(videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]]], **kwargs: *<class 'transformers.processing_utils.VideosKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/video_processing_utils.py#L98)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/video_processing_utils.py#L98)
 
 **Parameters:**
 
@@ -331,7 +331,7 @@ return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwar
 register_for_auto_class(auto_class = 'AutoVideoProcessor')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/video_processing_utils.py#L533)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/video_processing_utils.py#L533)
 
 **Parameters:**
 
@@ -348,7 +348,7 @@ This API is experimental and may have some slight breaking changes in the next r
 save_pretrained(save_directory: str | os.PathLike, push_to_hub: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/video_processing_utils.py#L248)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/video_processing_utils.py#L248)
 
 **Parameters:**
 
@@ -356,7 +356,7 @@ save_directory (`str` or `os.PathLike`) : Directory where the video processor JS
 
 push_to_hub (`bool`, *optional*, defaults to `False`) : Whether or not to push your model to the Hugging Face model hub after saving it. You can specify the repository you want to push to with `repo_id` (will default to the name of `save_directory` in your namespace).
 
-kwargs (`dict[str, Any]`, *optional*) : Additional key word arguments passed along to the [push_to_hub()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
+kwargs (`dict[str, Any]`, *optional*) : Additional key word arguments passed along to the [push_to_hub()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
 
 Save an video processor object to the directory `save_directory`, so that it can be re-loaded using the
 `~video_processing_utils.VideoProcessorBase.from_pretrained` class method.
@@ -367,7 +367,7 @@ Save an video processor object to the directory `save_directory`, so that it can
 to_dict()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/video_processing_utils.py#L472)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/video_processing_utils.py#L472)
 
 **Returns:** `dict[str, Any]`
 
@@ -383,7 +383,7 @@ Serializes this instance to a Python dictionary.
 transformers.BaseVideoProcessor(**kwargs: *<class 'transformers.processing_utils.VideosKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/video_processing_utils.py#L587)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/video_processing_utils.py#L587)
 
 #### convert_to_rgb[[transformers.BaseVideoProcessor.convert_to_rgb]]
 
@@ -391,7 +391,7 @@ transformers.BaseVideoProcessor(**kwargs: *<class 'transformers.processing_utils
 convert_to_rgb(video: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/video_processing_utils.py#L588)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/video_processing_utils.py#L588)
 
 **Parameters:**
 
@@ -409,7 +409,7 @@ Converts a video to RGB format.
 sample_frames(metadata: VideoMetadata, num_frames: int | None = None, fps: int | float | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/video_processing_utils.py#L605)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/video_processing_utils.py#L605)
 
 **Parameters:**
 
@@ -428,4 +428,4 @@ If `fps` is passed along with metadata, `fps` frames per second are sampled unif
 and `fps` are mutually exclusive.
 
 ### DeepSpeed
-https://huggingface.co/docs/transformers/v5.20.0/main_classes/deepspeed.md
+https://huggingface.co/docs/transformers/v5.20.1/main_classes/deepspeed.md

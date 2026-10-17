@@ -10,7 +10,7 @@ layout element is, the quadrilateral that encloses it, and the logits the readin
 PP-DocLayoutV4 keeps the RT-DETR skeleton of its predecessor — an HGNetV2 backbone, an AIFI hybrid encoder and a
 deformable decoder — and changes three things:
 
-- **Quadrilaterals instead of masks.** [PPDocLayoutV3ForObjectDetection](/docs/transformers/v5.20.0/en/model_doc/pp_doclayout_v3#transformers.PPDocLayoutV3ForObjectDetection) predicted a segmentation mask per query and
+- **Quadrilaterals instead of masks.** [PPDocLayoutV3ForObjectDetection](/docs/transformers/v5.20.1/en/model_doc/pp_doclayout_v3#transformers.PPDocLayoutV3ForObjectDetection) predicted a segmentation mask per query and
   fitted a polygon to it. PP-DocLayoutV4 drops the mask branch entirely and directly regresses a four point quad,
   encoded as `[center_x, center_y, dx1, dy1, ..., dx4, dy4]` in sigmoid space. This handles skewed and perspective
   distorted documents without paying for a mask head, and the stride 4 backbone feature is no longer needed.
@@ -22,21 +22,21 @@ deformable decoder — and changes three things:
 
 The reading order is not decoded inside the model. `PPDocLayoutV4ForObjectDetection` returns the raw
 `relative_order_logits` and `successor_order_logits`, and
-[post_process_object_detection()](/docs/transformers/v5.20.0/en/model_doc/pp_doclayout_v4#transformers.PPDocLayoutV4ImageProcessor.post_process_object_detection) turns them into ranks by thresholding the successor
+[post_process_object_detection()](/docs/transformers/v5.20.1/en/model_doc/pp_doclayout_v4#transformers.PPDocLayoutV4ImageProcessor.post_process_object_detection) turns them into ranks by thresholding the successor
 matrix into a directed acyclic graph (DAG), breaking cycles, sorting each connected component topologically, and
 ordering the components by their relative order votes.
 
 ## Usage
 
-Results returned by [post_process_object_detection()](/docs/transformers/v5.20.0/en/model_doc/pp_doclayout_v4#transformers.PPDocLayoutV4ImageProcessor.post_process_object_detection) are already sorted by reading
+Results returned by [post_process_object_detection()](/docs/transformers/v5.20.1/en/model_doc/pp_doclayout_v4#transformers.PPDocLayoutV4ImageProcessor.post_process_object_detection) are already sorted by reading
 order. Each result carries `polygon_points` — a `(num_boxes, 4, 2)` tensor of the regressed corners in top-left,
 top-right, bottom-right, bottom-left order — plus `boxes`, the axis aligned rectangle enclosing each quad, and
-`order_seq`, the 0-based rank of each box. The [AutoModel](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoModel) example below prints `order_seq` directly, the others
+`order_seq`, the 0-based rank of each box. The [AutoModel](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoModel) example below prints `order_seq` directly, the others
 print the 1-based position in the sorted list, which is `order_seq + 1` unless one query was kept under several
 labels.
 
-[Pipeline](/docs/transformers/v5.20.0/en/main_classes/pipelines#transformers.Pipeline) preserves the reading order in the order of the returned list, but flattens each detection to a score, a
-label and an integer bounding box. Use the [AutoModel](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoModel) path below to get the quadrilaterals and `order_seq`.
+[Pipeline](/docs/transformers/v5.20.1/en/main_classes/pipelines#transformers.Pipeline) preserves the reading order in the order of the returned list, but flattens each detection to a score, a
+label and an integer bounding box. Use the [AutoModel](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoModel) path below to get the quadrilaterals and `order_seq`.
 
 ```python
 from transformers import pipeline
@@ -103,16 +103,16 @@ for result in results:
 transformers.PPDocLayoutV4ForObjectDetection(config: PPDocLayoutV4Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/pp_doclayout_v4/modeling_pp_doclayout_v4.py#L1650)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/pp_doclayout_v4/modeling_pp_doclayout_v4.py#L1650)
 
 **Parameters:**
 
-config ([PPDocLayoutV4Config](/docs/transformers/v5.20.0/en/model_doc/pp_doclayout_v4#transformers.PPDocLayoutV4Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPDocLayoutV4Config](/docs/transformers/v5.20.1/en/model_doc/pp_doclayout_v4#transformers.PPDocLayoutV4Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PP-DocLayoutV4 Model (consisting of a backbone and encoder-decoder) outputting quadrilaterals, class logits and
 reading order logits, for tasks such as document layout analysis.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -126,7 +126,7 @@ and behavior.
 forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, labels: list[dict] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/pp_doclayout_v4/modeling_pp_doclayout_v4.py#L1668)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/pp_doclayout_v4/modeling_pp_doclayout_v4.py#L1668)
 
 **Parameters:**
 
@@ -144,7 +144,7 @@ A `PPDocLayoutV4ForObjectDetectionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [PPDocLayoutV4ForObjectDetection](/docs/transformers/v5.20.0/en/model_doc/pp_doclayout_v4#transformers.PPDocLayoutV4ForObjectDetection) forward method, overrides the `__call__` special method.
+The [PPDocLayoutV4ForObjectDetection](/docs/transformers/v5.20.1/en/model_doc/pp_doclayout_v4#transformers.PPDocLayoutV4ForObjectDetection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -153,7 +153,7 @@ the latter silently ignores them.
 - **logits** (`torch.FloatTensor` of shape `(batch_size, num_queries, config.num_labels)`) -- Classification logits (without no-object) for all queries.
 - **pred_boxes** (`torch.FloatTensor` of shape `(batch_size, num_queries, config.num_coords)`) -- Normalized quads for all queries, encoded as `[center_x, center_y, dx1, dy1, ..., dx4, dy4]` where the corner
   offsets are shifted by `+0.5`. Use
-  [post_process_object_detection()](/docs/transformers/v5.20.0/en/model_doc/pp_doclayout_v4#transformers.PPDocLayoutV4ImageProcessor.post_process_object_detection) to retrieve the unnormalized corners and their
+  [post_process_object_detection()](/docs/transformers/v5.20.1/en/model_doc/pp_doclayout_v4#transformers.PPDocLayoutV4ImageProcessor.post_process_object_detection) to retrieve the unnormalized corners and their
   enclosing boxes.
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, num_queries, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the decoder of the model.
 - **intermediate_hidden_states** (`torch.FloatTensor` of shape `(batch_size, config.decoder_layers, num_queries, hidden_size)`) -- Stacked intermediate hidden states (output of each layer of the decoder).
@@ -241,15 +241,15 @@ Order 13: footer: 0.93 [339.27, 2255.7, 984.16, 2282.81]
 transformers.PPDocLayoutV4Model(config: PPDocLayoutV4Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/pp_doclayout_v4/modeling_pp_doclayout_v4.py#L1328)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/pp_doclayout_v4/modeling_pp_doclayout_v4.py#L1328)
 
 **Parameters:**
 
-config ([PPDocLayoutV4Config](/docs/transformers/v5.20.0/en/model_doc/pp_doclayout_v4#transformers.PPDocLayoutV4Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPDocLayoutV4Config](/docs/transformers/v5.20.1/en/model_doc/pp_doclayout_v4#transformers.PPDocLayoutV4Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PP-DocLayoutV4 Model (consisting of a backbone and encoder-decoder) outputting raw hidden states without any head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -263,7 +263,7 @@ and behavior.
 forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, labels: list[dict] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/pp_doclayout_v4/modeling_pp_doclayout_v4.py#L1466)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/pp_doclayout_v4/modeling_pp_doclayout_v4.py#L1466)
 
 **Parameters:**
 
@@ -281,7 +281,7 @@ A `PPDocLayoutV4ModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [PPDocLayoutV4Model](/docs/transformers/v5.20.0/en/model_doc/pp_doclayout_v4#transformers.PPDocLayoutV4Model) forward method, overrides the `__call__` special method.
+The [PPDocLayoutV4Model](/docs/transformers/v5.20.1/en/model_doc/pp_doclayout_v4#transformers.PPDocLayoutV4Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -332,7 +332,7 @@ the latter silently ignores them.
 transformers.PPDocLayoutV4Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, is_encoder_decoder: bool = True, initializer_range: float = 0.01, initializer_bias_prior_prob: float | None = None, layer_norm_eps: float = 1e-05, batch_norm_eps: float = 1e-05, tie_word_embeddings: bool = True, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, freeze_backbone_batch_norms: bool = True, encoder_hidden_dim: int = 256, encoder_in_channels: list[int] | tuple[int, ...] = (512, 1024, 2048), feat_strides: list[int] | tuple[int, ...] = (8, 16, 32), encoder_layers: int = 1, encoder_ffn_dim: int = 1024, encoder_attention_heads: int = 8, dropout: float | int = 0.0, activation_dropout: float | int = 0.0, encode_proj_layers: list[int] | tuple[int, ...] = (2,), positional_encoding_temperature: int = 10000, encoder_activation_function: str = 'gelu', activation_function: str = 'silu', eval_size: list[int] | tuple[int, int] | None = None, normalize_before: bool = False, hidden_expansion: float = 1.0, num_queries: int = 300, decoder_in_channels: list[int] | tuple[int, ...] = (256, 256, 256), decoder_ffn_dim: int = 1024, num_feature_levels: int = 3, decoder_n_points: int = 4, decoder_layers: int = 6, decoder_attention_heads: int = 8, decoder_activation_function: str = 'relu', attention_dropout: float | int = 0.0, num_denoising: int = 100, anchor_image_size: list[int] | tuple[int, int] | None = None, disable_custom_kernels: bool = True, global_pointer_head_size: int = 64, gp_dropout_value: float | int = 0.1, hidden_size: int = 256, num_coords: int = 10, s2r_steps: int = 3, s2r_damping: float = 0.5, s2r_closure_weight_init: float = 0.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/pp_doclayout_v4/configuration_pp_doclayout_v4.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/pp_doclayout_v4/configuration_pp_doclayout_v4.py#L30)
 
 **Parameters:**
 
@@ -424,8 +424,8 @@ This is the configuration class to store the configuration of a PPDocLayoutV4Mod
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/PP-DocLayoutV4_safetensors](https://huggingface.co/PaddlePaddle/PP-DocLayoutV4_safetensors)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -450,7 +450,7 @@ Examples:
 transformers.PPDocLayoutV4ImageProcessor(**kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/pp_doclayout_v4/image_processing_pp_doclayout_v4.py#L35)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/pp_doclayout_v4/image_processing_pp_doclayout_v4.py#L35)
 
 **Parameters:**
 
@@ -528,7 +528,7 @@ Added for backward compatibility but this should be set as a processor attribute
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, image_like_kwargs: dict[str, typing.Any] | None = None, **kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -590,7 +590,7 @@ Preprocess an image or a batch of images.
 post_process_object_detection(outputs, threshold: float = 0.5, target_sizes = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/pp_doclayout_v4/image_processing_pp_doclayout_v4.py#L120)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/pp_doclayout_v4/image_processing_pp_doclayout_v4.py#L120)
 
 **Parameters:**
 
@@ -606,9 +606,9 @@ A list of dictionaries, one per image, each containing the `scores`, `labels`, `
 `polygon_points` and `order_seq` predicted by the model. Predictions are sorted by reading order, so
 `order_seq` is non-decreasing (a query selected under several labels keeps a single rank).
 
-Converts the raw output of [PPDocLayoutV4ForObjectDetection](/docs/transformers/v5.20.0/en/model_doc/pp_doclayout_v4#transformers.PPDocLayoutV4ForObjectDetection) into final quadrilaterals, enclosing boxes in
+Converts the raw output of [PPDocLayoutV4ForObjectDetection](/docs/transformers/v5.20.1/en/model_doc/pp_doclayout_v4#transformers.PPDocLayoutV4ForObjectDetection) into final quadrilaterals, enclosing boxes in
 `(top_left_x, top_left_y, bottom_right_x, bottom_right_y)` format and reading order ranks. Only supports
 PyTorch.
 
 ### Cohere2 MoE
-https://huggingface.co/docs/transformers/v5.20.0/model_doc/cohere2_moe.md
+https://huggingface.co/docs/transformers/v5.20.1/model_doc/cohere2_moe.md

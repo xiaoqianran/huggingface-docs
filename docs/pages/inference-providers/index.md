@@ -855,7 +855,7 @@ Find out more about Text To Image [here](../tasks/text-to-image).
 
 <InferenceSnippet
     pipeline=text-to-image
-    providersMapping={ {"fal-ai":{"modelId":"black-forest-labs/FLUX.1-dev","providerModelId":"fal-ai/flux/dev"} } }
+    providersMapping={ {"fal-ai":{"modelId":"krea/Krea-2-Turbo","providerModelId":"fal-ai/krea-2/turbo"} } }
 />
 
 ### Text To Video
@@ -918,7 +918,7 @@ Find out more about Text To Image [here](../tasks/text-to-image).
 
 <InferenceSnippet
     pipeline=text-to-image
-    providersMapping={ {"wavespeed":{"modelId":"black-forest-labs/FLUX.1-dev","providerModelId":"wavespeed-ai/flux-dev"} } }
+    providersMapping={ {"wavespeed":{"modelId":"krea/Krea-2-Turbo","providerModelId":"wavespeed-ai/krea-v2-medium-turbo/text-to-image"} } }
 />
 
 ### Text To Video
@@ -927,7 +927,7 @@ Find out more about Text To Video [here](../tasks/text-to-video).
 
 <InferenceSnippet
     pipeline=text-to-video
-    providersMapping={ {"wavespeed":{"modelId":"larryvrh/MiniMax-H3-Turbo-Lora","providerModelId":"wavespeed-ai/minimax-h3/text-to-video-lora"} } }
+    providersMapping={ {"wavespeed":{"modelId":"ZhengmingYu/DMAD","providerModelId":"wavespeed-ai/minimax-h3/text-to-video-lora"} } }
 />
 
 ### Template
@@ -1239,7 +1239,7 @@ Find out more about Image Classification [here](../tasks/image-classification).
 
 <InferenceSnippet
     pipeline=image-classification
-    providersMapping={ {"hf-inference":{"modelId":"Falconsai/nsfw_image_detection","providerModelId":"Falconsai/nsfw_image_detection"} } }
+    providersMapping={ {"hf-inference":{"modelId":"microsoft/resnet-50","providerModelId":"microsoft/resnet-50"} } }
 />
 
 ### Image Segmentation
@@ -1248,7 +1248,7 @@ Find out more about Image Segmentation [here](../tasks/image-segmentation).
 
 <InferenceSnippet
     pipeline=image-segmentation
-    providersMapping={ {"hf-inference":{"modelId":"facebook/mask2former-swin-large-ade-semantic","providerModelId":"facebook/mask2former-swin-large-ade-semantic"} } }
+    providersMapping={ {"hf-inference":{"modelId":"facebook/mask2former-swin-base-ade-semantic","providerModelId":"facebook/mask2former-swin-base-ade-semantic"} } }
 />
 
 ### Object Detection

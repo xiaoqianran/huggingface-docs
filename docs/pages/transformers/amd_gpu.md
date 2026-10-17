@@ -50,7 +50,7 @@ Use `rocm-smi` or `amd-smi` to list the GPUs and their indices.
 
 ## Run inference
 
-[Pipeline](/docs/transformers/v5.20.0/en/main_classes/pipelines#transformers.Pipeline) and `device_map="auto"` detect AMD GPUs and place the model on `cuda` automatically. You can also pass `device_map="cuda"` or `device_map="cuda:1"` explicitly.
+[Pipeline](/docs/transformers/v5.20.1/en/main_classes/pipelines#transformers.Pipeline) and `device_map="auto"` detect AMD GPUs and place the model on `cuda` automatically. You can also pass `device_map="cuda"` or `device_map="cuda:1"` explicitly.
 
 ```py
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -100,7 +100,7 @@ You can also pass the kernel repository directly with `attn_implementation="kern
 
 ## Use Hub kernels
 
-Set `use_kernels=True` in [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to replace supported layers with optimized kernels from the Hub. Transformers detects ROCm and picks the AMD build for each layer, such as `kernels-community/aiter-rope` for rotary embeddings and `kernels-community/liger-kernels` for RMSNorm. When you write a custom [KernelConfig](/docs/transformers/v5.20.0/en/main_classes/kernels#transformers.KernelConfig), use `"rocm"` as the device key for AMD-specific mappings.
+Set `use_kernels=True` in [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to replace supported layers with optimized kernels from the Hub. Transformers detects ROCm and picks the AMD build for each layer, such as `kernels-community/aiter-rope` for rotary embeddings and `kernels-community/liger-kernels` for RMSNorm. When you write a custom [KernelConfig](/docs/transformers/v5.20.1/en/main_classes/kernels#transformers.KernelConfig), use `"rocm"` as the device key for AMD-specific mappings.
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -118,7 +118,7 @@ Methods supported on ROCm include [AWQ](./quantization/awq), [GPT-QModel](./quan
 
 ## Train with Trainer
 
-[TrainingArguments](/docs/transformers/v5.20.0/en/main_classes/trainer#transformers.TrainingArguments) detects AMD GPUs and sets the device to `cuda` automatically.
+[TrainingArguments](/docs/transformers/v5.20.1/en/main_classes/trainer#transformers.TrainingArguments) detects AMD GPUs and sets the device to `cuda` automatically.
 
 ```py
 from transformers import TrainingArguments
@@ -152,7 +152,7 @@ See [Tensor parallelism](./tensor_parallelism), [Expert parallelism](./expert_pa
 
 ## Limitations
 
-- `CodeCarbonCallback` isn't compatible with ROCm. Set `report_to` in [TrainingArguments](/docs/transformers/v5.20.0/en/main_classes/trainer#transformers.TrainingArguments) to exclude `codecarbon`.
+- `CodeCarbonCallback` isn't compatible with ROCm. Set `report_to` in [TrainingArguments](/docs/transformers/v5.20.1/en/main_classes/trainer#transformers.TrainingArguments) to exclude `codecarbon`.
 - Quantization methods marked 🔴 for ROCm in the [compatibility table](./quantization/overview) rely on CUDA-only kernels and fail to load on AMD GPUs.
 
 ## Next steps
@@ -162,4 +162,4 @@ See [Tensor parallelism](./tensor_parallelism), [Expert parallelism](./expert_pa
 - Read [Loading kernels](./kernel_doc/loading_kernels) to customize which kernels replace which layers.
 
 ### Fusion mapping (experimental feature)
-https://huggingface.co/docs/transformers/v5.20.0/fusion_mapping.md
+https://huggingface.co/docs/transformers/v5.20.1/fusion_mapping.md

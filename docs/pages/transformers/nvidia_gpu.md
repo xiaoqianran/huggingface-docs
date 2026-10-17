@@ -1,6 +1,6 @@
 # NVIDIA GPU
 
-[TrainingArguments](/docs/transformers/v5.20.0/en/main_classes/trainer#transformers.TrainingArguments), [Trainer](/docs/transformers/v5.20.0/en/main_classes/trainer#transformers.Trainer), and [Pipeline](/docs/transformers/v5.20.0/en/main_classes/pipelines#transformers.Pipeline) detect NVIDIA GPUs and set the backend to `cuda` automatically.
+[TrainingArguments](/docs/transformers/v5.20.1/en/main_classes/trainer#transformers.TrainingArguments), [Trainer](/docs/transformers/v5.20.1/en/main_classes/trainer#transformers.Trainer), and [Pipeline](/docs/transformers/v5.20.1/en/main_classes/pipelines#transformers.Pipeline) detect NVIDIA GPUs and set the backend to `cuda` automatically.
 
 ## Select and order GPUs
 
@@ -44,4 +44,4 @@ Control the order of CUDA devices with `CUDA_DEVICE_ORDER`.
     ```
 
 ### Multimodal chat templates
-https://huggingface.co/docs/transformers/v5.20.0/chat_templating_multimodal.md
+https://huggingface.co/docs/transformers/v5.20.1/chat_templating_multimodal.md

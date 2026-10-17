@@ -208,4 +208,4 @@ AI-assisted contributions are welcome. They must be coordinated, scoped, and ver
 > These topics are outlined for agents in `AGENTS.md` with instruction for how to autonomously implement them.
 
 ### Cache strategies
-https://huggingface.co/docs/transformers/v5.20.0/kv_cache.md
+https://huggingface.co/docs/transformers/v5.20.1/kv_cache.md

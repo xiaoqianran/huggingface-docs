@@ -130,7 +130,7 @@ After installation, you can configure the Transformers cache location or set up 
 
 ### Cache directory
 
-When you load a pretrained model with [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), the model is downloaded from the Hub and locally cached.
+When you load a pretrained model with [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), the model is downloaded from the Hub and locally cached.
 
 If you pass a commit hash, Transformers uses the local cache for that commit's files and does not re-check the Hub for each one (including files that are known to be missing). This is the default behavior when no revision is specified.
 
@@ -159,7 +159,7 @@ snapshot_download(repo_id="meta-llama/Llama-2-7b-hf", repo_type="model")
 
 Set the environment variable `HF_HUB_OFFLINE=1` to prevent HTTP calls to the Hub when loading a model.
 
-Another option for only loading cached files is to set `local_files_only=True` in [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
+Another option for only loading cached files is to set `local_files_only=True` in [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
 
 ```py
 from transformers import LlamaForCausalLM
@@ -170,4 +170,4 @@ model = LlamaForCausalLM.from_pretrained("./path/to/local/directory", local_file
 Offline mode (or `local_files_only=True`) can still turn a branch or tag into a commit if an earlier online load saved that mapping in the cache. If the mapping was never saved, Transformers keeps the branch or tag you asked for and continues with the regular offline load. You get the same cache hits or missing-file errors as a normal offline load.
 
 ### Debugging
-https://huggingface.co/docs/transformers/v5.20.0/debugging.md
+https://huggingface.co/docs/transformers/v5.20.1/debugging.md

@@ -12,7 +12,7 @@ The SLANeXt series is a new generation of table structure recognition models ind
 
 ### Single input inference
 
-The example below demonstrates how to detect text with PP-OCRV5_Mobile_Det using the [AutoModel](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoModel).
+The example below demonstrates how to detect text with PP-OCRV5_Mobile_Det using the [AutoModel](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoModel).
 
 ```python
 import requests
@@ -42,11 +42,11 @@ print(result['structure_score'])
 transformers.SLANeXtConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vision_config: dict | transformers.models.slanext.configuration_slanext.SLANeXtVisionConfig | None = None, post_conv_in_channels: int = 256, post_conv_out_channels: int = 512, out_channels: int = 50, hidden_size: int = 512, max_text_length: int = 500)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/slanext/configuration_slanext.py#L70)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/slanext/configuration_slanext.py#L70)
 
 **Parameters:**
 
-vision_config (`dict` or [SLANeXtVisionConfig](/docs/transformers/v5.20.0/en/model_doc/slanext#transformers.SLANeXtVisionConfig), *optional*) : Configuration for the vision encoder. If `None`, a default [SLANeXtVisionConfig](/docs/transformers/v5.20.0/en/model_doc/slanext#transformers.SLANeXtVisionConfig) is used.
+vision_config (`dict` or [SLANeXtVisionConfig](/docs/transformers/v5.20.1/en/model_doc/slanext#transformers.SLANeXtVisionConfig), *optional*) : Configuration for the vision encoder. If `None`, a default [SLANeXtVisionConfig](/docs/transformers/v5.20.1/en/model_doc/slanext#transformers.SLANeXtVisionConfig) is used.
 
 post_conv_in_channels (`int`, *optional*, defaults to 256) : Number of input channels for the post-encoder convolution layer.
 
@@ -62,8 +62,8 @@ This is the configuration class to store the configuration of a SlanextModel. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/SLANeXt_wired_safetensors](https://huggingface.co/PaddlePaddle/SLANeXt_wired_safetensors)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## SLANeXtVisionConfig[[transformers.SLANeXtVisionConfig]]
 
@@ -73,7 +73,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes
 transformers.SLANeXtVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 768, output_channels: int = 256, num_hidden_layers: int = 12, num_attention_heads: int = 12, num_channels: int = 3, image_size: int = 512, patch_size: int | list[int] | tuple[int, int] = 16, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-06, attention_dropout: float | int = 0.0, initializer_range: float = 1e-10, qkv_bias: bool = True, use_abs_pos: bool = True, use_rel_pos: bool = True, window_size: int = 14, global_attn_indexes: list[int] | tuple[int, ...] = (2, 5, 8, 11), mlp_dim: int = 3072)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/slanext/configuration_slanext.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/slanext/configuration_slanext.py#L30)
 
 **Parameters:**
 
@@ -115,8 +115,8 @@ This is the configuration class to store the configuration of a SlanextModel. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/SLANeXt_wired_safetensors](https://huggingface.co/PaddlePaddle/SLANeXt_wired_safetensors)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## SLANeXtForTableRecognition[[transformers.SLANeXtForTableRecognition]]
 
@@ -126,16 +126,16 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes
 transformers.SLANeXtForTableRecognition(config: SLANeXtConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/slanext/modeling_slanext.py#L617)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/slanext/modeling_slanext.py#L617)
 
 **Parameters:**
 
-config ([SLANeXtConfig](/docs/transformers/v5.20.0/en/model_doc/slanext#transformers.SLANeXtConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SLANeXtConfig](/docs/transformers/v5.20.1/en/model_doc/slanext#transformers.SLANeXtConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 SLANeXt Table Recognition model for table recognition tasks. Wraps the core SLANeXtPreTrainedModel
 and returns outputs compatible with the Transformers table recognition API.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -149,19 +149,19 @@ and behavior.
 forward(pixel_values: FloatTensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/slanext/modeling_slanext.py#L624)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/slanext/modeling_slanext.py#L624)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SLANeXtImageProcessor](/docs/transformers/v5.20.0/en/model_doc/slanext#transformers.SLANeXtImageProcessor). See [SLANeXtImageProcessor.__call__()](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [SLANeXtImageProcessor](/docs/transformers/v5.20.0/en/model_doc/slanext#transformers.SLANeXtImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SLANeXtImageProcessor](/docs/transformers/v5.20.1/en/model_doc/slanext#transformers.SLANeXtImageProcessor). See [SLANeXtImageProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [SLANeXtImageProcessor](/docs/transformers/v5.20.1/en/model_doc/slanext#transformers.SLANeXtImageProcessor) for processing images).
 
 **Returns:** `SLANeXtForTableRecognitionOutput` or `tuple(torch.FloatTensor)`
 
 A `SLANeXtForTableRecognitionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SLANeXtConfig](/docs/transformers/v5.20.0/en/model_doc/slanext#transformers.SLANeXtConfig)) and inputs.
+elements depending on the configuration ([SLANeXtConfig](/docs/transformers/v5.20.1/en/model_doc/slanext#transformers.SLANeXtConfig)) and inputs.
 
-The [SLANeXtForTableRecognition](/docs/transformers/v5.20.0/en/model_doc/slanext#transformers.SLANeXtForTableRecognition) forward method, overrides the `__call__` special method.
+The [SLANeXtForTableRecognition](/docs/transformers/v5.20.1/en/model_doc/slanext#transformers.SLANeXtForTableRecognition) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -188,7 +188,7 @@ the latter silently ignores them.
 transformers.SLANeXtBackbone(config: dict | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/slanext/modeling_slanext.py#L521)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/slanext/modeling_slanext.py#L521)
 
 ## SLANeXtSLAHead[[transformers.SLANeXtSLAHead]]
 
@@ -198,7 +198,7 @@ transformers.SLANeXtBackbone(config: dict | None = None, **kwargs)
 transformers.SLANeXtSLAHead(config: dict | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/slanext/modeling_slanext.py#L545)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/slanext/modeling_slanext.py#L545)
 
 ## SLANeXtImageProcessor[[transformers.SLANeXtImageProcessor]]
 
@@ -208,7 +208,7 @@ transformers.SLANeXtSLAHead(config: dict | None = None, **kwargs)
 transformers.SLANeXtImageProcessor(**kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/slanext/image_processing_slanext.py#L40)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/slanext/image_processing_slanext.py#L40)
 
 **Parameters:**
 
@@ -260,7 +260,7 @@ Constructs a SLANeXtImageProcessor image processor.
 init_decoder()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/slanext/image_processing_slanext.py#L172)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/slanext/image_processing_slanext.py#L172)
 
 Initialize the decoder vocabulary for table structure recognition.
 
@@ -275,7 +275,7 @@ when applicable.
 post_process_table_recognition(outputs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/slanext/image_processing_slanext.py#L208)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/slanext/image_processing_slanext.py#L208)
 
 **Parameters:**
 
@@ -295,4 +295,4 @@ HTML tokens representing the table structure. The decoded tokens are wrapped wit
 `<table>` tags to form a complete HTML table structure.
 
 ### MPT
-https://huggingface.co/docs/transformers/v5.20.0/model_doc/mpt.md
+https://huggingface.co/docs/transformers/v5.20.1/model_doc/mpt.md

@@ -1498,6 +1498,7 @@ https://huggingface.co/docs/transformers/model_doc/bark.md
 https://huggingface.co/docs/transformers/model_doc/bart.md
 https://huggingface.co/docs/transformers/model_doc/barthez.md
 https://huggingface.co/docs/transformers/model_doc/bartpho.md
+https://huggingface.co/docs/transformers/model_doc/beam.md
 https://huggingface.co/docs/transformers/model_doc/beit.md
 https://huggingface.co/docs/transformers/model_doc/bert-generation.md
 https://huggingface.co/docs/transformers/model_doc/bert-japanese.md

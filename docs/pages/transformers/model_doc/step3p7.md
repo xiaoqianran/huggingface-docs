@@ -10,7 +10,7 @@ StepFun hasn't published a technical report for Step-3.7-Flash, so the details b
 
 - **Sparse MoE decoder**: all but the first 3 decoder layers route through a MoE block of 288 routed experts (top-8 per token) plus a single shared expert. The router scores experts with a sigmoid and a learned per-expert bias instead of an auxiliary load-balancing loss, the same strategy as [DeepSeek-V3](./deepseek_v3).
 - **Gated attention**: each attention layer adds an extra projection whose sigmoid output gates the attention output per head, before the output projection — the same *Gated Attention* mechanism used in [Qwen3-Next](./qwen3_next). A subset of layers use fewer heads and a sliding window instead of full attention.
-- **Multi-token prediction**: some checkpoints ship extra decoder layers trained for multi-token prediction, which [generate()](/docs/transformers/v5.20.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) can use for speculative decoding via `use_mtp=True`.
+- **Multi-token prediction**: some checkpoints ship extra decoder layers trained for multi-token prediction, which [generate()](/docs/transformers/v5.20.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) can use for speculative decoding via `use_mtp=True`.
 - **Vision encoder**: a SigLIP-style ViT with 2-D rotary position embeddings and a learned per-layer scale on the attention and MLP branches. Its output is downsampled 4x by two stride-2 convolutions before a linear projector maps it into the text model's hidden size.
 - **Dynamic image tiling**: instead of a fixed tile grid, the image processor picks its tiling window from each image's own aspect ratio, producing one downscaled global view plus zero or more local high-resolution crops per image.
 
@@ -50,7 +50,7 @@ print(processor.batch_decode(generated_ids, skip_special_tokens=True)[0])
 transformers.Step3p7Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, projector_bias: bool = False, image_token_id: int = 151679)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/step3p7/configuration_step3p7.py#L315)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/step3p7/configuration_step3p7.py#L315)
 
 **Parameters:**
 
@@ -66,8 +66,8 @@ This is the configuration class to store the configuration of a Step3p7Model. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [stepfun-ai/Step-3.7-Flash](https://huggingface.co/stepfun-ai/Step-3.7-Flash)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Step3p7VisionConfig[[transformers.Step3p7VisionConfig]]
 
@@ -77,7 +77,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes
 transformers.Step3p7VisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 1536, intermediate_size: int = 3072, num_hidden_layers: int = 47, num_attention_heads: int = 16, num_channels: int = 3, image_size: int = 728, patch_size: int = 14, hidden_act: str = 'quick_gelu', layer_norm_eps: float = 1e-05, attention_dropout: float | int = 0.0, mlp_ratio: float = 5.833333333333333, layer_scale_init_value: float = 0.1, rope_parameters: dict | None = None, max_position_embeddings: int = 2704)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/step3p7/configuration_step3p7.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/step3p7/configuration_step3p7.py#L30)
 
 **Parameters:**
 
@@ -113,8 +113,8 @@ This is the configuration class to store the configuration of a Step3p7Model. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [stepfun-ai/Step-3.7-Flash](https://huggingface.co/stepfun-ai/Step-3.7-Flash)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -139,7 +139,7 @@ Example:
 transformers.Step3p7TextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 128815, hidden_size: int = 4096, intermediate_size: int = 11264, num_hidden_layers: int = 45, num_attention_heads: int = 64, num_key_value_heads: int = 8, head_dim: int = 128, hidden_act: str = 'silu', max_position_embeddings: int = 128000, initializer_range: float = 0.02, rms_norm_eps: float = 1e-05, use_cache: bool = True, pad_token_id: int = 1, bos_token_id: int | None = None, eos_token_id: int | list[int] | None = None, tie_word_embeddings: bool = False, attention_dropout: float | int = 0.0, num_experts_per_tok: int = 8, num_local_experts: int = 128, output_router_logits: bool = False, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, mlp_layer_types: list[str] | None = None, layer_types: list[str] | None = None, moe_intermediate_size: int = 1280, n_routed_experts: int = 288, share_expert_dim: int = 1280, sliding_window: int | None = None, num_sliding_attention_heads: int | None = None, attention_bias: bool = False, query_pre_attn_scalar: int | float | None = None, moe_router_scaling_factor: float = 1.0, mlp_bias: bool = False, swiglu_limits: list[float | int | None] | None = None, swiglu_limits_shared: list[float | int | None] | None = None, mtp_layer_types: list[str] | None = None, mtp_mlp_layer_types: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/step3p7/configuration_step3p7.py#L79)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/step3p7/configuration_step3p7.py#L79)
 
 **Parameters:**
 
@@ -219,8 +219,8 @@ This is the configuration class to store the configuration of a Step3p7Model. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [stepfun-ai/Step-3.7-Flash](https://huggingface.co/stepfun-ai/Step-3.7-Flash)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Step3p7ImageProcessor[[transformers.Step3p7ImageProcessor]]
 
@@ -230,7 +230,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes
 transformers.Step3p7ImageProcessor(**kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/step3p7/image_processing_step3p7.py#L46)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/step3p7/image_processing_step3p7.py#L46)
 
 **Parameters:**
 
@@ -324,7 +324,7 @@ Added for backward compatibility but this should be set as a processor attribute
 get_number_of_image_patches(height: int, width: int, images_kwargs = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/step3p7/image_processing_step3p7.py#L142)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/step3p7/image_processing_step3p7.py#L142)
 
 Return the number of local patches for an image of the given size.
 
@@ -334,7 +334,7 @@ Return the number of local patches for an image of the given size.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.step3p7.image_processing_step3p7.Step3p7ImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/step3p7/image_processing_step3p7.py#L271)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/step3p7/image_processing_step3p7.py#L271)
 
 **Parameters:**
 
@@ -398,7 +398,7 @@ max_image_size (`int`, *kwargs*, *optional*, defaults to 3024) : Images larger t
 transformers.Step3p7Processor(image_processor, tokenizer = None, chat_template = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/step3p7/processing_step3p7.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/step3p7/processing_step3p7.py#L26)
 
 **Parameters:**
 
@@ -410,8 +410,8 @@ chat_template (`str`) : A Jinja template to convert lists of messages in a chat 
 
 Constructs a Step3p7Processor which wraps a image processor and a tokenizer into a single processor.
 
-[Step3p7Processor](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7Processor) offers all the functionalities of [Step3p7ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7ImageProcessor) and `tokenizer_class`. See the
-[~Step3p7ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7ImageProcessor) and `~tokenizer_class` for more information.
+[Step3p7Processor](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7Processor) offers all the functionalities of [Step3p7ImageProcessor](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7ImageProcessor) and `tokenizer_class`. See the
+[~Step3p7ImageProcessor](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7ImageProcessor) and `~tokenizer_class` for more information.
 
 #### replace_image_token[[transformers.Step3p7Processor.replace_image_token]]
 
@@ -419,7 +419,7 @@ Constructs a Step3p7Processor which wraps a image processor and a tokenizer into
 replace_image_token(image_inputs: dict, image_idx: int, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/step3p7/processing_step3p7.py#L49)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/step3p7/processing_step3p7.py#L49)
 
 Return the expanded token string for image *image_idx* (patches + global view).
 
@@ -431,15 +431,15 @@ Return the expanded token string for image *image_idx* (patches + global view).
 transformers.Step3p7VisionModel(config: Step3p7VisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/step3p7/modeling_step3p7.py#L386)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/step3p7/modeling_step3p7.py#L386)
 
 **Parameters:**
 
-config ([Step3p7VisionConfig](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7VisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Step3p7VisionConfig](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7VisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Step3P7 Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -453,19 +453,19 @@ and behavior.
 forward(pixel_values: Tensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/step3p7/modeling_step3p7.py#L412)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/step3p7/modeling_step3p7.py#L412)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Step3p7ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7ImageProcessor). See [Step3p7ImageProcessor.__call__()](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Step3p7Processor](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7Processor) uses [Step3p7ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Step3p7ImageProcessor](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7ImageProcessor). See [Step3p7ImageProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Step3p7Processor](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7Processor) uses [Step3p7ImageProcessor](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7ImageProcessor) for processing images).
 
-**Returns:** [BaseModelOutput](/docs/transformers/v5.20.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutput](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutput](/docs/transformers/v5.20.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+A [BaseModelOutput](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Step3p7Config](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7Config)) and inputs.
+elements depending on the configuration ([Step3p7Config](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7Config)) and inputs.
 
-The [Step3p7VisionModel](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7VisionModel) forward method, overrides the `__call__` special method.
+The [Step3p7VisionModel](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7VisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -490,15 +490,15 @@ the latter silently ignores them.
 transformers.Step3p7TextModel(config: Step3p7TextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/step3p7/modeling_step3p7.py#L813)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/step3p7/modeling_step3p7.py#L813)
 
 **Parameters:**
 
-config ([Step3p7TextConfig](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7TextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Step3p7TextConfig](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7TextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Step3P7 Text Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -512,17 +512,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/step3p7/modeling_step3p7.py#L845)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/step3p7/modeling_step3p7.py#L845)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -532,16 +532,16 @@ use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value s
 
 A `MoeModelOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Step3p7Config](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7Config)) and inputs.
+elements depending on the configuration ([Step3p7Config](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7Config)) and inputs.
 
-The [Step3p7TextModel](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7TextModel) forward method, overrides the `__call__` special method.
+The [Step3p7TextModel](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7TextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -568,15 +568,15 @@ the latter silently ignores them.
 transformers.Step3p7Model(config: Step3p7Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/step3p7/modeling_step3p7.py#L945)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/step3p7/modeling_step3p7.py#L945)
 
 **Parameters:**
 
-config ([Step3p7Config](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Step3p7Config](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Llava-Next model which consists of a vision backbone and a language model without language modeling head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -590,13 +590,13 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_values_local: typing.Optional[torch.FloatTensor] = None, num_local_patches: typing.Union[list[int], torch.Tensor, NoneType] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/step3p7/modeling_step3p7.py#L1030)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/step3p7/modeling_step3p7.py#L1030)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Step3p7ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7ImageProcessor). See [Step3p7ImageProcessor.__call__()](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Step3p7Processor](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7Processor) uses [Step3p7ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7ImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Step3p7ImageProcessor](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7ImageProcessor). See [Step3p7ImageProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Step3p7Processor](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7Processor) uses [Step3p7ImageProcessor](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7ImageProcessor) for processing images).
 
 pixel_values_local (`torch.FloatTensor`, *optional*) : Local patch pixel values of shape `(total_patches, 3, H, W)`.
 
@@ -606,7 +606,7 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -618,9 +618,9 @@ mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *
 
 A `Step3p7ModelOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Step3p7Config](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7Config)) and inputs.
+elements depending on the configuration ([Step3p7Config](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7Config)) and inputs.
 
-The [Step3p7Model](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7Model) forward method, overrides the `__call__` special method.
+The [Step3p7Model](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -630,7 +630,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -657,15 +657,15 @@ the latter silently ignores them.
 transformers.Step3p7ForConditionalGeneration(config: Step3p7Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/step3p7/modeling_step3p7.py#L1122)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/step3p7/modeling_step3p7.py#L1122)
 
 **Parameters:**
 
-config ([Step3p7Config](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Step3p7Config](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Step3P7 Model for token generation conditioned on other modalities (e.g. image-text-to-text generation).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -679,13 +679,13 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_values_local: typing.Optional[torch.FloatTensor] = None, num_local_patches: typing.Union[list[int], torch.Tensor, NoneType] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/step3p7/modeling_step3p7.py#L1163)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/step3p7/modeling_step3p7.py#L1163)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Step3p7ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7ImageProcessor). See [Step3p7ImageProcessor.__call__()](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Step3p7Processor](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7Processor) uses [Step3p7ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7ImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Step3p7ImageProcessor](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7ImageProcessor). See [Step3p7ImageProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Step3p7Processor](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7Processor) uses [Step3p7ImageProcessor](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7ImageProcessor) for processing images).
 
 pixel_values_local (`torch.FloatTensor`, *optional*) : Local patch pixel values of shape `(total_patches, 3, H, W)`.
 
@@ -695,7 +695,7 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -711,9 +711,9 @@ mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *
 
 A `Step3p7CausalLMOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Step3p7Config](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7Config)) and inputs.
+elements depending on the configuration ([Step3p7Config](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7Config)) and inputs.
 
-The [Step3p7ForConditionalGeneration](/docs/transformers/v5.20.0/en/model_doc/step3p7#transformers.Step3p7ForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [Step3p7ForConditionalGeneration](/docs/transformers/v5.20.1/en/model_doc/step3p7#transformers.Step3p7ForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -721,7 +721,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -771,4 +771,4 @@ Example:
 ```
 
 ### Autoformer
-https://huggingface.co/docs/transformers/v5.20.0/model_doc/autoformer.md
+https://huggingface.co/docs/transformers/v5.20.1/model_doc/autoformer.md

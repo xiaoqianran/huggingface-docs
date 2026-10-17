@@ -6,16 +6,16 @@ EmbeddingGemma 2 is a multimodal embedding model from Google built on the [Gemma
 
 Key features:
 
-- **Unified multimodal vector space.** Vision ([Gemma4VisionModel](/docs/transformers/v5.20.0/en/model_doc/gemma4#transformers.Gemma4VisionModel)) and audio ([Gemma4AudioModel](/docs/transformers/v5.20.0/en/model_doc/gemma4#transformers.Gemma4AudioModel)) towers project into a bidirectional text encoder ([EmbeddingGemma2TextModel](/docs/transformers/v5.20.0/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2TextModel)) that interleaves full and sliding-window attention with Per-Layer Embeddings (PLE). Any single modality (`text`, `image`, `audio`, `video`) or combination of modalities (`image + text`, `text + audio`, `image + audio`, multiple images, interleaved text and media) maps to a single comparable embedding.
-- **Matryoshka Representation Learning (MRL).** [EmbeddingGemma2Model](/docs/transformers/v5.20.0/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Model) outputs token representations projected to `embedding_dim` (`768`) via a linear head. Embeddings can be truncated to a smaller prefix (`512`, `256`, or `128`) and re-normalized with minimal quality loss.
-- **Configurable visual & video budgets.** [EmbeddingGemma2Processor](/docs/transformers/v5.20.0/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Processor) lets you tune the soft-token budget per image or frame (`max_soft_tokens` in `{70, 140, 280, 560, 1120}`) and video sampling rate (`fps=1`, `max_frames=32`, `overflow_strategy="uniform"`, `add_timestamps=False` by default).
+- **Unified multimodal vector space.** Vision ([Gemma4VisionModel](/docs/transformers/v5.20.1/en/model_doc/gemma4#transformers.Gemma4VisionModel)) and audio ([Gemma4AudioModel](/docs/transformers/v5.20.1/en/model_doc/gemma4#transformers.Gemma4AudioModel)) towers project into a bidirectional text encoder ([EmbeddingGemma2TextModel](/docs/transformers/v5.20.1/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2TextModel)) that interleaves full and sliding-window attention with Per-Layer Embeddings (PLE). Any single modality (`text`, `image`, `audio`, `video`) or combination of modalities (`image + text`, `text + audio`, `image + audio`, multiple images, interleaved text and media) maps to a single comparable embedding.
+- **Matryoshka Representation Learning (MRL).** [EmbeddingGemma2Model](/docs/transformers/v5.20.1/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Model) outputs token representations projected to `embedding_dim` (`768`) via a linear head. Embeddings can be truncated to a smaller prefix (`512`, `256`, or `128`) and re-normalized with minimal quality loss.
+- **Configurable visual & video budgets.** [EmbeddingGemma2Processor](/docs/transformers/v5.20.1/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Processor) lets you tune the soft-token budget per image or frame (`max_soft_tokens` in `{70, 140, 280, 560, 1120}`) and video sampling rate (`fps=1`, `max_frames=32`, `overflow_strategy="uniform"`, `add_timestamps=False` by default).
 - **Selective modality tower loading.** Unused vision or audio towers can be disabled at load time (`vision_config=None`, `audio_config=None`) to reduce memory footprint for text-only or single-modality deployments.
 
 You can find all the original EmbeddingGemma checkpoints under the [EmbeddingGemma](https://huggingface.co/collections/google/embeddinggemma) collection. The examples below use the `google/embeddinggemma-2` identifier.
 
 ## Usage examples
 
-A sentence or multimodal embedding is obtained in two steps: mask-aware mean pooling over the non-padded tokens of `last_hidden_state`, followed by L2 normalization in `float32`. [Sentence Transformers](https://sbert.net) (`>=6.1.0`) performs preprocessing, prompt formatting, mean pooling, and normalization automatically and is the recommended entry point. With [AutoModel](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoModel), use `processor.apply_chat_template` (or `AutoTokenizer` for plain text) and pool `last_hidden_state` directly.
+A sentence or multimodal embedding is obtained in two steps: mask-aware mean pooling over the non-padded tokens of `last_hidden_state`, followed by L2 normalization in `float32`. [Sentence Transformers](https://sbert.net) (`>=6.1.0`) performs preprocessing, prompt formatting, mean pooling, and normalization automatically and is the recommended entry point. With [AutoModel](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoModel), use `processor.apply_chat_template` (or `AutoTokenizer` for plain text) and pool `last_hidden_state` directly.
 
 ### Text retrieval (`encode_query` / `encode_document`)
 
@@ -75,7 +75,7 @@ print(query_embedding @ document_embeddings.T)
 
 ### Task prompts
 
-The model supports optional task prompts prepended to the input (and included in mean pooling), though prompts are not mandatory and the model also works without them. Because the optimal setup depends on the downstream domain and modality mix, we recommend evaluating both with and without task prompts on your specific task. Sentence Transformers ships the catalog below in `config_sentence_transformers.json`, so pass `prompt_name` (or use `encode_query` / `encode_document`, which map to `query` and `document`); with [AutoModel](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoModel), pass the prompt as a `system` message in `apply_chat_template` (or prepend it to plain text).
+The model supports optional task prompts prepended to the input (and included in mean pooling), though prompts are not mandatory and the model also works without them. Because the optimal setup depends on the downstream domain and modality mix, we recommend evaluating both with and without task prompts on your specific task. Sentence Transformers ships the catalog below in `config_sentence_transformers.json`, so pass `prompt_name` (or use `encode_query` / `encode_document`, which map to `query` and `document`); with [AutoModel](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoModel), pass the prompt as a `system` message in `apply_chat_template` (or prepend it to plain text).
 
 ```python
 from sentence_transformers import SentenceTransformer
@@ -162,7 +162,7 @@ print(query_embedding @ document_embeddings.T)
 
 Text, images, audio, and video are mapped into the same 768-dimensional vector space, enabling **cross-modal retrieval** (e.g. searching images, audio, or videos with a text query) as well as **composed multimodal retrieval** (combining multiple modalities into a single query or document embedding).
 
-In Sentence Transformers, multimodal inputs are passed as dictionaries keyed by `"text"`, `"image"`, `"audio"`, and `"video"` (where each value can be a single item or a list of items). With [AutoModel](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoModel), pass chat-style message lists to `processor.apply_chat_template(..., tokenize=True, return_dict=True, return_tensors="pt")`.
+In Sentence Transformers, multimodal inputs are passed as dictionaries keyed by `"text"`, `"image"`, `"audio"`, and `"video"` (where each value can be a single item or a list of items). With [AutoModel](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoModel), pass chat-style message lists to `processor.apply_chat_template(..., tokenize=True, return_dict=True, return_tensors="pt")`.
 
 ### 1. Single modalities & cross-modal retrieval
 
@@ -515,7 +515,7 @@ vision_text_model = AutoModel.from_pretrained(
 
 ## Processor
 
-[EmbeddingGemma2Processor](/docs/transformers/v5.20.0/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Processor) bundles the tokenizer, the image processor, the audio feature extractor, and the video processor.
+[EmbeddingGemma2Processor](/docs/transformers/v5.20.1/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Processor) bundles the tokenizer, the image processor, the audio feature extractor, and the video processor.
 
 > [!TIP]
 > For batched multimodal inputs, we recommend passing per-sample dictionaries through **Sentence Transformers** (`model.encode([{"image": ..., "text": ...}, ...])`). For maximum control over exact modality ordering and interleaving, include `<|image|>`, `<|video|>`, and `<|audio|>` placeholders manually in `text`.
@@ -549,7 +549,7 @@ print(inputs["input_ids"].shape, inputs["pixel_values"].shape)
 
 ### Video frame sampling controls
 
-By default, [EmbeddingGemma2VideoProcessor](/docs/transformers/v5.20.0/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2VideoProcessor) samples frames at 1 FPS (`fps=1`), caps each clip at 32 frames (`max_frames=32`, `overflow_strategy="uniform"`), and omits frame timestamps from the prompt (`add_timestamps=False`). Each parameter can be overridden per call:
+By default, [EmbeddingGemma2VideoProcessor](/docs/transformers/v5.20.1/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2VideoProcessor) samples frames at 1 FPS (`fps=1`), caps each clip at 32 frames (`max_frames=32`, `overflow_strategy="uniform"`), and omits frame timestamps from the prompt (`add_timestamps=False`). Each parameter can be overridden per call:
 
 - `fps` (`int | float | None`): target sampling rate in frames per second. Requires `VideoMetadata` with valid `fps` and `duration` (automatically populated when decoding from a video file/URL). For pre-decoded frame arrays without metadata, FPS sampling is skipped with a warning and `max_frames` is applied directly.
 - `max_frames` (`int | None`): maximum number of frames retained per video.
@@ -623,7 +623,7 @@ print(list(inputs.keys()))
 transformers.EmbeddingGemma2TextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 262144, hidden_size: int = 512, intermediate_size: int = 2048, num_hidden_layers: int = 24, num_attention_heads: int = 4, num_key_value_heads: int = 2, head_dim: int = 256, hidden_activation: str = 'gelu_pytorch_tanh', max_position_embeddings: int = 262144, initializer_range: float = 0.02, rms_norm_eps: float = 1e-06, pad_token_id: int | None = 0, eos_token_id: int | list[int] | None = 1, bos_token_id: int | None = 2, rope_parameters: dict | None = None, attention_bias: bool = False, attention_dropout: int | float | None = 0.0, sliding_window: int = 512, layer_types: list[str] | None = None, hidden_size_per_layer_input: int = 512, embedding_dim: int = 768)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/embedding_gemma2/configuration_embedding_gemma2.py#L37)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/embedding_gemma2/configuration_embedding_gemma2.py#L37)
 
 **Parameters:**
 
@@ -673,8 +673,8 @@ This is the configuration class to store the configuration of a EmbeddingGemma2M
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/embeddinggemma-2](https://huggingface.co/google/embeddinggemma-2)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## EmbeddingGemma2Config[[transformers.EmbeddingGemma2Config]]
 
@@ -684,7 +684,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes
 transformers.EmbeddingGemma2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, text_config: transformers.models.embedding_gemma2.configuration_embedding_gemma2.EmbeddingGemma2TextConfig | dict[str, typing.Any] | None = None, vision_config: transformers.configuration_utils.PreTrainedConfig | dict[str, typing.Any] | None = None, audio_config: transformers.configuration_utils.PreTrainedConfig | dict[str, typing.Any] | None = None, boi_token_id: int | None = 255999, eoi_token_id: int | None = 258882, image_token_id: int | None = 258880, video_token_id: int | None = 258884, boa_token_id: int | None = 256000, eoa_token_index: int | None = 258883, audio_token_id: int | None = 258881, initializer_range: float | None = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/embedding_gemma2/configuration_embedding_gemma2.py#L139)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/embedding_gemma2/configuration_embedding_gemma2.py#L139)
 
 **Parameters:**
 
@@ -714,8 +714,8 @@ This is the configuration class to store the configuration of a EmbeddingGemma2M
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/embeddinggemma-2](https://huggingface.co/google/embeddinggemma-2)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## EmbeddingGemma2VideoProcessor[[transformers.EmbeddingGemma2VideoProcessor]]
 
@@ -725,7 +725,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes
 transformers.EmbeddingGemma2VideoProcessor(**kwargs: *<class 'transformers.models.embedding_gemma2.video_processing_embedding_gemma2.EmbeddingGemma2VideoProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/embedding_gemma2/video_processing_embedding_gemma2.py#L173)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/embedding_gemma2/video_processing_embedding_gemma2.py#L173)
 
 **Parameters:**
 
@@ -785,7 +785,7 @@ max_frames (`int`, *kwargs*, *optional*) : The maximum number of frames to sampl
 
 overflow_strategy (`str`, *kwargs*, *optional*) : The strategy used to cut the total number of sampled frames down to fit into the budget. Can be set only to "uniform" or "truncate". Applied after FPS-based sampling, and on its own when FPS-based sampling is off or not applicable.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.20.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 Constructs a EmbeddingGemma2VideoProcessor video processor.
 
@@ -795,7 +795,7 @@ Constructs a EmbeddingGemma2VideoProcessor video processor.
 preprocess(videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]]], **kwargs: *<class 'transformers.models.embedding_gemma2.video_processing_embedding_gemma2.EmbeddingGemma2VideoProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/embedding_gemma2/video_processing_embedding_gemma2.py#L237)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/embedding_gemma2/video_processing_embedding_gemma2.py#L237)
 
 **Parameters:**
 
@@ -871,7 +871,7 @@ overflow_strategy (`str`, *kwargs*, *optional*) : The strategy used to cut the t
 transformers.EmbeddingGemma2Processor(feature_extractor, image_processor, tokenizer, video_processor, chat_template = None, image_seq_length: int = 280, audio_seq_length: int = 750, audio_ms_per_token: int = 40, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/embedding_gemma2/processing_embedding_gemma2.py#L105)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/embedding_gemma2/processing_embedding_gemma2.py#L105)
 
 **Parameters:**
 
@@ -902,7 +902,7 @@ Constructs a EmbeddingGemma2Processor which wraps a feature extractor, a image p
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: *<class 'transformers.processing_utils.ProcessingKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/processing_utils.py#L657)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/processing_utils.py#L657)
 
 **Parameters:**
 
@@ -914,9 +914,9 @@ videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.nd
 
 audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.20.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.20.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.20.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ## EmbeddingGemma2PreTrainedModel[[transformers.EmbeddingGemma2PreTrainedModel]]
 
@@ -926,13 +926,13 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.20.0/en/internal/fil
 transformers.EmbeddingGemma2PreTrainedModel(config: PreTrainedConfig, *inputs, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/embedding_gemma2/modeling_embedding_gemma2.py#L442)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/embedding_gemma2/modeling_embedding_gemma2.py#L442)
 
 **Parameters:**
 
-config ([PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -960,16 +960,16 @@ real subclasses keep a normal metaclass and `inspect.signature` reads their real
 transformers.EmbeddingGemma2TextModel(config: EmbeddingGemma2TextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/embedding_gemma2/modeling_embedding_gemma2.py#L477)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/embedding_gemma2/modeling_embedding_gemma2.py#L477)
 
 **Parameters:**
 
-config ([EmbeddingGemma2TextConfig](/docs/transformers/v5.20.0/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2TextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([EmbeddingGemma2TextConfig](/docs/transformers/v5.20.1/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2TextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The EmbeddingGemma 2 text backbone. It owns the `embedding_projection` that maps the final hidden states
 down to `config.embedding_dim`, so that the composite model needs no `forward` override.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -983,11 +983,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/embedding_gemma2/modeling_embedding_gemma2.py#L510)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/embedding_gemma2/modeling_embedding_gemma2.py#L510)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -995,13 +995,13 @@ position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *opti
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-**Returns:** [BaseModelOutput](/docs/transformers/v5.20.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutput](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutput](/docs/transformers/v5.20.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+A [BaseModelOutput](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([EmbeddingGemma2Config](/docs/transformers/v5.20.0/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Config)) and inputs.
+elements depending on the configuration ([EmbeddingGemma2Config](/docs/transformers/v5.20.1/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Config)) and inputs.
 
-The [EmbeddingGemma2TextModel](/docs/transformers/v5.20.0/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2TextModel) forward method, overrides the `__call__` special method.
+The [EmbeddingGemma2TextModel](/docs/transformers/v5.20.1/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2TextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1026,17 +1026,17 @@ the latter silently ignores them.
 transformers.EmbeddingGemma2Model(config: EmbeddingGemma2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/embedding_gemma2/modeling_embedding_gemma2.py#L633)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/embedding_gemma2/modeling_embedding_gemma2.py#L633)
 
 **Parameters:**
 
-config ([EmbeddingGemma2Config](/docs/transformers/v5.20.0/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([EmbeddingGemma2Config](/docs/transformers/v5.20.1/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The EmbeddingGemma 2 model: a vision backbone, an audio backbone and a text backbone whose final hidden
 states are projected to `config.text_config.embedding_dim`. Intended to be wrapped by SentenceTransformers'
 mean pooling and normalization.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1050,17 +1050,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_values_videos: typing.Optional[torch.FloatTensor] = None, input_features: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, image_position_ids: typing.Optional[torch.LongTensor] = None, video_position_ids: typing.Optional[torch.LongTensor] = None, num_frames_per_video: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/embedding_gemma2/modeling_embedding_gemma2.py#L739)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/embedding_gemma2/modeling_embedding_gemma2.py#L739)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Gemma4ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/gemma4#transformers.Gemma4ImageProcessor). See [Gemma4ImageProcessor.__call__()](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([EmbeddingGemma2Processor](/docs/transformers/v5.20.0/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Processor) uses [Gemma4ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/gemma4#transformers.Gemma4ImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Gemma4ImageProcessor](/docs/transformers/v5.20.1/en/model_doc/gemma4#transformers.Gemma4ImageProcessor). See [Gemma4ImageProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([EmbeddingGemma2Processor](/docs/transformers/v5.20.1/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Processor) uses [Gemma4ImageProcessor](/docs/transformers/v5.20.1/en/model_doc/gemma4#transformers.Gemma4ImageProcessor) for processing images).
 
-pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [EmbeddingGemma2VideoProcessor](/docs/transformers/v5.20.0/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2VideoProcessor). See [EmbeddingGemma2VideoProcessor.__call__()](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([EmbeddingGemma2Processor](/docs/transformers/v5.20.0/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Processor) uses [EmbeddingGemma2VideoProcessor](/docs/transformers/v5.20.0/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2VideoProcessor) for processing videos).
+pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [EmbeddingGemma2VideoProcessor](/docs/transformers/v5.20.1/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2VideoProcessor). See [EmbeddingGemma2VideoProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([EmbeddingGemma2Processor](/docs/transformers/v5.20.1/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Processor) uses [EmbeddingGemma2VideoProcessor](/docs/transformers/v5.20.1/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2VideoProcessor) for processing videos).
 
-input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [Gemma4AudioFeatureExtractor](/docs/transformers/v5.20.0/en/model_doc/gemma4#transformers.Gemma4AudioFeatureExtractor). See [Gemma4AudioFeatureExtractor.__call__()](/docs/transformers/v5.20.0/en/model_doc/gemma4#transformers.Gemma4AudioFeatureExtractor.__call__) for details ([EmbeddingGemma2Processor](/docs/transformers/v5.20.0/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Processor) uses [Gemma4AudioFeatureExtractor](/docs/transformers/v5.20.0/en/model_doc/gemma4#transformers.Gemma4AudioFeatureExtractor) for processing audios).
+input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [Gemma4AudioFeatureExtractor](/docs/transformers/v5.20.1/en/model_doc/gemma4#transformers.Gemma4AudioFeatureExtractor). See [Gemma4AudioFeatureExtractor.__call__()](/docs/transformers/v5.20.1/en/model_doc/gemma4#transformers.Gemma4AudioFeatureExtractor.__call__) for details ([EmbeddingGemma2Processor](/docs/transformers/v5.20.1/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Processor) uses [Gemma4AudioFeatureExtractor](/docs/transformers/v5.20.1/en/model_doc/gemma4#transformers.Gemma4AudioFeatureExtractor) for processing audios).
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -1080,9 +1080,9 @@ num_frames_per_video (`torch.LongTensor` of shape `(num_videos,)`, *optional*) :
 
 A `EmbeddingGemma2ModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([EmbeddingGemma2Config](/docs/transformers/v5.20.0/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Config)) and inputs.
+elements depending on the configuration ([EmbeddingGemma2Config](/docs/transformers/v5.20.1/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Config)) and inputs.
 
-The [EmbeddingGemma2Model](/docs/transformers/v5.20.0/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Model) forward method, overrides the `__call__` special method.
+The [EmbeddingGemma2Model](/docs/transformers/v5.20.1/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1109,19 +1109,19 @@ the latter silently ignores them.
 get_image_features(pixel_values: FloatTensor, image_position_ids: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/embedding_gemma2/modeling_embedding_gemma2.py#L662)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/embedding_gemma2/modeling_embedding_gemma2.py#L662)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Gemma4ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/gemma4#transformers.Gemma4ImageProcessor). See [Gemma4ImageProcessor.__call__()](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([EmbeddingGemma2Processor](/docs/transformers/v5.20.0/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Processor) uses [Gemma4ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/gemma4#transformers.Gemma4ImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Gemma4ImageProcessor](/docs/transformers/v5.20.1/en/model_doc/gemma4#transformers.Gemma4ImageProcessor). See [Gemma4ImageProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([EmbeddingGemma2Processor](/docs/transformers/v5.20.1/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Processor) uses [Gemma4ImageProcessor](/docs/transformers/v5.20.1/en/model_doc/gemma4#transformers.Gemma4ImageProcessor) for processing images).
 
 image_position_ids (`torch.LongTensor` of shape `(batch_size, max_patches, 2)`, *optional*) : The patch positions as (x, y) coordinates in the image. Padding patches are indicated by (-1, -1).
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.20.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.20.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([EmbeddingGemma2Config](/docs/transformers/v5.20.0/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Config)) and inputs.
+elements depending on the configuration ([EmbeddingGemma2Config](/docs/transformers/v5.20.1/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Config)) and inputs.
 
 Projects the last hidden state from the vision model into language model space.
 
@@ -1146,7 +1146,7 @@ Projects the last hidden state from the vision model into language model space.
 get_video_features(pixel_values_videos: FloatTensor, video_position_ids: typing.Optional[torch.LongTensor] = None, num_frames_per_video: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/embedding_gemma2/modeling_embedding_gemma2.py#L880)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/embedding_gemma2/modeling_embedding_gemma2.py#L880)
 
 **Parameters:**
 
@@ -1156,11 +1156,11 @@ video_position_ids (`torch.LongTensor` of shape `(total_num_frames, max_patches,
 
 num_frames_per_video (`torch.LongTensor` of shape `(num_videos,)`) : Number of frames belonging to each video, used to split the flat frame sequence back per video.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.20.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.20.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([EmbeddingGemma2Config](/docs/transformers/v5.20.0/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Config)) and inputs.
+elements depending on the configuration ([EmbeddingGemma2Config](/docs/transformers/v5.20.1/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Config)) and inputs.
 
 Projects the last hidden state from the vision encoder into language model space.
 
@@ -1185,7 +1185,7 @@ Projects the last hidden state from the vision encoder into language model space
 get_audio_features(input_features: Tensor, input_features_mask: Tensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/embedding_gemma2/modeling_embedding_gemma2.py#L855)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/embedding_gemma2/modeling_embedding_gemma2.py#L855)
 
 **Parameters:**
 
@@ -1197,7 +1197,7 @@ input_features_mask (`torch.FloatTensor` of shape `(num_images, seq_length)`) : 
 
 A `EmbeddingGemma2AudioModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([EmbeddingGemma2Config](/docs/transformers/v5.20.0/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Config)) and inputs.
+elements depending on the configuration ([EmbeddingGemma2Config](/docs/transformers/v5.20.1/en/model_doc/embedding_gemma2#transformers.EmbeddingGemma2Config)) and inputs.
 
 Projects the last hidden state from the audio encoder into language model space.
 
@@ -1218,4 +1218,4 @@ Projects the last hidden state from the audio encoder into language model space.
 - **attention_mask** (`torch.BoolTensor`, *optional*) -- A torch.BoolTensor of shape `(batch_size, num_frames)`. True for valid positions, False for padding.
 
 ### EuroBERT
-https://huggingface.co/docs/transformers/v5.20.0/model_doc/eurobert.md
+https://huggingface.co/docs/transformers/v5.20.1/model_doc/eurobert.md

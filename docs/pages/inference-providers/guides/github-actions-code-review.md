@@ -320,7 +320,7 @@ hf models ls --warm --pipeline-tag image-segmentation --sort trending_score
 
 <InferenceSnippet
     pipeline=image-segmentation
-    providersMapping={ {"fal-ai":{"modelId":"briaai/RMBG-2.0","providerModelId":"fal-ai/bria/background/remove"},"hf-inference":{"modelId":"facebook/mask2former-swin-large-ade-semantic","providerModelId":"facebook/mask2former-swin-large-ade-semantic"}} }
+    providersMapping={ {"fal-ai":{"modelId":"briaai/RMBG-2.0","providerModelId":"fal-ai/bria/background/remove"},"hf-inference":{"modelId":"facebook/mask2former-swin-base-ade-semantic","providerModelId":"facebook/mask2former-swin-base-ade-semantic"}} }
 />
 
 ### API specification
@@ -429,7 +429,7 @@ hf models ls --warm --pipeline-tag image-classification --sort trending_score
 
 <InferenceSnippet
     pipeline=image-classification
-    providersMapping={ {"hf-inference":{"modelId":"Falconsai/nsfw_image_detection","providerModelId":"Falconsai/nsfw_image_detection"}} }
+    providersMapping={ {"hf-inference":{"modelId":"microsoft/resnet-50","providerModelId":"microsoft/resnet-50"}} }
 />
 
 ### API specification
@@ -1060,7 +1060,7 @@ hf models ls --warm --pipeline-tag text-to-video --sort trending_score
 
 <InferenceSnippet
     pipeline=text-to-video
-    providersMapping={ {"fal-ai":{"modelId":"Wan-AI/Wan2.2-TI2V-5B","providerModelId":"fal-ai/wan/v2.2-5b/text-to-video"},"replicate":{"modelId":"Wan-AI/Wan2.2-TI2V-5B","providerModelId":"wan-video/wan-2.2-5b-fast"},"wavespeed":{"modelId":"larryvrh/MiniMax-H3-Turbo-Lora","providerModelId":"wavespeed-ai/minimax-h3/text-to-video-lora"}} }
+    providersMapping={ {"fal-ai":{"modelId":"Wan-AI/Wan2.2-TI2V-5B","providerModelId":"fal-ai/wan/v2.2-5b/text-to-video"},"replicate":{"modelId":"Wan-AI/Wan2.2-TI2V-5B","providerModelId":"wan-video/wan-2.2-5b-fast"},"wavespeed":{"modelId":"ZhengmingYu/DMAD","providerModelId":"wavespeed-ai/minimax-h3/text-to-video-lora"}} }
 />
 
 ### API specification

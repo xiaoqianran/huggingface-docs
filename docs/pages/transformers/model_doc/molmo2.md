@@ -12,7 +12,7 @@ You can find all the original Molmo2 checkpoints under the [Molmo2](https://hugg
 
 ### Image-text-to-text generation
 
-The example below demonstrates how to generate text based on an image with [Pipeline](/docs/transformers/v5.20.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to generate text based on an image with [Pipeline](/docs/transformers/v5.20.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -119,7 +119,7 @@ print(generated_text)
 transformers.Molmo2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, adapter_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, image_start_token_id: int = 151936, low_res_image_start_token_id: int = 151940, image_end_token_id: int = 151937, image_patch_id: int = 151938, frame_start_token_id: int = 151943, frame_end_token_id: int = 151944, initializer_range: float = 0.02, tie_word_embeddings: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/molmo2/configuration_molmo2.py#L171)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/molmo2/configuration_molmo2.py#L171)
 
 **Parameters:**
 
@@ -149,8 +149,8 @@ This is the configuration class to store the configuration of a Molmo2Model. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [allenai/Molmo2-8B](https://huggingface.co/allenai/Molmo2-8B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Molmo2VisionConfig[[transformers.Molmo2VisionConfig]]
 
@@ -160,7 +160,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes
 transformers.Molmo2VisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 1152, intermediate_size: int = 4304, num_hidden_layers: int = 25, num_attention_heads: int = 16, num_key_value_heads: int = 16, head_dim: int = 72, hidden_act: str = 'gelu_pytorch_tanh', layer_norm_eps: float = 1e-06, image_size: list[int] | None = None, patch_size: int = 14, num_position_embeddings: int | None = None, num_channels: int = 3, attention_dropout: float = 0.0, attention_bias: bool = True, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/molmo2/configuration_molmo2.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/molmo2/configuration_molmo2.py#L30)
 
 **Parameters:**
 
@@ -198,8 +198,8 @@ This is the configuration class to store the configuration of a Molmo2Model. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [allenai/Molmo2-8B](https://huggingface.co/allenai/Molmo2-8B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Molmo2AdapterConfig[[transformers.Molmo2AdapterConfig]]
 
@@ -209,7 +209,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes
 transformers.Molmo2AdapterConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vision_feature_layer: list[int] | None = None, hidden_size: int = 1152, num_attention_heads: int = 16, num_key_value_heads: int = 16, head_dim: int = 72, attention_dropout: float = 0.0, attention_bias: bool = True, hidden_act: str = 'silu', intermediate_size: int = 18944, text_hidden_size: int = 3584, mlp_bias: bool = False, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/molmo2/configuration_molmo2.py#L75)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/molmo2/configuration_molmo2.py#L75)
 
 **Parameters:**
 
@@ -241,8 +241,8 @@ This is the configuration class to store the configuration of a Molmo2Model. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [allenai/Molmo2-8B](https://huggingface.co/allenai/Molmo2-8B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Molmo2TextConfig[[transformers.Molmo2TextConfig]]
 
@@ -252,7 +252,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes
 transformers.Molmo2TextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 4096, num_attention_heads: int = 32, num_key_value_heads: int = 8, head_dim: int = 128, vocab_size: int = 151936, additional_vocab_size: int = 128, attention_bias: bool = False, qk_norm_type: str = 'qwen3', num_hidden_layers: int = 36, intermediate_size: int = 12288, hidden_act: str = 'silu', attention_dropout: float = 0.0, max_position_embeddings: int = 36864, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, rope_scaling_layers: list[int] | None = None, rms_norm_eps: float = 1e-06, norm_after: bool = False, initializer_range: float = 0.02, use_cache: bool = True, tie_word_embeddings: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/molmo2/configuration_molmo2.py#L111)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/molmo2/configuration_molmo2.py#L111)
 
 **Parameters:**
 
@@ -300,8 +300,8 @@ This is the configuration class to store the configuration of a Molmo2Model. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [allenai/Molmo2-8B](https://huggingface.co/allenai/Molmo2-8B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Molmo2Processor[[transformers.Molmo2Processor]]
 
@@ -311,7 +311,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.20.0/en/main_classes
 transformers.Molmo2Processor(image_processor = None, video_processor = None, tokenizer = None, chat_template: str | None = None, image_use_col_tokens: bool | None = True, use_single_crop_col_tokens: bool | None = None, use_single_crop_start_token: bool | None = True, video_use_col_tokens: bool | None = False, use_frame_special_tokens: bool | None = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/molmo2/processing_molmo2.py#L44)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/molmo2/processing_molmo2.py#L44)
 
 **Parameters:**
 
@@ -335,8 +335,8 @@ use_frame_special_tokens (`bool`, *optional*, defaults to `True`) : Whether to w
 
 Constructs a Molmo2Processor which wraps a image processor, a video processor, and a tokenizer into a single processor.
 
-[Molmo2Processor](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2Processor) offers all the functionalities of [Molmo2ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor), [Molmo2VideoProcessor](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2VideoProcessor), and [TokenizersBackend](/docs/transformers/v5.20.0/en/main_classes/tokenizer#transformers.TokenizersBackend). See the
-[~Molmo2ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor), [~Molmo2VideoProcessor](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2VideoProcessor), and [~TokenizersBackend](/docs/transformers/v5.20.0/en/main_classes/tokenizer#transformers.TokenizersBackend) for more information.
+[Molmo2Processor](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2Processor) offers all the functionalities of [Molmo2ImageProcessor](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor), [Molmo2VideoProcessor](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2VideoProcessor), and [TokenizersBackend](/docs/transformers/v5.20.1/en/main_classes/tokenizer#transformers.TokenizersBackend). See the
+[~Molmo2ImageProcessor](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor), [~Molmo2VideoProcessor](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2VideoProcessor), and [~TokenizersBackend](/docs/transformers/v5.20.1/en/main_classes/tokenizer#transformers.TokenizersBackend) for more information.
 
 #### __call__[[transformers.Molmo2Processor.__call__]]
 
@@ -344,7 +344,7 @@ Constructs a Molmo2Processor which wraps a image processor, a video processor, a
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, **kwargs: *<class 'transformers.models.molmo2.processing_molmo2.Molmo2ProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/molmo2/processing_molmo2.py#L103)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/molmo2/processing_molmo2.py#L103)
 
 **Parameters:**
 
@@ -354,9 +354,9 @@ text (`Union[str, list[str], list[list[str]]]`, *optional*) : The sequence or ba
 
 videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.ndarray], list[torch.Tensor], list[list[PIL.Image.Image]], list[list[numpy.ndarray]], list[list[torch.Tensor]], ~video_utils.URL, list[~video_utils.URL], list[list[~video_utils.URL]], ~video_utils.Path, list[~video_utils.Path], list[list[~video_utils.Path]]]`, *optional*) : Video to preprocess. Expects a single or batch of videos with pixel values ranging from 0 to 255. If passing in videos with pixel values between 0 and 1, set `do_rescale=False`.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.20.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.20.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.20.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ## Molmo2ImageProcessor[[transformers.Molmo2ImageProcessor]]
 
@@ -366,7 +366,7 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.20.0/en/internal/fil
 transformers.Molmo2ImageProcessor(**kwargs: *<class 'transformers.models.molmo2.image_processing_molmo2.Molmo2ImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/molmo2/image_processing_molmo2.py#L193)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/molmo2/image_processing_molmo2.py#L193)
 
 **Parameters:**
 
@@ -426,7 +426,7 @@ Constructs a Molmo2ImageProcessor image processor.
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/image_processing_utils.py#L215)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/image_processing_utils.py#L215)
 
 Preprocess an image or a batch of images.
 
@@ -436,7 +436,7 @@ Preprocess an image or a batch of images.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.molmo2.image_processing_molmo2.Molmo2ImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/molmo2/image_processing_molmo2.py#L353)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/molmo2/image_processing_molmo2.py#L353)
 
 **Parameters:**
 
@@ -504,7 +504,7 @@ pooling_size (`list[int]`, *kwargs*, *optional*, defaults to `[2, 2]`) : The poo
 transformers.Molmo2VideoProcessor(**kwargs: *<class 'transformers.models.molmo2.video_processing_molmo2.Molmo2VideoProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/molmo2/video_processing_molmo2.py#L148)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/molmo2/video_processing_molmo2.py#L148)
 
 **Parameters:**
 
@@ -558,7 +558,7 @@ pooling_size (`list[int]`, *kwargs*, *optional*) : `[pool_h, pool_w]` pooling wi
 
 max_fps (`int`, *kwargs*, *optional*) : Maximum sampling rate in frames per second for short videos.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.20.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 Constructs a Molmo2VideoProcessor video processor.
 
@@ -568,7 +568,7 @@ Constructs a Molmo2VideoProcessor video processor.
 __call__(videos, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/video_processing_utils.py#L86)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/video_processing_utils.py#L86)
 
 ## Molmo2Model[[transformers.Molmo2Model]]
 
@@ -578,16 +578,16 @@ __call__(videos, **kwargs)
 transformers.Molmo2Model(config: Molmo2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/molmo2/modeling_molmo2.py#L735)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/molmo2/modeling_molmo2.py#L735)
 
 **Parameters:**
 
-config ([Molmo2Config](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Molmo2Config](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Molmo2 model which consists of a vision backbone, a pooling adapter and a language model, without a language
 modeling head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -601,33 +601,33 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, image_token_pooling: typing.Optional[torch.Tensor] = None, image_grids: typing.Optional[torch.Tensor] = None, image_num_crops: typing.Optional[torch.Tensor] = None, pixel_values_videos: typing.Optional[torch.Tensor] = None, video_token_pooling: typing.Optional[torch.Tensor] = None, video_grids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, mm_token_type_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/molmo2/modeling_molmo2.py#L803)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/molmo2/modeling_molmo2.py#L803)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Molmo2ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor). See [Molmo2ImageProcessor.__call__()](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Molmo2Processor](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2Processor) uses [Molmo2ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Molmo2ImageProcessor](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor). See [Molmo2ImageProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Molmo2Processor](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2Processor) uses [Molmo2ImageProcessor](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor) for processing images).
 
-image_token_pooling (`torch.Tensor` of shape `(num_image_tokens, pool_h * pool_w)`, *optional*) : Indices into the flattened image patch sequence gathered by each pooled image token, with `-1` marking padding slots. Can be obtained using [AutoProcessor](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.0/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
+image_token_pooling (`torch.Tensor` of shape `(num_image_tokens, pool_h * pool_w)`, *optional*) : Indices into the flattened image patch sequence gathered by each pooled image token, with `-1` marking padding slots. Can be obtained using [AutoProcessor](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
 
-image_grids (`torch.Tensor` of shape `(num_images, 4)`, *optional*) : Per-image `[low_res_h, low_res_w, high_res_h, high_res_w]` pooled token grid. Can be obtained using [AutoProcessor](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.0/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
+image_grids (`torch.Tensor` of shape `(num_images, 4)`, *optional*) : Per-image `[low_res_h, low_res_w, high_res_h, high_res_w]` pooled token grid. Can be obtained using [AutoProcessor](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
 
-image_num_crops (`torch.Tensor` of shape `(num_images,)`, *optional*) : Number of crops per image, low-resolution view included. Can be obtained using [AutoProcessor](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.0/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
+image_num_crops (`torch.Tensor` of shape `(num_images,)`, *optional*) : Number of crops per image, low-resolution view included. Can be obtained using [AutoProcessor](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
 
-pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [Molmo2VideoProcessor](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2VideoProcessor). See [Molmo2VideoProcessor.__call__()](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([Molmo2Processor](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2Processor) uses [Molmo2VideoProcessor](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2VideoProcessor) for processing videos).
+pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [Molmo2VideoProcessor](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2VideoProcessor). See [Molmo2VideoProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([Molmo2Processor](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2Processor) uses [Molmo2VideoProcessor](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2VideoProcessor) for processing videos).
 
-video_token_pooling (`torch.Tensor` of shape `(num_video_tokens, pool_h * pool_w)`, *optional*) : Indices into the flattened video frame-patch sequence gathered by each pooled video token, with `-1` marking padding slots. Can be obtained using [AutoProcessor](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.0/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
+video_token_pooling (`torch.Tensor` of shape `(num_video_tokens, pool_h * pool_w)`, *optional*) : Indices into the flattened video frame-patch sequence gathered by each pooled video token, with `-1` marking padding slots. Can be obtained using [AutoProcessor](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
 
-video_grids (`torch.Tensor` of shape `(num_videos, 3)`, *optional*) : Per-video `[num_frames, pooled_h, pooled_w]` token grid. Can be obtained using [AutoProcessor](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.0/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
+video_grids (`torch.Tensor` of shape `(num_videos, 3)`, *optional*) : Per-video `[num_frames, pooled_h, pooled_w]` token grid. Can be obtained using [AutoProcessor](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-mm_token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens matching each modality. For example text (0), image (1), video (2). Multimodal token type ids can be obtained using [AutoProcessor](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.0/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details. 
+mm_token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens matching each modality. For example text (0), image (1), video (2). Multimodal token type ids can be obtained using [AutoProcessor](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details. 
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -639,9 +639,9 @@ mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *
 
 A `Molmo2ModelOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Molmo2Config](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2Config)) and inputs.
+elements depending on the configuration ([Molmo2Config](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2Config)) and inputs.
 
-The [Molmo2Model](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2Model) forward method, overrides the `__call__` special method.
+The [Molmo2Model](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -651,7 +651,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -675,15 +675,15 @@ the latter silently ignores them.
 transformers.Molmo2TextModel(config: Molmo2TextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/molmo2/modeling_molmo2.py#L645)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/molmo2/modeling_molmo2.py#L645)
 
 **Parameters:**
 
-config ([Molmo2TextConfig](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2TextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Molmo2TextConfig](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2TextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Molmo2 Text Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -697,29 +697,29 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/molmo2/modeling_molmo2.py#L670)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/molmo2/modeling_molmo2.py#L670)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.20.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPast](/docs/transformers/v5.20.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
+A [BaseModelOutputWithPast](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Molmo2Config](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2Config)) and inputs.
+elements depending on the configuration ([Molmo2Config](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2Config)) and inputs.
 
-The [Molmo2TextModel](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2TextModel) forward method, overrides the `__call__` special method.
+The [Molmo2TextModel](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2TextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -729,7 +729,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -752,16 +752,16 @@ the latter silently ignores them.
 transformers.Molmo2Adapter(config: Molmo2AdapterConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/molmo2/modeling_molmo2.py#L595)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/molmo2/modeling_molmo2.py#L595)
 
 **Parameters:**
 
-config ([Molmo2AdapterConfig](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2AdapterConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Molmo2AdapterConfig](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2AdapterConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Molmo2 vision adapter: pools ViT patch features with a cross-attention layer and projects them into the
 language model's embedding space.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -775,7 +775,7 @@ and behavior.
 forward(image_features: Tensor, pooled_patches_idx: Tensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/molmo2/modeling_molmo2.py#L608)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/molmo2/modeling_molmo2.py#L608)
 
 **Parameters:**
 
@@ -783,13 +783,13 @@ image_features (`torch.Tensor` of shape `(num_crops, num_patches, hidden_size * 
 
 pooled_patches_idx (`torch.Tensor` of shape `(num_tokens, pool_h * pool_w)`) : Indices into the flattened patch sequence pooled by each output token; `-1` marks padding slots.
 
-**Returns:** [BaseModelOutput](/docs/transformers/v5.20.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutput](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutput](/docs/transformers/v5.20.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+A [BaseModelOutput](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Molmo2Config](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2Config)) and inputs.
+elements depending on the configuration ([Molmo2Config](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2Config)) and inputs.
 
-The [Molmo2Adapter](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2Adapter) forward method, overrides the `__call__` special method.
+The [Molmo2Adapter](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2Adapter) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -814,15 +814,15 @@ the latter silently ignores them.
 transformers.Molmo2VisionModel(config: Molmo2VisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/molmo2/modeling_molmo2.py#L536)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/molmo2/modeling_molmo2.py#L536)
 
 **Parameters:**
 
-config ([Molmo2VisionConfig](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2VisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Molmo2VisionConfig](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2VisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Molmo2 Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -836,19 +836,19 @@ and behavior.
 forward(pixel_values: Tensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/molmo2/modeling_molmo2.py#L556)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/molmo2/modeling_molmo2.py#L556)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Molmo2ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor). See [Molmo2ImageProcessor.__call__()](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Molmo2Processor](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2Processor) uses [Molmo2ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Molmo2ImageProcessor](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor). See [Molmo2ImageProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Molmo2Processor](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2Processor) uses [Molmo2ImageProcessor](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor) for processing images).
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.20.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.20.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Molmo2Config](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2Config)) and inputs.
+elements depending on the configuration ([Molmo2Config](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2Config)) and inputs.
 
-The [Molmo2VisionModel](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2VisionModel) forward method, overrides the `__call__` special method.
+The [Molmo2VisionModel](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2VisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -877,15 +877,15 @@ the latter silently ignores them.
 transformers.Molmo2ForConditionalGeneration(config: Molmo2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/molmo2/modeling_molmo2.py#L918)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/molmo2/modeling_molmo2.py#L918)
 
 **Parameters:**
 
-config ([Molmo2Config](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Molmo2Config](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Molmo2 model which consists of a vision backbone, a pooling adapter and a language model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -899,33 +899,33 @@ and behavior.
 forward(input_ids: LongTensor = None, pixel_values: typing.Optional[torch.Tensor] = None, image_token_pooling: typing.Optional[torch.Tensor] = None, image_grids: typing.Optional[torch.Tensor] = None, image_num_crops: typing.Optional[torch.Tensor] = None, pixel_values_videos: typing.Optional[torch.Tensor] = None, video_token_pooling: typing.Optional[torch.Tensor] = None, video_grids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: list[torch.FloatTensor] | None = None, mm_token_type_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.0/src/transformers/models/molmo2/modeling_molmo2.py#L953)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/molmo2/modeling_molmo2.py#L953)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Molmo2ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor). See [Molmo2ImageProcessor.__call__()](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Molmo2Processor](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2Processor) uses [Molmo2ImageProcessor](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Molmo2ImageProcessor](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor). See [Molmo2ImageProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Molmo2Processor](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2Processor) uses [Molmo2ImageProcessor](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor) for processing images).
 
-image_token_pooling (`torch.Tensor` of shape `(num_image_tokens, pool_h * pool_w)`, *optional*) : Indices into the flattened image patch sequence gathered by each pooled image token, with `-1` marking padding slots. Can be obtained using [AutoProcessor](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.0/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
+image_token_pooling (`torch.Tensor` of shape `(num_image_tokens, pool_h * pool_w)`, *optional*) : Indices into the flattened image patch sequence gathered by each pooled image token, with `-1` marking padding slots. Can be obtained using [AutoProcessor](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
 
-image_grids (`torch.Tensor` of shape `(num_images, 4)`, *optional*) : Per-image `[low_res_h, low_res_w, high_res_h, high_res_w]` pooled token grid. Can be obtained using [AutoProcessor](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.0/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
+image_grids (`torch.Tensor` of shape `(num_images, 4)`, *optional*) : Per-image `[low_res_h, low_res_w, high_res_h, high_res_w]` pooled token grid. Can be obtained using [AutoProcessor](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
 
-image_num_crops (`torch.Tensor` of shape `(num_images,)`, *optional*) : Number of crops per image, low-resolution view included. Can be obtained using [AutoProcessor](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.0/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
+image_num_crops (`torch.Tensor` of shape `(num_images,)`, *optional*) : Number of crops per image, low-resolution view included. Can be obtained using [AutoProcessor](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
 
-pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [Molmo2VideoProcessor](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2VideoProcessor). See [Molmo2VideoProcessor.__call__()](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([Molmo2Processor](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2Processor) uses [Molmo2VideoProcessor](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2VideoProcessor) for processing videos).
+pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [Molmo2VideoProcessor](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2VideoProcessor). See [Molmo2VideoProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([Molmo2Processor](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2Processor) uses [Molmo2VideoProcessor](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2VideoProcessor) for processing videos).
 
-video_token_pooling (`torch.Tensor` of shape `(num_video_tokens, pool_h * pool_w)`, *optional*) : Indices into the flattened video frame-patch sequence gathered by each pooled video token, with `-1` marking padding slots. Can be obtained using [AutoProcessor](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.0/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
+video_token_pooling (`torch.Tensor` of shape `(num_video_tokens, pool_h * pool_w)`, *optional*) : Indices into the flattened video frame-patch sequence gathered by each pooled video token, with `-1` marking padding slots. Can be obtained using [AutoProcessor](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
 
-video_grids (`torch.Tensor` of shape `(num_videos, 3)`, *optional*) : Per-video `[num_frames, pooled_h, pooled_w]` token grid. Can be obtained using [AutoProcessor](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.0/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
+video_grids (`torch.Tensor` of shape `(num_videos, 3)`, *optional*) : Per-video `[num_frames, pooled_h, pooled_w]` token grid. Can be obtained using [AutoProcessor](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`list[torch.FloatTensor]`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`list[torch.FloatTensor]`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-mm_token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens matching each modality. For example text (0), image (1), video (2). Multimodal token type ids can be obtained using [AutoProcessor](/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.0/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details. 
+mm_token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens matching each modality. For example text (0), image (1), video (2). Multimodal token type ids can be obtained using [AutoProcessor](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details. 
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -941,9 +941,9 @@ mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *
 
 A `Molmo2CausalLMOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Molmo2Config](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2Config)) and inputs.
+elements depending on the configuration ([Molmo2Config](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2Config)) and inputs.
 
-The [Molmo2ForConditionalGeneration](/docs/transformers/v5.20.0/en/model_doc/molmo2#transformers.Molmo2ForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [Molmo2ForConditionalGeneration](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -951,7 +951,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -993,4 +993,4 @@ Example:
 ```
 
 ### HyperCLOVA X
-https://huggingface.co/docs/transformers/v5.20.0/model_doc/hyperclovax.md
+https://huggingface.co/docs/transformers/v5.20.1/model_doc/hyperclovax.md

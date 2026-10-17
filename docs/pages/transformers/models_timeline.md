@@ -13,4 +13,4 @@ Use the **Modality** row to filter by text, vision, audio, video, multimodal, or
 >
 
 ### Optimizers and schedulers
-https://huggingface.co/docs/transformers/v5.20.0/optimizers.md
+https://huggingface.co/docs/transformers/v5.20.1/optimizers.md
