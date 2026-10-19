@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-18T12:01:10.485891+00:00",
+  "fetchedAt": "2026-10-19T14:33:55.236269+00:00",
   "method": "llms-full-split",
   "ok": 2196,
   "failed": 0,
@@ -8085,7 +8085,7 @@
     },
     {
       "rel": "inference-providers/index.md",
-      "bytes": 71788,
+      "bytes": 71749,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/index.md",
       "track": "Inference Providers",
@@ -8175,7 +8175,7 @@
     },
     {
       "rel": "inference-providers/guides/github-actions-code-review.md",
-      "bytes": 100608,
+      "bytes": 100383,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/github-actions-code-review.md",
       "track": "Inference Providers",
@@ -19842,7 +19842,7 @@
       "toc": 66,
       "found": 28,
       "written": 28,
-      "full_bytes": 417035
+      "full_bytes": 416771
     },
     {
       "pkg": "kernels",
