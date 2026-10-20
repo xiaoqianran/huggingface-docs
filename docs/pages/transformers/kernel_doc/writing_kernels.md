@@ -61,7 +61,7 @@ from . import layers
 >
 > Guard the Transformers-specific imports (`WeightConverter`, `Concatenate`, `WeightRenaming`) in `layers.py` so the kernel can also be imported in environments where Transformers is not installed.
 
-Load this kernel by passing the repo and class name to [KernelConfig](/docs/transformers/v5.20.1/en/main_classes/kernels#transformers.KernelConfig). The key is the original module class name from the model. The value points to the `KernelName` class (not the `Layout`) in the repo.
+Load this kernel by passing the repo and class name to [KernelConfig](/docs/transformers/v5.20.2/en/main_classes/kernels#transformers.KernelConfig). The key is the original module class name from the model. The value points to the `KernelName` class (not the `Layout`) in the repo.
 
 The value is either an `"owner/repo:ClassName"` string or a tuple `(repo_string, metadata)`. In the tuple form, pass `version` or `revision` (at least one), and optionally `trust_remote_code`. Use `version` for a major kernel version or `revision` for a tag, branch, or commit. Set `trust_remote_code=True` to load from outside the trusted `kernels-community` organization. A bare string defaults to `version=1` and `trust_remode_code=False`.
 
@@ -168,5 +168,5 @@ When the model loads, Transformers:
 > [!TIP]
 > The order of pairs in the fusion tuple determines the argument order passed to `KernelNameLayout.__init__`.
 
-### Loading kernels
-https://huggingface.co/docs/transformers/v5.20.1/kernel_doc/loading_kernels.md
+### TRL
+https://huggingface.co/docs/transformers/v5.20.2/community_integrations/trl.md

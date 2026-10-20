@@ -45,4 +45,4 @@ alias of `Union[str, Tuple[str, str], List[str], Tuple[str], Tuple[Union[List[st
 The Rust API Reference is available directly on the [Docs.rs](https://docs.rs/tokenizers/latest/tokenizers/) website.
 
 ### Normalizers
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.2/api/normalizers.md
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/normalizers.md

@@ -420,4 +420,4 @@ let decoded = bert_tokenizer.decode(output.get_ids(), true)?;
 ```
 
 ### Tokenizer
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.2/api/tokenizer.md
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/tokenizer.md

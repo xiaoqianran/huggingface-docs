@@ -427,5 +427,5 @@ with use_kernel_mapping(
     kernelize(model, mode=Mode.INFERENCE)
 ```
 
-### Environment variables
-https://huggingface.co/docs/kernels/main/env.md
+### kernels verify-signature
+https://huggingface.co/docs/kernels/main/cli-verify-signature.md

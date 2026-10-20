@@ -53,7 +53,7 @@ We will infer with two videos, both have cats.
 
 Videos are series of image frames. Depending on the hardware limitations, downsampling is required. If the number of downsampled frames are too little, predictions will be low quality.
 
-Video-text-to-text models have processors with video processor abstracted in them. You can pass video inference related arguments to [apply_chat_template()](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) function.
+Video-text-to-text models have processors with video processor abstracted in them. You can pass video inference related arguments to [apply_chat_template()](/docs/transformers/v5.20.2/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) function.
 
 > [!WARNING]
 > You can learn more about video processors [here](../main_classes/video_processor).
@@ -145,5 +145,5 @@ print(output_text)
 #['Both videos feature a cat with a similar appearance, characterized by a fluffy white coat with black markings, a pink nose, and a pink tongue. The cat\'s eyes are wide open, and it appears to be in a state of alertness or excitement. ']
 ```
 
-### Visual document retrieval
-https://huggingface.co/docs/transformers/v5.20.1/tasks/visual_document_retrieval.md
+### Image captioning
+https://huggingface.co/docs/transformers/v5.20.2/tasks/image_captioning.md

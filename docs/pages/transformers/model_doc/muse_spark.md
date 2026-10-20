@@ -244,7 +244,7 @@ model = AutoModelForMultimodalLM.from_pretrained(
 transformers.MuseSparkConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, image_token_id: int = 200092, video_token_id: int = 200091, out_hidden_size: int = 6144, projector_hidden_size: int = 4096, projector_hidden_act: str = 'gelu', audio_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, audio_token_id: int = 200038)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/muse_spark/configuration_muse_spark.py#L251)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/muse_spark/configuration_muse_spark.py#L251)
 
 **Parameters:**
 
@@ -270,8 +270,8 @@ This is the configuration class to store the configuration of a MuseSparkModel. 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [meta-models/Muse-Spark-Open-816B-A42B](https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -296,7 +296,7 @@ Example:
 transformers.MuseSparkTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 202048, hidden_size: int = 8192, intermediate_size: int = 16384, num_hidden_layers: int = 62, num_attention_heads: int = 128, num_key_value_heads: int = 16, head_dim: int = 64, max_position_embeddings: int = 1048576, initializer_range: float = 0.02, rms_norm_eps: float = 1e-05, use_cache: bool = True, pad_token_id: int | None = None, eos_token_id: int | list[int] | None = 200001, bos_token_id: int | None = 200000, tie_word_embeddings: bool = False, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, attention_bias: bool = False, attention_dropout: int | float | None = 0.0, sliding_window: int | None = 2048, layer_types: list[str] | None = None, final_logit_softcapping: float = 20.0, qk_scale_factor: float = 5.4730064863875, output_multiplier: float = 0.1767766952966369, post_norm_eps: float = 1e-08, layer_rope_theta: list[float | int] | None = None, hidden_act: str = 'silu', moe_intermediate_size: int = 4096, num_local_experts: int = 256, num_experts_per_tok: int = 8, routed_scaling_factor: float = 1.0, moe_hidden_size: int = 4096, mlp_layer_types: list[str] | None = None, residual_gate_temperature: float = 0.3, output_router_logits: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/muse_spark/configuration_muse_spark.py#L75)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/muse_spark/configuration_muse_spark.py#L75)
 
 **Parameters:**
 
@@ -372,8 +372,8 @@ This is the configuration class to store the configuration of a MuseSparkModel. 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [meta-models/Muse-Spark-Open-816B-A42B](https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## MuseSparkVisionConfig[[transformers.MuseSparkVisionConfig]]
 
@@ -383,7 +383,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes
 transformers.MuseSparkVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, patch_size: int = 14, pos_emb_height: int = 32, pos_emb_width: int = 32, num_attention_heads: int = 16, num_hidden_layers: int = 50, hidden_size: int = 1536, intermediate_size: int = 8960, hidden_act: str = 'gelu', rope_parameters: dict | None = None, patch_temporal: int = 2, merge_size: int = 2, max_position_embeddings: int = 1024, layer_norm_eps: float = 1e-05, layer_types: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/muse_spark/configuration_muse_spark.py#L31)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/muse_spark/configuration_muse_spark.py#L31)
 
 **Parameters:**
 
@@ -419,8 +419,8 @@ This is the configuration class to store the configuration of a MuseSparkModel. 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [meta-models/Muse-Spark-Open-816B-A42B](https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## MuseSparkAudioConfig[[transformers.MuseSparkAudioConfig]]
 
@@ -430,7 +430,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes
 transformers.MuseSparkAudioConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, patch_sizes: list[int] | tuple[int, ...] = (16, 6, 5, 4), hidden_sizes: list[int] | tuple[int, ...] = (256, 512, 1024, 2048), depths: list[int] | tuple[int, ...] = (2, 2, 2, 2), num_hidden_layers: int = 4, mlp_ratio: float = 4.0, conv_kernel_size: int = 7, hidden_act: str = 'gelu', rms_norm_eps: float = 1e-06, out_hidden_size: int = 8192, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/muse_spark/configuration_muse_spark.py#L192)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/muse_spark/configuration_muse_spark.py#L192)
 
 **Parameters:**
 
@@ -458,8 +458,8 @@ This is the configuration class to store the configuration of a MuseSparkModel. 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [meta-models/Muse-Spark-Open-816B-A42B](https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -479,7 +479,7 @@ Example:
 transformers.MuseSparkFeatureExtractor(feature_size = 1, sampling_rate = 24000, padding_value = 0.0, samples_per_token = 1920, return_attention_mask = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/muse_spark/feature_extraction_muse_spark.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/muse_spark/feature_extraction_muse_spark.py#L28)
 
 **Parameters:**
 
@@ -500,7 +500,7 @@ only batches, pads and (optionally) truncates. The one non-obvious job it does i
 up to a multiple of `samples_per_token`: the encoder collapses exactly that many samples into one
 embedding and raises otherwise.
 
-This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.20.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor)
+This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.20.2/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor)
 which contains most of the main methods. Users should refer to this superclass for more information
 regarding those methods.
 
@@ -512,7 +512,7 @@ regarding those methods.
 transformers.MuseSparkProcessor(image_processor = None, video_processor = None, tokenizer = None, feature_extractor = None, chat_template = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/muse_spark/processing_muse_spark.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/muse_spark/processing_muse_spark.py#L28)
 
 **Parameters:**
 
@@ -528,8 +528,8 @@ chat_template (`str`) : A Jinja template to convert lists of messages in a chat 
 
 Constructs a MuseSparkProcessor which wraps a image processor, a video processor, a tokenizer, and a feature extractor into a single processor.
 
-[MuseSparkProcessor](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkProcessor) offers all the functionalities of [MuseGlimmerImageProcessor](/docs/transformers/v5.20.1/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor), [MuseGlimmerVideoProcessor](/docs/transformers/v5.20.1/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor), `tokenizer_class`, and [MuseSparkFeatureExtractor](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkFeatureExtractor). See the
-[~MuseGlimmerImageProcessor](/docs/transformers/v5.20.1/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor), [~MuseGlimmerVideoProcessor](/docs/transformers/v5.20.1/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor), `~tokenizer_class`, and [~MuseSparkFeatureExtractor](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkFeatureExtractor) for more information.
+[MuseSparkProcessor](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkProcessor) offers all the functionalities of [MuseGlimmerImageProcessor](/docs/transformers/v5.20.2/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor), [MuseGlimmerVideoProcessor](/docs/transformers/v5.20.2/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor), `tokenizer_class`, and [MuseSparkFeatureExtractor](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkFeatureExtractor). See the
+[~MuseGlimmerImageProcessor](/docs/transformers/v5.20.2/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor), [~MuseGlimmerVideoProcessor](/docs/transformers/v5.20.2/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor), `~tokenizer_class`, and [~MuseSparkFeatureExtractor](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkFeatureExtractor) for more information.
 
 ## MuseSparkPreTrainedModel[[transformers.MuseSparkPreTrainedModel]]
 
@@ -539,13 +539,13 @@ Constructs a MuseSparkProcessor which wraps a image processor, a video processor
 transformers.MuseSparkPreTrainedModel(config: PreTrainedConfig, *inputs, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/muse_spark/modeling_muse_spark.py#L494)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/muse_spark/modeling_muse_spark.py#L494)
 
 **Parameters:**
 
-config ([PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PreTrainedConfig](/docs/transformers/v5.20.2/en/main_classes/configuration#transformers.PreTrainedConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -561,15 +561,15 @@ and behavior.
 transformers.MuseSparkTextModel(config: MuseSparkTextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/muse_spark/modeling_muse_spark.py#L590)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/muse_spark/modeling_muse_spark.py#L590)
 
 **Parameters:**
 
-config ([MuseSparkTextConfig](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MuseSparkTextConfig](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Muse Spark Text Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -583,17 +583,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/muse_spark/modeling_muse_spark.py#L615)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/muse_spark/modeling_muse_spark.py#L615)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -603,16 +603,16 @@ use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value s
 
 A `MoeModelOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MuseSparkConfig](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkConfig)) and inputs.
+elements depending on the configuration ([MuseSparkConfig](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkConfig)) and inputs.
 
-The [MuseSparkTextModel](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkTextModel) forward method, overrides the `__call__` special method.
+The [MuseSparkTextModel](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -639,15 +639,15 @@ the latter silently ignores them.
 transformers.MuseSparkVisionModel(config: MuseSparkVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/muse_spark/modeling_muse_spark.py#L948)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/muse_spark/modeling_muse_spark.py#L948)
 
 **Parameters:**
 
-config ([MuseSparkVisionConfig](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MuseSparkVisionConfig](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Muse Spark Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -661,21 +661,21 @@ and behavior.
 forward(pixel_values: FloatTensor, grid_thw: LongTensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/muse_spark/modeling_muse_spark.py#L979)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/muse_spark/modeling_muse_spark.py#L979)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [MuseGlimmerImageProcessor](/docs/transformers/v5.20.1/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor). See [MuseGlimmerImageProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([MuseSparkProcessor](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkProcessor) uses [MuseGlimmerImageProcessor](/docs/transformers/v5.20.1/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [MuseGlimmerImageProcessor](/docs/transformers/v5.20.2/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor). See [MuseGlimmerImageProcessor.__call__()](/docs/transformers/v5.20.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([MuseSparkProcessor](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkProcessor) uses [MuseGlimmerImageProcessor](/docs/transformers/v5.20.2/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor) for processing images).
 
 grid_thw (`torch.LongTensor` of shape `(num_images_or_videos, 3)`) : The temporal, height and width patch-grid dimensions for each packed image or video.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.20.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.20.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MuseSparkConfig](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkConfig)) and inputs.
+elements depending on the configuration ([MuseSparkConfig](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkConfig)) and inputs.
 
-The [MuseSparkVisionModel](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkVisionModel) forward method, overrides the `__call__` special method.
+The [MuseSparkVisionModel](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -704,17 +704,17 @@ the latter silently ignores them.
 transformers.MuseSparkAudioModel(config: MuseSparkAudioConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/muse_spark/modeling_muse_spark.py#L1213)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/muse_spark/modeling_muse_spark.py#L1213)
 
 **Parameters:**
 
-config ([MuseSparkAudioConfig](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkAudioConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MuseSparkAudioConfig](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkAudioConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Muse Spark Open waveform audio encoder: a fully causal convolutional pyramid that maps raw mono
 24 kHz audio to one embedding per 1920 samples (80 ms, i.e. 12.5 Hz), already in the text model's
 hidden size. It uses no attention and no spectrogram front-end.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -728,21 +728,21 @@ and behavior.
 forward(input_values: Tensor, padding_cache: transformers.models.muse_spark.modeling_muse_spark.MuseSparkAudioConv1dPaddingCache | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/muse_spark/modeling_muse_spark.py#L1228)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/muse_spark/modeling_muse_spark.py#L1228)
 
 **Parameters:**
 
-input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [MuseSparkProcessor.__call__()](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
+input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.20.2/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [MuseSparkProcessor.__call__()](/docs/transformers/v5.20.2/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
 
 padding_cache (`MuseSparkAudioConv1dPaddingCache`, *optional*) : Cache for padding in convolutional layers to maintain state across streaming chunks.
 
-**Returns:** [BaseModelOutput](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutput](/docs/transformers/v5.20.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutput](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+A [BaseModelOutput](/docs/transformers/v5.20.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MuseSparkConfig](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkConfig)) and inputs.
+elements depending on the configuration ([MuseSparkConfig](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkConfig)) and inputs.
 
-The [MuseSparkAudioModel](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkAudioModel) forward method, overrides the `__call__` special method.
+The [MuseSparkAudioModel](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkAudioModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -767,15 +767,15 @@ the latter silently ignores them.
 transformers.MuseSparkModel(config: MuseSparkConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/muse_spark/modeling_muse_spark.py#L1269)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/muse_spark/modeling_muse_spark.py#L1269)
 
 **Parameters:**
 
-config ([MuseSparkConfig](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MuseSparkConfig](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Muse Spark Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -789,33 +789,33 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, pixel_values: typing.Optional[torch.Tensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, pixel_values_videos: typing.Optional[torch.Tensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, input_values: typing.Optional[torch.Tensor] = None, input_values_mask: typing.Optional[torch.Tensor] = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/muse_spark/modeling_muse_spark.py#L1360)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/muse_spark/modeling_muse_spark.py#L1362)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MuseGlimmerImageProcessor](/docs/transformers/v5.20.1/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor). See [MuseGlimmerImageProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([MuseSparkProcessor](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkProcessor) uses [MuseGlimmerImageProcessor](/docs/transformers/v5.20.1/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MuseGlimmerImageProcessor](/docs/transformers/v5.20.2/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor). See [MuseGlimmerImageProcessor.__call__()](/docs/transformers/v5.20.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([MuseSparkProcessor](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkProcessor) uses [MuseGlimmerImageProcessor](/docs/transformers/v5.20.2/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor) for processing images).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [MuseGlimmerVideoProcessor](/docs/transformers/v5.20.1/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor). See [MuseGlimmerVideoProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([MuseSparkProcessor](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkProcessor) uses [MuseGlimmerVideoProcessor](/docs/transformers/v5.20.1/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor) for processing videos).
+pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [MuseGlimmerVideoProcessor](/docs/transformers/v5.20.2/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor). See [MuseGlimmerVideoProcessor.__call__()](/docs/transformers/v5.20.2/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([MuseSparkProcessor](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkProcessor) uses [MuseGlimmerVideoProcessor](/docs/transformers/v5.20.2/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor) for processing videos).
 
 video_grid_thw (`torch.LongTensor` of shape `(num_videos, 3)`, *optional*) : The temporal, height and width of feature shape of each video in LLM.
 
-input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [MuseSparkProcessor.__call__()](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
+input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.20.2/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [MuseSparkProcessor.__call__()](/docs/transformers/v5.20.2/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
 
-input_values_mask (`torch.Tensor` of shape `(batch_size, num_samples)`, *optional*) : Which entries of `input_values` are real audio rather than padding, as produced by [MuseSparkFeatureExtractor](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkFeatureExtractor). Required when batching clips of different lengths.
+input_values_mask (`torch.Tensor` of shape `(batch_size, num_samples)`, *optional*) : Which entries of `input_values` are real audio rather than padding, as produced by [MuseSparkFeatureExtractor](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkFeatureExtractor). Required when batching clips of different lengths.
 
 mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *optional*) : Dict where keys are supported modalities and values are encoded outputs for that modality. Each encoded output is a tuple that consists of (`pooler_output`, *optional*: `last_hidden_states`, *optional*: `hidden_states`, *optional*: `attentions`) `pooler_output` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of multimmodal features of the encoder merged into text embeddings.
 
@@ -823,9 +823,9 @@ mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *
 
 A `MuseSparkModelOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MuseSparkConfig](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkConfig)) and inputs.
+elements depending on the configuration ([MuseSparkConfig](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkConfig)) and inputs.
 
-The [MuseSparkModel](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkModel) forward method, overrides the `__call__` special method.
+The [MuseSparkModel](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -835,7 +835,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -905,15 +905,15 @@ Example:
 transformers.MuseSparkForConditionalGeneration(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/muse_spark/modeling_muse_spark.py#L1550)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/muse_spark/modeling_muse_spark.py#L1552)
 
 **Parameters:**
 
-config ([MuseSparkForConditionalGeneration](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkForConditionalGeneration)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MuseSparkForConditionalGeneration](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkForConditionalGeneration)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Muse Spark Model for token generation conditioned on other modalities (e.g. image-text-to-text generation).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -927,29 +927,29 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, pixel_values_videos: typing.Optional[torch.FloatTensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, input_values: typing.Optional[torch.Tensor] = None, input_values_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/muse_spark/modeling_muse_spark.py#L1587)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/muse_spark/modeling_muse_spark.py#L1590)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MuseGlimmerImageProcessor](/docs/transformers/v5.20.1/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor). See [MuseGlimmerImageProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([MuseSparkProcessor](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkProcessor) uses [MuseGlimmerImageProcessor](/docs/transformers/v5.20.1/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MuseGlimmerImageProcessor](/docs/transformers/v5.20.2/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor). See [MuseGlimmerImageProcessor.__call__()](/docs/transformers/v5.20.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([MuseSparkProcessor](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkProcessor) uses [MuseGlimmerImageProcessor](/docs/transformers/v5.20.2/en/model_doc/muse_glimmer#transformers.MuseGlimmerImageProcessor) for processing images).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [MuseGlimmerVideoProcessor](/docs/transformers/v5.20.1/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor). See [MuseGlimmerVideoProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([MuseSparkProcessor](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkProcessor) uses [MuseGlimmerVideoProcessor](/docs/transformers/v5.20.1/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor) for processing videos).
+pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [MuseGlimmerVideoProcessor](/docs/transformers/v5.20.2/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor). See [MuseGlimmerVideoProcessor.__call__()](/docs/transformers/v5.20.2/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([MuseSparkProcessor](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkProcessor) uses [MuseGlimmerVideoProcessor](/docs/transformers/v5.20.2/en/model_doc/muse_glimmer#transformers.MuseGlimmerVideoProcessor) for processing videos).
 
 video_grid_thw (`torch.LongTensor` of shape `(num_videos, 3)`, *optional*) : The temporal, height and width of feature shape of each video in LLM.
 
-input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [MuseSparkProcessor.__call__()](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
+input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.20.2/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [MuseSparkProcessor.__call__()](/docs/transformers/v5.20.2/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
 
-input_values_mask (`torch.Tensor` of shape `(batch_size, num_samples)`, *optional*) : Which entries of `input_values` are real audio rather than padding, as produced by [MuseSparkFeatureExtractor](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkFeatureExtractor). Required when batching clips of different lengths.
+input_values_mask (`torch.Tensor` of shape `(batch_size, num_samples)`, *optional*) : Which entries of `input_values` are real audio rather than padding, as produced by [MuseSparkFeatureExtractor](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkFeatureExtractor). Required when batching clips of different lengths.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -965,9 +965,9 @@ mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *
 
 A `MuseSparkCausalLMOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MuseSparkConfig](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkConfig)) and inputs.
+elements depending on the configuration ([MuseSparkConfig](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkConfig)) and inputs.
 
-The [MuseSparkForConditionalGeneration](/docs/transformers/v5.20.1/en/model_doc/muse_spark#transformers.MuseSparkForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [MuseSparkForConditionalGeneration](/docs/transformers/v5.20.2/en/model_doc/muse_spark#transformers.MuseSparkForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -975,7 +975,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.text_config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -1041,5 +1041,5 @@ The image shows a **Pallas's cat — also known as a manul, *Otocolobus manul***
 ...
 ```
 
-### Swin Transformer V2
-https://huggingface.co/docs/transformers/v5.20.1/model_doc/swinv2.md
+### FalconMamba
+https://huggingface.co/docs/transformers/v5.20.2/model_doc/falcon_mamba.md

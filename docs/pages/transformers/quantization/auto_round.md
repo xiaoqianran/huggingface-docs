@@ -240,5 +240,5 @@ Special thanks to open-source low precision libraries such as AutoGPTQ, AutoAWQ,
 Contributions to [AutoRound](https://github.com/intel/auto-round/pulls) are welcome and greatly appreciated!
 Whether it's fixing bugs, improving documentation, adding new features, or suggesting improvements, your help is always valued.
 
-### Quantization concepts
-https://huggingface.co/docs/transformers/v5.20.1/quantization/concept_guide.md
+### BitNet
+https://huggingface.co/docs/transformers/v5.20.2/quantization/bitnet.md

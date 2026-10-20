@@ -2,8 +2,8 @@
 
 Transformers runs on CPUs, NVIDIA GPUs, AMD GPUs, Apple Silicon, Google TPUs, AWS Trainium instances, and more through their PyTorch backends.
 
-- For training, [TrainingArguments](/docs/transformers/v5.20.1/en/main_classes/trainer#transformers.TrainingArguments) detects the backend automatically.
-- For inference, automatic detection doesn't cover every backend, so pass the device string to choose one explicitly. This page lists the device string and package for each backend, what [TrainingArguments](/docs/transformers/v5.20.1/en/main_classes/trainer#transformers.TrainingArguments) configures it for, and how Transformers decides which device to use.
+- For training, [TrainingArguments](/docs/transformers/v5.20.2/en/main_classes/trainer#transformers.TrainingArguments) detects the backend automatically.
+- For inference, automatic detection doesn't cover every backend, so pass the device string to choose one explicitly. This page lists the device string and package for each backend, what [TrainingArguments](/docs/transformers/v5.20.2/en/main_classes/trainer#transformers.TrainingArguments) configures it for, and how Transformers decides which device to use.
 
 ## Find your hardware
 
@@ -32,11 +32,11 @@ Transformers picks a device differently for training and inference.
 
 ### Training
 
-[TrainingArguments](/docs/transformers/v5.20.1/en/main_classes/trainer#transformers.TrainingArguments) detects the backend automatically through [Accelerate](https://hf.co/docs/accelerate/index). In a distributed run, each process uses the device Accelerate assigns to it. In a single process, [TrainingArguments](/docs/transformers/v5.20.1/en/main_classes/trainer#transformers.TrainingArguments) picks the first available backend, and falls back to CPU if none is available. Set `use_cpu=True` to force training on CPU.
+[TrainingArguments](/docs/transformers/v5.20.2/en/main_classes/trainer#transformers.TrainingArguments) detects the backend automatically through [Accelerate](https://hf.co/docs/accelerate/index). In a distributed run, each process uses the device Accelerate assigns to it. In a single process, [TrainingArguments](/docs/transformers/v5.20.2/en/main_classes/trainer#transformers.TrainingArguments) picks the first available backend, and falls back to CPU if none is available. Set `use_cpu=True` to force training on CPU.
 
 ### Inference
 
-[from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) loads a model on CPU by default.
+[from_pretrained()](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) loads a model on CPU by default.
 
 Set `device_map="auto"` to place it on the available accelerators. Automatic placement relies on Accelerate to detect CUDA, Intel XPU, Intel Gaudi (HPU), and Apple Silicon (MPS), among others, but it doesn't cover every backend. For other backends, such as AWS Trainium, pass the device string to `device_map` explicitly.
 
@@ -46,5 +46,5 @@ from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-0.6B", device_map="neuron")
 ```
 
-### Continuous batching
-https://huggingface.co/docs/transformers/v5.20.1/continuous_batching.md
+### Chat message patterns
+https://huggingface.co/docs/transformers/v5.20.2/chat_content_patterns.md

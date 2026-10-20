@@ -211,5 +211,5 @@ This means that downloading a different revision or build variant of the same
 kernel will not collide with the existing receipt and will be verified as
 expected.
 
-### Talks
-https://huggingface.co/docs/kernels/main/talks.md
+### kernels download
+https://huggingface.co/docs/kernels/main/cli-download.md

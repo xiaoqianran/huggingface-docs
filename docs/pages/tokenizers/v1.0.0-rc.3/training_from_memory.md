@@ -125,7 +125,7 @@ tokenizer.train_from_iterator(gzip_iterator(), trainer=trainer)
 And voilà!
 
 ### Tokenizers
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.2/index.md
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/index.md
 
 # Tokenizers
 
@@ -151,4 +151,4 @@ performance and versatility. These tokenizers are also used in [🤗 Transformer
 - Does all the pre-processing: Truncation, Padding, add the special tokens your model needs.
 
 ### The tokenization pipeline
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.2/pipeline.md
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/pipeline.md

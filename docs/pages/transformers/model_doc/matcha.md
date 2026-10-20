@@ -57,5 +57,5 @@ scheduler = get_cosine_schedule_with_warmup(optimizer, num_warmup_steps=1000, nu
 
 MatCha is a model that is trained using `Pix2Struct` architecture. You can find more information about `Pix2Struct` in the [Pix2Struct documentation](./pix2struct).
 
-### GPT-NeoX
-https://huggingface.co/docs/transformers/v5.20.1/model_doc/gpt_neox.md
+### NanoChat
+https://huggingface.co/docs/transformers/v5.20.2/model_doc/nanochat.md

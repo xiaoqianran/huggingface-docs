@@ -29,7 +29,7 @@ pip install "transformers[kernels]"
 
 ## Run inference
 
-Pass `device_map="mps"` to [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). [pipeline()](/docs/transformers/v5.20.1/en/main_classes/pipelines#transformers.pipeline) picks MPS automatically when you don't pass `device`.
+Pass `device_map="mps"` to [from_pretrained()](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). [pipeline()](/docs/transformers/v5.20.2/en/main_classes/pipelines#transformers.pipeline) picks MPS automatically when you don't pass `device`.
 
 ```py
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -84,7 +84,7 @@ To fine-tune a model that doesn't fit in memory, load it in 4-bit with bitsandby
 
 ## Train with Trainer
 
-[TrainingArguments](/docs/transformers/v5.20.1/en/main_classes/trainer#transformers.TrainingArguments) detects MPS and sets the device to `mps`, so [Trainer](/docs/transformers/v5.20.1/en/main_classes/trainer#transformers.Trainer) trains on it without any device settings. Both bf16 and fp16 mixed precision work. Load the model with the default SDPA attention, because [metal-flash-sdpa](#choose-an-attention-backend) doesn’t compute gradients for the attention projections.
+[TrainingArguments](/docs/transformers/v5.20.2/en/main_classes/trainer#transformers.TrainingArguments) detects MPS and sets the device to `mps`, so [Trainer](/docs/transformers/v5.20.2/en/main_classes/trainer#transformers.Trainer) trains on it without any device settings. Both bf16 and fp16 mixed precision work. Load the model with the default SDPA attention, because [metal-flash-sdpa](#choose-an-attention-backend) doesn’t compute gradients for the attention projections.
 
 ```py
 from transformers import TrainingArguments
@@ -98,13 +98,13 @@ print(training_args.device)
 
 It prints `mps` when `Trainer` will train on the GPU.
 
-On macOS, Python starts worker processes with `spawn` by default, which re-imports your script and requires a picklable dataset and `collate_fn`. When `dataloader_num_workers` is greater than 1, [TrainingArguments](/docs/transformers/v5.20.1/en/main_classes/trainer#transformers.TrainingArguments) sets `dataloader_multiprocessing_context="fork"` on MPS, so workers start from a copy of the training process instead. Set it to `"spawn"` if a data source isn't fork-safe.
+On macOS, Python starts worker processes with `spawn` by default, which re-imports your script and requires a picklable dataset and `collate_fn`. When `dataloader_num_workers` is greater than 1, [TrainingArguments](/docs/transformers/v5.20.2/en/main_classes/trainer#transformers.TrainingArguments) sets `dataloader_multiprocessing_context="fork"` on MPS, so workers start from a copy of the training process instead. Set it to `"spawn"` if a data source isn't fork-safe.
 
 ### Limit graph cache growth
 
 MPS compiles a Metal kernel for each tensor shape it sees and keeps them in a graph cache that is never evicted. Training with variable-length inputs adds a kernel for every new shape and can run out of unified memory.
 
-Reduce the number of shapes by padding each batch to a multiple of a fixed length with [DataCollatorWithPadding](/docs/transformers/v5.20.1/en/main_classes/data_collator#transformers.DataCollatorWithPadding)'s `pad_to_multiple_of` argument.
+Reduce the number of shapes by padding each batch to a multiple of a fixed length with [DataCollatorWithPadding](/docs/transformers/v5.20.2/en/main_classes/data_collator#transformers.DataCollatorWithPadding)'s `pad_to_multiple_of` argument.
 
 ```py
 from transformers import AutoTokenizer, DataCollatorWithPadding
@@ -128,5 +128,5 @@ Pass it to `Trainer` with `data_collator=data_collator`.
 - Read the [Attention backends](./attention_interface) guide to learn how `attn_implementation` selects an attention function.
 - Check the Metal column in the [quantization overview](./quantization/overview) to find every quantization method that runs on MPS.
 
-### Experts backends
-https://huggingface.co/docs/transformers/v5.20.1/experts_interface.md
+### Tool use
+https://huggingface.co/docs/transformers/v5.20.2/chat_extras.md

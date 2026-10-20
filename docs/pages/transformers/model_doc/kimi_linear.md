@@ -56,5 +56,5 @@ If you are looking for a user-friendly quantization experience, you can use the 
 * [MLX Space](https://huggingface.co/spaces/mlx-community/mlx-my-repo)
 * [AutoQuant Notebook](https://colab.research.google.com/drive/1b6nqC7UZVt8bx4MksX7s656GXPM-eWw4?usp=sharing#scrollTo=ZC9Nsr9u5WhN)
 
-### GPTQ
-https://huggingface.co/docs/transformers/v5.20.1/quantization/gptq.md
+### Quantization concepts
+https://huggingface.co/docs/transformers/v5.20.2/quantization/concept_guide.md

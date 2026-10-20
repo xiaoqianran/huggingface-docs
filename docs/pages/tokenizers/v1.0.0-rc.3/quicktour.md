@@ -466,4 +466,4 @@ hf download hf://google-bert/bert-base-uncased/vocab.txt
 ```
 
 ### Components
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.2/components.md
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/components.md

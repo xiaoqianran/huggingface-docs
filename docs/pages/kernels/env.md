@@ -13,5 +13,5 @@ Disables kernel mappings for [`layers`](layers).
 
 Disable telemetry.
 
-### Install agent skills
-https://huggingface.co/docs/kernels/main/cli-skills.md
+### CLI reference for kernel-builder
+https://huggingface.co/docs/kernels/main/builder-cli.md

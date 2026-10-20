@@ -349,5 +349,5 @@ Clean generated artifacts
     This document was generated automatically by
     clap-markdown.
 
-### Kernels security
-https://huggingface.co/docs/kernels/main/security.md
+### Why kernels?
+https://huggingface.co/docs/kernels/main/why_kernels.md

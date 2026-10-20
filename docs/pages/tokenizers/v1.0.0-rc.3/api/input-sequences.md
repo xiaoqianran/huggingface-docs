@@ -38,4 +38,4 @@ alias of `Union[str, List[str], Tuple[str]]`.
 The Rust API Reference is available directly on the [Docs.rs](https://docs.rs/tokenizers/latest/tokenizers/) website.
 
 ### Pre-tokenizers
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.2/api/pre-tokenizers.md
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/pre-tokenizers.md

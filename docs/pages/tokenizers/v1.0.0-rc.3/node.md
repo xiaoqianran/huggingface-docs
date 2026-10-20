@@ -84,4 +84,4 @@ below, not the configured value.
 | `direction` | `right` | Whether to truncate at the end of the sequence or at its beginning. |
 
 ### Training from memory
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.2/training_from_memory.md
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/training_from_memory.md

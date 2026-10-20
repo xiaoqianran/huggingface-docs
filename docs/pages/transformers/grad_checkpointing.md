@@ -34,7 +34,7 @@ args = TrainingArguments(
 Full gradient checkpointing recomputes every checkpointable layer. If your run has some memory headroom, checkpoint
 fewer layers to trade some of the memory savings for speed.
 
-Pass `every_n_layers` to [gradient_checkpointing_enable()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.gradient_checkpointing_enable) to choose the
+Pass `every_n_layers` to [gradient_checkpointing_enable()](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel.gradient_checkpointing_enable) to choose the
 checkpointing interval.
 
 ```text
@@ -57,10 +57,10 @@ model.gradient_checkpointing_enable(every_n_layers=2)
 
 The default, `every_n_layers=1`, checkpoints every layer. Larger values checkpoint the first layer and then every `n`
 layers after it, leaving the other layers' activations in memory. For example, `every_n_layers=2` checkpoints
-layers 1, 3, 5, and so on. Only modules that inherit from [GradientCheckpointingLayer](/docs/transformers/v5.20.1/en/internal/modeling_utils#transformers.GradientCheckpointingLayer) are counted. Other modules
+layers 1, 3, 5, and so on. Only modules that inherit from [GradientCheckpointingLayer](/docs/transformers/v5.20.2/en/internal/modeling_utils#transformers.GradientCheckpointingLayer) are counted. Other modules
 that support gradient checkpointing remain enabled.
 
-To use partial gradient checkpointing with [Trainer](/docs/transformers/v5.20.1/en/main_classes/trainer#transformers.Trainer), set `every_n_layers` in `gradient_checkpointing_kwargs`.
+To use partial gradient checkpointing with [Trainer](/docs/transformers/v5.20.2/en/main_classes/trainer#transformers.Trainer), set `every_n_layers` in `gradient_checkpointing_kwargs`.
 
 ```py
 from transformers import TrainingArguments
@@ -99,5 +99,5 @@ Both copies run on the compute stream, so this trades a slower step for the memo
 - See the [Mixed precision training](./mixed_precision_training) guide to learn how to use lower precision data types to further reduce memory and speed up training.
 - See the [Kernels](./kernels) guide to learn how to speed up training with custom fused kernels.
 
-### Processors
-https://huggingface.co/docs/transformers/v5.20.1/processors.md
+### Tracing model intermediate outputs
+https://huggingface.co/docs/transformers/v5.20.2/model_output_tracing.md

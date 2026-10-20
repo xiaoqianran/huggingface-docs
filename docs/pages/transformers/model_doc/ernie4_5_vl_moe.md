@@ -19,7 +19,7 @@ Other models from the family can be found at [Ernie 4.5](./ernie4_5) and at [Ern
 
 ## Usage
 
-The example below demonstrates how to generate text based on an image with [Pipeline](/docs/transformers/v5.20.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to generate text based on an image with [Pipeline](/docs/transformers/v5.20.2/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.20.2/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -140,7 +140,7 @@ print(output_text)
 transformers.Ernie4_5_VLMoeConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, image_start_token_id: int = 101304, image_end_token_id: int = 101305, image_token_id: int = 100295, video_start_token_id: int = 101306, video_end_token_id: int = 101307, video_token_id: int = 103367, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/configuration_ernie4_5_vl_moe.py#L152)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/configuration_ernie4_5_vl_moe.py#L152)
 
 **Parameters:**
 
@@ -166,8 +166,8 @@ This is the configuration class to store the configuration of a Ernie4_5_VLMoeMo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [baidu/ERNIE-4.5-VL-28B-A3B-PT](https://huggingface.co/baidu/ERNIE-4.5-VL-28B-A3B-PT)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -192,7 +192,7 @@ Example:
 transformers.Ernie4_5_VLMoeTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 103424, pad_token_id: int | None = None, bos_token_id: int | None = None, eos_token_id: int | list[int] | None = None, hidden_size: int = 2560, intermediate_size: int = 12288, num_hidden_layers: int = 28, num_attention_heads: int = 20, num_key_value_heads: int | None = 4, hidden_act: str = 'silu', max_position_embeddings: int = 131072, initializer_range: float = 0.02, rms_norm_eps: float = 1e-05, use_cache: bool = True, tie_word_embeddings: bool = True, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, use_bias: bool | None = False, moe_intermediate_size: list[int] | None = None, moe_k: int | None = 6, moe_num_experts: int | None = 64, moe_num_shared_experts: int | None = 2, moe_norm_min: float | None = 1e-12, output_router_logits: bool | None = False, router_aux_loss_coef: float | None = 0.001, mlp_layer_types: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/configuration_ernie4_5_vl_moe.py#L67)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/configuration_ernie4_5_vl_moe.py#L67)
 
 **Parameters:**
 
@@ -250,8 +250,8 @@ This is the configuration class to store the configuration of a Ernie4_5_VLMoeMo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [baidu/ERNIE-4.5-VL-28B-A3B-PT](https://huggingface.co/baidu/ERNIE-4.5-VL-28B-A3B-PT)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Ernie4_5_VLMoeVisionConfig[[transformers.Ernie4_5_VLMoeVisionConfig]]
 
@@ -261,7 +261,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes
 transformers.Ernie4_5_VLMoeVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, depth: int = 32, hidden_size: int = 1280, hidden_act: str = 'quick_gelu', num_heads: int = 16, in_channels: int = 3, patch_size: int | list[int] | tuple[int, int] = 14, spatial_merge_size: int = 2, initializer_range: float = 0.02, rope_parameters: dict | None = None, intermediate_size: int = 5120, temporal_merge_size: int = 2, rms_norm_eps: float = 1e-06)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/configuration_ernie4_5_vl_moe.py#L32)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/configuration_ernie4_5_vl_moe.py#L32)
 
 **Parameters:**
 
@@ -293,8 +293,8 @@ This is the configuration class to store the configuration of a Ernie4_5_VLMoeMo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [baidu/ERNIE-4.5-VL-28B-A3B-PT](https://huggingface.co/baidu/ERNIE-4.5-VL-28B-A3B-PT)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.20.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.20.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Ernie4_5_VLMoeImageProcessor[[transformers.Ernie4_5_VLMoeImageProcessor]]
 
@@ -304,7 +304,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.20.1/en/main_classes
 transformers.Ernie4_5_VLMoeImageProcessor(**kwargs: *<class 'transformers.models.ernie4_5_vl_moe.image_processing_ernie4_5_vl_moe.Ernie4_5_VLMoeImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/image_processing_ernie4_5_vl_moe.py#L82)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/image_processing_ernie4_5_vl_moe.py#L82)
 
 **Parameters:**
 
@@ -362,7 +362,7 @@ Constructs a Ernie4_5_VLMoeImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.ernie4_5_vl_moe.image_processing_ernie4_5_vl_moe.Ernie4_5_VLMoeImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/image_processing_ernie4_5_vl_moe.py#L101)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/image_processing_ernie4_5_vl_moe.py#L101)
 
 **Parameters:**
 
@@ -428,7 +428,7 @@ merge_size (`int`, *kwargs*, *optional*, defaults to 2) : The merge size of the 
 transformers.Ernie4_5_VLMoeImageProcessorPil(**kwargs: *<class 'transformers.models.ernie4_5_vl_moe.image_processing_pil_ernie4_5_vl_moe.Ernie4_5_VLMoeImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/image_processing_pil_ernie4_5_vl_moe.py#L79)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/image_processing_pil_ernie4_5_vl_moe.py#L79)
 
 **Parameters:**
 
@@ -486,7 +486,7 @@ Constructs a Ernie4_5_VLMoeImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.ernie4_5_vl_moe.image_processing_pil_ernie4_5_vl_moe.Ernie4_5_VLMoeImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/image_processing_pil_ernie4_5_vl_moe.py#L161)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/image_processing_pil_ernie4_5_vl_moe.py#L161)
 
 **Parameters:**
 
@@ -552,7 +552,7 @@ merge_size (`int`, *kwargs*, *optional*, defaults to 2) : The merge size of the 
 transformers.Ernie4_5_VLMoeVideoProcessor(**kwargs: *<class 'transformers.models.ernie4_5_vl_moe.video_processing_ernie4_5_vl_moe.Ernie4_5_VLMoeVideoProcessorInitKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/video_processing_ernie4_5_vl_moe.py#L97)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/video_processing_ernie4_5_vl_moe.py#L97)
 
 **Parameters:**
 
@@ -566,7 +566,7 @@ Constructs a Ernie4_5_VLMoeVideoProcessor video processor.
 preprocess(videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]]], **kwargs: *<class 'transformers.processing_utils.VideosKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/video_processing_ernie4_5_vl_moe.py#L576)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/video_processing_ernie4_5_vl_moe.py#L576)
 
 **Parameters:**
 
@@ -630,7 +630,7 @@ return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwar
 transformers.Ernie4_5_VLMoeProcessor(image_processor = None, tokenizer = None, video_processor = None, chat_template = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/processing_ernie4_5_vl_moe.py#L38)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/processing_ernie4_5_vl_moe.py#L38)
 
 **Parameters:**
 
@@ -644,8 +644,8 @@ chat_template (`str`) : A Jinja template to convert lists of messages in a chat 
 
 Constructs a Ernie4_5_VLMoeProcessor which wraps a image processor, a tokenizer, and a video processor into a single processor.
 
-[Ernie4_5_VLMoeProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeProcessor) offers all the functionalities of [Ernie4_5_VLMoeImageProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeImageProcessor), `tokenizer_class`, and [Ernie4_5_VLMoeVideoProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeVideoProcessor). See the
-[~Ernie4_5_VLMoeImageProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeImageProcessor), `~tokenizer_class`, and [~Ernie4_5_VLMoeVideoProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeVideoProcessor) for more information.
+[Ernie4_5_VLMoeProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeProcessor) offers all the functionalities of [Ernie4_5_VLMoeImageProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeImageProcessor), `tokenizer_class`, and [Ernie4_5_VLMoeVideoProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeVideoProcessor). See the
+[~Ernie4_5_VLMoeImageProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeImageProcessor), `~tokenizer_class`, and [~Ernie4_5_VLMoeVideoProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeVideoProcessor) for more information.
 
 #### __call__[[transformers.Ernie4_5_VLMoeProcessor.__call__]]
 
@@ -653,7 +653,7 @@ Constructs a Ernie4_5_VLMoeProcessor which wraps a image processor, a tokenizer,
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, **kwargs: *<class 'transformers.models.ernie4_5_vl_moe.processing_ernie4_5_vl_moe.Ernie4_5_VLMoeProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/processing_ernie4_5_vl_moe.py#L70)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/processing_ernie4_5_vl_moe.py#L70)
 
 **Parameters:**
 
@@ -663,9 +663,9 @@ text (`Union[str, list[str]]`, *optional*) : The sequence or batch of sequences 
 
 videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.ndarray], list[torch.Tensor], list[list[PIL.Image.Image]], list[list[numpy.ndarray]], list[list[torch.Tensor]], ~video_utils.URL, list[~video_utils.URL], list[list[~video_utils.URL]], ~video_utils.Path, list[~video_utils.Path], list[list[~video_utils.Path]]]`, *optional*) : Video to preprocess. Expects a single or batch of videos with pixel values ranging from 0 to 255. If passing in videos with pixel values between 0 and 1, set `do_rescale=False`.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.20.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.20.2/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.20.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.20.2/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ## Ernie4_5_VLMoeTextModel[[transformers.Ernie4_5_VLMoeTextModel]]
 
@@ -675,15 +675,15 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.20.1/en/internal/fil
 transformers.Ernie4_5_VLMoeTextModel(config: Ernie4_5_VLMoeTextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L700)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L700)
 
 **Parameters:**
 
-config ([Ernie4_5_VLMoeTextConfig](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Ernie4_5_VLMoeTextConfig](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Ernie4 5 Vl Moe Text Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -697,11 +697,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, moe_mm_token_type_ids: typing.Optional[torch.IntTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.modeling_flash_attention_utils.FlashAttentionKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L719)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L719)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -709,7 +709,7 @@ position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *opti
 
 moe_mm_token_type_ids (`torch.IntTensor` of shape `(batch_size, sequence_length)`, *optional*) : The same as `mm_token_type_ids` while additionally considering start/end image/video tokens as respective vision tokens.
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -719,16 +719,16 @@ use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value s
 
 A `MoeModelOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Ernie4_5_VLMoeConfig](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeConfig)) and inputs.
+elements depending on the configuration ([Ernie4_5_VLMoeConfig](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeConfig)) and inputs.
 
-The [Ernie4_5_VLMoeTextModel](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeTextModel) forward method, overrides the `__call__` special method.
+The [Ernie4_5_VLMoeTextModel](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -755,15 +755,15 @@ the latter silently ignores them.
 transformers.Ernie4_5_VLMoeVisionTransformerPretrainedModel(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L890)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L890)
 
 **Parameters:**
 
-config ([Ernie4_5_VLMoeVisionTransformerPretrainedModel](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeVisionTransformerPretrainedModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Ernie4_5_VLMoeVisionTransformerPretrainedModel](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeVisionTransformerPretrainedModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Ernie4 5 Vl Moe Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -777,7 +777,7 @@ and behavior.
 forward(hidden_states: Tensor, grid_thw: Tensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L919)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L919)
 
 grid_thw (`torch.LongTensor` of shape `(num_images, 3)`):
 The temporal, height and width dimensions of feature shape for each image. Each row contains [t, h, w] values.
@@ -790,7 +790,7 @@ The temporal, height and width dimensions of feature shape for each image. Each 
 transformers.Ernie4_5_VLMoeVariableResolutionResamplerModel(config: Ernie4_5_VLMoeConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L963)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L963)
 
 #### forward[[transformers.Ernie4_5_VLMoeVariableResolutionResamplerModel.forward]]
 
@@ -798,7 +798,7 @@ transformers.Ernie4_5_VLMoeVariableResolutionResamplerModel(config: Ernie4_5_VLM
 forward(hidden_states, grid_thw)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L1047)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L1047)
 
 ## Ernie4_5_VLMoeModel[[transformers.Ernie4_5_VLMoeModel]]
 
@@ -808,15 +808,15 @@ forward(hidden_states, grid_thw)
 transformers.Ernie4_5_VLMoeModel(config: Ernie4_5_VLMoeConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L1065)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L1065)
 
 **Parameters:**
 
-config ([Ernie4_5_VLMoeConfig](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Ernie4_5_VLMoeConfig](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Ernie4 5 Vl Moe Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.20.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -830,11 +830,11 @@ and behavior.
 forward(input_ids: LongTensor = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, mm_token_type_ids: typing.Optional[torch.IntTensor] = None, moe_mm_token_type_ids: typing.Optional[torch.IntTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, pixel_values: typing.Optional[torch.Tensor] = None, pixel_values_videos: typing.Optional[torch.FloatTensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L1364)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L1364)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -844,15 +844,15 @@ mm_token_type_ids (`torch.IntTensor` of shape `(batch_size, sequence_length)`, *
 
 moe_mm_token_type_ids (`torch.IntTensor` of shape `(batch_size, sequence_length)`, *optional*) : The same as `mm_token_type_ids` while additionally considering start/end image/video tokens as respective vision tokens.
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Ernie4_5_VLMoeImageProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeImageProcessor). See [Ernie4_5_VLMoeImageProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Ernie4_5_VLMoeProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeProcessor) uses [Ernie4_5_VLMoeImageProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Ernie4_5_VLMoeImageProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeImageProcessor). See [Ernie4_5_VLMoeImageProcessor.__call__()](/docs/transformers/v5.20.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Ernie4_5_VLMoeProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeProcessor) uses [Ernie4_5_VLMoeImageProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeImageProcessor) for processing images).
 
-pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [Ernie4_5_VLMoeVideoProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeVideoProcessor). See [Ernie4_5_VLMoeVideoProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([Ernie4_5_VLMoeProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeProcessor) uses [Ernie4_5_VLMoeVideoProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeVideoProcessor) for processing videos).
+pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [Ernie4_5_VLMoeVideoProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeVideoProcessor). See [Ernie4_5_VLMoeVideoProcessor.__call__()](/docs/transformers/v5.20.2/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([Ernie4_5_VLMoeProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeProcessor) uses [Ernie4_5_VLMoeVideoProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeVideoProcessor) for processing videos).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
@@ -864,16 +864,16 @@ mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *
 
 A `MoeModelOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Ernie4_5_VLMoeConfig](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeConfig)) and inputs.
+elements depending on the configuration ([Ernie4_5_VLMoeConfig](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeConfig)) and inputs.
 
-The [Ernie4_5_VLMoeModel](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeModel) forward method, overrides the `__call__` special method.
+The [Ernie4_5_VLMoeModel](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -898,19 +898,19 @@ the latter silently ignores them.
 get_video_features(pixel_values_videos: FloatTensor, video_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L1240)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L1240)
 
 **Parameters:**
 
-pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [Ernie4_5_VLMoeVideoProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeVideoProcessor). See [Ernie4_5_VLMoeVideoProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([Ernie4_5_VLMoeProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeProcessor) uses [Ernie4_5_VLMoeVideoProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeVideoProcessor) for processing videos).
+pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [Ernie4_5_VLMoeVideoProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeVideoProcessor). See [Ernie4_5_VLMoeVideoProcessor.__call__()](/docs/transformers/v5.20.2/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([Ernie4_5_VLMoeProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeProcessor) uses [Ernie4_5_VLMoeVideoProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeVideoProcessor) for processing videos).
 
 video_grid_thw (`torch.LongTensor` of shape `(num_videos, 3)`, *optional*) : The temporal, height and width of feature shape of each video in LLM.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.20.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.20.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Ernie4_5_VLMoeConfig](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeConfig)) and inputs.
+elements depending on the configuration ([Ernie4_5_VLMoeConfig](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -933,19 +933,19 @@ elements depending on the configuration ([Ernie4_5_VLMoeConfig](/docs/transforme
 get_image_features(pixel_values: FloatTensor, image_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L1259)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L1259)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Ernie4_5_VLMoeImageProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeImageProcessor). See [Ernie4_5_VLMoeImageProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Ernie4_5_VLMoeProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeProcessor) uses [Ernie4_5_VLMoeImageProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Ernie4_5_VLMoeImageProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeImageProcessor). See [Ernie4_5_VLMoeImageProcessor.__call__()](/docs/transformers/v5.20.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Ernie4_5_VLMoeProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeProcessor) uses [Ernie4_5_VLMoeImageProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeImageProcessor) for processing images).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.20.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.20.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Ernie4_5_VLMoeConfig](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeConfig)) and inputs.
+elements depending on the configuration ([Ernie4_5_VLMoeConfig](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -970,7 +970,7 @@ elements depending on the configuration ([Ernie4_5_VLMoeConfig](/docs/transforme
 transformers.Ernie4_5_VLMoeForConditionalGeneration(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L1525)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L1525)
 
 #### forward[[transformers.Ernie4_5_VLMoeForConditionalGeneration.forward]]
 
@@ -978,11 +978,11 @@ transformers.Ernie4_5_VLMoeForConditionalGeneration(config)
 forward(input_ids: LongTensor = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, mm_token_type_ids: typing.Optional[torch.IntTensor] = None, moe_mm_token_type_ids: typing.Optional[torch.IntTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, output_router_logits: bool | None = None, pixel_values: typing.Optional[torch.Tensor] = None, pixel_values_videos: typing.Optional[torch.FloatTensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L1568)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L1568)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.20.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.20.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.20.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -992,7 +992,7 @@ mm_token_type_ids (`torch.IntTensor` of shape `(batch_size, sequence_length)`, *
 
 moe_mm_token_type_ids (`torch.IntTensor` of shape `(batch_size, sequence_length)`, *optional*) : The same as `mm_token_type_ids` while additionally considering start/end image/video tokens as respective vision tokens.
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -1002,9 +1002,9 @@ use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value s
 
 output_router_logits (`bool`, *optional*) : Whether or not to return the logits of all the routers. They are useful for computing the router loss, and should not be returned during inference.
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Ernie4_5_VLMoeImageProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeImageProcessor). See [Ernie4_5_VLMoeImageProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Ernie4_5_VLMoeProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeProcessor) uses [Ernie4_5_VLMoeImageProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Ernie4_5_VLMoeImageProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeImageProcessor). See [Ernie4_5_VLMoeImageProcessor.__call__()](/docs/transformers/v5.20.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Ernie4_5_VLMoeProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeProcessor) uses [Ernie4_5_VLMoeImageProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeImageProcessor) for processing images).
 
-pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [Ernie4_5_VLMoeVideoProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeVideoProcessor). See [Ernie4_5_VLMoeVideoProcessor.__call__()](/docs/transformers/v5.20.1/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([Ernie4_5_VLMoeProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeProcessor) uses [Ernie4_5_VLMoeVideoProcessor](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeVideoProcessor) for processing videos).
+pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [Ernie4_5_VLMoeVideoProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeVideoProcessor). See [Ernie4_5_VLMoeVideoProcessor.__call__()](/docs/transformers/v5.20.2/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([Ernie4_5_VLMoeProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeProcessor) uses [Ernie4_5_VLMoeVideoProcessor](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeVideoProcessor) for processing videos).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
@@ -1018,9 +1018,9 @@ mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *
 
 A `MoeCausalLMOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Ernie4_5_VLMoeConfig](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeConfig)) and inputs.
+elements depending on the configuration ([Ernie4_5_VLMoeConfig](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeConfig)) and inputs.
 
-The [Ernie4_5_VLMoeForConditionalGeneration](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [Ernie4_5_VLMoeForConditionalGeneration](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1035,7 +1035,7 @@ the latter silently ignores them.
 
   Raw router logits computed by the MoE routers. They can be used to compute a load-balancing loss or to
   inspect how tokens are dispatched to experts.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -1085,7 +1085,7 @@ Example:
 get_video_features(pixel_values_videos: FloatTensor, video_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L1542)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L1542)
 
 **Parameters:**
 
@@ -1093,11 +1093,11 @@ pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_channels, im
 
 video_grid_thw (`torch.LongTensor` of shape `(num_videos, 3)`, *optional*) : The temporal, height and width of feature shape of each video in LLM.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.20.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.20.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Ernie4_5_VLMoeConfig](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeConfig)) and inputs.
+elements depending on the configuration ([Ernie4_5_VLMoeConfig](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -1150,7 +1150,7 @@ Example:
 get_image_features(pixel_values: FloatTensor, image_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.1/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L1555)
+[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/models/ernie4_5_vl_moe/modeling_ernie4_5_vl_moe.py#L1555)
 
 **Parameters:**
 
@@ -1158,11 +1158,11 @@ pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_siz
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.20.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.20.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.20.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Ernie4_5_VLMoeConfig](/docs/transformers/v5.20.1/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeConfig)) and inputs.
+elements depending on the configuration ([Ernie4_5_VLMoeConfig](/docs/transformers/v5.20.2/en/model_doc/ernie4_5_vl_moe#transformers.Ernie4_5_VLMoeConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -1209,5 +1209,5 @@ Example:
 >>> processor.batch_decode(generate_ids, skip_special_tokens=True)[0]
 ```
 
-### XLM
-https://huggingface.co/docs/transformers/v5.20.1/model_doc/xlm.md
+### LightGlue
+https://huggingface.co/docs/transformers/v5.20.2/model_doc/lightglue.md

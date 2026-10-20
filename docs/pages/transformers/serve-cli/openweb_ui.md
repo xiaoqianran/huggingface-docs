@@ -16,5 +16,5 @@ To use the server for speech-to-text, go to **Settings > Audio**.
 
 Start a chat and speak. The model transcribes your audio into the input field.
 
-### Serve CLI
-https://huggingface.co/docs/transformers/v5.20.1/serve-cli/serving.md
+### Server optimizations
+https://huggingface.co/docs/transformers/v5.20.2/serve-cli/serving_optims.md

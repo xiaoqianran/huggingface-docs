@@ -27,4 +27,4 @@ tokenizers.models.WordPiece
 The Rust API Reference is available directly on the [Docs.rs](https://docs.rs/tokenizers/latest/tokenizers/) website.
 
 ### Encode Inputs
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.2/api/encode-inputs.md
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/encode-inputs.md

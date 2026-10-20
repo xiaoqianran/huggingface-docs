@@ -9,7 +9,7 @@ cd examples/auto_deploy
 python build_and_run_ad.py --model meta-llama/Llama-3.2-1B
 ```
 
-Under the hood, AutoDeploy creates an [LLM](https://nvidia.github.io/TensorRT-LLM/llm-api/reference.html#tensorrt_llm.llmapi.LLM) class. It loads the model configuration with [AutoConfig.from_pretrained()](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoConfig.from_pretrained) and extracts any parallelism metadata stored in `tp_plan`. [AutoModelForCausalLM.from_pretrained()](/docs/transformers/v5.20.1/en/model_doc/auto#transformers.AutoModel.from_pretrained) loads the model with the config and enables Transformers' built-in tensor parallelism.
+Under the hood, AutoDeploy creates an [LLM](https://nvidia.github.io/TensorRT-LLM/llm-api/reference.html#tensorrt_llm.llmapi.LLM) class. It loads the model configuration with [AutoConfig.from_pretrained()](/docs/transformers/v5.20.2/en/model_doc/auto#transformers.AutoConfig.from_pretrained) and extracts any parallelism metadata stored in `tp_plan`. [AutoModelForCausalLM.from_pretrained()](/docs/transformers/v5.20.2/en/model_doc/auto#transformers.AutoModel.from_pretrained) loads the model with the config and enables Transformers' built-in tensor parallelism.
 
 ```py
 from tensorrt_llm._torch.auto_deploy import LLM
@@ -24,5 +24,5 @@ TensorRT-LLM extracts the model graph with `torch.export` and applies optimizati
 - [TensorRT-LLM docs](https://nvidia.github.io/TensorRT-LLM/) for more detailed usage guides.
 - [AutoDeploy guide](https://nvidia.github.io/TensorRT-LLM/torch/auto_deploy/auto-deploy.html) explains how it works with advanced examples.
 
-### Nanotron
-https://huggingface.co/docs/transformers/v5.20.1/community_integrations/nanotron.md
+### torchtitan
+https://huggingface.co/docs/transformers/v5.20.2/community_integrations/torchtitan.md

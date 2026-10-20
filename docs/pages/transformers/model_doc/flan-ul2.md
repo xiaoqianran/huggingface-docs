@@ -32,5 +32,5 @@ print(tokenizer.batch_decode(outputs, skip_special_tokens=True))
 
 Refer to [T5's documentation page](t5) for API reference, tips, code examples and notebooks.
 
-### Swin Transformer
-https://huggingface.co/docs/transformers/v5.20.1/model_doc/swin.md
+### VibeVoice ASR
+https://huggingface.co/docs/transformers/v5.20.2/model_doc/vibevoice_asr.md

@@ -634,5 +634,5 @@ Finally, it is essential to consider ethical considerations. Although TTS techno
 may also be used for malicious purposes, such as impersonating someone's voice without their knowledge or consent. Please
 use TTS judiciously and responsibly.
 
-### Translation
-https://huggingface.co/docs/transformers/v5.20.1/tasks/translation.md
+### Zero-shot image classification
+https://huggingface.co/docs/transformers/v5.20.2/tasks/zero_shot_image_classification.md

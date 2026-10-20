@@ -120,4 +120,4 @@ special characters or identifiers that need to be reverted for example.
 | WordPiece | Reverts the WordPiece Model. This model uses a special identifier `##` for continuing subwords, and so this Decoder helps with decoding these. |
 
 ### Installation
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.2/installation.md
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/installation.md

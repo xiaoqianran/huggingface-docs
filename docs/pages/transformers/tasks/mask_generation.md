@@ -528,5 +528,5 @@ Great improvement after only training for 20 epochs on a small dataset!
 
 ![SAM2 result after training](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/tasks/sam2_after_training.png)
 
-### Question answering
-https://huggingface.co/docs/transformers/v5.20.1/tasks/question_answering.md
+### Masked language modeling
+https://huggingface.co/docs/transformers/v5.20.2/tasks/masked_language_modeling.md

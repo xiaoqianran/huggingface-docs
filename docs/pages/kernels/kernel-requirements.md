@@ -522,5 +522,5 @@ __all__ = ["SiluAndMul"]
 - Only modules from the Python standard library, Torch, or the kernel itself
   can be imported.
 
-### kernels describe-api
-https://huggingface.co/docs/kernels/main/cli-describe-api.md
+### kernels benchmark
+https://huggingface.co/docs/kernels/main/cli-benchmark.md
