@@ -2020,13 +2020,18 @@
     "hub/xet/telemetry.md": {
       "hash": "cd64cc1197b830e237fe7d86b34c2367557896f3",
       "translatedAt": "2026-10-07T14:23:57.966Z"
+    },
+    "hub/container-images.md": {
+      "hash": "adaa4ab59f27d9af3a94c0b3b4cc1c66905daacc",
+      "translatedAt": "2026-10-21T12:52:34.325Z",
+      "failed": true
     }
   },
-  "updatedAt": "2026-10-20T12:40:09.171Z",
+  "updatedAt": "2026-10-21T13:00:36.123Z",
   "stats": {
     "translated": 0,
-    "skipped": 400,
-    "failed": 0,
+    "skipped": 128,
+    "failed": 272,
     "total": 400
   }
 }
