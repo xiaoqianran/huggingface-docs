@@ -54,5 +54,5 @@ smolagent "Plan a trip to Tokyo, Kyoto and Osaka between Mar 28 and Apr 7." \
 
 Agents can be pushed to the Hub as Spaces. Browse community agents [here](https://huggingface.co/spaces?filter=smolagents&sort=likes). Learn more in the [smolagents documentation](https://huggingface.co/docs/smolagents/tutorials/tools#use-mcp-tools-with-mcpclient-directly).
 
-### Webhook guide: Process new files in a bucket with Jobs
-https://huggingface.co/docs/hub/webhooks-guide-bucket-jobs.md
+### Datasets
+https://huggingface.co/docs/hub/datasets.md

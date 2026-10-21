@@ -59,5 +59,5 @@ There are two main requirements for this Dockerfile:
 
 -   Second, for the moment you must use the development version of [httpuv](https://github.com/rstudio/httpuv) which resolves an issue with app timeouts on Hugging Face.
 
-### fenic
-https://huggingface.co/docs/hub/datasets-fenic.md
+### Using RL-Baselines3-Zoo at Hugging Face
+https://huggingface.co/docs/hub/rl-baselines3-zoo.md

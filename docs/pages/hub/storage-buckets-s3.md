@@ -260,5 +260,5 @@ dvc push
 > [!NOTE]
 > Use your [namespace](#addressing-buckets) in `endpointurl` and the bare bucket name in the `s3://` URL.
 
-### Agents
-https://huggingface.co/docs/hub/agents.md
+### Academia Hub
+https://huggingface.co/docs/hub/academia-hub.md

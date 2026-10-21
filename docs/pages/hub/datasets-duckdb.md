@@ -78,5 +78,5 @@ In the following sections, we will cover more complex operations you can perform
 > ```
 Native `hf://buckets/` support in DuckDB is expected in a future release.
 
-### Inference Providers
-https://huggingface.co/docs/hub/models-inference.md
+### Adding a Sign-In with HF button to your Space
+https://huggingface.co/docs/hub/spaces-oauth.md

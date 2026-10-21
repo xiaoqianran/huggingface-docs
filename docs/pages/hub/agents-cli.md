@@ -41,5 +41,5 @@ claude
 - [Token Settings](https://huggingface.co/settings/tokens) - Manage your tokens
 - [Jobs Documentation](https://huggingface.co/docs/huggingface_hub/guides/cli#hf-jobs) - Compute jobs guide
 
-### Skills
-https://huggingface.co/docs/hub/agents-skills.md
+### Managing Spaces with GitHub Actions
+https://huggingface.co/docs/hub/spaces-github-actions.md

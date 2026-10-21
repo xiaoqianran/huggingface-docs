@@ -187,5 +187,5 @@ hf jobs uv run --image vllm/vllm-openai --flavor l4x4 -s HF_TOKEN generate-respo
 
 uv still resolves and installs your script dependencies separately. The image supplies system tooling, but does not guarantee that the resolved Python packages are compatible with it.
 
-### Widget Examples
-https://huggingface.co/docs/hub/models-widgets-examples.md
+### Libraries
+https://huggingface.co/docs/hub/datasets-libraries.md

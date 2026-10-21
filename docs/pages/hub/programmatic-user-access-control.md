@@ -520,5 +520,5 @@ curl -s -X PATCH \
 
 The response is the updated resource group, including its `spendLimits`.
 
-### Datasets
-https://huggingface.co/docs/hub/enterprise-datasets.md
+### Spaces ZeroGPU: Dynamic GPU Allocation for Spaces
+https://huggingface.co/docs/hub/spaces-zerogpu.md

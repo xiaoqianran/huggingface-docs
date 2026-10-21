@@ -114,5 +114,5 @@ The package sets all use a similar list of overlays:
   overlays. One typical example are derivations that construct a full compiler
   toolchain (e.g. `nix-builder/pkgs/manylinux_2_28/gcc-unwrapped.nix`).
 
-### Develop kernels with agents
-https://huggingface.co/docs/kernels/main/builder/agents-guide.md
+### Build with Nix
+https://huggingface.co/docs/kernels/main/builder/build.md

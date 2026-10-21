@@ -66,5 +66,5 @@ jobs:
 
 Replace `HF_USERNAME` with your username and `SPACE_NAME` with your Space name.
 
-### Hugging Face Hub documentation
-https://huggingface.co/docs/hub/index.md
+### Annotated Model Card Template
+https://huggingface.co/docs/hub/model-card-annotated.md

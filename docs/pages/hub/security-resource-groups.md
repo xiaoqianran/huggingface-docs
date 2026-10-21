@@ -187,5 +187,5 @@ You can also set spend limits programmatically, see [Set spend limits via API](.
 
 You can list resource groups and add users to them (or change a member's org role and resource group assignments) via the Hub API. For the full reference, examples, and batch workflows, see the [Programmatic User Access Control Management](./programmatic-user-access-control) guide.
 
-### Git over SSH
-https://huggingface.co/docs/hub/security-git-ssh.md
+### Configuration
+https://huggingface.co/docs/hub/jobs-configuration.md

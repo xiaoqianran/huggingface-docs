@@ -130,5 +130,5 @@ Alternatively, one can also simply programmatically upload files or folders to t
 
 Finally, since model repos are just Git repositories, you can also use Git to push your model files to the Hub. Follow the guide on [Getting Started with Repositories](repositories-getting-started#terminal) to learn about using the `git` CLI to commit and push your models.
 
-### Train Models on Jobs
-https://huggingface.co/docs/hub/jobs-training.md
+### File names and splits
+https://huggingface.co/docs/hub/datasets-file-names-and-splits.md

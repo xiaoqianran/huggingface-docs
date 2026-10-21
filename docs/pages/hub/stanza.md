@@ -30,5 +30,5 @@ To add new official Stanza models, you can follow the process to [add a new lang
 
 * `stanza` [docs](https://stanfordnlp.github.io/stanza/).
 
-### Streamlit Spaces
-https://huggingface.co/docs/hub/spaces-sdks-streamlit.md
+### Using Docker images
+https://huggingface.co/docs/hub/jobs-images.md

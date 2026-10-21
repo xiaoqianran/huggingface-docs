@@ -114,5 +114,5 @@ There is much more you can do, so we suggest to review the [Share a model](https
 * Transformers [docs](https://huggingface.co/docs/transformers/index).
 * Share a model [guide](https://huggingface.co/docs/transformers/model_sharing).
 
-### Security
-https://huggingface.co/docs/hub/security.md
+### Organizations, Security, and the Hub API
+https://huggingface.co/docs/hub/other.md

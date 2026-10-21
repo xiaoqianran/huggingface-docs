@@ -1,6 +1,6 @@
 # Session Traces Format
 
-Agent traces from Claude Code, Codex, and Pi are supported out of the box (see [Agent Traces](./agent-traces)). If you build your own harness, you can make its sessions render in the same viewer by writing them in the **Session Trace Simple Format (STS-Format)** described below.
+Agent traces from Claude Code, Codex, Pi, Hermes Agent, and Factory Droid are supported out of the box (see [Agent Traces](./agent-traces)). If you build your own harness, you can make its sessions render in the same viewer by writing them in the **Session Trace Simple Format (STS-Format)** described below.
 
 The **Session Trace Simple Format (STS-Format)** is a [JSONL](https://jsonlines.org) file (one JSON object per line) that the Hugging Face Hub detects and renders in its trace viewer. It captures a single agent/chat session as a header line followed by message lines.
 
@@ -60,5 +60,5 @@ Upload the resulting `.jsonl` to a [Dataset](https://huggingface.co/datasets) or
 
 If you'd rather not adopt the shape above, you can emit **Pi's session format** ([session-format.md](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/session-format.md)), which the Hub already supports. In that case, add a `harness: "..."` field to Pi's session-header line as well, so the Hub can attribute the trace to your harness.
 
-### Using ML-Agents at Hugging Face
-https://huggingface.co/docs/hub/ml-agents.md
+### Service Accounts
+https://huggingface.co/docs/hub/enterprise-service-accounts.md

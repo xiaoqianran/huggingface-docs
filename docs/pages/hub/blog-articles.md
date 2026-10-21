@@ -47,5 +47,5 @@ This makes it easy for visitors to discover related write-ups, release announcem
 
 If the article references a [Collection](./collections), every model and dataset in that collection is treated as linked — the article will surface on each member repo's page (subject to the same ownership rule).
 
-### Pull requests and Discussions
-https://huggingface.co/docs/hub/repositories-pull-requests-discussions.md
+### Perform SQL operations
+https://huggingface.co/docs/hub/datasets-duckdb-sql.md

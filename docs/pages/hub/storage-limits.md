@@ -235,5 +235,5 @@ index 0000000..a090ee7
 
 ```
 
-### Using SpanMarker at Hugging Face
-https://huggingface.co/docs/hub/span_marker.md
+### Spaces as API endpoints
+https://huggingface.co/docs/hub/spaces-api-endpoints.md

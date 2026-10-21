@@ -200,5 +200,5 @@ extra_gated_eu_disallowed: true
 
 The system identifies a user's location based on their IP address.
 
-### Spaces Configuration Reference
-https://huggingface.co/docs/hub/spaces-config-reference.md
+### Spaces as Agent Tools
+https://huggingface.co/docs/hub/spaces-agents.md

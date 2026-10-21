@@ -251,5 +251,5 @@ Additionally, you can enable the Dev Mode on your Space. The Dev Mode allows you
 - [Docker Spaces](spaces-sdks-docker)
 - [List of Docker Spaces examples](spaces-sdks-docker-examples)
 
-### Spaces as MCP servers
-https://huggingface.co/docs/hub/spaces-mcp-servers.md
+### Static HTML Spaces
+https://huggingface.co/docs/hub/spaces-sdks-static.md

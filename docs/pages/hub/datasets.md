@@ -16,5 +16,5 @@ This documentation focuses on the datasets functionality in the Hugging Face Hub
 - [Agent Traces](./agent-traces)
 - [Data files Configuration](./datasets-data-files-configuration)
 
-### Model Card components
-https://huggingface.co/docs/hub/model-cards-components.md
+### Advanced Access Control in Organizations with Resource Groups
+https://huggingface.co/docs/hub/security-resource-groups.md

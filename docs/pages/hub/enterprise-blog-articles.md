@@ -33,5 +33,5 @@ Articles mentioning a model or dataset owned by the same organization will autom
 
 See [Blog Articles](./blog-articles) for general information about authoring blog articles on the Hub.
 
-### Perform SQL operations
-https://huggingface.co/docs/hub/datasets-duckdb-sql.md
+### Single Sign-On (SSO)
+https://huggingface.co/docs/hub/enterprise-sso.md

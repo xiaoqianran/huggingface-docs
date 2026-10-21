@@ -32,5 +32,5 @@ Polars supports reading new line delimited JSON — also known as [json lines](h
 pl.read_ndjson("hf://datasets/proj-persona/PersonaHub/persona.jsonl")
 ```
 
-### Using PaddleNLP at Hugging Face
-https://huggingface.co/docs/hub/paddlenlp.md
+### Organizations
+https://huggingface.co/docs/hub/organizations.md

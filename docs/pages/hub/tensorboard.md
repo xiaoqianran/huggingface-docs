@@ -14,5 +14,5 @@ The Hub automatically detects TensorBoard traces (such as `tfevents`). Once you 
 
 * TensorBoard [documentation](https://www.tensorflow.org/tensorboard).
 
-### Image Dataset
-https://huggingface.co/docs/hub/datasets-image.md
+### More ways to create Spaces
+https://huggingface.co/docs/hub/spaces-more-ways-to-create.md

@@ -60,5 +60,5 @@ For more complex workflows (e.g. build steps, custom upload logic), you can inst
 
 For Spaces-specific guidance (file size limits, LFS handling), see [Managing Spaces with GitHub Actions](./spaces-github-actions).
 
-### Advanced Topics
-https://huggingface.co/docs/hub/spaces-advanced.md
+### Webhook guide: Setup an automatic system to re-train a model when a dataset changes
+https://huggingface.co/docs/hub/webhooks-guide-auto-retrain.md

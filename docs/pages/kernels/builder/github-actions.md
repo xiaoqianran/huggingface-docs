@@ -184,5 +184,5 @@ Flavors map to the machine types available on Hugging Face Jobs, CPU flavors suc
 > `set +x` before exporting `HF_TOKEN` so the token does not leak into the
 > streamed build logs.
 
-### Ship Triton autotune configurations
-https://huggingface.co/docs/kernels/main/builder/triton-autotune.md
+### Write kernels
+https://huggingface.co/docs/kernels/main/builder/writing-kernels.md

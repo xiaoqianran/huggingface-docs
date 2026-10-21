@@ -134,5 +134,5 @@ if (!oauthResult) {
 console.log(oauthResult);
 ```
 
-### Hugging Face MCP Server
-https://huggingface.co/docs/hub/agents-mcp.md
+### Network Security
+https://huggingface.co/docs/hub/enterprise-network-security.md

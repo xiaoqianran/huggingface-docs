@@ -7,5 +7,5 @@
 - [GGUF format](./gguf)
 - [DDUF format](./dduf)
 
-### Network Security
-https://huggingface.co/docs/hub/enterprise-network-security.md
+### Data Studio
+https://huggingface.co/docs/hub/data-studio.md

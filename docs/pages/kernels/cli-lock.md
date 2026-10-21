@@ -77,5 +77,5 @@ The generated lock file contains:
 - [kernels download](cli-download) - Download locked kernels
 - [kernels variants](cli-variants) - View kernel variants and compatibility decisions
 
-### Write kernels
-https://huggingface.co/docs/kernels/main/builder/writing-kernels.md
+### kernels versions
+https://huggingface.co/docs/kernels/main/cli-versions.md

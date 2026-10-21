@@ -16,5 +16,5 @@ Note: Use the context switcher in your org settings to quickly switch between yo
 
 - [Team & Enterprise Plans](./enterprise)
 
-### Data Studio
-https://huggingface.co/docs/hub/data-studio.md
+### JupyterLab on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-jupyter.md

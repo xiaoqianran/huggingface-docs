@@ -36,5 +36,5 @@ You may be able to view the email addresses of members of your organization. The
 
 See [Tokens Management](./enterprise-tokens-management)
 
-### Schedule Jobs
-https://huggingface.co/docs/hub/jobs-schedule.md
+### Manage Jobs
+https://huggingface.co/docs/hub/jobs-manage.md

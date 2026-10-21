@@ -163,5 +163,5 @@ If you have suggestions or need specific support for anything else which isn't
 working, please [join the ZenML Slack community](https://zenml.io/slack-invite/)
 and we'll be happy to help you out!
 
-### DDUF
-https://huggingface.co/docs/hub/dduf.md
+### Hub Local Cache
+https://huggingface.co/docs/hub/local-cache.md

@@ -173,5 +173,5 @@ tasks:
           model: openai/o3-mini
 ```
 
-### Next Steps
-https://huggingface.co/docs/hub/repositories-next-steps.md
+### SSO Configuration Guides
+https://huggingface.co/docs/hub/security-sso-configuration-guides.md

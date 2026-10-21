@@ -61,5 +61,5 @@ If you encounter issues:
 
 For more help, visit the [marimo Discord](https://marimo.io/discord) or [open an issue](https://github.com/marimo-team/marimo/issues).
 
-### Model Cards
-https://huggingface.co/docs/hub/model-cards.md
+### Ingesting Datasets
+https://huggingface.co/docs/hub/datasets-ingesting.md

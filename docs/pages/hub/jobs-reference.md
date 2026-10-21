@@ -30,5 +30,5 @@ Here is a list of available endpoints and arguments:
 
 * [View Jobs OpenAPI](https://huggingface-openapi.hf.space/#tag/jobs)
 
-### Model(s) Release Checklist
-https://huggingface.co/docs/hub/model-release-checklist.md
+### The Model Hub
+https://huggingface.co/docs/hub/models-the-hub.md

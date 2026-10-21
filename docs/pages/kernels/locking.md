@@ -77,5 +77,5 @@ from kernels import load_kernel
 activation = load_kernel("kernels-community/activation")
 ```
 
-### Talks
-https://huggingface.co/docs/kernels/main/talks.md
+### kernels download
+https://huggingface.co/docs/kernels/main/cli-download.md

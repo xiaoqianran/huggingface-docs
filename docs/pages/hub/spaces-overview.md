@@ -52,6 +52,10 @@ Each Spaces environment is limited to 16GB RAM, 2 CPU cores and 50GB of (not per
 | 1x Nvidia L40S         | 8 vCPU        | 62 GB        | 48 GB           | $1.80             |
 | 4x Nvidia L40S         | 48 vCPU       | 382 GB       | 192 GB          | $8.30             |
 | 8x Nvidia L40S         | 192 vCPU      | 1534 GB      | 384 GB          | $23.50            |
+| 1x Nvidia RTX PRO 6000 | 23 vCPU       | 256 GB       | 96 GB           | $2.75             |
+| 2x Nvidia RTX PRO 6000 | 46 vCPU       | 512 GB       | 192 GB          | $5.50             |
+| 4x Nvidia RTX PRO 6000 | 92 vCPU       | 1024 GB      | 384 GB          | $11.00            |
+| 8x Nvidia RTX PRO 6000 | 184 vCPU      | 2048 GB      | 768 GB          | $22.00            |
 | Nvidia A10G - small    | 4 vCPU        | 15 GB        | 24 GB           | $1.00             |
 | Nvidia A10G - large    | 12 vCPU       | 46 GB        | 24 GB           | $1.50             |
 | 2x Nvidia A10G - large | 24 vCPU       | 92 GB        | 48 GB           | $3.00             |
@@ -161,5 +165,5 @@ models:
 - reach-vb/wav2vec2-large-xls-r-1B-common_voice7-lt-ft
 ```
 
-### Datasets
-https://huggingface.co/docs/hub/datasets.md
+### 🟧 Label Studio on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-label-studio.md

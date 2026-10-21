@@ -191,5 +191,5 @@ a better user experience.
 
 You can share your feedback on Spaces ZeroGPU directly on the HF Hub: https://huggingface.co/spaces/zero-gpu-explorers/README/discussions
 
-### Bucket Integrations
-https://huggingface.co/docs/hub/storage-buckets-integrations.md
+### Datasets Overview
+https://huggingface.co/docs/hub/datasets-overview.md

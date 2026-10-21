@@ -4,5 +4,5 @@ Organization cards are a way to describe your organization to other users. They 
 
 Please read more in the [dedicated doc section](./organizations-cards).
 
-### Handling Spaces Dependencies in Gradio Spaces
-https://huggingface.co/docs/hub/spaces-dependencies.md
+### ChatUI on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-chatui.md

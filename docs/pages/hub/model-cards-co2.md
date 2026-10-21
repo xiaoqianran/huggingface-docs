@@ -53,5 +53,5 @@ in your model card metadata, where `1.2345` is the emissions value in **grams**.
 
 To learn more about the carbon footprint of Transformers, check out the [video](https://www.youtube.com/watch?v=ftWlj4FBHTg), part of the Hugging Face Course!
 
-### Trusted Publishers
-https://huggingface.co/docs/hub/trusted-publishers.md
+### How to get a user's plan and status in Spaces
+https://huggingface.co/docs/hub/spaces-get-user-plan.md

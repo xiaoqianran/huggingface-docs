@@ -18,5 +18,5 @@ Use Jobs to [train or fine-tune models](./jobs-training), run inference over dat
 - [Webhooks Automation](./jobs-webhooks)
 - [Reference](./jobs-reference)
 
-### Single Sign-On (SSO)
-https://huggingface.co/docs/hub/security-sso.md
+### Using mlx-image at Hugging Face
+https://huggingface.co/docs/hub/mlx-image.md
