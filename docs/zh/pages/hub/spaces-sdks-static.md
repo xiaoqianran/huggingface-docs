@@ -2,7 +2,7 @@
 
 # 静态 HTML 空间
 
-Spaces 还可以为您的应用程序提供自定义 HTML，而不是使用 Streamlit 或 Gradio。在 Spaces **README.md** 文件顶部的 `YAML` 块内设置 `sdk: static`。然后，您可以将 HTML 代码放入 **index.html** 文件中。
+Spaces 还可以为您的应用程序容纳自定义 HTML，而不是使用 Streamlit 或 Gradio。在 Spaces **README.md** 文件顶部的 `YAML` 块内设置 `sdk: static`。然后，您可以将 HTML 代码放入 **index.html** 文件中。
 
 静态空间对所有人免费：它们直接提供服务，无需在计算上运行，因此与 [Gradio](./spaces-sdks-gradio) 和 [Docker](./spaces-sdks-docker) 空间不同，创建它们不需要付费计划。
 
@@ -29,7 +29,7 @@ Spaces 还可以为您的应用程序提供自定义 HTML，而不是使用 Stre
 
 在底层，它将[launch a build](https://huggingface.co/spaces/huggingface/space-build)，将生成的文件存储在特殊的`refs/convert/build`引用中。
 
-## 空间变量自定义[environment variables](./spaces-overview#managing-secrets)可以传递到您的空间。如果您的空间有 [enabled OAuth](./spaces-oauth)，则 OAuth 信息（例如客户端 ID 和范围）也可用作环境变量。
+## 空间变量自定义[environment variables](./spaces-overview#managing-secrets)可以传递到您的空间。如果您的空间有 [enabled OAuth](./spaces-oauth)，则 OAuth 信息（例如客户端 ID 和范围）也可以作为环境变量提供。
 
 要在 JavaScript 中使用这些变量，您可以使用 `window.huggingface.variables` 对象。例如，要访问 `OAUTH_CLIENT_ID` 变量，您可以使用 `window.huggingface.variables.OAUTH_CLIENT_ID`。
 
@@ -37,5 +37,5 @@ Spaces 还可以为您的应用程序提供自定义 HTML，而不是使用 Stre
 
 * [Static Variables](https://huggingface.co/spaces/huggingfacejs/static-variables)
 
-### 数据集概述
-https://huggingface.co/docs/hub/datasets-overview.md
+### 将您的库与 Hub 集成
+https://huggingface.co/docs/hub/models-adding-libraries.md

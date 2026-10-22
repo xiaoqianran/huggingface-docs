@@ -58,7 +58,7 @@
 
 如果您想手动批准哪些用户可以访问您集合中的存储库，则必须将其设置为 **手动审核**。在这种情况下，您会注意到一个新选项：
 
-**通知频率**，可让您配置何时收到有关请求访问的新用户的通知。可以设置为每天一次或实时一次。默认情况下，电子邮件会发送给组织的前 5 位管理员。您还可以在 **通知电子邮件** 字段中设置不同的电子邮件地址。
+**通知频率**，可让您配置何时收到有关新用户请求访问的通知。可以设置为每天一次或实时一次。默认情况下，电子邮件会发送给组织的前 5 位管理员。您还可以在 **通知电子邮件** 字段中设置不同的电子邮件地址。
 
     <img
         class="block dark:hidden m-0!"
@@ -77,7 +77,7 @@
 
 **批准对门控组集合中的存储库的请求将自动批准对该集合中所有存储库（模型和数据集）的访问。**#### 从用户界面
 
-您可以通过单击“**查看访问请求**”按钮，从集合中任何存储库的设置页面查看谁有权访问 Gating Group 集合中的所有存储库：
+您可以通过单击 **查看访问请求** 按钮，从集合中任何存储库的设置页面查看谁有权访问 Gating Group 集合中的所有存储库：
 
     <img
         class="block dark:hidden m-0!"
@@ -159,5 +159,5 @@
 
 请访问我们的 [gated models](https://huggingface.co/docs/hub/models-gated#access-gated-models-as-a-user) 或 [gated datasets](https://huggingface.co/docs/hub/datasets-gated#access-gated-datasets-as-a-user) 文档，了解有关请求访问存储库的更多信息。
 
-### HF PRO 订阅 🔥
-https://huggingface.co/docs/hub/pro.md
+### 空间 Livebook
+https://huggingface.co/docs/hub/spaces-sdks-docker-livebook.md

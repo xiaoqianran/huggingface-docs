@@ -2,7 +2,7 @@
 
 # 会话跟踪格式
 
-开箱即用地支持来自 Claude Code、Codex 和 Pi 的代理跟踪（请参阅[Agent Traces](./agent-traces)）。如果您构建自己的工具，则可以通过将其写入下面描述的 **会话跟踪简单格式（STS 格式）** 来使其会话在同一查看器中呈现。
+开箱即用地支持来自 Claude Code、Codex、Pi、Hermes Agent 和 Factory Droid 的代理跟踪（请参阅[Agent Traces](./agent-traces)）。如果您构建自己的工具，则可以通过将其写入下面描述的 **会话跟踪简单格式（STS 格式）** 来使其会话在同一查看器中呈现。
 
 **会话跟踪简单格式（STS 格式）** 是 Hugging Face Hub 检测并在其跟踪查看器中呈现的 [JSONL](https://jsonlines.org) 文件（每行一个 JSON 对象）。它将单个代理/聊天会话捕获为标题行，后跟消息行。
 
@@ -14,7 +14,7 @@
 
 |领域 |必填|笔记|
 | --------- | -------- | ------------------------------------------------- |
-| `type` |是的 |必须是`"session"`|
+| `type` |是的 |必须是`"session"` |
 | `harness` |是的 | **产生跟踪的线束的 ID** |
 | `id` |是的 |唯一的会话 ID |
 | `name` |没有|人类可读的标题 |
@@ -33,7 +33,7 @@
 `message` 对象：
 
 |领域 |必填|笔记|
-| ------------------ | -------- | ---------------------------------------------------------------------------------------------------------- |
+| ------------------ | -------- | ------------------------------------------------------------------------------------------------------------------ |
 | `role` |是的 | `"user"`·`"assistant"`·`"system"`·`"tool"` |
 | `content` |是的 |文本（可能为空）|
 | `reasoningContent` |没有|模型推理，显示为单独的思维块 |
@@ -59,5 +59,5 @@
 
 如果您不想采用上面的形状，您可以发出 **Pi 的会话格式** ([session-format.md](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/session-format.md))，Hub 已经支持该格式。在这种情况下，还要向 Pi 的会话标头行添加一个 `harness: "..."` 字段，以便 Hub 可以将跟踪归因于您的线束。
 
-### 在拥抱脸部时使用 ML-Agents
-https://huggingface.co/docs/hub/ml-agents.md
+### 服务帐户
+https://huggingface.co/docs/hub/enterprise-service-accounts.md

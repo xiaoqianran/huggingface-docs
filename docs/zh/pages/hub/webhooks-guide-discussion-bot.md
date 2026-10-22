@@ -6,7 +6,7 @@
 
 ## 在您的用户个人资料中创建您的 Webhook
 
-首先，让我们从您的 [settings]( https://huggingface.co/settings/webhooks) 创建一个 Webhook。
+首先，让我们从 [settings]( https://huggingface.co/settings/webhooks) 创建一个 Webhook。
 
 - 输入您的 Webhook 将侦听的一些目标存储库。
 - 您现在可以放置一个虚拟的 Webhook URL，但是定义您的 Webhook 将让您查看将发送到它的事件（并且您可以重放它们，这对于调试非常有用）。
@@ -128,5 +128,5 @@ app.post("/", async (req, res) => {
 
 ![discussion-result](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/webhooks-guides/001-discussion-bot/discussion-result.png)
 
-### 学术中心
-https://huggingface.co/docs/hub/academia-hub.md
+### Spaces 开发模式：Spaces 中的无缝开发
+https://huggingface.co/docs/hub/spaces-dev-mode.md

@@ -4,7 +4,7 @@
 
 本指南将向您展示如何使用音频文件配置数据集存储库。您可以在此 [Audio datasets examples collection](https://huggingface.co/collections/datasets-examples/audio-dataset-66aca0b73e8f69e3d069e607) 中找到随附的存储库示例。
 
-具有受支持结构和 [file formats](./datasets-adding#file-formats) 的数据集会自动在 Hub 上的页面上显示数据集查看器。
+具有受支持结构和 [file formats](./datasets-adding#file-formats) 的数据集会自动在 Hub 的页面上显示数据集查看器。
 
 ---
 
@@ -165,7 +165,7 @@ configs:
 
 ### Web数据集格式
 
-[WebDataset](./datasets-webdataset) 格式非常适合大规模音频数据集（例如，参见 [AlienKevin/sbs_cantonese](https://huggingface.co/datasets/AlienKevin/sbs_cantonese)）。
+[WebDataset](./datasets-webdataset) 格式非常适合大规模音频数据集（例如，请参见[AlienKevin/sbs_cantonese](https://huggingface.co/datasets/AlienKevin/sbs_cantonese)）。
 它由包含音频文件及其元数据的 TAR 存档组成，并针对流媒体进行了优化。如果您有大量音频文件并需要获取流数据加载器以进行大规模训练，那么它会很有用。
 
 ```plaintext
@@ -195,13 +195,13 @@ train-0000/
 ### 镶木地板格式
 
 您可以将所有内容嵌入到 [Parquet](https://parquet.apache.org/) 文件中，而不是将音频文件和元数据作为单独的文件上传。
-如果您有大量音频文件、想要嵌入多个音频列或者想要在同一文件中存储有关音频的其他信息，这会很有用。
+如果您有大量音频文件、想要嵌入多个音频列或者想要在同一文件中存储有关音频的其他信息，这会非常有用。
 Parquet 对于存储原始字节等数据也很有用，而 JSON/CSV 不支持这种数据。
 
 ```plaintext
 my_dataset_repository/
 └── train.parquet
-```可以使用 `pandas` 或 `datasets` 库创建包含音频数据的 Parquet 文件。要使用 `pandas` 中的音频数据创建 Parquet 文件，您可以使用 [pandas-audio-methods](https://github.com/lhoestq/pandas-audio-methods) 和 `df.to_parquet()`。在`datasets`中，您可以将列类型设置为`Audio()`并使用`ds.to_parquet(...)`方法或`ds.push_to_hub(...)`。您可以在 `datasets` [here](/docs/datasets/audio_load) 中找到有关加载音频数据集的指南。
+```可以使用 `pandas` 或 `datasets` 库创建带有音频数据的 Parquet 文件。要使用 `pandas` 中的音频数据创建 Parquet 文件，您可以使用 [pandas-audio-methods](https://github.com/lhoestq/pandas-audio-methods) 和 `df.to_parquet()`。在`datasets`中，您可以将列类型设置为`Audio()`并使用`ds.to_parquet(...)`方法或`ds.push_to_hub(...)`。您可以在 `datasets` [here](/docs/datasets/audio_load) 中找到有关加载音频数据集的指南。
 
 或者，您可以手动设置使用其他工具创建的 Parquet 的音频类型。首先，确保您的音频列的类型为 _struct_，其中包含用于音频数据的二进制字段 `"bytes"` 和用于音频文件名或路径的字符串字段 `"path"`。然后，您应该直接在 README 标题中的 YAML 中指定列的功能类型，例如：
 
@@ -216,5 +216,5 @@ dataset_info:
 
 请注意，对于小型音频文件（每个音频文件 <1MB）和小型行组（每个行组 100 行，`datasets` 用于音频），建议使用 Parquet。对于较大的音频文件，建议使用 WebDataset 格式，或共享原始音频文件（可选地与元数据文件）。
 
-### 存储库
-https://huggingface.co/docs/hub/repositories.md
+### 高级计算选项
+https://huggingface.co/docs/hub/advanced-compute-options.md

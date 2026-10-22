@@ -22,7 +22,7 @@ S3 凭证继承底层访问令牌的权限。对于细粒度令牌，请将其�
 ## 配置客户端
 
 将您的 S3 客户端指向网关端点并设置一些必需的选项。在端点 URL 中使用您的 Hugging Face **命名空间**（您的用户名或组织名称） - 请参阅下面的[Addressing buckets](#addressing-buckets)。|设置|价值|为什么 |
-|--------------------------------|--------------------------------|----------------------------------------------------------------------------------------|
+|--------------------------------|--------------------------------|------------------------------------------------------------------------------------------------|
 | `endpoint_url` | `https://s3.hf.co/<namespace>` |网关，范围仅限于您的命名空间 |
 | `region` | `us-east-1` |必需的;网关目前是单区域 |
 | `s3.addressing_style` | `path` |存储桶被寻址为路径段，而不是子域 |
@@ -33,7 +33,7 @@ S3 凭证继承底层访问令牌的权限。对于细粒度令牌，请将其�
 这些设置告诉客户端仅在操作严格要求时才发送校验和。
 
 以下是可选的，但建议使用尽可能少的多部分部分上传：|设置|价值|
-|--------------------------|-------|
+|--------------------------|--------|
 | `s3.multipart_threshold` | `2GB` |
 | `s3.multipart_chunksize` | `2GB` |
 
@@ -74,7 +74,7 @@ aws --profile hf s3 cp ./model.safetensors s3://my-bucket/models/model.safetenso
 
 AWS S3 使用单一平面、全局唯一的存储桶名称空间，并且 SDK 期望存储桶名称是不带 `/` 的纯字符串。 Hugging Face 存储桶被标识为 `namespace/bucket`，其中 `namespace` 是您的用户名或组织。这个额外的级别引入了与 S3 客户端的不匹配——许多客户端不接受存储桶名称中的`/`，或者会错误地对其进行 URL 转义。有两种方法可以解决这个问题：
 
-**1.将命名空间放入端点 URL**（大多数情况下建议）。这将每个操作的范围限定在该命名空间，因此传递给客户端的存储桶名称只是 HF 存储桶名称。它适用于您自己的存储桶或单个组织中的存储桶，但会跨命名空间分解 - 例如从个人存储桶到组织存储桶的服务器端副本。
+**1.将命名空间放入端点 URL**（大多数情况下建议）。这会将每个操作的范围限定到该命名空间，因此传递给客户端的存储桶名称只是 HF 存储桶名称。它适用于您自己的存储桶或单个组织中的存储桶，但会跨命名空间分解 - 例如从个人存储桶到组织存储桶的服务器端副本。
 
 ```bash
 aws --endpoint-url https://s3.hf.co/my-org s3api get-object \
@@ -149,7 +149,9 @@ s3.download_file("my-bucket", "models/model.safetensors", "model.safetensors")
 
 ### 使用 DuckDB 查询存储桶
 
-通过 `httpfs` 扩展，[DuckDB](https://duckdb.org/) 可以直接从存储桶读取 Parquet（和其他格式）：
+在 DuckDB 2.0 或更高版本上，`httpfs` 扩展直接读取 `hf://buckets/` 路径。参见[Query with DuckDB](./storage-buckets-access#query-with-duckdb)。
+
+对于早期版本的 DuckDB，或者要将查询结果写回到具有 `COPY ... TO` 的存储桶，请改为通过 S3 网关：
 
 ```sql
 INSTALL httpfs;
@@ -172,9 +174,7 @@ SELECT * FROM read_parquet('s3://my-bucket/data.parquet');
 
 ### 使用`rclone`导入数据
 
-[⟦T78⟧](https://rclone.org/) 是在两个 S3 兼容存储之间复制数据的便捷方法，因此非常适合将现有 AWS S3 存储桶（或任何 S3 兼容源）移动到存储桶中。
-
-这个想法是声明两个遥控器 - 您的源存储桶和 Hugging Face 网关 - 并让 `rclone` 在它们之间传输对象。将两个遥控器添加到`~/.config/rclone/rclone.conf`。第一个点指向您现有的 S3 存储桶；调整它以匹配您的源（此处为普通 AWS S3）：
+[⟦T80⟧](https://rclone.org/) 是在两个 S3 兼容存储之间复制数据的便捷方法，因此非常适合将现有 AWS S3 存储桶（或任何 S3 兼容源）移动到存储桶中。这个想法是声明两个遥控器 - 您的源存储桶和 Hugging Face 网关 - 并让 `rclone` 在它们之间传输对象。将两个遥控器添加到`~/.config/rclone/rclone.conf`。第一个点指向您现有的 S3 存储桶；调整它以匹配您的源（此处为普通 AWS S3）：
 
 ```ini
 [aws]
@@ -183,7 +183,9 @@ provider = AWS
 access_key_id = AKIA...
 secret_access_key = ...
 region = us-east-1
-```第二个点位于拥抱脸网关。与任何其他客户端一样，将端点范围限定为 [namespace](#addressing-buckets)，使用 `path` 寻址，强制使用 ListObjectsV2（网关支持的唯一列表版本），并设置较大的多部分大小，以便上传使用尽可能少的部分：
+```
+
+第二个点位于拥抱脸网关。与任何其他客户端一样，将端点范围限定为 [namespace](#addressing-buckets)，使用 `path` 寻址，强制使用 ListObjectsV2（网关支持的唯一列表版本），并设置较大的多部分大小，以便上传使用尽可能少的部分：
 
 ```ini
 [hf]
@@ -211,12 +213,12 @@ rclone copy aws:my-source-bucket hf:my-bucket --progress
 
 ```bash
 rclone sync aws:my-source-bucket hf:my-bucket --progress
-```
-
-> [!提示]
+```> [!提示]
 > 对于大型导入，添加`--transfers`和`--checkers`以提高并发性（例如`--transfers 16 --checkers 16`），然后运行`rclone check aws:my-source-bucket hf:my-bucket`以确认每个对象都已通过。
 
-### 带 DVC 的版本数据[DVC](https://dvc.org/) 通过在存储库中保留小指针文件并将实际数据推送到远程来在 git 中版本化数据集和模型。存储桶通过网关充当 DVC 远程，因此您的代码和 `.dvc` 指针保留在 git 中，而数据存储在您的存储桶中。安装支持 S3 的 DVC (`pip install 'dvc[s3]'`)，然后使用上面的 [client settings](#configuring-a-client) 添加遥控器：
+### 带 DVC 的版本数据
+
+[DVC](https://dvc.org/) 通过在存储库中保留小指针文件并将实际数据推送到远程来在 git 中版本化数据集和模型。存储桶通过网关充当 DVC 远程，因此您的代码和 `.dvc` 指针保留在 git 中，而数据存储在您的存储桶中。安装支持 S3 的 DVC (`pip install 'dvc[s3]'`)，然后使用上面的 [client settings](#configuring-a-client) 添加遥控器：
 
 ```bash
 dvc remote add -d hf-bucket s3://my-bucket/dvc-store
@@ -242,5 +244,5 @@ dvc push
 > [!注意]
 > 在 `endpointurl` 中使用您的 [namespace](#addressing-buckets) 并在 `s3://` URL 中使用裸存储桶名称。
 
-### 代理
-https://huggingface.co/docs/hub/agents.md
+### 学术中心
+https://huggingface.co/docs/hub/academia-hub.md

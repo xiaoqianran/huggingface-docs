@@ -51,7 +51,7 @@ HF MCP 服务器可与任何 MCP 兼容的客户端配合使用：
 |探索数据集 | “显示有关天气时间序列的数据集” |
 |寻找空间 | “找到一个可以转录音频文件的空间”|
 |生成图像 | “创建吉卜力风格的 1024x1024 猫图像”|
-|搜索论文 | “查找有关视觉语言模型的最新论文” |
+|搜索论文 | “查找有关视觉语言模型的最新论文”|
 
 您的助手调用 Hugging Face 服务器公开的 MCP 工具，并返回包含元数据、链接和上下文的结果。
 
@@ -61,7 +61,7 @@ HF MCP 服务器可与任何 MCP 兼容的客户端配合使用：
 2. 将它们添加到您的[MCP settings](https://huggingface.co/settings/mcp)
 3. 重新启动客户端以获取新工具
 
-Gradio MCP 应用程序将其函数公开为带有参数和描述的工具，以便您的助手可以直接调用它们。
+Gradio MCP 应用程序将其函数公开为带有参数和描述的工具，因此您的助手可以直接调用它们。
 
 ### 了解更多
 
@@ -178,11 +178,11 @@ Agent: [Fetches documentation]
        result = classifier("I love this product!")
 ```
 
-## 注册您的代理线束Hugging Face 维护着代理工具、与 Hub 交互的编码代理和工具（Claude Code、Codex、Cursor 等）的公共注册表。当 `huggingface_hub` 检测到它正在注册的线束内运行时，它会通过集线器请求的用户代理进行报告。注册您的工具意味着此活动按名称归因于您的工具，并为您的项目提供友好的显示标签、返回文档和存储库的链接以及公共位置[agent usage dataset](https://huggingface.co/datasets/huggingface/agent-usage) — 未注册的工具仅计入其总计 `unknown` 份额。
+## 注册您的代理线束Hugging Face 维护着代理工具、与 Hub 交互的编码代理和工具（Claude Code、Codex、Cursor 等）的公共注册表。当`huggingface_hub`检测到它正在注册的线束内运行时，它会通过集线器请求的用户代理进行报告。注册您的工具意味着此活动按名称归因于您的工具，并为您的项目提供友好的显示标签、返回文档和存储库的链接以及公共位置[agent usage dataset](https://huggingface.co/datasets/huggingface/agent-usage) — 未注册的工具仅计入其总计 `unknown` 份额。
 
 要注册线束，请打开拉取请求，将条目添加到 `@huggingface/tasks` 包中的 [⟦T9⟧](https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/agent-harnesses.ts)：- 线束 ID（输入键）应小写并用连字符分隔（例如：`"claude-code"`）。
 - 使用用户友好的外壳设置`prettyLabel`（例如：`Claude Code`）。
--（可选）设置 `repoUrl` 并包含指向线束源代码（通常是 GitHub 存储库）的链接。
+- （可选）设置 `repoUrl` 并带有指向线束源代码（通常是 GitHub 存储库）的链接。
 - （可选）设置 `docsUrl` 并提供线束文档或网站的链接。
 -（可选）设置`description`，其中包含安全带的简短单行说明。
 - 定义如何从环境中检测到您的安全带：
@@ -196,5 +196,5 @@ Agent: [Fetches documentation]
 - [Skills](./agents-skills) - 编码代理的预构建功能
 - [SDK](./agents-sdk) - 用于构建代理的 Python 和 JavaScript 库
 
-### 数字对象标识符 (DOI)
-https://huggingface.co/docs/hub/doi.md
+### 集线器速率限制
+https://huggingface.co/docs/hub/rate-limits.md

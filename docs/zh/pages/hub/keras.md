@@ -43,10 +43,10 @@ model.save("hf://your-username/your-model-name")
 默认情况下，存储库将包含最小模型卡。查看 [Model Card guide](https://huggingface.co/docs/hub/model-cards) 了解有关模型卡以及如何完成它们的更多信息。您还可以使用 `huggingface_hub.ModelCard` 以编程方式更新模型卡（请参阅 [guide](https://huggingface.co/docs/huggingface_hub/guides/model-cards)）。
 
 > [!提示]
-> 您可能已经熟悉 `.keras` 文件。事实上，`.keras` 文件只是一个包含 `.json` 和 `model.weights.h5` 文件的 zip 文件。当推送到中心时，模型将保存为解压缩的文件夹，以便您浏览文件。请注意，如果您手动将 `.keras` 文件上传到 Hub 上的模型存储库，该存储库将自动标记为 `keras`，但您将无法使用 `keras.saving.load_model` 加载它。
+> 您可能已经熟悉 `.keras` 文件。事实上，`.keras` 文件只是一个包含 `.json` 和 `model.weights.h5` 文件的 zip 文件。当推送到集线器时，模型将保存为解压缩的文件夹，以便您浏览文件。请注意，如果您手动将 `.keras` 文件上传到 Hub 上的模型存储库，该存储库将自动标记为 `keras`，但您将无法使用 `keras.saving.load_model` 加载它。
 
 ## 其他资源
 
 * Keras 开发者[Guides](https://keras.io/guides/)。
-* Keras [examples](https://keras.io/examples/)。### 上传数据集
-https://huggingface.co/docs/hub/datasets-adding.md
+* Keras [examples](https://keras.io/examples/)。### 配置数据集查看器
+https://huggingface.co/docs/hub/datasets-viewer-configure.md

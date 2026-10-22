@@ -14,7 +14,7 @@
 >>> df = pd.read_csv("path/to/data.csv")
 ```
 
-要从 Hugging Face 加载文件，路径需要以 `hf://` 开头。例如，[stanfordnlp/imdb](https://huggingface.co/datasets/stanfordnlp/imdb)数据集存储库的路径是`hf://datasets/stanfordnlp/imdb`。 Hugging Face 上的数据集包含多个 Parquet 文件。 Parquet 文件格式旨在提高数据帧的读写效率，并使跨数据分析语言共享数据变得容易。以下是加载文件`plain_text/train-00000-of-00001.parquet`的方法：
+要从 Hugging Face 加载文件，路径需要以 `hf://` 开头。例如，[stanfordnlp/imdb](https://huggingface.co/datasets/stanfordnlp/imdb)数据集存储库的路径为`hf://datasets/stanfordnlp/imdb`。 Hugging Face 上的数据集包含多个 Parquet 文件。 Parquet 文件格式旨在提高数据帧的读写效率，并使跨数据分析语言共享数据变得容易。以下是加载文件`plain_text/train-00000-of-00001.parquet`的方法：
 
 ```python
 >>> import pandas as pd
@@ -280,5 +280,5 @@ prompt = "What is the main topic of this sentence ? REPLY IN LESS THAN 3 WORDS. 
 df["output"] = [y["generated_text"][1]["content"] for y in pipe([{"role": "user", "content": prompt.format(x)}] for x in tqdm(df["text"]))]
 ```
 
-### 工作
-https://huggingface.co/docs/hub/jobs.md
+### Hugging Face Hub 文档
+https://huggingface.co/docs/hub/index.md

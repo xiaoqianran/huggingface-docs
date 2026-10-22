@@ -169,5 +169,5 @@ Hugging Face Hub 支持安全和访问控制功能，让您放心，您的代码
 - 使用 GPG 签署提交
 - 恶意软件扫描
 
-### Spaces 开发模式：Spaces 中的无缝开发
-https://huggingface.co/docs/hub/spaces-dev-mode.md
+### 空间概述
+https://huggingface.co/docs/hub/spaces-overview.md

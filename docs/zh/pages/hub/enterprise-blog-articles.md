@@ -15,7 +15,7 @@
 
 符合条件的组织发表的文章将自动出现在[huggingface.co/blog](https://huggingface.co/blog)的主要部分；其他文章出现在社区部分。一篇文章在以下情况下会被推荐：
 
-- 该组织采用付费团队或企业计划，**至少 30 个席位**。
+- 该组织采用付费团队或企业计划，**至少有 30 个席位**。
 - 文章有**缩略图**。没有缩略图发布的文章不会被推荐。
 
 文章首次发表时会检查资格。之后添加缩略图不会追溯该文章。为了保持主要部分的多样性，每个组织可以每两周一次发布一篇专题文章。发布新的精选文章会取消该窗口中该组织的其他精选文章的特色。
@@ -29,9 +29,9 @@
 
 ## 链接到模型和数据集
 
-提及同一组织拥有的模型或数据集的文章将自动显示在该存储库的页面上。详情请参阅[Linking to Models and Datasets](./blog-articles#linking-to-models-and-datasets)。
+提及同一组织拥有的模型或数据集的文章将自动显示在该存储库的页面上。详情请参见[Linking to Models and Datasets](./blog-articles#linking-to-models-and-datasets)。
 
 有关在 Hub 上创作博客文章的一般信息，请参阅 [Blog Articles](./blog-articles)。
 
-### 执行SQL操作
-https://huggingface.co/docs/hub/datasets-duckdb-sql.md
+### 单点登录 (SSO)
+https://huggingface.co/docs/hub/enterprise-sso.md

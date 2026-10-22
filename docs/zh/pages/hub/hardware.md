@@ -21,7 +21,7 @@
 
 ## 查看哪些型号适合您的硬件
 
-在提供 [GGUF](./gguf) 或 MLX 文件的模型页面上，**硬件兼容性**面板会估计每个量化是否将在您保存的硬件上运行，因此您可以在下载之前选择适合的大小。将其与 [Local Apps](./local-apps) 配对，只需点击几下即可启动并运行。
+在提供 [GGUF](./gguf) 或 MLX 文件的模型页面上，**硬件兼容性**面板会估计每个量化是否将在您保存的硬件上运行，以便您可以在下载之前选择适合的大小。将其与 [Local Apps](./local-apps) 配对，只需点击几下即可启动并运行。
 
 ## 分享和比较
 
@@ -61,5 +61,5 @@ curl https://huggingface.co/api/users/{username}/overview
 - [Use AI Models Locally](./local-apps) — 使用您最喜欢的本地应用程序运行模型。
 - [Local Agents with llama.cpp](./agents-local) — 在您自己的硬件上构建编码代理。
 
-### PyArrow
-https://huggingface.co/docs/hub/datasets-pyarrow.md
+### 如何使用 Microsoft Entra ID (Azure AD) 配置 SCIM
+https://huggingface.co/docs/hub/security-sso-entra-id-scim.md

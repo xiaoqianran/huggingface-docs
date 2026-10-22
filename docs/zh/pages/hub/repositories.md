@@ -5,7 +5,7 @@
 模型、空间和数据集以 [Git repositories](https://git-scm.com/about) 的形式托管在 Hugging Face Hub 上，这意味着版本控制和协作是 Hub 的核心元素。简而言之，存储库（也称为 **repo**）是可以存储代码和资产以备份您的工作、与社区共享以及在团队中工作的地方。
 
 > [!提示]
-> 正在寻找非版本化的可变存储？查看 [Storage Buckets](./storage-buckets)，它提供类似 S3 的对象存储，无需 Git 历史记录。
+> 正在寻找非版本化的可变存储？查看 [Storage Buckets](./storage-buckets)，它提供类似 S3 的对象存储，没有 Git 历史记录。
 
 与其他协作平台不同，我们的 Git 存储库针对机器学习和 AI 文件进行了优化 - 大型二进制文件，通常采用 Parquet 和 Safetensors 等特定文件格式，最高可达 [Terabyte-scale sizes](https://huggingface.co/blog/from-files-to-chunks)！
 为了实现这一目标，我们构建了[Xet](./xet/index)，这是一个专为 AI/ML 开发而构建的现代定制存储系统，可实现块级重复数据删除、更小的上传和更快的下载。
@@ -25,5 +25,5 @@
 - [Next Steps](./repositories-next-steps)
 - [Licenses](./repositories-licenses)
 
-### 如何处理Spaces中的URL参数
-https://huggingface.co/docs/hub/spaces-handle-url-parameters.md
+### 存储库入门
+https://huggingface.co/docs/hub/repositories-getting-started.md

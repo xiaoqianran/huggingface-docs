@@ -158,5 +158,5 @@ Task: text-generation
 ## 后续步骤一旦`huggingface_hub`正确安装在你的机器上，你可能想要
 [configure environment variables](package_reference/environment_variables) 或 [check one of our guides](guides/overview) 开始。
 
-### 🤗 Hub 客户端库
-https://huggingface.co/docs/huggingface_hub/v2.2.0/index.md
+### 将任何 ML 框架与 Hub 集成
+https://huggingface.co/docs/huggingface_hub/v2.3.0.rc0/guides/integrations.md

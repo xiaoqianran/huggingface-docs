@@ -8,7 +8,7 @@
 
 对这些文件的每个 HTTP 请求（包括 `GET` 和 `HEAD`）都将计为下载。默认情况下，当未指定库时，Hub 使用 `config.json` 作为默认查询文件。否则，查询文件取决于每个库，并且 Hub 可能会检查 `pytorch_model.bin` 或 `adapter_config.json` 等文件。 
 
-## 不同库的查询文件有哪些？默认情况下，Hub 会查看 `config.json`、`config.yaml`、`hyperparams.yaml`、`params.json` 和 `meta.yaml`。一些库通过指定自己的过滤器（指定`countDownloads`）来覆盖这些默认值。定义这些覆盖的代码是[open-source](https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/model-libraries.ts)。例如，对于`nemo`库，所有具有`.nemo`扩展名的文件都用于计算下载量。
+## 不同库的查询文件有哪些？默认情况下，Hub 会查看 `config.json`、`config.yaml`、`hyperparams.yaml`、`params.json` 和 `meta.yaml`。一些库通过指定自己的过滤器（指定`countDownloads`）来覆盖这些默认值。定义这些覆盖的代码是[open-source](https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/model-libraries.ts)。例如，对于`nemo`库，所有带有`.nemo`扩展名的文件都用于计算下载量。
 
 ## 我可以为我的图书馆添加查询文件吗？ 
 
@@ -16,7 +16,7 @@
 
 ## `GGUF` 文件如何处理？
 
-GGUF 文件是独立的，不依赖于单个库，因此所有这些文件都会计入下载量。如果用户执行整个存储库的克隆，这将双重计算下载，但大多数用户和界面都会为给定存储库下载单个 GGUF 文件。
+GGUF 文件是独立的，不依赖于单个库，因此所有这些文件都会计入下载量。如果用户执行整个存储库的克隆，这将双重计算下载，但大多数用户和界面都会为给定的存储库下载单个 GGUF 文件。
 
 ## `diffusers` 是如何处理的？
 
@@ -64,5 +64,5 @@ filter: [
 
 这些作为原始日志提供，因为大多数组织都希望应用自己的自定义规则。
 
-### 在拥抱脸部时使用 Stanza
-https://huggingface.co/docs/hub/stanza.md
+### 硬件
+https://huggingface.co/docs/hub/hardware.md

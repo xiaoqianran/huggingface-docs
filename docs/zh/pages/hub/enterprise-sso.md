@@ -12,7 +12,7 @@ Hugging Face 提供两种不同的 SSO 模型，每种模型都针对不同的�
 |  | **基本单点登录** | **托管单点登录** |
 | --- | --- | --- |
 | **计划** |团队与企业 |企业增强版 |
-| **范围** |仅组织资源|整个抱脸平台|
+| **范围** |仅组织资源 |整个抱脸平台|
 | **取代拥抱脸登录** |否 — 用户保留其现有的 Hugging Face 凭据 |是的 — 您的 IdP 成为唯一的登录方法 |
 | **用户帐户** |用户保留自己的个人 Hugging Face 帐户 |帐户由组织拥有和管理 |
 | **个人内容** |用户可以在他们的个人命名空间中创建内容 |用户只能在组织内创建内容 |
@@ -50,12 +50,12 @@ Hugging Face 提供两种不同的 SSO 模型，每种模型都针对不同的�
 
 **如果您的团队需要安全地访问组织资源，同时允许成员维护自己的 Hugging Face 帐户并参与更广泛的社区，请选择基本 SSO**。**如果您的企业需要集中控制所有用户帐户、自动配置和取消配置以及防止在组织外部创建任何内容的严格数据治理策略，请选择托管 SSO**。
 
-两种模型都支持 SAML 2.0 和 OIDC 协议，并且可以与 Okta、Microsoft Entra ID (Azure AD) 和 Google Workspace 等流行的身份提供商集成。
+这两种模型都支持 SAML 2.0 和 OIDC 协议，并且可以与 Okta、Microsoft Entra ID (Azure AD) 和 Google Workspace 等流行的身份提供商集成。
 
 ## 进一步阅读
 
 - [User Management](./security-sso-user-management) — 角色映射、资源组映射、会话超时等
 - [Configuration Guides](./security-sso-configuration-guides) — Okta、Microsoft Entra ID 和 Google Workspace 的分步设置说明
 
-### 纸页
-https://huggingface.co/docs/hub/paper-pages.md
+### 芬尼克
+https://huggingface.co/docs/hub/datasets-fenic.md

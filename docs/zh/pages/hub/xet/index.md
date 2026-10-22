@@ -5,7 +5,7 @@
 Hugging Face Hub 上的存储库与软件开发平台上的存储库不同。它们包含以下文件：
 
 - 大 - 模型或数据集文件在 GB 及以上范围内。我们有一些 TB 级的文件！
-- 二进制 - 默认情况下不是人类可读的格式（例如 [Safetensors](https://huggingface.co/docs/safetensors/en/index) 或 [Parquet](https://huggingface.co/docs/dataset-viewer/en/parquet#what-is-parquet)）
+- 二进制 - 默认情况下不是人类可读的格式（例如，[Safetensors](https://huggingface.co/docs/safetensors/en/index) 或 [Parquet](https://huggingface.co/docs/dataset-viewer/en/parquet#what-is-parquet)）
 
 虽然 Hub 在 Git 的支持下利用现代版本控制，但这些差异使得 [Model](https://huggingface.co/docs/hub/models) 和 [Dataset](https://huggingface.co/docs/hub/datasets) 存储库与仅包含源代码的存储库截然不同。
 
@@ -28,5 +28,5 @@ Hugging Face Hub 上的存储库与软件开发平台上的存储库不同。它
 - [Backwards Compatibility & Legacy](./legacy-git-lfs)
 - [Deduplication](./deduplication)
 
-### 遥测
-https://huggingface.co/docs/hub/xet/telemetry.md
+### 使用 Xet 存储
+https://huggingface.co/docs/hub/xet/using-xet-storage.md

@@ -22,7 +22,7 @@ Hugging Face Jobs 让您可以在 Hugging Face 基础设施上运行计算任务
 ＃＃＃ 中央处理器| **硬件** | **CPU** | **内存** | **临时存储** | **每小时价格** |
 |------------------------ |-------------- |------------- |---------------------- | ----------------- |
 | CPU基础| 2 个虚拟CPU | 16GB| 50GB| 0.01 美元 |
-| CPU升级| 8 个 vCPU | 32GB| 50GB| 0.03 美元 |
+| CPU升级 | 8 个 vCPU | 32GB| 50GB| 0.03 美元 |
 |中央处理器XL | 16 个 vCPU | 124GB| 1000 GB | 1.00 美元 |
 | CPU性能| 32 个 vCPU | 256 GB | 256 GB 1024 GB | 1024 GB 1.90 美元 |
 
@@ -135,5 +135,5 @@ hf jobs run --timeout 3h ...
 hf jobs cancel <job-id>
 ```
 
-### 门控数据集
-https://huggingface.co/docs/hub/datasets-gate.md
+### 在 Hugging Face 中使用 timm
+https://huggingface.co/docs/hub/timm.md

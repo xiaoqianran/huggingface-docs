@@ -12,7 +12,7 @@ Spark 能够在分布式环境中实现实时、大规模的数据处理。
 
 ### 安装
 
-为了能够读取和写入拥抱人脸数据集，您需要安装 `pyspark_huggingface` 库：
+为了能够读取和写入拥抱脸部数据集，您需要安装 `pyspark_huggingface` 库：
 
 ```
 pip install pyspark_huggingface
@@ -22,7 +22,7 @@ pip install pyspark_huggingface
 
 ### 身份验证
 
-您需要向 Hugging Face 进行身份验证才能读取私有/门控数据集存储库或写入数据集存储库。
+您需要对 Hugging Face 进行身份验证才能读取私有/门控数据集存储库或写入数据集存储库。
 
 您可以使用 CLI，例如：
 
@@ -232,7 +232,7 @@ huggingface datasource enabled for pyspark 3.x.x (backport from pyspark 4)
 ```以下是我们如何使用此函数将 [BAAI/Infinity-Instruct](https://huggingface.co/datasets/BAAI/Infinity-Instruct) 数据集的过滤版本写回 Hugging Face。
 
 首先你需要[create a dataset repository](https://huggingface.co/new-dataset)，例如`username/Infinity-Instruct-Chinese-Only`（如果您愿意，可以将其设置为私人）。
-然后，确保您已通过身份验证，并且可以使用“huggingface”数据源，将 `mode` 设置为“覆盖”（如果要扩展现有数据集，则设置为“追加”），然后使用 `.save()` 推送到 Hugging Face：
+然后，确保您已通过身份验证并且可以使用“huggingface”数据源，将 `mode` 设置为“覆盖”（如果要扩展现有数据集，则设置为“追加”），然后使用 `.save()` 推送到 Hugging Face：
 
 ```python
 >>> df_chinese_only.write.format("huggingface").mode("overwrite").save("username/Infinity-Instruct-Chinese-Only")
@@ -269,5 +269,5 @@ huggingface datasource enabled for pyspark 3.x.x (backport from pyspark 4)
 >>> df.write.format("huggingface").option("data_dir", "new-data").save("buckets/username/my-bucket")
 ```
 
-### 使用 GPG 签署提交
-https://huggingface.co/docs/hub/security-gpg.md
+### 抱脸登录
+https://huggingface.co/docs/hub/oauth.md

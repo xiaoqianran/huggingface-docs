@@ -9,6 +9,8 @@
 - [Change member role via API](#change-member-role-via-api) — 设置成员的组织角色和资源组分配（每个请求一个成员）。
 - [Resource Groups API](#resource-groups-api) — 列出资源组并向其中添加用户。
 - [Configure auto-join via API](#configure-auto-join-via-api) — 启用或禁用资源组上的自动加入。
+- [Invite external collaborators via API](#invite-external-collaborators-via-api) — 邀请组织外部的用户加入资源组。
+- [Change member account type via API](#change-member-account-type-via-api) — 将成员转换为外部协作者，或返回外部协作者。
 
 ---
 
@@ -51,8 +53,8 @@ Content-Type: application/json
   - `role`（必填）：成员的**组织级别**角色。以下之一：`"no_access"`、`"read"`、`"contributor"`、`"write"` 或 `"admin"`。
   - `resourceGroups`（可选）：该用户的资源组分配数组。每一项：
     - `id`：资源组 ID（24 个字符的十六进制字符串；从[resource groups list API](#list-resource-groups) 获取 ID）。
-    - `role`：该资源组中的角色：`"read"`、`"contributor"`、`"write"` 或 `"admin"`。
-  - 如果省略 `resourceGroups` 或传递 `[]`，将从所有资源组中删除用户。要仅更改组织角色并保持资源组不变，请传递其当前资源组成员身份（正文始终设置组织角色和资源组列表）。
+    - `role`：该资源组中的角色：`"read"`、`"contributor"`、`"write"`、`"admin"` 或 `"inherit"`。
+  - 如果省略 `resourceGroups` 或传递 `[]`，将从所有资源组中删除用户。要仅更改组织角色并保持资源组不变，请传递其当前的资源组成员身份（正文始终设置组织角色和资源组列表）。
 
 **示例 (curl) – 将组织角色设置为“读取”，无资源组（删除用户之前所在的任何资源组）**
 
@@ -211,12 +213,12 @@ Content-Type: application/json
 ```
 
 - **路径参数**
-  - `org_name`：组织团块（例如`my-org`）。
+  - `org_name`：组织段（例如`my-org`）。
   - `resource_group_id`：资源组的`id`（来自列表端点的 24 个字符的十六进制字符串）。
 - **身体**
   - `users`：对象数组。每个对象必须具有：
     - `user`：拥抱脸**用户名**（必填）。
-    - `role`：`"read"`、`"contributor"`、`"write"`、`"admin"` 之一。
+    - `role`：`"read"`、`"contributor"`、`"write"`、`"admin"` 或 `"inherit"` 之一。
 
 **示例（卷曲）**
 
@@ -396,13 +398,13 @@ for rg in list_resource_groups(org_name):
     add_users_to_resource_group(org_name, rg["id"], users_with_roles)
 ```
 
-对于一长串用户名，将它们分块（例如每个请求 50 个）并为每个块调用一次 API 以避免大型请求体或超时。
+对于一长串用户名，将它们分块（例如每个请求 50 个）并为每个块调用一次 API 以避免大型请求正文或超时。
 
-### 重要提示1. **仅限用户名** — API 接受 Hugging Face **用户名**，而不接受电子邮件。在调用 API 之前，您需要从电子邮件→用户名（例如，从您的目录或组织成员列表）的映射。
+### 重要提示1. **仅限用户名** — API 接受 Hugging Face **用户名**，而不接受电子邮件。在调用 API 之前，您需要从电子邮件 → 用户名（例如，从您的目录或组织成员列表）的映射。
 2. **用户必须位于组织中** — 请求中的每个用户必须已经是组织的成员。否则，请求将返回 `403` 并显示某些用户不在组织中的消息。
 3. **幂等性** — 如果用户已在资源组中，则后端可能会针对该请求返回 `403`。如果您首先获取组的 `users` 列表，您的脚本可以捕获错误并继续，或者跳过组中已有的用户。
-4. **速率限制** — 对于大批量，请考虑在请求之间添加较短的延迟（例如 0.5-1 秒），以避免达到速率限制。
-5. **令牌范围** — 访问令牌必须对组织具有足够的权限（通常至少“对组织设置/成员管理的写入访问权限”）。安全地创建和存储令牌；不要将其提交给版本控制。
+4. **速率限制** — 对于大批量，请考虑在请求之间添加较短的延迟（例如 0.5-1 秒）以避免达到速率限制。
+5. **令牌范围** — 访问令牌必须对组织具有足够的权限（通常至少是“对组织设置/成员管理的写入访问权限”）。安全地创建和存储令牌；不要将其提交给版本控制。
 
 ---
 
@@ -425,10 +427,10 @@ Content-Type: application/json
 ```
 
 - **路径参数**
-  - `org_name`：组织团块（例如`my-org`）。
+  - `org_name`：组织段（例如`my-org`）。
   - `resource_group_id`：资源组的 ID（24 个字符的十六进制字符串；从 [list resource groups endpoint](#list-resource-groups) 获取 ID）。
 - **身体**
-  - `role`：分配给自动添加的成员的角色。 `"read"`、`"contributor"`、`"write"` 或 `"admin"` 之一。
+  - `role`：分配给自动添加的成员的角色。 `"read"`、`"contributor"`、`"write"`、`"admin"` 或 `"inherit"` 之一。
   - `scope`（可选）：自动添加哪些组织成员。使用 `"all"` 包含每个组织成员。使用 `"read_plus"` 排除具有 `no_access` 组织角色的成员。省略时默认为 `"all"`。
 
 在现有资源组上启用自动加入会立即添加与所选范围匹配的当前组织成员（回填）。
@@ -469,12 +471,12 @@ Content-Type: application/json
 ```
 
 - **路径参数**
-  - `org_name`：组织块（例如`my-org`）。
+  - `org_name`：组织团块（例如`my-org`）。
   - `resource_group_id`：资源组的 ID（24 个字符的十六进制字符串；从 [list resource groups endpoint](#list-resource-groups) 获取 ID）。
 - **身体**
   - `spendLimits`：每月限额**以美分**。上面的示例设置了 5,000 美元的总限额，其中空间为 1,000 美元，职位为 500 美元。
     - `total`：限制团体在每种产品上的总支出。
-    - `inferenceProviders`、`spaces`、`jobs`、`endpoints`：按产品限制，应用于总数之上。两者中较严格者获胜。
+    - `inferenceProviders`、`spaces`、`jobs`、`endpoints`：按产品限制，适用于总数。两者中较严格者获胜。
 
 仅更新您发送的密钥，其他密钥保持其当前值。发送 `null` 删除限制：
 
@@ -502,5 +504,80 @@ curl -s -X PATCH \
 
 响应是更新后的资源组，包括其`spendLimits`。
 
-### 数据集
-https://huggingface.co/docs/hub/enterprise-datasets.md
+## 通过 API 邀请外部协作者
+
+[External invitations](./security-resource-groups#external-invitations) 让资源组管理员邀请组织外部的用户加入资源组。受邀者以 `no_access` 组织角色作为外部协作者加入。它们确实计入您组织中的付费席位数量。
+
+**启用外部邀请**
+
+组织管理员可以通过以下方式启用该设置：
+
+```http
+POST /api/organizations/{org_name}/resource-groups/settings
+Authorization: Bearer <your_access_token>
+Content-Type: application/json
+
+{
+  "allowExternalInvites": true
+}
+```- **身体**
+  - `allowExternalInvites`（可选）：资源组管理员是否可以邀请组织外部的用户。
+  - `minRoleToCreate`（可选）：[create Resource Groups](./security-resource-groups#who-can-create-resource-groups) 所需的最低组织角色。
+
+省略的字段保持不变。使用`GET /api/organizations/{org_name}/resource-groups/settings`读取当前设置。
+
+**邀请用户**
+
+```http
+POST /api/organizations/{org_name}/resource-groups/{resource_group_id}/invite
+Authorization: Bearer <your_access_token>
+Content-Type: application/json
+
+{
+  "username": "partner-user",
+  "role": "read"
+}
+```
+
+- **路径参数**
+  - `org_name`：组织段（例如`my-org`）。
+  - `resource_group_id`：资源组的 ID（24 个字符的十六进制字符串；从 [list resource groups endpoint](#list-resource-groups) 获取 ID）。
+- **身体**
+  - `username`：尚未成为组织成员的现有 Hugging Face 用户的用户名。要添加组织成员，请改用 [Add users to a resource group](#add-users-to-a-resource-group)。
+  - `role`：被邀请者在资源组中获得的角色，`"read"` 或`"write"`。
+
+用户接受电子邮件邀请后将收到资源组的访问权限。
+
+**管理待处理的邀请**
+
+- **列表：** `GET /api/organizations/{org_name}/resource-groups/{resource_group_id}/invitations`
+- **重新发送：** `POST /api/organizations/{org_name}/resource-groups/{resource_group_id}/invitation/{invitation_id}/resend`
+- **撤销：** `DELETE /api/organizations/{org_name}/resource-groups/{resource_group_id}/invitation/{invitation_id}`
+
+您还可以[check out the full OpenAPI specification](https://huggingface.co/spaces/huggingface/openapi#tag/resource-groups)
+
+**典型错误：**
+
+- `403` — 组织未启用外部邀请。
+- `409` — 用户已经是组织的成员，或者已经有待处理的邀请。
+
+## 通过API更改会员账户类型将组织成员转变为 [external collaborator](./security-sso-user-management#external-collaborators)（无需 SSO），或将其转换回成员。需要付费计划和组织的**写入**（或管理员）权限。不适用于拥有托管用户、通过 SCIM 配置成员的组织。
+
+> [!警告]
+> 更改用户的帐户类型不会更改其角色。请参阅 [Change member role via API](https://huggingface.co/docs/hub/main/en/programmatic-user-access-control#change-member-role-via-api) 更改用户角色。
+
+```http
+PUT /api/organizations/{org_name}/members/{username}/account-type
+Authorization: Bearer <your_access_token>
+Content-Type: application/json
+
+{
+  "accountType": "external"
+}
+```
+
+- **身体**
+  - `accountType`：`"external"` 将成员转换为外部协作者，或 `"member"` 将其转换回来。
+
+### Spaces ZeroGPU：空间的动态 GPU 分配
+https://huggingface.co/docs/hub/spaces-zerogpu.md

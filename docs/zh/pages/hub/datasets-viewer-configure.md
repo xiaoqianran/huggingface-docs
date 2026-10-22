@@ -28,5 +28,5 @@ viewer: false
 
 ## 私有数据集
 
-对于 **私有** 数据集，为 [PRO users](https://huggingface.co/pricing) 和 [Team or Enterprise organizations](https://huggingface.co/enterprise) 启用数据集查看器。### 管理工作
-https://huggingface.co/docs/hub/jobs-manage.md
+对于 **私有** 数据集，为 [PRO users](https://huggingface.co/pricing) 和 [Team or Enterprise organizations](https://huggingface.co/enterprise) 启用数据集查看器。### 适度
+https://huggingface.co/docs/hub/moderation.md

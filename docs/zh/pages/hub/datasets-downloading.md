@@ -4,7 +4,7 @@
 
 ## 集成库
 
-如果集线器上的数据集与[supported library](./datasets-libraries)绑定，则只需几行即可加载数据集。有关访问数据集的信息，您可以单击数据集页面上的“使用此数据集”按钮以了解如何执行此操作。例如，[⟦T5⟧](https://huggingface.co/datasets/knkarthick/samsum?library=datasets) 显示了如何使用下面的 `datasets` 执行此操作。
+如果集线器上的数据集与[supported library](./datasets-libraries)绑定，则只需几行即可加载数据集。有关访问数据集的信息，您可以单击数据集页面上的“使用此数据集”按钮以了解如何操作。例如，[⟦T5⟧](https://huggingface.co/datasets/knkarthick/samsum?library=datasets) 展示了如何使用下面的 `datasets` 执行此操作。
 
 ## 使用 Hugging Face 客户端库
 
@@ -108,5 +108,5 @@ hf-mount start repo datasets/stanfordnlp/imdb /tmp/imdb
 > 文件随着端点的添加和删除而变化。当您构建规则时获取它
 > 而不是固定副本。
 
-### 空间小组
-https://huggingface.co/docs/hub/spaces-sdks-docker-panel.md
+### 许可证
+https://huggingface.co/docs/hub/repositories-licenses.md

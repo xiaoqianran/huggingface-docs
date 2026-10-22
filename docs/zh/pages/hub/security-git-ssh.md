@@ -82,5 +82,5 @@ hf.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBL
 hf.co ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINJjhgtT9FOQrsVSarIoPVI1jFMh3VSHdKfdqp/O776s
 ```
 
-### 任务
-https://huggingface.co/docs/hub/models-tasks.md
+### 手动配置
+https://huggingface.co/docs/hub/datasets-manual-configuration.md

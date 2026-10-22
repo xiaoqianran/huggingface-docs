@@ -16,7 +16,7 @@ UV 和类似 Docker 的 CLI uv、run、ps、logs、stats、inspect CPU 和 GPU �
 
 * `hf` 命令行界面（请参阅 [CLI installation steps](https://huggingface.co/docs/huggingface_hub/main/en/guides/cli) 和 [Jobs CLI documentation](https://huggingface.co/docs/huggingface_hub/guides/cli#hf-jobs) 了解更多信息）
 * `huggingface_hub` Python 客户端（更多信息请参阅[⟦T4⟧ Jobs documentation](https://huggingface.co/docs/huggingface_hub/guides/jobs)）
-* Jobs HTTP API（有关更多信息，请参阅[Jobs OpenAPI](https://huggingface-openapi.hf.space/#tag/jobs)）
+* 作业 HTTP API（有关更多信息，请参阅[Jobs OpenAPI](https://huggingface-openapi.hf.space/#tag/jobs)）
 
 ## 运行任何工作负载
 
@@ -40,11 +40,11 @@ UV 和类似 Docker 的 CLI uv、run、ps、logs、stats、inspect CPU 和 GPU �
 
 ## 自动化作业
 
-通过计划或使用 Webhook 自动触发作业。
+通过计划或使用 Webhooks 自动触发作业。
 
 通过计划，您可以每 X 分钟、几小时、几天、几周或几个月运行一次作业。调度作业使用 `cron` 语法，如 `"*/5 * * * *"` 表示“每 5 分钟”，或使用 `"@hourly"`、`"@daily"`、`"weekly"` 或 `"@monthly"` 等别名。
 
 借助 Webhooks，只要 Hugging Face 存储库有更新，作业就可以运行。例如，您可以将 Webhook 配置为触发给定帐户下的每个模型更新，并从作业中的 Webhook 负载检索更新的模型。
 
-### 上传模型
-https://huggingface.co/docs/hub/models-uploading.md
+### 在拥抱脸部时使用 ML-Agents
+https://huggingface.co/docs/hub/ml-agents.md

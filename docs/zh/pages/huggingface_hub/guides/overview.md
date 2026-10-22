@@ -69,7 +69,7 @@
     <a class="!no-underline border dark:border-gray-700 p-5 rounded-lg shadow hover:shadow-lg"
        href="./collections">
       
-        收藏品
+        收藏
       
         如何以编程方式构建集合？
       
@@ -127,5 +127,5 @@
       
         如何在 Hugging Face 基础设施上运行和管理计算作业并选择硬件？
 
-### 在服务器上运行推理
-https://huggingface.co/docs/huggingface_hub/v2.2.0/guides/inference.md
+### 收藏
+https://huggingface.co/docs/huggingface_hub/v2.3.0.rc0/guides/collections.md

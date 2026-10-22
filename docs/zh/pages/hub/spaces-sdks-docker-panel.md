@@ -43,5 +43,5 @@ Dockerfile 包含一系列命令，Docker 将执行这些命令来构建和启�
 - [LinkedIn](https://www.linkedin.com/company/panel-org)
 - [GitHub](https://github.com/holoviz/panel)
 
-### 空间上的磁盘使用情况
-https://huggingface.co/docs/hub/spaces-storage.md
+### 在 Data Studio 中编辑数据集
+https://huggingface.co/docs/hub/datasets-cell-editing.md

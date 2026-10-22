@@ -7,7 +7,7 @@
 Livebook 的一些最令人兴奋的功能包括：
 
 - **可重复的工作流程**：Livebook 以可预测的顺序运行您的代码，一直到包管理
-- **智能单元**：使用 Livebook 的可扩展笔记本单元，只需点击几下即可执行复杂的任务，例如数据操作和运行机器学习模型
+- **智能单元**：使用 Livebook 的可扩展笔记本单元，只需单击几下即可执行复杂的任务，例如数据操作和运行机器学习模型
 - **Elixir 支持**：使用 Elixir 编程语言的强大功能来编写可扩展到您的机器之外的并发和分布式笔记本
 
 要了解更多信息，请观看此[15-minute video](https://www.youtube.com/watch?v=EhSNXWkji6o)。或访问[Livebook's website](https://livebook.dev/)。或者关注其[Twitter](https://twitter.com/livebookdev)和[blog](https://news.livebook.dev/)以跟上新功能和更新。
@@ -63,5 +63,5 @@ Livebook 有一个 [official integration with Hugging Face models](https://liveb
 
 如果您有改进建议或需要具体支持，请加入[Livebook community on GitHub](https://github.com/livebook-dev/livebook/discussions)。
 
-### 用户研究
-https://huggingface.co/docs/hub/model-cards-user-studies.md
+### 使用 SetFit 和拥抱脸部
+https://huggingface.co/docs/hub/setfit.md

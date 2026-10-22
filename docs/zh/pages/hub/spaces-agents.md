@@ -2,11 +2,11 @@
 
 # 空间作为代理工具
 
-每个 Gradio Space 都公开一个纯文本 `agents.md`，编码代理（Claude Code、Codex、OpenCode、Pi 等）可以直接调用。通过 [huggingface.co/spaces](https://huggingface.co/spaces) 上的语义搜索（例如“音频转录”）找到一个，可以选择先在 UI 中尝试它，然后将代理指向其 `agents.md`。响应一次性提供调用 Space 所需的一切：架构 URL、调用和轮询模板、文件上传说明以及身份验证提示。
+每个 Gradio Space 都会公开一个纯文本 `agents.md`，编码代理（Claude Code、Codex、OpenCode、Pi 等）可以直接调用。通过 [huggingface.co/spaces](https://huggingface.co/spaces) 上的语义搜索（例如“音频转录”）找到一个，可以选择先在 UI 中尝试它，然后将您的代理指向其 `agents.md`。响应一次性提供调用 Space 所需的一切：架构 URL、调用和轮询模板、文件上传说明以及身份验证提示。
 
 当**链接空间**时，这会变得更加强大。代理可以通过调用图像的[⟦T7⟧](https://huggingface.co/spaces/black-forest-labs/flux-klein-9b-kv)，然后将生成的图像传递到3D模型的[⟦T8⟧](https://huggingface.co/spaces/microsoft/TRELLIS.2)，将提示转换为3D资产。没有客户端库，没有硬编码集成。
 
-您只需要在您的环境中设置 [HF_TOKEN](https://huggingface.co/settings/tokens) 即可开始。
+您只需要在您的环境中设置 [HF_TOKEN](https://huggingface.co/settings/tokens) 即可开始使用。
 
 ## 从用户界面
 
@@ -69,5 +69,5 @@ curl -H "Authorization: Bearer $HF_TOKEN" \
 3. 对于文件输入，它将文件 POST 到`/gradio_api/upload` 并保留返回的路径。
 4. 它 POST 到 `/gradio_api/call/v2/<endpoint>`，然后获取轮询 URL 以传输结果。
 
-### 空间上的 JupyterLab
-https://huggingface.co/docs/hub/spaces-sdks-docker-jupyter.md
+### 在 Hugging Face 中使用示例工厂
+https://huggingface.co/docs/hub/sample-factory.md

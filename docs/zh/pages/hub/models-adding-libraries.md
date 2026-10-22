@@ -2,7 +2,7 @@
 
 # 将您的库与 Hub 集成
 
-Hugging Face Hub 旨在促进共享机器学习模型、检查点和工件。这项努力包括将 Hub 集成到社区中许多令人惊叹的第三方库中。一些已经集成的包括 [spaCy](https://spacy.io/usage/projects#huggingface_hub)、[Sentence Transformers](https://sbert.net/)、[OpenCLIP](https://github.com/mlfoundations/open_clip) 和 [timm](https://huggingface.co/docs/timm/index) 等。集成意味着用户可以直接从您的库下载文件并将其上传到集线器。我们希望您能够整合您的图书馆，并与我们一起为每个人实现人工智能的民主化。
+Hugging Face Hub 旨在促进共享机器学习模型、检查点和工件。这项努力包括将 Hub 集成到社区中许多令人惊叹的第三方库中。一些已经集成的包括 [spaCy](https://spacy.io/usage/projects#huggingface_hub)、[Sentence Transformers](https://sbert.net/)、[OpenCLIP](https://github.com/mlfoundations/open_clip) 和 [timm](https://huggingface.co/docs/timm/index) 等。集成意味着用户可以直接从您的库下载文件并将文件上传到集线器。我们希望您能够整合您的图书馆，并与我们一起为每个人实现人工智能的民主化。
 
 将 Hub 与您的图书馆集成可带来许多好处，包括：
 
@@ -30,7 +30,7 @@ pip install huggingface_hub
 有关`huggingface_hub`安装的更多详细信息，请查看[this guide](https://huggingface.co/docs/huggingface_hub/installation)。
 
 > [!提示]
-> 在本指南中，我们将重点关注 Python 库。如果您已经用 JavaScript 实现了库，则可以使用 [⟦T13⟧](https://www.npmjs.com/package/@huggingface/hub) 来代替。其余逻辑（即托管文件、代码示例等）不依赖于代码语言。
+> 在本指南中，我们将重点关注 Python 库。如果您已经在 J​​avaScript 中实现了库，则可以使用 [⟦T13⟧](https://www.npmjs.com/package/@huggingface/hub) 代替。其余逻辑（即托管文件、代码示例等）不依赖于代码语言。
 >
 > ```
 > npm add @huggingface/hub
@@ -125,7 +125,7 @@ login()
 
 有关如何上传文件的更多详细信息，请查看[upload guide](https://huggingface.co/docs/huggingface_hub/en/guides/upload)。
 
-## 模型卡模型卡是模型随附的文件，可提供方便的信息。在底层，模型卡是带有附加元数据的简单 Markdown 文件。模型卡对于可发现性、可重复性和共享至关重要！您可以在任何模型存储库中找到模型卡作为 README.md 文件。有关如何创建好的模型卡的更多详细信息，请参阅[model cards guide](./model-cards)。
+## 模型卡模型卡是模型附带的文件，可提供方便的信息。在底层，模型卡是带有附加元数据的简单 Markdown 文件。模型卡对于可发现性、可重复性和共享至关重要！您可以在任何模型存储库中找到模型卡作为 README.md 文件。有关如何创建好的模型卡的更多详细信息，请参阅[model cards guide](./model-cards)。
 
 如果您的库允许将模型推送到中心，建议生成一个最小的模型卡，其中包含预填充的元数据（通常为`library_name`、`pipeline_tag`或`tags`）以及有关模型如何训练的信息。这将有助于为使用您的库构建的所有模型提供标准化描述。
 
@@ -166,5 +166,5 @@ model = BaseModel.from_pretrained("${model.id}")`;
 
 最后，您可以将您的库添加到中心的文档中。例如，检查将 [SetFit](./setfit) 添加到文档中的 [Setfit PR](https://github.com/huggingface/hub-docs/pull/1150)。
 
-### 在拥抱面使用稳定基线3
-https://huggingface.co/docs/hub/stable-baselines3.md
+### 代理库
+https://huggingface.co/docs/hub/agents-libraries.md

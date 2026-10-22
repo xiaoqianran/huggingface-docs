@@ -115,5 +115,5 @@ _[Example trace in the Langfuse UI](https://langfuse-langfuse-template-space.hf.
 
 如需更多帮助，请在 [GitHub discussions](https://langfuse.com/discussions) 或 [open an issue](https://github.com/langfuse/langfuse/issues) 上打开支持线程。
 
-### 如何使用 Microsoft Entra ID (Azure AD) 配置 SCIM
-https://huggingface.co/docs/hub/security-sso-entra-id-scim.md
+### 使用🤗数据集
+https://huggingface.co/docs/hub/datasets-usage.md

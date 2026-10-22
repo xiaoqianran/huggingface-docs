@@ -32,7 +32,7 @@ gemini extensions install https://github.com/huggingface/skills.git --consent
 ## 可用技能|技能|它有什么作用 |
 | -----| ------------ |
 | [⟦T10⟧](https://github.com/huggingface/skills/tree/main/skills/hf-cli) |通过`hf` CLI 进行集线器操作：下载、上传、管理存储库、运行作业 |
-| [⟦T12⟧](https://github.com/huggingface/skills/tree/main/skills/huggingface-datasets) |探索数据集、对行进行分页、搜索文本、应用过滤器 |
+| [⟦T12⟧](https://github.com/huggingface/skills/tree/main/skills/huggingface-datasets) |探索数据集、对行分页、搜索文本、应用过滤器 |
 | [⟦T13⟧](https://github.com/huggingface/skills/tree/main/skills/huggingface-llm-trainer) |在 HF 职位上使用 TRL（SFT、DPO、GRPO）培训或微调法学硕士 |
 | [⟦T14⟧](https://github.com/huggingface/skills/tree/main/skills/huggingface-vision-trainer) |训练目标检测和图像分类模型 |
 | [⟦T15⟧](https://github.com/huggingface/skills/tree/main/skills/huggingface-community-evals) |在本地硬件上对 Hugging Face Hub 上的模型运行评估 |
@@ -58,5 +58,5 @@ gemini extensions install https://github.com/huggingface/skills.git --consent
 - [CLI Guide](./agents-cli) - 用于 AI 代理的 Hugging Face CLI
 - [MCP Guide](./agents-mcp) - 与技能一起使用
 
-### 如何使用 Okta 配置 SCIM
-https://huggingface.co/docs/hub/security-sso-okta-scim.md
+### 空间自定义域
+https://huggingface.co/docs/hub/spaces-custom-domain.md

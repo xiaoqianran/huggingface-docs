@@ -51,5 +51,5 @@ Hugging Face Spaces 的演示让广大观众可以尝试最先进的机器
 
 几分钟后，您的空间就会出现在 ArXiv 论文旁边的“演示”选项卡中 🤗
 
-### 使用小行星拥抱脸部
-https://huggingface.co/docs/hub/asteroid.md
+### 文件格式
+https://huggingface.co/docs/hub/datasets-polars-file-formats.md

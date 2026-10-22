@@ -80,7 +80,7 @@ lms get https://huggingface.co/lmstudio-community/Ministral-3-8B-Reasoning-2512-
 
 ### LM Studio 应用程序入门
 
-在 LM Studio 应用程序中，前往模型加载器查看已下载模型的列表并选择要加载的模型。您可以自定义模型加载参数，但 LM Studio 默认情况下会选择可优化硬件上模型性能的加载参数。
+在 LM Studio 应用程序中，前往模型加载器查看已下载模型的列表并选择一个进行加载。您可以自定义模型加载参数，但 LM Studio 默认情况下会选择可优化硬件上模型性能的加载参数。
 
   <img
     class="block"
@@ -95,5 +95,5 @@ lms get https://huggingface.co/lmstudio-community/Ministral-3-8B-Reasoning-2512-
 
 关注 Hugging Face 上的 [LM Studio Community](https://huggingface.co/lmstudio-community) 页面，第一时间了解最新、最好的本地法学硕士。
 
-### 渐变空间
-https://huggingface.co/docs/hub/spaces-sdks-gradio.md
+### 型号发布清单
+https://huggingface.co/docs/hub/model-release-checklist.md

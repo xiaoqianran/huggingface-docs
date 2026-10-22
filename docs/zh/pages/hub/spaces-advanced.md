@@ -14,5 +14,5 @@
 - [How to handle URL parameters in Spaces](./spaces-handle-url-parameters)
 - [How to get user status and plan in Spaces](./spaces-get-user-plan)
 
-### Web数据集
-https://huggingface.co/docs/hub/datasets-webdataset.md
+### 在拥抱面使用稳定基线3
+https://huggingface.co/docs/hub/stable-baselines3.md

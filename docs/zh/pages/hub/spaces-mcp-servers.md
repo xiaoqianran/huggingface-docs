@@ -26,7 +26,7 @@
 ## 使用 MCP 客户端中的 Spaces如果您的 MCP 客户端配置正确，您添加的空间将立即可用，无需更改任何内容（如果它没有重新启动您的客户端并且应该出现）。大多数 MCP 客户端都会列出当前加载的工具，以便您可以确保空间可用。
 
 > [!提示]
-> 对于 ZeroGPU Spaces，您的配额将在调用该工具时使用，如果配额用完，您可以订阅 PRO 以获得 40 分钟的每日配额（比免费用户多 8 倍的配额）。例如，您的 PRO 帐户允许您使用 FLUX.1-schnell 每天生成最多 600 张图像。
+> 对于 ZeroGPU Spaces，您的配额将在调用该工具时使用，如果您用完配额，您可以订阅 PRO 以获得 40 分钟的每日配额（比免费用户多 8 倍的配额）。例如，您的 PRO 帐户允许您使用 FLUX.1-schnell 每天生成最多 600 张图像。
 
 ## 构建您自己的 MCP 兼容的 Gradio Space
 
@@ -75,5 +75,5 @@ demo.launch(mcp_server=True)   # exposes an MCP schema automatically
     Lightricks/ltx-视频蒸馏和
     类似于 Claude Code 中的 AI/Chatterbox，生成带音频的视频。
 
-### 更多创建空间的方法
-https://huggingface.co/docs/hub/spaces-more-ways-to-create.md
+### 小部件示例
+https://huggingface.co/docs/hub/models-widgets-examples.md

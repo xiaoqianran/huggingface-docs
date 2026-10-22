@@ -51,7 +51,7 @@
 
 **我的模型不受任何库支持。我注定了吗？ 😱**
 
-对于这些用例，我们建议使用 [Hugging Face Spaces](./spaces)。
+对于这些用例，我们建议使用[Hugging Face Spaces](./spaces)。
 
 ### 用户界面元素
 
@@ -70,7 +70,7 @@
 
 一旦任务投入生产，还有什么比实现某种方式让用户直接在浏览器中使用模型更令人兴奋的呢？ 🤩 你可以找到所有的小部件[here](https://huggingface.co/spaces/huggingfacejs/inference-widgets)。 
 
-如果您有兴趣为小部件做出贡献，您可以查看所有小部件的[implementation](https://github.com/huggingface/huggingface.js/tree/main/packages/widgets)。
+如果您有兴趣为小部件做出贡献，您可以查看所有小部件的 [implementation](https://github.com/huggingface/huggingface.js/tree/main/packages/widgets)。
 
-### 模型
-https://huggingface.co/docs/hub/models.md
+### 示例和教程
+https://huggingface.co/docs/hub/jobs-examples.md

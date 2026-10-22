@@ -58,7 +58,7 @@ ollama run hf.co/bartowski/Llama-3.2-3B-Instruct-GGUF:Llama-3.2-3B-Instruct-IQ3_
 
 ## 自定义聊天模板和参数
 
-默认情况下，将从常用模板列表中自动选择一个模板。它将根据 GGUF 文件中存储的内置 `tokenizer.chat_template` 元数据进行选择。
+默认情况下，将从常用模板列表中自动选择一个模板。它将根据存储在 GGUF 文件内的内置 `tokenizer.chat_template` 元数据进行选择。
 
 如果您的 GGUF 文件没有内置模板，或者您想自定义聊天模板，您可以在存储库中创建一个名为 `template` 的新文件。该模板必须是 Go 模板，而不是 Jinja 模板。这是一个例子：
 
@@ -88,5 +88,5 @@ ollama run hf.co/bartowski/Llama-3.2-3B-Instruct-GGUF:Llama-3.2-3B-Instruct-IQ3_
 - https://github.com/ollama/ollama/blob/main/docs/README.md
 - https://huggingface.co/docs/hub/en/gguf
 
-### 泡菜扫描
-https://huggingface.co/docs/hub/security-pickle.md
+### 代币管理
+https://huggingface.co/docs/hub/enterprise-tokens-management.md

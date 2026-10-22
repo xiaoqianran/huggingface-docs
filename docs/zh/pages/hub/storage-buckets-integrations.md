@@ -2,7 +2,7 @@
 
 # 存储桶集成
 
-可以使用 `hf://buckets/` 路径从许多 Python 数据库中读取和写入存储桶，并由 [⟦T11⟧ filesystem interface](/docs/huggingface_hub/guides/hf_file_system) 支持。
+可以使用 `hf://buckets/` 路径从许多 Python 数据库中读取和写入存储桶，并由 [⟦T12⟧ filesystem interface](/docs/huggingface_hub/guides/hf_file_system) 支持。
 
 有关底层访问机制 - 挂载、卷挂载和 fsspec - 请参阅 [Access Patterns](./storage-buckets-access)。
 
@@ -51,7 +51,7 @@ table = pq.read_table("hf://buckets/username/my-bucket/data.parquet")
 
 ## PySpark
 
-安装[⟦T13⟧](https://github.com/huggingface/pyspark_huggingface)后：
+安装[⟦T14⟧](https://github.com/huggingface/pyspark_huggingface)后：
 
 ```python
 df = (
@@ -142,13 +142,21 @@ files = hffs.ls("buckets/username/my-bucket")
 text_files = hffs.glob("buckets/username/my-bucket/*.txt")
 ```
 
+## 鸭数据库
+
+DuckDB 2.0 及更高版本通过 `httpfs` 扩展从 CLI 和每个客户端本地读取 `hf://buckets/` 路径：
+
+```sql
+SELECT * FROM 'hf://buckets/username/my-bucket/data/**/*.parquet' LIMIT 10;
+```
+
+有关私有存储桶和较旧的 DuckDB 版本，请参阅 [Query with DuckDB](./storage-buckets-access#query-with-duckdb)。
+
 ## 其他语言
 
 [OpenDAL](https://opendal.apache.org/) 为 Rust、Java、Go、JavaScript 等提供了类似的文件系统接口。
 
-## 即将推出
+## 即将推出更多库即将提供本机`hf://` URL 支持，包括 Polars 和 WebDataset。与此同时，所有这些今天都已经通过 [S3-compatible API](./storage-buckets-s3) 发挥作用。
 
-更多库即将提供原生 `hf://` URL 支持，包括 Polars、DuckDB 和 webdataset。与此同时，所有这些今天都已经通过 [S3-compatible API](./storage-buckets-s3) 发挥作用。
-
-### 使用 SDK 构建
-https://huggingface.co/docs/hub/agents-sdk.md
+### 空格
+https://huggingface.co/docs/hub/spaces.md

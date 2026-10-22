@@ -18,6 +18,7 @@
 - `contributor`：提供**仅限于用户创建的存储库的写入权限**（即，用户可以创建存储库，然后仅修改这些存储库）。与“写入”角色类似，但仅限于用户创建的存储库。
 - `write`：提供对资源组中所有存储库的**写访问权限。用户可以创建、删除或重命名资源组中的任何存储库。
 - `admin`：除了对存储库的写权限之外，管理员成员还可以**管理资源组**：添加、删除和更改其他成员的角色。他们还可以管理资源组中现有的存储库。
+- `inherit`：成员在资源组中的角色与其**组织角色**相同。例如，具有 `write` 组织角色的成员添加到具有 `inherit` 的群组后，将获得群组中的 `write` 访问权限
 
 此外，组织管理员可以管理组织内的**所有资源组**。这包括将存储库移入和移出任何资源组。
 
@@ -52,26 +53,26 @@
 
 请记住，一个存储库只能属于一个资源组。当您尝试添加已属于另一个资源组的存储库时，您会收到警告。
 
-## 自动加入自动加入会自动将**组织成员**添加到具有指定角色的资源组：启用自动加入时已在组织中的成员以及将来加入的任何新成员。
+## 自动加入Auto-join automatically adds **org members** to a Resource Group at a specified role: both members who are already in the org when auto-join is enabled, and any new members who join in the future.
 
 这对于整个组织都可以访问的资源组非常有用，而无需手动成员管理。
 
 ### 启用自动加入
 
-- **通过 UI**：打开资源组的 **设置** 选项卡并选中 **自动包含组织成员** 部分中的 **自动包含所有组织成员** 选项，然后选择要分配的角色。 “用户”选项卡也链接到那里，显示自动包含是打开还是关闭。
-- **通过 API**：请参阅 [Configure auto-join via API](./programmatic-user-access-control#configure-auto-join-via-api)。
+- **Via the UI**: Open the Resource Group's **Settings** tab and check the **Automatically include all org members** option in the **Auto-include org members** section, then select the role to assign. “用户”选项卡也链接到那里，显示自动包含是打开还是关闭。
+- **通过 API**：参见 [Configure auto-join via API](./programmatic-user-access-control#configure-auto-join-via-api)。
 
     
     
 
-在现有资源组上启用自动加入后，匹配所选范围的当前组织成员将**立即添加**到已配置角色的组中（回填）。
+When auto-join is enabled on an existing Resource Group, current org members matching the selected scope are **immediately added** to the group at the configured role (backfill).
 
 ### 自动加入范围
 
 自动加入可应用于：
 
 - **所有组织成员**（默认）：保留 **包括 no_access 成员** 未选中，以排除具有 `no_access` 组织角色的成员。
-- **所有组织成员，包括 no_access**：选中 **包括 no_access 成员** 以包括每个成员，包括具有 `no_access` 组织角色的成员。当 `no_access` 成员应仅保留对手动或通过其他配置流程添加的特定资源组的访问权限时，请使用 **仅读取+ 成员**。
+- **All org members including no_access**: check **Include no_access members** to include every member, including members with the `no_access` organization role.当 `no_access` 成员应仅保留对手动或通过其他配置流程添加的特定资源组的访问权限时，请使用 **仅读取+ 成员**。
 
 ### 自动加入和 SCIM
 
@@ -82,15 +83,31 @@
 
 要将资源组从自动加入切换到 SCIM 管理（反之亦然），请首先禁用当前设置。
 
+## 外部邀请
+
+您可以与组织外部的用户共享资源组。组织管理员通过资源组设置页面的 **访问设置** 选项卡中的 **外部邀请** 设置打开此功能。它默认处于关闭状态，并且不适用于具有 [managed users](./enterprise-advanced-sso) 的组织。
+
+受邀用户以[external collaborators](./security-sso-user-management#external-collaborators)身份加入：- 默认情况下，他们获得 `no_access` 组织角色，因此他们只能看到该资源组的资源。
+- 您可以使用资源组中的`read`或`write`角色邀请他们。
+- 他们不必使用您组织的 SSO 登录。
+
+要邀请某人，请打开资源组的 **用户** 选项卡并按用户名添加他们。组织成员立即加入群组；外人收到邀请函。待处理的邀请将与组的用户一起放在“待处理”徽章下，您可以重新发送或撤销它们。使用 **外部** 过滤器仅列出外部协作者。
+
+### 与外部协作者共享存储库
+
+资源组管理员还可以从其**设置**页面的**与外部协作者共享**下共享私有存储库。该部分列出了存储库资源组中已有的人员，并允许您邀请外部协作者加入其中。您添加到那里的任何人都可以访问资源组中的每个资源，而不仅仅是该存储库。如果存储库尚未位于资源组中，则可以 [create Resource Groups](#who-can-create-resource-groups) 的成员可以从该部分创建一个资源组并同时邀请协作者。 **自动包含** 默认情况下处于启用状态：它通过具有 `inherit` 角色的 [auto-join](#auto-join) 将组织的成员（具有 `no_access` 角色的成员除外）放入新组中，以便他们保留对存储库的当前访问权限。如果将其关闭，则只有您添加到资源组的用户以及组织管理员才能看到它。
+
+您还可以通过API管理外部邀请：[Invite external collaborators via API](./programmatic-user-access-control#invite-external-collaborators-via-api)。
+
 ## 谁可以创建资源组
 
-默认情况下，只有组织管理员才能创建新资源组。组织管理员可以通过在资源组设置页面的**访问设置**选项卡中设置创建资源组所需的**最低成员角色**来更改此设置。可用的选项有：
+默认情况下，只有组织管理员才能创建新资源组。组织管理员可以通过在资源组设置页面的**访问设置**选项卡中设置创建资源组所需的**最低成员角色**来更改此设置。
+
+可用的选项有：
 - **仅限管理员**（默认）：只有组织管理员才能创建资源组。
 - **写入+**：具有写入或管理员角色的成员可以创建资源组。
 - **贡献者+**：具有贡献者、写入或管理员角色的成员可以创建资源组。
-- **阅读+**：任何组织成员都可以创建资源组，具有 `no_access` 组织角色的成员除外。
-
-当非管理员成员通过 UI 创建资源组时，他们会自动添加为该新创建组的 **管理员**。通过 API，这不会自动发生，因为 API 调用者可能代表其他人创建组。非管理员 API 调用者必须在组的初始成员列表中包含至少一名具有管理员角色的用户。
+- **阅读+**：任何组织成员都可以创建资源组，具有 `no_access` 组织角色的成员除外。当非管理员成员通过 UI 创建资源组时，他们会自动添加为该新创建组的 **管理员**。通过 API，这不会自动发生，因为 API 调用者可能代表其他人创建组。非管理员 API 调用者必须在组的初始成员列表中包含至少一名具有管理员角色的用户。
 
 ## 细粒度功能访问
 
@@ -102,28 +119,30 @@
     
     
 
-可以限制以下功能：- **博客**：写作和出版组织[blog articles](./enterprise-blog-articles)。
+可以限制以下功能：
+
+- **博客**：写作和出版组织[blog articles](./enterprise-blog-articles)。
 - **收藏**：创建和编辑组织[collections](./collections)。
 - **作业**：运行和查看向组织计费的 [Jobs](./jobs)。
 - **推理端点**：创建、管理和调用组织拥有的推理端点。
-- **推理提供商**：[Inference Providers](/docs/inference-providers) 向组织计费的请求。
+- **推理提供商**：向组织计费的 [Inference Providers](/docs/inference-providers) 请求。
 
-对于每一个，您都可以选择谁有权访问：
-
-- **所有人**（默认）：组织的每个成员，具体取决于其组织角色。
+对于每一个，您都可以选择谁有权访问：- **所有人**（默认）：组织的每个成员，具体取决于其组织角色。
 - **仅限组织管理员**：仅组织管理员保留访问权限。
 - **特定资源组**：仅限所选资源组的成员，具体取决于他们在组中的角色。
 
-无论选择哪个选项，组织管理员始终可以访问每个功能。将功能限制为特定资源组可以控制“谁”可以使用该功能，而不是“在哪里”。所选组的成员可以继续在组织中的任何位置使用该功能（例如，创建不属于任何资源组的集合），而其他成员则完全失去对该功能的访问权限。该限制永远不会授予额外的权限：成员可以执行的操作仍然由其组织角色决定。
+无论选择哪个选项，组织管理员始终可以访问每个功能。
+
+将功能限制为特定资源组可以控制“谁”可以使用该功能，而不是“在哪里”。所选组的成员可以继续在组织中的任何位置使用该功能（例如，创建不属于任何资源组的集合），而其他成员则完全失去对该功能的访问权限。该限制永远不会授予额外的权限：成员可以执行的操作仍然由其组织角色决定。
 
 没有访问权限的成员无法再通过 API 和 UI 在组织上下文中使用该功能。 API 请求返回授权错误。他们的个人帐户或其他组织中没有任何变化。
 
 ## 成本归因
 
 > [!警告]
-> 此功能是企业计划及以上版本的一部分。
+> 此功能是企业计划及以上版本的一部分。资源组还充当计算服务的成本归属单位。当计算按资源组计费时，每个组的成本都会单独跟踪，从而更容易了解跨团队的支出。
 
-资源组还充当计算服务的成本归属单位。当计算按资源组计费时，每个组的成本都会单独跟踪，从而更容易了解跨团队的支出。- **空间**：成本自动归因于空间所属的资源组。
+- **空间**：成本自动归因于空间所属的资源组。
 - **作业**：将 `namespace` 设置为所属组织，并使用 Python 中的 `resource_group_id`、CLI 中的 `--resource-group-id` 或 HTTP 请求正文中的 `resourceGroupId` 传递资源组的 ID。参见[Bill to a resource group](./jobs-pricing#bill-to-a-resource-group)。
 - **推理提供程序**：通过 `X-HF-Bill-To` 标头（或 SDK 中的 `bill_to` 参数）传递资源组的 ID。参见[Billing for Team and Enterprise organizations](/docs/inference-providers/pricing#billing-for-team-and-enterprise-organizations)。
 - **推理端点**：成本自动归因于模型存储库所属的资源组。目前不支持直接从内置推理端点目录实例化的端点。
@@ -135,13 +154,10 @@
 > [!警告]
 > 此功能是企业计划及以上版本的一部分。
 
-除了跟踪成本之外，您还可以设置上限。组织管理员和资源组管理员可以在组的**设置**选项卡中的**支出限制**下设置每月支出限额。
+除了跟踪成本之外，您还可以设置上限。组织管理员和资源组管理员可以在组的**设置**选项卡中的**支出限制**下设置每月支出限额。有两种限额可用，均以美元表示：
 
-    
-    
-
-有两种限额可用，均以美元表示：- **总计（所有产品）**：限制组的合并计算支出。
-- 除总数之外，每个产品对 **推理提供程序**、**空间**、**作业** 和 **推理端点** 都有限制。
+- **总计（所有产品）**：限制组的合并计算支出。
+- 除总数之外，每个产品还对 **推理提供程序**、**空间**、**作业** 和 **推理端点** 进行限制。
 
 将字段留空，没有限制。当总限制和每个产品限制同时适用时，两者中较严格者获胜。
 
@@ -157,7 +173,7 @@
 - **推理端点**：拒绝对组产生成本的端点的请求。
 
 达到限制后不久，组中已运行的工作负载也会停止：- 付费**空间**已暂停。免费硬件上的空间将被保留，在[hardware grant](./spaces-gpus)上运行的空间也是如此。
-- **作业**被取消，以 `Resource group spend limit reached` 作为其停止原因。
+- **作业**被取消，`Resource group spend limit reached`作为其停止原因。
 
 提高限制或新月份的开始，可以让成员再次开始新的工作负载。停止的空间和作业不会自动重新启动。
 
@@ -167,5 +183,5 @@
 
 您可以通过 Hub API 列出资源组并向其中添加用户（或更改成员的组织角色和资源组分配）。有关完整参考、示例和批处理工作流程，请参阅 [Programmatic User Access Control Management](./programmatic-user-access-control) 指南。
 
-### 通过 SSH 进行 Git
-https://huggingface.co/docs/hub/security-git-ssh.md
+### 配置
+https://huggingface.co/docs/hub/jobs-configuration.md

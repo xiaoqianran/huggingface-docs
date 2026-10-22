@@ -2,7 +2,7 @@
 
 # 秘密扫描
 
-管理[your secrets (env variables) properly](./spaces-overview#managing-secrets)很重要。人们向外界公开秘密的最常见方式是直接将秘密硬编码到代码文件中，这使得恶意用户可以利用您的秘密以及您的秘密可以访问的服务。
+管理[your secrets (env variables) properly](./spaces-overview#managing-secrets)很重要。人们向外界公开秘密的最常见方式是直接将秘密硬编码到代码文件中，这使得恶意用户有可能利用您的秘密以及您的秘密可以访问的服务。
 
 例如，受损的 `app.py` 文件可能如下所示：
 
@@ -25,5 +25,5 @@ TruffleHog 可以验证跨多个服务工作的秘密，它不仅限于 Hugging 
 
 您可以选择退出来自 [your settings](https://huggingface.co/settings/notifications) 的电子邮件通知。
 
-如果泄露的秘密是 Hugging Face 访问令牌，您可以立即使其失效 - 包括不属于您的令牌 - 请参阅[Revoking a leaked token](./security-tokens#revoking-a-leaked-token)。### 下载分析
-https://huggingface.co/docs/hub/download-analytics.md
+如果泄露的秘密是 Hugging Face 访问令牌，您可以立即使其失效 - 包括不属于您的令牌 - 请参阅[Revoking a leaked token](./security-tokens#revoking-a-leaked-token)。### GGUF 在 LM Studio 中的使用
+https://huggingface.co/docs/hub/lmstudio.md

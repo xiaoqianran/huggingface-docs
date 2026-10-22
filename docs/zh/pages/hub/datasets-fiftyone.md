@@ -2,15 +2,15 @@
 
 #五十一
 
-FiftyOne 是一个开源工具包，用于策划、可视化和
+FiftyOne is an open-source toolkit for curating, visualizing, and
 管理非结构化视觉数据。该库简化了以数据为中心的流程
 工作流程，从查找低置信度预测到识别质量较差的预测
 样本并发现数据中隐藏的模式。该库支持所有
 各种视觉数据，从图像和视频到 PDF、点云和网格。
 
-FiftyOne 支持对象检测、关键点、折线和自定义模式。
+FiftyOne accommodates object detections, keypoints, polylines, and custom schemas.
 
-FiftyOne 与 Hugging Face Hub 集成，以便您可以加载和共享
+FiftyOne is integrated with the Hugging Face Hub so that you can load and share
 直接来自 Hub 的 FiftyOne 数据集。
 
 🚀 尝试[Colab](https://colab.research.google.com/drive/1l0kzfbJ2wtUw1EGS1tq1PJYoWenMlihp?usp=sharing) 中的 FiftyOne 🤝 拥抱脸部集成！
@@ -34,7 +34,7 @@ pip install -U fiftyone
 使用 FiftyOne 的 Hugging Face utils 中的 `load_from_hub()`，您可以加载：
 
 - 上传到中心的任何 FiftyOne 数据集
-- 大多数基于图像的数据集存储在 Parquet 文件中（这是通过 `datasets` 库上传到集线器的数据集的标准）
+- Most image-based datasets stored in Parquet files (which is the standard for datasets uploaded to the hub via the `datasets` library)
 
 ### 从 Hub 加载 FiftyOne 数据集推送到 FiftyOne 的 [supported common formats](https://docs.voxel51.com/user_guide/dataset_creation/datasets.html#supported-import-formats) 之一的中心的任何数据集
 其数据集存储库中应包含所有必要的配置信息
@@ -72,7 +72,7 @@ api.list_datasets(tags="fiftyone")
 文件。为您处理类型转换，并从 URL 下载图像
 如果需要的话。
 
-借助此功能，[you can load](https://docs.voxel51.com/integrations/huggingface.html#basic-examples) 以下任何一项：
+借助此功能，[you can load](https://docs.voxel51.com/integrations/huggingface.html#basic-examples) 可以实现以下任一功能：
 
 - [FiftyOne-Compatible Image Classification Datasets](https://huggingface.co/collections/Voxel51/fiftyone-compatible-image-classification-datasets-665dfd51020d8b66a56c9b6f)，如 [Food101](https://huggingface.co/datasets/ethz/food101) 和 [ImageNet-Sketch](https://huggingface.co/datasets/songweig/imagenet_sketch)
 - [FiftyOne-Compatible Object Detection Datasets](https://huggingface.co/collections/Voxel51/fiftyone-compatible-object-detection-datasets-665e0279c94ae552c7159a2b) 类似 [CPPE-5](https://huggingface.co/datasets/rishitdagli/cppe-5) 和 [WIDER FACE](https://huggingface.co/datasets/CUHK-CSE/wider_face)
@@ -140,5 +140,5 @@ push_to_hub(
 - [🤗 FiftyOne 🤝 Transformers Integration Docs](https://docs.voxel51.com/integrations/huggingface.html#transformers-library)
 - [🧩 FiftyOne Hugging Face Hub Plugin](https://github.com/voxel51/fiftyone-huggingface-plugins)
 
-### 具有资源组的组织中的高级访问控制
-https://huggingface.co/docs/hub/security-resource-groups.md
+### 发布商分析
+https://huggingface.co/docs/hub/publisher-analytics.md

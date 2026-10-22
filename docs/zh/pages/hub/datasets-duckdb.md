@@ -67,14 +67,11 @@ FROM 'hf://datasets/ibm/duorc/ParaphraseRC/*.parquet' LIMIT 3;
 SELECT * FROM 'hf://datasets/ibm/duorc/ParaphraseRC/*.parquet' LIMIT 3;
 ```
 在以下部分中，我们将介绍您可以使用 DuckDB 在 Hugging Face 数据集上执行的更复杂的操作。> [!提示]
-> **查询存储桶**：使用 DuckDB Python 客户端时，可以通过注册 Hugging Face 文件系统来查询[Storage Buckets](./storage-buckets)中存储的数据：
-> ```python
-> import duckdb
-> from huggingface_hub import HfFileSystem
-> duckdb.register_filesystem(HfFileSystem())
-> duckdb.sql("SELECT * FROM 'hf://buckets/username/my-bucket/data.parquet' LIMIT 10")
+> **查询存储桶**：DuckDB 2.0 及更高版本还从 CLI 和每个客户端本地读取 [Storage Buckets](./storage-buckets)：
+> ```sql
+> SELECT * FROM 'hf://buckets/username/my-bucket/data.parquet' LIMIT 10;
 > ```
-DuckDB 预计在未来版本中提供本机 `hf://buckets/` 支持。
+> 存储桶没有版本控制，因此 `@revision` 语法不适用于存储桶路径。在 DuckDB 1.x 上，从 Python 注册 Hugging Face 文件系统：`duckdb.register_filesystem(HfFileSystem())`。详情请参阅[Query with DuckDB](./storage-buckets-access#query-with-duckdb)。
 
-### 推理提供者
-https://huggingface.co/docs/hub/models-inference.md
+### 将使用 HF 按钮登录到您的空间
+https://huggingface.co/docs/hub/spaces-oauth.md

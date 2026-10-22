@@ -118,5 +118,5 @@ hf-mount start repo openai-community/gpt2 /tmp/gpt2
 
 > [!警告]
 > 文件随着端点的添加和删除而变化。当您构建规则时获取它
-> 而不是固定副本。### 机器学习文档工具的概况
-https://huggingface.co/docs/hub/model-card-landscape-analysis.md
+> 而不是固定副本。### 模型
+https://huggingface.co/docs/hub/models.md

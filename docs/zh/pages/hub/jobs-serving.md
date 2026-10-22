@@ -31,7 +31,7 @@ Hint: Exposed ports are reachable at (requires an HF token with read access to t
 
 ## 连接客户端
 
-公开的端口需要具有 `read` 访问作业命名空间的 HF 令牌，作为承载令牌传递。对于兼容 OpenAI 的服务器，它直接插入客户端的 API 密钥 — 基本 URL 是公开的端口 URL 加上 `/v1`：
+公开的端口需要具有 `read` 访问作业命名空间的 HF 令牌，并作为承载令牌传递。对于兼容 OpenAI 的服务器，它直接插入客户端的 API 密钥 — 基本 URL 是公开的端口 URL 加上 `/v1`：
 
 ```python
 import os
@@ -60,7 +60,7 @@ LFM2.5 是一个推理模型，因此响应将其推理包含在最终答案之�
 ...   -d '{"model": "LiquidAI/LFM2.5-8B-A1B", "messages": [{"role": "user", "content": "Hello!"}]}'
 ```
 
-由于令牌在 `Authorization` 标头中传输，因此这些 URL 可在脚本、笔记本和代理中工作——无论您在哪里使用兼容 OpenAI 的 API。它们无法直接在浏览器中打开。要在没有 HF 令牌的情况下为端口提供服务，请使用`--expose-public` — 请参阅[Expose Ports](./jobs-configuration#expose-ports)。
+由于令牌在 `Authorization` 标头中传输，因此这些 URL 可在脚本、笔记本和代理中工作——无论您在哪里使用兼容 OpenAI 的 API。它们无法直接在浏览器中打开。要为没有 HF 令牌的端口提供服务，请使用 `--expose-public` — 请参阅 [Expose Ports](./jobs-configuration#expose-ports)。
 
 ## 使用 llama.cpp 提供 GGUF 模型
 
@@ -103,5 +103,5 @@ LFM2.5 是一个推理模型，因此响应将其推理包含在最终答案之�
 > [!注意]
 > 暴露端口需要 `huggingface_hub` >= 1.19.0，并且在作业硬件价格的基础上计费 — 请参阅 [Jobs pricing](./jobs-pricing)。
 
-### 存储桶：安全性与合规性
-https://huggingface.co/docs/hub/storage-buckets-security.md
+### 将您的空间嵌入另一个网站
+https://huggingface.co/docs/hub/spaces-embed.md

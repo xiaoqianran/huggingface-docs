@@ -1,9 +1,9 @@
 <!-- huggingface-docs: machine-translated zh-CN from English source -->
 
-# 🟧 Label Studio on Spaces
+# 🟧 空间标签工作室
 
-[Label Studio](https://labelstud.io) is an [open-source data labeling
-platform](https://github.com/heartexlabs/label-studio) for labeling,
+[Label Studio](https://labelstud.io) 是用于标签的 [open-source data labeling
+platform](https://github.com/heartexlabs/label-studio)，
 注释并探索许多不同的数据类型。此外，标签工作室
 包括一个强大的[machine learning
 interface](https://labelstud.io/guide/ml.html)，可用于新型号
@@ -15,7 +15,7 @@ Hugging Face Hub 中的标签和注释。您可以使用默认的
 将 Label Studio 配置为完全托管的独立应用程序
 在 Hub 上使用 Docker 进行演示和评估，或者您也可以
 附加您自己的数据库和云存储来托管功能齐全的
-production-ready application hosted on Spaces.
+托管在 Spaces 上的生产就绪应用程序。
 
 ## ⚡️ 在 Spaces 上部署 Label Studio
 
@@ -56,7 +56,7 @@ tutorial](https://labelstud.io/blog/introduction-to-label-studio-in-hugging-face
 
 ## 🛠️ 配置 Label Studio 的生产就绪实例
 
-为了使您的 Space 做好生产准备，您需要进行三项配置
+为了使您的 Space 做好生产准备，您需要进行三个配置
 变化：
 
 * 禁止无限制地创建新帐户。
@@ -233,5 +233,5 @@ playground](https://labelstud.io/playground/)，用于尝试不同的
 注释接口，以及加入[Label Studio Slack
 Community](https://slack.labelstudio.heartex.com/?source=spaces)的链接。
 
-### 访问基准排行榜数据
-https://huggingface.co/docs/hub/leaderboard-data-guide.md
+### GGUF 与 llama.cpp 的用法
+https://huggingface.co/docs/hub/gguf-llamacpp.md

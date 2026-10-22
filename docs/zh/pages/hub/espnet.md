@@ -50,5 +50,5 @@ soundfile.write("out.wav", speech.numpy(), text2speech.fs, "PCM_16")
 * ESPnet 模型动物园[repository](https://github.com/espnet/espnet_model_zoo)。
 * 集成[docs](https://github.com/asteroid-team/asteroid/blob/master/docs/source/readmes/pretrained_models.md)。
 
-### 集线器 API 端点
-https://huggingface.co/docs/hub/api.md
+### 五十一
+https://huggingface.co/docs/hub/datasets-fiftyone.md

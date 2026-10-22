@@ -9,7 +9,7 @@
 
 ## 什么是分割和子集？
 
-机器学习数据集通常有分割，也可能有子集。数据集通常由在训练和评估模型的不同阶段使用的_split_（例如`train`和`test`）组成。 _子集_（也称为_配置_）是包含在较大数据集中的子数据集。子集在多语言语音数据集中尤其常见，其中每种语言可能有不同的子集。如果您有兴趣了解有关分割和子集的更多信息，请查看 [Splits and subsets](/docs/datasets-server/configs_and_splits) 指南！
+机器学习数据集通常有分割，也可能有子集。数据集通常由在训练和评估模型的不同阶段使用的_splits_（例如`train`和`test`）组成。 _子集_（也称为_配置_）是包含在较大数据集中的子数据集。子集在多语言语音数据集中尤其常见，其中每种语言可能有不同的子集。如果您有兴趣了解有关分割和子集的更多信息，请查看 [Splits and subsets](/docs/datasets-server/configs_and_splits) 指南！
 
 ![split-configs-server](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/split-configs-server.gif)
 
@@ -68,5 +68,5 @@ configs:
 - [How to create an audio dataset](./datasets-audio) ([example datasets](https://huggingface.co/collections/datasets-examples/audio-dataset-66aca0b73e8f69e3d069e607))
 - [How to create a video dataset](./datasets-video)
 
-### 🟧 空间标签工作室
-https://huggingface.co/docs/hub/spaces-sdks-docker-label-studio.md
+### 使用 Keras 拥抱脸部
+https://huggingface.co/docs/hub/keras.md

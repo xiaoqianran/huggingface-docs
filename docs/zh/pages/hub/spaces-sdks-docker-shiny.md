@@ -6,7 +6,7 @@
 开发 Shiny 的目标是构建足够简单的东西，可以在一个下午教别人，但又足够可扩展，可以为大型关键任务应用程序提供支持。 
 您可以在几分钟内创建一个有用的 Shiny 应用程序，但如果您的项目范围扩大，您可以确定 Shiny 可以容纳该应用程序。
 
-Shiny 与其他框架的主要区别在于其反应式执行模型。 
+Shiny 与其他框架的主要区别在于它的反应式执行模型。 
 当您编写 Shiny 应用程序时，框架会推断输入、输出和中间计算之间的关系，并使用这些关系仅呈现因用户操作而需要更改的内容。 
 结果是用户可以轻松开发高效、可扩展的应用程序，而无需显式缓存数据或编写回调函数。
 
@@ -55,5 +55,5 @@ Dockerfile 基于 [rocker shiny](https://hub.docker.com/r/rocker/shiny) 镜像�
 
 - 其次，目前您必须使用[httpuv](https://github.com/rstudio/httpuv)的开发版本，它解决了Hugging Face上应用程序超时的问题。
 
-### 芬尼克
-https://huggingface.co/docs/hub/datasets-fenic.md
+### 在 Hugging Face 中使用 RL-Baselines3-Zoo
+https://huggingface.co/docs/hub/rl-baselines3-zoo.md

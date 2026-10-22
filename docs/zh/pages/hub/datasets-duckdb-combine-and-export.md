@@ -95,5 +95,5 @@ SELECT COUNT(*) FROM 'output.parquet';
 
 就是这样！您已成功合并两个数据集、导出结果并将其上传到 Hugging Face Hub。
 
-### 搜索
-https://huggingface.co/docs/hub/search.md
+### 如何向 ArXiv 添加空间
+https://huggingface.co/docs/hub/spaces-add-to-arxiv.md

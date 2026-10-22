@@ -226,7 +226,7 @@ data: ["Bonjour, le monde!"]
 ZeroGPU 空间根据您的帐户类型具有使用配额：
 
 |账户类型 |包含每日 GPU 配额 |
-|----------|------------------------|
+|----------|--------------------------|
 |未经验证 | 2 分钟 |
 |免费帐户 | 5 分钟 |
 |专业帐户 | 40 分钟 |
@@ -307,5 +307,5 @@ curl -s "https://huggingface.co/api/spaces/semantic-search?q=text+to+speech&sdk=
 - [Querying Gradio Apps with curl](https://www.gradio.app/guides/querying-gradio-apps-with-curl)
 - [Spaces ZeroGPU](./spaces-zerogpu)
 
-### 用户配置 (SCIM)
-https://huggingface.co/docs/hub/enterprise-scim.md
+### 使用空格作为组织卡
+https://huggingface.co/docs/hub/spaces-organization-cards.md

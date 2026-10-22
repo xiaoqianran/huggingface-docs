@@ -2,15 +2,15 @@
 
 # 达斯克
 
-[Dask](https://www.dask.org/?utm_source=hf-docs) 是一个并行分布式计算库，可扩展现有的 Python 和 PyData 生态系统。
+[Dask](https://www.dask.org/?utm_source=hf-docs) is a parallel and distributed computing library that scales the existing Python and PyData ecosystem.
 
-特别是，我们可以使用 [Dask DataFrame](https://docs.dask.org/en/stable/dataframe.html?utm_source=hf-docs) 来扩展 pandas 工作流程。 Dask DataFrame 并行 pandas 来处理大型表格数据。它密切反映了 pandas API，使得从单个数据集测试到处理完整数据集的转换变得简单。 Dask 对于​​ Hugging Face 数据集的默认格式 Parquet 特别有效，因为它支持丰富的数据类型、高效的列式过滤和压缩。
+In particular, we can use [Dask DataFrame](https://docs.dask.org/en/stable/dataframe.html?utm_source=hf-docs) to scale up pandas workflows. Dask DataFrame parallelizes pandas to handle large tabular data. It closely mirrors the pandas API, making it simple to transition from testing on a single dataset to processing the full dataset. Dask 对于​​ Hugging Face 数据集的默认格式 Parquet 特别有效，因为它支持丰富的数据类型、高效的列式过滤和压缩。
 
-Dask 的一个很好的实际用例是以分布式方式在数据集上运行数据处理或模型推理。例如，请参阅[Coiled's](https://www.coiled.io/?utm_source=hf-docs)关于[Scaling AI-Based Data Processing with Hugging Face + Dask](https://huggingface.co/blog/dask-scaling)的优秀博客文章。
+A good practical use case for Dask is running data processing or model inference on a dataset in a distributed manner. See, for example, [Coiled's](https://www.coiled.io/?utm_source=hf-docs) excellent blog post on [Scaling AI-Based Data Processing with Hugging Face + Dask](https://huggingface.co/blog/dask-scaling).
 
 ## 读写
 
-由于 Dask 使用 [fsspec](https://filesystem-spec.readthedocs.io) 来读写远程数据，因此您可以使用 Hugging Face 路径 ([⟦T13⟧](/docs/huggingface_hub/guides/hf_file_system#integrations)) 在 Hub 上读写数据。
+Since Dask uses [fsspec](https://filesystem-spec.readthedocs.io) to read and write remote data, you can use the Hugging Face paths ([⟦T13⟧](/docs/huggingface_hub/guides/hf_file_system#integrations)) to read and write data on the Hub.
 
 首先你需要[Login with your Hugging Face account](/docs/huggingface_hub/quick-start#login)，例如使用：
 
@@ -27,7 +27,7 @@ HfApi().create_repo(repo_id="username/my_dataset", repo_type="dataset")
 ```
 
 最后，您可以在Dask中使用[Hugging Face paths](/docs/huggingface_hub/guides/hf_file_system#integrations)。
-Dask DataFrame 支持在 Hugging Face 上分布式写入 Parquet，它使用提交来跟踪数据集更改：
+Dask DataFrame supports distributed writing to Parquet on Hugging Face, which uses commits to track dataset changes:
 
 ```python
 import dask.dataframe as dd
@@ -100,7 +100,7 @@ df["num_words"] = df.text.map_partitions(dummy_count_words, meta=int)
 
 这要归功于支持查询优化的[reimplementation of the Dask DataFrame API](https://docs.coiled.io/blog/dask-dataframe-is-fast.html?utm_source=hf-docs)，这使得 Dask 更快、更健壮。
 
-例如，FineWeb-Edu 的这个子集包含许多 Parquet 文件。如果您可以过滤数据集以保留最近的 CC 转储中的文本，Dask 将跳过大部分文件并仅下载与过滤器匹配的数据：
+例如，FineWeb-Edu 的这个子集包含许多 Parquet 文件。如果您可以过滤数据集以保留最近 CC 转储中的文本，Dask 将跳过大部分文件并仅下载与过滤器匹配的数据：
 
 ```python
 import dask.dataframe as dd
@@ -146,5 +146,5 @@ client = Client(cluster)
 
 在 [Deploying Dask documentation](https://docs.dask.org/en/latest/deploying.html) 中查找有关设置本地或云集群的更多信息。
 
-### 计费
-https://huggingface.co/docs/hub/billing.md
+### 网络钩子
+https://huggingface.co/docs/hub/webhooks.md

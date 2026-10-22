@@ -11,5 +11,5 @@ Argilla 是一个免费的开源工具，用于构建和迭代人工智能数据
 
 在 Spaces 上开始使用 Argilla 的最佳位置是 [this guide](http://docs.argilla.io/latest/getting_started/quickstart/)。
 
-### 兰斯
-https://huggingface.co/docs/hub/datasets-lance.md
+### 代理
+https://huggingface.co/docs/hub/agents-overview.md

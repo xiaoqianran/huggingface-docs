@@ -25,7 +25,7 @@ hf skills add --global
 # or install for the current project only
 hf skills add
 ```> [!提示]
-> 该技能是从您本地安装的 CLI 版本生成的，因此当您升级时它就会过时。 `hf update` 刷新全局安装的技能 - 永远不会重新添加您删除的技能 - `hf skills update -g` 自行刷新它。 `hf` 每天提醒您一次技能缺失或过时；使用 `HF_HUB_DISABLE_UPDATE_CHECK=1` 使其静音。
+> 该技能是从您本地安装的 CLI 版本生成的，因此当您升级时它就会过时。 `hf update` 刷新全局安装的技能 - 永远不会重新添加您删除的技能 - `hf skills update -g` 自行刷新它。如果技能缺失或过时，`hf`每天提醒您一次；使用 `HF_HUB_DISABLE_UPDATE_CHECK=1` 使其静音。
 
 或者，您可以通过 Claude Code 插件系统安装：
 
@@ -41,5 +41,5 @@ claude
 - [Token Settings](https://huggingface.co/settings/tokens) - 管理您的代币
 - [Jobs Documentation](https://huggingface.co/docs/huggingface_hub/guides/cli#hf-jobs) - 计算作业指南
 
-### 技能
-https://huggingface.co/docs/hub/agents-skills.md
+### 使用 GitHub Actions 管理空间
+https://huggingface.co/docs/hub/spaces-github-actions.md

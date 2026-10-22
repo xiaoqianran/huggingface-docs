@@ -40,7 +40,7 @@
 ### 如果您在 Spaces 中托管
 
 > [!提示]
-> 如果您将应用程序托管在 Spaces 上，那么流程将更容易实现（并且直接内置到 Gradio 中）；检查我们的[Spaces OAuth guide](https://huggingface.co/docs/hub/spaces-oauth)。
+> 如果您将应用程序托管在 Spaces 上，那么流程将更容易实现（并直接内置到 Gradio 中）；检查我们的[Spaces OAuth guide](https://huggingface.co/docs/hub/spaces-oauth)。
 
 ### 自动创建 oauth 应用程序Hugging Face 支持 CIMD 又名 [Client ID Metadata Documents](https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/)，它允许您以自动方式为您的网站创建 oauth 应用程序：
 
@@ -101,7 +101,7 @@ curl -X POST https://huggingface.co/oauth/token \
   -d "device_code=$DEVICE_CODE" \
   -d "client_id=$CLIENT_ID"
 ```> [!注意]
-> 对于具有客户端密钥的 OAuth 应用程序，请在设备代码请求和令牌请求上包含 `Authorization: Basic` 标头（带有 Base64 编码的 `client_id:client_secret`）。
+> 对于具有客户端密钥的 OAuth 应用程序，请在设备代码请求和令牌请求中包含 `Authorization: Basic` 标头（带有 Base64 编码的 `client_id:client_secret`）。
 
 ## 目前支持的范围
 
@@ -119,7 +119,7 @@ curl -X POST https://huggingface.co/oauth/token \
 - `manage-repos`：全面管理用户的个人仓库，包括创建和删除它们。
 - `read-collections`：阅读用户的个人收藏。- `write-collections`：读写用户的个人收藏，包括创建和删除它们。
 - `inference-api`：代表用户向[Inference Providers](https://huggingface.co/docs/inference-providers/index)提出推理请求。
-- `read-endpoints`：查看用户的[Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index)并代表用户向其发出推理请求。
+- `read-endpoints`：查看用户的[Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index)，并代表用户向其发出推理请求。
 - `write-endpoints`：管理用户的推理端点，包括创建和删除它们。包括 `read-endpoints` 访问权限。
 - `jobs`：运行[jobs](https://huggingface.co/docs/huggingface_hub/main/en/guides/jobs)
 - `webhooks`：管理[webhooks](https://huggingface.co/docs/huggingface_hub/main/en/guides/webhooks)
@@ -166,10 +166,10 @@ curl -X POST https://huggingface.co/oauth/token \
 
 ### 用例
 
-令牌交换专为您的组织需要的场景而设计：
+令牌交换专为您的组织需要以下的场景而设计：
 
 - **构建内部平台**：创建代表您的团队成员访问 Hugging Face 资源的仪表板或门户，无需每个用户手动进行身份验证。
-- **自动化 CI/CD 管道**：为需要将模型或数据集推送到组织存储库的自动化工作流程发出短期的、有范围的令牌。
+- **自动化 CI/CD 管道**：为需要将模型或数据集推送到组织存储库的自动化工作流程发出短暂的、有范围的令牌。
 - **与企业身份系统集成**：通过根据您的内部用户目录颁发令牌，将您现有的身份提供商与 Hugging Face 连接起来。
 - **实施自定义访问控制**：构建中间件，根据组织的内部策略颁发具有特定范围的令牌。
 
@@ -177,7 +177,7 @@ curl -X POST https://huggingface.co/oauth/token \
 2. 您的后端服务使用客户端凭据对此 OAuth 应用程序进行身份验证。
 3. 您的服务请求特定组织成员（通过电子邮件标识）的访问令牌。
 4. Hugging Face 验证用户是否是您组织的成员并颁发范围令牌。
-5. 颁发的Token只能访问您组织范围内的资源。
+5. 发行的Token只能访问您组织范围内的资源。
 
 ### 先决条件
 
@@ -260,7 +260,7 @@ curl -X POST "https://huggingface.co/oauth/token" \
 通过代币交易所发行的代币具有内置的安全限制：- **组织范围**：令牌只能访问组织内的资源（组织拥有的模型、数据集、空间和集合）。在组织外部，访问权限是只读的，并且仅限于：来自任何用户或组织的公共集合，以及用户已单独授予访问权限的公共门控存储库。
 - **无个人访问**：代币无法访问用户的个人私有存储库或来自其他组织的私有存储库。
 - **短暂**：令牌默认在 8 小时后过期。组织管理员可以在 OAuth 应用程序设置中配置令牌持续时间（最长 30 天）。不提供刷新令牌。
-- **可审核**：所有代币交换都会记录在您组织的[audit logs](./audit-logs)中并可见。
+- **可审计**：所有代币交换都会记录在您组织的[audit logs](./audit-logs)中并可见。
 
 > [!警告]
 > 小心保护您的 OAuth 应用程序凭据。有权访问您的客户端密钥的任何人都可以为您组织的任何成员颁发令牌。
@@ -294,5 +294,5 @@ urn:ietf:params:oauth:grant-type:token-exchange
 - [RFC 8693 - OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html)
 - [Audit Logs](./audit-logs)
 
-### 门控模型
-https://huggingface.co/docs/hub/models-gate.md
+### 小部件
+https://huggingface.co/docs/hub/models-widgets.md

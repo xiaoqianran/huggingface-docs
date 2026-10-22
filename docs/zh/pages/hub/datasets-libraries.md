@@ -61,7 +61,7 @@ Hugging Face 上的 Parquet 文件经过优化，可提高存储效率、加速�
 | [TRL](https://huggingface.co/docs/trl) |通过强化学习（SFT、DPO、GRPO）培训法学硕士 | ⚠️* |
 | [Unsloth](https://docs.unsloth.ai) |快速 LLM 微调（加速 2 倍，内存减少 70%）| ✅ |
 
-_* SFTTrainer 和 DPOTrainer 支持流式传输； GRPPOTrainer 尚不支持流式输入_
+_* SFTTrainer 和 DPOTrainer 支持流式传输； GRPOTrainer 尚不支持流式输入_
 
 ### 从集线器流式传输
 
@@ -185,5 +185,5 @@ api.upload_folder(
 
 有关集成的技术问题，请随时通过 datasets@huggingface.co 联系数据集团队。
 
-### 自定义 Python 空间
-https://huggingface.co/docs/hub/spaces-sdks-python.md
+### 空间设置
+https://huggingface.co/docs/hub/spaces-settings.md

@@ -18,5 +18,5 @@ Hugging Face Hub 拥有越来越多的数据集，涵盖各种领域和任务。
 - [Agent Traces](./agent-traces)
 - [Data files Configuration](./datasets-data-files-configuration)
 
-### 型号卡组件
-https://huggingface.co/docs/hub/model-cards-components.md
+### 具有资源组的组织中的高级访问控制
+https://huggingface.co/docs/hub/security-resource-groups.md

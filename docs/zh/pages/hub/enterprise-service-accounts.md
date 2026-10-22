@@ -23,7 +23,7 @@
 
 ## 管理访问令牌
 
-服务帐户对您组织的访问完全由您向其颁发的细粒度访问令牌定义。对于每个令牌，您可以选择一个名称和一组细粒度的权限，以便您可以仅授予给定工作流所需的访问权限。
+服务帐户对您的组织的访问完全由您向其颁发的细粒度访问令牌定义。对于每个令牌，您可以选择一个名称和一组细粒度的权限，以便您可以仅授予给定工作流所需的访问权限。
 
 可以在两个级别授予权限：
 
@@ -64,5 +64,45 @@
 
 服务帐户不计为组织的计费成员，因此创建它们不会占用计划中的付费席位。
 
-### 代币管理
-https://huggingface.co/docs/hub/enterprise-tokens-management.md
+### TF-Keras（旧版）
+https://huggingface.co/docs/hub/tf-keras.md
+
+## TF-Keras（旧版）
+
+`tf-keras` 是 Keras 2.x 版本的名称。它现在作为单独的 GitHub 存储库 [here](https://github.com/keras-team/tf-keras) 托管。尽管它是一个遗留框架，但 Hub 上仍然托管着 [4.5k+ models](https://huggingface.co/models?library=tf-keras&sort=trending)。这些模型可以使用 `huggingface_hub` 库加载。您**必须**在您的计算机上安装 `tf-keras` 或 `keras<3.x`。
+
+如果您对 Keras 3.x 支持感兴趣，请查看 [this guide](./keras)。
+
+安装后，您只需使用`from_pretrained_keras`方法从Hub加载模型即可。了解更多关于 `from_pretrained_keras` [here](https://huggingface.co/docs/huggingface_hub/main/en/package_reference/mixins#huggingface_hub.from_pretrained_keras) 的信息。
+
+```py
+from huggingface_hub import from_pretrained_keras
+
+model = from_pretrained_keras("keras-io/mobile-vit-xxs")
+prediction = model.predict(image)
+prediction = tf.squeeze(tf.round(prediction))
+print(f'The image is a {classes[(np.argmax(prediction))]}!')
+
+<CopyLLMTxtMenu containerStyle="float: right; margin-left: 10px; display: inline-flex; position: relative; z-index: 10;"></CopyLLMTxtMenu>
+
+# The image is a sunflower!
+```您还可以在 Hub 上托管您的 `tf-keras` 模型。但是，请记住，`tf-keras` 是一个遗留框架。为了达到最大数量的用户，我们建议使用 Keras 3.x 创建模型并如上所述在本机共享。有关上传`tf-keras`模型的更多详细信息，请查看[⟦T11⟧ documentation](https://huggingface.co/docs/huggingface_hub/main/en/package_reference/mixins#huggingface_hub.push_to_hub_keras)。
+
+```py
+from huggingface_hub import push_to_hub_keras
+
+push_to_hub_keras(model,
+    "your-username/your-model-name",
+    "your-tensorboard-log-directory",
+    tags = ["object-detection", "some_other_tag"],
+    **model_save_kwargs,
+)
+```
+
+## 其他资源
+
+- [GitHub repo](https://github.com/keras-team/tf-keras)
+* 博文[Putting Keras on 🤗 Hub for Collaborative Training and Reproducibility](https://merveenoyan.medium.com/putting-keras-on-hub-for-collaborative-training-and-reproducibility-9018301de877)（2022 年 4 月）
+
+### Hugging Face Hub 上的 Jupyter 笔记本
+https://huggingface.co/docs/hub/notebooks.md

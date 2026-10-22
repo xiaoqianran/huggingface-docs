@@ -22,8 +22,8 @@ ZeroGPU 是一个共享基础设施，可优化 AI 模型和 Hugging Face Spaces
 ZeroGPU 支持两种 GPU 尺寸
 
 | GPU 大小 |支持硬件|内存 |配额成本|
-|--------------------------------|------------------------------------|------|------------|
-| `large` *（默认）* |一半 NVIDIA RTX Pro 6000 Blackwell | 48GB | 1× |
+|--------------------------------|------------------------------------------------|------|------------|
+| `large` *（默认）* |一半 NVIDIA RTX Pro 6000 Blackwell | 48GB | 1×|
 | `xlarge` |完整版 NVIDIA RTX Pro 6000 Blackwell | 96GB | 2×|
 
 > [!注意]
@@ -146,7 +146,7 @@ ZeroGPU不支持`torch.compile`，但您可以使用PyTorch**提前**编译（�
 ## 使用等级
 
 GPU 使用量受每个帐户层的**每日**配额限制：|账户类型 |包含每日 GPU 配额 |队列优先级|
-| ------------------------------------------ | ------------------------ | ---------------- |
+| ------------------------------ | ------------------------ | ---------------- |
 |未经验证 | 2 分钟 |低|
 |免费帐户 | 5 分钟 |中等|
 |专业帐户 | 40 分钟（可延长）|最高|
@@ -181,5 +181,5 @@ PRO、团队和企业用户可以通过以每 10 分钟 GPU 时间 **1 美元**�
 
 您可以直接在 HF Hub 上分享您对 Spaces ZeroGPU 的反馈：https://huggingface.co/spaces/zero-gpu-explorers/README/discussions
 
-### 存储桶集成
-https://huggingface.co/docs/hub/storage-buckets-integrations.md
+### 数据集概述
+https://huggingface.co/docs/hub/datasets-overview.md

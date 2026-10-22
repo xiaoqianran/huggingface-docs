@@ -46,7 +46,7 @@ hf jobs uv run --flavor a10g-small --timeout 30m -s HF_TOKEN -- \
 ## 长跑前的检查
 
 在取下盖子之前，进行一些检查可以避免浪费运行。- **首先进行冒烟测试。** 在小版本上运行带有步骤上限的命令，如本页上的示例所示。它证明了依赖项安装、数据加载、模型适合以及推送有效。然后取下盖子并启动完整运行。
-- **检查数据是否合适。** 每个风味都有一个固定磁盘，列在[Pricing and Billing](./jobs-pricing#pricing)的临时存储列中。权重、数据集和保存的检查点共享它。对于磁盘来说太大的数据集可以流式传输或安装，而不是下载。参见[Process Large Datasets](./jobs-large-datasets)。
+- **检查数据是否相符。** 每个风味都有一个固定磁盘，列在[Pricing and Billing](./jobs-pricing#pricing)的临时存储列中。权重、数据集和保存的检查点共享它。对于磁盘来说太大的数据集可以流式传输或安装，而不是下载。参见[Process Large Datasets](./jobs-large-datasets)。
 - **估计运行时间。** 冒烟测试的最终 `train_*` 指标包括 `train_steps_per_second`，训练器在开始时打印总步数。他们一起提供完整的跑步训练时间。将 `--timeout` 设置在其上方，因为作业还花费时间安装依赖项和下载模型。每种口味的价格为[Pricing and Billing](./jobs-pricing)。
 - **在多 GPU 风格上，每个 GPU 启动一个进程。** 以 `x2`、`x4` 或 `x8` 结尾的风格在一台机器上提供多个 GPU。确保您的启动方式使用了它们。 Transformer 和 TRL 需要 `accelerate launch`，如 TRL 部分所示。蝾螈自己做这件事。普通的`python train.py`使用一个GPU，而`Trainer`则回退到`DataParallel`，这比每个GPU一个进程要慢。- **如果要重新运行，请固定。** 将脚本 URL 固定到提交而不是 `main`，将图像固定到特定标签而不是 `latest`。重新运行会得到相同的软件。下面的脚本 URL 跟踪 `main`，因此请在重新运行之前固定提交。
 - **检查长运行**到已安装的存储桶，因此超时或崩溃不会丢失运行。参见[After it ends](#after-it-ends)。
@@ -189,5 +189,5 @@ hf jobs uv run --flavor a10g-small --timeout 30m -s HF_TOKEN -- \
 - [Examples & Tutorials](./jobs-examples) 用于社区撰写，包括视觉语言微调和将大型数据集流式传输到训练运行中。
 - [Use Jobs from a coding agent](./jobs-examples#coding-agent-skills)：`hf` CLI 技能可让 Claude Code、Codex 和 Cursor 启动并为您观看这些运行。
 
-### 空间作为 API 端点
-https://huggingface.co/docs/hub/spaces-api-endpoints.md
+### 自定义 Python 空间
+https://huggingface.co/docs/hub/spaces-sdks-python.md

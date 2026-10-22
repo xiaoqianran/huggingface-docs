@@ -187,7 +187,5 @@ train-0000/
 └── 999.json
 ```
 
-请注意，为了方便用户并启用 [Dataset Viewer](./data-studio)，Hub 中托管的每个数据集都会自动转换为最大 5GB 的 Parquet 格式。由于视频可能非常大，因此视频的 URL 存储在转换后的 Parquet 数据中，而不包含视频字节本身。在 [Parquet format](./data-studio#access-the-parquet-files) 文档中阅读更多相关信息。
-
-### 在拥抱脸部时使用 MLX
-https://huggingface.co/docs/hub/mlx.md
+请注意，为了方便用户并启用 [Dataset Viewer](./data-studio)，Hub 中托管的每个数据集都会自动转换为最大 5GB 的 Parquet 格式。由于视频可能非常大，因此视频的 URL 存储在转换后的 Parquet 数据中，而不包含视频字节本身。在 [Parquet format](./data-studio#access-the-parquet-files) 文档中阅读更多相关信息。### 如何使用 Google Workspace 配置 OIDC SSO
+https://huggingface.co/docs/hub/security-sso-google-oidc.md

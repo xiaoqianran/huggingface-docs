@@ -507,5 +507,5 @@ hf jobs labels <job_id> --name daily-report
 hf jobs labels <job_id> --clear
 ```
 
-### 吉斯卡德谈空间
-https://huggingface.co/docs/hub/spaces-sdks-docker-giskard.md
+### 用户访问令牌
+https://huggingface.co/docs/hub/security-tokens.md

@@ -7,7 +7,7 @@
 证据使您能够：
 - 使用 SQL 支持的组件直接在 Markdown 中编写报告和仪表板。
 - 集成多个来源的数据，包括 SQL 数据库和 API。
-- 使用模板页面根据单个模板自动生成多个页面。
+- 使用模板化页面根据单个模板自动生成多个页面。
 - 将报告无缝部署到各种托管解决方案。
 
 请访问[Evidence’s documentation](https://docs.evidence.dev/)，获取使用 Evidence 创建数据产品的指南、示例和最佳实践。
@@ -53,5 +53,5 @@ npm run dev
 - [Slack Community](https://slack.evidence.dev/)
 - [Evidence Home Page](https://www.evidence.dev)
 
-### 评估结果
-https://huggingface.co/docs/hub/eval-results.md
+### 在拥抱脸部使用 PEFT
+https://huggingface.co/docs/hub/peft.md

@@ -2,7 +2,7 @@
 
 # 芬尼克
 
-[fenic](https://github.com/typedef-ai/fenic) 是一个受 PySpark 启发的 DataFrame 框架，设计用于构建生产 AI 和代理应用程序。 fenic 支持直接从 Hugging Face Hub 读取数据集。
+[fenic](https://github.com/typedef-ai/fenic) is a PySpark-inspired DataFrame framework designed for building production AI and agentic applications. fenic 支持直接从 Hugging Face Hub 读取数据集。
 
 ## 开始使用
 
@@ -24,9 +24,9 @@ session = fc.Session.get_or_create(fc.SessionConfig())
 
 ## 概述
 
-fenic 是一个固执己见的数据处理框架，它结合了：
+fenic is an opinionated data processing framework that combines:
 - **DataFrame API**：受 PySpark 启发的操作，用于熟悉的数据操作
-- **语义操作**：内置 AI/LLM 操作，包括语义函数、嵌入和聚类
+- **Semantic Operations**: Built-in AI/LLM operations including semantic functions, embeddings, and clustering
 - **模型集成**：对 AI 提供商（Anthropic、OpenAI、Cohere、Google）的本机支持
 - **查询优化**：通过逻辑计划转换自动优化
 
@@ -40,7 +40,7 @@ fenic 支持从 Hugging Face 读取以下格式：
 - **镶木地板文件** (`.parquet`)
 - **CSV 文件** (`.csv`)### 读取数据集
 
-要从 Hugging Face Hub 读取数据集：
+To read a dataset from the Hugging Face Hub:
 
 ```python
 import fenic as fc
@@ -57,7 +57,7 @@ df = session.read.parquet("hf://datasets/cais/mmlu/astronomy/*.parquet")
 df = session.read.parquet("hf://datasets/datasets-examples/doc-formats-csv-1@~parquet/**/*.parquet")
 ```
 
-### 使用模式管理阅读
+### Reading with Schema Management
 
 ```python
 # Read multiple CSV files with schema merging
@@ -84,22 +84,22 @@ fenic 中的 Hugging Face 路径格式遵循以下结构：
 hf://{repo_type}/{repo_id}/{path_to_file}
 ```
 
-您还可以指定数据集修订或版本：
+You can also specify dataset revisions or versions:
 ```
 hf://{repo_type}/{repo_id}@{revision}/{path_to_file}
 ```
 
 特点：
-- 支持全局模式（`*`、`**`）
-- 使用 `@` 表示法的数据集修订/版本：
-  - 具体提交：`@d50d8923b5934dc8e74b66e6e4b0e2cd85e9142e`
+- Supports glob patterns (`*`, `**`)
+- Dataset revisions/versions using `@` notation:
+  - Specific commit: `@d50d8923b5934dc8e74b66e6e4b0e2cd85e9142e`
   - 分行：`@refs/convert/parquet`
-  - 分行别名：`@~parquet`
+  - Branch alias: `@~parquet`
 - 私有数据集需要`HF_TOKEN`环境变量
 
 ### 混合数据源
 
-fenic 允许您在单个读取操作中组合多个数据源，包括混合不同的协议：
+fenic allows you to combine multiple data sources in a single read operation, including mixing different protocols:
 
 ```python
 # Mix HF and local files in one read call
@@ -230,5 +230,5 @@ processed_df.show()
 - [fenic GitHub Repository](https://github.com/typedef-ai/fenic)
 - [fenic Documentation](https://docs.fenic.ai/latest/)
 
-### 私有和门控数据集的身份验证
-https://huggingface.co/docs/hub/datasets-duckdb-auth.md
+### 参考
+https://huggingface.co/docs/hub/jobs-reference.md

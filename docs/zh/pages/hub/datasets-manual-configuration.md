@@ -4,7 +4,7 @@
 
 本指南将向您展示如何为数据集存储库配置自定义结构。 [companion collection of example datasets](https://huggingface.co/collections/datasets-examples/manual-configuration-655e293cea26da0acab95b87) 展示了文档的每个部分。
 
-具有受支持结构和 [file formats](./datasets-adding#file-formats) 的数据集会自动在 Hub 上的数据集页面上有一个数据集查看器。您可以使用 YAML 定义查看器使用的拆分、子集和构建器参数。
+具有受支持的结构和 [file formats](./datasets-adding#file-formats) 的数据集会自动在 Hub 上的数据集页面上有一个数据集查看器。您可以使用 YAML 定义查看器使用的拆分、子集和构建器参数。
 
 还可以为同一数据集定义多个子集（也称为“配置”）（例如，如果数据集具有各种独立文件）。
 
@@ -140,7 +140,7 @@ configs:
 ---
 ```
 
-当设置 `data_dir` 时，构建器将解析相对于该目录的文件。如果目录包含与默认拆分命名模式匹配的文件（例如 `train.csv`、`test.csv`），则会自动分配拆分，无需显式 `data_files`。您还可以将 `data_dir` 与 `data_files` 结合使用以获得更多控制：
+设置 `data_dir` 时，构建器将解析相对于该目录的文件。如果目录包含与默认拆分命名模式匹配的文件（例如 `train.csv`、`test.csv`），则会自动分配拆分，无需显式 `data_files`。您还可以将 `data_dir` 与 `data_files` 结合使用以获得更多控制：
 
 ```yaml
 ---
@@ -175,5 +175,5 @@ configs:
 
 请参阅[specific builders' documentation](/docs/datasets/package_reference/builder_classes)查看它们有哪些参数。
 
-### 带注释的模型卡模板
-https://huggingface.co/docs/hub/model-card-annotated.md
+### 火花
+https://huggingface.co/docs/hub/datasets-spark.md

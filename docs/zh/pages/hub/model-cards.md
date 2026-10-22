@@ -4,7 +4,7 @@
 
 ## 什么是模型卡？
 
-模型卡是模型随附的文件，可提供方便的信息。在底层，模型卡是带有附加元数据的简单 Markdown 文件。模型卡对于可发现性、可重复性和共享至关重要！您可以在任何模型存储库中找到模型卡作为 `README.md` 文件。
+模型卡是模型附带的文件，可提供方便的信息。在底层，模型卡是带有附加元数据的简单 Markdown 文件。模型卡对于可发现性、可重复性和共享至关重要！您可以在任何模型存储库中找到模型卡作为 `README.md` 文件。
 
 型号卡应描述：
 - 模型
@@ -83,10 +83,10 @@ tags:
 - flair
 ```
 
-如果未指定，Hub 将尝试自动检测库类型。但是，不鼓励这种方法，并且存储库创建者应尽可能使用显式的 `library_name`。 
+如果未指定，Hub 将尝试自动检测库类型。但是，不鼓励这种方法，存储库创建者应尽可能使用显式的 `library_name`。 
 
-1. 通过查看`*.nemo`或`*.mlmodel`等文件的存在，Hub可以确定模型是否来自NeMo或CoreML。
-2. 以前，如果没有检测到任何内容并且存在`config.json`文件，则认为该库是`transformers`。对于 2024 年 8 月之后创建的模型存储库，情况不再如此，因此您需要显式设置 `library_name: transformers`。
+1. 通过查看`*.nemo`或`*.mlmodel`等文件的存在，Hub可以确定模型是来自NeMo还是CoreML。
+2. 以前如果没有检测到有`config.json`文件，就认为该库是`transformers`。对于 2024 年 8 月之后创建的模型存储库，情况不再如此，因此您需要显式设置 `library_name: transformers`。
 
 ### 指定基本模型
 
@@ -227,7 +227,7 @@ model-index:
 
 ### 链接论文
 
-如果模型卡包含指向 Paper 页面的链接（HF 或 Arxiv 摘要/PDF），Hugging Face Hub 将提取 arXiv ID 并将其包含在格式为 `arxiv:<PAPER ID>` 的模型标签中。单击该标签将使您：
+如果模型卡包含指向 Paper 页面的链接（在 HF 或 Arxiv 摘要/PDF 上），Hugging Face Hub 将提取 arXiv ID 并将其包含在格式为 `arxiv:<PAPER ID>` 的模型标签中。单击该标签将使您：
 
 * 访问论文页面
 * 过滤 Hub 上引用同一论文的其他模型。
@@ -278,7 +278,7 @@ Image only displays when viewing in dark mode
 
 ### 我可以在模型卡中写入 LaTeX 吗？
 
-是的！ Hub 在解析 Markdown 之前使用 [KaTeX](https://katex.org/) 数学排版库在服务器端渲染数学公式。
+是的！ Hub 使用 [KaTeX](https://katex.org/) 数学排版库在解析 Markdown 之前在服务器端渲染数学公式。
 
 您必须使用以下分隔符：
 - `$$ ... $$` 用于显示模式
@@ -294,5 +294,5 @@ $$
 
 $$ E=mc^2 $$
 
-### 组织卡
-https://huggingface.co/docs/hub/organizations-cards.md
+### 冲向空格
+https://huggingface.co/docs/hub/spaces-sdks-docker-dash.md

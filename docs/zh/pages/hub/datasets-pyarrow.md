@@ -278,5 +278,5 @@ pq.write_table(table, "data.parquet", use_content_defined_chunking=True)
 
 在箭头架构元数据中设置音频类型使其他库和拥抱面部数据集查看器能够识别“音频”包含音频数据，而不仅仅是二进制数据。
 
-### 空间上的 ChatUI
-https://huggingface.co/docs/hub/spaces-sdks-docker-chatui.md
+### 您的第一个 Docker 空间：使用 T5 生成文本
+https://huggingface.co/docs/hub/spaces-sdks-docker-first-demo.md

@@ -128,7 +128,7 @@ COPY --chown=user checkpoint .
 
 目前，`/data`卷仅在运行时可用，即您无法在Dockerfile的构建步骤中使用`/data`。您还可以在特定情况下使用我们的数据集中心，您可以将状态和数据存储在 git LFS 存储库中。您可以找到持久性 [here](https://huggingface.co/spaces/Wauplin/space_to_dataset_saver) 的示例，它使用 [⟦T33⟧ library](https://huggingface.co/docs/huggingface_hub/index) 以编程方式将文件上传到数据集存储库。此空间示例与 [this guide](https://huggingface.co/docs/huggingface_hub/main/en/guides/upload#scheduled-uploads) 将帮助您定义最适合您的数据类型的解决方案。
 
-最后，在某些情况下，您可能希望使用 Space 代码中的外部存储解决方案，例如外部托管数据库、S3 等。
+最后，在某些情况下，您可能希望使用空间代码中的外部存储解决方案，例如外部托管数据库、S3 等。
 
 ### 带 GPU 的 Docker 容器
 
@@ -144,5 +144,5 @@ COPY --chown=user checkpoint .
 - [List of Docker Spaces examples](spaces-sdks-docker-examples)
 - [Spaces Examples](https://huggingface.co/SpacesExamples)
 
-### 存储库入门
-https://huggingface.co/docs/hub/repositories-getting-started.md
+### 基本单点登录
+https://huggingface.co/docs/hub/security-sso-basic.md

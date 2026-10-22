@@ -15,7 +15,7 @@
 通过 Academia Hub，您可以**为学生、研究人员和工作人员获得 Hugging Face Hub 的一体化订阅。**## 订阅中包含什么
 1. **存储：** 每个席位 1 TB 私人存储和 1 TB 公共存储，包括我们新的存储桶！
 2. **计算：** 2 美元/月/席位的计算积分，可在推理提供商、推理端点、空间升级硬件和作业中使用。
-3. **更高的访问权限和限制：** 每日更高的空间 ZeroGPU 优先级访问权限，以及更高的集线器速率限制。
+3. **更高的访问权限和限制：** 每天对空间的 ZeroGPU 优先级访问权限更高，以及更高的集线器速率限制。
 4. **协作工具：** [Resource Groups](./security-resource-groups)、[Data Studio](./data-studio)（用于私有数据集）、[Audit Logs](./audit-logs) 和访问控制。
 5. **治理和安全：** 席位管理、集中管理、[SSO](https://huggingface.co/docs/hub/en/enterprise-sso)、[2FA](https://huggingface.co/docs/hub/en/enterprise-advanced-security)、[SCIM](https://huggingface.co/docs/hub/en/enterprise-sso#user-provisioning-scim)、SOC 2 认证。
 6. **全球开源社区：** 与致力于该领域最常用模型和数据集的研究人员和构建者一起发布和协作。
@@ -45,5 +45,5 @@
 - 通过精细的访问控制在实验室或校园之间共享组织工作空间。
 - 将数据和课程材料保存在一个机构组织下，需要时在本地安装或使用。
 
-### 在拥抱脸部时运用天赋
-https://huggingface.co/docs/hub/flair.md
+### 机器学习文档工具的概况
+https://huggingface.co/docs/hub/model-card-landscape-analysis.md

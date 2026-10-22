@@ -15,8 +15,8 @@ pip install pylance pyarrow
 ## 为什么是兰斯？
 
 - 针对 ML/AI 工作负载进行了优化：Lance 是一种现代柱状格式，专为快速随机访问而设计，而不影响扫描性能，使其可用于搜索、分析、培训、特征工程和更多用例。
-- 多模式资产在 Lance 中以字节或二进制对象（“[blobs as files](https://lance.org/guide/blob/)”）的形式与嵌入和传统标量数据一起存储——这使得通过 Hub 更容易管理、共享和分发大型数据集。
-- 索引是一等公民（格式本身本身）：Lance 提供快速、磁盘上、可扩展的 [vector](https://lance.org/quickstart/vector-search) 和 FTS 索引，它们位于 Hub 上的数据集旁边，因此您不仅可以共享数据，还可以共享嵌入和索引，而无需用户重新计算它们。- 灵活的模式和 [data evolution](https://lance.org/guide/data_evolution) 让您可以增量添加新功能/列（审核标签、嵌入等）**无需**需要重写整个表。
+- 多模式资产在 Lance 中以字节或二进制对象（“[blobs as files](https://lance.org/guide/blob/)”）的形式与嵌入和传统标量数据一起存储 - 这使得通过 Hub 更容易管理、共享和分发大型数据集。
+- 索引是一等公民（格式本身本身）：Lance 配备了快速、磁盘上、可扩展的 [vector](https://lance.org/quickstart/vector-search) 和 FTS 索引，它们位于 Hub 上的数据集旁边，因此您不仅可以共享数据，还可以共享嵌入和索引，而无需用户重新计算它们。- 灵活的架构和 [data evolution](https://lance.org/guide/data_evolution) 让您可以增量添加新功能/列（审核标签、嵌入等）**无需**需要重写整个表。
 
 ## 将所有数据存储在一个地方
 
@@ -120,7 +120,7 @@ ds.create_index(
 
 有关更详细的示例，请参阅关于向量索引创建的[Lance docs](https://lance.org/quickstart/vector-search/)。创建向量索引后，您可以通过嵌入对数据运行相似性搜索。
 
-## 向量搜索因为索引是 Lance 的一等公民，所以您不仅可以存储数据，还可以存储嵌入和索引，并**直接在 Hub 上**查询它们。只需使用`describe_indices()`方法即可列出数据集的索引信息。如果数据集中不存在索引，您可以使用`lance.write_dataset()`编写数据集的本地版本，并使用[LanceDataset.create_index](https://lance-format.github.io/lance-python-doc/all-modules.html#lance.dataset.LanceDataset.create_index)创建满足您需要的索引。
+## 向量搜索由于索引是 Lance 的一等公民，因此您不仅可以存储数据，还可以将嵌入和索引存储在一起，并**直接在 Hub 上**进行查询。只需使用`describe_indices()`方法即可列出数据集的索引信息。如果数据集中不存在索引，您可以使用`lance.write_dataset()`编写数据集的本地版本，并使用[LanceDataset.create_index](https://lance-format.github.io/lance-python-doc/all-modules.html#lance.dataset.LanceDataset.create_index)创建满足您需要的索引。
 
 下面的示例显示了一个数据集，我们已经在 `img_emb` 字段上拥有向量索引：
 
@@ -240,7 +240,7 @@ tensor = decoder[0]  # uint8 tensor of shape [C, H, W]
 
 有关高效解码视频的更多功能，请参阅[torchcodec docs](https://docs.pytorch.org/torchcodec/stable/generated/torchcodec.decoders.VideoDecoder.html)。
 
-此外，您还可以查看[Lance documentation](https://lance.org/examples/python/clip_training/)以获取更多将图像数据加载到`torchvision`中以训练您自己的图像模型的示例。
+此外，您还可以查看[Lance documentation](https://lance.org/examples/python/clip_training/)，了解更多将图像数据加载到`torchvision`以训练您自己的图像模型的示例。
 
 ## 探索更多 Lance 数据集Lance 是一种开放格式，原生支持多模式 blob 以及传统表格数据。
 通过 Hugging Face Hub 集成，您可以轻松处理图像、音频、视频、文本、嵌入和
@@ -250,5 +250,5 @@ tensor = decoder[0]  # uint8 tensor of shape [C, H, W]
 并与社区中的其他人分享您自己的 Lance 数据集！
 您可以访问[lance.org](https://lance.org/integrations/huggingface/)获取更多代码片段和示例。
 
-### 极地
-https://huggingface.co/docs/hub/datasets-polars.md
+### 纸页
+https://huggingface.co/docs/hub/paper-pages.md

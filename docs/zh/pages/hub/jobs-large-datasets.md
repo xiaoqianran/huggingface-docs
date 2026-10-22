@@ -14,7 +14,7 @@
 
 ## 流式传输数据集
 
-当您的代码使用这些示例时，流式传输会从 Hub 读取示例 — 无需下载，无需本地副本，并且可以扩展到多 TB 数据集。最近的版本使其成为[up to 100× more efficient](https://huggingface.co/blog/streaming-datasets)，在对许多工作人员进行培训时达到了与本地 SSD 相当的性能：
+当您的代码使用示例时，流式传输会从 Hub 读取示例 - 无需下载，无需本地副本，并且可以扩展到多 TB 数据集。最近的版本使其成为[up to 100× more efficient](https://huggingface.co/blog/streaming-datasets)，在对许多工作人员进行培训时达到了与本地 SSD 相当的性能：
 
 ```python
 from datasets import load_dataset
@@ -22,9 +22,9 @@ from datasets import load_dataset
 ds = load_dataset("HuggingFaceFW/fineweb-edu", "sample-10BT", split="train", streaming=True)
 for example in ds.take(1000):
     ...  # streams in as you iterate, nothing hits disk
-```流式数据集是支持惰性 `.filter()`、`.map()`、`.shuffle(buffer_size=...)` 和 `.batch()` 的`IterableDataset`，并且可以直接传递到 PyTorch `DataLoader` 或 `Trainer` 以训练大于磁盘的数据。有关完整 API，请参阅 [Stream guide](/docs/datasets/stream)，有关单节点或分布式设置的端到端训练演练，请参阅 [Examples & Tutorials](./jobs-examples)。
+```流式数据集是支持惰性 `.filter()`、`.map()`、`.shuffle(buffer_size=...)` 和 `.batch()` 的`IterableDataset`，并且可以直接传递到 PyTorch `DataLoader` 或`Trainer` 以训练大于磁盘的数据。有关完整 API，请参阅 [Stream guide](/docs/datasets/stream)，有关单节点或分布式设置的端到端训练演练，请参阅 [Examples & Tutorials](./jobs-examples)。
 
-流式处理也可以使用 Spark 在分布式设置中工作：
+流式传输也可以使用 Spark 在分布式设置中工作：
 
 ```python
 import pyspark_huggingface
@@ -36,7 +36,7 @@ df = spark.read.format("huggingface").option("config", "sample-10BT").load("Hugg
 
 ## 阅读并过滤`hf://`
 
-许多数据库直接通过 `hf://` 路径读取 Hub 数据集 — **Polars**、**DuckDB** 和 **pandas** 都以本机方式扫描 Hub Parquet，将过滤器和列选择推送到扫描中，因此单个作业可以处理比内存或磁盘容纳的数据多得多的数据。此查询在默认 CPU 风格上大约四分钟内总结了约 28 GB 的 Parquet：
+许多数据库直接通过 `hf://` 路径读取 Hub 数据集 — **Polars**、**DuckDB** 和 **pandas** 都原生扫描 Hub Parquet，将过滤器和列选择推送到扫描中，因此单个作业可以处理比内存或磁盘容纳的数据多得多的数据。此查询在默认 CPU 风格上在大约四分钟内总结了约 28 GB 的 Parquet：
 
 ```python
 import polars as pl
@@ -83,7 +83,7 @@ for path in Path("/mnt/data/sample/10BT").glob("*.parquet"):
 
 ## 保存结果
 
-临时磁盘无法在作业中保留下来，因此请将您想要保留的任何内容写入[Storage Bucket](./storage-buckets)安装的读写器，或将其作为数据集推送到集线器。 DuckDB 可以通过 `hf://` 过滤源，并在一个核外查询中将匹配项直接写入已安装的存储桶，因此结果永远不必适合内存：
+临时磁盘无法在作业中保留下来，因此请将您想要保留的任何内容写入[Storage Bucket](./storage-buckets)安装的读写器，或将其作为数据集推送到集线器。 DuckDB 可以通过 `hf://` 过滤源，并在一次核外查询中将匹配项直接写入已安装的存储桶，因此结果永远不必适合内存：
 
 ```bash
 hf jobs uv run --flavor cpu-upgrade --timeout 1h \
@@ -163,5 +163,5 @@ con.sql("SELECT lang, count(*) AS docs FROM wet GROUP BY lang ORDER BY docs DESC
 - [Pricing & hardware](./jobs-pricing#pricing) — 每种口味的临时磁盘 · [Configuration](./jobs-configuration#volumes) — 卷
 - [Storage Buckets](./storage-buckets)·[access patterns](./storage-buckets-access)·[integrations](./storage-buckets-integrations)
 
-### 第三方扫描仪：保护 AI
-https://huggingface.co/docs/hub/security-protectai.md
+### 阿吉拉空间
+https://huggingface.co/docs/hub/spaces-sdks-docker-argilla.md

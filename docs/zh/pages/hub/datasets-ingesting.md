@@ -94,7 +94,7 @@ hf cp hf://datasets/username/my-dataset/ hf://buckets/username/my-bucket/
 
 在集线器上更新同一文件数千次时存在一些限制。
 例如，您可能想要摄取几代正在运行的 LLM 推理服务器、实时代理跟踪或正在运行的模型训练的日志。
-在这种情况下，将数据作为数据集上传到集线器上是有意义的，但可能很难正确执行。
+在这种情况下，将数据作为数据集上传到 Hub 上是有意义的，但可能很难正确执行。
 主要原因是您不想对数据的每次更新进行版本控制，因为这会使 git 存储库无法使用。
 
 提供三个选项：* **使用存储桶而不是数据集存储库：** [Storage Buckets](/docs/hub/storage-buckets) 提供类似 S3 的体验，允许非常频繁地更新文件，因为它们不基于 git。存储桶对于尚未准备好作为数据集发布的数据特别有用，例如仍在发展或需要更多管理的数据。
@@ -157,7 +157,7 @@ with CommitScheduler(repo_id="username/dataset_name", repo_type="dataset", folde
 
 安排 python 脚本根据计划摄取数据
 
-例如每 5 分钟运行一次脚本 `ingest.py`：
+例如，每 5 分钟运行一次脚本 `ingest.py`：
 
 ```bash
 hf jobs scheduled uv run "*/5 * * * *" ingest.py
@@ -172,5 +172,5 @@ hf jobs scheduled uv run --with "dlt[hf]" "0 0 * * *" pipeline.py
 
 在 [Jobs documentation](/docs/hub/jobs-overview) 中查找有关拥抱脸部工作的更多信息。
 
-### 瞄准空间
-https://huggingface.co/docs/hub/spaces-sdks-docker-aim.md
+### Web数据集
+https://huggingface.co/docs/hub/datasets-webdataset.md

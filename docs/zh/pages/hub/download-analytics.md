@@ -21,7 +21,7 @@
 
 ## 出口概览
 
-该页面显示每日出站流量（下载带宽）图表，以及当月至今的总出站流量与计划包含的出站流量限额的比较。仅统计通过 Hugging Face CDN 的流量，随着数据的稳定，数字可能会随着时间的推移而增加。
+该页面显示每日出站流量（下载带宽）图表，以及与您的计划包含的出站流量限额相比的当月迄今为止的总流量。仅统计通过 Hugging Face CDN 的流量，随着数据的稳定，数字可能会随着时间的推移而增加。
 
 ## 每个成员的详细信息
 
@@ -40,5 +40,5 @@
 
 CDN 使用计量保留 90 天。
 
-### 处理大型数据集
-https://huggingface.co/docs/hub/jobs-large-datasets.md
+### 愚蠢
+https://huggingface.co/docs/hub/datasets-daft.md

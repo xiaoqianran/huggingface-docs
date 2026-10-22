@@ -2,7 +2,7 @@
 
 # 在拥抱脸部时使用 PaddleNLP
 
-[⟦T3⟧](https://github.com/PaddlePaddle/PaddleNLP)利用[PaddlePaddle](https://github.com/PaddlePaddle/Paddle)框架，是一个易于使用且功能强大的NLP库，具有出色的预训练模型库，支持从研究到工业应用的广泛NLP任务。
+利用[PaddlePaddle](https://github.com/PaddlePaddle/Paddle)框架，[⟦T3⟧](https://github.com/PaddlePaddle/PaddleNLP)是一个易于使用且功能强大的NLP库，具有出色的预训练模型库，支持从研究到工业应用的广泛NLP任务。
 
 ## 在 Hub 中探索 PaddleNLP
 
@@ -27,7 +27,7 @@ Hub 上的所有型号均具有以下功能：
 pip install -U paddlenlp
 ```
 
-## 使用现有模型与 `transformer` 模型类似，`paddlenlp` 库提供了一个简单的单行代码，通过设置 `from_hf_hub=True` 从 Hugging Face Hub 加载模型！根据您想要使用它们的方式，您可以使用 `Taskflow` 函数来使用高级 API，也可以使用 `AutoModel` 和 `AutoTokenizer` 进行更多控制。
+## 使用现有模型与 `transformer` 模型类似，`paddlenlp` 库提供了一个简单的单行代码，通过设置 `from_hf_hub=True` 从 Hugging Face Hub 加载模型！根据您想要如何使用它们，您可以使用 `Taskflow` 函数来使用高级 API，也可以使用 `AutoModel` 和 `AutoTokenizer` 进行更多控制。
 
 ```py
 # Taskflow provides a simple end-to-end capability and a more optimized experience for inference
@@ -62,5 +62,5 @@ model.save_to_hf_hub(repo_id="<my_org_name>/<my_repo_name>")
 - PaddleNLP [GitHub Repo](https://github.com/PaddlePaddle/PaddleNLP)。
 - [PaddlePaddle on the Hugging Face Hub](https://huggingface.co/PaddlePaddle)
 
-### 音频数据集
-https://huggingface.co/docs/hub/datasets-audio.md
+### 博客文章
+https://huggingface.co/docs/hub/blog-articles.md

@@ -9,7 +9,7 @@
 
 ## 基准数据集
 
-数据集存储库可以定义为**基准**（例如，[MMLU-Pro](https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro)、[HLE](https://huggingface.co/datasets/cais/hle)、[GPQA](https://huggingface.co/datasets/Idavidrein/gpqa)）。它们显示“基准”标签，并自动汇总整个中心模型存储库的评估结果，并显示顶级模型的排行榜。
+数据集存储库可以定义为**基准**（例如，[MMLU-Pro](https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro)、[HLE](https://huggingface.co/datasets/cais/hle)、[GPQA](https://huggingface.co/datasets/Idavidrein/gpqa)）。它们显示“基准”标签，并自动聚合来自 Hub 上模型存储库的评估结果，并显示顶级模型的排行榜。
 
 ![Benchmark Dataset](https://huggingface.co/huggingface/documentation-images/resolve/main/evaluation-results/benchmark-preview.png)
 
@@ -56,7 +56,7 @@
 |徽章|状况 |
 |------|----------|
 |已验证 | `verifyToken` 有效（使用 Inspect-ai 在 HF 作业中运行评估）|
-|社区 |通过开放 PR 提交的结果（未合并到 main）|
+|社区 |通过开放 PR 提交的结果（未合并到 main） |
 |排行榜 |基准数据集链接 |
 |来源 |评估日志或外部来源的链接 |
 
@@ -169,5 +169,5 @@ tasks:
           model: openai/o3-mini
 ```
 
-### 后续步骤
-https://huggingface.co/docs/hub/repositories-next-steps.md
+### 密钥
+https://huggingface.co/docs/hub/security-passkeys.md

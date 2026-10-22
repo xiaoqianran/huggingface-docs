@@ -2,19 +2,19 @@
 
 # 文件名和分割
 
-要托管和共享数据集，请在 Hugging Face Hub 上创建数据集存储库并上传数据文件。
+To host and share your dataset, create a dataset repository on the Hugging Face Hub and upload your data files.
 
 本指南将向您展示在上传数据集存储库时如何命名数据集存储库中的文件和目录，并启用所有数据集中心功能（例如数据集查看器）。查看[companion collection of example datasets](https://huggingface.co/collections/datasets-examples/file-names-and-splits-655e28af4471bd95709eb135)了解更多详情。
 
-具有受支持结构和 [file formats](./datasets-adding#file-formats) 的数据集会自动在 Hub 上的页面上显示数据集查看器。
+A dataset with a supported structure and [file formats](./datasets-adding#file-formats) automatically has a dataset viewer on its page on the Hub.
 
-请注意，如果以下结构都不适合您的情况，您可以更好地控制如何使用 [Manual Configuration](./datasets-manual-configuration) 定义分割和子集。
+Note that if none of the structures below suits your case, you can have more control over how you define splits and subsets with the [Manual Configuration](./datasets-manual-configuration).
 
 ## 基本用例
 
 如果您的数据集未拆分为 [train/validation/test splits](https://en.wikipedia.org/wiki/Training,_validation,_and_test_data_sets)，最简单的数据集结构是有一个文件：`data.csv`（这适用于任何 [supported file format](./datasets-adding#file-formats) 和任何文件名）。
 
-您的存储库还将包含一个 `README.md` 文件，[dataset card](./datasets-cards) 显示在数据集页面上。
+Your repository will also contain a `README.md` file, the [dataset card](./datasets-cards) displayed on your dataset page.
 
 ```
 my_dataset_repository/
@@ -24,7 +24,7 @@ my_dataset_repository/
 
 ## 分裂
 
-数据集存储库中的某些模式可用于将某些文件分配给训练/验证/测试分割。
+Some patterns in the dataset repository can be used to assign certain files to train/validation/test splits.
 
 ### 文件名
 
@@ -36,7 +36,7 @@ my_dataset_repository/
 ├── train.csv
 ├── test.csv
 └── validation.csv
-```如果您没有任何非传统拆分，则可以将拆分名称放置在数据文件中的任何位置。唯一的规则是分割名称必须由非单词字符分隔，例如 `test-file.csv` 而不是 `testfile.csv`。支持的分隔符包括下划线、破折号、空格、点和数字。
+```如果您没有任何非传统拆分，则可以将拆分名称放置在数据文件中的任何位置。唯一的规则是拆分名称必须由非单词字符分隔，例如 `test-file.csv` 而不是 `testfile.csv`。支持的分隔符包括下划线、破折号、空格、点和数字。
 
 例如，以下文件名都是可接受的：
 
@@ -46,7 +46,7 @@ my_dataset_repository/
 
 ### 目录名称
 
-您可以将数据文件放入名为 `train`、`test` 和 `validation` 的不同目录中，其中每个目录包含该拆分的数据文件：
+You can place your data files into different directories named `train`, `test`, and `validation` where each directory contains the data files for that split:
 
 ```
 my_dataset_repository/
@@ -62,7 +62,7 @@ my_dataset_repository/
 
 ### 关键词
 
-有多种方法可以引用训练/验证/测试拆分。验证拆分有时称为“dev”，测试拆分可能称为“eval”。
+有多种方法可以引用训练/验证/测试分割。验证拆分有时称为“dev”，测试拆分可能称为“eval”。
 还支持这些其他拆分名称，并且以下关键字是等效的：
 
 - 训练，训练
@@ -132,5 +132,5 @@ my_dataset_repository/
     └── random-00002-of-00003.csv
 ```
 
-### marimo 空间
-https://huggingface.co/docs/hub/spaces-sdks-docker-marimo.md
+### 安全模型
+https://huggingface.co/docs/hub/xet/security.md

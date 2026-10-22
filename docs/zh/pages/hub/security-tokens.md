@@ -51,7 +51,7 @@ model = AutoModel.from_pretrained("private/model", token=access_token)
 
 这样，您就可以使一个令牌失效，而不会影响您的其他用途。
 
-我们还建议仅将细粒度令牌用于生产用途。如果泄露，影响将会减少，并且它们可以在您的组织之间共享，而不会影响您的帐户。例如，如果您的生产应用程序需要对门控模型的读取访问权限，您组织的成员可以请求对该模型的访问权限，然后创建具有对该模型的读取访问权限的细粒度令牌。然后可以在您的生产应用程序中使用该令牌，而无需授予其访问所有私有模型的权限。
+我们还建议仅将细粒度令牌用于生产用途。如果泄露，影响将会减少，并且它们可以在您的组织之间共享，而不会影响您的帐户。例如，如果您的生产应用程序需要对门控模型的读取访问权限，则组织的成员可以请求对该模型的访问权限，然后创建具有对该模型的读取访问权限的细粒度令牌。然后可以在您的生产应用程序中使用该令牌，而无需授予其访问所有私有模型的权限。
 
 ### 对于 CI/CD 管道
 
@@ -63,7 +63,7 @@ model = AutoModel.from_pretrained("private/model", token=access_token)
 
 ## 撤销泄露的令牌如果您自己的令牌之一已泄露，请从设置的[Access Tokens tab](https://huggingface.co/settings/tokens)中删除或刷新它。
 
-如果您发现了其他人的 Hugging Face 访问令牌，您可以使用 [⟦T7⟧](https://huggingface-openapi.hf.space/#tag/tokens/POST/api/credentials/revoke) 端点使其失效。您不需要对拥有该令牌的帐户或组织拥有任何权限。
+如果您发现了其他人的 Hugging Face 访问令牌，您可以使用 [⟦T7⟧](https://huggingface-openapi.hf.space/#tag/tokens/POST/api/credentials/revoke) 端点使其失效。您不需要对拥有该令牌的帐户或组织拥有任何权利。
 
 ```bash
 # LEAKED_HF_TOKEN should contain the raw token value to revoke
@@ -74,9 +74,9 @@ curl -X POST "https://huggingface.co/api/credentials/revoke" \
 
 您可以在一次调用中传递`credentials`数组中的多个令牌值，这对于批量报告结果的秘密扫描管道来说很方便。
 
-每个提交的与现有令牌匹配的令牌都会立即失效并在所有地方停止工作 - 与[organization-level revocation](./enterprise-tokens-management#revoking-via-api)不同，它只会切断令牌对单个组织的访问。令牌的所有者会收到电子邮件通知，需要创建新令牌才能恢复访问权限。
+每个提交的与现有令牌匹配的令牌都会立即失效，并在所有地方停止工作 - 与[organization-level revocation](./enterprise-tokens-management#revoking-via-api)不同，它只会切断令牌对单个组织的访问。令牌的所有者会收到电子邮件通知，需要创建新令牌才能恢复访问权限。
 
-无论您提交的任何令牌是否存在，端点始终都会以 `202 Accepted` 进行响应，因此它的响应不能用于探测令牌是否有效。再次提交相同的令牌是无害的：重复调用不会执行任何操作，并且所有者只会收到一次通知。
+无论您提交的任何令牌是否存在，端点总是以`202 Accepted`响应，因此它的响应不能用于探测令牌是否有效。再次提交相同的令牌是无害的：重复调用不会执行任何操作，并且所有者只会收到一次通知。
 
 > [!提示]
 > 为了避免泄漏 shell 历史记录或日志中的令牌值，请通过环境变量或文件传递它们，并避免将原始令牌直接粘贴到命令行中。## 具有代币管理政策的组织中的代币
@@ -106,5 +106,5 @@ curl -X POST "https://huggingface.co/api/credentials/revoke" \
 
 如果您的组织设置了需要细粒度令牌的策略，则在针对该组织的资源使用读/写令牌时，读/写令牌将被拒绝，并出现 `403` 错误。
 
-### 空间变更日志
-https://huggingface.co/docs/hub/spaces-changelog.md
+### 职位概述
+https://huggingface.co/docs/hub/jobs-overview.md

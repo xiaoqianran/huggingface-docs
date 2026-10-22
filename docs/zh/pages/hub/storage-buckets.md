@@ -149,7 +149,7 @@ hf buckets list julien-c/my-training-bucket --tree -h -R
 ...
 ```
 
-## 管理文件您可以直接从 Hub 上的存储桶页面上传和下载文件，或使用 CLI 和 Python API 进行编程访问。使用 `hf://buckets/` 路径（例如 `hf://buckets/username/my-bucket/path/to/file`）引用存储桶文件。 `hf buckets cp` 命令处理单个文件传输，而 `hf buckets sync` 更适合目录。所有命令都双向工作——本地到远程和远程到本地。
+## 管理文件您可以直接从 Hub 上的存储桶页面上传和下载文件，也可以使用 CLI 和 Python API 进行编程访问。使用 `hf://buckets/` 路径（例如 `hf://buckets/username/my-bucket/path/to/file`）引用存储桶文件。 `hf buckets cp` 命令处理单个文件传输，而 `hf buckets sync` 更适合目录。所有命令都双向工作——本地到远程和远程到本地。
 
 如果您的数据已经存在于模型、数据集或空间存储库（或另一个存储桶）中，您可以使用 `hf buckets cp` 将其复制到**服务器端** — 无需下载或重新上传。参见[Copying files between repos and buckets](#copying-files-between-repos-and-buckets)。
 
@@ -181,7 +181,7 @@ batch_bucket_files(
 )
 ```
 
-更多上传选项（原始字节、组合上传+删除等），请参见[⟦T37⟧ upload guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#upload-files)。
+更多上传选项（原始字节、组合上传+删除等），请参阅[⟦T37⟧ upload guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#upload-files)。
 
 ### 下载文件您可以通过单击直接从 Hub 上的存储桶页面下载各个文件。对于编程访问，下载镜像了上传语法——交换 `hf buckets cp` 中的源和目标。您还可以使用 `-` 作为目标将文件流式传输到标准输出，这样您就可以将存储桶内容直接通过管道传输到其他工具中。
 
@@ -352,7 +352,7 @@ data: {"cursor":"...","changes":[{"path":"data/train.txt","op":"add","size":20,"
 
 请参阅[hf.co/storage](https://huggingface.co/storage)了解可用区域以及启用预热的详细信息。
 
-## 用例### 训练检查点和日志
+## 用例### Training checkpoints and logs
 
 运行训练作业时（例如，通过[Jobs](./jobs)），将检查点和日志保存到存储桶中。与 Git 存储库不同，您可以覆盖最新的检查点，而无需累积版本历史记录，并且 `sync` 确保仅传输更改的数据。
 
@@ -363,15 +363,15 @@ hf sync ./checkpoints hf://buckets/my-org/training-run-42/checkpoints
 
 由于存储桶是基于[Xet](./xet/index)构建的，因此模型大部分被冻结的连续检查点受益于块级重复数据删除。仅上传更改的块。
 
-### 数据处理管道
+### Data processing pipelines
 
 存储桶充当数据处理工作流的暂存区域。处理原始数据，将中间输出写入存储桶，然后在管道完成时将最终工件提升到版本化的[Dataset](./datasets)存储库。这使您的版本化存储库保持干净，同时为您的管道提供快速的可变存储。
 
 请注意，在不重新上传的情况下将数据从存储桶传输到存储库尚不可用，但已在路线图上。
 
-### 代理存储人工智能代理需要临时存储来存储中间结果、工具输出、痕迹和工作内存。存储桶为这些数据提供了 Hub 原生位置：快速可变访问，无需 Git 开销，标准 Hugging Face 权限，并且可通过 Hub 生态系统中的 `hf://buckets/` 路径进行寻址。
+### Agentic storage人工智能代理需要临时存储来存储中间结果、工具输出、痕迹和工作内存。存储桶为这些数据提供了 Hub 原生位置：快速可变访问，无需 Git 开销，标准 Hugging Face 权限，并且可通过 Hub 生态系统中的 `hf://buckets/` 路径进行寻址。
 
-### 滚动备份
+### Rolling backups
 
 存储桶非常适合维护滚动备份。使用基于 Git 的 [Dataset](./datasets) 存储库，删除过时的文件并不会释放存储空间 - Git 历史记录会保留每个过去的版本，因此您需要压缩提交或重写历史记录才能实际回收空间。使用存储桶，旧文件一旦删除就会真正消失，您只需为当前存储的内容付费。
 
@@ -392,9 +392,9 @@ buckets:
 
 有关更多详细信息，请参阅模型卡文档中的[Specifying a bucket](./model-cards#specifying-a-bucket)。
 
-## 定价存储桶根据存储的数据量进行计费，并采用简单的按 TB 定价。企业计划受益于基于重复数据删除的计费，其中跨文件共享块直接减少计费占用空间。
+## 定价存储桶根据存储的数据量进行计费，并采用简单的按 TB 定价。企业计划受益于基于重复数据删除的计费，其中跨文件共享的块直接减少了计费占用空间。
 
-至于其他存储库，存储桶可以自由创建，并且有免费的存储限额。对于[free tier](https://huggingface.co/docs/hub/storage-limits)以上的用法，请参阅[hf.co/storage](https://huggingface.co/storage)。有关一般计费信息，请参阅 [Billing](./billing) 文档。
+至于其他存储库，存储桶可以自由创建，并且有免费的存储空间。 For usage above the [free tier](https://huggingface.co/docs/hub/storage-limits), see [hf.co/storage](https://huggingface.co/storage).有关一般计费信息，请参阅 [Billing](./billing) 文档。
 
-### 在空间中使用 OpenCV
-https://huggingface.co/docs/hub/spaces-using-opencv.md
+### 编程式用户访问控制管理
+https://huggingface.co/docs/hub/programmatic-user-access-control.md

@@ -1,6 +1,6 @@
 <!-- huggingface-docs: machine-translated zh-CN from English source -->
 
-# Webhooks 自动化
+# Webhook 自动化
 
 Webhooks 允许您侦听 Hugging Face 上特定存储库或存储桶或属于特定用户/组织集（不仅仅是您的存储库，而是任何存储库）的所有存储库的新更改。
 
@@ -56,5 +56,5 @@ Webhook 使用以下环境变量触发作业：
 
 您可以在 [⟦T20⟧ Webhooks documentation](https://huggingface.co/docs/huggingface_hub/en/guides/webhooks) 中找到有关 webhook 的更多信息。
 
-### 如何使用 Okta 配置 OIDC SSO
-https://huggingface.co/docs/hub/security-sso-okta-oidc.md
+### 拥抱人脸数据集上传决策指南
+https://huggingface.co/docs/hub/datasets-upload-guide-llm.md

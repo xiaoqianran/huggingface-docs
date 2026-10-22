@@ -10,20 +10,20 @@
 
 |图书馆 |语言 |笔记|
 |--------|----------|--------|
-| [⟦T12⟧](https://github.com/huggingface/huggingface_hub) |蟒蛇 |以及任何依赖于它的库（例如`transformers`，`diffusers`，`datasets`，`mlx`，`vllm`...）|
-| [⟦T18⟧](https://github.com/huggingface/hf-hub) |铁锈| |
-| [⟦T19⟧](https://github.com/huggingface/swift-huggingface) |斯威夫特 | |
-| [⟦T20⟧](https://github.com/huggingface/huggingface.js) | JavaScript |仅限 Node.js |
-| [⟦T21⟧](https://github.com/haifengl/smile) |爪哇 |请参阅[⟦T22⟧](https://haifengl.github.io/api/java/smile/util/HuggingFaceHub.html)文档 |
+| [⟦T13⟧](https://github.com/huggingface/huggingface_hub) |蟒蛇 |以及任何依赖于它的库（例如`transformers`，`diffusers`，`datasets`，`mlx`，`vllm`...）|
+| [⟦T19⟧](https://github.com/huggingface/hf-hub) |铁锈| |
+| [⟦T20⟧](https://github.com/huggingface/swift-huggingface) |斯威夫特 | |
+| [⟦T21⟧](https://github.com/huggingface/huggingface.js) | JavaScript |仅限 Node.js |
+| [⟦T22⟧](https://github.com/haifengl/smile) |爪哇 |请参阅 [⟦T23⟧](https://haifengl.github.io/api/java/smile/util/HuggingFaceHub.html) 文档 |
 
 ### 应用程序
 
 |应用 |语言 |笔记|
 |------------|---------|--------|
-| [⟦T23⟧](https://github.com/ggml-org/llama.cpp) | C++ |自 [#20775](https://github.com/ggml-org/llama.cpp/pull/20775) |
-| [⟦T24⟧](https://github.com/ggml-org/Llama-macOS) |斯威夫特 | macOS 应用程序，基于 `llama.cpp` 构建 |
-| [⟦T26⟧](https://github.com/bodaay/HuggingFaceModelDownloader) |去 | |
-| [⟦T27⟧](https://github.com/jundot/omlx) |蟒蛇 | macOS MLX 推理服务器，自 [v0.4.0](https://github.com/jundot/omlx/commit/341aebbeaba1ca3452f83dedf03a0d102cef9fd4) |
+| [⟦T24⟧](https://github.com/ggml-org/llama.cpp) | C++ |自 [#20775](https://github.com/ggml-org/llama.cpp/pull/20775) |
+| [⟦T25⟧](https://github.com/ggml-org/Llama-macOS) |斯威夫特 | macOS 应用程序，基于 `llama.cpp` 构建 |
+| [⟦T27⟧](https://github.com/bodaay/HuggingFaceModelDownloader) |去 | |
+| [⟦T28⟧](https://github.com/jundot/omlx) |蟒蛇 | macOS MLX 推理服务器，自 [v0.4.0](https://github.com/jundot/omlx/commit/341aebbeaba1ca3452f83dedf03a0d102cef9fd4) |
 
 ## 缓存位置
 
@@ -42,10 +42,11 @@
 ```
 <CACHE_DIR>/
 ├── .locks/                                  # Lock files for concurrent download safety
+├── blobs/                                   # Shared blob store: Xet files deduplicated across repos
 ├── models--<org>--<repo>/                   # Cached model repositories
 ├── datasets--<org>--<repo>/                 # Cached dataset repositories
 └── spaces--<org>--<repo>/                   # Cached space repositories
-```每个下载的存储库都有一个单一的平面文件夹。在每个存储库文件夹内，文件一次存储在内容寻址的 `blobs/` 目录中，并通过 `snapshots/` 符号链接访问。命名引用（分支、标签）在 `refs/` 中跟踪。
+```每个下载的存储库都有一个单一的平面文件夹。在每个存储库文件夹内，文件一次存储在内容寻址的 `blobs/` 目录中，并通过 `snapshots/` 符号链接访问。命名引用（分支、标签）在 `refs/` 中跟踪。从 `huggingface_hub` 1.32 开始，使用 `hf_xet` 下载的文件在整个缓存中存储一​​次，存储在缓存根目录的 [shared blob store](#shared-blob-store) 中。存储库的 `blobs/` 条目是该文件的符号链接。
 
 ## 架构
 
@@ -82,8 +83,8 @@
 ```
 
 规则：
-- 仓库类型是**复数**：`models`、`datasets`、`spaces`
-- 存储库 ID 中的正斜杠 (`/`) 替换为 `--`
+- 回购类型是**复数**：`models`、`datasets`、`spaces`
+- 存储库 ID 中的正斜杠 (`/`) 替换为`--`
 - 所有部分之间的分隔符是`--`
 - 外壳被保留
 
@@ -93,9 +94,7 @@
 |--------------------------------------------------|------------------------|----------------------------------------------------------|
 | `julien-c/EsperBERTo-small` |型号| `models--julien-c--EsperBERTo-small` |
 | `huggingface/DataMeasurementsFiles` |数据集| `datasets--huggingface--DataMeasurementsFiles` |
-| `dalle-mini/dalle-mini` |空间| `spaces--dalle-mini--dalle-mini` |
-
-> [!注意]
+| `dalle-mini/dalle-mini` |空间| `spaces--dalle-mini--dalle-mini` |> [!注意]
 > 存储桶不由该缓存处理，因为它们不受 git 支持。请改用专用的 `hf buckets sync` 命令。
 
 ## 在存储库文件夹内
@@ -110,12 +109,14 @@
 └── .no_exist/    # may not always be present
 ```
 
-### `blobs/`：内容寻址文件存储`blobs/`目录存储实际的文件内容。每个文件都以其在 Hub 上的文件 etag 命名：
+### `blobs/`：内容寻址文件存储
+
+`blobs/`目录存储实际的文件内容。每个文件都以其在 Hub 上的文件 etag 命名：
 
 - **Git 跟踪的文件**：由其 **SHA-1** 哈希命名（40 个十六进制字符）
 - **Git LFS 文件**：由其 **SHA-256** 哈希命名（64 个十六进制字符）
 
-这是一个平面目录——没有子目录。不同版本的相同文件仅存储一次。
+这是一个平面目录——没有子目录。不同版本的相同文件仅存储一次。条目可以是常规文件，也可以是[shared blob store](#shared-blob-store)的相对符号链接；读者应遵循。
 
 ```
 blobs/
@@ -126,7 +127,7 @@ blobs/
 
 ### `refs/`：分支和标签引用
 
-`refs/` 目录将人类可读的引用（分支名称、标签、PR 号）映射到提交哈希值。
+`refs/` 目录将人类可读的引用（分支名称、标签、PR 编号）映射到提交哈希值。
 
 每个引用都是一个纯文本文件，包含一行：完整提交哈希（40 个十六进制字符）。
 
@@ -141,9 +142,7 @@ refs/
 
 当使用分支或标记名称下载文件时，将使用最新的提交哈希创建或更新相应的引用文件。
 
-### `snapshots/`：修订视图
-
-`snapshots/` 目录包含每个缓存修订版（提交哈希）的一个子目录。每个修订目录都镜像 Hub 上存储库的文件结构，但文件是指向 `../../blobs/{hash}` 的**符号链接**。
+### `snapshots/`：修订视图`snapshots/` 目录包含每个缓存修订版（提交哈希）的一个子目录。每个修订目录都镜像 Hub 上存储库的文件结构，但文件是指向 `../../blobs/{hash}` 的 **符号链接**。
 
 ```
 snapshots/
@@ -153,9 +152,11 @@ snapshots/
 └── bbc77c8132af1cc5cf678da3f1ddf2de43606d48/
     ├── README.md -> ../../blobs/7cb18dc9bafbfcf74629a4b760af1b160957a83e
     └── pytorch_model.bin -> ../../blobs/403450e234d65943a7dcf7e05a771ce3c92faa84dd07db4ac20f592037a1e4bd
-```主要特性：
+```
+
+主要特性：
 - 符号链接使用**相对路径**：`../../blobs/{hash}`
-- 如果文件在两个修订版之间未更改，则两个符号链接都指向**相同的 blob** 且没有数据重复
+- 如果文件在两次修订之间未更改，则两个符号链接都指向**相同的 blob**，没有数据重复
 - Hub 上子目录中的文件在快照中表示为子目录（保留完整的相对路径）
 
 快照之间的切换类似于在本地 git 存储库中使用 `git checkout`。
@@ -174,9 +175,40 @@ snapshots/
 
 磁盘使用量可以忽略不计，因为这些只是空标记文件。
 
-## 锁定文件
+## 共享 blob 存储
 
-锁定文件可防止并发进程同时下载相同的 blob。它们存储在缓存根目录的 `.locks/` 目录中（不在 repo 文件夹内）：
+通过 Xet 下载的文件会跨存储库进行重复数据删除。这样的文件在缓存根目录`blobs/`下存储一次，并且每个需要它的存储库都会获得相对符号链接而不是副本：```
+<CACHE_DIR>/
+├── blobs/
+│   ├── .huggingface-shared-blobs                 # marker file, contains the layout version ("1")
+│   └── 73/                                       # first two hex characters of the Xet hash
+│       ├── 73b079dc7bd546aed26d20a82289bd752fc52a2fda13e7f2b551f3af73845b59                       # the file, named by its Xet hash (64 hex characters)
+│       ├── 73b079dc7bd546aed26d20a82289bd752fc52a2fda13e7f2b551f3af73845b59.refs                  # manifest: one line per repo blob that references it (path relative to the cache root)
+│       └── 73b079dc7bd546aed26d20a82289bd752fc52a2fda13e7f2b551f3af73845b59.lock                  # lock file
+│
+└── models--HuggingFaceTB--SmolLM2-135M-Instruct/
+    └── blobs/
+        └── 5af571cbf074e6d21a03528d2330792e532ca608f24ac70a143f6b369968ab8c -> ../../blobs/73/73b079dc7bd546aed26d20a82289bd752fc52a2fda13e7f2b551f3af73845b59
+```
+
+主要特性：
+- 存储库条目保留其 etag 名称并成为 **相对符号链接**：`../../blobs/{xet_hash[:2]}/{xet_hash}`
+- `snapshots/`布局不变，因此[file resolution](#file-resolution-logic)不受影响
+- 标记文件标识存储：缓存根目录下的非空`blobs/`目录，并且从未使用或修改过它
+- 商店需要符号链接和`hf_xet`。如果共享失败，文件会像以前一样存储在 repo 文件夹中。 `HF_HUB_DISABLE_SHARED_BLOBS=1` 禁用商店
+- 只有新的下载才会通过商店进行。由旧版本或其他客户端写入的文件保留在存储库文件夹中的常规文件，因此缓存可以包含两者
+
+仅读取缓存的实现不需要更改：以下符号链接的工作方式与以前一样。
+
+从缓存中删除的实现应该将作为符号链接的存储库 blob 视为对存储的引用：
+- 删除存储库的`blobs/`中的符号链接，而不是它指向的共享文件
+- 在检查清单和删除之前锁定`<xet_hash>.lock`
+- 仅当清单中没有列出的符号链接仍然指向共享文件及其`.refs`时，才删除共享文件及其`.refs`
+- 如果清单丢失或无法读取，请保留共享文件
+
+请参阅 [⟦T72⟧ cache guide](https://huggingface.co/docs/huggingface_hub/guides/manage-cache#shared-blobs-across-repos) 了解旧客户端的删除行为和限制。
+
+## 锁定文件锁定文件可防止并发进程同时下载相同的 blob。它们存储在缓存根目录的 `.locks/` 目录中（不在 repo 文件夹内）：
 
 ```
 <CACHE_DIR>/.locks/<repo_folder_name>/<blob_hash>.lock
@@ -222,7 +254,9 @@ snapshots/
 
 ## 文件解析逻辑
 
-要在磁盘上找到缓存文件：1. **解决提交哈希的修订**
+要在磁盘上找到缓存文件：
+
+1. **解决提交哈希的修订**
    - 如果修订版本已经是 40 个字符的十六进制字符串，则直接使用它
    - 否则，读取`refs/{revision}`处的文件以获取提交哈希
 
@@ -237,11 +271,9 @@ snapshots/
 4. **缓存未命中**
    - 如果两个路径都不存在，则文件尚未被缓存
 
-## Windows 行为
-
-缓存依赖于**符号链接**。在符号链接不可用的 Windows 系统上，缓存以 **降级模式** 运行：实际文件副本直接放置在 `snapshots/` 而不是符号链接中。该模式下不使用`blobs/`目录。
+## Windows 行为缓存依赖于**符号链接**。在符号链接不可用的 Windows 系统上，缓存以 **降级模式** 运行：实际文件副本直接放置在 `snapshots/` 而不是符号链接中。该模式下不使用`blobs/`目录和[shared blob store](#shared-blob-store)。
 
 这意味着相同的文件内容可能会在各个修订版本中重复，从而增加磁盘使用量。要在 Windows 上启用符号链接支持，请激活 [Developer Mode](https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development) 或以管理员身份运行。
 
-### 使用 Keras 拥抱脸部
-https://huggingface.co/docs/hub/keras.md
+### 极地
+https://huggingface.co/docs/hub/datasets-polars.md

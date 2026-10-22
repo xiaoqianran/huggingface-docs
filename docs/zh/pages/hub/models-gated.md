@@ -36,7 +36,7 @@
 #### 通过 API
 
 您可以使用 API 自动批准访问请求。您必须通过 `token` 和 `write` 访问门控存储库。要生成令牌，请转到[your user settings](https://huggingface.co/settings/tokens)。|方法|统一资源定位符 |描述 |标题 |有效载荷
-| ------ | ---| ----------- | -------- | -------- |
+| ------ | --- | ----------- | -------- | -------- |
 | `GET` | `/api/models/{repo_id}/user-access-request/pending` |检索待处理请求的列表。 | `{"authorization": "Bearer $token"}` | |
 | `GET` | `/api/models/{repo_id}/user-access-request/accepted` |检索已接受请求的列表。 | `{"authorization": "Bearer $token"}` | |
 | `GET` | `/api/models/{repo_id}/user-access-request/rejected` |检索被拒绝的请求的列表。 | `{"authorization": "Bearer $token"}` | |
@@ -176,5 +176,5 @@ extra_gated_eu_disallowed: true
 ---
 ```系统根据用户的 IP 地址识别用户的位置。
 
-### 空间配置参考
-https://huggingface.co/docs/hub/spaces-config-reference.md
+### 空间作为代理工具
+https://huggingface.co/docs/hub/spaces-agents.md

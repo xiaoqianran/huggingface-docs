@@ -122,14 +122,14 @@ _该模型有哪些已知或可预见的问题？_
 
 _针对可预见的问题有哪些建议？这可以包括从“对图像进行缩减采样”到过滤露骨内容的所有内容。_
 
-# 训练详情**部分概述：** 本部分提供描述和复制培训的信息，包括培训数据、培训元素的速度和规模以及培训对环境的影响。这也与 [Technical Specifications](#technical-specifications-optional) 密切相关，当与培训程序相关时，此处的内容应链接到该部分。  对于想要了解更多有关模型输入和训练足迹的人来说，它非常有用。
+# 训练详情**部分概述：** 本部分提供描述和复制培训的信息，包括培训数据、培训元素的速度和规模以及培训对环境的影响。这也与 [Technical Specifications](#technical-specifications-optional) 密切相关，当此处的内容与培训程序相关时，应链接到该部分。  对于想要了解更多有关模型输入和训练足迹的人来说，它非常有用。
 对于任何想要了解模型所学习内容的基础知识的人来说，它都是相关的。
 
 ## 训练数据
 
 `training_data`
 
-_写 1-2 个句子来说明训练数据是什么。理想情况下，这会链接到数据集卡以获取更多信息。与数据预处理或附加过滤相关的文档链接可以在此处以及[More Information](#more-information-optional)._中找到
+_写 1-2 个句子来说明训练数据是什么。理想情况下，这会链接到数据集卡以获取更多信息。与数据预处理或附加过滤相关的文档链接可能位于此处以及[More Information](#more-information-optional)._
  
 
 ## 培训程序[可选]
@@ -244,11 +244,11 @@ _最低硬件要求是什么，例如处理、存储和内存要求？_
 
 `glossary`
 
-_明确定义术语，以便受众能够理解。_
+_明确定义术语以便跨受众理解。_
 
 # 更多信息 [可选]
 
-**本节概述：** 本节提供有关数据集创建、技术规范、经验教训和初步结果的文章链接。
+**部分概述：** 本部分提供有关数据集创建、技术规范、经验教训和初步结果的链接。
 
 `more_information`
 
@@ -273,5 +273,5 @@ _明确定义术语，以便受众能够理解。_
 **请引用为：**
 奥佐阿尼、埃齐和格奇克、玛丽莎和米切尔、玛格丽特。模型卡指南。拥抱脸，2022 年。https://huggingface.co/docs/hub/en/model-card-guidebook
 
-### 图书馆
-https://huggingface.co/docs/hub/datasets-libraries.md
+### Webhook 指南：使用 LLM 回复构建讨论机器人
+https://huggingface.co/docs/hub/webhooks-guide-discussion-bot.md

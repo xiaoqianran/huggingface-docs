@@ -24,7 +24,7 @@
 
 ## 用户配置
 
-托管 SSO 通过 [SCIM](./enterprise-scim) 引入自动化用户配置，管理 Hugging Face 上的整个用户生命周期。 SCIM 允许您的 IdP 将用户身份信息传达给 Hugging Face，从而在您的 IdP 中发生更改时实现用户帐户的自动创建、更新（例如，名称更改、角色更改）和停用。
+托管 SSO 通过 [SCIM](./enterprise-scim) 引入自动化用户配置，管理 Hugging Face 上的整个用户生命周期。 SCIM 允许您的 IdP 将用户身份信息传达给 Hugging Face，从而在您的 IdP 中发生更改时实现自动创建、更新（例如，名称更改、角色更改）和停用用户帐户。
 
 在我们的[dedicated guide](./enterprise-scim)中了解有关如何设置和管理 SCIM 的更多信息。
 
@@ -43,5 +43,5 @@
 
 这些限制维护了您企业的安全边界。对于个人项目或更广泛的组织外部协作，成员应使用单独的、非托管的 Hugging Face 帐户。
 
-### 将使用 HF 按钮登录到您的空间
-https://huggingface.co/docs/hub/spaces-oauth.md
+### 空间配置参考
+https://huggingface.co/docs/hub/spaces-config-reference.md

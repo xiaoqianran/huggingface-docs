@@ -5,7 +5,7 @@
 > [!警告]
 > 此功能是团队和企业计划的一部分。
 
-启用了 SSO 的组织可以使用以下功能。有关每种模式的详细信息，请参阅[Basic SSO](./security-sso-basic)和[Managed SSO](./enterprise-advanced-sso)。
+启用了 SSO 的组织可以使用以下功能。有关每种模式的详细信息，请参阅 [Basic SSO](./security-sso-basic) 和 [Managed SSO](./enterprise-advanced-sso)。
 
 	
 	
@@ -62,7 +62,7 @@ If there is no match, the role is determined as follows:
 
 - **资源组映射**
 
-  从 IdP 属性值到 Hugging Face 组织中的资源组的映射。您可以为每个资源组映射分配特定角色（`admin`、`write`、`contributor`、`read`）。与角色映射不同，**资源组映射是附加的**。如果用户匹配多个映射（例如，他们属于 IdP 中映射到不同资源组的多个组），他们将被添加到**所有**匹配的资源组。
+  从 IdP 属性值到 Hugging Face 组织中的资源组的映射。您可以为每个资源组映射分配特定角色（`admin`、`write`、`contributor`、`read`、`inherit`）。与角色映射不同，**资源组映射是附加的**。如果用户匹配多个映射（例如，他们属于 IdP 中映射到不同资源组的多个组），他们将被添加到**所有**匹配的资源组。
 
 如果不匹配，则不会将用户分配到任何资源组。
 
@@ -78,12 +78,16 @@ If there is no match, the role is determined as follows:
 
 要添加电子邮件域，请填写“匹配电子邮件域”字段，单击键盘上的 Enter 键，然后保存。
 
-## 外部合作者这使得组织内的某些用户无需完成单点登录 (SSO) 流程即可访问资源。当您与不属于组织身份提供商 (IdP) 但需要访问特定资源的外部方合作时，这会很有帮助。
+## 外部合作者外部协作者是组织外部的用户，他们需要在不通过单点登录 (SSO) 的情况下访问其部分资源。这通常意味着它们不在您的身份提供商 (IdP) 中。它们可在付费计划中使用，并在组织的成员列表中显示为“外部协作者”徽章。它们确实计入您组织中的付费席位数量。
 
-要将用户添加为“外部协作者”，请访问组织设置中的 `SSO/Users Management` 部分。添加后，这些用户将不需要执行 SSO 流程。
+您可以通过以下方式添加它们：
 
-但是，它们仍然受您组织的访问控制 ([Resource Groups](./enterprise-resource-groups)) 的约束。
-仔细管理他们的访问权限对于维护组织的数据安全至关重要。
+- **邀请他们加入组织**：在组织设置的 **成员** 页面上，发送邀请时选中 **外部协作者**。
+- **转换现有成员**：在**成员**页面上，打开成员的菜单并选择**转换为外部协作者**。使用 **转换为成员** 将其切换回来。如果您的组织使用 SSO，他们随后需要通过它登录才能保留访问权限。你也可以这样做[via the API](./programmatic-user-access-control#change-member-account-type-via-api)。
+- **共享资源组或存储库**：如果启用 [external invitations](./security-resource-groups#external-invitations)，资源组管理员可以直接邀请外部人员加入资源组，包括从存储库设置页面上的 **与外部协作者共享**。这些用户以 `no_access` 组织角色加入，并且仅获得该资源组。外部协作者仍需通过组织的访问控制 ([Resource Groups](./enterprise-resource-groups))。
 
-### S3 兼容性
-https://huggingface.co/docs/hub/storage-buckets-s3.md
+> [!注意]
+> 使用 [Managed SSO](./enterprise-advanced-sso)，内部成员通过您的身份提供商 (SCIM) 进行配置，因此受邀加入组织的用户只能添加为外部协作者。
+
+### 查询数据集
+https://huggingface.co/docs/hub/datasets-duckdb-select.md

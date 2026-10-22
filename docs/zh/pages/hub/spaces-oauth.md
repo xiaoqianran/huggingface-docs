@@ -129,5 +129,5 @@ if (!oauthResult) {
 console.log(oauthResult);
 ```
 
-### 拥抱脸部 MCP 服务器
-https://huggingface.co/docs/hub/agents-mcp.md
+### 网络安全
+https://huggingface.co/docs/hub/enterprise-network-security.md

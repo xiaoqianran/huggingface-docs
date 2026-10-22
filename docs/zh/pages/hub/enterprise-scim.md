@@ -37,7 +37,7 @@ SCIM 的工作方式有所不同，具体取决于您的 SSO 模型。详细比�
 
 在 IdP 中启用 SCIM 后，配置的用户将显示在组织设置的 **用户管理** 选项卡中，配置的组将显示在 **SCIM** 选项卡中。
 
-## 组配置除了用户配置之外，SCIM 还支持**组配置**。从 IdP 推送的组将作为 SCIM 组存储在 Hugging Face 上，并且可以从组织设置中的 **SCIM** 选项卡链接到 [Resource Groups](./enterprise-resource-groups)。
+## 组配置除了用户配置之外，SCIM 还支持**组配置**。从 IdP 推送的组在 Hugging Face 上存储为 SCIM 组，并且可以从组织设置中的 **SCIM** 选项卡链接到 [Resource Groups](./enterprise-resource-groups)。
 
 ### 将 SCIM 组链接到资源组
 
@@ -61,7 +61,7 @@ SCIM 组链接到资源组后：
 
 链接到 SCIM 组的资源组被视为 **SCIM 管理**。 IdP 是其普通用户的唯一事实来源。结果：
 
-- 对于普通用户来说，通过 Hub UI 或 API 进行的手动成员资格更改被**阻止** - 任何在 SCIM 管理的资源组上添加、删除或更改普通用户角色的尝试都将返回 `403` 错误。
+- 对于普通用户来说，通过 Hub UI 或 API 进行手动成员资格更改是被阻止的 - 任何在 SCIM 管理的资源组上添加、删除或更改普通用户角色的尝试都将返回 `403` 错误。
 - [Service accounts](./enterprise-service-accounts) 是例外：由于它们从未通过 SCIM 进行配置，因此您仍然可以在 SCIM 管理的资源组上手动添加、删除或更改服务帐户的角色。
 - 自动加入 **无法在 SCIM 管理的资源组上启用**。要重新启用自动加入，请首先删除 SCIM 链接。
 
@@ -71,14 +71,14 @@ SCIM 组链接到资源组后：
 
 ## 支持的用户属性
 
-Hugging Face SCIM 端点支持以下用户属性：|属性|描述 |基本单点登录 |托管单点登录 |
+Hugging Face SCIM 端点支持以下用户属性：|属性 |描述 |基本单点登录 |托管单点登录 |
 | --- | --- | --- | --- |
-| `userName` |拥抱脸用户名|只读|读/写|
+| `userName` |拥抱脸用户名|只读|读/写 |
 | `name.givenName` |名字 |只读|读/写 |
-| `name.familyName` |姓氏 |只读|读/写 |
-| `emails[type eq "work"].value` |电子邮件地址 |只读|读/写 |
-| `externalId` | IdP 分配的标识符 |读/写 |读/写|
-| `active` |用户是否为活跃会员 |读/写 |读/写|
+| `name.familyName` |姓氏 |只读|读/写|
+| `emails[type eq "work"].value` |电子邮件地址 |只读|读/写|
+| `externalId` | IdP 分配的标识符 |读/写|读/写|
+| `active` |用户是否为活跃会员 |读/写|读/写|
 
 使用基本 SSO，只有 `active` 和 `externalId` 可以通过 SCIM 进行修改 — 所有其他属性均由用户在其 Hugging Face 帐户上控制。
 
@@ -103,5 +103,5 @@ Hugging Face SCIM 端点支持以下用户属性：|属性|描述 |基本单点�
 - [How to configure SCIM with Microsoft Entra ID](./security-sso-entra-id-scim)
 - [How to configure SCIM with Okta](./security-sso-okta-scim)
 
-### 集线器本地缓存
-https://huggingface.co/docs/hub/local-cache.md
+### 高级主题
+https://huggingface.co/docs/hub/models-advanced.md

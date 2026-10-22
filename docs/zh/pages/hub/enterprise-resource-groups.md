@@ -22,15 +22,16 @@
 
 - 将相关存储库分组在一起以更好地组织
 - 在组级别而不是单个存储库级别控制成员访问
-- 为团队成员分配不同的权限角色（no_access、读取、贡献者、写入、管理员）
+- 为团队成员分配不同的权限角色（no_access、读取、贡献者、写入、管理、继承）
 - 保持私有存储库仅对授权组成员可见
 - 使多个团队能够在同一组织内独立工作
 - 配置允许哪些成员角色创建新资源组
+- 与[external collaborators](./security-resource-groups#external-invitations)共享资源组及其存储库
 - 将博客、集合、作业、推理端点和推理提供程序等组织功能限制为特定资源组的成员
 - 将成本归因于特定资源组，以实现更好的预算管理
-- 每个资源组、总计或每个产品的每月计算支出上限
+- 每个资源组、总计或每个产品的每月计算支出上限此团队和企业功能可帮助组织管理复杂的团队结构并对其存储库保持适当的访问控制。
 
-此团队和企业功能可帮助组织管理复杂的团队结构并对其存储库保持适当的访问控制。
+[Getting started with Resource Groups →](./security-resource-groups)
 
-[Getting started with Resource Groups →](./security-resource-groups)### 迪迪标签
-https://huggingface.co/docs/hub/datasets-distilabel.md
+### 计费
+https://huggingface.co/docs/hub/billing.md

@@ -34,7 +34,7 @@ from diffusers import DiffusionPipeline
 pipeline = DiffusionPipeline.from_pretrained("stabilityai/stable-diffusion-xl-base-1.0")
 ```
 
-如果您想加载特定的管道组件（例如 UNet），可以通过以下方式执行：
+如果要加载特定的管道组件（例如 UNet），可以通过以下方式执行：
 
 ```py
 from diffusers import UNet2DConditionModel
@@ -44,12 +44,12 @@ unet = UNet2DConditionModel.from_pretrained("stabilityai/stable-diffusion-xl-bas
 
 ## 共享您的管道和模型
 
-所有[pipeline classes](https://huggingface.co/docs/diffusers/main/api/pipelines/overview)、[model classes](https://huggingface.co/docs/diffusers/main/api/models/overview)和[scheduler classes](https://huggingface.co/docs/diffusers/main/api/schedulers/overview)均与集线器完全兼容。更具体地说，它们可以使用`from_pretrained()`方法轻松地从Hub加载，并可以使用`push_to_hub()`方法与其他人共享。欲了解更多详情，请查看[documentation](https://huggingface.co/docs/diffusers/main/en/using-diffusers/push_to_hub)。 
+所有[pipeline classes](https://huggingface.co/docs/diffusers/main/api/pipelines/overview)、[model classes](https://huggingface.co/docs/diffusers/main/api/models/overview)和[scheduler classes](https://huggingface.co/docs/diffusers/main/api/schedulers/overview)均与集线器完全兼容。更具体地说，它们可以使用 `from_pretrained()` 方法轻松地从 Hub 加载，并可以使用 `push_to_hub()` 方法与其他人共享。欲了解更多详情，请查看[documentation](https://huggingface.co/docs/diffusers/main/en/using-diffusers/push_to_hub)。 
 
 ## 其他资源
 
 * 扩散器[library](https://github.com/huggingface/diffusers)。
 * 扩散器[docs](https://huggingface.co/docs/diffusers/index)。
 
-### 在拥抱脸部时使用 OpenCLIP
-https://huggingface.co/docs/hub/open_clip.md
+### 处理渐变空间中的空间依赖性
+https://huggingface.co/docs/hub/spaces-dependency.md
