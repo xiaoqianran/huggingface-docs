@@ -68,5 +68,5 @@ Replace `"your-org-name"` with the name of the organization you want to bill to.
 - [Pi Documentation](https://pi.dev/docs/latest)
 - [Available models on Inference Providers](https://huggingface.co/models?pipeline_tag=text-generation&inference_provider=all&sort=trending)
 
-### MacWhisper
-https://huggingface.co/docs/inference-providers/integrations/macwhisper.md
+### 🤗 Use Hugging Face Inference Providers with GitHub Copilot Chat in VS Code
+https://huggingface.co/docs/inference-providers/integrations/vscode.md

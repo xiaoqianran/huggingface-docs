@@ -173,5 +173,5 @@ tasks:
           model: openai/o3-mini
 ```
 
-### SSO Configuration Guides
-https://huggingface.co/docs/hub/security-sso-configuration-guides.md
+### Passkeys
+https://huggingface.co/docs/hub/security-passkeys.md

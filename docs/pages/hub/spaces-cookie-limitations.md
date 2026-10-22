@@ -22,5 +22,5 @@ To work around this issue, you would need to set the `server.enableXsrfProtectio
 > [!TIP]
 > When you are using the Streamlit SDK, you don't need to worry about this because the SDK does it for you.
 
-### Authentication
-https://huggingface.co/docs/hub/datasets-polars-auth.md
+### 3D Dataset
+https://huggingface.co/docs/hub/datasets-3d.md

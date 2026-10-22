@@ -70,5 +70,5 @@ as `unknown`. Empty groups are displayed as `(none)`.
 For kernel metadata, use [kernels info](cli-info). For available build
 variants, use [kernels variants](cli-variants).
 
-### kernels info
-https://huggingface.co/docs/kernels/main/cli-info.md
+### Migrate from older versions
+https://huggingface.co/docs/kernels/main/migration.md

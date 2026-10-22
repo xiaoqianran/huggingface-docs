@@ -13,7 +13,7 @@ Unofficial mirror from official `llms.txt` + `llms-full.txt`.
 | [`dataset-viewer`](https://huggingface.co/docs/dataset-viewer) | Dataset Viewer | 26 | [full](dataset-viewer/_full.md) |
 | [`datasets`](https://huggingface.co/docs/datasets) | Datasets | 58 | [full](datasets/_full.md) |
 | [`diffusers`](https://huggingface.co/docs/diffusers) | Diffusers | 355 | [full](diffusers/_full.md) |
-| [`hub`](https://huggingface.co/docs/hub) | Hub | 273 | [full](hub/_full.md) |
+| [`hub`](https://huggingface.co/docs/hub) | Hub | 275 | [full](hub/_full.md) |
 | [`huggingface_hub`](https://huggingface.co/docs/huggingface_hub) | Hub Client | 53 | [full](huggingface_hub/_full.md) |
 | [`inference-endpoints`](https://huggingface.co/docs/inference-endpoints) | Inference Endpoints | 25 | [full](inference-endpoints/_full.md) |
 | [`inference-providers`](https://huggingface.co/docs/inference-providers) | Inference Providers | 28 | [full](inference-providers/_full.md) |

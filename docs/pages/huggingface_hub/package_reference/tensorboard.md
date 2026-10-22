@@ -18,7 +18,7 @@ code needed. Traces are still saved locally and a background job push them to th
 huggingface_hub.HFSummaryWriter(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.2.0/src/huggingface_hub/_tensorboard_logger.py#L39)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0.rc0/src/huggingface_hub/_tensorboard_logger.py#L39)
 
 **Parameters:**
 
@@ -83,5 +83,5 @@ for n_iter in range(100):
 ...     logger.add_scalar("b", 2)
 ```
 
-### Managing collections
-https://huggingface.co/docs/huggingface_hub/v2.2.0/package_reference/collections.md
+### Inference
+https://huggingface.co/docs/huggingface_hub/v2.3.0.rc0/package_reference/inference_client.md

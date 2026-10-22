@@ -561,6 +561,7 @@ https://huggingface.co/docs/hub/blog-articles.md
 https://huggingface.co/docs/hub/collections.md
 https://huggingface.co/docs/hub/container-images.md
 https://huggingface.co/docs/hub/data-studio.md
+https://huggingface.co/docs/hub/datasets-3d.md
 https://huggingface.co/docs/hub/datasets-adding.md
 https://huggingface.co/docs/hub/datasets-argilla.md
 https://huggingface.co/docs/hub/datasets-audio.md
@@ -711,6 +712,7 @@ https://huggingface.co/docs/hub/security-git-ssh.md
 https://huggingface.co/docs/hub/security-gpg.md
 https://huggingface.co/docs/hub/security-jfrog.md
 https://huggingface.co/docs/hub/security-malware.md
+https://huggingface.co/docs/hub/security-passkeys.md
 https://huggingface.co/docs/hub/security-pickle.md
 https://huggingface.co/docs/hub/security-protectai.md
 https://huggingface.co/docs/hub/security-resource-groups.md

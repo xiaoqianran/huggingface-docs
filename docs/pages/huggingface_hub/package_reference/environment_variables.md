@@ -115,11 +115,11 @@ If set, the log level for the `huggingface_hub` logger is set to DEBUG. Addition
 
 If set, no HTTP calls will be made to the Hugging Face Hub. If you try to download files, only the cached files will be accessed. If no cache file is detected, an error is raised This is useful in case your network is slow and you don't care about having the latest version of a file.
 
-If `HF_HUB_OFFLINE=1` is set as environment variable and you call any method of [HfApi](/docs/huggingface_hub/v2.2.0/en/package_reference/hf_api#huggingface_hub.HfApi), an [OfflineModeIsEnabled](/docs/huggingface_hub/v2.2.0/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled) exception will be raised.
+If `HF_HUB_OFFLINE=1` is set as environment variable and you call any method of [HfApi](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi), an [OfflineModeIsEnabled](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled) exception will be raised.
 
 **Note:** even if the latest version of a file is cached, calling `hf_hub_download` still triggers a HTTP request to check that a new version is not available. Setting `HF_HUB_OFFLINE=1` will skip this call which speeds up your loading time.
 
-If you want to check if offline mode is enabled or not, you can use the [is_offline_mode()](/docs/huggingface_hub/v2.2.0/en/package_reference/utilities#huggingface_hub.is_offline_mode) helper.
+If you want to check if offline mode is enabled or not, you can use the [is_offline_mode()](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/utilities#huggingface_hub.is_offline_mode) helper.
 
 ### HF_HUB_DISABLE_IMPLICIT_TOKEN
 
@@ -205,7 +205,7 @@ To learn more about the benefits of Xet storage and `hf_xet`, refer to this [sec
 
 ### HF_XET_RECONSTRUCT_WRITE_SEQUENTIALLY
 
-To have `hf-xet` write sequentially to local disk, instead of in parallel. `hf-xet` is designed for SSD/NVMe disks (using parallel writes with direct addressing). If you are using an HDD (spinning hard disk), setting this will change disk writes to be sequential instead of parallel. For slower hard disks, this can improve overall write performance, as the disk is not spinning to seek for parallel writes.
+This variable is no longer used. Since `hf_xet` 1.3.0, files are always written to local disk sequentially (see the [file writer in v1.3.0](https://github.com/huggingface/xet-core/blob/v1.3.0/file_reconstruction/src/data_writer/data_writer.rs#L76-L91)).
 
 ## Deprecated environment variables
 
@@ -240,5 +240,5 @@ on linux machines.
 If `HF_HOME` is not set, the default home will be `"$XDG_CACHE_HOME/huggingface"` instead
 of `"~/.cache/huggingface"`.
 
-### HfApi Client
-https://huggingface.co/docs/huggingface_hub/v2.2.0/package_reference/hf_api.md
+### Downloading files
+https://huggingface.co/docs/huggingface_hub/v2.3.0.rc0/package_reference/file_download.md

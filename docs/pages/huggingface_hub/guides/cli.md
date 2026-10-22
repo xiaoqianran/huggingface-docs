@@ -236,7 +236,7 @@ This command will not log you out if you are logged in using the `HF_TOKEN` envi
 
 ## hf download
 
-Use the `hf download` command to download files from the Hub directly. Internally, it uses the same [hf_hub_download()](/docs/huggingface_hub/v2.2.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) and [snapshot_download()](/docs/huggingface_hub/v2.2.0/en/package_reference/file_download#huggingface_hub.snapshot_download) helpers described in the [Download](./download) guide and prints the returned path to the terminal. In the examples below, we will walk through the most common use cases. For a full list of available options, you can run:
+Use the `hf download` command to download files from the Hub directly. Internally, it uses the same [hf_hub_download()](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/file_download#huggingface_hub.hf_hub_download) and [snapshot_download()](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/file_download#huggingface_hub.snapshot_download) helpers described in the [Download](./download) guide and prints the returned path to the terminal. In the examples below, we will walk through the most common use cases. For a full list of available options, you can run:
 
 ```bash
 hf download --help
@@ -441,7 +441,7 @@ For more details, check out the [environment variables reference](../package_ref
 
 ## hf upload
 
-Use the `hf upload` command to upload files to the Hub directly. Internally, it uses the same [upload_file()](/docs/huggingface_hub/v2.2.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and [upload_folder()](/docs/huggingface_hub/v2.2.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) helpers described in the [Upload](./upload) guide. In the examples below, we will walk through the most common use cases. For a full list of available options, you can run:
+Use the `hf upload` command to upload files to the Hub directly. Internally, it uses the same [upload_file()](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and [upload_folder()](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) helpers described in the [Upload](./upload) guide. In the examples below, we will walk through the most common use cases. For a full list of available options, you can run:
 
 ```bash
 >>> hf upload --help
@@ -1345,6 +1345,17 @@ Edit an existing comment in place by passing the discussion number and the comme
 >>> hf discussions edit username/my-model 5 abc123 --body-file fixed.md
 ```
 
+### Attach images and videos
+
+Pass `--attach` to `hf discussions create`, `comment` or `edit` to upload an image, video or audio file and embed it in the body, as when you drag a file into the comment box on the Hub. If the body already references the file, as in `![Before the fix](./before.png)`, the reference points to the uploaded file. Otherwise, the file is appended to the body. To set the alt text of an appended image, add it after a `#`:
+
+```bash
+>>> hf discussions create username/my-model --title "Fix rendering" --pr --body "Before: ![Before the fix](./before.png)" --attach ./before.png --attach "./after.png#After the fix"
+>>> hf discussions comment username/my-model 5 --body "Here is a demo:" --attach demo.mp4
+```
+
+Supported formats are PNG, JPEG, GIF, WebP, MP4, MOV, WebM, MP3 and WAV, up to 10MB (50MB for videos).
+
 ### Close, reopen, and merge
 
 You can close a discussion or PR with `hf discussions close`. By default, you will be prompted for confirmation. Pass `--yes` to skip the prompt, and `--comment` to leave a closing message:
@@ -1597,9 +1608,6 @@ Delete cache entries selected with `hf cache ls --q` by piping the IDs into `hf 
 About to delete 2 repo(s) totalling 5.31G.
   - model/meta-llama/Llama-3.2-1B-Instruct (entire repo)
   - model/hexgrad/Kokoro-82M (entire repo)
-Delete repo: ~/.cache/huggingface/hub/models--meta-llama--Llama-3.2-1B-Instruct
-Delete repo: ~/.cache/huggingface/hub/models--hexgrad--Kokoro-82M
-Cache deletion done. Saved 5.31G.
 Deleted 2 repo(s) and 2 revision(s); freed 5.31G.
 ```
 
@@ -1612,8 +1620,6 @@ Deleted 2 repo(s) and 2 revision(s); freed 5.31G.
 About to delete 1 repo(s) totalling 3.2G.
   - model/LiquidAI/LFM2-VL-1.6B (entire repo)
 Proceed with deletion? [y/N]: y
-Delete repo: ~/.cache/huggingface/hub/models--LiquidAI--LFM2-VL-1.6B
-Cache deletion done. Saved 3.2G.
 Deleted 1 repo(s) and 2 revision(s); freed 3.2G.
 ```
 
@@ -2632,5 +2638,5 @@ bartowski/QwQ-32B-Preview-GGUF      text-generation    Apache 2.0 gpu         ll
 
 With `--repo`, the default recipe can be narrowed down with `--accelerator` (`cpu`, `gpu`, `neuron`) and `--gguf-file` (for models that have one recipe per quant). Both are rejected together with `--recipe`, which already designates a single recipe.
 
-### Interact with Discussions and Pull Requests
-https://huggingface.co/docs/huggingface_hub/v2.2.0/guides/community.md
+### Download files from the Hub
+https://huggingface.co/docs/huggingface_hub/v2.3.0.rc0/guides/download.md

@@ -128,5 +128,5 @@ and prints a deprecation message to stderr. Replace it with
 - [kernels lock](cli-lock) - Lock kernel versions in your project
 - [kernels download](cli-download) - Download locked kernels
 
-### Projects using kernels
-https://huggingface.co/docs/kernels/main/integrating-kernels.md
+### Install agent skills
+https://huggingface.co/docs/kernels/main/cli-skills.md

@@ -164,5 +164,5 @@ a solution.
 Once `huggingface_hub` is properly installed on your machine, you might want to
 [configure environment variables](package_reference/environment_variables) or [check one of our guides](guides/overview) to get started.
 
-### 🤗 Hub client library
-https://huggingface.co/docs/huggingface_hub/v2.2.0/index.md
+### Integrate any ML framework with the Hub
+https://huggingface.co/docs/huggingface_hub/v2.3.0.rc0/guides/integrations.md

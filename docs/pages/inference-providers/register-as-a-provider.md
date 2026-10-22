@@ -543,5 +543,5 @@ Here's how to add your documentation page:
 
 **Answer:** The default sort is by total number of requests routed by HF over the last 7 days. This order defines which provider will be used in priority by the widget on the model page (but the user's order takes precedence).
 
-### Hub Integration
-https://huggingface.co/docs/inference-providers/hub-integration.md
+### Automating Code Review with GitHub Actions
+https://huggingface.co/docs/inference-providers/guides/github-actions-code-review.md

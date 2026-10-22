@@ -85,5 +85,5 @@ $ LOCAL_KERNELS="kernels-community/activation=devel/activation:kernels-community
   python my_app.py
 ```
 
-### Nix builder design
-https://huggingface.co/docs/kernels/main/builder/design-nix-builder.md
+### Build with Nix
+https://huggingface.co/docs/kernels/main/builder/build.md

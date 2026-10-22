@@ -27,5 +27,5 @@ Use frontier open LLMs like Kimi K2, DeepSeek V3.1, GLM 4.5 and more in VS Code 
 
 Check out the whole workflow in action in the video below:
 
-### Claude Code
-https://huggingface.co/docs/inference-providers/integrations/claude-code.md
+### Codex
+https://huggingface.co/docs/inference-providers/integrations/codex.md
