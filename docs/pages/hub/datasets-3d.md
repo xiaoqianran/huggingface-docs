@@ -53,5 +53,5 @@ The card is updated after each push to the dataset.
 
 Datasets with 3D files get the `3d` modality, so they show up when filtering [datasets by modality](https://huggingface.co/datasets?modality=modality:3d). You can also set it in the dataset card, see [Force set a dataset modality](./datasets-cards#force-set-a-dataset-modality).
 
-### Authentication
-https://huggingface.co/docs/hub/datasets-polars-auth.md
+### Run with Docker
+https://huggingface.co/docs/hub/spaces-run-with-docker.md

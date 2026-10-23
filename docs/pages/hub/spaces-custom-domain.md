@@ -35,5 +35,5 @@ If you've completed all the steps but aren't seeing a "ready" status, you can en
 
 Simply remove a custom domain by using the delete button to the right of "Custom Domain" in the settings of your Space. You can delete while the custom domain is pending or in ready state.
 
-### Third-party scanner: Protect AI
-https://huggingface.co/docs/hub/security-protectai.md
+### Access control in organizations
+https://huggingface.co/docs/hub/organizations-security.md

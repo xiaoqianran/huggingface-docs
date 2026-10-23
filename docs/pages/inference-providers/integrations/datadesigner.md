@@ -122,5 +122,5 @@ For loading Hub datasets as seed data and more details on the Hub integration, s
 - [Available Models on Inference Providers](https://huggingface.co/models?inference_provider=all&pipeline_tag=text-generation)
 - [Using Data Designer with Hub Datasets](https://huggingface.co/docs/hub/en/datasets-data-designer)
 
-### Hermes Agent
-https://huggingface.co/docs/inference-providers/integrations/hermes-agent.md
+### OpenCode
+https://huggingface.co/docs/inference-providers/integrations/opencode.md

@@ -124,5 +124,5 @@ HF-Inference API is one of the providers available through Inference Providers. 
 
 For more details about the HF-Inference provider specifically, check out its [dedicated page](https://huggingface.co/docs/inference-providers/providers/hf-inference).
 
-### Advanced Security
-https://huggingface.co/docs/hub/enterprise-advanced-security.md
+### Using BERTopic at Hugging Face
+https://huggingface.co/docs/hub/bertopic.md

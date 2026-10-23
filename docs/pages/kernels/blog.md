@@ -14,5 +14,5 @@ Hugging Face blog:
 
 This page will be kept updated.
 
-### Kernel requirements
-https://huggingface.co/docs/kernels/main/kernel-requirements.md
+### Installation
+https://huggingface.co/docs/kernels/main/installation.md

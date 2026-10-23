@@ -103,5 +103,5 @@ Replace `your-org-name` with the name of the organization you want to bill to. T
 - [`hf-claude` Extension](https://github.com/huggingface/hf-claude)
 - [Available models on Inference Providers](https://huggingface.co/inference/models)
 
-### OpenCode
-https://huggingface.co/docs/inference-providers/integrations/opencode.md
+### Add Your Integration
+https://huggingface.co/docs/inference-providers/integrations/adding-integration.md

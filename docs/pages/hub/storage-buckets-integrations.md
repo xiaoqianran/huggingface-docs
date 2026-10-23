@@ -160,5 +160,5 @@ See [Query with DuckDB](./storage-buckets-access#query-with-duckdb) for private 
 
 Native `hf://` URL support is on the way for more libraries — including Polars and WebDataset. In the meantime, all of these already work today through the [S3-compatible API](./storage-buckets-s3).
 
-### Spaces
-https://huggingface.co/docs/hub/spaces.md
+### Building with the SDK
+https://huggingface.co/docs/hub/agents-sdk.md

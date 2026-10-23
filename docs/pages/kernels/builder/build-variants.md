@@ -123,5 +123,5 @@ one or more of the following variants:
 - `torch-tpu`
 - `torch-xpu`
 
-### Kernels API Reference
-https://huggingface.co/docs/kernels/main/api/kernels.md
+### Develop kernels with agents
+https://huggingface.co/docs/kernels/main/builder/agents-guide.md

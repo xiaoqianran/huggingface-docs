@@ -168,5 +168,5 @@ widget
 - [Interactive Demo](https://apple.github.io/embedding-atlas/upload/)
 - [Command Line Reference](https://apple.github.io/embedding-atlas/tool.html)
 
-### Using OpenCV in Spaces
-https://huggingface.co/docs/hub/spaces-using-opencv.md
+### Using RL-Baselines3-Zoo at Hugging Face
+https://huggingface.co/docs/hub/rl-baselines3-zoo.md

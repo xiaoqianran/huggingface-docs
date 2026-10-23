@@ -66,5 +66,5 @@ If something still references the image, such as another tag, the delete is refu
 - Layers up to 100 GB, manifests up to 4 MiB.
 - Tag lists can take a few seconds to show a new tag.
 
-### Using MLX at Hugging Face
-https://huggingface.co/docs/hub/mlx.md
+### Using Stanza at Hugging Face
+https://huggingface.co/docs/hub/stanza.md

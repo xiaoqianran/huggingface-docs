@@ -75,5 +75,5 @@ In the following sections, we will cover more complex operations you can perform
 > ```
 > Buckets are not versioned, so the `@revision` syntax does not apply to bucket paths. On DuckDB 1.x, register the Hugging Face filesystem from Python instead: `duckdb.register_filesystem(HfFileSystem())`. See [Query with DuckDB](./storage-buckets-access#query-with-duckdb) for details.
 
-### Adding a Sign-In with HF button to your Space
-https://huggingface.co/docs/hub/spaces-oauth.md
+### Inference Providers
+https://huggingface.co/docs/hub/models-inference.md

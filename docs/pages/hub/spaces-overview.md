@@ -116,7 +116,7 @@ If your Space needs to make any network requests, you can make requests through 
 
 ## Lifecycle management
 
-On free hardware, your Space will "go to sleep" and stop executing after a period of time if unused. If you wish for your Space to run indefinitely, consider [upgrading to paid hardware](./spaces-gpus). You can also manually pause your Space from the **Settings** tab. A paused Space stops executing until manually restarted by its owner.
+On free hardware, your Space will "go to sleep" and stop executing after a period of time if unused. If you wish for your Space to run indefinitely, consider [upgrading to paid hardware](./spaces-gpus). You can also manually pause your Space from the **Settings** tab. A paused Space stops executing until someone with write access restarts it.
 Paused time is not billed.
 
 ## Built-in environment variables
@@ -165,5 +165,5 @@ models:
 - reach-vb/wav2vec2-large-xls-r-1B-common_voice7-lt-ft
 ```
 
-### 🟧 Label Studio on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-label-studio.md
+### Datasets
+https://huggingface.co/docs/hub/datasets.md

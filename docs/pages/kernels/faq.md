@@ -50,5 +50,5 @@ information for the kernel being requested.
 
 You can disable this by setting `export HF_HUB_DISABLE_TELEMETRY=yes`.
 
-### Overview
-https://huggingface.co/docs/kernels/main/cli.md
+### kernels benchmark
+https://huggingface.co/docs/kernels/main/cli-benchmark.md

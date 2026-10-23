@@ -8,5 +8,5 @@ You can refer to the following video for a guide on navigating the Model Hub:
 
 To learn how to upload models to the Hub, you can refer to the [Repositories Getting Started Guide](./repositories-getting-started).
 
-### Langfuse on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-langfuse.md
+### Using AllenNLP at Hugging Face
+https://huggingface.co/docs/hub/allennlp.md

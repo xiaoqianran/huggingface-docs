@@ -231,5 +231,5 @@ When the `hf` CLI performs the exchange, a failure surfaces the `error` code alo
 - [Managing Spaces with GitHub Actions](./spaces-github-actions)
 - [GitHub Actions integration for the Hub](./repositories-github-actions)
 
-### Docker Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker.md
+### Authentication
+https://huggingface.co/docs/hub/datasets-polars-auth.md

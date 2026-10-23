@@ -102,5 +102,5 @@ The supported environment framework tags are:
 
 These tags describe compatibility and generate loading commands. They do not create a new repository type or cause the Hub to execute the environment.
 
-### Managing organizations
-https://huggingface.co/docs/hub/organizations-managing.md
+### Use AI Models Locally
+https://huggingface.co/docs/hub/local-apps.md

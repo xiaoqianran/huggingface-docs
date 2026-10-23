@@ -90,5 +90,5 @@ You can run private GGUFs from your personal account or from an associated organ
 - https://github.com/ollama/ollama/blob/main/docs/README.md
 - https://huggingface.co/docs/hub/en/gguf
 
-### Tokens Management
-https://huggingface.co/docs/hub/enterprise-tokens-management.md
+### Pickle Scanning
+https://huggingface.co/docs/hub/security-pickle.md

@@ -109,5 +109,5 @@ dataset.log(hf_dataset)
 - [🚀 Argilla Docs](https://argilla-io.github.io/argilla/)
 - [🚀 Argilla Docs - import export guides](https://argilla-io.github.io/argilla/latest/how_to_guides/import_export/)
 
-### Using ESPnet at Hugging Face
-https://huggingface.co/docs/hub/espnet.md
+### Team & Enterprise plans
+https://huggingface.co/docs/hub/enterprise.md

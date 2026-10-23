@@ -32,5 +32,5 @@ You will get both the user's status (logged out = `"anonymous"`) and their plan.
 
 - https://huggingface.co/spaces/huggingfacejs/plan
 
-### How to configure SAML SSO with Okta
-https://huggingface.co/docs/hub/security-sso-okta-saml.md
+### Jupyter Notebooks on the Hugging Face Hub
+https://huggingface.co/docs/hub/notebooks.md

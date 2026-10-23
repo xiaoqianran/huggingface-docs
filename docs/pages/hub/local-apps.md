@@ -95,5 +95,5 @@ LM Studio is a desktop application that provides an easy way to download, run, a
 
 Navigate to the model card and click "Use this model". LM Studio will open and you can start chatting through the interface.
 
-### Using 🤗 `transformers` at Hugging Face
-https://huggingface.co/docs/hub/transformers.md
+### SSO Configuration Guides
+https://huggingface.co/docs/hub/security-sso-configuration-guides.md

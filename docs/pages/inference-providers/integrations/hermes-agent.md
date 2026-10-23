@@ -33,5 +33,5 @@ For full configuration options including routing suffixes and permanent config, 
 - [HF Configuration Guide](https://hermes-agent.nousresearch.com/docs/user-guide/configuration/#hugging-face-inference-providers)
 - [GitHub](https://github.com/NousResearch/hermes-agent)
 
-### MacWhisper
-https://huggingface.co/docs/inference-providers/integrations/macwhisper.md
+### Integrations Overview
+https://huggingface.co/docs/inference-providers/integrations/index.md

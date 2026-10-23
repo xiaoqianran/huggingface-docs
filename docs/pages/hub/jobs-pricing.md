@@ -143,5 +143,5 @@ If a running Job is no longer relevant, you can cancel it prematurely to stop it
 hf jobs cancel <job-id>
 ```
 
-### Using timm at Hugging Face
-https://huggingface.co/docs/hub/timm.md
+### Gated datasets
+https://huggingface.co/docs/hub/datasets-gated.md

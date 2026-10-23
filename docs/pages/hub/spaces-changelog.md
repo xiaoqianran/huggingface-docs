@@ -127,5 +127,5 @@
 
 - Add link to raw logs (build and container) from the space repository (viewable by users with write access to a Space)
 
-### Digital Object Identifier (DOI)
-https://huggingface.co/docs/hub/doi.md
+### Webhook guide: Setup an automatic metadata quality review for models and datasets
+https://huggingface.co/docs/hub/webhooks-guide-metadata-review.md

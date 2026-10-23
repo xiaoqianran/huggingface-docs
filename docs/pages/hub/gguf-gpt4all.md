@@ -8,5 +8,5 @@ After you have selected and downloaded a model, you can go to `Settings` and pro
 
 Then from the main page, you can select the model from the list of installed models and start a conversation.
 
-### Storage Buckets: Security & Compliance
-https://huggingface.co/docs/hub/storage-buckets-security.md
+### Using Sentence Transformers at Hugging Face
+https://huggingface.co/docs/hub/sentence-transformers.md

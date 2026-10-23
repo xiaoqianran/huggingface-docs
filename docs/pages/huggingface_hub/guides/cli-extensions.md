@@ -265,5 +265,5 @@ Here are some community extensions you can use as reference:
 | [hanouticelina/hf-claude](https://github.com/hanouticelina/hf-claude) | Shell script | Launch Claude Code with HF Inference Providers |
 | [alvarobartt/hf-mem](https://github.com/alvarobartt/hf-mem) | Python | Estimate inference memory requirements for HF models |
 
-### Buckets
-https://huggingface.co/docs/huggingface_hub/v2.3.0.rc0/guides/buckets.md
+### Understand caching
+https://huggingface.co/docs/huggingface_hub/v2.3.0/guides/manage-cache.md

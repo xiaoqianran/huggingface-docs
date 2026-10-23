@@ -148,5 +148,5 @@ SELECT
 FROM overlapping_rows, total_unique_rows;
 ```
 
-### GGUF
-https://huggingface.co/docs/hub/gguf.md
+### Using spaCy at Hugging Face
+https://huggingface.co/docs/hub/spacy.md

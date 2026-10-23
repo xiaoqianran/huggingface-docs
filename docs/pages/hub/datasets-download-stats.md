@@ -22,5 +22,5 @@ then [Publisher Analytics](./publisher-analytics), and in particular the [granul
 
 These are provided as raw logs, since most organizations will want to apply their own custom rules.
 
-### Webhook guide: Process new files in a bucket with Jobs
-https://huggingface.co/docs/hub/webhooks-guide-bucket-jobs.md
+### Using mlx-image at Hugging Face
+https://huggingface.co/docs/hub/mlx-image.md

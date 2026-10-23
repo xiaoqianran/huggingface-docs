@@ -53,5 +53,5 @@ Check out the docs for [alternative install methods](https://docs.evidence.dev/g
 - [Slack Community](https://slack.evidence.dev/)
 - [Evidence Home Page](https://www.evidence.dev)
 
-### Using PEFT at Hugging Face
-https://huggingface.co/docs/hub/peft.md
+### Evaluation Results
+https://huggingface.co/docs/hub/eval-results.md

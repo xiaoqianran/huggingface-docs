@@ -139,5 +139,5 @@ df.head(10)
 └─────┴───────────────────┴───────────────────────┴─────────────────────────────────┘
 ```
 
-### Appendix
-https://huggingface.co/docs/hub/model-card-appendix.md
+### Livebook on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-livebook.md

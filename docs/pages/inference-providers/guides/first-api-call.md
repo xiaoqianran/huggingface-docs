@@ -224,5 +224,5 @@ Now that you've seen how easy it is to use AI models, you might wonder:
 
 Continue to the next guide to understand the provider ecosystem and make informed choices about authentication and billing.
 
-### How to use OpenAI gpt-oss
-https://huggingface.co/docs/inference-providers/guides/gpt-oss.md
+### Building Your First AI App with Inference Providers
+https://huggingface.co/docs/inference-providers/guides/building-first-app.md

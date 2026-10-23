@@ -275,5 +275,5 @@ Access Storage Buckets the same way as Dataset repositories but with the `bucket
 >>> df.write.format("huggingface").option("data_dir", "new-data").save("buckets/username/my-bucket")
 ```
 
-### Sign in with Hugging Face
-https://huggingface.co/docs/hub/oauth.md
+### Signing commits with GPG
+https://huggingface.co/docs/hub/security-gpg.md

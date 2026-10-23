@@ -312,5 +312,5 @@ $$
 
 $$ E=mc^2 $$
 
-### Dash on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-dash.md
+### Organization cards
+https://huggingface.co/docs/hub/organizations-cards.md

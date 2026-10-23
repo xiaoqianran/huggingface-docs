@@ -52,7 +52,7 @@ Shape of the `env` object. Every field is mutable.
 **Properties**
 
 - `version` (`string`) — This version of Transformers.js.
-- `backends` (`{ onnx: Partial<Env> & { setLogLevel?: (logLevel: number) => void } }`) — Exposes backend environment settings that users can override.
+- `backends` (`{ onnx: Partial<Env> & { setLogLevel?: (logLevel: number) => void, getSupportedDevices?: () => DeviceType[] } }`) — Exposes backend environment settings that users can override.
 - `logLevel` (`number`) — The logging level. Use LogLevel enum values. Defaults to LogLevel.WARNING.
 - `allowRemoteModels` (`boolean`) — Whether to allow loading of remote files, defaults to `true`.
   If set to `false`, it will have the same effect as setting `local_files_only=true` when loading pipelines, models, tokenizers, processors, etc.

@@ -41,5 +41,5 @@ The path may include globbing patterns such as `**/*.parquet` to query all the f
 
 - `hf://datasets/{my-username}/{my-dataset}@~parquet/{path_to_file}`
 
-### User Studies
-https://huggingface.co/docs/hub/model-cards-user-studies.md
+### Pandas
+https://huggingface.co/docs/hub/datasets-pandas.md

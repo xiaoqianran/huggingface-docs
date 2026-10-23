@@ -50,5 +50,5 @@ To turn off telemetry for `hf_xet` only, set `HF_XET_TELEMETRY_ENABLED=0`.
 | `HF_XET_TELEMETRY_HEARTBEAT_INTERVAL` | `300s` | Time between progress reports. |
 | `HF_XET_TELEMETRY_FINAL_FLUSH_TIMEOUT` | `2s` | How long `hf_xet` waits for the last report after a transfer finishes. `0` means it doesn't wait. |
 
-### Xet: our Storage Backend
-https://huggingface.co/docs/hub/xet/index.md
+### Using Xet Storage
+https://huggingface.co/docs/hub/xet/using-xet-storage.md

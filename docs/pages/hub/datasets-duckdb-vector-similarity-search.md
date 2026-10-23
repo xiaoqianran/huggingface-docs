@@ -61,5 +61,5 @@ LIMIT 3;
 
 That's it! You have successfully performed a vector similarity search using DuckDB.
 
-### Using AllenNLP at Hugging Face
-https://huggingface.co/docs/hub/allennlp.md
+### Using `Transformers.js` at Hugging Face
+https://huggingface.co/docs/hub/transformers-js.md

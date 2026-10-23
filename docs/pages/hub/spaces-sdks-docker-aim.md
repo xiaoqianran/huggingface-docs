@@ -67,5 +67,5 @@ If you have improvement suggestions or need support, please open an issue on [Ai
 
 The [Aim community Discord](https://github.com/aimhubio/aim#-community) is also available for community discussions.
 
-### Session Traces Format
-https://huggingface.co/docs/hub/session-traces-format.md
+### Editing datasets
+https://huggingface.co/docs/hub/datasets-editing.md

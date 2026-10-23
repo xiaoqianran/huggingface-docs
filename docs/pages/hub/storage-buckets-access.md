@@ -85,5 +85,5 @@ df.to_parquet("hf://buckets/username/my-bucket/output.parquet")
 
 For more on `hf://` paths and supported operations, see the [`HfFileSystem` guide](/docs/huggingface_hub/guides/hf_file_system) and the [Buckets Python guide](/docs/huggingface_hub/guides/buckets).
 
-### Using fastai at Hugging Face
-https://huggingface.co/docs/hub/fastai.md
+### Agent Traces
+https://huggingface.co/docs/hub/agent-traces.md

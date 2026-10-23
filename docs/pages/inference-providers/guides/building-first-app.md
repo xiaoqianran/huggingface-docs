@@ -573,5 +573,5 @@ Congratulations! You've created a production-ready AI application that: handles 
 - **Try different models**: Experiment with various speech and text models
 - **Compare performance**: Benchmark speed vs. accuracy across providers
 
-### Evaluating models with Inspect
-https://huggingface.co/docs/inference-providers/guides/evaluation-inspect-ai.md
+### Use Coding Environment with Inference Providers
+https://huggingface.co/docs/inference-providers/guides/coding-environment.md

@@ -23,5 +23,5 @@ Start chatting!
 - [chat-ui GitHub Repository](https://github.com/huggingface/chat-ui)
 - [text-generation-inference GitHub repository](https://github.com/huggingface/text-generation-inference)
 
-### Gating Group Collections
-https://huggingface.co/docs/hub/enterprise-gating-group-collections.md
+### Serve Models on Jobs
+https://huggingface.co/docs/hub/jobs-serving.md

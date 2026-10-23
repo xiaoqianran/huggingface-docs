@@ -12,5 +12,5 @@ Some Spaces will require you to login to Hugging Face's Docker registry. To do s
 - Your Hugging Face username as `username`
 - A User Access Token as `password`. Generate one [here](https://huggingface.co/settings/tokens).
 
-### Container Images
-https://huggingface.co/docs/hub/container-images.md
+### Webhook guide: Setup an automatic system to re-train a model when a dataset changes
+https://huggingface.co/docs/hub/webhooks-guide-auto-retrain.md

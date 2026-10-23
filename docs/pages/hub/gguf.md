@@ -78,5 +78,5 @@ Find more information [here](https://github.com/huggingface/huggingface.js/tree/
 
 *if there's any inaccuracy on the table above, please open a PR on [this file](https://github.com/huggingface/huggingface.js/blob/main/packages/gguf/src/quant-descriptions.ts).*
 
-### Tabby on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-tabby.md
+### Webhooks
+https://huggingface.co/docs/hub/webhooks.md

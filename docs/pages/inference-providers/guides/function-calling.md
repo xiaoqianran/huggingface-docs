@@ -431,5 +431,5 @@ Now that you've seen how to use function calling with Inference Providers, you c
 - Build an agent that can fetch real-time data 
 - Use a reasoning model to build an agent that can reason with external tools
 
-### Structured Outputs with Inference Providers
-https://huggingface.co/docs/inference-providers/guides/structured-output.md
+### Your First Inference Provider Call
+https://huggingface.co/docs/inference-providers/guides/first-api-call.md

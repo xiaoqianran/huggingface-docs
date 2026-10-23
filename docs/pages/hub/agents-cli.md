@@ -32,7 +32,7 @@ Alternatively, you can install via the Claude Code plugin system:
 ```bash
 claude
 /plugin marketplace add huggingface/skills
-/plugin install hf-cli@huggingface/skills
+/plugin install hf-cli@huggingface-skills
 ```
 
 ## Resources
@@ -41,5 +41,5 @@ claude
 - [Token Settings](https://huggingface.co/settings/tokens) - Manage your tokens
 - [Jobs Documentation](https://huggingface.co/docs/huggingface_hub/guides/cli#hf-jobs) - Compute jobs guide
 
-### Managing Spaces with GitHub Actions
-https://huggingface.co/docs/hub/spaces-github-actions.md
+### Skills
+https://huggingface.co/docs/hub/agents-skills.md

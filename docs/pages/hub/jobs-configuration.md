@@ -525,5 +525,5 @@ hf jobs labels <job_id> --name daily-report
 hf jobs labels <job_id> --clear
 ```
 
-### User access tokens
-https://huggingface.co/docs/hub/security-tokens.md
+### Giskard on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-giskard.md

@@ -202,5 +202,5 @@ You can see an example of using this approach to upload data to the Hub in
 
 For technical questions about integration, feel free to contact the datasets team at datasets@huggingface.co.
 
-### Spaces Settings
-https://huggingface.co/docs/hub/spaces-settings.md
+### Custom Python Spaces
+https://huggingface.co/docs/hub/spaces-sdks-python.md

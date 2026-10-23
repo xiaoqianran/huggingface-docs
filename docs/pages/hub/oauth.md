@@ -311,5 +311,5 @@ urn:ietf:params:oauth:grant-type:token-exchange
 - [RFC 8693 - OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html)
 - [Audit Logs](./audit-logs)
 
-### Widgets
-https://huggingface.co/docs/hub/models-widgets.md
+### Gated models
+https://huggingface.co/docs/hub/models-gated.md

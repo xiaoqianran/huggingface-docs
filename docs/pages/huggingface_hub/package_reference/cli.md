@@ -2405,7 +2405,7 @@ Learn more
 
 List Jobs.
 
-Use `--status` to filter by status (see [JobStage](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/jobs#huggingface_hub.JobStage) for possible values) and `--label` to filter by `key=value`
+Use `--status` to filter by status (see [JobStage](/docs/huggingface_hub/v2.3.0/en/package_reference/jobs#huggingface_hub.JobStage) for possible values) and `--label` to filter by `key=value`
 labels. A Job must match every filter to be listed.
 
 **Usage**:
@@ -5588,5 +5588,5 @@ Learn more
   Use `hf <command> --help` for more information about a command.
   Read the documentation at https://huggingface.co/docs/huggingface_hub/en/guides/cli
 
-### Authentication
-https://huggingface.co/docs/huggingface_hub/v2.3.0.rc0/package_reference/authentication.md
+### Interacting with Discussions and Pull Requests
+https://huggingface.co/docs/huggingface_hub/v2.3.0/package_reference/community.md

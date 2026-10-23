@@ -46,5 +46,5 @@ Step-by-step setup instructions with code examples.
 - [HF Integration Guide](link-to-your-guide)
 ```
 
-### Vision Agents
-https://huggingface.co/docs/inference-providers/integrations/visionagents.md
+### Codex
+https://huggingface.co/docs/inference-providers/integrations/codex.md

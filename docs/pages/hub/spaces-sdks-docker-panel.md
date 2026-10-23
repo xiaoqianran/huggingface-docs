@@ -45,5 +45,5 @@ The Panel community is vibrant and supportive, with experienced developers and d
 - [LinkedIn](https://www.linkedin.com/company/panel-org)
 - [GitHub](https://github.com/holoviz/panel)
 
-### Editing Datasets in Data Studio
-https://huggingface.co/docs/hub/datasets-cell-editing.md
+### Passkeys
+https://huggingface.co/docs/hub/security-passkeys.md

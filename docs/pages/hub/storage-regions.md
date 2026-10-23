@@ -86,5 +86,5 @@ Both Spaces's storage and runtime use the chosen region.
 
 Available hardware configurations vary by region, and some features may not be available in all regions. Contact your HF account team for specific requests.
 
-### Giskard on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-giskard.md
+### How to Add a Space to ArXiv
+https://huggingface.co/docs/hub/spaces-add-to-arxiv.md

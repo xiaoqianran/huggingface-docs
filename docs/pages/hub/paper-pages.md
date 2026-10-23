@@ -23,6 +23,10 @@ If you don't have any papers on Hugging Face yet, you can index your first one a
 
 Yes! You can visit your Papers in [settings](https://huggingface.co/settings/papers), where you will see a list of verified papers. There, you can click the "Show on profile" checkbox to hide/show it in your profile. 
 
+### Can I edit the media of a paper submitted to Daily Papers?
+
+Yes. If you are an author of the paper or the person who submitted it to [Daily Papers](https://huggingface.co/papers), you can click "Edit media" (or "Add media" if the paper has none yet) on the Paper page. From there, you can upload new images or videos, remove existing ones, and drag to reorder them. The first video or GIF is used as the paper's cover in the Daily Papers feed and is marked with a "Feed preview" badge. Click "Save" to apply your changes.
+
 ### Do you support ACL anthology?
 
 We're starting with Arxiv as it accounts for 95% of the paper URLs Hugging Face users have linked in their repos organically. We'll check how this evolve and potentially extend to other paper hosts in the future.
@@ -31,5 +35,5 @@ We're starting with Arxiv as it accounts for 95% of the paper URLs Hugging Face 
 
 Yes. You can go to [the main Papers page](https://huggingface.co/papers), click search and write the name of the paper or the full Arxiv id. If the paper does not exist, you will get an option to index it. You can also just visit the page `hf.co/papers/xxxx.yyyyy` replacing with the arxiv id of the paper you wish to index.
 
-### Managing Spaces with CircleCI Workflows
-https://huggingface.co/docs/hub/spaces-circleci.md
+### Using SetFit with Hugging Face
+https://huggingface.co/docs/hub/setfit.md

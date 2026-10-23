@@ -9,5 +9,5 @@ Data Studio allows teams to understand their data and to help them build better 
 
 More information about [Data Studio](./datasets-viewer).
 
-### Using Asteroid at Hugging Face
-https://huggingface.co/docs/hub/asteroid.md
+### Jobs Overview
+https://huggingface.co/docs/hub/jobs-overview.md

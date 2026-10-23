@@ -45,6 +45,28 @@ From the service account's page, administrators can:
 > [!WARNING]
 > An access token is only displayed once, at the time it is created or rotated. Store it securely — it cannot be retrieved later. If you lose it, rotate the token to generate a new value.
 
+### Generating S3 Credentials
+
+Service account tokens can be used to access your organization's [Storage Buckets](./storage-buckets) through the [S3-compatible API](./storage-buckets-s3). The gateway authenticates with AWS-style access keys derived from a service account token.
+
+1. Go to the service account's page. [Create a token](#managing-access-tokens) with the **Create new token** button if you don't already have one. The token's permissions become the S3 credentials' permissions.
+2. Find the token in the list, open its dropdown menu, and choose **Generate S3 credentials**.
+
+   
+   
+   
+   
+
+3. Copy the generated **access key ID** (prefixed `HFAK…`) and **secret access key** somewhere safe — the secret is shown only once. If you lose it, use **Invalidate and refresh S3 credentials** to generate a new pair. The previous access key stops working immediately.
+
+The S3 credentials inherit the permissions of the underlying access token. Scope the token to only the buckets you intend to use.
+
+Use **Revoke S3 credentials** to disable the pair without deleting the token — deleting the token (or the service account) also revokes its S3 credentials. The service account's page shows the access key ID currently paired with each token.
+
+Use your organization name as the `<namespace>` in the endpoint URL (see [Configuring a Client](./storage-buckets-s3#configuring-a-client)). Generating and revoking S3 credentials are recorded in the organization's [Audit Logs](./audit-logs).
+
+If a token has the [Network Security exemption](#network-security-exemption) enabled, only organization admins can generate S3 credentials for it.
+
 ### Network Security exemption
 
 > [!WARNING]
@@ -70,47 +92,5 @@ Because an exempt token is no longer protected by your network perimeter, the to
 
 Service accounts are not counted as billable members of your organization, so creating them does not consume a paid seat in your plan.
 
-### TF-Keras (legacy)
-https://huggingface.co/docs/hub/tf-keras.md
-
-## TF-Keras (legacy)
-
-`tf-keras` is the name given to Keras 2.x version. It is now hosted as a separate GitHub repo [here](https://github.com/keras-team/tf-keras). Though it's a legacy framework, there are still [4.5k+ models](https://huggingface.co/models?library=tf-keras&sort=trending) hosted on the Hub. These models can be loaded using the `huggingface_hub` library. You **must** have either `tf-keras` or `keras<3.x` installed on your machine.
-
-If you are interested in Keras 3.x support, check out [this guide](./keras).
-
-Once installed, you just need to use the `from_pretrained_keras` method to load a model from the Hub. Read more about `from_pretrained_keras` [here](https://huggingface.co/docs/huggingface_hub/main/en/package_reference/mixins#huggingface_hub.from_pretrained_keras).
-
-```py
-from huggingface_hub import from_pretrained_keras
-
-model = from_pretrained_keras("keras-io/mobile-vit-xxs")
-prediction = model.predict(image)
-prediction = tf.squeeze(tf.round(prediction))
-print(f'The image is a {classes[(np.argmax(prediction))]}!')
-
-<CopyLLMTxtMenu containerStyle="float: right; margin-left: 10px; display: inline-flex; position: relative; z-index: 10;"></CopyLLMTxtMenu>
-
-# The image is a sunflower!
-```
-
-You can also host your `tf-keras` model on the Hub. However, keep in mind that `tf-keras` is a legacy framework. To reach a maximum number of users, we recommend to create your model using Keras 3.x and share it natively as described above. For more details about uploading `tf-keras` models, check out [`push_to_hub_keras` documentation](https://huggingface.co/docs/huggingface_hub/main/en/package_reference/mixins#huggingface_hub.push_to_hub_keras).
-
-```py
-from huggingface_hub import push_to_hub_keras
-
-push_to_hub_keras(model,
-    "your-username/your-model-name",
-    "your-tensorboard-log-directory",
-    tags = ["object-detection", "some_other_tag"],
-    **model_save_kwargs,
-)
-```
-
-## Additional resources
-
-- [GitHub repo](https://github.com/keras-team/tf-keras)
-* Blog post [Putting Keras on 🤗 Hub for Collaborative Training and Reproducibility](https://merveenoyan.medium.com/putting-keras-on-hub-for-collaborative-training-and-reproducibility-9018301de877) (April 2022)
-
-### Jupyter Notebooks on the Hugging Face Hub
-https://huggingface.co/docs/hub/notebooks.md
+### Tokens Management
+https://huggingface.co/docs/hub/enterprise-tokens-management.md

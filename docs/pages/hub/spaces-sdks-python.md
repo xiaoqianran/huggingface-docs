@@ -20,5 +20,5 @@ As an example, here is the same Space with and without the script:
 - https://huggingface.co/spaces/ronvolutional/http-server
 - https://huggingface.co/spaces/ronvolutional/iframe-test
 
-### Distilabel
-https://huggingface.co/docs/hub/datasets-distilabel.md
+### Using fastai at Hugging Face
+https://huggingface.co/docs/hub/fastai.md

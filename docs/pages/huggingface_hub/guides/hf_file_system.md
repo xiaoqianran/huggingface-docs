@@ -1,11 +1,11 @@
 # Interact with the Hub through the Filesystem API
 
-In addition to the [HfApi](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi), the `huggingface_hub` library provides [HfFileSystem](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem), a pythonic [fsspec-compatible](https://filesystem-spec.readthedocs.io/en/latest/) file interface to the Hugging Face Hub. The [HfFileSystem](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) builds on top of the [HfApi](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi) and offers typical filesystem style operations like `cp`, `mv`, `ls`, `du`, `glob`, `get_file`, and `put_file`.
+In addition to the [HfApi](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi), the `huggingface_hub` library provides [HfFileSystem](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem), a pythonic [fsspec-compatible](https://filesystem-spec.readthedocs.io/en/latest/) file interface to the Hugging Face Hub. The [HfFileSystem](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) builds on top of the [HfApi](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi) and offers typical filesystem style operations like `cp`, `mv`, `ls`, `du`, `glob`, `get_file`, and `put_file`.
 
 > [!WARNING]
-> [HfFileSystem](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) provides fsspec compatibility, which is useful for libraries that require it (e.g., reading
+> [HfFileSystem](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) provides fsspec compatibility, which is useful for libraries that require it (e.g., reading
 >   Hugging Face datasets and buckets directly with `pandas`). However, it introduces additional overhead due to this compatibility
->   layer. For better performance and reliability, it's recommended to use [HfApi](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi) methods when possible.
+>   layer. For better performance and reliability, it's recommended to use [HfApi](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi) methods when possible.
 
 ## Usage
 
@@ -48,7 +48,7 @@ content of the repository. The Hub returns those entries page by page, and a pag
 previous one has been received: listing a repository holding 800k files requires ~800 sequential requests, and
 therefore about 30 minutes.
 
-To avoid that, [HfFileSystem](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) lists large repositories directory by directory, in parallel:
+To avoid that, [HfFileSystem](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) lists large repositories directory by directory, in parallel:
 
 ```python
 >>> from huggingface_hub import hffs
@@ -57,7 +57,7 @@ To avoid that, [HfFileSystem](/docs/huggingface_hub/v2.3.0.rc0/en/package_refere
 >>> files = hffs.glob("datasets/allenai/objaverse/**/*.glb", maxdepth=3)
 ```
 
-The number of concurrent requests is controlled by the `max_workers` argument of [HfFileSystem](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem). It defaults to 16
+The number of concurrent requests is controlled by the `max_workers` argument of [HfFileSystem](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem). It defaults to 16
 and can be set to 1 to disable parallel listings.
 Note that passing a `maxdepth` also significantly speeds listings up, since the Hub then only returns the entries
 that are actually requested.
@@ -65,7 +65,7 @@ that are actually requested.
 ## Keep listings fresh
 
 Directories are listed once and their content is cached, so a directory that someone else just changed is not
-picked up automatically. [HfFileSystem.invalidate_cache()](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem.invalidate_cache) drops cached listings, either for one path (and its
+picked up automatically. [HfFileSystem.invalidate_cache()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem.invalidate_cache) drops cached listings, either for one path (and its
 parents) or everywhere when called without argument:
 
 ```python
@@ -77,7 +77,7 @@ parents) or everywhere when called without argument:
 ```
 
 For buckets, `huggingface_hub` can do that for you: the Hub streams the file changes of a bucket as they happen
-and [HfFileSystem](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) drops the listings affected by a change as soon as it arrives. Enable it with
+and [HfFileSystem](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) drops the listings affected by a change as soon as it arrives. Enable it with
 `live_follow=True`:
 
 ```python
@@ -95,15 +95,15 @@ It can also be passed through fsspec, with `fsspec.filesystem("hf", live_follow=
 A few things to know about it:
 
 - **Buckets only.** Model, dataset and space repositories are git repositories and the Hub does not stream their
-  changes: pass `refresh=True` to [HfFileSystem.ls()](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem.ls) (or use [HfApi.list_repo_tree()](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_tree)) to see a new commit.
+  changes: pass `refresh=True` to [HfFileSystem.ls()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem.ls) (or use [HfApi.list_repo_tree()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_tree)) to see a new commit.
 - **Only listings and the metadata they carry are refreshed.** Reading a file always requests its content from
   the Hub, so live following only affects what `ls`, `info`, `exists`, `glob`, ... report.
 - Following starts as soon as a bucket is listed, and one background connection is kept open per followed
-  bucket, shared by all [HfFileSystem](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) instances. That is why the option is opt-in.
+  bucket, shared by all [HfFileSystem](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) instances. That is why the option is opt-in.
 
 ## Integrations
 
-The [HfFileSystem](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) can be used with any library that integrates `fsspec`, provided the URL follows the scheme:
+The [HfFileSystem](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) can be used with any library that integrates `fsspec`, provided the URL follows the scheme:
 
 ```
 hf://[<repo_type_prefix>]<repo_id>[@<revision>]/<path/in/repo>
@@ -111,13 +111,13 @@ hf://[<repo_type_prefix>]<repo_id>[@<revision>]/<path/in/repo>
 
 The `repo_type_prefix` is `datasets/` for datasets, `spaces/` for Spaces, and models don't need a prefix in the URL.
 
-In addition to repositories, the [HfFileSystem](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) also supports Hugging Face Buckets which are a S3-like object storage (see [this guide](./buckets) for more details):
+In addition to repositories, the [HfFileSystem](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) also supports Hugging Face Buckets which are a S3-like object storage (see [this guide](./buckets) for more details):
 
 ```
 hf://buckets/<bucket_id>/<path/in/bucket>
 ```
 
-Some interesting integrations where [HfFileSystem](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) simplifies interacting with the Hub are listed below:
+Some interesting integrations where [HfFileSystem](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) simplifies interacting with the Hub are listed below:
 
 * Reading/writing a [Pandas](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#reading-writing-remote-files) DataFrame from/to a Hub repository:
 
@@ -171,7 +171,7 @@ The same workflow can also be used for [Dask](https://docs.dask.org/en/stable/ho
 
 In many cases, you must be logged in with a Hugging Face account to interact with the Hub. Refer to the [Authentication](../quick-start#authentication) section of the documentation to learn more about authentication methods on the Hub.
 
-It is also possible to log in programmatically by passing your `token` as an argument to [HfFileSystem](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem):
+It is also possible to log in programmatically by passing your `token` as an argument to [HfFileSystem](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem):
 
 ```python
 >>> from huggingface_hub import HfFileSystem
@@ -180,5 +180,5 @@ It is also possible to log in programmatically by passing your `token` as an arg
 
 If you log in this way, be careful not to accidentally leak the token when sharing your source code!
 
-### Create a CLI extension
-https://huggingface.co/docs/huggingface_hub/v2.3.0.rc0/guides/cli-extensions.md
+### Webhooks
+https://huggingface.co/docs/huggingface_hub/v2.3.0/guides/webhooks.md

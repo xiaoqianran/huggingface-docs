@@ -22,5 +22,5 @@ If you need other Python packages to run your app, add them to a **requirements.
 
 Debian dependencies are also supported. Add a **packages.txt** file at the root of your repository, and list all your dependencies in it. Each dependency should be on a separate line, and each line will be read and installed by `apt-get install`.
 
-### Spaces Changelog
-https://huggingface.co/docs/hub/spaces-changelog.md
+### Blog Articles for Organizations
+https://huggingface.co/docs/hub/enterprise-blog-articles.md

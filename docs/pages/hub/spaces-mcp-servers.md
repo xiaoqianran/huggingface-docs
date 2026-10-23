@@ -77,5 +77,5 @@ As Hugging Face Spaces is the largest directory of AI apps, you can find many cr
     Lightricks/ltx-video-distilled and
     ResembleAI/Chatterbox in Claude Code to generate a video with audio.
 
-### Widget Examples
-https://huggingface.co/docs/hub/models-widgets-examples.md
+### More ways to create Spaces
+https://huggingface.co/docs/hub/spaces-more-ways-to-create.md

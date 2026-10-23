@@ -31,5 +31,5 @@ Hugging Face maintains the following certifications and compliance standards:
 
 For more details on Hugging Face's overall security posture, see the [Security](./security) page. For questions, contact [security@huggingface.co](mailto:security@huggingface.co).
 
-### Downloading models
-https://huggingface.co/docs/hub/models-downloading.md
+### User access tokens
+https://huggingface.co/docs/hub/security-tokens.md

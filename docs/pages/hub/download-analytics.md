@@ -40,5 +40,5 @@ If you publish your own models or datasets and want per-repository download coun
 
 CDN usage metering is retained for 90 days.
 
-### Daft
-https://huggingface.co/docs/hub/datasets-daft.md
+### Process Large Datasets
+https://huggingface.co/docs/hub/jobs-large-datasets.md

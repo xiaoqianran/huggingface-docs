@@ -54,5 +54,5 @@ Manage scheduled jobs using `hf jobs scheduled ps`, `hf jobs scheduled inspect`,
 >>> hf jobs scheduled delete <scheduled-job-id>
 ```
 
-### Use Ollama with any GGUF Model on Hugging Face Hub
-https://huggingface.co/docs/hub/ollama.md
+### Basic SSO
+https://huggingface.co/docs/hub/security-sso-basic.md

@@ -177,7 +177,7 @@ GET /api/spaces/{namespace}/{repo}/logs/{build|run}?tail=100
 
 ## Pausing a Space[[pause]]
 
-You can `pause` a Space from the repo settings. A "paused" Space means that the Space is on hold and will not use resources until manually restarted, and only the owner of a paused Space can restart it. Paused time is not billed.
+You can `pause` a Space from the repo settings. A "paused" Space means that the Space is on hold and will not use resources until manually restarted. Anyone with write access to the Space can pause or restart it. Paused time is not billed.
 
-### Spaces as MCP servers
-https://huggingface.co/docs/hub/spaces-mcp-servers.md
+### Docker Spaces Examples
+https://huggingface.co/docs/hub/spaces-sdks-docker-examples.md

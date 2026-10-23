@@ -23,5 +23,5 @@ For any other security questions, please feel free to send us an email at securi
 - [Third-party scanner: Protect AI](./security-protectai)
 - [Third-party scanner: JFrog](./security-jfrog)
 
-### S3 Compatibility
-https://huggingface.co/docs/hub/storage-buckets-s3.md
+### Reference
+https://huggingface.co/docs/hub/jobs-reference.md

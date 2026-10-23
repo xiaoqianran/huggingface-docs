@@ -327,5 +327,5 @@ Congratulations! You've created a production-ready AI image editor. Now that you
 
 Happy building! And remember to share your app with the community on the Hub.
 
-### Building Your First AI App with Inference Providers
-https://huggingface.co/docs/inference-providers/guides/building-first-app.md
+### Evaluating models with Inspect
+https://huggingface.co/docs/inference-providers/guides/evaluation-inspect-ai.md

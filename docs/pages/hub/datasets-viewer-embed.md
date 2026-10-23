@@ -66,5 +66,5 @@ Open a [pull request](https://github.com/huggingface/hub-docs/blob/main/docs/hub
 
 [`Zaid`](https://huggingface.co/Zaid) [showcases](https://x.com/zaidalyafeai/status/1815365207775932576) the dataset viewer in [Masader - the Arabic NLP data catalogue0](https://arbml.github.io/masader//).
 
-### SQL Console: Query Hugging Face datasets in your browser
-https://huggingface.co/docs/hub/datasets-viewer-sql-console.md
+### Tabby on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-tabby.md

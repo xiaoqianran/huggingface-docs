@@ -236,7 +236,7 @@ This command will not log you out if you are logged in using the `HF_TOKEN` envi
 
 ## hf download
 
-Use the `hf download` command to download files from the Hub directly. Internally, it uses the same [hf_hub_download()](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/file_download#huggingface_hub.hf_hub_download) and [snapshot_download()](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/file_download#huggingface_hub.snapshot_download) helpers described in the [Download](./download) guide and prints the returned path to the terminal. In the examples below, we will walk through the most common use cases. For a full list of available options, you can run:
+Use the `hf download` command to download files from the Hub directly. Internally, it uses the same [hf_hub_download()](/docs/huggingface_hub/v2.3.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) and [snapshot_download()](/docs/huggingface_hub/v2.3.0/en/package_reference/file_download#huggingface_hub.snapshot_download) helpers described in the [Download](./download) guide and prints the returned path to the terminal. In the examples below, we will walk through the most common use cases. For a full list of available options, you can run:
 
 ```bash
 hf download --help
@@ -441,7 +441,7 @@ For more details, check out the [environment variables reference](../package_ref
 
 ## hf upload
 
-Use the `hf upload` command to upload files to the Hub directly. Internally, it uses the same [upload_file()](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and [upload_folder()](/docs/huggingface_hub/v2.3.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) helpers described in the [Upload](./upload) guide. In the examples below, we will walk through the most common use cases. For a full list of available options, you can run:
+Use the `hf upload` command to upload files to the Hub directly. Internally, it uses the same [upload_file()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and [upload_folder()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) helpers described in the [Upload](./upload) guide. In the examples below, we will walk through the most common use cases. For a full list of available options, you can run:
 
 ```bash
 >>> hf upload --help
@@ -2638,5 +2638,5 @@ bartowski/QwQ-32B-Preview-GGUF      text-generation    Apache 2.0 gpu         ll
 
 With `--repo`, the default recipe can be narrowed down with `--accelerator` (`cpu`, `gpu`, `neuron`) and `--gguf-file` (for models that have one recipe per quant). Both are rejected together with `--recipe`, which already designates a single recipe.
 
-### Download files from the Hub
-https://huggingface.co/docs/huggingface_hub/v2.3.0.rc0/guides/download.md
+### Interact with Discussions and Pull Requests
+https://huggingface.co/docs/huggingface_hub/v2.3.0/guides/community.md

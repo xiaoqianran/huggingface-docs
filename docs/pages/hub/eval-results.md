@@ -173,5 +173,5 @@ tasks:
           model: openai/o3-mini
 ```
 
-### Passkeys
-https://huggingface.co/docs/hub/security-passkeys.md
+### Next Steps
+https://huggingface.co/docs/hub/repositories-next-steps.md

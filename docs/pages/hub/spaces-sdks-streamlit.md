@@ -121,5 +121,5 @@ We can pass options to the first argument of `iFrameResize()`. See [the document
 
 Additionally, you can checkout [our documentation](./spaces-embed).
 
-### Using Stanza at Hugging Face
-https://huggingface.co/docs/hub/stanza.md
+### Storage Buckets
+https://huggingface.co/docs/hub/storage-buckets.md

@@ -396,5 +396,5 @@ Now that you understand structured outputs, you probably want to build an applic
 - **Complex schemas**: Building domain-specific schemas for your use case.
 - **Performance optimization**: Choosing the right provider for your structured output needs.
 
-### Your First Inference Provider Call
-https://huggingface.co/docs/inference-providers/guides/first-api-call.md
+### Responses API (beta)
+https://huggingface.co/docs/inference-providers/guides/responses-api.md

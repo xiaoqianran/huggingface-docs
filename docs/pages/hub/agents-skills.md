@@ -10,11 +10,15 @@ Skills work with all major coding agents: Claude Code, OpenAI Codex, Google Gemi
 ## Installation
 
 ```bash
-# register the skills marketplace
-/plugin marketplace add huggingface/skills
+# install a specific Skill with the hf CLI (use --global to install it for all projects)
+hf skills add <skill-name> --global
+```
 
-# install a specific Skill
-/plugin install <skill-name>@huggingface/skills
+The `hf-cli` Skill is also available as a Claude Code plugin:
+
+```bash
+/plugin marketplace add huggingface/skills
+/plugin install hf-cli@huggingface-skills
 ```
 
 Copy or symlink skills from the [repository](https://github.com/huggingface/skills) into one of Codex's standard `.agents/skills` locations (e.g. `$REPO_ROOT/.agents/skills` or `$HOME/.agents/skills`). Codex discovers them automatically via the Agent Skills standard.
@@ -60,5 +64,5 @@ Your agent loads the corresponding `SKILL.md` instructions and helper scripts au
 - [CLI Guide](./agents-cli) - Hugging Face CLI for AI Agents
 - [MCP Guide](./agents-mcp) - Use alongside Skills
 
-### Spaces Custom Domain
-https://huggingface.co/docs/hub/spaces-custom-domain.md
+### How to configure SCIM with Okta
+https://huggingface.co/docs/hub/security-sso-okta-scim.md

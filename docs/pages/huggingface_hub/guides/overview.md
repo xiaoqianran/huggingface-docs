@@ -129,5 +129,5 @@ Take a look at these guides to learn how to use huggingface_hub to solve real-wo
       
         How to run and manage compute Jobs on Hugging Face infrastructure and select the hardware?
 
-### Collections
-https://huggingface.co/docs/huggingface_hub/v2.3.0.rc0/guides/collections.md
+### Run Inference on servers
+https://huggingface.co/docs/huggingface_hub/v2.3.0/guides/inference.md

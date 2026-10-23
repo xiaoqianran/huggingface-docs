@@ -174,5 +174,5 @@ an NVIDIA L4, the tuned configuration for a `(1024, 4096) @ (4096, 4096)`
 float16 GEMM is ~1.4× faster than the example's heuristic default (0.50 ms
 vs. 0.71 ms) — on par with cuBLAS for this shape.
 
-### Nix builder design
-https://huggingface.co/docs/kernels/main/builder/design-nix-builder.md
+### Why Nix?
+https://huggingface.co/docs/kernels/main/builder/why-nix.md

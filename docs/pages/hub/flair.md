@@ -58,5 +58,5 @@ If you want to load a specific Flair model, you can click `Use in Flair` in the 
 * Flair [docs](https://flairnlp.github.io/docs/intro)
 * Official Flair [models](https://huggingface.co/flair) on the Hub (mainly trained by [@alanakbik](https://huggingface.co/alanakbik) and [@stefan-it](https://huggingface.co/stefan-it))
 
-### Downloading datasets
-https://huggingface.co/docs/hub/datasets-downloading.md
+### Perform vector similarity search
+https://huggingface.co/docs/hub/datasets-duckdb-vector-similarity-search.md

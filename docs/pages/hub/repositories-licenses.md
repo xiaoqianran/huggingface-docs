@@ -92,5 +92,5 @@ A full list of the available licenses is available here:
 
 In case of `license: other` please add the license's text to a `LICENSE` file inside your repo (or contact us to add the license you use to this list), and set a name for it in `license_name`.
 
-### Agents
-https://huggingface.co/docs/hub/agents.md
+### Moderation
+https://huggingface.co/docs/hub/moderation.md

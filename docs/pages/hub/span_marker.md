@@ -50,5 +50,5 @@ If you want to load a specific SpanMarker model, you can click `Use in SpanMarke
 * SpanMarker [repository](https://github.com/tomaarsen/SpanMarkerNER)
 * SpanMarker [docs](https://tomaarsen.github.io/SpanMarkerNER)
 
-### Third-party scanner: JFrog
-https://huggingface.co/docs/hub/security-jfrog.md
+### Model Card Guidebook
+https://huggingface.co/docs/hub/model-card-guidebook.md

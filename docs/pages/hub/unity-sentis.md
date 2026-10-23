@@ -65,5 +65,5 @@ Or if your code sample is external:
 ## Additional Information
 We also have some full [sample projects](https://github.com/Unity-Technologies/sentis-samples) to help you get started using Sentis.
 
-### Embedding Atlas
-https://huggingface.co/docs/hub/datasets-embedding-atlas.md
+### Using PEFT at Hugging Face
+https://huggingface.co/docs/hub/peft.md

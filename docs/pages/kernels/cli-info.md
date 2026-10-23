@@ -64,5 +64,5 @@ Backends: cuda, metal
 - [kernels variants](cli-variants) - List kernel variants and compatibility decisions
 - [kernels download](cli-download) - Download locked kernels
 
-### Use layers
-https://huggingface.co/docs/kernels/main/layers.md
+### CLI reference for kernel-builder
+https://huggingface.co/docs/kernels/main/builder-cli.md

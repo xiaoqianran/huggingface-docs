@@ -56,5 +56,5 @@ The webhook payload contains multiple fields, here are a few useful ones:
 
 You can find more information on webhooks in the [`huggingface_hub` Webhooks documentation](https://huggingface.co/docs/huggingface_hub/en/guides/webhooks).
 
-### Hugging Face Dataset Upload Decision Guide
-https://huggingface.co/docs/hub/datasets-upload-guide-llm.md
+### How to configure OIDC SSO with Okta
+https://huggingface.co/docs/hub/security-sso-okta-oidc.md

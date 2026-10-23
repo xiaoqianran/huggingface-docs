@@ -601,5 +601,5 @@ Content-Type: application/json
 - **Body**
   - `accountType`: `"external"` to convert the member into an external collaborator, or `"member"` to convert them back.
 
-### Spaces ZeroGPU: Dynamic GPU Allocation for Spaces
-https://huggingface.co/docs/hub/spaces-zerogpu.md
+### Datasets
+https://huggingface.co/docs/hub/enterprise-datasets.md

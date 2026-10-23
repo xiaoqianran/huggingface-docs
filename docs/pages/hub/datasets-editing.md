@@ -151,5 +151,5 @@ In this case, the dataset processing runs progressively as the old data arrives 
 
 Check out if your library supports streaming in the [supported libraries](./datasets-libraries) page.
 
-### Agent Traces
-https://huggingface.co/docs/hub/agent-traces.md
+### Using timm at Hugging Face
+https://huggingface.co/docs/hub/timm.md

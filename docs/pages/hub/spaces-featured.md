@@ -12,5 +12,5 @@ Learn how to link a Space to a Model or Dataset here, and how to link it to a Pa
 
 Spaces of the Week are a curated weekly selection of standout Spaces chosen by the Hugging Face team.
 
-### How to handle URL parameters in Spaces
-https://huggingface.co/docs/hub/spaces-handle-url-parameters.md
+### ZenML on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-zenml.md

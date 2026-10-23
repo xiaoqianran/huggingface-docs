@@ -101,5 +101,5 @@ git reset --hard upstream/main
 git push --force origin main
 ```
 
-### User Provisioning (SCIM)
-https://huggingface.co/docs/hub/enterprise-scim.md
+### Using _Adapters_ at Hugging Face
+https://huggingface.co/docs/hub/adapters.md

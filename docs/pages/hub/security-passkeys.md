@@ -51,5 +51,5 @@ In the **Passkeys** section of your [Authentication settings](https://hf.co/sett
 
 When you remove a passkey from the Hub, it may still be stored on your device or in your password manager. You can delete it there as well.
 
-### SSO Configuration Guides
-https://huggingface.co/docs/hub/security-sso-configuration-guides.md
+### Disk usage on Spaces
+https://huggingface.co/docs/hub/spaces-storage.md

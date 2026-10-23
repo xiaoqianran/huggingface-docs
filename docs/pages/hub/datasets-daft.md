@@ -72,5 +72,5 @@ io_config = IOConfig(hf=HuggingFaceConfig(token="your_token"))
 df = daft.read_parquet("hf://datasets/username/dataset_name", io_config=io_config)
 ```
 
-### Aim on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-aim.md
+### Embedding Atlas
+https://huggingface.co/docs/hub/datasets-embedding-atlas.md

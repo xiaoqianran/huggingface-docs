@@ -235,5 +235,5 @@ class FastSiluAndMul(nn.Module):
 
 For more information, see the [layer documentation](layers).
 
-### Lock kernel versions
-https://huggingface.co/docs/kernels/main/locking.md
+### kernels variants
+https://huggingface.co/docs/kernels/main/cli-variants.md

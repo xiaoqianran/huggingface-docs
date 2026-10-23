@@ -76,5 +76,5 @@ Your team is responsible for ingesting these logs and running computations on th
 
 As it requires setting up a custom data export pipeline on our side (custom Elastic index, etc), this is only available as an add-on to Enterprise Plus.
 
-### Datasets Download Stats
-https://huggingface.co/docs/hub/datasets-download-stats.md
+### Using 🤗 `transformers` at Hugging Face
+https://huggingface.co/docs/hub/transformers.md

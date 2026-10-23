@@ -126,5 +126,5 @@ so you can generate proxy or firewall rules from it rather than copying the tabl
 > The file changes as endpoints are added and removed. Fetch it when you build your rules
 > rather than pinning a copy.
 
-### Models
-https://huggingface.co/docs/hub/models.md
+### THE LANDSCAPE OF ML DOCUMENTATION TOOLS
+https://huggingface.co/docs/hub/model-card-landscape-analysis.md
