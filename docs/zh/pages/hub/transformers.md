@@ -77,7 +77,7 @@ tokenizer = AutoTokenizer.from_pretrained("distilbert/distilgpt2")
 model = AutoModelForCausalLM.from_pretrained("distilbert/distilgpt2")
 ```
 
-您还可以从特定版本（基于提交哈希、标记名称或分支）加载模型，如下所示：
+您还可以从特定版本（基于提交哈希、标签名称或分支）加载模型，如下所示：
 
 ```py
 model = AutoModel.from_pretrained(
@@ -110,5 +110,5 @@ trainer.push_to_hub()
 * 变形金刚[docs](https://huggingface.co/docs/transformers/index)。
 * 分享型号[guide](https://huggingface.co/docs/transformers/model_sharing)。
 
-### 组织、安全性和 Hub API
-https://huggingface.co/docs/hub/other.md
+### 安全
+https://huggingface.co/docs/hub/security.md

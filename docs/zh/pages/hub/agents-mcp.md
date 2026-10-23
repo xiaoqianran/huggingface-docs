@@ -67,7 +67,7 @@ Gradio MCP 应用程序将其功能公开为工具（带有参数和描述），
 
 ### 空格选项
 
-您的[MCP settings](https://huggingface.co/settings/mcp)提供了多个选项来自定义空间的工作方式：|选项|描述 |
+您的[MCP settings](https://huggingface.co/settings/mcp)提供了多个选项来自定义空间的工作方式：|选项 |描述 |
 |--------|-------------|
 | **动态空间** |在运行时动态调用 MCP 空间。启用后，您的助手可以即时发现和使用 MCP 兼容的空间，而无需手动添加它们。 |
 | **删除嵌入图像** |删除由 Gradio Spaces 生成的嵌入图像。如果您的 MCP 客户端的图像支持有限或您需要纯文本响应，则非常有用。 |
@@ -79,5 +79,5 @@ Gradio MCP 应用程序将其功能公开为工具（带有参数和描述），
 - 拥抱脸部 MCP 服务器：https://huggingface.co/mcp
 - 使用 Gradio Spaces 构建您自己的 MCP 服务器：https://www.gradio.app/guides/building-mcp-server-with-gradio
 
-### 模型下载统计数据
-https://huggingface.co/docs/hub/models-download-stats.md
+### 使用🤗数据集
+https://huggingface.co/docs/hub/datasets-usage.md

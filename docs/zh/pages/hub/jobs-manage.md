@@ -228,5 +228,5 @@ hf jobs cancel --namespace <my-org-name> <job_id>
 
 获取作业信息，并监控日志和资源使用统计信息：
 
-### 使用 TensorBoard
-https://huggingface.co/docs/hub/tensorboard.md
+### 空格
+https://huggingface.co/docs/hub/spaces.md

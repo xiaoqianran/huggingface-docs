@@ -14,7 +14,7 @@
 要定义这些下拉列表，您可以在数据文件或其拆分名称之后命名它们的文件夹（训练/验证/测试）。
 还可以使用 YAML 手动自定义拆分。
 
-有关更多信息，请随时查看 [Data files Configuration](./datasets-data-files-configuration) 和 [collections of example datasets](https://huggingface.co/datasets-examples) 的文档。 [Image Dataset doc page](./datasets-image) 提出了各种方法来用图像构建数据集。
+如需了解更多信息，请随时查看 [Data files Configuration](./datasets-data-files-configuration) 和 [collections of example datasets](https://huggingface.co/datasets-examples) 的文档。 [Image Dataset doc page](./datasets-image) 提出了各种方法来用图像构建数据集。
 
 ## 禁用查看器
 
@@ -28,5 +28,5 @@ viewer: false
 
 ## 私有数据集
 
-对于 **私有** 数据集，为 [PRO users](https://huggingface.co/pricing) 和 [Team or Enterprise organizations](https://huggingface.co/enterprise) 启用数据集查看器。### 适度
-https://huggingface.co/docs/hub/moderation.md
+对于 **私有** 数据集，为 [PRO users](https://huggingface.co/pricing) 和 [Team or Enterprise organizations](https://huggingface.co/enterprise) 启用数据集查看器。### 管理工作
+https://huggingface.co/docs/hub/jobs-manage.md

@@ -89,5 +89,5 @@ If there is no match, the role is determined as follows:
 > [!注意]
 > 使用 [Managed SSO](./enterprise-advanced-sso)，内部成员通过您的身份提供商 (SCIM) 进行配置，因此受邀加入组织的用户只能添加为外部协作者。
 
-### 查询数据集
-https://huggingface.co/docs/hub/datasets-duckdb-select.md
+### S3 兼容性
+https://huggingface.co/docs/hub/storage-buckets-s3.md

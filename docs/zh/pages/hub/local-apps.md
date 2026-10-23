@@ -13,7 +13,7 @@
 
 本地应用程序是可以直接在您的计算机上运行 Hugging Face 模型的应用程序。开始使用：
 
-1. **在您的[Local Apps settings](https://huggingface.co/settings/local-apps)中启用本地应用程序**。
+1. **在[Local Apps settings](https://huggingface.co/settings/local-apps)中启用本地应用程序**。
 
 ![Local Apps](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/local-apps/settings.png)
 
@@ -93,5 +93,5 @@ LM Studio 是一个桌面应用程序，提供了一种下载、运行和试验�
 
 导航至模型卡并单击“使用此模型”。 LM Studio 将打开，您可以通过界面开始聊天。
 
-### 在抱脸处使用🤗 `transformers`
-https://huggingface.co/docs/hub/transformers.md
+### 单点登录配置指南
+https://huggingface.co/docs/hub/security-sso-configuration-guides.md

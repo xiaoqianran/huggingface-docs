@@ -16,7 +16,7 @@ Hugging Face Hub 可以为您的模型或数据集生成 DOI。 DOI（数字对�
 
 您只需点击“生成新的 DOI”即可！🎉 将为您的模型或数据集的当前版本分配一个新的 DOI。
 
-## 为什么在我的模型或数据集上进行删除、重命名和更改可见性操作时会出现“被 DOI 锁定”消息？
+## 为什么在对我的模型或数据集进行删除、重命名和更改可见性操作时会出现“被 DOI 锁定”消息？
 
 DOI 使查找有关模型或数据集的信息变得更加容易，并通过永不过期或更改的永久链接与全世界共享它们。因此，带有 DOI 的数据集/模型旨在永久保留，并且只能在向我们的支持人员提出请求后才能删除、重命名和更改其可见性（网站位于 Huggingface.co）
 
@@ -24,5 +24,5 @@ DOI 使查找有关模型或数据集的信息变得更加容易，并通过永�
 
 - [Introducing DOI: the Digital Object Identifier to Datasets and Models](https://huggingface.co/blog/introducing-doi)
 
-### GitHub 操作
-https://huggingface.co/docs/hub/repositories-github-actions.md
+### 模型中心
+https://huggingface.co/docs/hub/models-the-hub.md

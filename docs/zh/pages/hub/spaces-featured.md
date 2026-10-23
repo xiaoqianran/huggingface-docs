@@ -14,5 +14,5 @@ Hugging Face 突出显示了某些空间，让您更轻松地发现社区构建�
 
 本周空间是 Hugging Face 团队每周精心挑选的杰出空间。
 
-### 如何处理Spaces中的URL参数
-https://huggingface.co/docs/hub/spaces-handle-url-parameters.md
+### 空间上的 ZenML
+https://huggingface.co/docs/hub/spaces-sdks-docker-zenml.md

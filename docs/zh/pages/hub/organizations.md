@@ -18,5 +18,5 @@ Hugging Face Hub 提供**组织**，可用于对帐户进行分组并管理数�
 
 - [Team & Enterprise Plans](./enterprise)
 
-### 空间上的 JupyterLab
-https://huggingface.co/docs/hub/spaces-sdks-docker-jupyter.md
+### 数据工作室
+https://huggingface.co/docs/hub/data-studio.md

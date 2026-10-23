@@ -6,14 +6,14 @@
 
 ## 在 Hub 中探索 spaCy 模型
 
-`spaCy` 3.3 的官方型号在`spaCy` [Organization Page](https://huggingface.co/spacy)。社区中的任何人都可以分享他们的`spaCy`模型，您可以通过[models page](https://huggingface.co/models?library=spacy)左侧的过滤找到这些模型。
+`spaCy` 3.3 的官方型号位于`spaCy` [Organization Page](https://huggingface.co/spacy)。社区中的任何人都可以分享他们的`spaCy`模型，您可以通过[models page](https://huggingface.co/models?library=spacy)左侧的过滤找到这些模型。
 
 集线器上的所有型号都具有有用的功能
 1. 自动生成的模型卡，其中包含标签方案、指标、组件等。
 2. 右上角的评估部分，您可以在其中查看指标。
 3. 元数据标签有助于发现并包含许可证和语言等信息。
 4. 一个交互式小部件，您可以使用它直接在浏览器中玩模型
-5. 推理提供程序小部件，允许发出推理请求。
+5. 一个推理提供程序小部件，允许发出推理请求。
 
 ## 使用现有模型
 
@@ -97,5 +97,5 @@ print(result["url"])
 * spaCy v 3.1 [Announcement](https://explosion.ai/blog/spacy-v3-1#huggingface-hub)
 * 斯帕西[documentation](https://spacy.io/universe/project/spacy-huggingface-hub/)
 
-### 定价和计费
-https://huggingface.co/docs/hub/jobs-pricing.md
+### 在 Hugging Face 中使用示例工厂
+https://huggingface.co/docs/hub/sample-factory.md

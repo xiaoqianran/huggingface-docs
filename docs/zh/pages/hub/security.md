@@ -25,5 +25,5 @@ Hugging Face 也是[SOC2 Type 2 certified](https://us.aicpa.org/interestareas/fr
 - [Third-party scanner: Protect AI](./security-protectai)
 - [Third-party scanner: JFrog](./security-jfrog)
 
-### S3 兼容性
-https://huggingface.co/docs/hub/storage-buckets-s3.md
+### 参考
+https://huggingface.co/docs/hub/jobs-reference.md

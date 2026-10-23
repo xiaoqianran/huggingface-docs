@@ -19,6 +19,9 @@ S3 API 是访问存储桶数据的多种方法之一 - 对于无需单独的 S3 
 
 S3 凭证继承底层访问令牌的权限。对于细粒度令牌，请将其范围仅限于您打算使用的命名空间和存储桶。
 
+> [!提示]
+> 对于访问组织存储桶的自动化工作流程，您还可以从 [service account](./enterprise-service-accounts#generating-s3-credentials) 令牌而不是用户访问令牌生成 S3 凭证。
+
 ## 配置客户端
 
 将您的 S3 客户端指向网关端点并设置一些必需的选项。在端点 URL 中使用您的 Hugging Face **命名空间**（您的用户名或组织名称） - 请参阅下面的[Addressing buckets](#addressing-buckets)。|设置|价值|为什么 |
@@ -74,7 +77,7 @@ aws --profile hf s3 cp ./model.safetensors s3://my-bucket/models/model.safetenso
 
 AWS S3 使用单一平面、全局唯一的存储桶名称空间，并且 SDK 期望存储桶名称是不带 `/` 的纯字符串。 Hugging Face 存储桶被标识为 `namespace/bucket`，其中 `namespace` 是您的用户名或组织。这个额外的级别引入了与 S3 客户端的不匹配——许多客户端不接受存储桶名称中的`/`，或者会错误地对其进行 URL 转义。有两种方法可以解决这个问题：
 
-**1.将命名空间放入端点 URL**（大多数情况下建议）。这会将每个操作的范围限定到该命名空间，因此传递给客户端的存储桶名称只是 HF 存储桶名称。它适用于您自己的存储桶或单个组织中的存储桶，但会跨命名空间分解 - 例如从个人存储桶到组织存储桶的服务器端副本。
+**1.将命名空间放入端点 URL**（大多数情况下建议）。这将每个操作的范围限定在该命名空间，因此传递给客户端的存储桶名称只是 HF 存储桶名称。它适用于您自己的存储桶或单个组织中的存储桶，但会跨命名空间分解 - 例如从个人存储桶到组织存储桶的服务器端副本。
 
 ```bash
 aws --endpoint-url https://s3.hf.co/my-org s3api get-object \
@@ -233,7 +236,7 @@ export AWS_ACCESS_KEY_ID=HFAK...
 export AWS_SECRET_ACCESS_KEY=...
 ```
 
-然后像往常一样跟踪、推送和拉取 — `dvc push` 上传到存储桶，而新克隆上的 `dvc pull` 将其下载回来：
+然后像平常一样跟踪、推送和拉取 — `dvc push` 上传到存储桶，而新克隆上的 `dvc pull` 将其下载回来：
 
 ```bash
 dvc add data/
@@ -244,5 +247,5 @@ dvc push
 > [!注意]
 > 在 `endpointurl` 中使用您的 [namespace](#addressing-buckets) 并在 `s3://` URL 中使用裸存储桶名称。
 
-### 学术中心
-https://huggingface.co/docs/hub/academia-hub.md
+### 代理
+https://huggingface.co/docs/hub/agents.md

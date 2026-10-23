@@ -22,5 +22,5 @@
 
 ## 离开组织
 
-用户可以离开组织，访问其 [organization settings](https://huggingface.co/settings/organizations) 并单击他们想要离开的组织旁边的 **离开组织**。组织管理员始终可以如上所述删除用户。### 熊猫
-https://huggingface.co/docs/hub/datasets-pandas.md
+用户可以离开组织，访问其 [organization settings](https://huggingface.co/settings/organizations) 并单击他们想要离开的组织旁边的 **离开组织**。组织管理员始终可以如上所述删除用户。### 示例和教程
+https://huggingface.co/docs/hub/jobs-examples.md

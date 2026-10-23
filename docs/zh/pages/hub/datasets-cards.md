@@ -98,5 +98,5 @@ tags:
 
 这些标签描述兼容性并生成加载命令。它们不会创建新的存储库类型或导致 Hub 执行环境。
 
-### 管理组织
-https://huggingface.co/docs/hub/organizations-managing.md
+### 在本地使用 AI 模型
+https://huggingface.co/docs/hub/local-apps.md

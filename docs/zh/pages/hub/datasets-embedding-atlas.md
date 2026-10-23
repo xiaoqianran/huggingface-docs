@@ -168,5 +168,5 @@ widget
 - [Interactive Demo](https://apple.github.io/embedding-atlas/upload/)
 - [Command Line Reference](https://apple.github.io/embedding-atlas/tool.html)
 
-### 在空间中使用 OpenCV
-https://huggingface.co/docs/hub/spaces-using-opencv.md
+### 在 Hugging Face 中使用 RL-Baselines3-Zoo
+https://huggingface.co/docs/hub/rl-baselines3-zoo.md

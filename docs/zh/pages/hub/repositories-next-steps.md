@@ -97,5 +97,5 @@ git reset --hard upstream/main
 git push --force origin main
 ```
 
-### 用户配置 (SCIM)
-https://huggingface.co/docs/hub/enterprise-scim.md
+### 在拥抱面部使用_Adapters_
+https://huggingface.co/docs/hub/adapters.md

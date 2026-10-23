@@ -2,7 +2,7 @@
 
 # 门控数据集
 
-为了更好地控制数据集的使用方式，中心允许数据集作者为其数据集启用**访问请求**。用户必须同意与数据集作者共享其联系信息（用户名和电子邮件地址），才能在启用后访问数据集文件。数据集作者可以使用其他字段配置此请求。启用访问请求的数据集称为**门控数据集**。访问请求始终授予个人用户而不是整个组织。门控数据集的一个常见用例是在更广泛的发布之前提供对早期研究数据集的访问。
+为了更好地控制数据集的使用方式，中心允许数据集作者为其数据集启用**访问请求**。启用后，用户必须提交访问数据集文件的请求，该请求会与数据集作者共享其拥抱面部信息（用户名和电子邮件地址），除非作者选择不收集这些信息。数据集作者还可以添加自定义字段。启用访问请求的数据集称为**门控数据集**。访问请求始终授予个人用户而不是整个组织。门控数据集的一个常见用例是在更广泛的发布之前提供对早期研究数据集的访问。
 
 ## 作为数据集作者管理门控数据集
 
@@ -37,20 +37,18 @@
 
 您可以使用 API 自动批准访问请求。您必须通过 `token` 和 `write` 访问门控存储库。要生成令牌，请转到[your user settings](https://huggingface.co/settings/tokens)。|方法|统一资源定位符 |描述 |标题 |有效载荷
 | ------ | --- | ----------- | -------- | -------- |
-| `GET` | `/api/datasets/{repo_id}/user-access-request/pending` |检索待处理请求的列表。 | `{"authorization": "Bearer $token"}` | |
-| `GET` | `/api/datasets/{repo_id}/user-access-request/accepted` |检索已接受请求的列表。 | `{"authorization": "Bearer $token"}` | |
-| `GET` | `/api/datasets/{repo_id}/user-access-request/rejected` |检索被拒绝的请求的列表。 | `{"authorization": "Bearer $token"}` | |
-| `GET` | `/api/datasets/{repo_id}/user-access-request/reset` |检索重置请求的列表。 | `{"authorization": "Bearer $token"}` | |
-| `POST` | `/api/datasets/{repo_id}/user-access-request/handle` |将给定访问请求的状态更改为`status`。 | `{"authorization": "Bearer $token"}` | `{"status": "accepted"/"rejected"/"pending"/"reset", "user": "username", "rejectionReason": "Optional rejection reason that will be visible to the user (max 200 characters).", "resetReason": "Optional reset reason that will be included in the email sent to the user (max 200 characters)."}}` |
-| `POST` | `/api/datasets/{repo_id}/user-access-request/grant` |允许特定用户访问您的存储库。 | `{"authorization":  "Bearer $token"}` | `{"user": "username"} ` |
+| `GET` | [⟦T8⟧](https://huggingface.co/spaces/huggingface/openapi#tag/datasets/GET/api/datasets/{namespace}/{repo}/user-access-request/{status}) |列出具有给定 `status` 的请求：`pending`、`accepted`、`rejected` 或 `reset`。每个请求都有一个 `requestId`，如果收集了用户名，则有一个 `user`。 | `{"authorization": "Bearer $token"}` | |
+| `POST` | [⟦T18⟧](https://huggingface.co/spaces/huggingface/openapi#tag/datasets/POST/api/datasets/{namespace}/{repo}/user-access-request/handle) |将给定访问请求的状态更改为`status`。 | `{"authorization": "Bearer $token"}` | `{"status": "accepted"/"rejected"/"pending"/"reset", "user": "username" (or "requestId": "request id"), "rejectionReason": "Optional rejection reason that will be visible to the user (max 200 characters).", "resetReason": "Optional reset reason that will be included in the email sent to the user (max 200 characters)."}` |
+| `POST` | [⟦T23⟧](https://huggingface.co/spaces/huggingface/openapi#tag/datasets/POST/api/datasets/{namespace}/{repo}/user-access-request/grant) |允许特定用户访问您的存储库。 | `{"authorization":  "Bearer $token"}` | `{"user": "username"} ` |
 
 上述 HTTP 端点的基本 URL 是 `https://huggingface.co`。
 
-将请求设置为`reset`会撤销之前的决定并要求用户重新开始：他们失去对数据集的访问权限，收到一封电子邮件，通知他们其请求已重置（包括可选的`resetReason`），并提示他们同意限制条款并在下次访问数据集页面时提交新请求。这与 `pending` 不同，`pending` 会按原样保留现有请求，只是将其放回到审核队列中，而`rejected` 则会阻止用户再次请求访问。**新！** 我们的 Python 客户端 `huggingface_hub` 现已正式支持这些端点。使用 [⟦T34⟧](/docs/huggingface_hub/main/en/package_reference/hf_api#huggingface_hub.HfApi.list_pending_access_requests)、[⟦T35⟧](/docs/huggingface_hub/main/en/package_reference/hf_api#huggingface_hub.HfApi.list_accepted_access_requests) 和 [⟦T36⟧](/docs/huggingface_hub/main/en/package_reference/hf_api#huggingface_hub.HfApi.list_rejected_access_requests) 列出对数据集的访问请求。您还可以使用[⟦T37⟧](/docs/huggingface_hub/main/en/package_reference/hf_api#huggingface_hub.HfApi.accept_access_request)、[⟦T38⟧](/docs/huggingface_hub/main/en/package_reference/hf_api#huggingface_hub.HfApi.cancel_access_request)、[⟦T39⟧](/docs/huggingface_hub/main/en/package_reference/hf_api#huggingface_hub.HfApi.reject_access_request)接受、取消和拒绝访问请求。最后，您可以使用 [⟦T40⟧](/docs/huggingface_hub/main/en/package_reference/hf_api#huggingface_hub.HfApi.grant_access) 向用户授予访问权限。
+将请求设置为`reset`会撤销之前的决定并要求用户重新开始：他们失去对数据集的访问权限，收到一封电子邮件，通知他们其请求已重置（包括可选的`resetReason`），并提示他们同意限制条款并在下次访问数据集页面时提交新请求。这与 `pending` 不同，`pending` 会按原样保留现有请求，只是将其放回到审核队列中，而`rejected` 则会阻止用户再次请求访问。**新！** 我们的 Python 客户端 `huggingface_hub` 现已正式支持这些端点。使用 [⟦T32⟧](/docs/huggingface_hub/main/en/package_reference/hf_api#huggingface_hub.HfApi.list_pending_access_requests)、[⟦T33⟧](/docs/huggingface_hub/main/en/package_reference/hf_api#huggingface_hub.HfApi.list_accepted_access_requests) 和 [⟦T34⟧](/docs/huggingface_hub/main/en/package_reference/hf_api#huggingface_hub.HfApi.list_rejected_access_requests) 列出对数据集的访问请求。您还可以使用[⟦T35⟧](/docs/huggingface_hub/main/en/package_reference/hf_api#huggingface_hub.HfApi.accept_access_request)、[⟦T36⟧](/docs/huggingface_hub/main/en/package_reference/hf_api#huggingface_hub.HfApi.cancel_access_request)、[⟦T37⟧](/docs/huggingface_hub/main/en/package_reference/hf_api#huggingface_hub.HfApi.reject_access_request)接受、取消和拒绝访问请求。最后，您可以使用 [⟦T38⟧](/docs/huggingface_hub/main/en/package_reference/hf_api#huggingface_hub.HfApi.grant_access) 向用户授予访问权限。
 
 ### 下载访问报告
 
 您可以使用 **下载用户访问报告** 按钮下载门控数据集的所有访问请求的报告。单击它可下载包含用户列表的 json 文件。对于每个条目，您拥有：
+- **requestId**：请求的id。
 - **用户**：用户 ID。示例：*julien-c*。
 - **全名**：集线器上用户的名称。示例：*朱利安·肖蒙*。
 - **状态**：请求的状态。 `"pending"`、`"accepted"`、`"rejected"` 或 `"reset"`。
@@ -58,16 +56,31 @@
 - **时间**：用户最初发出请求时的日期时间。
 - **reviewedAt**：请求被接受或拒绝的日期时间。未设置待处理请求。
 
+> [!提示]
+> 仅当您在提出请求时选择 [collect them](#choose-which-profile-data-hugging-face-shares-with-you) 时，`user`、`fullname` 和 `email` 才会出现。请求始终可以通过其 `requestId` 进行识别。
+
+### 选择 Hugging Face 与您分享的个人资料数据默认情况下，Hugging Face 会与您共享请求者的用户名和主要电子邮件地址。您有责任处理任何个人身份信息 (PII)，并根据适用法律披露您如何处理这些信息（例如通过链接到您自己的隐私政策）。您可以在数据集设置页面上的门控选项中更改此设置：
+
+- **收集用户名**：未选中时，您将不会收到请求者的 Hugging Face 用户名、全名和头像。请求会与请求 ID 一起列出，并且可以像任何其他请求一样接受或拒绝。
+- **收集电子邮件**：收集请求者的拥抱脸的个人资料电子邮件。需要**收集用户名**。
+
+您仍然会收到 [custom form fields](#customize-requested-information) 的答案，因此您可以在那里询问您需要的任何联系方式。这些设置仅适用于新请求：现有请求保留发出时的设置。
+
+对于 [Gating Group Collection](./enterprise-gating-group-collections) 中的数据集，这些选项是在集合上配置的。
+
  
 
-### 自定义请求的信息
+### 自定义请求的信息默认情况下，登陆您的门控数据集的用户将被要求通过单击“**同意并发送请求访问存储库**”按钮来分享他们的拥抱面部信息（电子邮件和用户名，除非您[disabled their collection](#choose-which-profile-data-hugging-face-shares-with-you)）。
 
-默认情况下，登录您的门控数据集的用户将被要求通过单击“**同意并发送访问存储库的请求**”按钮来分享他们的联系信息（电子邮件和用户名）。如果您想请求更多用户信息以提供访问权限，您可以配置其他字段。可以从“**设置**”选项卡访问此信息。为此，请将 `extra_gated_fields` 属性添加到包含键/值对列表的 [dataset card metadata](./datasets-cards#dataset-card-metadata) 中。 *key* 是字段的名称，*value* 是其类型或具有 `type` 字段的对象。字段类型列表为：
+    
+    
+
+如果您想请求更多用户信息以提供访问权限，您可以配置其他字段。可以从“**设置**”选项卡访问此信息。为此，请将 `extra_gated_fields` 属性添加到包含键/值对列表的 [dataset card metadata](./datasets-cards#dataset-card-metadata) 中。 *key* 是字段的名称，*value* 是其类型或具有 `type` 字段的对象。字段类型列表为：
 
 - `text`：单行文本字段。
 - `checkbox`：复选框字段。
 - `date_picker`：日期选择器字段。
-- `country`：国家/地区下拉列表。国家列表基于[ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)标准。
+- `country`：国家/地区下拉菜单。国家列表基于[ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)标准。
 - `select`：带有选项列表的下拉菜单。选项列表在 `options` 字段中定义。示例：`options: ["option 1", "option 2", {label: "option3", value: "opt3"}]`。
 
 最后，您还可以使用 `extra_gated_prompt` 额外字段个性化向用户显示的消息。
@@ -90,9 +103,7 @@ extra_gated_fields:
         value: other
   I agree to use this dataset for non-commercial use ONLY: checkbox
 ---
-```
-
-在某些情况下，您可能还想修改门标题、说明和按钮中的默认文本。对于这些用例，您可以像这样修改 `extra_gated_heading`、`extra_gated_description` 和 `extra_gated_button_content`：
+```在某些情况下，您可能还想修改门标题、说明和按钮中的默认文本。对于这些用例，您可以像这样修改 `extra_gated_heading`、`extra_gated_description` 和 `extra_gated_button_content`：
 
 ```yaml
 ---
@@ -102,7 +113,9 @@ extra_gated_button_content: "Acknowledge license"
 ---
 ```
 
-### 组织成员的访问权限对于组织下托管的门控数据集，您还可以要求组织的**自己的成员**提交访问请求。在数据集设置页面的门控选项下，启用 **Always gateway access for `{org}`** 的成员。
+### 组织成员的访问权限
+
+对于组织下托管的门控数据集，您还可以要求组织的**自己的成员**提交访问请求。在数据集设置页面的门控选项下，启用 **Always gateway access for `{org}`** 的成员。
 
 启用此选项后，组织成员必须像任何其他用户一样请求访问数据集。以下角色绕过请求并保持直接访问：
 
@@ -114,25 +127,25 @@ extra_gated_button_content: "Acknowledge license"
 
 ## 作为一个组织（团队和企业）管理门控数据集
 
-[Team & Enterprise](https://huggingface.co/docs/hub/en/enterprise) 订阅者可以创建门控组集合，以一次性授予（或拒绝）对集合中所有模型和数据集的访问权限。
-
-有关门控组集合的更多信息可以在[our dedicated doc](https://huggingface.co/docs/hub/en/enterprise-gating-group-collections)中找到。
+[Team & Enterprise](https://huggingface.co/docs/hub/en/enterprise) 订阅者可以创建门控组集合，以一次性授予（或拒绝）对集合中所有模型和数据集的访问权限。有关门控组集合的更多信息可以在[our dedicated doc](https://huggingface.co/docs/hub/en/enterprise-gating-group-collections)中找到。
 
 ## 以用户身份访问门控数据集
 
-作为用户，如果您想使用门控数据集，您将需要请求访问它。这意味着您必须登录 Hugging Face 用户帐户。请求访问只能通过您的浏览器完成。转到 Hub 上的数据集，系统将提示您共享您的信息：
+作为用户，如果您想使用门控数据集，您将需要请求访问它。这意味着您必须登录 Hugging Face 用户帐户。
+
+请求访问只能通过您的浏览器完成。转到 Hub 上的数据集，系统将提示您共享您的信息：
 
     
     
 
-单击 **同意**，即表示您同意与数据集作者共享您的用户名和电子邮件地址。在某些情况下，可能会要求附加字段。为了帮助数据集作者决定是否授予您访问权限，请尝试尽可能完整地填写表格。
+点击**同意**，即表示您同意与数据集作者分享您在请求表中输入的信息（如果适用），以及您的 Hugging Face 用户名和电子邮件地址（如果作者选择收集这些信息）。为了帮助数据集作者决定是否授予您访问权限，请尝试尽可能完整地填写任何表单字段。
 
-一旦发送访问请求，就有两种可能性。如果批准机制是自动的，您可以立即访问数据集文件。否则，请求必须由作者手动批准，这可能需要更多时间。
-
-> [!警告]
+一旦发送访问请求，就有两种可能性。如果批准机制是自动的，您可以立即访问数据集文件。否则，请求必须由作者手动批准，这可能需要更多时间。> [!警告]
 > 数据集作者对数据集访问拥有完全控制权。特别是，他们可以随时决定阻止您访问数据集，恕不另行通知，无论批准机制如何或您的请求是否已获得批准。
 
-### 下载文件要从门控数据集中下载文件，您需要经过身份验证。在浏览器中，只要您使用帐户登录，此操作就会自动进行。如果您使用脚本，则需要提供[user token](./security-tokens)。在Hugging Face Python生态系统（`transformers`、`diffusers`、`datasets`等）中，您可以使用[⟦T62⟧](/docs/huggingface_hub/index)库登录您的机器并在终端中运行：
+### 下载文件
+
+要从门控数据集中下载文件，您需要经过身份验证。在浏览器中，只要您使用帐户登录，此操作就会自动进行。如果您使用脚本，则需要提供[user token](./security-tokens)。在Hugging Face Python生态系统（`transformers`、`diffusers`、`datasets`等）中，您可以使用[⟦T64⟧](/docs/huggingface_hub/index)库登录您的机器并在终端中运行：
 
 ```bash
 hf auth login
@@ -149,9 +162,7 @@ hf auth login
 
 有关如何登录的更多详细信息，请查看[login guide](/docs/huggingface_hub/quick-start#login)。
 
-### 限制欧盟用户的访问
-
-对于门控数据集，您可以添加额外的访问控制层以专门限制来自欧盟国家/地区的用户。如果您的数据集的许可或使用条款禁止其在欧盟分发，这非常有用。
+### 限制欧盟用户的访问对于门控数据集，您可以添加额外的访问控制层以专门限制来自欧盟国家/地区的用户。如果您的数据集的许可或使用条款禁止其在欧盟分发，这非常有用。
 
 要启用此功能，请将 `extra_gated_eu_disallowed: true` 属性添加到数据集卡的元数据中。
 
@@ -163,7 +174,9 @@ license: mit
 gated: true
 extra_gated_eu_disallowed: true
 ---
-```系统根据用户的 IP 地址识别用户的位置。
+```
 
-### 阿吉拉
-https://huggingface.co/docs/hub/datasets-argilla.md
+系统根据用户的 IP 地址识别用户的位置。
+
+### 在拥抱脸部使用 ESPnet
+https://huggingface.co/docs/hub/espnet.md

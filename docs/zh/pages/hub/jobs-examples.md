@@ -20,7 +20,7 @@ Transformers、TRL、Unsloth 和 Axolotl 的启动命令位于 [Train Models on 
 
 [uv-scripts](https://huggingface.co/uv-scripts) 组织维护着一组独立的 uv 脚本，这些脚本可以通过单个命令在作业上运行。脚本涵盖 OCR、批量推理、文本分类、对象检测、数据集统计、嵌入可视化等。
 
-[Unsloth](https://huggingface.co/datasets/unsloth/jobs) 还提供可立即运行的训练脚本，用于在 Jobs 上微调 LLM 和 VLM。
+[Unsloth](https://huggingface.co/datasets/unsloth/jobs) 还提供了可立即运行的训练脚本，用于在 Jobs 上微调 LLM 和 VLM。
 
 ## 编码代理技能
 
@@ -45,5 +45,5 @@ hf skills add
 
 有使用 Jobs 的教程或项目吗？ [Open a PR](https://github.com/huggingface/hub-docs/edit/main/docs/hub/jobs-examples.md) 将其添加到此处。
 
-### Docker 空间示例
-https://huggingface.co/docs/hub/spaces-sdks-docker-examples.md
+### 许可证
+https://huggingface.co/docs/hub/repositories-licenses.md

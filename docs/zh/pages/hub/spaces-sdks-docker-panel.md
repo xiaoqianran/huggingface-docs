@@ -6,7 +6,7 @@
 
 访问 [Panel documentation](https://panel.holoviz.org/) 了解有关制作强大应用程序的更多信息。 
 
-## 🚀 在空间上部署面板
+## 🚀 Deploy Panel on Spaces
 
 您只需点击几下即可在 Spaces 上部署面板：
 
@@ -16,17 +16,17 @@
 
 创建空间后，它将以“正在构建”状态开始，一旦您的空间准备就绪，该状态将更改为“正在运行”。 
 
-## ⚡️ 你会看到什么？当您的空间构建并准备就绪时，您将看到此图像分类面板应用程序，它可以让您获取随机图像并在其上运行 OpenAI CLIP 分类器模型。查看我们的 [blog post](https://blog.holoviz.org/building_an_interactive_ml_dashboard_in_panel.html) 了解此应用程序的演练。 
+## ⚡️ What will you see?当您的空间构建并准备就绪时，您将看到此图像分类面板应用程序，它可以让您获取随机图像并在其上运行 OpenAI CLIP 分类器模型。查看我们的 [blog post](https://blog.holoviz.org/building_an_interactive_ml_dashboard_in_panel.html) 了解此应用程序的演练。 
 
 ## 🛠️ 如何定制和制作自己的应用程序？
 
 空间模板将填充一些文件来启动您的应用程序： 
 
-三个文件很重要：
+Three files are important:
 
 ### 1.app.py
 
-该文件定义您的面板应用程序代码。您可以从修改现有应用程序开始，或者完全替换它来构建您自己的应用程序。要了解有关编写自己的面板应用程序的更多信息，请参阅[Panel documentation](https://panel.holoviz.org/)。
+This file defines your Panel application code.您可以从修改现有应用程序开始，或者完全替换它来构建您自己的应用程序。要了解有关编写自己的面板应用程序的更多信息，请参阅[Panel documentation](https://panel.holoviz.org/)。
 
 ### 2.Dockerfile
 
@@ -43,5 +43,5 @@ Dockerfile 包含一系列命令，Docker 将执行这些命令来构建和启�
 - [LinkedIn](https://www.linkedin.com/company/panel-org)
 - [GitHub](https://github.com/holoviz/panel)
 
-### 在 Data Studio 中编辑数据集
-https://huggingface.co/docs/hub/datasets-cell-editing.md
+### 密钥
+https://huggingface.co/docs/hub/security-passkeys.md

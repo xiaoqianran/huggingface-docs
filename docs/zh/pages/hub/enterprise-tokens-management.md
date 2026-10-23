@@ -67,7 +67,7 @@
 | **计划** |团队与企业 |企业计划及以上 |
 | **范围** |在审批工作流程中操作 |独立于代币政策 |
 | **效果** |阻止或删除基于批准的访问 |无论策略或令牌状态如何，都强制删除访问权限 |
-| **可逆吗？** |是的 - 被拒绝的令牌稍后可以被批准 |否 - 即使政策发生变化，撤销状态仍然存在 |
+| **可逆吗？** |是的 - 被拒绝的令牌稍后可以被批准 |否 — 即使政策发生变化，撤销状态仍然存在 |
 | **其他地方的代币** |对组织外部没有影响 |对组织外部没有影响 |
 
 在批准工作流程中管理访问时使用 **拒绝**（令牌转换为 `denied` 状态，并且可以稍后重新批准）。当您需要永久切断令牌对组织的访问权限时，请使用 **撤销**。
@@ -105,7 +105,7 @@ curl -X POST "https://huggingface.co/api/organizations/${ORG_NAME}/settings/toke
 ```
 
 管理员无法撤销自己的令牌：令牌 ID 与用于身份验证的令牌匹配的请求将被拒绝，并出现 `403` 错误。> [!注意]
-> 此端点仅撤销令牌对您组织的访问权限；令牌继续为其所有者的其他资源工作。要使到处泄漏的令牌无效，请改用[⟦T7⟧](./security-tokens#revoking-a-leaked-token)，它不需要身份验证并接受一批原始令牌值。
+> 此端点仅撤销令牌对您组织的访问权限；该令牌继续为其所有者的其他资源工作。要使到处泄漏的令牌无效，请改用[⟦T7⟧](./security-tokens#revoking-a-leaked-token)，它不需要身份验证并接受一批原始令牌值。
 
 ## 程序化代币发行
 
@@ -121,5 +121,5 @@ curl -X POST "https://huggingface.co/api/organizations/${ORG_NAME}/settings/toke
 
 对于组织而不是个人成员拥有的自动访问，管理员可以创建 [Service Accounts](./enterprise-service-accounts) 并颁发适用于组织资源的细粒度令牌。
 
-### 如何使用 Google Workspace 配置 SAML SSO
-https://huggingface.co/docs/hub/security-sso-google-saml.md
+### 高级安全性
+https://huggingface.co/docs/hub/enterprise-advanced-security.md

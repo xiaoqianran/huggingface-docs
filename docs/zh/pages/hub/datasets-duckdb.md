@@ -73,5 +73,5 @@ SELECT * FROM 'hf://datasets/ibm/duorc/ParaphraseRC/*.parquet' LIMIT 3;
 > ```
 > 存储桶没有版本控制，因此 `@revision` 语法不适用于存储桶路径。在 DuckDB 1.x 上，从 Python 注册 Hugging Face 文件系统：`duckdb.register_filesystem(HfFileSystem())`。详情请参阅[Query with DuckDB](./storage-buckets-access#query-with-duckdb)。
 
-### 将使用 HF 按钮登录到您的空间
-https://huggingface.co/docs/hub/spaces-oauth.md
+### 推理提供者
+https://huggingface.co/docs/hub/models-inference.md

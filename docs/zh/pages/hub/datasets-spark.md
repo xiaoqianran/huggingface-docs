@@ -22,7 +22,7 @@ pip install pyspark_huggingface
 
 ### 身份验证
 
-您需要对 Hugging Face 进行身份验证才能读取私有/门控数据集存储库或写入数据集存储库。
+您需要向 Hugging Face 进行身份验证才能读取私有/门控数据集存储库或写入数据集存储库。
 
 您可以使用 CLI，例如：
 
@@ -269,5 +269,5 @@ huggingface datasource enabled for pyspark 3.x.x (backport from pyspark 4)
 >>> df.write.format("huggingface").option("data_dir", "new-data").save("buckets/username/my-bucket")
 ```
 
-### 抱脸登录
-https://huggingface.co/docs/hub/oauth.md
+### 使用 GPG 签署提交
+https://huggingface.co/docs/hub/security-gpg.md

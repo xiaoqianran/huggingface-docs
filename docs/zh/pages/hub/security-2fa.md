@@ -36,7 +36,7 @@
     - 输入屏幕上显示的设置密钥以手动添加条目
 
 在拥抱脸部中心：
-1. 将身份验证设备上的六位数密码输入“应用程序中的六位数代码”
+1. 将身份验证设备上的六位数密码输入到“应用程序中的六位数代码”中
 2. 保存
 
     
@@ -112,5 +112,5 @@
 
 如果您忘记了密码并无法访问您的双因素身份验证凭据，您可以联系支持人员 (website@huggingface.co) 以重新获得对您帐户的访问权限。您需要使用恢复身份验证因素（例如 SSH 密钥或个人访问令牌）来验证您的身份。
 
-### 快速入门
-https://huggingface.co/docs/hub/jobs-quickstart.md
+### 用户管理
+https://huggingface.co/docs/hub/security-sso-user-management.md

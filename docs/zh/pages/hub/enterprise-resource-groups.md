@@ -33,5 +33,5 @@
 
 [Getting started with Resource Groups →](./security-resource-groups)
 
-### 计费
-https://huggingface.co/docs/hub/billing.md
+### 迪迪标签
+https://huggingface.co/docs/hub/datasets-distilabel.md

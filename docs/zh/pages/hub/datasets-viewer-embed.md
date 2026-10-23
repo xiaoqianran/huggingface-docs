@@ -66,5 +66,5 @@
 
 [⟦T19⟧](https://huggingface.co/Zaid) [showcases](https://x.com/zaidalyafeai/status/1815365207775932576) [Masader - the Arabic NLP data catalogue0](https://arbml.github.io/masader//) 中的数据集查看器。
 
-### SQL Console：在浏览器中查询拥抱人脸数据集
-https://huggingface.co/docs/hub/datasets-viewer-sql-console.md
+### 虎斑在空间
+https://huggingface.co/docs/hub/spaces-sdks-docker-tabby.md

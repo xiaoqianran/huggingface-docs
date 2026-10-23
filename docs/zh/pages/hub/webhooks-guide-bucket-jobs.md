@@ -30,7 +30,7 @@ Webhook 可以 [trigger a Job](./jobs-webhooks) 而不是调用 URL。您创建�
 
 该作业将其结果写入**第二个存储桶**。如果它写入它监视的存储桶，它自己的输出将再次触发 Webhook。
 
-## Example: turn uploads into optimized Parquet
+## 示例：将上传转化为优化的 Parquet
 
 CSV 和 JSON 导出查询速度慢且难以共享。得益于 Xet 重复数据删除功能，[Optimized Parquet](./datasets-libraries#optimized-parquet-files) 的过滤和流式传输速度更快，上传和下载速度更快。在此示例中，上传到一个存储桶的每个 CSV、JSON 或 Parquet 文件在另一个存储桶中显示为优化的 Parquet。该作业运行 [⟦T10⟧](https://huggingface.co/datasets/uv-scripts/data-processing/blob/main/optimize-parquet.py)，这是来自 [uv-scripts](https://huggingface.co/uv-scripts) 的现成脚本。
 
@@ -47,7 +47,7 @@ hf buckets create my-parquet --private
 
 ### 创建工作
 
-Create the Job that the webhook will run:
+创建 webhook 将运行的作业：
 
 ```bash
 hf jobs run --flavor cpu-upgrade --timeout 2h \
@@ -110,17 +110,17 @@ for changed_file in event.get("updatedFiles", []):
     ...  # convert the file (see the full script)
 ```对于每个新文件，脚本会直接从存储桶 (`hf://buckets/...`) 中使用 `datasets` 加载它。如果文件大于作业可用磁盘的三分之一，则会进行流式传输而不是下载。然后，`push_to_hub` 将其作为 Parquet 写入输出存储桶，并具有内容定义的分块、页面索引和最多 100 MB 的行组。
 
-## Use the pattern for your own task
+## 使用该模式完成您自己的任务
 
-Keep the setup and change the script.例如：
+保留设置并更改脚本。例如：
 
-- **Remove personal data before training.** Collect raw text in a private bucket, redact personal information with a model such as [GLiNER2 PII filter](https://huggingface.co/fastino/gliner2-privacy-filter-PII-multi), and push only the redacted text to your training dataset.
-- **评估新的检查点。** 训练作业将检查点保存到存储桶中，每个新检查点都会启动评估作业。如果检查点分多个部分上传，则仅当您最后编写的标记文件出现在`updatedFiles`中时才做出反应； events can arrive out of order.
-- **转录或嵌入新文件。** 将新录音转换为转录本，或将新文档转换为嵌入内容以供搜索。When you write your script, decide what it does in the first run, when `WEBHOOK_PAYLOAD` is not set. It can exit, as `optimize-parquet.py` does, or do real work, such as processing the files that were already in the bucket.如果第一次运行需要令牌，例如读取存储桶或私有脚本，请将`--secrets HF_TOKEN`添加到`hf jobs run`。 Webhook 运行不会获得此秘密。他们从 webhook 获取令牌。
+- **在训练前删除个人数据。** 在私有存储桶中收集原始文本，使用[GLiNER2 PII filter](https://huggingface.co/fastino/gliner2-privacy-filter-PII-multi)等模型编辑个人信息，然后仅将编辑后的文本推送到您的训练数据集。
+- **评估新的检查点。** 训练作业将检查点保存到存储桶中，每个新检查点都会启动评估作业。如果检查点分多个部分上传，则仅当您最后编写的标记文件出现在`updatedFiles`中时才做出反应；事件可能会无序到达。
+- **转录或嵌入新文件。** 将新录音转换为转录本，或将新文档转换为嵌入内容以供搜索。当您编写脚本时，请确定在未设置 `WEBHOOK_PAYLOAD` 时它在第一次运行时执行的操作。它可以像 `optimize-parquet.py` 那样退出，或者执行实际工作，例如处理存储桶中已有的文件。如果第一次运行需要令牌，例如读取存储桶或私有脚本，请将`--secrets HF_TOKEN`添加到`hf jobs run`。 Webhook 运行不会获得此秘密。他们从 webhook 获取令牌。
 
 ## Webhook 还是时间表？
 
-A webhook starts a Job for every event, so new files are processed about a minute after they arrive.如果不需要那么快地处理它们，[scheduled Job](./jobs-schedule)是一种替代方案：它每小时或每天运行一次，并处理自上次运行以来到达的所有内容。这会将工作分为更少的作业，这有助于处理启动缓慢的 GPU 任务，并且避免了每 24 小时 1,000 个触发器的 Webhook 限制。 The script must then find the new files itself, for example by comparing the input and output buckets.
+Webhook 会为每个事件启动一个作业，因此新文件会在到达后大约一分钟进行处理。如果不需要那么快地处理它们，[scheduled Job](./jobs-schedule)是一种替代方案：它每小时或每天运行一次，并处理自上次运行以来到达的所有内容。这会将工作分为更少的作业，这有助于处理启动缓慢的 GPU 任务，并且避免了每 24 小时 1,000 个触发器的 Webhook 限制。然后，脚本必须找到新文件本身，例如通过比较输入和输出存储桶。
 
-### 推理提供者
-https://huggingface.co/docs/hub/models-inference.md
+### 秘密扫描
+https://huggingface.co/docs/hub/security-secrets.md

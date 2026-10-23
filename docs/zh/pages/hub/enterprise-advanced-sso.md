@@ -14,7 +14,7 @@
 > [!注意]
 > **托管 SSO 取代了 Hugging Face 登录。** 您的 IdP 是托管用户在 Hugging Face 上进行身份验证的唯一方式 — 没有单独的 Hugging Face 登录。与基本 SSO 不同，会员不需要预先存在的 Hugging Face 帐户。当用户首次通过 IdP 进行身份验证时，系统会自动为其创建一个帐户。
 
-您的 IdP 是组织所有成员与 Hugging Face 平台任何部分交互的强制身份验证路由。成员需要通过您的 IdP 对所有 Hugging Face 服务进行身份验证，而不仅仅是在访问私人或组织存储库时。当用户在您的 IdP 中被停用时，他们的 Hugging Face 帐户也会被停用。这使您的组织可以完全控制身份、访问和数据治理。
+您的 IdP 是组织所有成员与 Hugging Face 平台任何部分交互的强制身份验证路由。成员需要通过您的 IdP 对所有 Hugging Face 服务进行身份验证，而不仅仅是在访问私人或组织存储库时。当用户在 IdP 中被停用时，他们的 Hugging Face 帐户也会被停用。这使您的组织可以完全控制身份、访问和数据治理。
 
 ## 开始使用
 
@@ -43,5 +43,5 @@
 
 这些限制维护了您企业的安全边界。对于个人项目或更广泛的组织外部协作，成员应使用单独的、非托管的 Hugging Face 帐户。
 
-### 空间配置参考
-https://huggingface.co/docs/hub/spaces-config-reference.md
+### 将使用 HF 按钮登录到您的空间
+https://huggingface.co/docs/hub/spaces-oauth.md

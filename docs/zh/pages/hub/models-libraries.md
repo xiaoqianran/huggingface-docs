@@ -6,7 +6,7 @@
 
 下表总结了支持的库及其集成级别。在 [the model-libraries.ts file](https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/model-libraries.ts) 中查找我们所有支持的库。|图书馆 |描述 |推理提供商 |小部件 |从集线器下载 |推送到集线器 |
 |----------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|---|---:|---|---|
-| [Adapters](./adapters) |一个统一的 Transformers 插件，用于参数高效和模块化微调。                                                | ✅ | ✅ | ✅ | ✅ |
+| [Adapters](./adapters) |统一的 Transformers 附加组件，用于参数高效和模块化微调。                                                | ✅ | ✅ | ✅ | ✅ |
 | [AllenNLP](./allennlp) |一个基于 PyTorch 构建的开源 NLP 研究库。                               | ✅ | ✅ | ✅ | ❌ |
 | [Asteroid](./asteroid) |基于PyTorch的音频源分离工具包 | ✅ | ✅ | ✅ | ❌ |
 | [BERTopic](./bertopic) | BERTopic 是一个文本和图像主题建模库 | ✅ | ✅ | ✅ | ✅ | 
@@ -42,5 +42,5 @@
 
 ### 如何添加对新库的支持？
 
-如果您有兴趣添加您的图书馆，请联系我们！请阅读[Adding a Library Guide](./models-adding-libraries)了解相关内容。### 下载分析
-https://huggingface.co/docs/hub/download-analytics.md
+如果您有兴趣添加您的图书馆，请联系我们！请阅读[Adding a Library Guide](./models-adding-libraries)了解相关内容。### Docker 空间
+https://huggingface.co/docs/hub/spaces-sdks-docker.md

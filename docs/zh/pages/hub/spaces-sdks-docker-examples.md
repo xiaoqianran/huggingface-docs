@@ -15,5 +15,5 @@
 * 用于交互式模型评估的 Zeno 应用程序：https://huggingface.co/spaces/zeno-ml/diffusiondb 和 [instructions for setup](https://zenoml.com/docs/deployment#hugging-face-spaces)
 * 渐变应用程序：https://huggingface.co/spaces/sayakpaul/demo-docker-gradio
 
-### 存储桶集成
-https://huggingface.co/docs/hub/storage-buckets-integrations.md
+### GGUF 与 GPT4All 的使用
+https://huggingface.co/docs/hub/gguf-gpt4all.md

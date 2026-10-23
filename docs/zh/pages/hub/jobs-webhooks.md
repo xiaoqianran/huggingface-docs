@@ -56,5 +56,5 @@ Webhook 使用以下环境变量触发作业：
 
 您可以在 [⟦T20⟧ Webhooks documentation](https://huggingface.co/docs/huggingface_hub/en/guides/webhooks) 中找到有关 webhook 的更多信息。
 
-### 拥抱人脸数据集上传决策指南
-https://huggingface.co/docs/hub/datasets-upload-guide-llm.md
+### 如何使用 Okta 配置 OIDC SSO
+https://huggingface.co/docs/hub/security-sso-okta-oidc.md

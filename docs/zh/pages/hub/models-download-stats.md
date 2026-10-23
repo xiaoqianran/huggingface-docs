@@ -64,5 +64,5 @@ filter: [
 
 这些作为原始日志提供，因为大多数组织都希望应用自己的自定义规则。
 
-### 硬件
-https://huggingface.co/docs/hub/hardware.md
+### 容器镜像
+https://huggingface.co/docs/hub/container-images.md

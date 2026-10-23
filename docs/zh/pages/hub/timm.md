@@ -2,7 +2,7 @@
 
 # 在 Hugging Face 中使用 timm
 
-`timm`，也称为 [pytorch-image-models](https://github.com/rwightman/pytorch-image-models)，是最先进的 PyTorch 图像模型、预训练权重以及用于训练、推理和验证的实用脚本的开源集合。
+`timm`, also known as [pytorch-image-models](https://github.com/rwightman/pytorch-image-models), is an open-source collection of state-of-the-art PyTorch image models, pretrained weights, and utility scripts for training, inference, and validation.
 
 本文档重点介绍 Hugging Face Hub 中的 `timm` 功能，而不是 `timm` 库本身。有关`timm`库的详细信息，请访问[its documentation](https://huggingface.co/docs/timm)。
 
@@ -16,7 +16,7 @@ Hub 上的所有型号都具有几个有用的功能：
 
 ## 使用 Hub 中的现有模型
 
-只要安装了`timm`，Hugging Face Hub 中的任何`timm`模型都可以通过一行代码加载！从 Hub 选择模型后，请将前缀为 `hf-hub:` 的模型 ID 传递给 `timm` 的 `create_model` 方法来下载并实例化模型。
+只要安装了 `timm`，Hugging Face Hub 中的任何 `timm` 模型都可以通过一行代码加载！ Once you've selected a model from the Hub, pass the model's ID prefixed with `hf-hub:` to `timm`'s `create_model` method to download and instantiate the model.
 
 ```py
 import timm
@@ -138,5 +138,5 @@ model_reloaded = timm.create_model(
 * [timmdocs](https://timm.fast.ai) [Aman Arora](https://github.com/amaarora) 提供的附加文档。
 * [Getting Started with PyTorch Image Models (timm): A Practitioner’s Guide](https://towardsdatascience.com/getting-started-with-pytorch-image-models-timm-a-practitioners-guide-4e77b4bf9055) by [Chris Hughes](https://github.com/Chris-hughes10)。
 
-### 审核日志
-https://huggingface.co/docs/hub/audit-logs.md
+### 数据设计师
+https://huggingface.co/docs/hub/datasets-data-designer.md

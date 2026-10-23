@@ -84,7 +84,7 @@ zenml connect --url '<YOUR_HF_SPACES_DIRECT_URL>' --username='default' --passwor
 您还可以使用浏览器中的直接 URL 将 ZenML 仪表板用作
 全屏应用程序（即没有 Hugging Face Spaces 包装器）。> [!警告]
 > 从 Hugging Face 内部查看时，ZenML 仪表板当前无法工作 
-> 网页（即包含在主 `https://huggingface.co/...` 网站中）。这是在 
+> 网页（即包含在主`https://huggingface.co/...`网站中）。这是在 
 > 说明 ZenML 和 Hugging Face 之间处理 cookie 的方式存在限制。 
 > 您**必须**从“直接 URL”查看仪表板（见上文）。
 
@@ -151,5 +151,5 @@ example](https://github.com/zenml-io/zenml/tree/main/examples/quickstart)
 
 如果您有任何建议或需要其他任何不属于的具体支持
 工作中，请[join the ZenML Slack community](https://zenml.io/slack-invite/)
-我们很乐意为您提供帮助！### 集线器本地缓存
-https://huggingface.co/docs/hub/local-cache.md
+我们很乐意为您提供帮助！### DDUF
+https://huggingface.co/docs/hub/dduf.md

@@ -1,6 +1,6 @@
 <!-- huggingface-docs: machine-translated zh-CN from English source -->
 
-# SQL 控制台：在浏览器中查询 Hugging Face 数据集
+# SQL Console：在浏览器中查询拥抱人脸数据集
 
 您可以使用 SQL 控制台在浏览器中对数据集运行 SQL 查询。 SQL 控制台由 [DuckDB](https://duckdb.org/) WASM 提供支持，完全在浏览器中运行。您可以从 Data Studio 访问 SQL 控制台。
 
@@ -22,7 +22,7 @@
 
 ## 示例
 
-### 过滤SQL 控制台使过滤数据集变得非常容易。例如，如果要过滤 `SkunkworksAI/reasoning-0.01` 数据集以获取推理长度至少为 10 的指令和响应，则可以使用以下查询：
+### 过滤SQL 控制台使过滤数据集变得非常容易。 For example, if you want to filter the `SkunkworksAI/reasoning-0.01` dataset for instructions and responses with a reasoning length of at least 10, you can use the following query:
 
     
     
@@ -34,7 +34,7 @@ FROM train
 WHERE LENGTH(reasoning_chains) > 10;
 ```
 
-### Histogram
+### 直方图
 
 许多数据集作者选择包含有关数据集中数据分布的统计数据。使用 DuckDB `histogram` 函数，我们可以绘制列值的直方图。
 
@@ -49,7 +49,7 @@ WHERE LENGTH(reasoning_chains) > 10;
 from histogram(train, Rating)
 ```
 
-### Regex Matching
+### 正则表达式匹配
 
 DuckDB 最强大的功能之一是对正则表达式的深度支持。您可以使用 `regexp` 函数来匹配数据中的模式。
 
@@ -65,7 +65,7 @@ DuckDB 最强大的功能之一是对正则表达式的深度支持。您可以�
 SELECT *
 FROM train
 WHERE regexp_matches(model_answer, '```')
-LIMIT 10;
+限制 10；
 ```
 
 ### Saved Queries and Embeds API
@@ -144,5 +144,5 @@ Leakage detection is the process of identifying whether data in a dataset is pre
         其他 0
     END AS 重叠百分比
 FROM 重叠行数、总唯一行数；
-````### 古夫
-https://huggingface.co/docs/hub/gguf.md
+````### 在 Hugging Face 中使用 spaCy
+https://huggingface.co/docs/hub/spacy.md

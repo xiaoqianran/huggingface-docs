@@ -21,7 +21,7 @@
 | BSD 2 条款“简化”许可证 | `bsd-2-clause` |
 | BSD 3 条款“新”或“修订”许可证 | `bsd-3-clause` |
 | BSD 3 条款明确许可证 | `bsd-3-clause-clear` |
-|数据计算使用协议 | `c-uda` |
+|数据计算使用协议| `c-uda` |
 |知识共享许可系列 | `cc` ||知识共享零 v1.0 通用 | `cc0-1.0` |
 |知识共享归属2.0 | `cc-by-2.0` |
 |知识共享归属 2.5 | `cc-by-2.5` |
@@ -86,5 +86,5 @@
 
 如果是 `license: other`，请将许可证文本添加到存储库内的 `LICENSE` 文件中（或联系我们将您使用的许可证添加到此列表中），并在 `license_name` 中为其设置名称。
 
-### 代理
-https://huggingface.co/docs/hub/agents.md
+### 适度
+https://huggingface.co/docs/hub/moderation.md

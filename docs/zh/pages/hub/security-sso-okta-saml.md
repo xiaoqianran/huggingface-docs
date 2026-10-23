@@ -34,7 +34,7 @@ URL 如下所示：`https://huggingface.co/organizations/[organizationIdentifier
 
 ## 步骤 3：完成 Hugging Face 上的配置
 
-在 Okta 应用程序中的“登录/设置/更多详细信息”下，找到以下字段：
+在 Okta 应用程序的“登录/设置/更多详细信息”下，找到以下字段：
 
 - 登录网址
 - 公共证书
@@ -68,5 +68,5 @@ SAML 选择器附近的绿色复选标记将证明测试成功。
 
 启用后，您组织的成员必须完成 [How it works](./security-sso-basic#how-it-works) 部分中描述的 SSO 身份验证流程。
 
-### 在拥抱脸部时使用句子转换器
-https://huggingface.co/docs/hub/sentence-transformers.md
+### 流数据集
+https://huggingface.co/docs/hub/datasets-streaming.md

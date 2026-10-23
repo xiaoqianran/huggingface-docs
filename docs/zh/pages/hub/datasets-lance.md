@@ -171,7 +171,7 @@ neighbors = ds.scanner(
 > [!注意]
 > 设置较大的 `k` 或 `nprobes` 值，或一次发送大量查询可能会达到 Hub 速率限制。对于大量使用，请在本地下载数据集（或其子集）并将 Lance 指向本地路径以避免限制。
 
-## 数据集演化Lance 最强大的功能之一是灵活、零成本的数据演化，这意味着您可以轻松添加派生列，**无需**重写原始表。对于包含大量大 blob 的非常大的表，I/O 节省可能非常显着。如果您正在试验 ML/AI 工程任务的数据，并且经常发现自己添加新功能、嵌入或派生元数据，则此功能非常相关。
+## 数据集演变Lance 最强大的功能之一是灵活、零成本的数据演化，这意味着您可以轻松添加派生列，**无需**重写原始表。对于包含大量大 blob 的非常大的表，I/O 节省可能非常显着。如果您正在试验 ML/AI 工程任务的数据，并且经常发现自己添加新功能、嵌入或派生元数据，则此功能非常相关。
 
 下面的示例展示了如何添加派生的 `moderation_label` 列，根据现有分数列将图像标记为 `NSFW`。进行此更改时，回填新列**仅**写入新列数据，而不会触及原始图像 blob 或其他列中的数据。您还可以选择仅添加新列架构而不回填任何数据。
 
@@ -240,7 +240,7 @@ tensor = decoder[0]  # uint8 tensor of shape [C, H, W]
 
 有关高效解码视频的更多功能，请参阅[torchcodec docs](https://docs.pytorch.org/torchcodec/stable/generated/torchcodec.decoders.VideoDecoder.html)。
 
-此外，您还可以查看[Lance documentation](https://lance.org/examples/python/clip_training/)，了解更多将图像数据加载到`torchvision`以训练您自己的图像模型的示例。
+此外，您还可以查看[Lance documentation](https://lance.org/examples/python/clip_training/)以获取更多将图像数据加载到`torchvision`中以训练您自己的图像模型的示例。
 
 ## 探索更多 Lance 数据集Lance 是一种开放格式，原生支持多模式 blob 以及传统表格数据。
 通过 Hugging Face Hub 集成，您可以轻松处理图像、音频、视频、文本、嵌入和
@@ -250,5 +250,5 @@ tensor = decoder[0]  # uint8 tensor of shape [C, H, W]
 并与社区中的其他人分享您自己的 Lance 数据集！
 您可以访问[lance.org](https://lance.org/integrations/huggingface/)获取更多代码片段和示例。
 
-### 纸页
-https://huggingface.co/docs/hub/paper-pages.md
+### 极地
+https://huggingface.co/docs/hub/datasets-polars.md

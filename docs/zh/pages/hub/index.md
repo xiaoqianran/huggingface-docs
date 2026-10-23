@@ -136,7 +136,7 @@ Hugging Face Hub 托管基于 Git 的存储库，这些存储库是版本控制�
 
 ## 型号
 
-您可以发现和使用社区共享的数十万个开源 ML 模型。为了促进负责任的模型使用和开发，模型存储库配备了[Model Cards](./model-cards)，以告知用户每个模型的局限性和偏差。可以包含有关任务、语言和评估结果等信息的附加[metadata](./model-cards#model-card-metadata)，如果存储库包含[TensorBoard traces](./tensorboard)，甚至还可以添加训练指标图表。向您的模型添加 [**inference widget**](./models-widgets) 也很容易，让任何人都可以直接在浏览器中使用该模型！对于编程访问，[**Inference Providers**](./models-inference) 提供了无服务器 API。
+您可以发现和使用社区共享的数十万个开源 ML 模型。为了促进负责任的模型使用和开发，模型存储库配备了[Model Cards](./model-cards)，以告知用户每个模型的局限性和偏差。可以包含有关任务、语言和评估结果等信息的附加[metadata](./model-cards#model-card-metadata)，如果存储库包含[TensorBoard traces](./tensorboard)，甚至还可以添加训练指标图表。向您的模型添加 [**inference widget**](./models-widgets) 也很容易，任何人都可以直接在浏览器中使用该模型！对于编程访问，[**Inference Providers**](./models-inference) 提供了无服务器 API。
 
 要将模型上传到 Hub，或下载模型并将其集成到您的工作中，请探索 [**Models documentation**](./models)。您还可以选择支持 Hub 的[**over a dozen libraries**](./models-libraries)，例如🤗 Transformers、Asteroids 和 ESPnet。
 
@@ -146,7 +146,7 @@ Hugging Face Hub 托管基于 Git 的存储库，这些存储库是版本控制�
 
 ## 空格
 
-[Spaces](https://huggingface.co/spaces) 是在 Hub 上托管 ML 演示应用程序的简单方法。它们允许您构建 ML 产品组合、在会议上或向利益相关者展示您的项目，以及与 ML 生态系统中的其他人员协作。我们目前支持两个很棒的 Python SDK（**[Gradio](https://gradio.app/)** 和 **[Streamlit](./spaces-sdks-streamlit)**），让您在几分钟内构建很酷的应用程序。用户还可以创建静态空间，即简单的 HTML/CSS/JavaScript 页面，或部署任何基于 Docker 的应用程序。
+[Spaces](https://huggingface.co/spaces) 是在 Hub 上托管 ML 演示应用程序的简单方法。它们允许您构建 ML 产品组合、在会议上或向利益相关者展示您的项目，以及与 ML 生态系统中的其他人员协作。We currently support two awesome Python SDKs (**[Gradio](https://gradio.app/)** and **[Streamlit](./spaces-sdks-streamlit)**) that let you build cool apps in a matter of minutes.用户还可以创建静态空间，即简单的 HTML/CSS/JavaScript 页面，或部署任何基于 Docker 的应用程序。
 
 如果您的演示需要 GPU 能力，请尝试[**ZeroGPU**](./spaces-zerogpu)：它仅在需要时实时动态提供 NVIDIA RTX Pro 6000 Blackwell GPU。
 
@@ -169,5 +169,5 @@ Hugging Face Hub 支持安全和访问控制功能，让您放心，您的代码
 - 使用 GPG 签署提交
 - 恶意软件扫描
 
-### 空间概述
-https://huggingface.co/docs/hub/spaces-overview.md
+### Spaces 开发模式：Spaces 中的无缝开发
+https://huggingface.co/docs/hub/spaces-dev-mode.md

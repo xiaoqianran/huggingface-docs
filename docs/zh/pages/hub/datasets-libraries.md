@@ -61,7 +61,7 @@ Hugging Face 上的 Parquet 文件经过优化，可提高存储效率、加速�
 | [TRL](https://huggingface.co/docs/trl) |通过强化学习（SFT、DPO、GRPO）培训法学硕士 | ⚠️* |
 | [Unsloth](https://docs.unsloth.ai) |快速 LLM 微调（加速 2 倍，内存减少 70%）| ✅ |
 
-_* SFTTrainer 和 DPOTrainer 支持流式传输； GRPOTrainer 尚不支持流式输入_
+_* SFTTrainer 和 DPOTrainer 支持流式传输； GRPPOTrainer 尚不支持流式输入_
 
 ### 从集线器流式传输
 
@@ -95,9 +95,9 @@ _* SFTTrainer 和 DPOTrainer 支持流式传输； GRPOTrainer 尚不支持流�
 
 您可以找到有关从 Hub [here](https://huggingface.co/docs/hub/datasets-downloading) 加载数据的更多信息。
 
-#### 通过数据集查看器和 Parquet 文件集成Hub 的数据集查看器和 Parquet 转换系统提供了一种与数据集集成的标准化方法，无论其原始格式如何。该基础设施是集线器和外部库之间的可靠集成层。
+#### 通过数据集查看器和 Parquet 文件集成The Hub's dataset viewer and Parquet conversion system provide a standardized way to integrate with datasets, regardless of their original format.该基础设施是集线器和外部库之间的可靠集成层。
 
-如果数据集尚未采用 Parquet 格式，则 Hub 会自动将每个数据集的前 5GB 转换为 Parquet 格式，以支持数据集查看器并提供一致的访问模式。这种标准化为库集成提供了多种好处：
+If the dataset is not already in Parquet, the Hub automatically converts the first 5GB of every dataset to Parquet format to power the dataset viewer and provide consistent access patterns.这种标准化为库集成提供了多种好处：
 
 - 无论原始格式如何，一致的数据访问模式
 - 通过 Hub 的数据集查看器进行内置数据集预览和探索。数据集查看器还可以作为 iframe 嵌入到您的应用程序中，从而轻松提供丰富的数据集预览。有关嵌入查看器的更多信息，请参阅[dataset viewer embedding documentation](https://huggingface.co/docs/hub/en/datasets-viewer-embed)。
@@ -185,5 +185,5 @@ api.upload_folder(
 
 有关集成的技术问题，请随时通过 datasets@huggingface.co 联系数据集团队。
 
-### 空间设置
-https://huggingface.co/docs/hub/spaces-settings.md
+### 自定义 Python 空间
+https://huggingface.co/docs/hub/spaces-sdks-python.md

@@ -24,7 +24,7 @@
 hf jobs run ubuntu echo 'Hello from the cloud!'
 ```
 
-作业拉取映像，运行命令并退出。要使用映像已提供的软件，请选择附带该映像的映像。例如，使用 PyTorch 图像在 GPU 上创建张量并将其值加倍：
+该作业拉取映像，运行命令并退出。要使用映像已提供的软件，请选择附带该映像的映像。例如，使用 PyTorch 图像在 GPU 上创建张量并将其值加倍：
 
 ```bash
 hf jobs run --flavor t4-small --timeout 5m \
@@ -39,7 +39,7 @@ hf jobs run --flavor t4-small --timeout 5m \
 
 ### 使用输入和输出文件运行您自己的脚本
 
-由 `hf jobs run` 运行的脚本必须在作业中可用。您可以使用图像中包含的脚本，或[mount a local directory](./jobs-configuration#local-directories)。例如，假设您有一个使用 `huggingface/trl` 图像中的 Transformers 和 PyTorch 包的推理脚本。您的本地 `work` 目录包含 `inference.py` 和 `inputs.jsonl`，并且脚本接受 `--input` 和 `--output` 路径。为结果创建 [Storage Bucket](./storage-buckets) 后，使用以下命令运行它：
+由 `hf jobs run` 运行的脚本必须在作业中可用。您可以使用图像中包含的脚本，或[mount a local directory](./jobs-configuration#local-directories)。例如，假设您有一个使用 `huggingface/trl` 图像中的 Transformers 和 PyTorch 包的推理脚本。您的本地 `work` 目录包含 `inference.py` 和 `inputs.jsonl`，并且脚本接受 `--input` 和 `--output` 路径。为结果创建 [Storage Bucket](./storage-buckets) 后，运行它：
 
 ```bash
 hf jobs run --flavor t4-small --timeout 10m \
@@ -49,7 +49,7 @@ hf jobs run --flavor t4-small --timeout 10m \
     -- python /work/inference.py --input /work/inputs.jsonl --output /output/results.jsonl
 ```
 
-将 `YOUR_USERNAME` 替换为存储桶所有者的命名空间。 CLI上传本地目录并将其挂载到`/work`。您的脚本读取那里的输入并将结果写入安装在 `/output` 的存储桶，在作业完成后它们仍然可用。使命令的参数、硬件和超时适应您的脚本；其他输入和输出选项请参见[Volumes](./jobs-configuration#volumes)。
+将 `YOUR_USERNAME` 替换为存储桶所有者的命名空间。 CLI上传本地目录并将其挂载到`/work`。您的脚本读取那里的输入并将结果写入安装在 `/output` 的存储桶，在作业完成后它们仍然可用。根据您的脚本调整命令的参数、硬件和超时；其他输入和输出选项请参见[Volumes](./jobs-configuration#volumes)。
 
 ## 使用带有 uv 的图像
 
@@ -57,7 +57,7 @@ hf jobs run --flavor t4-small --timeout 10m \
 
 环境分为三个部分：- **镜像中的系统工具和库**，例如`ffmpeg`或CUDA工具包，根据镜像的配置可供作业使用。
 - **镜像中安装的Python包**属于其现有的Python环境。
-- **脚本依赖项。** 使用 [inline dependency header](https://docs.astral.sh/uv/guides/scripts/#declaring-script-dependencies)，uv 将您的 Python 包安装在隔离环境中。映像中预安装的软件包不会自动可用。
+- **脚本依赖项。** 使用 [inline dependency header](https://docs.astral.sh/uv/guides/scripts/#declaring-script-dependencies)，uv 将您的 Python 包安装在隔离的环境中。映像中预安装的软件包不会自动可用。
 
 例如，vLLM 脚本可能需要带有 CUDA 工具的映像，同时使用 uv 安装其自己声明的 Python 依赖项。系统工具仍然必须与 uv 安装的软件包兼容。
 
@@ -173,5 +173,5 @@ RuntimeError: Could not find nvcc and default cuda_home='/usr/local/cuda' doesn'
 hf jobs uv run --image vllm/vllm-openai --flavor l4x4 -s HF_TOKEN generate-responses.py
 ```uv 仍然会单独解析并安装您的脚本依赖项。该映像提供系统工具，但不保证解析的 Python 包与其兼容。
 
-### 图书馆
-https://huggingface.co/docs/hub/datasets-libraries.md
+### 小部件示例
+https://huggingface.co/docs/hub/models-widgets-examples.md

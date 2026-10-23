@@ -72,5 +72,5 @@ push_to_hf(
 * AllenNLP [website](https://allenai.org/allennlp)。
 * AllenNLP [repository](https://github.com/allenai/allennlp)。
 
-### 集线器 API 端点
-https://huggingface.co/docs/hub/api.md
+### 您的第一个 Docker 空间：使用 T5 生成文本
+https://huggingface.co/docs/hub/spaces-sdks-docker-first-demo.md

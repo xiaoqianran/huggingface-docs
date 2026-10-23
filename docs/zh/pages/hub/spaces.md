@@ -36,5 +36,7 @@
 
 如果您对基础设施挑战、自定义演示、高级 GPU 或其他内容感兴趣，请发送电子邮件至 **网站 Huggingface.co** 与我们联系。
 
-您也可以标记我们[on Twitter](https://twitter.com/huggingface)！ 🤗### 如何使用 Microsoft Entra ID (Azure AD) 配置 SAML SSO
-https://huggingface.co/docs/hub/security-sso-azure-saml.md
+您也可以标记我们[on Twitter](https://twitter.com/huggingface)！ 🤗
+
+### 视频数据集
+https://huggingface.co/docs/hub/datasets-video.md

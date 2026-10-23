@@ -91,13 +91,13 @@ hf_oauth_authorized_org:
 
 但某些范围（例如 `read-repos` 或 `read-billing`）也适用于组织。
 
-用户在授权应用程序时可以选择向哪些组织授予访问权限。如果您需要访问特定组织，可以将 `orgIds=ORG_ID` 作为查询参数添加到 OAuth 授权 URL。您必须将 `ORG_ID` 替换为组织 ID，该 ID 可在 userinfo 响应的 `organizations.sub` 字段中找到。
+用户在授权应用程序时可以选择向哪些组织授予访问权限。 If you require access to a specific organization, you can add `orgIds=ORG_ID` as a query parameter to the OAuth authorization URL. You have to replace `ORG_ID` with the organization ID, which is available in the `organizations.sub` field of the userinfo response.
 
 ## 将按钮添加到您的空间
 
-现在，您已掌握向您的空间添加“使用 HF 登录”按钮的所有信息。一些库（[Python](https://github.com/lepture/authlib)、[NodeJS](https://github.com/panva/node-openid-client)）可以帮助您实现 OpenID/OAuth 协议。
+You now have all the information to add a "Sign-in with HF" button to your Space. Some libraries ([Python](https://github.com/lepture/authlib), [NodeJS](https://github.com/panva/node-openid-client)) can help you implement the OpenID/OAuth protocol.
 
-Gradio 和 Huggingface.js 还提供**内置支持**，使得使用 HF 按钮实现登录变得轻而易举；您可以通过[gradio](https://www.gradio.app/guides/sharing-your-app#o-auth-login-via-hugging-face)和[huggingface.js](https://huggingface.co/docs/huggingface.js/hub/README#oauth-login)查看相关指南。
+Gradio and huggingface.js also provide **built-in support**, making implementing the Sign-in with HF button a breeze;您可以通过[gradio](https://www.gradio.app/guides/sharing-your-app#o-auth-login-via-hugging-face)和[huggingface.js](https://huggingface.co/docs/huggingface.js/hub/README#oauth-login)查看相关指南。
 
 基本上，您需要：- 将用户重定向到`https://huggingface.co/oauth/authorize?redirect_uri={REDIRECT_URI}&scope=openid%20profile&client_id={CLIENT_ID}&state={STATE}`，其中`STATE`是一个随机字符串，您稍后需要验证。
 - 处理`/auth/callback`或`/login/callback`（或您自己的自定义回调URL）上的回调并验证`state`参数。
@@ -129,5 +129,5 @@ if (!oauthResult) {
 console.log(oauthResult);
 ```
 
-### 网络安全
-https://huggingface.co/docs/hub/enterprise-network-security.md
+### 拥抱脸部 MCP 服务器
+https://huggingface.co/docs/hub/agents-mcp.md

@@ -13,7 +13,7 @@
 1. 命令行参数：运行 Streamlit 应用程序时，可以将选项指定为命令行参数。这是示例命令：
    ```shell
    streamlit run app.py --server.enableXsrfProtection false
-   ```2. 配置文件：或者，您可以在 Streamlit 配置文件`.streamlit/config.toml` 中指定该选项。你可以这样写：
+   ```2. 配置文件：或者，您可以在 Streamlit 配置文件`.streamlit/config.toml` 中指定选项。你可以这样写：
    ```toml
    [server]
    enableXsrfProtection = false
@@ -22,5 +22,5 @@
 > [!提示]
 > 当您使用 Streamlit SDK 时，您无需担心这一点，因为 SDK 会为您做这件事。
 
-### 3D 数据集
-https://huggingface.co/docs/hub/datasets-3d.md
+### 管理组织
+https://huggingface.co/docs/hub/organizations-managing.md

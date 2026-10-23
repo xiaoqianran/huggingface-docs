@@ -19,7 +19,7 @@ Hub 提供两种类型的存储：基于 Git 的**存储库**，用于版本化�
 |版本控制 |完整的 Git 历史记录 |无（可变，就地覆盖）|
 |类型 |模型、数据集、空间 |独立桶|
 |主要用例 |发布成品 |工作存储/中间数据|
-|运营| Hub API、Git 推/拉 |类似 S3 `sync`、`cp`、`rm` |
+|运营| Hub API、Git 推/拉 |类 S3 `sync`、`cp`、`rm` |
 |重复数据删除 | Xet 块级 | Xet 块级 |
 |请求请求 |是的 |没有 |
 |模型/数据集卡|是的 |否（但呈现简单的自述文件）|
@@ -149,7 +149,7 @@ hf buckets list julien-c/my-training-bucket --tree -h -R
 ...
 ```
 
-## 管理文件您可以直接从 Hub 上的存储桶页面上传和下载文件，也可以使用 CLI 和 Python API 进行编程访问。使用 `hf://buckets/` 路径（例如 `hf://buckets/username/my-bucket/path/to/file`）引用存储桶文件。 `hf buckets cp` 命令处理单个文件传输，而 `hf buckets sync` 更适合目录。所有命令都双向工作——本地到远程和远程到本地。
+## 管理文件您可以直接从 Hub 上的存储桶页面上传和下载文件，或使用 CLI 和 Python API 进行编程访问。使用 `hf://buckets/` 路径（例如 `hf://buckets/username/my-bucket/path/to/file`）引用存储桶文件。 `hf buckets cp` 命令处理单个文件传输，而 `hf buckets sync` 更适合目录。所有命令都双向工作——本地到远程和远程到本地。
 
 如果您的数据已经存在于模型、数据集或空间存储库（或另一个存储桶）中，您可以使用 `hf buckets cp` 将其复制到**服务器端** — 无需下载或重新上传。参见[Copying files between repos and buckets](#copying-files-between-repos-and-buckets)。
 
@@ -181,7 +181,7 @@ batch_bucket_files(
 )
 ```
 
-更多上传选项（原始字节、组合上传+删除等），请参阅[⟦T37⟧ upload guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#upload-files)。
+更多上传选项（原始字节、组合上传+删除等），请参见[⟦T37⟧ upload guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#upload-files)。
 
 ### 下载文件您可以通过单击直接从 Hub 上的存储桶页面下载各个文件。对于编程访问，下载镜像了上传语法——交换 `hf buckets cp` 中的源和目标。您还可以使用 `-` 作为目标将文件流式传输到标准输出，这样您就可以将存储桶内容直接通过管道传输到其他工具中。
 
@@ -247,7 +247,7 @@ sync_bucket("./data", "hf://buckets/username/my-bucket/data")
 
 # Download from a bucket to a local directory
 sync_bucket("hf://buckets/username/my-bucket/data", "./data")
-````sync` 命令支持过滤（`--include`、`--exclude`）、比较模式（`--ignore-times`、`--existing`）以及用于在执行操作之前检查操作的**计划和应用**工作流程。有关完整的选项集，请参阅[⟦T56⟧ sync guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#sync-directories)。
+```The `sync` command supports filtering (`--include`, `--exclude`), comparison modes (`--ignore-times`, `--existing`), and a **plan-and-apply** workflow to review operations before executing them.有关完整的选项集，请参阅[⟦T56⟧ sync guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#sync-directories)。
 
 ### 删除文件
 
@@ -276,7 +276,7 @@ batch_bucket_files("username/my-bucket", delete=["old-model.bin", "logs/debug.lo
 
 ### 在存储库和存储桶之间复制文件
 
-您可以将 [Xet](./xet/index) 跟踪的文件从任何存储库（模型、数据集、空间）或存储桶复制到目标存储桶，而无需重新上传数据。副本是服务器端的：仅迁移 Xet 内容哈希值，因此即使非常大的文件也会立即复制，这要归功于 [chunk-level deduplication](./xet/deduplication)。
+You can copy [Xet](./xet/index)-tracked files from any repository (model, dataset, Space) or bucket into a destination bucket without re-uploading the data.副本是服务器端的：仅迁移 Xet 内容哈希值，因此即使非常大的文件也会立即复制，这要归功于 [chunk-level deduplication](./xet/deduplication)。
 
 > [!注意]
 > 仅 Xet 跟踪的文件会在服务器之间复制。小的非 Xet 文件（例如配置文件和自述文件）会自动下载并重新上传。服务器端复制还要求源和目标位于同一存储区域。
@@ -350,11 +350,11 @@ data: {"cursor":"...","changes":[{"path":"data/train.txt","op":"add","size":20,"
 - 多区域设置，管道的不同部分在不同的云中运行
 - 向全球许多消费者分发大型文物
 
-请参阅[hf.co/storage](https://huggingface.co/storage)了解可用区域以及启用预热的详细信息。
+有关可用区域以及启用预热的详细信息，请参阅[hf.co/storage](https://huggingface.co/storage)。
 
-## 用例### Training checkpoints and logs
+## 用例### 训练检查点和日志
 
-运行训练作业时（例如，通过[Jobs](./jobs)），将检查点和日志保存到存储桶中。与 Git 存储库不同，您可以覆盖最新的检查点，而无需累积版本历史记录，并且 `sync` 确保仅传输更改的数据。
+When running training jobs (e.g., via [Jobs](./jobs)), save checkpoints and logs to a bucket.与 Git 存储库不同，您可以覆盖最新的检查点，而无需累积版本历史记录，并且 `sync` 确保仅传输更改的数据。
 
 ```bash
 # After each evaluation step, sync checkpoints to a bucket
@@ -363,15 +363,15 @@ hf sync ./checkpoints hf://buckets/my-org/training-run-42/checkpoints
 
 由于存储桶是基于[Xet](./xet/index)构建的，因此模型大部分被冻结的连续检查点受益于块级重复数据删除。仅上传更改的块。
 
-### Data processing pipelines
+### 数据处理管道
 
-存储桶充当数据处理工作流的暂存区域。处理原始数据，将中间输出写入存储桶，然后在管道完成时将最终工件提升到版本化的[Dataset](./datasets)存储库。这使您的版本化存储库保持干净，同时为您的管道提供快速的可变存储。
+Buckets serve as staging areas for data processing workflows.处理原始数据，将中间输出写入存储桶，然后在管道完成时将最终工件提升到版本化的[Dataset](./datasets)存储库。 This keeps your versioned repo clean while giving your pipeline fast mutable storage.
 
-请注意，在不重新上传的情况下将数据从存储桶传输到存储库尚不可用，但已在路线图上。
+Note that transferring data from a Bucket to a repository without reuploading is not yet available, but is on the roadmap.
 
-### Agentic storage人工智能代理需要临时存储来存储中间结果、工具输出、痕迹和工作内存。存储桶为这些数据提供了 Hub 原生位置：快速可变访问，无需 Git 开销，标准 Hugging Face 权限，并且可通过 Hub 生态系统中的 `hf://buckets/` 路径进行寻址。
+### 代理存储人工智能代理需要临时存储来存储中间结果、工具输出、痕迹和工作内存。存储桶为这些数据提供了 Hub 原生位置：快速可变访问，无需 Git 开销，标准 Hugging Face 权限，并且可通过 Hub 生态系统中的 `hf://buckets/` 路径进行寻址。
 
-### Rolling backups
+### 滚动备份
 
 存储桶非常适合维护滚动备份。使用基于 Git 的 [Dataset](./datasets) 存储库，删除过时的文件并不会释放存储空间 - Git 历史记录会保留每个过去的版本，因此您需要压缩提交或重写历史记录才能实际回收空间。使用存储桶，旧文件一旦删除就会真正消失，您只需为当前存储的内容付费。
 
@@ -392,9 +392,9 @@ buckets:
 
 有关更多详细信息，请参阅模型卡文档中的[Specifying a bucket](./model-cards#specifying-a-bucket)。
 
-## 定价存储桶根据存储的数据量进行计费，并采用简单的按 TB 定价。企业计划受益于基于重复数据删除的计费，其中跨文件共享的块直接减少了计费占用空间。
+## 定价存储桶根据存储的数据量进行计费，并采用简单的按 TB 定价。企业计划受益于基于重复数据删除的计费，其中跨文件共享块直接减少计费占用空间。
 
-至于其他存储库，存储桶可以自由创建，并且有免费的存储空间。 For usage above the [free tier](https://huggingface.co/docs/hub/storage-limits), see [hf.co/storage](https://huggingface.co/storage).有关一般计费信息，请参阅 [Billing](./billing) 文档。
+As for other repositories, buckets are free to create and have a free storage allowance.对于[free tier](https://huggingface.co/docs/hub/storage-limits)以上的用法，请参阅[hf.co/storage](https://huggingface.co/storage)。有关一般计费信息，请参阅 [Billing](./billing) 文档。
 
-### 编程式用户访问控制管理
-https://huggingface.co/docs/hub/programmatic-user-access-control.md
+### 在空间中使用 OpenCV
+https://huggingface.co/docs/hub/spaces-using-opencv.md

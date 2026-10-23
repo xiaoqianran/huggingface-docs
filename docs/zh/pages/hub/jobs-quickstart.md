@@ -22,7 +22,7 @@
 >>> hf jobs uv run python -c 'print("Hello from the cloud!")'
 ```
 
-`hf jobs uv run` 在 Hugging Face 基础设施上的 Python 环境中运行命令。它默认使用 CPU 并将作业日志传输到您的终端。启动后，你会看到：
+`hf jobs uv run` 在 Hugging Face 基础设施上的 Python 环境中运行该命令。它默认使用 CPU 并将作业日志传输到您的终端。启动后，你会看到：
 
 ```text
 Hello from the cloud!
@@ -131,5 +131,5 @@ CLI 会自动上传您编辑的脚本。如果您将其保存在其他地方，�
 - [Run commands in Docker images](./jobs-configuration#docker-jobs)。
 - [Use Jobs from a coding agent](./jobs-examples#coding-agent-skills)。
 
-### 存储桶
-https://huggingface.co/docs/hub/storage-buckets.md
+### GGUF 在 LM Studio 中的使用
+https://huggingface.co/docs/hub/lmstudio.md

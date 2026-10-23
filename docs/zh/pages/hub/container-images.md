@@ -1,15 +1,15 @@
-<!-- huggingface-docs: translation failed; English fallback -->
+<!-- huggingface-docs: machine-translated zh-CN from English source -->
 
-# Container Images
+# 容器镜像
 
-Container Images are a repo type on the Hugging Face Hub for Docker and other [OCI](https://opencontainers.org/) images. The Hugging Face container registry, `cr.hf.co`, stores images on the [Xet](./xet/index) storage backend. Push and pull them with [`hf image`](#pushing-and-pulling-with-hf-image), the recommended client; standard clients such as Docker, Podman, crane, skopeo, ORAS and Helm work too.
+容器镜像是 Hugging Face Hub 上用于 Docker 和其他 [OCI](https://opencontainers.org/) 镜像的存储库类型。 Hugging Face 容器注册表 `cr.hf.co` 将图像存储在 [Xet](./xet/index) 存储后端。使用推荐客户端[⟦T5⟧](#pushing-and-pulling-with-hf-image)推拉它们； Docker、Podman、crane、skopeo、ORAS 和 Helm 等标准客户端也可以工作。
 
-> [!NOTE]
-> Container Images are in private beta: [contact us](https://huggingface.co/contact/sales) to enable them for your organization.
+> [!注意]
+> 容器镜像处于私人测试版：[contact us](https://huggingface.co/contact/sales)，以便为您的组织启用它们。
 
-## Creating a Repository
+## 创建存储库
 
-Go to [huggingface.co/new-container](https://huggingface.co/new-container) and choose the organization, a name and the visibility. Or use the API:
+转到[huggingface.co/new-container](https://huggingface.co/new-container)并选择组织、名称和可见性。或者使用API：
 
 ```bash
 curl -X POST https://huggingface.co/api/containers/my-org/my-app \
@@ -18,11 +18,11 @@ curl -X POST https://huggingface.co/api/containers/my-org/my-app \
   -d '{"private": true}'
 ```
 
-Create the repository before pushing: a push to a missing one fails with `NAME_UNKNOWN`. Its page, `https://huggingface.co/containers/my-org/my-app`, lists its tags. Who can pull and push follows the repository's visibility and each member's role in the organization.
+在推送之前创建存储库：推送到缺失的存储库会失败，并显示 `NAME_UNKNOWN`。它的页面`https://huggingface.co/containers/my-org/my-app`列出了它的标签。谁可以拉动和推送取决于存储库的可见性以及每个成员在组织中的角色。
 
-## Pushing and Pulling with `hf image`
+## 使用 `hf image` 推拉
 
-[`hf image`](https://github.com/huggingface/hf-image), an extension of the `hf` CLI, only transfers the parts of each layer that changed since the previous version, resulting in a faster experience compared to other OCI clients.
+[⟦T9⟧](https://github.com/huggingface/hf-image)是`hf` CLI的扩展，仅传输自上一版本以来各层发生变化的部分，与其他OCI客户端相比，体验更快。
 
 ```bash
 hf extensions install hf-image
@@ -32,15 +32,13 @@ hf image push cr.hf.co/my-org/my-app:v2
 hf image pull cr.hf.co/my-org/my-app:v2
 ```
 
-It uses your Hugging Face [User Access Token](./security-tokens) (`read` to pull, `write` to push) and needs Docker with the [containerd image store](https://docs.docker.com/engine/storage/containerd/). Images pushed with `hf image` can be pulled by any client.
+它使用你的 Hugging Face [User Access Token](./security-tokens)（`read` 来拉，`write` 来推），并且需要 Docker 和 [containerd image store](https://docs.docker.com/engine/storage/containerd/)。使用 `hf image` 推送的图像可以由任何客户端拉取。由于 `hf image` 存储未压缩的图层，因此它推送的图像会获得与 `docker push` 不同的摘要。要保留 `docker push` 摘要，对于摘要固定的签名或部署，请使用 `hf image push --preserve-digests`。它比较慢：更改后的图层会被完整地推送和拉动，就像`docker push`一样。
 
-Because `hf image` stores layers uncompressed, the images it pushes get different digests than with `docker push`. To keep the `docker push` digests, for signatures or deployments pinned by digest, use `hf image push --preserve-digests`. It is slower: changed layers are then pushed and pulled in full, as with `docker push`.
+## 使用 Docker 和其他 OCI 客户端
 
-## Using Docker and Other OCI Clients
+虽然我们建议使用 `hf image`（请参阅上一节）来充分利用 [Xet backend](./xet/index)，但您也可以通过任何 OCI 客户端与注册表进行交互。
 
-While we recommend using `hf image` (see previous section) to take full advantage of the [Xet backend](./xet/index), you can also interact with the registry through any OCI client.
-
-Log in with your Hugging Face username and a [User Access Token](./security-tokens) as the password: `read` to pull, `write` to push. Public images can be pulled without logging in.
+使用您的 Hugging Face 用户名和 [User Access Token](./security-tokens) 作为密码登录：`read` 用于拉取，`write` 用于推送。无需登录即可拉取公共镜像。
 
 ```bash
 echo $HF_TOKEN | docker login cr.hf.co -u <username> --password-stdin
@@ -49,24 +47,22 @@ docker push cr.hf.co/my-org/my-app:v1
 docker pull cr.hf.co/my-org/my-app:v1
 ```
 
-Other OCI clients work the same way. Helm appends the chart name to the URL: `helm push mychart-0.1.0.tgz oci://cr.hf.co/my-org` pushes to `my-org/mychart`, which must exist beforehand.
+其他 OCI 客户端的工作方式相同。 Helm 将图表名称附加到 URL：`helm push mychart-0.1.0.tgz oci://cr.hf.co/my-org` 推送到 `my-org/mychart`，它必须事先存在。
 
-## Deleting Images
+## 删除图像
 
-With [`hf image`](#pushing-and-pulling-with-hf-image), remove an image's tags, then delete it by digest:
+使用[⟦T24⟧](#pushing-and-pulling-with-hf-image)，删除图像的标签，然后通过摘要删除它：
 
 ```bash
 hf image untag cr.hf.co/my-org/my-app:v1                # prints the image's digest
 hf image delete cr.hf.co/my-org/my-app@sha256:<digest>
 ```
 
-If something still references the image, such as another tag, the delete is refused and lists what to remove first. Layers that no other image uses are deleted later.
+如果某些内容仍然引用该图像，例如另一个标签，则删除将被拒绝并列出首先要删除的内容。没有其他图像使用的图层稍后会被删除。
 
-## Limits
+## 限制
 
-- Image names are `cr.hf.co/<namespace>/<name>`, in lowercase.
-- Layers up to 100 GB, manifests up to 4 MiB.
-- Tag lists can take a few seconds to show a new tag.
-
-### Using MLX at Hugging Face
-https://huggingface.co/docs/hub/mlx.md
+- 图像名称为 `cr.hf.co/<namespace>/<name>`，小写。
+- 层高达 100 GB，显示高达 4 MiB。
+- 标签列表可能需要几秒钟的时间才能显示新标签。### 在拥抱脸部时使用 Stanza
+https://huggingface.co/docs/hub/stanza.md

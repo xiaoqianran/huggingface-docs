@@ -40,7 +40,7 @@
 ### 如果您在 Spaces 中托管
 
 > [!提示]
-> 如果您将应用程序托管在 Spaces 上，那么流程将更容易实现（并直接内置到 Gradio 中）；检查我们的[Spaces OAuth guide](https://huggingface.co/docs/hub/spaces-oauth)。
+> 如果您将应用程序托管在 Spaces 上，那么流程将更容易实现（并且直接内置到 Gradio 中）；检查我们的[Spaces OAuth guide](https://huggingface.co/docs/hub/spaces-oauth)。
 
 ### 自动创建 oauth 应用程序Hugging Face 支持 CIMD 又名 [Client ID Metadata Documents](https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/)，它允许您以自动方式为您的网站创建 oauth 应用程序：
 
@@ -123,7 +123,7 @@ curl -X POST https://huggingface.co/oauth/token \
 - `write-endpoints`：管理用户的推理端点，包括创建和删除它们。包括 `read-endpoints` 访问权限。
 - `jobs`：运行[jobs](https://huggingface.co/docs/huggingface_hub/main/en/guides/jobs)
 - `webhooks`：管理[webhooks](https://huggingface.co/docs/huggingface_hub/main/en/guides/webhooks)
-- `write-discussions`：代表用户打开讨论和拉取请求，并与讨论互动（包括反应、发布/编辑评论、结束讨论等）。要在私有存储库上打开拉取请求，您还需要请求 `read-repos` 范围。
+- `write-discussions`：代表用户打开讨论和拉取请求，并与讨论互动（包括反应、发布/编辑评论、结束讨论等）。要在私有存储库上打开 Pull 请求，您还需要请求 `read-repos` 范围。
 
 所有其他信息均可在 [OpenID metadata](https://huggingface.co/.well-known/openid-configuration) 中找到。
 
@@ -267,7 +267,7 @@ curl -X POST "https://huggingface.co/oauth/token" \
 
 ### 错误响应
 
-|错误 |描述 |
+|错误|描述 |
 |--------|-------------|
 | `invalid_client` |客户端无权使用令牌交换，或应用程序未绑定组织 |
 | `invalid_grant` |在绑定的组织中找不到用户 |
@@ -294,5 +294,5 @@ urn:ietf:params:oauth:grant-type:token-exchange
 - [RFC 8693 - OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html)
 - [Audit Logs](./audit-logs)
 
-### 小部件
-https://huggingface.co/docs/hub/models-widgets.md
+### 门控模型
+https://huggingface.co/docs/hub/models-gate.md

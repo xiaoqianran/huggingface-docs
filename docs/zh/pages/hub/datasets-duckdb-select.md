@@ -51,7 +51,7 @@ SELECT COUNT(*) FROM 'hf://datasets/jamescalam/world-cities-geo/*.jsonl';
 
 ```
 
-您还可以使用 `read_parquet` 函数（或其别名 `parquet_scan`）查询 Parquet 文件。此函数与其他 [parameters](https://duckdb.org/docs/data/parquet/overview.html#parameters) 一起，提供了处理 Parquet 文件的灵活性，特别是如果它们没有 `.parquet` 扩展名。让我们使用同一数据集中自动转换的 Parquet 文件来探索这些函数。
+您还可以使用 `read_parquet` 函数（或其别名 `parquet_scan`）查询 Parquet 文件。此函数与其他 [parameters](https://duckdb.org/docs/data/parquet/overview.html#parameters) 一起，在处理 Parquet 文件时提供了灵活性，特别是在它们没有 `.parquet` 扩展名的情况下。让我们使用同一数据集中自动转换的 Parquet 文件来探索这些函数。
 
 使用[read_parquet](https://duckdb.org/docs/guides/file_formats/query_parquet.html)功能选择：
 
@@ -69,7 +69,7 @@ SELECT * FROM read_parquet('hf://datasets/jamescalam/world-cities-geo@~parquet/d
 
 ```
 
-读取与 glob 模式匹配的所有文件，并包含指定每行来自哪个文件的文件名列：
+读取与 glob 模式匹配的所有文件，并包含一个文件名列，指定每行来自哪个文件：
 
 ```bash
 SELECT city, country, filename FROM read_parquet('hf://datasets/jamescalam/world-cities-geo@~parquet/default/**/*.parquet', filename = true) LIMIT 3;
@@ -163,5 +163,5 @@ SUMMARIZE SELECT latitude, longitude FROM 'hf://datasets/jamescalam/world-cities
 
 ```
 
-### DDUF
-https://huggingface.co/docs/hub/dduf.md
+### 通知
+https://huggingface.co/docs/hub/notifications.md

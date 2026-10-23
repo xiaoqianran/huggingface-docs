@@ -56,7 +56,7 @@
 |徽章|状况 |
 |------|----------|
 |已验证 | `verifyToken` 有效（使用 Inspect-ai 在 HF 作业中运行评估）|
-|社区 |通过开放 PR 提交的结果（未合并到 main） |
+|社区 |通过开放 PR 提交的结果（未合并到主版本）|
 |排行榜 |基准数据集链接 |
 |来源 |评估日志或外部来源的链接 |
 
@@ -98,11 +98,11 @@
 - `id` — 任务的唯一标识符。 （例如`"gpqa_diamond"`）。一个基准测试可以定义多个任务，每个任务都会生成自己的排行榜。请随意为每个任务选择一个排行榜标识符。
 
 每个 `tasks[]` 项目中的可选字段：- `config` — 要评估的拥抱脸部数据集的配置（例如`"default"`）。默认为数据集的默认配置。
-- `split` — 要评估的拥抱脸部数据集的分割（例如`"test"`）。默认为`"test"`。
+- `split` — Split of the Hugging Face dataset to evaluate (e.g. `"test"`).默认为`"test"`。
 
 设置`evaluation_framework: inspect-ai`时，还需要设置以下字段：
 
-- `field_spec` — 输入和输出字段的规范。包含 `input`、`target`、`choices` 和可选的 `input_image` 子字段。更多详情请参阅[docs](https://inspect.aisi.org.uk/tasks.html#hugging-facehttps://inspect.aisi.org.uk/tasks.html#hugging-face)。
+- `field_spec` — Specification of the input and output fields.包含 `input`、`target`、`choices` 和可选的 `input_image` 子字段。更多详情请参阅[docs](https://inspect.aisi.org.uk/tasks.html#hugging-facehttps://inspect.aisi.org.uk/tasks.html#hugging-face)。
 - `solvers` — 求解器过去使用 AI 模型从输入到输出。这可以是从简单的系统提示到自我批评循环。更多详情请参阅[docs](https://inspect.aisi.org.uk/solvers.html)。
 - `scores` — 使用得分手。评分者确定求解器是否成功地为数据集中定义的目标找到了正确的输出，以及以什么方式进行。更多详情请参阅[docs](https://inspect.aisi.org.uk/scorers.html)。
 
@@ -169,5 +169,5 @@ tasks:
           model: openai/o3-mini
 ```
 
-### 密钥
-https://huggingface.co/docs/hub/security-passkeys.md
+### 后续步骤
+https://huggingface.co/docs/hub/repositories-next-steps.md

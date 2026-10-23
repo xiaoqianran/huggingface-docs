@@ -128,5 +128,5 @@ app.post("/", async (req, res) => {
 
 ![discussion-result](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/webhooks-guides/001-discussion-bot/discussion-result.png)
 
-### Spaces 开发模式：Spaces 中的无缝开发
-https://huggingface.co/docs/hub/spaces-dev-mode.md
+### 学术中心
+https://huggingface.co/docs/hub/academia-hub.md

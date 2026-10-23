@@ -22,5 +22,5 @@
 
 这些作为原始日志提供，因为大多数组织都希望应用自己的自定义规则。
 
-### Webhook 指南：使用作业处理存储桶中的新文件
-https://huggingface.co/docs/hub/webhooks-guide-bucket-jobs.md
+### 在拥抱脸部使用 mlx-image
+https://huggingface.co/docs/hub/mlx-image.md

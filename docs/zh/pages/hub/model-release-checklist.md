@@ -87,7 +87,7 @@
 
    | ![code snippet tab](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/release-checklist/code-snippet.png) |
    | :--: |
-   |代码片段选项卡|
+   |代码片段选项卡 |
 
    您还可以[register your own model library](https://huggingface.co/docs/hub/en/models-adding-libraries)或将Hub支持添加到您的库和代码库中，以便用户知道如何从Hub下载模型权重。
 
@@ -209,7 +209,7 @@
    result = pipe("Your test prompt")
    print(result)
    ```2. **分享分享分享**：
-   大多数用户通过社交媒体、聊天渠道（如 Slack 或 Discord）或时事通讯发现模型。在这些空间中共享您的模型链接，并将它们添加到您的网站或 GitHub 存储库。
+   大多数用户通过社交媒体、聊天渠道（例如 Slack 或 Discord）或时事通讯发现模型。在这些空间中共享您的模型链接，并将它们添加到您的网站或 GitHub 存储库。
    
    您的模特获得的访问量和点赞越多，它在[Hugging Face Trending section](https://huggingface.co/models?sort=trending)上的排名就越高，带来更高的曝光度
 
@@ -266,5 +266,5 @@
 
 我们迫不及待地想看看您接下来分享的内容！ 🤗
 
-### 空间小组
-https://huggingface.co/docs/hub/spaces-sdks-docker-panel.md
+### 空间闪亮
+https://huggingface.co/docs/hub/spaces-sdks-docker-shiny.md

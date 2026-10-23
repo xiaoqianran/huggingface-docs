@@ -40,7 +40,7 @@
 
 关闭双因素身份验证不会删除您的密码，您仍然可以使用它们登录。
 
-## 管理你的密钥在 [Authentication settings](https://hf.co/settings/authentication) 的 **密钥** 部分中，您可以查看每个密钥的添加时间和上次使用时间，以及：
+## 管理你的密钥在 [Authentication settings](https://hf.co/settings/authentication) 的 **密钥** 部分，您可以查看每个密钥的添加时间和上次使用时间，以及：
 - **重命名**密钥以更轻松地识别它
 - **删除**密钥。您将无法再使用它登录。
 
@@ -49,5 +49,5 @@
 
 当您从集线器中删除密钥时，它可能仍存储在您的设备或密码管理器中。您也可以在那里删除它。
 
-### 单点登录配置指南
-https://huggingface.co/docs/hub/security-sso-configuration-guides.md
+### 空间上的磁盘使用情况
+https://huggingface.co/docs/hub/spaces-storage.md

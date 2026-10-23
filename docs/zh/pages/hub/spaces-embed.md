@@ -41,5 +41,5 @@
 
 查看[Gradio documentation](https://www.gradio.app/guides/sharing-your-app#embedding-hosted-spaces)了解更多详情。
 
-### 处理大型数据集
-https://huggingface.co/docs/hub/jobs-large-datasets.md
+### 数据集卡
+https://huggingface.co/docs/hub/datasets-cards.md

@@ -2,19 +2,19 @@
 
 # 文件名和分割
 
-To host and share your dataset, create a dataset repository on the Hugging Face Hub and upload your data files.
+要托管和共享数据集，请在 Hugging Face Hub 上创建数据集存储库并上传数据文件。
 
 本指南将向您展示在上传数据集存储库时如何命名数据集存储库中的文件和目录，并启用所有数据集中心功能（例如数据集查看器）。查看[companion collection of example datasets](https://huggingface.co/collections/datasets-examples/file-names-and-splits-655e28af4471bd95709eb135)了解更多详情。
 
-A dataset with a supported structure and [file formats](./datasets-adding#file-formats) automatically has a dataset viewer on its page on the Hub.
+具有受支持结构和 [file formats](./datasets-adding#file-formats) 的数据集会自动在 Hub 上的页面上显示数据集查看器。
 
-Note that if none of the structures below suits your case, you can have more control over how you define splits and subsets with the [Manual Configuration](./datasets-manual-configuration).
+请注意，如果以下结构都不适合您的情况，您可以更好地控制如何使用 [Manual Configuration](./datasets-manual-configuration) 定义分割和子集。
 
 ## 基本用例
 
 如果您的数据集未拆分为 [train/validation/test splits](https://en.wikipedia.org/wiki/Training,_validation,_and_test_data_sets)，最简单的数据集结构是有一个文件：`data.csv`（这适用于任何 [supported file format](./datasets-adding#file-formats) 和任何文件名）。
 
-Your repository will also contain a `README.md` file, the [dataset card](./datasets-cards) displayed on your dataset page.
+您的存储库还将包含一个 `README.md` 文件，[dataset card](./datasets-cards) 显示在数据集页面上。
 
 ```
 my_dataset_repository/
@@ -24,7 +24,7 @@ my_dataset_repository/
 
 ## 分裂
 
-Some patterns in the dataset repository can be used to assign certain files to train/validation/test splits.
+数据集存储库中的某些模式可用于将某些文件分配给训练/验证/测试分割。
 
 ### 文件名
 
@@ -46,7 +46,7 @@ my_dataset_repository/
 
 ### 目录名称
 
-You can place your data files into different directories named `train`, `test`, and `validation` where each directory contains the data files for that split:
+您可以将数据文件放入名为 `train`、`test` 和 `validation` 的不同目录中，其中每个目录包含该拆分的数据文件：
 
 ```
 my_dataset_repository/
@@ -117,7 +117,7 @@ my_dataset_repository/
 
 如果您的数据集分割的自定义名称不是 `train`、`test` 或 `validation`，那么您可以将数据文件命名为 `data/<split_name>-xxxxx-of-xxxxx.csv`。
 
-这是一个具有三个分割的示例：`train`、`test` 和 `random`：
+这是一个包含三个分割的示例：`train`、`test` 和 `random`：
 
 ```
 my_dataset_repository/
@@ -132,5 +132,5 @@ my_dataset_repository/
     └── random-00002-of-00003.csv
 ```
 
-### 安全模型
-https://huggingface.co/docs/hub/xet/security.md
+### marimo 空间
+https://huggingface.co/docs/hub/spaces-sdks-docker-marimo.md

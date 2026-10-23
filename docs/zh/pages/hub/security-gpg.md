@@ -4,7 +4,7 @@
 
 `git` 有一个身份验证层来控制谁可以将提交推送到存储库，但它不会验证实际的提交作者。
 
-换句话说，您可以以 `Elon Musk <elon@tesla.com>` 身份提交更改，将它们推送到您首选的 `git` 主机（例如 github.com），并且您的提交将链接到 Elon 的 GitHub 个人资料。 （尝试一下！但是如果 Elon 因为冒充他而对你生气，请不要责怪我们。）
+换句话说，您可以以 `Elon Musk <elon@tesla.com>` 身份提交更改，将它们推送到您首选的 `git` 主机（例如 github.com），并且您的提交将链接到 Elon 的 GitHub 个人资料。 （尝试一下！但是如果埃隆因为你冒充他而生你的气，请不要责怪我们。）
 
 我们实施 GPG 签名的原因是：
 - 提供更细粒度的安全性，特别是随着越来越多的企业用户依赖中心。
@@ -12,7 +12,7 @@
 
 请参阅 Ale Segala 的 [How (and why) to sign ⟦T7⟧ commits](https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html) 了解更多背景信息。
 
-您可以使用 GNU Privacy Guard (GPG) 和密钥服务器证明提交是由您编写的。 GPG 是一种加密工具，用于验证消息来源的真实性。我们将在下面解释如何在 Hugging Face 上进行此设置。
+您可以使用 GNU Privacy Guard (GPG) 和密钥服务器证明提交是由您编写的。 GPG 是一种加密工具，用于验证消息来源的真实性。我们将在下面解释如何在 Hugging Face 上进行设置。
 
 像往常一样，Pro Git 书是关于提交签名的很好的资源：[Pro Git: Signing your work](https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work)。
 
@@ -87,5 +87,5 @@ git commit -S -m "My first signed commit"
 > [!提示]
 > 要默认在计算机上的任何本地存储库中签署所有提交，您可以运行 git config --global commit.gpgsign true。
 
-### 合并数据集并导出
-https://huggingface.co/docs/hub/datasets-duckdb-combine-and-export.md
+### 特色空间
+https://huggingface.co/docs/hub/spaces-featured.md

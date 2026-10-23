@@ -38,7 +38,7 @@ export HF_HUB_DISABLE_TELEMETRY=1
 
 要仅关闭`hf_xet`的遥测，请设置`HF_XET_TELEMETRY_ENABLED=0`。
 
-|环境变量 |默认|描述 |
+|环境变量 |默认 |描述 |
 |---|---|---|
 | `HF_HUB_DISABLE_TELEMETRY` |取消设置 |设置为 `1` 以关闭 `hf_xet` 和其他 Hugging Face Python 库中的遥测。 |
 | `HF_XET_TELEMETRY_ENABLED` | `true` |设置为 `0` 仅关闭 `hf_xet` 遥测。将其设置为 `1` 不会覆盖上面的选择退出变量。 |
@@ -46,5 +46,5 @@ export HF_HUB_DISABLE_TELEMETRY=1
 | `HF_XET_TELEMETRY_HEARTBEAT_INTERVAL` | `300s` |进度报告之间的时间。 |
 | `HF_XET_TELEMETRY_FINAL_FLUSH_TIMEOUT` | `2s` |传输完成后`hf_xet`等待最后报告的时间。 `0` 表示不等待。 |
 
-### Xet：我们的存储后端
-https://huggingface.co/docs/hub/xet/index.md
+### 使用 Xet 存储
+https://huggingface.co/docs/hub/xet/using-xet-storage.md

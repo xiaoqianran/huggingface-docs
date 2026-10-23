@@ -56,7 +56,7 @@ tutorial](https://labelstud.io/blog/introduction-to-label-studio-in-hugging-face
 
 ## 🛠️ 配置 Label Studio 的生产就绪实例
 
-为了使您的 Space 做好生产准备，您需要进行三个配置
+为了使您的 Space 做好生产准备，您需要进行三项配置
 变化：
 
 * 禁止无限制地创建新帐户。
@@ -149,7 +149,7 @@ api.restart_space(space_id, factory_reboot=True)
 
 ### 使用 Postgres 启用持久性
 
-对于较重的多用户部署，您可以通过以下方式启用持久性
+对于较重的多用户部署，您可以通过以下方式启用持久性：
 [connecting an external Postgres database to your
 space](https://labelstud.io/guide/storedata.html#PostgreSQL-database),
 确保保留所有项目和注释设置。设置以下秘密变量以匹配您自己的托管实例
@@ -233,5 +233,5 @@ playground](https://labelstud.io/playground/)，用于尝试不同的
 注释接口，以及加入[Label Studio Slack
 Community](https://slack.labelstudio.heartex.com/?source=spaces)的链接。
 
-### GGUF 与 llama.cpp 的用法
-https://huggingface.co/docs/hub/gguf-llamacpp.md
+### 访问基准排行榜数据
+https://huggingface.co/docs/hub/leaderboard-data-guide.md

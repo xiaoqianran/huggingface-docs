@@ -2,7 +2,7 @@
 
 # 数据工作室
 
-每个数据集页面都包含一个表格，其中包含数据集的内容，按 100 行的页面排列。您可以使用表格底部的按钮在页面之间导航。
+Each dataset page includes a table with the contents of the dataset, arranged by pages of 100 rows. You can navigate between pages using the buttons at the bottom of the table.
 
 ## 检查数据分布
 
@@ -27,11 +27,11 @@
 
 ## 代理痕迹
 
-将原始 JSONL 跟踪从 Claude Code、Codex 或 Pi 等工具推送到数据集中，以便在 Data Studio 中浏览它们，或者将它们同步到 [Storage Bucket](./storage-buckets) 并在其中打开单独的 `.jsonl` 文件。两条路径都使用相同的跟踪查看器来逐步执行会话、轮次、工具调用和模型响应。请参阅 [Agent Traces](./agent-traces) 了解支持的代理和查看跟踪。
+将原始 JSONL 跟踪从 Claude Code、Codex 或 Pi 等工具推送到数据集中，以便在 Data Studio 中浏览它们，或者将它们同步到 [Storage Bucket](./storage-buckets) 并在其中打开单独的 `.jsonl` 文件。两条路径都使用相同的跟踪查看器来逐步执行会话、轮次、工具调用和模型响应。有关支持的代理和查看跟踪，请参阅[Agent Traces](./agent-traces)。
 
 ## 大规模数据集
 
-数据集查看器支持大规模数据集，但根据数据格式，它可能仅显示数据集的前 5GB：- 对于 Parquet 数据集：数据集查看器显示完整数据集，但仅在前 5GB 上启用排序、过滤和搜索。
+数据集查看器支持大规模数据集，但根据数据格式，它可能只显示数据集的前 5GB：- 对于 Parquet 数据集：数据集查看器显示完整数据集，但仅在前 5GB 上启用排序、过滤和搜索。
 - 对于其他格式（例如 [WebDataset](https://github.com/webdataset/webdataset) 或 JSON Lines）的 >5GB 的数据集：数据集查看器仅显示前 5GB，并且在前 5GB 上启用排序、过滤和搜索。
 
 在这种情况下，一条信息性消息会让您知道查看器是部分的。这应该是一个足够大的样本，可以准确地表示完整的数据集，如果您需要更大的样本，请告诉我们。
@@ -96,5 +96,5 @@ configs:
 
 对于 **私有** 数据集，为 [PRO users](https://huggingface.co/pricing) 和 [Team or Enterprise organizations](https://huggingface.co/enterprise) 启用数据集查看器。有关更多信息，请参阅我们的 [How to configure the Dataset Viewer](./datasets-viewer-configure) 指南。
 
-### 执行向量相似度搜索
-https://huggingface.co/docs/hub/datasets-duckdb-vector-similarity-search.md
+### 将您的库与 Hub 集成
+https://huggingface.co/docs/hub/models-adding-libraries.md

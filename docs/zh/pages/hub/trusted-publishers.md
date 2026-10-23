@@ -28,7 +28,7 @@
   - `repository` = `acme/awesome-model-training`
   - `branch` = `main`
   - `workflow` = `publish.yml`> [!提示]
-> `repository` 单独将发布者范围限定为 GitHub 存储库。添加 `branch` 和/或 `workflow` 也可以将其固定到分支或工作流程文件 - 推荐。
+> `repository` alone scopes the publisher to a GitHub repo. Add `branch` and/or `workflow` to also pin it to a branch or workflow file — recommended.
 
 ### 2. 将工作流程添加到您的 GitHub 存储库
 
@@ -66,14 +66,14 @@ jobs:
         run: hf upload acme/awesome-model ./checkpoint . --commit-message "Publish from ${GITHUB_SHA::7}"
 ```
 
-就是这样。在 GitHub Actions 上，`hf` CLI (`huggingface_hub>=1.19.0`) 检测提供者、执行交换并自动使用生成的令牌。您只需设置`HF_OIDC_RESOURCE`。
+就是这样。 On GitHub Actions, the `hf` CLI (`huggingface_hub>=1.19.0`) detects the provider, performs the exchange, and uses the resulting token automatically.您只需设置`HF_OIDC_RESOURCE`。
 
 > [!提示]
-> 在一次运行中发布到多个存储库（例如模型**和**数据集）？每个步骤设置`HF_OIDC_RESOURCE`，以便每个令牌的范围仅限于该步骤推送到的存储库。
+> Publishing to several repos in one run (e.g. a model **and** a dataset)? Set `HF_OIDC_RESOURCE` per step so each token is scoped to the repo that step pushes to.
 
 #### 其他 CI 提供商
 
-目前，`hf` CLI 仅在 GitHub Actions 上本地生成 ID 令牌。在 GitLab、CircleCI、Bitbucket 或任何其他提供商上，您自己创建 ID 令牌（请参阅[Supported CI providers](#supported-ci-providers)）并通过 `HF_OIDC_ID_TOKEN` 传递它 — CLI 直接交换它：
+The `hf` CLI mints the ID token natively on GitHub Actions only for now.在 GitLab、CircleCI、Bitbucket 或任何其他提供商上，您自己创建 ID 令牌（请参阅[Supported CI providers](#supported-ci-providers)）并通过 `HF_OIDC_ID_TOKEN` 传递它 — CLI 直接交换它：
 
 ```yaml
 # GitLab CI (.gitlab-ci.yml)
@@ -92,10 +92,10 @@ publish:
 - GitHub 操作 — [⟦T29⟧](https://github.com/coyotte508/publish-to-hf)
 - GitLab CI — [⟦T30⟧](https://gitlab.com/coyotte508/publish-to-hf)
 
-## 两种风格：回购发布者和 CI/CD 身份|风味 |配置于 |你得到什么 |用它来... |
+## Two flavors: repo publishers and CI/CD identities|风味 |配置于 |你得到什么 |用它来... |
 | --- | --- | --- | --- |
 | **回购受信任的发布者** |存储库的**设置 → 受信任的发布者** |具有**对该一个存储库的写入权限**的令牌 |从 CI 发布模型、数据集、空间、内核或存储桶 |
-| **帐户 CI/CD 身份** |您的帐户是 [**Authentication settings → CI/CD Access**](https://huggingface.co/settings/authentication#ci-cd-access) |具有 `gated-repos` 范围的只读令牌，如果您选择加入，则加上 `inference-api` |阅读**您有权访问的门控存储库**，使用您的速率限制，并可选择从 CI 调用推理提供程序 |
+| **帐户 CI/CD 身份** |您的帐户是 [**Authentication settings → CI/CD Access**](https://huggingface.co/settings/authentication#ci-cd-access) | A read-only token with the `gated-repos` scope, plus `inference-api` if you opt in |阅读**您有权访问的门控存储库**，使用您的速率限制，并可选择从 CI 调用推理提供程序 |
 
 两个令牌都会在 60 分钟后过期。您需要 Hub 存储库上的 **Write** 角色来管理其受信任的发布者。
 
@@ -103,7 +103,7 @@ publish:
 
 如果您只需要*读取*门控存储库（例如从作业下载模型），请在[**Authentication settings → CI/CD Access**](https://huggingface.co/settings/authentication#ci-cd-access)下的帐户上添加 CI/CD 身份，而不是在特定存储库上添加 CI/CD 身份，然后使用您的 **用户名** 作为资源。
 
-在 **GitHub Actions** 上，`hf` CLI 会为您进行交换，只需设置 `HF_OIDC_RESOURCE`：
+On **GitHub Actions**, the `hf` CLI does the exchange for you, just set `HF_OIDC_RESOURCE`:
 
 ```yaml
       - name: Download a gated model
@@ -112,14 +112,14 @@ publish:
         run: hf download acme/gated-model
 ```
 
-在 **其他提供商** 上，您自己铸造 ID 令牌（请参阅[Other CI providers](#other-ci-providers)）并通过 `HF_OIDC_ID_TOKEN` 传递它：
+On **other providers**, mint the ID token yourself (see [Other CI providers](#other-ci-providers)) and pass it via `HF_OIDC_ID_TOKEN`:
 
 ```bash
 # $ID_TOKEN is the OIDC token your provider minted (e.g. $HF_ID_TOKEN on GitLab)
 HF_OIDC_ID_TOKEN="$ID_TOKEN" HF_OIDC_RESOURCE="your-hf-username" hf download acme/gated-model
 ```
 
-生成的令牌可以读取您有权访问的门控存储库并使用您帐户的速率限制。它**无法**写入任何内容，并且**无法**读取您的私人存储库。> [!提示]
+生成的令牌可以读取您有权访问的门控存储库并使用您帐户的速率限制。 It **cannot** write anything, and **cannot** read your private repos.> [!提示]
 > 需要令牌本身（对于 `curl`、`git clone` 或读取 `HF_TOKEN` 的工具）？ `hf auth token` 执行交换并将短期令牌打印到标准输出：
 >
 > ```yaml
@@ -181,14 +181,14 @@ HF_OIDC_ID_TOKEN="$ID_TOKEN" HF_OIDC_RESOURCE="your-hf-username" hf download acm
 
 不需要客户端身份验证 - OIDC ID 令牌对请求进行身份验证。交换遵循[RFC 8693 — OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html)。
 
-**请求正文：**|领域|必填 |价值|
+**请求正文：**|领域 |必填|价值|
 | --- | --- | --- |
-| `grant_type` | yes | `urn:ietf:params:oauth:grant-type:token-exchange` |
-| `subject_token_type` | yes | `urn:ietf:params:oauth:token-type:id_token` |
-| `subject_token` | yes |来自 CI 提供商的原始 OIDC ID 令牌 (JWT)。它的 `aud` 声明**必须**是 `https://huggingface.co`。 |
-| `resource` | yes |用于用户范围令牌的 Hub 存储库（`namespace/name`、`datasets/namespace/name`、`spaces/namespace/name`、`kernels/namespace/name`、`buckets/namespace/name`）或 Hub **用户名**（无斜线）。 |
+| `grant_type` |是的 | `urn:ietf:params:oauth:grant-type:token-exchange` |
+| `subject_token_type` |是的 | `urn:ietf:params:oauth:token-type:id_token` |
+| `subject_token` |是的 |来自 CI 提供商的原始 OIDC ID 令牌 (JWT)。它的 `aud` 声明**必须**是 `https://huggingface.co`。 |
+| `resource` |是的 |用于用户范围令牌的 Hub 存储库（`namespace/name`、`datasets/namespace/name`、`spaces/namespace/name`、`kernels/namespace/name`、`buckets/namespace/name`）或 Hub **用户名**（无斜线）。 |
 
-**Success response:**
+**成功响应：**
 
 ```json
 {
@@ -204,11 +204,11 @@ HF_OIDC_ID_TOKEN="$ID_TOKEN" HF_OIDC_RESOURCE="your-hf-username" hf download acm
 | `error` |为什么 |
 | --- | --- |
 | `invalid_request` |参数丢失/格式错误，或 `resource` 格式错误。 |
-| `invalid_grant` | Repo or user not found;没有发行商与该发行人匹配；配置的声明不匹配；签名或观众检查失败； account locked. |
+| `invalid_grant` |未找到存储库或用户；没有发行商与该发行人匹配；配置的声明不匹配；签名或观众检查失败；帐户被锁定。 |
 
 当 `hf` CLI 执行交换时，故障会显示 `error` 代码以及 `(Request ID: …)` — 在报告问题时包含该请求 ID，以便我们可以在日志中跟踪交换。
 
-## Security model- **令牌是短暂的。** 自交换之日起 60 分钟 — 时钟仅在您调用端点时启动，而不是在工作流程启动时启动。 There's no refresh token;长期工作应该重新调换。
+## 安全模型- **令牌是短暂的。** 自交换之日起 60 分钟 — 时钟仅在您调用端点时启动，而不是在工作流程启动时启动。没有刷新令牌；长期工作应该重新调换。
 - **回购代币是回购范围的。** `acme/awesome-model` 的代币不能触及 `acme/anything-else`。推送归因于合成的`[OIDC]`系统用户，并参考原始发行者和主题。
 - **用户令牌是只读的。** 默认情况下`gated-repos`范围 - 没有写入，没有私人存储库，没有帐户管理。可选的 `inference-api` 范围添加了推理提供程序调用（记入您的帐户），但仍然没有写入或私有存储库访问权限。
 - **声明完全匹配。**没有正则表达式，没有前缀匹配。
@@ -221,5 +221,5 @@ HF_OIDC_ID_TOKEN="$ID_TOKEN" HF_OIDC_RESOURCE="your-hf-username" hf download acm
 - [Managing Spaces with GitHub Actions](./spaces-github-actions)
 - [GitHub Actions integration for the Hub](./repositories-github-actions)
 
-### Docker 空间
-https://huggingface.co/docs/hub/spaces-sdks-docker.md
+### 身份验证
+https://huggingface.co/docs/hub/datasets-polars-auth.md

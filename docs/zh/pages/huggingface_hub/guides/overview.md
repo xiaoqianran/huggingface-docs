@@ -127,5 +127,5 @@
       
         如何在 Hugging Face 基础设施上运行和管理计算作业并选择硬件？
 
-### 收藏
-https://huggingface.co/docs/huggingface_hub/v2.3.0.rc0/guides/collections.md
+### 在服务器上运行推理
+https://huggingface.co/docs/huggingface_hub/v2.3.0/guides/inference.md

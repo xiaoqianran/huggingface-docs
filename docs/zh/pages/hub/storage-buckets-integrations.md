@@ -158,5 +158,5 @@ SELECT * FROM 'hf://buckets/username/my-bucket/data/**/*.parquet' LIMIT 10;
 
 ## 即将推出更多库即将提供本机`hf://` URL 支持，包括 Polars 和 WebDataset。与此同时，所有这些今天都已经通过 [S3-compatible API](./storage-buckets-s3) 发挥作用。
 
-### 空格
-https://huggingface.co/docs/hub/spaces.md
+### 使用 SDK 构建
+https://huggingface.co/docs/hub/agents-sdk.md

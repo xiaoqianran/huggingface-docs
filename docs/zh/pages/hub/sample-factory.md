@@ -11,7 +11,7 @@
 Hub 上的所有型号都具有有用的功能：
 1. 自动生成的模型卡，其中包含描述、训练配置等。
 2. 有助于发现的元数据标签。
-3.与其他模型的评估结果比较。
+3.与其他模型比较的评估结果。
 4. 一个视频小部件，您可以在其中观看代理的表演。
 
 ## 安装库
@@ -85,5 +85,5 @@ python -m sample_factory.huggingface.push_to_hub -r <hf_username>/<hf_repo_name>
 python -m sf_examples.mujoco_examples.enjoy_mujoco --algo=APPO --env=mujoco_ant --experiment=<repo_name> --train_dir=./train_dir --max_num_episodes=10 --push_to_hub --hf_username=<username> --hf_repository=<hf_repo_name> --save_video --no_render
 ```
 
-### 数据设计师
-https://huggingface.co/docs/hub/datasets-data-designer.md
+### 配置
+https://huggingface.co/docs/hub/jobs-configuration.md

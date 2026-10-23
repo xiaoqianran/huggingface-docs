@@ -23,5 +23,5 @@
 
 当卷引用私有存储库时，无访问权限的用户仍将看到列出的卷（及其安装路径和访问模式），但源将被屏蔽为带有“（私有）”标签的`****/******`。
 
-### 使用 Hugging Face 中的 Unity Sentis 模型
-https://huggingface.co/docs/hub/unity-sentis.md
+### 阿吉拉
+https://huggingface.co/docs/hub/datasets-argilla.md

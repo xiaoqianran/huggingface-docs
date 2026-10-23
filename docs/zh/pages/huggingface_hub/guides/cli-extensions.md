@@ -254,8 +254,8 @@ agents hanouticelina/hf-agents       HF extension to run local coding...
 
 |扩展|类型 |描述 |
 |------------|------|-------------|
-| [hanouticelina/hf-claude](https://github.com/hanouticelina/hf-claude) |外壳脚本|与 HF 推理提供商一起启动 Claude Code |
+| [hanouticelina/hf-claude](https://github.com/hanouticelina/hf-claude) |外壳脚本 |与 HF 推理提供商一起启动 Claude Code |
 | [alvarobartt/hf-mem](https://github.com/alvarobartt/hf-mem) |蟒蛇 |估计 HF 模型的推理内存需求 |
 
-### 桶
-https://huggingface.co/docs/huggingface_hub/v2.3.0.rc0/guides/buckets.md
+### 了解缓存
+https://huggingface.co/docs/huggingface_hub/v2.3.0/guides/manage-cache.md

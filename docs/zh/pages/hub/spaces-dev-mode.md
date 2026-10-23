@@ -31,7 +31,7 @@ Spaces 开发模式是一项可简化应用程序调试并使 Spaces 迭代速�
 
 ### 正在连接
 
-开发模式将运行空间公开为标准 SSH 主机。 VS Code 和任何其他编辑器都通过同一 SSH 端点进行连接。
+开发模式将运行空间公开为标准 SSH 主机。 VS Code 和任何其他编辑器通过同一 SSH 端点进行连接。
 
 #### SSH
 
@@ -158,7 +158,7 @@ CMD ["node", "index.js"]
 ```
 
 该组织中有几个兼容开发模式的 Docker 空间的示例。
-请随意在您的命名空间中复制它们！Python 应用程序示例（FastAPI HTTP 服务器）：https://huggingface.co/spaces/dev-mode-explorers/dev-mode-python
+请随意在您的命名空间中复制它们！示例 Python 应用程序（FastAPI HTTP 服务器）：https://huggingface.co/spaces/dev-mode-explorers/dev-mode-python
 
 JavaScript 应用程序示例（Express.js HTTP 服务器）：https://huggingface.co/spaces/dev-mode-explorers/dev-mode-javascript
 
@@ -166,5 +166,5 @@ JavaScript 应用程序示例（Express.js HTTP 服务器）：https://huggingfa
 
 您可以直接在 HF Hub 上分享您对 Spaces 开发模式的反馈：https://huggingface.co/spaces/dev-mode-explorers/README/discussions
 
-### 在拥抱脸部时使用 SpeechBrain
-https://huggingface.co/docs/hub/speechbrain.md
+### 空间概述
+https://huggingface.co/docs/hub/spaces-overview.md

@@ -135,5 +135,5 @@ hf jobs run --timeout 3h ...
 hf jobs cancel <job-id>
 ```
 
-### 在 Hugging Face 中使用 timm
-https://huggingface.co/docs/hub/timm.md
+### 门控数据集
+https://huggingface.co/docs/hub/datasets-gate.md

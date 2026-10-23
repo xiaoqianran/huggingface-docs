@@ -21,11 +21,11 @@ Argilla 也向开源贡献了一些模型和数据集。- [Cleaned UltraFeedback
 
 [the Red Cross](https://510.global/)、[Loris.ai](https://loris.ai/)、[Prolific](https://www.prolific.com/)等公司的AI团队使用Argilla来提高AI项目的质量和效率。他们在我们的[AI community meetup](https://lu.ma/embed-checkout/evt-IQtRiSuXZCIW6FB)分享了他们的经验。- 人工智能造福人类：[the Red Cross presentation](https://youtu.be/ZsCqrAhzkFU?feature=shared)展示了红十字会领域专家和人工智能团队如何合作，对乌克兰危机难民的请求进行分类和重定向，以简化红十字会的支持流程。
 - 客户支持：在[the Loris meetup](https://youtu.be/jWrtgf2w4VU?feature=shared)期间，他们展示了他们的人工智能团队如何使用无监督和少样本对比学习来帮助他们快速验证并获得大量多标签分类器的标记样本。
-- Research studies: [the showcase from Prolific](https://youtu.be/ePDlhIxnuAs?feature=shared) announced their integration with our platform. They use it to actively distribute data collection projects among their annotating workforce. This allows Prolific to quickly and efficiently collect high-quality data for research studies.
+- 研究：[the showcase from Prolific](https://youtu.be/ePDlhIxnuAs?feature=shared)宣布与我们的平台整合。他们使用它在注释人员中积极分发数据收集项目。这使得 Prolific 能够快速有效地收集用于研究的高质量数据。
 
-## Prerequisites
+## 先决条件
 
-First [login with your Hugging Face account](/docs/huggingface_hub/quick-start#login):
+第一个[login with your Hugging Face account](/docs/huggingface_hub/quick-start#login)：
 
 ```bash
 hf auth login
@@ -37,11 +37,11 @@ hf auth login
 pip install -U argilla
 ```
 
-Lastly, you will need to deploy the Argilla server and UI, which can be done [easily on the Hugging Face Hub](https://argilla-io.github.io/argilla/latest/getting_started/quickstart/#run-the-argilla-server).
+最后，您需要部署 Argilla 服务器和 UI，这可以完成[easily on the Hugging Face Hub](https://argilla-io.github.io/argilla/latest/getting_started/quickstart/#run-the-argilla-server)。
 
 ## 导入和导出数据集和记录
 
-This guide shows how to import and export your dataset to the Hugging Face Hub.在 Argilla 中，您可以导入/导出数据集的两个主要组成部分：
+本指南介绍如何将数据集导入和导出到 Hugging Face Hub。在 Argilla 中，您可以导入/导出数据集的两个主要组成部分：
 - `rg.Settings`中定义的数据集的完整配置。如果您想共享您的反馈任务或稍后在 Argilla 中恢复它，这非常有用。
 - 数据集中存储的记录，包括`Metadata`、`Vectors`、`Suggestions`、`Responses`。如果您想在 Argilla 之外使用数据集的记录，这非常有用。
 
@@ -65,7 +65,7 @@ dataset.to_hub(repo_id="<repo_id>")
 dataset.to_hub(repo_id="<repo_id>", with_records=False)
 ```
 
-### 从 Hugging Face Hub 中提取 Argilla 数据集You can pull a dataset from the Hugging Face Hub to Argilla. This is useful if you want to restore a dataset and its configuration. You can pull the dataset from the Hugging Face Hub using the `rg.Dataset.from_hub` method.
+### 从 Hugging Face Hub 中提取 Argilla 数据集您可以将数据集从 Hugging Face Hub 拉取到 Argilla。如果您想要恢复数据集及其配置，这非常有用。您可以使用 `rg.Dataset.from_hub` 方法从 Hugging Face Hub 中提取数据集。
 
 ```python
 
@@ -75,23 +75,23 @@ client = rg.Argilla(api_url="<api_url>", api_key="<api_key>")
 dataset = rg.Dataset.from_hub(repo_id="<repo_id>")
 ```
 
-The `rg.Dataset.from_hub` method loads the configuration and records from the dataset repo. If you only want to load records, you can pass a `datasets.Dataset` object to the `rg.Dataset.log` method. This enables you to configure your own dataset and reuse existing Hub datasets. 
+`rg.Dataset.from_hub` 方法从数据集存储库加载配置和记录。如果您只想加载记录，可以将 `datasets.Dataset` 对象传递给 `rg.Dataset.log` 方法。这使您能够配置自己的数据集并重用现有的 Hub 数据集。 
 
 #### 有或没有记录
 
-The example above will pull the dataset's `Settings` and records from the hub. If you only want to pull the dataset's configuration, you can set the `with_records` parameter to `False`.如果您只对特定数据集模板感兴趣或者想要更改数据集设置和/或记录，这非常有用。
+上面的示例将从中心提取数据集的 `Settings` 和记录。如果您只想拉取数据集的配置，可以将`with_records`参数设置为`False`。如果您只对特定数据集模板感兴趣或者想要更改数据集设置和/或记录，这非常有用。
 
 ```python
 dataset = rg.Dataset.from_hub(repo_id="<repo_id>", with_records=False)
 ```
 
-With the dataset's configuration you could then make changes to the dataset. For example, you could adapt the dataset's settings for a different task:
+通过数据集的配置，您可以对数据集进行更改。例如，您可以针对不同的任务调整数据集的设置：
 
 ```python
 dataset.settings.questions = [rg.TextQuestion(name="answer")]
 ```
 
-You could then log the dataset's records using the `load_dataset` method of the `datasets` package and pass the dataset to the `rg.Dataset.log` method.
+然后，您可以使用 `datasets` 包的 `load_dataset` 方法记录数据集的记录，并将数据集传递给 `rg.Dataset.log` 方法。
 
 ```python
 hf_dataset = load_dataset("<repo_id>")
@@ -101,5 +101,5 @@ dataset.log(hf_dataset)
 ## 📚 资源
 
 - [🚀 Argilla Docs](https://argilla-io.github.io/argilla/)
-- [🚀 Argilla Docs - import export guides](https://argilla-io.github.io/argilla/latest/how_to_guides/import_export/)### 在拥抱脸部使用 ESPnet
-https://huggingface.co/docs/hub/espnet.md
+- [🚀 Argilla Docs - import export guides](https://argilla-io.github.io/argilla/latest/how_to_guides/import_export/)### 团队和企业计划
+https://huggingface.co/docs/hub/enterprise.md

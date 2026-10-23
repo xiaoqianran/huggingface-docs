@@ -61,7 +61,7 @@ CSV 中的每条记录包含：- `repoType`：存储库的类型（例如“模�
 
 |专栏 |描述 |
 | -------------- | ------------------------------------------------------------------- |
-| `timestamp` |请求时间戳|
+| `timestamp` |请求时间戳 |
 | `status` | HTTP 状态代码（例如 `200`、`206`、`302`、`307`、`304`）|
 | `method` | HTTP 方法（例如 `GET`、`HEAD`）|
 | `repoName` |完整的存储库名称（例如 `nvidia/segformer-b0`）|
@@ -72,5 +72,5 @@ CSV 中的每条记录包含：- `repoType`：存储库的类型（例如“模�
 | `region` |地区或城市名称 |
 | `userAgent` | HTTP 用户代理标头 |由于它需要在我们这边设置自定义数据导出管道（自定义弹性索引等），因此这只能作为 Enterprise Plus 的附加组件提供。
 
-### 数据集下载统计
-https://huggingface.co/docs/hub/datasets-download-stats.md
+### 在拥抱脸部使用🤗 `transformers`
+https://huggingface.co/docs/hub/transformers.md

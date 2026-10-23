@@ -124,5 +124,5 @@ git push
 
 您可以单击单个提交来查看该提交引入了哪些更改：
 
-### 私有和门控数据集的身份验证
-https://huggingface.co/docs/hub/datasets-duckdb-auth.md
+### 使用 GPU 空间
+https://huggingface.co/docs/hub/spaces-gpus.md

@@ -85,7 +85,7 @@ Hub本身支持多种文件格式：
 您可能希望将文件转换为这些格式，以受益于 Hub 的所有功能。
 Hub 可能无法识别其他格式和结构。
 
-### 我应该使用哪种文件格式？对于大多数类型的数据集，**Parquet** 是推荐的格式，因为它具有高效的压缩、丰富的类型，并且多种工具通过优化的读取和批处理操作支持这种格式。或者，CSV 或 JSON Lines/JSON 可用于表格数据（对于嵌套数据，首选 JSON Lines）。尽管与 Parquet 相比易于解析，但不建议用于大于几 GB 的数据。对于图像和音频数据集，上传原始文件对于大多数用例来说是最实用的，因为可以轻松访问单个文件。对于大规模图像和音频数据集流，应优先选择[WebDataset](https://github.com/webdataset/webdataset)而不是原始图像和音频文件，以避免访问单个文件的开销。尽管对于涉及分析、数据过滤或元数据解析的更一般用例，Parquet 是大规模图像和音频数据集的推荐选项。
+### 我应该使用哪种文件格式？对于大多数类型的数据集，**Parquet** 是推荐的格式，因为它具有高效的压缩、丰富的类型，并且多种工具通过优化的读取和批处理操作支持这种格式。或者，CSV 或 JSON Lines/JSON 可用于表格数据（对于嵌套数据，首选 JSON Lines）。虽然与 Parquet 相比易于解析，但不建议用于大于几 GB 的数据。对于图像和音频数据集，上传原始文件对于大多数用例来说是最实用的，因为可以轻松访问单个文件。对于大规模图像和音频数据集流，应优先选择[WebDataset](https://github.com/webdataset/webdataset)而不是原始图像和音频文件，以避免访问单个文件的开销。尽管对于涉及分析、数据过滤或元数据解析的更一般用例，Parquet 是大规模图像和音频数据集的推荐选项。
 
 ### 数据工作室
 
@@ -100,5 +100,5 @@ Hugging Face Hub 支持大规模数据集，通常以 Parquet 格式上传（例
 
 请参阅[how to upload a large folder](/docs/huggingface_hub/guides/upload#upload-a-large-folder)、[tips and tricks for large uploads](/docs/huggingface_hub/guides/upload#tips-and-tricks-for-large-uploads) 和[repository storage limits and recommendations](./storage-limits)。
 
-### Access Patterns
-https://huggingface.co/docs/hub/storage-buckets-access.md
+### 冲向空格
+https://huggingface.co/docs/hub/spaces-sdks-docker-dash.md

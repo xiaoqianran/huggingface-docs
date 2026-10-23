@@ -95,5 +95,5 @@ lms get https://huggingface.co/lmstudio-community/Ministral-3-8B-Reasoning-2512-
 
 关注 Hugging Face 上的 [LM Studio Community](https://huggingface.co/lmstudio-community) 页面，第一时间了解最新、最好的本地法学硕士。
 
-### 型号发布清单
-https://huggingface.co/docs/hub/model-release-checklist.md
+### 渐变空间
+https://huggingface.co/docs/hub/spaces-sdks-gradio.md

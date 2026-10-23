@@ -4,7 +4,7 @@
 
 ## 集成库
 
-如果 Hub 上的数据集与允许从 Hugging Face 进行流式传输的[supported library](./datasets-libraries) 兼容，则只需几行即可完成数据集的流式传输。有关访问数据集的信息，您可以单击数据集页面上的“使用此数据集”按钮以了解如何操作。例如，[⟦T8⟧](https://huggingface.co/datasets/knkarthick/samsum?library=datasets) 展示了如何使用下面的 `datasets` 执行此操作。
+如果 Hub 上的数据集与允许从 Hugging Face 进行流式传输的[supported library](./datasets-libraries) 兼容，则只需几行即可完成数据集的流式传输。有关访问数据集的信息，您可以单击数据集页面上的“使用此数据集”按钮以了解如何执行此操作。例如，[⟦T8⟧](https://huggingface.co/datasets/knkarthick/samsum?library=datasets) 显示了如何使用下面的 `datasets` 执行此操作。
 
 ## 使用 Hugging Face 客户端库
 
@@ -141,8 +141,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 > 在 Rust 中，我们使用 OpenDAL 的 `Huggingface` 服务，相当于 python 中的 `HfFileSystem`
 
 在 PyArrow 中传递 `write_page_index=True` 以包含实现高效随机访问的页面索引。
-值得注意的是，它向 Parquet 列添加了“offset_index_offset”和“offset_index_length”，您可以在 [Parquet metadata viewer on Hugging Face](https://huggingface.co/blog/cfahlgren1/intro-to-parquet-format) 中看到。
+它特别将“offset_index_offset”和“offset_index_length”添加到 Parquet 列中，您可以在 [Parquet metadata viewer on Hugging Face](https://huggingface.co/blog/cfahlgren1/intro-to-parquet-format) 中看到。
 页面索引还可以加快 [Hugging Face Dataset Viewer](https://huggingface.co/docs/dataset-viewer) 的速度，并允许其显示数据而不受行组大小限制。
 
-### 值得信赖的出版商
-https://huggingface.co/docs/hub/trusted-publishers.md
+### GitHub 操作
+https://huggingface.co/docs/hub/repositories-github-actions.md

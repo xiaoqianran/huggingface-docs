@@ -258,7 +258,7 @@ Use when you have hub-compatible files (e.g., Parquet files) already prepared an
 
 |问题 |解决方案 |
 | -------------------------- | ------------------------------------------------ |
-| “找不到存储库” |运行`hf auth login` |
+| “找不到存储库”|运行`hf auth login` |
 |内存错误 |使用`max_shard_size="500MB"` |
 |数据集查看器无法工作 |等待5-10分钟，检查README.md配置|
 |文件 >50GB |分割成更小的文件 |
@@ -363,5 +363,5 @@ dataset.push_to_hub("username/dataset")
 - 加入[Hugging Face Discord](https://hf.co/join/discord)获取实时帮助
 - 许多特定领域的格式已经在 Hub 上有示例
 
-### 技能
-https://huggingface.co/docs/hub/agents-skills.md
+### 单点登录 (SSO)
+https://huggingface.co/docs/hub/enterprise-sso.md

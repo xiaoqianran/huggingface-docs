@@ -14,13 +14,13 @@
 - **资源**：该组的存储库和集合。每个资源只能属于**一个**资源组，并且可以由具有适当权限的成员在组之间移动。
 - **成员**：组织成员**需要添加**到资源组才能访问其存储库。一个成员可以属于**多个资源组**。
 
-在每个资源组中为成员分配一个**角色**，该角色决定了他们对该组存储库的权限。资源组存在四种不同的角色：- `read`：授予对资源组内存储库的**读取访问权限**。
+在每个资源组中为成员分配一个**角色**，该角色决定了他们对该组存储库的权限。资源组存在四种不同的角色：- `read`: Grants **read access** to repositories within the Resource Group.
 - `contributor`：提供**仅限于用户创建的存储库的写入权限**（即，用户可以创建存储库，然后仅修改这些存储库）。与“写入”角色类似，但仅限于用户创建的存储库。
-- `write`：提供对资源组中所有存储库的**写访问权限。用户可以创建、删除或重命名资源组中的任何存储库。
+- `write`：提供对资源组中所有存储库的**写访问权限。 Users can create, delete, or rename any repository in the Resource Group.
 - `admin`：除了对存储库的写权限之外，管理员成员还可以**管理资源组**：添加、删除和更改其他成员的角色。他们还可以管理资源组中现有的存储库。
 - `inherit`：成员在资源组中的角色与其**组织角色**相同。例如，具有 `write` 组织角色的成员添加到具有 `inherit` 的群组后，将获得群组中的 `write` 访问权限
 
-此外，组织管理员可以管理组织内的**所有资源组**。这包括将存储库移入和移出任何资源组。
+此外，组织管理员可以管理组织内的**所有资源组**。 This includes moving repositories in and out of any Resource Group.
 
 资源组还会影响组织内部私有存储库的可见性：- 属于资源组一部分的 **私有** 存储库仅对该资源组**的成员可见。
 - **公共**存储库对组织内部和外部的**任何人**都是可见的。
@@ -53,26 +53,26 @@
 
 请记住，一个存储库只能属于一个资源组。当您尝试添加已属于另一个资源组的存储库时，您会收到警告。
 
-## 自动加入Auto-join automatically adds **org members** to a Resource Group at a specified role: both members who are already in the org when auto-join is enabled, and any new members who join in the future.
+## 自动加入自动加入会自动将**组织成员**添加到具有指定角色的资源组：启用自动加入时已在组织中的成员以及将来加入的任何新成员。
 
 这对于整个组织都可以访问的资源组非常有用，而无需手动成员管理。
 
 ### 启用自动加入
 
-- **Via the UI**: Open the Resource Group's **Settings** tab and check the **Automatically include all org members** option in the **Auto-include org members** section, then select the role to assign. “用户”选项卡也链接到那里，显示自动包含是打开还是关闭。
+- **通过 UI**：打开资源组的 **设置** 选项卡并选中 **自动包含组织成员** 部分中的 **自动包含所有组织成员** 选项，然后选择要分配的角色。 “用户”选项卡也链接到那里，显示自动包含是打开还是关闭。
 - **通过 API**：参见 [Configure auto-join via API](./programmatic-user-access-control#configure-auto-join-via-api)。
 
     
     
 
-When auto-join is enabled on an existing Resource Group, current org members matching the selected scope are **immediately added** to the group at the configured role (backfill).
+在现有资源组上启用自动加入后，匹配所选范围的当前组织成员将**立即添加**到已配置角色的组中（回填）。
 
 ### 自动加入范围
 
 自动加入可应用于：
 
 - **所有组织成员**（默认）：保留 **包括 no_access 成员** 未选中，以排除具有 `no_access` 组织角色的成员。
-- **All org members including no_access**: check **Include no_access members** to include every member, including members with the `no_access` organization role.当 `no_access` 成员应仅保留对手动或通过其他配置流程添加的特定资源组的访问权限时，请使用 **仅读取+ 成员**。
+- **所有组织成员，包括 no_access**：选中 **包括 no_access 成员** 以包括每个成员，包括具有 `no_access` 组织角色的成员。当 `no_access` 成员应仅保留对手动或通过其他配置流程添加的特定资源组的访问权限时，请使用 **仅读取+ 成员**。
 
 ### 自动加入和 SCIM
 
@@ -91,7 +91,7 @@ When auto-join is enabled on an existing Resource Group, current org members mat
 - 您可以使用资源组中的`read`或`write`角色邀请他们。
 - 他们不必使用您组织的 SSO 登录。
 
-要邀请某人，请打开资源组的 **用户** 选项卡并按用户名添加他们。组织成员立即加入群组；外人收到邀请函。待处理的邀请将与组的用户一起放在“待处理”徽章下，您可以重新发送或撤销它们。使用 **外部** 过滤器仅列出外部协作者。
+要邀请某人，请打开资源组的 **用户** 选项卡并按用户名添加他们。组织成员立即加入群组；外人收到邀请。待处理的邀请会与群组用户一起置于“待处理”徽章下，您可以重新发送或撤销它们。使用 **外部** 过滤器仅列出外部协作者。
 
 ### 与外部协作者共享存储库
 
@@ -157,7 +157,7 @@ When auto-join is enabled on an existing Resource Group, current org members mat
 除了跟踪成本之外，您还可以设置上限。组织管理员和资源组管理员可以在组的**设置**选项卡中的**支出限制**下设置每月支出限额。有两种限额可用，均以美元表示：
 
 - **总计（所有产品）**：限制组的合并计算支出。
-- 除总数之外，每个产品还对 **推理提供程序**、**空间**、**作业** 和 **推理端点** 进行限制。
+- 除总数之外，每个产品对 **推理提供程序**、**空间**、**作业** 和 **推理端点** 都有限制。
 
 将字段留空，没有限制。当总限制和每个产品限制同时适用时，两者中较严格者获胜。
 
@@ -183,5 +183,5 @@ When auto-join is enabled on an existing Resource Group, current org members mat
 
 您可以通过 Hub API 列出资源组并向其中添加用户（或更改成员的组织角色和资源组分配）。有关完整参考、示例和批处理工作流程，请参阅 [Programmatic User Access Control Management](./programmatic-user-access-control) 指南。
 
-### 配置
-https://huggingface.co/docs/hub/jobs-configuration.md
+### 通过 SSH 进行 Git
+https://huggingface.co/docs/hub/security-git-ssh.md

@@ -6,5 +6,5 @@
 
 请阅读[dedicated doc section](./organizations-cards)了解更多内容。
 
-### 空间上的 ChatUI
-https://huggingface.co/docs/hub/spaces-sdks-docker-chatui.md
+### 处理渐变空间中的空间依赖性
+https://huggingface.co/docs/hub/spaces-dependency.md

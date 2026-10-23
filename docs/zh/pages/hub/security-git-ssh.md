@@ -28,7 +28,7 @@ SSH 密钥通常位于 Mac 和 Linux 上的 `~/.ssh` 下，以及 Windows 上的
 
 ```
 $ ssh-keygen -t ed25519 -C "your.email@example.co"
-```我们建议您在出现提示时输入密码。密码短语是额外的安全层：每当您使用 SSH 密钥时都会提示输入密码。
+```我们建议您在出现提示时输入密码。密码是额外的安全层：每当您使用 SSH 密钥时都会提示输入密码。
 
 生成新密钥后，使用 `ssh-add` 将其添加到 SSH 代理：
 
@@ -82,5 +82,5 @@ hf.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBL
 hf.co ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINJjhgtT9FOQrsVSarIoPVI1jFMh3VSHdKfdqp/O776s
 ```
 
-### 手动配置
-https://huggingface.co/docs/hub/datasets-manual-configuration.md
+### 任务
+https://huggingface.co/docs/hub/models-tasks.md

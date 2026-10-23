@@ -31,5 +31,5 @@ Hugging Face Hub 也是 Spaces 的所在地，这是用于展示模型的交互�
 
 了解有关纸质页面的更多信息[here](./paper-pages)。
 
-### 组织博客文章
-https://huggingface.co/docs/hub/enterprise-blog-articles.md
+### 静态 HTML 空间
+https://huggingface.co/docs/hub/spaces-sdks-static.md

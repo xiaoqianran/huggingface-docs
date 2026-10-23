@@ -56,5 +56,5 @@
 >>> hf jobs scheduled delete <scheduled-job-id>
 ```
 
-### 在 Hugging Face Hub 上将 Ollama 与任何 GGUF 模型一起使用
-https://huggingface.co/docs/hub/ollama.md
+### 基本单点登录
+https://huggingface.co/docs/hub/security-sso-basic.md

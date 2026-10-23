@@ -83,7 +83,7 @@
 ```
 
 规则：
-- 回购类型是**复数**：`models`、`datasets`、`spaces`
+- 仓库类型是**复数**：`models`、`datasets`、`spaces`
 - 存储库 ID 中的正斜杠 (`/`) 替换为`--`
 - 所有部分之间的分隔符是`--`
 - 外壳被保留
@@ -142,7 +142,7 @@ refs/
 
 当使用分支或标记名称下载文件时，将使用最新的提交哈希创建或更新相应的引用文件。
 
-### `snapshots/`：修订视图`snapshots/` 目录包含每个缓存修订版（提交哈希）的一个子目录。每个修订目录都镜像 Hub 上存储库的文件结构，但文件是指向 `../../blobs/{hash}` 的 **符号链接**。
+### `snapshots/`：修订视图`snapshots/` 目录包含每个缓存修订版（提交哈希）的一个子目录。每个修订目录都镜像 Hub 上存储库的文件结构，但文件是指向 `../../blobs/{hash}` 的**符号链接**。
 
 ```
 snapshots/
@@ -156,7 +156,7 @@ snapshots/
 
 主要特性：
 - 符号链接使用**相对路径**：`../../blobs/{hash}`
-- 如果文件在两次修订之间未更改，则两个符号链接都指向**相同的 blob**，没有数据重复
+- 如果文件在两个修订版之间未更改，则两个符号链接都指向**相同的 blob** 且没有数据重复
 - Hub 上子目录中的文件在快照中表示为子目录（保留完整的相对路径）
 
 快照之间的切换类似于在本地 git 存储库中使用 `git checkout`。
@@ -177,7 +177,7 @@ snapshots/
 
 ## 共享 blob 存储
 
-通过 Xet 下载的文件会跨存储库进行重复数据删除。这样的文件在缓存根目录`blobs/`下存储一次，并且每个需要它的存储库都会获得相对符号链接而不是副本：```
+通过 Xet 下载的文件会跨存储库进行重复数据删除。这样的文件在缓存根目录下存储一次，在`blobs/`下，并且每个需要它的存储库都会获得一个相对的符号链接而不是副本：```
 <CACHE_DIR>/
 ├── blobs/
 │   ├── .huggingface-shared-blobs                 # marker file, contains the layout version ("1")
@@ -262,7 +262,7 @@ snapshots/
 
 2. **查看快照**
    - 寻找`snapshots/{commit_hash}/{relative_path}`
-   - 如果它存在（作为符号链接或文件），则该文件被缓存。按照符号链接获取内容
+   - 如果存在（作为符号链接或文件），则该文件将被缓存。按照符号链接获取内容
 
 3. **检查不存在**
    - 寻找`.no_exist/{commit_hash}/{relative_path}`
@@ -273,7 +273,7 @@ snapshots/
 
 ## Windows 行为缓存依赖于**符号链接**。在符号链接不可用的 Windows 系统上，缓存以 **降级模式** 运行：实际文件副本直接放置在 `snapshots/` 而不是符号链接中。该模式下不使用`blobs/`目录和[shared blob store](#shared-blob-store)。
 
-这意味着相同的文件内容可能会在各个修订版本中重复，从而增加磁盘使用量。要在 Windows 上启用符号链接支持，请激活 [Developer Mode](https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development) 或以管理员身份运行。
+这意味着相同的文件内容可能会在各个版本之间重复，从而增加磁盘使用量。要在 Windows 上启用符号链接支持，请激活 [Developer Mode](https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development) 或以管理员身份运行。
 
-### 极地
-https://huggingface.co/docs/hub/datasets-polars.md
+### 使用 Keras 拥抱脸部
+https://huggingface.co/docs/hub/keras.md

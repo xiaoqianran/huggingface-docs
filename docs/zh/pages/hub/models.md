@@ -23,5 +23,5 @@ Hugging Face Hub 包含许多 [variety of machine learning tasks](https://huggin
   - [Integrating libraries with the Hub](./models-adding-libraries)
   - [Tasks](./models-tasks)
 
-### Webhooks 自动化
-https://huggingface.co/docs/hub/jobs-webhooks.md
+### 组织
+https://huggingface.co/docs/hub/organizations.md

@@ -68,5 +68,5 @@ configs:
 - [How to create an audio dataset](./datasets-audio) ([example datasets](https://huggingface.co/collections/datasets-examples/audio-dataset-66aca0b73e8f69e3d069e607))
 - [How to create a video dataset](./datasets-video)
 
-### 使用 Keras 拥抱脸部
-https://huggingface.co/docs/hub/keras.md
+### 🟧 空间标签工作室
+https://huggingface.co/docs/hub/spaces-sdks-docker-label-studio.md

@@ -31,7 +31,7 @@
   ```http
   Authorization: Bearer <your_access_token>
   ```
-  创建一个细粒度令牌，其“写入组织设置/成员管理的访问权限”权限范围为您的组织（[https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)）。
+  创建一个细粒度令牌，其“对组织设置/成员管理的写入访问权限”权限范围为您的组织（[https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)）。
 
 ### 更改成员角色端点
 
@@ -398,12 +398,12 @@ for rg in list_resource_groups(org_name):
     add_users_to_resource_group(org_name, rg["id"], users_with_roles)
 ```
 
-对于一长串用户名，将它们分块（例如每个请求 50 个）并为每个块调用一次 API 以避免大型请求正文或超时。
+对于一长串用户名，请将它们分块（例如每个请求 50 个）并为每个块调用 API 一次，以避免较大的请求主体或超时。
 
-### 重要提示1. **仅限用户名** — API 接受 Hugging Face **用户名**，而不接受电子邮件。在调用 API 之前，您需要从电子邮件 → 用户名（例如，从您的目录或组织成员列表）的映射。
+### 重要提示1. **仅限用户名** — API 接受 Hugging Face **用户名**，而不接受电子邮件。在调用 API 之前，您需要从电子邮件→用户名（例如，从您的目录或组织成员列表）的映射。
 2. **用户必须位于组织中** — 请求中的每个用户必须已经是组织的成员。否则，请求将返回 `403` 并显示某些用户不在组织中的消息。
 3. **幂等性** — 如果用户已在资源组中，则后端可能会针对该请求返回 `403`。如果您首先获取组的 `users` 列表，您的脚本可以捕获错误并继续，或者跳过组中已有的用户。
-4. **速率限制** — 对于大批量，请考虑在请求之间添加较短的延迟（例如 0.5-1 秒）以避免达到速率限制。
+4. **速率限制** — 对于大批量，请考虑在请求之间添加较短的延迟（例如 0.5-1 秒），以避免达到速率限制。
 5. **令牌范围** — 访问令牌必须对组织具有足够的权限（通常至少是“对组织设置/成员管理的写入访问权限”）。安全地创建和存储令牌；不要将其提交给版本控制。
 
 ---
@@ -579,5 +579,5 @@ Content-Type: application/json
 - **身体**
   - `accountType`：`"external"` 将成员转换为外部协作者，或 `"member"` 将其转换回来。
 
-### Spaces ZeroGPU：空间的动态 GPU 分配
-https://huggingface.co/docs/hub/spaces-zerogpu.md
+### 数据集
+https://huggingface.co/docs/hub/enterprise-datasets.md

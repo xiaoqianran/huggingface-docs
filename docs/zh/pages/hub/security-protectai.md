@@ -22,5 +22,5 @@
 
 Pickle 并不是唯一可利用的格式，[see for reference](https://github.com/Azure/counterfit/wiki/Abusing-ML-model-file-formats-to-create-malware-on-AI-systems:-A-proof-of-concept) 如何利用 Keras Lambda 层来实现任意代码执行。
 
-###达斯克
-https://huggingface.co/docs/hub/datasets-dask.md
+### 拥抱人脸数据集上传决策指南
+https://huggingface.co/docs/hub/datasets-upload-guide-llm.md

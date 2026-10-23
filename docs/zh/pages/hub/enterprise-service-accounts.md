@@ -23,7 +23,7 @@
 
 ## 管理访问令牌
 
-服务帐户对您的组织的访问完全由您向其颁发的细粒度访问令牌定义。对于每个令牌，您可以选择一个名称和一组细粒度的权限，以便您可以仅授予给定工作流所需的访问权限。
+服务帐户对您组织的访问完全由您向其颁发的细粒度访问令牌定义。对于每个令牌，您可以选择一个名称和一组细粒度的权限，以便您可以仅授予给定工作流所需的访问权限。
 
 可以在两个级别授予权限：
 
@@ -43,12 +43,32 @@
 > [!警告]
 > 访问令牌仅在创建或轮换时显示一次。安全地保存它——以后无法取回。如果丢失，请旋转令牌以生成新值。
 
-### 网络安全豁免
+### 生成 S3 凭证
+
+服务帐户令牌可用于通过 [S3-compatible API](./storage-buckets-s3) 访问您组织的 [Storage Buckets](./storage-buckets)。网关使用从服务帐户令牌派生的 AWS 样式访问密钥进行身份验证。1. 转到服务帐户页面。 [Create a token](#managing-access-tokens) 使用 **创建新令牌** 按钮（如果您还没有）。令牌的权限成为 S3 凭证的权限。
+2. 在列表中找到令牌，打开其下拉菜单，然后选择 **生成 S3 凭证**。
+
+   
+   
+   
+   
+
+3. 将生成的 **访问密钥 ID**（前缀 `HFAK…`）和 **秘密访问密钥** 复制到安全的地方 — 秘密仅显示一次。如果您丢失了它，请使用**无效并刷新 S3 凭据**来生成新的对。之前的访问密钥立即停止工作。
+
+S3 凭证继承底层访问令牌的权限。将令牌的范围仅限于您打算使用的存储桶。
+
+使用 **撤销 S3 凭据** 禁用该对而不删除令牌 - 删除令牌（或服务帐户）也会撤销其 S3 凭据。服务帐户的页面显示当前与每个令牌配对的访问密钥 ID。
+
+使用您的组织名称作为端点 URL 中的 `<namespace>`（请参阅 [Configuring a Client](./storage-buckets-s3#configuring-a-client)）。生成和撤销 S3 凭证记录在组织的 [Audit Logs](./audit-logs) 中。
+
+如果令牌启用了 [Network Security exemption](#network-security-exemption)，则只有组织管理员才能为其生成 S3 凭证。### 网络安全豁免
 
 > [!警告]
 > 此选项是 Enterprise Plus 计划的一部分。
 
-如果您的组织使用 [Network Security](./enterprise-network-security) 设置，则服务帐户令牌将像任何其他凭据一样受到它们的约束：它们仅在您组织的 IP 范围内工作，并且内容访问策略适用于它们可以访问的范围。一些自动化工作流程在公司网络外部运行 - 例如，由云提供商托管的 CI 作业。对于这些情况，您可以使用令牌表单中的 **绕过 IP 限制和内容访问策略** 选项，使单个令牌免于组织的网络安全强制执行。
+如果您的组织使用 [Network Security](./enterprise-network-security) 设置，则服务帐户令牌将像任何其他凭据一样受到它们的约束：它们仅在您组织的 IP 范围内工作，并且内容访问策略适用于它们可以访问的范围。
+
+一些自动化工作流程在公司网络外部运行 - 例如，由云提供商托管的 CI 作业。对于这些情况，您可以使用令牌表单中的 **绕过 IP 限制和内容访问策略** 选项，使单个令牌免于组织的网络安全强制执行。
 
 启用后：
 
@@ -56,53 +76,13 @@
 - 令牌可以访问您组织的内容访问策略否则会阻止的内容。
 - 豁免仅适用于您自己组织的网络安全设置。它永远不会绕过其他组织的策略。
 - 令牌在服务帐户页面上列出，并带有 **无 IP 限制** 徽章。
-- 轮换令牌可保留豁免。
+- 轮换令牌可保留豁免。只有组织管理员才能启用豁免或轮换已豁免的令牌。
 
-只有组织管理员才能启用豁免或轮换已豁免的令牌。由于豁免令牌不再受到网络边界的保护，因此令牌本身成为保护其可以访问的资源的唯一凭证。我们建议将其范围限制为尽可能小的存储库集，在足够的情况下授予只读权限，并定期轮换它。
+由于豁免令牌不再受到网络边界的保护，因此令牌本身成为保护其可以访问的资源的唯一凭证。我们建议将其范围限制为尽可能小的存储库集，在足够的情况下授予只读权限，并定期轮换它。
 
 ## 计费
 
 服务帐户不计为组织的计费成员，因此创建它们不会占用计划中的付费席位。
 
-### TF-Keras（旧版）
-https://huggingface.co/docs/hub/tf-keras.md
-
-## TF-Keras（旧版）
-
-`tf-keras` 是 Keras 2.x 版本的名称。它现在作为单独的 GitHub 存储库 [here](https://github.com/keras-team/tf-keras) 托管。尽管它是一个遗留框架，但 Hub 上仍然托管着 [4.5k+ models](https://huggingface.co/models?library=tf-keras&sort=trending)。这些模型可以使用 `huggingface_hub` 库加载。您**必须**在您的计算机上安装 `tf-keras` 或 `keras<3.x`。
-
-如果您对 Keras 3.x 支持感兴趣，请查看 [this guide](./keras)。
-
-安装后，您只需使用`from_pretrained_keras`方法从Hub加载模型即可。了解更多关于 `from_pretrained_keras` [here](https://huggingface.co/docs/huggingface_hub/main/en/package_reference/mixins#huggingface_hub.from_pretrained_keras) 的信息。
-
-```py
-from huggingface_hub import from_pretrained_keras
-
-model = from_pretrained_keras("keras-io/mobile-vit-xxs")
-prediction = model.predict(image)
-prediction = tf.squeeze(tf.round(prediction))
-print(f'The image is a {classes[(np.argmax(prediction))]}!')
-
-<CopyLLMTxtMenu containerStyle="float: right; margin-left: 10px; display: inline-flex; position: relative; z-index: 10;"></CopyLLMTxtMenu>
-
-# The image is a sunflower!
-```您还可以在 Hub 上托管您的 `tf-keras` 模型。但是，请记住，`tf-keras` 是一个遗留框架。为了达到最大数量的用户，我们建议使用 Keras 3.x 创建模型并如上所述在本机共享。有关上传`tf-keras`模型的更多详细信息，请查看[⟦T11⟧ documentation](https://huggingface.co/docs/huggingface_hub/main/en/package_reference/mixins#huggingface_hub.push_to_hub_keras)。
-
-```py
-from huggingface_hub import push_to_hub_keras
-
-push_to_hub_keras(model,
-    "your-username/your-model-name",
-    "your-tensorboard-log-directory",
-    tags = ["object-detection", "some_other_tag"],
-    **model_save_kwargs,
-)
-```
-
-## 其他资源
-
-- [GitHub repo](https://github.com/keras-team/tf-keras)
-* 博文[Putting Keras on 🤗 Hub for Collaborative Training and Reproducibility](https://merveenoyan.medium.com/putting-keras-on-hub-for-collaborative-training-and-reproducibility-9018301de877)（2022 年 4 月）
-
-### Hugging Face Hub 上的 Jupyter 笔记本
-https://huggingface.co/docs/hub/notebooks.md
+### 代币管理
+https://huggingface.co/docs/hub/enterprise-tokens-management.md

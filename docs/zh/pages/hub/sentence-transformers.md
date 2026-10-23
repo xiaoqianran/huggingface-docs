@@ -47,7 +47,7 @@ from sentence_transformers import SentenceTransformer
 model.save_to_hub("my_new_model")
 ```
 
-此命令创建一个存储库，其中包含自动生成的模型卡、推理小部件、示例代码片段等！ [Here](https://huggingface.co/osanseviero/my_new_model) 就是一个例子。
+此命令创建一个存储库，其中包含自动生成的模型卡、推理小部件、示例代码片段等！ [Here](https://huggingface.co/osanseviero/my_new_model) is an example.
 
 ## 其他资源
 
@@ -55,5 +55,5 @@ model.save_to_hub("my_new_model")
 * 句子变形金刚[docs](https://www.sbert.net/)。
 * 与集线器[announcement](https://huggingface.co/blog/sentence-transformers-in-the-hub)集成。
 
-### 数据集卡
-https://huggingface.co/docs/hub/datasets-cards.md
+### 使用 Hugging Face 中的 Unity Sentis 模型
+https://huggingface.co/docs/hub/unity-sentis.md

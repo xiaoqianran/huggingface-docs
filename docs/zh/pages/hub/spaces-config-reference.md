@@ -2,7 +2,7 @@
 
 # 空间配置参考
 
-空间通过存储库根目录的 **README.md** 文件顶部的 `YAML` 块进行配置。下面列出了所有可接受的参数。
+空间是通过存储库根目录的 **README.md** 文件顶部的 `YAML` 块配置的。下面列出了所有可接受的参数。
 
 **`title`** : _string_  
 显示空间的标题。  
@@ -135,5 +135,5 @@ preload_from_hub:
 > [!注意]
 > 尚不支持预加载私有存储库。
 
-### 通知
-https://huggingface.co/docs/hub/notifications.md
+### 存储库设置
+https://huggingface.co/docs/hub/repositories-settings.md

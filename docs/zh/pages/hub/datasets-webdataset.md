@@ -57,7 +57,7 @@ hf auth login
 >>> dataloader = DataLoader(dataset, batch_size=64, num_workers=4)
 ```
 
-## Shuffle
+## 随机播放
 
 一般来说，WebDataset 格式的数据集已经被打乱并准备好提供给 DataLoader。
 但您仍然可以使用 WebDataset 的近似洗牌来重新洗牌数据。
@@ -75,5 +75,5 @@ hf auth login
 ... )
 ```
 
-### Jobs
-https://huggingface.co/docs/hub/jobs.md
+### 审核日志
+https://huggingface.co/docs/hub/audit-logs.md

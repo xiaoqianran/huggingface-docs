@@ -25,5 +25,5 @@
 - [Next Steps](./repositories-next-steps)
 - [Licenses](./repositories-licenses)
 
-### 存储库入门
-https://huggingface.co/docs/hub/repositories-getting-started.md
+### 如何处理Spaces中的URL参数
+https://huggingface.co/docs/hub/spaces-handle-url-parameters.md

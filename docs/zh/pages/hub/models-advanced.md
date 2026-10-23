@@ -9,5 +9,5 @@
 - [GGUF format](./gguf)
 - [DDUF format](./dduf)
 
-### 数据工作室
-https://huggingface.co/docs/hub/data-studio.md
+### 网络安全
+https://huggingface.co/docs/hub/enterprise-network-security.md

@@ -12,7 +12,7 @@
 
 在以下部分中，您将学习创建空间、配置空间以及将代码部署到空间的基础知识。我们将创建一个带有 Gradio 的 **热狗分类器** 空间，用于演示 [julien-c/hotdog-not-hotdog](https://huggingface.co/julien-c/hotdog-not-hotdog) 模型，该模型可以检测给定图片是否包含热狗 🌭
 
-您可以在[NimaBoscarino/hotdog-gradio](https://huggingface.co/spaces/NimaBoscarino/hotdog-gradio)找到该内容的完整版本。
+您可以在[NimaBoscarino/hotdog-gradio](https://huggingface.co/spaces/NimaBoscarino/hotdog-gradio)找到完整版本。
 
 ## 创建一个新的渐变空间我们将从 [creating a brand new Space](https://huggingface.co/new-space) 开始，并选择 **Gradio** 作为我们的 SDK。 Hugging Face Spaces 是 Git 存储库，这意味着您可以通过推送提交来增量（协作）地处理您的空间。在继续之前，请查看 [Getting Started with Repositories](./repositories-getting-started) 指南，了解如何创建和编辑文件。
 
@@ -56,5 +56,5 @@ if __name__ == "__main__":
 
 ## 在其他网页上嵌入渐变空间您可以使用 Web 组件或 HTML `<iframe>` 标签将 Gradio Space 嵌入其他网页。查看 [our documentation](./spaces-embed) 或 [Gradio documentation](https://www.gradio.app/guides/sharing-your-app#embedding-hosted-spaces) 了解更多详情。
 
-### 后续步骤
-https://huggingface.co/docs/hub/repositories-next-steps.md
+### 如何使用 Okta 配置 SAML SSO
+https://huggingface.co/docs/hub/security-sso-okta-saml.md

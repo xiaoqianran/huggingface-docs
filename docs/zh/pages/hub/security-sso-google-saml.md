@@ -53,5 +53,5 @@
 - 测试成功后，您可以通过单击“启用”按钮为您的组织启用 SSO。
 - 启用后，您组织的成员必须完成 [How it works](./security-sso-basic#how-it-works) 部分中描述的 SSO 身份验证流程。
 
-### 团队和企业计划
-https://huggingface.co/docs/hub/enterprise.md
+### 使用 Docker 镜像
+https://huggingface.co/docs/hub/jobs-images.md

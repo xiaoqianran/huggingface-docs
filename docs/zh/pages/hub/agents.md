@@ -17,5 +17,5 @@
 - [Agent Libraries](./agents-libraries)
 - [Agent Traces](./agent-traces)
 
-### 组织中的访问控制
-https://huggingface.co/docs/hub/organizations-security.md
+### 硬件
+https://huggingface.co/docs/hub/hardware.md

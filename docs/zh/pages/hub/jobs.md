@@ -20,5 +20,5 @@ Hugging Face Jobs 在云中的 CPU 和 GPU 上运行您的代码。直接运行 
 - [Webhooks Automation](./jobs-webhooks)
 - [Reference](./jobs-reference)
 
-### 在拥抱脸部使用 mlx-image
-https://huggingface.co/docs/hub/mlx-image.md
+### 单点登录 (SSO)
+https://huggingface.co/docs/hub/security-sso.md

@@ -40,5 +40,5 @@
 
 CDN 使用计量保留 90 天。
 
-### 愚蠢
-https://huggingface.co/docs/hub/datasets-daft.md
+### 处理大型数据集
+https://huggingface.co/docs/hub/jobs-large-datasets.md

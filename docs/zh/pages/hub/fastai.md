@@ -10,7 +10,7 @@
 
 Hub 上的所有型号均具有以下功能：
 1. 自动生成的模型卡，其中包含有助于发现的简短描述和元数据标签。
-2. 一个交互式小部件，您可以使用它直接在浏览器中玩模型（用于图像分类）
+2. 一个交互式小部件，您可以使用它直接在浏览器中使用模型（用于图像分类）
 3. 推理提供程序小部件，允许发出推理请求（用于图像分类）。
 
 ## 使用现有模型
@@ -51,5 +51,5 @@ push_to_hub_fastai(learner=learn, repo_id="espejelomar/identify-my-cat")
 * 与集线器[docs](https://docs.fast.ai/huggingface.html)集成。
 * 与集线器[announcement](https://huggingface.co/blog/fastai)集成。
 
-### 渐变空间
-https://huggingface.co/docs/hub/spaces-sdks-gradio.md
+### 3D 数据集
+https://huggingface.co/docs/hub/datasets-3d.md

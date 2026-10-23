@@ -117,30 +117,36 @@
 
 请访问我们的 [gated models](https://huggingface.co/docs/hub/models-gated#download-access-report) 或 [gated datasets](https://huggingface.co/docs/hub/datasets-gated#download-access-report) 文档以了解更多信息。
 
+#### 选择要收集的个人资料数据
+
+默认情况下，Hugging Face 会与组织共享请求者的用户名和主电子邮件地址。在门控组设置中，您可以控制它并更改 Hugging Face 与您共享的信息。这些设置适用于集合中的所有存储库，并且仅影响新请求。
+
+请访问我们的 [gated models](https://huggingface.co/docs/hub/models-gated#choose-which-profile-data-hugging-face-shares-with-you) 或 [gated datasets](https://huggingface.co/docs/hub/datasets-gated#choose-which-profile-data-hugging-face-shares-with-you) 文档以了解更多信息。
+
 #### 自定义请求的信息
 
-组织可以自定义门控参数以及每个门控存储库收集的用户信息。请访问我们的 [gated models](https://huggingface.co/docs/hub/models-gated#customize-requested-information) 或 [gated datasets](https://huggingface.co/docs/hub/datasets-gated#customize-requested-information) 文档了解更多详细信息。
+组织可以自定义门控参数以及每个门控存储库收集的用户信息。请访问我们的 [gated models](https://huggingface.co/docs/hub/models-gated#customize-requested-information) 或 [gated datasets](https://huggingface.co/docs/hub/datasets-gated#customize-requested-information) 文档了解更多详细信息。> [!警告]
+> 除上述配置文件数据设置外，目前无法集中自定义闸门参数和请求信息。如果您希望无论用户请求访问哪个集合的存储库，都收集相同的数据，则需要在该集合的所有模型和数据集的元数据中添加相同的门参数，并保持同步。
 
-> [!警告]
-> 目前无法集中定制闸门参数和请求信息。如果您希望无论用户请求访问哪个集合的存储库，都收集相同的数据，则需要在该集合的所有模型和数据集的元数据中添加相同的门参数，并保持同步。
+## 高级设置
 
-＃＃ 高级设置Enterprise Plus 组织可以在其所有模型和数据集中自动拒绝或阻止来自特定位置的访问者。这些设置位于**发布商分析**设置中的**高级控制**选项卡下。
+Enterprise Plus 组织可以在其所有模型和数据集中自动拒绝或阻止来自特定位置的访问者。这些设置位于**发布商分析**设置中的**高级控制**选项卡下。
 
 ### 执行
 
 **强制**设置控制拒绝哪些被阻止的访问者：
 
 - **门控存储库**：对组织的门控存储库的访问请求会被自动拒绝。
-- **所有存储库**：除了自动拒绝访问请求之外，还会拒绝组织的每个存储库（包括公共存储库）的下载。被阻止的访问者会在存储库页面上看到“在您所在的区域不可用”通知，并且数据集查看器对他们禁用。
-
-强制执行适用于来自被封锁国家和地区的访问者，无论他们是否登录。该组织的成员也不例外。
+- **所有存储库**：除了自动拒绝访问请求之外，还会拒绝组织的每个存储库（包括公共存储库）的下载。被阻止的访问者会在存储库页面上看到“在您所在的区域不可用”通知，并且数据集查看器对他们禁用。强制执行适用于来自被封锁国家和地区的访问者，无论他们是否登录。该组织的成员也不例外。
 
 ### 被封锁的地点
 
 两个列表定义了阻止的位置：
 
 - **被封锁的国家**：由 [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) 代码标识的国家/地区。
-- **封锁地区**：除了上述国家/地区之外，要封锁的特定地区，因为这些地区不是不同的国家/地区，因此无法在上面的列表中选择。## 以用户身份访问门控组集合中的门控存储库
+- **封锁地区**：除了上述国家/地区之外，要封锁的特定地区，因为这些地区不是不同的国家/地区，因此无法在上面的列表中选择。
+
+## 以用户身份访问门控组集合中的门控存储库
 
 门控组集合在其名称旁边显示一个特定图标：
 
@@ -159,5 +165,5 @@
 
 请访问我们的 [gated models](https://huggingface.co/docs/hub/models-gated#access-gated-models-as-a-user) 或 [gated datasets](https://huggingface.co/docs/hub/datasets-gated#access-gated-datasets-as-a-user) 文档，了解有关请求访问存储库的更多信息。
 
-### 空间 Livebook
-https://huggingface.co/docs/hub/spaces-sdks-docker-livebook.md
+### HF PRO 订阅 🔥
+https://huggingface.co/docs/hub/pro.md

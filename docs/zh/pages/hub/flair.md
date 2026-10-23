@@ -60,5 +60,5 @@ Sentence[6]: "George Washington ging nach Washington." → ["George Washington"/
 * 天赋[docs](https://flairnlp.github.io/docs/intro)
 * Hub上的官方天赋[models](https://huggingface.co/flair)（主要由[@alanakbik](https://huggingface.co/alanakbik)和[@stefan-it](https://huggingface.co/stefan-it)训练）
 
-### 下载数据集
-https://huggingface.co/docs/hub/datasets-downloading.md
+### 执行向量相似度搜索
+https://huggingface.co/docs/hub/datasets-duckdb-vector-similarity-search.md

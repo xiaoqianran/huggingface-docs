@@ -30,5 +30,5 @@ doc = nlp("Barack Obama was born in Hawaii.") # run annotation over a sentence
 
 *`stanza`[docs](https://stanfordnlp.github.io/stanza/)。
 
-### 使用 Docker 镜像
-https://huggingface.co/docs/hub/jobs-images.md
+### 流光空间
+https://huggingface.co/docs/hub/spaces-sdks-streamlit.md

@@ -57,7 +57,7 @@
     alt="screenshot of Hugging Face Storage Regions tag feature"
   />
 
-## 监管和法律合规性受监管的行业通常需要将数据存储在特定区域。
+## 监管和法律合规性受监管的行业通常需要在特定区域存储数据。
 
 对于欧盟公司，您可以以符合 GDPR 的方式使用 Hub 进行机器学习开发，数据集、模型、存储桶和推理端点全部存储在欧盟数据中心。
 
@@ -65,7 +65,7 @@
 
 将模型和数据集存储在离您的团队和基础设施更近的地方可以显着提高上传和下载的性能。
 
-考虑到模型权重和数据集文件通常较大，这种影响是巨大的。
+鉴于模型权重和数据集文件通常较大，这种影响是巨大的。
 
   <img
     class="block dark:hidden m-0!"
@@ -86,5 +86,5 @@
 
 可用的硬件配置因地区而异，并且某些功能可能并非在所有地区都可用。如需特殊要求，请联系您的 HF 客户团队。
 
-### 吉斯卡德谈空间
-https://huggingface.co/docs/hub/spaces-sdks-docker-giskard.md
+### 如何向 ArXiv 添加空间
+https://huggingface.co/docs/hub/spaces-add-to-arxiv.md

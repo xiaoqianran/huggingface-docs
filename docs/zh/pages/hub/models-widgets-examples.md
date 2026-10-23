@@ -349,5 +349,5 @@ widget:
       - 9.8
       - 12.6
   example_title: "Wine"
-```### 在拥抱面部使用_Adapters_
-https://huggingface.co/docs/hub/adapters.md
+```### Spaces ZeroGPU：空间的动态 GPU 分配
+https://huggingface.co/docs/hub/spaces-zerogpu.md

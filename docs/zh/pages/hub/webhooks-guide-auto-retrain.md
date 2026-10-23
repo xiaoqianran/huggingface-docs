@@ -6,12 +6,12 @@
 使用 HF 数据集、Webhooks、Spaces 和 AutoTrain。
 
 我们将构建一个 Webhook，用于监听图像分类数据集的变化并触发微调
-of [microsoft/resnet-50](https://huggingface.co/microsoft/resnet-50) using [AutoTrain](https://huggingface.co/autotrain).
+使用 [AutoTrain](https://huggingface.co/autotrain) 的 [microsoft/resnet-50](https://huggingface.co/microsoft/resnet-50)。
 
-## Prerequisite: Upload your dataset to the Hub
+## 先决条件：将数据集上传到 Hub
 
-We will use a [simple image classification dataset](https://huggingface.co/datasets/huggingface-projects/auto-retrain-input-dataset) for the sake
-of the example.了解有关将数据上传到中心[here](https://huggingface.co/docs/datasets/upload_dataset)的更多信息。
+我们将使用[simple image classification dataset](https://huggingface.co/datasets/huggingface-projects/auto-retrain-input-dataset)
+的例子。了解有关将数据上传到中心[here](https://huggingface.co/docs/datasets/upload_dataset)的更多信息。
 
 ![dataset](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/webhooks-guides/002-auto-retrain/dataset.png)
 
@@ -19,16 +19,16 @@ of the example.了解有关将数据上传到中心[here](https://huggingface.co
 
 首先，让我们从您的 [settings]( https://huggingface.co/settings/webhooks) 创建一个 Webhook。
 
-- Select your dataset as the target repository. We will target [huggingface-projects/input-dataset](https://huggingface.co/datasets/huggingface-projects/input-dataset) in this example.
-- You can put a dummy Webhook URL for now.定义 Webhook 将让您查看将发送给它的事件。您还可以重播它们，这对于调试很有用！
-- Input a secret to make it more secure.
+- 选择您的数据集作为目标存储库。在此示例中，我们将定位[huggingface-projects/input-dataset](https://huggingface.co/datasets/huggingface-projects/input-dataset)。
+- 您现在可以输入一个虚拟的 Webhook URL。定义 Webhook 将让您查看将发送给它的事件。您还可以重播它们，这对于调试很有用！
+- 输入密码以使其更安全。
 - 订阅“Repo update”事件，因为我们希望对数据更改做出反应
 
-Your Webhook will look like this:
+您的 Webhook 将如下所示：
 
 ![webhook-creation](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/webhooks-guides/002-auto-retrain/webhook-creation.png)
 
-## Create a Space to react to your Webhook我们现在需要一种方法来响应您的 Webhook 事件。一个简单的方法是使用[Space](https://huggingface.co/docs/hub/spaces-overview)！
+## 创建一个空间来响应您的 Webhook我们现在需要一种方法来响应您的 Webhook 事件。一个简单的方法是使用[Space](https://huggingface.co/docs/hub/spaces-overview)！
 
 您可以找到一个示例空间[here](https://huggingface.co/spaces/huggingface-projects/auto-retrain/tree/main)。
 
@@ -166,5 +166,5 @@ def schedule_retrain(payload: WebhookPayload):
 
 就是这样！现在，对输入数据集的每次提交都将触发使用 AutoTrain 对 ResNet-50 进行微调 🎉
 
-### 组织卡
-https://huggingface.co/docs/hub/organizations-cards.md
+### 查询数据集
+https://huggingface.co/docs/hub/datasets-duckdb-select.md

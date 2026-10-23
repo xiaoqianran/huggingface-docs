@@ -10,5 +10,5 @@
 
 然后，在主页上，您可以从已安装模型列表中选择模型并开始对话。
 
-### 存储桶：安全性与合规性
-https://huggingface.co/docs/hub/storage-buckets-security.md
+### 在拥抱脸部时使用句子转换器
+https://huggingface.co/docs/hub/sentence-transformers.md

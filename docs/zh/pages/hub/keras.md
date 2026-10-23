@@ -21,7 +21,7 @@ Keras 与 Hugging Face Hub 深度集成。这意味着您可以直接从库在 H
 pip install -U keras huggingface_hub
 ```
 
-安装该库后，您只需通过传递 Hugging Face 路径作为参数来使用常规 `keras.saving.load_model` 方法。 HF 路径是带有 `hf://` 前缀的 `repo_id`，例如`"hf://keras-io/weather-prediction"`。在 [Keras documentation](https://keras.io/api/models/model_saving_apis/model_saving_and_loading/#load_model-function) 中了解有关 `load_model` 的更多信息。
+安装该库后，您只需通过传递 Hugging Face 路径作为参数来使用常规 `keras.saving.load_model` 方法。 HF 路径是一个以 `hf://` 为前缀的 `repo_id`，例如`"hf://keras-io/weather-prediction"`。在 [Keras documentation](https://keras.io/api/models/model_saving_apis/model_saving_and_loading/#load_model-function) 中了解有关 `load_model` 的更多信息。
 
 ```py
 import keras
@@ -48,5 +48,5 @@ model.save("hf://your-username/your-model-name")
 ## 其他资源
 
 * Keras 开发者[Guides](https://keras.io/guides/)。
-* Keras [examples](https://keras.io/examples/)。### 配置数据集查看器
-https://huggingface.co/docs/hub/datasets-viewer-configure.md
+* Keras [examples](https://keras.io/examples/)。### 上传数据集
+https://huggingface.co/docs/hub/datasets-adding.md
