@@ -14,7 +14,7 @@
 huggingface_hub.HfFileSystem(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.2.0/src/huggingface_hub/hf_file_system.py#L144)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/hf_file_system.py#L370)
 
 **参数：**
 
@@ -26,10 +26,14 @@ block_size (`int`, *可选*) ：读写文件的块大小。
 
 Expand_info (`bool`, *可选*) : 是否扩展文件信息。
 
+max_workers (`int`, *可选*) ：用于并行列出大型目录的最大并发请求数（请参阅[find()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem.find)）。默认为 16。将其设置为 1 以禁用并行列表。live_follow（`bool`，*可选*）：是否跟踪存储桶中发生在集线器上的文件更改，以便缓存的列表保持最新状态，而无需手动[HfFileSystem.invalidate_cache()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem.invalidate_cache)调用。启用后，列出存储桶会打开与该存储桶的集线器事件源的后台连接。对模型、数据集和空间存储库没有影响（中心不会为这些存储库提供更改）。
+
 - **storage_options**（`dict`，*可选*）：文件系统的附加选项。参见[fsspec documentation](https://filesystem-spec.readthedocs.io/en/latest/api.html#fsspec.spec.AbstractFileSystem.__init__)。
 
-访问远程 Hugging Face Hub 存储库，就像访问本地文件系统一样。> [!警告]
-> [HfFileSystem](/docs/huggingface_hub/v2.2.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) 提供 fsspec 兼容性，这对于需要它的库很有用（例如，阅读
+访问远程 Hugging Face Hub 存储库，就像访问本地文件系统一样。
+
+> [!警告]
+> [HfFileSystem](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) 提供 fsspec 兼容性，这对于需要它的库很有用（例如，阅读
 > 直接使用`pandas`拥抱人脸数据集）。然而，由于这种兼容性，它引入了额外的开销
 > 层。为了获得更好的性能和可靠性，建议尽可能使用`HfApi`方法。
 
@@ -49,7 +53,7 @@ hf://spaces/<repo-id>[@<revision>]/<path/in/repo>
 hf://buckets/<bucket-id>/<path/in/bucket>
 ```
 
-注意：直接使用[HfFileSystem](/docs/huggingface_hub/v2.2.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem)时，在路径中传递`hf://`协议前缀是可选的。
+注意：当直接使用[HfFileSystem](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem)时，在路径中传递`hf://`协议前缀是可选的。
 
 用途：
 
@@ -67,9 +71,7 @@ hf://buckets/<bucket-id>/<path/in/bucket>
 ...     data = f.read()
 >>> with hffs.open("my-username/my-model/pytorch_model.bin", "wb") as f:
 ...     f.write(data)
-```
-
-指定用于身份验证的令牌：
+```指定用于身份验证的令牌：
 ```python
 >>> from huggingface_hub import HfFileSystem
 >>> hffs = HfFileSystem(token=token)
@@ -81,7 +83,7 @@ hf://buckets/<bucket-id>/<path/in/bucket>
 cp_file(path1: str, path2: str, revision: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.2.0/src/huggingface_hub/hf_file_system.py#L817)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/hf_file_system.py#L1117)
 
 **参数：**
 
@@ -102,7 +104,7 @@ revision (`str`, *可选*) ：要从中复制的 git 修订版。
 exists(path, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.2.0/src/huggingface_hub/hf_file_system.py#L1012)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/hf_file_system.py#L1312)
 
 **参数：**
 
@@ -110,9 +112,11 @@ path (`str`) ：要检查的路径。
 
 **返回：** `bool`
 
-如果文件存在则为 True，否则为 False。检查文件是否存在。
+如果文件存在则为 True，否则为 False。
 
-更多详情请参阅[fsspec documentation](https://filesystem-spec.readthedocs.io/en/latest/api.html#fsspec.spec.AbstractFileSystem.exists)。
+检查文件是否存在。
+
+详情请参阅[fsspec documentation](https://filesystem-spec.readthedocs.io/en/latest/api.html#fsspec.spec.AbstractFileSystem.exists)。
 
 > [!警告]
 > 注意：如果可能，请使用 `HfApi.file_exists()` 以获得更好的性能。
@@ -123,19 +127,17 @@ path (`str`) ：要检查的路径。
 find(path: str, maxdepth: int | None = None, withdirs: bool = False, detail: bool = False, refresh: bool = False, revision: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.2.0/src/huggingface_hub/hf_file_system.py#L756)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/hf_file_system.py#L1051)
 
 **参数：**
 
 path (`str`) : 列出文件的根路径。
 
-maxdepth (`int`, *可选*) : 下降到子目录的最大深度。
+maxdepth (`int`, *可选*) ：下降到子目录的最大深度。
 
 withdirs (`bool`, *可选*) ：在输出中包含目录路径。默认为 False。
 
-详细信息（`bool`，*可选*）：如果为True，则返回将路径映射到文件信息的字典。默认为 False。
-
-刷新（`bool`，*可选*）：如果为 True，则绕过缓存并获取最新数据。默认为 False。
+详细信息（`bool`，*可选*）：如果为True，则返回将路径映射到文件信息的字典。默认为 False。刷新（`bool`，*可选*）：如果为True，则绕过缓存并获取最新数据。默认为 False。
 
 revision (`str`, *可选*) ：要列出的 git 修订版本。
 
@@ -147,13 +149,18 @@ revision (`str`, *可选*) ：要列出的 git 修订版本。
 
 详情请参阅[fsspec documentation](https://filesystem-spec.readthedocs.io/en/latest/api.html#fsspec.spec.AbstractFileSystem.find)。
 
+> [!提示]
+> 大型存储库按目录并行列出，以解决以下问题
+> Hub `tree` 端点基于光标的分页。使用 `max_workers` 进行调音
+> [HfFileSystem](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) 的论证。
+
 #### get_file[[huggingface_hub.HfFileSystem.get_file]]
 
 ```python
-get_file(rpath, lpath = None, callback = <fsspec.callbacks.NoOpCallback object at 0x7fbbae38caf0>, outfile = None, **kwargs)
+get_file(rpath, lpath = None, callback = <fsspec.callbacks.NoOpCallback object at 0x7f3cbb108cd0>, outfile = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.2.0/src/huggingface_hub/hf_file_system.py#L1120)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/hf_file_system.py#L1420)
 
 **参数：**
 
@@ -161,7 +168,9 @@ rpath (`str`) ：下载的远程路径。
 
 lpath (`str`, *可选*) : 下载到的本地路径。如果提供了`outfile`，则可以省略。
 
-回调（`Callback`，*可选*）：可选回调来跟踪下载进度。默认不回调。outfile (`IO`, *可选*) ：可选的要写入的类文件对象。如果提供，`lpath` 将被忽略。
+回调（`Callback`，*可选*）：可选回调来跟踪下载进度。默认不回调。
+
+outfile (`IO`, *可选*) ：可选的要写入的类文件对象。如果提供，`lpath` 将被忽略。
 
 将单个远程文件复制到本地。
 
@@ -174,13 +183,11 @@ lpath (`str`, *可选*) : 下载到的本地路径。如果提供了`outfile`，
 glob(path: str, maxdepth: int | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.2.0/src/huggingface_hub/hf_file_system.py#L738)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/hf_file_system.py#L1033)
 
 **参数：**
 
-path (`str`) ：要匹配的路径模式。
-
-maxdepth (`int`, *可选*) : 下降到目录的最大深度。默认情况下，没有限制。
+path (`str`) ：要匹配的路径模式。maxdepth (`int`, *可选*) : 下降到目录的最大深度。默认情况下，没有限制。
 
 **返回：** `list[str]`
 
@@ -188,7 +195,7 @@ maxdepth (`int`, *可选*) : 下降到目录的最大深度。默认情况下，
 
 通过全局匹配查找文件。
 
-详情请参阅[fsspec documentation](https://filesystem-spec.readthedocs.io/en/latest/api.html#fsspec.spec.AbstractFileSystem.glob)。
+更多详情请参阅[fsspec documentation](https://filesystem-spec.readthedocs.io/en/latest/api.html#fsspec.spec.AbstractFileSystem.glob)。
 
 ####信息[[huggingface_hub.HfFileSystem.info]]
 
@@ -196,7 +203,7 @@ maxdepth (`int`, *可选*) : 下降到目录的最大深度。默认情况下，
 info(path: str, refresh: bool = False, revision: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.2.0/src/huggingface_hub/hf_file_system.py#L902)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/hf_file_system.py#L1202)
 
 **参数：**
 
@@ -216,13 +223,15 @@ revision (`str`, *可选*) ：从中获取信息的 git 版本。
 
 > [!警告]
 > 注意：如果可能，请使用 `HfApi.get_paths_info()` 或 `HfApi.repo_info()` 以获得更好的性能
-> （或 `HfApi.get_bucket_paths_info()` 或 `HfApi.bucket_info()` 对于桶）#### invalidate_cache[[huggingface_hub.HfFileSystem.invalidate_cache]]
+>（或`HfApi.get_bucket_paths_info()`或`HfApi.bucket_info()`用于桶）
+
+#### invalidate_cache[[huggingface_hub.HfFileSystem.invalidate_cache]]
 
 ```python
 invalidate_cache(path: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.2.0/src/huggingface_hub/hf_file_system.py#L359)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/hf_file_system.py#L599)
 
 **参数：**
 
@@ -230,7 +239,7 @@ path (`str`, *可选*) : 从缓存中清除的路径。如果未提供，请清�
 
 清除给定路径的缓存。
 
-详情请参阅[fsspec documentation](https://filesystem-spec.readthedocs.io/en/latest/api.html#fsspec.spec.AbstractFileSystem.invalidate_cache)。
+更多详情请参阅[fsspec documentation](https://filesystem-spec.readthedocs.io/en/latest/api.html#fsspec.spec.AbstractFileSystem.invalidate_cache)。
 
 #### isdir[[huggingface_hub.HfFileSystem.isdir]]
 
@@ -238,15 +247,13 @@ path (`str`, *可选*) : 从缓存中清除的路径。如果未提供，请清�
 isdir(path)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.2.0/src/huggingface_hub/hf_file_system.py#L1037)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/hf_file_system.py#L1337)
 
 **参数：**
 
 path (`str`) ：要检查的路径。
 
-**返回：** `bool`
-
-如果路径是目录则为 True，否则为 False。
+**返回：** `bool`如果路径是目录则为 True，否则为 False。
 
 检查路径是否是目录。
 
@@ -258,7 +265,7 @@ path (`str`) ：要检查的路径。
 isfile(path)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.2.0/src/huggingface_hub/hf_file_system.py#L1055)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/hf_file_system.py#L1355)
 
 **参数：**
 
@@ -270,7 +277,7 @@ path (`str`) ：要检查的路径。
 
 检查路径是否是文件。
 
-更多详情请参阅[fsspec documentation](https://filesystem-spec.readthedocs.io/en/latest/api.html#fsspec.spec.AbstractFileSystem.isfile)。
+详情请参阅[fsspec documentation](https://filesystem-spec.readthedocs.io/en/latest/api.html#fsspec.spec.AbstractFileSystem.isfile)。
 
 #### ls[[huggingface_hub.HfFileSystem.ls]]
 
@@ -278,7 +285,7 @@ path (`str`) ：要检查的路径。
 ls(path: str, detail: bool = True, refresh: bool = False, revision: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.2.0/src/huggingface_hub/hf_file_system.py#L485)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/hf_file_system.py#L788)
 
 **参数：**
 
@@ -288,7 +295,9 @@ ls(path: str, detail: bool = True, refresh: bool = False, revision: str | None =
 
 刷新（`bool`，*可选*）：如果为 True，则绕过缓存并获取最新数据。默认为 False。
 
-revision (`str`, *可选*) ：要列出的 git 修订版本。**返回：** `list[Union[str, dict[str, Any]]]`
+revision (`str`, *可选*) ：要列出的 git 修订版本。
+
+**退货：** `list[Union[str, dict[str, Any]]]`
 
 文件路径列表（如果detail=False）或文件信息列表
 字典（如果详细信息= True）。
@@ -306,19 +315,17 @@ revision (`str`, *可选*) ：要列出的 git 修订版本。**返回：** `lis
 modified(path: str, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.2.0/src/huggingface_hub/hf_file_system.py#L877)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/hf_file_system.py#L1177)
 
 **参数：**
 
 路径 (`str`) ：文件的路径。
 
-**返回：** `datetime`
-
-文件的最后修改时间。
+**返回：** `datetime`文件的最后修改时间。
 
 获取文件的最后修改时间。
 
-更多详情请参阅[fsspec documentation](https://filesystem-spec.readthedocs.io/en/latest/api.html#fsspec.spec.AbstractFileSystem.modified)。
+详情请参阅[fsspec documentation](https://filesystem-spec.readthedocs.io/en/latest/api.html#fsspec.spec.AbstractFileSystem.modified)。
 
 #### 解析路径[[huggingface_hub.HfFileSystem.resolve_path]]
 
@@ -326,7 +333,7 @@ modified(path: str, **kwargs)
 resolve_path(path: str, revision: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.2.0/src/huggingface_hub/hf_file_system.py#L280)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/hf_file_system.py#L520)
 
 **参数：**
 
@@ -336,7 +343,7 @@ revision (`str`, *可选*) ：要解析的存储库的修订版本。默认为�
 
 **返回：** `HfFileSystemResolvedPath`
 
-解析的路径信息包含 `repo_type`、`repo_id`、`revision` 和 `path_in_repo`。
+包含`repo_type`、`repo_id`、`revision`和`path_in_repo`的已解析路径信息。
 
 **加薪：** ``ValueError`` or ``NotImplementedError``
 
@@ -353,36 +360,36 @@ revision (`str`, *可选*) ：要解析的存储库的修订版本。默认为�
 rm(path: str, recursive: bool = False, maxdepth: int | None = None, revision: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.2.0/src/huggingface_hub/hf_file_system.py#L435)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/hf_file_system.py#L738)
 
 **参数：**
 
-path (`str`) ：要删除的路径。recursive (`bool`, *可选*) ：如果为 True，则删除目录及其所有内容。默认为 False。
+path (`str`) ：要删除的路径。
+
+recursive (`bool`, *可选*) ：如果为 True，则删除目录及其所有内容。默认为 False。
 
 maxdepth (`int`, *可选*) : 递归删除时要访问的子目录的最大数量。
 
-revision (`str`, *可选*) : 要从中删除的 git 修订版。
+revision (`str`, *可选*) ：要从中删除的 git 修订版。
 
 从存储库中删除文件。
 
 详情请参阅[fsspec documentation](https://filesystem-spec.readthedocs.io/en/latest/api.html#fsspec.spec.AbstractFileSystem.rm)。
 
 > [!警告]
-> 注意：如果可能，请使用 `HfApi.delete_file()` 以获得更好的性能。
-
-#### url[[huggingface_hub.HfFileSystem.url]]
+> 注意：如果可能，请使用 `HfApi.delete_file()` 以获得更好的性能。#### url[[huggingface_hub.HfFileSystem.url]]
 
 ```python
 url(path: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.2.0/src/huggingface_hub/hf_file_system.py#L1073)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/hf_file_system.py#L1373)
 
 **参数：**
 
 path (`str`) : 获取 URL 的路径。
 
-**退货：** `str`
+**返回：** `str`
 
 用于访问 Hub 上的文件或目录的 HTTP URL。
 
@@ -394,13 +401,13 @@ path (`str`) : 获取 URL 的路径。
 walk(path: str, *args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.2.0/src/huggingface_hub/hf_file_system.py#L722)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/hf_file_system.py#L1017)
 
 **参数：**
 
-path (`str`) ：列出文件的根路径。
+path (`str`) : 列出文件的根路径。
 
-**回报：** `Iterator[tuple[str, list[str], list[str]]]`
+**返回：** `Iterator[tuple[str, list[str], list[str]]]`
 
 （路径、目录名列表、文件名列表）元组的迭代器。
 
@@ -409,4 +416,4 @@ path (`str`) ：列出文件的根路径。
 详情请参阅[fsspec documentation](https://filesystem-spec.readthedocs.io/en/latest/api.html#fsspec.spec.AbstractFileSystem.walk)。
 
 ### 桶
-https://huggingface.co/docs/huggingface_hub/v2.2.0/guides/buckets.md
+https://huggingface.co/docs/huggingface_hub/v2.3.0/guides/buckets.md

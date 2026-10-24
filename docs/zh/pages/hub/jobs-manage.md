@@ -65,7 +65,7 @@ JOB_ID      NAME         IMAGE/SPACE COMMAND      CREATED      STATUS    RUNTIME
 
 ## 监控资源使用情况
 
-使用`hf jobs stats`获取正在运行的作业的CPU、内存、网络和GPU（如果有）的使用情况统计：
+使用`hf jobs stats`获取正在运行的作业的CPU、内存、网络和GPU（如果有）使用情况的快照：
 
 ```bash
 >>> hf jobs stats
@@ -80,9 +80,13 @@ JOB ID                   CPU % NUM CPU MEM % MEM USAGE        NET I/O         GP
 >>> hf jobs stats [job-ids]...
 ```
 
-## 检查作业
+使用 `-f` 实时跟踪统计数据，直到作业完成：
 
-您可以在 Job 页面中查看 Job 的状态日志：
+```bash
+>>> hf jobs stats -f [job-ids]...
+```
+
+## 检查作业您可以在 Job 页面中查看 Job 的状态日志：
 
 或者使用 CLI
 
@@ -105,7 +109,9 @@ JOB ID                   CPU % NUM CPU MEM % MEM USAGE        NET I/O         GP
         "url": "https://huggingface.co/jobs/lhoestq/693994e21a39f67af5a41ad0"
     }
 ]
-```和日志
+```
+
+和日志
 
 ```bash
 >>> hf jobs logs 693994e21a39f67af5a41ad0
@@ -156,21 +162,21 @@ hf jobs logs --namespace <my-org-name> <job_id>
 
 ## 坚持你的结果
 
-当作业结束时，作业的文件系统将被删除。在作业退出之前写下您想要保存在持久位置的任何内容：
+当作业结束时，作业的文件系统将被删除。在作业退出之前写下您想要保存在持久位置的任何内容：- **中间工件、检查点和日志 → 存储桶卷。** 安装存储桶并在安装路径下写入输出 - 有关示例，请参阅 [Volumes](./jobs-configuration#volumes)。创建作业时，卷安装将通过您的 Hugging Face 身份进行授权，因此您的脚本不需要令牌即可写入它们。
 
-- **中间工件、检查点和日志 → 存储桶卷。** 安装存储桶并在安装路径下写入输出 - 有关示例，请参阅 [Volumes](./jobs-configuration#volumes)。创建作业时，卷安装将通过您的 Hugging Face 身份进行授权，因此您的脚本不需要令牌即可写入它们。- **最终模型和数据集 → 推送到 Hub 存储库。** 作业没有 Hugging Face 令牌，除非您传递一个令牌，例如`--secrets HF_TOKEN`（裸表单自动解析为您登录的令牌）。如果您的脚本调用`push_to_hub()`或`create_repo()`，请确保令牌具有写入权限（细粒度令牌需要存储库写入和创建权限）。常见的失败模式是作业完成数小时的计算，然后在最终上传时出错，因为令牌无法写入 — 计算已完成，但结果未保存。
+- **最终模型和数据集 → 推送到 Hub 存储库。** 作业没有 Hugging Face 令牌，除非您传递一个令牌，例如`--secrets HF_TOKEN`（裸表单自动解析为您登录的令牌）。如果您的脚本调用`push_to_hub()`或`create_repo()`，请确保令牌具有写入权限（细粒度令牌需要存储库写入和创建权限）。常见的失败模式是作业完成数小时的计算，然后在最终上传时出错，因为令牌无法写入 — 计算已完成，但结果未保存。
 
 - **将关键结果打印到日志中。** 作业日志在作业结束后保留​​，并且可以随时使用 `hf jobs logs <job-id>` 获取。即使上传步骤失败，将最终指标打印到标准输出也能让它们恢复。
 
-作业完成后，检查您的输出是否实际落地（例如使用 `hf buckets list`） - `COMPLETED` 状态意味着命令成功退出，而不是文件已保留在您期望的位置。
-
-## 调试作业
+作业完成后，检查您的输出是否实际落地（例如使用 `hf buckets list`） - `COMPLETED` 状态意味着命令成功退出，而不是文件已保留在您期望的位置。## 调试作业
 
 如果作业有错误，您可以在作业页面上看到它
 
 查看“作业”页面上的状态消息和日志，了解出了什么问题。
 
-您还可以查看日志的最后几行，以了解作业失败之前发生的情况。您可以在“作业”页面中或使用 CLI 来查看：```bash
+您还可以查看日志的最后几行，以了解作业失败之前发生的情况。您可以在“作业”页面中或使用 CLI 来查看：
+
+```bash
 >>> hf jobs logs 69405cf51a39f67af5a41f29 | tail -n 10     
  Downloaded nvidia-cudnn-cu12
  Downloaded torch
@@ -224,9 +230,7 @@ hf jobs cancel --namespace <my-org-name> <job_id>
 
 ## MacOS 菜单栏
 
-在 MacOS [⟦T62⟧](https://github.com/drbh/hfjobs-menubar) 客户端中查找您的作业列表：
+在 MacOS [⟦T64⟧](https://github.com/drbh/hfjobs-menubar) 客户端中查找您的作业列表：
 
-获取作业信息，并监控日志和资源使用统计信息：
-
-### 空格
+获取作业信息，并监控日志和资源使用统计信息：### 空格
 https://huggingface.co/docs/hub/spaces.md

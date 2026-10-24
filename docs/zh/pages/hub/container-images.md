@@ -2,7 +2,7 @@
 
 # 容器镜像
 
-容器镜像是 Hugging Face Hub 上用于 Docker 和其他 [OCI](https://opencontainers.org/) 镜像的存储库类型。 Hugging Face 容器注册表 `cr.hf.co` 将图像存储在 [Xet](./xet/index) 存储后端。使用推荐客户端[⟦T5⟧](#pushing-and-pulling-with-hf-image)推拉它们； Docker、Podman、crane、skopeo、ORAS 和 Helm 等标准客户端也可以工作。
+容器镜像是 Hugging Face Hub 上用于 Docker 和其他 [OCI](https://opencontainers.org/) 镜像的存储库类型。 Hugging Face 容器注册表 `cr.hf.co` 将图像存储在 [Xet](./xet/index) 存储后端。使用推荐客户端[⟦T5⟧](#pushing-and-pulling-with-hf-image)推拉； Docker、Podman、crane、skopeo、ORAS 和 Helm 等标准客户端也可以工作。
 
 > [!注意]
 > 容器镜像处于私人测试版：[contact us](https://huggingface.co/contact/sales)，以便为您的组织启用它们。
@@ -22,7 +22,7 @@ curl -X POST https://huggingface.co/api/containers/my-org/my-app \
 
 ## 使用 `hf image` 推拉
 
-[⟦T9⟧](https://github.com/huggingface/hf-image)是`hf` CLI的扩展，仅传输自上一版本以来各层发生变化的部分，与其他OCI客户端相比，体验更快。
+[⟦T9⟧](https://github.com/huggingface/hf-image)，`hf` CLI 的扩展，仅传输自上一版本以来每层发生更改的部分，与其他 OCI 客户端相比，体验更快。
 
 ```bash
 hf extensions install hf-image
@@ -32,7 +32,7 @@ hf image push cr.hf.co/my-org/my-app:v2
 hf image pull cr.hf.co/my-org/my-app:v2
 ```
 
-它使用你的 Hugging Face [User Access Token](./security-tokens)（`read` 来拉，`write` 来推），并且需要 Docker 和 [containerd image store](https://docs.docker.com/engine/storage/containerd/)。使用 `hf image` 推送的图像可以由任何客户端拉取。由于 `hf image` 存储未压缩的图层，因此它推送的图像会获得与 `docker push` 不同的摘要。要保留 `docker push` 摘要，对于摘要固定的签名或部署，请使用 `hf image push --preserve-digests`。它比较慢：更改后的图层会被完整地推送和拉动，就像`docker push`一样。
+它使用您的 Hugging Face [User Access Token](./security-tokens)（`read` 来拉，`write` 来推），并且需要 Docker 和 [containerd image store](https://docs.docker.com/engine/storage/containerd/)。使用 `hf image` 推送的图像可以由任何客户端拉取。由于 `hf image` 存储未压缩的图层，因此它推送的图像会获得与 `docker push` 不同的摘要。要保留 `docker push` 摘要，对于摘要固定的签名或部署，请使用 `hf image push --preserve-digests`。它比较慢：更改后的图层会被完整地推送和拉动，就像`docker push`一样。
 
 ## 使用 Docker 和其他 OCI 客户端
 
@@ -51,18 +51,22 @@ docker pull cr.hf.co/my-org/my-app:v1
 
 ## 删除图像
 
-使用[⟦T24⟧](#pushing-and-pulling-with-hf-image)，删除图像的标签，然后通过摘要删除它：
+在集线器上，使用图像或标签页面菜单中的“**删除此标签**”删除标签。使用[⟦T24⟧](#pushing-and-pulling-with-hf-image)，删除图像的标签，然后通过摘要删除它：
 
 ```bash
 hf image untag cr.hf.co/my-org/my-app:v1                # prints the image's digest
 hf image delete cr.hf.co/my-org/my-app@sha256:<digest>
 ```
 
-如果某些内容仍然引用该图像，例如另一个标签，则删除将被拒绝并列出首先要删除的内容。没有其他图像使用的图层稍后会被删除。
+如果某些内容仍然引用该图像，例如另一个标签，则删除将被拒绝并列出首先删除的内容。删除多架构映像也会删除其平台映像。
+
+## 垃圾收集注册表会直接或通过多架构镜像删除不再有标签指向的镜像，例如新推送后的前一个`latest`。它还会删除剩余图像未使用的图层。要继续通过摘要提取图像，请在其上保留标签。
 
 ## 限制
 
-- 图像名称为 `cr.hf.co/<namespace>/<name>`，小写。
+- 图像名称为`cr.hf.co/<namespace>/<name>`，小写。
 - 层高达 100 GB，显示高达 4 MiB。
-- 标签列表可能需要几秒钟的时间才能显示新标签。### 在拥抱脸部时使用 Stanza
+- 标签列表可能需要几秒钟的时间才能显示新标签。
+
+### 在拥抱脸部时使用 Stanza
 https://huggingface.co/docs/hub/stanza.md
