@@ -33,7 +33,7 @@ transformer = QwenImage21Transformer2DModel.from_pretrained(
 diffusers.QwenImage21Transformer2DModel(patch_size: int = 1, in_channels: int = 64, out_channels: int | None = 64, num_layers: int = 32, attention_head_dim: int = 128, num_attention_heads: int = 32, context_in_dim: int = 4096, mlp_ratio: int = 3, axes_dims_rope: tuple = (16, 56, 56), eps: float = 1e-06, causal_condition: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_qwenimage21.py#L713)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_qwenimage21.py#L716)
 
 **Parameters:**
 
@@ -79,7 +79,7 @@ Two behaviours distinguish 2.1:
 build_token_metadata(image_pad_mask: Tensor, img_shapes: list)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_qwenimage21.py#L807)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_qwenimage21.py#L822)
 
 **Parameters:**
 
@@ -104,7 +104,7 @@ separate blocks, otherwise they would attend to each other bidirectionally.
 forward(hidden_states: Tensor, encoder_hidden_states: Tensor, timestep: Tensor, img_shapes: list, img_mask: Tensor, encoder_hidden_states_mask: typing.Optional[torch.Tensor] = None, attention_kwargs: dict[str, typing.Any] | None = None, kv_cache: diffusers.models.transformers.transformer_qwenimage21.QwenImage21KVCache | None = None, kv_cache_mode: str | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_qwenimage21.py#L846)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_qwenimage21.py#L862)
 
 **Parameters:**
 
@@ -126,11 +126,11 @@ kv_cache_mode (`str`, *optional*) : `"extract"` to prefill the cache (first deno
 
 attention_kwargs (`dict`, *optional*) : Forwarded to the attention processors, and carries `scale` for the LoRA layers.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [Transformer2DModelOutput](/docs/diffusers/v0.41.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [Transformer2DModelOutput](/docs/diffusers/v0.42.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) instead of a plain tuple.
 
-**Returns:** [Transformer2DModelOutput](/docs/diffusers/v0.41.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) or `tuple`
+**Returns:** [Transformer2DModelOutput](/docs/diffusers/v0.42.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) or `tuple`
 
-[Transformer2DModelOutput](/docs/diffusers/v0.41.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) if `return_dict` is True, otherwise a plain
+[Transformer2DModelOutput](/docs/diffusers/v0.42.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) if `return_dict` is True, otherwise a plain
 `tuple` whose first element is the denoised latents.
 
 ## Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
@@ -141,13 +141,13 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/modeling_outputs.py#L21)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.42.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-The output of [Transformer2DModel](/docs/diffusers/v0.41.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+The output of [Transformer2DModel](/docs/diffusers/v0.42.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
 
 ### JoyImageEditTransformer3DModel
-https://huggingface.co/docs/diffusers/v0.41.0/api/models/transformer_joyimage.md
+https://huggingface.co/docs/diffusers/v0.42.0/api/models/transformer_joyimage.md

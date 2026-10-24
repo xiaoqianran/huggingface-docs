@@ -159,7 +159,7 @@ for decision in get_kernel_variants("kernels-community/activation", version=1):
 kernels.get_loaded_kernels()
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/importer.py#L46)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/importer.py#L55)
 
 **Returns:** `list[LoadedKernel]`
 
@@ -244,7 +244,7 @@ Get a kernel using a lock file.
 kernels.LoadedKernel(metadata: Metadata, module: module, repo_info: kernels.hf_hub.RepoInfo | None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/importer.py#L15)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/importer.py#L16)
 
 This dataclass provides information about a loaded kernel:
 

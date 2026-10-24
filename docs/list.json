@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-10-23T12:33:10.123728+00:00",
+  "fetchedAt": "2026-10-24T11:56:29.952521+00:00",
   "method": "llms-full-split",
-  "ok": 2199,
+  "ok": 2215,
   "failed": 0,
   "pages": [
     {
@@ -1695,9 +1695,9 @@
     },
     {
       "rel": "diffusers/index.md",
-      "bytes": 38375,
+      "bytes": 40082,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/index.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/index.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Diffusers"
@@ -1706,7 +1706,7 @@
       "rel": "diffusers/quicktour.md",
       "bytes": 7335,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/quicktour.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/quicktour.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Quickstart"
@@ -1715,7 +1715,7 @@
       "rel": "diffusers/community_projects.md",
       "bytes": 2207,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/community_projects.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/community_projects.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Community Projects"
@@ -1724,7 +1724,7 @@
       "rel": "diffusers/installation.md",
       "bytes": 5731,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/installation.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/installation.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Installation"
@@ -1733,7 +1733,7 @@
       "rel": "diffusers/stable_diffusion.md",
       "bytes": 7638,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/stable_diffusion.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/stable_diffusion.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Basic performance"
@@ -1742,7 +1742,7 @@
       "rel": "diffusers/tutorials/using_peft_for_inference.md",
       "bytes": 28667,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/tutorials/using_peft_for_inference.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/tutorials/using_peft_for_inference.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "LoRA"
@@ -1751,7 +1751,7 @@
       "rel": "diffusers/tutorials/autopipeline.md",
       "bytes": 4830,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/tutorials/autopipeline.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/tutorials/autopipeline.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoPipeline"
@@ -1760,7 +1760,7 @@
       "rel": "diffusers/tutorials/basic_training.md",
       "bytes": 17192,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/tutorials/basic_training.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/tutorials/basic_training.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Train a diffusion model"
@@ -1769,16 +1769,16 @@
       "rel": "diffusers/optimization/coreml.md",
       "bytes": 11089,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/optimization/coreml.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/optimization/coreml.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "How to run Stable Diffusion with Core ML"
     },
     {
       "rel": "diffusers/optimization/cache.md",
-      "bytes": 11747,
+      "bytes": 11881,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/optimization/cache.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/optimization/cache.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Caching"
@@ -1787,34 +1787,34 @@
       "rel": "diffusers/optimization/neuron.md",
       "bytes": 3373,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/optimization/neuron.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/optimization/neuron.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AWS Neuron"
     },
     {
       "rel": "diffusers/optimization/mps.md",
-      "bytes": 15097,
+      "bytes": 3874,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/optimization/mps.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/optimization/mps.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Metal Performance Shaders (MPS)"
     },
     {
-      "rel": "diffusers/optimization/tgate.md",
-      "bytes": 6712,
+      "rel": "diffusers/optimization/cache_dit.md",
+      "bytes": 3739,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/optimization/tgate.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/optimization/cache_dit.md",
       "track": "Diffusers",
       "package": "diffusers",
-      "title": "T-GATE"
+      "title": "CacheDiT"
     },
     {
       "rel": "diffusers/optimization/attention_backends.md",
       "bytes": 10723,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/optimization/attention_backends.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/optimization/attention_backends.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Attention backends"
@@ -1823,25 +1823,34 @@
       "rel": "diffusers/optimization/pruna.md",
       "bytes": 7735,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/optimization/pruna.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/optimization/pruna.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Pruna"
     },
     {
       "rel": "diffusers/optimization/xdit.md",
-      "bytes": 4251,
+      "bytes": 4245,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/optimization/xdit.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/optimization/xdit.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "xDiT"
     },
     {
+      "rel": "diffusers/optimization/tpu.md",
+      "bytes": 6641,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/optimization/tpu.md",
+      "track": "Diffusers",
+      "package": "diffusers",
+      "title": "TorchTPU"
+    },
+    {
       "rel": "diffusers/optimization/open_vino.md",
       "bytes": 2867,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/optimization/open_vino.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/optimization/open_vino.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "OpenVINO"
@@ -1850,7 +1859,7 @@
       "rel": "diffusers/optimization/fp16.md",
       "bytes": 18144,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/optimization/fp16.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/optimization/fp16.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Accelerate inference"
@@ -1859,7 +1868,7 @@
       "rel": "diffusers/optimization/speed-memory-optims.md",
       "bytes": 8737,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/optimization/speed-memory-optims.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/optimization/speed-memory-optims.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Compiling and offloading quantized models"
@@ -1868,70 +1877,43 @@
       "rel": "diffusers/optimization/onnx.md",
       "bytes": 2888,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/optimization/onnx.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/optimization/onnx.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ONNX Runtime"
     },
     {
       "rel": "diffusers/optimization/para_attn.md",
-      "bytes": 16944,
+      "bytes": 16943,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/optimization/para_attn.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/optimization/para_attn.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ParaAttention"
     },
     {
-      "rel": "diffusers/optimization/deepcache.md",
-      "bytes": 4030,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/optimization/deepcache.md",
-      "track": "Diffusers",
-      "package": "diffusers",
-      "title": "DeepCache"
-    },
-    {
       "rel": "diffusers/optimization/habana.md",
-      "bytes": 1508,
+      "bytes": 1517,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/optimization/habana.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/optimization/habana.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Intel Gaudi"
     },
     {
-      "rel": "diffusers/optimization/xformers.md",
-      "bytes": 1194,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/optimization/xformers.md",
-      "track": "Diffusers",
-      "package": "diffusers",
-      "title": "xFormers"
-    },
-    {
       "rel": "diffusers/optimization/memory.md",
-      "bytes": 29162,
+      "bytes": 29168,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/optimization/memory.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/optimization/memory.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Reduce memory usage"
     },
     {
-      "rel": "diffusers/optimization/tome.md",
-      "bytes": 6440,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/optimization/tome.md",
-      "track": "Diffusers",
-      "package": "diffusers",
-      "title": "Token merging"
-    },
-    {
       "rel": "diffusers/quantization/modelopt.md",
       "bytes": 7601,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/quantization/modelopt.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/quantization/modelopt.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "NVIDIA ModelOpt"
@@ -1940,7 +1922,7 @@
       "rel": "diffusers/quantization/bitsandbytes.md",
       "bytes": 16996,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/quantization/bitsandbytes.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/quantization/bitsandbytes.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "bitsandbytes"
@@ -1949,7 +1931,7 @@
       "rel": "diffusers/quantization/autoround.md",
       "bytes": 7278,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/quantization/autoround.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/quantization/autoround.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoRound"
@@ -1958,7 +1940,7 @@
       "rel": "diffusers/quantization/torchao.md",
       "bytes": 9340,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/quantization/torchao.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/quantization/torchao.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "torchao"
@@ -1967,34 +1949,43 @@
       "rel": "diffusers/quantization/nunchaku.md",
       "bytes": 6700,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/quantization/nunchaku.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/quantization/nunchaku.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Nunchaku Lite"
     },
     {
       "rel": "diffusers/quantization/quanto.md",
-      "bytes": 5113,
+      "bytes": 5126,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/quantization/quanto.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/quantization/quanto.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Quanto"
     },
     {
+      "rel": "diffusers/quantization/bfl.md",
+      "bytes": 4205,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/quantization/bfl.md",
+      "track": "Diffusers",
+      "package": "diffusers",
+      "title": "BFL (fp8r / nvfp4)"
+    },
+    {
       "rel": "diffusers/quantization/sdnq.md",
       "bytes": 5435,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/quantization/sdnq.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/quantization/sdnq.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "SDNQ"
     },
     {
       "rel": "diffusers/quantization/overview.md",
-      "bytes": 9991,
+      "bytes": 10143,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/quantization/overview.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/quantization/overview.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Getting started"
@@ -2003,7 +1994,7 @@
       "rel": "diffusers/quantization/gguf.md",
       "bytes": 4693,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/quantization/gguf.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/quantization/gguf.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "GGUF"
@@ -2012,7 +2003,7 @@
       "rel": "diffusers/hybrid_inference/api_reference.md",
       "bytes": 5689,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/hybrid_inference/api_reference.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/hybrid_inference/api_reference.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Remote inference"
@@ -2021,7 +2012,7 @@
       "rel": "diffusers/hybrid_inference/overview.md",
       "bytes": 16479,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/hybrid_inference/overview.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/hybrid_inference/overview.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Remote inference"
@@ -2030,7 +2021,7 @@
       "rel": "diffusers/using-diffusers/other-formats.md",
       "bytes": 13679,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/other-formats.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/other-formats.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Model formats"
@@ -2039,7 +2030,7 @@
       "rel": "diffusers/using-diffusers/reusing_seeds.md",
       "bytes": 4378,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/reusing_seeds.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/reusing_seeds.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Reproducibility"
@@ -2048,7 +2039,7 @@
       "rel": "diffusers/using-diffusers/schedulers.md",
       "bytes": 10929,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/schedulers.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/schedulers.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Schedulers"
@@ -2057,16 +2048,16 @@
       "rel": "diffusers/using-diffusers/weighted_prompts.md",
       "bytes": 5339,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/weighted_prompts.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/weighted_prompts.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Prompting"
     },
     {
       "rel": "diffusers/using-diffusers/img2img.md",
-      "bytes": 25284,
+      "bytes": 25294,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/img2img.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/img2img.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Image-to-image"
@@ -2075,7 +2066,7 @@
       "rel": "diffusers/using-diffusers/unconditional_image_generation.md",
       "bytes": 1957,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/unconditional_image_generation.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/unconditional_image_generation.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Unconditional image generation"
@@ -2084,7 +2075,7 @@
       "rel": "diffusers/using-diffusers/controlling_generation.md",
       "bytes": 12176,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/controlling_generation.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/controlling_generation.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Controlled generation"
@@ -2093,7 +2084,7 @@
       "rel": "diffusers/using-diffusers/dreambooth.md",
       "bytes": 1212,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/dreambooth.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/dreambooth.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "DreamBooth"
@@ -2102,7 +2093,7 @@
       "rel": "diffusers/using-diffusers/batched_inference.md",
       "bytes": 6337,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/batched_inference.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/batched_inference.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Batch inference"
@@ -2111,16 +2102,16 @@
       "rel": "diffusers/using-diffusers/push_to_hub.md",
       "bytes": 4667,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/push_to_hub.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/push_to_hub.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Sharing pipelines and models"
     },
     {
       "rel": "diffusers/using-diffusers/cli.md",
-      "bytes": 16841,
+      "bytes": 16996,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/cli.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/cli.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Command line interface"
@@ -2129,7 +2120,7 @@
       "rel": "diffusers/using-diffusers/automodel.md",
       "bytes": 4382,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/automodel.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/automodel.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoModel"
@@ -2138,7 +2129,7 @@
       "rel": "diffusers/using-diffusers/controlnet.md",
       "bytes": 11484,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/controlnet.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/controlnet.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ControlNet"
@@ -2147,16 +2138,16 @@
       "rel": "diffusers/using-diffusers/legacy_adapters.md",
       "bytes": 6863,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/legacy_adapters.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/legacy_adapters.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Legacy adapters"
     },
     {
       "rel": "diffusers/using-diffusers/callback.md",
-      "bytes": 5967,
+      "bytes": 9735,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/callback.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/callback.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Pipeline callbacks"
@@ -2165,7 +2156,7 @@
       "rel": "diffusers/using-diffusers/write_own_pipeline.md",
       "bytes": 13664,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/write_own_pipeline.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/write_own_pipeline.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Understanding pipelines, models and schedulers"
@@ -2174,7 +2165,7 @@
       "rel": "diffusers/using-diffusers/create_a_server.md",
       "bytes": 3971,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/create_a_server.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/create_a_server.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Create a server"
@@ -2183,7 +2174,7 @@
       "rel": "diffusers/using-diffusers/loading.md",
       "bytes": 11778,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/loading.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/loading.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "DiffusionPipeline"
@@ -2192,7 +2183,7 @@
       "rel": "diffusers/using-diffusers/depth2img.md",
       "bytes": 2071,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/depth2img.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/depth2img.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Text-guided depth-to-image generation"
@@ -2201,16 +2192,16 @@
       "rel": "diffusers/using-diffusers/text-img2vid.md",
       "bytes": 18783,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/text-img2vid.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/text-img2vid.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Video generation"
     },
     {
       "rel": "diffusers/using-diffusers/inpaint.md",
-      "bytes": 36728,
+      "bytes": 36738,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/inpaint.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/inpaint.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Inpainting"
@@ -2219,7 +2210,7 @@
       "rel": "diffusers/using-diffusers/guiders.md",
       "bytes": 7489,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/guiders.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/guiders.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Guiders"
@@ -2228,7 +2219,7 @@
       "rel": "diffusers/using-diffusers/conditional_image_generation.md",
       "bytes": 14534,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/conditional_image_generation.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/conditional_image_generation.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Text-to-image"
@@ -2237,7 +2228,7 @@
       "rel": "diffusers/using-diffusers/ip_adapter.md",
       "bytes": 22894,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/ip_adapter.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/ip_adapter.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "IP-Adapter"
@@ -2246,7 +2237,7 @@
       "rel": "diffusers/using-diffusers/legacy_checkpoints.md",
       "bytes": 3183,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/legacy_checkpoints.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/legacy_checkpoints.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Legacy checkpoints"
@@ -2255,16 +2246,16 @@
       "rel": "diffusers/using-diffusers/custom_pipeline_overview.md",
       "bytes": 9289,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/custom_pipeline_overview.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/custom_pipeline_overview.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Community pipelines and components"
     },
     {
       "rel": "diffusers/using-diffusers/image_quality.md",
-      "bytes": 3369,
+      "bytes": 2399,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/image_quality.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/image_quality.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "FreeU"
@@ -2273,7 +2264,7 @@
       "rel": "diffusers/api/cache.md",
       "bytes": 31624,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/cache.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/cache.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Caching methods"
@@ -2282,7 +2273,7 @@
       "rel": "diffusers/api/activations.md",
       "bytes": 3788,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/activations.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/activations.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Activation functions"
@@ -2291,7 +2282,7 @@
       "rel": "diffusers/api/attnprocessor.md",
       "bytes": 32639,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/attnprocessor.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/attnprocessor.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Attention Processor"
@@ -2300,7 +2291,7 @@
       "rel": "diffusers/api/outputs.md",
       "bytes": 3957,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/outputs.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/outputs.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Outputs"
@@ -2309,7 +2300,7 @@
       "rel": "diffusers/api/logging.md",
       "bytes": 7649,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/logging.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/logging.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Logging"
@@ -2318,25 +2309,25 @@
       "rel": "diffusers/api/internal_classes_overview.md",
       "bytes": 422,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/internal_classes_overview.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/internal_classes_overview.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Overview"
     },
     {
       "rel": "diffusers/api/quantization.md",
-      "bytes": 23841,
+      "bytes": 25143,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/quantization.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/quantization.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Quantization"
     },
     {
       "rel": "diffusers/api/parallel.md",
-      "bytes": 7379,
+      "bytes": 7388,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/parallel.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/parallel.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Parallelism"
@@ -2345,7 +2336,7 @@
       "rel": "diffusers/api/configuration.md",
       "bytes": 8303,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/configuration.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/configuration.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Configuration"
@@ -2354,7 +2345,7 @@
       "rel": "diffusers/api/normalization.md",
       "bytes": 10750,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/normalization.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/normalization.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Normalization layers"
@@ -2363,7 +2354,7 @@
       "rel": "diffusers/api/video_processor.md",
       "bytes": 2919,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/video_processor.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/video_processor.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Video Processor"
@@ -2372,16 +2363,16 @@
       "rel": "diffusers/api/utilities.md",
       "bytes": 17278,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/utilities.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/utilities.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Utilities"
     },
     {
       "rel": "diffusers/api/image_processor.md",
-      "bytes": 25140,
+      "bytes": 25141,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/image_processor.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/image_processor.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "VAE Image Processor"
@@ -2390,7 +2381,7 @@
       "rel": "diffusers/api/loaders/peft.md",
       "bytes": 14050,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/loaders/peft.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/loaders/peft.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "PEFT"
@@ -2399,16 +2390,16 @@
       "rel": "diffusers/api/loaders/transformer_sd3.md",
       "bytes": 2179,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/loaders/transformer_sd3.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/loaders/transformer_sd3.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "SD3Transformer2D"
     },
     {
       "rel": "diffusers/api/loaders/lora.md",
-      "bytes": 146602,
+      "bytes": 156573,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/loaders/lora.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/loaders/lora.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "LoRA"
@@ -2417,7 +2408,7 @@
       "rel": "diffusers/api/loaders/textual_inversion.md",
       "bytes": 9559,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/loaders/textual_inversion.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/loaders/textual_inversion.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Textual Inversion"
@@ -2426,7 +2417,7 @@
       "rel": "diffusers/api/loaders/unet.md",
       "bytes": 6483,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/loaders/unet.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/loaders/unet.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "UNet"
@@ -2435,7 +2426,7 @@
       "rel": "diffusers/api/loaders/single_file.md",
       "bytes": 12765,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/loaders/single_file.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/loaders/single_file.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Single files"
@@ -2444,16 +2435,16 @@
       "rel": "diffusers/api/loaders/ip_adapter.md",
       "bytes": 13403,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/loaders/ip_adapter.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/loaders/ip_adapter.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "IP-Adapter"
     },
     {
       "rel": "diffusers/api/modular_diffusers/pipeline_components.md",
-      "bytes": 15282,
+      "bytes": 15268,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/modular_diffusers/pipeline_components.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/modular_diffusers/pipeline_components.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Components and configs"
@@ -2462,7 +2453,7 @@
       "rel": "diffusers/api/modular_diffusers/guiders.md",
       "bytes": 33614,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/modular_diffusers/guiders.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/modular_diffusers/guiders.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Guiders"
@@ -2471,7 +2462,7 @@
       "rel": "diffusers/api/modular_diffusers/pipeline_blocks.md",
       "bytes": 11645,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/modular_diffusers/pipeline_blocks.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/modular_diffusers/pipeline_blocks.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Pipeline blocks"
@@ -2480,16 +2471,16 @@
       "rel": "diffusers/api/modular_diffusers/pipeline.md",
       "bytes": 13030,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/modular_diffusers/pipeline.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/modular_diffusers/pipeline.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Pipeline"
     },
     {
       "rel": "diffusers/api/modular_diffusers/pipeline_states.md",
-      "bytes": 3025,
+      "bytes": 3011,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/modular_diffusers/pipeline_states.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/modular_diffusers/pipeline_states.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Pipeline states"
@@ -2498,7 +2489,7 @@
       "rel": "diffusers/api/schedulers/ddpm.md",
       "bytes": 11146,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/ddpm.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/ddpm.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "DDPMScheduler"
@@ -2507,7 +2498,7 @@
       "rel": "diffusers/api/schedulers/entropy_bound.md",
       "bytes": 4891,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/entropy_bound.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/entropy_bound.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "EntropyBoundScheduler"
@@ -2516,7 +2507,7 @@
       "rel": "diffusers/api/schedulers/pndm.md",
       "bytes": 10216,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/pndm.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/pndm.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "PNDMScheduler"
@@ -2525,7 +2516,7 @@
       "rel": "diffusers/api/schedulers/discrete_ddim.md",
       "bytes": 7578,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/discrete_ddim.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/discrete_ddim.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "DiscreteDDIMScheduler"
@@ -2534,7 +2525,7 @@
       "rel": "diffusers/api/schedulers/dpm_discrete_ancestral.md",
       "bytes": 9459,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/dpm_discrete_ancestral.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/dpm_discrete_ancestral.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "KDPM2AncestralDiscreteScheduler"
@@ -2543,7 +2534,7 @@
       "rel": "diffusers/api/schedulers/minimax_h3.md",
       "bytes": 6694,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/minimax_h3.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/minimax_h3.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "MiniMaxH3Scheduler"
@@ -2552,7 +2543,7 @@
       "rel": "diffusers/api/schedulers/tcd.md",
       "bytes": 15408,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/tcd.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/tcd.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "TCDScheduler"
@@ -2561,7 +2552,7 @@
       "rel": "diffusers/api/schedulers/multistep_dpm_solver_inverse.md",
       "bytes": 15896,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/multistep_dpm_solver_inverse.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/multistep_dpm_solver_inverse.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "DPMSolverMultistepInverse"
@@ -2570,25 +2561,34 @@
       "rel": "diffusers/api/schedulers/block_refinement.md",
       "bytes": 9439,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/block_refinement.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/block_refinement.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "BlockRefinementScheduler"
     },
     {
       "rel": "diffusers/api/schedulers/unipc.md",
-      "bytes": 18381,
+      "bytes": 18353,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/unipc.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/unipc.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "UniPCMultistepScheduler"
     },
     {
+      "rel": "diffusers/api/schedulers/piflow.md",
+      "bytes": 4652,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/piflow.md",
+      "track": "Diffusers",
+      "package": "diffusers",
+      "title": "PiflowScheduler"
+    },
+    {
       "rel": "diffusers/api/schedulers/singlestep_dpm_solver.md",
       "bytes": 19935,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/singlestep_dpm_solver.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/singlestep_dpm_solver.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "DPMSolverSinglestepScheduler"
@@ -2597,7 +2597,7 @@
       "rel": "diffusers/api/schedulers/cosine_dpm.md",
       "bytes": 1839,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/cosine_dpm.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/cosine_dpm.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "CosineDPMSolverMultistepScheduler"
@@ -2606,7 +2606,7 @@
       "rel": "diffusers/api/schedulers/euler.md",
       "bytes": 14108,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/euler.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/euler.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "EulerDiscreteScheduler"
@@ -2615,7 +2615,7 @@
       "rel": "diffusers/api/schedulers/euler_ancestral.md",
       "bytes": 9860,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/euler_ancestral.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/euler_ancestral.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "EulerAncestralDiscreteScheduler"
@@ -2624,7 +2624,7 @@
       "rel": "diffusers/api/schedulers/vq_diffusion.md",
       "bytes": 11253,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/vq_diffusion.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/vq_diffusion.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "VQDiffusionScheduler"
@@ -2633,7 +2633,7 @@
       "rel": "diffusers/api/schedulers/ddim_cogvideox.md",
       "bytes": 9209,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/ddim_cogvideox.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/ddim_cogvideox.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "CogVideoXDDIMScheduler"
@@ -2642,7 +2642,7 @@
       "rel": "diffusers/api/schedulers/repaint.md",
       "bytes": 9589,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/repaint.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/repaint.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "RePaintScheduler"
@@ -2651,7 +2651,7 @@
       "rel": "diffusers/api/schedulers/dpm_sde.md",
       "bytes": 1433,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/dpm_sde.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/dpm_sde.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "DPMSolverSDEScheduler"
@@ -2660,7 +2660,7 @@
       "rel": "diffusers/api/schedulers/helios_dmd.md",
       "bytes": 2828,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/helios_dmd.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/helios_dmd.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "HeliosDMDScheduler"
@@ -2669,7 +2669,7 @@
       "rel": "diffusers/api/schedulers/ddim.md",
       "bytes": 13288,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/ddim.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/ddim.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "DDIMScheduler"
@@ -2678,7 +2678,7 @@
       "rel": "diffusers/api/schedulers/score_sde_ve.md",
       "bytes": 11455,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/score_sde_ve.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/score_sde_ve.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ScoreSdeVeScheduler"
@@ -2687,7 +2687,7 @@
       "rel": "diffusers/api/schedulers/flow_match_heun_discrete.md",
       "bytes": 5572,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/flow_match_heun_discrete.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/flow_match_heun_discrete.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "FlowMatchHeunDiscreteScheduler"
@@ -2696,16 +2696,16 @@
       "rel": "diffusers/api/schedulers/cm_stochastic_iterative.md",
       "bytes": 12165,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/cm_stochastic_iterative.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/cm_stochastic_iterative.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "CMStochasticIterativeScheduler"
     },
     {
       "rel": "diffusers/api/schedulers/overview.md",
-      "bytes": 17062,
+      "bytes": 17048,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/overview.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/overview.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Schedulers"
@@ -2714,7 +2714,7 @@
       "rel": "diffusers/api/schedulers/consistency_decoder.md",
       "bytes": 3563,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/consistency_decoder.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/consistency_decoder.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ConsistencyDecoderScheduler"
@@ -2723,7 +2723,7 @@
       "rel": "diffusers/api/schedulers/flow_match_euler_discrete.md",
       "bytes": 9494,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/flow_match_euler_discrete.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/flow_match_euler_discrete.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "FlowMatchEulerDiscreteScheduler"
@@ -2732,7 +2732,7 @@
       "rel": "diffusers/api/schedulers/dpm_discrete.md",
       "bytes": 9092,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/dpm_discrete.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/dpm_discrete.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "KDPM2DiscreteScheduler"
@@ -2741,7 +2741,7 @@
       "rel": "diffusers/api/schedulers/ddim_inverse.md",
       "bytes": 6454,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/ddim_inverse.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/ddim_inverse.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "DDIMInverseScheduler"
@@ -2750,7 +2750,7 @@
       "rel": "diffusers/api/schedulers/helios.md",
       "bytes": 6077,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/helios.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/helios.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "HeliosScheduler"
@@ -2759,7 +2759,7 @@
       "rel": "diffusers/api/schedulers/lms_discrete.md",
       "bytes": 1937,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/lms_discrete.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/lms_discrete.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "LMSDiscreteScheduler"
@@ -2768,7 +2768,7 @@
       "rel": "diffusers/api/schedulers/multistep_dpm_solver.md",
       "bytes": 19188,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/multistep_dpm_solver.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/multistep_dpm_solver.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "DPMSolverMultistepScheduler"
@@ -2777,7 +2777,7 @@
       "rel": "diffusers/api/schedulers/edm_euler.md",
       "bytes": 12519,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/edm_euler.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/edm_euler.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "EDMEulerScheduler"
@@ -2786,7 +2786,7 @@
       "rel": "diffusers/api/schedulers/flow_map_euler_discrete.md",
       "bytes": 8613,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/flow_map_euler_discrete.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/flow_map_euler_discrete.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "FlowMapEulerDiscreteScheduler"
@@ -2795,7 +2795,7 @@
       "rel": "diffusers/api/schedulers/deis.md",
       "bytes": 15958,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/deis.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/deis.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "DEISMultistepScheduler"
@@ -2804,25 +2804,34 @@
       "rel": "diffusers/api/schedulers/heun.md",
       "bytes": 9749,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/heun.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/heun.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "HeunDiscreteScheduler"
     },
     {
       "rel": "diffusers/api/schedulers/multistep_dpm_solver_cogvideox.md",
-      "bytes": 11431,
+      "bytes": 11411,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/multistep_dpm_solver_cogvideox.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/multistep_dpm_solver_cogvideox.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "CogVideoXDPMScheduler"
     },
     {
+      "rel": "diffusers/api/schedulers/rfd4_proteina.md",
+      "bytes": 5471,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/rfd4_proteina.md",
+      "track": "Diffusers",
+      "package": "diffusers",
+      "title": "RFD4ProteinaScheduler"
+    },
+    {
       "rel": "diffusers/api/schedulers/edm_multistep_dpm_solver.md",
       "bytes": 16881,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/edm_multistep_dpm_solver.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/edm_multistep_dpm_solver.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "EDMDPMSolverMultistepScheduler"
@@ -2831,7 +2840,7 @@
       "rel": "diffusers/api/schedulers/ipndm.md",
       "bytes": 5920,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/ipndm.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/ipndm.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "IPNDMScheduler"
@@ -2840,7 +2849,7 @@
       "rel": "diffusers/api/schedulers/lcm.md",
       "bytes": 12907,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/schedulers/lcm.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/lcm.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Latent Consistency Model Multistep Scheduler"
@@ -2849,7 +2858,7 @@
       "rel": "diffusers/api/models/pixart_transformer2d.md",
       "bytes": 8347,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/pixart_transformer2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/pixart_transformer2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "PixArtTransformer2DModel"
@@ -2858,7 +2867,7 @@
       "rel": "diffusers/api/models/easyanimate_transformer3d.md",
       "bytes": 6897,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/easyanimate_transformer3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/easyanimate_transformer3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "EasyAnimateTransformer3DModel"
@@ -2867,7 +2876,7 @@
       "rel": "diffusers/api/models/ltx_video_transformer3d.md",
       "bytes": 5781,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/ltx_video_transformer3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/ltx_video_transformer3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "LTXVideoTransformer3DModel"
@@ -2876,7 +2885,7 @@
       "rel": "diffusers/api/models/allegro_transformer3d.md",
       "bytes": 4217,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/allegro_transformer3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/allegro_transformer3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AllegroTransformer3DModel"
@@ -2885,7 +2894,7 @@
       "rel": "diffusers/api/models/autoencoderkl_audio_ltx_2.md",
       "bytes": 2896,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_audio_ltx_2.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoderkl_audio_ltx_2.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderKLLTX2Audio"
@@ -2894,7 +2903,7 @@
       "rel": "diffusers/api/models/cogview4_transformer2d.md",
       "bytes": 5772,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/cogview4_transformer2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/cogview4_transformer2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "CogView4Transformer2DModel"
@@ -2903,7 +2912,7 @@
       "rel": "diffusers/api/models/hunyuan_transformer2d.md",
       "bytes": 7043,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/hunyuan_transformer2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/hunyuan_transformer2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "HunyuanDiT2DModel"
@@ -2912,7 +2921,7 @@
       "rel": "diffusers/api/models/controlnet_sana.md",
       "bytes": 4990,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/controlnet_sana.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/controlnet_sana.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "SanaControlNetModel"
@@ -2921,7 +2930,7 @@
       "rel": "diffusers/api/models/autoencoderkl_cogvideox.md",
       "bytes": 10783,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_cogvideox.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoderkl_cogvideox.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderKLCogVideoX"
@@ -2930,7 +2939,7 @@
       "rel": "diffusers/api/models/autoencoder_kl_hunyuan_video.md",
       "bytes": 7843,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_kl_hunyuan_video.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoder_kl_hunyuan_video.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderKLHunyuanVideo"
@@ -2939,7 +2948,7 @@
       "rel": "diffusers/api/models/glm_image_transformer2d.md",
       "bytes": 4836,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/glm_image_transformer2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/glm_image_transformer2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "GlmImageTransformer2DModel"
@@ -2948,7 +2957,7 @@
       "rel": "diffusers/api/models/unet-motion.md",
       "bytes": 11372,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/unet-motion.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/unet-motion.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "UNetMotionModel"
@@ -2957,7 +2966,7 @@
       "rel": "diffusers/api/models/sana_video_transformer3d.md",
       "bytes": 8462,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/sana_video_transformer3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/sana_video_transformer3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "SanaVideoTransformer3DModel"
@@ -2966,34 +2975,61 @@
       "rel": "diffusers/api/models/dit_transformer2d.md",
       "bytes": 4947,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/dit_transformer2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/dit_transformer2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "DiTTransformer2DModel"
     },
     {
       "rel": "diffusers/api/models/qwenimage_transformer2d.md",
-      "bytes": 5599,
+      "bytes": 5591,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/qwenimage_transformer2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/qwenimage_transformer2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "QwenImageTransformer2DModel"
     },
     {
-      "rel": "diffusers/api/models/longcat_image_transformer2d.md",
-      "bytes": 2541,
+      "rel": "diffusers/api/models/transformer_bria_fibo2.md",
+      "bytes": 3469,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/longcat_image_transformer2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/transformer_bria_fibo2.md",
+      "track": "Diffusers",
+      "package": "diffusers",
+      "title": "BriaFibo2Transformer2DModel"
+    },
+    {
+      "rel": "diffusers/api/models/sana_wm_transformer3d.md",
+      "bytes": 7908,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/sana_wm_transformer3d.md",
+      "track": "Diffusers",
+      "package": "diffusers",
+      "title": "SanaWMTransformer3DModel"
+    },
+    {
+      "rel": "diffusers/api/models/longcat_image_transformer2d.md",
+      "bytes": 2566,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/longcat_image_transformer2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "LongCatImageTransformer2DModel"
     },
     {
+      "rel": "diffusers/api/models/sana_wm_refiner_transformer3d.md",
+      "bytes": 16870,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/sana_wm_refiner_transformer3d.md",
+      "track": "Diffusers",
+      "package": "diffusers",
+      "title": "SanaWMLTX2RefinerTransformer3DModel"
+    },
+    {
       "rel": "diffusers/api/models/wan_transformer_3d.md",
       "bytes": 5429,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/wan_transformer_3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/wan_transformer_3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "WanTransformer3DModel"
@@ -3002,7 +3038,7 @@
       "rel": "diffusers/api/models/cosmos_transformer3d.md",
       "bytes": 6982,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/cosmos_transformer3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/cosmos_transformer3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "CosmosTransformer3DModel"
@@ -3011,7 +3047,7 @@
       "rel": "diffusers/api/models/wan_animate_2_transformer_3d.md",
       "bytes": 7705,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/wan_animate_2_transformer_3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/wan_animate_2_transformer_3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "WanAnimate2Transformer3DModel"
@@ -3020,7 +3056,7 @@
       "rel": "diffusers/api/models/vq.md",
       "bytes": 6174,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/vq.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/vq.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "VQModel"
@@ -3029,7 +3065,7 @@
       "rel": "diffusers/api/models/cogvideox_transformer3d.md",
       "bytes": 8770,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/cogvideox_transformer3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/cogvideox_transformer3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "CogVideoXTransformer3DModel"
@@ -3038,7 +3074,7 @@
       "rel": "diffusers/api/models/autoencoderkl_qwenimage.md",
       "bytes": 7538,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_qwenimage.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoderkl_qwenimage.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderKLQwenImage"
@@ -3047,7 +3083,7 @@
       "rel": "diffusers/api/models/auto_model.md",
       "bytes": 8725,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/auto_model.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/auto_model.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoModel"
@@ -3056,7 +3092,7 @@
       "rel": "diffusers/api/models/minimax_music3_transformer.md",
       "bytes": 2768,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/minimax_music3_transformer.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/minimax_music3_transformer.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "MiniMaxMusic3Transformer1DModel"
@@ -3065,7 +3101,7 @@
       "rel": "diffusers/api/models/ideogram4_transformer2d.md",
       "bytes": 4829,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/ideogram4_transformer2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/ideogram4_transformer2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Ideogram4Transformer2DModel"
@@ -3074,7 +3110,7 @@
       "rel": "diffusers/api/models/chronoedit_transformer_3d.md",
       "bytes": 6136,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/chronoedit_transformer_3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/chronoedit_transformer_3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ChronoEditTransformer3DModel"
@@ -3083,7 +3119,7 @@
       "rel": "diffusers/api/models/stable_audio_transformer.md",
       "bytes": 4903,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/stable_audio_transformer.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/stable_audio_transformer.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "StableAudioDiTModel"
@@ -3092,7 +3128,7 @@
       "rel": "diffusers/api/models/autoencoderkl_ltx_video.md",
       "bytes": 10407,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_ltx_video.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoderkl_ltx_video.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderKLLTXVideo"
@@ -3101,7 +3137,7 @@
       "rel": "diffusers/api/models/cogview3plus_transformer2d.md",
       "bytes": 5863,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/cogview3plus_transformer2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/cogview3plus_transformer2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "CogView3PlusTransformer2DModel"
@@ -3110,7 +3146,7 @@
       "rel": "diffusers/api/models/autoencoder_same.md",
       "bytes": 9279,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_same.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoder_same.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderSAME"
@@ -3119,7 +3155,7 @@
       "rel": "diffusers/api/models/chroma_transformer.md",
       "bytes": 4559,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/chroma_transformer.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/chroma_transformer.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ChromaTransformer2DModel"
@@ -3128,7 +3164,7 @@
       "rel": "diffusers/api/models/controlnet_union.md",
       "bytes": 12543,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/controlnet_union.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/controlnet_union.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ControlNetUnionModel"
@@ -3137,7 +3173,7 @@
       "rel": "diffusers/api/models/skyreels_v2_transformer_3d.md",
       "bytes": 6171,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/skyreels_v2_transformer_3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/skyreels_v2_transformer_3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "SkyReelsV2Transformer3DModel"
@@ -3146,25 +3182,34 @@
       "rel": "diffusers/api/models/anyflow_far_transformer3d.md",
       "bytes": 11886,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/anyflow_far_transformer3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/anyflow_far_transformer3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AnyFlowFARTransformer3DModel"
     },
     {
       "rel": "diffusers/api/models/autoencoderkl_minimax_h3_audio.md",
-      "bytes": 7357,
+      "bytes": 7371,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_minimax_h3_audio.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoderkl_minimax_h3_audio.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderKLMiniMaxH3Audio"
     },
     {
+      "rel": "diffusers/api/models/rfd4_proteina_autoencoder.md",
+      "bytes": 9335,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/rfd4_proteina_autoencoder.md",
+      "track": "Diffusers",
+      "package": "diffusers",
+      "title": "RFD4ProteinaAutoencoder"
+    },
+    {
       "rel": "diffusers/api/models/controlnet_flux.md",
       "bytes": 5932,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/controlnet_flux.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/controlnet_flux.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "FluxControlNetModel"
@@ -3173,25 +3218,34 @@
       "rel": "diffusers/api/models/omnigen_transformer.md",
       "bytes": 6389,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/omnigen_transformer.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/omnigen_transformer.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "OmniGenTransformer2DModel"
     },
     {
       "rel": "diffusers/api/models/transformer_joyimage_edit_plus.md",
-      "bytes": 4641,
+      "bytes": 4630,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/transformer_joyimage_edit_plus.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/transformer_joyimage_edit_plus.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "JoyImageEditPlusTransformer3DModel"
     },
     {
+      "rel": "diffusers/api/models/autoencoder_kl_kvae_audio.md",
+      "bytes": 5926,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoder_kl_kvae_audio.md",
+      "track": "Diffusers",
+      "package": "diffusers",
+      "title": "AutoencoderKLKVAEAudio"
+    },
+    {
       "rel": "diffusers/api/models/hunyuan_video_transformer_3d.md",
       "bytes": 6515,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/hunyuan_video_transformer_3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/hunyuan_video_transformer_3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "HunyuanVideoTransformer3DModel"
@@ -3200,7 +3254,7 @@
       "rel": "diffusers/api/models/ltx2_diffusion_decoder.md",
       "bytes": 11369,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/ltx2_diffusion_decoder.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/ltx2_diffusion_decoder.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "LTX2VideoDiffusionDecoderModel"
@@ -3209,7 +3263,7 @@
       "rel": "diffusers/api/models/autoencoder_kl_hunyuan_video15.md",
       "bytes": 6706,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_kl_hunyuan_video15.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoder_kl_hunyuan_video15.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderKLHunyuanVideo15"
@@ -3218,7 +3272,7 @@
       "rel": "diffusers/api/models/autoencoderkl_allegro.md",
       "bytes": 7881,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_allegro.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoderkl_allegro.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderKLAllegro"
@@ -3227,7 +3281,7 @@
       "rel": "diffusers/api/models/unet2d-cond.md",
       "bytes": 19244,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/unet2d-cond.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/unet2d-cond.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "UNet2DConditionModel"
@@ -3236,7 +3290,7 @@
       "rel": "diffusers/api/models/lumina_nextdit2d.md",
       "bytes": 5025,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/lumina_nextdit2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/lumina_nextdit2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "LuminaNextDiT2DModel"
@@ -3245,7 +3299,7 @@
       "rel": "diffusers/api/models/autoencoder_kl_kvae_video.md",
       "bytes": 4573,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_kl_kvae_video.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoder_kl_kvae_video.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderKLKVAEVideo"
@@ -3254,7 +3308,7 @@
       "rel": "diffusers/api/models/ernie_image_transformer2d.md",
       "bytes": 2290,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/ernie_image_transformer2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/ernie_image_transformer2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ErnieImageTransformer2DModel"
@@ -3263,25 +3317,34 @@
       "rel": "diffusers/api/models/autoencoder_kl_wan.md",
       "bytes": 7147,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_kl_wan.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoder_kl_wan.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderKLWan"
     },
     {
       "rel": "diffusers/api/models/autoencoder_kl_hunyuanimage_refiner.md",
-      "bytes": 9970,
+      "bytes": 6917,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_kl_hunyuanimage_refiner.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoder_kl_hunyuanimage_refiner.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderKLHunyuanImageRefiner"
     },
     {
+      "rel": "diffusers/api/models/kandinsky6_transformer.md",
+      "bytes": 15757,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/kandinsky6_transformer.md",
+      "track": "Diffusers",
+      "package": "diffusers",
+      "title": "Kandinsky 6 Transformers"
+    },
+    {
       "rel": "diffusers/api/models/stable_audio_3_transformer.md",
       "bytes": 6778,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/stable_audio_3_transformer.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/stable_audio_3_transformer.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "StableAudio3DiTModel"
@@ -3290,34 +3353,52 @@
       "rel": "diffusers/api/models/consistency_decoder_vae.md",
       "bytes": 6617,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/consistency_decoder_vae.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/consistency_decoder_vae.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Consistency Decoder"
     },
     {
       "rel": "diffusers/api/models/uvit2d.md",
-      "bytes": 5811,
+      "bytes": 6351,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/uvit2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/uvit2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "UVit2DModel"
     },
     {
-      "rel": "diffusers/api/models/z_image_transformer2d.md",
-      "bytes": 3906,
+      "rel": "diffusers/api/pipelines/flux3.md",
+      "bytes": 7524,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/z_image_transformer2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/flux3.md",
+      "track": "Diffusers",
+      "package": "diffusers",
+      "title": "Flux3"
+    },
+    {
+      "rel": "diffusers/api/models/z_image_transformer2d.md",
+      "bytes": 4077,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/z_image_transformer2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ZImageTransformer2DModel"
     },
     {
+      "rel": "diffusers/api/models/kandinsky6_vae.md",
+      "bytes": 13686,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/kandinsky6_vae.md",
+      "track": "Diffusers",
+      "package": "diffusers",
+      "title": "Kandinsky 6 VAEs"
+    },
+    {
       "rel": "diffusers/api/models/asymmetricautoencoderkl.md",
       "bytes": 8743,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/asymmetricautoencoderkl.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/asymmetricautoencoderkl.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AsymmetricAutoencoderKL"
@@ -3326,7 +3407,7 @@
       "rel": "diffusers/api/models/controlnet.md",
       "bytes": 15199,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/controlnet.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/controlnet.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ControlNetModel"
@@ -3335,7 +3416,7 @@
       "rel": "diffusers/api/models/autoencoderkl_cosmos.md",
       "bytes": 13983,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_cosmos.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoderkl_cosmos.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderKLCosmos"
@@ -3344,7 +3425,7 @@
       "rel": "diffusers/api/models/wan_animate_transformer_3d.md",
       "bytes": 6751,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/wan_animate_transformer_3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/wan_animate_transformer_3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "WanAnimateTransformer3DModel"
@@ -3353,7 +3434,7 @@
       "rel": "diffusers/api/models/autoencoderkl_mochi.md",
       "bytes": 8633,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_mochi.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoderkl_mochi.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderKLMochi"
@@ -3362,7 +3443,7 @@
       "rel": "diffusers/api/models/hunyuan_video15_transformer_3d.md",
       "bytes": 6407,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/hunyuan_video15_transformer_3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/hunyuan_video15_transformer_3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "HunyuanVideo15Transformer3DModel"
@@ -3371,7 +3452,7 @@
       "rel": "diffusers/api/models/flux_transformer.md",
       "bytes": 4942,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/flux_transformer.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/flux_transformer.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "FluxTransformer2DModel"
@@ -3380,7 +3461,7 @@
       "rel": "diffusers/api/models/autoencoderkl_minimax_h3.md",
       "bytes": 8606,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_minimax_h3.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoderkl_minimax_h3.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderKLMiniMaxH3"
@@ -3389,7 +3470,7 @@
       "rel": "diffusers/api/models/stable_cascade_unet.md",
       "bytes": 2955,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/stable_cascade_unet.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/stable_cascade_unet.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "StableCascadeUNet"
@@ -3398,7 +3479,7 @@
       "rel": "diffusers/api/models/ltx2_video_transformer3d.md",
       "bytes": 10981,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/ltx2_video_transformer3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/ltx2_video_transformer3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "LTX2VideoTransformer3DModel"
@@ -3407,7 +3488,7 @@
       "rel": "diffusers/api/models/autoencoderkl_ltx_2.md",
       "bytes": 9779,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_ltx_2.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoderkl_ltx_2.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderKLLTX2Video"
@@ -3416,7 +3497,7 @@
       "rel": "diffusers/api/models/controlnet_sd3.md",
       "bytes": 9039,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/controlnet_sd3.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/controlnet_sd3.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "SD3ControlNetModel"
@@ -3425,7 +3506,7 @@
       "rel": "diffusers/api/models/autoencoder_dc.md",
       "bytes": 12716,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_dc.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoder_dc.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderDC"
@@ -3434,7 +3515,7 @@
       "rel": "diffusers/api/models/autoencoderkl.md",
       "bytes": 11777,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoderkl.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderKL"
@@ -3443,7 +3524,7 @@
       "rel": "diffusers/api/models/minimax_h3_transformer3d.md",
       "bytes": 10643,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/minimax_h3_transformer3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/minimax_h3_transformer3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "MiniMaxH3Transformer3DModel"
@@ -3452,7 +3533,7 @@
       "rel": "diffusers/api/models/anyflow_transformer3d.md",
       "bytes": 6021,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/anyflow_transformer3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/anyflow_transformer3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AnyFlowTransformer3DModel"
@@ -3461,7 +3542,7 @@
       "rel": "diffusers/api/models/motif_video_transformer_3d.md",
       "bytes": 5852,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/motif_video_transformer_3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/motif_video_transformer_3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "MotifVideoTransformer3DModel"
@@ -3470,7 +3551,7 @@
       "rel": "diffusers/api/models/lumina2_transformer2d.md",
       "bytes": 5871,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/lumina2_transformer2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/lumina2_transformer2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Lumina2Transformer2DModel"
@@ -3479,7 +3560,7 @@
       "rel": "diffusers/api/models/unet2d.md",
       "bytes": 8719,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/unet2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/unet2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "UNet2DModel"
@@ -3488,7 +3569,7 @@
       "rel": "diffusers/api/models/sd3_transformer2d.md",
       "bytes": 6110,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/sd3_transformer2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/sd3_transformer2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "SD3 Transformer Model"
@@ -3497,7 +3578,7 @@
       "rel": "diffusers/api/models/autoencoder_kl_kvae.md",
       "bytes": 5024,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_kl_kvae.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoder_kl_kvae.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderKLKVAE"
@@ -3506,7 +3587,7 @@
       "rel": "diffusers/api/models/mochi_transformer3d.md",
       "bytes": 4917,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/mochi_transformer3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/mochi_transformer3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "MochiTransformer3DModel"
@@ -3515,7 +3596,7 @@
       "rel": "diffusers/api/models/overview.md",
       "bytes": 27469,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/overview.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/overview.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Models"
@@ -3524,7 +3605,7 @@
       "rel": "diffusers/api/models/consisid_transformer3d.md",
       "bytes": 12436,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/consisid_transformer3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/consisid_transformer3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ConsisIDTransformer3DModel"
@@ -3533,7 +3614,7 @@
       "rel": "diffusers/api/models/transformer2d.md",
       "bytes": 7867,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/transformer2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/transformer2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Transformer2DModel"
@@ -3542,7 +3623,7 @@
       "rel": "diffusers/api/models/aura_flow_transformer2d.md",
       "bytes": 4538,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/aura_flow_transformer2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/aura_flow_transformer2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AuraFlowTransformer2DModel"
@@ -3551,7 +3632,7 @@
       "rel": "diffusers/api/models/unet.md",
       "bytes": 6631,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/unet.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/unet.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "UNet1DModel"
@@ -3560,7 +3641,7 @@
       "rel": "diffusers/api/models/krea2_transformer2d.md",
       "bytes": 5480,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/krea2_transformer2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/krea2_transformer2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Krea2Transformer2DModel"
@@ -3569,7 +3650,7 @@
       "rel": "diffusers/api/models/controlnet_sparsectrl.md",
       "bytes": 13712,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/controlnet_sparsectrl.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/controlnet_sparsectrl.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "SparseControlNetModel"
@@ -3578,7 +3659,7 @@
       "rel": "diffusers/api/models/autoencoderkl_magvit.md",
       "bytes": 6804,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_magvit.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoderkl_magvit.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderKLMagvit"
@@ -3587,25 +3668,34 @@
       "rel": "diffusers/api/models/autoencoder_tiny.md",
       "bytes": 7838,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_tiny.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoder_tiny.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Tiny AutoEncoder"
     },
     {
       "rel": "diffusers/api/models/unet3d-cond.md",
-      "bytes": 13421,
+      "bytes": 13440,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/unet3d-cond.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/unet3d-cond.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "UNet3DConditionModel"
     },
     {
+      "rel": "diffusers/api/models/rfd4_proteina_transformer.md",
+      "bytes": 7656,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/rfd4_proteina_transformer.md",
+      "track": "Diffusers",
+      "package": "diffusers",
+      "title": "RFD4ProteinaTransformer"
+    },
+    {
       "rel": "diffusers/api/models/autoencoder_rae.md",
       "bytes": 8830,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_rae.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoder_rae.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderRAE"
@@ -3614,7 +3704,7 @@
       "rel": "diffusers/api/models/autoencoderkl_qwenimage21.md",
       "bytes": 8930,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_qwenimage21.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoderkl_qwenimage21.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderKLQwenImage21"
@@ -3623,7 +3713,7 @@
       "rel": "diffusers/api/models/helios_transformer3d.md",
       "bytes": 6849,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/helios_transformer3d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/helios_transformer3d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "HeliosTransformer3DModel"
@@ -3632,7 +3722,7 @@
       "rel": "diffusers/api/models/bria_transformer.md",
       "bytes": 4502,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/bria_transformer.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/bria_transformer.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "BriaTransformer2DModel"
@@ -3641,7 +3731,7 @@
       "rel": "diffusers/api/models/controlnet_hunyuandit.md",
       "bytes": 12646,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/controlnet_hunyuandit.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/controlnet_hunyuandit.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "HunyuanDiT2DControlNetModel"
@@ -3650,7 +3740,7 @@
       "rel": "diffusers/api/models/hidream_image_transformer.md",
       "bytes": 5143,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/hidream_image_transformer.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/hidream_image_transformer.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "HiDreamImageTransformer2DModel"
@@ -3659,7 +3749,7 @@
       "rel": "diffusers/api/models/ovisimage_transformer2d.md",
       "bytes": 3859,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/ovisimage_transformer2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/ovisimage_transformer2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "OvisImageTransformer2DModel"
@@ -3668,7 +3758,7 @@
       "rel": "diffusers/api/models/cosmos3_omni_transformer.md",
       "bytes": 5978,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/cosmos3_omni_transformer.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/cosmos3_omni_transformer.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Cosmos3OmniTransformer"
@@ -3677,7 +3767,7 @@
       "rel": "diffusers/api/models/transformer_temporal.md",
       "bytes": 6075,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/transformer_temporal.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/transformer_temporal.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "TransformerTemporalModel"
@@ -3686,7 +3776,7 @@
       "rel": "diffusers/api/models/autoencoder_oobleck.md",
       "bytes": 6875,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_oobleck.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoder_oobleck.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderOobleck"
@@ -3695,7 +3785,7 @@
       "rel": "diffusers/api/models/prior_transformer.md",
       "bytes": 7692,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/prior_transformer.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/prior_transformer.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "PriorTransformer"
@@ -3704,7 +3794,7 @@
       "rel": "diffusers/api/models/hunyuanimage_transformer_2d.md",
       "bytes": 6798,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/hunyuanimage_transformer_2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/hunyuanimage_transformer_2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "HunyuanImageTransformer2DModel"
@@ -3713,7 +3803,7 @@
       "rel": "diffusers/api/models/transformer_bria_fibo.md",
       "bytes": 3937,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/transformer_bria_fibo.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/transformer_bria_fibo.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "BriaFiboTransformer2DModel"
@@ -3722,7 +3812,7 @@
       "rel": "diffusers/api/models/ace_step_transformer.md",
       "bytes": 3615,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/ace_step_transformer.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/ace_step_transformer.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AceStepTransformer1DModel"
@@ -3731,7 +3821,7 @@
       "rel": "diffusers/api/models/autoencoder_kl_hunyuanimage.md",
       "bytes": 6266,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoder_kl_hunyuanimage.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoder_kl_hunyuanimage.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoencoderKLHunyuanImage"
@@ -3740,7 +3830,7 @@
       "rel": "diffusers/api/models/sana_transformer2d.md",
       "bytes": 8085,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/sana_transformer2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/sana_transformer2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "SanaTransformer2DModel"
@@ -3749,7 +3839,7 @@
       "rel": "diffusers/api/models/qwenimage21_transformer2d.md",
       "bytes": 8777,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/qwenimage21_transformer2d.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/qwenimage21_transformer2d.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "QwenImage21Transformer2DModel"
@@ -3758,7 +3848,7 @@
       "rel": "diffusers/api/models/transformer_joyimage.md",
       "bytes": 3439,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/transformer_joyimage.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/transformer_joyimage.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "JoyImageEditTransformer3DModel"
@@ -3767,7 +3857,7 @@
       "rel": "diffusers/api/models/flux2_transformer.md",
       "bytes": 6191,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/models/flux2_transformer.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/models/flux2_transformer.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Flux2Transformer2DModel"
@@ -3776,7 +3866,7 @@
       "rel": "diffusers/api/pipelines/animatediff.md",
       "bytes": 136195,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/animatediff.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/animatediff.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Text-to-Video Generation with AnimateDiff"
@@ -3785,7 +3875,7 @@
       "rel": "diffusers/api/pipelines/ddpm.md",
       "bytes": 5297,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/ddpm.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/ddpm.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "DDPM"
@@ -3794,16 +3884,16 @@
       "rel": "diffusers/api/pipelines/kandinsky_v22.md",
       "bytes": 184383,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/kandinsky_v22.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/kandinsky_v22.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Kandinsky 2.2"
     },
     {
       "rel": "diffusers/api/pipelines/kandinsky.md",
-      "bytes": 84099,
+      "bytes": 84109,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/kandinsky.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/kandinsky.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Kandinsky 2.1"
@@ -3812,7 +3902,7 @@
       "rel": "diffusers/api/pipelines/controlnet_sana.md",
       "bytes": 72340,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/controlnet_sana.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/controlnet_sana.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ControlNet"
@@ -3821,7 +3911,7 @@
       "rel": "diffusers/api/pipelines/anyflow.md",
       "bytes": 31746,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/anyflow.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/anyflow.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AnyFlow"
@@ -3830,7 +3920,7 @@
       "rel": "diffusers/api/pipelines/auto_pipeline.md",
       "bytes": 35842,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/auto_pipeline.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/auto_pipeline.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoPipeline"
@@ -3839,7 +3929,7 @@
       "rel": "diffusers/api/pipelines/marigold.md",
       "bytes": 63694,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/marigold.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/marigold.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Marigold Computer Vision"
@@ -3848,7 +3938,7 @@
       "rel": "diffusers/api/pipelines/pix2pix.md",
       "bytes": 128658,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/pix2pix.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/pix2pix.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "InstructPix2Pix"
@@ -3857,7 +3947,7 @@
       "rel": "diffusers/api/pipelines/joyimage_edit.md",
       "bytes": 14896,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/joyimage_edit.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/joyimage_edit.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "JoyAI-Image-Edit"
@@ -3866,7 +3956,7 @@
       "rel": "diffusers/api/pipelines/deepfloyd_if.md",
       "bytes": 80650,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/deepfloyd_if.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/deepfloyd_if.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "DeepFloyd IF"
@@ -3875,7 +3965,7 @@
       "rel": "diffusers/api/pipelines/hunyuandit.md",
       "bytes": 17243,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/hunyuandit.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/hunyuandit.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Hunyuan-DiT"
@@ -3884,7 +3974,7 @@
       "rel": "diffusers/api/pipelines/minimax_h3.md",
       "bytes": 31707,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/minimax_h3.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/minimax_h3.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "MiniMax-H3"
@@ -3893,7 +3983,7 @@
       "rel": "diffusers/api/pipelines/ledits_pp.md",
       "bytes": 46483,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/ledits_pp.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/ledits_pp.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "LEDITS++"
@@ -3902,7 +3992,7 @@
       "rel": "diffusers/api/pipelines/controlnet_union.md",
       "bytes": 79062,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/controlnet_union.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/controlnet_union.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ControlNetUnion"
@@ -3911,7 +4001,7 @@
       "rel": "diffusers/api/pipelines/anima.md",
       "bytes": 5684,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/anima.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/anima.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Anima"
@@ -3920,7 +4010,7 @@
       "rel": "diffusers/api/pipelines/bria_fibo.md",
       "bytes": 9406,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/bria_fibo.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/bria_fibo.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Bria Fibo"
@@ -3929,7 +4019,7 @@
       "rel": "diffusers/api/pipelines/shap_e.md",
       "bytes": 18070,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/shap_e.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/shap_e.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Shap-E"
@@ -3938,7 +4028,7 @@
       "rel": "diffusers/api/pipelines/diffusion_gemma.md",
       "bytes": 17143,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/diffusion_gemma.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/diffusion_gemma.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "DiffusionGemma"
@@ -3947,7 +4037,7 @@
       "rel": "diffusers/api/pipelines/flux.md",
       "bytes": 165174,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/flux.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/flux.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Flux"
@@ -3956,7 +4046,7 @@
       "rel": "diffusers/api/pipelines/allegro.md",
       "bytes": 15686,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/allegro.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/allegro.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Allegro"
@@ -3965,7 +4055,7 @@
       "rel": "diffusers/api/pipelines/controlnet_flux.md",
       "bytes": 122231,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/controlnet_flux.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/controlnet_flux.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ControlNet with Flux.1"
@@ -3974,7 +4064,7 @@
       "rel": "diffusers/api/pipelines/latte.md",
       "bytes": 15956,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/latte.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/latte.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Latte"
@@ -3983,7 +4073,7 @@
       "rel": "diffusers/api/pipelines/bria_fibo_edit.md",
       "bytes": 11717,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/bria_fibo_edit.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/bria_fibo_edit.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Bria Fibo Edit"
@@ -3992,7 +4082,7 @@
       "rel": "diffusers/api/pipelines/flux2.md",
       "bytes": 23126,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/flux2.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/flux2.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Flux2"
@@ -4001,34 +4091,43 @@
       "rel": "diffusers/api/pipelines/ernie_image.md",
       "bytes": 21493,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/ernie_image.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/ernie_image.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Ernie-Image"
     },
     {
       "rel": "diffusers/api/pipelines/pixart_sigma.md",
-      "bytes": 18319,
+      "bytes": 18320,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/pixart_sigma.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/pixart_sigma.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "PixArt-\u03a3"
     },
     {
+      "rel": "diffusers/api/pipelines/kandinsky6.md",
+      "bytes": 34777,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/kandinsky6.md",
+      "track": "Diffusers",
+      "package": "diffusers",
+      "title": "Kandinsky 6"
+    },
+    {
       "rel": "diffusers/api/pipelines/ace_step.md",
       "bytes": 21786,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/ace_step.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/ace_step.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ACE-Step 1.5"
     },
     {
       "rel": "diffusers/api/pipelines/audioldm2.md",
-      "bytes": 77991,
+      "bytes": 77988,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/audioldm2.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/audioldm2.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AudioLDM 2"
@@ -4037,7 +4136,7 @@
       "rel": "diffusers/api/pipelines/joyimage_edit_plus.md",
       "bytes": 11305,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/joyimage_edit_plus.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/joyimage_edit_plus.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "JoyAI-Image-Edit-Plus"
@@ -4046,7 +4145,7 @@
       "rel": "diffusers/api/pipelines/pixart.md",
       "bytes": 18100,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/pixart.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/pixart.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "PixArt-\u03b1"
@@ -4055,7 +4154,7 @@
       "rel": "diffusers/api/pipelines/stable_audio.md",
       "bytes": 13908,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_audio.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_audio.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Stable Audio"
@@ -4064,7 +4163,7 @@
       "rel": "diffusers/api/pipelines/pag.md",
       "bytes": 304515,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/pag.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/pag.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Perturbed-Attention Guidance"
@@ -4073,7 +4172,7 @@
       "rel": "diffusers/api/pipelines/z_image.md",
       "bytes": 30688,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/z_image.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/z_image.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Z-Image"
@@ -4082,7 +4181,7 @@
       "rel": "diffusers/api/pipelines/stable_audio_3.md",
       "bytes": 34564,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_audio_3.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_audio_3.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Stable Audio 3"
@@ -4091,7 +4190,7 @@
       "rel": "diffusers/api/pipelines/controlnet.md",
       "bytes": 99985,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/controlnet.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/controlnet.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ControlNet"
@@ -4100,7 +4199,7 @@
       "rel": "diffusers/api/pipelines/stable_cascade.md",
       "bytes": 37432,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_cascade.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_cascade.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Stable Cascade"
@@ -4109,7 +4208,7 @@
       "rel": "diffusers/api/pipelines/aura_flow.md",
       "bytes": 15099,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/aura_flow.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/aura_flow.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AuraFlow"
@@ -4118,7 +4217,7 @@
       "rel": "diffusers/api/pipelines/wan.md",
       "bytes": 95559,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/wan.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/wan.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Wan"
@@ -4127,7 +4226,7 @@
       "rel": "diffusers/api/pipelines/longcat_audio_dit.md",
       "bytes": 13567,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/longcat_audio_dit.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/longcat_audio_dit.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "LongCat-AudioDiT"
@@ -4136,7 +4235,7 @@
       "rel": "diffusers/api/pipelines/stable_unclip.md",
       "bytes": 39666,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_unclip.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_unclip.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Stable unCLIP"
@@ -4145,7 +4244,7 @@
       "rel": "diffusers/api/pipelines/controlnet_sd3.md",
       "bytes": 46877,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/controlnet_sd3.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/controlnet_sd3.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ControlNet with Stable Diffusion 3"
@@ -4154,7 +4253,7 @@
       "rel": "diffusers/api/pipelines/value_guided_sampling.md",
       "bytes": 13142,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/value_guided_sampling.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/value_guided_sampling.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Value-guided planning"
@@ -4163,7 +4262,7 @@
       "rel": "diffusers/api/pipelines/controlnet_sdxl.md",
       "bytes": 79869,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/controlnet_sdxl.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/controlnet_sdxl.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ControlNet with Stable Diffusion XL"
@@ -4172,7 +4271,7 @@
       "rel": "diffusers/api/pipelines/ddim.md",
       "bytes": 6021,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/ddim.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/ddim.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "DDIM"
@@ -4181,7 +4280,7 @@
       "rel": "diffusers/api/pipelines/kandinsky5_image.md",
       "bytes": 26451,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/kandinsky5_image.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/kandinsky5_image.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Kandinsky 5.0 Image"
@@ -4190,7 +4289,7 @@
       "rel": "diffusers/api/pipelines/minimax_music3.md",
       "bytes": 25763,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/minimax_music3.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/minimax_music3.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "MiniMax Music 3"
@@ -4199,7 +4298,7 @@
       "rel": "diffusers/api/pipelines/dit.md",
       "bytes": 6648,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/dit.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/dit.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "DiT"
@@ -4208,7 +4307,7 @@
       "rel": "diffusers/api/pipelines/krea2.md",
       "bytes": 21139,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/krea2.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/krea2.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Krea 2"
@@ -4217,7 +4316,7 @@
       "rel": "diffusers/api/pipelines/overview.md",
       "bytes": 44069,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/overview.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/overview.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Pipelines"
@@ -4226,7 +4325,7 @@
       "rel": "diffusers/api/pipelines/control_flux_inpaint.md",
       "bytes": 34101,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/control_flux_inpaint.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/control_flux_inpaint.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "FluxControlInpaint"
@@ -4235,7 +4334,7 @@
       "rel": "diffusers/api/pipelines/lumina2.md",
       "bytes": 14047,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/lumina2.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/lumina2.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Lumina2"
@@ -4244,34 +4343,43 @@
       "rel": "diffusers/api/pipelines/qwenimage21.md",
       "bytes": 708,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/qwenimage21.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/qwenimage21.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Qwen-Image 2.1"
     },
     {
       "rel": "diffusers/api/pipelines/stable_diffusion/text2img.md",
-      "bytes": 12848,
+      "bytes": 21761,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_diffusion/text2img.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_diffusion/text2img.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Text-to-image"
     },
     {
       "rel": "diffusers/api/pipelines/ideogram4.md",
-      "bytes": 14262,
+      "bytes": 14269,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/ideogram4.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/ideogram4.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Ideogram 4"
     },
     {
+      "rel": "diffusers/api/pipelines/bria_fibo2.md",
+      "bytes": 21141,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/bria_fibo2.md",
+      "track": "Diffusers",
+      "package": "diffusers",
+      "title": "Bria Fibo 2.0"
+    },
+    {
       "rel": "diffusers/api/pipelines/bria_3_2.md",
       "bytes": 94154,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/bria_3_2.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/bria_3_2.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Bria 3.2"
@@ -4280,34 +4388,43 @@
       "rel": "diffusers/api/pipelines/kandinsky3.md",
       "bytes": 18539,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/kandinsky3.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/kandinsky3.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Kandinsky 3"
     },
     {
       "rel": "diffusers/api/pipelines/ovis_image.md",
-      "bytes": 13571,
+      "bytes": 39350,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/ovis_image.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/ovis_image.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Ovis-Image"
     },
     {
       "rel": "diffusers/api/pipelines/latent_consistency_models.md",
-      "bytes": 57570,
+      "bytes": 57568,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/latent_consistency_models.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/latent_consistency_models.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Latent Consistency Models"
     },
     {
+      "rel": "diffusers/api/pipelines/sana_wm.md",
+      "bytes": 20676,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/sana_wm.md",
+      "track": "Diffusers",
+      "package": "diffusers",
+      "title": "SANA-WM"
+    },
+    {
       "rel": "diffusers/api/pipelines/lumina.md",
       "bytes": 19972,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/lumina.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/lumina.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Lumina-T2X"
@@ -4316,7 +4433,7 @@
       "rel": "diffusers/api/pipelines/cosmos.md",
       "bytes": 81624,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/cosmos.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/cosmos.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Cosmos"
@@ -4325,7 +4442,7 @@
       "rel": "diffusers/api/pipelines/helios.md",
       "bytes": 51923,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/helios.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/helios.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Helios"
@@ -4334,7 +4451,7 @@
       "rel": "diffusers/api/pipelines/controlnet_hunyuandit.md",
       "bytes": 18435,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/controlnet_hunyuandit.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/controlnet_hunyuandit.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ControlNet with Hunyuan-DiT"
@@ -4343,7 +4460,7 @@
       "rel": "diffusers/api/pipelines/longcat_image.md",
       "bytes": 5033,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/longcat_image.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/longcat_image.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "LongCat-Image"
@@ -4352,7 +4469,7 @@
       "rel": "diffusers/api/pipelines/llada2.md",
       "bytes": 9322,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/llada2.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/llada2.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "LLaDA2"
@@ -4361,7 +4478,7 @@
       "rel": "diffusers/api/pipelines/consistency_models.md",
       "bytes": 19755,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/consistency_models.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/consistency_models.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Consistency Models"
@@ -4370,7 +4487,7 @@
       "rel": "diffusers/api/pipelines/kolors.md",
       "bytes": 18101,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/kolors.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/kolors.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Kolors: Effective Training of Diffusion Model for Photorealistic Text-to-Image Synthesis"
@@ -4379,7 +4496,7 @@
       "rel": "diffusers/api/pipelines/framepack.md",
       "bytes": 54623,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/framepack.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/framepack.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Framepack"
@@ -4388,7 +4505,7 @@
       "rel": "diffusers/api/pipelines/sana.md",
       "bytes": 39946,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/sana.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/sana.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Sana"
@@ -4397,7 +4514,7 @@
       "rel": "diffusers/api/pipelines/echo.md",
       "bytes": 7572,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/echo.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/echo.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Echo"
@@ -4406,25 +4523,34 @@
       "rel": "diffusers/api/pipelines/motif_video.md",
       "bytes": 51014,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/motif_video.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/motif_video.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Motif-Video"
     },
     {
       "rel": "diffusers/api/pipelines/cosmos3.md",
-      "bytes": 84677,
+      "bytes": 84662,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/cosmos3.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/cosmos3.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Cosmos3"
     },
     {
+      "rel": "diffusers/api/pipelines/rfd4_proteina.md",
+      "bytes": 16683,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/rfd4_proteina.md",
+      "track": "Diffusers",
+      "package": "diffusers",
+      "title": "RFD4-Prote\u00edna"
+    },
+    {
       "rel": "diffusers/api/pipelines/kandinsky5_video.md",
       "bytes": 37010,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/kandinsky5_video.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/kandinsky5_video.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Kandinsky 5.0 Video"
@@ -4433,7 +4559,7 @@
       "rel": "diffusers/training/cogvideox.md",
       "bytes": 57771,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/training/cogvideox.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/training/cogvideox.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "CogVideoX"
@@ -4442,7 +4568,7 @@
       "rel": "diffusers/api/pipelines/dreamlite.md",
       "bytes": 14325,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/dreamlite.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/dreamlite.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "DreamLite"
@@ -4451,7 +4577,7 @@
       "rel": "diffusers/api/pipelines/chroma.md",
       "bytes": 43324,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/chroma.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/chroma.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Chroma"
@@ -4460,25 +4586,25 @@
       "rel": "diffusers/api/pipelines/mochi.md",
       "bytes": 21809,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/mochi.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/mochi.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Mochi"
     },
     {
       "rel": "diffusers/api/pipelines/latent_diffusion.md",
-      "bytes": 227937,
+      "bytes": 233597,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/latent_diffusion.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/latent_diffusion.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Latent Diffusion"
     },
     {
       "rel": "diffusers/api/pipelines/stable_diffusion/stable_diffusion_xl.md",
-      "bytes": 93923,
+      "bytes": 93933,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_diffusion/stable_diffusion_xl.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_diffusion/stable_diffusion_xl.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Stable Diffusion XL"
@@ -4487,7 +4613,7 @@
       "rel": "diffusers/api/pipelines/stable_diffusion/stable_diffusion_2.md",
       "bytes": 6369,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_diffusion/stable_diffusion_2.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_diffusion/stable_diffusion_2.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Stable Diffusion 2"
@@ -4496,7 +4622,7 @@
       "rel": "diffusers/api/pipelines/stable_diffusion/svd.md",
       "bytes": 9699,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_diffusion/svd.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_diffusion/svd.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Stable Video Diffusion"
@@ -4505,7 +4631,7 @@
       "rel": "diffusers/api/pipelines/stable_diffusion/latent_upscale.md",
       "bytes": 17835,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_diffusion/latent_upscale.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_diffusion/latent_upscale.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Latent upscaler"
@@ -4514,7 +4640,7 @@
       "rel": "diffusers/api/pipelines/stable_diffusion/img2img.md",
       "bytes": 37276,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_diffusion/img2img.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_diffusion/img2img.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Image-to-image"
@@ -4523,7 +4649,7 @@
       "rel": "diffusers/api/pipelines/stable_diffusion/stable_diffusion_3.md",
       "bytes": 37876,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_diffusion/stable_diffusion_3.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_diffusion/stable_diffusion_3.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Stable Diffusion 3"
@@ -4532,7 +4658,7 @@
       "rel": "diffusers/api/pipelines/stable_diffusion/adapter.md",
       "bytes": 47897,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_diffusion/adapter.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_diffusion/adapter.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "T2I-Adapter"
@@ -4541,16 +4667,16 @@
       "rel": "diffusers/api/pipelines/stable_diffusion/image_variation.md",
       "bytes": 14138,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_diffusion/image_variation.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_diffusion/image_variation.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Image variation"
     },
     {
       "rel": "diffusers/api/pipelines/stable_diffusion/upscale.md",
-      "bytes": 18119,
+      "bytes": 18099,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_diffusion/upscale.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_diffusion/upscale.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Super-resolution"
@@ -4559,7 +4685,7 @@
       "rel": "diffusers/api/pipelines/stable_diffusion/depth2img.md",
       "bytes": 28198,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_diffusion/depth2img.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_diffusion/depth2img.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Depth-to-image"
@@ -4568,7 +4694,7 @@
       "rel": "diffusers/api/pipelines/stable_diffusion/overview.md",
       "bytes": 7441,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_diffusion/overview.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_diffusion/overview.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Stable Diffusion pipelines"
@@ -4577,7 +4703,7 @@
       "rel": "diffusers/api/pipelines/stable_diffusion/inpaint.md",
       "bytes": 34907,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_diffusion/inpaint.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_diffusion/inpaint.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Inpainting"
@@ -4586,7 +4712,7 @@
       "rel": "diffusers/api/pipelines/stable_diffusion/sdxl_turbo.md",
       "bytes": 6325,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_diffusion/sdxl_turbo.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_diffusion/sdxl_turbo.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "SDXL Turbo"
@@ -4595,7 +4721,7 @@
       "rel": "diffusers/training/text2image.md",
       "bytes": 37098,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/training/text2image.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/training/text2image.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Text-to-image"
@@ -4604,34 +4730,43 @@
       "rel": "diffusers/modular_diffusers/pipeline_block.md",
       "bytes": 7501,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/modular_diffusers/pipeline_block.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/modular_diffusers/pipeline_block.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ModularPipelineBlocks"
     },
     {
       "rel": "diffusers/modular_diffusers/auto_docstring.md",
-      "bytes": 5481,
+      "bytes": 5510,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/modular_diffusers/auto_docstring.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/modular_diffusers/auto_docstring.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Auto docstring and parameter templates"
     },
     {
+      "rel": "diffusers/modular_diffusers/coming_from_diffusion_pipeline.md",
+      "bytes": 3429,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/modular_diffusers/coming_from_diffusion_pipeline.md",
+      "track": "Diffusers",
+      "package": "diffusers",
+      "title": "Coming from DiffusionPipeline"
+    },
+    {
       "rel": "diffusers/modular_diffusers/modular_diffusers_states.md",
       "bytes": 4036,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/modular_diffusers/modular_diffusers_states.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/modular_diffusers/modular_diffusers_states.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "States"
     },
     {
       "rel": "diffusers/modular_diffusers/loop_sequential_pipeline_blocks.md",
-      "bytes": 4747,
+      "bytes": 4980,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/modular_diffusers/loop_sequential_pipeline_blocks.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/modular_diffusers/loop_sequential_pipeline_blocks.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "LoopSequentialPipelineBlocks"
@@ -4640,7 +4775,7 @@
       "rel": "diffusers/modular_diffusers/auto_pipeline_blocks.md",
       "bytes": 9809,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/modular_diffusers/auto_pipeline_blocks.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/modular_diffusers/auto_pipeline_blocks.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "AutoPipelineBlocks"
@@ -4649,7 +4784,7 @@
       "rel": "diffusers/modular_diffusers/custom_blocks.md",
       "bytes": 12762,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/modular_diffusers/custom_blocks.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/modular_diffusers/custom_blocks.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Building Custom Blocks"
@@ -4658,25 +4793,25 @@
       "rel": "diffusers/modular_diffusers/sequential_pipeline_blocks.md",
       "bytes": 5593,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/modular_diffusers/sequential_pipeline_blocks.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/modular_diffusers/sequential_pipeline_blocks.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "SequentialPipelineBlocks"
     },
     {
       "rel": "diffusers/modular_diffusers/overview.md",
-      "bytes": 2849,
+      "bytes": 3098,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/modular_diffusers/overview.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/modular_diffusers/overview.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Overview"
     },
     {
       "rel": "diffusers/modular_diffusers/quickstart.md",
-      "bytes": 12607,
+      "bytes": 12837,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/modular_diffusers/quickstart.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/modular_diffusers/quickstart.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Quickstart"
@@ -4685,7 +4820,7 @@
       "rel": "diffusers/modular_diffusers/modular_pipeline.md",
       "bytes": 27412,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/modular_diffusers/modular_pipeline.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/modular_diffusers/modular_pipeline.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ModularPipeline"
@@ -4694,7 +4829,7 @@
       "rel": "diffusers/modular_diffusers/components_manager.md",
       "bytes": 15781,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/modular_diffusers/components_manager.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/modular_diffusers/components_manager.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ComponentsManager"
@@ -4703,16 +4838,16 @@
       "rel": "diffusers/training/distributed_inference.md",
       "bytes": 32479,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/training/distributed_inference.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/training/distributed_inference.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Distributed inference"
     },
     {
       "rel": "diffusers/training/kandinsky.md",
-      "bytes": 25288,
+      "bytes": 25308,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/training/kandinsky.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/training/kandinsky.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Kandinsky 2.2"
@@ -4721,7 +4856,7 @@
       "rel": "diffusers/training/nemo_automodel.md",
       "bytes": 17413,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/training/nemo_automodel.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/training/nemo_automodel.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "NeMo Automodel"
@@ -4730,7 +4865,7 @@
       "rel": "diffusers/training/ddpo.md",
       "bytes": 722,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/training/ddpo.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/training/ddpo.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Reinforcement learning training with DDPO"
@@ -4739,16 +4874,16 @@
       "rel": "diffusers/training/create_dataset.md",
       "bytes": 4226,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/training/create_dataset.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/training/create_dataset.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Create a dataset for training"
     },
     {
       "rel": "diffusers/training/dreambooth.md",
-      "bytes": 25070,
+      "bytes": 25080,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/training/dreambooth.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/training/dreambooth.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "DreamBooth"
@@ -4757,7 +4892,7 @@
       "rel": "diffusers/training/instructpix2pix.md",
       "bytes": 12560,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/training/instructpix2pix.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/training/instructpix2pix.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "InstructPix2Pix"
@@ -4766,7 +4901,7 @@
       "rel": "diffusers/training/adapt_a_model.md",
       "bytes": 2807,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/training/adapt_a_model.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/training/adapt_a_model.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Adapt a model to a new task"
@@ -4775,16 +4910,16 @@
       "rel": "diffusers/training/t2i_adapters.md",
       "bytes": 10260,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/training/t2i_adapters.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/training/t2i_adapters.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "T2I-Adapter"
     },
     {
       "rel": "diffusers/training/lcm_distill.md",
-      "bytes": 13645,
+      "bytes": 13655,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/training/lcm_distill.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/training/lcm_distill.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Latent Consistency Distillation"
@@ -4793,16 +4928,16 @@
       "rel": "diffusers/training/custom_diffusion.md",
       "bytes": 15876,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/training/custom_diffusion.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/training/custom_diffusion.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Custom Diffusion"
     },
     {
       "rel": "diffusers/training/controlnet.md",
-      "bytes": 13192,
+      "bytes": 13202,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/training/controlnet.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/training/controlnet.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "ControlNet"
@@ -4811,7 +4946,7 @@
       "rel": "diffusers/training/lora.md",
       "bytes": 9376,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/training/lora.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/training/lora.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "LoRA"
@@ -4820,16 +4955,25 @@
       "rel": "diffusers/training/overview.md",
       "bytes": 4587,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/training/overview.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/training/overview.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Overview"
     },
     {
-      "rel": "diffusers/training/text_inversion.md",
-      "bytes": 11059,
+      "rel": "diffusers/training/jobs.md",
+      "bytes": 8750,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/training/text_inversion.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/training/jobs.md",
+      "track": "Diffusers",
+      "package": "diffusers",
+      "title": "Hugging Face Jobs"
+    },
+    {
+      "rel": "diffusers/training/text_inversion.md",
+      "bytes": 11069,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/training/text_inversion.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Textual Inversion"
@@ -4838,16 +4982,16 @@
       "rel": "diffusers/training/unconditional_training.md",
       "bytes": 28743,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/training/unconditional_training.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/training/unconditional_training.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Unconditional image generation"
     },
     {
       "rel": "diffusers/training/sdxl.md",
-      "bytes": 13345,
+      "bytes": 13355,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/training/sdxl.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/training/sdxl.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Stable Diffusion XL"
@@ -4856,7 +5000,7 @@
       "rel": "diffusers/conceptual/philosophy.md",
       "bytes": 16148,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/conceptual/philosophy.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/conceptual/philosophy.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Philosophy"
@@ -4865,7 +5009,7 @@
       "rel": "diffusers/conceptual/contribution.md",
       "bytes": 49689,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/conceptual/contribution.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/conceptual/contribution.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "How to contribute to Diffusers \ud83e\udde8"
@@ -4874,7 +5018,7 @@
       "rel": "diffusers/conceptual/ethical_guidelines.md",
       "bytes": 4711,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/conceptual/ethical_guidelines.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/conceptual/ethical_guidelines.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "\ud83e\udde8 Diffusers\u2019 Ethical Guidelines"
@@ -4883,7 +5027,7 @@
       "rel": "diffusers/advanced_inference/outpaint.md",
       "bytes": 7572,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/diffusers/v0.41.0/advanced_inference/outpaint.md",
+      "url": "https://huggingface.co/docs/diffusers/v0.42.0/advanced_inference/outpaint.md",
       "track": "Diffusers",
       "package": "diffusers",
       "title": "Outpainting"
@@ -5052,7 +5196,7 @@
     },
     {
       "rel": "hub/jobs-manage.md",
-      "bytes": 9712,
+      "bytes": 9818,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs-manage.md",
       "track": "Hub",
@@ -6222,7 +6366,7 @@
     },
     {
       "rel": "hub/container-images.md",
-      "bytes": 3818,
+      "bytes": 4205,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/container-images.md",
       "track": "Hub",
@@ -8112,7 +8256,7 @@
     },
     {
       "rel": "inference-providers/index.md",
-      "bytes": 72092,
+      "bytes": 72047,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/index.md",
       "track": "Inference Providers",
@@ -8202,7 +8346,7 @@
     },
     {
       "rel": "inference-providers/guides/github-actions-code-review.md",
-      "bytes": 100859,
+      "bytes": 100646,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/github-actions-code-review.md",
       "track": "Inference Providers",
@@ -8211,7 +8355,7 @@
     },
     {
       "rel": "inference-providers/tasks/index.md",
-      "bytes": 14107,
+      "bytes": 14099,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/tasks/index.md",
       "track": "Inference Providers",
@@ -8409,7 +8553,7 @@
     },
     {
       "rel": "kernels/layers.md",
-      "bytes": 16663,
+      "bytes": 17453,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/layers.md",
       "track": "Kernels",
@@ -8490,7 +8634,7 @@
     },
     {
       "rel": "kernels/security.md",
-      "bytes": 7978,
+      "bytes": 8629,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/security.md",
       "track": "Kernels",
@@ -8508,7 +8652,7 @@
     },
     {
       "rel": "kernels/cli-verify-signature.md",
-      "bytes": 3592,
+      "bytes": 3632,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/cli-verify-signature.md",
       "track": "Kernels",
@@ -8670,7 +8814,7 @@
     },
     {
       "rel": "kernels/api/layers.md",
-      "bytes": 25953,
+      "bytes": 29730,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/api/layers.md",
       "track": "Kernels",
@@ -19838,17 +19982,17 @@
     },
     {
       "pkg": "diffusers",
-      "toc": 381,
-      "found": 355,
-      "written": 355,
-      "full_bytes": 6763791
+      "toc": 397,
+      "found": 371,
+      "written": 371,
+      "full_bytes": 7007477
     },
     {
       "pkg": "hub",
       "toc": 276,
       "found": 275,
       "written": 275,
-      "full_bytes": 1543194
+      "full_bytes": 1543687
     },
     {
       "pkg": "huggingface_hub",
@@ -19869,14 +20013,14 @@
       "toc": 66,
       "found": 28,
       "written": 28,
-      "full_bytes": 417590
+      "full_bytes": 417324
     },
     {
       "pkg": "kernels",
       "toc": 40,
       "found": 40,
       "written": 40,
-      "full_bytes": 239419
+      "full_bytes": 244677
     },
     {
       "pkg": "lerobot",

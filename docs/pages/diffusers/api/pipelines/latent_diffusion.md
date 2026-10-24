@@ -19,23 +19,23 @@ The original codebase can be found at [CompVis/latent-diffusion](https://github.
 diffusers.LDMTextToImagePipeline(vqvae: diffusers.models.autoencoders.vq_model.VQModel | diffusers.models.autoencoders.autoencoder_kl.AutoencoderKL, bert: PreTrainedModel, tokenizer: PythonBackend, unet: diffusers.models.unets.unet_2d.UNet2DModel | diffusers.models.unets.unet_2d_condition.UNet2DConditionModel, scheduler: diffusers.schedulers.scheduling_ddim.DDIMScheduler | diffusers.schedulers.scheduling_pndm.PNDMScheduler | diffusers.utils.dummy_torch_and_scipy_objects.LMSDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/latent_diffusion/pipeline_latent_diffusion.py#L39)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/latent_diffusion/pipeline_latent_diffusion.py#L39)
 
 **Parameters:**
 
-vqvae ([VQModel](/docs/diffusers/v0.41.0/en/api/models/vq#diffusers.VQModel)) : Vector-quantized (VQ) model to encode and decode images to and from latent representations.
+vqvae ([VQModel](/docs/diffusers/v0.42.0/en/api/models/vq#diffusers.VQModel)) : Vector-quantized (VQ) model to encode and decode images to and from latent representations.
 
 bert (`LDMBertModel`) : Text-encoder model based on `BERT`.
 
-tokenizer ([BertTokenizer](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/layoutlm#transformers.BertTokenizer)) : A `BertTokenizer` to tokenize text.
+tokenizer ([BertTokenizer](https://huggingface.co/docs/transformers/v5.20.2/en/model_doc/mobilebert#transformers.BertTokenizer)) : A `BertTokenizer` to tokenize text.
 
-unet ([UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : A `UNet2DConditionModel` to denoise the encoded image latents.
+unet ([UNet2DConditionModel](/docs/diffusers/v0.42.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : A `UNet2DConditionModel` to denoise the encoded image latents.
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Can be one of [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), [LMSDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler), or [PNDMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/pndm#diffusers.PNDMScheduler).
+scheduler ([SchedulerMixin](/docs/diffusers/v0.42.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Can be one of [DDIMScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), [LMSDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler), or [PNDMScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/pndm#diffusers.PNDMScheduler).
 
 Pipeline for text-to-image generation using latent diffusion.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.LDMTextToImagePipeline.__call__]]
@@ -44,7 +44,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(prompt: str | list[str], height: int | None = None, width: int | None = None, num_inference_steps: int | None = 50, guidance_scale: float | None = 1.0, eta: float | None = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/latent_diffusion/pipeline_latent_diffusion.py#L74)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/latent_diffusion/pipeline_latent_diffusion.py#L74)
 
 **Parameters:**
 
@@ -58,7 +58,7 @@ num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoisin
 
 guidance_scale (`float`, *optional*, defaults to 1.0) : A higher guidance scale value encourages the model to generate images closely linked to the text `prompt` at the expense of lower image quality. Guidance scale is enabled when `guidance_scale > 1`.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://huggingface.co/papers/2010.02502) paper. Only applies to the [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://huggingface.co/papers/2010.02502) paper. Only applies to the [DDIMScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
 
 generator (`torch.Generator`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -66,11 +66,11 @@ latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents sampled from 
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated image. Choose between `"pil"` (`PIL.Image`), `"np"` (`np.array`) or `"pt"` (`torch.Tensor`).
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) is returned, otherwise a `tuple` is
+If `return_dict` is `True`, [ImagePipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) is returned, otherwise a `tuple` is
 returned where the first element is a list with the generated images.
 
 The call function to the pipeline for generation.
@@ -100,19 +100,19 @@ Example:
 diffusers.LDMSuperResolutionPipeline(vqvae: VQModel, unet: UNet2DModel, scheduler: diffusers.schedulers.scheduling_ddim.DDIMScheduler | diffusers.schedulers.scheduling_pndm.PNDMScheduler | diffusers.utils.dummy_torch_and_scipy_objects.LMSDiscreteScheduler | diffusers.schedulers.scheduling_euler_discrete.EulerDiscreteScheduler | diffusers.schedulers.scheduling_euler_ancestral_discrete.EulerAncestralDiscreteScheduler | diffusers.schedulers.scheduling_dpmsolver_multistep.DPMSolverMultistepScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/latent_diffusion/pipeline_latent_diffusion_superresolution.py#L39)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/latent_diffusion/pipeline_latent_diffusion_superresolution.py#L39)
 
 **Parameters:**
 
-vqvae ([VQModel](/docs/diffusers/v0.41.0/en/api/models/vq#diffusers.VQModel)) : Vector-quantized (VQ) model to encode and decode images to and from latent representations.
+vqvae ([VQModel](/docs/diffusers/v0.42.0/en/api/models/vq#diffusers.VQModel)) : Vector-quantized (VQ) model to encode and decode images to and from latent representations.
 
-unet ([UNet2DModel](/docs/diffusers/v0.41.0/en/api/models/unet2d#diffusers.UNet2DModel)) : A `UNet2DModel` to denoise the encoded image.
+unet ([UNet2DModel](/docs/diffusers/v0.42.0/en/api/models/unet2d#diffusers.UNet2DModel)) : A `UNet2DModel` to denoise the encoded image.
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latens. Can be one of [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), [LMSDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler), [EulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/euler#diffusers.EulerDiscreteScheduler), [EulerAncestralDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/euler_ancestral#diffusers.EulerAncestralDiscreteScheduler), [DPMSolverMultistepScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler), or [PNDMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/pndm#diffusers.PNDMScheduler).
+scheduler ([SchedulerMixin](/docs/diffusers/v0.42.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latens. Can be one of [DDIMScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), [LMSDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler), [EulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/euler#diffusers.EulerDiscreteScheduler), [EulerAncestralDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/euler_ancestral#diffusers.EulerAncestralDiscreteScheduler), [DPMSolverMultistepScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler), or [PNDMScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/pndm#diffusers.PNDMScheduler).
 
 A pipeline for image super-resolution using latent diffusion.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.LDMSuperResolutionPipeline.__call__]]
@@ -121,7 +121,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(image: typing.Union[torch.Tensor, PIL.Image.Image] = None, batch_size: int | None = 1, num_inference_steps: int | None = 100, eta: float | None = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, output_type: str | None = 'pil', return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/latent_diffusion/pipeline_latent_diffusion_superresolution.py#L71)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/latent_diffusion/pipeline_latent_diffusion_superresolution.py#L71)
 
 **Parameters:**
 
@@ -131,17 +131,17 @@ batch_size (`int`, *optional*, defaults to 1) : Number of images to generate.
 
 num_inference_steps (`int`, *optional*, defaults to 100) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://huggingface.co/papers/2010.02502) paper. Only applies to the [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://huggingface.co/papers/2010.02502) paper. Only applies to the [DDIMScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated image. Choose between `"pil"` (`PIL.Image`), `"np"` (`np.array`) or `"pt"` (`torch.Tensor`).
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) is returned, otherwise a `tuple` is
+If `return_dict` is `True`, [ImagePipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) is returned, otherwise a `tuple` is
 returned where the first element is a list with the generated images
 
 The call function to the pipeline for generation.
@@ -181,7 +181,7 @@ Example:
 diffusers.ImagePipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L135)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L135)
 
 **Parameters:**
 
@@ -190,7 +190,7 @@ images (`List[PIL.Image.Image]` or `np.ndarray`) : List of denoised PIL images o
 Output class for image pipelines.
 
 ### Ltx2
-https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/ltx2.md
+https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/ltx2.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -869,8 +869,8 @@ The upsample step and the stage 2 call itself are unchanged from the distilled r
 
 LTX-2.5 ships two video decoders over the same latent space, so latents are interchangeable between them:
 
-- `vae/` — the convolutional VAE ([AutoencoderKLLTX2Video](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_ltx_2#diffusers.AutoencoderKLLTX2Video)). It is what the pipelines decode with, so every snippet above already uses it, and it is the only one of the two that tiles (`pipe.vae.enable_tiling()`), which is usually what makes a high resolution fit.
-- `diffusion_decoder/` — [LTX2VideoDiffusionDecoderModel](/docs/diffusers/v0.41.0/en/api/models/ltx2_diffusion_decoder#diffusers.LTX2VideoDiffusionDecoderModel). It is a diffusion model in its own right rather than a pipeline component, so it is not passed as a `vae`: run the pipeline with `output_type="latent"` and hand the latents to [LTX2VideoDiffusionDecodePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2VideoDiffusionDecodePipeline).
+- `vae/` — the convolutional VAE ([AutoencoderKLLTX2Video](/docs/diffusers/v0.42.0/en/api/models/autoencoderkl_ltx_2#diffusers.AutoencoderKLLTX2Video)). It is what the pipelines decode with, so every snippet above already uses it, and it is the only one of the two that tiles (`pipe.vae.enable_tiling()`), which is usually what makes a high resolution fit.
+- `diffusion_decoder/` — [LTX2VideoDiffusionDecoderModel](/docs/diffusers/v0.42.0/en/api/models/ltx2_diffusion_decoder#diffusers.LTX2VideoDiffusionDecoderModel). It is a diffusion model in its own right rather than a pipeline component, so it is not passed as a `vae`: run the pipeline with `output_type="latent"` and hand the latents to [LTX2VideoDiffusionDecodePipeline](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2VideoDiffusionDecodePipeline).
 
 Encoding always goes through `vae/`, so image and video conditioning are unaffected by the choice.
 
@@ -945,7 +945,7 @@ To combine this with [two-stage generation](#two-stage-generation-for-ltx-25), a
 
 `decoder.enable_tiling()` is what keeps a high resolution decode in memory, the same way `pipe.vae.enable_tiling()` does for the convolutional VAE. The memory-dominant part of the decode — the last upsampling stage and the diffusion stage — then runs on overlapping tiles that are blended back together, so peak memory is bounded by the tile size instead of the video size. Tiling only kicks in once the latent exceeds one tile, and the tile and overlap sizes can be tuned via the `tile_sample_min_*` / `tile_sample_stride_*` arguments (defaults match the reference implementation). Since the diffusion stage denoises each tile separately, a tiled decode does not reproduce the untiled result exactly.
 
-On a single card it is also worth moving the pipeline out of the way before decoding (`pipe.to("cpu")` and `torch.cuda.empty_cache()`, after capturing `pipe.scheduler` and the vocoder's `output_sampling_rate`), since the decoder needs its own headroom. See [LTX2VideoDiffusionDecoderModel](/docs/diffusers/v0.41.0/en/api/models/ltx2_diffusion_decoder#diffusers.LTX2VideoDiffusionDecoderModel) for the attention backends, the tiling details, and the rest of the decoder's behaviour.
+On a single card it is also worth moving the pipeline out of the way before decoding (`pipe.to("cpu")` and `torch.cuda.empty_cache()`, after capturing `pipe.scheduler` and the vocoder's `output_sampling_rate`), since the decoder needs its own headroom. See [LTX2VideoDiffusionDecoderModel](/docs/diffusers/v0.42.0/en/api/models/ltx2_diffusion_decoder#diffusers.LTX2VideoDiffusionDecoderModel) for the attention backends, the tiling details, and the rest of the decoder's behaviour.
 
 ### Full / SFT transformer
 
@@ -1105,9 +1105,76 @@ print(f"predicted {seconds:.2f}s -> {num_frames} frames")
 
 Converting a 2.5 checkpoint picks the head up automatically with `--full_pipeline`, or on its own with `--duration_head`. Checkpoints predating 2.5 have no such weights, and conversion skips the component rather than failing.
 
+### Motion speed for LTX-2.5
+
+LTX-2 places every video token on a time axis in seconds, derived by default from `frame_rate`, the playback rate. `motion_speed` (default `1.0`) separates the two: the time axis is conditioned on `frame_rate / motion_speed`, while the audio length, the [duration head](#automatic-duration-for-ltx-25) and the returned video still follow `frame_rate`. With `frame_rate=24.0` and `motion_speed=0.2`, the model is told the action was captured at 120 fps and the result plays back at 24 fps, which gives 5x slow motion.
+
+The base model is trained around 24/25/30/60 fps, so speeds far from `1.0` only make sense with an adapter trained for them, such as [`Lightricks/LTX-2.5-22b-LoRA-Slow-Motion-Control`](https://huggingface.co/Lightricks/LTX-2.5-22b-LoRA-Slow-Motion-Control) (gated: accept its license on the Hub first). Without `motion_speed`, that LoRA loads as a plain LoRA and gives none of the motion control. The model card suggests speeds of `1.0`, `0.5`, `0.2`, `0.1`, `0.05` and `0.025`, at LoRA strength `1.0`. Leave speed words ("slow motion", "high fps") out of the prompt, and reuse the same caption across speeds, since `motion_speed` alone drives the effect.
+
+```py
+import torch
+from diffusers import LTX2ImageToVideoPipeline
+from diffusers.pipelines.ltx2.utils import DISTILLED_SIGMA_VALUES
+from diffusers.utils import encode_video, load_image
+
+device = "cuda"  # or "mps", "xpu", "cpu"
+width = 1920  # the LoRA's recommended resolution; the effect is much weaker at 768x512
+height = 1088
+frame_rate = 24.0  # playback rate, always 24 for this LoRA
+model_path = "Lightricks/LTX-2.5-Diffusers"
+
+pipe = LTX2ImageToVideoPipeline.from_pretrained(model_path, dtype=torch.bfloat16)
+pipe.load_lora_weights(
+    "Lightricks/LTX-2.5-22b-LoRA-Slow-Motion-Control",
+    weight_name="ltx-2.5-22b-lora-slow-motion-control-1.0.safetensors",
+    adapter_name="slow_motion",
+)
+pipe.set_adapters("slow_motion", 1.0)
+pipe.enable_sequential_cpu_offload(device=device)
+pipe.vae.enable_tiling()
+
+image = load_image(
+    "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/astronaut.jpg"
+)
+# No speed wording: the same caption is reused at every speed.
+prompt = (
+    "An astronaut hatches from a fragile egg on the surface of the Moon, the shell cracking apart and lunar dust "
+    "lifting into the air, while the camera pushes in."
+)
+
+for motion_speed in (1.0, 0.2):
+    video, audio = pipe(
+        image=image,
+        prompt=prompt,
+        width=width,
+        height=height,
+        num_frames=121,
+        frame_rate=frame_rate,
+        motion_speed=motion_speed,  # 1.0 = real time, 0.2 = 5x slow motion
+        sigmas=DISTILLED_SIGMA_VALUES,
+        guidance_scale=1.0,
+        audio_guidance_scale=1.0,
+        generator=torch.Generator(device).manual_seed(42),
+        output_type="np",
+        return_dict=False,
+    )
+
+    encode_video(
+        video[0],
+        fps=frame_rate,  # the file plays at the playback rate, not frame_rate / motion_speed
+        audio=audio[0].float().cpu(),
+        audio_sample_rate=pipe.vocoder.config.output_sampling_rate,
+        output_path=f"ltx2_5_i2v_motion_speed_{motion_speed}.mp4",
+    )
+```
+
+Both clips last 121 frames (about 5 seconds at 24 fps) and only the pace of the motion changes. In [two-stage generation](#two-stage-generation-for-ltx-25), pass the same `motion_speed` to **both** stages. Stage 2 re-denoises the video, and it would undo the slow motion if it ran on the real-time axis. The [reference driver](https://huggingface.co/Lightricks/LTX-2.5-22b-LoRA-Slow-Motion-Control/blob/main/distilled_speed_demo.py) does the same by wrapping the stage object both passes share.
+
+`motion_speed` is also an input of the LTX-2 / LTX-2.5 modular blocks, and it is passed to the modular pipeline the same way.
+
 ### LTX-2.5 Modular
 
-LTX-2.5 is also available as a modular pipeline. The default blockset uses the diffusion decoder and predicts the video duration when `num_frames` is omitted. It applies guidance separately to video and audio through the `guider` and `audio_guider` components. See [LTX2Guidance](/docs/diffusers/v0.41.0/en/api/modular_diffusers/guiders#diffusers.LTX2Guidance) for the available guidance parameters. By default, the modular pipeline will download the prompt enhancer and processor from the [google/gemma-4-E2B-it](https://huggingface.co/google/gemma-4-E2B-it) repo. Below is a T2V modular example:
+LTX-2.5 is also available as a modular pipeline. The default blockset uses the diffusion decoder and predicts the video duration when `num_frames` is omitted. It applies guidance separately to video and audio through the `guider` and `audio_guider` components. See [LTX2Guidance](/docs/diffusers/v0.42.0/en/api/modular_diffusers/guiders#diffusers.LTX2Guidance) for the available guidance parameters. By default, the modular pipeline will download the prompt enhancer and processor from the [google/gemma-4-E2B-it](https://huggingface.co/google/gemma-4-E2B-it) repo. Below is a T2V modular example:
 
 ```py
 import torch
@@ -1218,11 +1285,11 @@ encode_video(
 )
 ```
 
-You can see the supported workflows in the docs for each blockset (e.g. [LTX2AutoBlocks](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2AutoBlocks), [LTX25AutoBlocks](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX25AutoBlocks)).
+You can see the supported workflows in the docs for each blockset (e.g. [LTX2AutoBlocks](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2AutoBlocks), [LTX25AutoBlocks](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX25AutoBlocks)).
 
 ### Diffusion Fidelity Rendering (DFR) for LTX-2.5
 
-`LTX2DFRPipeline` trades wall-clock time for detail fidelity. Each `__call__` is **one denoise pass** at `height` × `width`: it generates video plus extra single-pixel-frame **keyframe slots**, or re-denoises supplied latents seeded from those slots. Callers compose stages the same way as other LTX two-stage pipelines — this pipeline, [LTX2LatentUpsamplePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2LatentUpsamplePipeline), this pipeline again, then [LTX2DFRTemporalRefinePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2DFRTemporalRefinePipeline) for each temporal round.
+`LTX2DFRPipeline` trades wall-clock time for detail fidelity. Each `__call__` is **one denoise pass** at `height` × `width`: it generates video plus extra single-pixel-frame **keyframe slots**, or re-denoises supplied latents seeded from those slots. Callers compose stages the same way as other LTX two-stage pipelines — this pipeline, [LTX2LatentUpsamplePipeline](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2LatentUpsamplePipeline), this pipeline again, then [LTX2DFRTemporalRefinePipeline](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2DFRTemporalRefinePipeline) for each temporal round.
 
 A slot costs a full latent frame of tokens to buy one pixel frame, which relaxes the effective temporal compression at that position — so the surrounding video is conditioned on genuinely new frames instead of interpolated ones. Slot positions come from a segment grid aligned to the VAE's temporal border (24 or 32 pixel frames, whichever pads the request less). The canvas is padded to a whole number of segments internally; `output_type="latent"` returns that padded grid so a slot on the pad is not dropped. Trim with `trim_canvas` before VAE decode.
 
@@ -1372,11 +1439,11 @@ encode_video(
 
 **Spatial detailing.** Load the 2x spatial detailing IC-LoRA under a named adapter **after stage 1** and activate it for stage 2 only (`set_adapters(["detailing"], adapter_weights=[0.5])`). Stage 2 then attends to the stage-1 half-resolution latent as `reference_latents`. Stage 1 and the temporal rounds run with the adapter off. If you load the LoRA before stage 1, `transformer.disable_adapters()` turns it off, and `set_adapters` does **not** turn it back on — call `transformer.enable_adapters()` before stage 2, or load the weights after stage 1 as in the recipe. `reference_downscale_factor` (default `2`) scales the reference tokens' spatial coordinates into the target's coordinate space.
 
-**Temporal refinement.** [LTX2DFRTemporalRefinePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2DFRTemporalRefinePipeline) is one round: temporally upsample, tile on keyframe seams, ancestral-denoise with `LTXEulerAncestralRFScheduler` (`eta=0.5`), stitch by dropping the later tile's lead-in, and merge the carry-keyframe bag. Construct that scheduler yourself — the round is refused with anything else, since a deterministic step would run to completion and only return a softer canvas. Call the pipeline once per round; loop for 2x / 4x, passing `round_index`. After a round, `keyframe_positions` cannot be re-derived from the original `num_frames` and must be passed through. Each tile is handed the slice of the frozen stage-1 audio covering its own playback window. `source_seconds` is the *stage-1* duration and stays fixed across rounds, so later rounds must pass it explicitly rather than take the default.
+**Temporal refinement.** [LTX2DFRTemporalRefinePipeline](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2DFRTemporalRefinePipeline) is one round: temporally upsample, tile on keyframe seams, ancestral-denoise with `LTXEulerAncestralRFScheduler` (`eta=0.5`), stitch by dropping the later tile's lead-in, and merge the carry-keyframe bag. Construct that scheduler yourself — the round is refused with anything else, since a deterministic step would run to completion and only return a softer canvas. Call the pipeline once per round; loop for 2x / 4x, passing `round_index`. After a round, `keyframe_positions` cannot be re-derived from the original `num_frames` and must be passed through. Each tile is handed the slice of the frozen stage-1 audio covering its own playback window. `source_seconds` is the *stage-1* duration and stays fixed across rounds, so later rounds must pass it explicitly rather than take the default.
 
 Conditioning fps is 60 whenever playback is above 30, independently of muxing: RoPE time is `pixel_frame / fps`, so a 120 fps time base would halve every token's temporal span versus the trained distribution, and 48 fps would stretch it. Both lie that they are 60 and treat the decoded frames at the playback rate.
 
-**A third spatial stage.** Compose it; there is no fourth pipeline. Spatially upsample the **video only**, rebuild carry keyframes in RGB (`decode` → Lanczos ×2 → `encode` via [rebuild_epilogue_keyframes()](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipeline.rebuild_epilogue_keyframes); never latent-upsample epilogue keyframes), then:
+**A third spatial stage.** Compose it; there is no fourth pipeline. Spatially upsample the **video only**, rebuild carry keyframes in RGB (`decode` → Lanczos ×2 → `encode` via [rebuild_epilogue_keyframes()](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipeline.rebuild_epilogue_keyframes); never latent-upsample epilogue keyframes), then:
 
 ```py
 from diffusers.pipelines.ltx2.dfr_layout import epilogue_tiles, pixel_to_latent_index
@@ -1434,7 +1501,7 @@ pipe.transformer.disable_adapters()
 
 The two axes are seamed differently. Neither side of a spatial border holds a known answer, so those overlaps are blended with trapezoidal weights. Temporal tiles are cut on the last refine round's keyframe seams.
 
-**Decoding with the diffusion decoder.** For maximum detail fidelity, stay on `output_type="latent"` and hand the (already denormalized, possibly `trim_canvas`'d) latents to [LTX2VideoDiffusionDecodePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2VideoDiffusionDecodePipeline).
+**Decoding with the diffusion decoder.** For maximum detail fidelity, stay on `output_type="latent"` and hand the (already denormalized, possibly `trim_canvas`'d) latents to [LTX2VideoDiffusionDecodePipeline](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2VideoDiffusionDecodePipeline).
 
 ```py
 from diffusers import LTX2VideoDiffusionDecodePipeline
@@ -1459,15 +1526,15 @@ video = decode_pipe(latents=out3.frames, denormalize=False, output_type="np", re
 diffusers.LTX2Pipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKLLTX2Video, audio_vae: AutoencoderKLLTX2Audio, text_encoder: transformers.models.gemma3.modeling_gemma3.Gemma3ForConditionalGeneration | transformers.models.gemma4_unified.modeling_gemma4_unified.Gemma4UnifiedForConditionalGeneration, tokenizer: GemmaTokenizer, connectors: LTX2TextConnectors, transformer: LTX2VideoTransformer3DModel, vocoder: diffusers.pipelines.ltx2.vocoder.LTX2Vocoder | diffusers.pipelines.ltx2.vocoder.LTX2VocoderWithBWE, processor: transformers.processing_utils.ProcessorMixin | None = None, prompt_enhancer: transformers.models.gemma4.modeling_gemma4.Gemma4ForConditionalGeneration | None = None, duration_head: diffusers.pipelines.ltx2.duration_head.LTX2DurationHead | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2.py#L206)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2.py#L209)
 
 **Parameters:**
 
-transformer ([LTXVideoTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/ltx_video_transformer3d#diffusers.LTXVideoTransformer3DModel)) : Conditional Transformer architecture to denoise the encoded video latents.
+transformer ([LTXVideoTransformer3DModel](/docs/diffusers/v0.42.0/en/api/models/ltx_video_transformer3d#diffusers.LTXVideoTransformer3DModel)) : Conditional Transformer architecture to denoise the encoded video latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKLLTXVideo](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_ltx_video#diffusers.AutoencoderKLLTXVideo)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+vae ([AutoencoderKLLTXVideo](/docs/diffusers/v0.42.0/en/api/models/autoencoderkl_ltx_video#diffusers.AutoencoderKLLTXVideo)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
 text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
 
@@ -1484,10 +1551,10 @@ Reference: https://github.com/Lightricks/LTX-Video
 #### __call__[[diffusers.LTX2Pipeline.__call__]]
 
 ```python
-__call__(prompt: str | list[str] = None, negative_prompt: str | list[str] | None = None, height: int = 512, width: int = 768, num_frames: int | None = None, min_seconds: float = 1.0, max_seconds: float = 20.0, frame_rate: float = 24.0, num_inference_steps: int = 30, sigmas: list[float] | None = None, timesteps: list = None, guidance_scale: float = 3.0, stg_scale: float = 1.0, modality_scale: float = 3.0, guidance_rescale: float = 0.7, audio_guidance_scale: float | None = 7.0, audio_stg_scale: float | None = 1.0, audio_modality_scale: float | None = 3.0, audio_guidance_rescale: float | None = 0.7, spatio_temporal_guidance_blocks: list[int] | None = [28], noise_scale: float = 0.0, num_videos_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, audio_latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, decode_timestep: float | list[float] = 0.0, decode_noise_scale: float | list[float] | None = None, use_cross_timestep: bool = True, system_prompt: str | None = None, enable_prompt_enhancement: bool = False, prompt_max_new_tokens: int | None = None, prompt_enhancement_kwargs: dict[str, typing.Any] | None = None, prompt_enhancement_seed: int = 10, output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 1024)
+__call__(prompt: str | list[str] = None, negative_prompt: str | list[str] | None = None, height: int = 512, width: int = 768, num_frames: int | None = None, min_seconds: float = 1.0, max_seconds: float = 20.0, frame_rate: float = 24.0, motion_speed: float = 1.0, num_inference_steps: int = 30, sigmas: list[float] | None = None, timesteps: list = None, guidance_scale: float = 3.0, stg_scale: float = 1.0, modality_scale: float = 3.0, guidance_rescale: float = 0.7, audio_guidance_scale: float | None = 7.0, audio_stg_scale: float | None = 1.0, audio_modality_scale: float | None = 3.0, audio_guidance_rescale: float | None = 0.7, spatio_temporal_guidance_blocks: list[int] | None = [28], noise_scale: float = 0.0, num_videos_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, audio_latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, decode_timestep: float | list[float] = 0.0, decode_noise_scale: float | list[float] | None = None, use_cross_timestep: bool = True, system_prompt: str | None = None, enable_prompt_enhancement: bool = False, prompt_max_new_tokens: int | None = None, prompt_enhancement_kwargs: dict[str, typing.Any] | None = None, prompt_enhancement_seed: int = 10, output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 1024)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2.py#L926)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2.py#L929)
 
 **Parameters:**
 
@@ -1506,6 +1573,8 @@ min_seconds (`float`, *optional*, defaults to `1.0`) : Lower bound on the auto-p
 max_seconds (`float`, *optional*, defaults to `20.0`) : Upper bound on the auto-predicted duration when `num_frames` is omitted and a `duration_head` is present. Ignored when `num_frames` is set explicitly. Must be strictly greater than `min_seconds`.
 
 frame_rate (`float`, *optional*, defaults to `24.0`) : The frames per second (FPS) of the generated video.
+
+motion_speed (`float`, *optional*, defaults to `1.0`) : Speed of the motion relative to real time. The positional embeddings are conditioned on `frame_rate / motion_speed`, so values below 1 slow the motion down, e.g. `0.2` for the Slow-Motion-Control LoRA's 5x slow motion. `frame_rate` stays the playback rate: audio duration and the predicted number of frames follow it.
 
 num_inference_steps (`int`, *optional*, defaults to 30) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
 
@@ -1625,7 +1694,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 1024, scale_factor: int = 8, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2.py#L364)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2.py#L367)
 
 **Parameters:**
 
@@ -1653,7 +1722,7 @@ Encodes the prompt into text encoder hidden states.
 enhance_prompt(prompt: str, system_prompt: str, max_new_tokens: int | None = None, seed: int = 10, generator: typing.Optional[torch.Generator] = None, generation_kwargs: dict[str, typing.Any] | None = None, device: typing.Union[str, torch.device, NoneType] = None, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2.py#L571)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2.py#L574)
 
 Enhances the supplied `prompt` by generating a new prompt using the prompt enhancer (a Gemma
 conditional-generation model) from it and a system prompt. When `image` is supplied, the enhancer is also
@@ -1672,7 +1741,7 @@ Message templates, decoding kwargs, response cleaning, and image long-side prep 
 diffusers.LTX2ImageToVideoPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKLLTX2Video, audio_vae: AutoencoderKLLTX2Audio, text_encoder: transformers.models.gemma3.modeling_gemma3.Gemma3ForConditionalGeneration | transformers.models.gemma4_unified.modeling_gemma4_unified.Gemma4UnifiedForConditionalGeneration, tokenizer: GemmaTokenizer, connectors: LTX2TextConnectors, transformer: LTX2VideoTransformer3DModel, vocoder: diffusers.pipelines.ltx2.vocoder.LTX2Vocoder | diffusers.pipelines.ltx2.vocoder.LTX2VocoderWithBWE, processor: transformers.processing_utils.ProcessorMixin | None = None, prompt_enhancer: transformers.models.gemma4.modeling_gemma4.Gemma4ForConditionalGeneration | None = None, duration_head: diffusers.pipelines.ltx2.duration_head.LTX2DurationHead | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_image2video.py#L226)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_image2video.py#L229)
 
 Pipeline for image-to-video generation.
 
@@ -1683,10 +1752,10 @@ TODO
 #### __call__[[diffusers.LTX2ImageToVideoPipeline.__call__]]
 
 ```python
-__call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, prompt: str | list[str] = None, negative_prompt: str | list[str] | None = None, height: int = 512, width: int = 768, num_frames: int | None = None, min_seconds: float = 1.0, max_seconds: float = 20.0, frame_rate: float = 24.0, num_inference_steps: int = 30, sigmas: list[float] | None = None, timesteps: list[int] | None = None, guidance_scale: float = 3.0, stg_scale: float = 1.0, modality_scale: float = 3.0, guidance_rescale: float = 0.7, audio_guidance_scale: float | None = 7.0, audio_stg_scale: float | None = 1.0, audio_modality_scale: float | None = 3.0, audio_guidance_rescale: float | None = 0.7, spatio_temporal_guidance_blocks: list[int] | None = [28], noise_scale: float = 0.0, num_videos_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, audio_latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, decode_timestep: float | list[float] = 0.0, decode_noise_scale: float | list[float] | None = None, use_cross_timestep: bool = True, system_prompt: str | None = None, enable_prompt_enhancement: bool = False, prompt_max_new_tokens: int | None = None, prompt_enhancement_kwargs: dict[str, typing.Any] | None = None, prompt_enhancement_seed: int = 10, image_crf: int | None = None, output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 1024)
+__call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, prompt: str | list[str] = None, negative_prompt: str | list[str] | None = None, height: int = 512, width: int = 768, num_frames: int | None = None, min_seconds: float = 1.0, max_seconds: float = 20.0, frame_rate: float = 24.0, motion_speed: float = 1.0, num_inference_steps: int = 30, sigmas: list[float] | None = None, timesteps: list[int] | None = None, guidance_scale: float = 3.0, stg_scale: float = 1.0, modality_scale: float = 3.0, guidance_rescale: float = 0.7, audio_guidance_scale: float | None = 7.0, audio_stg_scale: float | None = 1.0, audio_modality_scale: float | None = 3.0, audio_guidance_rescale: float | None = 0.7, spatio_temporal_guidance_blocks: list[int] | None = [28], noise_scale: float = 0.0, num_videos_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, audio_latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, decode_timestep: float | list[float] = 0.0, decode_noise_scale: float | list[float] | None = None, use_cross_timestep: bool = True, system_prompt: str | None = None, enable_prompt_enhancement: bool = False, prompt_max_new_tokens: int | None = None, prompt_enhancement_kwargs: dict[str, typing.Any] | None = None, prompt_enhancement_seed: int = 10, image_crf: int | None = None, output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 1024)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_image2video.py#L980)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_image2video.py#L983)
 
 **Parameters:**
 
@@ -1707,6 +1776,8 @@ min_seconds (`float`, *optional*, defaults to `1.0`) : Lower bound on the auto-p
 max_seconds (`float`, *optional*, defaults to `20.0`) : Upper bound on the auto-predicted duration when `num_frames` is omitted and a `duration_head` is present. Ignored when `num_frames` is set explicitly. Must be strictly greater than `min_seconds`.
 
 frame_rate (`float`, *optional*, defaults to `24.0`) : The frames per second (FPS) of the generated video.
+
+motion_speed (`float`, *optional*, defaults to `1.0`) : Speed of the motion relative to real time. The positional embeddings are conditioned on `frame_rate / motion_speed`, so values below 1 slow the motion down, e.g. `0.2` for the Slow-Motion-Control LoRA's 5x slow motion. `frame_rate` stays the playback rate: audio duration and the predicted number of frames follow it.
 
 num_inference_steps (`int`, *optional*, defaults to 30) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
 
@@ -1833,7 +1904,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 1024, scale_factor: int = 8, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_image2video.py#L369)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_image2video.py#L372)
 
 **Parameters:**
 
@@ -1861,7 +1932,7 @@ Encodes the prompt into text encoder hidden states.
 enhance_prompt(prompt: str, system_prompt: str, max_new_tokens: int | None = None, seed: int = 10, generator: typing.Optional[torch.Generator] = None, generation_kwargs: dict[str, typing.Any] | None = None, device: typing.Union[str, torch.device, NoneType] = None, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_image2video.py#L577)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_image2video.py#L580)
 
 Enhances the supplied `prompt` by generating a new prompt using the prompt enhancer (a Gemma
 conditional-generation model) from it and a system prompt. When `image` is supplied, the enhancer is also
@@ -1880,7 +1951,7 @@ Message templates, decoding kwargs, response cleaning, and image long-side prep 
 diffusers.LTX2ConditionPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKLLTX2Video, audio_vae: AutoencoderKLLTX2Audio, text_encoder: transformers.models.gemma3.modeling_gemma3.Gemma3ForConditionalGeneration | transformers.models.gemma4_unified.modeling_gemma4_unified.Gemma4UnifiedForConditionalGeneration, tokenizer: GemmaTokenizer, connectors: LTX2TextConnectors, transformer: LTX2VideoTransformer3DModel, vocoder: diffusers.pipelines.ltx2.vocoder.LTX2Vocoder | diffusers.pipelines.ltx2.vocoder.LTX2VocoderWithBWE, audio_scheduler: diffusers.schedulers.scheduling_flow_match_euler_discrete.FlowMatchEulerDiscreteScheduler | None = None, processor: transformers.processing_utils.ProcessorMixin | None = None, prompt_enhancer: transformers.models.gemma4.modeling_gemma4.Gemma4ForConditionalGeneration | None = None, duration_head: diffusers.pipelines.ltx2.duration_head.LTX2DurationHead | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_condition.py#L263)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_condition.py#L266)
 
 Pipeline for video generation which allows image conditions to be inserted at arbitrary parts of the video.
 
@@ -1891,10 +1962,10 @@ TODO
 #### __call__[[diffusers.LTX2ConditionPipeline.__call__]]
 
 ```python
-__call__(conditions: diffusers.pipelines.ltx2.pipeline_ltx2_condition.LTX2VideoCondition | list[diffusers.pipelines.ltx2.pipeline_ltx2_condition.LTX2VideoCondition] | None = None, prompt: str | list[str] = None, negative_prompt: str | list[str] | None = None, height: int = 512, width: int = 768, num_frames: int | None = None, min_seconds: float = 1.0, max_seconds: float = 20.0, frame_rate: float = 24.0, num_inference_steps: int = 30, sigmas: list[float] | None = None, timesteps: list[float] | None = None, guidance_scale: float = 3.0, stg_scale: float = 1.0, modality_scale: float = 3.0, guidance_rescale: float = 0.7, audio_guidance_scale: float | None = 7.0, audio_stg_scale: float | None = 1.0, audio_modality_scale: float | None = 3.0, audio_guidance_rescale: float | None = 0.7, spatio_temporal_guidance_blocks: list[int] | None = [28], noise_scale: float | None = None, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, audio_latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, decode_timestep: float | list[float] = 0.0, decode_noise_scale: float | list[float] | None = None, use_cross_timestep: bool = True, system_prompt: str | None = None, enable_prompt_enhancement: bool = False, prompt_max_new_tokens: int | None = None, prompt_enhancement_kwargs: dict[str, typing.Any] | None = None, prompt_enhancement_seed: int = 10, output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 1024)
+__call__(conditions: diffusers.pipelines.ltx2.pipeline_ltx2_condition.LTX2VideoCondition | list[diffusers.pipelines.ltx2.pipeline_ltx2_condition.LTX2VideoCondition] | None = None, prompt: str | list[str] = None, negative_prompt: str | list[str] | None = None, height: int = 512, width: int = 768, num_frames: int | None = None, min_seconds: float = 1.0, max_seconds: float = 20.0, frame_rate: float = 24.0, motion_speed: float = 1.0, num_inference_steps: int = 30, sigmas: list[float] | None = None, timesteps: list[float] | None = None, guidance_scale: float = 3.0, stg_scale: float = 1.0, modality_scale: float = 3.0, guidance_rescale: float = 0.7, audio_guidance_scale: float | None = 7.0, audio_stg_scale: float | None = 1.0, audio_modality_scale: float | None = 3.0, audio_guidance_rescale: float | None = 0.7, spatio_temporal_guidance_blocks: list[int] | None = [28], noise_scale: float | None = None, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, audio_latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, decode_timestep: float | list[float] = 0.0, decode_noise_scale: float | list[float] | None = None, use_cross_timestep: bool = True, system_prompt: str | None = None, enable_prompt_enhancement: bool = False, prompt_max_new_tokens: int | None = None, prompt_enhancement_kwargs: dict[str, typing.Any] | None = None, prompt_enhancement_seed: int = 10, output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 1024)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_condition.py#L1345)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_condition.py#L1348)
 
 **Parameters:**
 
@@ -1915,6 +1986,8 @@ min_seconds (`float`, *optional*, defaults to `1.0`) : Lower bound on the auto-p
 max_seconds (`float`, *optional*, defaults to `20.0`) : Upper bound on the auto-predicted duration when `num_frames` is omitted and a `duration_head` is present. Ignored when `num_frames` is set explicitly. Must be strictly greater than `min_seconds`.
 
 frame_rate (`float`, *optional*, defaults to `24.0`) : The frames per second (FPS) of the generated video.
+
+motion_speed (`float`, *optional*, defaults to `1.0`) : Speed of the motion relative to real time. The positional embeddings are conditioned on `frame_rate / motion_speed`, so values below 1 slow the motion down, e.g. `0.2` for the Slow-Motion-Control LoRA's 5x slow motion. `frame_rate` stays the playback rate: audio duration and the predicted number of frames follow it.
 
 num_inference_steps (`int`, *optional*, defaults to 30) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
 
@@ -2048,7 +2121,7 @@ Examples:
 apply_first_frame_conditioning(latents: Tensor, conditioning_mask: Tensor, condition_latents: list, condition_strengths: list, condition_indices: list, latent_height: int, latent_width: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_condition.py#L961)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_condition.py#L964)
 
 **Parameters:**
 
@@ -2075,7 +2148,7 @@ reference implementation). Conditions at non-zero latent indices are appended as
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 1024, scale_factor: int = 8, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_condition.py#L416)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_condition.py#L419)
 
 **Parameters:**
 
@@ -2103,7 +2176,7 @@ Encodes the prompt into text encoder hidden states.
 enhance_prompt(prompt: str, system_prompt: str, max_new_tokens: int | None = None, seed: int = 10, generator: typing.Optional[torch.Generator] = None, generation_kwargs: dict[str, typing.Any] | None = None, device: typing.Union[str, torch.device, NoneType] = None, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_condition.py#L624)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_condition.py#L627)
 
 Enhances the supplied `prompt` by generating a new prompt using the prompt enhancer (a Gemma
 conditional-generation model) from it and a system prompt. When `image` is supplied, the enhancer is also
@@ -2120,7 +2193,7 @@ Message templates, decoding kwargs, response cleaning, and image long-side prep 
 prepare_latents(conditions: diffusers.pipelines.ltx2.pipeline_ltx2_condition.LTX2VideoCondition | list[diffusers.pipelines.ltx2.pipeline_ltx2_condition.LTX2VideoCondition] | None = None, batch_size: int = 1, num_channels_latents: int = 128, height: int = 512, width: int = 768, num_frames: int = 121, frame_rate: float = 24.0, noise_scale: float = 1.0, dtype: typing.Optional[torch.dtype] = None, device: typing.Optional[torch.device] = None, generator: typing.Optional[torch.Generator] = None, latents: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_condition.py#L1068)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_condition.py#L1071)
 
 Prepare noisy video latents, applying frame conditions.
 
@@ -2145,7 +2218,7 @@ Returns a 4-tuple:
 preprocess_conditions(conditions: diffusers.pipelines.ltx2.pipeline_ltx2_condition.LTX2VideoCondition | list[diffusers.pipelines.ltx2.pipeline_ltx2_condition.LTX2VideoCondition] | None = None, height: int = 512, width: int = 768, num_frames: int = 121, device: typing.Optional[torch.device] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_condition.py#L843)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_condition.py#L846)
 
 **Parameters:**
 
@@ -2177,7 +2250,7 @@ Preprocesses the condition images/videos to torch tensors.
 trim_conditioning_sequence(start_frame: int, sequence_num_frames: int, target_num_frames: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_condition.py#L826)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_condition.py#L829)
 
 **Parameters:**
 
@@ -2201,15 +2274,15 @@ Trim a conditioning sequence to the allowed number of frames.
 diffusers.LTX2DFRPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKLLTX2Video, audio_vae: AutoencoderKLLTX2Audio, text_encoder: transformers.models.gemma3.modeling_gemma3.Gemma3ForConditionalGeneration | transformers.models.gemma4_unified.modeling_gemma4_unified.Gemma4UnifiedForConditionalGeneration, tokenizer: GemmaTokenizer, connectors: LTX2TextConnectors, transformer: LTX2VideoTransformer3DModel, vocoder: diffusers.pipelines.ltx2.vocoder.LTX2Vocoder | diffusers.pipelines.ltx2.vocoder.LTX2VocoderWithBWE, processor: transformers.processing_utils.ProcessorMixin | None = None, prompt_enhancer: transformers.models.gemma4.modeling_gemma4.Gemma4ForConditionalGeneration | None = None, duration_head: diffusers.pipelines.ltx2.duration_head.LTX2DurationHead | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr.py#L122)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr.py#L122)
 
 **Parameters:**
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
 
-vae ([AutoencoderKLLTX2Video](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_ltx_2#diffusers.AutoencoderKLLTX2Video)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLLTX2Video](/docs/diffusers/v0.42.0/en/api/models/autoencoderkl_ltx_2#diffusers.AutoencoderKLLTX2Video)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
-audio_vae ([AutoencoderKLLTX2Audio](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_audio_ltx_2#diffusers.AutoencoderKLLTX2Audio)) : Audio VAE to encode and decode audio spectrograms.
+audio_vae ([AutoencoderKLLTX2Audio](/docs/diffusers/v0.42.0/en/api/models/autoencoderkl_audio_ltx_2#diffusers.AutoencoderKLLTX2Audio)) : Audio VAE to encode and decode audio spectrograms.
 
 text_encoder (`Gemma3ForConditionalGeneration` or `Gemma4UnifiedForConditionalGeneration`) : Text encoder model.
 
@@ -2217,7 +2290,7 @@ tokenizer (`GemmaTokenizer` or `GemmaTokenizerFast`) : Tokenizer for the text en
 
 connectors (`LTX2TextConnectors`) : Text connector stack used to adapt text encoder hidden states for the video and audio branches.
 
-transformer ([LTX2VideoTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/ltx2_video_transformer3d#diffusers.LTX2VideoTransformer3DModel)) : Conditional Transformer architecture to denoise the encoded video latents.
+transformer ([LTX2VideoTransformer3DModel](/docs/diffusers/v0.42.0/en/api/models/ltx2_video_transformer3d#diffusers.LTX2VideoTransformer3DModel)) : Conditional Transformer architecture to denoise the encoded video latents.
 
 vocoder (`LTX2Vocoder` or `LTX2VocoderWithBWE`) : Vocoder to convert mel spectrograms to audio waveforms.
 
@@ -2230,9 +2303,9 @@ duration_head (`LTX2DurationHead`, *optional*) : Predicts `num_frames` from the 
 Pipeline for one Diffusion Fidelity Rendering (DFR) denoise pass with LTX-2.5.
 
 A pass generates video *and* extra single-pixel-frame keyframe slots, or re-denoises supplied latents seeded from
-those slots. Callers compose stages: this pipeline at half resolution, [LTX2LatentUpsamplePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2LatentUpsamplePipeline) spatially,
+those slots. Callers compose stages: this pipeline at half resolution, [LTX2LatentUpsamplePipeline](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2LatentUpsamplePipeline) spatially,
 this pipeline again at full resolution with the upsampled slots and an IC-LoRA reference, then
-[LTX2DFRTemporalRefinePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2DFRTemporalRefinePipeline) for each temporal refine round. See the LTX-2 docs for the 1080p recipe.
+[LTX2DFRTemporalRefinePipeline](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2DFRTemporalRefinePipeline) for each temporal refine round. See the LTX-2 docs for the 1080p recipe.
 
 Slot positions come from a segment grid aligned to the VAE's temporal border (`resolve_canvas`). The canvas is
 padded to a whole number of segments; `output_type="latent"` returns that padded grid so a slot on the pad is not
@@ -2249,7 +2322,7 @@ Reference: https://github.com/Lightricks/LTX-2
 __call__(prompt: str | list[str] = None, conditions: diffusers.pipelines.ltx2.pipeline_ltx2_condition.LTX2VideoCondition | list[diffusers.pipelines.ltx2.pipeline_ltx2_condition.LTX2VideoCondition] | None = None, height: int = 704, width: int = 1216, num_frames: int | None = None, frame_rate: float = 24.0, min_seconds: float = 1.0, max_seconds: float = 20.0, latents: typing.Optional[torch.Tensor] = None, audio_latents: typing.Optional[torch.Tensor] = None, keyframes_latents: typing.Optional[torch.Tensor] = None, keyframe_positions: list[int] | None = None, reference_latents: typing.Optional[torch.Tensor] = None, reference_downscale_factor: int = 2, guidance_keyframe_latents: typing.Optional[torch.Tensor] = None, guidance_keyframe_positions: list[int] | None = None, guidance_keyframe_strength: float = 1.0, generate_slots: bool = True, sigmas: list = [1.0, 0.99375, 0.9875, 0.98125, 0.975, 0.909375, 0.725, 0.421875], noise_scale: float | None = None, freeze_audio: bool = False, video_tiles: list[diffusers.pipelines.ltx2.dfr_layout.LTX2DFREpilogueTile] | None = None, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, decode_timestep: float | list[float] = 0.0, decode_noise_scale: float | list[float] | None = None, use_cross_timestep: bool = True, system_prompt: str | None = None, enable_prompt_enhancement: bool = False, prompt_max_new_tokens: int | None = None, prompt_enhancement_kwargs: dict[str, typing.Any] | None = None, prompt_enhancement_seed: int = 10, output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 1024)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr.py#L1522)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr.py#L1522)
 
 **Parameters:**
 
@@ -2295,7 +2368,7 @@ noise_scale (`float`, *optional*) : Noise level unconditioned tokens start at. D
 
 freeze_audio (`bool`, *optional*, defaults to `False`) : Hold audio at sigma 0 (epilogue / when following a frozen stage-1 waveform).
 
-video_tiles (`list[LTX2DFREpilogueTile]`, *optional*) : Epilogue tiling from `epilogue_tiles()`, so a resolution too large for one forward pass can still step a single canvas: each step runs the transformer once per tile and blends the predictions. Resolved into a token plan against this pass's own RoPE coordinates, which is why the layout is passed rather than the plan — the coordinates only exist once [prepare_latents()](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipeline.prepare_latents) has run.
+video_tiles (`list[LTX2DFREpilogueTile]`, *optional*) : Epilogue tiling from `epilogue_tiles()`, so a resolution too large for one forward pass can still step a single canvas: each step runs the transformer once per tile and blends the predictions. Resolved into a token plan against this pass's own RoPE coordinates, which is why the layout is passed rather than the plan — the coordinates only exist once [prepare_latents()](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipeline.prepare_latents) has run.
 
 num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of videos to generate per prompt.
 
@@ -2323,7 +2396,7 @@ prompt_enhancement_seed (`int`, *optional*, defaults to `10`) : Random seed for 
 
 output_type (`str`, *optional*, defaults to `"pil"`) : Output format. Choose `"pil"`, `"np"`, `"pt"` or `"latent"`. Latent output is the untrimmed canvas.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a [LTX2DFRPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipelineOutput) or a plain `(frames, audio, keyframes, keyframe_positions)` tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a [LTX2DFRPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipelineOutput) or a plain `(frames, audio, keyframes, keyframe_positions)` tuple.
 
 attention_kwargs (`dict`, *optional*) : Additional kwargs passed to the attention processor.
 
@@ -2333,16 +2406,16 @@ callback_on_step_end_tensor_inputs (`List`, *optional*, defaults to `["latents"]
 
 max_sequence_length (`int`, *optional*, defaults to `1024`) : Maximum sequence length for the text prompt.
 
-**Returns:** [LTX2DFRPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipelineOutput) or `tuple`
+**Returns:** [LTX2DFRPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [LTX2DFRPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipelineOutput) is returned, otherwise a `tuple` of `(video,
+If `return_dict` is `True`, [LTX2DFRPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipelineOutput) is returned, otherwise a `tuple` of `(video,
 audio, keyframes, keyframe_positions)` is returned.
 
 Function invoked when calling the pipeline for generation.
 
 One denoise pass at `height` × `width`. Compose stages in the caller: this pipeline at half-res, spatial
 upsample, this pipeline again with `latents` / `keyframes_latents` / `reference_latents`, then
-[LTX2DFRTemporalRefinePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2DFRTemporalRefinePipeline) for each temporal round.
+[LTX2DFRTemporalRefinePipeline](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2DFRTemporalRefinePipeline) for each temporal round.
 
 Examples:
 ```py
@@ -2379,7 +2452,7 @@ Examples:
 denoise(latents: Tensor, conditioning_mask: Tensor, clean_latents: Tensor, video_coords: Tensor, keyframes_mask: Tensor, prompt_embeds: Tensor, audio_prompt_embeds: Tensor, prompt_attention_mask: Tensor, sigmas: list, frame_rate: float, audio_latents: Tensor, freeze_audio: bool = False, video_tile_plan: list | None = None, generator: typing.Optional[torch.Generator] = None, use_cross_timestep: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, progress_bar = None, step_offset: int = 0, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr.py#L1225)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr.py#L1225)
 
 **Parameters:**
 
@@ -2402,7 +2475,7 @@ still cross-attend to it — the temporal refine tiles and the epilogue use this
 each tile re-denoising a different audio realization.
 
 After the x0 conditioning blend, the velocity is `(latents - denoised) / sigma` so an RF step `x0 = x - σ v`
-recovers the blended `denoised`. Stage 1 / 2 / the epilogue keep [FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler) and take
+recovers the blended `denoised`. Stage 1 / 2 / the epilogue keep [FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler) and take
 that Euler step as-is. Temporal refine swaps in `LTXEulerAncestralRFScheduler` (`eta=0.5`); that step
 renoises every token, so the conditioning blend is applied again afterwards or strength-0.95 seam anchors
 erode.
@@ -2413,12 +2486,12 @@ erode.
 encode_conditions(conditions: list[diffusers.pipelines.ltx2.pipeline_ltx2_condition.LTX2VideoCondition] | None, height: int, width: int, num_frames: int, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None, generator: typing.Optional[torch.Generator] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr.py#L1189)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr.py#L1189)
 
 Preprocess and VAE-encode frame conditions, positioned by pixel frame.
 
 Returns `(pixel_frame_index, latent, strength, num_pixel_frames)` per condition, ready for
-[prepare_latents()](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipeline.prepare_latents)'s `condition_latents`. Encoding is kept separate from placement because
+[prepare_latents()](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipeline.prepare_latents)'s `condition_latents`. Encoding is kept separate from placement because
 the temporal refine rounds scale a condition's position by `2 ** round` and re-base it per tile, and should not
 re-encode the same still once per tile to do so.
 
@@ -2430,7 +2503,7 @@ The returned index is on `num_frames`' own pixel grid; carrying it onto a refine
 encode_prompt(prompt: str | list[str], num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 1024, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr.py#L529)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr.py#L529)
 
 **Parameters:**
 
@@ -2457,7 +2530,7 @@ is no negative branch here.
 enhance_prompt(prompt: str, system_prompt: str, max_new_tokens: int | None = None, seed: int = 10, generator: typing.Optional[torch.Generator] = None, generation_kwargs: dict[str, typing.Any] | None = None, device: typing.Union[str, torch.device, NoneType] = None, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr.py#L389)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr.py#L389)
 
 Enhances the supplied `prompt` by generating a new prompt using the prompt enhancer (a Gemma
 conditional-generation model) from it and a system prompt. When `image` is supplied, the enhancer is also
@@ -2474,7 +2547,7 @@ Message templates, decoding kwargs, response cleaning, and image long-side prep 
 prepare_latents(conditions: list[diffusers.pipelines.ltx2.pipeline_ltx2_condition.LTX2VideoCondition] | None = None, condition_latents: list[tuple[int, torch.Tensor, float, int]] | None = None, keyframe_latents: list[tuple[int, torch.Tensor, float]] | None = None, slot_frame_indices: list[int] | None = None, slot_initial_latents: typing.Optional[torch.Tensor] = None, reference_latents: typing.Optional[torch.Tensor] = None, reference_downscale_factor: int = 1, batch_size: int = 1, num_channels_latents: int = 128, height: int = 512, width: int = 768, num_frames: int = 121, frame_rate: float = 24.0, noise_scale: float = 1.0, dtype: typing.Optional[torch.dtype] = None, device: typing.Optional[torch.device] = None, generator: typing.Optional[torch.Generator] = None, latents: typing.Optional[torch.Tensor] = None, latents_normalized: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr.py#L886)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr.py#L886)
 
 **Parameters:**
 
@@ -2528,7 +2601,7 @@ noised mix of the two (see the noising step at the end of this method).
 preprocess_conditions(conditions: diffusers.pipelines.ltx2.pipeline_ltx2_condition.LTX2VideoCondition | list[diffusers.pipelines.ltx2.pipeline_ltx2_condition.LTX2VideoCondition] | None = None, height: int = 512, width: int = 768, num_frames: int = 121, device: typing.Optional[torch.device] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr.py#L707)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr.py#L707)
 
 **Parameters:**
 
@@ -2560,7 +2633,7 @@ Preprocesses the condition images/videos to torch tensors.
 rebuild_epilogue_keyframes(keyframe_latents: Tensor, decode_timestep: float, decode_noise_scale: float, seed: int, device: device, dtype: dtype)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr.py#L1454)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr.py#L1454)
 
 **Parameters:**
 
@@ -2588,7 +2661,7 @@ planes bleed into each other -- they are independent stills, not a sequence.
 trim_conditioning_sequence(start_frame: int, sequence_num_frames: int, target_num_frames: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr.py#L689)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr.py#L689)
 
 **Parameters:**
 
@@ -2612,15 +2685,15 @@ Trim a conditioning sequence to the allowed number of frames.
 diffusers.LTX2DFRTemporalRefinePipeline(scheduler: LTXEulerAncestralRFScheduler, vae: AutoencoderKLLTX2Video, audio_vae: AutoencoderKLLTX2Audio, text_encoder: transformers.models.gemma3.modeling_gemma3.Gemma3ForConditionalGeneration | transformers.models.gemma4_unified.modeling_gemma4_unified.Gemma4UnifiedForConditionalGeneration, tokenizer: GemmaTokenizer, connectors: LTX2TextConnectors, transformer: LTX2VideoTransformer3DModel, vocoder: diffusers.pipelines.ltx2.vocoder.LTX2Vocoder | diffusers.pipelines.ltx2.vocoder.LTX2VocoderWithBWE, temporal_latent_upsampler: LTX2LatentUpsamplerModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr_temporal_refine.py#L151)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr_temporal_refine.py#L151)
 
 **Parameters:**
 
 scheduler (`LTXEulerAncestralRFScheduler`) : Ancestral Euler scheduler in the rectified-flow parameterization. Construct with `eta=0.5` to match the DFR temporal recipe.
 
-vae ([AutoencoderKLLTX2Video](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_ltx_2#diffusers.AutoencoderKLLTX2Video)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLLTX2Video](/docs/diffusers/v0.42.0/en/api/models/autoencoderkl_ltx_2#diffusers.AutoencoderKLLTX2Video)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
-audio_vae ([AutoencoderKLLTX2Audio](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_audio_ltx_2#diffusers.AutoencoderKLLTX2Audio)) : Audio VAE to encode and decode audio spectrograms.
+audio_vae ([AutoencoderKLLTX2Audio](/docs/diffusers/v0.42.0/en/api/models/autoencoderkl_audio_ltx_2#diffusers.AutoencoderKLLTX2Audio)) : Audio VAE to encode and decode audio spectrograms.
 
 text_encoder (`Gemma3ForConditionalGeneration` or `Gemma4UnifiedForConditionalGeneration`) : Text encoder model.
 
@@ -2628,7 +2701,7 @@ tokenizer (`GemmaTokenizer` or `GemmaTokenizerFast`) : Tokenizer for the text en
 
 connectors (`LTX2TextConnectors`) : Text connector stack used to adapt text encoder hidden states for the video and audio branches.
 
-transformer ([LTX2VideoTransformer3DModel](/docs/diffusers/v0.41.0/en/api/models/ltx2_video_transformer3d#diffusers.LTX2VideoTransformer3DModel)) : Conditional Transformer architecture to denoise the encoded video latents.
+transformer ([LTX2VideoTransformer3DModel](/docs/diffusers/v0.42.0/en/api/models/ltx2_video_transformer3d#diffusers.LTX2VideoTransformer3DModel)) : Conditional Transformer architecture to denoise the encoded video latents.
 
 vocoder (`LTX2Vocoder` or `LTX2VocoderWithBWE`) : Vocoder to convert mel spectrograms to audio waveforms.
 
@@ -2638,10 +2711,10 @@ One temporal DFR refine round: interpolate the canvas x2 in time, tile on keyfra
 tile, stitch by dropping the later tile's lead-in, and merge the carry-keyframe bag.
 
 The scheduler is `LTXEulerAncestralRFScheduler` (`eta=0.5` by default). Stage 1 / 2 / the spatial epilogue stay
-on [FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler) via [LTX2DFRPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipeline). Call this pipeline once per round; the caller loops
+on [FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler) via [LTX2DFRPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipeline). Call this pipeline once per round; the caller loops
 for 2x / 4x.
 
-Incoming `latents` / `keyframes_latents` / `audio_latents` are raw (denormalized), matching [LTX2Pipeline](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2Pipeline).
+Incoming `latents` / `keyframes_latents` / `audio_latents` are raw (denormalized), matching [LTX2Pipeline](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2Pipeline).
 `keyframe_positions` must be the positions returned by the previous pass — they cannot be re-derived from the
 original `num_frames` after a round has run.
 
@@ -2651,7 +2724,7 @@ original `num_frames` after a round has run.
 __call__(prompt: str | list[str] = None, latents: Tensor = None, keyframes_latents: Tensor = None, keyframe_positions: list = None, audio_latents: Tensor = None, conditions: diffusers.pipelines.ltx2.pipeline_ltx2_condition.LTX2VideoCondition | list[diffusers.pipelines.ltx2.pipeline_ltx2_condition.LTX2VideoCondition] | None = None, height: int = 704, width: int = 1216, num_frames: int = 121, frame_rate: float = 24.0, source_seconds: float | None = None, condition_num_frames: int | None = None, round_index: int = 1, sigmas: list = [0.975, 0.909375, 0.725, 0.421875], noise_scale: float | None = None, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, decode_timestep: float | list[float] = 0.0, decode_noise_scale: float | list[float] | None = None, use_cross_timestep: bool = True, output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 1024)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr_temporal_refine.py#L1349)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr_temporal_refine.py#L1349)
 
 **Parameters:**
 
@@ -2699,7 +2772,7 @@ use_cross_timestep (`bool`, *optional*, defaults to `True`) : Whether to use cro
 
 output_type (`str`, *optional*, defaults to `"pil"`) : Output format. Choose `"pil"`, `"np"`, `"pt"` or `"latent"`. Latent output is the untrimmed canvas.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a [LTX2DFRPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipelineOutput) or a plain `(frames, audio, keyframes, keyframe_positions)` tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a [LTX2DFRPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipelineOutput) or a plain `(frames, audio, keyframes, keyframe_positions)` tuple.
 
 attention_kwargs (`dict`, *optional*) : Additional kwargs passed to the attention processor.
 
@@ -2709,9 +2782,9 @@ callback_on_step_end_tensor_inputs (`List`, *optional*, defaults to `["latents"]
 
 max_sequence_length (`int`, *optional*, defaults to `1024`) : Maximum sequence length for the text prompt.
 
-**Returns:** [LTX2DFRPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipelineOutput) or `tuple`
+**Returns:** [LTX2DFRPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [LTX2DFRPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipelineOutput) is returned, otherwise a `tuple` of `(video,
+If `return_dict` is `True`, [LTX2DFRPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipelineOutput) is returned, otherwise a `tuple` of `(video,
 audio, keyframes, keyframe_positions)` is returned.
 
 Run one temporal refine round.
@@ -2757,7 +2830,7 @@ Examples:
 denoise(latents: Tensor, conditioning_mask: Tensor, clean_latents: Tensor, video_coords: Tensor, keyframes_mask: Tensor, prompt_embeds: Tensor, audio_prompt_embeds: Tensor, prompt_attention_mask: Tensor, sigmas: list, frame_rate: float, audio_latents: Tensor, freeze_audio: bool = False, video_tile_plan: list | None = None, generator: typing.Optional[torch.Generator] = None, use_cross_timestep: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, progress_bar = None, step_offset: int = 0, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr_temporal_refine.py#L1138)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr_temporal_refine.py#L1138)
 
 **Parameters:**
 
@@ -2780,7 +2853,7 @@ still cross-attend to it — the temporal refine tiles and the epilogue use this
 each tile re-denoising a different audio realization.
 
 After the x0 conditioning blend, the velocity is `(latents - denoised) / sigma` so an RF step `x0 = x - σ v`
-recovers the blended `denoised`. Stage 1 / 2 / the epilogue keep [FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler) and take
+recovers the blended `denoised`. Stage 1 / 2 / the epilogue keep [FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler) and take
 that Euler step as-is. Temporal refine swaps in `LTXEulerAncestralRFScheduler` (`eta=0.5`); that step
 renoises every token, so the conditioning blend is applied again afterwards or strength-0.95 seam anchors
 erode.
@@ -2791,12 +2864,12 @@ erode.
 encode_conditions(conditions: list[diffusers.pipelines.ltx2.pipeline_ltx2_condition.LTX2VideoCondition] | None, height: int, width: int, num_frames: int, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None, generator: typing.Optional[torch.Generator] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr_temporal_refine.py#L1101)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr_temporal_refine.py#L1101)
 
 Preprocess and VAE-encode frame conditions, positioned by pixel frame.
 
 Returns `(pixel_frame_index, latent, strength, num_pixel_frames)` per condition, ready for
-[prepare_latents()](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipeline.prepare_latents)'s `condition_latents`. Encoding is kept separate from placement because
+[prepare_latents()](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2DFRPipeline.prepare_latents)'s `condition_latents`. Encoding is kept separate from placement because
 the temporal refine rounds scale a condition's position by `2 ** round` and re-base it per tile, and should not
 re-encode the same still once per tile to do so.
 
@@ -2808,7 +2881,7 @@ The returned index is on `num_frames`' own pixel grid; carrying it onto a refine
 encode_prompt(prompt: str | list[str], num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 1024, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr_temporal_refine.py#L470)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr_temporal_refine.py#L470)
 
 **Parameters:**
 
@@ -2835,7 +2908,7 @@ is no negative branch here.
 prepare_latents(conditions: list[diffusers.pipelines.ltx2.pipeline_ltx2_condition.LTX2VideoCondition] | None = None, condition_latents: list[tuple[int, torch.Tensor, float, int]] | None = None, keyframe_latents: list[tuple[int, torch.Tensor, float]] | None = None, slot_frame_indices: list[int] | None = None, slot_initial_latents: typing.Optional[torch.Tensor] = None, reference_latents: typing.Optional[torch.Tensor] = None, reference_downscale_factor: int = 1, batch_size: int = 1, num_channels_latents: int = 128, height: int = 512, width: int = 768, num_frames: int = 121, frame_rate: float = 24.0, noise_scale: float = 1.0, dtype: typing.Optional[torch.dtype] = None, device: typing.Optional[torch.device] = None, generator: typing.Optional[torch.Generator] = None, latents: typing.Optional[torch.Tensor] = None, latents_normalized: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr_temporal_refine.py#L828)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr_temporal_refine.py#L828)
 
 **Parameters:**
 
@@ -2889,7 +2962,7 @@ noised mix of the two (see the noising step at the end of this method).
 preprocess_conditions(conditions: diffusers.pipelines.ltx2.pipeline_ltx2_condition.LTX2VideoCondition | list[diffusers.pipelines.ltx2.pipeline_ltx2_condition.LTX2VideoCondition] | None = None, height: int = 512, width: int = 768, num_frames: int = 121, device: typing.Optional[torch.device] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr_temporal_refine.py#L648)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr_temporal_refine.py#L648)
 
 **Parameters:**
 
@@ -2921,7 +2994,7 @@ Preprocesses the condition images/videos to torch tensors.
 trim_conditioning_sequence(start_frame: int, sequence_num_frames: int, target_num_frames: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr_temporal_refine.py#L630)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr_temporal_refine.py#L630)
 
 **Parameters:**
 
@@ -2943,7 +3016,7 @@ Trim a conditioning sequence to the allowed number of frames.
 upsample_latents(latents: Tensor, upsampler: LTX2LatentUpsamplerModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr_temporal_refine.py#L1090)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_dfr_temporal_refine.py#L1090)
 
 Run `upsampler` on normalized latents, round-tripping through raw VAE latent space as it expects.
 
@@ -2955,7 +3028,7 @@ Run `upsampler` on normalized latents, round-tripping through raw VAE latent spa
 diffusers.LTX2DFRPipelineOutput(frames: Tensor, audio: Tensor, keyframes: typing.Optional[torch.Tensor] = None, keyframe_positions: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_output.py#L27)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_output.py#L27)
 
 **Parameters:**
 
@@ -2977,7 +3050,7 @@ Output class for DFR pipelines.
 diffusers.LTX2LatentUpsamplePipeline(vae: AutoencoderKLLTX2Video, latent_upsampler: LTX2LatentUpsamplerModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_latent_upsample.py#L104)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_latent_upsample.py#L104)
 
 #### __call__[[diffusers.LTX2LatentUpsamplePipeline.__call__]]
 
@@ -2985,7 +3058,7 @@ diffusers.LTX2LatentUpsamplePipeline(vae: AutoencoderKLLTX2Video, latent_upsampl
 __call__(video: list[typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]] | None = None, height: int = 512, width: int = 768, num_frames: int = 121, spatial_patch_size: int = 1, temporal_patch_size: int = 1, latents: typing.Optional[torch.Tensor] = None, latents_normalized: bool = False, decode_timestep: float | list[float] = 0.0, decode_noise_scale: float | list[float] | None = None, adain_factor: float = 0.0, tone_map_compression_ratio: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, output_type: str | None = 'pil', return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_latent_upsample.py#L264)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_latent_upsample.py#L264)
 
 **Parameters:**
 
@@ -3088,7 +3161,7 @@ Examples:
 adain_filter_latent(latents: Tensor, reference_latents: Tensor, factor: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_latent_upsample.py#L168)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_latent_upsample.py#L168)
 
 **Parameters:**
 
@@ -3111,7 +3184,7 @@ tensor.
 tone_map_latents(latents: Tensor, compression: float)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_latent_upsample.py#L196)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_latent_upsample.py#L196)
 
 **Parameters:**
 
@@ -3138,15 +3211,15 @@ when controlling dynamic behavior with a `compression` factor.
 diffusers.LTX2VideoDiffusionDecodePipeline(diffusion_decoder: LTX2VideoDiffusionDecoderModel, scheduler, vae: AutoencoderKLLTX2Video = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_diffusion_decode.py#L27)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_diffusion_decode.py#L27)
 
 **Parameters:**
 
-diffusion_decoder ([LTX2VideoDiffusionDecoderModel](/docs/diffusers/v0.41.0/en/api/models/ltx2_diffusion_decoder#diffusers.LTX2VideoDiffusionDecoderModel)) : The diffusion video decoder.
+diffusion_decoder ([LTX2VideoDiffusionDecoderModel](/docs/diffusers/v0.42.0/en/api/models/ltx2_diffusion_decoder#diffusers.LTX2VideoDiffusionDecoderModel)) : The diffusion video decoder.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : Scheduler driving the decoder's denoising steps.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : Scheduler driving the decoder's denoising steps.
 
-vae ([AutoencoderKLLTX2Video](/docs/diffusers/v0.41.0/en/api/models/autoencoderkl_ltx_2#diffusers.AutoencoderKLLTX2Video), *optional*) : Only consulted for the latent statistics used to denormalize. When omitted the pipeline falls back to the LTX-2 defaults, so a decode-only workflow does not have to load a second autoencoder.
+vae ([AutoencoderKLLTX2Video](/docs/diffusers/v0.42.0/en/api/models/autoencoderkl_ltx_2#diffusers.AutoencoderKLLTX2Video), *optional*) : Only consulted for the latent statistics used to denormalize. When omitted the pipeline falls back to the LTX-2 defaults, so a decode-only workflow does not have to load a second autoencoder.
 
 Decode LTX-2 video latents with the diffusion decoder introduced in LTX-2.5.
 
@@ -3160,7 +3233,7 @@ with `output_type="latent"`, passing `denormalize=False` since that path already
 __call__(latents: Tensor, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, output_type: str = 'pil', return_dict: bool = True, denormalize: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_diffusion_decode.py#L79)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_ltx2_diffusion_decode.py#L79)
 
 **Parameters:**
 
@@ -3184,7 +3257,7 @@ denormalize (`bool`, *optional*, defaults to `True`) : Whether to apply the late
 diffusers.pipelines.ltx2.LTX2DurationHead(video_cross_attention_dim: int = 4096, audio_cross_attention_dim: int = 2048, pooler_hidden_dim: int = 256, num_queries: int = 1, num_pooler_heads: int = 4, mlp_hidden_dim: int = 256)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/duration_head.py#L81)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/duration_head.py#L81)
 
 **Parameters:**
 
@@ -3215,7 +3288,7 @@ Ships from LTX-2.5 checkpoints onward.
 forward(video_tokens: typing.Optional[torch.Tensor] = None, audio_tokens: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/duration_head.py#L134)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/duration_head.py#L134)
 
 **Parameters:**
 
@@ -3233,7 +3306,7 @@ the predicted duration in seconds.
 predict_num_frames(video_tokens: typing.Optional[torch.Tensor] = None, audio_tokens: typing.Optional[torch.Tensor] = None, frame_rate: float, temporal_compression_ratio: int, min_seconds: float = 1.0, max_seconds: float = 20.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/duration_head.py#L172)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/duration_head.py#L172)
 
 **Parameters:**
 
@@ -3273,7 +3346,7 @@ grid, but may fall just outside the requested bounds in this case.
 diffusers.pipelines.ltx2.LTX2PipelineOutput(frames: Tensor, audio: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/ltx2/pipeline_output.py#L9)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ltx2/pipeline_output.py#L9)
 
 **Parameters:**
 
@@ -3291,7 +3364,7 @@ Output class for LTX pipelines.
 diffusers.LTX2ModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/ltx2/modular_pipeline.py#L26)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/ltx2/modular_pipeline.py#L26)
 
 A ModularPipeline for LTX-2 (joint video + audio generation).
 
@@ -3303,7 +3376,7 @@ A ModularPipeline for LTX-2 (joint video + audio generation).
 diffusers.LTX2AutoBlocks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/ltx2/modular_blocks_ltx2.py#L1721)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/ltx2/modular_blocks_ltx2.py#L1761)
 
 Auto blocks for LTX-2 supporting text-to-video, image-to-video, condition-to-video and in-context (IC-LoRA)
 generation (joint video + audio).
@@ -3379,6 +3452,10 @@ conditioning_attention_mask (`Tensor`, *optional*):
 Optional pixel-space mask of shape (1, 1, F, H, W) with values in [0, 1] giving spatially varying
 attention strength. Downsampled to the reference's latent grid and multiplied by
 `conditioning_attention_strength`.
+motion_speed (`float`, *optional*, defaults to 1.0):
+Speed of the motion relative to real time. The positional embeddings are conditioned on `frame_rate /
+motion_speed`, so values below 1 slow the motion down, e.g. `0.2` for the Slow-Motion-Control LoRA's 5x
+slow motion. `frame_rate` stays the playback rate.
 num_videos_per_prompt (`int`, *optional*, defaults to 1):
 The number of images to generate per prompt.
 condition_latents (`list`, *optional*):
@@ -3440,11 +3517,11 @@ The generated audio waveform.
 diffusers.LTX25ModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/ltx2/modular_pipeline.py#L125)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/ltx2/modular_pipeline.py#L125)
 
 A ModularPipeline for LTX-2.5 (joint video + audio generation).
 
-Identical to [LTX2ModularPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/ltx2#diffusers.LTX2ModularPipeline) except that its default blocks decode with the diffusion video decoder, which
+Identical to [LTX2ModularPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/ltx2#diffusers.LTX2ModularPipeline) except that its default blocks decode with the diffusion video decoder, which
 is the native default from LTX-2.5 on. A checkpoint routes here through `modular_model_index.json`.
 
 ## LTX25AutoBlocks[[diffusers.LTX25AutoBlocks]]
@@ -3455,7 +3532,7 @@ is the native default from LTX-2.5 on. A checkpoint routes here through `modular
 diffusers.LTX25AutoBlocks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/ltx2/modular_blocks_ltx25.py#L215)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/ltx2/modular_blocks_ltx25.py#L215)
 
 Auto blocks for LTX-2.5 supporting text-to-video, image-to-video, condition-to-video and in-context (IC-LoRA)
 generation (joint video + audio). Identical to `LTX2AutoBlocks` except that the video decoder is
@@ -3533,6 +3610,10 @@ conditioning_attention_mask (`Tensor`, *optional*):
 Optional pixel-space mask of shape (1, 1, F, H, W) with values in [0, 1] giving spatially varying
 attention strength. Downsampled to the reference's latent grid and multiplied by
 `conditioning_attention_strength`.
+motion_speed (`float`, *optional*, defaults to 1.0):
+Speed of the motion relative to real time. The positional embeddings are conditioned on `frame_rate /
+motion_speed`, so values below 1 slow the motion down, e.g. `0.2` for the Slow-Motion-Control LoRA's 5x
+slow motion. `frame_rate` stays the playback rate.
 num_videos_per_prompt (`int`, *optional*, defaults to 1):
 The number of images to generate per prompt.
 condition_latents (`list`, *optional*):
@@ -3583,4 +3664,4 @@ audio (`Tensor`):
 The generated audio waveform.
 
 ### Stable Diffusion XL
-https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_diffusion/stable_diffusion_xl.md
+https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_diffusion/stable_diffusion_xl.md

@@ -1,12 +1,12 @@
 # ModularPipeline
 
-[ModularPipeline](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) converts [ModularPipelineBlocks](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) into an executable pipeline that loads models and performs the computation steps defined in the blocks. It is the main interface for running a pipeline and the API is very similar to [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) but with a few key differences.
+[ModularPipeline](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) converts [ModularPipelineBlocks](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) into an executable pipeline that loads models and performs the computation steps defined in the blocks. It is the main interface for running a pipeline and the API is very similar to [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) but with a few key differences.
 
-- **Loading is lazy.** With [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline), [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) creates the pipeline and loads all models at the same time. With [ModularPipeline](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline), creating and loading are two separate steps: [from_pretrained()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.from_pretrained) reads the configuration and knows where to load each component from, but doesn't actually load the model weights. You load the models later with [load_components()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.load_components), which is where you pass loading arguments like `dtype` and `quantization_config`.
+- **Loading is lazy.** With [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline), [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) creates the pipeline and loads all models at the same time. With [ModularPipeline](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline), creating and loading are two separate steps: [from_pretrained()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.from_pretrained) reads the configuration and knows where to load each component from, but doesn't actually load the model weights. You load the models later with [load_components()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.load_components), which is where you pass loading arguments like `dtype` and `quantization_config`.
 
-- **Two ways to create a pipeline.** You can use [from_pretrained()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.from_pretrained) with an existing diffusers model repository — it automatically maps to the default pipeline blocks and then converts to a [ModularPipeline](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) with no extra setup. You can check the [modular_pipelines_directory](https://github.com/huggingface/diffusers/tree/main/src/diffusers/modular_pipelines) to see which models are currently supported. You can also assemble your own pipeline from [ModularPipelineBlocks](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) and convert it with the [init_pipeline()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline) method (see [Creating a pipeline](#creating-a-pipeline) for more details).
+- **Two ways to create a pipeline.** You can use [from_pretrained()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.from_pretrained) with an existing diffusers model repository — it automatically maps to the default pipeline blocks and then converts to a [ModularPipeline](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) with no extra setup. You can check the [modular_pipelines_directory](https://github.com/huggingface/diffusers/tree/main/src/diffusers/modular_pipelines) to see which models are currently supported. You can also assemble your own pipeline from [ModularPipelineBlocks](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) and convert it with the [init_pipeline()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline) method (see [Creating a pipeline](#creating-a-pipeline) for more details).
 
-- **Running the pipeline is the same.** Once loaded, you call the pipeline with the same arguments you're used to. A single [ModularPipeline](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) can support multiple workflows (text-to-image, image-to-image, inpainting, etc.) when the pipeline blocks use [`AutoPipelineBlocks`](./auto_pipeline_blocks) to automatically select the workflow based on your inputs.
+- **Running the pipeline is the same.** Once loaded, you call the pipeline with the same arguments you're used to. A single [ModularPipeline](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) can support multiple workflows (text-to-image, image-to-image, inpainting, etc.) when the pipeline blocks use [`AutoPipelineBlocks`](./auto_pipeline_blocks) to automatically select the workflow based on your inputs.
 
 Below are complete examples for text-to-image, image-to-image, and inpainting with SDXL.
 
@@ -58,11 +58,11 @@ image = pipeline(prompt=prompt, image=init_image, mask_image=mask_image, strengt
 image.save("modular_inpaint_out.png")
 ```
 
-This guide will show you how to create a [ModularPipeline](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline), manage its components, and run the pipeline.
+This guide will show you how to create a [ModularPipeline](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline), manage its components, and run the pipeline.
 
 ## Creating a pipeline
 
-There are two ways to create a [ModularPipeline](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline). Assemble and create a pipeline from [ModularPipelineBlocks](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) with [init_pipeline()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline), or load an existing pipeline with [from_pretrained()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.from_pretrained).
+There are two ways to create a [ModularPipeline](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline). Assemble and create a pipeline from [ModularPipelineBlocks](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) with [init_pipeline()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline), or load an existing pipeline with [from_pretrained()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.from_pretrained).
 
 You can also initialize a [`ComponentsManager`](./components_manager) to handle device placement and memory management. If you don't need automatic offloading, you can skip this and move the pipeline to your device manually with `pipeline.to("cuda")`.
 
@@ -71,7 +71,7 @@ You can also initialize a [`ComponentsManager`](./components_manager) to handle 
 
 ### init_pipeline
 
-[init_pipeline()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline) converts any [ModularPipelineBlocks](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) into a [ModularPipeline](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline).
+[init_pipeline()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline) converts any [ModularPipelineBlocks](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) into a [ModularPipeline](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline).
 
 Let's define a minimal block to see how it works:
 
@@ -98,7 +98,7 @@ class MyBlock(ModularPipelineBlocks):
         return components, state
 ```
 
-Call [init_pipeline()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline) to convert it into a pipeline. The `blocks` attribute on the pipeline is the blocks it was created from — it determines the expected inputs, outputs, and computation logic.
+Call [init_pipeline()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline) to convert it into a pipeline. The `blocks` attribute on the pipeline is the blocks it was created from — it determines the expected inputs, outputs, and computation logic.
 
 ```py
 block = MyBlock()
@@ -116,7 +116,7 @@ MyBlock {
 > [!WARNING]
 > Blocks are mutable — you can freely add, remove, or swap blocks before creating a pipeline. However, once a pipeline is created, modifying `pipeline.blocks` won't affect the pipeline because it returns a copy. If you want a different block structure, create a new pipeline after modifying the blocks.
 
-When you call [init_pipeline()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline) without a repository, it uses the `pretrained_model_name_or_path` defined in the block's [ComponentSpec](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentSpec) to determine where to load each component from. Printing the pipeline shows the component loading configuration.
+When you call [init_pipeline()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline) without a repository, it uses the `pretrained_model_name_or_path` defined in the block's [ComponentSpec](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentSpec) to determine where to load each component from. Printing the pipeline shows the component loading configuration.
 
 ```py
 pipe
@@ -141,7 +141,7 @@ ModularPipeline {
 }
 ```
 
-If you pass a repository to [init_pipeline()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline), it overrides the loading path by matching your block's components against the pipeline config in that repository (`model_index.json` or `modular_model_index.json`). See [Modular repository](#modular-repository) for how loading specs are recorded and saved.
+If you pass a repository to [init_pipeline()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline), it overrides the loading path by matching your block's components against the pipeline config in that repository (`model_index.json` or `modular_model_index.json`). See [Modular repository](#modular-repository) for how loading specs are recorded and saved.
 
 In the example below, the `pretrained_model_name_or_path` will be updated to `"stabilityai/stable-diffusion-xl-base-1.0"`.
 
@@ -169,11 +169,11 @@ ModularPipeline {
 }
 ```
 
-If a component in your block doesn't exist in the repository, it remains `null` and is skipped during [load_components()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.load_components).
+If a component in your block doesn't exist in the repository, it remains `null` and is skipped during [load_components()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.load_components).
 
 ### from_pretrained
 
-[from_pretrained()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.from_pretrained) is a convenient way to create a [ModularPipeline](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) without defining blocks yourself.
+[from_pretrained()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.from_pretrained) is a convenient way to create a [ModularPipeline](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) without defining blocks yourself.
 
 It works with three types of repositories.
 
@@ -210,7 +210,7 @@ pipeline = ModularPipeline.from_pretrained(
 )
 ```
 
-When the pipeline blocks define workflows (check `pipeline.blocks.available_workflows`), pass `workflow=` to keep only that workflow's blocks — the same pruning as [get_workflow()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.get_workflow). The pipeline then only declares the components that workflow uses, and its docstring describes exactly that workflow's inputs.
+When the pipeline blocks define workflows (check `pipeline.blocks.available_workflows`), pass `workflow=` to keep only that workflow's blocks — the same pruning as [get_workflow()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.get_workflow). The pipeline then only declares the components that workflow uses, and its docstring describes exactly that workflow's inputs.
 
 ```py
 pipeline = ModularPipeline.from_pretrained("Qwen/Qwen-Image", workflow="inpainting")
@@ -218,7 +218,7 @@ pipeline = ModularPipeline.from_pretrained("Qwen/Qwen-Image", workflow="inpainti
 
 ## Loading components
 
-A [ModularPipeline](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) doesn't automatically instantiate with components. It only loads the configuration and component specifications. You can load components with [load_components()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.load_components).
+A [ModularPipeline](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) doesn't automatically instantiate with components. It only loads the configuration and component specifications. You can load components with [load_components()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.load_components).
 
 This will load all the components that have a valid loading spec.
 
@@ -272,11 +272,11 @@ pipeline.load_components(dtype=torch.bfloat16)
 pipeline.load_components(dtype={"transformer": torch.bfloat16, "default": torch.float32})
 ```
 
-[load_components()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.load_components) only loads components that haven't been loaded yet and have a valid loading spec. This means if you've already set a component on the pipeline, calling [load_components()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.load_components) again won't reload it.
+[load_components()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.load_components) only loads components that haven't been loaded yet and have a valid loading spec. This means if you've already set a component on the pipeline, calling [load_components()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.load_components) again won't reload it.
 
 ## Updating components
 
-[update_components()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.update_components) replaces a component on the pipeline with a new one. When a component is updated, the loading specifications are also updated in the pipeline config and [load_components()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.load_components) will skip it on subsequent calls.
+[update_components()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.update_components) replaces a component on the pipeline with a new one. When a component is updated, the loading specifications are also updated in the pipeline config and [load_components()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.load_components) will skip it on subsequent calls.
 
 ### From AutoModel
 
@@ -293,7 +293,7 @@ pipeline.update_components(unet=unet)
 
 ### From ComponentSpec
 
-Use [get_component_spec()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.get_component_spec) to get a copy of the current component specification, modify it, and load a new component.
+Use [get_component_spec()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.get_component_spec) to get a copy of the current component specification, modify it, and load a new component.
 
 ```py
 unet_spec = pipeline.get_component_spec("unet")
@@ -306,9 +306,9 @@ unet = unet_spec.load(dtype=torch.float16)
 pipeline.update_components(unet=unet)
 ```
 
-You can also create a [ComponentSpec](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentSpec) from scratch.
+You can also create a [ComponentSpec](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentSpec) from scratch.
 
-Not all components are loaded from pretrained weights — some are created from a config (listed under `pipeline.config_component_names`). For these, use [create()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentSpec.create) instead of [load()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentSpec.load).
+Not all components are loaded from pretrained weights — some are created from a config (listed under `pipeline.config_component_names`). For these, use [create()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentSpec.create) instead of [load()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentSpec.load).
 
 ```py
 guider_spec = pipeline.get_component_spec("guider")
@@ -364,15 +364,15 @@ output = pipeline(
 ).images[0]
 ```
 
-[ComponentsManager](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) handles memory across multiple pipelines. Unlike the offloading strategies in [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) that follow a fixed order, [ComponentsManager](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) makes offloading decisions dynamically each time a model forward pass runs, based on the current memory situation. This means it works regardless of how many pipelines you create or what order you run them in. See the [ComponentsManager](./components_manager) guide for more details.
+[ComponentsManager](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) handles memory across multiple pipelines. Unlike the offloading strategies in [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) that follow a fixed order, [ComponentsManager](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) makes offloading decisions dynamically each time a model forward pass runs, based on the current memory situation. This means it works regardless of how many pipelines you create or what order you run them in. See the [ComponentsManager](./components_manager) guide for more details.
 
-If pipeline stages share components (e.g., the same VAE used for encoding and decoding), you can use [update_components()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.update_components) to pass an already-loaded component to another pipeline instead of loading it again.
+If pipeline stages share components (e.g., the same VAE used for encoding and decoding), you can use [update_components()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.update_components) to pass an already-loaded component to another pipeline instead of loading it again.
 
 ## Modular repository
 
 A repository is required if the pipeline blocks use *pretrained components*. The repository supplies loading specifications and metadata.
 
-[ModularPipeline](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) works with regular diffusers repositories out of the box. However, you can also create a *modular repository* for more flexibility. A modular repository contains a `modular_model_index.json` file containing the following 3 elements.
+[ModularPipeline](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) works with regular diffusers repositories out of the box. However, you can also create a *modular repository* for more flexibility. A modular repository contains a `modular_model_index.json` file containing the following 3 elements.
 
 - `library` and `class` shows which library the component was loaded from and its class. If `null`, the component hasn't been loaded yet.
 - `loading_specs_dict` contains the information required to load the component such as the repository and subfolder it is loaded from.
@@ -391,7 +391,7 @@ pipeline = ModularPipeline.from_pretrained("stabilityai/stable-diffusion-xl-base
 pipeline.save_pretrained("local/path", repo_id="my-username/sdxl-modular", push_to_hub=True)
 ```
 
-By default, [save_pretrained()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.save_pretrained) writes each currently loaded component that Diffusers can serialize. Components that are not loaded, or cannot be serialized, are not written and keep their existing loading specifications. This gives you two ways to save, depending on what you want.
+By default, [save_pretrained()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.save_pretrained) writes each currently loaded component that Diffusers can serialize. Components that are not loaded, or cannot be serialized, are not written and keep their existing loading specifications. This gives you two ways to save, depending on what you want.
 
 ### Save a self-contained copy
 
@@ -403,7 +403,7 @@ pipe.load_components()
 pipe.save_pretrained("path/to/local-copy")
 ```
 
-The destination recorded in `modular_model_index.json` is wherever [save_pretrained()](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.save_pretrained) writes: the `save_directory` for a local save, or the `repo_id` when you pass `push_to_hub=True`.
+The destination recorded in `modular_model_index.json` is wherever [save_pretrained()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.save_pretrained) writes: the `save_directory` for a local save, or the `repo_id` when you pass `push_to_hub=True`.
 
 With `huggingface_hub>=1.32.0`, identical Xet-backed files can share one cached payload across any Hub repositories. This includes individual files in a sharded checkpoint: a shard with the same Xet hash can be reused even when other shards differ. Both downloads must use the same Hub cache directory with symlink support. Changing the dtype, serialization, or shard boundaries can change file hashes and prevent reuse. This saves download traffic and disk space, not the memory used by loaded components.
 
@@ -459,7 +459,7 @@ Florence2-image-Annotator/
 └── modular_model_index.json    # Component loading specifications
 ```
 
-The `config.json` file contains an `auto_map` key that tells [ModularPipeline](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) where to find the custom blocks:
+The `config.json` file contains an `auto_map` key that tells [ModularPipeline](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) where to find the custom blocks:
 
 ```json
 {
@@ -473,4 +473,4 @@ The `config.json` file contains an `auto_map` key that tells [ModularPipeline](/
 Load custom code repositories with `trust_remote_code=True` as shown in [from_pretrained](#frompretrained). See [Custom blocks](./custom_blocks) for how to create and share your own.
 
 ### ComponentsManager
-https://huggingface.co/docs/diffusers/v0.41.0/modular_diffusers/components_manager.md
+https://huggingface.co/docs/diffusers/v0.42.0/modular_diffusers/components_manager.md

@@ -184,4 +184,4 @@ export_to_video(output, "output.mp4", fps=16)
 ```
 
 ### ONNX Runtime
-https://huggingface.co/docs/diffusers/v0.41.0/optimization/onnx.md
+https://huggingface.co/docs/diffusers/v0.42.0/optimization/onnx.md

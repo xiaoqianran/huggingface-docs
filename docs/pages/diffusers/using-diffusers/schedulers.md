@@ -9,15 +9,15 @@ This guide shows how to load a scheduler and customize its timestep schedule, sp
 Start from the checkpoint default. Swap only if you need a different speed or quality tradeoff.
 
 - DPM++ 2M SDE Karras is a strong all-purpose option for many latent diffusion checkpoints.
-- [TCDScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/tcd#diffusers.TCDScheduler) works well for distilled models.
-- Use [FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler) or [FlowMatchHeunDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_heun_discrete#diffusers.FlowMatchHeunDiscreteScheduler) for FlowMatch models (Qwen-Image, Flux, and similar).
-- [EulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/euler#diffusers.EulerDiscreteScheduler) or [EulerAncestralDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/euler_ancestral#diffusers.EulerAncestralDiscreteScheduler) often work well for anime-style images.
-- [LCMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/lcm#diffusers.LCMScheduler) with an LCM UNet or LoRA for few-step generation when the checkpoint supports it.
+- [TCDScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/tcd#diffusers.TCDScheduler) works well for distilled models.
+- Use [FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler) or [FlowMatchHeunDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/flow_match_heun_discrete#diffusers.FlowMatchHeunDiscreteScheduler) for FlowMatch models (Qwen-Image, Flux, and similar).
+- [EulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/euler#diffusers.EulerDiscreteScheduler) or [EulerAncestralDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/euler_ancestral#diffusers.EulerAncestralDiscreteScheduler) often work well for anime-style images.
+- [LCMScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/lcm#diffusers.LCMScheduler) with an LCM UNet or LoRA for few-step generation when the checkpoint supports it.
 
 ## Loading schedulers
 
 > [!TIP]
-> Flow-matching models such as Qwen-Image and Flux ship [FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler) as their default. Keep that scheduler unless you are intentionally experimenting. Swap with [from_config()](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin.from_config) only when the replacement is compatible with the checkpoint.
+> Flow-matching models such as Qwen-Image and Flux ship [FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler) as their default. Keep that scheduler unless you are intentionally experimenting. Swap with [from_config()](/docs/diffusers/v0.42.0/en/api/configuration#diffusers.ConfigMixin.from_config) only when the replacement is compatible with the checkpoint.
 
 Schedulers are config-only and they do not ship weight tensors. Access the `.scheduler` attribute on a pipeline to inspect the loaded config.
 
@@ -31,7 +31,7 @@ pipeline = DiffusionPipeline.from_pretrained(
 pipeline.scheduler
 ```
 
-To swap schedulers on a loaded pipeline, use [from_config()](/docs/diffusers/v0.41.0/en/api/configuration#diffusers.ConfigMixin.from_config) with the existing scheduler config so `num_train_timesteps` and related fields stay aligned. For FlowMatch checkpoints (Qwen-Image, Flux, and similar), keep [FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler) unless you are intentionally experimenting with a compatible replacement.
+To swap schedulers on a loaded pipeline, use [from_config()](/docs/diffusers/v0.42.0/en/api/configuration#diffusers.ConfigMixin.from_config) with the existing scheduler config so `num_train_timesteps` and related fields stay aligned. For FlowMatch checkpoints (Qwen-Image, Flux, and similar), keep [FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler) unless you are intentionally experimenting with a compatible replacement.
 
 ```py
 from diffusers import DPMSolverMultistepScheduler
@@ -39,7 +39,7 @@ from diffusers import DPMSolverMultistepScheduler
 pipeline.scheduler = DPMSolverMultistepScheduler.from_config(pipeline.scheduler.config)
 ```
 
-You can also load a scheduler config from the Hub with [from_pretrained()](/docs/diffusers/v0.41.0/en/api/schedulers/overview#diffusers.SchedulerMixin.from_pretrained) and pass it into [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) through `scheduler`.
+You can also load a scheduler config from the Hub with [from_pretrained()](/docs/diffusers/v0.42.0/en/api/schedulers/overview#diffusers.SchedulerMixin.from_pretrained) and pass it into [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) through `scheduler`.
 
 ```py
 from diffusers import DiffusionPipeline, DPMSolverMultistepScheduler
@@ -255,4 +255,4 @@ Refer to the scheduler API [overview](../api/schedulers/overview) for a list of 
 - Read the [Common Diffusion Noise Schedules and Sample Steps are Flawed](https://huggingface.co/papers/2305.08891) paper for more details about rescaling the noise schedule to enforce zero SNR.
 
 ### Prompting
-https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/weighted_prompts.md
+https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/weighted_prompts.md

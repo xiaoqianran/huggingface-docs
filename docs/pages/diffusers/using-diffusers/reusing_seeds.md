@@ -13,7 +13,7 @@ Pipelines rely on [torch.randn](https://pytorch.org/docs/stable/generated/torch.
 
 Use a CPU `Generator` when you care about reproducibility. CPU RNG is more stable across machines.
 
-When you pass a CPU `Generator`, Diffusers’ [randn_tensor()](/docs/diffusers/v0.41.0/en/api/utilities#diffusers.utils.torch_utils.randn_tensor) samples on the CPU and moves the tensor to the GPU inside the pipeline. You do not call `randn_tensor` or `.to("cuda")` yourself. A GPU `Generator` samples on-device instead and can diverge from CPU results.
+When you pass a CPU `Generator`, Diffusers’ [randn_tensor()](/docs/diffusers/v0.42.0/en/api/utilities#diffusers.utils.torch_utils.randn_tensor) samples on the CPU and moves the tensor to the GPU inside the pipeline. You do not call `randn_tensor` or `.to("cuda")` yourself. A GPU `Generator` samples on-device instead and can diverge from CPU results.
 
 Use [manual_seed](https://docs.pytorch.org/docs/stable/generated/torch.manual_seed.html) to set a seed.
 
@@ -87,4 +87,4 @@ enable_full_determinism()
 You should read PyTorch's developer notes about [Reproducibility](https://docs.pytorch.org/docs/stable/notes/randomness.html). You can try to limit randomness, but it is not *guaranteed* even with an identical seed.
 
 ### Schedulers
-https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/schedulers.md
+https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/schedulers.md

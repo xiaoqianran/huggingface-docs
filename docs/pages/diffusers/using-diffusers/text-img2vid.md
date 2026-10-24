@@ -154,7 +154,7 @@ There are several parameters to configure in the pipeline that'll affect video g
 
 A frame is a still image that is played in a sequence of other frames to create motion or a video. Control the number of frames generated per second with `num_frames`. Increasing `num_frames` increases perceived motion smoothness and visual coherence, making it especially important for videos with dynamic content. A higher `num_frames` value also increases video duration.
 
-Some video models require more specific `num_frames` values for inference. For example, [HunyuanVideoPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/hunyuan_video#diffusers.HunyuanVideoPipeline) recommends calculating the `num_frames` with `(4 * num_frames) +1`. Always check a pipelines API model card to see if there is a recommended value.
+Some video models require more specific `num_frames` values for inference. For example, [HunyuanVideoPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/hunyuan_video#diffusers.HunyuanVideoPipeline) recommends calculating the `num_frames` with `(4 * num_frames) +1`. Always check a pipelines API model card to see if there is a recommended value.
 
 ```py
 import torch
@@ -263,12 +263,12 @@ export_to_video(output, "output.mp4", fps=16)
 
 ## Reduce memory usage
 
-Recent video models like [HunyuanVideoPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/hunyuan_video#diffusers.HunyuanVideoPipeline) and [WanPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/wan#diffusers.WanPipeline), which have 10B+ parameters, require a lot of memory and it often exceeds the memory available on consumer hardware. Diffusers offers several techniques for reducing the memory requirements of these large models.
+Recent video models like [HunyuanVideoPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/hunyuan_video#diffusers.HunyuanVideoPipeline) and [WanPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/wan#diffusers.WanPipeline), which have 10B+ parameters, require a lot of memory and it often exceeds the memory available on consumer hardware. Diffusers offers several techniques for reducing the memory requirements of these large models.
 
 > [!TIP]
 > Refer to the [Reduce memory usage](../optimization/memory) guide for more details about other memory saving techniques.
 
-One of these techniques is [group-offloading](../optimization/memory#group-offloading), which offloads groups of internal model layers (such as `torch.nn.Sequential`) to the CPU when it isn't being used. These layers are only loaded when they're needed for computation to avoid storing **all** the model components on the GPU. For a 14B parameter model like [WanPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/wan#diffusers.WanPipeline), group-offloading can lower the required memory to ~13GB of VRAM.
+One of these techniques is [group-offloading](../optimization/memory#group-offloading), which offloads groups of internal model layers (such as `torch.nn.Sequential`) to the CPU when it isn't being used. These layers are only loaded when they're needed for computation to avoid storing **all** the model components on the GPU. For a 14B parameter model like [WanPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/wan#diffusers.WanPipeline), group-offloading can lower the required memory to ~13GB of VRAM.
 
 ```py
 # pip install ftfy
@@ -423,4 +423,4 @@ export_to_video(video, "output.mp4", fps=8)
 ```
 
 ### Inpainting
-https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/inpaint.md
+https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/inpaint.md

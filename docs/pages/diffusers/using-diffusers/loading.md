@@ -1,14 +1,14 @@
 # DiffusionPipeline
 
-Diffusion models consist of multiple components like UNets or diffusion transformers (DiTs), text encoders, variational autoencoders (VAEs), and schedulers. The [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) wraps all of these components into a single easy-to-use API without giving up the flexibility to modify its components.
+Diffusion models consist of multiple components like UNets or diffusion transformers (DiTs), text encoders, variational autoencoders (VAEs), and schedulers. The [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) wraps all of these components into a single easy-to-use API without giving up the flexibility to modify its components.
 
-This guide will show you how to load a [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline).
+This guide will show you how to load a [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline).
 
 ## Loading a pipeline
 
-[DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) is a base pipeline class that automatically selects and returns an instance of a model's pipeline subclass, like [QwenImagePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/qwenimage#diffusers.QwenImagePipeline), by scanning the `model_index.json` file for the class name.
+[DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) is a base pipeline class that automatically selects and returns an instance of a model's pipeline subclass, like [QwenImagePipeline](/docs/diffusers/v0.42.0/en/api/pipelines/qwenimage#diffusers.QwenImagePipeline), by scanning the `model_index.json` file for the class name.
 
-Pass a model id to [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) to load a pipeline.
+Pass a model id to [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) to load a pipeline.
 
 ```py
 import torch
@@ -19,15 +19,15 @@ pipeline = DiffusionPipeline.from_pretrained(
 )
 ```
 
-Every model has a specific pipeline subclass that inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). A subclass usually has a narrow focus and is task-specific. See the table below for an example.
+Every model has a specific pipeline subclass that inherits from [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). A subclass usually has a narrow focus and is task-specific. See the table below for an example.
 
 | pipeline subclass | task |
 |---|---|
-| [QwenImagePipeline](/docs/diffusers/v0.41.0/en/api/pipelines/qwenimage#diffusers.QwenImagePipeline) | text-to-image |
-| [QwenImageImg2ImgPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/qwenimage#diffusers.QwenImageImg2ImgPipeline) | image-to-image |
-| [QwenImageInpaintPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/qwenimage#diffusers.QwenImageInpaintPipeline) | inpaint |
+| [QwenImagePipeline](/docs/diffusers/v0.42.0/en/api/pipelines/qwenimage#diffusers.QwenImagePipeline) | text-to-image |
+| [QwenImageImg2ImgPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/qwenimage#diffusers.QwenImageImg2ImgPipeline) | image-to-image |
+| [QwenImageInpaintPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/qwenimage#diffusers.QwenImageInpaintPipeline) | inpaint |
 
-You could use the subclass directly by passing a model id to [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained).
+You could use the subclass directly by passing a model id to [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained).
 
 ```py
 import torch
@@ -43,7 +43,7 @@ pipeline = QwenImagePipeline.from_pretrained(
 
 ### Local pipelines
 
-Pipelines can also be run locally. Use [snapshot_download](https://huggingface.co/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.snapshot_download) to download a model repository.
+Pipelines can also be run locally. Use [snapshot_download](https://huggingface.co/docs/huggingface_hub/v2.3.0/en/package_reference/file_download#huggingface_hub.snapshot_download) to download a model repository.
 
 ```py
 from huggingface_hub import snapshot_download
@@ -51,7 +51,7 @@ from huggingface_hub import snapshot_download
 local_dir = snapshot_download(repo_id="Qwen/Qwen-Image")
 ```
 
-Pass that path to [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) to load it.
+Pass that path to [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) to load it.
 
 ```py
 import torch
@@ -62,11 +62,11 @@ pipeline = QwenImagePipeline.from_pretrained(
 )
 ```
 
-The [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) method won't download files from the Hub when it detects a local path. But this also means it won't download and cache any updates that have been made to the model either.
+The [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) method won't download files from the Hub when it detects a local path. But this also means it won't download and cache any updates that have been made to the model either.
 
 ## Pipeline data types
 
-Use the `dtype` argument in [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) to load a model with a specific data type. This allows you to load different models in different precisions. For example, loading a large transformer model in half-precision reduces the memory required.
+Use the `dtype` argument in [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) to load a model with a specific data type. This allows you to load different models in different precisions. For example, loading a large transformer model in half-precision reduces the memory required.
 
 Pass the data type for each model as a dictionary to `dtype`. Use the `default` key to set the default data type. If a model isn't in the dictionary and `default` isn't provided, it is loaded in full precision (`torch.float32`).
 
@@ -103,7 +103,7 @@ The `device_map` argument places a pipeline on devices. At runtime, Diffusers ac
 | `"balanced"` | Spreads pipeline components across visible GPUs. Use with `max_memory` when you need per-device caps. |
 | `"cpu"` | Places the pipeline on CPU. |
 
-Use the `max_memory` argument in [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) to allocate a maximum amount of memory to use on each device. By default, Diffusers uses the maximum amount available.
+Use the `max_memory` argument in [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) to allocate a maximum amount of memory to use on each device. By default, Diffusers uses the maximum amount available.
 
 ```py
 import torch
@@ -125,7 +125,7 @@ print(pipeline.hf_device_map)
 # {'transformer': 1, 'vae': 1, 'text_encoder': 0}
 ```
 
-Reset a pipeline's `device_map` with the [reset_device_map()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.reset_device_map) method. This is necessary if you want to use methods such as `.to()`, [enable_sequential_cpu_offload()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_sequential_cpu_offload), and [enable_model_cpu_offload()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload).
+Reset a pipeline's `device_map` with the [reset_device_map()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.reset_device_map) method. This is necessary if you want to use methods such as `.to()`, [enable_sequential_cpu_offload()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_sequential_cpu_offload), and [enable_model_cpu_offload()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload).
 
 ```py
 pipeline.reset_device_map()
@@ -153,7 +153,7 @@ pipeline = DiffusionPipeline.from_pretrained(
 
 ## Replacing models in a pipeline
 
-[DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) is flexible and accommodates loading other models or schedulers. You can experiment with different schedulers to optimize for generation speed or quality, and you can replace models with more performant ones.
+[DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) is flexible and accommodates loading other models or schedulers. You can experiment with different schedulers to optimize for generation speed or quality, and you can replace models with more performant ones.
 
 The example below uses a more stable VAE version.
 
@@ -175,14 +175,14 @@ pipeline = DiffusionPipeline.from_pretrained(
 
 ## Reusing models in multiple pipelines
 
-When working with multiple pipelines that use the same model, the [from_pipe()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pipe) method enables reusing a model instead of reloading it each time. This allows you to use multiple pipelines without increasing memory usage.
+When working with multiple pipelines that use the same model, the [from_pipe()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pipe) method enables reusing a model instead of reloading it each time. This allows you to use multiple pipelines without increasing memory usage.
 
 Memory usage is determined by the pipeline with the highest memory requirement regardless of the number of pipelines.
 
-The example below loads a pipeline and then loads a second pipeline with [from_pipe()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pipe) to use [perturbed-attention guidance (PAG)](../api/pipelines/pag) to improve generation quality.
+The example below loads a pipeline and then loads a second pipeline with [from_pipe()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pipe) to use [perturbed-attention guidance (PAG)](../api/pipelines/pag) to improve generation quality.
 
 > [!WARNING]
-> Use [AutoPipelineForText2Image](/docs/diffusers/v0.41.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Image) because [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) doesn't support PAG. Refer to the [AutoPipeline](../tutorials/autopipeline) docs to learn more. 
+> Use [AutoPipelineForText2Image](/docs/diffusers/v0.42.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Image) because [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) doesn't support PAG. Refer to the [AutoPipeline](../tutorials/autopipeline) docs to learn more. 
 
 ```py
 import torch
@@ -216,9 +216,9 @@ print(f"Max memory reserved: {torch.cuda.max_memory_allocated() / 1024**3:.2f} G
 ```
 
 > [!WARNING]
-> Pipelines created by [from_pipe()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pipe) share the same models and *state*. Modifying the state of a model in one pipeline affects all the other pipelines that share the same model.
+> Pipelines created by [from_pipe()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pipe) share the same models and *state*. Modifying the state of a model in one pipeline affects all the other pipelines that share the same model.
 
-Some methods may not work correctly on pipelines created with [from_pipe()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pipe). For example, [enable_model_cpu_offload()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) relies on a unique model execution order, which may differ in the new pipeline. To ensure proper functionality, reapply these methods on the new pipeline.
+Some methods may not work correctly on pipelines created with [from_pipe()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pipe). For example, [enable_model_cpu_offload()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) relies on a unique model execution order, which may differ in the new pipeline. To ensure proper functionality, reapply these methods on the new pipeline.
 
 ## Next steps
 
@@ -231,4 +231,4 @@ Once a pipeline loads, you usually tune the denoising schedule, swap weight form
 - [Legacy checkpoints](./legacy_checkpoints#safety-checker) covers the safety checker for older Stable Diffusion checkpoints.
 
 ### Text-guided depth-to-image generation
-https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/depth2img.md
+https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/depth2img.md

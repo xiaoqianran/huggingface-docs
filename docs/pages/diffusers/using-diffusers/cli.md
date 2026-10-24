@@ -277,8 +277,9 @@ hf sandbox kill <id>
 ## `custom_blocks`
 
 Package a local `ModularPipelineBlocks` subclass for upload to the Hub. Reads a Python file, AST-scans it for
-subclasses of `ModularPipelineBlocks`, instantiates the chosen one, and calls `save_pretrained` in the current
-working directory.
+classes deriving from `ModularPipelineBlocks` or one of its composite subclasses (`SequentialPipelineBlocks`,
+`AutoPipelineBlocks`, `ConditionalPipelineBlocks`, `LoopSequentialPipelineBlocks`), instantiates the chosen one, and
+calls `save_pretrained` in the current working directory.
 
 ```bash
 # Package the first block found in ./block.py
@@ -329,4 +330,4 @@ diffusers-cli skills add --all --claude   # or --codex / --cursor
 Without a target flag, the CLI installs for the agent that launched it, or for every agent when it cannot tell. Claude Code gets a plugin bundle under `.claude/skills/diffusers/` (namespaced as `/diffusers:<skill name>`). Codex and Cursor get `.agents/skills/<skill name>/`.
 
 ### AutoModel
-https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/automodel.md
+https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/automodel.md

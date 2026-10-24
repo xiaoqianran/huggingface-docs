@@ -324,4 +324,4 @@ Congratulations on training a model with Custom Diffusion! 🎉 To learn more:
 - Read the [Multi-Concept Customization of Text-to-Image Diffusion](https://www.cs.cmu.edu/~custom-diffusion/) blog post to learn more details about the experimental results from the Custom Diffusion team.
 
 ### ControlNet
-https://huggingface.co/docs/diffusers/v0.41.0/training/controlnet.md
+https://huggingface.co/docs/diffusers/v0.42.0/training/controlnet.md

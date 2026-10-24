@@ -4,7 +4,7 @@
 
 For inference with trained embeddings, see [Textual inversion inference](../using-diffusers/legacy_adapters#textual-inversion).
 
-If you're training on a GPU with limited vRAM, you should try enabling the `gradient_checkpointing` and `mixed_precision` parameters in the training command. You can also reduce your memory footprint by using memory-efficient attention with [xFormers](../optimization/xformers).
+If you're training on a GPU with limited vRAM, you should try enabling the `gradient_checkpointing` and `mixed_precision` parameters in the training command. You can also reduce your memory footprint by using memory-efficient attention with [xFormers](../optimization/attention_backends).
 
 This guide will explore the [textual_inversion.py](https://github.com/huggingface/diffusers/blob/main/examples/textual_inversion/textual_inversion.py) script to help you become more familiar with it, and how you can adapt it for your own use-case.
 
@@ -196,4 +196,4 @@ Congratulations on training your own Textual Inversion model! 🎉 To learn more
 - Learn how to [load Textual Inversion embeddings](../using-diffusers/legacy_adapters#textual-inversion) and also use them as negative embeddings.
 
 ### Unconditional image generation
-https://huggingface.co/docs/diffusers/v0.41.0/training/unconditional_training.md
+https://huggingface.co/docs/diffusers/v0.42.0/training/unconditional_training.md

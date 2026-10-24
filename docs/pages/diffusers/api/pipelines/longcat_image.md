@@ -89,7 +89,7 @@ Available models:
 diffusers.LongCatImagePipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: Qwen2_5_VLForConditionalGeneration, tokenizer: Qwen2Tokenizer, text_processor: Qwen2VLProcessor, transformer: LongCatImageTransformer2DModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/longcat_image/pipeline_longcat_image.py#L205)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/longcat_image/pipeline_longcat_image.py#L205)
 
 The pipeline for text-to-image generation.
 
@@ -104,7 +104,7 @@ The pipeline for text-to-image generation.
 diffusers.pipelines.longcat_image.LongCatImagePipelineOutput(images: list)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/longcat_image/pipeline_output.py#L10)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/longcat_image/pipeline_output.py#L10)
 
 **Parameters:**
 
@@ -113,4 +113,4 @@ images (`list[PIL.Image.Image]` or `np.ndarray`) : List of denoised PIL images o
 Output class for Stable Diffusion pipelines.
 
 ### LLaDA2
-https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/llada2.md
+https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/llada2.md

@@ -6,7 +6,7 @@ These settings apply mainly to older Stable Diffusion family checkpoints.
 
 Diffusers provides a [safety checker](https://github.com/huggingface/diffusers/blob/main/src/diffusers/pipelines/stable_diffusion/safety_checker.py) for older Stable Diffusion checkpoints to prevent generating harmful content. It screens the generated output against a set of hardcoded harmful concepts. Newer models such as Qwen-Image do not have this checker.
 
-If you want to disable the safety checker, pass `safety_checker=None` in [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) as shown below.
+If you want to disable the safety checker, pass `safety_checker=None` in [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) as shown below.
 
 ```py
 from diffusers import DiffusionPipeline
@@ -60,4 +60,4 @@ image = pipeline(prompt, guidance_rescale=0.7).images[0]
     with zero SNR and trailing spacing
 
 ### Community pipelines and components
-https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/custom_pipeline_overview.md
+https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/custom_pipeline_overview.md

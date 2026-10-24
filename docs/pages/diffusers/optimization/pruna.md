@@ -169,4 +169,4 @@ Now that you have seen how to optimize and evaluate your models, you can start u
 - [Pruna tutorials](https://docs.pruna.ai/en/stable/docs_pruna/tutorials/index.html)
 
 ### xDiT
-https://huggingface.co/docs/diffusers/v0.41.0/optimization/xdit.md
+https://huggingface.co/docs/diffusers/v0.42.0/optimization/xdit.md

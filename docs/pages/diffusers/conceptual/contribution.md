@@ -192,11 +192,11 @@ Please have a look at [this page](https://github.com/huggingface/diffusers/tree/
 > [!TIP]
 > Read the [Community pipelines](../using-diffusers/custom_pipeline_overview#community-pipelines-and-components) guide to learn more about the difference between a GitHub and Hugging Face Hub community pipeline. If you're interested in why we have community pipelines, take a look at GitHub Issue [#841](https://github.com/huggingface/diffusers/issues/841) (basically, we can't maintain all the possible ways diffusion models can be used for inference but we also don't want to prevent the community from building them).
 
-Contributing a community pipeline is a great way to share your creativity and work with the community. It lets you build on top of the [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) so that anyone can load and use it by setting the `custom_pipeline` parameter. This section will walk you through how to create a simple pipeline where the UNet only does a single forward pass and calls the scheduler once (a "one-step" pipeline).
+Contributing a community pipeline is a great way to share your creativity and work with the community. It lets you build on top of the [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) so that anyone can load and use it by setting the `custom_pipeline` parameter. This section will walk you through how to create a simple pipeline where the UNet only does a single forward pass and calls the scheduler once (a "one-step" pipeline).
 
-1. Create a one_step_unet.py file for your community pipeline. This file can contain whatever package you want to use as long as it's installed by the user. Make sure you only have one pipeline class that inherits from [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) to load model weights and the scheduler configuration from the Hub. Add a UNet and scheduler to the `__init__` function.
+1. Create a one_step_unet.py file for your community pipeline. This file can contain whatever package you want to use as long as it's installed by the user. Make sure you only have one pipeline class that inherits from [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) to load model weights and the scheduler configuration from the Hub. Add a UNet and scheduler to the `__init__` function.
 
-    You should also add the `register_modules` function to ensure your pipeline and its components can be saved with [save_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained).
+    You should also add the `register_modules` function to ensure your pipeline and its components can be saved with [save_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained).
 
 ```py
 from diffusers import DiffusionPipeline
@@ -347,7 +347,7 @@ If you are unsure or stuck in the PR, don't hesitate to leave a message to ask f
 
 A unique and important feature to understand when adding any pipeline, model or scheduler code is the `# Copied from` mechanism. You'll see this all over the Diffusers codebase, and the reason we use it is to keep the codebase easy to understand and maintain. Marking code with the `# Copied from` mechanism forces the marked code to be identical to the code it was copied from. This makes it easy to update and propagate changes across many files whenever you run `make fix-copies`.
 
-For example, in the code example below, [StableDiffusionPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) is the original code and `AltDiffusionPipelineOutput` uses the `# Copied from` mechanism to copy it. The only difference is changing the class prefix from `Stable` to `Alt`.
+For example, in the code example below, [StableDiffusionPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/stable_diffusion/image_variation#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) is the original code and `AltDiffusionPipelineOutput` uses the `# Copied from` mechanism to copy it. The only difference is changing the class prefix from `Stable` to `Alt`.
 
 ```py
 # Copied from diffusers.pipelines.stable_diffusion.pipeline_output.StableDiffusionPipelineOutput with Stable->Alt
@@ -604,4 +604,4 @@ AI-assisted contributions are welcome, but they must be coordinated, scoped, and
 If you are a model author or part of a team that officially maintains a model, we encourage you to use agents for a new model integration. Follow the repository's [recommended setup](https://github.com/huggingface/diffusers/blob/main/.ai/AGENTS.md) and use the [`model-integration`](https://github.com/huggingface/diffusers/blob/main/.ai/skills/model-integration/SKILL.md) skill. Coordinate the scope with maintainers before opening a PR — see [Adding pipelines, models, schedulers](#9-adding-pipelines-models-schedulers).
 
 ### 🧨 Diffusers’ Ethical Guidelines
-https://huggingface.co/docs/diffusers/v0.41.0/conceptual/ethical_guidelines.md
+https://huggingface.co/docs/diffusers/v0.42.0/conceptual/ethical_guidelines.md

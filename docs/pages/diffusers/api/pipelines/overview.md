@@ -2,10 +2,10 @@
 
 Pipelines provide a simple way to run state-of-the-art diffusion models in inference by bundling all of the necessary components (multiple independently-trained models, schedulers, and processors) into a single end-to-end class. Pipelines are flexible and they can be adapted to use different schedulers or even model components.
 
-All pipelines are built from the base [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) class which provides basic functionality for loading, downloading, and saving all the components. Specific pipeline types (for example [StableDiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline)) loaded with [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) are automatically detected and the pipeline components are loaded and passed to the `__init__` function of the pipeline.
+All pipelines are built from the base [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) class which provides basic functionality for loading, downloading, and saving all the components. Specific pipeline types (for example [StableDiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline)) loaded with [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) are automatically detected and the pipeline components are loaded and passed to the `__init__` function of the pipeline.
 
 > [!WARNING]
-> You shouldn't use the [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) class for training. Individual components (for example, [UNet2DModel](/docs/diffusers/v0.41.0/en/api/models/unet2d#diffusers.UNet2DModel) and [UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) of diffusion pipelines are usually trained individually, so we suggest directly working with them instead.
+> You shouldn't use the [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) class for training. Individual components (for example, [UNet2DModel](/docs/diffusers/v0.42.0/en/api/models/unet2d#diffusers.UNet2DModel) and [UNet2DConditionModel](/docs/diffusers/v0.42.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) of diffusion pipelines are usually trained individually, so we suggest directly working with them instead.
 >
 > 
 >
@@ -21,11 +21,11 @@ Use **API > Pipelines** in the sidebar to browse all pipeline references by moda
 diffusers.DiffusionPipeline()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L198)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L198)
 
 Base class for all pipelines.
 
-[DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) stores all components (models, schedulers, and processors) for diffusion pipelines and
+[DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) stores all components (models, schedulers, and processors) for diffusion pipelines and
 provides methods for loading, downloading and saving models. It also includes methods to:
 
 - move all PyTorch modules to the device of your choice
@@ -52,7 +52,7 @@ Call self as a function.
 device()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L600)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L600)
 
 **Returns:** `torch.device`
 
@@ -66,7 +66,7 @@ device is returned.
 to(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L397)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L397)
 
 **Parameters:**
 
@@ -76,7 +76,7 @@ device (`torch.Device`, *optional*) : Returns a pipeline with the specified [`de
 
 silence_dtype_warnings (`str`, *optional*, defaults to `False`) : Whether to omit warnings if the target `dtype` is not compatible with the target `device`.
 
-**Returns:** [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline)
+**Returns:** [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline)
 
 The pipeline converted to specified `dtype` and/or `dtype`.
 
@@ -102,7 +102,7 @@ Here are the ways to call `to`:
 components()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L1925)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L1925)
 
 The `self.components` property can be useful to run different pipelines with the same weights and
 configurations without reallocating additional memory.
@@ -130,7 +130,7 @@ Examples:
 disable_attention_slicing()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L2085)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L2085)
 
 Disable sliced attention computation. If `enable_attention_slicing` was previously called, attention is
 computed in one step.
@@ -141,7 +141,7 @@ computed in one step.
 disable_xformers_memory_efficient_attention()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L2024)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L2024)
 
 Disable memory efficient attention from [xFormers](https://facebookresearch.github.io/xformers/).
 
@@ -151,7 +151,7 @@ Disable memory efficient attention from [xFormers](https://facebookresearch.gith
 download(pretrained_model_name, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L1501)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L1501)
 
 **Parameters:**
 
@@ -200,7 +200,7 @@ with `hf > auth login
 enable_attention_slicing(slice_size: str | int = 'auto')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L2048)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L2048)
 
 **Parameters:**
 
@@ -238,7 +238,7 @@ Examples:
 enable_group_offload(onload_device: device, offload_device: device = torch.device(), offload_type: str = 'block_level', num_blocks_per_group: int | None = None, non_blocking: bool = False, use_stream: bool = False, record_stream: bool = False, low_cpu_mem_usage = False, offload_to_disk_path: str | None = None, exclude_modules: str | list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L1361)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L1361)
 
 **Parameters:**
 
@@ -313,7 +313,7 @@ Example:
 enable_model_cpu_offload(gpu_id: int | None = None, device: typing.Union[torch.device, str] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L1174)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L1174)
 
 **Parameters:**
 
@@ -333,7 +333,7 @@ of the `unet`.
 enable_sequential_cpu_offload(gpu_id: int | None = None, device: typing.Union[torch.device, str] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L1293)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L1293)
 
 **Parameters:**
 
@@ -353,7 +353,7 @@ and then moved to `torch.device('meta')` and loaded to accelerator only when the
 enable_xformers_memory_efficient_attention(attention_op: typing.Optional[typing.Callable] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L1993)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L1993)
 
 **Parameters:**
 
@@ -386,7 +386,7 @@ Examples:
 from_pipe(pipeline, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L2101)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L2101)
 
 **Parameters:**
 
@@ -414,11 +414,11 @@ Examples:
 from_pretrained(pretrained_model_name_or_path: str | os.PathLike, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L638)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L638)
 
 **Parameters:**
 
-pretrained_model_name_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *repo id* (for example `CompVis/ldm-text2im-large-256`) of a pretrained pipeline hosted on the Hub. - A path to a *directory* (for example `./my_pipeline_directory/`) containing pipeline weights saved using [save_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained).
+pretrained_model_name_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *repo id* (for example `CompVis/ldm-text2im-large-256`) of a pretrained pipeline hosted on the Hub. - A path to a *directory* (for example `./my_pipeline_directory/`) containing pipeline weights saved using [save_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained).
 
 dtype (`torch.dtype` or `dict[str, Union[str, torch.dtype]]`, *optional*) : Override the default `torch.dtype` and load the model with another dtype. To load submodels with different dtype pass a `dict` (for example `{'transformer': torch.bfloat16, 'vae': torch.float16}`). Set the default dtype for unspecified components with `default` (for example `{'transformer': torch.bfloat16, 'default': torch.float16}`). If a component is not specified and no default is set, `torch.float32` is used.
 
@@ -503,7 +503,7 @@ Examples:
 maybe_free_model_hooks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L1270)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L1270)
 
 Method that performs the following:
 - Offloads all components.
@@ -521,7 +521,7 @@ correctly when applying `enable_model_cpu_offload`.
 numpy_to_pil(images)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L1963)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L1963)
 
 Convert a NumPy image or a batch of images to a PIL image.
 
@@ -531,7 +531,7 @@ Convert a NumPy image or a batch of images to a PIL image.
 remove_all_hooks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L1165)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L1165)
 
 Removes all hooks that were added when using `enable_sequential_cpu_offload` or `enable_model_cpu_offload`.
 
@@ -541,7 +541,7 @@ Removes all hooks that were added when using `enable_sequential_cpu_offload` or 
 reset_device_map()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L1488)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L1488)
 
 Resets the device maps (if any) to None.
 
@@ -551,7 +551,7 @@ Resets the device maps (if any) to None.
 save_pretrained(save_directory: str | os.PathLike, safe_serialization: bool = True, variant: str | None = None, max_shard_size: int | str | None = None, push_to_hub: bool = False, use_flashpack: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L254)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L254)
 
 **Parameters:**
 
@@ -565,11 +565,11 @@ max_shard_size (`int` or `str`, defaults to `None`) : The maximum size for a che
 
 push_to_hub (`bool`, *optional*, defaults to `False`) : Whether or not to push your model to the Hugging Face model hub after saving it. You can specify the repository you want to push to with `repo_id` (will default to the name of `save_directory` in your namespace). 
 
-kwargs (`Dict[str, Any]`, *optional*) : Additional keyword arguments passed along to the [push_to_hub()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method.
+kwargs (`Dict[str, Any]`, *optional*) : Additional keyword arguments passed along to the [push_to_hub()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method.
 
 Save all saveable variables of the pipeline to a directory. A pipeline variable can be saved and loaded if its
 class implements both a save and loading method. The pipeline is easily reloaded using the
-[from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) class method.
+[from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) class method.
 
 #### diffusers.StableDiffusionMixin.enable_freeu[[diffusers.StableDiffusionMixin.enable_freeu]]
 
@@ -577,7 +577,7 @@ class implements both a save and loading method. The pipeline is easily reloaded
 diffusers.StableDiffusionMixin.enable_freeu(s1: float, s2: float, b1: float, b2: float)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L2285)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L2285)
 
 **Parameters:**
 
@@ -602,7 +602,7 @@ that are known to work well for different pipelines such as Stable Diffusion v1,
 diffusers.StableDiffusionMixin.disable_freeu()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pipeline_utils.py#L2307)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pipeline_utils.py#L2307)
 
 Disables the FreeU mechanism if enabled.
 
@@ -614,7 +614,7 @@ Disables the FreeU mechanism if enabled.
 diffusers.utils.PushToHubMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/hub_utils.py#L491)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/utils/hub_utils.py#L491)
 
 A Mixin to push a model, scheduler, or pipeline to the Hugging Face Hub.
 
@@ -624,7 +624,7 @@ A Mixin to push a model, scheduler, or pipeline to the Hugging Face Hub.
 push_to_hub(repo_id: str, commit_message: str | None = None, private: bool | None = None, token: str | None = None, create_pr: bool = False, safe_serialization: bool = True, variant: str | None = None, subfolder: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/utils/hub_utils.py#L526)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/utils/hub_utils.py#L526)
 
 **Parameters:**
 
@@ -666,7 +666,7 @@ unet.push_to_hub("your-org/my-finetuned-unet")
 diffusers.callbacks.PipelineCallback(cutoff_step_ratio = 1.0, cutoff_step_index = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/callbacks.py#L7)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/callbacks.py#L7)
 
 Base class for all the official callbacks used in a pipeline. This class provides a structure for implementing
 custom callbacks and ensures that all callbacks have a consistent interface.
@@ -683,7 +683,7 @@ variables listed in the `._callback_tensor_inputs` attribute of your pipeline cl
 diffusers.callbacks.SDCFGCutoffCallback(cutoff_step_ratio = 1.0, cutoff_step_index = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/callbacks.py#L69)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/callbacks.py#L69)
 
 Callback function for Stable Diffusion Pipelines. After certain number of steps (set by `cutoff_step_ratio` or
 `cutoff_step_index`), this callback will disable the CFG.
@@ -696,7 +696,7 @@ Note: This callback mutates the pipeline by changing the `_guidance_scale` attri
 diffusers.callbacks.SDXLCFGCutoffCallback(cutoff_step_ratio = 1.0, cutoff_step_index = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/callbacks.py#L98)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/callbacks.py#L98)
 
 Callback function for the base Stable Diffusion XL Pipelines. After certain number of steps (set by
 `cutoff_step_ratio` or `cutoff_step_index`), this callback will disable the CFG.
@@ -709,7 +709,7 @@ Note: This callback mutates the pipeline by changing the `_guidance_scale` attri
 diffusers.callbacks.SDXLControlnetCFGCutoffCallback(cutoff_step_ratio = 1.0, cutoff_step_index = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/callbacks.py#L140)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/callbacks.py#L140)
 
 Callback function for the Controlnet Stable Diffusion XL Pipelines. After certain number of steps (set by
 `cutoff_step_ratio` or `cutoff_step_index`), this callback will disable the CFG.
@@ -722,7 +722,7 @@ Note: This callback mutates the pipeline by changing the `_guidance_scale` attri
 diffusers.callbacks.IPAdapterScaleCutoffCallback(cutoff_step_ratio = 1.0, cutoff_step_index = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/callbacks.py#L188)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/callbacks.py#L188)
 
 Callback function for any pipeline that inherits `IPAdapterMixin`. After certain number of steps (set by
 `cutoff_step_ratio` or `cutoff_step_index`), this callback will set the IP Adapter scale to `0.0`.
@@ -735,7 +735,7 @@ Note: This callback mutates the IP Adapter attention processors by setting the s
 diffusers.callbacks.SD3CFGCutoffCallback(cutoff_step_ratio = 1.0, cutoff_step_index = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/callbacks.py#L212)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/callbacks.py#L212)
 
 Callback function for Stable Diffusion 3 Pipelines. After certain number of steps (set by `cutoff_step_ratio` or
 `cutoff_step_index`), this callback will disable the CFG.
@@ -743,4 +743,4 @@ Callback function for Stable Diffusion 3 Pipelines. After certain number of step
 Note: This callback mutates the pipeline by changing the `_guidance_scale` attribute to 0.0 after the cutoff step.
 
 ### FluxControlInpaint
-https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/control_flux_inpaint.md
+https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/control_flux_inpaint.md

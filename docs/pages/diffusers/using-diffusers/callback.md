@@ -2,7 +2,7 @@
 
 A callback runs at the end of a denoising step and can change pipeline state or tensors for later steps. Use it to adjust attributes or tensor variables for new behavior without rewriting the pipeline.
 
-These callbacks apply to classic [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) loops. In [Modular Diffusers](../modular_diffusers/overview), you can build and add custom pipeline blocks instead of `callback_on_step_end`.
+These callbacks work with classic [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) loops out of the box. They also work with [Modular Diffusers](../modular_diffusers/overview) pipelines once a block that runs them is inserted into the denoising loop; see [Modular pipelines](#modular-pipelines).
 
 Diffusers provides several callbacks in the pipeline [overview](../api/pipelines/overview#diffusers.callbacks.PipelineCallback).
 
@@ -11,7 +11,7 @@ To enable a callback, configure when the callback is executed after a certain nu
 - `cutoff_step_ratio` specifies when a callback is activated as a percentage of the total denoising steps. Use when the cutoff should scale with `num_inference_steps` (for example, drop CFG after 40% of run).
 - `cutoff_step_index` specifies the exact step number a callback is activated. Use when you care about an absolute step (for example, step `10` on a fixed 25-step schedule).
 
-The example below uses `cutoff_step_ratio=0.4`, which means the callback is activated once denoising reaches 40% of the total inference steps. [SDXLCFGCutoffCallback](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.callbacks.SDXLCFGCutoffCallback) disables classifier-free guidance (CFG) after a certain number of steps, which can help save compute without significantly affecting performance.
+The example below uses `cutoff_step_ratio=0.4`, which means the callback is activated once denoising reaches 40% of the total inference steps. [SDXLCFGCutoffCallback](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.callbacks.SDXLCFGCutoffCallback) disables classifier-free guidance (CFG) after a certain number of steps, which can help save compute without significantly affecting performance.
 
 Define a callback with one of the `cutoff` arguments and pass it to the `callback_on_step_end` parameter in the pipeline.
 
@@ -126,5 +126,65 @@ image = pipeline(
 ).images[0]
 ```
 
+## Modular pipelines
+
+Modular pipelines don't carry the `callback_on_step_end` and `interrupt` mechanism. It will come with first-class streaming support instead: [huggingface/diffusers#14159](https://github.com/huggingface/diffusers/pull/14159), not merged yet, adds `pipe.stream()`, which yields the pipeline state at every denoising step and ends the run when you stop iterating. For now, to reuse your existing callback functions, insert a block into the denoising loop: it receives the loop's `BlockState` with the step index and timestep, and can read or edit `latents`.
+
+> [!TIP]
+> Edit the blocks *before* [init_pipeline()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline): `pipe.blocks` returns a copy, so changing it after the pipeline exists has no effect.
+
+The block below takes the callback as a pipeline input and calls it with the same signature as above: the pipeline, the step index, the timestep and a dict of tensors, whose returned values are written back. `walk_denoise_loops` finds every denoising loop in the blocks, whichever workflow it belongs to, so the same snippet works for any modular pipeline.
+
+```py
+from typing import Callable
+
+import torch
+from diffusers import ModularPipeline
+from diffusers.modular_pipelines import InputParam, LoopSequentialPipelineBlocks, ModularPipelineBlocks
+
+class CallbackOnStepEnd(ModularPipelineBlocks):
+    @property
+    def inputs(self):
+        return [
+            InputParam(
+                "callback_on_step_end",
+                type_hint=Callable,
+                description="Called after each scheduler step as `callback(pipe, i, t, {'latents': ...})`; the dict it returns is written back.",
+            ),
+            InputParam("latents", required=True),
+        ]
+
+    def __call__(self, components, block_state, i, t):
+        if block_state.callback_on_step_end is not None:
+            outputs = block_state.callback_on_step_end(components, i, t, {"latents": block_state.latents})
+            block_state.latents = outputs.get("latents", block_state.latents)
+        return components, block_state
+
+def walk_denoise_loops(block):
+    """Every denoising loop in the blocks, whichever workflow it belongs to."""
+    if isinstance(block, LoopSequentialPipelineBlocks) and "denoiser" in block.sub_blocks:
+        yield block
+    for sub in getattr(block, "sub_blocks", {}).values():
+        yield from walk_denoise_loops(sub)
+
+repo_id = "stabilityai/stable-diffusion-xl-base-1.0"
+blocks = ModularPipeline.from_pretrained(repo_id).blocks
+for loop in walk_denoise_loops(blocks):
+    loop.sub_blocks["callback"] = CallbackOnStepEnd()  # appended after the last step of the loop
+pipe = blocks.init_pipeline(repo_id)
+pipe.load_components(dtype=torch.float16)
+pipe.to("cuda")
+```
+
+`callback_on_step_end` is now an input of the pipeline, and a callback written for a `DiffusionPipeline`, such as `decode_tensors` above, works as is:
+
+```py
+image = pipe(prompt="A croissant shaped like a cute bear.", callback_on_step_end=decode_tensors, output="images")[0]
+```
+
+[Early stopping](#early-stopping) works differently: a block cannot skip the loop it runs in, so setting `_interrupt` has no effect. Raise from the callback instead: the exception propagates out of `pipe(...)` (no image is decoded), and the pipeline stays usable afterwards.
+
+This works for every modular pipeline except the inner loop of nested loops (autoregressive video models such as Helios and Wan-Animate-2 denoise each chunk inside a block of the outer loop). There, insert the block into the outer loop instead: it runs once per chunk and receives the chunk index `k` in place of `i` and `t`.
+
 ### Understanding pipelines, models and schedulers
-https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/write_own_pipeline.md
+https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/write_own_pipeline.md

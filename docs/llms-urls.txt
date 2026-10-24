@@ -212,6 +212,7 @@ https://huggingface.co/docs/diffusers/api/models/autoencoder_kl_hunyuan_video15.
 https://huggingface.co/docs/diffusers/api/models/autoencoder_kl_hunyuanimage.md
 https://huggingface.co/docs/diffusers/api/models/autoencoder_kl_hunyuanimage_refiner.md
 https://huggingface.co/docs/diffusers/api/models/autoencoder_kl_kvae.md
+https://huggingface.co/docs/diffusers/api/models/autoencoder_kl_kvae_audio.md
 https://huggingface.co/docs/diffusers/api/models/autoencoder_kl_kvae_video.md
 https://huggingface.co/docs/diffusers/api/models/autoencoder_kl_wan.md
 https://huggingface.co/docs/diffusers/api/models/autoencoder_oobleck.md
@@ -261,6 +262,8 @@ https://huggingface.co/docs/diffusers/api/models/hunyuan_video15_transformer_3d.
 https://huggingface.co/docs/diffusers/api/models/hunyuan_video_transformer_3d.md
 https://huggingface.co/docs/diffusers/api/models/hunyuanimage_transformer_2d.md
 https://huggingface.co/docs/diffusers/api/models/ideogram4_transformer2d.md
+https://huggingface.co/docs/diffusers/api/models/kandinsky6_transformer.md
+https://huggingface.co/docs/diffusers/api/models/kandinsky6_vae.md
 https://huggingface.co/docs/diffusers/api/models/krea2_transformer2d.md
 https://huggingface.co/docs/diffusers/api/models/longcat_image_transformer2d.md
 https://huggingface.co/docs/diffusers/api/models/ltx2_diffusion_decoder.md
@@ -279,8 +282,12 @@ https://huggingface.co/docs/diffusers/api/models/pixart_transformer2d.md
 https://huggingface.co/docs/diffusers/api/models/prior_transformer.md
 https://huggingface.co/docs/diffusers/api/models/qwenimage21_transformer2d.md
 https://huggingface.co/docs/diffusers/api/models/qwenimage_transformer2d.md
+https://huggingface.co/docs/diffusers/api/models/rfd4_proteina_autoencoder.md
+https://huggingface.co/docs/diffusers/api/models/rfd4_proteina_transformer.md
 https://huggingface.co/docs/diffusers/api/models/sana_transformer2d.md
 https://huggingface.co/docs/diffusers/api/models/sana_video_transformer3d.md
+https://huggingface.co/docs/diffusers/api/models/sana_wm_refiner_transformer3d.md
+https://huggingface.co/docs/diffusers/api/models/sana_wm_transformer3d.md
 https://huggingface.co/docs/diffusers/api/models/sd3_transformer2d.md
 https://huggingface.co/docs/diffusers/api/models/skyreels_v2_transformer_3d.md
 https://huggingface.co/docs/diffusers/api/models/stable_audio_3_transformer.md
@@ -288,6 +295,7 @@ https://huggingface.co/docs/diffusers/api/models/stable_audio_transformer.md
 https://huggingface.co/docs/diffusers/api/models/stable_cascade_unet.md
 https://huggingface.co/docs/diffusers/api/models/transformer2d.md
 https://huggingface.co/docs/diffusers/api/models/transformer_bria_fibo.md
+https://huggingface.co/docs/diffusers/api/models/transformer_bria_fibo2.md
 https://huggingface.co/docs/diffusers/api/models/transformer_joyimage.md
 https://huggingface.co/docs/diffusers/api/models/transformer_joyimage_edit_plus.md
 https://huggingface.co/docs/diffusers/api/models/transformer_temporal.md
@@ -320,6 +328,7 @@ https://huggingface.co/docs/diffusers/api/pipelines/aura_flow.md
 https://huggingface.co/docs/diffusers/api/pipelines/auto_pipeline.md
 https://huggingface.co/docs/diffusers/api/pipelines/bria_3_2.md
 https://huggingface.co/docs/diffusers/api/pipelines/bria_fibo.md
+https://huggingface.co/docs/diffusers/api/pipelines/bria_fibo2.md
 https://huggingface.co/docs/diffusers/api/pipelines/bria_fibo_edit.md
 https://huggingface.co/docs/diffusers/api/pipelines/chroma.md
 https://huggingface.co/docs/diffusers/api/pipelines/consistency_models.md
@@ -343,6 +352,7 @@ https://huggingface.co/docs/diffusers/api/pipelines/echo.md
 https://huggingface.co/docs/diffusers/api/pipelines/ernie_image.md
 https://huggingface.co/docs/diffusers/api/pipelines/flux.md
 https://huggingface.co/docs/diffusers/api/pipelines/flux2.md
+https://huggingface.co/docs/diffusers/api/pipelines/flux3.md
 https://huggingface.co/docs/diffusers/api/pipelines/framepack.md
 https://huggingface.co/docs/diffusers/api/pipelines/helios.md
 https://huggingface.co/docs/diffusers/api/pipelines/hunyuandit.md
@@ -353,6 +363,7 @@ https://huggingface.co/docs/diffusers/api/pipelines/kandinsky.md
 https://huggingface.co/docs/diffusers/api/pipelines/kandinsky3.md
 https://huggingface.co/docs/diffusers/api/pipelines/kandinsky5_image.md
 https://huggingface.co/docs/diffusers/api/pipelines/kandinsky5_video.md
+https://huggingface.co/docs/diffusers/api/pipelines/kandinsky6.md
 https://huggingface.co/docs/diffusers/api/pipelines/kandinsky_v22.md
 https://huggingface.co/docs/diffusers/api/pipelines/kolors.md
 https://huggingface.co/docs/diffusers/api/pipelines/krea2.md
@@ -377,7 +388,9 @@ https://huggingface.co/docs/diffusers/api/pipelines/pix2pix.md
 https://huggingface.co/docs/diffusers/api/pipelines/pixart.md
 https://huggingface.co/docs/diffusers/api/pipelines/pixart_sigma.md
 https://huggingface.co/docs/diffusers/api/pipelines/qwenimage21.md
+https://huggingface.co/docs/diffusers/api/pipelines/rfd4_proteina.md
 https://huggingface.co/docs/diffusers/api/pipelines/sana.md
+https://huggingface.co/docs/diffusers/api/pipelines/sana_wm.md
 https://huggingface.co/docs/diffusers/api/pipelines/shap_e.md
 https://huggingface.co/docs/diffusers/api/pipelines/stable_audio.md
 https://huggingface.co/docs/diffusers/api/pipelines/stable_audio_3.md
@@ -433,8 +446,10 @@ https://huggingface.co/docs/diffusers/api/schedulers/multistep_dpm_solver.md
 https://huggingface.co/docs/diffusers/api/schedulers/multistep_dpm_solver_cogvideox.md
 https://huggingface.co/docs/diffusers/api/schedulers/multistep_dpm_solver_inverse.md
 https://huggingface.co/docs/diffusers/api/schedulers/overview.md
+https://huggingface.co/docs/diffusers/api/schedulers/piflow.md
 https://huggingface.co/docs/diffusers/api/schedulers/pndm.md
 https://huggingface.co/docs/diffusers/api/schedulers/repaint.md
+https://huggingface.co/docs/diffusers/api/schedulers/rfd4_proteina.md
 https://huggingface.co/docs/diffusers/api/schedulers/score_sde_ve.md
 https://huggingface.co/docs/diffusers/api/schedulers/singlestep_dpm_solver.md
 https://huggingface.co/docs/diffusers/api/schedulers/tcd.md
@@ -452,6 +467,7 @@ https://huggingface.co/docs/diffusers/index.md
 https://huggingface.co/docs/diffusers/installation.md
 https://huggingface.co/docs/diffusers/modular_diffusers/auto_docstring.md
 https://huggingface.co/docs/diffusers/modular_diffusers/auto_pipeline_blocks.md
+https://huggingface.co/docs/diffusers/modular_diffusers/coming_from_diffusion_pipeline.md
 https://huggingface.co/docs/diffusers/modular_diffusers/components_manager.md
 https://huggingface.co/docs/diffusers/modular_diffusers/custom_blocks.md
 https://huggingface.co/docs/diffusers/modular_diffusers/loop_sequential_pipeline_blocks.md
@@ -463,8 +479,8 @@ https://huggingface.co/docs/diffusers/modular_diffusers/quickstart.md
 https://huggingface.co/docs/diffusers/modular_diffusers/sequential_pipeline_blocks.md
 https://huggingface.co/docs/diffusers/optimization/attention_backends.md
 https://huggingface.co/docs/diffusers/optimization/cache.md
+https://huggingface.co/docs/diffusers/optimization/cache_dit.md
 https://huggingface.co/docs/diffusers/optimization/coreml.md
-https://huggingface.co/docs/diffusers/optimization/deepcache.md
 https://huggingface.co/docs/diffusers/optimization/fp16.md
 https://huggingface.co/docs/diffusers/optimization/habana.md
 https://huggingface.co/docs/diffusers/optimization/memory.md
@@ -475,11 +491,10 @@ https://huggingface.co/docs/diffusers/optimization/open_vino.md
 https://huggingface.co/docs/diffusers/optimization/para_attn.md
 https://huggingface.co/docs/diffusers/optimization/pruna.md
 https://huggingface.co/docs/diffusers/optimization/speed-memory-optims.md
-https://huggingface.co/docs/diffusers/optimization/tgate.md
-https://huggingface.co/docs/diffusers/optimization/tome.md
+https://huggingface.co/docs/diffusers/optimization/tpu.md
 https://huggingface.co/docs/diffusers/optimization/xdit.md
-https://huggingface.co/docs/diffusers/optimization/xformers.md
 https://huggingface.co/docs/diffusers/quantization/autoround.md
+https://huggingface.co/docs/diffusers/quantization/bfl.md
 https://huggingface.co/docs/diffusers/quantization/bitsandbytes.md
 https://huggingface.co/docs/diffusers/quantization/gguf.md
 https://huggingface.co/docs/diffusers/quantization/modelopt.md
@@ -499,6 +514,7 @@ https://huggingface.co/docs/diffusers/training/ddpo.md
 https://huggingface.co/docs/diffusers/training/distributed_inference.md
 https://huggingface.co/docs/diffusers/training/dreambooth.md
 https://huggingface.co/docs/diffusers/training/instructpix2pix.md
+https://huggingface.co/docs/diffusers/training/jobs.md
 https://huggingface.co/docs/diffusers/training/kandinsky.md
 https://huggingface.co/docs/diffusers/training/lcm_distill.md
 https://huggingface.co/docs/diffusers/training/lora.md

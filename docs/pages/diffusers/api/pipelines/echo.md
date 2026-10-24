@@ -5,7 +5,7 @@ first frame, ordered image/audio memory slots, and a stochastic few-step Distrib
 sampler.
 The pipeline generates synchronized video and audio.
 
-Echo is implemented as a [ModularPipeline](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) so its text encoding, memory conditioning, stochastic DMD denoising, and
+Echo is implemented as a [ModularPipeline](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) so its text encoding, memory conditioning, stochastic DMD denoising, and
 decoding blocks can be run as a complete workflow or composed independently.
 
 ## Inference
@@ -83,7 +83,7 @@ decoding. `output=["latents", "audio_latents"]` returns normalized VAE tensors. 
 diffusers.EchoModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/echo/modular_pipeline.py#L27)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/echo/modular_pipeline.py#L27)
 
 A ModularPipeline for the Echo long-video DMD checkpoint.
 
@@ -95,7 +95,7 @@ A ModularPipeline for the Echo long-video DMD checkpoint.
 diffusers.EchoBlocks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/echo/modular_blocks_echo.py#L220)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/echo/modular_blocks_echo.py#L220)
 
 Echo reference-to-video generation with clean first-frame conditioning, ordered image/audio memory slots, and
 stochastic DMD denoising.
@@ -159,4 +159,4 @@ audio (`Tensor`):
 The generated audio waveform.
 
 ### Motif-Video
-https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/motif_video.md
+https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/motif_video.md

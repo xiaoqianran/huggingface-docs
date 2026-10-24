@@ -26,7 +26,7 @@ Make sure you have the following libraries installed.
 
 ## Load model checkpoints
 
-Model weights may be stored in separate subfolders on the Hub or locally, in which case, you should use the [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) method:
+Model weights may be stored in separate subfolders on the Hub or locally, in which case, you should use the [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) method:
 
 ```py
 from diffusers import AutoPipelineForText2Image
@@ -36,7 +36,7 @@ pipeline = AutoPipelineForText2Image.from_pretrained("stabilityai/sdxl-turbo", d
 pipeline = pipeline.to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
-You can also use the [from_single_file()](/docs/diffusers/v0.41.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) method to load a model checkpoint stored in a single file format (`.ckpt` or `.safetensors`) from the Hub or locally. For this loading method, you need to set `timestep_spacing="trailing"` (feel free to experiment with the other scheduler config values to get better results):
+You can also use the [from_single_file()](/docs/diffusers/v0.42.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) method to load a model checkpoint stored in a single file format (`.ckpt` or `.safetensors`) from the Hub or locally. For this loading method, you need to set `timestep_spacing="trailing"` (feel free to experiment with the other scheduler config values to get better results):
 
 ```py
 from diffusers import StableDiffusionXLPipeline, EulerAncestralDiscreteScheduler
@@ -112,4 +112,4 @@ pipe.upcast_vae()
 As an alternative, you can also use a [16-bit VAE](https://huggingface.co/madebyollin/sdxl-vae-fp16-fix) created by community member [`@madebyollin`](https://huggingface.co/madebyollin) that does not need to be upcasted to `float32`.
 
 ### Text-to-image
-https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/stable_diffusion/text2img.md
+https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_diffusion/text2img.md

@@ -450,5 +450,5 @@ Inference speed is reduced to 649.23 seconds compared to the baseline, or 5.66x 
 | NVIDIA L20 | 4 | FBCache + CP | 718.15 | 5.12x |
 | NVIDIA L20 | 8 | FBCache + CP | 649.23 | 5.66x |
 
-### DeepCache
-https://huggingface.co/docs/diffusers/v0.41.0/optimization/deepcache.md
+### Intel Gaudi
+https://huggingface.co/docs/diffusers/v0.42.0/optimization/habana.md

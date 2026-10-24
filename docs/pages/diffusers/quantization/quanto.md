@@ -136,5 +136,5 @@ images.save("flux-quanto-compile.png")
 - int4
 - int2
 
-### SDNQ
-https://huggingface.co/docs/diffusers/v0.41.0/quantization/sdnq.md
+### BFL (fp8r / nvfp4)
+https://huggingface.co/docs/diffusers/v0.42.0/quantization/bfl.md

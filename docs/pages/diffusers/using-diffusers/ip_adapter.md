@@ -15,12 +15,12 @@ text prompt                         reference image
                   (frozen base)
 ```
 
-IP-Adapter checkpoints are typically ~100MB because they store adapter weights, not a full model. Load a base pipeline first, then load the adapter with [load_ip_adapter()](/docs/diffusers/v0.41.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.load_ip_adapter).
+IP-Adapter checkpoints are typically ~100MB because they store adapter weights, not a full model. Load a base pipeline first, then load the adapter with [load_ip_adapter()](/docs/diffusers/v0.42.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.load_ip_adapter).
 
 > [!TIP]
 > IP-Adapters are available to many models such as [Flux](../api/pipelines/flux#ip-adapter) and [Stable Diffusion 3](../api/pipelines/stable_diffusion/stable_diffusion_3), and more. The examples in this guide use Stable Diffusion and Stable Diffusion XL.
 
-Use [set_ip_adapter_scale()](/docs/diffusers/v0.41.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.set_ip_adapter_scale) to control how strongly the IP-Adapter steers generation. `1.0` applies the adapter at full strength; `0.5` usually balances text and image prompts.
+Use [set_ip_adapter_scale()](/docs/diffusers/v0.42.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.set_ip_adapter_scale) to control how strongly the IP-Adapter steers generation. `1.0` applies the adapter at full strength; `0.5` usually balances text and image prompts.
 
 The examples below show IP-Adapter on common tasks.
 
@@ -140,7 +140,7 @@ pipeline(
     generated image
   
 
-The [enable_model_cpu_offload()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) method is useful for reducing memory and it should be enabled after the IP-Adapter is loaded. Otherwise, the IP-Adapter's image encoder is also offloaded to the CPU and returns an error.
+The [enable_model_cpu_offload()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) method is useful for reducing memory and it should be enabled after the IP-Adapter is loaded. Otherwise, the IP-Adapter's image encoder is also offloaded to the CPU and returns an error.
 
 ```py
 import torch
@@ -218,7 +218,7 @@ pipeline.load_ip_adapter(
 )
 ```
 
-FaceID checkpoints use face embeddings from [InsightFace](https://github.com/deepinsight/insightface) instead of CLIP image embeddings. Use the [DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler) or [EulerDiscreteScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/euler#diffusers.EulerDiscreteScheduler) for FaceID models. Extract the face embeddings and pass them as a list of tensors to `ip_adapter_image_embeds`.
+FaceID checkpoints use face embeddings from [InsightFace](https://github.com/deepinsight/insightface) instead of CLIP image embeddings. Use the [DDIMScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/ddim#diffusers.DDIMScheduler) or [EulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/euler#diffusers.EulerDiscreteScheduler) for FaceID models. Extract the face embeddings and pass them as a list of tensors to `ip_adapter_image_embeds`.
 
 ```py
 # pip install insightface
@@ -262,7 +262,7 @@ pipeline(
 ).images[0]
 ```
 
-For FaceID Plus, load [CLIPVisionModelWithProjection](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPVisionModelWithProjection) as the image encoder.
+For FaceID Plus, load [CLIPVisionModelWithProjection](https://huggingface.co/docs/transformers/v5.20.2/en/model_doc/clip#transformers.CLIPVisionModelWithProjection) as the image encoder.
 
 ```py
 import torch
@@ -369,7 +369,7 @@ pipeline(
 
 Binary masking enables assigning an IP-Adapter image to a specific area of the output image, making it useful for composing multiple IP-Adapter images. Each IP-Adapter image requires a binary mask.
 
-Load the [IPAdapterMaskProcessor](/docs/diffusers/v0.41.0/en/api/loaders/ip_adapter#diffusers.IPAdapterMaskProcessor) to preprocess the image masks. For the best results, provide the output `height` and `width` to ensure masks with different aspect ratios are appropriately sized. If the input masks already match the aspect ratio of the generated image, you don't need to set the `height` and `width`.
+Load the [IPAdapterMaskProcessor](/docs/diffusers/v0.42.0/en/api/loaders/ip_adapter#diffusers.IPAdapterMaskProcessor) to preprocess the image masks. For the best results, provide the output `height` and `width` to ensure masks with different aspect ratios are appropriately sized. If the input masks already match the aspect ratio of the generated image, you don't need to set the `height` and `width`.
 
 ```py
 import torch
@@ -450,7 +450,7 @@ Combine IP-Adapter with other adapters or pipelines, like multiple adapters, Con
 
 Combine multiple IP-Adapters to generate images in more diverse styles. For example, you can use IP-Adapter Face to generate consistent faces and characters and IP-Adapter Plus to generate those faces in specific styles.
 
-Load an image encoder with [CLIPVisionModelWithProjection](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPVisionModelWithProjection).
+Load an image encoder with [CLIPVisionModelWithProjection](https://huggingface.co/docs/transformers/v5.20.2/en/model_doc/clip#transformers.CLIPVisionModelWithProjection).
 
 ```py
 import torch
@@ -525,7 +525,7 @@ pipeline(
 
 For structural control, combine IP-Adapter with [ControlNet](../api/pipelines/controlnet) conditioned on depth maps, edge maps, pose estimations, and more.
 
-The example below loads a [ControlNetModel](/docs/diffusers/v0.41.0/en/api/models/controlnet#diffusers.ControlNetModel) checkpoint conditioned on depth maps and combines it with an IP-Adapter.
+The example below loads a [ControlNetModel](/docs/diffusers/v0.42.0/en/api/models/controlnet#diffusers.ControlNetModel) checkpoint conditioned on depth maps and combines it with an IP-Adapter.
 
 ```py
 import torch
@@ -579,7 +579,7 @@ pipeline(
 
 For style and layout control, combine IP-Adapter with [InstantStyle](https://huggingface.co/papers/2404.02733). InstantStyle separates *style* (color, texture, overall feel) from *content* and applies style only in style-specific blocks so content areas stay intact. That gives stronger style consistency and clearer layout control.
 
-Activate the IP-Adapter only in selected layers with [set_ip_adapter_scale()](/docs/diffusers/v0.41.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.set_ip_adapter_scale). The example below turns it on in the model's down `block_2` (layout) and up `block_0` (style).
+Activate the IP-Adapter only in selected layers with [set_ip_adapter_scale()](/docs/diffusers/v0.42.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.set_ip_adapter_scale). The example below turns it on in the model's down `block_2` (layout) and up `block_0` (style).
 
 ```py
 import torch
@@ -690,4 +690,4 @@ pipeline(
     generated image
 
 ### Legacy checkpoints
-https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/legacy_checkpoints.md
+https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/legacy_checkpoints.md

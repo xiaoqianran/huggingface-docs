@@ -14,7 +14,7 @@ The abstract from the paper is:
 diffusers.UVit2DModel(hidden_size: int = 1024, use_bias: bool = False, hidden_dropout: float = 0.0, cond_embed_dim: int = 768, micro_cond_encode_dim: int = 256, micro_cond_embed_dim: int = 1280, encoder_hidden_size: int = 768, vocab_size: int = 8256, codebook_size: int = 8192, in_channels: int = 768, block_out_channels: int = 768, num_res_blocks: int = 3, downsample: bool = False, upsample: bool = False, block_num_heads: int = 12, num_hidden_layers: int = 22, num_attention_heads: int = 16, attention_dropout: float = 0.0, intermediate_size: int = 2816, layer_norm_eps: float = 1e-06, ln_elementwise_affine: bool = True, sample_size: int = 64)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/uvit_2d.py#L38)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/unets/uvit_2d.py#L38)
 
 #### forward[[diffusers.UVit2DModel.forward]]
 
@@ -22,7 +22,7 @@ diffusers.UVit2DModel(hidden_size: int = 1024, use_bias: bool = False, hidden_dr
 forward(input_ids, encoder_hidden_states, pooled_text_emb, micro_conds, cross_attention_kwargs = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/uvit_2d.py#L150)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/unets/uvit_2d.py#L150)
 
 **Parameters:**
 
@@ -47,7 +47,7 @@ height, width)`.
 set_default_attn_processor()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/uvit_2d.py#L232)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/unets/uvit_2d.py#L232)
 
 Disables custom attention processors and sets the default attention implementation.
 
@@ -59,7 +59,7 @@ Disables custom attention processors and sets the default attention implementati
 diffusers.models.unets.uvit_2d.UVit2DConvEmbed(in_channels, block_out_channels, vocab_size, elementwise_affine, eps, bias)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/uvit_2d.py#L248)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/unets/uvit_2d.py#L248)
 
 ## UVitBlock[[diffusers.models.unets.uvit_2d.UVitBlock]]
 
@@ -69,7 +69,7 @@ diffusers.models.unets.uvit_2d.UVit2DConvEmbed(in_channels, block_out_channels, 
 diffusers.models.unets.uvit_2d.UVitBlock(channels, num_res_blocks: int, hidden_size, hidden_dropout, ln_elementwise_affine, layer_norm_eps, use_bias, block_num_heads, attention_dropout, downsample: bool, upsample: bool)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/uvit_2d.py#L263)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/unets/uvit_2d.py#L263)
 
 ## ConvNextBlock[[diffusers.models.unets.uvit_2d.ConvNextBlock]]
 
@@ -79,7 +79,7 @@ diffusers.models.unets.uvit_2d.UVitBlock(channels, num_res_blocks: int, hidden_s
 diffusers.models.unets.uvit_2d.ConvNextBlock(channels, layer_norm_eps, ln_elementwise_affine, use_bias, hidden_dropout, hidden_size, res_ffn_factor = 4)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/uvit_2d.py#L362)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/unets/uvit_2d.py#L362)
 
 ## ConvMlmLayer[[diffusers.models.unets.uvit_2d.ConvMlmLayer]]
 
@@ -89,7 +89,20 @@ diffusers.models.unets.uvit_2d.ConvNextBlock(channels, layer_norm_eps, ln_elemen
 diffusers.models.unets.uvit_2d.ConvMlmLayer(block_out_channels: int, in_channels: int, use_bias: bool, ln_elementwise_affine: bool, layer_norm_eps: float, codebook_size: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/unets/uvit_2d.py#L407)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/unets/uvit_2d.py#L407)
 
-### ZImageTransformer2DModel
-https://huggingface.co/docs/diffusers/v0.41.0/api/models/z_image_transformer2d.md
+### Flux3 Transformer
+https://huggingface.co/docs/diffusers/v0.42.0/api/models/flux3_transformer.md
+
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License. -->

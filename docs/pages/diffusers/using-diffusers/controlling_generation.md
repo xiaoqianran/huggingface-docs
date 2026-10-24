@@ -161,4 +161,4 @@ the self-attention layer present in the most widely used architectures to condit
 the diffusion process on a set of feedback images.
 
 ### DreamBooth
-https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/dreambooth.md
+https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/dreambooth.md

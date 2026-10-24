@@ -220,7 +220,7 @@ export_to_video(result.video, "cosmos3_v2v.mp4", fps=24, macro_block_size=1)
 
 ## Video-to-video with sound
 
-When the checkpoint carries a `sound_tokenizer`, add `enable_sound=True` to the video-to-video call to jointly generate a synchronized audio track. The waveform is returned alongside the video and can be muxed into the MP4 with [encode_video()](/docs/diffusers/v0.41.0/en/api/utilities#diffusers.utils.encode_video).
+When the checkpoint carries a `sound_tokenizer`, add `enable_sound=True` to the video-to-video call to jointly generate a synchronized audio track. The waveform is returned alongside the video and can be muxed into the MP4 with [encode_video()](/docs/diffusers/v0.42.0/en/api/utilities#diffusers.utils.encode_video).
 
 ```python
 import json
@@ -312,7 +312,7 @@ encode_video(
 
 ## Text-to-video with sound
 
-When the checkpoint carries a `sound_tokenizer`, pass `enable_sound=True` to jointly generate a synchronized audio track. The waveform is returned alongside the video and can be muxed into the MP4 with [encode_video()](/docs/diffusers/v0.41.0/en/api/utilities#diffusers.utils.encode_video).
+When the checkpoint carries a `sound_tokenizer`, pass `enable_sound=True` to jointly generate a synchronized audio track. The waveform is returned alongside the video and can be muxed into the MP4 with [encode_video()](/docs/diffusers/v0.42.0/en/api/utilities#diffusers.utils.encode_video).
 
 This is the same call as the text-to-video example above with `enable_sound=True` added:
 
@@ -384,7 +384,7 @@ encode_video(
 
 ## Action-conditioned generation
 
-Action runs group every action-specific input into a [CosmosActionCondition](/docs/diffusers/v0.41.0/en/api/pipelines/cosmos3#diffusers.CosmosActionCondition) passed via the `action` argument instead of the top-level `image` / `video` / `height` / `width` arguments. Set `resolution_tier` (`256`/`480`/`704`/`720`) close to the input video's native resolution; it selects the conditioning canvas. Cosmos 3 supports three action modes — `policy`, `forward_dynamics`, and `inverse_dynamics`. `policy` and `forward_dynamics` condition only on the first frame (so an `image` or a `video` both work), while `inverse_dynamics` requires a `video`. The conditioning video for an action run is set on `action.video` (or `action.image`), not on the pipeline's top-level `video` argument.
+Action runs group every action-specific input into a [CosmosActionCondition](/docs/diffusers/v0.42.0/en/api/pipelines/cosmos3#diffusers.CosmosActionCondition) passed via the `action` argument instead of the top-level `image` / `video` / `height` / `width` arguments. Set `resolution_tier` (`256`/`480`/`704`/`720`) close to the input video's native resolution; it selects the conditioning canvas. Cosmos 3 supports three action modes — `policy`, `forward_dynamics`, and `inverse_dynamics`. `policy` and `forward_dynamics` condition only on the first frame (so an `image` or a `video` both work), while `inverse_dynamics` requires a `video`. The conditioning video for an action run is set on `action.video` (or `action.image`), not on the pipeline's top-level `video` argument.
 
 Pass a plain task description as `prompt` and pick the camera with `action.view_point` (default `"ego_view"`; also `"third_person_view"`, `"wrist_view"`, `"concat_view"`). The pipeline turns these into the structured JSON caption the model was trained on, so action prompts should not be LLM-upsampled.
 
@@ -482,7 +482,7 @@ if result.action is not None:
 
 ## SeaCache
 
-SeaCache is disabled by default. Cosmos 3 supports enabling it explicitly with [SeaCacheConfig](/docs/diffusers/v0.41.0/en/api/cache#diffusers.SeaCacheConfig). SeaCache reuses
+SeaCache is disabled by default. Cosmos 3 supports enabling it explicitly with [SeaCacheConfig](/docs/diffusers/v0.42.0/en/api/cache#diffusers.SeaCacheConfig). SeaCache reuses
 transformer residuals when the Spectral-Evolution-Aware indicator changes slowly, reducing the number of full
 transformer executions. It computes the indicator from the raw vision latents, including clean conditioning frames for
 image-to-video generation. Enable it on the transformer with scheduler metadata callbacks from the pipeline:
@@ -498,8 +498,8 @@ pipe = Cosmos3OmniPipeline.from_pretrained(
 pipe.transformer.enable_cache(SeaCacheConfig(threshold=0.2, max_consecutive_cached=2))
 ```
 
-The same model-level API works with [Cosmos3OmniPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniPipeline), [Cosmos3OmniModularPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniModularPipeline), and
-[Cosmos3DistilledModularPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/cosmos3#diffusers.Cosmos3DistilledModularPipeline). SeaCache is approximate and can change generated outputs. Disable it with
+The same model-level API works with [Cosmos3OmniPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniPipeline), [Cosmos3OmniModularPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniModularPipeline), and
+[Cosmos3DistilledModularPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/cosmos3#diffusers.Cosmos3DistilledModularPipeline). SeaCache is approximate and can change generated outputs. Disable it with
 `pipe.transformer.disable_cache()` when you need every denoising step to execute the full transformer. Cache state is
 reset after each pipeline call, and conditional and unconditional guidance branches keep independent histories.
 
@@ -535,7 +535,7 @@ Two requirements are specific to Cosmos 3:
 
 ### Run it
 
-The full CLI [`examples/cosmos3/inference_cosmos3.py`](https://github.com/huggingface/diffusers/blob/main/examples/cosmos3/inference_cosmos3.py) uses [Cosmos3OmniModularPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniModularPipeline) and reuses these helpers, so **any modality** (text-to-image/video, image-to-video, sound, action modes) runs multi-GPU via `--tp-degree` / `--cp-degree`. Launch with [torchrun](https://docs.pytorch.org/docs/stable/elastic/run.html); `--tp-degree * --cp-degree` must equal `--nproc_per_node`. Every rank produces the same output; rank 0 writes it.
+The full CLI [`examples/cosmos3/inference_cosmos3.py`](https://github.com/huggingface/diffusers/blob/main/examples/cosmos3/inference_cosmos3.py) uses [Cosmos3OmniModularPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniModularPipeline) and reuses these helpers, so **any modality** (text-to-image/video, image-to-video, sound, action modes) runs multi-GPU via `--tp-degree` / `--cp-degree`. Launch with [torchrun](https://docs.pytorch.org/docs/stable/elastic/run.html); `--tp-degree * --cp-degree` must equal `--nproc_per_node`. Every rank produces the same output; rank 0 writes it.
 
 ```bash
 # CP only — Nano (fits one GPU); CP degree must divide 32 query heads.
@@ -564,7 +564,7 @@ CP shards *activations* but replicates every weight on every rank, so it does no
 
 ### Use it in your own modular pipeline
 
-The CLI flags are convenient, but you can call the helpers directly with [Cosmos3OmniModularPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniModularPipeline). Load the pipeline configuration and components on CPU, apply TP *before* moving the pipeline to the rank-local GPU, switch to the `native` backend, and then enable CP. Do not use `device_map` for this flow:
+The CLI flags are convenient, but you can call the helpers directly with [Cosmos3OmniModularPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniModularPipeline). Load the pipeline configuration and components on CPU, apply TP *before* moving the pipeline to the rank-local GPU, switch to the `native` backend, and then enable CP. Do not use `device_map` for this flow:
 
 ```python
 import os
@@ -711,7 +711,7 @@ pipe = Cosmos3OmniPipeline.from_pretrained(
 diffusers.Cosmos3OmniPipeline(transformer: Cosmos3OmniTransformer, text_tokenizer: AutoTokenizer, vae: AutoencoderKLWan, scheduler: UniPCMultistepScheduler, sound_tokenizer: diffusers.models.autoencoders.autoencoder_cosmos3_audio.Cosmos3AVAEAudioTokenizer | None = None, safety_checker: diffusers.pipelines.cosmos.pipeline_cosmos3_omni.CosmosSafetyChecker | None = None, enable_safety_checker: bool = True, default_use_system_prompt: bool = True, use_native_flow_schedule: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cosmos/pipeline_cosmos3_omni.py#L413)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/cosmos/pipeline_cosmos3_omni.py#L413)
 
 #### decode_sound[[diffusers.Cosmos3OmniPipeline.decode_sound]]
 
@@ -719,7 +719,7 @@ diffusers.Cosmos3OmniPipeline(transformer: Cosmos3OmniTransformer, text_tokenize
 decode_sound(latent: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cosmos/pipeline_cosmos3_omni.py#L517)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/cosmos/pipeline_cosmos3_omni.py#L517)
 
 Decode a sound latent `[C, T]` to a waveform `[audio_ch, N]`.
 
@@ -731,7 +731,7 @@ Adds/removes the batch dimension expected by the sound tokenizer decoder.
 prepare_latents(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, NoneType] = None, video: typing.Union[list[PIL.Image.Image], torch.Tensor, numpy.ndarray, NoneType] = None, condition_frame_indexes_vision: Iterable = (0, 1), condition_video_keep: typing.Literal['first', 'last'] = 'first', num_frames: int | None = None, height: int | None = None, width: int | None = None, fps: float = 24.0, latents: typing.Optional[torch.Tensor] = None, sound_latents: typing.Optional[torch.Tensor] = None, action_latents: typing.Optional[torch.Tensor] = None, generator: typing.Optional[torch.Generator] = None, device: str = 'cuda', dtype: dtype = torch.bfloat16, enable_sound: bool = False, action: CosmosActionCondition | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cosmos/pipeline_cosmos3_omni.py#L763)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/cosmos/pipeline_cosmos3_omni.py#L763)
 
 **Returns:**
 
@@ -745,7 +745,7 @@ Build conditioning + initial noise for a single sample.
 tokenize_prompt(prompt: str, negative_prompt: str | None = None, num_frames: int = 189, height: int = 720, width: int = 1280, fps: float = 24.0, use_system_prompt: bool | None = None, add_resolution_template: bool = True, add_duration_template: bool = True, action_mode: str | None = None, action_view_point: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cosmos/pipeline_cosmos3_omni.py#L1132)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/cosmos/pipeline_cosmos3_omni.py#L1132)
 
 **Returns:**
 
@@ -769,7 +769,7 @@ flat metadata templates are skipped because the JSON already carries duration/fp
 
 ## Cosmos3OmniModularPipeline
 
-Cosmos 3 is also available as a Modular Diffusers pipeline. The task-based [Cosmos3OmniPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniPipeline) remains available; the modular pipeline coexists with it and covers the same modes (`text2image`, `text2video`, `image2video`, `video2video`, action-conditioned generation, and `transfer` (structural control), with optional sound when supported by the checkpoint).
+Cosmos 3 is also available as a Modular Diffusers pipeline. The task-based [Cosmos3OmniPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniPipeline) remains available; the modular pipeline coexists with it and covers the same modes (`text2image`, `text2video`, `image2video`, `video2video`, action-conditioned generation, and `transfer` (structural control), with optional sound when supported by the checkpoint).
 
 ```python
 import torch
@@ -794,7 +794,7 @@ videos = pipe(
 image = videos[0]
 ```
 
-You can also load through [ModularPipeline](/docs/diffusers/v0.41.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) and let the repository config select the blocks class:
+You can also load through [ModularPipeline](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) and let the repository config select the blocks class:
 
 ```python
 import torch
@@ -1020,8 +1020,8 @@ export_to_video(videos, "cosmos3_modular_transfer_edge.mp4", fps=30, macro_block
 
 ### Distilled (few-step) text-to-image and image-to-video[[diffusers.Cosmos3OmniModularPipeline]]
 
-Few-step distilled checkpoints are served by [Cosmos3DistilledModularPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/cosmos3#diffusers.Cosmos3DistilledModularPipeline) (blocks:
-`Cosmos3DistilledBlocks`); the base [Cosmos3OmniModularPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniModularPipeline) and [Cosmos3OmniPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniPipeline) do
+Few-step distilled checkpoints are served by [Cosmos3DistilledModularPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/cosmos3#diffusers.Cosmos3DistilledModularPipeline) (blocks:
+`Cosmos3DistilledBlocks`); the base [Cosmos3OmniModularPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniModularPipeline) and [Cosmos3OmniPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniPipeline) do
 not support them. `num_inference_steps` is fixed to the length of the `distilled_sigmas` pipeline
 config (from the checkpoint's `modular_model_index.json`) and `guidance_scale` is forced to
 1.0 since guidance is baked into the weights — passing any other value for either raises an error,
@@ -1088,7 +1088,7 @@ export_to_video(videos, "cosmos3_distilled_i2v.mp4", fps=24, macro_block_size=1)
 diffusers.Cosmos3OmniModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/cosmos/modular_pipeline.py#L7)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/cosmos/modular_pipeline.py#L7)
 
 A ModularPipeline for Cosmos 3 omni generation.
 
@@ -1103,7 +1103,7 @@ A ModularPipeline for Cosmos 3 omni generation.
 diffusers.Cosmos3DistilledModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/modular_pipelines/cosmos/modular_pipeline.py#L129)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/cosmos/modular_pipeline.py#L129)
 
 A ModularPipeline for distilled (few-step) Cosmos 3 omni generation.
 
@@ -1122,7 +1122,7 @@ pipeline's `distilled_sigmas` config (populated from `modular_model_index.json`)
 diffusers.CosmosActionCondition(mode: typing.Literal['policy', 'forward_dynamics', 'inverse_dynamics'], chunk_size: int, domain_name: str, resolution_tier: int = 480, raw_actions: typing.Optional[torch.Tensor] = None, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, NoneType] = None, video: typing.Union[list, numpy.ndarray, torch.Tensor, NoneType] = None, view_point: str = 'ego_view')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cosmos/pipeline_cosmos3_omni.py#L302)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/cosmos/pipeline_cosmos3_omni.py#L302)
 
 **Parameters:**
 
@@ -1152,10 +1152,10 @@ Pass this to `Cosmos3OmniPipeline.__call__()` via the `action` argument instead 
 #### diffusers.pipelines.cosmos.pipeline_cosmos3_omni.Cosmos3OmniPipelineOutput[[diffusers.pipelines.cosmos.pipeline_cosmos3_omni.Cosmos3OmniPipelineOutput]]
 
 ```python
-diffusers.pipelines.cosmos.pipeline_cosmos3_omni.Cosmos3OmniPipelineOutput(video: typing.Any, sound: typing.Optional[torch.Tensor] = None, action: list[torch.Tensor] | None = None)
+diffusers.pipelines.cosmos.pipeline_cosmos3_omni.Cosmos3OmniPipelineOutput(video: Any, sound: typing.Optional[torch.Tensor] = None, action: list[torch.Tensor] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/cosmos/pipeline_cosmos3_omni.py#L283)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/cosmos/pipeline_cosmos3_omni.py#L283)
 
 **Parameters:**
 
@@ -1165,10 +1165,10 @@ sound : Decoded audio waveform of shape `[C, N]`. `None` when `enable_sound=Fals
 
 action : Predicted action tokens. `None` unless an action mode predicts actions.
 
-Output dataclass for [Cosmos3OmniPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniPipeline).
+Output dataclass for [Cosmos3OmniPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniPipeline).
 
 ### Sana
-https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/sana.md
+https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/sana.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -1222,7 +1222,7 @@ Note: The recommended dtype mentioned is for the transformer weights. The text e
 
 Quantization helps reduce the memory requirements of very large models by storing model weights in a lower precision data type. However, quantization may have varying impact on video quality depending on the video model.
 
-Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [SanaPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/sana#diffusers.SanaPipeline) for inference with bitsandbytes.
+Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [SanaPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/sana#diffusers.SanaPipeline) for inference with bitsandbytes.
 
 ```py
 import torch
@@ -1266,7 +1266,7 @@ image.save("sana.png")
 diffusers.SanaPipeline(tokenizer: GemmaTokenizer, text_encoder: Gemma2PreTrainedModel, vae: AutoencoderDC, transformer: SanaTransformer2DModel, scheduler: DPMSolverMultistepScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/sana/pipeline_sana.py#L189)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/sana/pipeline_sana.py#L189)
 
 Pipeline for text-to-image generation using [Sana](https://huggingface.co/papers/2410.10629).
 
@@ -1276,7 +1276,7 @@ Pipeline for text-to-image generation using [Sana](https://huggingface.co/papers
 __call__(prompt: str | list[str] = None, negative_prompt: str = '', num_inference_steps: int = 20, timesteps: list = None, sigmas: list = None, guidance_scale: float = 4.5, num_images_per_prompt: int | None = 1, height: int = 1024, width: int = 1024, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, clean_caption: bool = False, use_resolution_binning: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 300, complex_human_instruction: list = ["Given a user prompt, generate an 'Enhanced prompt' that provides detailed visual descriptions suitable for image generation. Evaluate the level of detail in the user prompt:", '- If the prompt is simple, focus on adding specifics about colors, shapes, sizes, textures, and spatial relationships to create vivid and concrete scenes.', '- If the prompt is already detailed, refine and enhance the existing details slightly without overcomplicating.', 'Here are examples of how to transform or refine prompts:', '- User Prompt: A cat sleeping -> Enhanced: A small, fluffy white cat curled up in a round shape, sleeping peacefully on a warm sunny windowsill, surrounded by pots of blooming red flowers.', '- User Prompt: A busy city street -> Enhanced: A bustling city street scene at dusk, featuring glowing street lamps, a diverse crowd of people in colorful clothing, and a double-decker bus passing by towering glass skyscrapers.', 'Please generate only the enhanced description for the prompt below and avoid including any additional commentary or evaluations:', 'User Prompt: '])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/sana/pipeline_sana.py#L673)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/sana/pipeline_sana.py#L673)
 
 **Parameters:**
 
@@ -1298,7 +1298,7 @@ height (`int`, *optional*, defaults to self.unet.config.sample_size) : The heigh
 
 width (`int`, *optional*, defaults to self.unet.config.sample_size) : The width in pixels of the generated image.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -1330,9 +1330,9 @@ max_sequence_length (`int` defaults to `300`) : Maximum sequence length to use w
 
 complex_human_instruction (`list[str]`, *optional*) : Instructions for complex human attention: https://github.com/NVlabs/Sana/blob/main/configs/sana_app_config/Sana_1600M_app.yaml#L55.
 
-**Returns:** [SanaPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/sana_sprint#diffusers.pipelines.sana.pipeline_output.SanaPipelineOutput) or `tuple`
+**Returns:** [SanaPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/sana_sprint#diffusers.pipelines.sana.pipeline_output.SanaPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [SanaPipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/sana_sprint#diffusers.pipelines.sana.pipeline_output.SanaPipelineOutput) is returned,
+If `return_dict` is `True`, [SanaPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/sana_sprint#diffusers.pipelines.sana.pipeline_output.SanaPipelineOutput) is returned,
 otherwise a `tuple` is returned where the first element is a list with the generated images
 
 Function invoked when calling the pipeline for generation.
@@ -1359,7 +1359,7 @@ Examples:
 encode_prompt(prompt: str | list[str], do_classifier_free_guidance: bool = True, negative_prompt: str = '', num_images_per_prompt: int = 1, device: typing.Optional[torch.device] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, clean_caption: bool = False, max_sequence_length: int = 300, complex_human_instruction: list[str] | None = None, lora_scale: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/sana/pipeline_sana.py#L280)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/sana/pipeline_sana.py#L280)
 
 **Parameters:**
 
@@ -1393,7 +1393,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.SanaPAGPipeline(tokenizer: GemmaTokenizer, text_encoder: Gemma2PreTrainedModel, vae: AutoencoderDC, transformer: SanaTransformer2DModel, scheduler: FlowMatchEulerDiscreteScheduler, pag_applied_layers: str | list[str] = 'transformer_blocks.0')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pag/pipeline_pag_sana.py#L147)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pag/pipeline_pag_sana.py#L147)
 
 Pipeline for text-to-image generation using [Sana](https://huggingface.co/papers/2410.10629). This pipeline
 supports the use of [Perturbed Attention Guidance
@@ -1405,7 +1405,7 @@ supports the use of [Perturbed Attention Guidance
 __call__(prompt: str | list[str] = None, negative_prompt: str = '', num_inference_steps: int = 20, timesteps: list = None, sigmas: list = None, guidance_scale: float = 4.5, num_images_per_prompt: int | None = 1, height: int = 1024, width: int = 1024, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, clean_caption: bool = False, use_resolution_binning: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 300, complex_human_instruction: list = ["Given a user prompt, generate an 'Enhanced prompt' that provides detailed visual descriptions suitable for image generation. Evaluate the level of detail in the user prompt:", '- If the prompt is simple, focus on adding specifics about colors, shapes, sizes, textures, and spatial relationships to create vivid and concrete scenes.', '- If the prompt is already detailed, refine and enhance the existing details slightly without overcomplicating.', 'Here are examples of how to transform or refine prompts:', '- User Prompt: A cat sleeping -> Enhanced: A small, fluffy white cat curled up in a round shape, sleeping peacefully on a warm sunny windowsill, surrounded by pots of blooming red flowers.', '- User Prompt: A busy city street -> Enhanced: A bustling city street scene at dusk, featuring glowing street lamps, a diverse crowd of people in colorful clothing, and a double-decker bus passing by towering glass skyscrapers.', 'Please generate only the enhanced description for the prompt below and avoid including any additional commentary or evaluations:', 'User Prompt: '], pag_scale: float = 3.0, pag_adaptive_scale: float = 0.0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pag/pipeline_pag_sana.py#L594)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pag/pipeline_pag_sana.py#L594)
 
 **Parameters:**
 
@@ -1427,7 +1427,7 @@ height (`int`, *optional*, defaults to self.unet.config.sample_size) : The heigh
 
 width (`int`, *optional*, defaults to self.unet.config.sample_size) : The width in pixels of the generated image.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.41.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -1461,9 +1461,9 @@ pag_scale (`float`, *optional*, defaults to 3.0) : The scale factor for the pert
 
 pag_adaptive_scale (`float`, *optional*, defaults to 0.0) : The adaptive scale factor for the perturbed attention guidance. If it is set to 0.0, `pag_scale` is used.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [ImagePipelineOutput](/docs/diffusers/v0.41.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) is returned, otherwise a `tuple` is
+If `return_dict` is `True`, [ImagePipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) is returned, otherwise a `tuple` is
 returned where the first element is a list with the generated images
 
 Function invoked when calling the pipeline for generation.
@@ -1492,7 +1492,7 @@ Examples:
 encode_prompt(prompt: str | list[str], do_classifier_free_guidance: bool = True, negative_prompt: str = '', num_images_per_prompt: int = 1, device: typing.Optional[torch.device] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, clean_caption: bool = False, max_sequence_length: int = 300, complex_human_instruction: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/pag/pipeline_pag_sana.py#L188)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/pag/pipeline_pag_sana.py#L188)
 
 **Parameters:**
 
@@ -1526,7 +1526,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.pipelines.sana.pipeline_output.SanaPipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/pipelines/sana/pipeline_output.py#L10)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/sana/pipeline_output.py#L10)
 
 **Parameters:**
 
@@ -1534,5 +1534,5 @@ images (`list[PIL.Image.Image]` or `np.ndarray`) : list of denoised PIL images o
 
 Output class for Sana pipelines.
 
-### Kandinsky 5.0 Video
-https://huggingface.co/docs/diffusers/v0.41.0/api/pipelines/kandinsky5_video.md
+### RFD4-Proteína
+https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/rfd4_proteina.md

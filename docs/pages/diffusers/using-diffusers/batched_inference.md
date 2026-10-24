@@ -155,4 +155,4 @@ plt.show()
 You can use this to select an image associated with a seed and iteratively improve on it by crafting a more detailed prompt.
 
 ### Sharing pipelines and models
-https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/push_to_hub.md
+https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/push_to_hub.md

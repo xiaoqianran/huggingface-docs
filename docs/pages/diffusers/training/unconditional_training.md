@@ -177,7 +177,7 @@ image = pipeline().images[0]
 ```
 
 ### CogVideoX
-https://huggingface.co/docs/diffusers/v0.41.0/training/cogvideox.md
+https://huggingface.co/docs/diffusers/v0.42.0/training/cogvideox.md
 
 # CogVideoX
 
@@ -455,4 +455,4 @@ pipe.vae.enable_tiling()
 | **Fine-tuning VRAM Consumption**     | 47 GB (bs=1, LORA) 61 GB (bs=2, LORA) 62GB (bs=1, SFT)                 | 63 GB (bs=1, LORA) 80 GB (bs=2, LORA) 75GB (bs=1, SFT)                 |
 
 ### Stable Diffusion XL
-https://huggingface.co/docs/diffusers/v0.41.0/training/sdxl.md
+https://huggingface.co/docs/diffusers/v0.42.0/training/sdxl.md

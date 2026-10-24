@@ -10,7 +10,7 @@ uv pip install -U torch torchao
 
 Each quantization dtype is available as a separate instance of a [AOBaseConfig](https://docs.pytorch.org/ao/main/api_ref_quantization.html#inference-apis-for-quantize) class. This provides more flexible configuration options by exposing more available arguments.
 
-Pass the `AOBaseConfig` of a quantization dtype, like [Int4WeightOnlyConfig](https://docs.pytorch.org/ao/main/generated/torchao.quantization.Int4WeightOnlyConfig) to [TorchAoConfig](/docs/diffusers/v0.41.0/en/api/quantization#diffusers.TorchAoConfig) in [from_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained).
+Pass the `AOBaseConfig` of a quantization dtype, like [Int4WeightOnlyConfig](https://docs.pytorch.org/ao/main/generated/torchao.quantization.Int4WeightOnlyConfig) to [TorchAoConfig](/docs/diffusers/v0.42.0/en/api/quantization#diffusers.TorchAoConfig) in [from_pretrained()](/docs/diffusers/v0.42.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained).
 
 ```py
 import torch
@@ -39,7 +39,7 @@ pipeline = DiffusionPipeline.from_pretrained(
 pipeline.to("cuda")  # or "mps", "xpu", "cpu"
 ```
 
-Without `device_map`, Diffusers quantizes the layers on the CPU. This is slower, but avoids the temporary GPU-memory spike during quantization. To reduce GPU memory usage further, use [enable_model_cpu_offload()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) instead. You can also quantize additional components, such as the text encoder.
+Without `device_map`, Diffusers quantizes the layers on the CPU. This is slower, but avoids the temporary GPU-memory spike during quantization. To reduce GPU memory usage further, use [enable_model_cpu_offload()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) instead. You can also quantize additional components, such as the text encoder.
 
 ## torch.compile
 
@@ -88,7 +88,7 @@ Some example popular quantization configurations are as follows:
 
 ## Serializing and Deserializing quantized models
 
-To serialize a quantized model in a given dtype, first load the model with the desired quantization dtype and then save it using the [save_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained) method.
+To serialize a quantized model in a given dtype, first load the model with the desired quantization dtype and then save it using the [save_pretrained()](/docs/diffusers/v0.42.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained) method.
 
 ```python
 import torch
@@ -105,7 +105,7 @@ transformer = AutoModel.from_pretrained(
 transformer.save_pretrained("/path/to/flux_int8wo", safe_serialization=False)
 ```
 
-To load a serialized quantized model, use the [from_pretrained()](/docs/diffusers/v0.41.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained) method.
+To load a serialized quantized model, use the [from_pretrained()](/docs/diffusers/v0.42.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained) method.
 
 ```python
 import torch
@@ -146,7 +146,7 @@ transformer.load_state_dict(state_dict, strict=True, assign=True)
 ```
 
 > [!TIP]
-> The [AutoModel](/docs/diffusers/v0.41.0/en/api/models/auto_model#diffusers.AutoModel) API is supported for PyTorch >= 2.6 as shown in the examples below.
+> The [AutoModel](/docs/diffusers/v0.42.0/en/api/models/auto_model#diffusers.AutoModel) API is supported for PyTorch >= 2.6 as shown in the examples below.
 
 ## Resources
 
@@ -154,4 +154,4 @@ transformer.load_state_dict(state_dict, strict=True, assign=True)
 - [Diffusers-TorchAO examples](https://github.com/sayakpaul/diffusers-torchao)
 
 ### Nunchaku Lite
-https://huggingface.co/docs/diffusers/v0.41.0/quantization/nunchaku.md
+https://huggingface.co/docs/diffusers/v0.42.0/quantization/nunchaku.md

@@ -5,7 +5,7 @@
 
 Kandinsky 2.2 is a multilingual text-to-image model capable of producing more photorealistic images. The model includes an image prior model for creating image embeddings from text prompts, and a decoder model that generates images based on the prior model's embeddings. That's why you'll find two separate scripts in Diffusers for Kandinsky 2.2, one for training the prior model and one for training the decoder model. You can train both models separately, but to get the best results, you should train both the prior and decoder models.
 
-Depending on your GPU, you may need to enable `gradient_checkpointing` (⚠️ not supported for the prior model!), `mixed_precision`, and `gradient_accumulation_steps` to help fit the model into memory and to speedup training. You can reduce your memory-usage even more by enabling memory-efficient attention with [xFormers](../optimization/xformers) (version [v0.0.16](https://github.com/huggingface/diffusers/issues/2234#issuecomment-1416931212) fails for training on some GPUs so you may need to install a development version instead).
+Depending on your GPU, you may need to enable `gradient_checkpointing` (⚠️ not supported for the prior model!), `mixed_precision`, and `gradient_accumulation_steps` to help fit the model into memory and to speedup training. You can reduce your memory-usage even more by enabling memory-efficient attention with [xFormers](../optimization/attention_backends) (version [v0.0.16](https://github.com/huggingface/diffusers/issues/2234#issuecomment-1416931212) fails for training on some GPUs so you may need to install a development version instead).
 
 This guide explores the [train_text_to_image_prior.py](https://github.com/huggingface/diffusers/blob/main/examples/kandinsky2_2/text_to_image/train_text_to_image_prior.py) and the [train_text_to_image_decoder.py](https://github.com/huggingface/diffusers/blob/main/examples/kandinsky2_2/text_to_image/train_text_to_image_decoder.py) scripts to help you become more familiar with it, and how you can adapt it for your own use-case.
 
@@ -82,7 +82,7 @@ The training script is also similar to the [Text-to-image](text2image#training-s
 
 The [`main()`](https://github.com/huggingface/diffusers/blob/6e68c71503682c8693cb5b06a4da4911dfd655ee/examples/kandinsky2_2/text_to_image/train_text_to_image_prior.py#L441) function contains the code for preparing the dataset and training the model.
 
-One of the main differences you'll notice right away is that the training script also loads a [CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPImageProcessor) - in addition to a scheduler and tokenizer - for preprocessing images and a [CLIPVisionModelWithProjection](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPVisionModelWithProjection) model for encoding the images:
+One of the main differences you'll notice right away is that the training script also loads a [CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.20.2/en/model_doc/clip#transformers.CLIPImageProcessor) - in addition to a scheduler and tokenizer - for preprocessing images and a [CLIPVisionModelWithProjection](https://huggingface.co/docs/transformers/v5.20.2/en/model_doc/clip#transformers.CLIPVisionModelWithProjection) model for encoding the images:
 
 ```py
 noise_scheduler = DDPMScheduler(beta_schedule="squaredcos_cap_v2", prediction_type="sample")
@@ -100,7 +100,7 @@ with ContextManagers(deepspeed_zero_init_disabled_context_manager()):
     ).eval()
 ```
 
-Kandinsky uses a [PriorTransformer](/docs/diffusers/v0.41.0/en/api/models/prior_transformer#diffusers.PriorTransformer) to generate the image embeddings, so you'll want to setup the optimizer to learn the prior mode's parameters.
+Kandinsky uses a [PriorTransformer](/docs/diffusers/v0.42.0/en/api/models/prior_transformer#diffusers.PriorTransformer) to generate the image embeddings, so you'll want to setup the optimizer to learn the prior mode's parameters.
 
 ```py
 prior = PriorTransformer.from_pretrained(args.pretrained_prior_model_name_or_path, subfolder="prior")
@@ -114,7 +114,7 @@ optimizer = optimizer_cls(
 )
 ```
 
-Next, the input captions are tokenized, and images are [preprocessed](https://github.com/huggingface/diffusers/blob/6e68c71503682c8693cb5b06a4da4911dfd655ee/examples/kandinsky2_2/text_to_image/train_text_to_image_prior.py#L632) by the [CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.18.0/en/model_doc/clip#transformers.CLIPImageProcessor):
+Next, the input captions are tokenized, and images are [preprocessed](https://github.com/huggingface/diffusers/blob/6e68c71503682c8693cb5b06a4da4911dfd655ee/examples/kandinsky2_2/text_to_image/train_text_to_image_prior.py#L632) by the [CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.20.2/en/model_doc/clip#transformers.CLIPImageProcessor):
 
 ```py
 def preprocess_train(examples):
@@ -140,7 +140,7 @@ If you want to learn more about how the training loop works, check out the [Unde
 
 The [`main()`](https://github.com/huggingface/diffusers/blob/6e68c71503682c8693cb5b06a4da4911dfd655ee/examples/kandinsky2_2/text_to_image/train_text_to_image_decoder.py#L440) function contains the code for preparing the dataset and training the model.
 
-Unlike the prior model, the decoder initializes a [VQModel](/docs/diffusers/v0.41.0/en/api/models/vq#diffusers.VQModel) to decode the latents into images and it uses a [UNet2DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel):
+Unlike the prior model, the decoder initializes a [VQModel](/docs/diffusers/v0.42.0/en/api/models/vq#diffusers.VQModel) to decode the latents into images and it uses a [UNet2DConditionModel](/docs/diffusers/v0.42.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel):
 
 ```py
 with ContextManagers(deepspeed_zero_init_disabled_context_manager()):
@@ -273,7 +273,7 @@ Congratulations on training a Kandinsky 2.2 model! To learn more about how to us
 - Check out the [DreamBooth](dreambooth) and [LoRA](lora) training guides to learn how to train a personalized Kandinsky model with just a few example images. These two training techniques can even be combined!
 
 ### Text-to-image
-https://huggingface.co/docs/diffusers/v0.41.0/training/text2image.md
+https://huggingface.co/docs/diffusers/v0.42.0/training/text2image.md
 
 # Text-to-image
 
@@ -282,7 +282,7 @@ https://huggingface.co/docs/diffusers/v0.41.0/training/text2image.md
 
 Text-to-image models like Stable Diffusion are conditioned to generate images given a text prompt.
 
-Training a model can be taxing on your hardware, but if you enable `gradient_checkpointing` and `mixed_precision`, it is possible to train a model on a single 24GB GPU. If you're training with larger batch sizes or want to train faster, it's better to use GPUs with more than 30GB of memory. You can reduce your memory footprint by enabling memory-efficient attention with [xFormers](../optimization/xformers).
+Training a model can be taxing on your hardware, but if you enable `gradient_checkpointing` and `mixed_precision`, it is possible to train a model on a single 24GB GPU. If you're training with larger batch sizes or want to train faster, it's better to use GPUs with more than 30GB of memory. You can reduce your memory footprint by enabling memory-efficient attention with [xFormers](../optimization/attention_backends).
 
 This guide will explore the [train_text_to_image.py](https://github.com/huggingface/diffusers/blob/main/examples/text_to_image/train_text_to_image.py) training script to help you become familiar with it, and how you can adapt it for your own use-case.
 
@@ -447,4 +447,4 @@ Congratulations on training your own text-to-image model! To learn more about ho
 - Learn more about how certain parameters like guidance scale or techniques such as prompt weighting can help you control inference in the [Text-to-image](../using-diffusers/conditional_image_generation) task guide.
 
 ### NeMo Automodel
-https://huggingface.co/docs/diffusers/v0.41.0/training/nemo_automodel.md
+https://huggingface.co/docs/diffusers/v0.42.0/training/nemo_automodel.md

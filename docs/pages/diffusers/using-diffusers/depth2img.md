@@ -1,8 +1,8 @@
 # Text-guided depth-to-image generation
 
-The [StableDiffusionDepth2ImgPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/depth2img#diffusers.StableDiffusionDepth2ImgPipeline) lets you pass a text prompt and an initial image to condition the generation of new images. In addition, you can also pass a `depth_map` to preserve the image structure. If no `depth_map` is provided, the pipeline automatically predicts the depth via an integrated [depth-estimation model](https://github.com/isl-org/MiDaS).
+The [StableDiffusionDepth2ImgPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/stable_diffusion/depth2img#diffusers.StableDiffusionDepth2ImgPipeline) lets you pass a text prompt and an initial image to condition the generation of new images. In addition, you can also pass a `depth_map` to preserve the image structure. If no `depth_map` is provided, the pipeline automatically predicts the depth via an integrated [depth-estimation model](https://github.com/isl-org/MiDaS).
 
-Start by creating an instance of the [StableDiffusionDepth2ImgPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/stable_diffusion/depth2img#diffusers.StableDiffusionDepth2ImgPipeline):
+Start by creating an instance of the [StableDiffusionDepth2ImgPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/stable_diffusion/depth2img#diffusers.StableDiffusionDepth2ImgPipeline):
 
 ```python
 import torch
@@ -32,4 +32,4 @@ make_image_grid([init_image, image], rows=1, cols=2)
 |  |  |
 
 ### Video generation
-https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/text-img2vid.md
+https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/text-img2vid.md

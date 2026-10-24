@@ -1,6 +1,6 @@
 # Community pipelines and components
 
-Community pipelines are [DiffusionPipeline](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) classes that are different from the original paper implementation. They provide additional functionality or extend the original pipeline implementation.
+Community pipelines are [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) classes that are different from the original paper implementation. They provide additional functionality or extend the original pipeline implementation.
 
 > [!TIP]
 > Check out the community pipelines in [diffusers/examples/community](https://github.com/huggingface/diffusers/tree/main/examples/community) with inference and training examples for how to use them.
@@ -15,7 +15,7 @@ Community pipelines are either stored on the Hub or the Diffusers' GitHub reposi
 
 ## Loading a community pipeline
 
-Load either type of community pipeline by passing `custom_pipeline` to [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained).
+Load either type of community pipeline by passing `custom_pipeline` to [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained).
 
 ```py
 import torch
@@ -29,7 +29,7 @@ pipeline = DiffusionPipeline.from_pretrained(
 )
 ```
 
-Add the `custom_revision` argument to [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) to load a community pipeline from a specific version (for example, `v0.30.0` or `main`). By default, community pipelines are loaded from the latest stable version of Diffusers.
+Add the `custom_revision` argument to [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) to load a community pipeline from a specific version (for example, `v0.30.0` or `main`). By default, community pipelines are loaded from the latest stable version of Diffusers.
 
 ```py
 import torch
@@ -64,7 +64,7 @@ There are a few ways to load a community pipeline.
   )
   ```
 
-- The `custom_pipeline` argument is also supported by [from_pipe()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pipe), which is useful for [reusing pipelines](./loading#reusing-models-in-multiple-pipelines) without using additional memory. It limits the memory usage to only the largest pipeline loaded.
+- The `custom_pipeline` argument is also supported by [from_pipe()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pipe), which is useful for [reusing pipelines](./loading#reusing-models-in-multiple-pipelines) without using additional memory. It limits the memory usage to only the largest pipeline loaded.
 
   ```py
   import torch
@@ -78,7 +78,7 @@ There are a few ways to load a community pipeline.
   )
   ```
 
-  The [from_pipe()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pipe) method is especially useful for loading community pipelines because many of them don't have pretrained weights. Community pipelines generally add a feature on top of an existing pipeline.
+  The [from_pipe()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pipe) method is especially useful for loading community pipelines because many of them don't have pretrained weights. Community pipelines generally add a feature on top of an existing pipeline.
 
 ## Community components
 
@@ -102,7 +102,7 @@ feature_extractor = CLIPImageProcessor.from_pretrained(pipeline_id, subfolder="f
 > [!WARNING]
 > In steps 2 and 3, the custom [UNet](https://github.com/showlab/Show-1/blob/main/showone/models/unet_3d_condition.py) and [pipeline](https://huggingface.co/sayakpaul/show-1-base-with-code/blob/main/unet/showone_unet_3d_condition.py) implementation must match the format shown in their files for this example to work.
 
-2. Load a [custom UNet](https://github.com/showlab/Show-1/blob/main/showone/models/unet_3d_condition.py) which is already implemented in [showone_unet_3d_condition.py](https://huggingface.co/sayakpaul/show-1-base-with-code/blob/main/unet/showone_unet_3d_condition.py). The [UNet3DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet3d-cond#diffusers.UNet3DConditionModel) class name is renamed to the custom implementation, `ShowOneUNet3DConditionModel`, because [UNet3DConditionModel](/docs/diffusers/v0.41.0/en/api/models/unet3d-cond#diffusers.UNet3DConditionModel) already exists in Diffusers. Any components required for `ShowOneUNet3DConditionModel` class should be placed in `showone_unet_3d_condition.py`.
+2. Load a [custom UNet](https://github.com/showlab/Show-1/blob/main/showone/models/unet_3d_condition.py) which is already implemented in [showone_unet_3d_condition.py](https://huggingface.co/sayakpaul/show-1-base-with-code/blob/main/unet/showone_unet_3d_condition.py). The [UNet3DConditionModel](/docs/diffusers/v0.42.0/en/api/models/unet3d-cond#diffusers.UNet3DConditionModel) class name is renamed to the custom implementation, `ShowOneUNet3DConditionModel`, because [UNet3DConditionModel](/docs/diffusers/v0.42.0/en/api/models/unet3d-cond#diffusers.UNet3DConditionModel) already exists in Diffusers. Any components required for `ShowOneUNet3DConditionModel` class should be placed in `showone_unet_3d_condition.py`.
 
 ```python
 from showone_unet_3d_condition import ShowOneUNet3DConditionModel
@@ -152,7 +152,7 @@ pipeline = DiffusionPipeline.from_pretrained(
 ```
 
 > [!WARNING]
-> As an additional precaution with `trust_remote_code=True`, pass a commit hash to the `revision` argument in [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) to make sure the code hasn't been updated with new malicious code (unless you fully trust the model owners).
+> As an additional precaution with `trust_remote_code=True`, pass a commit hash to the `revision` argument in [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) to make sure the code hasn't been updated with new malicious code (unless you fully trust the model owners).
 
 ## Next steps
 
@@ -160,4 +160,4 @@ pipeline = DiffusionPipeline.from_pretrained(
 - Check out the [stabilityai/japanese-stable-diffusion-xl](https://huggingface.co/stabilityai/japanese-stable-diffusion-xl/) repository for an additional example of a community pipeline that also uses the `trust_remote_code` feature.
 
 ### FreeU
-https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/image_quality.md
+https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/image_quality.md

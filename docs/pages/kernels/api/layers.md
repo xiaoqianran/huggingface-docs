@@ -10,7 +10,7 @@
 kernels.use_kernel_forward_from_hub(layer_name: str, condition: Callable[['nn.Module'], bool] | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L344)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L363)
 
 **Parameters:**
 
@@ -78,7 +78,7 @@ class LayerUsingIdentity(nn.Module):
 kernels.use_kernel_func_from_hub(func_name: str)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L204)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L208)
 
 **Parameters:**
 
@@ -137,7 +137,7 @@ model = MyModel()
 kernels.use_kernelized_func(*args: Callable)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L462)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L481)
 
 **Parameters:**
 
@@ -185,7 +185,7 @@ model = LayerUsingIdentity()
 kernels.replace_kernel_forward_from_hub(layer_name: str, condition: Callable[['nn.Module'], bool] | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L312)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L331)
 
 **Parameters:**
 
@@ -395,6 +395,72 @@ with use_kernel_mapping(mapping):
     kernelized_model = kernelize(model, mode=Mode.TRAINING | Mode.TORCH_COMPILE)
 ```
 
+### get_kernelized_layers[[kernels.get_kernelized_layers]]
+
+#### kernels.get_kernelized_layers[[kernels.get_kernelized_layers]]
+
+```python
+kernels.get_kernelized_layers(model: 'nn.Module')
+```
+
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/inspect.py#L64)
+
+**Parameters:**
+
+model (`nn.Module`) : The kernelized model.
+
+**Returns:** [KernelizedLayers](/docs/kernels/main/en/api/layers#kernels.KernelizedLayers)
+
+The kernelized layers.
+
+Return the repositories of the kernel layers and functions that are used by the model.
+
+Example:
+```python
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+from kernels import LayerRepository, Mode, get_kernelized_layers, kernelize
+from kernels import use_kernel_forward_from_hub, use_kernel_mapping
+
+@use_kernel_forward_from_hub("SiluAndMul")
+class SiluAndMul(nn.Module):
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        d = x.shape[-1] // 2
+        return F.silu(x[..., :d]) * x[..., d:]
+
+mapping = {
+    "SiluAndMul": {
+        "cuda": LayerRepository(
+            repo_id="kernels-community/activation",
+            layer_name="SiluAndMul",
+            version=1,
+        )
+    }
+}
+
+class MLP(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.up_proj = nn.Linear(1024, 2048)
+        self.act_fn = SiluAndMul()
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        return self.act_fn(self.up_proj(x))
+
+model = MLP().to("cuda")
+
+with use_kernel_mapping(mapping):
+    model = kernelize(model, mode=Mode.INFERENCE)
+
+kernelized = get_kernelized_layers(model)
+print(kernelized.layers)
+# {'act_fn': KernelizedLayer(module=..., repo=LayerRepository(...))}
+print(kernelized.funcs)
+# {} (no kernel functions are attached to this model)
+```
+
 ## Classes
 
 ### Device[[kernels.Device]]
@@ -572,6 +638,61 @@ Note:
 Different modes can be combined. For instance, `INFERENCE | TORCH_COMPILE` should be used for layers that
 are used for inference *with* `torch.compile`.
 
+### KernelizedLayers[[kernels.KernelizedLayers]]
+
+#### kernels.KernelizedLayers[[kernels.KernelizedLayers]]
+
+```python
+kernels.KernelizedLayers(layers: dict[str, KernelizedLayer] = <factory>, funcs: dict[tuple[str, str], KernelizedFunc] = <factory>)
+```
+
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/inspect.py#L45)
+
+**Parameters:**
+
+layers (`dict[str, KernelizedLayer]`) : A mapping of each kernelized layer name to the layer and its repository. The names are the same as returned by Torch's `named_modules`.
+
+funcs (`dict[tuple[str, str], KernelizedFunc]`) : A mapping of each kernelized function to the function and its repository. The key of the mapping is a tuple of the layer name that the function is attached to and the name of the function itself.
+
+The kernels that are in use by a kernelized model, as returned by
+[get_kernelized_layers()](/docs/kernels/main/en/api/layers#kernels.get_kernelized_layers).
+
+### KernelizedLayer[[kernels.KernelizedLayer]]
+
+#### kernels.KernelizedLayer[[kernels.KernelizedLayer]]
+
+```python
+kernels.KernelizedLayer(module: nn.Module, repo: RepositoryProtocol)
+```
+
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/inspect.py#L13)
+
+**Parameters:**
+
+module (`nn.Module`) : The kernelized layer.
+
+repo (`RepositoryProtocol`) : The repository that the kernel was retrieved from.
+
+A kernelized layer and the repository that its kernel was retrieved from.
+
+### KernelizedFunc[[kernels.KernelizedFunc]]
+
+#### kernels.KernelizedFunc[[kernels.KernelizedFunc]]
+
+```python
+kernels.KernelizedFunc(module: nn.Module, repo: RepositoryProtocol)
+```
+
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/inspect.py#L29)
+
+**Parameters:**
+
+module (`nn.Module`) : The module that wraps the kernelized function.
+
+repo (`RepositoryProtocol`) : The repository that the kernel was retrieved from.
+
+A kernelized function and the repository that its kernel was retrieved from.
+
 ### FuncRepository[[kernels.FuncRepository]]
 
 #### kernels.FuncRepository[[kernels.FuncRepository]]
@@ -580,7 +701,7 @@ are used for inference *with* `torch.compile`.
 kernels.FuncRepository(repo_id: str, func_name: str, revision: str | None = None, version: int | None = None, trust_remote_code: bool | list[str] = False)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L36)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L40)
 
 **Parameters:**
 
@@ -625,7 +746,7 @@ layer_repo_versioned = FuncRepository(
 kernels.LayerRepository(repo_id: str, layer_name: str, revision: str | None = None, version: int | None = None, trust_remote_code: bool | list[str] = False, user_agent: str | dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L71)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L72)
 
 **Parameters:**
 
@@ -663,7 +784,7 @@ layer_repo = LayerRepository(
 kernels.LocalFuncRepository(repo_path: Path, func_name: str)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L144)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L148)
 
 **Parameters:**
 
@@ -698,7 +819,7 @@ layer_repo = LocalFuncRepository(
 kernels.LocalLayerRepository(repo_path: Path, layer_name: str)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L173)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L174)
 
 **Parameters:**
 
@@ -729,7 +850,7 @@ layer_repo = LocalLayerRepository(
 kernels.LockedFuncRepository(repo_id: str, lockfile: pathlib.Path | None = None, func_name: str, trust_remote_code: bool | list[str] = False)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L262)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L266)
 
 **Parameters:**
 
@@ -758,7 +879,7 @@ are locked inside a project.
 kernels.LockedLayerRepository(repo_id: str, lockfile: Path | None = None, layer_name: str, trust_remote_code: bool | list[str] = False)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L224)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L225)
 
 Repository and name of a layer.
 

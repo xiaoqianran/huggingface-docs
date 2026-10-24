@@ -18,7 +18,7 @@ transformer = LTX2VideoTransformer3DModel.from_pretrained("Lightricks/LTX-2", su
 diffusers.LTX2VideoTransformer3DModel(in_channels: int = 128, out_channels: int | None = 128, patch_size: int = 1, patch_size_t: int = 1, num_attention_heads: int = 32, attention_head_dim: int = 128, cross_attention_dim: int = 4096, vae_scale_factors: tuple = (8, 32, 32), pos_embed_max_pos: int = 20, base_height: int = 2048, base_width: int = 2048, gated_attn: bool = False, cross_attn_mod: bool = False, audio_in_channels: int = 128, audio_out_channels: int | None = 128, audio_patch_size: int = 1, audio_patch_size_t: int = 1, audio_num_attention_heads: int = 32, audio_attention_head_dim: int = 64, audio_cross_attention_dim: int = 2048, audio_scale_factor: int = 4, audio_pos_embed_max_pos: int = 20, audio_sampling_rate: int = 16000, audio_hop_length: int = 160, audio_gated_attn: bool = False, audio_cross_attn_mod: bool = False, num_layers: int = 48, activation_fn: str = 'gelu-approximate', qk_norm: str = 'rms_norm_across_heads', norm_elementwise_affine: bool = False, norm_eps: float = 1e-06, caption_channels: int = 3840, attention_bias: bool = True, attention_out_bias: bool = True, rope_theta: float = 10000.0, rope_double_precision: bool = True, causal_offset: int = 1, timestep_scale_multiplier: int = 1000, cross_attn_timestep_scale_multiplier: int = 1000, rope_type: str = 'interleaved', use_prompt_embeddings = True, perturbed_attn: bool = False, ff_bias: bool = True, audio_ff_bias: bool = True, use_prompt_adaln_single: bool = True, use_keyframes_abs_pos_embedding: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_ltx2.py#L1081)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_ltx2.py#L1081)
 
 **Parameters:**
 
@@ -58,7 +58,7 @@ A Transformer model for video-like data used in [LTX](https://huggingface.co/Lig
 forward(hidden_states: Tensor, audio_hidden_states: Tensor, encoder_hidden_states: Tensor, audio_encoder_hidden_states: Tensor, timestep: LongTensor, audio_timestep: typing.Optional[torch.LongTensor] = None, sigma: typing.Optional[torch.Tensor] = None, audio_sigma: typing.Optional[torch.Tensor] = None, encoder_attention_mask: typing.Optional[torch.Tensor] = None, audio_encoder_attention_mask: typing.Optional[torch.Tensor] = None, num_frames: int | None = None, height: int | None = None, width: int | None = None, fps: float = 24.0, audio_num_frames: int | None = None, video_coords: typing.Optional[torch.Tensor] = None, audio_coords: typing.Optional[torch.Tensor] = None, isolate_modalities: bool = False, spatio_temporal_guidance_blocks: list[int] | None = None, perturbation_mask: typing.Optional[torch.Tensor] = None, use_cross_timestep: bool = False, attention_kwargs: dict[str, typing.Any] | None = None, video_self_attention_mask: typing.Optional[torch.Tensor] = None, video_keyframes_mask: typing.Optional[torch.Tensor] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.41.0/src/diffusers/models/transformers/transformer_ltx2.py#L1365)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_ltx2.py#L1365)
 
 **Parameters:**
 
@@ -121,4 +121,4 @@ element is the denoised audio latent patch sequence.
 Forward pass for LTX-2.0 audiovisual video transformer.
 
 ### AutoencoderKLLTX2Video
-https://huggingface.co/docs/diffusers/v0.41.0/api/models/autoencoderkl_ltx_2.md
+https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoderkl_ltx_2.md

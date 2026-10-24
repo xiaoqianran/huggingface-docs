@@ -33,7 +33,7 @@ A single-file format stores *all* the model weights (UNet, transformer, text enc
 - Greater compatibility with [ComfyUI](https://github.com/comfyanonymous/ComfyUI) or [Automatic1111](https://github.com/AUTOMATIC1111/stable-diffusion-webui).
 - Easier to download and share a single file.
 
-Use [from_single_file()](/docs/diffusers/v0.41.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) to load a single file.
+Use [from_single_file()](/docs/diffusers/v0.42.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) to load a single file.
 
 ```py
 import torch
@@ -46,7 +46,7 @@ pipeline = StableDiffusionXLPipeline.from_single_file(
 )
 ```
 
-The [from_single_file()](/docs/diffusers/v0.41.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) method also supports passing new models or schedulers.
+The [from_single_file()](/docs/diffusers/v0.42.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) method also supports passing new models or schedulers.
 
 ```py
 import torch
@@ -65,7 +65,7 @@ pipeline = FluxPipeline.from_pretrained(
 
 ### Configuration options
 
-Diffusers format models have a `config.json` file in their repositories with important attributes such as the number of layers and attention heads. The [from_single_file()](/docs/diffusers/v0.41.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) method automatically determines the appropriate config to use from `config.json`. This may fail in a few rare instances though, in which case, you should use the `config` argument.
+Diffusers format models have a `config.json` file in their repositories with important attributes such as the number of layers and attention heads. The [from_single_file()](/docs/diffusers/v0.42.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) method automatically determines the appropriate config to use from `config.json`. This may fail in a few rare instances though, in which case, you should use the `config` argument.
 
 You should also use the `config` argument if the models in a pipeline are different from the original implementation or if it doesn't have the necessary metadata to determine the correct config.
 
@@ -79,7 +79,7 @@ pipeline = StableDiffusionXLPipeline.from_single_file(ckpt_path, config="segmind
 
 When you pass `original_config` with `local_files_only=True`, Diffusers infers pipeline components from the pipeline class signature. It does not download config files from the Hub, which avoids breaking changes when you are offline. That path is less reliable than giving `config` a local model path, and it can error. Run once with `local_files_only=False` so the configs land in the local cache if you need them offline later.
 
-Override default configs by passing the arguments directly to [from_single_file()](/docs/diffusers/v0.41.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file). The examples below demonstrate how to override the configs in a pipeline or model.
+Override default configs by passing the arguments directly to [from_single_file()](/docs/diffusers/v0.42.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file). The examples below demonstrate how to override the configs in a pipeline or model.
 
 ```py
 from diffusers import StableDiffusionXLInstructPix2PixPipeline
@@ -99,9 +99,9 @@ model = UNet2DConditionModel.from_single_file(ckpt_path, upcast_attention=True)
 
 ### Local files
 
-The [from_single_file()](/docs/diffusers/v0.41.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) method attempts to configure a pipeline or model by inferring the model type from the keys in the checkpoint file. For example, any single file checkpoint based on the Stable Diffusion XL base model is configured from [stabilityai/stable-diffusion-xl-base-1.0](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0).
+The [from_single_file()](/docs/diffusers/v0.42.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) method attempts to configure a pipeline or model by inferring the model type from the keys in the checkpoint file. For example, any single file checkpoint based on the Stable Diffusion XL base model is configured from [stabilityai/stable-diffusion-xl-base-1.0](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0).
 
-If you're working with local files, download the config files with the [snapshot_download](https://huggingface.co/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.snapshot_download) method and the model checkpoint with [hf_hub_download](https://huggingface.co/docs/huggingface_hub/v2.1.1/en/package_reference/file_download#huggingface_hub.hf_hub_download). These files are downloaded to your [cache directory](https://huggingface.co/docs/huggingface_hub/en/guides/manage-cache), but you can download them to a specific directory with the `local_dir` argument.
+If you're working with local files, download the config files with the [snapshot_download](https://huggingface.co/docs/huggingface_hub/v2.3.0/en/package_reference/file_download#huggingface_hub.snapshot_download) method and the model checkpoint with [hf_hub_download](https://huggingface.co/docs/huggingface_hub/v2.3.0/en/package_reference/file_download#huggingface_hub.hf_hub_download). These files are downloaded to your [cache directory](https://huggingface.co/docs/huggingface_hub/en/guides/manage-cache), but you can download them to a specific directory with the `local_dir` argument.
 
 ```py
 from huggingface_hub import hf_hub_download, snapshot_download
@@ -144,7 +144,7 @@ my_local_config_path = snapshot_download(
 print("My local config: ", my_local_config_path)
 ```
 
-Pass these paths to [from_single_file()](/docs/diffusers/v0.41.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file).
+Pass these paths to [from_single_file()](/docs/diffusers/v0.42.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file).
 
 ```py
 pipeline = StableDiffusionXLPipeline.from_single_file(
@@ -162,7 +162,7 @@ Models can be stored in several file types. Safetensors is the most common file 
 
 Diffusers loads safetensors file by default (a required dependency) if they are available and the Safetensors library is installed.
 
-Use [from_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) or [from_single_file()](/docs/diffusers/v0.41.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) to load safetensor files.
+Use [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) or [from_single_file()](/docs/diffusers/v0.42.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) to load safetensor files.
 
 ```py
 import torch
@@ -182,7 +182,7 @@ pipeline = StableDiffusionXLPipeline.from_single_file(
 
 If you're using a checkpoint trained with a Diffusers training script, metadata such as the LoRA configuration is automatically saved. When the file is loaded, that metadata is parsed so the LoRA is configured correctly. Inspect the metadata of a safetensors file by clicking on the  icon next to the file on the Hub.
 
-Save LoRA adapter metadata for checkpoints that aren't trained with Diffusers by passing it to [save_lora_weights()](/docs/diffusers/v0.41.0/en/api/loaders/lora#diffusers.loaders.FluxLoraLoaderMixin.save_lora_weights). Use `transformer_lora_adapter_metadata` for the transformer and `text_encoder_lora_adapter_metadata` for the text encoder. You must also pass `save_directory` and at least one of `transformer_lora_layers` or `text_encoder_lora_layers`. This path is only supported for safetensors files.
+Save LoRA adapter metadata for checkpoints that aren't trained with Diffusers by passing it to [save_lora_weights()](/docs/diffusers/v0.42.0/en/api/loaders/lora#diffusers.loaders.FluxLoraLoaderMixin.save_lora_weights). Use `transformer_lora_adapter_metadata` for the transformer and `text_encoder_lora_adapter_metadata` for the text encoder. You must also pass `save_directory` and at least one of `transformer_lora_layers` or `text_encoder_lora_layers`. This path is only supported for safetensors files.
 
 ```py
 import torch
@@ -208,7 +208,7 @@ Older model weights are commonly saved with Python's [pickle](https://docs.pytho
 
 Pickled files may be unsafe because they can be exploited to execute malicious code. It is recommended to use safetensors files or convert the weights to safetensors files.
 
-Use [from_single_file()](/docs/diffusers/v0.41.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) to load a ckpt file.
+Use [from_single_file()](/docs/diffusers/v0.42.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) to load a ckpt file.
 
 ```py
 from diffusers import StableDiffusionPipeline
@@ -220,7 +220,7 @@ pipeline = StableDiffusionPipeline.from_single_file(
 
 ### GGUF
 
-GGUF stores prequantized weights in a single file. Diffusers loads GGUF through model [from_single_file()](/docs/diffusers/v0.41.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) with [GGUFQuantizationConfig](/docs/diffusers/v0.41.0/en/api/quantization#diffusers.GGUFQuantizationConfig). Pipeline-level GGUF loading is not supported.
+GGUF stores prequantized weights in a single file. Diffusers loads GGUF through model [from_single_file()](/docs/diffusers/v0.42.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) with [GGUFQuantizationConfig](/docs/diffusers/v0.42.0/en/api/quantization#diffusers.GGUFQuantizationConfig). Pipeline-level GGUF loading is not supported.
 
 See [GGUF](../quantization/gguf) for install steps and full examples.
 
@@ -246,7 +246,7 @@ The example below converts a model stored in Diffusers format to a single-file f
 python convert_diffusers_to_original_sdxl.py --model_path path/to/model/to/convert --checkpoint_path path/to/save/model/to --use_safetensors
 ```
 
-The [save_pretrained()](/docs/diffusers/v0.41.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained) method also saves a model in Diffusers format and takes care of creating subfolders for each model. It saves the files as safetensor files by default.
+The [save_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained) method also saves a model in Diffusers format and takes care of creating subfolders for each model. It saves the files as safetensor files by default.
 
 ```py
 from diffusers import StableDiffusionXLPipeline
@@ -262,4 +262,4 @@ pipeline.save_pretrained("path/to/save/model")
 - Learn more about the design decisions and why safetensor files are preferred for saving and loading model weights in the [Safetensors audited as really safe and becoming the default](https://blog.eleuther.ai/safetensors-security-audit/) blog post.
 
 ### Reproducibility
-https://huggingface.co/docs/diffusers/v0.41.0/using-diffusers/reusing_seeds.md
+https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/reusing_seeds.md
