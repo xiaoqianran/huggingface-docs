@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-25T12:28:26.413684+00:00",
+  "fetchedAt": "2026-10-26T14:06:16.919152+00:00",
   "method": "llms-full-split",
   "ok": 2215,
   "failed": 0,
@@ -8256,7 +8256,7 @@
     },
     {
       "rel": "inference-providers/index.md",
-      "bytes": 72047,
+      "bytes": 71757,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/index.md",
       "track": "Inference Providers",
@@ -8346,7 +8346,7 @@
     },
     {
       "rel": "inference-providers/guides/github-actions-code-review.md",
-      "bytes": 100832,
+      "bytes": 100474,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/github-actions-code-review.md",
       "track": "Inference Providers",
@@ -8355,7 +8355,7 @@
     },
     {
       "rel": "inference-providers/tasks/index.md",
-      "bytes": 14099,
+      "bytes": 14083,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/tasks/index.md",
       "track": "Inference Providers",
@@ -8724,7 +8724,7 @@
     },
     {
       "rel": "kernels/builder/triton-autotune.md",
-      "bytes": 6744,
+      "bytes": 6868,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/triton-autotune.md",
       "track": "Kernels",
@@ -20013,14 +20013,14 @@
       "toc": 66,
       "found": 28,
       "written": 28,
-      "full_bytes": 417510
+      "full_bytes": 416846
     },
     {
       "pkg": "kernels",
       "toc": 40,
       "found": 40,
       "written": 40,
-      "full_bytes": 244677
+      "full_bytes": 244801
     },
     {
       "pkg": "lerobot",
