@@ -2031,13 +2031,18 @@
     "hub/security-passkeys.md": {
       "hash": "973ae2d00eb32474c91ebdfe61f35ef6dc6c6373",
       "translatedAt": "2026-10-23T12:37:15.410Z"
+    },
+    "hub/enterprise-managed-sso-migration.md": {
+      "hash": "65b7e1416bde99dca61a90b575fbb3d8d45c91bc",
+      "translatedAt": "2026-10-27T13:07:18.945Z",
+      "failed": true
     }
   },
-  "updatedAt": "2026-10-26T14:06:17.084Z",
+  "updatedAt": "2026-10-27T13:07:24.784Z",
   "stats": {
     "translated": 0,
-    "skipped": 400,
-    "failed": 0,
+    "skipped": 395,
+    "failed": 5,
     "total": 400
   }
 }
