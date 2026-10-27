@@ -2,7 +2,7 @@
 
 `RFD4ProteinaScheduler` is the temporal-score-rescaled flow sampler of RFD4-Proteína for one modality. The pipeline uses
 two instances, one for the backbone (`bb_ca`, coordinates in nanometers) and one for the per-token local latents
-(`local_latents`), each with its own time schedule, noise schedule and rescaling. See [RFD4ProteinaPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/rfd4_proteina#diffusers.RFD4ProteinaPipeline) for the
+(`local_latents`), each with its own time schedule, noise schedule and rescaling. See [RFD4ProteinaPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/rfd4_proteina#diffusers.RFD4ProteinaPipeline) for the
 sampling loop.
 
 ## RFD4ProteinaScheduler[[diffusers.RFD4ProteinaScheduler]]
@@ -13,7 +13,7 @@ sampling loop.
 diffusers.RFD4ProteinaScheduler(schedule_mode: str, noise_mode: str, tsr_k: float, tsr_sigma: float, tail_steps: int = 10, tail_step_multiplier: int = 2, t_lim_ode: float = 0.95, t_lim_ode_below: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/schedulers/scheduling_rfd4_proteina.py#L76)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/schedulers/scheduling_rfd4_proteina.py#L76)
 
 **Parameters:**
 
@@ -47,7 +47,7 @@ interval and should not be shared by concurrent generations.
 set_timesteps(num_inference_steps: int, device: typing.Union[str, torch.device, NoneType] = None, start_time: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/schedulers/scheduling_rfd4_proteina.py#L133)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/schedulers/scheduling_rfd4_proteina.py#L133)
 
 **Parameters:**
 
@@ -65,7 +65,7 @@ Resolve the schedule and reset the integration cursor.
 add_noise(original_samples: Tensor, noise: Tensor, timesteps: typing.Union[float, torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/schedulers/scheduling_rfd4_proteina.py#L194)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/schedulers/scheduling_rfd4_proteina.py#L194)
 
 **Parameters:**
 
@@ -83,7 +83,7 @@ Sample the forward marginal `(1 - t) * noise + t * clean`.
 step(model_output: Tensor, timestep: Tensor, sample: Tensor, emit_mask: Tensor, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/schedulers/scheduling_rfd4_proteina.py#L212)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/schedulers/scheduling_rfd4_proteina.py#L212)
 
 **Parameters:**
 
@@ -113,7 +113,7 @@ Advance one integration interval and update `step_index`.
 diffusers.schedulers.scheduling_rfd4_proteina.RFD4ProteinaSchedulerOutput(prev_sample: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/schedulers/scheduling_rfd4_proteina.py#L19)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/schedulers/scheduling_rfd4_proteina.py#L19)
 
 **Parameters:**
 
@@ -122,4 +122,4 @@ prev_sample (`torch.Tensor`) : The state after the step, shaped `(B, N, D)`: `D`
 Updated state of one modality.
 
 ### EDMDPMSolverMultistepScheduler
-https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/edm_multistep_dpm_solver.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/schedulers/edm_multistep_dpm_solver.md

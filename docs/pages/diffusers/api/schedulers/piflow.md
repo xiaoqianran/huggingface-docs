@@ -15,7 +15,7 @@ The reference implementation can be found at [Lakonik/LakonLab](https://github.c
 diffusers.PiflowScheduler(num_train_timesteps: int = 1000, shift: float = 5.0, n_grid: int = 10, eps: float = 1e-06, final_step_size_scale: float = 0.5, num_policy_substeps: int = 128)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/schedulers/scheduling_piflow.py#L144)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/schedulers/scheduling_piflow.py#L144)
 
 **Parameters:**
 
@@ -37,7 +37,7 @@ PiFlow evaluates the denoising model at a small number of grid points and integr
 those evaluations. The scheduler is intended for distilled Kandinsky 6 checkpoints, including the main video/audio
 model and the video super-resolution model. Their model output contains `n_grid` predictions per sample channel.
 
-This scheduler inherits from [SchedulerMixin](/docs/diffusers/v0.42.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.42.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the
+This scheduler inherits from [SchedulerMixin](/docs/diffusers/v0.42.1/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.42.1/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the
 generic methods implemented for all schedulers (loading, saving, etc.).
 
 #### set_timesteps[[diffusers.PiflowScheduler.set_timesteps]]
@@ -46,7 +46,7 @@ generic methods implemented for all schedulers (loading, saving, etc.).
 set_timesteps(num_inference_steps: int | None = None, device: typing.Union[str, torch.device, NoneType] = None, sigmas: list[float] | None = None, mu: float | None = None, timesteps: list[float] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/schedulers/scheduling_piflow.py#L223)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/schedulers/scheduling_piflow.py#L223)
 
 **Parameters:**
 
@@ -68,7 +68,7 @@ Set the distilled PiFlow timestep schedule.
 step(model_output: FloatTensor, timestep: typing.Union[float, torch.FloatTensor], sample: FloatTensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/schedulers/scheduling_piflow.py#L324)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/schedulers/scheduling_piflow.py#L324)
 
 **Parameters:**
 
@@ -94,7 +94,7 @@ Advance one step by integrating the PiFlow policy.
 diffusers.schedulers.scheduling_piflow.PiflowSchedulerOutput(prev_sample: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/schedulers/scheduling_piflow.py#L30)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/schedulers/scheduling_piflow.py#L30)
 
 **Parameters:**
 
@@ -103,4 +103,4 @@ prev_sample (`torch.Tensor`) : Computed sample at the next PiFlow grid point. Sh
 Output class for the scheduler's `step` function output.
 
 ### DPMSolverSinglestepScheduler
-https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/singlestep_dpm_solver.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/schedulers/singlestep_dpm_solver.md

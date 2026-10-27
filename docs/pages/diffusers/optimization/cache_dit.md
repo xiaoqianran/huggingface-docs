@@ -84,4 +84,4 @@ See the [DBCache design](https://github.com/vipshop/cache-dit/blob/main/docs/use
 - CacheDiT also supports [context parallelism](https://github.com/vipshop/cache-dit/blob/main/docs/user_guide/CONTEXT_PARALLEL.md) and [quantization](https://github.com/vipshop/cache-dit/blob/main/docs/user_guide/QUANTIZATION.md).
 
 ### Attention backends
-https://huggingface.co/docs/diffusers/v0.42.0/optimization/attention_backends.md
+https://huggingface.co/docs/diffusers/v0.42.1/optimization/attention_backends.md

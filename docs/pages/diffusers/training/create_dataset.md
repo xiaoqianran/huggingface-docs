@@ -84,4 +84,4 @@ Now that you've created a dataset, you can plug it into the `train_data_dir` (if
 For your next steps, feel free to try and use your dataset to train a model for [unconditional generation](unconditional_training) or [text-to-image generation](text2image)!
 
 ### DreamBooth
-https://huggingface.co/docs/diffusers/v0.42.0/training/dreambooth.md
+https://huggingface.co/docs/diffusers/v0.42.1/training/dreambooth.md

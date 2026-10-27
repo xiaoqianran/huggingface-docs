@@ -30,9 +30,9 @@ print(config.base_model_tp_plan is not None)
 print(config.base_model_tp_plan)
 ```
 
-If a model supports TP, create a [DistributedConfig](/docs/transformers/v5.20.2/en/expert_parallelism#transformers.DistributedConfig) with the number of devices in `tp_size` and pass it to [from_pretrained()](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). Transformers uses the model's predefined plan, initializes the device mesh, and shards the supported layers for you.
+If a model supports TP, create a [DistributedConfig](/docs/transformers/v5.21.0/en/expert_parallelism#transformers.DistributedConfig) with the number of devices in `tp_size` and pass it to [from_pretrained()](/docs/transformers/v5.21.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). Transformers uses the model's predefined plan, initializes the device mesh, and shards the supported layers for you.
 
-You can also set `tp_plan="auto"` in [DistributedConfig](/docs/transformers/v5.20.2/en/expert_parallelism#transformers.DistributedConfig). When `tp_size` is omitted, it is inferred from `WORLD_SIZE`. Passing `tp_plan` directly to [from_pretrained()](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) is deprecated and will be removed in v5.18.
+You can also set `tp_plan="auto"` in [DistributedConfig](/docs/transformers/v5.21.0/en/expert_parallelism#transformers.DistributedConfig). When `tp_size` is omitted, it is inferred from `WORLD_SIZE`. Passing `tp_plan` directly to [from_pretrained()](/docs/transformers/v5.21.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) is deprecated and will be removed in v5.18.
 
 > [!WARNING]
 > Don't use `device_map` with `distributed_config`. The two conflict at the weight-loading level. `device_map` places whole modules on specific GPUs, while tensor parallelism shards those same parameters across all GPUs.
@@ -51,7 +51,7 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
-[Trainer](/docs/transformers/v5.20.2/en/main_classes/trainer#transformers.Trainer) detects the tensor parallel plan, reads `tp_size` from the model, and creates a `ParallelismConfig` automatically.
+[Trainer](/docs/transformers/v5.21.0/en/main_classes/trainer#transformers.Trainer) detects the tensor parallel plan, reads `tp_size` from the model, and creates a `ParallelismConfig` automatically.
 
 Launch training on one node with 4 GPUs.
 
@@ -94,5 +94,5 @@ You can load PEFT adapters onto a tensor parallel base model (requires `peft >= 
 - Read the [Tensor Parallelism](https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=tensor_parallelism) chapter from The Ultra-Scale Playbook for more details about how it works.
 - Read the [tensor parallelism inference guide](./perf_infer_gpu_multi) to learn more about partitioning strategies, manual TP plans, and implementation details.
 
-### Parameter-efficient fine-tuning
-https://huggingface.co/docs/transformers/v5.20.2/peft.md
+### Quantizing exports
+https://huggingface.co/docs/transformers/v5.21.0/exporters_quantization.md

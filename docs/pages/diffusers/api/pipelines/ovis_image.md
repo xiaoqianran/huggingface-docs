@@ -34,15 +34,15 @@ Refer to [this](https://huggingface.co/collections/AIDC-AI/ovis-image) collectio
 diffusers.OvisImagePipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: Qwen3Model, tokenizer: Qwen2Tokenizer, transformer: OvisImageTransformer2DModel)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ovis_image/pipeline_ovis_image.py#L129)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/ovis_image/pipeline_ovis_image.py#L129)
 
 **Parameters:**
 
-transformer ([OvisImageTransformer2DModel](/docs/diffusers/v0.42.0/en/api/models/ovisimage_transformer2d#diffusers.OvisImageTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+transformer ([OvisImageTransformer2DModel](/docs/diffusers/v0.42.1/en/api/models/ovisimage_transformer2d#diffusers.OvisImageTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKL](/docs/diffusers/v0.42.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.42.1/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
 text_encoder (`Qwen3Model`) : Text encoder of class [Qwen3Model](https://huggingface.co/docs/transformers/en/model_doc/qwen3#transformers.Qwen3Model).
 
@@ -58,7 +58,7 @@ Reference: https://github.com/AIDC-AI/Ovis-Image
 __call__(prompt: str | list[str] = None, negative_prompt: str | list[str] = '', guidance_scale: float = 5.0, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, sigmas: list[float] | None = None, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 256)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ovis_image/pipeline_ovis_image.py#L457)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/ovis_image/pipeline_ovis_image.py#L457)
 
 **Parameters:**
 
@@ -98,9 +98,9 @@ callback_on_step_end_tensor_inputs (`List`, *optional*) : The list of tensor inp
 
 max_sequence_length (`int` defaults to 512) : Maximum sequence length to use with the `prompt`.
 
-**Returns:** [OvisImagePipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/ovis_image#diffusers.pipelines.ovis_image.OvisImagePipelineOutput) or `tuple`
+**Returns:** [OvisImagePipelineOutput](/docs/diffusers/v0.42.1/en/api/pipelines/ovis_image#diffusers.pipelines.ovis_image.OvisImagePipelineOutput) or `tuple`
 
-[OvisImagePipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/ovis_image#diffusers.pipelines.ovis_image.OvisImagePipelineOutput) if `return_dict` is True, otherwise a `tuple`. When
+[OvisImagePipelineOutput](/docs/diffusers/v0.42.1/en/api/pipelines/ovis_image#diffusers.pipelines.ovis_image.OvisImagePipelineOutput) if `return_dict` is True, otherwise a `tuple`. When
 returning a tuple, the first element is a list with the generated images.
 
 Function invoked when calling the pipeline for generation.
@@ -123,7 +123,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, max_sequence_length: int = 256, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ovis_image/pipeline_ovis_image.py#L269)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/ovis_image/pipeline_ovis_image.py#L269)
 
 **Parameters:**
 
@@ -151,7 +151,7 @@ negative_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negativ
 diffusers.pipelines.ovis_image.OvisImagePipelineOutput(images: list)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/ovis_image/pipeline_output.py#L24)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/ovis_image/pipeline_output.py#L24)
 
 **Parameters:**
 
@@ -160,7 +160,7 @@ images (`list[PIL.Image.Image]` or `np.ndarray`) : List of denoised PIL images o
 Output class for Ovis-Image pipelines.
 
 ### Flux3
-https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/flux3.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/pipelines/flux3.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -177,7 +177,7 @@ https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/flux3.md
 
 # FLUX 3 Image Klein
 
-FLUX 3 Image Klein is a 5.6B image generation model from Black Forest Labs: a single transformer ([Flux3Transformer2DModel](/docs/diffusers/v0.42.0/en/api/models/flux3_transformer#diffusers.Flux3Transformer2DModel)) generates images from a text prompt, alone or together with one or more reference images. Text conditioning comes from Qwen3-VL, and images use the FLUX.2 packed autoencoder (`AutoencoderKLFlux2`).
+FLUX 3 Image Klein is a 5.6B image generation model from Black Forest Labs: a single transformer ([Flux3Transformer2DModel](/docs/diffusers/v0.42.1/en/api/models/flux3_transformer#diffusers.Flux3Transformer2DModel)) generates images from a text prompt, alone or together with one or more reference images. Text conditioning comes from Qwen3-VL, and images use the FLUX.2 packed autoencoder (`AutoencoderKLFlux2`).
 
 FLUX 3 Image Klein ships as a [modular pipeline](../../modular_diffusers/overview). Get started with a text-to-image generation:
 
@@ -199,7 +199,7 @@ image.save("fox.png")
 
 `prompt` is the only required input: the pipeline carries the recommended sampling settings (50 steps, guidance scale 3.5, scheduler shift 6.93) and generates 1024 x 1024 images by default. It takes one prompt per call; use `num_images_per_prompt` for several images of the same prompt.
 
-As you can see in the example above, loading and running differ a little from a `DiffusionPipeline`. Loading is lazy: [from_pretrained()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.from_pretrained) only builds the pipeline, and you call [load_components()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.load_components) to load the weights. A call returns the pipeline state, and you ask for what you need with `output`: `output="images"` here, or `output=["images", "prompt"]` to also get the caption the prompt upsampler wrote.
+As you can see in the example above, loading and running differ a little from a `DiffusionPipeline`. Loading is lazy: [from_pretrained()](/docs/diffusers/v0.42.1/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.from_pretrained) only builds the pipeline, and you call [load_components()](/docs/diffusers/v0.42.1/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.load_components) to load the weights. A call returns the pipeline state, and you ask for what you need with `output`: `output="images"` here, or `output=["images", "prompt"]` to also get the caption the prompt upsampler wrote.
 
 > [!TIP]
 > If you're working with `ModularPipeline` for the first time, read the [quickstart](../../modular_diffusers/quickstart), and [Coming from DiffusionPipeline](../../modular_diffusers/coming_from_diffusion_pipeline) if you know the standard pipelines. Besides loading and outputs, a few other things differ: [guidance](#guidance-scale), [callbacks](#per-step-callbacks) and [offloading](#memory).
@@ -320,7 +320,7 @@ The caption the image model reads has the elements tagged `<id>` in the text and
 
 ## Guidance scale
 
-The pipeline applies classifier-free guidance through its `guider` component and does not take a `guidance_scale` argument at call time. The default guider is [ClassifierFreeGuidance](/docs/diffusers/v0.42.0/en/api/modular_diffusers/guiders#diffusers.ClassifierFreeGuidance) with `guidance_scale=3.5`, the recommended setting for both workflows. To change it, create an updated copy of the guider:
+The pipeline applies classifier-free guidance through its `guider` component and does not take a `guidance_scale` argument at call time. The default guider is [ClassifierFreeGuidance](/docs/diffusers/v0.42.1/en/api/modular_diffusers/guiders#diffusers.ClassifierFreeGuidance) with `guidance_scale=3.5`, the recommended setting for both workflows. To change it, create an updated copy of the guider:
 
 ```python
 pipe.guider = pipe.guider.new(guidance_scale=5.0)
@@ -330,7 +330,7 @@ See the [guiders guide](../../using-diffusers/guiders) to switch to a different 
 
 ## Step-distilled model
 
-The step-distilled checkpoint generates in 16 steps without classifier-free guidance. Its transformer is a flow map: at every step it is told the current timestep and the one the step jumps to. It loads like the base model (the repo's `modular_model_index.json` resolves to [Flux3DistilledModularPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/flux3#diffusers.Flux3DistilledModularPipeline) and [Flux3DistilledAutoBlocks](/docs/diffusers/v0.42.0/en/api/pipelines/flux3#diffusers.Flux3DistilledAutoBlocks)); the pipeline has no `guider` and does not take `negative_prompt`:
+The step-distilled checkpoint generates in 16 steps without classifier-free guidance. Its transformer is a flow map: at every step it is told the current timestep and the one the step jumps to. It loads like the base model (the repo's `modular_model_index.json` resolves to [Flux3DistilledModularPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/flux3#diffusers.Flux3DistilledModularPipeline) and [Flux3DistilledAutoBlocks](/docs/diffusers/v0.42.1/en/api/pipelines/flux3#diffusers.Flux3DistilledAutoBlocks)); the pipeline has no `guider` and does not take `negative_prompt`:
 
 ```python
 pipe = ModularPipeline.from_pretrained("black-forest-labs/flux-3-image-klein")
@@ -358,7 +358,7 @@ image = pipe(prompt=prompt, latents=latents, height=height, width=width, output=
 
 ## Workflows
 
-The pipeline serves two workflows, `text2image` and `image_conditioned`; the one that runs is picked by the inputs (`image` selects image-to-image). [from_pretrained()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.from_pretrained) can also build a pipeline for one workflow with the `workflow` argument, which then only expects and loads the components that workflow needs:
+The pipeline serves two workflows, `text2image` and `image_conditioned`; the one that runs is picked by the inputs (`image` selects image-to-image). [from_pretrained()](/docs/diffusers/v0.42.1/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.from_pretrained) can also build a pipeline for one workflow with the `workflow` argument, which then only expects and loads the components that workflow needs:
 
 ```python
 from diffusers.modular_pipelines import Flux3AutoBlocks
@@ -400,7 +400,7 @@ manager.enable_auto_cpu_offload(device="cuda")
 
 ## Single-file loading
 
-[Flux3Transformer2DModel](/docs/diffusers/v0.42.0/en/api/models/flux3_transformer#diffusers.Flux3Transformer2DModel) loads the transformer straight from a Black Forest Labs model package with [from_single_file()](/docs/diffusers/v0.42.0/en/api/loaders/single_file#diffusers.loaders.FromOriginalModelMixin.from_single_file). The package `config.json` is not read; pass the diffusers config with `config` and `subfolder`.
+[Flux3Transformer2DModel](/docs/diffusers/v0.42.1/en/api/models/flux3_transformer#diffusers.Flux3Transformer2DModel) loads the transformer straight from a Black Forest Labs model package with [from_single_file()](/docs/diffusers/v0.42.1/en/api/loaders/single_file#diffusers.loaders.FromOriginalModelMixin.from_single_file). The package `config.json` is not read; pass the diffusers config with `config` and `subfolder`.
 
 ```python
 import torch
@@ -419,9 +419,9 @@ pipe.update_components(transformer=transformer)
 pipe.to("cuda")
 ```
 
-Load the other components by name first: [load_components()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.load_components) without `names` would also load the transformer from the pipeline repo.
+Load the other components by name first: [load_components()](/docs/diffusers/v0.42.1/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.load_components) without `names` would also load the transformer from the pipeline repo.
 
-Loading the FP8r and NVFP4 single-file checkpoints are also supported. Both load through the same call with a [BFLQuantizationConfig](/docs/diffusers/v0.42.0/en/api/quantization#diffusers.BFLQuantizationConfig). See the [BFL quantization guide](../../quantization/bfl) for the kernel requirements of each scheme.
+Loading the FP8r and NVFP4 single-file checkpoints are also supported. Both load through the same call with a [BFLQuantizationConfig](/docs/diffusers/v0.42.1/en/api/quantization#diffusers.BFLQuantizationConfig). See the [BFL quantization guide](../../quantization/bfl) for the kernel requirements of each scheme.
 
 ```python
 from diffusers import BFLQuantizationConfig
@@ -456,7 +456,7 @@ transformer = Flux3Transformer2DModel.from_single_file(
 diffusers.Flux3ModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/flux3/modular_pipeline.py#L24)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/flux3/modular_pipeline.py#L24)
 
 A ModularPipeline for FLUX.3.
 
@@ -468,7 +468,7 @@ A ModularPipeline for FLUX.3.
 diffusers.Flux3AutoBlocks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/flux3/modular_blocks_flux3.py#L339)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/flux3/modular_blocks_flux3.py#L339)
 
 Auto blocks that perform text-to-image and image-to-image generation using FLUX.3. `prompt` goes through the prompt
 upsampler first; pop the `prompt_upsampler` step to encode it as given.
@@ -542,7 +542,7 @@ Denoised latents.
 diffusers.Flux3DistilledAutoBlocks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/flux3/modular_blocks_flux3_distilled.py#L258)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/flux3/modular_blocks_flux3_distilled.py#L258)
 
 Auto blocks that perform text-to-image and image-to-image generation using the step-distilled FLUX.3 model (16
 steps, no classifier-free guidance). `prompt` goes through the prompt upsampler first; pop the `prompt_upsampler`
@@ -613,9 +613,9 @@ Denoised latents.
 diffusers.Flux3DistilledModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/flux3/modular_pipeline.py#L52)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/flux3/modular_pipeline.py#L52)
 
 A ModularPipeline for the step-distilled FLUX.3 model (16 steps, no classifier-free guidance).
 
 ### Latent Consistency Models
-https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/latent_consistency_models.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/pipelines/latent_consistency_models.md

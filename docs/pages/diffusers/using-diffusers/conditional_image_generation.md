@@ -9,7 +9,7 @@ From a very high level, a diffusion model takes a prompt and some random initial
 
 You can generate images from a prompt in 🤗 Diffusers in two steps:
 
-1. Load a checkpoint into the [AutoPipelineForText2Image](/docs/diffusers/v0.42.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Image) class, which automatically detects the appropriate pipeline class to use based on the checkpoint:
+1. Load a checkpoint into the [AutoPipelineForText2Image](/docs/diffusers/v0.42.1/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Image) class, which automatically detects the appropriate pipeline class to use based on the checkpoint:
 
 ```py
 from diffusers import AutoPipelineForText2Image
@@ -102,7 +102,7 @@ controlnet = ControlNetModel.from_pretrained(
 pose_image = load_image("https://huggingface.co/lllyasviel/control_v11p_sd15_openpose/resolve/main/images/control.png")
 ```
 
-Pass the `controlnet` to the [AutoPipelineForText2Image](/docs/diffusers/v0.42.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Image), and provide the prompt and pose estimation image:
+Pass the `controlnet` to the [AutoPipelineForText2Image](/docs/diffusers/v0.42.1/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Image), and provide the prompt and pose estimation image:
 
 ```py
 pipeline = AutoPipelineForText2Image.from_pretrained(
@@ -283,4 +283,4 @@ pipeline.unet = torch.compile(pipeline.unet, mode="reduce-overhead", fullgraph=T
 For more tips on how to optimize your code to save memory and speed up inference, read the [Accelerate inference](../optimization/fp16) and [Reduce memory usage](../optimization/memory) guides.
 
 ### IP-Adapter
-https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/ip_adapter.md
+https://huggingface.co/docs/diffusers/v0.42.1/using-diffusers/ip_adapter.md

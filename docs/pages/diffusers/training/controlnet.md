@@ -254,4 +254,4 @@ Congratulations on training your own ControlNet! To learn more about how to use 
 - Learn how to [use a ControlNet](../using-diffusers/controlnet) for inference on a variety of tasks.
 
 ### LoRA
-https://huggingface.co/docs/diffusers/v0.42.0/training/lora.md
+https://huggingface.co/docs/diffusers/v0.42.1/training/lora.md

@@ -196,4 +196,4 @@ Congratulations on training your own Textual Inversion model! 🎉 To learn more
 - Learn how to [load Textual Inversion embeddings](../using-diffusers/legacy_adapters#textual-inversion) and also use them as negative embeddings.
 
 ### Unconditional image generation
-https://huggingface.co/docs/diffusers/v0.42.0/training/unconditional_training.md
+https://huggingface.co/docs/diffusers/v0.42.1/training/unconditional_training.md

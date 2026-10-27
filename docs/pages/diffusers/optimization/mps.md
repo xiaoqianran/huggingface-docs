@@ -53,7 +53,7 @@ This section lists some common issues with using the `mps` backend and how to so
 
 M1/M2 performance is very sensitive to memory pressure. When this occurs, the system automatically swaps if it needs to which significantly degrades performance.
 
-To prevent this from happening, we recommend *attention slicing* to reduce memory pressure during inference and prevent swapping. This is especially relevant if your computer has less than 64GB of system RAM, or if you generate images at non-standard resolutions larger than 512×512 pixels. Call the [enable_attention_slicing()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_attention_slicing) function on your pipeline:
+To prevent this from happening, we recommend *attention slicing* to reduce memory pressure during inference and prevent swapping. This is especially relevant if your computer has less than 64GB of system RAM, or if you generate images at non-standard resolutions larger than 512×512 pixels. Call the [enable_attention_slicing()](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_attention_slicing) function on your pipeline:
 
 ```py
 from diffusers import DiffusionPipeline
@@ -70,4 +70,4 @@ Attention slicing performs the costly attention operation in multiple steps inst
 Generating multiple prompts in a batch can crash or fail to work reliably. If this is the case, try iterating instead of batching.
 
 ### CacheDiT
-https://huggingface.co/docs/diffusers/v0.42.0/optimization/cache_dit.md
+https://huggingface.co/docs/diffusers/v0.42.1/optimization/cache_dit.md

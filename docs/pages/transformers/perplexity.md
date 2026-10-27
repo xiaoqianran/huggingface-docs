@@ -126,5 +126,5 @@ as the `19.93` reported in the GPT-2 paper. By using `stride = 512` and thereby 
 strategy, this jumps down to `16.44`. This is not only a more favorable score, but is calculated in a way that is
 closer to the true autoregressive decomposition of a sequence likelihood.
 
-### Parallelism methods
-https://huggingface.co/docs/transformers/v5.20.2/perf_train_gpu_many.md
+### Accelerate
+https://huggingface.co/docs/transformers/v5.21.0/accelerate.md

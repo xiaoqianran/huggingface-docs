@@ -96,7 +96,7 @@ export_to_video(video, "sana-i2v.mp4", fps=16)
 
 Quantization helps reduce the memory requirements of very large models by storing model weights in a lower precision data type. However, quantization may have varying impact on video quality depending on the video model.
 
-Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [SanaVideoPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/sana_video#diffusers.SanaVideoPipeline) for inference with bitsandbytes.
+Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [SanaVideoPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/sana_video#diffusers.SanaVideoPipeline) for inference with bitsandbytes.
 
 ```py
 import torch
@@ -153,7 +153,7 @@ export_to_video(output, "sana-video-output.mp4", fps=16)
 diffusers.SanaVideoPipeline(tokenizer: GemmaTokenizer, text_encoder: Gemma2PreTrainedModel, vae: diffusers.models.autoencoders.autoencoder_dc.AutoencoderDC | diffusers.models.autoencoders.autoencoder_kl_ltx2.AutoencoderKLLTX2Video | diffusers.models.autoencoders.autoencoder_kl_wan.AutoencoderKLWan, transformer: SanaVideoTransformer3DModel, scheduler: DPMSolverMultistepScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/sana_video/pipeline_sana_video.py#L186)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/sana_video/pipeline_sana_video.py#L186)
 
 **Parameters:**
 
@@ -163,12 +163,12 @@ text_encoder (`Gemma2PreTrainedModel`) : Text encoder model to encode the input 
 
 vae ([`AutoencoderKLWan`, `AutoencoderDC`, or `AutoencoderKLLTX2Video`]) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
-transformer ([SanaVideoTransformer3DModel](/docs/diffusers/v0.42.0/en/api/models/sana_video_transformer3d#diffusers.SanaVideoTransformer3DModel)) : Conditional Transformer to denoise the input latents.
+transformer ([SanaVideoTransformer3DModel](/docs/diffusers/v0.42.1/en/api/models/sana_video_transformer3d#diffusers.SanaVideoTransformer3DModel)) : Conditional Transformer to denoise the input latents.
 
-scheduler ([DPMSolverMultistepScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
+scheduler ([DPMSolverMultistepScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
 
 Pipeline for text-to-video generation using [Sana](https://huggingface.co/papers/2509.24695). This model inherits
-from [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods implemented for all
+from [DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods implemented for all
 pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.SanaVideoPipeline.__call__]]
@@ -177,7 +177,7 @@ pipelines (downloading, saving, running on a particular device, etc.).
 __call__(prompt: str | list[str] = None, negative_prompt: str = '', num_inference_steps: int = 50, timesteps: list = None, sigmas: list = None, guidance_scale: float = 6.0, num_videos_per_prompt: int | None = 1, height: int = 480, width: int = 832, frames: int = 81, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, clean_caption: bool = False, use_resolution_binning: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 300, complex_human_instruction: list = ["Given a user prompt, generate an 'Enhanced prompt' that provides detailed visual descriptions suitable for video generation. Evaluate the level of detail in the user prompt:", '- If the prompt is simple, focus on adding specifics about colors, shapes, sizes, textures, motion, and temporal relationships to create vivid and dynamic scenes.', '- If the prompt is already detailed, refine and enhance the existing details slightly without overcomplicating.', 'Here are examples of how to transform or refine prompts:', '- User Prompt: A cat sleeping -> Enhanced: A small, fluffy white cat slowly settling into a curled position, peacefully falling asleep on a warm sunny windowsill, with gentle sunlight filtering through surrounding pots of blooming red flowers.', '- User Prompt: A busy city street -> Enhanced: A bustling city street scene at dusk, featuring glowing street lamps gradually lighting up, a diverse crowd of people in colorful clothing walking past, and a double-decker bus smoothly passing by towering glass skyscrapers.', 'Please generate only the enhanced description for the prompt below and avoid including any additional commentary or evaluations:', 'User Prompt: '])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/sana_video/pipeline_sana_video.py#L712)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/sana_video/pipeline_sana_video.py#L712)
 
 **Parameters:**
 
@@ -201,7 +201,7 @@ width (`int`, *optional*, defaults to 832) : The width in pixels of the generate
 
 frames (`int`, *optional*, defaults to 81) : The number of frames in the generated video.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -233,9 +233,9 @@ max_sequence_length (`int` defaults to `300`) : Maximum sequence length to use w
 
 complex_human_instruction (`list[str]`, *optional*) : Instructions for complex human attention: https://github.com/NVlabs/Sana/blob/main/configs/sana_app_config/Sana_1600M_app.yaml#L55.
 
-**Returns:** [SanaVideoPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/sana_video#diffusers.pipelines.sana_video.pipeline_output.SanaVideoPipelineOutput) or `tuple`
+**Returns:** [SanaVideoPipelineOutput](/docs/diffusers/v0.42.1/en/api/pipelines/sana_video#diffusers.pipelines.sana_video.pipeline_output.SanaVideoPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [SanaVideoPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/sana_video#diffusers.pipelines.sana_video.pipeline_output.SanaVideoPipelineOutput) is
+If `return_dict` is `True`, [SanaVideoPipelineOutput](/docs/diffusers/v0.42.1/en/api/pipelines/sana_video#diffusers.pipelines.sana_video.pipeline_output.SanaVideoPipelineOutput) is
 returned, otherwise a `tuple` is returned where the first element is a list with the generated videos
 
 Function invoked when calling the pipeline for generation.
@@ -278,7 +278,7 @@ Examples:
 encode_prompt(prompt: str | list[str], do_classifier_free_guidance: bool = True, negative_prompt: str = '', num_videos_per_prompt: int = 1, device: typing.Optional[torch.device] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, clean_caption: bool = False, max_sequence_length: int = 300, complex_human_instruction: list[str] | None = None, lora_scale: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/sana_video/pipeline_sana_video.py#L303)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/sana_video/pipeline_sana_video.py#L303)
 
 **Parameters:**
 
@@ -312,7 +312,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.SanaImageToVideoPipeline(tokenizer: GemmaTokenizer, text_encoder: Gemma2PreTrainedModel, vae: diffusers.models.autoencoders.autoencoder_dc.AutoencoderDC | diffusers.models.autoencoders.autoencoder_kl_ltx2.AutoencoderKLLTX2Video | diffusers.models.autoencoders.autoencoder_kl_wan.AutoencoderKLWan, transformer: SanaVideoTransformer3DModel, scheduler: FlowMatchEulerDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/sana_video/pipeline_sana_video_i2v.py#L176)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/sana_video/pipeline_sana_video_i2v.py#L176)
 
 **Parameters:**
 
@@ -322,12 +322,12 @@ text_encoder (`Gemma2PreTrainedModel`) : Text encoder model to encode the input 
 
 vae ([`AutoencoderKLWan`, `AutoencoderDC`, or `AutoencoderKLLTX2Video`]) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
-transformer ([SanaVideoTransformer3DModel](/docs/diffusers/v0.42.0/en/api/models/sana_video_transformer3d#diffusers.SanaVideoTransformer3DModel)) : Conditional Transformer to denoise the input latents.
+transformer ([SanaVideoTransformer3DModel](/docs/diffusers/v0.42.1/en/api/models/sana_video_transformer3d#diffusers.SanaVideoTransformer3DModel)) : Conditional Transformer to denoise the input latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
 
 Pipeline for image/text-to-video generation using [Sana](https://huggingface.co/papers/2509.24695). This model
-inherits from [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods implemented for all
+inherits from [DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods implemented for all
 pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.SanaImageToVideoPipeline.__call__]]
@@ -336,7 +336,7 @@ pipelines (downloading, saving, running on a particular device, etc.).
 __call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], prompt: str | list[str] = None, negative_prompt: str = '', num_inference_steps: int = 50, timesteps: list = None, sigmas: list = None, guidance_scale: float = 6.0, num_videos_per_prompt: int | None = 1, height: int = 480, width: int = 832, frames: int = 81, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, clean_caption: bool = False, use_resolution_binning: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 300, complex_human_instruction: list = ["Given a user prompt, generate an 'Enhanced prompt' that provides detailed visual descriptions suitable for video generation. Evaluate the level of detail in the user prompt:", '- If the prompt is simple, focus on adding specifics about colors, shapes, sizes, textures, motion, and temporal relationships to create vivid and dynamic scenes.', '- If the prompt is already detailed, refine and enhance the existing details slightly without overcomplicating.', 'Here are examples of how to transform or refine prompts:', '- User Prompt: A cat sleeping -> Enhanced: A small, fluffy white cat slowly settling into a curled position, peacefully falling asleep on a warm sunny windowsill, with gentle sunlight filtering through surrounding pots of blooming red flowers.', '- User Prompt: A busy city street -> Enhanced: A bustling city street scene at dusk, featuring glowing street lamps gradually lighting up, a diverse crowd of people in colorful clothing walking past, and a double-decker bus smoothly passing by towering glass skyscrapers.', 'Please generate only the enhanced description for the prompt below and avoid including any additional commentary or evaluations:', 'User Prompt: '])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/sana_video/pipeline_sana_video_i2v.py#L739)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/sana_video/pipeline_sana_video_i2v.py#L739)
 
 **Parameters:**
 
@@ -362,7 +362,7 @@ width (`int`, *optional*, defaults to 832) : The width in pixels of the generate
 
 frames (`int`, *optional*, defaults to 81) : The number of frames in the generated video.
 
-eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
 
 generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
 
@@ -394,9 +394,9 @@ max_sequence_length (`int` defaults to `300`) : Maximum sequence length to use w
 
 complex_human_instruction (`list[str]`, *optional*) : Instructions for complex human attention: https://github.com/NVlabs/Sana/blob/main/configs/sana_app_config/Sana_1600M_app.yaml#L55.
 
-**Returns:** [SanaVideoPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/sana_video#diffusers.pipelines.sana_video.pipeline_output.SanaVideoPipelineOutput) or `tuple`
+**Returns:** [SanaVideoPipelineOutput](/docs/diffusers/v0.42.1/en/api/pipelines/sana_video#diffusers.pipelines.sana_video.pipeline_output.SanaVideoPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [SanaVideoPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/sana_video#diffusers.pipelines.sana_video.pipeline_output.SanaVideoPipelineOutput) is
+If `return_dict` is `True`, [SanaVideoPipelineOutput](/docs/diffusers/v0.42.1/en/api/pipelines/sana_video#diffusers.pipelines.sana_video.pipeline_output.SanaVideoPipelineOutput) is
 returned, otherwise a `tuple` is returned where the first element is a list with the generated videos
 
 Function invoked when calling the pipeline for generation.
@@ -441,7 +441,7 @@ Examples:
 encode_prompt(prompt: str | list[str], do_classifier_free_guidance: bool = True, negative_prompt: str = '', num_videos_per_prompt: int = 1, device: typing.Optional[torch.device] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, clean_caption: bool = False, max_sequence_length: int = 300, complex_human_instruction: list[str] | None = None, lora_scale: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/sana_video/pipeline_sana_video_i2v.py#L301)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/sana_video/pipeline_sana_video_i2v.py#L301)
 
 **Parameters:**
 
@@ -475,7 +475,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.pipelines.sana_video.pipeline_output.SanaVideoPipelineOutput(frames: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/sana_video/pipeline_output.py#L9)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/sana_video/pipeline_output.py#L9)
 
 **Parameters:**
 
@@ -484,7 +484,7 @@ frames (`torch.Tensor`, `np.ndarray`, or list[list[PIL.Image.Image]]) : List of 
 Output class for Sana-Video pipelines.
 
 ### Echo
-https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/echo.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/pipelines/echo.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");

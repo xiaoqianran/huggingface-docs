@@ -13,7 +13,7 @@ Quantization techniques reduce memory and computational costs by representing we
 diffusers.PipelineQuantizationConfig(quant_backend: str = None, quant_kwargs: dict[str, str | float | int | dict] = None, components_to_quantize: list[str] | str | None = None, quant_mapping: dict[str, DiffQuantConfigMixin | 'TransformersQuantConfigMixin'] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/pipe_quant_config.py#L34)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/pipe_quant_config.py#L34)
 
 **Parameters:**
 
@@ -25,7 +25,7 @@ components_to_quantize (`list`) : Components of a pipeline to be quantized.
 
 quant_mapping (`dict`) : Mapping defining the quantization specs to be used for the pipeline components. When using this argument, users are not expected to provide `quant_backend`, `quant_kawargs`, and `components_to_quantize`.
 
-Configuration class to be used when applying quantization on-the-fly to [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained).
+Configuration class to be used when applying quantization on-the-fly to [from_pretrained()](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained).
 
 ## BFLQuantizationConfig[[diffusers.BFLQuantizationConfig]]
 
@@ -35,7 +35,7 @@ Configuration class to be used when applying quantization on-the-fly to [from_pr
 diffusers.BFLQuantizationConfig(compute_dtype: 'torch.dtype' | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/quantization_config.py#L436)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/quantization_config.py#L436)
 
 **Parameters:**
 
@@ -59,7 +59,7 @@ the fly is not supported. A linear layer is quantized when its weight comes with
 diffusers.BitsAndBytesConfig(load_in_8bit = False, load_in_4bit = False, llm_int8_threshold = 6.0, llm_int8_skip_modules = None, llm_int8_enable_fp32_cpu_offload = False, llm_int8_has_fp16_weight = False, bnb_4bit_compute_dtype = None, bnb_4bit_quant_type = 'fp4', bnb_4bit_use_double_quant = False, bnb_4bit_quant_storage = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/quantization_config.py#L173)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/quantization_config.py#L173)
 
 **Parameters:**
 
@@ -99,7 +99,7 @@ then more arguments will be added to this class.
 is_quantizable()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/quantization_config.py#L352)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/quantization_config.py#L352)
 
 Returns `True` if the model is quantizable, `False` otherwise.
 
@@ -109,7 +109,7 @@ Returns `True` if the model is quantizable, `False` otherwise.
 post_init()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/quantization_config.py#L315)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/quantization_config.py#L315)
 
 Safety checker that arguments are correct - also replaces some NoneType arguments with their default values.
 
@@ -119,7 +119,7 @@ Safety checker that arguments are correct - also replaces some NoneType argument
 quantization_method()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/quantization_config.py#L358)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/quantization_config.py#L358)
 
 This method returns the quantization method used for the model. If the model is not quantizable, it returns
 `None`.
@@ -130,7 +130,7 @@ This method returns the quantization method used for the model. If the model is 
 to_diff_dict()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/quantization_config.py#L389)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/quantization_config.py#L389)
 
 **Returns:** `dict[str, Any]`
 
@@ -147,7 +147,7 @@ serializes to a Python dictionary.
 diffusers.GGUFQuantizationConfig(compute_dtype: 'torch.dtype' | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/quantization_config.py#L413)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/quantization_config.py#L413)
 
 **Parameters:**
 
@@ -163,7 +163,7 @@ This is a config class for GGUF Quantization techniques.
 diffusers.NunchakuLiteQuantizationConfig(compute_dtype: 'torch.dtype' | str | None = None, svdq_w4a4: dict[str, Any] | None = None, awq_w4a16: dict[str, Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/quantization_config.py#L460)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/quantization_config.py#L460)
 
 **Parameters:**
 
@@ -214,7 +214,7 @@ Example compact `config.json` config:
 diffusers.QuantoConfig(weights_dtype: str = 'int8', modules_to_not_convert: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/quantization_config.py#L676)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/quantization_config.py#L676)
 
 **Parameters:**
 
@@ -224,7 +224,7 @@ This is a wrapper class about all possible attributes and features that you can 
 loaded using `quanto`.
 
 `QuantoConfig` is deprecated and will be removed in version 1.0.0. Consider switching to one of the other supported
-quantization backends, such as [BitsAndBytesConfig](/docs/diffusers/v0.42.0/en/api/quantization#diffusers.BitsAndBytesConfig) or [TorchAoConfig](/docs/diffusers/v0.42.0/en/api/quantization#diffusers.TorchAoConfig).
+quantization backends, such as [BitsAndBytesConfig](/docs/diffusers/v0.42.1/en/api/quantization#diffusers.BitsAndBytesConfig) or [TorchAoConfig](/docs/diffusers/v0.42.1/en/api/quantization#diffusers.TorchAoConfig).
 
 modules_to_not_convert (`list`, *optional*, default to `None`):
 The list of modules to not quantize, useful for quantizing models that explicitly require to have some
@@ -236,7 +236,7 @@ modules left in their original precision (e.g. Whisper encoder, Llava encoder, M
 post_init()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/quantization_config.py#L710)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/quantization_config.py#L710)
 
 Safety checker that arguments are correct
 
@@ -248,7 +248,7 @@ Safety checker that arguments are correct
 diffusers.SDNQConfig(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/quantization_config.py#L988)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/quantization_config.py#L988)
 
 **Parameters:**
 
@@ -280,7 +280,7 @@ Reference: https://github.com/Disty0/sdnq
 diffusers.TorchAoConfig(quant_type: 'AOBaseConfig', modules_to_not_convert: list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/quantization_config.py#L581)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/quantization_config.py#L581)
 
 **Parameters:**
 
@@ -310,7 +310,7 @@ transformer = FluxTransformer2DModel.from_pretrained(
 from_dict(config_dict, return_unused_kwargs = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/quantization_config.py#L644)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/quantization_config.py#L644)
 
 Create configuration from a dictionary.
 
@@ -320,7 +320,7 @@ Create configuration from a dictionary.
 get_apply_tensor_subclass()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/quantization_config.py#L666)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/quantization_config.py#L666)
 
 Create the appropriate quantization method based on configuration.
 
@@ -330,7 +330,7 @@ Create the appropriate quantization method based on configuration.
 to_dict()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/quantization_config.py#L630)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/quantization_config.py#L630)
 
 Convert configuration to a dictionary.
 
@@ -342,7 +342,7 @@ Convert configuration to a dictionary.
 diffusers.DiffusersQuantizer(quantization_config: QuantizationConfigMixin, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/base.py#L34)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/base.py#L34)
 
 Abstract class of the HuggingFace quantizer. Supports for now quantizing HF diffusers models for inference and/or
 quantization. This class is used only for diffusers.models.modeling_utils.ModelMixin.from_pretrained and cannot be
@@ -364,7 +364,7 @@ Whether the quantization method requires to calibrate the model before using it.
 adjust_max_memory(max_memory: dict)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/base.py#L133)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/base.py#L133)
 
 adjust max_memory argument for infer_auto_device_map() if extra memory is needed for quantization
 
@@ -374,7 +374,7 @@ adjust max_memory argument for infer_auto_device_map() if extra memory is needed
 adjust_target_dtype(torch_dtype: torch.dtype)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/base.py#L91)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/base.py#L91)
 
 **Parameters:**
 
@@ -390,7 +390,7 @@ and for 4-bit we pass a custom enum `accelerate.CustomDtype.int4`.
 check_if_quantized_param(model: ModelMixin, param_value: torch.Tensor, param_name: str, state_dict: dict, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/base.py#L137)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/base.py#L137)
 
 checks if a loaded state_dict component is part of quantized param + some validation; only defined for
 quantization methods that require to create a new parameters for quantization.
@@ -401,7 +401,7 @@ quantization methods that require to create a new parameters for quantization.
 check_quantized_param_shape(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/base.py#L157)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/base.py#L157)
 
 checks if the quantized param has expected shape.
 
@@ -411,7 +411,7 @@ checks if the quantized param has expected shape.
 create_quantized_param(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/base.py#L151)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/base.py#L151)
 
 takes needed components from state_dict and creates quantized param.
 
@@ -421,7 +421,7 @@ takes needed components from state_dict and creates quantized param.
 dequantize(model)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/base.py#L219)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/base.py#L219)
 
 Potentially dequantize the model to retrieve the original model, with some loss in accuracy / performance. Note
 not all quantization schemes support this.
@@ -432,7 +432,7 @@ not all quantization schemes support this.
 get_cuda_warm_up_factor()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/base.py#L232)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/base.py#L232)
 
 The factor to be used in `caching_allocator_warmup` to get the number of bytes to pre-allocate to warm up cuda.
 A factor of 2 means we allocate all bytes in the empty model (since we allocate in fp16), a factor of 4 means
@@ -444,7 +444,7 @@ we allocate half the memory of the weights residing in the empty model, etc...
 get_special_dtypes_update(model, torch_dtype: torch.dtype)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/base.py#L113)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/base.py#L113)
 
 **Parameters:**
 
@@ -463,7 +463,7 @@ yet but this can change soon in the future.
 postprocess_model(model: ModelMixin, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/base.py#L206)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/base.py#L206)
 
 **Parameters:**
 
@@ -480,7 +480,7 @@ Post-process the model post weights loading. Make sure to override the abstract 
 preprocess_model(model: ModelMixin, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/base.py#L190)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/base.py#L190)
 
 **Parameters:**
 
@@ -498,7 +498,7 @@ modules in-place. Make sure to override the abstract method `_process_model_befo
 update_device_map(device_map: dict[str, typing.Any] | None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/base.py#L79)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/base.py#L79)
 
 **Parameters:**
 
@@ -514,7 +514,7 @@ bitsandbytes, since `accelerate` is a hard requirement, if no device_map is pass
 update_missing_keys(model, missing_keys: list, prefix: str)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/base.py#L103)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/base.py#L103)
 
 **Parameters:**
 
@@ -528,7 +528,7 @@ Override this method if you want to adjust the `missing_keys`.
 update_torch_dtype(torch_dtype: torch.dtype)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/base.py#L68)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/base.py#L68)
 
 **Parameters:**
 
@@ -543,11 +543,11 @@ override this method in case you want to make sure that behavior is preserved
 validate_environment(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/quantizers/base.py#L163)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/quantizers/base.py#L163)
 
 This method is used to potentially check for potential conflicts with arguments that are passed in
 `from_pretrained`. You need to define it for all future quantizers that are integrated with diffusers. If no
 explicit check are needed, simply return nothing.
 
 ### Parallelism
-https://huggingface.co/docs/diffusers/v0.42.0/api/parallel.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/parallel.md

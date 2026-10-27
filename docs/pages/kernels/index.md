@@ -25,6 +25,7 @@
 - [kernels verify-signature](https://huggingface.co/docs/kernels/main/cli-verify-signature.md)
 - [Kernels](https://huggingface.co/docs/kernels/main/index.md)
 - [Migrate from older versions](https://huggingface.co/docs/kernels/main/migration.md)
+- [kernels cache ls](https://huggingface.co/docs/kernels/main/cli-cache.md)
 - [kernels variants](https://huggingface.co/docs/kernels/main/cli-variants.md)
 - [Projects using kernels](https://huggingface.co/docs/kernels/main/integrating-kernels.md)
 - [Build variants](https://huggingface.co/docs/kernels/main/builder/build-variants.md)

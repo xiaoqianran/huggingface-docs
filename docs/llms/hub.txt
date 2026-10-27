@@ -69,6 +69,7 @@
 - [Train Models on Jobs](https://huggingface.co/docs/hub/jobs-training.md)
 - [Spaces as API endpoints](https://huggingface.co/docs/hub/spaces-api-endpoints.md)
 - [User Provisioning (SCIM)](https://huggingface.co/docs/hub/enterprise-scim.md)
+- [Migrating to Managed SSO](https://huggingface.co/docs/hub/enterprise-managed-sso-migration.md)
 - [Hub Local Cache](https://huggingface.co/docs/hub/local-cache.md)
 - [Using Keras at Hugging Face](https://huggingface.co/docs/hub/keras.md)
 - [Uploading datasets](https://huggingface.co/docs/hub/datasets-adding.md)

@@ -66,5 +66,5 @@ print(tokenizer.batch_decode(res)[0])
 # 2. Imperial Palace East Garden: This beautiful garden has a large, flat path that's perfect for cycling. You can also visit the
 ```
 
-### FP-Quant
-https://huggingface.co/docs/transformers/v5.20.2/quantization/fp_quant.md
+### BitNet
+https://huggingface.co/docs/transformers/v5.21.0/quantization/bitnet.md

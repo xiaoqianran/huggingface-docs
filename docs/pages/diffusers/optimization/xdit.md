@@ -107,4 +107,4 @@ More detailed performance metric can be found on our [github page](https://githu
 [PipeFusion: Displaced Patch Pipeline Parallelism for Inference of Diffusion Transformer Models](https://huggingface.co/papers/2405.14430)
 
 ### TorchTPU
-https://huggingface.co/docs/diffusers/v0.42.0/optimization/tpu.md
+https://huggingface.co/docs/diffusers/v0.42.1/optimization/tpu.md

@@ -46,5 +46,5 @@ scheduler = get_cosine_schedule_with_warmup(optimizer, num_warmup_steps=1000, nu
 
 DePlot is a model trained using `Pix2Struct` architecture. For API reference, see [`Pix2Struct` documentation](./pix2struct).
 
-### TimmWrapper
-https://huggingface.co/docs/transformers/v5.20.2/model_doc/timm_wrapper.md
+### QianfanOCR
+https://huggingface.co/docs/transformers/v5.21.0/model_doc/qianfan_ocr.md

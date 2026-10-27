@@ -137,4 +137,4 @@ images.save("flux-quanto-compile.png")
 - int2
 
 ### BFL (fp8r / nvfp4)
-https://huggingface.co/docs/diffusers/v0.42.0/quantization/bfl.md
+https://huggingface.co/docs/diffusers/v0.42.1/quantization/bfl.md

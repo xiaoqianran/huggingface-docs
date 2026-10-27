@@ -12,5 +12,5 @@ Use the **Modality** row to filter by text, vision, audio, video, multimodal, or
 	style="transform: scale(0.8); transform-origin: top left; max-width: calc(100%/0.8); height: 650px; margin-bottom: calc(-0.2*650px);"
 >
 
-### AMD GPU
-https://huggingface.co/docs/transformers/v5.20.2/amd_gpu.md
+### Optimizers and schedulers
+https://huggingface.co/docs/transformers/v5.21.0/optimizers.md

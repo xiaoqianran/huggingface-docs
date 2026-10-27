@@ -2,7 +2,7 @@
 
 [ControlNet](https://huggingface.co/papers/2302.05543) steers a pretrained diffusion model with a structural control image (edges, depth, or pose) while you keep a text prompt. It freezes the base model and adds a parallel network whose residuals guide the denoiser, so you get layout control without fine-tuning.
 
-Load a ControlNet for the control you need (for example canny), then pass it as `controlnet=` to [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained). Use `controlnet_conditioning_scale` to set how strongly the control steers generation.
+Load a ControlNet for the control you need (for example canny), then pass it as `controlnet=` to [from_pretrained()](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained). Use `controlnet_conditioning_scale` to set how strongly the control steers generation.
 
 > [!TIP]
 > ControlNets are available to many models such as [Flux](../api/pipelines/controlnet_flux), [Hunyuan-DiT](../api/pipelines/controlnet_hunyuandit), [Stable Diffusion 3](../api/pipelines/controlnet_sd3), and more. The examples in this guide use Flux and Stable Diffusion XL. For T2I-Adapter on older Stable Diffusion–family checkpoints, see [Legacy adapters](./legacy_adapters#t2i-adapter). Prefer ControlNet for new controllable-generation work.
@@ -343,4 +343,4 @@ pipeline(
     generated image
 
 ### Legacy adapters
-https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/legacy_adapters.md
+https://huggingface.co/docs/diffusers/v0.42.1/using-diffusers/legacy_adapters.md

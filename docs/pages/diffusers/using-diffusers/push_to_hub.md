@@ -1,6 +1,6 @@
 # Sharing pipelines and models
 
-Share your pipelines, models, and schedulers on the Hub with [PushToHubMixin](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin). This mixin:
+Share your pipelines, models, and schedulers on the Hub with [PushToHubMixin](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.utils.PushToHubMixin). This mixin:
 
 1. creates a repository on the Hub
 2. saves your model, scheduler, or pipeline files so they can be reloaded later
@@ -22,7 +22,7 @@ Push to your user namespace with a short id (`"my-controlnet-model"`) or to an o
 
 ## Models
 
-To push a model to the Hub, call [push_to_hub()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) and specify the repository id of the model.
+To push a model to the Hub, call [push_to_hub()](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) and specify the repository id of the model.
 
 ```py
 from diffusers import ControlNetModel
@@ -38,9 +38,9 @@ controlnet = ControlNetModel(
 controlnet.push_to_hub("my-controlnet-model")
 ```
 
-The [push_to_hub()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method saves the model's `config.json` file and the weights are automatically saved as [safetensors files](./other-formats#safetensors).
+The [push_to_hub()](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method saves the model's `config.json` file and the weights are automatically saved as [safetensors files](./other-formats#safetensors).
 
-Load the model again with [ControlNetModel.from_pretrained()](/docs/diffusers/v0.42.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained).
+Load the model again with [ControlNetModel.from_pretrained()](/docs/diffusers/v0.42.1/en/api/models/overview#diffusers.ModelMixin.from_pretrained).
 
 ```py
 model = ControlNetModel.from_pretrained("your-namespace/my-controlnet-model")
@@ -48,7 +48,7 @@ model = ControlNetModel.from_pretrained("your-namespace/my-controlnet-model")
 
 ## Scheduler
 
-To push a scheduler to the Hub, call [push_to_hub()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) and specify the repository id of the scheduler.
+To push a scheduler to the Hub, call [push_to_hub()](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) and specify the repository id of the scheduler.
 
 ```py
 from diffusers import DDIMScheduler
@@ -63,9 +63,9 @@ scheduler = DDIMScheduler(
 scheduler.push_to_hub("my-ddim-scheduler")
 ```
 
-The [push_to_hub()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method saves the scheduler's `scheduler_config.json` file to the specified repository.
+The [push_to_hub()](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method saves the scheduler's `scheduler_config.json` file to the specified repository.
 
-Load the scheduler again with [from_pretrained()](/docs/diffusers/v0.42.0/en/api/schedulers/overview#diffusers.SchedulerMixin.from_pretrained).
+Load the scheduler again with [from_pretrained()](/docs/diffusers/v0.42.1/en/api/schedulers/overview#diffusers.SchedulerMixin.from_pretrained).
 
 ```py
 scheduler = DDIMScheduler.from_pretrained("your-namespace/my-ddim-scheduler")
@@ -73,7 +73,7 @@ scheduler = DDIMScheduler.from_pretrained("your-namespace/my-ddim-scheduler")
 
 ## Pipeline
 
-To push a pipeline to the Hub, load it with [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained), then call [push_to_hub()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) with a repository id.
+To push a pipeline to the Hub, load it with [from_pretrained()](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained), then call [push_to_hub()](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) with a repository id.
 
 ```py
 import torch
@@ -85,7 +85,7 @@ pipeline = DiffusionPipeline.from_pretrained(
 pipeline.push_to_hub("your-namespace/my-qwen-image")
 ```
 
-The [push_to_hub()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method saves each component to a subfolder in the repository. Load the pipeline again with [DiffusionPipeline.from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained).
+The [push_to_hub()](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method saves each component to a subfolder in the repository. Load the pipeline again with [DiffusionPipeline.from_pretrained()](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained).
 
 ```py
 pipeline = DiffusionPipeline.from_pretrained("your-namespace/my-qwen-image")
@@ -93,7 +93,7 @@ pipeline = DiffusionPipeline.from_pretrained("your-namespace/my-qwen-image")
 
 ## Privacy
 
-Set `private=True` in [push_to_hub()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) to keep a model, scheduler, or pipeline files private.
+Set `private=True` in [push_to_hub()](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) to keep a model, scheduler, or pipeline files private.
 
 ```py
 controlnet.push_to_hub("my-controlnet-model-private", private=True)
@@ -106,4 +106,4 @@ Models and pipelines also accept `variant=` on push when you want a named weight
 Private repositories are only visible to you. Other users won't be able to clone the repository and it won't appear in search results. Even if a user has the URL to your private repository, they'll receive a `404 - Sorry, we can't find the page you are looking for`. You must be [logged in](https://huggingface.co/docs/huggingface_hub/quick-start#login) to load a model from a private repository.
 
 ### Command line interface
-https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/cli.md
+https://huggingface.co/docs/diffusers/v0.42.1/using-diffusers/cli.md

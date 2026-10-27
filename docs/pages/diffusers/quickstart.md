@@ -27,7 +27,7 @@ Help me get set up with Hugging Face Diffusers for inference.
 
 ## DiffusionPipeline
 
-[DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) packages the pieces of a diffusion model (text encoder, scheduler, UNet or DiT, and VAE) into one class for inference. Load with [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained), then call the pipeline.
+[DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline) packages the pieces of a diffusion model (text encoder, scheduler, UNet or DiT, and VAE) into one class for inference. Load with [from_pretrained()](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained), then call the pipeline.
 
 Arguments on `__call__()` such as `num_inference_steps` change quality and speed. For loading details and mix-and-match components, see [Load pipelines](./using-diffusers/loading). To swap the scheduler, see [Schedulers](./using-diffusers/schedulers).
 
@@ -50,7 +50,7 @@ highly detailed, high budget hollywood movie, cinemascope, moody, epic, gorgeous
 pipeline(prompt).images[0]
 ```
 
-Use `.frames[0]` to access the generated video output and [export_to_video()](/docs/diffusers/v0.42.0/en/api/utilities#diffusers.utils.export_to_video) to save the video.
+Use `.frames[0]` to access the generated video output and [export_to_video()](/docs/diffusers/v0.42.1/en/api/utilities#diffusers.utils.export_to_video) to save the video.
 
 ```py
 import torch
@@ -81,7 +81,7 @@ export_to_video(video, "output.mp4", fps=16)
 
 ## LoRA
 
-[LoRA](./tutorials/using_peft_for_inference) adapters add a small style or subject checkpoint on top of a base pipeline. Load one with [load_lora_weights()](/docs/diffusers/v0.42.0/en/api/loaders/lora#diffusers.loaders.QwenImageLoraLoaderMixin.load_lora_weights). Some LoRAs need a trigger phrase. Check the LoRA's model card.
+[LoRA](./tutorials/using_peft_for_inference) adapters add a small style or subject checkpoint on top of a base pipeline. Load one with [load_lora_weights()](/docs/diffusers/v0.42.1/en/api/loaders/lora#diffusers.loaders.QwenImageLoraLoaderMixin.load_lora_weights). Some LoRAs need a trigger phrase. Check the LoRA's model card.
 
 ```py
 import torch
@@ -103,7 +103,7 @@ pipeline(prompt).images[0]
 
 ## Quantization and optimizations
 
-Large models often need less memory or more speed. Use [quantization](./quantization/overview) to shrink weights in memory, and [compile_repeated_blocks()](/docs/diffusers/v0.42.0/en/api/models/overview#diffusers.ModelMixin.compile_repeated_blocks) to speed up later generates. For [model offloading](./optimization/memory#model-offloading) and other options, see [Optimize and scale](./stable_diffusion).
+Large models often need less memory or more speed. Use [quantization](./quantization/overview) to shrink weights in memory, and [compile_repeated_blocks()](/docs/diffusers/v0.42.1/en/api/models/overview#diffusers.ModelMixin.compile_repeated_blocks) to speed up later generates. For [model offloading](./optimization/memory#model-offloading) and other options, see [Optimize and scale](./stable_diffusion).
 
 To use less memory, load in 4-bit with bitsandbytes.
 
@@ -158,4 +158,4 @@ pipeline(prompt).images[0]
 - [CLI](./using-diffusers/cli) — generate from the command line
 
 ### Community Projects
-https://huggingface.co/docs/diffusers/v0.42.0/community_projects.md
+https://huggingface.co/docs/diffusers/v0.42.1/community_projects.md

@@ -2,7 +2,7 @@
 
 A callback runs at the end of a denoising step and can change pipeline state or tensors for later steps. Use it to adjust attributes or tensor variables for new behavior without rewriting the pipeline.
 
-These callbacks work with classic [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) loops out of the box. They also work with [Modular Diffusers](../modular_diffusers/overview) pipelines once a block that runs them is inserted into the denoising loop; see [Modular pipelines](#modular-pipelines).
+These callbacks work with classic [DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline) loops out of the box. They also work with [Modular Diffusers](../modular_diffusers/overview) pipelines once a block that runs them is inserted into the denoising loop; see [Modular pipelines](#modular-pipelines).
 
 Diffusers provides several callbacks in the pipeline [overview](../api/pipelines/overview#diffusers.callbacks.PipelineCallback).
 
@@ -11,7 +11,7 @@ To enable a callback, configure when the callback is executed after a certain nu
 - `cutoff_step_ratio` specifies when a callback is activated as a percentage of the total denoising steps. Use when the cutoff should scale with `num_inference_steps` (for example, drop CFG after 40% of run).
 - `cutoff_step_index` specifies the exact step number a callback is activated. Use when you care about an absolute step (for example, step `10` on a fixed 25-step schedule).
 
-The example below uses `cutoff_step_ratio=0.4`, which means the callback is activated once denoising reaches 40% of the total inference steps. [SDXLCFGCutoffCallback](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.callbacks.SDXLCFGCutoffCallback) disables classifier-free guidance (CFG) after a certain number of steps, which can help save compute without significantly affecting performance.
+The example below uses `cutoff_step_ratio=0.4`, which means the callback is activated once denoising reaches 40% of the total inference steps. [SDXLCFGCutoffCallback](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.callbacks.SDXLCFGCutoffCallback) disables classifier-free guidance (CFG) after a certain number of steps, which can help save compute without significantly affecting performance.
 
 Define a callback with one of the `cutoff` arguments and pass it to the `callback_on_step_end` parameter in the pipeline.
 
@@ -131,7 +131,7 @@ image = pipeline(
 Modular pipelines don't carry the `callback_on_step_end` and `interrupt` mechanism. It will come with first-class streaming support instead: [huggingface/diffusers#14159](https://github.com/huggingface/diffusers/pull/14159), not merged yet, adds `pipe.stream()`, which yields the pipeline state at every denoising step and ends the run when you stop iterating. For now, to reuse your existing callback functions, insert a block into the denoising loop: it receives the loop's `BlockState` with the step index and timestep, and can read or edit `latents`.
 
 > [!TIP]
-> Edit the blocks *before* [init_pipeline()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline): `pipe.blocks` returns a copy, so changing it after the pipeline exists has no effect.
+> Edit the blocks *before* [init_pipeline()](/docs/diffusers/v0.42.1/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline): `pipe.blocks` returns a copy, so changing it after the pipeline exists has no effect.
 
 The block below takes the callback as a pipeline input and calls it with the same signature as above: the pipeline, the step index, the timestep and a dict of tensors, whose returned values are written back. `walk_denoise_loops` finds every denoising loop in the blocks, whichever workflow it belongs to, so the same snippet works for any modular pipeline.
 
@@ -187,4 +187,4 @@ image = pipe(prompt="A croissant shaped like a cute bear.", callback_on_step_end
 This works for every modular pipeline except the inner loop of nested loops (autoregressive video models such as Helios and Wan-Animate-2 denoise each chunk inside a block of the outer loop). There, insert the block into the outer loop instead: it runs once per chunk and receives the chunk index `k` in place of `i` and `t`.
 
 ### Understanding pipelines, models and schedulers
-https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/write_own_pipeline.md
+https://huggingface.co/docs/diffusers/v0.42.1/using-diffusers/write_own_pipeline.md

@@ -115,5 +115,5 @@ print(similarity_score)
 # tensor([0.6061], device='cuda:0', grad_fn=<SumBackward1>)
 ```
 
-### Question answering
-https://huggingface.co/docs/transformers/v5.20.2/tasks/question_answering.md
+### Instance segmentation
+https://huggingface.co/docs/transformers/v5.21.0/tasks/instance_segmentation.md

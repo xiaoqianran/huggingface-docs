@@ -18,7 +18,7 @@ vae = RFD4ProteinaAutoencoder.from_pretrained("nvidia/RFD4-Proteina-Diffusers", 
 diffusers.RFD4ProteinaAutoencoder(atom37_mask: Sequence, allowed_residue_types: Sequence, latent_dim: int = 32, n_residue_types: int = 147, num_token_types: int = 7, nlayers: int = 12, token_dim: int = 768, nheads: int = 12, dim_cond: int = 128, pair_repr_dim: int = 256, token_type_emb_dim: int = 32, encoder_feats_seq: tuple = ('token_type', 'x1_a37coors_nm', 'x1_a37coors_nm_rel', 'chain_idx_seq', 'incident_bond_type_counts', 'atom37_element_charge_embedding'), decoder_feats_seq: tuple = ('ca_coors_nm', 'z_latent_seq', 'token_type', 'cond_residue_type'))
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/autoencoders/autoencoder_rfd4_proteina.py#L500)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/autoencoders/autoencoder_rfd4_proteina.py#L500)
 
 **Parameters:**
 
@@ -56,7 +56,7 @@ Coordinates supplied to and returned by this model are in nanometers.
 encode(coords_nm: Tensor, padding_mask: Tensor, token_type: typing.Optional[torch.Tensor] = None, atom37_mask: typing.Optional[torch.Tensor] = None, conditioning: dict[str, typing.Any] | None = None, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/autoencoders/autoencoder_rfd4_proteina.py#L583)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/autoencoders/autoencoder_rfd4_proteina.py#L583)
 
 **Parameters:**
 
@@ -87,7 +87,7 @@ Encode prepared coordinates and conditioning into sampled per-token local latent
 decode(z_latent: Tensor, ca_coors_nm: Tensor, padding_mask: Tensor, token_type: typing.Optional[torch.Tensor] = None, atom37_mask: typing.Optional[torch.Tensor] = None, conditioning: dict[str, typing.Any] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/autoencoders/autoencoder_rfd4_proteina.py#L624)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/autoencoders/autoencoder_rfd4_proteina.py#L624)
 
 **Parameters:**
 
@@ -119,7 +119,7 @@ Decode per-token latents and backbone positions into atom37 structure.
 forward(z_latent: Tensor, ca_coors_nm: Tensor, padding_mask: Tensor, token_type: typing.Optional[torch.Tensor] = None, atom37_mask: typing.Optional[torch.Tensor] = None, conditioning: dict[str, typing.Any] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/autoencoders/autoencoder_rfd4_proteina.py#L666)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/autoencoders/autoencoder_rfd4_proteina.py#L666)
 
 **Parameters:**
 
@@ -141,7 +141,7 @@ return_dict (`bool`, defaults to `True`) : Return a typed output, or a tuple of 
 
 Decoded coordinates, residue types and atom/emit masks.
 
-Decode per-token latents and backbone positions; equivalent to calling [decode()](/docs/diffusers/v0.42.0/en/api/models/rfd4_proteina_autoencoder#diffusers.RFD4ProteinaAutoencoder.decode).
+Decode per-token latents and backbone positions; equivalent to calling [decode()](/docs/diffusers/v0.42.1/en/api/models/rfd4_proteina_autoencoder#diffusers.RFD4ProteinaAutoencoder.decode).
 
 ## RFD4ProteinaEncoderOutput[[diffusers.models.autoencoders.autoencoder_rfd4_proteina.RFD4ProteinaEncoderOutput]]
 
@@ -151,7 +151,7 @@ Decode per-token latents and backbone positions; equivalent to calling [decode()
 diffusers.models.autoencoders.autoencoder_rfd4_proteina.RFD4ProteinaEncoderOutput(latent: Tensor, mean: typing.Optional[torch.Tensor] = None, log_scale: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/autoencoders/autoencoder_rfd4_proteina.py#L469)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/autoencoders/autoencoder_rfd4_proteina.py#L469)
 
 **Parameters:**
 
@@ -171,7 +171,7 @@ Sampled latent and Gaussian parameters, each shaped `(batch, tokens, latent_dim)
 diffusers.models.autoencoders.autoencoder_rfd4_proteina.RFD4ProteinaDecoderOutput(coordinates: Tensor, residue_type: typing.Optional[torch.Tensor] = None, emit_mask: typing.Optional[torch.Tensor] = None, atom_mask: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/autoencoders/autoencoder_rfd4_proteina.py#L484)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/autoencoders/autoencoder_rfd4_proteina.py#L484)
 
 **Parameters:**
 
@@ -186,4 +186,4 @@ atom_mask (`torch.Tensor`) : Boolean valid-atom mask shaped `(batch, tokens, 37)
 Decoded molecular coordinates and discrete atom37 topology.
 
 ### FluxControlNetModel
-https://huggingface.co/docs/diffusers/v0.42.0/api/models/controlnet_flux.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/models/controlnet_flux.md

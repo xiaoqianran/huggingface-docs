@@ -3,7 +3,7 @@
 RFD4-Proteína is a flow-matching model from the Baker Lab and NVIDIA for biomolecular design. It generates protein
 sequences and all-atom structures together, conditioned on the molecular context to preserve: a binding target, an
 enzyme motif, a ligand, hotspots or secondary structure. A paired transformer and autoencoder are integrated by
-two [RFD4ProteinaScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/rfd4_proteina#diffusers.RFD4ProteinaScheduler), one for the backbone and one for the local latents.
+two [RFD4ProteinaScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/rfd4_proteina#diffusers.RFD4ProteinaScheduler), one for the backbone and one for the local latents.
 
 The pipeline consumes prepared feature tensors. Turning an annotated CIF file into those tensors, and the generated
 tensors back into a CIF file, is domain-specific preprocessing that lives in the
@@ -113,17 +113,17 @@ pipe.load_lora_weights(
 diffusers.RFD4ProteinaPipeline(transformer: RFD4ProteinaTransformer, vae: RFD4ProteinaAutoencoder, bb_ca_scheduler: RFD4ProteinaScheduler, local_latents_scheduler: RFD4ProteinaScheduler, recycle_depths: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/rfd4_proteina/pipeline_rfd4_proteina.py#L68)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/rfd4_proteina/pipeline_rfd4_proteina.py#L68)
 
 **Parameters:**
 
-transformer ([RFD4ProteinaTransformer](/docs/diffusers/v0.42.0/en/api/models/rfd4_proteina_transformer#diffusers.RFD4ProteinaTransformer)) : Paired backbone and local-latent velocity denoiser.
+transformer ([RFD4ProteinaTransformer](/docs/diffusers/v0.42.1/en/api/models/rfd4_proteina_transformer#diffusers.RFD4ProteinaTransformer)) : Paired backbone and local-latent velocity denoiser.
 
-vae ([RFD4ProteinaAutoencoder](/docs/diffusers/v0.42.0/en/api/models/rfd4_proteina_autoencoder#diffusers.RFD4ProteinaAutoencoder)) : The autoencoder paired with the denoiser checkpoint.
+vae ([RFD4ProteinaAutoencoder](/docs/diffusers/v0.42.1/en/api/models/rfd4_proteina_autoencoder#diffusers.RFD4ProteinaAutoencoder)) : The autoencoder paired with the denoiser checkpoint.
 
-bb_ca_scheduler ([RFD4ProteinaScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/rfd4_proteina#diffusers.RFD4ProteinaScheduler)) : Integrates the backbone coordinates.
+bb_ca_scheduler ([RFD4ProteinaScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/rfd4_proteina#diffusers.RFD4ProteinaScheduler)) : Integrates the backbone coordinates.
 
-local_latents_scheduler ([RFD4ProteinaScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/rfd4_proteina#diffusers.RFD4ProteinaScheduler)) : Integrates the local latents.
+local_latents_scheduler ([RFD4ProteinaScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/rfd4_proteina#diffusers.RFD4ProteinaScheduler)) : Integrates the local latents.
 
 recycle_depths (`list[int]`, *optional*) : Trunk recycling passes for each denoising step. Its length is the default number of inference steps. Defaults to the released schedule of 60 steps and 180 passes.
 
@@ -139,7 +139,7 @@ nanometers.
 __call__(padding_mask: Tensor, is_in_context_conditioning: Tensor, supports_local_latent: Tensor, token_type: typing.Optional[torch.Tensor] = None, atom37_mask: typing.Optional[torch.Tensor] = None, coords_nm: typing.Optional[torch.Tensor] = None, conditioning_features: dict[str, typing.Any] | None = None, num_designs_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, partial_t_bb_ca: float | None = None, partial_t_local_latents: float | None = None, inverse_folding: bool = False, latents_bb_ca: typing.Optional[torch.Tensor] = None, latents_local_latents: typing.Optional[torch.Tensor] = None, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: collections.abc.Callable[[diffusers.pipelines.pipeline_utils.DiffusionPipeline, int, torch.Tensor, dict], dict | None] | None = None, callback_on_step_end_tensor_inputs: list = ['bb_ca', 'local_latents'], output_type: str = 'pt', return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/rfd4_proteina/pipeline_rfd4_proteina.py#L287)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/rfd4_proteina/pipeline_rfd4_proteina.py#L287)
 
 **Parameters:**
 
@@ -218,7 +218,7 @@ Examples:
 check_inputs(padding_mask, is_in_context_conditioning, supports_local_latent, atom37_mask, coords_nm, conditioning_features, num_designs_per_prompt, generator, partial_t, inverse_folding, latents, callback_on_step_end_tensor_inputs, output_type)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/rfd4_proteina/pipeline_rfd4_proteina.py#L130)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/rfd4_proteina/pipeline_rfd4_proteina.py#L130)
 
 Validate molecular masks, per-design generators, partial diffusion and callbacks.
 
@@ -228,7 +228,7 @@ Validate molecular masks, per-design generators, partial diffusion and callbacks
 noise_backbone(target_backbone, bb_mask, conditioning, generators, index)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/rfd4_proteina/pipeline_rfd4_proteina.py#L278)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/rfd4_proteina/pipeline_rfd4_proteina.py#L278)
 
 Noise the preserved backbone to the scheduled time of step `index`, for inverse folding.
 
@@ -238,7 +238,7 @@ Noise the preserved backbone to the scheduled time of step `index`, for inverse 
 prepare_latents(bb_mask: Tensor, latent_mask: Tensor, conditioning: dict, generators: list[torch.Generator] | None, clean_bb: typing.Optional[torch.Tensor] = None, clean_latents: typing.Optional[torch.Tensor] = None, start_times: tuple[float, float] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/rfd4_proteina/pipeline_rfd4_proteina.py#L243)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/rfd4_proteina/pipeline_rfd4_proteina.py#L243)
 
 Draw the starting state: pure noise, or the clean input noised to `start_times` (backbone, latents).
 `clean_latents` can be left out when the latent start time is zero.
@@ -255,7 +255,7 @@ offsets.
 diffusers.pipelines.rfd4_proteina.pipeline_output.RFD4ProteinaPipelineOutput(coords_nm: Tensor, residue_type: Tensor, emit_mask: Tensor, atom_mask: Tensor, bb_ca: Tensor, local_latents: Tensor, clean_bb_ca: Tensor, clean_local_latents: Tensor, sequence_logits: Tensor, insertion_logits: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/rfd4_proteina/pipeline_output.py#L12)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/rfd4_proteina/pipeline_output.py#L12)
 
 **Parameters:**
 
@@ -282,4 +282,4 @@ insertion_logits (`torch.Tensor`) : Final insertion predictions `(B, N, N)` for 
 Molecular inference results. Coordinates are in nanometers.
 
 ### Kandinsky 5.0 Video
-https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/kandinsky5_video.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/pipelines/kandinsky5_video.md

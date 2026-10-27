@@ -5,7 +5,7 @@
 - `fp8r`: rowwise FP8. Each quantized linear stores an E4M3 `weight` and an fp32 per-row `weight_scale`. Activations are quantized to E4M3 per row at runtime.
 - `nvfp4`: NVFP4 in the [ModelOpt](https://github.com/NVIDIA/Model-Optimizer) layout. Each quantized linear stores a packed E2M1 `weight` (two values per byte), E4M3 block scales of 16 (`weight_scale`), a global fp32 `weight_scale_2`, and a calibrated fp32 activation scale `input_scale`.
 
-Diffusers loads both through `~FromSingleFileMixin.from_single_file` with a [BFLQuantizationConfig](/docs/diffusers/v0.42.0/en/api/quantization#diffusers.BFLQuantizationConfig). The scheme is read from the checkpoint, so the same config works for either file. Only loading prequantized checkpoints is supported; pipeline-level loading is not.
+Diffusers loads both through `~FromSingleFileMixin.from_single_file` with a [BFLQuantizationConfig](/docs/diffusers/v0.42.1/en/api/quantization#diffusers.BFLQuantizationConfig). The scheme is read from the checkpoint, so the same config works for either file. Only loading prequantized checkpoints is supported; pipeline-level loading is not.
 
 The example below loads the `fp8r` checkpoint of [FLUX 3 Image Klein Base](https://huggingface.co/black-forest-labs/flux-3-image-klein-base), which lives at `variants/fp8r/model.safetensors` in the model repository. Pass `config` so that the model config is read from the Diffusers folder of that repository, then load the other components by name (see [Single-file loading](../api/pipelines/flux3#single-file-loading)).
 
@@ -50,4 +50,4 @@ FlashInfer compiles its NVFP4 kernels on first use with the CUDA toolkit of the 
 On any other device the weights are dequantized to `compute_dtype` in each forward pass and the layer runs as a regular linear. In that case the activations are not quantized, so outputs differ slightly from the fused kernels.
 
 ### SDNQ
-https://huggingface.co/docs/diffusers/v0.42.0/quantization/sdnq.md
+https://huggingface.co/docs/diffusers/v0.42.1/quantization/sdnq.md

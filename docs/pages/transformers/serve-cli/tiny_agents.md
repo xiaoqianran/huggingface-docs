@@ -40,5 +40,5 @@ Image URL: https://evalstate-flux1-schnell.hf.space/gradio_api/file=/tmp/gradio/
 I have generated an image of a cat on the moon using the Flux 1 Schnell Image Generator. The image is 1024x1024 pixels and was created with 4 inference steps. Let me know if you would like to make any changes or need further assistance!
 ```
 
-### Serve CLI
-https://huggingface.co/docs/transformers/v5.20.2/serve-cli/serving.md
+### Jan
+https://huggingface.co/docs/transformers/v5.21.0/serve-cli/jan.md

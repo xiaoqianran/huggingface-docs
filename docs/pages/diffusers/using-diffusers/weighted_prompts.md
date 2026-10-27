@@ -107,4 +107,4 @@ image = pipeline(prompt_embeds=prompt_embeds, pooled_prompt_embeds=pooled_prompt
 ```
 
 ### Image-to-image
-https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/img2img.md
+https://huggingface.co/docs/diffusers/v0.42.1/using-diffusers/img2img.md

@@ -13,7 +13,7 @@ This guide shows you how to use the caching methods supported in Diffusers.
 
 PAB can be combined with other techniques like sequence parallelism and classifier-free guidance parallelism (data parallelism) for near real-time video generation.
 
-Set up and pass a [PyramidAttentionBroadcastConfig](/docs/diffusers/v0.42.0/en/api/cache#diffusers.PyramidAttentionBroadcastConfig) to a pipeline's transformer to enable it. The `spatial_attention_block_skip_range` controls how often to skip attention calculations in the spatial attention blocks and the `spatial_attention_timestep_skip_range` is the range of timesteps to skip. Take care to choose an appropriate range because a smaller interval can lead to slower inference speeds and a larger interval can result in lower generation quality.
+Set up and pass a [PyramidAttentionBroadcastConfig](/docs/diffusers/v0.42.1/en/api/cache#diffusers.PyramidAttentionBroadcastConfig) to a pipeline's transformer to enable it. The `spatial_attention_block_skip_range` controls how often to skip attention calculations in the spatial attention blocks and the `spatial_attention_timestep_skip_range` is the range of timesteps to skip. Take care to choose an appropriate range because a smaller interval can lead to slower inference speeds and a larger interval can result in lower generation quality.
 
 ```python
 import torch
@@ -36,7 +36,7 @@ pipeline.transformer.enable_cache(config)
 
 This method may also choose to skip the unconditional branch prediction, when using classifier-free guidance for sampling (common in most base models), and estimate it from the conditional branch prediction if there is significant redundancy in the predicted latent outputs between successive timesteps.
 
-Set up and pass a [FasterCacheConfig](/docs/diffusers/v0.42.0/en/api/cache#diffusers.FasterCacheConfig) to a pipeline's transformer to enable it.
+Set up and pass a [FasterCacheConfig](/docs/diffusers/v0.42.1/en/api/cache#diffusers.FasterCacheConfig) to a pipeline's transformer to enable it.
 
 ```python
 import torch
@@ -98,8 +98,8 @@ pipe = Cosmos3OmniPipeline.from_pretrained("nvidia/Cosmos3-Nano")
 pipe.transformer.enable_cache(SeaCacheConfig(threshold=0.2, max_consecutive_cached=2))
 ```
 
-This model-level API works with [Cosmos3OmniPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniPipeline), [Cosmos3OmniModularPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniModularPipeline), and
-[Cosmos3DistilledModularPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/cosmos3#diffusers.Cosmos3DistilledModularPipeline). SeaCache is an approximate optimization and may change generated outputs. Call
+This model-level API works with [Cosmos3OmniPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniPipeline), [Cosmos3OmniModularPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/cosmos3#diffusers.Cosmos3OmniModularPipeline), and
+[Cosmos3DistilledModularPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/cosmos3#diffusers.Cosmos3DistilledModularPipeline). SeaCache is an approximate optimization and may change generated outputs. Call
 `pipe.transformer.disable_cache()` when you need every denoising step to execute the full transformer.
 
 ## FirstBlockCache
@@ -122,7 +122,7 @@ apply_first_block_cache(pipeline.transformer, FirstBlockCacheConfig(threshold=0.
 
 This caching mechanism delivers strong results with minimal additional memory overhead. For detailed performance analysis, see [our findings here](https://github.com/huggingface/diffusers/pull/12648#issuecomment-3610615080).
 
-To enable TaylorSeer Cache, create a [TaylorSeerCacheConfig](/docs/diffusers/v0.42.0/en/api/cache#diffusers.TaylorSeerCacheConfig) and pass it to your pipeline's transformer:
+To enable TaylorSeer Cache, create a [TaylorSeerCacheConfig](/docs/diffusers/v0.42.1/en/api/cache#diffusers.TaylorSeerCacheConfig) and pass it to your pipeline's transformer:
 
 - `cache_interval`: Number of steps to reuse cached outputs before performing a full forward pass
 - `disable_cache_before_step`: Initial steps that use full computations to gather data for approximations
@@ -199,4 +199,4 @@ image = pipe("A cat playing chess", num_inference_steps=4).images[0]
 > For pipelines that run Classifier-Free Guidance in a **batched** manner (like SDXL or Flux), the `hidden_states` processed by the model contain both conditional and unconditional branches concatenated together. The calibration process automatically accounts for this, producing a single array of ratios that represents the joint behavior. You can use this resulting array directly without modification.
 
 ### AWS Neuron
-https://huggingface.co/docs/diffusers/v0.42.0/optimization/neuron.md
+https://huggingface.co/docs/diffusers/v0.42.1/optimization/neuron.md

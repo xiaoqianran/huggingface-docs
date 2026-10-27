@@ -19,7 +19,7 @@ transformer = Flux3Transformer2DModel.from_pretrained(
 diffusers.Flux3Transformer2DModel(in_channels: int = 128, cond_in_channels: int = 128, num_layers: int = 5, num_single_layers: int = 28, attention_head_dim: int = 128, num_attention_heads: int = 24, joint_attention_dim: int = 20480, timestep_channels: int = 256, mlp_ratio: float = 3.0, axes_dims_rope: tuple = (32, 32, 32, 32), rope_theta: int = 10000, eps: float = 1e-06, flow_map: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_flux3.py#L341)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_flux3.py#L341)
 
 **Parameters:**
 
@@ -66,7 +66,7 @@ it to every mode's modulation.
 forward(hidden_states: Tensor, encoder_hidden_states: Tensor, timestep: Tensor, img_ids: Tensor, txt_ids: Tensor, image_cond_hidden_states: typing.Optional[torch.Tensor] = None, image_cond_ids: typing.Optional[torch.Tensor] = None, target_timestep: typing.Optional[torch.Tensor] = None, attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_flux3.py#L494)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_flux3.py#L494)
 
 **Parameters:**
 
@@ -96,7 +96,7 @@ If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` i
 `tuple` where the first element is the predicted velocity of the image tokens, of the same shape as
 `hidden_states`.
 
-The [Flux3Transformer2DModel](/docs/diffusers/v0.42.0/en/api/models/flux3_transformer#diffusers.Flux3Transformer2DModel) forward method.
+The [Flux3Transformer2DModel](/docs/diffusers/v0.42.1/en/api/models/flux3_transformer#diffusers.Flux3Transformer2DModel) forward method.
 
 ## Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
@@ -106,13 +106,13 @@ The [Flux3Transformer2DModel](/docs/diffusers/v0.42.0/en/api/models/flux3_transf
 diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/modeling_outputs.py#L21)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.42.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.42.1/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-The output of [Transformer2DModel](/docs/diffusers/v0.42.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+The output of [Transformer2DModel](/docs/diffusers/v0.42.1/en/api/models/transformer2d#diffusers.Transformer2DModel).
 
 ### ZImageTransformer2DModel
-https://huggingface.co/docs/diffusers/v0.42.0/api/models/z_image_transformer2d.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/models/z_image_transformer2d.md

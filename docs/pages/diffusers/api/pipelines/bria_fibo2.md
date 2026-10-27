@@ -211,13 +211,13 @@ Several prompts can be generated in one call. Prompts of different lengths are p
 diffusers.BriaFibo2Pipeline(transformer: BriaFibo2Transformer2DModel, scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKLFlux2, text_encoder: Qwen3VLForConditionalGeneration, processor: Qwen3VLProcessor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/bria_fibo2/pipeline_bria_fibo2.py#L171)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/bria_fibo2/pipeline_bria_fibo2.py#L171)
 
 **Parameters:**
 
-transformer ([BriaFibo2Transformer2DModel](/docs/diffusers/v0.42.0/en/api/models/transformer_bria_fibo2#diffusers.BriaFibo2Transformer2DModel)) : The transformer that denoises the image latents.
+transformer ([BriaFibo2Transformer2DModel](/docs/diffusers/v0.42.1/en/api/models/transformer_bria_fibo2#diffusers.BriaFibo2Transformer2DModel)) : The transformer that denoises the image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : Scheduler used with `transformer` to denoise the latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : Scheduler used with `transformer` to denoise the latents.
 
 vae (`AutoencoderKLFlux2`) : Variational auto-encoder that maps images to latents and back.
 
@@ -233,7 +233,7 @@ Pipeline for text-to-image generation and image editing with Fibo 2.0.
 __call__(prompt: str | list[str] | None = None, image: PIL.Image.Image | list[PIL.Image.Image] | None = None, mask: PIL.Image.Image | None = None, text_images: list[PIL.Image.Image] | None = None, render_text_images: bool = True, fonts: list[str] | None = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 30, guidance_scale: float = 5.0, negative_prompt: str | list[str] | None = None, num_images_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_embeds_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_mask: typing.Optional[torch.Tensor] = None, output_type: str = 'pil', return_dict: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int, dict], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/bria_fibo2/pipeline_bria_fibo2.py#L571)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/bria_fibo2/pipeline_bria_fibo2.py#L571)
 
 **Parameters:**
 
@@ -324,7 +324,7 @@ Examples:
 encode_prompt(prompt: str | list[str], image: list[PIL.Image.Image] | None = None, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_embeds_mask: typing.Optional[torch.Tensor] = None, text_images: list[PIL.Image.Image] | list[list[PIL.Image.Image]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/bria_fibo2/pipeline_bria_fibo2.py#L351)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/bria_fibo2/pipeline_bria_fibo2.py#L351)
 
 **Parameters:**
 
@@ -347,4 +347,4 @@ text_images (`list[PIL.Image.Image]` or `list[list[PIL.Image.Image]]`, *optional
 The text embeddings, and their mask, or `None` when no prompt was padded.
 
 ### Bria 3.2
-https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/bria_3_2.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/pipelines/bria_3_2.md

@@ -14,7 +14,7 @@ An integration point is being developed to ensure that 🤗 Transformers can be 
 transformers.TorchExportableModuleWithStaticCache(model: PreTrainedModel, batch_size: int | None = None, max_cache_len: int | None = None, device: typing.Optional[torch.device] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/integrations/executorch.py#L444)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/integrations/executorch.py#L444)
 
 A recipe module designed to make a `PreTrainedModel` exportable with `torch.export`,
 specifically for decoder-only LM to `StaticCache`. This module ensures that the
@@ -30,7 +30,7 @@ in a way that ensures the model can be further lowered and run efficiently in `E
 forward(input_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, cache_position: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/integrations/executorch.py#L536)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/integrations/executorch.py#L536)
 
 **Parameters:**
 
@@ -62,7 +62,7 @@ This forward adapter serves two primary purposes:
 transformers.convert_and_export_with_cache(model: PreTrainedModel, example_input_ids: typing.Optional[torch.Tensor] = None, example_cache_position: typing.Optional[torch.Tensor] = None, dynamic_shapes: dict | None = None, strict: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/integrations/executorch.py#L750)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/integrations/executorch.py#L750)
 
 **Parameters:**
 
@@ -83,5 +83,5 @@ The exported program generated via `torch.export`.
 Convert a `PreTrainedModel` into an exportable module and export it using `torch.export`,
 ensuring the exported model is compatible with `ExecuTorch`.
 
-### Video processor
-https://huggingface.co/docs/transformers/v5.20.2/main_classes/video_processor.md
+### Optimization
+https://huggingface.co/docs/transformers/v5.21.0/main_classes/optimizer_schedules.md

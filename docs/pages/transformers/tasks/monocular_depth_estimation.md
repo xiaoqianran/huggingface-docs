@@ -27,7 +27,7 @@ pip install -q -U transformers
 
 ## Depth estimation pipeline
 
-The simplest way to try out inference with a model supporting depth estimation is to use the corresponding [pipeline()](/docs/transformers/v5.20.2/en/main_classes/pipelines#transformers.pipeline).
+The simplest way to try out inference with a model supporting depth estimation is to use the corresponding [pipeline()](/docs/transformers/v5.21.0/en/main_classes/pipelines#transformers.pipeline).
 Instantiate a pipeline from a [checkpoint on the Hugging Face Hub](https://huggingface.co/models?pipeline_tag=depth-estimation&sort=downloads):
 
 ```py
@@ -128,5 +128,5 @@ In the original implementation ZoeDepth model performs inference on both the ori
 ...     outputs_flipped=outputs_flipped,
 ... )
 
-### Translation
-https://huggingface.co/docs/transformers/v5.20.2/tasks/translation.md
+### Automatic speech recognition
+https://huggingface.co/docs/transformers/v5.21.0/tasks/asr.md

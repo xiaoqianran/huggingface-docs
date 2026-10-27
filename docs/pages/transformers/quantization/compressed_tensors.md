@@ -39,7 +39,7 @@ print(f"{mem_params/2**30:.4f} GB")
 
 ## Loading modes
 
-A compressed-tensors checkpoint stores its weights compressed (fp8, or packed int4/int8). How they are executed is up to two [CompressedTensorsConfig](/docs/transformers/v5.20.2/en/main_classes/quantization#transformers.CompressedTensorsConfig) arguments.
+A compressed-tensors checkpoint stores its weights compressed (fp8, or packed int4/int8). How they are executed is up to two [CompressedTensorsConfig](/docs/transformers/v5.21.0/en/main_classes/quantization#transformers.CompressedTensorsConfig) arguments.
 
 | Configuration | Weights after loading | Execution |
 |---------------|-----------------------|-----------|
@@ -205,5 +205,5 @@ print(ct_model.model.layers[0].self_attn.q_proj)
 # CompressedTensorsFP8Linear(in_features=4096, out_features=4096, bias=False)      weight: F8_E4M3
 ```
 
-### AWQ
-https://huggingface.co/docs/transformers/v5.20.2/quantization/awq.md
+### AQLM
+https://huggingface.co/docs/transformers/v5.21.0/quantization/aqlm.md

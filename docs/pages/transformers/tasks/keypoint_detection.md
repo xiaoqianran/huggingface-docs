@@ -128,5 +128,5 @@ Below you can see the outputs.
          alt="Cats"
          style="height: 200px; object-fit: contain;">
 
-### Prompt engineering
-https://huggingface.co/docs/transformers/v5.20.2/tasks/prompting.md
+### Training Vision Models using Backbone API
+https://huggingface.co/docs/transformers/v5.21.0/tasks/training_vision_backbone.md

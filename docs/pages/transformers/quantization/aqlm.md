@@ -4,13 +4,13 @@ Additive Quantization of Language Models ([AQLM](https://huggingface.co/papers/2
 
 AQLM also supports fine-tuning with [LoRA](https://huggingface.co/docs/peft/package_reference/lora) with the [PEFT](https://huggingface.co/docs/peft) library, and is fully compatible with [torch.compile](https://pytorch.org/tutorials/intermediate/torch_compile_tutorial.html) for even faster inference and training.
 
-Run the command below to install the AQLM library with kernel support for both GPU and CPU inference and training. AQLM only works with Python 3.10+.
+Run the command below to install the AQLM library with kernel support for both GPU and CPU inference and training.
 
 ```bash
 pip install aqlm[gpu,cpu]
 ```
 
-Load an AQLM-quantized model with [from_pretrained()](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
+Load an AQLM-quantized model with [from_pretrained()](/docs/transformers/v5.21.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
 
 ```python
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -39,5 +39,5 @@ Run the AQLM demo [notebook](https://colab.research.google.com/drive/1-xZmBRXT5F
 
 For more example demo notebooks, visit the AQLM [repository](https://github.com/Vahe1994/AQLM).
 
-### Optimum Quanto
-https://huggingface.co/docs/transformers/v5.20.2/quantization/quanto.md
+### NVFP4
+https://huggingface.co/docs/transformers/v5.21.0/quantization/nvfp4.md

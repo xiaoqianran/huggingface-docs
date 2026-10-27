@@ -24,7 +24,7 @@ hf auth login
 diffusers.BriaFiboEditPipeline(transformer: BriaFiboTransformer2DModel, scheduler: typing.Union[diffusers.schedulers.scheduling_flow_match_euler_discrete.FlowMatchEulerDiscreteScheduler, diffusers.schedulers.scheduling_utils.KarrasDiffusionSchedulers], vae: AutoencoderKLWan, text_encoder: SmolLM3ForCausalLM, tokenizer: AutoTokenizer)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo_edit.py#L240)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo_edit.py#L240)
 
 **Parameters:**
 
@@ -44,7 +44,7 @@ tokenizer (`AutoTokenizer`) : Tokenizer used for processing the input text promp
 __call__(prompt: typing.Union[str, typing.List[str]] = None, image: typing.Union[PIL.Image.Image, typing.List[PIL.Image.Image], NoneType] = None, mask: typing.Union[torch.FloatTensor, PIL.Image.Image, typing.List[PIL.Image.Image], typing.List[torch.FloatTensor], numpy.ndarray, typing.List[numpy.ndarray], NoneType] = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 30, timesteps: typing.List[int] = None, seed: int | None = None, guidance_scale: float = 5, negative_prompt: typing.Union[str, typing.List[str], NoneType] = None, num_images_per_prompt: typing.Optional[int] = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, output_type: str = 'pil', return_dict: bool = True, joint_attention_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int, typing.Dict], NoneType]] = None, callback_on_step_end_tensor_inputs: typing.List[str] = ['latents'], max_sequence_length: int = 3000, do_patching = False, _auto_resize: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo_edit.py#L599)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo_edit.py#L599)
 
 **Parameters:**
 
@@ -146,7 +146,7 @@ result = pipe(prompt=json_prompt, image=[owl, forest], num_inference_steps=4, gu
 encode_prompt(prompt: typing.Union[str, typing.List[str]], device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, guidance_scale: float = 5, negative_prompt: typing.Union[str, typing.List[str], NoneType] = None, max_sequence_length: int = 3000, lora_scale: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo_edit.py#L365)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo_edit.py#L365)
 
 **Parameters:**
 
@@ -166,9 +166,9 @@ negative_prompt (`str` or `List[str]`, *optional*) : The prompt or prompts not t
 prepare_reference_latents(image: Image, num_channels_latents: int, dtype: dtype, device: device, do_patching: bool = False, reference_index: int = 1)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo_edit.py#L992)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo_edit.py#L992)
 
 VAE-encode one PIL reference at its own size and pack it as an edit-context token stream.
 
 ### Flux2
-https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/flux2.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/pipelines/flux2.md

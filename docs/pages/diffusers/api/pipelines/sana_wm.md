@@ -10,11 +10,11 @@ Inference runs in two stages:
    camera-control branch. Sampling uses an LTX-style flow-matching Euler scheduler with per-token timesteps; the
    first latent frame is the conditioning anchor.
 2. **Stage 2 — LTX-2 refiner (optional).** A separate sink-bidirectional Euler refiner pipeline
-   ([SanaWMLTX2Refiner](/docs/diffusers/v0.42.0/en/api/pipelines/sana_wm#diffusers.SanaWMLTX2Refiner)) that wraps
-   [SanaWMLTX2RefinerTransformer3DModel](/docs/diffusers/v0.42.0/en/api/models/sana_wm_refiner_transformer3d#diffusers.SanaWMLTX2RefinerTransformer3DModel) + `LTX2TextConnectors` and a Gemma-3 text encoder, run for 3
+   ([SanaWMLTX2Refiner](/docs/diffusers/v0.42.1/en/api/pipelines/sana_wm#diffusers.SanaWMLTX2Refiner)) that wraps
+   [SanaWMLTX2RefinerTransformer3DModel](/docs/diffusers/v0.42.1/en/api/models/sana_wm_refiner_transformer3d#diffusers.SanaWMLTX2RefinerTransformer3DModel) + `LTX2TextConnectors` and a Gemma-3 text encoder, run for 3
    distilled sigma steps.
 
-Both stages decode through the [AutoencoderKLLTX2Video](/docs/diffusers/v0.42.0/en/api/models/autoencoderkl_ltx_2#diffusers.AutoencoderKLLTX2Video) VAE.
+Both stages decode through the [AutoencoderKLLTX2Video](/docs/diffusers/v0.42.1/en/api/models/autoencoderkl_ltx_2#diffusers.AutoencoderKLLTX2Video) VAE.
 
 Available models:
 
@@ -72,7 +72,7 @@ explicitly. Drop `output_type="latent"` to get video straight out of stage 1 and
 
 ### Stage 2 — the LTX-2 refiner
 
-[SanaWMLTX2Refiner](/docs/diffusers/v0.42.0/en/api/pipelines/sana_wm#diffusers.SanaWMLTX2Refiner) ships as its own repository, the way SDXL splits base and refiner. Pass the base pipeline's
+[SanaWMLTX2Refiner](/docs/diffusers/v0.42.1/en/api/pipelines/sana_wm#diffusers.SanaWMLTX2Refiner) ships as its own repository, the way SDXL splits base and refiner. Pass the base pipeline's
 VAE so the weights are shared rather than loaded twice:
 
 ```python
@@ -131,12 +131,12 @@ as usual.
 
 - `tokenizer` — `GemmaTokenizerFast`
 - `text_encoder` — Gemma-2 (returns decoder hidden states)
-- `vae` — [AutoencoderKLLTX2Video](/docs/diffusers/v0.42.0/en/api/models/autoencoderkl_ltx_2#diffusers.AutoencoderKLLTX2Video) (LTX-2, spatial ×32 / temporal ×8)
-- `transformer` — [SanaWMTransformer3DModel](/docs/diffusers/v0.42.0/en/api/models/sana_wm_transformer3d#diffusers.SanaWMTransformer3DModel), 1.6B-parameter bidirectional DiT
-- `scheduler` — [FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)
+- `vae` — [AutoencoderKLLTX2Video](/docs/diffusers/v0.42.1/en/api/models/autoencoderkl_ltx_2#diffusers.AutoencoderKLLTX2Video) (LTX-2, spatial ×32 / temporal ×8)
+- `transformer` — [SanaWMTransformer3DModel](/docs/diffusers/v0.42.1/en/api/models/sana_wm_transformer3d#diffusers.SanaWMTransformer3DModel), 1.6B-parameter bidirectional DiT
+- `scheduler` — [FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)
 
 The stage-2 refiner is a separate repository with its own `transformer`
-([SanaWMLTX2RefinerTransformer3DModel](/docs/diffusers/v0.42.0/en/api/models/sana_wm_refiner_transformer3d#diffusers.SanaWMLTX2RefinerTransformer3DModel)), `connectors` (`LTX2TextConnectors`), `tokenizer`, Gemma-3
+([SanaWMLTX2RefinerTransformer3DModel](/docs/diffusers/v0.42.1/en/api/models/sana_wm_refiner_transformer3d#diffusers.SanaWMLTX2RefinerTransformer3DModel)), `connectors` (`LTX2TextConnectors`), `tokenizer`, Gemma-3
 `text_encoder` and `scheduler`. It has no `vae` of its own — pass the base pipeline's.
 
 ## SanaWMPipeline[[diffusers.SanaWMPipeline]]
@@ -147,7 +147,7 @@ The stage-2 refiner is a separate repository with its own `transformer`
 diffusers.SanaWMPipeline(tokenizer: GemmaTokenizer | GemmaTokenizerFast, text_encoder: Gemma2PreTrainedModel, vae: AutoencoderKLLTX2Video, transformer: SanaWMTransformer3DModel, scheduler: FlowMatchEulerDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/sana_wm/pipeline_sana_wm.py#L143)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/sana_wm/pipeline_sana_wm.py#L143)
 
 **Parameters:**
 
@@ -173,7 +173,7 @@ sink-bidirectional Euler refiner for stage-2 polish; both decode through the LTX
 __call__(image: PIL.Image.Image | str | Path, prompt: str, c2w: np.ndarray | None = None, action: str | None = None, intrinsics: np.ndarray | list[float] | None = None, height: int = 704, width: int = 1280, num_frames: int = 161, fps: int = 16, num_inference_steps: int = 60, guidance_scale: float = 5.0, negative_prompt: str = '', generator: torch.Generator | list[torch.Generator] | None = None, prompt_embeds: torch.Tensor | None = None, prompt_attention_mask: torch.Tensor | None = None, negative_prompt_embeds: torch.Tensor | None = None, negative_prompt_attention_mask: torch.Tensor | None = None, max_sequence_length: int = 300, chi_prompt: list[str] | None = None, output_type: Literal['np', 'pil', 'pt', 'latent'] = 'np', callback_on_step_end: Callable[[DiffusionPipeline, int, int, dict], dict] | None = None, callback_on_step_end_tensor_inputs: list[str] = ['latents'], return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/sana_wm/pipeline_sana_wm.py#L457)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/sana_wm/pipeline_sana_wm.py#L457)
 
 **Parameters:**
 
@@ -257,7 +257,7 @@ Examples:
 check_inputs(c2w: np.ndarray | None, action: str | None, intrinsics: np.ndarray | list[float] | None, callback_on_step_end_tensor_inputs: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/sana_wm/pipeline_sana_wm.py#L335)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/sana_wm/pipeline_sana_wm.py#L335)
 
 Validate `__call__` inputs. Raises on bad input and returns nothing.
 
@@ -267,7 +267,7 @@ Validate `__call__` inputs. Raises on bad input and returns nothing.
 encode_prompt(prompt: str, negative_prompt: str = '', device: torch.device | None = None, max_sequence_length: int = 300, chi_prompt: list[str] | None = None, prompt_embeds: torch.Tensor | None = None, prompt_attention_mask: torch.Tensor | None = None, negative_prompt_embeds: torch.Tensor | None = None, negative_prompt_attention_mask: torch.Tensor | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/sana_wm/pipeline_sana_wm.py#L204)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/sana_wm/pipeline_sana_wm.py#L204)
 
 **Returns:**
 
@@ -284,7 +284,7 @@ Mirrors the SANA chi-prompt-prefix trick: the chi prompt is prepended to the use
 prepare_camera_trajectory(c2w: np.ndarray | None, action: str | None, intrinsics: np.ndarray | list[float], num_frames: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/sana_wm/pipeline_sana_wm.py#L365)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/sana_wm/pipeline_sana_wm.py#L365)
 
 Normalize the camera inputs to `(c2w_(F, 4, 4), intrinsics_(F, 4))`.
 
@@ -297,7 +297,7 @@ rescaled intrinsics come later, once the target resolution is known.
 prepare_latents(first_latent: torch.Tensor, num_frames: int, height: int, width: int, dtype: torch.dtype, device: torch.device, generator: torch.Generator)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/sana_wm/pipeline_sana_wm.py#L403)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/sana_wm/pipeline_sana_wm.py#L403)
 
 Sample initial latents and pin the first frame as the conditioning anchor.
 
@@ -306,7 +306,7 @@ held clean throughout sampling) and zeros elsewhere.
 
 ## SanaWMLTX2Refiner[[diffusers.SanaWMLTX2Refiner]]
 
-The LTX-2 stage-2 refiner is a standalone [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) that takes stage-1 latents. Give it a `vae` (the
+The LTX-2 stage-2 refiner is a standalone [DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline) that takes stage-1 latents. Give it a `vae` (the
 base pipeline's, so the weights are shared) to have it decode to video; without one it returns refined latents.
 
 #### diffusers.SanaWMLTX2Refiner[[diffusers.SanaWMLTX2Refiner]]
@@ -315,7 +315,7 @@ base pipeline's, so the weights are shared) to have it decode to video; without 
 diffusers.SanaWMLTX2Refiner(transformer: SanaWMLTX2RefinerTransformer3DModel, connectors: LTX2TextConnectors, tokenizer: GemmaTokenizer | GemmaTokenizerFast, text_encoder: Gemma3ForConditionalGeneration, scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKLLTX2Video | None = None, text_max_sequence_length: int = 1024)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/sana_wm/refiner.py#L51)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/sana_wm/refiner.py#L51)
 
 **Parameters:**
 
@@ -346,7 +346,7 @@ latents.
 __call__(sana_latent: torch.Tensor, prompt: str, fps: float, sink_size: int = 1, generator: torch.Generator | None = None, block_size: int = 3, kv_max_frames: int = 11, sigmas: tuple[float, ...] = (0.909375, 0.725, 0.421875, 0.0), output_type: str = 'np')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/sana_wm/refiner.py#L111)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/sana_wm/refiner.py#L111)
 
 **Parameters:**
 
@@ -387,7 +387,7 @@ so per-block compute is bounded and total refinement cost scales linearly with v
 diffusers.SanaWMPipelineOutput(frames: typing.Union[torch.Tensor, numpy.ndarray, list[list[PIL.Image.Image]]], c2w: numpy.ndarray | None = None, latent: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/sana_wm/pipeline_output.py#L25)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/sana_wm/pipeline_output.py#L25)
 
 **Parameters:**
 
@@ -400,4 +400,4 @@ latent (*torch.Tensor*, optional) : Latent tensor in LTX-2 VAE space, shape `(B,
 Output class for SANA-WM image-to-video pipeline.
 
 ### Lumina-T2X
-https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/lumina.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/pipelines/lumina.md

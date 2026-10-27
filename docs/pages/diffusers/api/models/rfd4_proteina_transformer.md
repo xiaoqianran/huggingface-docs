@@ -21,7 +21,7 @@ transformer = RFD4ProteinaTransformer.from_pretrained(
 diffusers.RFD4ProteinaTransformer(nlayers: int = 14, token_dim: int = 768, nheads: int = 12, dim_cond: int = 256, pair_repr_dim: int = 384, latent_dim: int = 32, token_type_emb_dim: int = 32, cath_emb_dim: int = 32, t_emb_dim: int = 256, seq_sep_dim: int = 64, xt_pair_dist_dim: int = 30, xt_pair_dist_min: float = 0.1, xt_pair_dist_max: float = 3.0, feats_seq: tuple = ('xt_bb_ca', 'xt_local_latents', 'token_type', 'sequence_probabilities', 'cond_a37coors_nm', 'cond_a37coors_internal_nm', 'rasa_binned', 'secondary_structure', 'hbond_modernized', 'pistack', 'pication', 'saltbridge', 'hydrophobic', 'metal_coord', 'na_ss_state', 'hotspot', 'atom_charge', 'atomic_element', 'coord_group_seq', 'chirality', 'chain_centroid_xyz'), feats_cond_seq: tuple = ('time_emb_bb_ca', 'time_emb_local_latents', 'cath_code', 'recycle_remaining'), feats_pair_repr: tuple = ('xt_bb_ca_pair_dists', 'bond_mask', 'bond_order', 'is_aromatic', 'index_group_pair', 'molecule_idx_pair', 'molecule_entity_pair', 'token_bond_path_length', 'canonical_polymer_ordering', 'na_ss_pair'), feats_pair_cond: tuple = ('time_emb_bb_ca', 'time_emb_local_latents'), update_pair_repr_every_n: int = 2, tri_mult_c: int = 256, num_sequence_classes: int = 147, num_token_types: int = 7, recycle_conditioning_dim: int = 1)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_rfd4_proteina.py#L906)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_rfd4_proteina.py#L906)
 
 **Parameters:**
 
@@ -73,7 +73,7 @@ projection.
 forward(bb_ca: Tensor, local_latents: Tensor, bb_ca_time: Tensor, local_latents_time: Tensor, padding_mask: Tensor, token_type: typing.Optional[torch.Tensor] = None, atom37_mask: typing.Optional[torch.Tensor] = None, conditioning: dict[str, typing.Any] | None = None, recycle_depth: int = 0, attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_rfd4_proteina.py#L1062)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_rfd4_proteina.py#L1062)
 
 **Parameters:**
 
@@ -114,7 +114,7 @@ Predict velocities from prepared molecular tensors without advancing the sampler
 diffusers.models.transformers.transformer_rfd4_proteina.RFD4ProteinaTransformerOutput(backbone: Tensor, local_latents: typing.Optional[torch.Tensor] = None, sequence_logits: typing.Optional[torch.Tensor] = None, insertion_logits: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_rfd4_proteina.py#L890)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_rfd4_proteina.py#L890)
 
 **Parameters:**
 
@@ -129,4 +129,4 @@ insertion_logits (`torch.Tensor`, *optional*) : Insertion assignment logits shap
 Denoiser predictions before scheduler integration.
 
 ### AutoencoderRAE
-https://huggingface.co/docs/diffusers/v0.42.0/api/models/autoencoder_rae.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/models/autoencoder_rae.md

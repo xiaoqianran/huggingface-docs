@@ -8,7 +8,7 @@
 diffusers.modular_pipelines.PipelineState(values: dict = <factory>, kwargs_mapping: dict = <factory>)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/modular_pipeline.py#L226)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/modular_pipeline.py#L226)
 
 `PipelineState` stores the state of a pipeline. It is used to pass data between pipeline blocks.
 
@@ -18,7 +18,7 @@ diffusers.modular_pipelines.PipelineState(values: dict = <factory>, kwargs_mappi
 get(keys: str | list[str], default: Any = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/modular_pipeline.py#L251)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/modular_pipeline.py#L251)
 
 **Parameters:**
 
@@ -38,7 +38,7 @@ Get one or multiple values from the pipeline state.
 get_by_kwargs(kwargs_type: str)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/modular_pipeline.py#L266)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/modular_pipeline.py#L266)
 
 **Parameters:**
 
@@ -56,7 +56,7 @@ Get all values with matching kwargs_type.
 set(key: str, value: Any, kwargs_type: str = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/modular_pipeline.py#L234)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/modular_pipeline.py#L234)
 
 **Parameters:**
 
@@ -74,7 +74,7 @@ Add a value to the pipeline state.
 to_dict()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/modular_pipeline.py#L279)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/modular_pipeline.py#L279)
 
 Convert PipelineState to a dictionary.
 
@@ -86,7 +86,7 @@ Convert PipelineState to a dictionary.
 diffusers.modular_pipelines.BlockState(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/modular_pipeline.py#L316)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/modular_pipeline.py#L316)
 
 Container for block state data with attribute access and formatted representation.
 
@@ -96,7 +96,7 @@ Container for block state data with attribute access and formatted representatio
 as_dict()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/modular_pipeline.py#L333)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/modular_pipeline.py#L333)
 
 **Returns:** dict[str, Any]
 
@@ -105,4 +105,4 @@ Dictionary containing all attributes of the BlockState
 Convert BlockState to a dictionary.
 
 ### DDPMScheduler
-https://huggingface.co/docs/diffusers/v0.42.0/api/schedulers/ddpm.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/schedulers/ddpm.md

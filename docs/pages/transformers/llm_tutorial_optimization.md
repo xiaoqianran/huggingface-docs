@@ -622,5 +622,5 @@ The research community is constantly coming up with new, nifty ways to speed up 
 The reason massive LLMs such as GPT3/4, Llama-2-70b, Claude, PaLM can run so quickly in chat-interfaces such as [Hugging Face Chat](https://huggingface.co/chat/) or ChatGPT is to a big part thanks to the above-mentioned improvements in precision, algorithms, and architecture.
 Going forward, accelerators such as GPUs, TPUs, etc... will only get faster and allow for more memory, but one should nevertheless always make sure to use the best available algorithms and architectures to get the most bang for your buck 🤗
 
-### Kernels for training
-https://huggingface.co/docs/transformers/v5.20.2/kernels.md
+### Contribute to 🤗 Transformers
+https://huggingface.co/docs/transformers/v5.21.0/contributing.md

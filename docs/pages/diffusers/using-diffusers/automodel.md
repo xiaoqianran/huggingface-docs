@@ -1,6 +1,6 @@
 # AutoModel
 
-The [AutoModel](/docs/diffusers/v0.42.0/en/api/models/auto_model#diffusers.AutoModel) class automatically detects and loads the correct model class (UNet, transformer, VAE) from a `config.json` file. You don't need to know the specific model class name ahead of time. It supports data types and device placement, and works across model types and libraries.
+The [AutoModel](/docs/diffusers/v0.42.1/en/api/models/auto_model#diffusers.AutoModel) class automatically detects and loads the correct model class (UNet, transformer, VAE) from a `config.json` file. You don't need to know the specific model class name ahead of time. It supports data types and device placement, and works across model types and libraries.
 
 The example below loads a transformer from Diffusers and a text encoder from Transformers. Use the `subfolder` parameter to specify where to load the `config.json` file from.
 
@@ -19,7 +19,7 @@ text_encoder = AutoModel.from_pretrained(
 
 ## Custom models
 
-[AutoModel](/docs/diffusers/v0.42.0/en/api/models/auto_model#diffusers.AutoModel) also loads models from the [Hub](https://huggingface.co/models) that aren't included in Diffusers. Set `trust_remote_code=True` in [AutoModel.from_pretrained()](/docs/diffusers/v0.42.0/en/api/models/auto_model#diffusers.AutoModel.from_pretrained) to load custom models.
+[AutoModel](/docs/diffusers/v0.42.1/en/api/models/auto_model#diffusers.AutoModel) also loads models from the [Hub](https://huggingface.co/models) that aren't included in Diffusers. Set `trust_remote_code=True` in [AutoModel.from_pretrained()](/docs/diffusers/v0.42.1/en/api/models/auto_model#diffusers.AutoModel.from_pretrained) to load custom models.
 
 A custom model repository needs a Python module with the model class, and a `config.json` with an `auto_map` entry that maps `"AutoModel"` to `"module_file.ClassName"`.
 
@@ -74,10 +74,10 @@ transformer = AutoModel.from_pretrained(
 )
 ```
 
-If the custom model inherits from the [ModelMixin](/docs/diffusers/v0.42.0/en/api/models/overview#diffusers.ModelMixin) class, it gets access to the same features as Diffusers model classes, like [regional compilation](../optimization/fp16#regional-compilation) and [group offloading](../optimization/memory#group-offloading).
+If the custom model inherits from the [ModelMixin](/docs/diffusers/v0.42.1/en/api/models/overview#diffusers.ModelMixin) class, it gets access to the same features as Diffusers model classes, like [regional compilation](../optimization/fp16#regional-compilation) and [group offloading](../optimization/memory#group-offloading).
 
 > [!WARNING]
-> As a precaution with `trust_remote_code=True`, pass a commit hash to the `revision` argument in [AutoModel.from_pretrained()](/docs/diffusers/v0.42.0/en/api/models/auto_model#diffusers.AutoModel.from_pretrained) to make sure the code hasn't been updated with new malicious code (unless you fully trust the model owners).
+> As a precaution with `trust_remote_code=True`, pass a commit hash to the `revision` argument in [AutoModel.from_pretrained()](/docs/diffusers/v0.42.1/en/api/models/auto_model#diffusers.AutoModel.from_pretrained) to make sure the code hasn't been updated with new malicious code (unless you fully trust the model owners).
 >
 > ```py
 > transformer = AutoModel.from_pretrained(
@@ -117,4 +117,4 @@ The saved `config.json` will include the `auto_map` field.
 Learn more about implementing custom models in the [Community components](../using-diffusers/custom_pipeline_overview#community-components) guide.
 
 ### ControlNet
-https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/controlnet.md
+https://huggingface.co/docs/diffusers/v0.42.1/using-diffusers/controlnet.md

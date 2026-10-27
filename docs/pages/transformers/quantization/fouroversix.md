@@ -48,5 +48,5 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
-### compressed-tensors
-https://huggingface.co/docs/transformers/v5.20.2/quantization/compressed_tensors.md
+### Selecting a quantization method
+https://huggingface.co/docs/transformers/v5.21.0/quantization/selecting.md

@@ -88,13 +88,13 @@ Separately, `"axial"` is a registered `rope_type` for vision models, but it is n
 
 #### transformers.RopeParameters[[transformers.RopeParameters]]
 
-[Source](https://github.com/huggingface/transformers/blob/v5.20.2/src/transformers/modeling_rope_utils.py#L678)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/modeling_rope_utils.py#L678)
 
 **Parameters:**
 
 rope_theta (`float`, *optional*, defaults to `RotaryEmbeddingConfigMixin.default_theta`) : The base period of the RoPE embeddings. Optional in serialized configs — if omitted, the model's `default_theta` (typically 10000.0) is used.
 
-rope_type (`str`, *optional*, defaults to "default") : The sub-variant of RoPE to use. Can be one of ['default', 'linear', 'dynamic', 'yarn', 'longrope', 'llama3'], with 'default' being the original RoPE implementation.
+rope_type (`str`, *optional*, defaults to "default") : The sub-variant of RoPE to use. Can be one of ['default', 'linear', 'dynamic', 'yarn', 'longrope', 'llama3', 'proportional', 'axial'], with 'default' being the original RoPE implementation.
 
 partial_rotary_factor (`float`, *optional*) : The percentage of the query and key head embedding on which RoPE will be applied.
 
@@ -116,6 +116,14 @@ low_freq_factor (`float`, *optional*) : Only used with 'llama3'. Scaling factor 
 
 high_freq_factor (`float`, *optional*) : Only used with 'llama3'. Scaling factor applied to high frequency components of the RoPE
 
+mscale (`float`, *optional*) : Only used with 'yarn'. If `attention_factor` is `None` and both `mscale` and `mscale_all_dim` are provided, `mscale` acts as a scalar augmenting `log(factor)` when computing the numerator for the inferred value of `attention_factor`. If not provided, `attention_factor` will be calculated based on `factor` only.
+
+mscale_all_dim (`float`, *optional*) : Only used with 'yarn'. If `attention_factor` is `None` and both `mscale` and `mscale_all_dim` are provided, `mscale_all_dim` acts as a scalar augmenting `log(factor)` when computing the denominator for the inferred value of `attention_factor`. If not provided, `attention_factor` will be calculated based on `factor` only.
+
+truncate (`bool`, *optional*) : Only used with 'yarn'. Whether to truncate the correction range using `math.floor` and `math.ceil`. If unspecified, defaults to `True`.
+
+mrope_section (`list[int]`, *optional*) : Used with Multimodal RoPE (MRoPE). Sizes of contiguous frequency bands for multimodal axes (typically temporal, height, and width, whose sum equals `head_dim // 2`).
+
 #### dict[[transformers.RopeParameters.__call__]]
 
 dict() -> new empty dictionary
@@ -128,5 +136,5 @@ d[k] = v
 dict(**kwargs) -> new dictionary initialized with the name=value pairs
 in the keyword argument list.  For example:  dict(one=1, two=2)
 
-### Importing utilities
-https://huggingface.co/docs/transformers/v5.20.2/internal/import_utils.md
+### Utilities for time series
+https://huggingface.co/docs/transformers/v5.21.0/internal/time_series_utils.md

@@ -33,6 +33,14 @@ Since `nn.Module` also implements the `__call__` method, the module can still be
 used as if it was a function. Note that a decorated function is only visible to
 [kernelize()](/docs/kernels/main/en/api/layers#kernels.kernelize) if it is attached to a module using [use_kernelized_func()](/docs/kernels/main/en/api/layers#kernels.use_kernelized_func).
 
+Decorating functions is mainly intended for compatibility cases, such as in
+`transformers`, where a function cannot be converted into a module. If you
+control the model code, prefer converting the function to an `nn.Module` and
+decorating that class with [use_kernel_forward_from_hub()](/docs/kernels/main/en/api/layers#kernels.use_kernel_forward_from_hub). In the
+parent module's `__init__`, assign an instance of the decorated class to an
+attribute, such as `self.activation = MyActivation()`. PyTorch then registers
+it as a submodule, making it part of the model graph.
+
 Example:
 ```python
 import torch
@@ -137,7 +145,7 @@ model = MyModel()
 kernels.use_kernelized_func(*args: Callable)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L481)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L493)
 
 **Parameters:**
 
@@ -150,6 +158,14 @@ A decorator function that can be applied to modules.
 This decorator attaches the target function within the module as a plain
 attribute (not as a submodule). This makes the function visible to
 [kernelize()](/docs/kernels/main/en/api/layers#kernels.kernelize).
+
+This decorator is mainly intended for compatibility cases, such as in
+`transformers`, where a function cannot be converted into a module. If you
+control the model code, prefer converting the function to an `nn.Module` and
+decorating that class with [use_kernel_forward_from_hub()](/docs/kernels/main/en/api/layers#kernels.use_kernel_forward_from_hub). In the
+parent module's `__init__`, assign an instance of the decorated class to an
+attribute, such as `self.activation = MyActivation()`. PyTorch then registers
+it as a submodule, making it part of the model graph.
 
 Example:
 ```python

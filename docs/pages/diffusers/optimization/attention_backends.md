@@ -19,7 +19,7 @@ This guide will show you how to set and use the different attention backends.
 
 ## set_attention_backend
 
-The [set_attention_backend()](/docs/diffusers/v0.42.0/en/api/models/overview#diffusers.ModelMixin.set_attention_backend) method iterates through all the modules in the model and sets the appropriate attention backend to use. The attention backend setting persists until [reset_attention_backend()](/docs/diffusers/v0.42.0/en/api/models/overview#diffusers.ModelMixin.reset_attention_backend) is called.
+The [set_attention_backend()](/docs/diffusers/v0.42.1/en/api/models/overview#diffusers.ModelMixin.set_attention_backend) method iterates through all the modules in the model and sets the appropriate attention backend to use. The attention backend setting persists until [reset_attention_backend()](/docs/diffusers/v0.42.1/en/api/models/overview#diffusers.ModelMixin.reset_attention_backend) is called.
 
 The example below demonstrates how to enable the `_flash_3_hub` implementation for FlashAttention-3 from the [`kernels`](https://github.com/huggingface/kernels) library, which allows you to instantly use optimized compute kernels from the Hub without requiring any setup.
 
@@ -42,7 +42,7 @@ highly detailed, high budget hollywood movie, cinemascope, moody, epic, gorgeous
 pipeline(prompt).images[0]
 ```
 
-To restore the default attention backend, call [reset_attention_backend()](/docs/diffusers/v0.42.0/en/api/models/overview#diffusers.ModelMixin.reset_attention_backend).
+To restore the default attention backend, call [reset_attention_backend()](/docs/diffusers/v0.42.1/en/api/models/overview#diffusers.ModelMixin.reset_attention_backend).
 
 ```py
 pipeline.transformer.reset_attention_backend()
@@ -161,4 +161,4 @@ Expand
 | `xformers` | [xFormers](https://github.com/facebookresearch/xformers) | Memory-efficient attention |
 
 ### Pruna
-https://huggingface.co/docs/diffusers/v0.42.0/optimization/pruna.md
+https://huggingface.co/docs/diffusers/v0.42.1/optimization/pruna.md

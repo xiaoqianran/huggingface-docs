@@ -18,5 +18,5 @@ This model was contributed by [DanielHesslow](https://huggingface.co/Seledorn). 
 
 As UL2 has the same architecture as T5v1.1,  refer to [T5's documentation page](t5) for API reference, tips, code examples and notebooks.
 
-### ESMFold2
-https://huggingface.co/docs/transformers/v5.20.2/model_doc/esmfold2.md
+### Longformer
+https://huggingface.co/docs/transformers/v5.21.0/model_doc/longformer.md

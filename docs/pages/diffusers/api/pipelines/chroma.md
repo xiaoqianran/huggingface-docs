@@ -82,15 +82,15 @@ image.save("chroma-single-file.png")
 diffusers.ChromaPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: T5EncoderModel, tokenizer: T5Tokenizer, transformer: ChromaTransformer2DModel, image_encoder: CLIPVisionModelWithProjection = None, feature_extractor: CLIPImageProcessorPil = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/chroma/pipeline_chroma.py#L150)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/chroma/pipeline_chroma.py#L150)
 
 **Parameters:**
 
-transformer ([ChromaTransformer2DModel](/docs/diffusers/v0.42.0/en/api/models/chroma_transformer#diffusers.ChromaTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+transformer ([ChromaTransformer2DModel](/docs/diffusers/v0.42.1/en/api/models/chroma_transformer#diffusers.ChromaTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKL](/docs/diffusers/v0.42.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representation
+vae ([AutoencoderKL](/docs/diffusers/v0.42.1/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representation
 
 text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
 
@@ -106,7 +106,7 @@ Reference: https://huggingface.co/lodestones/Chroma1-HD/
 __call__(prompt: str | list[str] = None, negative_prompt: str | list[str] = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 35, sigmas: list[float] | None = None, guidance_scale: float = 5.0, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, ip_adapter_image_embeds: list[torch.Tensor] | None = None, negative_ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, negative_ip_adapter_image_embeds: list[torch.Tensor] | None = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/chroma/pipeline_chroma.py#L587)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/chroma/pipeline_chroma.py#L587)
 
 **Parameters:**
 
@@ -196,7 +196,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] = None, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, do_classifier_free_guidance: bool = True, max_sequence_length: int = 512, lora_scale: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/chroma/pipeline_chroma.py#L264)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/chroma/pipeline_chroma.py#L264)
 
 **Parameters:**
 
@@ -220,15 +220,15 @@ lora_scale (`float`, *optional*) : A lora scale that will be applied to all LoRA
 diffusers.ChromaImg2ImgPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: T5EncoderModel, tokenizer: T5Tokenizer, transformer: ChromaTransformer2DModel, image_encoder: CLIPVisionModelWithProjection = None, feature_extractor: CLIPImageProcessorPil = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/chroma/pipeline_chroma_img2img.py#L162)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/chroma/pipeline_chroma_img2img.py#L162)
 
 **Parameters:**
 
-transformer ([ChromaTransformer2DModel](/docs/diffusers/v0.42.0/en/api/models/chroma_transformer#diffusers.ChromaTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+transformer ([ChromaTransformer2DModel](/docs/diffusers/v0.42.1/en/api/models/chroma_transformer#diffusers.ChromaTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKL](/docs/diffusers/v0.42.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representation
+vae ([AutoencoderKL](/docs/diffusers/v0.42.1/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representation
 
 text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
 
@@ -244,7 +244,7 @@ Reference: https://huggingface.co/lodestones/Chroma1-HD/
 __call__(prompt: str | list[str] = None, negative_prompt: str | list[str] = None, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 35, sigmas: list[float] | None = None, guidance_scale: float = 5.0, strength: float = 0.9, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, ip_adapter_image_embeds: list[torch.Tensor] | None = None, negative_ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, negative_ip_adapter_image_embeds: list[torch.Tensor] | None = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/chroma/pipeline_chroma_img2img.py#L646)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/chroma/pipeline_chroma_img2img.py#L646)
 
 **Parameters:**
 
@@ -336,7 +336,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] = None, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, do_classifier_free_guidance: bool = True, max_sequence_length: int = 512, lora_scale: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/chroma/pipeline_chroma_img2img.py#L291)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/chroma/pipeline_chroma_img2img.py#L291)
 
 **Parameters:**
 
@@ -360,15 +360,15 @@ lora_scale (`float`, *optional*) : A lora scale that will be applied to all LoRA
 diffusers.ChromaInpaintPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: T5EncoderModel, tokenizer: T5Tokenizer, transformer: ChromaTransformer2DModel, image_encoder: CLIPVisionModelWithProjection = None, feature_extractor: CLIPImageProcessorPil = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/chroma/pipeline_chroma_inpainting.py#L169)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/chroma/pipeline_chroma_inpainting.py#L169)
 
 **Parameters:**
 
-transformer ([ChromaTransformer2DModel](/docs/diffusers/v0.42.0/en/api/models/chroma_transformer#diffusers.ChromaTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+transformer ([ChromaTransformer2DModel](/docs/diffusers/v0.42.1/en/api/models/chroma_transformer#diffusers.ChromaTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
 
-scheduler ([DDIMScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/ddim#diffusers.DDIMScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([DDIMScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/ddim#diffusers.DDIMScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKL](/docs/diffusers/v0.42.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.42.1/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
 text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
 
@@ -388,7 +388,7 @@ Reference: https://blackforestlabs.ai/announcing-black-forest-labs/
 __call__(prompt: typing.Union[str, typing.List[str]] = None, negative_prompt: typing.Union[str, typing.List[str]] = None, true_cfg_scale: float = 1.0, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, mask_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, masked_image_latents: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, height: int | None = None, width: int | None = None, padding_mask_crop: int | None = None, strength: float = 0.6, num_inference_steps: int = 28, sigmas: list[float] | None = None, guidance_scale: float = 7.0, num_images_per_prompt: typing.Optional[int] = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, ip_adapter_image_embeds: typing.Optional[typing.List[torch.Tensor]] = None, negative_ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, negative_ip_adapter_image_embeds: typing.Optional[typing.List[torch.Tensor]] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str = 'pil', return_dict: bool = True, joint_attention_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int, typing.Dict], NoneType]] = None, callback_on_step_end_tensor_inputs: typing.List[str] = ['latents'], max_sequence_length: int = 256, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/chroma/pipeline_chroma_inpainting.py#L764)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/chroma/pipeline_chroma_inpainting.py#L764)
 
 **Parameters:**
 
@@ -483,7 +483,7 @@ Examples:
 encode_prompt(prompt: typing.Union[str, typing.List[str]], negative_prompt: typing.Union[str, typing.List[str], NoneType] = None, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, do_classifier_free_guidance: bool = True, max_sequence_length: int = 256, lora_scale: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/chroma/pipeline_chroma_inpainting.py#L293)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/chroma/pipeline_chroma_inpainting.py#L293)
 
 **Parameters:**
 
@@ -500,7 +500,7 @@ prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can 
 lora_scale (`float`, *optional*) : A lora scale that will be applied to all LoRA layers of the text encoder if LoRA layers are loaded.
 
 ### Mochi
-https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/mochi.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/pipelines/mochi.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");

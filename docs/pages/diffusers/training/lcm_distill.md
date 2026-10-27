@@ -237,4 +237,4 @@ Congratulations on distilling a LCM model! To learn more about LCM, the followin
 - Read the [SDXL in 4 steps with Latent Consistency LoRAs](https://huggingface.co/blog/lcm_lora) blog post to learn more about SDXL LCM-LoRA's for super fast inference, quality comparisons, benchmarks, and more.
 
 ### Custom Diffusion
-https://huggingface.co/docs/diffusers/v0.42.0/training/custom_diffusion.md
+https://huggingface.co/docs/diffusers/v0.42.1/training/custom_diffusion.md

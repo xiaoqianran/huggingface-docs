@@ -1,7 +1,7 @@
 # SanaWMTransformer3DModel
 
 A 3D Diffusion Transformer (1.6B parameters) for camera-controlled image-to-video generation, used as the stage-1
-sampler of [SanaWMPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/sana_wm#diffusers.SanaWMPipeline). The transformer combines:
+sampler of [SanaWMPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/sana_wm#diffusers.SanaWMPipeline). The transformer combines:
 
 * a bidirectional GDN-Triton linear-attention main branch (depth 20, hidden 2240, 20 heads),
 * a UCPE (Unified Camera Pose Embedding) camera-control branch that consumes a raymap + Plücker representation of
@@ -30,7 +30,7 @@ transformer = SanaWMTransformer3DModel.from_pretrained(
 diffusers.SanaWMTransformer3DModel(in_channels: int = 128, num_layers: int = 20, hidden_size: int = 2240, num_attention_heads: int = 20, patch_size: tuple[int, int, int] = (1, 1, 1), softmax_every_n: int = 4, linear_head_dim: int = 112, ffn_type: str = 'GLUMBConvTemp', t_kernel_size: int = 3, conv_kernel_size: int = 4, k_conv_only: bool = True, pos_embed_type: str = 'wan_rope', qk_norm: bool = True, cross_norm: bool = True, y_norm: bool = True, cam_attn_compress: int = 1, init_cam_from_base: bool = True, use_chunk_plucker_post_attn: bool = True, chunk_plucker_channels: int = 48, chunk_plucker_post_attn_blocks: int = 20, fp32_attention: bool = True, image_size: int = 720, caption_channels: int = 2304, mlp_ratio: float = 3.0, mlp_acts: tuple = ('silu', 'silu', None), use_pe: bool = True, learn_sigma: bool = False, pred_sigma: bool = False, mixed_precision: str = 'bf16')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_sana_wm.py#L2663)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_sana_wm.py#L2663)
 
 **Parameters:**
 
@@ -74,7 +74,7 @@ SANA-WM 1600M bidirectional camera-controlled DiT.
 
 A single-class DiT (depth=20, hidden_size=2240, patch_size=(1,1,1), num_heads=20 — i.e. the public
 `Efficient-Large-Model/SANA-WM_bidirectional` release). `save_pretrained` / `from_pretrained` work out of the
-box via [ConfigMixin](/docs/diffusers/v0.42.0/en/api/configuration#diffusers.ConfigMixin).
+box via [ConfigMixin](/docs/diffusers/v0.42.1/en/api/configuration#diffusers.ConfigMixin).
 
 Every block runs a camera-conditioned (UCPE) attention: [*BidirectionalGDNUCPESinglePathLiteLA*], except every
 `softmax_every_n`-th block which runs its softmax counterpart [*_SoftmaxUCPESinglePathLiteLA*].
@@ -88,7 +88,7 @@ buffer.
 forward(hidden_states: torch.Tensor, timestep: torch.Tensor, encoder_hidden_states: torch.Tensor, encoder_attention_mask: torch.Tensor | None = None, mask: torch.Tensor | None = None, return_dict: bool = True, data_info: Optional[dict] = None, camera_conditions: torch.Tensor | None = None, chunk_plucker: torch.Tensor | None = None, cam_pos_embeds: Optional[dict] = None, pos_embeds: torch.Tensor | None = None, raymats: torch.Tensor | None = None, frame_valid_mask: torch.Tensor | None = None, chunk_size: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_sana_wm.py#L2896)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_sana_wm.py#L2896)
 
 **Parameters:**
 
@@ -132,7 +132,7 @@ Run the SANA-WM DiT.
 unpatchify(x, post_patch_num_frames, post_patch_height, post_patch_width)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_sana_wm.py#L3099)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_sana_wm.py#L3099)
 
 x: (N, T, patch_size**2 * C) imgs: (N, H, W, C)
 
@@ -144,13 +144,13 @@ x: (N, T, patch_size**2 * C) imgs: (N, H, W, C)
 diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/modeling_outputs.py#L21)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.42.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.42.1/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-The output of [Transformer2DModel](/docs/diffusers/v0.42.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+The output of [Transformer2DModel](/docs/diffusers/v0.42.1/en/api/models/transformer2d#diffusers.Transformer2DModel).
 
 ### LongCatImageTransformer2DModel
-https://huggingface.co/docs/diffusers/v0.42.0/api/models/longcat_image_transformer2d.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/models/longcat_image_transformer2d.md

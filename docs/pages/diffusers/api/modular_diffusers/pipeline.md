@@ -8,7 +8,7 @@
 diffusers.ModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/modular_pipeline.py#L1691)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/modular_pipeline.py#L1693)
 
 **Parameters:**
 
@@ -22,7 +22,7 @@ Base class for all Modular pipelines.
 from_pretrained(pretrained_model_name_or_path: str | os.PathLike | None, trust_remote_code: bool | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/modular_pipeline.py#L1916)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/modular_pipeline.py#L1918)
 
 **Parameters:**
 
@@ -44,7 +44,7 @@ Load a ModularPipeline from a huggingface hub repo.
 get_component_spec(name: str)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/modular_pipeline.py#L2402)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/modular_pipeline.py#L2404)
 
 **Returns:**
 
@@ -56,7 +56,7 @@ get_component_spec(name: str)
 load_components(names: list[str] | str | None = None, workflow: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/modular_pipeline.py#L2490)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/modular_pipeline.py#L2492)
 
 **Parameters:**
 
@@ -74,7 +74,7 @@ Load selected components from specs.
 register_components(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/modular_pipeline.py#L2187)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/modular_pipeline.py#L2189)
 
 **Parameters:**
 
@@ -109,7 +109,7 @@ Notes:
 save_pretrained(save_directory: str | os.PathLike, safe_serialization: bool = True, variant: str | None = None, max_shard_size: int | str | None = None, push_to_hub: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/modular_pipeline.py#L2017)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/modular_pipeline.py#L2019)
 
 **Parameters:**
 
@@ -126,7 +126,7 @@ push_to_hub (`bool`, *optional*, defaults to `False`) : Whether to push the pipe
 - ****kwargs** : Additional keyword arguments: - `overwrite_modular_index` (`bool`, *optional*, defaults to `True`): Whether to update `modular_model_index.json` so each saved component's loading spec points to the destination: `repo_id` when pushing to the Hub, otherwise `save_directory`. Components that are not loaded are not saved and always keep their recorded loading specs. Pass `False` to also preserve the recorded specs of the components being saved (e.g. for an index that deliberately references other repositories); components without a load id (such as custom models added with `update_components`) are still rewritten since they have no recorded source. - `repo_id` (`str`, *optional*): The repository ID to push the pipeline to. Defaults to the last component of `save_directory`. - `commit_message` (`str`, *optional*): Commit message for the push to hub operation. - `private` (`bool`, *optional*): Whether the repository should be private. - `create_pr` (`bool`, *optional*, defaults to `False`): Whether to create a pull request instead of pushing directly. - `token` (`str`, *optional*): The Hugging Face token to use for authentication.
 
 Save the pipeline and all its components to a directory, so that it can be re-loaded using the
-[from_pretrained()](/docs/diffusers/v0.42.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.from_pretrained) class method.
+[from_pretrained()](/docs/diffusers/v0.42.1/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.from_pretrained) class method.
 
 #### to[[diffusers.ModularPipeline.to]]
 
@@ -134,7 +134,7 @@ Save the pipeline and all its components to a directory, so that it can be re-lo
 to(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/modular_pipeline.py#L2652)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/modular_pipeline.py#L2654)
 
 **Parameters:**
 
@@ -144,7 +144,7 @@ device (`torch.Device`, *optional*) : Returns a pipeline with the specified [`de
 
 silence_dtype_warnings (`str`, *optional*, defaults to `False`) : Whether to omit warnings if the target `dtype` is not compatible with the target `device`.
 
-**Returns:** [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline)
+**Returns:** [DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline)
 
 The pipeline converted to specified `dtype` and/or `dtype`.
 
@@ -170,7 +170,7 @@ Here are the ways to call `to`:
 unload_components(names: list[str] | str)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/modular_pipeline.py#L2596)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/modular_pipeline.py#L2598)
 
 **Parameters:**
 
@@ -187,7 +187,7 @@ from it. The component spec is untouched, so the component can be loaded again l
 update_components(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/modular_pipeline.py#L2409)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/modular_pipeline.py#L2411)
 
 **Parameters:**
 
@@ -220,4 +220,4 @@ have their `modular_model_index.json` entries updated automatically during `save
 - ConfigMixin objects without weights (e.g., schedulers, guiders) can be passed directly.
 
 ### Pipeline states
-https://huggingface.co/docs/diffusers/v0.42.0/api/modular_diffusers/pipeline_states.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/modular_diffusers/pipeline_states.md

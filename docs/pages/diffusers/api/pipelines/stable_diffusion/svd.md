@@ -118,7 +118,7 @@ export_to_video(frames, "generated.mp4", fps=7)
 diffusers.StableVideoDiffusionPipeline(vae: AutoencoderKLTemporalDecoder, image_encoder: CLIPVisionModelWithProjection, unet: UNetSpatioTemporalConditionModel, scheduler: EulerDiscreteScheduler, feature_extractor: CLIPImageProcessorPil)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/stable_video_diffusion/pipeline_stable_video_diffusion.py#L147)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/stable_video_diffusion/pipeline_stable_video_diffusion.py#L147)
 
 **Parameters:**
 
@@ -128,13 +128,13 @@ image_encoder ([CLIPVisionModelWithProjection](https://huggingface.co/docs/trans
 
 unet (`UNetSpatioTemporalConditionModel`) : A `UNetSpatioTemporalConditionModel` to denoise the encoded image latents.
 
-scheduler ([EulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/euler#diffusers.EulerDiscreteScheduler)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents.
+scheduler ([EulerDiscreteScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/euler#diffusers.EulerDiscreteScheduler)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents.
 
 feature_extractor ([CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.20.2/en/model_doc/clip#transformers.CLIPImageProcessor)) : A `CLIPImageProcessor` to extract features from generated images.
 
 Pipeline to generate video from an input image using Stable Video Diffusion.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 ## StableVideoDiffusionPipelineOutput[[diffusers.pipelines.stable_video_diffusion.StableVideoDiffusionPipelineOutput]]
@@ -145,7 +145,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 diffusers.pipelines.stable_video_diffusion.StableVideoDiffusionPipelineOutput(frames: typing.Union[list[list[PIL.Image.Image]], numpy.ndarray, torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/stable_video_diffusion/pipeline_stable_video_diffusion.py#L134)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/stable_video_diffusion/pipeline_stable_video_diffusion.py#L134)
 
 **Parameters:**
 
@@ -154,4 +154,4 @@ frames (`[list[list[PIL.Image.Image]]`, `np.ndarray`, `torch.Tensor`]) : list of
 Output class for Stable Video Diffusion pipeline.
 
 ### Latent upscaler
-https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/stable_diffusion/latent_upscale.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/pipelines/stable_diffusion/latent_upscale.md

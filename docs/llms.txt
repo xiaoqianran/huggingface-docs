@@ -7,11 +7,11 @@
 - [Dataset Viewer](https://huggingface.co/docs/dataset-viewer) — 26 pages
 - [Datasets](https://huggingface.co/docs/datasets) — 58 pages
 - [Diffusers](https://huggingface.co/docs/diffusers) — 371 pages
-- [Hub](https://huggingface.co/docs/hub) — 275 pages
+- [Hub](https://huggingface.co/docs/hub) — 276 pages
 - [Hub Client](https://huggingface.co/docs/huggingface_hub) — 53 pages
 - [Inference Endpoints](https://huggingface.co/docs/inference-endpoints) — 25 pages
 - [Inference Providers](https://huggingface.co/docs/inference-providers) — 28 pages
-- [Kernels](https://huggingface.co/docs/kernels) — 40 pages
+- [Kernels](https://huggingface.co/docs/kernels) — 41 pages
 - [LeRobot](https://huggingface.co/docs/lerobot) — 91 pages
 - [Optimum](https://huggingface.co/docs/optimum) — 16 pages
 - [PEFT](https://huggingface.co/docs/peft) — 79 pages
@@ -22,6 +22,6 @@
 - [timm](https://huggingface.co/docs/timm) — 77 pages
 - [Tokenizers](https://huggingface.co/docs/tokenizers) — 19 pages
 - [Transformers.js](https://huggingface.co/docs/transformers.js) — 39 pages
-- [Transformers](https://huggingface.co/docs/transformers) — 759 pages
+- [Transformers](https://huggingface.co/docs/transformers) — 766 pages
 - [TRL](https://huggingface.co/docs/trl) — 57 pages
 - [Xet](https://huggingface.co/docs/xet) — 12 pages

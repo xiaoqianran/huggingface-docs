@@ -10,20 +10,20 @@ super-resolution model upscales the generated video tile by tile in the latent s
 > Check out the [Kandinsky Lab](https://huggingface.co/kandinskylab) organization on the Hub for the full set of
 > official checkpoints, including flow-matching and distilled variants of both the base and super-resolution models.
 >
-> Distilled checkpoints ship with the few-step [PiflowScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/piflow#diffusers.PiflowScheduler) and must be run with `guidance_scale=1.0`.
+> Distilled checkpoints ship with the few-step [PiflowScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/piflow#diffusers.PiflowScheduler) and must be run with `guidance_scale=1.0`.
 
 ## Available models
 
 | Model | Pipeline | Notes |
 |---|---|---|
-| [`kandinskylab/Kandinsky-6.0-Pro-5s-Diffusers`](https://huggingface.co/kandinskylab/Kandinsky-6.0-Pro-5s-Diffusers) | [Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline) | Flow matching, `guidance_scale=5.0`, 50 steps |
-| [`kandinskylab/Kandinsky-6.0-Pro-distill-5s-Diffusers`](https://huggingface.co/kandinskylab/Kandinsky-6.0-Pro-distill-5s-Diffusers) | [Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline) | Distilled, `guidance_scale=1.0`, 10 steps |
-| [`kandinskylab/Kandinsky-6.0-Lite-5s-Diffusers`](https://huggingface.co/kandinskylab/Kandinsky-6.0-Lite-5s-Diffusers) | [Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline) | Flow matching, `guidance_scale=5.0`, 50 steps |
-| [`kandinskylab/Kandinsky-6.0-Lite-distill-5s-Diffusers`](https://huggingface.co/kandinskylab/Kandinsky-6.0-Lite-distill-5s-Diffusers) | [Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline) | Distilled, `guidance_scale=1.0`, 10 steps |
-| [`kandinskylab/Kandinsky-6.0-Pro-pretrain-5s-Diffusers`](https://huggingface.co/kandinskylab/Kandinsky-6.0-Pro-pretrain-5s-Diffusers) | [Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline) | Flow matching, `guidance_scale=5.0`, 50 steps |
-| [`kandinskylab/Kandinsky-6.0-Lite-pretrain-5s-Diffusers`](https://huggingface.co/kandinskylab/Kandinsky-6.0-Lite-pretrain-5s-Diffusers) | [Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline) | Flow matching, `guidance_scale=5.0`, 50 steps |
-| [`kandinskylab/Kandinsky-6.0-VSR-5s-Diffusers`](https://huggingface.co/kandinskylab/Kandinsky-6.0-VSR-5s-Diffusers) | [Kandinsky6SRPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6SRPipeline) | Flow matching super-resolution |
-| [`kandinskylab/Kandinsky-6.0-VSR-distilled2steps-5s-Diffusers`](https://huggingface.co/kandinskylab/Kandinsky-6.0-VSR-distilled2steps-5s-Diffusers) | [Kandinsky6SRPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6SRPipeline) | Distilled super-resolution, 2 steps |
+| [`kandinskylab/Kandinsky-6.0-Pro-5s-Diffusers`](https://huggingface.co/kandinskylab/Kandinsky-6.0-Pro-5s-Diffusers) | [Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline) | Flow matching, `guidance_scale=5.0`, 50 steps |
+| [`kandinskylab/Kandinsky-6.0-Pro-distill-5s-Diffusers`](https://huggingface.co/kandinskylab/Kandinsky-6.0-Pro-distill-5s-Diffusers) | [Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline) | Distilled, `guidance_scale=1.0`, 10 steps |
+| [`kandinskylab/Kandinsky-6.0-Lite-5s-Diffusers`](https://huggingface.co/kandinskylab/Kandinsky-6.0-Lite-5s-Diffusers) | [Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline) | Flow matching, `guidance_scale=5.0`, 50 steps |
+| [`kandinskylab/Kandinsky-6.0-Lite-distill-5s-Diffusers`](https://huggingface.co/kandinskylab/Kandinsky-6.0-Lite-distill-5s-Diffusers) | [Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline) | Distilled, `guidance_scale=1.0`, 10 steps |
+| [`kandinskylab/Kandinsky-6.0-Pro-pretrain-5s-Diffusers`](https://huggingface.co/kandinskylab/Kandinsky-6.0-Pro-pretrain-5s-Diffusers) | [Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline) | Flow matching, `guidance_scale=5.0`, 50 steps |
+| [`kandinskylab/Kandinsky-6.0-Lite-pretrain-5s-Diffusers`](https://huggingface.co/kandinskylab/Kandinsky-6.0-Lite-pretrain-5s-Diffusers) | [Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline) | Flow matching, `guidance_scale=5.0`, 50 steps |
+| [`kandinskylab/Kandinsky-6.0-VSR-5s-Diffusers`](https://huggingface.co/kandinskylab/Kandinsky-6.0-VSR-5s-Diffusers) | [Kandinsky6SRPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6SRPipeline) | Flow matching super-resolution |
+| [`kandinskylab/Kandinsky-6.0-VSR-distilled2steps-5s-Diffusers`](https://huggingface.co/kandinskylab/Kandinsky-6.0-VSR-distilled2steps-5s-Diffusers) | [Kandinsky6SRPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6SRPipeline) | Distilled super-resolution, 2 steps |
 
 ## Text/image-to-video-and-audio
 
@@ -59,7 +59,7 @@ Pass `image=` to condition the first frame on a reference image, `sample_audio=F
 
 ## Video super-resolution
 
-[Kandinsky6SRPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6SRPipeline) takes the frames produced by [Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline) and upscales them by `2`, `4`, or
+[Kandinsky6SRPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6SRPipeline) takes the frames produced by [Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline) and upscales them by `2`, `4`, or
 `2.25` (a 1.125x bilinear pre-upscale followed by the 2x path). The video is split into overlapping tiles, every tile
 is refined at one of the tile sizes the SR transformer was trained on, and the tiles are blended back with Hann
 windows.
@@ -83,14 +83,14 @@ upscaled = sr_pipe(video=output.frames[0], resolution_scale=2.25, num_inference_
 ## Memory optimization
 
 Refer to the [Reduce memory usage](../../optimization/memory) guide for the general set of techniques. Both
-[Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline) and [Kandinsky6SRPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6SRPipeline) support [model offloading](../../optimization/memory#model-offloading)
+[Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline) and [Kandinsky6SRPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6SRPipeline) support [model offloading](../../optimization/memory#model-offloading)
 (used above) and, for a smaller footprint at the cost of speed, [sequential CPU offloading](../../optimization/memory#cpu-offloading):
 
 ```python
 pipe.enable_sequential_cpu_offload()
 ```
 
-[Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline)'s video VAE also supports [tiled decoding](../../optimization/memory#vae-tiling) for high
+[Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline)'s video VAE also supports [tiled decoding](../../optimization/memory#vae-tiling) for high
 resolutions or long videos:
 
 ```python
@@ -100,9 +100,9 @@ pipe.vae.enable_tiling()
 ## Notes
 
 - `height` and `width` must be divisible by the video VAE's spatial compression ratio times the transformer's patch
-  size — `16` with the default [Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline) configuration (`AutoencoderKLHunyuanVideo` at a
+  size — `16` with the default [Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline) configuration (`AutoencoderKLHunyuanVideo` at a
   compression ratio of `8`, `patch_size=(1, 2, 2)`). `480x864`, used in the example above, satisfies this.
-- [Kandinsky6SRPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6SRPipeline)'s input `video` must have `1 + k * vae_scale_factor_temporal` frames for some integer `k`
+- [Kandinsky6SRPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6SRPipeline)'s input `video` must have `1 + k * vae_scale_factor_temporal` frames for some integer `k`
   (a temporal compression ratio of `4` with the default K-VAE configuration, so `121` frames works but `120` doesn't)
   — trim or pad a video that doesn't already satisfy this before upscaling it.
 - `expand_prompts=True` reuses the already-loaded Qwen2.5-VL text encoder for an extra generation pass before
@@ -120,13 +120,13 @@ pipe.vae.enable_tiling()
 diffusers.Kandinsky6TI2VAPipeline(transformer: Kandinsky6Transformer3DModel, vae: AutoencoderKLHunyuanVideo, text_encoder: Qwen2_5_VLForConditionalGeneration, tokenizer: Qwen2_5_VLProcessor, text_encoder_2: CLIPTextModel, tokenizer_2: CLIPTokenizer, scheduler: diffusers.schedulers.scheduling_flow_match_euler_discrete.FlowMatchEulerDiscreteScheduler | diffusers.schedulers.scheduling_piflow.PiflowScheduler, audio_vae: diffusers.models.autoencoders.autoencoder_mmaudio.MMAudioVAE | None = None, vocoder: diffusers.models.autoencoders.mmaudio_vocoder.MMAudioVocoder | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_ti2va.py#L178)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_ti2va.py#L178)
 
 **Parameters:**
 
-transformer ([Kandinsky6Transformer3DModel](/docs/diffusers/v0.42.0/en/api/models/kandinsky6_transformer#diffusers.Kandinsky6Transformer3DModel)) : Multimodal transformer that denoises the video and audio latents.
+transformer ([Kandinsky6Transformer3DModel](/docs/diffusers/v0.42.1/en/api/models/kandinsky6_transformer#diffusers.Kandinsky6Transformer3DModel)) : Multimodal transformer that denoises the video and audio latents.
 
-vae ([AutoencoderKLHunyuanVideo](/docs/diffusers/v0.42.0/en/api/models/autoencoder_kl_hunyuan_video#diffusers.AutoencoderKLHunyuanVideo)) : Video VAE used to encode the reference image and decode the generated video.
+vae ([AutoencoderKLHunyuanVideo](/docs/diffusers/v0.42.1/en/api/models/autoencoder_kl_hunyuan_video#diffusers.AutoencoderKLHunyuanVideo)) : Video VAE used to encode the reference image and decode the generated video.
 
 text_encoder ([Qwen2_5_VLForConditionalGeneration](https://huggingface.co/docs/transformers/v5.20.2/en/model_doc/qwen2_5_vl#transformers.Qwen2_5_VLForConditionalGeneration)) : Qwen2.5-VL model providing the token-level text embeddings and, optionally, prompt expansion.
 
@@ -136,18 +136,18 @@ text_encoder_2 ([CLIPTextModel](https://huggingface.co/docs/transformers/v5.20.2
 
 tokenizer_2 ([CLIPTokenizer](https://huggingface.co/docs/transformers/v5.20.2/en/model_doc/clip#transformers.CLIPTokenizer)) : Tokenizer of `text_encoder_2`.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler) or [PiflowScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/piflow#diffusers.PiflowScheduler)) : Scheduler used with `transformer` to denoise the latents. Distilled checkpoints ship with a [PiflowScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/piflow#diffusers.PiflowScheduler) and must be run with `guidance_scale=1.0`.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler) or [PiflowScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/piflow#diffusers.PiflowScheduler)) : Scheduler used with `transformer` to denoise the latents. Distilled checkpoints ship with a [PiflowScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/piflow#diffusers.PiflowScheduler) and must be run with `guidance_scale=1.0`.
 
-audio_vae ([MMAudioVAE](/docs/diffusers/v0.42.0/en/api/models/kandinsky6_vae#diffusers.MMAudioVAE), *optional*) : Audio VAE used to decode the generated audio latents into a mel spectrogram. Only needed when `sample_audio=True`.
+audio_vae ([MMAudioVAE](/docs/diffusers/v0.42.1/en/api/models/kandinsky6_vae#diffusers.MMAudioVAE), *optional*) : Audio VAE used to decode the generated audio latents into a mel spectrogram. Only needed when `sample_audio=True`.
 
-vocoder ([MMAudioVocoder](/docs/diffusers/v0.42.0/en/api/models/kandinsky6_vae#diffusers.MMAudioVocoder), *optional*) : Vocoder used to turn the mel spectrogram `audio_vae` decodes into a waveform. Only needed when `sample_audio=True`.
+vocoder ([MMAudioVocoder](/docs/diffusers/v0.42.1/en/api/models/kandinsky6_vae#diffusers.MMAudioVocoder), *optional*) : Vocoder used to turn the mel spectrogram `audio_vae` decodes into a waveform. Only needed when `sample_audio=True`.
 
 Pipeline for text/image-to-video-and-audio generation with Kandinsky 6.
 
 Video and audio latents are denoised together by a single multimodal transformer, conditioned on Qwen2.5-VL text
 tokens and a CLIP pooled embedding. An optional reference image conditions the first frame.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.Kandinsky6TI2VAPipeline.__call__]]
@@ -156,7 +156,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(prompt: str | list[str] | None = None, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, negative_prompt: str | list[str] | None = None, height: int = 512, width: int = 768, num_frames: int = 121, frame_rate: float = 24.0, num_inference_steps: int = 50, timesteps: list[int] | None = None, sigmas: list[float] | None = None, guidance_scale: float = 5.0, num_videos_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, audio_latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, pooled_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_pooled_prompt_embeds: typing.Optional[torch.Tensor] = None, sample_audio: bool = True, expand_prompts: bool = False, max_sequence_length: int = 1024, output_type: str = 'pil', return_dict: bool = True, callback_on_step_end: collections.abc.Callable[[int, int, dict], None] | None = None, callback_on_step_end_tensor_inputs: list = ['latents'])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_ti2va.py#L644)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_ti2va.py#L644)
 
 **Parameters:**
 
@@ -180,7 +180,7 @@ timesteps (`list[int]`, *optional*) : Custom timesteps for schedulers that suppo
 
 sigmas (`list[float]`, *optional*) : Custom sigmas for schedulers that support them.
 
-guidance_scale (`float`, defaults to `5.0`) : Classifier-free guidance scale. Must be `1.0` with a [PiflowScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/piflow#diffusers.PiflowScheduler).
+guidance_scale (`float`, defaults to `5.0`) : Classifier-free guidance scale. Must be `1.0` with a [PiflowScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/piflow#diffusers.PiflowScheduler).
 
 num_videos_per_prompt (`int`, defaults to `1`) : The number of videos to generate per prompt.
 
@@ -200,19 +200,19 @@ negative_pooled_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negat
 
 sample_audio (`bool`, defaults to `True`) : Whether to generate synchronized audio. Requires the pipeline to have an `audio_vae` and a `vocoder`.
 
-expand_prompts (`bool`, defaults to `False`) : Whether to rewrite the prompts with [expand_prompts()](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline.expand_prompts) before encoding.
+expand_prompts (`bool`, defaults to `False`) : Whether to rewrite the prompts with [expand_prompts()](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline.expand_prompts) before encoding.
 
 max_sequence_length (`int`, defaults to `1024`) : Maximum number of prompt tokens after the chat template.
 
 output_type (`str`, defaults to `"pil"`) : The output format of the generated video: `"pil"`, `"np"`, `"pt"` or `"latent"`.
 
-return_dict (`bool`, defaults to `True`) : Whether or not to return a [Kandinsky6TI2VAPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipelineOutput) instead of a plain tuple.
+return_dict (`bool`, defaults to `True`) : Whether or not to return a [Kandinsky6TI2VAPipelineOutput](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipelineOutput) instead of a plain tuple.
 
 callback_on_step_end (`Callable`, *optional*) : A function called at the end of each denoising step with `callback_on_step_end(self, step, timestep, callback_kwargs)`. It may return a dict overriding the listed tensors.
 
 callback_on_step_end_tensor_inputs (`list[str]`, defaults to `["latents"]`) : Tensor inputs passed to `callback_on_step_end`; a subset of `_callback_tensor_inputs`.
 
-**Returns:** [Kandinsky6TI2VAPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipelineOutput) or `tuple`
+**Returns:** [Kandinsky6TI2VAPipelineOutput](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipelineOutput) or `tuple`
 
 The generated video and audio; a `(frames, audio)` tuple when `return_dict=False`.
 
@@ -252,7 +252,7 @@ Examples:
 encode_image(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], height: int, width: int, device: device, dtype: dtype, num_videos_per_prompt: int = 1, generator: typing.Optional[torch.Generator] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_ti2va.py#L551)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_ti2va.py#L551)
 
 Encodes the reference image(s) into first-frame latents of shape `(batch_size, latent_height, latent_width,
 latent_channels)`, scaled by the VAE `scaling_factor`. PIL images are resized and center-cropped to `height x
@@ -265,7 +265,7 @@ along the batch dimension.
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, pooled_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_pooled_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 1024, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_ti2va.py#L309)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_ti2va.py#L309)
 
 **Parameters:**
 
@@ -303,7 +303,7 @@ Encodes the prompt into text encoder hidden states.
 expand_prompts(prompt: str | list[str], tokenizer, text_encoder, device: device, image: PIL.Image.Image | list[PIL.Image.Image] | None = None, max_sequence_length: int = 1024, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_ti2va.py#L412)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_ti2va.py#L412)
 
 **Parameters:**
 
@@ -335,7 +335,7 @@ pipeline.
 prepare_audio_latents(batch_size: int, num_channels_latents: int, audio_length: int, dtype: dtype, device: device, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType], audio_latents: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_ti2va.py#L607)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_ti2va.py#L607)
 
 Returns audio latents in the transformer's `(batch_size, audio_length, channels)` layout. A user-provided
 `audio_latents` tensor is expected in the `(batch_size, channels, audio_length)` layout.
@@ -346,7 +346,7 @@ Returns audio latents in the transformer's `(batch_size, audio_length, channels)
 prepare_latents(batch_size: int, num_channels_latents: int, height: int, width: int, num_frames: int, dtype: dtype, device: device, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType], latents: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_ti2va.py#L578)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_ti2va.py#L578)
 
 Returns video latents in the transformer's `(batch_size, num_frames, height, width, channels)` layout.
 A user-provided `latents` tensor is expected in the `(batch_size, channels, num_frames, height, width)` layout.
@@ -359,17 +359,17 @@ A user-provided `latents` tensor is expected in the `(batch_size, channels, num_
 diffusers.Kandinsky6SRPipeline(transformer: Kandinsky6SRTransformer3DModel, vae: Kandinsky6SRVAE, scheduler: diffusers.schedulers.scheduling_flow_match_euler_discrete.FlowMatchEulerDiscreteScheduler | diffusers.schedulers.scheduling_piflow.PiflowScheduler, latent_upscaler: diffusers.models.latent_upscaler.latent_upscaler_kandinsky6_sr.Kandinsky6SRLatentUpscalerBank | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_sr.py#L143)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_sr.py#L143)
 
 **Parameters:**
 
-transformer ([Kandinsky6SRTransformer3DModel](/docs/diffusers/v0.42.0/en/api/models/kandinsky6_transformer#diffusers.Kandinsky6SRTransformer3DModel)) : Transformer that refines the latent tiles.
+transformer ([Kandinsky6SRTransformer3DModel](/docs/diffusers/v0.42.1/en/api/models/kandinsky6_transformer#diffusers.Kandinsky6SRTransformer3DModel)) : Transformer that refines the latent tiles.
 
-vae ([Kandinsky6SRVAE](/docs/diffusers/v0.42.0/en/api/models/kandinsky6_vae#diffusers.Kandinsky6SRVAE)) : Causal video K-VAE used to encode the input video and decode the refined tiles.
+vae ([Kandinsky6SRVAE](/docs/diffusers/v0.42.1/en/api/models/kandinsky6_vae#diffusers.Kandinsky6SRVAE)) : Causal video K-VAE used to encode the input video and decode the refined tiles.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler) or [PiflowScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/piflow#diffusers.PiflowScheduler)) : Scheduler used with `transformer` to denoise the tiles. Distilled checkpoints ship with a [PiflowScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/piflow#diffusers.PiflowScheduler).
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler) or [PiflowScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/piflow#diffusers.PiflowScheduler)) : Scheduler used with `transformer` to denoise the tiles. Distilled checkpoints ship with a [PiflowScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/piflow#diffusers.PiflowScheduler).
 
-latent_upscaler ([Kandinsky6SRLatentUpscalerBank](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6SRLatentUpscalerBank), *optional*) : Latent upscalers for the supported scales.
+latent_upscaler ([Kandinsky6SRLatentUpscalerBank](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6SRLatentUpscalerBank), *optional*) : Latent upscalers for the supported scales.
 
 Pipeline for video super-resolution with Kandinsky 6.
 
@@ -378,7 +378,7 @@ sizes the model was trained on (`transformer.config.tile_sizes`), and the refine
 windows. When the pipeline has a `latent_upscaler`, the tiles are cut from the K-VAE latents of the whole video and
 upscaled in latent space; otherwise the pixel tiles are bilinearly upscaled and encoded.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.Kandinsky6SRPipeline.__call__]]
@@ -387,11 +387,11 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(video: typing.Union[list[PIL.Image.Image], list[list[PIL.Image.Image]], numpy.ndarray, torch.Tensor], resolution_scale: float = 2.25, num_inference_steps: int = 4, timesteps: list[int] | None = None, sigmas: list[float] | None = None, lq_noise_scale: float = 0.7, min_overlap: float = 0.2, tiles_batch_size: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, output_type: str = 'pil', return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_sr.py#L228)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_sr.py#L228)
 
 **Parameters:**
 
-video (`list[PIL.Image.Image]`, `np.ndarray` or `torch.Tensor`) : The low-resolution video(s), in any format [preprocess_video()](/docs/diffusers/v0.42.0/en/api/video_processor#diffusers.VideoProcessor.preprocess_video) accepts, with `1 + k * 4` frames. Sizes are rounded down to a multiple of the VAE spatial factor.
+video (`list[PIL.Image.Image]`, `np.ndarray` or `torch.Tensor`) : The low-resolution video(s), in any format [preprocess_video()](/docs/diffusers/v0.42.1/en/api/video_processor#diffusers.VideoProcessor.preprocess_video) accepts, with `1 + k * 4` frames. Sizes are rounded down to a multiple of the VAE spatial factor.
 
 resolution_scale (`float`, defaults to `2.25`) : Total spatial upscale: `2`, `4`, or `2.25` (a 1.125x bilinear pre-upscale followed by the 2x path).
 
@@ -411,9 +411,9 @@ generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : Generator
 
 output_type (`str`, defaults to `"pil"`) : The output format of the generated video: `"pil"`, `"np"` or `"pt"`.
 
-return_dict (`bool`, defaults to `True`) : Whether or not to return a [Kandinsky6SRPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6SRPipelineOutput) instead of a plain tuple.
+return_dict (`bool`, defaults to `True`) : Whether or not to return a [Kandinsky6SRPipelineOutput](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6SRPipelineOutput) instead of a plain tuple.
 
-**Returns:** [Kandinsky6SRPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6SRPipelineOutput) or `tuple`
+**Returns:** [Kandinsky6SRPipelineOutput](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6SRPipelineOutput) or `tuple`
 
 The super-resolved video; a one-element tuple when `return_dict=False`.
 
@@ -455,7 +455,7 @@ Examples:
 decode_latents(latents: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_sr.py#L223)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_sr.py#L223)
 
 Decodes scaled K-VAE latents into a `(batch_size, channels, num_frames, height, width)` video in `[-1, 1]`.
 
@@ -465,7 +465,7 @@ Decodes scaled K-VAE latents into a `(batch_size, channels, num_frames, height, 
 encode_video(video: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_sr.py#L213)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/kandinsky6/pipeline_kandinsky6_sr.py#L213)
 
 Encodes a `(batch_size, channels, num_frames, height, width)` video in `[-1, 1]` into K-VAE latents scaled by
 the VAE `scaling_factor`.
@@ -478,7 +478,7 @@ the VAE `scaling_factor`.
 diffusers.Kandinsky6SRLatentUpscalerBank(in_channels: int = 64, stage_channels: tuple[int, int, int] = (2048, 1024, 512), num_pre_blocks: int = 5, num_mid_blocks: int = 3, num_post_blocks: int = 3, num_x2_adapter_blocks: int = 2, scales: tuple[int, ...] = (2, 4), scaling_factor: float = 0.910344004631042)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/latent_upscaler/latent_upscaler_kandinsky6_sr.py#L251)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/latent_upscaler/latent_upscaler_kandinsky6_sr.py#L251)
 
 **Parameters:**
 
@@ -498,7 +498,7 @@ scales (`tuple[int, ...]`, defaults to `(2, 4)`) : Spatial scales the bank provi
 
 scaling_factor (`float`, defaults to `0.910344`) : Scale the input latents are expected to carry (the K-VAE `scaling_factor`).
 
-Bank of latent upscalers used by [Kandinsky6SRPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6SRPipeline): one `Kandinsky6SRLatentUpscaler` per supported spatial
+Bank of latent upscalers used by [Kandinsky6SRPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6SRPipeline): one `Kandinsky6SRLatentUpscaler` per supported spatial
 scale, operating on K-VAE latents.
 
 #### forward[[diffusers.Kandinsky6SRLatentUpscalerBank.forward]]
@@ -507,7 +507,7 @@ scale, operating on K-VAE latents.
 forward(latents: Tensor, scale: int, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/latent_upscaler/latent_upscaler_kandinsky6_sr.py#L305)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/latent_upscaler/latent_upscaler_kandinsky6_sr.py#L305)
 
 **Parameters:**
 
@@ -529,7 +529,7 @@ The upscaled latents of shape `(batch_size, in_channels, num_frames, height * sc
 diffusers.Kandinsky6TI2VAPipelineOutput(frames: typing.Union[torch.Tensor, numpy.ndarray, list[list[PIL.Image.Image]]], audio: typing.Union[torch.Tensor, numpy.ndarray, NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/kandinsky6/pipeline_output.py#L25)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/kandinsky6/pipeline_output.py#L25)
 
 **Parameters:**
 
@@ -537,7 +537,7 @@ frames (`torch.Tensor`, `np.ndarray`, or `list[list[PIL.Image.Image]]`) : The ge
 
 audio (`torch.Tensor` or `np.ndarray`, *optional*) : The generated waveforms of shape `(batch_size, num_samples)` in `[-1, 1]` at the audio VAE's sample rate, or `None` when audio was not sampled. With `output_type="latent"`, the audio latents of shape `(batch_size, channels, audio_length)`.
 
-Output class for [Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline).
+Output class for [Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6TI2VAPipeline).
 
 ## Kandinsky6SRPipelineOutput[[diffusers.Kandinsky6SRPipelineOutput]]
 
@@ -547,13 +547,13 @@ Output class for [Kandinsky6TI2VAPipeline](/docs/diffusers/v0.42.0/en/api/pipeli
 diffusers.Kandinsky6SRPipelineOutput(frames: typing.Union[torch.Tensor, numpy.ndarray, list[list[PIL.Image.Image]]])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/kandinsky6/pipeline_output.py#L46)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/kandinsky6/pipeline_output.py#L46)
 
 **Parameters:**
 
 frames (`torch.Tensor`, `np.ndarray`, or `list[list[PIL.Image.Image]]`) : The super-resolved video. A nested list of length `batch_size` holding `num_frames` PIL images each, or a NumPy array or torch tensor of shape `(batch_size, num_frames, height, width, channels)` / `(batch_size, num_frames, channels, height, width)`.
 
-Output class for [Kandinsky6SRPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/kandinsky6#diffusers.Kandinsky6SRPipeline).
+Output class for [Kandinsky6SRPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/kandinsky6#diffusers.Kandinsky6SRPipeline).
 
 ### ACE-Step 1.5
-https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/ace_step.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/pipelines/ace_step.md

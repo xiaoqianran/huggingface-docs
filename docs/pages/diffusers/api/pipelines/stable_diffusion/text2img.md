@@ -92,7 +92,7 @@ pipe.update_components(guider=ClassifierFreeGuidance(guidance_scale=4.0))
 edited = pipe(prompt="Move it to a snowy mountain top", negative_prompt="blurry", image=image).images[0]
 ```
 
-The Turbo checkpoint maps to its own blocks ([QwenImage21TurboAutoBlocks](/docs/diffusers/v0.42.0/en/api/pipelines/qwenimage21#diffusers.QwenImage21TurboAutoBlocks)): it runs without a `guider`, takes no
+The Turbo checkpoint maps to its own blocks ([QwenImage21TurboAutoBlocks](/docs/diffusers/v0.42.1/en/api/pipelines/qwenimage21#diffusers.QwenImage21TurboAutoBlocks)): it runs without a `guider`, takes no
 `negative_prompt`, and samples the sigma grid it ships with. `ModularPipeline.from_pretrained` picks the Turbo blocks
 from the `sample_sigmas` entry in the checkpoint's config, so nothing needs configuring:
 
@@ -115,19 +115,19 @@ image = pipe(prompt="A capybara wearing a wizard hat, oil painting").images[0]
 diffusers.QwenImage21Pipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKLQwenImage21, text_encoder: Qwen3VLForConditionalGeneration, processor: Qwen3VLProcessor, transformer: QwenImage21Transformer2DModel, sample_sigmas: list[float] | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/qwenimage21/pipeline_qwenimage21.py#L159)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/qwenimage21/pipeline_qwenimage21.py#L159)
 
 **Parameters:**
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : Scheduler used to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : Scheduler used to denoise the encoded image latents.
 
-vae ([AutoencoderKLQwenImage21](/docs/diffusers/v0.42.0/en/api/models/autoencoderkl_qwenimage21#diffusers.AutoencoderKLQwenImage21)) : Variational auto-encoder mapping images to and from the 64-channel latent space.
+vae ([AutoencoderKLQwenImage21](/docs/diffusers/v0.42.1/en/api/models/autoencoderkl_qwenimage21#diffusers.AutoencoderKLQwenImage21)) : Variational auto-encoder mapping images to and from the 64-channel latent space.
 
 text_encoder (`Qwen3VLForConditionalGeneration`) : Qwen3-VL model producing the joint text/image embeddings.
 
 processor (`Qwen3VLProcessor`) : Processor that builds the chat template and tokenizes prompt and condition images.
 
-transformer ([QwenImage21Transformer2DModel](/docs/diffusers/v0.42.0/en/api/models/qwenimage21_transformer2d#diffusers.QwenImage21Transformer2DModel)) : The single-stream block-causal transformer that denoises the latents.
+transformer ([QwenImage21Transformer2DModel](/docs/diffusers/v0.42.1/en/api/models/qwenimage21_transformer2d#diffusers.QwenImage21Transformer2DModel)) : The single-stream block-causal transformer that denoises the latents.
 
 sample_sigmas (`list[float]`, *optional*) : Default sampling sigmas configured by the model author, excluding the terminal sigma. Their length determines the number of denoising steps. To experiment with a different grid at runtime, pass `sigmas` to `__call__`.
 
@@ -142,7 +142,7 @@ slots the encoder reserved for it and the transformer sees one interleaved text/
 __call__(prompt: str | list[str] = None, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, negative_prompt: str | list[str] = None, true_cfg_scale: float = 1.0, height: int | None = None, width: int | None = None, num_inference_steps: int = 40, sigmas: list[float] | None = None, num_images_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_embeds_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int, dict], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], output_resolution: int = 1024, use_kv_cache: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/qwenimage21/pipeline_qwenimage21.py#L509)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/qwenimage21/pipeline_qwenimage21.py#L509)
 
 **Parameters:**
 
@@ -215,7 +215,7 @@ Examples:
 encode_prompt(prompt: str | list[str], image: list[typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]] | None = None, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_embeds_mask: typing.Optional[torch.Tensor] = None, image_pad_mask: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/qwenimage21/pipeline_qwenimage21.py#L339)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/qwenimage21/pipeline_qwenimage21.py#L339)
 
 **Parameters:**
 
@@ -237,7 +237,7 @@ prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Skip
 diffusers.pipelines.qwenimage.pipeline_output.QwenImagePipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/qwenimage/pipeline_output.py#L10)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/qwenimage/pipeline_output.py#L10)
 
 **Parameters:**
 
@@ -253,7 +253,7 @@ Output class for Stable Diffusion pipelines.
 diffusers.QwenImage21ModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/qwenimage21/modular_pipeline.py#L23)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/qwenimage21/modular_pipeline.py#L23)
 
 A ModularPipeline for Qwen-Image 2.1.
 
@@ -265,7 +265,7 @@ A ModularPipeline for Qwen-Image 2.1.
 diffusers.QwenImage21AutoBlocks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/qwenimage21/modular_blocks_qwenimage21.py#L497)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/qwenimage21/modular_blocks_qwenimage21.py#L497)
 
 Auto Modular pipeline for text-to-image and image-conditioned generation using Qwen-Image 2.1.
 - for text-to-image generation, all you need to provide is `prompt`
@@ -328,7 +328,7 @@ Generated images.
 diffusers.QwenImage21TurboModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/qwenimage21/modular_pipeline.py#L54)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/qwenimage21/modular_pipeline.py#L54)
 
 A ModularPipeline for Qwen-Image 2.1 Turbo, the accelerated checkpoint that samples in a few steps without
 guidance.
@@ -341,7 +341,7 @@ guidance.
 diffusers.QwenImage21TurboAutoBlocks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/modular_pipelines/qwenimage21/modular_blocks_qwenimage21_turbo.py#L466)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/qwenimage21/modular_blocks_qwenimage21_turbo.py#L466)
 
 Auto Modular pipeline for text-to-image and image-conditioned generation using Qwen-Image 2.1 Turbo, the
 accelerated checkpoint that samples its shipped sigma grid in a few steps without guidance.
@@ -399,4 +399,4 @@ images (`list`):
 Generated images.
 
 ### Ideogram 4
-https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/ideogram4.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/pipelines/ideogram4.md

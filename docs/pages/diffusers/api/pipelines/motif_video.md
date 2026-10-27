@@ -107,25 +107,25 @@ export_to_video(video, "output.mp4", fps=24)
 diffusers.MotifVideoPipeline(scheduler: SchedulerMixin, vae: AutoencoderKLWan, text_encoder: T5Gemma2Encoder, tokenizer: PreTrainedTokenizerBase, transformer: MotifVideoTransformer3DModel, guider: BaseGuidance, feature_extractor: typing.Optional[transformers.models.siglip.image_processing_pil_siglip.SiglipImageProcessorPil] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/motif_video/pipeline_motif_video.py#L148)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/motif_video/pipeline_motif_video.py#L148)
 
 **Parameters:**
 
-transformer ([MotifVideoTransformer3DModel](/docs/diffusers/v0.42.0/en/api/models/motif_video_transformer_3d#diffusers.MotifVideoTransformer3DModel)) : Conditional Transformer architecture to denoise the encoded video latents.
+transformer ([MotifVideoTransformer3DModel](/docs/diffusers/v0.42.1/en/api/models/motif_video_transformer_3d#diffusers.MotifVideoTransformer3DModel)) : Conditional Transformer architecture to denoise the encoded video latents.
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.42.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents. Should be an instance of a class inheriting from `SchedulerMixin`, such as [DPMSolverMultistepScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler). If not provided, uses the scheduler attached to the pretrained model.
+scheduler ([SchedulerMixin](/docs/diffusers/v0.42.1/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents. Should be an instance of a class inheriting from `SchedulerMixin`, such as [DPMSolverMultistepScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler). If not provided, uses the scheduler attached to the pretrained model.
 
-vae ([AutoencoderKLWan](/docs/diffusers/v0.42.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLWan](/docs/diffusers/v0.42.1/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 text_encoder (`T5Gemma2Encoder`) : Primary text encoder for encoding text prompts into embeddings.
 
 tokenizer (`PreTrainedTokenizerBase`) : Tokenizer corresponding to the primary text encoder.
 
-guider ([BaseGuidance](/docs/diffusers/v0.42.0/en/api/modular_diffusers/guiders#diffusers.BaseGuidance)) : The guidance method to use. Should be an instance of a class inheriting from `BaseGuidance`, such as [ClassifierFreeGuidance](/docs/diffusers/v0.42.0/en/api/modular_diffusers/guiders#diffusers.ClassifierFreeGuidance), [AdaptiveProjectedGuidance](/docs/diffusers/v0.42.0/en/api/modular_diffusers/guiders#diffusers.AdaptiveProjectedGuidance), or [SkipLayerGuidance](/docs/diffusers/v0.42.0/en/api/modular_diffusers/guiders#diffusers.SkipLayerGuidance). If not provided, defaults to `ClassifierFreeGuidance`.
+guider ([BaseGuidance](/docs/diffusers/v0.42.1/en/api/modular_diffusers/guiders#diffusers.BaseGuidance)) : The guidance method to use. Should be an instance of a class inheriting from `BaseGuidance`, such as [ClassifierFreeGuidance](/docs/diffusers/v0.42.1/en/api/modular_diffusers/guiders#diffusers.ClassifierFreeGuidance), [AdaptiveProjectedGuidance](/docs/diffusers/v0.42.1/en/api/modular_diffusers/guiders#diffusers.AdaptiveProjectedGuidance), or [SkipLayerGuidance](/docs/diffusers/v0.42.1/en/api/modular_diffusers/guiders#diffusers.SkipLayerGuidance). If not provided, defaults to `ClassifierFreeGuidance`.
 
 Pipeline for text-to-video generation using Motif-Video.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.MotifVideoPipeline.__call__]]
@@ -134,7 +134,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(prompt: typing.Union[str, typing.List[str], NoneType] = None, negative_prompt: typing.Union[str, typing.List[str], NoneType] = None, height: int = 736, width: int = 1280, num_frames: int = 121, num_inference_steps: int = 50, timesteps: typing.Optional[typing.List[int]] = None, num_videos_per_prompt: typing.Optional[int] = 1, generator: typing.Union[torch.Generator, typing.List[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, output_type: typing.Optional[str] = 'pil', return_dict: bool = True, attention_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None, callback_on_step_end: typing.Union[typing.Callable[[int, int, typing.Dict], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: typing.List[str] = ['latents'], max_sequence_length: int = 512, vae_batch_size: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/motif_video/pipeline_motif_video.py#L492)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/motif_video/pipeline_motif_video.py#L492)
 
 **Parameters:**
 
@@ -168,7 +168,7 @@ negative_prompt_attention_mask (`torch.FloatTensor`, *optional*) : Pre-generated
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated video. Choose between `"pil"`, `"np"`, or `"latent"`.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [~MotifVideoPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/motif_video#diffusers.MotifVideoPipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [~MotifVideoPipelineOutput](/docs/diffusers/v0.42.1/en/api/pipelines/motif_video#diffusers.MotifVideoPipelineOutput) instead of a plain tuple.
 
 attention_kwargs (`dict`, *optional*) : Arguments passed to the attention processor.
 
@@ -180,9 +180,9 @@ max_sequence_length (`int`, defaults to `512`) : Maximum sequence length for the
 
 vae_batch_size (`int`, *optional*) : Batch size for VAE decoding. If provided and latents batch size is larger, VAE decoding will be done in chunks.
 
-**Returns:** [~MotifVideoPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/motif_video#diffusers.MotifVideoPipelineOutput) or `tuple`
+**Returns:** [~MotifVideoPipelineOutput](/docs/diffusers/v0.42.1/en/api/pipelines/motif_video#diffusers.MotifVideoPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [~MotifVideoPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/motif_video#diffusers.MotifVideoPipelineOutput) is returned, otherwise a `tuple` is returned
+If `return_dict` is `True`, [~MotifVideoPipelineOutput](/docs/diffusers/v0.42.1/en/api/pipelines/motif_video#diffusers.MotifVideoPipelineOutput) is returned, otherwise a `tuple` is returned
 where the first element is a list of generated video frames.
 
 The call function to the pipeline for text-to-video generation.
@@ -218,7 +218,7 @@ Examples:
 encode_prompt(prompt: typing.Union[str, typing.List[str]], negative_prompt: typing.Union[str, typing.List[str], NoneType] = None, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 512, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/motif_video/pipeline_motif_video.py#L247)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/motif_video/pipeline_motif_video.py#L247)
 
 **Parameters:**
 
@@ -261,15 +261,15 @@ Encodes the prompt into text encoder hidden states.
 diffusers.MotifVideoImage2VideoPipeline(scheduler: SchedulerMixin, vae: AutoencoderKLWan, text_encoder: T5Gemma2Encoder, tokenizer: PreTrainedTokenizerBase, transformer: MotifVideoTransformer3DModel, guider: BaseGuidance, feature_extractor: SiglipImageProcessorPil)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/motif_video/pipeline_motif_video_image2video.py#L157)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/motif_video/pipeline_motif_video_image2video.py#L157)
 
 **Parameters:**
 
-transformer ([MotifVideoTransformer3DModel](/docs/diffusers/v0.42.0/en/api/models/motif_video_transformer_3d#diffusers.MotifVideoTransformer3DModel)) : Conditional Transformer architecture to denoise the encoded video latents.
+transformer ([MotifVideoTransformer3DModel](/docs/diffusers/v0.42.1/en/api/models/motif_video_transformer_3d#diffusers.MotifVideoTransformer3DModel)) : Conditional Transformer architecture to denoise the encoded video latents.
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.42.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents. Should be an instance of a class inheriting from `SchedulerMixin`, such as [DPMSolverMultistepScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler). If not provided, uses the scheduler attached to the pretrained model.
+scheduler ([SchedulerMixin](/docs/diffusers/v0.42.1/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents. Should be an instance of a class inheriting from `SchedulerMixin`, such as [DPMSolverMultistepScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler). If not provided, uses the scheduler attached to the pretrained model.
 
-vae ([AutoencoderKLWan](/docs/diffusers/v0.42.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLWan](/docs/diffusers/v0.42.1/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 text_encoder (`T5Gemma2Encoder`) : Primary text encoder for encoding text prompts into embeddings.
 
@@ -277,11 +277,11 @@ tokenizer (`PreTrainedTokenizerBase`) : Tokenizer corresponding to the primary t
 
 feature_extractor (`SiglipImageProcessor`) : Image processor for the SigLIP vision encoder.
 
-guider ([BaseGuidance](/docs/diffusers/v0.42.0/en/api/modular_diffusers/guiders#diffusers.BaseGuidance)) : The guidance method to use. Should be an instance of a class inheriting from `BaseGuidance`, such as [ClassifierFreeGuidance](/docs/diffusers/v0.42.0/en/api/modular_diffusers/guiders#diffusers.ClassifierFreeGuidance), [AdaptiveProjectedGuidance](/docs/diffusers/v0.42.0/en/api/modular_diffusers/guiders#diffusers.AdaptiveProjectedGuidance), or [SkipLayerGuidance](/docs/diffusers/v0.42.0/en/api/modular_diffusers/guiders#diffusers.SkipLayerGuidance). If not provided, defaults to `ClassifierFreeGuidance`.
+guider ([BaseGuidance](/docs/diffusers/v0.42.1/en/api/modular_diffusers/guiders#diffusers.BaseGuidance)) : The guidance method to use. Should be an instance of a class inheriting from `BaseGuidance`, such as [ClassifierFreeGuidance](/docs/diffusers/v0.42.1/en/api/modular_diffusers/guiders#diffusers.ClassifierFreeGuidance), [AdaptiveProjectedGuidance](/docs/diffusers/v0.42.1/en/api/modular_diffusers/guiders#diffusers.AdaptiveProjectedGuidance), or [SkipLayerGuidance](/docs/diffusers/v0.42.1/en/api/modular_diffusers/guiders#diffusers.SkipLayerGuidance). If not provided, defaults to `ClassifierFreeGuidance`.
 
 Pipeline for image-to-video generation using Motif-Video with first frame conditioning.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.MotifVideoImage2VideoPipeline.__call__]]
@@ -290,7 +290,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], prompt: typing.Union[str, typing.List[str]], negative_prompt: typing.Union[str, typing.List[str], NoneType] = None, height: int = 736, width: int = 1280, num_frames: int = 121, num_inference_steps: int = 50, timesteps: typing.Optional[typing.List[int]] = None, num_videos_per_prompt: typing.Optional[int] = 1, generator: typing.Union[torch.Generator, typing.List[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, output_type: typing.Optional[str] = 'pil', return_dict: bool = True, attention_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None, callback_on_step_end: typing.Union[typing.Callable[[int, int, typing.Dict], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: typing.List[str] = ['latents'], max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/motif_video/pipeline_motif_video_image2video.py#L620)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/motif_video/pipeline_motif_video_image2video.py#L620)
 
 **Parameters:**
 
@@ -326,7 +326,7 @@ negative_prompt_attention_mask (`torch.FloatTensor`, *optional*) : Pre-generated
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated video.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [~MotifVideoPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/motif_video#diffusers.MotifVideoPipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [~MotifVideoPipelineOutput](/docs/diffusers/v0.42.1/en/api/pipelines/motif_video#diffusers.MotifVideoPipelineOutput) instead of a plain tuple.
 
 attention_kwargs (`dict`, *optional*) : Arguments passed to the attention processor.
 
@@ -336,9 +336,9 @@ callback_on_step_end_tensor_inputs (`List`, *optional*) : The list of tensor inp
 
 max_sequence_length (`int`, defaults to `512`) : Maximum sequence length for the tokenizer.
 
-**Returns:** [~MotifVideoPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/motif_video#diffusers.MotifVideoPipelineOutput) or `tuple`
+**Returns:** [~MotifVideoPipelineOutput](/docs/diffusers/v0.42.1/en/api/pipelines/motif_video#diffusers.MotifVideoPipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [~MotifVideoPipelineOutput](/docs/diffusers/v0.42.0/en/api/pipelines/motif_video#diffusers.MotifVideoPipelineOutput) is returned, otherwise a `tuple` is returned
+If `return_dict` is `True`, [~MotifVideoPipelineOutput](/docs/diffusers/v0.42.1/en/api/pipelines/motif_video#diffusers.MotifVideoPipelineOutput) is returned, otherwise a `tuple` is returned
 where the first element is a list of generated video frames.
 
 The call function to the pipeline for image-to-video generation.
@@ -381,7 +381,7 @@ Examples:
 encode_prompt(prompt: typing.Union[str, typing.List[str]], negative_prompt: typing.Union[str, typing.List[str], NoneType] = None, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 512, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/motif_video/pipeline_motif_video_image2video.py#L259)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/motif_video/pipeline_motif_video_image2video.py#L259)
 
 **Parameters:**
 
@@ -424,7 +424,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.MotifVideoPipelineOutput(frames: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/motif_video/pipeline_output.py#L9)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/motif_video/pipeline_output.py#L9)
 
 **Parameters:**
 
@@ -433,7 +433,7 @@ frames (`torch.Tensor`, `np.ndarray`, or List[List[PIL.Image.Image]]) : List of 
 Output class for Motif-Video pipelines.
 
 ### Glm Image
-https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/glm_image.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/pipelines/glm_image.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -528,7 +528,7 @@ image.save("output_i2i.png")
 diffusers.GlmImagePipeline(tokenizer: ByT5Tokenizer, processor: GlmImageProcessor, text_encoder: T5EncoderModel, vision_language_encoder: GlmImageForConditionalGeneration, vae: AutoencoderKL, transformer: GlmImageTransformer2DModel, scheduler: FlowMatchEulerDiscreteScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/glm_image/pipeline_glm_image.py#L161)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/glm_image/pipeline_glm_image.py#L161)
 
 **Parameters:**
 
@@ -540,11 +540,11 @@ text_encoder (`T5EncoderModel`) : Frozen text-encoder for glyph embeddings.
 
 vision_language_encoder (`GlmImageForConditionalGeneration`) : The AR model that generates image tokens from text prompts.
 
-vae ([AutoencoderKL](/docs/diffusers/v0.42.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+vae ([AutoencoderKL](/docs/diffusers/v0.42.1/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
-transformer ([GlmImageTransformer2DModel](/docs/diffusers/v0.42.0/en/api/models/glm_image_transformer2d#diffusers.GlmImageTransformer2DModel)) : A text conditioned transformer to denoise the encoded image latents (DiT).
+transformer ([GlmImageTransformer2DModel](/docs/diffusers/v0.42.1/en/api/models/glm_image_transformer2d#diffusers.GlmImageTransformer2DModel)) : A text conditioned transformer to denoise the encoded image latents (DiT).
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.42.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([SchedulerMixin](/docs/diffusers/v0.42.1/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
 Pipeline for text-to-image generation using GLM-Image.
 
@@ -557,7 +557,7 @@ transformer) model for image decoding.
 __call__(prompt: str | list[str] | None = None, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, timesteps: list[int] | None = None, sigmas: list[float] | None = None, guidance_scale: float = 1.5, num_images_per_prompt: int = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prior_token_ids: typing.Optional[torch.Tensor] = None, prior_token_image_ids: list[torch.Tensor] | None = None, source_image_grid_thw: list[torch.Tensor] | None = None, crops_coords_top_left: tuple = (0, 0), output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int, dict], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 2048)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/glm_image/pipeline_glm_image.py#L719)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/glm_image/pipeline_glm_image.py#L719)
 
 **Parameters:**
 
@@ -632,7 +632,7 @@ Examples:
 encode_prompt(prompt: str | list[str], do_classifier_free_guidance: bool = True, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None, max_sequence_length: int = 2048)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/glm_image/pipeline_glm_image.py#L545)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/glm_image/pipeline_glm_image.py#L545)
 
 **Parameters:**
 
@@ -658,7 +658,7 @@ Encodes the prompt into text encoder hidden states.
 generate_prior_tokens(prompt: str | list[str], height: int, width: int, image: list[list[PIL.Image.Image]] | None = None, device: typing.Optional[torch.device] = None, generator: typing.Optional[torch.Generator] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/glm_image/pipeline_glm_image.py#L321)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/glm_image/pipeline_glm_image.py#L321)
 
 **Parameters:**
 
@@ -690,7 +690,7 @@ Generate prior tokens for the DiT model using the AR model.
 get_glyph_texts(prompt)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/glm_image/pipeline_glm_image.py#L476)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/glm_image/pipeline_glm_image.py#L476)
 
 Extract glyph texts from prompt(s). Returns a list of lists for batch processing.
 
@@ -702,7 +702,7 @@ Extract glyph texts from prompt(s). Returns a list of lists for batch processing
 diffusers.pipelines.glm_image.pipeline_output.GlmImagePipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/pipelines/glm_image/pipeline_output.py#L10)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/glm_image/pipeline_output.py#L10)
 
 **Parameters:**
 
@@ -711,7 +711,7 @@ images (`List[PIL.Image.Image]` or `np.ndarray`) : List of denoised PIL images o
 Output class for CogView3 pipelines.
 
 ### Cosmos3
-https://huggingface.co/docs/diffusers/v0.42.0/api/pipelines/cosmos3.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/pipelines/cosmos3.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");

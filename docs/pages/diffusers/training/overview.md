@@ -50,4 +50,4 @@ To speedup training and reduce memory-usage, we recommend:
 - installing [xFormers](../optimization/attention_backends) to enable memory-efficient attention
 
 ### Hugging Face Jobs
-https://huggingface.co/docs/diffusers/v0.42.0/training/jobs.md
+https://huggingface.co/docs/diffusers/v0.42.1/training/jobs.md

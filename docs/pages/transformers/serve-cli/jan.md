@@ -9,5 +9,5 @@ Go to **Settings > Model Providers**.
 
 Check the **Models** section (click **Refresh** if empty). Click **+** to add a specific model like Qwen/Qwen3-4B, or `<repo>:<file>.gguf` for a GGUF one.
 
-### Utilities for Trainer
-https://huggingface.co/docs/transformers/v5.20.2/internal/trainer_utils.md
+### Open WebUI
+https://huggingface.co/docs/transformers/v5.21.0/serve-cli/openweb_ui.md

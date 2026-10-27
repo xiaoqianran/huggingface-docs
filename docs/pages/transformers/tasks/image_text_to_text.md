@@ -1,6 +1,6 @@
 # Image-text-to-text
 
-Image-text-to-text models, also known as vision language models (VLMs), are language models that take an image input. These models can tackle various tasks, from visual question answering to image segmentation. This task shares many similarities with image-to-text, but with some overlapping use cases like image captioning. Image-to-text models only take image inputs and often accomplish a specific task, whereas VLMs take open-ended text and image inputs and are more generalist models.
+Image-text-to-text models, also known as vision language models (VLMs), are language models that take an image input. These models can tackle various tasks, from visual question answering to image segmentation. This task shares many similarities with image-to-text, but with some overlapping use cases like image captioning. Image-to-text models only take image inputs and often accomplish a specific task, whereas VLMs take open-ended text and image inputs and are more generalist models.
 
 In this guide, we provide a brief overview of VLMs and show how to use them with Transformers for inference.
 
@@ -32,8 +32,17 @@ model = AutoModelForImageTextToText.from_pretrained(
     dtype=torch.bfloat16,
     attn_implementation="flash_attention_2",
 ).to(device)
+```
 
-processor = AutoProcessor.from_pretrained("Qwen/Qwen3-VL-4B-Instruct")
+> [!WARNING]
+> Dynamic-resolution models like Qwen3-VL and Qwen3.5 default to a ~16MP `longest_edge`, which can emit 10,000+ visual tokens per image and stall inference or OOM on consumer GPUs. Set `min_pixels` and `max_pixels` when loading the processor to cap this.
+
+```python
+processor = AutoProcessor.from_pretrained(
+    "Qwen/Qwen3-VL-4B-Instruct",
+    min_pixels=224 * 224,
+    max_pixels=1024 * 1024,
+)
 ```
 
 This model has a [chat template](../chat_templating) that helps user parse chat outputs. Moreover, the model can also accept multiple images as input in a single conversation or message. We will now prepare the inputs.
@@ -85,7 +94,7 @@ messages = [
 ]
 ```
 
-We will now call the processors' [apply_chat_template()](/docs/transformers/v5.20.2/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) method to preprocess its output along with the image inputs.
+We will now call the processors' [apply_chat_template()](/docs/transformers/v5.21.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) method to preprocess its output along with the image inputs.
 
 ```python
 inputs = processor.apply_chat_template(messages, add_generation_prompt=True, tokenize=True, return_dict=True, return_tensors="pt").to(device)
@@ -106,7 +115,7 @@ print(generated_texts)
 
 ## Pipeline
 
-The fastest way to get started is to use the [Pipeline](/docs/transformers/v5.20.2/en/main_classes/pipelines#transformers.Pipeline) API. Specify the `"image-text-to-text"` task and the model you want to use.
+The fastest way to get started is to use the [Pipeline](/docs/transformers/v5.21.0/en/main_classes/pipelines#transformers.Pipeline) API. Specify the `"image-text-to-text"` task and the model you want to use.
 
 ```python
 from transformers import pipeline
@@ -136,7 +145,7 @@ messages = [
  ]
 ```
 
-Pass the chat template formatted text and image to [Pipeline](/docs/transformers/v5.20.2/en/main_classes/pipelines#transformers.Pipeline) and set `return_full_text=False` to remove the input from the generated output.
+Pass the chat template formatted text and image to [Pipeline](/docs/transformers/v5.21.0/en/main_classes/pipelines#transformers.Pipeline) and set `return_full_text=False` to remove the input from the generated output.
 
 ```python
 outputs = pipe(text=messages, max_new_tokens=20, return_full_text=False)
@@ -193,9 +202,9 @@ outputs[0]['input_text']
 
 ## Streaming
 
-We can use [text streaming](../generation_features#streaming) for a better generation experience. Transformers supports streaming with the [TextStreamer](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.TextStreamer) or [TextIteratorStreamer](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.TextIteratorStreamer) classes. We will use the [TextIteratorStreamer](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.TextIteratorStreamer) with IDEFICS-8B.
+We can use [text streaming](../generation_features#streaming) for a better generation experience. Transformers supports streaming with the [TextStreamer](/docs/transformers/v5.21.0/en/internal/generation_utils#transformers.TextStreamer) or [TextIteratorStreamer](/docs/transformers/v5.21.0/en/internal/generation_utils#transformers.TextIteratorStreamer) classes. We will use the [TextIteratorStreamer](/docs/transformers/v5.21.0/en/internal/generation_utils#transformers.TextIteratorStreamer) with IDEFICS-8B.
 
-Assume we have an application that keeps chat history and takes in the new user input. We will preprocess the inputs as usual and initialize [TextIteratorStreamer](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.TextIteratorStreamer) to handle the generation in a separate thread. This allows you to stream the generated text tokens in real-time. Any generation arguments can be passed to [TextIteratorStreamer](/docs/transformers/v5.20.2/en/internal/generation_utils#transformers.TextIteratorStreamer).
+Assume we have an application that keeps chat history and takes in the new user input. We will preprocess the inputs as usual and initialize [TextIteratorStreamer](/docs/transformers/v5.21.0/en/internal/generation_utils#transformers.TextIteratorStreamer) to handle the generation in a separate thread. This allows you to stream the generated text tokens in real-time. Any generation arguments can be passed to [TextIteratorStreamer](/docs/transformers/v5.21.0/en/internal/generation_utils#transformers.TextIteratorStreamer).
 
 ```python
 import time
@@ -282,7 +291,7 @@ First, install dependencies.
 pip install -U optimum-quanto bitsandbytes
 ```
 
-To quantize a model during loading, we need to first create [QuantoConfig](/docs/transformers/v5.20.2/en/main_classes/quantization#transformers.QuantoConfig). Then load the model as usual, but pass `quantization_config` during model initialization.
+To quantize a model during loading, we need to first create [QuantoConfig](/docs/transformers/v5.21.0/en/main_classes/quantization#transformers.QuantoConfig). Then load the model as usual, but pass `quantization_config` during model initialization.
 
 ```python
 from transformers import AutoModelForImageTextToText, QuantoConfig
@@ -317,13 +326,13 @@ And that's it, we can use the model the same way with no changes.
 
 ## Iterative chatting with cache
 
-If you're building multimodal chat agents, you’re likely passing the same images or audio across turns. Caching lets you reuse their encoded representations instead of reprocessing them each time, cutting redundant computation.
+If you're building multimodal chat agents, you're likely passing the same images or audio across turns. Caching lets you reuse their encoded representations instead of reprocessing them each time, cutting redundant computation.
 
 Like text-only models, multimodal models track dialogue history with a [chat template](../chat_templating). The key difference is that it applies the chat template in `"text"` format only and processes new multimodal content separately. If you apply the template with processing, the entire conversation gets reprocessed every turn because Jinja can't distinguish previously encoded inputs from new ones.
 
 The example below demonstrates this pattern. For text-only models, see the [iterative generation](../kv_cache#iterative-generation) guide.
 
-Here’s a simple Python example demonstrating this pattern. For an example with text-only models, refer to [this guide](../kv_cache#iterative-generation).
+Here's a simple Python example demonstrating this pattern. For an example with text-only models, refer to [this guide](../kv_cache#iterative-generation).
 
 ```python
 import torch
@@ -390,9 +399,9 @@ output3 = model.generate(**new_inputs2, max_new_tokens=1024, do_sample=False, st
 
 Here are some more resources for the image-text-to-text task.
 
-- [Image-text-to-text task page](https://huggingface.co/tasks/image-text-to-text) covers model types, use cases, datasets, and more.
+- [Image-text-to-text task page](https://huggingface.co/tasks/image-text-to-text) covers model types, use cases, datasets, and more.
 - [Vision Language Models Explained](https://huggingface.co/blog/vlms) is a blog post that covers everything about vision language models and supervised fine-tuning using [TRL](https://huggingface.co/docs/trl/en/index).
 - [Learn how to fine-tune vision language models using TRL](https://huggingface.co/blog/trl-vlm-alignment)
 
-### Audio classification
-https://huggingface.co/docs/transformers/v5.20.2/tasks/audio_classification.md
+### Audio-text-to-text
+https://huggingface.co/docs/transformers/v5.21.0/tasks/audio_text_to_text.md

@@ -231,4 +231,4 @@ Congratulations on training your own InstructPix2Pix model! 🥳 To learn more a
 - Read the [Instruction-tuning Stable Diffusion with InstructPix2Pix](https://huggingface.co/blog/instruction-tuning-sd) blog post to learn more about some experiments we've done with InstructPix2Pix, dataset preparation, and results for different instructions.
 
 ### Adapt a model to a new task
-https://huggingface.co/docs/diffusers/v0.42.0/training/adapt_a_model.md
+https://huggingface.co/docs/diffusers/v0.42.1/training/adapt_a_model.md

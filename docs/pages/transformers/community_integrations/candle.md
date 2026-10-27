@@ -26,5 +26,5 @@ let model = Model::new(args.use_flash_attn, &config, vb)?;
 
 - [Candle](https://github.com/huggingface/candle) documentation
 
-### LiteRT
-https://huggingface.co/docs/transformers/v5.20.2/community_integrations/litert.md
+### SGLang
+https://huggingface.co/docs/transformers/v5.21.0/community_integrations/sglang.md

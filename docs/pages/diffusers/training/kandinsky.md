@@ -100,7 +100,7 @@ with ContextManagers(deepspeed_zero_init_disabled_context_manager()):
     ).eval()
 ```
 
-Kandinsky uses a [PriorTransformer](/docs/diffusers/v0.42.0/en/api/models/prior_transformer#diffusers.PriorTransformer) to generate the image embeddings, so you'll want to setup the optimizer to learn the prior mode's parameters.
+Kandinsky uses a [PriorTransformer](/docs/diffusers/v0.42.1/en/api/models/prior_transformer#diffusers.PriorTransformer) to generate the image embeddings, so you'll want to setup the optimizer to learn the prior mode's parameters.
 
 ```py
 prior = PriorTransformer.from_pretrained(args.pretrained_prior_model_name_or_path, subfolder="prior")
@@ -140,7 +140,7 @@ If you want to learn more about how the training loop works, check out the [Unde
 
 The [`main()`](https://github.com/huggingface/diffusers/blob/6e68c71503682c8693cb5b06a4da4911dfd655ee/examples/kandinsky2_2/text_to_image/train_text_to_image_decoder.py#L440) function contains the code for preparing the dataset and training the model.
 
-Unlike the prior model, the decoder initializes a [VQModel](/docs/diffusers/v0.42.0/en/api/models/vq#diffusers.VQModel) to decode the latents into images and it uses a [UNet2DConditionModel](/docs/diffusers/v0.42.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel):
+Unlike the prior model, the decoder initializes a [VQModel](/docs/diffusers/v0.42.1/en/api/models/vq#diffusers.VQModel) to decode the latents into images and it uses a [UNet2DConditionModel](/docs/diffusers/v0.42.1/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel):
 
 ```py
 with ContextManagers(deepspeed_zero_init_disabled_context_manager()):
@@ -273,7 +273,7 @@ Congratulations on training a Kandinsky 2.2 model! To learn more about how to us
 - Check out the [DreamBooth](dreambooth) and [LoRA](lora) training guides to learn how to train a personalized Kandinsky model with just a few example images. These two training techniques can even be combined!
 
 ### Text-to-image
-https://huggingface.co/docs/diffusers/v0.42.0/training/text2image.md
+https://huggingface.co/docs/diffusers/v0.42.1/training/text2image.md
 
 # Text-to-image
 
@@ -447,4 +447,4 @@ Congratulations on training your own text-to-image model! To learn more about ho
 - Learn more about how certain parameters like guidance scale or techniques such as prompt weighting can help you control inference in the [Text-to-image](../using-diffusers/conditional_image_generation) task guide.
 
 ### NeMo Automodel
-https://huggingface.co/docs/diffusers/v0.42.0/training/nemo_automodel.md
+https://huggingface.co/docs/diffusers/v0.42.1/training/nemo_automodel.md

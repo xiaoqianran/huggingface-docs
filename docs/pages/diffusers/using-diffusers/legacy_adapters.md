@@ -6,7 +6,7 @@ These methods are still supported, especially on Stable Diffusion–family check
 
 [T2I-Adapter](https://huggingface.co/papers/2302.08453) is an adapter for controllable generation. It learns a mapping from a control signal (for example, a depth map or canny edges) into a pretrained model's internal features and adds that guidance during generation. It is similar in role to [ControlNet](./controlnet), but it is a lighter plugged-in adapter.
 
-Load a control-conditioned adapter, then load the pipeline with [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) and pass it with `adapter=`.
+Load a control-conditioned adapter, then load the pipeline with [from_pretrained()](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) and pass it with `adapter=`.
 
 ```py
 import torch
@@ -109,7 +109,7 @@ adapters = MultiAdapter(
 )
 ```
 
-Pass the adapters, prompt, and control images to [StableDiffusionXLAdapterPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/stable_diffusion/adapter#diffusers.StableDiffusionXLAdapterPipeline). Use the `adapter_conditioning_scale` parameter to determine how much weight to assign to each control.
+Pass the adapters, prompt, and control images to [StableDiffusionXLAdapterPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/stable_diffusion/adapter#diffusers.StableDiffusionXLAdapterPipeline). Use the `adapter_conditioning_scale` parameter to determine how much weight to assign to each control.
 
 ```py
 vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", dtype=torch.float16)
@@ -146,7 +146,7 @@ pipeline(
 
 [Textual Inversion](https://huggingface.co/papers/2208.01618) personalizes a model to a concept from 3-5 images by fine-tuning word embeddings bound to a unique token (`<sks>`). You can then use that token in your prompt to generate the concept (for example, pixel art).
 
-Textual Inversion weights are typically only a few KBs because they are only word embeddings. Load them after [from_pretrained()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) with [load_textual_inversion()](/docs/diffusers/v0.42.0/en/api/loaders/textual_inversion#diffusers.loaders.TextualInversionLoaderMixin.load_textual_inversion), and include the unique token in the prompt to trigger generation.
+Textual Inversion weights are typically only a few KBs because they are only word embeddings. Load them after [from_pretrained()](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) with [load_textual_inversion()](/docs/diffusers/v0.42.1/en/api/loaders/textual_inversion#diffusers.loaders.TextualInversionLoaderMixin.load_textual_inversion), and include the unique token in the prompt to trigger generation.
 
 ```py
 import torch
@@ -191,4 +191,4 @@ pipeline(prompt, negative_prompt=negative_prompt).images[0]
 ```
 
 ### Pipeline callbacks
-https://huggingface.co/docs/diffusers/v0.42.0/using-diffusers/callback.md
+https://huggingface.co/docs/diffusers/v0.42.1/using-diffusers/callback.md

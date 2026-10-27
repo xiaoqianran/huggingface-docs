@@ -181,5 +181,5 @@ message = [
 ]
 ```
 
-### Accelerate
-https://huggingface.co/docs/transformers/v5.20.2/accelerate.md
+### Fine-tuning
+https://huggingface.co/docs/transformers/v5.21.0/training.md

@@ -1,9 +1,9 @@
 # SanaWMLTX2RefinerTransformer3DModel
 
-The chunk-causal autoregressive refiner DiT used as stage 2 of [SanaWMPipeline](/docs/diffusers/v0.42.0/en/api/pipelines/sana_wm#diffusers.SanaWMPipeline), driven by
-[SanaWMLTX2Refiner](/docs/diffusers/v0.42.0/en/api/pipelines/sana_wm#diffusers.SanaWMLTX2Refiner).
+The chunk-causal autoregressive refiner DiT used as stage 2 of [SanaWMPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/sana_wm#diffusers.SanaWMPipeline), driven by
+[SanaWMLTX2Refiner](/docs/diffusers/v0.42.1/en/api/pipelines/sana_wm#diffusers.SanaWMLTX2Refiner).
 
-It is architecturally identical to [LTX2VideoTransformer3DModel](/docs/diffusers/v0.42.0/en/api/models/ltx2_video_transformer3d#diffusers.LTX2VideoTransformer3DModel) — same config arguments, same submodules, same
+It is architecturally identical to [LTX2VideoTransformer3DModel](/docs/diffusers/v0.42.1/en/api/models/ltx2_video_transformer3d#diffusers.LTX2VideoTransformer3DModel) — same config arguments, same submodules, same
 parameter names — so a released LTX-2 checkpoint loads into it unchanged. The forward pass differs:
 
 * only the video stream is run (the audio and audio/video cross-attention branches are skipped),
@@ -12,7 +12,7 @@ parameter names — so a released LTX-2 checkpoint loads into it unchanged. The 
   with video length,
 * the caller supplies the video RoPE, which lets each autoregressive window keep every frame's absolute index in the
   source video (see
-  [SanaWMLTX2RefinerTransformer3DModel.build_rotary_emb_for_absolute_positions()](/docs/diffusers/v0.42.0/en/api/models/sana_wm_refiner_transformer3d#diffusers.SanaWMLTX2RefinerTransformer3DModel.build_rotary_emb_for_absolute_positions)).
+  [SanaWMLTX2RefinerTransformer3DModel.build_rotary_emb_for_absolute_positions()](/docs/diffusers/v0.42.1/en/api/models/sana_wm_refiner_transformer3d#diffusers.SanaWMLTX2RefinerTransformer3DModel.build_rotary_emb_for_absolute_positions)).
 
 The model can be loaded with:
 
@@ -35,7 +35,7 @@ transformer = SanaWMLTX2RefinerTransformer3DModel.from_pretrained(
 diffusers.SanaWMLTX2RefinerTransformer3DModel(in_channels: int = 128, out_channels: int | None = 128, patch_size: int = 1, patch_size_t: int = 1, num_attention_heads: int = 32, attention_head_dim: int = 128, cross_attention_dim: int = 4096, vae_scale_factors: tuple = (8, 32, 32), pos_embed_max_pos: int = 20, base_height: int = 2048, base_width: int = 2048, gated_attn: bool = False, cross_attn_mod: bool = False, audio_in_channels: int = 128, audio_out_channels: int | None = 128, audio_patch_size: int = 1, audio_patch_size_t: int = 1, audio_num_attention_heads: int = 32, audio_attention_head_dim: int = 64, audio_cross_attention_dim: int = 2048, audio_scale_factor: int = 4, audio_pos_embed_max_pos: int = 20, audio_sampling_rate: int = 16000, audio_hop_length: int = 160, audio_gated_attn: bool = False, audio_cross_attn_mod: bool = False, num_layers: int = 48, activation_fn: str = 'gelu-approximate', qk_norm: str = 'rms_norm_across_heads', norm_elementwise_affine: bool = False, norm_eps: float = 1e-06, caption_channels: int = 3840, attention_bias: bool = True, attention_out_bias: bool = True, rope_theta: float = 10000.0, rope_double_precision: bool = True, causal_offset: int = 1, timestep_scale_multiplier: int = 1000, cross_attn_timestep_scale_multiplier: int = 1000, rope_type: str = 'interleaved', use_prompt_embeddings = True, perturbed_attn: bool = False, ff_bias: bool = True, audio_ff_bias: bool = True, use_prompt_adaln_single: bool = True, use_keyframes_abs_pos_embedding: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L1122)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L1122)
 
 **Parameters:**
 
@@ -63,7 +63,7 @@ rope_type (`str`, defaults to `"interleaved"`) : Which RoPE application to use (
 
 The chunk-causal autoregressive refiner transformer used as SANA-WM stage 2.
 
-Architecturally identical to [LTX2VideoTransformer3DModel](/docs/diffusers/v0.42.0/en/api/models/ltx2_video_transformer3d#diffusers.LTX2VideoTransformer3DModel) — same config arguments, same submodules, same
+Architecturally identical to [LTX2VideoTransformer3DModel](/docs/diffusers/v0.42.1/en/api/models/ltx2_video_transformer3d#diffusers.LTX2VideoTransformer3DModel) — same config arguments, same submodules, same
 parameter names — so a released LTX-2 checkpoint loads into it unchanged. What differs is the forward pass:
 
 * only the video stream is run (the audio and audio/video cross-attention branches are skipped),
@@ -71,9 +71,9 @@ parameter names — so a released LTX-2 checkpoint loads into it unchanged. What
   sink plus recent refined history, so refinement cost is bounded per AR block and scales linearly with video
   length,
 * the caller supplies the video RoPE, which lets each AR window keep every frame's absolute index in the source
-  video (see [build_rotary_emb_for_absolute_positions()](/docs/diffusers/v0.42.0/en/api/models/sana_wm_refiner_transformer3d#diffusers.SanaWMLTX2RefinerTransformer3DModel.build_rotary_emb_for_absolute_positions)).
+  video (see [build_rotary_emb_for_absolute_positions()](/docs/diffusers/v0.42.1/en/api/models/sana_wm_refiner_transformer3d#diffusers.SanaWMLTX2RefinerTransformer3DModel.build_rotary_emb_for_absolute_positions)).
 
-The remaining arguments mirror [LTX2VideoTransformer3DModel](/docs/diffusers/v0.42.0/en/api/models/ltx2_video_transformer3d#diffusers.LTX2VideoTransformer3DModel) one-for-one. The audio-side arguments and submodules
+The remaining arguments mirror [LTX2VideoTransformer3DModel](/docs/diffusers/v0.42.1/en/api/models/ltx2_video_transformer3d#diffusers.LTX2VideoTransformer3DModel) one-for-one. The audio-side arguments and submodules
 are kept purely so the checkpoint's audio weights round-trip; they are not used by the refiner forward.
 
 #### build_rotary_emb_for_absolute_positions[[diffusers.SanaWMLTX2RefinerTransformer3DModel.build_rotary_emb_for_absolute_positions]]
@@ -82,7 +82,7 @@ are kept purely so the checkpoint's audio weights round-trip; they are not used 
 build_rotary_emb_for_absolute_positions(batch_size: int, frame_positions: list, height: int, width: int, device: device, fps: float)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L1388)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L1388)
 
 **Parameters:**
 
@@ -113,7 +113,7 @@ active]` window.
 forward(hidden_states: Tensor, encoder_hidden_states: Tensor, timestep: Tensor, video_rotary_emb: tuple, encoder_attention_mask: typing.Optional[torch.Tensor] = None, kv_cache: diffusers.models.transformers.transformer_sana_wm_refiner.SanaWMRefinerKVCache | None = None, kv_cache_mode: str | None = None, attention_kwargs: dict | None = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L1445)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L1445)
 
 **Parameters:**
 
@@ -123,7 +123,7 @@ encoder_hidden_states (`torch.Tensor`) : Text embeddings of shape `(batch_size, 
 
 timestep (`torch.Tensor`) : Timestep of shape `(batch_size, num_video_tokens)`, already scaled by `self.config.timestep_scale_multiplier`.
 
-video_rotary_emb (`tuple[torch.Tensor, torch.Tensor]`) : The `(cos, sin)` RoPE for the active block's absolute frame positions, as returned by [build_rotary_emb_for_absolute_positions()](/docs/diffusers/v0.42.0/en/api/models/sana_wm_refiner_transformer3d#diffusers.SanaWMLTX2RefinerTransformer3DModel.build_rotary_emb_for_absolute_positions).
+video_rotary_emb (`tuple[torch.Tensor, torch.Tensor]`) : The `(cos, sin)` RoPE for the active block's absolute frame positions, as returned by [build_rotary_emb_for_absolute_positions()](/docs/diffusers/v0.42.1/en/api/models/sana_wm_refiner_transformer3d#diffusers.SanaWMLTX2RefinerTransformer3DModel.build_rotary_emb_for_absolute_positions).
 
 encoder_attention_mask (`torch.Tensor`, *optional*) : Multiplicative text attention mask of shape `(batch_size, text_seq_len)`.
 
@@ -133,9 +133,9 @@ kv_cache_mode (`str`, *optional*) : One of:  - `"inject"`: attend to `[sink + hi
 
 attention_kwargs (`dict`, *optional*) : Optional kwargs forwarded to the LoRA scale handling.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a [Transformer2DModelOutput](/docs/diffusers/v0.42.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a [Transformer2DModelOutput](/docs/diffusers/v0.42.1/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) instead of a plain tuple.
 
-**Returns:** [Transformer2DModelOutput](/docs/diffusers/v0.42.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) or `tuple`
+**Returns:** [Transformer2DModelOutput](/docs/diffusers/v0.42.1/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) or `tuple`
 
 the predicted velocity for the active
 block, of shape `(batch_size, num_video_tokens, out_channels)`.
@@ -150,7 +150,7 @@ Video-only forward pass over a single AR block.
 diffusers.models.transformers.transformer_sana_wm_refiner.SanaWMRefinerKVCache(num_layers: int)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L757)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L757)
 
 **Parameters:**
 
@@ -174,7 +174,7 @@ is chunk-causal: *block_size* latent frames are denoised at a time while attendi
 diffusers.models.transformers.transformer_sana_wm_refiner.SanaWMRefinerKVLayerCache()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L668)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L668)
 
 Per-layer KV cache for the SANA-WM stage-2 chunk-causal AR refiner.
 
@@ -196,7 +196,7 @@ before the per-head unflatten), matching the layout the refiner's self-attention
 get_captured_post_rope()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L736)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L736)
 
 Pop the post-RoPE K/V captured by the last forward.
 
@@ -206,7 +206,7 @@ Pop the post-RoPE K/V captured by the last forward.
 get_captured_pre_rope()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L722)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L722)
 
 Pop the pre-RoPE K/V captured by the last forward.
 
@@ -216,7 +216,7 @@ Pop the pre-RoPE K/V captured by the last forward.
 get_history()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L711)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L711)
 
 Return the post-RoPE recent-history K/V, or `None` if empty.
 
@@ -226,7 +226,7 @@ Return the post-RoPE recent-history K/V, or `None` if empty.
 get_sink()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L700)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L700)
 
 Return the pre-RoPE sink K/V, or `None` if it has not been captured (or is empty).
 
@@ -236,7 +236,7 @@ Return the pre-RoPE sink K/V, or `None` if it has not been captured (or is empty
 store_captured_post_rope(key: Tensor, value: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L731)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L731)
 
 Store the post-RoPE K/V produced by the current forward.
 
@@ -246,7 +246,7 @@ Store the post-RoPE K/V produced by the current forward.
 store_captured_pre_rope(key: Tensor, value: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L717)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L717)
 
 Store the pre-RoPE K/V produced by the current forward.
 
@@ -256,7 +256,7 @@ Store the pre-RoPE K/V produced by the current forward.
 store_history(history_k: Tensor, history_v: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L706)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L706)
 
 Store the post-RoPE recent-history K/V.
 
@@ -266,7 +266,7 @@ Store the post-RoPE recent-history K/V.
 store_sink(sink_k_pre: Tensor, sink_v: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L695)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_sana_wm_refiner.py#L695)
 
 Store the pre-RoPE sink K/V.
 
@@ -278,13 +278,13 @@ Store the pre-RoPE sink K/V.
 diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.0/src/diffusers/models/modeling_outputs.py#L21)
+[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.42.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.42.1/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-The output of [Transformer2DModel](/docs/diffusers/v0.42.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+The output of [Transformer2DModel](/docs/diffusers/v0.42.1/en/api/models/transformer2d#diffusers.Transformer2DModel).
 
 ### WanTransformer3DModel
-https://huggingface.co/docs/diffusers/v0.42.0/api/models/wan_transformer_3d.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/models/wan_transformer_3d.md

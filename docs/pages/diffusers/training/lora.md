@@ -181,4 +181,4 @@ Congratulations on training a new model with LoRA! To learn more about how to us
 - Learn how to use and [combine multiple LoRA's](../tutorials/using_peft_for_inference) with PEFT for inference.
 
 ### Overview
-https://huggingface.co/docs/diffusers/v0.42.0/training/overview.md
+https://huggingface.co/docs/diffusers/v0.42.1/training/overview.md

@@ -207,5 +207,5 @@ AI-assisted contributions are welcome. They must be coordinated, scoped, and ver
 > [!NOTE]
 > These topics are outlined for agents in `AGENTS.md` with instruction for how to autonomously implement them.
 
-### Customizing model components
-https://huggingface.co/docs/transformers/v5.20.2/how_to_hack_models.md
+### Cache strategies
+https://huggingface.co/docs/transformers/v5.21.0/kv_cache.md

@@ -5,7 +5,7 @@
 > [!NOTE]
 > FreeU only works with UNet-based pipelines like Stable Diffusion, SDXL, and AnimateDiff. It isn't supported by transformer-based pipelines like Flux or Qwen-Image.
 
-Use the [enable_freeu()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.StableDiffusionMixin.enable_freeu) method on your pipeline and configure the scaling factors. `b1` and `b2` amplify the backbone features, and `s1` and `s2` dampen the skip features. The `1` and `2` refer to the first two upsampling stages of the UNet decoder. See the [FreeU](https://github.com/ChenyangSi/FreeU#parameters) repository for reference hyperparameters for different models.
+Use the [enable_freeu()](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.StableDiffusionMixin.enable_freeu) method on your pipeline and configure the scaling factors. `b1` and `b2` amplify the backbone features, and `s1` and `s2` dampen the skip features. The `1` and `2` refer to the first two upsampling stages of the UNet decoder. See the [FreeU](https://github.com/ChenyangSi/FreeU#parameters) repository for reference hyperparameters for different models.
 
 Start with the repository values for a model. To tune for other models, keep `s1=0.9` and `s2=0.2` and adjust `b1` and `b2` first. Setting all four factors to `1.0` is the same as disabling FreeU. Larger `b` values strengthen the effect but can oversmooth fine texture, and lowering `s1` and `s2` counteracts that.
 
@@ -32,7 +32,7 @@ image
     FreeU enabled
   
 
-Call the [disable_freeu()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.StableDiffusionMixin.disable_freeu) method to disable FreeU.
+Call the [disable_freeu()](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.StableDiffusionMixin.disable_freeu) method to disable FreeU.
 
 ```py
 pipeline.disable_freeu()
@@ -40,8 +40,8 @@ pipeline.disable_freeu()
 
 ## Next steps
 
-- See the [enable_freeu()](/docs/diffusers/v0.42.0/en/api/pipelines/overview#diffusers.StableDiffusionMixin.enable_freeu) API reference for the full parameter descriptions.
+- See the [enable_freeu()](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.StableDiffusionMixin.enable_freeu) API reference for the full parameter descriptions.
 - Try FreeU on video with [AnimateDiff](../api/pipelines/animatediff).
 
 ### Caching methods
-https://huggingface.co/docs/diffusers/v0.42.0/api/cache.md
+https://huggingface.co/docs/diffusers/v0.42.1/api/cache.md

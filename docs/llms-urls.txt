@@ -634,6 +634,7 @@ https://huggingface.co/docs/hub/enterprise-advanced-sso.md
 https://huggingface.co/docs/hub/enterprise-blog-articles.md
 https://huggingface.co/docs/hub/enterprise-datasets.md
 https://huggingface.co/docs/hub/enterprise-gating-group-collections.md
+https://huggingface.co/docs/hub/enterprise-managed-sso-migration.md
 https://huggingface.co/docs/hub/enterprise-network-security.md
 https://huggingface.co/docs/hub/enterprise-resource-groups.md
 https://huggingface.co/docs/hub/enterprise-scim.md
@@ -955,6 +956,7 @@ https://huggingface.co/docs/kernels/builder/triton-autotune.md
 https://huggingface.co/docs/kernels/builder/why-nix.md
 https://huggingface.co/docs/kernels/builder/writing-kernels.md
 https://huggingface.co/docs/kernels/cli-benchmark.md
+https://huggingface.co/docs/kernels/cli-cache.md
 https://huggingface.co/docs/kernels/cli-describe-api.md
 https://huggingface.co/docs/kernels/cli-download.md
 https://huggingface.co/docs/kernels/cli-info.md
@@ -1443,6 +1445,7 @@ https://huggingface.co/docs/transformers/fusion_mapping.md
 https://huggingface.co/docs/transformers/generation_features.md
 https://huggingface.co/docs/transformers/generation_strategies.md
 https://huggingface.co/docs/transformers/glossary.md
+https://huggingface.co/docs/transformers/google_tpu.md
 https://huggingface.co/docs/transformers/grad_accumulation.md
 https://huggingface.co/docs/transformers/grad_checkpointing.md
 https://huggingface.co/docs/transformers/hardware.md
@@ -1640,6 +1643,7 @@ https://huggingface.co/docs/transformers/model_doc/flan-ul2.md
 https://huggingface.co/docs/transformers/model_doc/flaubert.md
 https://huggingface.co/docs/transformers/model_doc/flava.md
 https://huggingface.co/docs/transformers/model_doc/flex_olmo.md
+https://huggingface.co/docs/transformers/model_doc/flint.md
 https://huggingface.co/docs/transformers/model_doc/florence2.md
 https://huggingface.co/docs/transformers/model_doc/fnet.md
 https://huggingface.co/docs/transformers/model_doc/focalnet.md
@@ -1678,6 +1682,7 @@ https://huggingface.co/docs/transformers/model_doc/gpt_neo.md
 https://huggingface.co/docs/transformers/model_doc/gpt_neox.md
 https://huggingface.co/docs/transformers/model_doc/gpt_oss.md
 https://huggingface.co/docs/transformers/model_doc/gptj.md
+https://huggingface.co/docs/transformers/model_doc/gradium_phonon_tts.md
 https://huggingface.co/docs/transformers/model_doc/granite.md
 https://huggingface.co/docs/transformers/model_doc/granite4_vision.md
 https://huggingface.co/docs/transformers/model_doc/granite_speech.md
@@ -1774,6 +1779,7 @@ https://huggingface.co/docs/transformers/model_doc/mgp-str.md
 https://huggingface.co/docs/transformers/model_doc/mimi.md
 https://huggingface.co/docs/transformers/model_doc/mimo_v2_flash.md
 https://huggingface.co/docs/transformers/model_doc/minicpm3.md
+https://huggingface.co/docs/transformers/model_doc/minicpm_ocr.md
 https://huggingface.co/docs/transformers/model_doc/minicpmv4_6.md
 https://huggingface.co/docs/transformers/model_doc/minicpmv4_7.md
 https://huggingface.co/docs/transformers/model_doc/minimax.md
@@ -1864,6 +1870,8 @@ https://huggingface.co/docs/transformers/model_doc/pix2struct.md
 https://huggingface.co/docs/transformers/model_doc/pixio.md
 https://huggingface.co/docs/transformers/model_doc/pixtral.md
 https://huggingface.co/docs/transformers/model_doc/plbart.md
+https://huggingface.co/docs/transformers/model_doc/pocket_tts.md
+https://huggingface.co/docs/transformers/model_doc/pocket_tts_audio_tokenizer.md
 https://huggingface.co/docs/transformers/model_doc/poolformer.md
 https://huggingface.co/docs/transformers/model_doc/pop2piano.md
 https://huggingface.co/docs/transformers/model_doc/pp_chart2table.md
@@ -1975,6 +1983,7 @@ https://huggingface.co/docs/transformers/model_doc/tvp.md
 https://huggingface.co/docs/transformers/model_doc/udop.md
 https://huggingface.co/docs/transformers/model_doc/ul2.md
 https://huggingface.co/docs/transformers/model_doc/ultrabert.md
+https://huggingface.co/docs/transformers/model_doc/ultravbert.md
 https://huggingface.co/docs/transformers/model_doc/umt5.md
 https://huggingface.co/docs/transformers/model_doc/unispeech-sat.md
 https://huggingface.co/docs/transformers/model_doc/unispeech.md

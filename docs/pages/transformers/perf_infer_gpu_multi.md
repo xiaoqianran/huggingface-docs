@@ -15,12 +15,12 @@ This guide covers enabling tensor parallelism in Transformers and the available 
 
 ## Partitioning a model
 
-Configure the number of tensor parallel devices with `tp_size` in [DistributedConfig](/docs/transformers/v5.20.2/en/expert_parallelism#transformers.DistributedConfig).
+Configure the number of tensor parallel devices with `tp_size` in [DistributedConfig](/docs/transformers/v5.21.0/en/expert_parallelism#transformers.DistributedConfig).
 
 - Set `DistributedConfig(tp_size=N)` to use the model's predefined plan.
-- Define a manual `tp_plan` and pass it to [DistributedConfig](/docs/transformers/v5.20.2/en/expert_parallelism#transformers.DistributedConfig) along with `tp_size`.
+- Define a manual `tp_plan` and pass it to [DistributedConfig](/docs/transformers/v5.21.0/en/expert_parallelism#transformers.DistributedConfig) along with `tp_size`.
 
-You can also set `tp_plan="auto"` to request the predefined plan explicitly. When `tp_size` is omitted and a `tp_plan` is set, `tp_size` is derived from `WORLD_SIZE` divided by the other parallel sizes. Passing `tp_plan` directly to [from_pretrained()](/docs/transformers/v5.20.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) is deprecated and will be removed in v5.18.
+You can also set `tp_plan="auto"` to request the predefined plan explicitly. When `tp_size` is omitted and a `tp_plan` is set, `tp_size` is derived from `WORLD_SIZE` divided by the other parallel sizes. Passing `tp_plan` directly to [from_pretrained()](/docs/transformers/v5.21.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) is deprecated and will be removed in v5.18.
 
 ```py
 import torch
@@ -49,7 +49,7 @@ Launch the inference script with [torchrun](https://pytorch.org/docs/stable/elas
 torchrun --nproc-per-node 4 demo.py
 ```
 
-Define a tensor parallel plan for each layer in `tp_plan` and pass it through [DistributedConfig](/docs/transformers/v5.20.2/en/expert_parallelism#transformers.DistributedConfig). The example below uses column and row partitioning. See the [Partitioning strategies](#partitioning-strategies) section for other supported strategies.
+Define a tensor parallel plan for each layer in `tp_plan` and pass it through [DistributedConfig](/docs/transformers/v5.21.0/en/expert_parallelism#transformers.DistributedConfig). The example below uses column and row partitioning. See the [Partitioning strategies](#partitioning-strategies) section for other supported strategies.
 
 Manual partitioning requires a deep understanding of model architecture and strategy interactions. Poor partitioning choices create slow models that fail or produce incorrect results. The [Ultra-Scale Playbook](https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=tensor_parallelism) explains partitioning strategies in detail.
 
@@ -82,7 +82,8 @@ The `ParallelInterface` class maps each strategy name you can use in a `tp_plan`
 ```py
 class ParallelInterface(GeneralInterface):
     _global_mapping = {
-        "embedding_rowwise": RowwiseParallel(input_layouts=Replicate(), output_layouts=Replicate()),
+        "embedding_rowwise": EmbeddingParallel(shard_dim=0),
+        "embedding_colwise": EmbeddingParallel(shard_dim=1),
         "colwise_gather_output": ColwiseParallel(input_layouts=Replicate(), output_layouts=Replicate()),
         "colwise_rep": ColwiseParallel(input_layouts=Replicate(), output_layouts=Replicate()),
         "colwise": ColwiseParallel(input_layouts=Replicate(), output_layouts=Shard(-1)),
@@ -110,8 +111,9 @@ The table below describes each strategy.
 
 | Strategy | Description |
 |---|---|
-| `ColwiseParallel` | Shards a weight on its output-feature dim (`Shard(0)` for a 2D `nn.Linear` weight, `Shard(1)` for `nn.Embedding`) and shards a 1D bias. Redistributes the input to `Replicate()`, then places the output at `output_layouts`. |
-| `RowwiseParallel` | Shards a weight on its input-feature dim (`Shard(-1)`, or `Shard(0)` for `nn.Embedding`) and replicates the bias, which is added after the reduction. Each rank's forward produces a `Partial()` output holding its share of the sum, and `transform_output_post_forward` redistributes that to `output_layouts`. Reducing to `Replicate()` issues an all-reduce, and reducing to `Shard(1)` issues a reduce-scatter. |
+| `ColwiseParallel` | Shards a linear weight on its output-feature dim (`Shard(0)` for a 2D `nn.Linear` weight) and shards a 1D bias. Redistributes the input to `Replicate()`, then places the output at `output_layouts`. |
+| `RowwiseParallel` | Shards a linear weight on its input-feature dim (`Shard(-1)`) and replicates the bias, which is added after the reduction. Each rank's forward produces a `Partial()` output holding its share of the sum, and `transform_output_post_forward` redistributes that to `output_layouts`. Reducing to `Replicate()` issues an all-reduce, and reducing to `Shard(1)` issues a reduce-scatter. |
+| `EmbeddingParallel` | Shards an `nn.Embedding` with the token ids replicated. `shard_dim=0` (`embedding_rowwise`, the usual choice) shards the vocabulary and all-reduces each rank's partial lookup into the full output. `shard_dim=1` (`embedding_colwise`) shards the hidden dim and all-gathers each rank's slice of the output. |
 | `PackedColwiseParallel` | A variant of `ColwiseParallel` for fused weights, for example `up_proj` and `gate_proj` packed into `gate_up_proj`. Use `split_factor` when a weight packs a number of layers other than two. |
 | `PackedRowwiseParallel` | The row-wise counterpart, for weights packed along the final dim. Replicates 1D parameters. |
 | `SequenceParallel` | Replicates the module's parameters and shards its input on `sequence_dim` (defaults to `1`). Used for norms that operate per-token, such as `LayerNorm` and `RMSNorm`. |
@@ -292,5 +294,5 @@ The `placements` attribute tells PyTorch how a tensor is laid out across the dev
 
 - See the [Tensor parallelism](./tensor_parallelism) training guide to learn how to use it in a training setting.
 
-### Multimodal chat templates
-https://huggingface.co/docs/transformers/v5.20.2/chat_templating_multimodal.md
+### Callbacks
+https://huggingface.co/docs/transformers/v5.21.0/trainer_callbacks.md

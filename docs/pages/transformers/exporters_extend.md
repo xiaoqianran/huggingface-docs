@@ -134,5 +134,5 @@ fundamentally non-exportable as-is (data-dependent control flow that can't be ve
 treated as forward arguments). Each entry carries a reason naming the model-side change needed. This
 list is also expected to shrink, not grow.
 
-### Machine learning apps
-https://huggingface.co/docs/transformers/v5.20.2/pipeline_gradio.md
+### Google TPU
+https://huggingface.co/docs/transformers/v5.21.0/google_tpu.md

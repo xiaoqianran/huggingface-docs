@@ -505,7 +505,7 @@ Training the DeepFloyd IF model can be challenging, but here are some tips that 
 - For common or simple objects, you don't necessarily need to finetune the upscaler. Make sure the prompt passed to the upscaler is adjusted to remove the new token from the instance prompt. For example, if your stage 1 prompt is "a sks dog" then your stage 2 prompt should be "a dog".
 - For finer details like faces, fully training the stage 2 upscaler is better than training the stage 2 model with LoRA. It also helps to use lower learning rates with larger batch sizes.
 - Lower learning rates should be used to train the stage 2 model.
-- The [DDPMScheduler](/docs/diffusers/v0.42.0/en/api/schedulers/ddpm#diffusers.DDPMScheduler) works better than the DPMSolver used in the training scripts.
+- The [DDPMScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/ddpm#diffusers.DDPMScheduler) works better than the DPMSolver used in the training scripts.
 
 ## Next steps
 
@@ -515,4 +515,4 @@ Congratulations on training your DreamBooth model! To learn more about how to us
 - If you trained with LoRA, see [LoRA for inference](../tutorials/using_peft_for_inference).
 
 ### InstructPix2Pix
-https://huggingface.co/docs/diffusers/v0.42.0/training/instructpix2pix.md
+https://huggingface.co/docs/diffusers/v0.42.1/training/instructpix2pix.md

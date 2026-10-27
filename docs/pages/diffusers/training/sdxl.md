@@ -233,4 +233,4 @@ Congratulations on training a SDXL model! To learn more about how to use your ne
 - Check out the [DreamBooth](dreambooth) and [LoRA](lora) training guides to learn how to train a personalized SDXL model with just a few example images. These two training techniques can even be combined!
 
 ### Philosophy
-https://huggingface.co/docs/diffusers/v0.42.0/conceptual/philosophy.md
+https://huggingface.co/docs/diffusers/v0.42.1/conceptual/philosophy.md

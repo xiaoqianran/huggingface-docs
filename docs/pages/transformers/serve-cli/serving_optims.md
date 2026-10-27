@@ -84,5 +84,5 @@ transformers serve \
   --dtype "bfloat16"
 ```
 
-### Jan
-https://huggingface.co/docs/transformers/v5.20.2/serve-cli/jan.md
+### Writing kernels
+https://huggingface.co/docs/transformers/v5.21.0/kernel_doc/writing_kernels.md

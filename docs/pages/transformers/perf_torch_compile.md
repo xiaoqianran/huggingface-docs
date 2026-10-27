@@ -59,5 +59,5 @@ Select **Subset** in the table below to switch between different GPUs, as well a
 
 - See the [torch.compile for training](./torch_compile) guide to learn how to use torch.compile for training.
 
-### Model structure rules
-https://huggingface.co/docs/transformers/v5.20.2/modeling_rules.md
+### Web server inference
+https://huggingface.co/docs/transformers/v5.21.0/pipeline_webserver.md

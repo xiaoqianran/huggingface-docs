@@ -24,5 +24,5 @@ Open Cursor and go to **Settings > Cursor Settings > Models > API Keys**.
 
 Your model is ready to use.
 
-### Open WebUI
-https://huggingface.co/docs/transformers/v5.20.2/serve-cli/openweb_ui.md
+### Server optimizations
+https://huggingface.co/docs/transformers/v5.21.0/serve-cli/serving_optims.md
