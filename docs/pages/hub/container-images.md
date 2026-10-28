@@ -70,5 +70,5 @@ The registry deletes images that no tag points to anymore, directly or through a
 - Layers up to 100 GB, manifests up to 4 MiB.
 - Tag lists can take a few seconds to show a new tag.
 
-### Using Stanza at Hugging Face
-https://huggingface.co/docs/hub/stanza.md
+### How to configure SCIM with Microsoft Entra ID (Azure AD)
+https://huggingface.co/docs/hub/security-sso-entra-id-scim.md

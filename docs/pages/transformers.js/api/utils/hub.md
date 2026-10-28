@@ -48,5 +48,5 @@ Options for loading a pretrained model.
 
 _Type:_ [`PretrainedOptions`](./hub#module_utils/hub.PretrainedOptions) & [`ModelSpecificPretrainedOptions`](./hub#module_utils/hub.ModelSpecificPretrainedOptions)
 
-### utils/tensor
-https://huggingface.co/docs/transformers.js/api/utils/tensor.md
+### utils/core
+https://huggingface.co/docs/transformers.js/api/utils/core.md

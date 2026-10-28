@@ -8,9 +8,9 @@ npm i @huggingface/transformers
 Alternatively, you can use it in vanilla JS, without any bundler, by using a CDN or static hosting. For example, using [ES Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), you can import the library with:
 ```html
 <script type="module">
-    import { pipeline } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.1';
+    import { pipeline } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.2';
 </script>
 ```
 
-### Use custom models
-https://huggingface.co/docs/transformers.js/custom_usage.md
+### The `pipeline` API
+https://huggingface.co/docs/transformers.js/pipelines.md

@@ -47,5 +47,5 @@ To ensure organizational control and data governance, managed user accounts have
 
 These restrictions maintain your enterprise's security boundaries. For personal projects or broader collaboration outside your organization, members should use a separate, unmanaged Hugging Face account.
 
-### Adding a Sign-In with HF button to your Space
-https://huggingface.co/docs/hub/spaces-oauth.md
+### Tabby on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-tabby.md

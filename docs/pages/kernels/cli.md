@@ -15,5 +15,5 @@ The `kernels` CLI provides commands for managing compute kernels.
 | [verify-signature](cli-verify-signature) | Verify a kernel signature          |
 | [variants](cli-variants)                 | Show variants and compatibility               |
 
-### Quickstart
-https://huggingface.co/docs/kernels/main/basic-usage.md
+### kernels variants
+https://huggingface.co/docs/kernels/main/cli-variants.md

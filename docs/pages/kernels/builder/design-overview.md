@@ -19,5 +19,5 @@ A kernel author uses the Nix builder through the `lib.genKernelFlakeOutputs` tha
 For a deeper look at the design of the Nix builder, see
 [Nix Builder design](./design-nix-builder).
 
-### Set up for Metal kernels
-https://huggingface.co/docs/kernels/main/builder/metal.md
+### Ship Triton autotune configurations
+https://huggingface.co/docs/kernels/main/builder/triton-autotune.md

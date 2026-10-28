@@ -55,5 +55,5 @@ We currently support SP-initiated and IdP-initiated authentication. For user pro
 - Once the test is successful, you can enable SSO for your organization by clicking the "Enable" button.
 - Once enabled, members of your organization must complete the SSO authentication flow described in the [How it works](./security-sso-basic#how-it-works) section.
 
-### Using Docker images
-https://huggingface.co/docs/hub/jobs-images.md
+### Query datasets
+https://huggingface.co/docs/hub/datasets-duckdb-select.md

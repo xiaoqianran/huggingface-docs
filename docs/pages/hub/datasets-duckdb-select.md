@@ -163,5 +163,5 @@ SUMMARIZE SELECT latitude, longitude FROM 'hf://datasets/jamescalam/world-cities
 
 ```
 
-### Notifications
-https://huggingface.co/docs/hub/notifications.md
+### Dask
+https://huggingface.co/docs/hub/datasets-dask.md

@@ -22,5 +22,5 @@ For more examples, take a look at:
 - [Amazon's](https://huggingface.co/spaces/amazon/README/blob/main/README.md) organization card source code
 - [spaCy's](https://huggingface.co/spaces/spacy/README/blob/main/README.md) organization card source code.
 
-### Webhook guide: build a Discussion bot with LLM replies
-https://huggingface.co/docs/hub/webhooks-guide-discussion-bot.md
+### Displaying carbon emissions for your model
+https://huggingface.co/docs/hub/model-cards-co2.md

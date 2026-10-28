@@ -32,5 +32,5 @@ You will get both the user's status (logged out = `"anonymous"`) and their plan.
 
 - https://huggingface.co/spaces/huggingfacejs/plan
 
-### Jupyter Notebooks on the Hugging Face Hub
-https://huggingface.co/docs/hub/notebooks.md
+### Tokens Management
+https://huggingface.co/docs/hub/enterprise-tokens-management.md

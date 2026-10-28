@@ -56,5 +56,5 @@ IT or Procurement staff: Get in touch directly to set up your institution's Acad
 - Share an org workspace across labs or campuses with granular access controls.
 - Preserve data and class materials under one institutional organisation, mount or use locally when needed.
 
-### Using Flair at Hugging Face
-https://huggingface.co/docs/hub/flair.md
+### Dash on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-dash.md

@@ -78,5 +78,5 @@ Shape of the `env` object. Every field is mutable.
   removed without a major version bump. For more information, see [https://github.com/WICG/cross-origin-storage](https://github.com/WICG/cross-origin-storage).
 - `fetch` (`(input: string | URL, init?: any) => Promise<any>`) — The fetch function to use. Defaults to `fetch`.
 
-### processors
-https://huggingface.co/docs/transformers.js/api/processors.md
+### backends/onnx
+https://huggingface.co/docs/transformers.js/api/backends/onnx.md

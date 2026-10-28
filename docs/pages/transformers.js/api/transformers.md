@@ -43,5 +43,5 @@ _Type:_ `keyof typeof DEVICE_TYPES`
 
 _Type:_ `keyof typeof DATA_TYPES`
 
-### pipelines
-https://huggingface.co/docs/transformers.js/api/pipelines.md
+### models
+https://huggingface.co/docs/transformers.js/api/models.md

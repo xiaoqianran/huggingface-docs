@@ -329,6 +329,18 @@ curl -N -H "Accept: text/event-stream" \
   "https://huggingface.co/api/buckets/username/my-bucket/events"
 ```
 
+> [!TIP]
+> In Python, you don't need to consume the stream yourself. [`HfFileSystem`](/docs/huggingface_hub/guides/hf_file_system#keep-listings-fresh) follows it for you with `live_follow=True`, so its cached listings stay current when another process changes the bucket:
+>
+> ```python
+> from huggingface_hub import HfFileSystem
+>
+> hffs = HfFileSystem(live_follow=True)
+> hffs.ls("buckets/username/my-bucket/data")  # starts following the bucket
+> ```
+>
+> Libraries that take fsspec `storage_options` (pandas, PyArrow, ...) accept it too.
+
 The stream emits four event types:
 
 | Event       | Data                                                  | Meaning                                                                                       |
@@ -418,5 +430,5 @@ Storage Buckets are billed based on the amount of data stored, with simple per-T
 
 As for other repositories, buckets are free to create and have a free storage allowance. For usage above the [free tier](https://huggingface.co/docs/hub/storage-limits), see [hf.co/storage](https://huggingface.co/storage). For general billing information, see the [Billing](./billing) documentation.
 
-### Using OpenCV in Spaces
-https://huggingface.co/docs/hub/spaces-using-opencv.md
+### Datasets
+https://huggingface.co/docs/hub/enterprise-datasets.md

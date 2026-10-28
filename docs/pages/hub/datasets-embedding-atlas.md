@@ -168,5 +168,5 @@ widget
 - [Interactive Demo](https://apple.github.io/embedding-atlas/upload/)
 - [Command Line Reference](https://apple.github.io/embedding-atlas/tool.html)
 
-### Using RL-Baselines3-Zoo at Hugging Face
-https://huggingface.co/docs/hub/rl-baselines3-zoo.md
+### Using ESPnet at Hugging Face
+https://huggingface.co/docs/hub/espnet.md

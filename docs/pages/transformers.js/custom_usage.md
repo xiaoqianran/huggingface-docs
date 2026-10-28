@@ -1,6 +1,6 @@
 # Use custom models
 
-By default, Transformers.js uses [hosted pretrained models](https://huggingface.co/models?library=transformers.js) and [precompiled WASM binaries](https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.1/dist/), which should work out-of-the-box. You can customize this as follows:
+By default, Transformers.js uses [hosted pretrained models](https://huggingface.co/models?library=transformers.js) and [precompiled WASM binaries](https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.2/dist/), which should work out-of-the-box. You can customize this as follows:
 
 ## Settings
 
@@ -23,5 +23,5 @@ For a full list of available settings, check out the [API Reference](./api/env).
 
 We recommend using [Optimum](https://github.com/huggingface/optimum-onnx) to convert your PyTorch models to ONNX in a single command. For the full list of supported architectures, check out the [Optimum documentation](https://huggingface.co/docs/optimum-onnx/onnx/overview).
 
-### Transformers.js
-https://huggingface.co/docs/transformers.js/index.md
+### Server-side Inference in Node.js
+https://huggingface.co/docs/transformers.js/tutorials/node.md

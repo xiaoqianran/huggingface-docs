@@ -35,5 +35,5 @@ Notebooks will be rendered when included in any type of repository on the Hub. T
 
 All .ipynb files hosted on the Hub are automatically given a "Open in Colab" button. This allows you to open the notebook in Colab with a single click.
 
-### Access Patterns
-https://huggingface.co/docs/hub/storage-buckets-access.md
+### Team & Enterprise plans
+https://huggingface.co/docs/hub/enterprise.md

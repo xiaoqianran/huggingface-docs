@@ -2131,5 +2131,5 @@ _Type:_ [`ZeroShotObjectDetectionOutput`](./pipelines#module_pipelines.ZeroShotO
 
 **Returns:** `Promise`<[`ZeroShotObjectDetectionPipelineResult`](./pipelines#module_pipelines.ZeroShotObjectDetectionPipelineResult)<[`ImageInput`](./pipelines#module_pipelines.ImageInput) | [`ImageInput`](./pipelines#module_pipelines.ImageInput)[]>>
 
-### generation/cache
-https://huggingface.co/docs/transformers.js/api/generation/cache.md
+### tokenizers
+https://huggingface.co/docs/transformers.js/api/tokenizers.md

@@ -32,5 +32,5 @@ Polars supports reading new line delimited JSON — also known as [json lines](h
 pl.read_ndjson("hf://datasets/proj-persona/PersonaHub/persona.jsonl")
 ```
 
-### Using PaddleNLP at Hugging Face
-https://huggingface.co/docs/hub/paddlenlp.md
+### How to configure OIDC SSO with Microsoft Entra ID (Azure AD)
+https://huggingface.co/docs/hub/security-sso-azure-oidc.md

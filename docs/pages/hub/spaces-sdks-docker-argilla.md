@@ -9,5 +9,5 @@ With Argilla you can:
 
 The best place to get started with Argilla on Spaces is [this guide](http://docs.argilla.io/latest/getting_started/quickstart/).
 
-### Lance
-https://huggingface.co/docs/hub/datasets-lance.md
+### Using spaCy at Hugging Face
+https://huggingface.co/docs/hub/spacy.md

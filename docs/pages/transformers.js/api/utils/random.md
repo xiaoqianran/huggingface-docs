@@ -118,5 +118,5 @@ random.gauss(0, 1);  // normal-distributed value
 random.choices(['a', 'b'], [3, 1]);  // weighted pick
 ```
 
-### utils/hub
-https://huggingface.co/docs/transformers.js/api/utils/hub.md
+### utils/audio
+https://huggingface.co/docs/transformers.js/api/utils/audio.md

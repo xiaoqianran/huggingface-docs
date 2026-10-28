@@ -61,5 +61,5 @@ If you encounter issues:
 
 For more help, visit the [marimo Discord](https://marimo.io/discord) or [open an issue](https://github.com/marimo-team/marimo/issues).
 
-### Model Cards
-https://huggingface.co/docs/hub/model-cards.md
+### Configure the Dataset Viewer
+https://huggingface.co/docs/hub/datasets-viewer-configure.md

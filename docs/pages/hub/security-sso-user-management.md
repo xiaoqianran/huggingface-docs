@@ -95,5 +95,5 @@ External collaborators still go through your organization's access controls ([Re
 > [!NOTE]
 > With [Managed SSO](./enterprise-advanced-sso), internal members are provisioned through your identity provider (SCIM), so users invited to the organization can only be added as external collaborators.
 
-### S3 Compatibility
-https://huggingface.co/docs/hub/storage-buckets-s3.md
+### Collections
+https://huggingface.co/docs/hub/collections.md

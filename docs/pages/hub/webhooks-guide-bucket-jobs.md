@@ -130,5 +130,5 @@ When you write your script, decide what it does in the first run, when `WEBHOOK_
 
 A webhook starts a Job for every event, so new files are processed about a minute after they arrive. If they don't need to be processed that fast, a [scheduled Job](./jobs-schedule) is an alternative: it runs every hour or every day and processes everything that arrived since the last run. This groups the work into fewer Jobs, which helps with GPU tasks that are slow to start, and it avoids the webhook limit of 1,000 triggers per 24 hours. The script must then find the new files itself, for example by comparing the input and output buckets.
 
-### Secrets Scanning
-https://huggingface.co/docs/hub/security-secrets.md
+### Organization cards
+https://huggingface.co/docs/hub/organizations-cards.md

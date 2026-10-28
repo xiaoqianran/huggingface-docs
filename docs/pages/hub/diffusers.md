@@ -53,5 +53,5 @@ For more details, please check out the [documentation](https://huggingface.co/do
 * Diffusers [library](https://github.com/huggingface/diffusers).
 * Diffusers [docs](https://huggingface.co/docs/diffusers/index).
 
-### Using OpenCLIP at Hugging Face
-https://huggingface.co/docs/hub/open_clip.md
+### How to configure SAML SSO with Google Workspace
+https://huggingface.co/docs/hub/security-sso-google-saml.md

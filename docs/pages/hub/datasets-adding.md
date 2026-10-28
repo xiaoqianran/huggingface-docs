@@ -110,5 +110,5 @@ Use `upload_folder()` or `hf upload` from the `huggingface_hub` library to uploa
 
 See [how to upload a large folder](/docs/huggingface_hub/guides/upload#upload-a-large-folder), the [tips and tricks for large uploads](/docs/huggingface_hub/guides/upload#tips-and-tricks-for-large-uploads) and the [repository storage limits and recommendations](./storage-limits).
 
-### Dash on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-dash.md
+### Advanced Compute Options
+https://huggingface.co/docs/hub/advanced-compute-options.md

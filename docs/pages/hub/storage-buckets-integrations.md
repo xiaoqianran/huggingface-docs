@@ -144,10 +144,11 @@ text_files = hffs.glob("buckets/username/my-bucket/*.txt")
 
 ## DuckDB
 
-DuckDB 2.0 and later read `hf://buckets/` paths natively through the `httpfs` extension, from the CLI and every client:
+DuckDB 2.0 and later read `hf://buckets/` paths natively through the `httpfs` extension (and with the `hf` extension for writing), from the CLI and every client:
 
 ```sql
 SELECT * FROM 'hf://buckets/username/my-bucket/data/**/*.parquet' LIMIT 10;
+COPY tbl TO 'hf://buckets/username/my-bucket/out.parquet';
 ```
 
 See [Query with DuckDB](./storage-buckets-access#query-with-duckdb) for private buckets and older DuckDB versions.
@@ -160,5 +161,5 @@ See [Query with DuckDB](./storage-buckets-access#query-with-duckdb) for private 
 
 Native `hf://` URL support is on the way for more libraries — including Polars and WebDataset. In the meantime, all of these already work today through the [S3-compatible API](./storage-buckets-s3).
 
-### Building with the SDK
-https://huggingface.co/docs/hub/agents-sdk.md
+### marimo on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-marimo.md

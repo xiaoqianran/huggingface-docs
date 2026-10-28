@@ -424,5 +424,5 @@ Generate token sequences with a language-modeling head.
 
 **Returns:** `Promise`<`ModelOutput` | [`Tensor`](./utils/tensor#module_utils/tensor.Tensor)> — The output of the model, which can contain the generated token ids, attentions, and scores.
 
-### configs
-https://huggingface.co/docs/transformers.js/api/configs.md
+### pipelines
+https://huggingface.co/docs/transformers.js/api/pipelines.md

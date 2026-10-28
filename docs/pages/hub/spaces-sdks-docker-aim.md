@@ -67,5 +67,5 @@ If you have improvement suggestions or need support, please open an issue on [Ai
 
 The [Aim community Discord](https://github.com/aimhubio/aim#-community) is also available for community discussions.
 
-### Editing datasets
-https://huggingface.co/docs/hub/datasets-editing.md
+### Webhook guide: Setup an automatic system to re-train a model when a dataset changes
+https://huggingface.co/docs/hub/webhooks-guide-auto-retrain.md

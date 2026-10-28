@@ -123,5 +123,5 @@ _[Example trace in the Langfuse UI](https://langfuse-langfuse-template-space.hf.
 
 For more help, open a support thread on [GitHub discussions](https://langfuse.com/discussions) or [open an issue](https://github.com/langfuse/langfuse/issues).
 
-### How to configure SCIM with Microsoft Entra ID (Azure AD)
-https://huggingface.co/docs/hub/security-sso-entra-id-scim.md
+### Disk usage on Spaces
+https://huggingface.co/docs/hub/spaces-storage.md

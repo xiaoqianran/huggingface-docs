@@ -66,5 +66,5 @@ then [Publisher Analytics](./publisher-analytics), and in particular the [granul
 
 These are provided as raw logs, since most organizations will want to apply their own custom rules.
 
-### Container Images
-https://huggingface.co/docs/hub/container-images.md
+### Reference
+https://huggingface.co/docs/hub/jobs-reference.md

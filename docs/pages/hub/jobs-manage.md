@@ -238,5 +238,5 @@ Find your list of Jobs in the MacOS [`hfjobs-menubar`](https://github.com/drbh/h
 
 Get Jobs information, and monitor logs and resource usage statistics:
 
-### Spaces
-https://huggingface.co/docs/hub/spaces.md
+### Uploading models
+https://huggingface.co/docs/hub/models-uploading.md

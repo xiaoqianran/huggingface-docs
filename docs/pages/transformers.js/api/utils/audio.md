@@ -61,5 +61,5 @@ Helper function to load audio from a path/URL.
 
 **Returns:** `Promise`<`Float32Array`> — The decoded audio as a `Float32Array`.
 
-### utils/model_registry
-https://huggingface.co/docs/transformers.js/api/utils/model_registry.md
+### utils/video
+https://huggingface.co/docs/transformers.js/api/utils/video.md

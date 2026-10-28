@@ -28,5 +28,5 @@ In these pages you will get started in using Xet Storage.
 - [Backwards Compatibility & Legacy](./legacy-git-lfs)
 - [Deduplication](./deduplication)
 
-### Telemetry
-https://huggingface.co/docs/hub/xet/telemetry.md
+### Xet History & Overview
+https://huggingface.co/docs/hub/xet/overview.md

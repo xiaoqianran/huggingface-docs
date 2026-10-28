@@ -182,5 +182,5 @@ tasks:
           model: openai/o3-mini
 ```
 
-### Next Steps
-https://huggingface.co/docs/hub/repositories-next-steps.md
+### Embed your Space in another website
+https://huggingface.co/docs/hub/spaces-embed.md

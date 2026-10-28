@@ -212,5 +212,5 @@ extra_gated_eu_disallowed: true
 
 The system identifies a user's location based on their IP address.
 
-### Spaces Configuration Reference
-https://huggingface.co/docs/hub/spaces-config-reference.md
+### Giskard on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-giskard.md

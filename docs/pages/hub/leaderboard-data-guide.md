@@ -164,5 +164,5 @@ The embed is only available for [official benchmark datasets](./eval-results#ben
 - [Eval Results](./eval-results) — how to submit evaluation results and register benchmarks
 - [Official Benchmark Datasets](https://huggingface.co/datasets?benchmark=benchmark:official&sort=trending) — browse all official benchmarks
 
-### Hub Rate limits
-https://huggingface.co/docs/hub/rate-limits.md
+### Malware Scanning
+https://huggingface.co/docs/hub/security-malware.md

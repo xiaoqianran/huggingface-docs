@@ -61,5 +61,5 @@ Load and sample frames from a video.
 
 **Returns:** `Promise`<[`RawVideo`](./video#module_utils/video.RawVideo)> — The loaded video.
 
-### utils/image
-https://huggingface.co/docs/transformers.js/api/utils/image.md
+### utils/maths
+https://huggingface.co/docs/transformers.js/api/utils/maths.md

@@ -13,6 +13,3 @@ The legacy storage system on the Hub, Git LFS utilizes many of the same conventi
 The primary limitation of Git LFS is its file-centric approach to deduplication. Any change to a file, irrespective of how large of small that change is, means the entire file is versioned - incurring significant overheads in file transfers as the entire file is uploaded (if committing to a repository) or downloaded (if pulling the latest version to your machine).
 
 This leads to a worse developer experience along with a proliferation of additional storage.
-
-### Xet: our Storage Backend
-https://huggingface.co/docs/hub/xet/index.md

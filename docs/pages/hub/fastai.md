@@ -51,5 +51,5 @@ push_to_hub_fastai(learner=learn, repo_id="espejelomar/identify-my-cat")
 * Integration with Hub [docs](https://docs.fast.ai/huggingface.html).
 * Integration with Hub [announcement](https://huggingface.co/blog/fastai).
 
-### 3D Dataset
-https://huggingface.co/docs/hub/datasets-3d.md
+### Libraries
+https://huggingface.co/docs/hub/models-libraries.md

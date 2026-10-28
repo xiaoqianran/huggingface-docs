@@ -2,5 +2,5 @@
 
 _Full tutorial coming soon..._ In the meantime, check out the example application: https://github.com/huggingface/transformers.js-examples/tree/main/browser-extension
 
-### Building a React application
-https://huggingface.co/docs/transformers.js/tutorials/react.md
+### Building a Vanilla JavaScript Application
+https://huggingface.co/docs/transformers.js/tutorials/vanilla-js.md

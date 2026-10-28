@@ -53,5 +53,5 @@ process.env.HF_TOKEN = "hf_...";
 // ... rest of your code
 ```
 
-### Running models on WebGPU
-https://huggingface.co/docs/transformers.js/guides/webgpu.md
+### Using quantized models (dtypes)
+https://huggingface.co/docs/transformers.js/guides/dtypes.md

@@ -23,5 +23,5 @@ For any other security questions, please feel free to send us an email at securi
 - [Third-party scanner: Protect AI](./security-protectai)
 - [Third-party scanner: JFrog](./security-jfrog)
 
-### Reference
-https://huggingface.co/docs/hub/jobs-reference.md
+### Webhook guide: Setup an automatic metadata quality review for models and datasets
+https://huggingface.co/docs/hub/webhooks-guide-metadata-review.md

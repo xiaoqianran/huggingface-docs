@@ -407,5 +407,5 @@ const result = await ModelRegistry.clear_pipeline_cache('text-generation', 'onnx
 console.log(`Deleted ${result.filesDeleted} of ${result.filesCached} cached files`);
 ```
 
-### utils/core
-https://huggingface.co/docs/transformers.js/api/utils/core.md
+### utils/random
+https://huggingface.co/docs/transformers.js/api/utils/random.md

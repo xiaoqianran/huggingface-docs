@@ -25,5 +25,5 @@ In these pages, you will go over the basics of getting started with Git and Xet 
 - [Next Steps](./repositories-next-steps)
 - [Licenses](./repositories-licenses)
 
-### How to handle URL parameters in Spaces
-https://huggingface.co/docs/hub/spaces-handle-url-parameters.md
+### Agents
+https://huggingface.co/docs/hub/agents-overview.md

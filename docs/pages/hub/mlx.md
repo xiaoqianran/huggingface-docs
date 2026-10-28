@@ -102,5 +102,5 @@ python -m mlx_lm.convert \
 * [MLX Examples](https://github.com/ml-explore/mlx-examples/tree/main)
 * [All MLX models on the Hub](https://huggingface.co/models?library=mlx&sort=trending)
 
-### Advanced Compute Options
-https://huggingface.co/docs/hub/advanced-compute-options.md
+### Datasets
+https://huggingface.co/docs/hub/datasets.md

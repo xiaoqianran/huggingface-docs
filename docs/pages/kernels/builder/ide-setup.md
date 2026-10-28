@@ -206,5 +206,5 @@ IDE-facing project files" and the C++ portions of the VS Code
 configuration. The `direnv` setup and `python.defaultInterpreterPath`
 are all that is needed.
 
-### Building and testing kernels with GitHub Actions
-https://huggingface.co/docs/kernels/main/builder/github-actions.md
+### Set up for Metal kernels
+https://huggingface.co/docs/kernels/main/builder/metal.md

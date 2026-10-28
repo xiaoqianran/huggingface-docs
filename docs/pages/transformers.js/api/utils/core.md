@@ -92,5 +92,5 @@ A callback function that is called with progress information.
 
 **Returns:** `void`
 
-### utils/random
-https://huggingface.co/docs/transformers.js/api/utils/random.md
+### generation/parameters
+https://huggingface.co/docs/transformers.js/api/generation/parameters.md

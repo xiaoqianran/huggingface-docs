@@ -15,5 +15,5 @@ The PRO subscription unlocks essential features for serious users, including:
 
 View the full list of benefits at **https://huggingface.co/pro** then subscribe over at https://huggingface.co/subscribe/pro
 
-### Models Download Stats
-https://huggingface.co/docs/hub/models-download-stats.md
+### Authentication for private and gated datasets
+https://huggingface.co/docs/hub/datasets-duckdb-auth.md

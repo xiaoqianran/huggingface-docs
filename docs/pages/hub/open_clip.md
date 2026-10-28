@@ -65,5 +65,5 @@ If you want to load a specific OpenCLIP model, you can click `Use in OpenCLIP` i
 * OpenCLIP [docs](https://github.com/mlfoundations/open_clip/tree/main/docs)
 * OpenCLIP [models in the Hub](https://huggingface.co/models?library=open_clip&sort=trending)
 
-### Daft
-https://huggingface.co/docs/hub/datasets-daft.md
+### How to configure OIDC SSO with Google Workspace
+https://huggingface.co/docs/hub/security-sso-google-oidc.md

@@ -14,5 +14,5 @@ The Hub automatically detects TensorBoard traces (such as `tfevents`). Once you 
 
 * TensorBoard [documentation](https://www.tensorflow.org/tensorboard).
 
-### Image Dataset
-https://huggingface.co/docs/hub/datasets-image.md
+### Accessing Benchmark Leaderboard Data
+https://huggingface.co/docs/hub/leaderboard-data-guide.md

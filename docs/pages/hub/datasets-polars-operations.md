@@ -139,5 +139,5 @@ df.head(10)
 └─────┴───────────────────┴───────────────────────┴─────────────────────────────────┘
 ```
 
-### Livebook on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-livebook.md
+### Pricing and Billing
+https://huggingface.co/docs/hub/jobs-pricing.md

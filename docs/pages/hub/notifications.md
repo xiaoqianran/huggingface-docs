@@ -67,5 +67,5 @@ You can unmute at any time by clicking the same icon again.
 
 ![Notifications mute discussions](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/notifications-mute-discussion.png)
 
-### Optimizations
-https://huggingface.co/docs/hub/datasets-polars-optimizations.md
+### GGUF usage with GPT4All
+https://huggingface.co/docs/hub/gguf-gpt4all.md

@@ -148,5 +148,5 @@ SELECT
 FROM overlapping_rows, total_unique_rows;
 ```
 
-### Using spaCy at Hugging Face
-https://huggingface.co/docs/hub/spacy.md
+### Agent Libraries
+https://huggingface.co/docs/hub/agents-libraries.md

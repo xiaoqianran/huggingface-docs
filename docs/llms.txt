@@ -10,7 +10,7 @@
 - [Hub](https://huggingface.co/docs/hub) — 276 pages
 - [Hub Client](https://huggingface.co/docs/huggingface_hub) — 53 pages
 - [Inference Endpoints](https://huggingface.co/docs/inference-endpoints) — 25 pages
-- [Inference Providers](https://huggingface.co/docs/inference-providers) — 28 pages
+- [Inference Providers](https://huggingface.co/docs/inference-providers) — 27 pages
 - [Kernels](https://huggingface.co/docs/kernels) — 41 pages
 - [LeRobot](https://huggingface.co/docs/lerobot) — 91 pages
 - [Optimum](https://huggingface.co/docs/optimum) — 16 pages

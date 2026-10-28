@@ -331,5 +331,5 @@ Kwargs that are not present in `generate`'s signature are used in the model forw
 
 - `config` ([`GenerationConfig`](./configuration_utils#module_generation/configuration_utils.GenerationConfig) | [`PretrainedConfig`](../configs#module_configs.PretrainedConfig))
 
-### generation/parameters
-https://huggingface.co/docs/transformers.js/api/generation/parameters.md
+### generation/stopping_criteria
+https://huggingface.co/docs/transformers.js/api/generation/stopping_criteria.md

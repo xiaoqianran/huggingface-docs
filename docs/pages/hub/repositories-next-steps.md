@@ -101,5 +101,5 @@ git reset --hard upstream/main
 git push --force origin main
 ```
 
-### Using _Adapters_ at Hugging Face
-https://huggingface.co/docs/hub/adapters.md
+### Models Download Stats
+https://huggingface.co/docs/hub/models-download-stats.md

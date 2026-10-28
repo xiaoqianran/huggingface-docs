@@ -2,7 +2,6 @@
 
 ## Docs
 
-- [How to be registered as an inference provider on the Hub?](https://huggingface.co/docs/inference-providers/register-as-a-provider.md)
 - [Hub Integration](https://huggingface.co/docs/inference-providers/hub-integration.md)
 - [Hub API](https://huggingface.co/docs/inference-providers/hub-api.md)
 - [Security & Compliance](https://huggingface.co/docs/inference-providers/security.md)

@@ -32,5 +32,5 @@
 
 _Type:_ [`GenerationFunctionParametersBase`](./parameters#module_generation/parameters.GenerationFunctionParametersBase) & `Partial`<[`GenerationConfig`](./configuration_utils#module_generation/configuration_utils.GenerationConfig)> & `{ [key: string]: unknown }`
 
-### utils/video
-https://huggingface.co/docs/transformers.js/api/utils/video.md
+### generation/cache
+https://huggingface.co/docs/transformers.js/api/generation/cache.md

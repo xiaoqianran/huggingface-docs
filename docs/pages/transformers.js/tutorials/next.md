@@ -429,5 +429,5 @@ For this demo, we will build and deploy our application to [Hugging Face Spaces]
 
 **That's it!** Your application should now be live at `https://huggingface.co/spaces/<your-username>/<your-space-name>`!
 
-### Building a Next.js AI Chatbot with Vercel AI SDK
-https://huggingface.co/docs/transformers.js/tutorials/next-ai-sdk.md
+### Building an Electron application
+https://huggingface.co/docs/transformers.js/tutorials/electron.md

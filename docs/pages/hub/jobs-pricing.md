@@ -143,5 +143,5 @@ If a running Job is no longer relevant, you can cancel it prematurely to stop it
 hf jobs cancel <job-id>
 ```
 
-### Gated datasets
-https://huggingface.co/docs/hub/datasets-gated.md
+### How to Add a Space to ArXiv
+https://huggingface.co/docs/hub/spaces-add-to-arxiv.md

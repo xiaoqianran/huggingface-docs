@@ -843,5 +843,5 @@ _Type:_ [`AnyTypedArray`](./maths#module_utils/maths.AnyTypedArray) | `any[]`
 
 This creates a nested array of a given type and depth (see examples).
 
-### backends/onnx
-https://huggingface.co/docs/transformers.js/api/backends/onnx.md
+### utils/image
+https://huggingface.co/docs/transformers.js/api/utils/image.md

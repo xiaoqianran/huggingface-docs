@@ -108,5 +108,5 @@ Interrupts generation, stopping every sequence on the next call.
 
 Clears a previous interruption, allowing generation to continue.
 
-### generation/configuration_utils
-https://huggingface.co/docs/transformers.js/api/generation/configuration_utils.md
+### Server-side Audio Processing in Node.js
+https://huggingface.co/docs/transformers.js/guides/node-audio-processing.md

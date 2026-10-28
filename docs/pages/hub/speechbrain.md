@@ -35,5 +35,5 @@ If you want to see how to load a specific model, you can click `Use in speechbra
 * SpeechBrain [website](https://speechbrain.github.io/).
 * SpeechBrain [docs](https://speechbrain.readthedocs.io/en/latest/index.html).
 
-### Service Accounts
-https://huggingface.co/docs/hub/enterprise-service-accounts.md
+### How to configure SCIM with Okta
+https://huggingface.co/docs/hub/security-sso-okta-scim.md

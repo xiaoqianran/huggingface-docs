@@ -61,5 +61,5 @@ _Type:_ `BigInt64Array` | `BigUint64Array`
 
 _Type:_ [`TypedArray`](./maths#module_utils/maths.TypedArray) | [`BigTypedArray`](./maths#module_utils/maths.BigTypedArray)
 
-### utils/audio
-https://huggingface.co/docs/transformers.js/api/utils/audio.md
+### utils/hub
+https://huggingface.co/docs/transformers.js/api/utils/hub.md

@@ -450,5 +450,5 @@ Create a `TopKLogitsWarper`.
   - `filter_value` (`number`) _optional_ — defaults to `-Infinity` — All filtered values will be set to this float value.
   - `min_tokens_to_keep` (`number`) _optional_ — defaults to `1` — Minimum number of tokens that cannot be filtered.
 
-### generation/stopping_criteria
-https://huggingface.co/docs/transformers.js/api/generation/stopping_criteria.md
+### generation/streamers
+https://huggingface.co/docs/transformers.js/api/generation/streamers.md

@@ -187,8 +187,8 @@ the metadata. Signature verification checks the authenticity of the metadata
 itself:
 
 - Verify the signature against the given policy. The default policy only accepts
-  kernels signed by workflows in the `huggingface/kernels-community` GitHub
-  repository.
+  kernels signed by workflows in the `huggingface/kernels-community` and
+  `huggingface/kernels-community-rs` GitHub repositories.
 - Verify the authenticity of `metadata.json` using the signature.
 
 Signature verification is only performed for kernels downloaded from the Hub.
@@ -225,5 +225,5 @@ This means that downloading a different revision or build variant of the same
 kernel will not collide with the existing receipt and will be verified as
 expected.
 
-### Talks
-https://huggingface.co/docs/kernels/main/talks.md
+### Lock kernel versions
+https://huggingface.co/docs/kernels/main/locking.md

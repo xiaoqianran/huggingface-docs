@@ -114,5 +114,5 @@ so you can generate proxy or firewall rules from it rather than copying the tabl
 > The file changes as endpoints are added and removed. Fetch it when you build your rules
 > rather than pinning a copy.
 
-### Panel on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-panel.md
+### ZenML on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-zenml.md

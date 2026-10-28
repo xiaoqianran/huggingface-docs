@@ -36,5 +36,5 @@ If you have any feedback or change requests, please don't hesitate to reach out 
 
 This template was created by [camenduru](https://twitter.com/camenduru) and [nateraw](https://huggingface.co/nateraw), with contributions from [osanseviero](https://huggingface.co/osanseviero) and [azzr](https://huggingface.co/azzr).
 
-### Dask
-https://huggingface.co/docs/hub/datasets-dask.md
+### Storage Buckets
+https://huggingface.co/docs/hub/storage-buckets.md

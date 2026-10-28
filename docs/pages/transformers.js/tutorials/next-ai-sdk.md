@@ -435,5 +435,5 @@ Try prompts like:
 - Explore the [Vercel AI SDK agents documentation](https://ai-sdk.dev/docs/agents/overview) for more complex agent patterns.
 - See the [Vercel AI SDK guide](../integrations/vercel-ai-sdk) for a reference of all supported features (embeddings, vision, transcription, etc.).
 
-### Server-side Inference in Node.js
-https://huggingface.co/docs/transformers.js/tutorials/node.md
+### Building a Next.js application
+https://huggingface.co/docs/transformers.js/tutorials/next.md

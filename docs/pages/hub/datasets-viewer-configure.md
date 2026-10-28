@@ -28,5 +28,5 @@ viewer: false
 
 For **private** datasets, the Dataset Viewer is enabled for [PRO users](https://huggingface.co/pricing) and [Team or Enterprise organizations](https://huggingface.co/enterprise).
 
-### Manage Jobs
-https://huggingface.co/docs/hub/jobs-manage.md
+### Getting Started with Repositories
+https://huggingface.co/docs/hub/repositories-getting-started.md

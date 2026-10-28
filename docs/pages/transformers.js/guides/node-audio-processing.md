@@ -103,5 +103,5 @@ Execution duration: 0.6460317999720574 seconds
 
 That's it! You've successfully created a Node.js application that uses Transformers.js for speech recognition with Whisper. You can now use this as a starting point for your own applications.
 
-### Accessing Private/Gated Models
-https://huggingface.co/docs/transformers.js/guides/private.md
+### Running models on WebGPU
+https://huggingface.co/docs/transformers.js/guides/webgpu.md

@@ -285,5 +285,5 @@ You've now built your own fully-functional AI application that detects objects i
 
 The app is live at the following URL: [https://huggingface.co/spaces/Scrimba/vanilla-js-object-detector](https://huggingface.co/spaces/Scrimba/vanilla-js-object-detector)
 
-### Building a Next.js application
-https://huggingface.co/docs/transformers.js/tutorials/next.md
+### Building a React application
+https://huggingface.co/docs/transformers.js/tutorials/react.md

@@ -195,5 +195,5 @@ Convert the image to a Sharp instance.
 Load an image from a URL, file path, `Blob`, `HTMLCanvasElement`, or
 `OffscreenCanvas`. Equivalent to `RawImage.read`.
 
-### utils/maths
-https://huggingface.co/docs/transformers.js/api/utils/maths.md
+### utils/model_registry
+https://huggingface.co/docs/transformers.js/api/utils/model_registry.md

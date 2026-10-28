@@ -259,5 +259,5 @@ One could imagine having a regex-ish format where you could allow all numpy subm
 
 [Rehabilitating Python's pickle module](https://github.com/moreati/pickle-fuzz)
 
-### Resource groups
-https://huggingface.co/docs/hub/enterprise-resource-groups.md
+### Annotated Model Card Template
+https://huggingface.co/docs/hub/model-card-annotated.md

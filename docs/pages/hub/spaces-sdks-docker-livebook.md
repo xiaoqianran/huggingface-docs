@@ -65,5 +65,5 @@ The following caveats apply to running Livebook inside a Space:
 
 If you have improvement suggestions or need specific support, please join the [Livebook community on GitHub](https://github.com/livebook-dev/livebook/discussions).
 
-### User Studies
-https://huggingface.co/docs/hub/model-cards-user-studies.md
+### Using SpanMarker at Hugging Face
+https://huggingface.co/docs/hub/span_marker.md

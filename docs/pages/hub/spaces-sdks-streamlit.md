@@ -121,5 +121,5 @@ We can pass options to the first argument of `iFrameResize()`. See [the document
 
 Additionally, you can checkout [our documentation](./spaces-embed).
 
-### Storage Buckets
-https://huggingface.co/docs/hub/storage-buckets.md
+### 3D Dataset
+https://huggingface.co/docs/hub/datasets-3d.md

@@ -440,5 +440,5 @@ Additional processor-specific properties.
 
 _Type:_ [`PretrainedOptions`](./utils/hub#module_utils/hub.PretrainedOptions) & [`ProcessorProperties`](./processors#module_processors.ProcessorProperties)
 
-### tokenizers
-https://huggingface.co/docs/transformers.js/api/tokenizers.md
+### configs
+https://huggingface.co/docs/transformers.js/api/configs.md

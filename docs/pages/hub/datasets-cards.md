@@ -102,5 +102,5 @@ The supported environment framework tags are:
 
 These tags describe compatibility and generate loading commands. They do not create a new repository type or cause the Hub to execute the environment.
 
-### Use AI Models Locally
-https://huggingface.co/docs/hub/local-apps.md
+### Aim on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-aim.md

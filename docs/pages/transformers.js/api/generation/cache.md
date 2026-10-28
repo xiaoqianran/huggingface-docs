@@ -44,5 +44,5 @@ Returns a promise that resolves when all disposals are complete.
 
 **Returns:** `Promise`<`void`> — Promise that resolves when all GPU tensors are disposed.
 
-### generation/streamers
-https://huggingface.co/docs/transformers.js/api/generation/streamers.md
+### generation/logits_process
+https://huggingface.co/docs/transformers.js/api/generation/logits_process.md

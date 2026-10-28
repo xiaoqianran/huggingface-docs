@@ -66,5 +66,5 @@ jobs:
 
 Replace `HF_USERNAME` with your username and `SPACE_NAME` with your Space name.
 
-### Hugging Face Hub documentation
-https://huggingface.co/docs/hub/index.md
+### DuckDB
+https://huggingface.co/docs/hub/datasets-duckdb.md

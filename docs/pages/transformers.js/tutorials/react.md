@@ -519,5 +519,5 @@ For this demo, we will deploy our application as a static [Hugging Face Space](h
 
 **That's it!** Your application should now be live at `https://huggingface.co/spaces/<your-username>/<your-space-name>`!
 
-### Building an Electron application
-https://huggingface.co/docs/transformers.js/tutorials/electron.md
+### processors
+https://huggingface.co/docs/transformers.js/api/processors.md

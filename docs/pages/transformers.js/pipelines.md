@@ -294,5 +294,5 @@ If you would like more control over the inference process, you can use the [`Aut
 |--------------------------|----|-------------|------------|
 | [Reinforcement Learning](https://huggingface.co/tasks/reinforcement-learning)   |  n/a  | Learning from actions by interacting with an environment through trial and error and receiving rewards (negative or positive) as feedback. | ✅ |
 
-### Building a Vanilla JavaScript Application
-https://huggingface.co/docs/transformers.js/tutorials/vanilla-js.md
+### Use custom models
+https://huggingface.co/docs/transformers.js/custom_usage.md

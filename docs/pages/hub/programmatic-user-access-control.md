@@ -601,5 +601,5 @@ Content-Type: application/json
 - **Body**
   - `accountType`: `"external"` to convert the member into an external collaborator, or `"member"` to convert them back.
 
-### Datasets
-https://huggingface.co/docs/hub/enterprise-datasets.md
+### Dataset Cards
+https://huggingface.co/docs/hub/datasets-cards.md

@@ -123,5 +123,5 @@ one or more of the following variants:
 - `torch-tpu`
 - `torch-xpu`
 
-### Develop kernels with agents
-https://huggingface.co/docs/kernels/main/builder/agents-guide.md
+### Why Nix?
+https://huggingface.co/docs/kernels/main/builder/why-nix.md

@@ -52,5 +52,5 @@ You can also utilize Tabby extensions in other IDEs, such as [JetBrains](https:/
 
 If you have improvement suggestions or need specific support, please join [Tabby Slack community](https://join.slack.com/t/tabbycommunity/shared_invite/zt-1xeiddizp-bciR2RtFTaJ37RBxr8VxpA) or reach out on [Tabby’s GitHub repository](https://github.com/TabbyML/tabby).
 
-### Configure the Dataset Viewer
-https://huggingface.co/docs/hub/datasets-viewer-configure.md
+### Using RL-Baselines3-Zoo at Hugging Face
+https://huggingface.co/docs/hub/rl-baselines3-zoo.md

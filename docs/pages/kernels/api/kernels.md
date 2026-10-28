@@ -283,5 +283,5 @@ The following fields are available:
 - `repo_id` (`str`): the Hub repository containing the kernel.
 - `revision` (`Oid`): the commit of the kernel.
 
-### Layers API Reference
-https://huggingface.co/docs/kernels/main/api/layers.md
+### Set up your IDE
+https://huggingface.co/docs/kernels/main/builder/ide-setup.md

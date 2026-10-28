@@ -132,5 +132,5 @@ Every time you go through the `add`-`commit`-`push` cycle, the repo will keep tr
 
 You can click on an individual commit to see what changes that commit introduced:
 
-### Using GPU Spaces
-https://huggingface.co/docs/hub/spaces-gpus.md
+### Adding a Sign-In with HF button to your Space
+https://huggingface.co/docs/hub/spaces-oauth.md

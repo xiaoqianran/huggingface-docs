@@ -79,6 +79,3 @@ these builds from slipping by unnoticed:
   `README.md` (built from `CARD.md`) naming those variants.
 - The `kernels` loader emits a warning when a kernel variant it loads was
   built from a dirty tree.
-
-### Develop locally
-https://huggingface.co/docs/kernels/main/builder/local-dev.md

@@ -205,5 +205,5 @@ You can also disable loading of remote models by setting `env.allowRemoteModels`
 env.allowRemoteModels = false;
 ```
 
-### Building a browser extension
-https://huggingface.co/docs/transformers.js/tutorials/browser-extension.md
+### Building a Next.js AI Chatbot with Vercel AI SDK
+https://huggingface.co/docs/transformers.js/tutorials/next-ai-sdk.md

@@ -154,5 +154,5 @@ console.log(result);
 // { '<MORE_DETAILED_CAPTION>': 'A green car is parked in front of a tan building. The building has a brown door and two brown windows. The car is a two door and the door is closed. The green car has black tires.' }
 ```
 
-### models
-https://huggingface.co/docs/transformers.js/api/models.md
+### Using Transformers.js with the Vercel AI SDK
+https://huggingface.co/docs/transformers.js/integrations/vercel-ai-sdk.md

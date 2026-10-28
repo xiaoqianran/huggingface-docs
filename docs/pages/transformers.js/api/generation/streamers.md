@@ -104,5 +104,5 @@ Callback functions are invoked when each of the following events occur:
 
 - `value` (`bigint[][]`)
 
-### generation/logits_process
-https://huggingface.co/docs/transformers.js/api/generation/logits_process.md
+### generation/configuration_utils
+https://huggingface.co/docs/transformers.js/api/generation/configuration_utils.md

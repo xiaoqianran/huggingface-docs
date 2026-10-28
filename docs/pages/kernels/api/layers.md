@@ -901,3 +901,6 @@ Repository and name of a layer.
 
 In contrast to `LayerRepository`, this class uses repositories that
 are locked inside a project.
+
+### Kernels API Reference
+https://huggingface.co/docs/kernels/main/api/kernels.md

@@ -115,5 +115,5 @@ User lifecycle is managed from your IdP:
 - **Deactivating** a user in your IdP removes them from the organization. If the same user is reactivated later, their existing managed account is reused.
 - **Deleting** a user via SCIM permanently deletes their managed account. See [Deprovisioning](./enterprise-scim#deprovisioning).
 
-### Hub Local Cache
-https://huggingface.co/docs/hub/local-cache.md
+### Secrets Scanning
+https://huggingface.co/docs/hub/security-secrets.md

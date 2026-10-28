@@ -16,5 +16,5 @@ console.log(env.backends.onnx);
 
 _Type:_ `InferenceSession.ExecutionProviderConfig`
 
-### Using Transformers.js with the Vercel AI SDK
-https://huggingface.co/docs/transformers.js/integrations/vercel-ai-sdk.md
+### utils/tensor
+https://huggingface.co/docs/transformers.js/api/utils/tensor.md

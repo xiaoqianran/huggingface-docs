@@ -934,7 +934,6 @@ https://huggingface.co/docs/inference-providers/integrations/pi.md
 https://huggingface.co/docs/inference-providers/integrations/visionagents.md
 https://huggingface.co/docs/inference-providers/integrations/vscode.md
 https://huggingface.co/docs/inference-providers/pricing.md
-https://huggingface.co/docs/inference-providers/register-as-a-provider.md
 https://huggingface.co/docs/inference-providers/security.md
 https://huggingface.co/docs/inference-providers/tasks/index.md
 https://huggingface.co/docs/kernels/api/kernels.md

@@ -22,5 +22,5 @@ then [Publisher Analytics](./publisher-analytics), and in particular the [granul
 
 These are provided as raw logs, since most organizations will want to apply their own custom rules.
 
-### Using mlx-image at Hugging Face
-https://huggingface.co/docs/hub/mlx-image.md
+### Appendix
+https://huggingface.co/docs/hub/model-card-appendix.md

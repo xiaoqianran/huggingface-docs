@@ -236,5 +236,5 @@ Because tool calls happen in-process rather than over HTTP, there is no network 
 - [llama.cpp Guide](./gguf-llamacpp) — Detailed llama.cpp installation and usage
 - [Agents on the Hub](./agents-overview) — Connect agents to the Hugging Face ecosystem
 
-### Gating Group Collections
-https://huggingface.co/docs/hub/enterprise-gating-group-collections.md
+### How to configure OIDC SSO with Okta
+https://huggingface.co/docs/hub/security-sso-okta-oidc.md

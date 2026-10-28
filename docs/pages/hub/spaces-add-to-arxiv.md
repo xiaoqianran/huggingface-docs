@@ -53,5 +53,5 @@ An alternative approach can be used to link Spaces to papers by linking an inter
 
 Your Space should appear in the Demo tab next to the paper on ArXiv in a few minutes 🤗
 
-### Using Asteroid at Hugging Face
-https://huggingface.co/docs/hub/asteroid.md
+### Hugging Face Hub documentation
+https://huggingface.co/docs/hub/index.md

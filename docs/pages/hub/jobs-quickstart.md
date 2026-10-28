@@ -133,5 +133,5 @@ Build on this example with a larger workload:
 - [Run commands in Docker images](./jobs-configuration#docker-jobs).
 - [Use Jobs from a coding agent](./jobs-examples#coding-agent-skills).
 
-### GGUF usage with LM Studio
-https://huggingface.co/docs/hub/lmstudio.md
+### Optimizations
+https://huggingface.co/docs/hub/datasets-polars-optimizations.md

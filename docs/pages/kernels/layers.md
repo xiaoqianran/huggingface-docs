@@ -456,5 +456,5 @@ kernelized.funcs
 # {('layers.0.attn', 'apply_rotary_pos_emb'): KernelizedFunc(module=..., repo=FuncRepository(...))}
 ```
 
-### Environment variables
-https://huggingface.co/docs/kernels/main/env.md
+### kernels download
+https://huggingface.co/docs/kernels/main/cli-download.md

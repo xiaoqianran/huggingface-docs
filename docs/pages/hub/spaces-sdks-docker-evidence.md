@@ -53,5 +53,5 @@ Check out the docs for [alternative install methods](https://docs.evidence.dev/g
 - [Slack Community](https://slack.evidence.dev/)
 - [Evidence Home Page](https://www.evidence.dev)
 
-### Evaluation Results
-https://huggingface.co/docs/hub/eval-results.md
+### Downloading models
+https://huggingface.co/docs/hub/models-downloading.md

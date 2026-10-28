@@ -8,9 +8,11 @@
 You can list the IP addresses of your organization's outbound traffic to enforce authenticated access to Hugging Face from your corporate network.
 The outbound IP address ranges are defined in CIDR format. For example, `52.219.168.0/24` or `2600:1f69:7400::/40`.
 
-You can set multiple ranges, one per line. 
+You can add multiple ranges at once by entering them separated by spaces or new lines. Each range is then listed individually, and you can remove any range from the list.
 
 Once organization admins populate the “Organization IP Ranges” in the Network Security settings, a manual verification—carried out jointly by Hugging Face Solution Engineers and the organization’s admins—is required for the "Require login for users in your IP ranges" setting to become available.
+
+Each IP range in the list shows a status badge so you can see which ranges are currently applied or pending for validation.
 
 After the “Organization IP Ranges” have been manually verified, and the organization admins have enabled both “Restrict organization access to your IP ranges only” and “Require login for users in your IP ranges”, the following flow applies:
 - When a user arrives on the platform, their IP address is checked.
@@ -62,5 +64,5 @@ You can read and update your organization's network security settings programmat
 - GET /api/organizations//settings/network-security
 - PATCH /api/organizations//settings/network-security
 
-### File names and splits
-https://huggingface.co/docs/hub/datasets-file-names-and-splits.md
+### fenic
+https://huggingface.co/docs/hub/datasets-fenic.md

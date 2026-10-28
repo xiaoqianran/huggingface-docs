@@ -327,5 +327,5 @@ _Type:_ `string` | [`BatchEncodingItem`](./tokenizers#module_tokenizers.BatchEnc
 
 **Returns:** [`BatchEncoding`](./tokenizers#module_tokenizers.BatchEncoding)<[`BatchEncodingItem`](./tokenizers#module_tokenizers.BatchEncodingItem)<`string` | `string[]`, `boolean`>>
 
-### transformers
-https://huggingface.co/docs/transformers.js/api/transformers.md
+### env
+https://huggingface.co/docs/transformers.js/api/env.md

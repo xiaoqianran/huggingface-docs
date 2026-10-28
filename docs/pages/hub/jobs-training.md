@@ -207,5 +207,5 @@ This finishes in about five minutes and pushes the LoRA. Raise `--max_train_step
 - [Examples & Tutorials](./jobs-examples) for community write-ups, including vision-language fine-tuning and streaming large datasets into a training run.
 - [Use Jobs from a coding agent](./jobs-examples#coding-agent-skills): the `hf` CLI skill lets Claude Code, Codex and Cursor launch and watch these runs for you.
 
-### Spaces as API endpoints
-https://huggingface.co/docs/hub/spaces-api-endpoints.md
+### Signing commits with GPG
+https://huggingface.co/docs/hub/security-gpg.md

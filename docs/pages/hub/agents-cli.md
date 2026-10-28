@@ -41,5 +41,5 @@ claude
 - [Token Settings](https://huggingface.co/settings/tokens) - Manage your tokens
 - [Jobs Documentation](https://huggingface.co/docs/huggingface_hub/guides/cli#hf-jobs) - Compute jobs guide
 
-### Skills
-https://huggingface.co/docs/hub/agents-skills.md
+### Quickstart
+https://huggingface.co/docs/hub/jobs-quickstart.md

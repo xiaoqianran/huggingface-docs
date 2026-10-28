@@ -113,5 +113,5 @@ Device-specific configuration options.
 
 _Type:_ `Omit<TransformersJSConfig, 'device' | 'device_config'>`
 
-### env
-https://huggingface.co/docs/transformers.js/api/env.md
+### transformers
+https://huggingface.co/docs/transformers.js/api/transformers.md

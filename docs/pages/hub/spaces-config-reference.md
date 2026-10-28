@@ -143,5 +143,5 @@ In this example, the Space will preload specific .safetensors files from `warp-a
 > [!NOTE]
 > Preloading of private repos is not supported yet.
 
-### Repository Settings
-https://huggingface.co/docs/hub/repositories-settings.md
+### GitHub Actions
+https://huggingface.co/docs/hub/repositories-github-actions.md

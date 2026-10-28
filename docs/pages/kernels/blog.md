@@ -14,5 +14,5 @@ Hugging Face blog:
 
 This page will be kept updated.
 
-### Installation
-https://huggingface.co/docs/kernels/main/installation.md
+### kernels cache ls
+https://huggingface.co/docs/kernels/main/cli-cache.md

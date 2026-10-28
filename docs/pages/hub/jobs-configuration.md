@@ -525,5 +525,5 @@ hf jobs labels <job_id> --name daily-report
 hf jobs labels <job_id> --clear
 ```
 
-### Giskard on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-giskard.md
+### Migrating to Managed SSO
+https://huggingface.co/docs/hub/enterprise-managed-sso-migration.md

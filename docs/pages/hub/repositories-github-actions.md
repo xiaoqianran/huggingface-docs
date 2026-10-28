@@ -60,5 +60,5 @@ For more complex workflows (e.g. build steps, custom upload logic), you can inst
 
 For Spaces-specific guidance (file size limits, LFS handling), see [Managing Spaces with GitHub Actions](./spaces-github-actions).
 
-### Advanced Topics
-https://huggingface.co/docs/hub/spaces-advanced.md
+### Trusted Publishers
+https://huggingface.co/docs/hub/trusted-publishers.md

@@ -312,5 +312,5 @@ $$
 
 $$ E=mc^2 $$
 
-### Organization cards
-https://huggingface.co/docs/hub/organizations-cards.md
+### Using _Adapters_ at Hugging Face
+https://huggingface.co/docs/hub/adapters.md

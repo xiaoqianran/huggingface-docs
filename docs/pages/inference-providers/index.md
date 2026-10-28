@@ -533,7 +533,6 @@ Now that you understand the basics, explore these resources to make the most of 
 - **[Announcement Blog Post](https://huggingface.co/blog/inference-providers)**: Learn more about the launch of Inference Providers
 - **[Pricing and Billing](./pricing)**: Understand costs and billing of Inference Providers
 - **[Hub Integration](./hub-integration)**: Learn how Inference Providers are integrated with the Hugging Face Hub
-- **[Register as a Provider](./register-as-a-provider)**: Requirements to join our partner network as a provider
 - **[Hub API](./hub-api)**: Advanced API features and configuration
 - **[API Reference](./tasks/index)**: Complete parameter documentation for all supported tasks
 
@@ -1248,7 +1247,7 @@ Find out more about Image Segmentation [here](../tasks/image-segmentation).
 
 <InferenceSnippet
     pipeline=image-segmentation
-    providersMapping={ {"hf-inference":{"modelId":"nvidia/segformer-b4-finetuned-ade-512-512","providerModelId":"nvidia/segformer-b4-finetuned-ade-512-512"} } }
+    providersMapping={ {"hf-inference":{"modelId":"nvidia/segformer-b5-finetuned-ade-640-640","providerModelId":"nvidia/segformer-b5-finetuned-ade-640-640"} } }
 />
 
 ### Object Detection
@@ -1311,7 +1310,7 @@ Find out more about Token Classification [here](../tasks/token-classification).
 
 <InferenceSnippet
     pipeline=token-classification
-    providersMapping={ {"hf-inference":{"modelId":"w11wo/indonesian-roberta-base-posp-tagger","providerModelId":"w11wo/indonesian-roberta-base-posp-tagger"} } }
+    providersMapping={ {"hf-inference":{"modelId":"dslim/bert-base-NER","providerModelId":"dslim/bert-base-NER"} } }
 />
 
 ### Translation

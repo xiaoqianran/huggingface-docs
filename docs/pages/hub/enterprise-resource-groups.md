@@ -33,5 +33,5 @@ This Team & Enterprise feature helps organizations manage complex team structure
 
 [Getting started with Resource Groups →](./security-resource-groups)
 
-### Distilabel
-https://huggingface.co/docs/hub/datasets-distilabel.md
+### Service Accounts
+https://huggingface.co/docs/hub/enterprise-service-accounts.md

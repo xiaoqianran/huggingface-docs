@@ -349,5 +349,5 @@ widget:
   example_title: "Wine"
 ```
 
-### Spaces ZeroGPU: Dynamic GPU Allocation for Spaces
-https://huggingface.co/docs/hub/spaces-zerogpu.md
+### Session Traces Format
+https://huggingface.co/docs/hub/session-traces-format.md
