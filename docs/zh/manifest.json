@@ -2038,11 +2038,11 @@
       "failed": true
     }
   },
-  "updatedAt": "2026-10-27T13:07:24.784Z",
+  "updatedAt": "2026-10-28T14:05:58.767Z",
   "stats": {
     "translated": 0,
-    "skipped": 395,
-    "failed": 5,
+    "skipped": 128,
+    "failed": 272,
     "total": 400
   }
 }
