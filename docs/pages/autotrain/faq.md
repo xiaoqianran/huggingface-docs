@@ -111,5 +111,5 @@ data:
 
 ```
 
-### Quickstart with Python
-https://huggingface.co/docs/autotrain/main/quickstart_py.md
+### AutoTrain Configs
+https://huggingface.co/docs/autotrain/main/config.md

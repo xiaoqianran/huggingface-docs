@@ -61,9 +61,11 @@ Your CSV/JSONL dataset must have two columns: `tokens` and `tags`.
 
 #### autotrain.trainers.token_classification.params.TokenClassificationParams[[autotrain.trainers.token_classification.params.TokenClassificationParams]]
 
-[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/token_classification/params.py#L8)
+```python
+autotrain.trainers.token_classification.params.TokenClassificationParams(data_path: str = None, model: str = 'bert-base-uncased', lr: float = 5e-05, epochs: int = 3, max_seq_length: int = 128, batch_size: int = 8, warmup_ratio: float = 0.1, gradient_accumulation: int = 1, optimizer: str = 'adamw_torch', scheduler: str = 'linear', weight_decay: float = 0.0, max_grad_norm: float = 1.0, seed: int = 42, train_split: str = 'train', valid_split: typing.Optional[str] = None, tokens_column: str = 'tokens', tags_column: str = 'tags', logging_steps: int = -1, project_name: str = 'project-name', auto_find_batch_size: bool = False, mixed_precision: typing.Optional[str] = None, save_total_limit: int = 1, token: typing.Optional[str] = None, push_to_hub: bool = False, eval_strategy: str = 'epoch', username: typing.Optional[str] = None, log: str = 'none', early_stopping_patience: int = 5, early_stopping_threshold: float = 0.01)
+```
 
-TokenClassificationParams is a configuration class for token classification training parameters.
+[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/token_classification/params.py#L8)
 
 **Parameters:**
 
@@ -124,6 +126,8 @@ log (str) : Logging method for experiment tracking. Default is "none".
 early_stopping_patience (int) : Patience for early stopping. Default is 5.
 
 early_stopping_threshold (float) : Threshold for early stopping. Default is 0.01.
+
+TokenClassificationParams is a configuration class for token classification training parameters.
 
 ### Text Classification & Regression
 https://huggingface.co/docs/autotrain/main/tasks/text_classification_regression.md

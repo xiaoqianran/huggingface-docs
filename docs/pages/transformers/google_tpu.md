@@ -16,9 +16,9 @@ It prints `True` and the number of TPU chips, for example `True 4`.
 
 ## Run inference
 
-`device_map="auto"` doesn't detect TPUs. Automatic placement relies on [Accelerate](https://huggingface.co/docs/accelerate/index) to list the available devices, and Accelerate doesn't list TPU devices, so the model silently loads on CPU. Pass `device_map="tpu"` to [from_pretrained()](/docs/transformers/v5.21.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) explicitly, or `device="tpu"` to [Pipeline](/docs/transformers/v5.21.0/en/main_classes/pipelines#transformers.Pipeline).
+`device_map="auto"` doesn't detect TPUs. Automatic placement relies on [Accelerate](https://huggingface.co/docs/accelerate/index) to list the available devices, and Accelerate doesn't list TPU devices, so the model silently loads on CPU. Pass `device_map="tpu"` to [from_pretrained()](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) explicitly, or `device="tpu"` to [Pipeline](/docs/transformers/v5.21.1/en/main_classes/pipelines#transformers.Pipeline).
 
-Pass the generation inputs on CPU instead of calling `.to(model.device)`. [generate()](/docs/transformers/v5.21.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) moves only the tensors that `forward` consumes to the TPU. The tensors that grow each step (output sequence, `attention_mask`) stay on CPU, so the compiled graph stays stable. `generate` returns the output on the same device as the inputs. See [Keep generation tensors on CPU](./kv_cache#keep-generation-tensors-on-cpu) for more details. Models use SDPA by default on TPU.
+Pass the generation inputs on CPU instead of calling `.to(model.device)`. [generate()](/docs/transformers/v5.21.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) moves only the tensors that `forward` consumes to the TPU. The tensors that grow each step (output sequence, `attention_mask`) stay on CPU, so the compiled graph stays stable. `generate` returns the output on the same device as the inputs. See [Keep generation tensors on CPU](./kv_cache#keep-generation-tensors-on-cpu) for more details. Models use SDPA by default on TPU.
 
 ```py
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -40,11 +40,11 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
 The French Bread Law states that a farmer can sell their harvest of bread at a certain price. The price is determined by the market price and the price of the bread, and the price is set by the farmers' decision-making committee. What are the implications of this law on
 ```
 
-With a static cache, [generate()](/docs/transformers/v5.21.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) compiles the forward pass with `torch.compile` and the `tpu` backend automatically. Pass `disable_compile=True` to `generate` to opt out.
+With a static cache, [generate()](/docs/transformers/v5.21.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) compiles the forward pass with `torch.compile` and the `tpu` backend automatically. Pass `disable_compile=True` to `generate` to opt out.
 
 ### Tensor parallelism
 
-`torch_tpu` runs one process per TPU chip, and each process sees its chip as `tpu:0`. Create a [DistributedConfig](/docs/transformers/v5.21.0/en/expert_parallelism#transformers.DistributedConfig) with the tensor parallelism size and pass it to [from_pretrained()](/docs/transformers/v5.21.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). Transformers shards the model at load time.
+`torch_tpu` runs one process per TPU chip, and each process sees its chip as `tpu:0`. Create a [DistributedConfig](/docs/transformers/v5.21.1/en/expert_parallelism#transformers.DistributedConfig) with the tensor parallelism size and pass it to [from_pretrained()](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). Transformers shards the model at load time.
 
 ```py
 import torch
@@ -124,5 +124,5 @@ See [Loading kernels](./kernel_doc/loading_kernels) for how to load a kernel fro
 - Each process can only access one TPU chip. Use one process per chip to run on several chips.
 - Transformers integrations for training and quantization on TPU are still in progress, so some features might not work yet. Please [open an issue](https://github.com/huggingface/transformers/issues) if you run into a problem.
 
-### Mixed precision training
-https://huggingface.co/docs/transformers/v5.21.0/mixed_precision_training.md
+### Community
+https://huggingface.co/docs/transformers/v5.21.1/community.md

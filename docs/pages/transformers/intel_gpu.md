@@ -1,6 +1,6 @@
 # Intel GPU
 
-[TrainingArguments](/docs/transformers/v5.21.0/en/main_classes/trainer#transformers.TrainingArguments), [Trainer](/docs/transformers/v5.21.0/en/main_classes/trainer#transformers.Trainer), and [Pipeline](/docs/transformers/v5.21.0/en/main_classes/pipelines#transformers.Pipeline) detect Intel GPUs and set the backend to `xpu` automatically.
+[TrainingArguments](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.TrainingArguments), [Trainer](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.Trainer), and [Pipeline](/docs/transformers/v5.21.1/en/main_classes/pipelines#transformers.Pipeline) detect Intel GPUs and set the backend to `xpu` automatically.
 
 ## Select and order XPUs
 
@@ -31,5 +31,5 @@ export ZE_ENABLE_PCI_ID_DEVICE_ORDER=1
 
 For more on device enumeration and sorting on Intel XPU, see the [Level Zero](https://github.com/oneapi-src/level-zero/blob/master/README.md?plain=1#L87) documentation.
 
-### Model structure rules
-https://huggingface.co/docs/transformers/v5.21.0/modeling_rules.md
+### Pipeline
+https://huggingface.co/docs/transformers/v5.21.1/pipeline_tutorial.md

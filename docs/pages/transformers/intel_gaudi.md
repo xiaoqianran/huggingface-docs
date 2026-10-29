@@ -34,7 +34,7 @@ Run `hl-smi -Q index,module_id -f csv` to map device indices to module IDs. For 
 
 ## Run inference
 
-Pass `device_map="hpu"` to [from_pretrained()](/docs/transformers/v5.21.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). [pipeline()](/docs/transformers/v5.21.0/en/main_classes/pipelines#transformers.pipeline) picks Gaudi automatically when you don't pass `device`.
+Pass `device_map="hpu"` to [from_pretrained()](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). [pipeline()](/docs/transformers/v5.21.1/en/main_classes/pipelines#transformers.pipeline) picks Gaudi automatically when you don't pass `device`.
 
 ```py
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -55,7 +55,7 @@ To fine-tune a model that doesn't fit on one device, load it in 4-bit with bitsa
 
 ## Train with Trainer
 
-[TrainingArguments](/docs/transformers/v5.21.0/en/main_classes/trainer#transformers.TrainingArguments) detects Gaudi and sets the device to `hpu`, so `Trainer` trains on it without any device settings. All Gaudi generations support bf16.
+[TrainingArguments](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.TrainingArguments) detects Gaudi and sets the device to `hpu`, so `Trainer` trains on it without any device settings. All Gaudi generations support bf16.
 
 ```py
 from transformers import TrainingArguments
@@ -73,7 +73,7 @@ It prints an `hpu` device when `Trainer` will train on Gaudi.
 
 Transformers wraps `torch.compile` on Gaudi, so any call with a backend other than `hpu_backend` or `eager`, including a `@torch.compile` decorator in modeling code, switches to `hpu_backend` and logs a warning. The wrapper applies to every `torch.compile` call, for inference or training.
 
-To compile a model for training, set `torch_compile=True` in [TrainingArguments](/docs/transformers/v5.21.0/en/main_classes/trainer#transformers.TrainingArguments), which sets `torch_compile_backend` to `"hpu_backend"`.
+To compile a model for training, set `torch_compile=True` in [TrainingArguments](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.TrainingArguments), which sets `torch_compile_backend` to `"hpu_backend"`.
 
 ```py
 from transformers import TrainingArguments
@@ -108,5 +108,5 @@ accelerate launch train.py
 - Read the [Intel Gaudi documentation](https://docs.habana.ai/en/latest/index.html) for hardware details, the software stack, and the [Gaudi architecture](https://docs.habana.ai/en/latest/Gaudi_Overview/Gaudi_Architecture.html).
 - Try [Optimum for Intel Gaudi](https://huggingface.co/docs/optimum-habana/index) for Gaudi-optimized model implementations for training and inference.
 
-### Customizing model components
-https://huggingface.co/docs/transformers/v5.21.0/how_to_hack_models.md
+### Multimodal processors
+https://huggingface.co/docs/transformers/v5.21.1/multimodal_processing.md

@@ -46,9 +46,11 @@ Your CSV dataset must have two columns: `id` and `target`.
 
 #### autotrain.trainers.tabular.params.TabularParams[[autotrain.trainers.tabular.params.TabularParams]]
 
-[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/tabular/params.py#L8)
+```python
+autotrain.trainers.tabular.params.TabularParams(data_path: str = None, model: str = 'xgboost', username: typing.Optional[str] = None, seed: int = 42, train_split: str = 'train', valid_split: typing.Optional[str] = None, project_name: str = 'project-name', token: typing.Optional[str] = None, push_to_hub: bool = False, id_column: str = 'id', target_columns: typing.Union[typing.List[str], str] = ['target'], categorical_columns: typing.Optional[typing.List[str]] = None, numerical_columns: typing.Optional[typing.List[str]] = None, task: str = 'classification', num_trials: int = 10, time_limit: int = 600, categorical_imputer: typing.Optional[str] = None, numerical_imputer: typing.Optional[str] = None, numeric_scaler: typing.Optional[str] = None)
+```
 
-TabularParams is a configuration class for tabular data training parameters.
+[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/tabular/params.py#L8)
 
 **Parameters:**
 
@@ -90,5 +92,7 @@ numerical_imputer (Optional[str]) : Imputer strategy for numerical columns.
 
 numeric_scaler (Optional[str]) : Scaler strategy for numerical columns.
 
-### Seq2Seq
-https://huggingface.co/docs/autotrain/main/tasks/seq2seq.md
+TabularParams is a configuration class for tabular data training parameters.
+
+### Token Classification
+https://huggingface.co/docs/autotrain/main/tasks/token_classification.md

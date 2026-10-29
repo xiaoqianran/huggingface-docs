@@ -9,7 +9,7 @@ You can find the original Mimi checkpoints under the [Kyutai](https://huggingfac
 >
 > Click on the Mimi models in the right sidebar for more examples of how to apply Mimi.
 
-The example below demonstrates how to encode and decode audio with the [AutoModel](/docs/transformers/v5.21.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to encode and decode audio with the [AutoModel](/docs/transformers/v5.21.1/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from datasets import Audio, load_dataset
@@ -41,7 +41,7 @@ audio_values = model(inputs["input_values"], inputs["padding_mask"]).audio_value
 transformers.MimiConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, sampling_rate: int = 24000, audio_channels: int = 1, hidden_size: int = 512, num_filters: int = 64, num_residual_layers: int = 1, upsampling_ratios: list[int] | None = None, kernel_size: int = 7, last_kernel_size: int = 3, residual_kernel_size: int = 3, dilation_growth_rate: int = 2, use_causal_conv: bool = True, pad_mode: str = 'constant', compress: int = 2, trim_right_ratio: float = 1.0, codebook_size: int = 2048, codebook_dim: int = 256, num_quantizers: int = 32, use_conv_shortcut: bool = False, vector_quantization_hidden_dimension: int = 256, num_semantic_quantizers: int = 1, upsample_groups: int = 512, num_hidden_layers: int = 8, intermediate_size: int = 2048, num_attention_heads: int = 8, num_key_value_heads: int = 8, head_dim: int | None = None, hidden_act: str = 'gelu', max_position_embeddings: int = 8000, initializer_range: float = 0.02, norm_eps: float = 1e-05, use_cache: bool = False, use_streaming: bool = False, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, sliding_window: int = 250, attention_dropout: float | int = 0.0, layer_scale_initial_scale: float = 0.01, attention_bias: bool = False, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/models/mimi/configuration_mimi.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/mimi/configuration_mimi.py#L28)
 
 **Parameters:**
 
@@ -125,8 +125,8 @@ This is the configuration class to store the configuration of a MimiModel. It is
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [kyutai/mimi](https://huggingface.co/kyutai/mimi)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.21.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.21.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -151,10 +151,10 @@ Example:
 transformers.MimiEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, sampling_rate: int = 24000, audio_channels: int = 1, hidden_size: int = 512, num_filters: int = 64, num_residual_layers: int = 1, upsampling_ratios: list[int] | None = None, kernel_size: int = 7, last_kernel_size: int = 3, residual_kernel_size: int = 3, dilation_growth_rate: int = 2, use_causal_conv: bool = True, pad_mode: str = 'constant', compress: int = 2, trim_right_ratio: float = 1.0, codebook_size: int = 2048, codebook_dim: int = 256, num_quantizers: int = 32, use_conv_shortcut: bool = False, vector_quantization_hidden_dimension: int = 256, num_semantic_quantizers: int = 1, upsample_groups: int = 512, num_hidden_layers: int = 8, intermediate_size: int = 2048, num_attention_heads: int = 8, num_key_value_heads: int = 8, head_dim: int | None = None, hidden_act: str = 'gelu', max_position_embeddings: int = 8000, initializer_range: float = 0.02, norm_eps: float = 1e-05, use_cache: bool = False, use_streaming: bool = False, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, sliding_window: int = 250, attention_dropout: float | int = 0.0, layer_scale_initial_scale: float = 0.01, attention_bias: bool = False, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/models/mimi/configuration_mimi.py#L249)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/mimi/configuration_mimi.py#L249)
 
 Configuration of the encoder half of Mimi (SEANet encoder, encoder transformer and downsampling). It shares every
-field with [MimiConfig](/docs/transformers/v5.21.0/en/model_doc/mimi#transformers.MimiConfig) (see its documentation for the arguments), so it can be loaded directly from a full Mimi
+field with [MimiConfig](/docs/transformers/v5.21.1/en/model_doc/mimi#transformers.MimiConfig) (see its documentation for the arguments), so it can be loaded directly from a full Mimi
 checkpoint.
 
 ## MimiDecoderConfig[[transformers.MimiDecoderConfig]]
@@ -165,10 +165,10 @@ checkpoint.
 transformers.MimiDecoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, sampling_rate: int = 24000, audio_channels: int = 1, hidden_size: int = 512, num_filters: int = 64, num_residual_layers: int = 1, upsampling_ratios: list[int] | None = None, kernel_size: int = 7, last_kernel_size: int = 3, residual_kernel_size: int = 3, dilation_growth_rate: int = 2, use_causal_conv: bool = True, pad_mode: str = 'constant', compress: int = 2, trim_right_ratio: float = 1.0, codebook_size: int = 2048, codebook_dim: int = 256, num_quantizers: int = 32, use_conv_shortcut: bool = False, vector_quantization_hidden_dimension: int = 256, num_semantic_quantizers: int = 1, upsample_groups: int = 512, num_hidden_layers: int = 8, intermediate_size: int = 2048, num_attention_heads: int = 8, num_key_value_heads: int = 8, head_dim: int | None = None, hidden_act: str = 'gelu', max_position_embeddings: int = 8000, initializer_range: float = 0.02, norm_eps: float = 1e-05, use_cache: bool = False, use_streaming: bool = False, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, sliding_window: int = 250, attention_dropout: float | int = 0.0, layer_scale_initial_scale: float = 0.01, attention_bias: bool = False, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/models/mimi/configuration_mimi.py#L277)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/mimi/configuration_mimi.py#L277)
 
 Configuration of the decoder half of Mimi (upsampling, decoder transformer and SEANet decoder). It shares every
-field with [MimiConfig](/docs/transformers/v5.21.0/en/model_doc/mimi#transformers.MimiConfig) (see its documentation for the arguments), so it can be loaded directly from a full Mimi
+field with [MimiConfig](/docs/transformers/v5.21.1/en/model_doc/mimi#transformers.MimiConfig) (see its documentation for the arguments), so it can be loaded directly from a full Mimi
 checkpoint.
 
 ## MimiModel[[transformers.MimiModel]]
@@ -179,15 +179,15 @@ checkpoint.
 transformers.MimiModel(config: MimiConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/models/mimi/modeling_mimi.py#L1346)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/mimi/modeling_mimi.py#L1346)
 
 **Parameters:**
 
-config ([MimiConfig](/docs/transformers/v5.21.0/en/model_doc/mimi#transformers.MimiConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.21.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MimiConfig](/docs/transformers/v5.21.1/en/model_doc/mimi#transformers.MimiConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Mimi neural audio codec model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.21.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -198,32 +198,32 @@ and behavior.
 #### decode[[transformers.MimiModel.decode]]
 
 ```python
-decode(audio_codes: Tensor, padding_mask: typing.Optional[torch.Tensor] = None, decoder_past_key_values: transformers.cache_utils.Cache | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+decode(audio_codes: <module 'torch.Tensor' (<doc_builder.mock_imports.MockFinder object at 0x7fef3bad2690>)>, padding_mask: typing.Optional[torch.Tensor] = None, decoder_past_key_values: transformers.cache_utils.Cache | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/models/mimi/modeling_mimi.py#L1430)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/mimi/modeling_mimi.py#L1430)
 
 Decodes the given frames into an output audio waveform: the codes are dequantized into the latents of
-[MimiDecoderModel.forward()](/docs/transformers/v5.21.0/en/model_doc/mimi#transformers.MimiDecoderModel.forward).
+[MimiDecoderModel.forward()](/docs/transformers/v5.21.1/en/model_doc/mimi#transformers.MimiDecoderModel.forward).
 
 #### encode[[transformers.MimiModel.encode]]
 
 ```python
-encode(input_values: Tensor, padding_mask: typing.Optional[torch.Tensor] = None, num_quantizers: float | None = None, encoder_past_key_values: transformers.cache_utils.Cache | None = None, padding_cache: transformers.models.mimi.modeling_mimi.MimiConv1dPaddingCache | None = None, use_streaming: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+encode(input_values: <module 'torch.Tensor' (<doc_builder.mock_imports.MockFinder object at 0x7fef3bad2690>)>, padding_mask: typing.Optional[torch.Tensor] = None, num_quantizers: float | None = None, encoder_past_key_values: transformers.cache_utils.Cache | None = None, padding_cache: transformers.models.mimi.modeling_mimi.MimiConv1dPaddingCache | None = None, use_streaming: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/models/mimi/modeling_mimi.py#L1394)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/mimi/modeling_mimi.py#L1394)
 
 Encodes the input audio waveform into discrete codes of shape `(batch_size, num_quantizers, frames)`: the
-latents of [MimiEncoderModel.forward()](/docs/transformers/v5.21.0/en/model_doc/mimi#transformers.MimiEncoderModel.forward), quantized.
+latents of [MimiEncoderModel.forward()](/docs/transformers/v5.21.1/en/model_doc/mimi#transformers.MimiEncoderModel.forward), quantized.
 
 #### forward[[transformers.MimiModel.forward]]
 
 ```python
-forward(input_values: Tensor, padding_mask: typing.Optional[torch.Tensor] = None, num_quantizers: int | None = None, audio_codes: typing.Optional[torch.Tensor] = None, encoder_past_key_values: transformers.cache_utils.Cache | None = None, decoder_past_key_values: transformers.cache_utils.Cache | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_values: <module 'torch.Tensor' (<doc_builder.mock_imports.MockFinder object at 0x7fef3bad2690>)>, padding_mask: typing.Optional[torch.Tensor] = None, num_quantizers: int | None = None, audio_codes: typing.Optional[torch.Tensor] = None, encoder_past_key_values: transformers.cache_utils.Cache | None = None, decoder_past_key_values: transformers.cache_utils.Cache | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/models/mimi/modeling_mimi.py#L1453)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/mimi/modeling_mimi.py#L1453)
 
 **Parameters:**
 
@@ -243,9 +243,9 @@ decoder_past_key_values (`Cache`, *optional*) : Pre-computed hidden-states (key 
 
 A `MimiOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MimiConfig](/docs/transformers/v5.21.0/en/model_doc/mimi#transformers.MimiConfig)) and inputs.
+elements depending on the configuration ([MimiConfig](/docs/transformers/v5.21.1/en/model_doc/mimi#transformers.MimiConfig)) and inputs.
 
-The [MimiModel](/docs/transformers/v5.21.0/en/model_doc/mimi#transformers.MimiModel) forward method, overrides the `__call__` special method.
+The [MimiModel](/docs/transformers/v5.21.1/en/model_doc/mimi#transformers.MimiModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -296,15 +296,15 @@ Examples:
 transformers.MimiEncoderModel(config: MimiEncoderConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/models/mimi/modeling_mimi.py#L1147)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/mimi/modeling_mimi.py#L1147)
 
 **Parameters:**
 
-config ([MimiEncoderConfig](/docs/transformers/v5.21.0/en/model_doc/mimi#transformers.MimiEncoderConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.21.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MimiEncoderConfig](/docs/transformers/v5.21.1/en/model_doc/mimi#transformers.MimiEncoderConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The encoder half of Mimi: SEANet encoder, encoder transformer and downsampling, from audio to continuous latents.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.21.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -315,10 +315,10 @@ and behavior.
 #### forward[[transformers.MimiEncoderModel.forward]]
 
 ```python
-forward(input_values: Tensor, padding_mask: typing.Optional[torch.Tensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, padding_cache: transformers.models.mimi.modeling_mimi.MimiConv1dPaddingCache | None = None, use_streaming: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_values: <module 'torch.Tensor' (<doc_builder.mock_imports.MockFinder object at 0x7fef3bad2690>)>, padding_mask: typing.Optional[torch.Tensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, padding_cache: transformers.models.mimi.modeling_mimi.MimiConv1dPaddingCache | None = None, use_streaming: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/models/mimi/modeling_mimi.py#L1208)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/mimi/modeling_mimi.py#L1208)
 
 **Parameters:**
 
@@ -338,9 +338,9 @@ Encodes the input audio waveform into continuous latents of shape `(batch_size, 
 
 A `MimiEncoderModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MimiConfig](/docs/transformers/v5.21.0/en/model_doc/mimi#transformers.MimiConfig)) and inputs.
+elements depending on the configuration ([MimiConfig](/docs/transformers/v5.21.1/en/model_doc/mimi#transformers.MimiConfig)) and inputs.
 
-The [MimiEncoderModel](/docs/transformers/v5.21.0/en/model_doc/mimi#transformers.MimiEncoderModel) forward method, overrides the `__call__` special method.
+The [MimiEncoderModel](/docs/transformers/v5.21.1/en/model_doc/mimi#transformers.MimiEncoderModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -361,15 +361,15 @@ the latter silently ignores them.
 transformers.MimiDecoderModel(config: MimiDecoderConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/models/mimi/modeling_mimi.py#L1279)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/mimi/modeling_mimi.py#L1279)
 
 **Parameters:**
 
-config ([MimiDecoderConfig](/docs/transformers/v5.21.0/en/model_doc/mimi#transformers.MimiDecoderConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.21.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MimiDecoderConfig](/docs/transformers/v5.21.1/en/model_doc/mimi#transformers.MimiDecoderConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The decoder half of Mimi: upsampling, decoder transformer and SEANet decoder, from continuous latents to audio.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.21.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -380,14 +380,14 @@ and behavior.
 #### forward[[transformers.MimiDecoderModel.forward]]
 
 ```python
-forward(latents: Tensor, padding_mask: typing.Optional[torch.Tensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(latents: <module 'torch.Tensor' (<doc_builder.mock_imports.MockFinder object at 0x7fef3bad2690>)>, padding_mask: typing.Optional[torch.Tensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/models/mimi/modeling_mimi.py#L1306)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/mimi/modeling_mimi.py#L1306)
 
 **Parameters:**
 
-latents (`torch.FloatTensor` of shape `(batch_size, hidden_size, frames)`) : Continuous latents to decode, as computed by [MimiModel.decode()](/docs/transformers/v5.21.0/en/model_doc/mimi#transformers.MimiModel.decode).
+latents (`torch.FloatTensor` of shape `(batch_size, hidden_size, frames)`) : Continuous latents to decode, as computed by [MimiModel.decode()](/docs/transformers/v5.21.1/en/model_doc/mimi#transformers.MimiModel.decode).
 
 padding_mask (`torch.Tensor` of shape `(batch_size, channels, sequence_length)`, *optional*) : Indicates which inputs are to be ignored due to padding, where elements are either 1 for *not masked* or 0 for *masked*.
 
@@ -401,9 +401,9 @@ input. In that case, any extra steps at the end can be trimmed. --
 
 A `MimiDecoderOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MimiConfig](/docs/transformers/v5.21.0/en/model_doc/mimi#transformers.MimiConfig)) and inputs.
+elements depending on the configuration ([MimiConfig](/docs/transformers/v5.21.1/en/model_doc/mimi#transformers.MimiConfig)) and inputs.
 
-The [MimiDecoderModel](/docs/transformers/v5.21.0/en/model_doc/mimi#transformers.MimiDecoderModel) forward method, overrides the `__call__` special method.
+The [MimiDecoderModel](/docs/transformers/v5.21.1/en/model_doc/mimi#transformers.MimiDecoderModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -420,5 +420,5 @@ the latter silently ignores them.
 - **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True`) -- Hidden states of the decoder transformer at the output of each layer plus its input.
 - **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True`) -- Attention weights of each decoder transformer layer.
 
-### RoFormer
-https://huggingface.co/docs/transformers/v5.21.0/model_doc/roformer.md
+### NeuCodec
+https://huggingface.co/docs/transformers/v5.21.1/model_doc/neucodec.md

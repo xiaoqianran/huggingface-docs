@@ -60,5 +60,5 @@ To get started with AutoTrain, check out our walkthroughs and tutorials:
 - [Finetune Mixtral 8x7B with AutoTrain](https://huggingface.co/blog/abhishek/autotrain-mixtral-dgx-cloud-local)
 - [Easily Train Models with H100 GPUs on NVIDIA DGX Cloud](https://huggingface.co/blog/train-dgx-cloud)
 
-### Quickstart Guide to AutoTrain on Hugging Face Spaces
-https://huggingface.co/docs/autotrain/main/quickstart_spaces.md
+### Understanding Column Mapping
+https://huggingface.co/docs/autotrain/main/col_map.md

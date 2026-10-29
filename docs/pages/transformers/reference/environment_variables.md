@@ -12,7 +12,7 @@ Caching and Hub access are configured by the `HF_*` variables [huggingface_hub](
 
 ## Logging
 
-Transformers logs at `warning`. [Logging](../main_classes/logging) documents the equivalent Python API, including [logging.set_verbosity()](/docs/transformers/v5.21.0/en/main_classes/logging#transformers.utils.logging.set_verbosity).
+Transformers logs at `warning`. [Logging](../main_classes/logging) documents the equivalent Python API, including [logging.set_verbosity()](/docs/transformers/v5.21.1/en/main_classes/logging#transformers.utils.logging.set_verbosity).
 
 | Variable | Values | Description |
 |---|---|---|
@@ -40,6 +40,3 @@ Optimized kernels are downloaded from the Hub when [kernels](https://github.com/
 
 > [!WARNING]
 > `TRANSFORMERS_DISABLE_TORCH_CHECK` removes a guard rather than changing behavior. On an unsupported PyTorch version you get import errors or silently wrong results instead of a clear message.
-
-### Video-text-to-text
-https://huggingface.co/docs/transformers/v5.21.0/tasks/video_text_to_text.md

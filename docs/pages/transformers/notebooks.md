@@ -96,5 +96,5 @@ You can open any page of the documentation as a notebook in Colab (there is a bu
 
 More notebooks developed by the community are available [here](https://hf.co/docs/transformers/community#community-notebooks).
 
-### Paged attention
-https://huggingface.co/docs/transformers/v5.21.0/paged_attention.md
+### Web server inference
+https://huggingface.co/docs/transformers/v5.21.1/pipeline_webserver.md

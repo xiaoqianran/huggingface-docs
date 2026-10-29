@@ -37,5 +37,5 @@ By offering both free and flexible paid options, AutoTrain ensures that users ca
 the most suitable model training solution for their needs, whether they are experimenting 
 on a local machine or scaling up operations on Hugging Face Spaces.
 
-### Understanding Column Mapping
-https://huggingface.co/docs/autotrain/main/col_map.md
+### Quickstart with Python
+https://huggingface.co/docs/autotrain/main/quickstart_py.md

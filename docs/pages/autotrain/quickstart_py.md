@@ -62,8 +62,8 @@ The final model will be pushed to the Hugging Face Hub after training.
 To train the model, run the following command:
 
 ```bash
-$ export HF_USERNAME=
-$ export HF_TOKEN=
+$ export HF_USERNAME=<your-hf-username>
+$ export HF_TOKEN=REDACTED
 $ python train.py
 ```
 
@@ -75,6 +75,10 @@ Your HF_TOKEN and HF_USERNAME are only required if you want to push the model or
 ## AutoTrainProject Class[[autotrain.project.AutoTrainProject]]
 
 #### autotrain.project.AutoTrainProject[[autotrain.project.AutoTrainProject]]
+
+```python
+autotrain.project.AutoTrainProject(params: typing.Union[autotrain.trainers.clm.params.LLMTrainingParams, autotrain.trainers.text_classification.params.TextClassificationParams, autotrain.trainers.tabular.params.TabularParams, autotrain.trainers.seq2seq.params.Seq2SeqParams, autotrain.trainers.image_classification.params.ImageClassificationParams, autotrain.trainers.text_regression.params.TextRegressionParams, autotrain.trainers.object_detection.params.ObjectDetectionParams, autotrain.trainers.token_classification.params.TokenClassificationParams, autotrain.trainers.sent_transformers.params.SentenceTransformersParams, autotrain.trainers.image_regression.params.ImageRegressionParams, autotrain.trainers.extractive_question_answering.params.ExtractiveQuestionAnsweringParams, autotrain.trainers.vlm.params.VLMTrainingParams], backend: str, process: bool = False)
+```
 
 [Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/project.py#L444)
 
@@ -130,9 +134,11 @@ Creates a runner based on the backend and initializes the AutoTrain project.
 
 #### autotrain.trainers.clm.params.LLMTrainingParams[[autotrain.trainers.clm.params.LLMTrainingParams]]
 
-[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/clm/params.py#L8)
+```python
+autotrain.trainers.clm.params.LLMTrainingParams(model: str = 'gpt2', project_name: str = 'project-name', data_path: str = 'data', train_split: str = 'train', valid_split: typing.Optional[str] = None, add_eos_token: bool = True, block_size: typing.Union[int, typing.List[int]] = -1, model_max_length: int = 2048, padding: typing.Optional[str] = 'right', trainer: str = 'default', use_flash_attention_2: bool = False, log: str = 'none', disable_gradient_checkpointing: bool = False, logging_steps: int = -1, eval_strategy: str = 'epoch', save_total_limit: int = 1, auto_find_batch_size: bool = False, mixed_precision: typing.Optional[str] = None, lr: float = 3e-05, epochs: int = 1, batch_size: int = 2, warmup_ratio: float = 0.1, gradient_accumulation: int = 4, optimizer: str = 'adamw_torch', scheduler: str = 'linear', weight_decay: float = 0.0, max_grad_norm: float = 1.0, seed: int = 42, chat_template: typing.Optional[str] = None, quantization: typing.Optional[str] = 'int4', target_modules: typing.Optional[str] = 'all-linear', merge_adapter: bool = False, peft: bool = False, lora_r: int = 16, lora_alpha: int = 32, lora_dropout: float = 0.05, model_ref: typing.Optional[str] = None, dpo_beta: float = 0.1, max_prompt_length: int = 128, max_completion_length: typing.Optional[int] = None, prompt_text_column: typing.Optional[str] = None, text_column: str = 'text', rejected_text_column: typing.Optional[str] = None, push_to_hub: bool = False, username: typing.Optional[str] = None, token: typing.Optional[str] = None, unsloth: bool = False, distributed_backend: typing.Optional[str] = None)
+```
 
-LLMTrainingParams: Parameters for training a language model using the autotrain library.
+[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/clm/params.py#L8)
 
 **Parameters:**
 
@@ -232,11 +238,15 @@ unsloth (bool) : Whether to use the unsloth library. Default is False.
 
 distributed_backend (Optional[str]) : Backend to use for distributed training. Default is None.
 
+LLMTrainingParams: Parameters for training a language model using the autotrain library.
+
 #### autotrain.trainers.sent_transformers.params.SentenceTransformersParams[[autotrain.trainers.sent_transformers.params.SentenceTransformersParams]]
 
-[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/sent_transformers/params.py#L8)
+```python
+autotrain.trainers.sent_transformers.params.SentenceTransformersParams(data_path: str = None, model: str = 'microsoft/mpnet-base', lr: float = 3e-05, epochs: int = 3, max_seq_length: int = 128, batch_size: int = 8, warmup_ratio: float = 0.1, gradient_accumulation: int = 1, optimizer: str = 'adamw_torch', scheduler: str = 'linear', weight_decay: float = 0.0, max_grad_norm: float = 1.0, seed: int = 42, train_split: str = 'train', valid_split: typing.Optional[str] = None, logging_steps: int = -1, project_name: str = 'project-name', auto_find_batch_size: bool = False, mixed_precision: typing.Optional[str] = None, save_total_limit: int = 1, token: typing.Optional[str] = None, push_to_hub: bool = False, eval_strategy: str = 'epoch', username: typing.Optional[str] = None, log: str = 'none', early_stopping_patience: int = 5, early_stopping_threshold: float = 0.01, trainer: str = 'pair_score', sentence1_column: str = 'sentence1', sentence2_column: str = 'sentence2', sentence3_column: typing.Optional[str] = None, target_column: typing.Optional[str] = None)
+```
 
-SentenceTransformersParams is a configuration class for setting up parameters for training sentence transformers.
+[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/sent_transformers/params.py#L8)
 
 **Parameters:**
 
@@ -304,11 +314,15 @@ sentence3_column (Optional[str]) : Name of the column containing the third sente
 
 target_column (Optional[str]) : Name of the column containing the target variable. Default is None.
 
+SentenceTransformersParams is a configuration class for setting up parameters for training sentence transformers.
+
 #### autotrain.trainers.seq2seq.params.Seq2SeqParams[[autotrain.trainers.seq2seq.params.Seq2SeqParams]]
 
-[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/seq2seq/params.py#L8)
+```python
+autotrain.trainers.seq2seq.params.Seq2SeqParams(data_path: str = None, model: str = 'google/flan-t5-base', username: typing.Optional[str] = None, seed: int = 42, train_split: str = 'train', valid_split: typing.Optional[str] = None, project_name: str = 'project-name', token: typing.Optional[str] = None, push_to_hub: bool = False, text_column: str = 'text', target_column: str = 'target', lr: float = 5e-05, epochs: int = 3, max_seq_length: int = 128, max_target_length: int = 128, batch_size: int = 2, warmup_ratio: float = 0.1, gradient_accumulation: int = 1, optimizer: str = 'adamw_torch', scheduler: str = 'linear', weight_decay: float = 0.0, max_grad_norm: float = 1.0, logging_steps: int = -1, eval_strategy: str = 'epoch', auto_find_batch_size: bool = False, mixed_precision: typing.Optional[str] = None, save_total_limit: int = 1, peft: bool = False, quantization: typing.Optional[str] = 'int8', lora_r: int = 16, lora_alpha: int = 32, lora_dropout: float = 0.05, target_modules: str = 'all-linear', log: str = 'none', early_stopping_patience: int = 5, early_stopping_threshold: float = 0.01)
+```
 
-Seq2SeqParams is a configuration class for sequence-to-sequence training parameters.
+[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/seq2seq/params.py#L8)
 
 **Parameters:**
 
@@ -384,11 +398,15 @@ early_stopping_patience (int) : Patience for early stopping. Default is 5.
 
 early_stopping_threshold (float) : Threshold for early stopping. Default is 0.01.
 
+Seq2SeqParams is a configuration class for sequence-to-sequence training parameters.
+
 #### autotrain.trainers.token_classification.params.TokenClassificationParams[[autotrain.trainers.token_classification.params.TokenClassificationParams]]
 
-[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/token_classification/params.py#L8)
+```python
+autotrain.trainers.token_classification.params.TokenClassificationParams(data_path: str = None, model: str = 'bert-base-uncased', lr: float = 5e-05, epochs: int = 3, max_seq_length: int = 128, batch_size: int = 8, warmup_ratio: float = 0.1, gradient_accumulation: int = 1, optimizer: str = 'adamw_torch', scheduler: str = 'linear', weight_decay: float = 0.0, max_grad_norm: float = 1.0, seed: int = 42, train_split: str = 'train', valid_split: typing.Optional[str] = None, tokens_column: str = 'tokens', tags_column: str = 'tags', logging_steps: int = -1, project_name: str = 'project-name', auto_find_batch_size: bool = False, mixed_precision: typing.Optional[str] = None, save_total_limit: int = 1, token: typing.Optional[str] = None, push_to_hub: bool = False, eval_strategy: str = 'epoch', username: typing.Optional[str] = None, log: str = 'none', early_stopping_patience: int = 5, early_stopping_threshold: float = 0.01)
+```
 
-TokenClassificationParams is a configuration class for token classification training parameters.
+[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/token_classification/params.py#L8)
 
 **Parameters:**
 
@@ -450,11 +468,15 @@ early_stopping_patience (int) : Patience for early stopping. Default is 5.
 
 early_stopping_threshold (float) : Threshold for early stopping. Default is 0.01.
 
+TokenClassificationParams is a configuration class for token classification training parameters.
+
 #### autotrain.trainers.extractive_question_answering.params.ExtractiveQuestionAnsweringParams[[autotrain.trainers.extractive_question_answering.params.ExtractiveQuestionAnsweringParams]]
 
-[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/extractive_question_answering/params.py#L8)
+```python
+autotrain.trainers.extractive_question_answering.params.ExtractiveQuestionAnsweringParams(data_path: str = None, model: str = 'bert-base-uncased', lr: float = 5e-05, epochs: int = 3, max_seq_length: int = 128, max_doc_stride: int = 128, batch_size: int = 8, warmup_ratio: float = 0.1, gradient_accumulation: int = 1, optimizer: str = 'adamw_torch', scheduler: str = 'linear', weight_decay: float = 0.0, max_grad_norm: float = 1.0, seed: int = 42, train_split: str = 'train', valid_split: typing.Optional[str] = None, text_column: str = 'context', question_column: str = 'question', answer_column: str = 'answers', logging_steps: int = -1, project_name: str = 'project-name', auto_find_batch_size: bool = False, mixed_precision: typing.Optional[str] = None, save_total_limit: int = 1, token: typing.Optional[str] = None, push_to_hub: bool = False, eval_strategy: str = 'epoch', username: typing.Optional[str] = None, log: str = 'none', early_stopping_patience: int = 5, early_stopping_threshold: float = 0.01)
+```
 
-ExtractiveQuestionAnsweringParams
+[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/extractive_question_answering/params.py#L8)
 
 **Parameters:**
 
@@ -520,11 +542,15 @@ early_stopping_patience (int) : Number of epochs with no improvement for early s
 
 early_stopping_threshold (float) : Threshold for early stopping improvement. Default is 0.01.
 
+ExtractiveQuestionAnsweringParams
+
 #### autotrain.trainers.text_classification.params.TextClassificationParams[[autotrain.trainers.text_classification.params.TextClassificationParams]]
 
-[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/text_classification/params.py#L8)
+```python
+autotrain.trainers.text_classification.params.TextClassificationParams(data_path: str = None, model: str = 'bert-base-uncased', lr: float = 5e-05, epochs: int = 3, max_seq_length: int = 128, batch_size: int = 8, warmup_ratio: float = 0.1, gradient_accumulation: int = 1, optimizer: str = 'adamw_torch', scheduler: str = 'linear', weight_decay: float = 0.0, max_grad_norm: float = 1.0, seed: int = 42, train_split: str = 'train', valid_split: typing.Optional[str] = None, text_column: str = 'text', target_column: str = 'target', logging_steps: int = -1, project_name: str = 'project-name', auto_find_batch_size: bool = False, mixed_precision: typing.Optional[str] = None, save_total_limit: int = 1, token: typing.Optional[str] = None, push_to_hub: bool = False, eval_strategy: str = 'epoch', username: typing.Optional[str] = None, log: str = 'none', early_stopping_patience: int = 5, early_stopping_threshold: float = 0.01)
+```
 
-`TextClassificationParams` is a configuration class for text classification training parameters.
+[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/text_classification/params.py#L8)
 
 **Parameters:**
 
@@ -586,11 +612,15 @@ early_stopping_patience (int) : Number of epochs with no improvement after which
 
 early_stopping_threshold (float) : Threshold for measuring the new optimum to continue training. Default is 0.01.
 
+`TextClassificationParams` is a configuration class for text classification training parameters.
+
 #### autotrain.trainers.text_regression.params.TextRegressionParams[[autotrain.trainers.text_regression.params.TextRegressionParams]]
 
-[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/text_regression/params.py#L8)
+```python
+autotrain.trainers.text_regression.params.TextRegressionParams(data_path: str = None, model: str = 'bert-base-uncased', lr: float = 5e-05, epochs: int = 3, max_seq_length: int = 128, batch_size: int = 8, warmup_ratio: float = 0.1, gradient_accumulation: int = 1, optimizer: str = 'adamw_torch', scheduler: str = 'linear', weight_decay: float = 0.0, max_grad_norm: float = 1.0, seed: int = 42, train_split: str = 'train', valid_split: typing.Optional[str] = None, text_column: str = 'text', target_column: str = 'target', logging_steps: int = -1, project_name: str = 'project-name', auto_find_batch_size: bool = False, mixed_precision: typing.Optional[str] = None, save_total_limit: int = 1, token: typing.Optional[str] = None, push_to_hub: bool = False, eval_strategy: str = 'epoch', username: typing.Optional[str] = None, log: str = 'none', early_stopping_patience: int = 5, early_stopping_threshold: float = 0.01)
+```
 
-TextRegressionParams is a configuration class for setting up text regression training parameters.
+[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/text_regression/params.py#L8)
 
 **Parameters:**
 
@@ -652,13 +682,17 @@ early_stopping_patience (int) : Number of epochs with no improvement after which
 
 early_stopping_threshold (float) : Threshold for measuring the new optimum, to qualify as an improvement. Default is 0.01.
 
+TextRegressionParams is a configuration class for setting up text regression training parameters.
+
 ### Image Tasks[[autotrain.trainers.image_classification.params.ImageClassificationParams]]
 
 #### autotrain.trainers.image_classification.params.ImageClassificationParams[[autotrain.trainers.image_classification.params.ImageClassificationParams]]
 
-[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/image_classification/params.py#L8)
+```python
+autotrain.trainers.image_classification.params.ImageClassificationParams(data_path: str = None, model: str = 'google/vit-base-patch16-224', username: typing.Optional[str] = None, lr: float = 5e-05, epochs: int = 3, batch_size: int = 8, warmup_ratio: float = 0.1, gradient_accumulation: int = 1, optimizer: str = 'adamw_torch', scheduler: str = 'linear', weight_decay: float = 0.0, max_grad_norm: float = 1.0, seed: int = 42, train_split: str = 'train', valid_split: typing.Optional[str] = None, logging_steps: int = -1, project_name: str = 'project-name', auto_find_batch_size: bool = False, mixed_precision: typing.Optional[str] = None, save_total_limit: int = 1, token: typing.Optional[str] = None, push_to_hub: bool = False, eval_strategy: str = 'epoch', image_column: str = 'image', target_column: str = 'target', log: str = 'none', early_stopping_patience: int = 5, early_stopping_threshold: float = 0.01)
+```
 
-ImageClassificationParams is a configuration class for image classification training parameters.
+[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/image_classification/params.py#L8)
 
 **Parameters:**
 
@@ -718,11 +752,15 @@ early_stopping_patience (int) : Number of epochs with no improvement for early s
 
 early_stopping_threshold (float) : Threshold for early stopping. Default is 0.01.
 
+ImageClassificationParams is a configuration class for image classification training parameters.
+
 #### autotrain.trainers.image_regression.params.ImageRegressionParams[[autotrain.trainers.image_regression.params.ImageRegressionParams]]
 
-[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/image_regression/params.py#L8)
+```python
+autotrain.trainers.image_regression.params.ImageRegressionParams(data_path: str = None, model: str = 'google/vit-base-patch16-224', username: typing.Optional[str] = None, lr: float = 5e-05, epochs: int = 3, batch_size: int = 8, warmup_ratio: float = 0.1, gradient_accumulation: int = 1, optimizer: str = 'adamw_torch', scheduler: str = 'linear', weight_decay: float = 0.0, max_grad_norm: float = 1.0, seed: int = 42, train_split: str = 'train', valid_split: typing.Optional[str] = None, logging_steps: int = -1, project_name: str = 'project-name', auto_find_batch_size: bool = False, mixed_precision: typing.Optional[str] = None, save_total_limit: int = 1, token: typing.Optional[str] = None, push_to_hub: bool = False, eval_strategy: str = 'epoch', image_column: str = 'image', target_column: str = 'target', log: str = 'none', early_stopping_patience: int = 5, early_stopping_threshold: float = 0.01)
+```
 
-ImageRegressionParams is a configuration class for image regression training parameters.
+[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/image_regression/params.py#L8)
 
 **Parameters:**
 
@@ -782,11 +820,15 @@ early_stopping_patience (int) : Early stopping patience. Default is 5.
 
 early_stopping_threshold (float) : Early stopping threshold. Default is 0.01.
 
+ImageRegressionParams is a configuration class for image regression training parameters.
+
 #### autotrain.trainers.object_detection.params.ObjectDetectionParams[[autotrain.trainers.object_detection.params.ObjectDetectionParams]]
 
-[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/object_detection/params.py#L8)
+```python
+autotrain.trainers.object_detection.params.ObjectDetectionParams(data_path: str = None, model: str = 'google/vit-base-patch16-224', username: typing.Optional[str] = None, lr: float = 5e-05, epochs: int = 3, batch_size: int = 8, warmup_ratio: float = 0.1, gradient_accumulation: int = 1, optimizer: str = 'adamw_torch', scheduler: str = 'linear', weight_decay: float = 0.0, max_grad_norm: float = 1.0, seed: int = 42, train_split: str = 'train', valid_split: typing.Optional[str] = None, logging_steps: int = -1, project_name: str = 'project-name', auto_find_batch_size: bool = False, mixed_precision: typing.Optional[str] = None, save_total_limit: int = 1, token: typing.Optional[str] = None, push_to_hub: bool = False, eval_strategy: str = 'epoch', image_column: str = 'image', objects_column: str = 'objects', log: str = 'none', image_square_size: typing.Optional[int] = 600, early_stopping_patience: int = 5, early_stopping_threshold: float = 0.01)
+```
 
-ObjectDetectionParams is a configuration class for object detection training parameters.
+[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/object_detection/params.py#L8)
 
 **Parameters:**
 
@@ -848,13 +890,17 @@ early_stopping_patience (int) : Number of epochs with no improvement after which
 
 early_stopping_threshold (float) : Minimum change to qualify as an improvement. Default is 0.01.
 
+ObjectDetectionParams is a configuration class for object detection training parameters.
+
 ### Tabular Tasks[[autotrain.trainers.tabular.params.TabularParams]]
 
 #### autotrain.trainers.tabular.params.TabularParams[[autotrain.trainers.tabular.params.TabularParams]]
 
-[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/tabular/params.py#L8)
+```python
+autotrain.trainers.tabular.params.TabularParams(data_path: str = None, model: str = 'xgboost', username: typing.Optional[str] = None, seed: int = 42, train_split: str = 'train', valid_split: typing.Optional[str] = None, project_name: str = 'project-name', token: typing.Optional[str] = None, push_to_hub: bool = False, id_column: str = 'id', target_columns: typing.Union[typing.List[str], str] = ['target'], categorical_columns: typing.Optional[typing.List[str]] = None, numerical_columns: typing.Optional[typing.List[str]] = None, task: str = 'classification', num_trials: int = 10, time_limit: int = 600, categorical_imputer: typing.Optional[str] = None, numerical_imputer: typing.Optional[str] = None, numeric_scaler: typing.Optional[str] = None)
+```
 
-TabularParams is a configuration class for tabular data training parameters.
+[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/tabular/params.py#L8)
 
 **Parameters:**
 
@@ -895,6 +941,8 @@ categorical_imputer (Optional[str]) : Imputer strategy for categorical columns.
 numerical_imputer (Optional[str]) : Imputer strategy for numerical columns.
 
 numeric_scaler (Optional[str]) : Scaler strategy for numerical columns.
+
+TabularParams is a configuration class for tabular data training parameters.
 
 ### AutoTrain API
 https://huggingface.co/docs/autotrain/main/autotrain_api.md

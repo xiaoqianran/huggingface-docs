@@ -10,7 +10,7 @@ These are well established decoding methods, and should be your starting point f
 
 ### Greedy search
 
-Greedy search is the default decoding strategy. It selects the next most likely token at each step. Unless specified in [GenerationConfig](/docs/transformers/v5.21.0/en/main_classes/text_generation#transformers.GenerationConfig), this strategy generates a maximum of 20 new tokens.
+Greedy search is the default decoding strategy. It selects the next most likely token at each step. Unless specified in [GenerationConfig](/docs/transformers/v5.21.1/en/main_classes/text_generation#transformers.GenerationConfig), this strategy generates a maximum of 20 new tokens.
 
 Greedy search works well for tasks with relatively short outputs where creativity is not a priority. However, it breaks down when generating longer sequences because it begins to repeat itself.
 
@@ -111,7 +111,7 @@ print(tokenizer.batch_decode(gen_out, skip_special_tokens=True))
 'The quick brown fox jumps over a lazy dog, and the dog is a type of animal. Is'
 ```
 
-Model repositories with custom generation methods have a special property: their generation method can be loaded from **any** model through [generate()](/docs/transformers/v5.21.0/en/main_classes/text_generation#transformers.GenerationMixin.generate)'s `custom_generate` argument. This means anyone can create and share their custom generation method to potentially work with any Transformers model, without requiring users to install additional Python packages.
+Model repositories with custom generation methods have a special property: their generation method can be loaded from **any** model through [generate()](/docs/transformers/v5.21.1/en/main_classes/text_generation#transformers.GenerationMixin.generate)'s `custom_generate` argument. This means anyone can create and share their custom generation method to potentially work with any Transformers model, without requiring users to install additional Python packages.
 
 ```py
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -127,7 +127,7 @@ print(tokenizer.batch_decode(gen_out, skip_special_tokens=True)[0])
 'The quick brown fox jumps over a lazy dog, and the dog is a type of animal. Is'
 ```
 
-You should read the `README.md` file of the repository containing the custom generation strategy to see what the new arguments and output type differences are, if they exist. Otherwise, you can assume it works like the base [generate()](/docs/transformers/v5.21.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) method.
+You should read the `README.md` file of the repository containing the custom generation strategy to see what the new arguments and output type differences are, if they exist. Otherwise, you can assume it works like the base [generate()](/docs/transformers/v5.21.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) method.
 
 > [!TIP]
 > You can find all custom generation methods by [searching for their custom tag.](https://huggingface.co/models?other=custom_generate), `custom_generate`.
@@ -191,12 +191,12 @@ model.save_pretrained("your/generation_method", push_to_hub=True)
 
 #### generate.py
 
-This is the core of your generation method. It *must* contain a method named `generate`, and this method *must* contain a `model` argument as its first argument. `model` is the model instance, which means you have access to all attributes and methods in the model, including the ones defined in [GenerationMixin](/docs/transformers/v5.21.0/en/main_classes/text_generation#transformers.GenerationMixin) (like the base `generate` method).
+This is the core of your generation method. It *must* contain a method named `generate`, and this method *must* contain a `model` argument as its first argument. `model` is the model instance, which means you have access to all attributes and methods in the model, including the ones defined in [GenerationMixin](/docs/transformers/v5.21.1/en/main_classes/text_generation#transformers.GenerationMixin) (like the base `generate` method).
 
 > [!WARNING]
 > `generate.py` must be placed in a folder named `custom_generate`, and not at the root level of the repository. The file paths for this feature are hardcoded.
 
-Under the hood, when the base [generate()](/docs/transformers/v5.21.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) method is called with a `custom_generate` argument, it first checks its Python requirements (if any), then locates the custom `generate` method in `generate.py`, and finally calls the custom `generate`. All received arguments and `model` are forwarded to your custom `generate` method, with the exception of the arguments used to trigger the custom generation (`trust_remote_code` and `custom_generate`).
+Under the hood, when the base [generate()](/docs/transformers/v5.21.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) method is called with a `custom_generate` argument, it first checks its Python requirements (if any), then locates the custom `generate` method in `generate.py`, and finally calls the custom `generate`. All received arguments and `model` are forwarded to your custom `generate` method, with the exception of the arguments used to trigger the custom generation (`trust_remote_code` and `custom_generate`).
 
 This means your `generate` can have a mix of original and custom arguments (as well as a different output type) as shown below.
 
@@ -234,7 +234,7 @@ def generate(model, input_ids, generation_config=None, left_padding=None, **kwar
 
 Follow the recommended practices below to ensure your custom generation method works as expected.
 
-- Feel free to reuse the logic for validation and input preparation in the original [generate()](/docs/transformers/v5.21.0/en/main_classes/text_generation#transformers.GenerationMixin.generate).
+- Feel free to reuse the logic for validation and input preparation in the original [generate()](/docs/transformers/v5.21.1/en/main_classes/text_generation#transformers.GenerationMixin.generate).
 - Pin the `transformers` version in the requirements if you use any private method/attribute in `model`.
 - Consider adding model validation, input validation, or even a separate test file to help users sanity-check your code in their environment.
 
@@ -259,7 +259,7 @@ You can optionally specify additional Python requirements in a `requirements.txt
 
 #### README.md
 
-The root level `README.md` in the model repository usually describes the model therein. However, since the focus of the repository is the custom generation method, we highly recommend to shift its focus towards describing the custom generation method. In addition to a description of the method, we recommend documenting any input and/or output differences to the original [generate()](/docs/transformers/v5.21.0/en/main_classes/text_generation#transformers.GenerationMixin.generate). This way, users can focus on what's new, and rely on Transformers docs for generic implementation details.
+The root level `README.md` in the model repository usually describes the model therein. However, since the focus of the repository is the custom generation method, we highly recommend to shift its focus towards describing the custom generation method. In addition to a description of the method, we recommend documenting any input and/or output differences to the original [generate()](/docs/transformers/v5.21.1/en/main_classes/text_generation#transformers.GenerationMixin.generate). This way, users can focus on what's new, and rely on Transformers docs for generic implementation details.
 
 For discoverability, we highly recommend you to add the `custom_generate` tag to your repository. To do so, the top of your `README.md` file should look like the example below. After you push the file, you should see the tag in your repository!
 
@@ -275,13 +275,13 @@ tags:
 
 Recommended practices:
 
-- Document input and output differences in [generate()](/docs/transformers/v5.21.0/en/main_classes/text_generation#transformers.GenerationMixin.generate).
+- Document input and output differences in [generate()](/docs/transformers/v5.21.1/en/main_classes/text_generation#transformers.GenerationMixin.generate).
 - Add self-contained examples to enable quick experimentation.
 - Describe soft-requirements such as if the method only works well with a certain family of models.
 
 ### Reusing `generate`'s input preparation
 
-If you're adding a new decoding loop, you might want to preserve the input preparation present in `generate` (batch expansion, attention masks, logits processors, stopping criteria, etc.). You can also pass a **callable** to `custom_generate` to reuse [generate()](/docs/transformers/v5.21.0/en/main_classes/text_generation#transformers.GenerationMixin.generate)'s full preparation pipeline while overriding only the decoding loop.
+If you're adding a new decoding loop, you might want to preserve the input preparation present in `generate` (batch expansion, attention masks, logits processors, stopping criteria, etc.). You can also pass a **callable** to `custom_generate` to reuse [generate()](/docs/transformers/v5.21.1/en/main_classes/text_generation#transformers.GenerationMixin.generate)'s full preparation pipeline while overriding only the decoding loop.
 
 ```py
 def custom_loop(model, input_ids, attention_mask, logits_processor, stopping_criteria, generation_config, **model_kwargs):
@@ -315,5 +315,104 @@ You can find all custom generation methods by [searching for their custom tag.](
 
 Read the [How to generate text: using different decoding methods for language generation with Transformers](https://huggingface.co/blog/how-to-generate) blog post for an explanation of how common decoding strategies work.
 
-### Tensor parallelism for training
-https://huggingface.co/docs/transformers/v5.21.0/tensor_parallelism.md
+### Accelerate
+https://huggingface.co/docs/transformers/v5.21.1/accelerate.md
+
+# Accelerate
+
+[Accelerate](https://hf.co/docs/accelerate/index) provides a unified interface for distributed training backends like [FSDP](https://docs.pytorch.org/tutorials/intermediate/FSDP_tutorial.html) or [DeepSpeed](https://www.deepspeed.ai/). It detects your environment (number of GPUs, distributed backend, mixed precision, etc.) and automatically configures training, whether you're on 1 GPU with DDP or 8 GPUs with FSDP.
+
+Accelerate wraps the model in the appropriate distributed wrapper, moves it to the correct device, and creates a compatible optimizer. During training, Accelerate uses its own [backward](https://huggingface.co/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.backward) method to handle gradient scaling for mixed precision. [Trainer](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.Trainer) calls the appropriate Accelerate APIs and delegates all distributed mechanics to Accelerate.
+
+Configure Accelerate for [Trainer](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.Trainer) with either an Accelerate config file or [TrainingArguments](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.TrainingArguments).
+
+## Accelerate config file
+
+Run the [accelerate config](https://huggingface.co/docs/accelerate/en/package_reference/cli#accelerate-config) command and answer questions about your hardware and training setup. This creates a `default_config.yaml` file in your cache. The example below is for FSDP.
+
+```yaml
+compute_environment: LOCAL_MACHINE
+distributed_type: FSDP
+fsdp_config:
+  fsdp_version: 2
+  fsdp_reshard_after_forward: true
+  fsdp_cpu_offload: false
+  fsdp_auto_wrap_policy: TRANSFORMER_BASED_WRAP
+  fsdp_cpu_ram_efficient_loading: true
+  fsdp_activation_checkpointing: false
+  fsdp_state_dict_type: SHARDED_STATE_DICT
+  fsdp_transformer_layer_cls_to_wrap: LlamaDecoderLayer
+mixed_precision: bf16
+num_machines: 1
+num_processes: 4
+```
+
+Run [accelerate launch](https://huggingface.co/docs/accelerate/en/package_reference/cli#accelerate-launch) with a [Trainer](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.Trainer)-based script, and Accelerate reads the config file to set up training. The [fsdp_config](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.TrainingArguments.fsdp_config) and [deepspeed](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.TrainingArguments.deepspeed) args are unnecessary because the Accelerate config file covers the same settings.
+
+```cli
+accelerate launch train.py
+```
+
+The [accelerator_config](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.TrainingArguments.accelerator_config) accepts settings that don't have dedicated top-level arguments. For example, set `non_blocking=True` together with `dataloader_pin_memory()` to overlap data transfer with compute for higher GPU throughput.
+
+```py
+from transformers import TrainingArguments
+
+TrainingArguments(
+    ...,
+    dataloader_pin_memory=True,
+    accelerator_config={
+        "non_blocking": True,
+    },
+)
+```
+
+## TrainingArguments
+
+Pass a backend-specific config to [TrainingArguments](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.TrainingArguments). The [create_accelerator_and_postprocess()](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.Trainer.create_accelerator_and_postprocess) method reads the settings and configures training.
+
+Pass a JSON config file or dict to `~TrainingArguments.fsdp_config`. See [FSDP](./fsdp) for a full guide and config reference.
+
+```py
+from transformers import TrainingArguments
+
+TrainingArguments(
+    ...,
+    fsdp=True,
+    fsdp_config="path/to/fsdp.json",
+)
+```
+
+Pass a JSON config file or dict to `~TrainingArguments.deepspeed`. See [DeepSpeed](./deepspeed) for a full guide and config reference.
+
+```py
+from transformers import TrainingArguments
+
+TrainingArguments(
+    ...,
+    deepspeed="path/to/ds_config.json",
+)
+```
+
+DDP is configured directly through [TrainingArguments](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.TrainingArguments) fields. See [DDP](./ddp) for details.
+
+```py
+from transformers import TrainingArguments
+
+TrainingArguments(
+    ...,
+    ddp_backend="nccl",
+    ddp_find_unused_parameters=False,
+    ddp_bucket_cap_mb=25,
+    ddp_timeout=1800,
+)
+```
+
+## Next steps
+
+- See [DDP](./ddp) for data-parallel training when your model fits on one GPU.
+- See [FSDP](./fsdp) for sharding parameters, gradients, and optimizer states across GPUs.
+- See [DeepSpeed](./deepspeed) for ZeRO optimization and offloading.
+
+### Legacy model contribution
+https://huggingface.co/docs/transformers/v5.21.1/add_new_model.md

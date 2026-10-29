@@ -58,5 +58,5 @@ you can effectively instruct AutoTrain on how to interpret and handle your
 data for various machine learning tasks. This process is fundamental for 
 achieving optimal results from your model training endeavors.
 
-### AutoTrain Configs
-https://huggingface.co/docs/autotrain/main/config.md
+### Quickstart Guide for Local Training
+https://huggingface.co/docs/autotrain/main/quickstart.md

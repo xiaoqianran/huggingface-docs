@@ -50,7 +50,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 ## Dequantize
 
-Dequantizing unpacks every weight at load time and gives back a plain dense model. It is the fallback whenever the fast, compressed path doesn't apply. You can also ask for it explicitly with [GgufConfig](/docs/transformers/v5.21.0/en/main_classes/quantization#transformers.GgufConfig).
+Dequantizing unpacks every weight at load time and gives back a plain dense model. It is the fallback whenever the fast, compressed path doesn't apply. You can also ask for it explicitly with [GgufConfig](/docs/transformers/v5.21.1/en/main_classes/quantization#transformers.GgufConfig).
 
 ```py
 import torch
@@ -79,5 +79,5 @@ several quantizations and the id has to say which one to load. Requests name it 
 transformers serve unsloth/Qwen3.5-4B-GGUF:Qwen3.5-4B-Q4_K_M.gguf
 ```
 
-### HQQ
-https://huggingface.co/docs/transformers/v5.21.0/quantization/hqq.md
+### FBGEMM
+https://huggingface.co/docs/transformers/v5.21.1/quantization/fbgemm_fp8.md

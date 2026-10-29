@@ -181,5 +181,5 @@ message = [
 ]
 ```
 
-### Fine-tuning
-https://huggingface.co/docs/transformers/v5.21.0/training.md
+### NVIDIA GPU
+https://huggingface.co/docs/transformers/v5.21.1/nvidia_gpu.md

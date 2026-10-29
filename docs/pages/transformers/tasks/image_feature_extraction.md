@@ -115,5 +115,5 @@ print(similarity_score)
 # tensor([0.6061], device='cuda:0', grad_fn=<SumBackward1>)
 ```
 
-### Instance segmentation
-https://huggingface.co/docs/transformers/v5.21.0/tasks/instance_segmentation.md
+### Monocular depth estimation
+https://huggingface.co/docs/transformers/v5.21.1/tasks/monocular_depth_estimation.md

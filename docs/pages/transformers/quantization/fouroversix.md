@@ -48,5 +48,5 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
-### Selecting a quantization method
-https://huggingface.co/docs/transformers/v5.21.0/quantization/selecting.md
+### VPTQ
+https://huggingface.co/docs/transformers/v5.21.1/quantization/vptq.md

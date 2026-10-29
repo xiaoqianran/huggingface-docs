@@ -28,5 +28,5 @@ AutoTrain Advanced are addressed promptly, allowing you to focus on achieving yo
 goals. Whether you're a beginner or an experienced user, we are here to support your 
 journey in AI model training.
 
-### Image Classification & Regression
-https://huggingface.co/docs/autotrain/main/tasks/image_classification_regression.md
+### AutoTrain
+https://huggingface.co/docs/autotrain/main/index.md

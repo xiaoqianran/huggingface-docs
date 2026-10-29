@@ -107,16 +107,16 @@ An example dataset for this format can be found here: [HuggingFaceH4/no_robots](
 If you dont want to format the data using `--chat-template`, you can format the data yourself and use the following format:
 
 ```
-system\n\nCutting Knowledge Date: December 2023\nToday Date: 03 Oct 2024\n\nuser\n\nHelp write a letter of 100 -200 words to my future self for Kyra, reflecting on her goals and aspirations.assistant\n\nDear Future Self,\n\nI hope you're happy and proud of what you've achieved. As I write this, I'm excited to think about our goals and how far you've come. One goal was to be a machine learning engineer. I hope you've worked hard and become skilled in this field. Keep learning and innovating. Traveling was important to us. I hope you've seen different places and enjoyed the beauty of our world. Remember the memories and lessons. Starting a family mattered to us. If you have kids, treasure every moment. Be patient, loving, and grateful for your family.\n\nTake care of yourself. Rest, reflect, and cherish the time you spend with loved ones. Remember your dreams and celebrate what you've achieved. Your determination brought you here. I'm excited to see the person you've become, the impact you've made, and the love and joy in your life. Embrace opportunities and keep dreaming big.\n\nWith love,\nKyra
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 03 Oct 2024\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nHelp write a letter of 100 -200 words to my future self for Kyra, reflecting on her goals and aspirations.<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\nDear Future Self,\n\nI hope you're happy and proud of what you've achieved. As I write this, I'm excited to think about our goals and how far you've come. One goal was to be a machine learning engineer. I hope you've worked hard and become skilled in this field. Keep learning and innovating. Traveling was important to us. I hope you've seen different places and enjoyed the beauty of our world. Remember the memories and lessons. Starting a family mattered to us. If you have kids, treasure every moment. Be patient, loving, and grateful for your family.\n\nTake care of yourself. Rest, reflect, and cherish the time you spend with loved ones. Remember your dreams and celebrate what you've achieved. Your determination brought you here. I'm excited to see the person you've become, the impact you've made, and the love and joy in your life. Embrace opportunities and keep dreaming big.\n\nWith love,\nKyra<|eot_id|>
 ```
 
 A sample multi-line dataset is shown below:
 
 ```json
-[{"text": "system\n\nCutting Knowledge Date: December 2023\nToday Date: 03 Oct 2024\n\nuser\n\nhelloassistant\n\nhi nice to meet you"}]
-[{"text": "system\n\nCutting Knowledge Date: December 2023\nToday Date: 03 Oct 2024\n\nuser\n\nhow are youassistant\n\nI am fine"}]
-[{"text": "system\n\nCutting Knowledge Date: December 2023\nToday Date: 03 Oct 2024\n\nuser\n\nWhat is your name?assistant\n\nMy name is Mary"}]
-[{"text": "system\n\nCutting Knowledge Date: December 2023\nToday Date: 03 Oct 2024\n\nuser\n\nWhich is the best programming language?assistant\n\nPython"}]
+[{"text": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 03 Oct 2024\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nhello<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\nhi nice to meet you<|eot_id|>"}]
+[{"text": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 03 Oct 2024\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nhow are you<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\nI am fine<|eot_id|>"}]
+[{"text": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 03 Oct 2024\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat is your name?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\nMy name is Mary<|eot_id|>"}]
+[{"text": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 03 Oct 2024\n\n<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhich is the best programming language?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\nPython<|eot_id|>"}]
 .
 .
 .
@@ -264,9 +264,11 @@ Once you are happy with the parameters, you can click on the `Start Training` bu
 
 #### autotrain.trainers.clm.params.LLMTrainingParams[[autotrain.trainers.clm.params.LLMTrainingParams]]
 
-[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/clm/params.py#L8)
+```python
+autotrain.trainers.clm.params.LLMTrainingParams(model: str = 'gpt2', project_name: str = 'project-name', data_path: str = 'data', train_split: str = 'train', valid_split: typing.Optional[str] = None, add_eos_token: bool = True, block_size: typing.Union[int, typing.List[int]] = -1, model_max_length: int = 2048, padding: typing.Optional[str] = 'right', trainer: str = 'default', use_flash_attention_2: bool = False, log: str = 'none', disable_gradient_checkpointing: bool = False, logging_steps: int = -1, eval_strategy: str = 'epoch', save_total_limit: int = 1, auto_find_batch_size: bool = False, mixed_precision: typing.Optional[str] = None, lr: float = 3e-05, epochs: int = 1, batch_size: int = 2, warmup_ratio: float = 0.1, gradient_accumulation: int = 4, optimizer: str = 'adamw_torch', scheduler: str = 'linear', weight_decay: float = 0.0, max_grad_norm: float = 1.0, seed: int = 42, chat_template: typing.Optional[str] = None, quantization: typing.Optional[str] = 'int4', target_modules: typing.Optional[str] = 'all-linear', merge_adapter: bool = False, peft: bool = False, lora_r: int = 16, lora_alpha: int = 32, lora_dropout: float = 0.05, model_ref: typing.Optional[str] = None, dpo_beta: float = 0.1, max_prompt_length: int = 128, max_completion_length: typing.Optional[int] = None, prompt_text_column: typing.Optional[str] = None, text_column: str = 'text', rejected_text_column: typing.Optional[str] = None, push_to_hub: bool = False, username: typing.Optional[str] = None, token: typing.Optional[str] = None, unsloth: bool = False, distributed_backend: typing.Optional[str] = None)
+```
 
-LLMTrainingParams: Parameters for training a language model using the autotrain library.
+[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/clm/params.py#L8)
 
 **Parameters:**
 
@@ -366,6 +368,8 @@ unsloth (bool) : Whether to use the unsloth library. Default is False.
 
 distributed_backend (Optional[str]) : Backend to use for distributed training. Default is None.
 
+LLMTrainingParams: Parameters for training a language model using the autotrain library.
+
 ### Task specific parameters
 
 The length parameters used for different trainers can be different. Some require more context than others.
@@ -457,5 +461,5 @@ The length parameters used for different trainers can be different. Some require
                     Completion length to use, for orpo: encoder-decoder models only
 ```
 
-### Extractive Question Answering with AutoTrain
-https://huggingface.co/docs/autotrain/main/tasks/extractive_qa.md
+### Image Classification & Regression
+https://huggingface.co/docs/autotrain/main/tasks/image_classification_regression.md

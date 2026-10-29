@@ -256,5 +256,5 @@ const response = await fetch(
 console.log(await response.json());
 ```
 
-### Inference Providers
-https://huggingface.co/docs/inference-providers/index.md
+### Hub API
+https://huggingface.co/docs/inference-providers/hub-api.md

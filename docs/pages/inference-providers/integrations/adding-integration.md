@@ -46,5 +46,5 @@ Step-by-step setup instructions with code examples.
 - [HF Integration Guide](link-to-your-guide)
 ```
 
-### Codex
-https://huggingface.co/docs/inference-providers/integrations/codex.md
+### Hermes Agent
+https://huggingface.co/docs/inference-providers/integrations/hermes-agent.md

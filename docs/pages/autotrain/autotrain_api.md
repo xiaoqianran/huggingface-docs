@@ -55,5 +55,5 @@ curl -X POST "http://127.0.0.1:8000/api/create_project" \
          }'
 ```
 
-### Help and Support
-https://huggingface.co/docs/autotrain/main/support.md
+### Tabular Classification / Regression
+https://huggingface.co/docs/autotrain/main/tasks/tabular.md

@@ -148,5 +148,5 @@ To explore quantization and related performance optimization concepts more deepl
 - [Making Deep Learning Go Brrrr From First Principles](https://horace.io/brrr_intro.html)
 - [Accelerating Generative AI with PyTorch Part 2: LLM Optimizations](https://pytorch.org/blog/accelerating-generative-ai-2/)
 
-### compressed-tensors
-https://huggingface.co/docs/transformers/v5.21.0/quantization/compressed_tensors.md
+### NVFP4
+https://huggingface.co/docs/transformers/v5.21.1/quantization/nvfp4.md

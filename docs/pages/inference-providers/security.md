@@ -12,5 +12,5 @@ Inference Provider routing uses TLS/SSL to encrypt data in transit.
 
 The Hugging Face Hub, which Inference Providers is a feature of, is SOC2 Type 2 certified. For more on Hub security: https://huggingface.co/docs/hub/security. External providers are responsible for their own security measures, so please refer to their respective security policies for more details.
 
-### Pricing and Billing
-https://huggingface.co/docs/inference-providers/pricing.md
+### Your First Inference Provider Call
+https://huggingface.co/docs/inference-providers/guides/first-api-call.md

@@ -47,7 +47,7 @@ $ autotrain --help
 This will show the CLI commands that can be used:
 
 ```bash
-usage: autotrain  []
+usage: autotrain <command> [<args>]
 
 positional arguments:
 {
@@ -71,7 +71,7 @@ options:
   --version, -v         Display AutoTrain version
   --config CONFIG       Optional configuration file
 
-For more information about a command, run: `autotrain  --help`
+For more information about a command, run: `autotrain <command> --help`
 ```
 
 It is advised to use only the `autotrain --config CONFIG_FILE` command for training when using the CLI.
@@ -90,5 +90,5 @@ The autotrain commands that end users will be interested in are:
 
 Note: above commands are not required if you use preferred `autotrain --config CONFIG_FILE` command to train the models.
 
-### AutoTrain
-https://huggingface.co/docs/autotrain/main/index.md
+### Frequently Asked Questions
+https://huggingface.co/docs/autotrain/main/faq.md

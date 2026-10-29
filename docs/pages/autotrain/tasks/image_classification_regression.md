@@ -233,9 +233,11 @@ To train the model, click on the `Start Training` button. This will start the tr
 
 #### autotrain.trainers.image_classification.params.ImageClassificationParams[[autotrain.trainers.image_classification.params.ImageClassificationParams]]
 
-[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/image_classification/params.py#L8)
+```python
+autotrain.trainers.image_classification.params.ImageClassificationParams(data_path: str = None, model: str = 'google/vit-base-patch16-224', username: typing.Optional[str] = None, lr: float = 5e-05, epochs: int = 3, batch_size: int = 8, warmup_ratio: float = 0.1, gradient_accumulation: int = 1, optimizer: str = 'adamw_torch', scheduler: str = 'linear', weight_decay: float = 0.0, max_grad_norm: float = 1.0, seed: int = 42, train_split: str = 'train', valid_split: typing.Optional[str] = None, logging_steps: int = -1, project_name: str = 'project-name', auto_find_batch_size: bool = False, mixed_precision: typing.Optional[str] = None, save_total_limit: int = 1, token: typing.Optional[str] = None, push_to_hub: bool = False, eval_strategy: str = 'epoch', image_column: str = 'image', target_column: str = 'target', log: str = 'none', early_stopping_patience: int = 5, early_stopping_threshold: float = 0.01)
+```
 
-ImageClassificationParams is a configuration class for image classification training parameters.
+[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/image_classification/params.py#L8)
 
 **Parameters:**
 
@@ -295,13 +297,17 @@ early_stopping_patience (int) : Number of epochs with no improvement for early s
 
 early_stopping_threshold (float) : Threshold for early stopping. Default is 0.01.
 
+ImageClassificationParams is a configuration class for image classification training parameters.
+
 ### Image Regression Parameters[[autotrain.trainers.image_regression.params.ImageRegressionParams]]
 
 #### autotrain.trainers.image_regression.params.ImageRegressionParams[[autotrain.trainers.image_regression.params.ImageRegressionParams]]
 
-[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/image_regression/params.py#L8)
+```python
+autotrain.trainers.image_regression.params.ImageRegressionParams(data_path: str = None, model: str = 'google/vit-base-patch16-224', username: typing.Optional[str] = None, lr: float = 5e-05, epochs: int = 3, batch_size: int = 8, warmup_ratio: float = 0.1, gradient_accumulation: int = 1, optimizer: str = 'adamw_torch', scheduler: str = 'linear', weight_decay: float = 0.0, max_grad_norm: float = 1.0, seed: int = 42, train_split: str = 'train', valid_split: typing.Optional[str] = None, logging_steps: int = -1, project_name: str = 'project-name', auto_find_batch_size: bool = False, mixed_precision: typing.Optional[str] = None, save_total_limit: int = 1, token: typing.Optional[str] = None, push_to_hub: bool = False, eval_strategy: str = 'epoch', image_column: str = 'image', target_column: str = 'target', log: str = 'none', early_stopping_patience: int = 5, early_stopping_threshold: float = 0.01)
+```
 
-ImageRegressionParams is a configuration class for image regression training parameters.
+[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/image_regression/params.py#L8)
 
 **Parameters:**
 
@@ -361,5 +367,7 @@ early_stopping_patience (int) : Early stopping patience. Default is 5.
 
 early_stopping_threshold (float) : Early stopping threshold. Default is 0.01.
 
-### Tabular Classification / Regression
-https://huggingface.co/docs/autotrain/main/tasks/tabular.md
+ImageRegressionParams is a configuration class for image regression training parameters.
+
+### Extractive Question Answering with AutoTrain
+https://huggingface.co/docs/autotrain/main/tasks/extractive_qa.md

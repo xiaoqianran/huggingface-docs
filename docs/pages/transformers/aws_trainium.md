@@ -16,9 +16,9 @@ It prints `True` and the number of Neuron devices, for example `True 4`.
 
 ## Run inference
 
-`device_map="auto"` doesn't detect Neuron. Automatic placement relies on [Accelerate](https://huggingface.co/docs/accelerate/index) to list the available devices, and Accelerate doesn't list Neuron devices, so the model silently loads on CPU. Pass `device_map="neuron"` to [from_pretrained()](/docs/transformers/v5.21.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) explicitly, or `device="neuron"` to [Pipeline](/docs/transformers/v5.21.0/en/main_classes/pipelines#transformers.Pipeline).
+`device_map="auto"` doesn't detect Neuron. Automatic placement relies on [Accelerate](https://huggingface.co/docs/accelerate/index) to list the available devices, and Accelerate doesn't list Neuron devices, so the model silently loads on CPU. Pass `device_map="neuron"` to [from_pretrained()](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) explicitly, or `device="neuron"` to [Pipeline](/docs/transformers/v5.21.1/en/main_classes/pipelines#transformers.Pipeline).
 
-Pass the generation inputs on CPU instead of calling `.to(model.device)`. [generate()](/docs/transformers/v5.21.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) moves only the tensors that `forward` consumes to the Neuron device. The tensors that grow each step (output sequence, `attention_mask`) stay on CPU, so the compiled graph stays stable. `generate` returns the output on the same device as the inputs. See [Keep generation tensors on CPU](./kv_cache#keep-generation-tensors-on-cpu) for more details.
+Pass the generation inputs on CPU instead of calling `.to(model.device)`. [generate()](/docs/transformers/v5.21.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) moves only the tensors that `forward` consumes to the Neuron device. The tensors that grow each step (output sequence, `attention_mask`) stay on CPU, so the compiled graph stays stable. `generate` returns the output on the same device as the inputs. See [Keep generation tensors on CPU](./kv_cache#keep-generation-tensors-on-cpu) for more details.
 
 ```py
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -40,11 +40,11 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
 The French Bread Law states that the French government must provide a certain amount of bread for the citizens of the country. The law is passed by the French parliament. The French parliament is a body of the French government. The French government is a body of the French state. The
 ```
 
-With a static cache, [generate()](/docs/transformers/v5.21.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) compiles the forward pass with `torch.compile` automatically on Neuron. Pass `disable_compile=True` to [generate()](/docs/transformers/v5.21.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) to opt out.
+With a static cache, [generate()](/docs/transformers/v5.21.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) compiles the forward pass with `torch.compile` automatically on Neuron. Pass `disable_compile=True` to [generate()](/docs/transformers/v5.21.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) to opt out.
 
 ## Train with Trainer
 
-[TrainingArguments](/docs/transformers/v5.21.0/en/main_classes/trainer#transformers.TrainingArguments) detects Neuron and sets the device to `neuron` automatically. All Trainium generations support bf16.
+[TrainingArguments](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.TrainingArguments) detects Neuron and sets the device to `neuron` automatically. All Trainium generations support bf16.
 
 ```py
 from transformers import TrainingArguments
@@ -57,7 +57,7 @@ training_args = TrainingArguments(
 
 ### Compile the model
 
-Set `torch_compile=True` to wrap the model with `torch.compile`. This compiles the model's forward pass, while the optimizer step runs eagerly. [TrainingArguments](/docs/transformers/v5.21.0/en/main_classes/trainer#transformers.TrainingArguments) sets `torch_compile_backend` to `"neuron"` automatically when it detects Neuron.
+Set `torch_compile=True` to wrap the model with `torch.compile`. This compiles the model's forward pass, while the optimizer step runs eagerly. [TrainingArguments](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.TrainingArguments) sets `torch_compile_backend` to `"neuron"` automatically when it detects Neuron.
 
 ```py
 from transformers import TrainingArguments
@@ -73,7 +73,7 @@ Each new input shape triggers a new compilation. Pad inputs to a fixed length (`
 
 ### Distributed training
 
-Neuron supports the Transformers distributed API. Create a [DistributedConfig](/docs/transformers/v5.21.0/en/expert_parallelism#transformers.DistributedConfig) with the parallelism sizes you want and pass it to [from_pretrained()](/docs/transformers/v5.21.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). Transformers shards the model at load time, and [Trainer](/docs/transformers/v5.21.0/en/main_classes/trainer#transformers.Trainer) uses it as is.
+Neuron supports the Transformers distributed API. Create a [DistributedConfig](/docs/transformers/v5.21.1/en/expert_parallelism#transformers.DistributedConfig) with the parallelism sizes you want and pass it to [from_pretrained()](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). Transformers shards the model at load time, and [Trainer](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.Trainer) uses it as is.
 
 ```py
 import torch
@@ -99,5 +99,5 @@ See [Tensor parallelism](./tensor_parallelism), [Expert parallelism](./expert_pa
 - `device_map="auto"` loads the model on CPU instead of Neuron. Pass `device_map="neuron"` explicitly.
 - Dynamic shapes trigger recompilation. Generation and training both slow down when input shapes change from step to step. Use a static cache for generation and fixed-length padding for training.
 
-### Adding a new pipeline
-https://huggingface.co/docs/transformers/v5.21.0/add_new_pipeline.md
+### Add vision processing components
+https://huggingface.co/docs/transformers/v5.21.1/add_vision_processing_components.md

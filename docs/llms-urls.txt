@@ -1469,7 +1469,6 @@ https://huggingface.co/docs/transformers/internal/time_series_utils.md
 https://huggingface.co/docs/transformers/internal/tokenization_utils.md
 https://huggingface.co/docs/transformers/internal/trainer_utils.md
 https://huggingface.co/docs/transformers/kernel_doc/loading_kernels.md
-https://huggingface.co/docs/transformers/kernel_doc/overview.md
 https://huggingface.co/docs/transformers/kernel_doc/writing_kernels.md
 https://huggingface.co/docs/transformers/kernels.md
 https://huggingface.co/docs/transformers/kv_cache.md
@@ -1485,6 +1484,7 @@ https://huggingface.co/docs/transformers/main_classes/executorch.md
 https://huggingface.co/docs/transformers/main_classes/exporters.md
 https://huggingface.co/docs/transformers/main_classes/feature_extractor.md
 https://huggingface.co/docs/transformers/main_classes/image_processor.md
+https://huggingface.co/docs/transformers/main_classes/kernels.md
 https://huggingface.co/docs/transformers/main_classes/logging.md
 https://huggingface.co/docs/transformers/main_classes/model.md
 https://huggingface.co/docs/transformers/main_classes/optimizer_schedules.md
@@ -1678,7 +1678,7 @@ https://huggingface.co/docs/transformers/model_doc/gpt-sw3.md
 https://huggingface.co/docs/transformers/model_doc/gpt2.md
 https://huggingface.co/docs/transformers/model_doc/gpt_bigcode.md
 https://huggingface.co/docs/transformers/model_doc/gpt_neo.md
-https://huggingface.co/docs/transformers/model_doc/gpt_neox.md
+https://huggingface.co/docs/transformers/model_doc/gpt_neox_japanese.md
 https://huggingface.co/docs/transformers/model_doc/gpt_oss.md
 https://huggingface.co/docs/transformers/model_doc/gptj.md
 https://huggingface.co/docs/transformers/model_doc/gradium_phonon_tts.md
@@ -1728,7 +1728,6 @@ https://huggingface.co/docs/transformers/model_doc/janus.md
 https://huggingface.co/docs/transformers/model_doc/jetmoe.md
 https://huggingface.co/docs/transformers/model_doc/jina_embeddings_v3.md
 https://huggingface.co/docs/transformers/model_doc/kimi_k25.md
-https://huggingface.co/docs/transformers/model_doc/kimi_linear.md
 https://huggingface.co/docs/transformers/model_doc/kolibri1.md
 https://huggingface.co/docs/transformers/model_doc/kosmos-2.md
 https://huggingface.co/docs/transformers/model_doc/kosmos2_5.md
@@ -1904,6 +1903,7 @@ https://huggingface.co/docs/transformers/model_doc/qwen3.md
 https://huggingface.co/docs/transformers/model_doc/qwen3_5.md
 https://huggingface.co/docs/transformers/model_doc/qwen3_asr.md
 https://huggingface.co/docs/transformers/model_doc/qwen3_moe.md
+https://huggingface.co/docs/transformers/model_doc/qwen3_next.md
 https://huggingface.co/docs/transformers/model_doc/qwen3_omni_moe.md
 https://huggingface.co/docs/transformers/model_doc/qwen3_vl.md
 https://huggingface.co/docs/transformers/model_doc/qwen3_vl_moe.md

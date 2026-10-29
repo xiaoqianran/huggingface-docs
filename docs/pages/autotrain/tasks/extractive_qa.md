@@ -90,9 +90,11 @@ As always, pay special attention to column mapping.
 
 #### autotrain.trainers.extractive_question_answering.params.ExtractiveQuestionAnsweringParams[[autotrain.trainers.extractive_question_answering.params.ExtractiveQuestionAnsweringParams]]
 
-[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/extractive_question_answering/params.py#L8)
+```python
+autotrain.trainers.extractive_question_answering.params.ExtractiveQuestionAnsweringParams(data_path: str = None, model: str = 'bert-base-uncased', lr: float = 5e-05, epochs: int = 3, max_seq_length: int = 128, max_doc_stride: int = 128, batch_size: int = 8, warmup_ratio: float = 0.1, gradient_accumulation: int = 1, optimizer: str = 'adamw_torch', scheduler: str = 'linear', weight_decay: float = 0.0, max_grad_norm: float = 1.0, seed: int = 42, train_split: str = 'train', valid_split: typing.Optional[str] = None, text_column: str = 'context', question_column: str = 'question', answer_column: str = 'answers', logging_steps: int = -1, project_name: str = 'project-name', auto_find_batch_size: bool = False, mixed_precision: typing.Optional[str] = None, save_total_limit: int = 1, token: typing.Optional[str] = None, push_to_hub: bool = False, eval_strategy: str = 'epoch', username: typing.Optional[str] = None, log: str = 'none', early_stopping_patience: int = 5, early_stopping_threshold: float = 0.01)
+```
 
-ExtractiveQuestionAnsweringParams
+[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/extractive_question_answering/params.py#L8)
 
 **Parameters:**
 
@@ -158,5 +160,4 @@ early_stopping_patience (int) : Number of epochs with no improvement for early s
 
 early_stopping_threshold (float) : Threshold for early stopping improvement. Default is 0.01.
 
-### Token Classification
-https://huggingface.co/docs/autotrain/main/tasks/token_classification.md
+ExtractiveQuestionAnsweringParams

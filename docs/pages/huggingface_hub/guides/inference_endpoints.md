@@ -1,454 +1,493 @@
 # Inference Endpoints
 
-Inference Endpoints provides a secure production solution to easily deploy any `transformers`, `sentence-transformers`, and `diffusers` models on a dedicated and autoscaling infrastructure managed by Hugging Face. An Inference Endpoint is built from a model from the [Hub](https://huggingface.co/models).
-In this guide, we will learn how to programmatically manage Inference Endpoints with `huggingface_hub`. For more information about the Inference Endpoints product itself, check out its [official documentation](https://huggingface.co/docs/inference-endpoints/index).
-
-This guide assumes `huggingface_hub` is correctly installed and that your machine is logged in. Check out the [Quick Start guide](https://huggingface.co/docs/huggingface_hub/quick-start#quickstart) if that's not the case yet. The minimal version supporting Inference Endpoints API is `v0.19.0`.
+Inference Endpoints provides a secure production solution to easily deploy models on a dedicated and autoscaling infrastructure managed by Hugging Face. An Inference Endpoint is built from a model from the [Hub](https://huggingface.co/models). This page is a reference for `huggingface_hub`'s integration with Inference Endpoints. For more information about the Inference Endpoints product, check out its [official documentation](https://huggingface.co/docs/inference-endpoints/index).
 
 > [!TIP]
-> **New:** it is now possible to deploy an Inference Endpoint from the [HF model catalog](https://endpoints.huggingface.co/catalog) with a simple API call. The catalog is a carefully curated list of models that can be deployed with optimized settings. You don't need to configure anything, we take all the heavy stuff on us! All models and settings are guaranteed to have been tested to provide best cost/performance balance.  [create_inference_endpoint_from_catalog()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint_from_catalog) works the same as [create_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint), with much less parameters to pass. You can use [list_inference_catalog()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_catalog) to programmatically retrieve the catalog.
->
-> Note that this is still an experimental feature. Let us know what you think if you use it!
+> Check out the [related guide](../guides/inference_endpoints) to learn how to use `huggingface_hub` to manage your Inference Endpoints programmatically.
 
-Each catalog model is deployed through a *recipe*: a hardware and engine combination that has been tested for it. [list_inference_catalog()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_catalog) returns the models with their recipes, and takes server-side filters (`accelerator`, `engine`, `license`, `task`, `search`, `limit`):
+Inference Endpoints can be fully managed via API. The endpoints are documented with [Swagger](https://api.endpoints.huggingface.cloud/). The [InferenceEndpoint](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) class is a simple wrapper built on top on this API.
 
-```py
->>> from huggingface_hub import list_inference_catalog
->>> catalog = list_inference_catalog(task="text-generation", accelerator="neuron")
->>> catalog[0]
-InferenceCatalogModel(repo_id='meta-llama/Llama-3.1-8B-Instruct', name='Llama-3.1-8B-Instruct', ...)
->>> catalog[0].recipes
-[InferenceCatalogRecipe(id='sizzling-biryani-g4xsi1ac', accelerator='gpu', engine='vllm', gguf_file=None, revision=None),
- InferenceCatalogRecipe(id='artisanal-quinoa-yz9ynamx', accelerator='neuron', engine='vllmNeuron', gguf_file=None, revision=None)]
-```
+## Methods
 
-Pass a `repo_id` to [create_inference_endpoint_from_catalog()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint_from_catalog) to deploy a model's default recipe, optionally narrowed down with `accelerator` (`"cpu"`, `"gpu"` or `"neuron"`) and `gguf_file`, or pass a `recipe_id` to deploy an exact recipe:
+A subset of the Inference Endpoint features are implemented in [HfApi](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi):
 
-```py
->>> from huggingface_hub import create_inference_endpoint_from_catalog
->>> endpoint = create_inference_endpoint_from_catalog(repo_id="openai/gpt-oss-120b")
->>> endpoint = create_inference_endpoint_from_catalog(recipe_id="artisanal-quinoa-yz9ynamx")
-```
+- [get_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_inference_endpoint) and [list_inference_endpoints()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_endpoints) to get information about your Inference Endpoints
+- [list_inference_endpoints_hardware()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_endpoints_hardware) to list the hardware you can deploy an Inference Endpoint on
+- [create_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint), [update_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_inference_endpoint) and [delete_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_inference_endpoint) to deploy and manage Inference Endpoints
+- [list_inference_catalog()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_catalog) and [create_inference_endpoint_from_catalog()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint_from_catalog) to browse and deploy the curated Model Catalog
+- [pause_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_inference_endpoint) and [resume_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.resume_inference_endpoint) to pause and resume an Inference Endpoint
+- [scale_to_zero_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.scale_to_zero_inference_endpoint) to manually scale an Endpoint to 0 replicas
 
-## Find hardware to deploy on
+## InferenceEndpoint[[huggingface_hub.InferenceEndpoint]]
 
-The `accelerator`, `vendor`, `region`, `instance_type` and `instance_size` values accepted by [create_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint) depend on each other. Use [list_inference_endpoints_hardware()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_endpoints_hardware) to list the valid combinations, along with their price per hour and the accelerator quota of your namespace:
+The main dataclass is [InferenceEndpoint](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint). It contains information about a deployed `InferenceEndpoint`, including its configuration and current state. Once deployed, you can run inference on the Endpoint using the  [InferenceEndpoint.client](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.client) and [InferenceEndpoint.async_client](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.async_client) properties that respectively return an [InferenceClient](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) and an [AsyncInferenceClient](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient) object.
 
-```py
->>> from huggingface_hub import list_inference_endpoints_hardware
-
->>> for hw in list_inference_endpoints_hardware():
-...     if hw.accelerator == "gpu" and hw.status == "available":
-...         print(hw.vendor, hw.region, hw.instance_type, hw.instance_size, hw.price_per_hour)
-aws us-east-1 nvidia-l4 x1 0.8
-aws us-east-1 nvidia-l4 x4 3.8
-...
-```
-
-Quota is per namespace, so pass the `namespace` you will deploy into (it defaults to your own account):
-
-```py
->>> list_inference_endpoints_hardware(namespace="my-org")
-```
-
-Or via CLI:
-
-```bash
-hf endpoints hardware --accelerator gpu
-```
-
-## Create an Inference Endpoint
-
-The first step is to create an Inference Endpoint using [create_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint):
-
-```py
->>> from huggingface_hub import create_inference_endpoint
-
->>> endpoint = create_inference_endpoint(
-...     "my-endpoint-name",
-...     repository="gpt2",
-...     framework="pytorch",
-...     task="text-generation",
-...     accelerator="cpu",
-...     vendor="aws",
-...     region="us-east-1",
-...     type="authenticated",
-...     instance_size="x2",
-...     instance_type="intel-icl"
-... )
-```
-
-Or via CLI:
-
-```bash
-hf endpoints deploy my-endpoint-name --repo gpt2 --framework pytorch --accelerator cpu --vendor aws --region us-east-1 --instance-size x2 --instance-type intel-icl --task text-generation
-
-# Deploy from the catalog with a single command
-hf endpoints catalog deploy --repo openai/gpt-oss-120b
-
-# Deploy from the catalog with a specific accelerator
-hf endpoints catalog deploy --repo openai/gpt-oss-120b --accelerator gpu
-
-# Deploy an exact catalog recipe, as listed by 'hf endpoints catalog ls'
-hf endpoints catalog deploy --recipe artisanal-quinoa-yz9ynamx
-```
-
-In this example, we created an `authenticated` Inference Endpoint named `"my-endpoint-name"`, to serve [gpt2](https://huggingface.co/gpt2) for `text-generation`. An `authenticated` Inference Endpoint means your token is required to access the API. We also need to provide additional information to configure the hardware requirements, such as vendor, region, accelerator, instance type, and size. You can check out the list of available resources [here](https://api.endpoints.huggingface.cloud/#/v2%3A%3Aprovider/list_vendors). Alternatively, you can create an Inference Endpoint manually using the [Web interface](https://ui.endpoints.huggingface.co) for convenience. Refer to this [guide](https://huggingface.co/docs/inference-endpoints/guides/advanced) for details on advanced settings and their usage.
-
-The value returned by [create_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint) is an [InferenceEndpoint](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) object:
-
-```py
->>> endpoint
-InferenceEndpoint(name='my-endpoint-name', namespace='Wauplin', repository='gpt2', status='pending', url=None)
-```
-
-Or via CLI:
-
-```bash
-hf endpoints describe my-endpoint-name
-```
-
-It's a dataclass that holds information about the endpoint. You can access important attributes such as `name`, `repository`, `status`, `task`, `created_at`, `updated_at`, etc. If you need it, you can also access the raw response from the server with `endpoint.raw`.
-
-Once your Inference Endpoint is created, you can find it on your [personal dashboard](https://ui.endpoints.huggingface.co/).
-
-![](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/huggingface_hub/inference_endpoints_created.png)
-
-#### Using a custom image
-
-By default the Inference Endpoint is built from a docker image provided by Hugging Face. However, it is possible to specify any docker image using the `custom_image` parameter. A common use case is to run LLMs using the [text-generation-inference](https://github.com/huggingface/text-generation-inference) framework. This can be done like this:
+#### huggingface_hub.InferenceEndpoint[[huggingface_hub.InferenceEndpoint]]
 
 ```python
-# Start an Inference Endpoint running Zephyr-7b-beta on TGI
->>> from huggingface_hub import create_inference_endpoint
->>> endpoint = create_inference_endpoint(
-...     "aws-zephyr-7b-beta-0486",
-...     repository="HuggingFaceH4/zephyr-7b-beta",
-...     framework="pytorch",
-...     task="text-generation",
-...     accelerator="gpu",
-...     vendor="aws",
-...     region="us-east-1",
-...     type="authenticated",
-...     instance_size="x1",
-...     instance_type="nvidia-a10g",
-...     custom_image={
-...         "healthRoute": "/health",
-...         "env": {
-...             "MAX_BATCH_PREFILL_TOKENS": "2048",
-...             "MAX_INPUT_LENGTH": "1024",
-...             "MAX_TOTAL_TOKENS": "1512",
-...             "MODEL_ID": "/repository"
-...         },
-...         "url": "ghcr.io/huggingface/text-generation-inference:1.1.0",
-...     },
-... )
+huggingface_hub.InferenceEndpoint(namespace: str, raw: dict, _token: str | bool | None, _api: HfApi)
 ```
 
-The value to pass as `custom_image` is a dictionary containing a url to the docker container and configuration to run it. For more details about it, checkout the [Swagger documentation](https://api.endpoints.huggingface.cloud/#/v2%3A%3Aendpoint/create_endpoint).
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_inference_endpoints.py#L116)
 
-For an image hosted in a private container registry, pass `container_registry_username` and, when required by the registry, `container_registry_password`. The credentials are only supported for a plain custom container:
+**Parameters:**
 
+name (`str`) : The unique name of the Inference Endpoint.
+
+namespace (`str`) : The namespace where the Inference Endpoint is located.
+
+repository (`str`) : The name of the model repository deployed on this Inference Endpoint.
+
+status ([InferenceEndpointStatus](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointStatus)) : The current status of the Inference Endpoint.
+
+url (`str`, *optional*) : The URL of the Inference Endpoint, if available. Only a deployed Inference Endpoint will have a URL.
+
+framework (`str`) : The machine learning framework used for the model.
+
+revision (`str`) : The specific model revision deployed on the Inference Endpoint.
+
+task (`str`) : The task associated with the deployed model.
+
+created_at (`datetime.datetime`) : The timestamp when the Inference Endpoint was created.
+
+updated_at (`datetime.datetime`) : The timestamp of the last update of the Inference Endpoint.
+
+type ([InferenceEndpointType](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointType)) : The type of the Inference Endpoint (public, authenticated, private).
+
+raw (`dict`) : The raw dictionary data returned from the API.
+
+token (`str` or `bool`, *optional*) : Authentication token for the Inference Endpoint, if set when requesting the API. Will default to the locally saved token if not provided. Pass `token=False` if you don't want to send your token to the server.
+
+Contains information about a deployed Inference Endpoint.
+
+Example:
 ```python
->>> endpoint = create_inference_endpoint(
-...     # Other endpoint and hardware arguments omitted for brevity.
-...     custom_image={"url": "private.registry.example/my-image:latest", "port": 8080},
-...     container_registry_username="user",
-...     container_registry_password="password",
-... )
-```
-
-The equivalent CLI options are `--container-registry-username` and `--container-registry-password`:
-
-```bash
-hf endpoints deploy my-endpoint ... --custom-image private.registry.example/my-image:latest \
-  --container-registry-username user --container-registry-password password
-```
-
-`custom_image` also accepts the engine-specific container types supported by the API, by keying the dictionary with the engine name (`vLLM`, `vLLMNeuron`, `sGLang`, `tgi`, `tgiNeuron`, `tei`, `llamacpp`, `hfServe`, ...) instead of leaving it flat. Each engine takes the usual container fields (`url`, `port`, `healthRoute`) plus its own tuning options. Any dict without a top-level `url` is forwarded to the API untouched, so engines added to the API later work without upgrading `huggingface_hub`:
-
-```python
-# Start an Inference Endpoint running the vLLM engine image
->>> endpoint = create_inference_endpoint(
-...     "llama-3-1-8b-instruct-vllm",
-...     repository="meta-llama/Llama-3.1-8B-Instruct",
-...     framework="pytorch",
-...     task="text-generation",
-...     accelerator="gpu",
-...     vendor="aws",
-...     region="us-east-1",
-...     instance_size="x1",
-...     instance_type="nvidia-l4",
-...     custom_image={
-...         "vLLM": {
-...             "url": "vllm/vllm-openai:v0.23.0",
-...             "healthRoute": "/health",
-...             "port": 8000,
-...             "tensorParallelSize": 1,
-...         }
-...     },
-... )
-```
-
-Without the engine key, the same dictionary is sent as a plain custom container, so the engine-specific options (here `tensorParallelSize`) are dropped.
-
-For containers that need a custom entrypoint or runtime flags, pass `container_command` and/or `container_args` (each a list of tokens). They map to `model.command` and `model.args` in the API payload. They are not tied to custom images: managed engine images (e.g. vLLM, SGLang) accept engine flags through `container_args` as well. The same is available from the CLI via `hf endpoints deploy ... --container-command "..." --container-args "..."`.
-
-#### Parallelism on multi-accelerator instances
-
-vLLM and SGLang default to one accelerator while the endpoint is allocated every accelerator of its instance, so
-leaving the parallelism unset would load the model onto one and idle the rest while still reporting healthy, so you pay
-for all of them and get the throughput of one. That is why the API now rejects such a deployment. (TGI derives its
-shard count from the instance and is not affected.) Set `tensorParallelSize` to shard one model copy across the
-accelerators, or
-`dataParallelSize` (vLLM only) to run one copy per accelerator:
-
-```py
->>> endpoint = create_inference_endpoint(
-...     "gpt-oss-120b-vllm",
-...     repository="openai/gpt-oss-120b",
-...     framework="custom",
-...     accelerator="gpu",
-...     instance_size="x8",
-...     instance_type="nvidia-h200",
-...     region="us-east-1",
-...     vendor="aws",
-...     custom_image={"vLLM": {"url": "vllm/vllm-openai:v0.23.0", "tensorParallelSize": 8}},
-... )
-```
-
-From the CLI, `--engine` selects the managed engine image and the two flags are written into its config:
-
-```bash
-hf endpoints deploy gpt-oss-120b-vllm --repo openai/gpt-oss-120b --framework custom \
-  --accelerator gpu --instance-size x8 --instance-type nvidia-h200 --region us-east-1 --vendor aws \
-  --engine vllm --custom-image vllm/vllm-openai:v0.23.0 --tensor-parallel-size 8
-```
-
-To retune a deployed endpoint, pass `tensor_parallel_size` alone to [update()](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.update) or
-`hf endpoints update`. `model.image` is sent as a whole and requires `url`, so the endpoint's current image is fetched
-and updated in place:
-
-```py
->>> endpoint.update(tensor_parallel_size=4)
-```
-
-`container_args` (`--tp 8`) is not equivalent: it reaches the engine as a command-line flag, not the `model.image`
-config the API validates against the instance's accelerator count. Use it for engine flags with no image field, and for
-plain custom containers, which have no parallelism fields.
-
-### Get or list existing Inference Endpoints
-
-In some cases, you might need to manage Inference Endpoints you created previously. If you know the name, you can fetch it using [get_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_inference_endpoint), which returns an [InferenceEndpoint](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) object. Alternatively, you can use [list_inference_endpoints()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_inference_endpoints) to retrieve a list of all Inference Endpoints. Both methods accept an optional `namespace` parameter. You can set the `namespace` to any organization you are a part of. Otherwise, it defaults to your username.
-
-```py
->>> from huggingface_hub import get_inference_endpoint, list_inference_endpoints
-
-# Get one
->>> get_inference_endpoint("my-endpoint-name")
-InferenceEndpoint(name='my-endpoint-name', namespace='Wauplin', repository='gpt2', status='pending', url=None)
-
-# List all endpoints from an organization
->>> list_inference_endpoints(namespace="huggingface")
-[InferenceEndpoint(name='aws-starchat-beta', namespace='huggingface', repository='HuggingFaceH4/starchat-beta', status='paused', url=None), ...]
-
-# List all endpoints from all organizations the user belongs to
->>> list_inference_endpoints(namespace="*")
-[InferenceEndpoint(name='aws-starchat-beta', namespace='huggingface', repository='HuggingFaceH4/starchat-beta', status='paused', url=None), ...]
-```
-
-Or via CLI: 
-
-```bash
-hf endpoints describe my-endpoint-name
-hf endpoints ls --namespace huggingface
-hf endpoints ls --namespace '*'
-```
-
-## Check deployment status
-
-In the rest of this guide, we will assume that we have a [InferenceEndpoint](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) object called `endpoint`. You might have noticed that the endpoint has a `status` attribute of type [InferenceEndpointStatus](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointStatus). When the Inference Endpoint is deployed and accessible, the status should be `"running"` and the `url` attribute is set:
-
-```py
->>> endpoint
-InferenceEndpoint(name='my-endpoint-name', namespace='Wauplin', repository='gpt2', status='running', url='https://jpj7k2q4j805b727.us-east-1.aws.endpoints.huggingface.cloud')
-```
-
-Before reaching a `"running"` state, the Inference Endpoint typically goes through an `"initializing"` or `"pending"` phase. You can fetch the new state of the endpoint by running [fetch()](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.fetch). Like every other method from [InferenceEndpoint](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) that makes a request to the server, the internal attributes of `endpoint` are mutated in place:
-
-```py
->>> endpoint.fetch()
-InferenceEndpoint(name='my-endpoint-name', namespace='Wauplin', repository='gpt2', status='pending', url=None)
-```
-
-Or via CLI:
-
-```bash
-hf endpoints describe my-endpoint-name
-```
-
-Instead of fetching the Inference Endpoint status while waiting for it to run, you can directly call [wait()](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.wait). This helper takes as input a `timeout` and a `fetch_every` parameter (in seconds) and will block the thread until the Inference Endpoint is deployed. Default values are respectively `None` (no timeout) and `5` seconds.
-
-```py
-# Pending endpoint
->>> endpoint
-InferenceEndpoint(name='my-endpoint-name', namespace='Wauplin', repository='gpt2', status='pending', url=None)
-
-# Wait 10s => raises a InferenceEndpointTimeoutError
->>> endpoint.wait(timeout=10)
-    raise InferenceEndpointTimeoutError("Timeout while waiting for Inference Endpoint to be deployed.")
-huggingface_hub._inference_endpoints.InferenceEndpointTimeoutError: Timeout while waiting for Inference Endpoint to be deployed.
-
-# Wait more
->>> endpoint.wait()
-InferenceEndpoint(name='my-endpoint-name', namespace='Wauplin', repository='gpt2', status='running', url='https://jpj7k2q4j805b727.us-east-1.aws.endpoints.huggingface.cloud')
-```
-
-If `timeout` is set and the Inference Endpoint takes too much time to load, a `InferenceEndpointTimeoutError` timeout error is raised.
-
-## Run inference
-
-Once your Inference Endpoint is up and running, you can finally run inference on it!
-
-[InferenceEndpoint](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) has two properties `client` and `async_client` returning respectively an [InferenceClient](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) and an [AsyncInferenceClient](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient) objects.
-
-```py
-# Run text_generation task:
->>> endpoint.client.text_generation("I am")
-' not a fan of the idea of a "big-budget" movie. I think it\'s a'
-
-# Or in an asyncio context:
->>> await endpoint.async_client.text_generation("I am")
-```
-
-If the Inference Endpoint is not running, an [InferenceEndpointError](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) exception is raised:
-
-```py
->>> endpoint.client
-huggingface_hub._inference_endpoints.InferenceEndpointError: Cannot create a client for this Inference Endpoint as it is not yet deployed. Please wait for the Inference Endpoint to be deployed using `endpoint.wait()` and try again.
-```
-
-For more details about how to use the [InferenceClient](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_client#huggingface_hub.InferenceClient), check out the [Inference guide](../guides/inference).
-
-## Manage lifecycle
-
-Now that we saw how to create an Inference Endpoint and run inference on it, let's see how to manage its lifecycle.
-
-> [!TIP]
-> In this section, we will see methods like [pause()](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.pause), [resume()](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.resume), [scale_to_zero()](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.scale_to_zero), [update()](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.update) and [delete()](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.delete). All of those methods are aliases added to [InferenceEndpoint](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) for convenience. If you prefer, you can also use the generic methods defined in `HfApi`: [pause_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_inference_endpoint), [resume_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.resume_inference_endpoint), [scale_to_zero_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.scale_to_zero_inference_endpoint), [update_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_inference_endpoint), and [delete_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_inference_endpoint).
-
-### Pause or scale to zero
-
-To reduce costs when your Inference Endpoint is not in use, you can choose to either pause it using [pause()](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.pause) or scale it to zero using [scale_to_zero()](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.scale_to_zero).
-
-> [!TIP]
-> An Inference Endpoint that is *paused* or *scaled to zero* doesn't cost anything. The difference between those two is that a *paused* endpoint needs to be explicitly *resumed* using [resume()](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.resume). On the contrary, a *scaled to zero* endpoint will automatically start if an inference call is made to it, with an additional cold start delay. An Inference Endpoint can also be configured to scale to zero automatically after a certain period of inactivity.
-
-```py
-# Pause and resume endpoint
->>> endpoint.pause()
-InferenceEndpoint(name='my-endpoint-name', namespace='Wauplin', repository='gpt2', status='paused', url=None)
->>> endpoint.resume()
-InferenceEndpoint(name='my-endpoint-name', namespace='Wauplin', repository='gpt2', status='pending', url=None)
->>> endpoint.wait().client.text_generation(...)
-...
-
-# Scale to zero
->>> endpoint.scale_to_zero()
-InferenceEndpoint(name='my-endpoint-name', namespace='Wauplin', repository='gpt2', status='scaledToZero', url='https://jpj7k2q4j805b727.us-east-1.aws.endpoints.huggingface.cloud')
-# Endpoint is not 'running' but still has a URL and will restart on first call.
-```
-
-Or via CLI:
-
-```bash
-hf endpoints pause my-endpoint-name
-hf endpoints resume my-endpoint-name
-hf endpoints scale-to-zero my-endpoint-name
-```
-
-### Update model or hardware requirements
-
-In some cases, you might also want to update your Inference Endpoint without creating a new one. You can either update the hosted model or the hardware requirements to run the model. You can do this using [update()](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.update):
-
-```py
-# Change target model
->>> endpoint.update(repository="gpt2-large")
-InferenceEndpoint(name='my-endpoint-name', namespace='Wauplin', repository='gpt2-large', status='pending', url=None)
-
-# Update number of replicas
->>> endpoint.update(min_replica=2, max_replica=6)
-InferenceEndpoint(name='my-endpoint-name', namespace='Wauplin', repository='gpt2-large', status='pending', url=None)
-
-# Update to larger instance
->>> endpoint.update(accelerator="cpu", instance_size="x4", instance_type="intel-icl")
-InferenceEndpoint(name='my-endpoint-name', namespace='Wauplin', repository='gpt2-large', status='pending', url=None)
-
-# Update the container arguments, e.g. engine flags on an endpoint running vLLM or SGLang.
-# Replaces the current value, it is not appended.
->>> endpoint.update(container_args=["--enable-auto-tool-choice", "--tool-call-parser", "lfm2"])
-InferenceEndpoint(name='my-endpoint-name', namespace='Wauplin', repository='gpt2-large', status='pending', url=None)
-```
-
-Or via CLI:
-
-```bash
-hf endpoints update my-endpoint-name --repo gpt2-large
-hf endpoints update my-endpoint-name --min-replica 2 --max-replica 6
-hf endpoints update my-endpoint-name --accelerator cpu --instance-size x4 --instance-type intel-icl
-hf endpoints update my-endpoint-name --container-args "--enable-auto-tool-choice --tool-call-parser lfm2"
-# Merged into the image currently configured on the endpoint.
-hf endpoints update my-endpoint-name --tensor-parallel-size 8
-# Or replace the image entirely, in which case pass back the settings you want to keep.
-hf endpoints update my-endpoint-name --engine vllm --custom-image vllm/vllm-openai:v0.23.0 --port 8000
-```
-
-### Delete the endpoint
-
-Finally if you won't use the Inference Endpoint anymore, you can simply call `~InferenceEndpoint.delete()`.
-
-> [!WARNING]
-> This is a non-revertible action that will completely remove the endpoint, including its configuration, logs and usage metrics. You cannot restore a deleted Inference Endpoint.
-
-## An end-to-end example
-
-A typical use case of Inference Endpoints is to process a batch of jobs at once to limit the infrastructure costs. You can automate this process using what we saw in this guide:
-
-```py
->>> import asyncio
->>> from huggingface_hub import create_inference_endpoint
-
-# Start endpoint + wait until initialized
->>> endpoint = create_inference_endpoint(name="batch-endpoint",...).wait()
-
-# Run inference
->>> client = endpoint.client
->>> results = [client.text_generation(...) for job in jobs]
-
-# Or with asyncio
->>> async_client = endpoint.async_client
->>> results = asyncio.gather(*[async_client.text_generation(...) for job in jobs])
-
-# Pause endpoint
->>> endpoint.pause()
-```
-
-Or if your Inference Endpoint already exists and is paused:
-
-```py
->>> import asyncio
 >>> from huggingface_hub import get_inference_endpoint
+>>> endpoint = get_inference_endpoint("my-text-to-image")
+>>> endpoint
+InferenceEndpoint(name='my-text-to-image', ...)
 
-# Get endpoint + wait until initialized
->>> endpoint = get_inference_endpoint("batch-endpoint").resume().wait()
+# Get status
+>>> endpoint.status
+'running'
+>>> endpoint.url
+'https://68a0f3b5c6ee5c9dcc0e0a01.endpoints.huggingface.cloud'
 
 # Run inference
->>> async_client = endpoint.async_client
->>> results = asyncio.gather(*[async_client.text_generation(...) for job in jobs])
+>>> endpoint.client.text_to_image(...)
 
-# Pause endpoint
+# Pause endpoint to save $$$
 >>> endpoint.pause()
+
+# ...
+# Resume and wait for deployment
+>>> endpoint.resume()
+>>> endpoint.wait()
+>>> endpoint.client.text_to_image(...)
 ```
 
-### Collections
-https://huggingface.co/docs/huggingface_hub/v2.3.0/guides/collections.md
+#### from_raw[[huggingface_hub.InferenceEndpoint.from_raw]]
+
+```python
+from_raw(raw: dict, namespace: str, token: str | bool | None = None, api: typing.Optional[ForwardRef('HfApi')] = None)
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_inference_endpoints.py#L199)
+
+Initialize object from raw dictionary.
+
+#### client[[huggingface_hub.InferenceEndpoint.client]]
+
+```python
+client()
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_inference_endpoints.py#L220)
+
+**Returns:** [InferenceClient](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)
+
+an inference client pointing to the deployed endpoint.
+
+**Raises:** [InferenceEndpointError](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError)
+
+- [InferenceEndpointError](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) -- If the Inference Endpoint is not yet deployed.
+
+Returns a client to make predictions on this Inference Endpoint.
+
+#### async_client[[huggingface_hub.InferenceEndpoint.async_client]]
+
+```python
+async_client()
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_inference_endpoints.py#L242)
+
+**Returns:** [AsyncInferenceClient](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient)
+
+an asyncio-compatible inference client pointing to the deployed endpoint.
+
+**Raises:** [InferenceEndpointError](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError)
+
+- [InferenceEndpointError](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) -- If the Inference Endpoint is not yet deployed.
+
+Returns a client to make predictions on this Inference Endpoint.
+
+#### delete[[huggingface_hub.InferenceEndpoint.delete]]
+
+```python
+delete()
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_inference_endpoints.py#L487)
+
+Delete the Inference Endpoint.
+
+This operation is not reversible. If you don't want to be charged for an Inference Endpoint, it is preferable
+to pause it with [InferenceEndpoint.pause()](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.pause) or scale it to zero with [InferenceEndpoint.scale_to_zero()](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.scale_to_zero).
+
+This is an alias for [HfApi.delete_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_inference_endpoint).
+
+#### fetch[[huggingface_hub.InferenceEndpoint.fetch]]
+
+```python
+fetch()
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_inference_endpoints.py#L317)
+
+**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+
+the same Inference Endpoint, mutated in place with the latest data.
+
+Fetch latest information about the Inference Endpoint.
+
+#### pause[[huggingface_hub.InferenceEndpoint.pause]]
+
+```python
+pause()
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_inference_endpoints.py#L430)
+
+**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+
+the same Inference Endpoint, mutated in place with the latest data.
+
+Pause the Inference Endpoint.
+
+A paused Inference Endpoint will not be charged. It can be resumed at any time using [InferenceEndpoint.resume()](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.resume).
+This is different from scaling the Inference Endpoint to zero with [InferenceEndpoint.scale_to_zero()](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.scale_to_zero), which
+would be automatically restarted when a request is made to it.
+
+This is an alias for [HfApi.pause_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.pause_inference_endpoint). The current object is mutated in place with the
+latest data from the server.
+
+#### resume[[huggingface_hub.InferenceEndpoint.resume]]
+
+```python
+resume(running_ok: bool = True)
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_inference_endpoints.py#L448)
+
+**Parameters:**
+
+running_ok (`bool`, *optional*) : If `True`, the method will not raise an error if the Inference Endpoint is already running. Defaults to `True`.
+
+**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+
+the same Inference Endpoint, mutated in place with the latest data.
+
+Resume the Inference Endpoint.
+
+This is an alias for [HfApi.resume_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.resume_inference_endpoint). The current object is mutated in place with the
+latest data from the server.
+
+#### scale_to_zero[[huggingface_hub.InferenceEndpoint.scale_to_zero]]
+
+```python
+scale_to_zero()
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_inference_endpoints.py#L469)
+
+**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+
+the same Inference Endpoint, mutated in place with the latest data.
+
+Scale Inference Endpoint to zero.
+
+An Inference Endpoint scaled to zero will not be charged. It will be resumed on the next request to it, with a
+cold start delay. This is different from pausing the Inference Endpoint with [InferenceEndpoint.pause()](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.pause), which
+would require a manual resume with [InferenceEndpoint.resume()](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint.resume).
+
+This is an alias for [HfApi.scale_to_zero_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.scale_to_zero_inference_endpoint). The current object is mutated in place with the
+latest data from the server.
+
+#### update[[huggingface_hub.InferenceEndpoint.update]]
+
+```python
+update(accelerator: str | None = None, instance_size: str | None = None, instance_type: str | None = None, min_replica: int | None = None, max_replica: int | None = None, scale_to_zero_timeout: int | None = None, repository: str | None = None, framework: str | None = None, revision: str | None = None, task: str | None = None, custom_image: dict | None = None, container_command: list[str] | None = None, container_args: list[str] | None = None, tensor_parallel_size: int | None = None, data_parallel_size: int | None = None, secrets: dict[str, str] | None = None)
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_inference_endpoints.py#L328)
+
+**Parameters:**
+
+accelerator (`str`, *optional*) : The hardware accelerator to be used for inference (e.g. `"cpu"`).
+
+instance_size (`str`, *optional*) : The size or type of the instance to be used for hosting the model (e.g. `"x4"`).
+
+instance_type (`str`, *optional*) : The cloud instance type where the Inference Endpoint will be deployed (e.g. `"intel-icl"`).
+
+min_replica (`int`, *optional*) : The minimum number of replicas (instances) to keep running for the Inference Endpoint.
+
+max_replica (`int`, *optional*) : The maximum number of replicas (instances) to scale to for the Inference Endpoint.
+
+scale_to_zero_timeout (`int`, *optional*) : The duration in minutes before an inactive endpoint is scaled to zero. 
+
+repository (`str`, *optional*) : The name of the model repository associated with the Inference Endpoint (e.g. `"gpt2"`).
+
+framework (`str`, *optional*) : The machine learning framework used for the model (e.g. `"custom"`).
+
+revision (`str`, *optional*) : The specific model revision to deploy on the Inference Endpoint (e.g. `"6c0e6080953db56375760c0471a8c5f2929baf11"`).
+
+task (`str`, *optional*) : The task on which to deploy the model (e.g. `"text-classification"`).
+
+custom_image (`dict`, *optional*) : The container image to run. Either a dict keyed by image variant (e.g. `{"vLLM": {"url": "vllm/vllm-openai:v0.23.0", "port": 8000}}`, also `sGLang`, `tgi`, `tei`, `llamacpp`, `hfServe`, ...), which is forwarded as-is, or a flat dict describing a custom container (e.g. `{"url": ..., "port": ...}`), which is sent as `{"custom": ...}`.
+
+container_command (`list[str]`, *optional*) : Override the container entrypoint command (maps to `model.command` in the API payload). Works with both managed engine images (e.g. vLLM, SGLang) and custom images.
+
+container_args (`list[str]`, *optional*) : Arguments appended to the container entrypoint (maps to `model.args` in the API payload). Works with both managed engine images (e.g. vLLM, SGLang) and custom images.
+
+tensor_parallel_size (`int`, *optional*) : Number of accelerators to shard a single model copy across (vLLM and SGLang images). When `custom_image` is not given, the image currently configured on the endpoint is fetched and updated in place, as the API requires `model.image` as a whole.
+
+data_parallel_size (`int`, *optional*) : Number of model copies to run, one per accelerator (vLLM images).
+
+secrets (`dict[str, str]`, *optional*) : Secret values to inject in the container environment.
+
+**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+
+the same Inference Endpoint, mutated in place with the latest data.
+
+Update the Inference Endpoint.
+
+This method allows the update of either the compute configuration, the deployed model, or both. All arguments are
+optional but at least one must be provided.
+
+This is an alias for [HfApi.update_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_inference_endpoint). The current object is mutated in place with the
+latest data from the server.
+
+#### wait[[huggingface_hub.InferenceEndpoint.wait]]
+
+```python
+wait(timeout: int | None = None, refresh_every: int = 5)
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_inference_endpoints.py#L264)
+
+**Parameters:**
+
+timeout (`int`, *optional*) : The maximum time to wait for the Inference Endpoint to be deployed, in seconds. If `None`, will wait indefinitely.
+
+refresh_every (`int`, *optional*) : The time to wait between each fetch of the Inference Endpoint status, in seconds. Defaults to 5s.
+
+**Returns:** [InferenceEndpoint](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint)
+
+the same Inference Endpoint, mutated in place with the latest data.
+
+**Raises:** [InferenceEndpointError](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) or `InferenceEndpointTimeoutError`
+
+- [InferenceEndpointError](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpointError) -- 
+  If the Inference Endpoint ended up in a failed state.
+- `InferenceEndpointTimeoutError` -- 
+  If the Inference Endpoint is not deployed after `timeout` seconds.
+
+Wait for the Inference Endpoint to be deployed.
+
+Information from the server will be fetched every 1s. If the Inference Endpoint is not deployed after `timeout`
+seconds, a `InferenceEndpointTimeoutError` will be raised. The [InferenceEndpoint](/docs/huggingface_hub/v2.3.0/en/package_reference/inference_endpoints#huggingface_hub.InferenceEndpoint) will be mutated in place with the latest
+data.
+
+## InferenceEndpointHardware[[huggingface_hub.InferenceEndpointHardware]]
+
+#### huggingface_hub.InferenceEndpointHardware[[huggingface_hub.InferenceEndpointHardware]]
+
+```python
+huggingface_hub.InferenceEndpointHardware(id: str, vendor: str, region: str, accelerator: str, instance_type: str, instance_size: str, architecture: str, num_accelerators: int, num_cpus: int | None, memory_gb: float, gpu_memory_gb: int | None, price_per_hour: float, status: str, max_accelerators: int, used_accelerators: int)
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_inference_endpoints.py#L519)
+
+**Parameters:**
+
+id (`str`) : Unique hardware identifier, e.g. `"aws-us-east-1-nvidia-l4-x1"`.
+
+vendor (`str`) : The cloud provider hosting the hardware, e.g. `"aws"`.
+
+region (`str`) : The cloud region the hardware is available in, e.g. `"us-east-1"`.
+
+accelerator (`str`) : The type of hardware accelerator, e.g. `"cpu"`, `"gpu"` or `"neuron"`.
+
+instance_type (`str`) : The cloud instance type, e.g. `"nvidia-l4"`.
+
+instance_size (`str`) : The instance size multiplier, e.g. `"x1"`.
+
+architecture (`str`) : Human-readable hardware description, e.g. `"Nvidia L4"`.
+
+num_accelerators (`int`) : Number of accelerator units per replica.
+
+num_cpus (`int`, *optional*) : Number of vCPUs per replica.
+
+memory_gb (`float`) : RAM per replica, in GB.
+
+gpu_memory_gb (`int`, *optional*) : Total GPU memory per replica, in GB (i.e. summed over `num_accelerators`). `None` for non-GPU hardware.
+
+price_per_hour (`float`) : Cost per replica per hour, in USD.
+
+status (`str`) : Availability of the hardware: `"available"`, `"low_availability"`, `"not_available"`, `"reserved"` or `"deprecated"`.
+
+max_accelerators (`int`) : Maximum number of accelerators of this type the namespace is allowed to run.
+
+used_accelerators (`int`) : Number of accelerators of this type currently used by the namespace.
+
+Contains information about a hardware configuration available for Inference Endpoints.
+
+The `vendor`, `region`, `accelerator`, `instance_type` and `instance_size` fields are exactly the values to pass to
+[create_inference_endpoint()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint) (or `hf endpoints deploy`) to deploy on this hardware.
+
+Example:
+```python
+>>> from huggingface_hub import list_inference_endpoints_hardware
+>>> hardware = list_inference_endpoints_hardware()
+>>> hardware[0]
+InferenceEndpointHardware(id='aws-us-east-1-nvidia-l4-x1', vendor='aws', region='us-east-1', ...)
+```
+
+#### from_raw[[huggingface_hub.InferenceEndpointHardware.from_raw]]
+
+```python
+from_raw(raw: dict, vendor: str, region: str)
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_inference_endpoints.py#L584)
+
+Initialize object from a raw compute dictionary, nested under a vendor and a region in the API response.
+
+## InferenceCatalogModel[[huggingface_hub.InferenceCatalogModel]]
+
+#### huggingface_hub.InferenceCatalogModel[[huggingface_hub.InferenceCatalogModel]]
+
+```python
+huggingface_hub.InferenceCatalogModel(repo_id: str, name: str, author: str, license: str, task: str, created_at: datetime, recipes: list)
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_inference_endpoints.py#L647)
+
+**Parameters:**
+
+repo_id (`str`) : The id of the model repository on the Hub, e.g. `"meta-llama/Llama-3.1-8B-Instruct"`.
+
+name (`str`) : The model name, i.e. the part of `repo_id` after the author, e.g. `"Llama-3.1-8B-Instruct"`.
+
+author (`str`) : The author of the model repository, e.g. `"meta-llama"`.
+
+license (`str`) : The license of the model, e.g. `"Apache 2.0"`.
+
+task (`str`) : The task the model is deployed on, e.g. `"text-generation"`.
+
+created_at (`datetime`) : The date the model was added to the catalog.
+
+recipes (`list[InferenceCatalogRecipe]`) : The tested ways of deploying this model.
+
+Contains information about a model available in the Inference Catalog.
+
+Example:
+```python
+>>> from huggingface_hub import list_inference_catalog
+>>> catalog = list_inference_catalog(engine="vllm")
+>>> catalog[0]
+InferenceCatalogModel(repo_id='Qwen/Qwen2.5-Coder-7B-Instruct', name='Qwen2.5-Coder-7B-Instruct', ...)
+```
+
+#### from_raw[[huggingface_hub.InferenceCatalogModel.from_raw]]
+
+```python
+from_raw(raw: dict)
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_inference_endpoints.py#L684)
+
+Initialize object from a raw catalog item dictionary.
+
+## InferenceCatalogRecipe[[huggingface_hub.InferenceCatalogRecipe]]
+
+#### huggingface_hub.InferenceCatalogRecipe[[huggingface_hub.InferenceCatalogRecipe]]
+
+```python
+huggingface_hub.InferenceCatalogRecipe(id: str, accelerator: str, engine: str, gguf_file: str | None, revision: str | None)
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_inference_endpoints.py#L608)
+
+**Parameters:**
+
+id (`str`) : The public recipe id, to pass to [create_inference_endpoint_from_catalog()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_inference_endpoint_from_catalog) as `recipe_id`.
+
+accelerator (`str`) : The type of hardware accelerator the recipe runs on, e.g. `"cpu"`, `"gpu"` or `"neuron"`.
+
+engine (`str`) : The inference engine the recipe runs, e.g. `"vllm"`, `"llamacpp"`, `"tei"` or `"sglang"`.
+
+gguf_file (`str`, *optional*) : The GGUF file deployed by the recipe. Only set for `"llamacpp"` recipes.
+
+revision (`str`, *optional*) : The model revision the recipe is pinned to, if any.
+
+Contains information about a pre-tested way of deploying a model from the Inference Catalog.
+
+A recipe is a hardware and engine combination that the Inference Endpoints team has tested for a given model. A
+model usually has one recipe, but it can have several (e.g. a GPU one and a Neuron one, or one per GGUF quant).
+
+#### from_raw[[huggingface_hub.InferenceCatalogRecipe.from_raw]]
+
+```python
+from_raw(raw: dict)
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_inference_endpoints.py#L634)
+
+Initialize object from a raw recipe dictionary, nested under a model in the API response.
+
+## InferenceEndpointStatus[[huggingface_hub.InferenceEndpointStatus]]
+
+#### huggingface_hub.InferenceEndpointStatus[[huggingface_hub.InferenceEndpointStatus]]
+
+```python
+huggingface_hub.InferenceEndpointStatus(value, names = None, module = None, qualname = None, type = None, start = 1)
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_inference_endpoints.py#L93)
+
+An enumeration.
+
+## InferenceEndpointType[[huggingface_hub.InferenceEndpointType]]
+
+#### huggingface_hub.InferenceEndpointType[[huggingface_hub.InferenceEndpointType]]
+
+```python
+huggingface_hub.InferenceEndpointType(value, names = None, module = None, qualname = None, type = None, start = 1)
+```
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_inference_endpoints.py#L104)
+
+An enumeration.
+
+## InferenceEndpointError[[huggingface_hub.InferenceEndpointError]]
+
+#### huggingface_hub.InferenceEndpointError[[huggingface_hub.InferenceEndpointError]]
+
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/errors.py#L162)
+
+Generic exception when dealing with Inference Endpoints.
+
+### Managing your Space runtime
+https://huggingface.co/docs/huggingface_hub/v2.3.0/package_reference/space_runtime.md

@@ -8,9 +8,9 @@ Scale CPU training across multiple sockets or nodes if a single CPU is too slow.
 - multiple processes on one machine (one per CPU socket)
 - multiple processes across several machines
 
-All distributed examples use [Intel MPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html) from the [Intel oneAPI HPC Toolkit](https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit.html) for communication and a DDP strategy with [Trainer](/docs/transformers/v5.21.0/en/main_classes/trainer#transformers.Trainer).
+All distributed examples use [Intel MPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html) from the [Intel oneAPI HPC Toolkit](https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit.html) for communication and a DDP strategy with [Trainer](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.Trainer).
 
-[Trainer](/docs/transformers/v5.21.0/en/main_classes/trainer#transformers.Trainer) supports bf16 mixed precision training on CPU. Prefer bf16 over fp16 for CPU training because it's more numerically stable. Pass `--bf16` to enable PyTorch's CPU autocast and `--use_cpu` to force CPU training. You can pass the same parameters to [TrainingArguments](/docs/transformers/v5.21.0/en/main_classes/trainer#transformers.TrainingArguments) directly.
+[Trainer](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.Trainer) supports bf16 mixed precision training on CPU. Prefer bf16 over fp16 for CPU training because it's more numerically stable. Pass `--bf16` to enable PyTorch's CPU autocast and `--use_cpu` to force CPU training. You can pass the same parameters to [TrainingArguments](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.TrainingArguments) directly.
 
 ```py
 from transformers import TrainingArguments
@@ -22,7 +22,7 @@ training_args = TrainingArguments(
 )
 ```
 
-On a dual-socket CPU, run one process per socket. Keeping memory accesses local to each socket improves throughput. The example below launches two processes on a single machine with one process per socket, where `train.py` is your [Trainer](/docs/transformers/v5.21.0/en/main_classes/trainer#transformers.Trainer) training script.
+On a dual-socket CPU, run one process per socket. Keeping memory accesses local to each socket improves throughput. The example below launches two processes on a single machine with one process per socket, where `train.py` is your [Trainer](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.Trainer) training script.
 
 > [!TIP]
 > Set `OMP_NUM_THREADS` to the number of physical cores on one socket, minus one core reserved for the OS. For example, on a 24-core socket set `OMP_NUM_THREADS=23`.
@@ -215,5 +215,5 @@ kubectl delete -f pytorchjob.yaml -n ${NAMESPACE}
 
 - Read the [Accelerating PyTorch Transformers with Intel Sapphire Rapids](https://huggingface.co/blog/intel-sapphire-rapids) blog post for a deeper look at BF16 performance on modern Intel hardware.
 
-### How caching works
-https://huggingface.co/docs/transformers/v5.21.0/cache_explanation.md
+### Image processors
+https://huggingface.co/docs/transformers/v5.21.1/image_processors.md

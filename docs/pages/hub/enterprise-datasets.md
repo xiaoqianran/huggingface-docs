@@ -7,7 +7,7 @@ Data Studio is enabled on private datasets under your Team or Enterprise organiz
 
 Data Studio allows teams to understand their data and to help them build better data processing and filtering for AI. This powerful viewer allows you to explore dataset content, inspect data distributions, filter by values, search for keywords, or even run SQL queries on your data without leaving your browser.
 
-More information about [Data Studio](./datasets-viewer).
+More information about [Data Studio](./data-studio).
 
 ### Using sample-factory at Hugging Face
 https://huggingface.co/docs/hub/sample-factory.md

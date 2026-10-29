@@ -1769,7 +1769,7 @@ tools = [
 ]
 ```
 
-Customize generation by passing [GenerationConfig](/docs/transformers/v5.21.0/en/main_classes/text_generation#transformers.GenerationConfig) parameters to the `extra_body` argument in [create](https://platform.openai.com/docs/api-reference/responses/create).
+Customize generation by passing [GenerationConfig](/docs/transformers/v5.21.1/en/main_classes/text_generation#transformers.GenerationConfig) parameters to the `extra_body` argument in [create](https://platform.openai.com/docs/api-reference/responses/create).
 
 ```py
 generation_config = {
@@ -2060,5 +2060,5 @@ transformers serve Qwen/Qwen2.5-0.5B-Instruct \
   --dtype "bfloat16"
 ```
 
-### Cursor
-https://huggingface.co/docs/transformers/v5.21.0/serve-cli/cursor.md
+### Jan
+https://huggingface.co/docs/transformers/v5.21.1/serve-cli/jan.md

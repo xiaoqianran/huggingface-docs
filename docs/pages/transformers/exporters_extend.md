@@ -134,5 +134,5 @@ fundamentally non-exportable as-is (data-dependent control flow that can't be ve
 treated as forward arguments). Each entry carries a reason naming the model-side change needed. This
 list is also expected to shrink, not grow.
 
-### Google TPU
-https://huggingface.co/docs/transformers/v5.21.0/google_tpu.md
+### Customizing tokenizers
+https://huggingface.co/docs/transformers/v5.21.1/custom_tokenizers.md

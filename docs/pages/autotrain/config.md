@@ -64,5 +64,5 @@ In case you dont want to push the model to hub, you can set `push_to_hub` to `fa
 If not pushing the model to hub username and token are not required. Note: they may still be needed 
 if you are trying to access gated models or datasets.
 
-### Frequently Asked Questions
-https://huggingface.co/docs/autotrain/main/faq.md
+### Quickstart Guide to AutoTrain on Hugging Face Spaces
+https://huggingface.co/docs/autotrain/main/quickstart_spaces.md

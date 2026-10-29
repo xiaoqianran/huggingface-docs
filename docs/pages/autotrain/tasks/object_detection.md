@@ -55,9 +55,11 @@ When train.zip is decompressed, it creates no folders: only images and metadata.
 
 #### autotrain.trainers.object_detection.params.ObjectDetectionParams[[autotrain.trainers.object_detection.params.ObjectDetectionParams]]
 
-[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/object_detection/params.py#L8)
+```python
+autotrain.trainers.object_detection.params.ObjectDetectionParams(data_path: str = None, model: str = 'google/vit-base-patch16-224', username: typing.Optional[str] = None, lr: float = 5e-05, epochs: int = 3, batch_size: int = 8, warmup_ratio: float = 0.1, gradient_accumulation: int = 1, optimizer: str = 'adamw_torch', scheduler: str = 'linear', weight_decay: float = 0.0, max_grad_norm: float = 1.0, seed: int = 42, train_split: str = 'train', valid_split: typing.Optional[str] = None, logging_steps: int = -1, project_name: str = 'project-name', auto_find_batch_size: bool = False, mixed_precision: typing.Optional[str] = None, save_total_limit: int = 1, token: typing.Optional[str] = None, push_to_hub: bool = False, eval_strategy: str = 'epoch', image_column: str = 'image', objects_column: str = 'objects', log: str = 'none', image_square_size: typing.Optional[int] = 600, early_stopping_patience: int = 5, early_stopping_threshold: float = 0.01)
+```
 
-ObjectDetectionParams is a configuration class for object detection training parameters.
+[Source](https://github.com/huggingface/autotrain-advanced/blob/main/src/autotrain/trainers/object_detection/params.py#L8)
 
 **Parameters:**
 
@@ -118,6 +120,8 @@ image_square_size (Optional[int]) : Longest size to which the image will be resi
 early_stopping_patience (int) : Number of epochs with no improvement after which training will be stopped. Default is 5.
 
 early_stopping_threshold (float) : Minimum change to qualify as an improvement. Default is 0.01.
+
+ObjectDetectionParams is a configuration class for object detection training parameters.
 
 ### LLM Finetuning with AutoTrain Advanced
 https://huggingface.co/docs/autotrain/main/tasks/llm_finetuning.md

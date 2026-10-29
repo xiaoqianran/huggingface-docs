@@ -167,5 +167,5 @@ The basic forms of `# Copied from` include the following.
 
 The `with model->newModel` syntax applies string replacements after copying. Separate multiple replacements with commas, which are applied from left to right. The `all-casing` option replaces every casing variant at once (`Bert`, `bert`, `BERT` become `MobileBert`, `mobilebert`, `MOBILEBERT`).
 
-### Extending the exporters
-https://huggingface.co/docs/transformers/v5.21.0/exporters_extend.md
+### Ulysses sequence parallelism
+https://huggingface.co/docs/transformers/v5.21.1/deepspeed_alst.md

@@ -46,7 +46,7 @@ with torch.no_grad():
 transformers.TimesFm2_5Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, patch_length: int = 32, context_length: int = 16384, horizon_length: int = 128, num_hidden_layers: int = 20, hidden_size: int = 1280, intermediate_size: int = 1280, head_dim: int = 80, num_attention_heads: int = 16, rms_norm_eps: float = 1e-06, quantiles: list[float] | tuple[float, ...] = (0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9), attention_dropout: float | int = 0.0, initializer_range: float = 0.02, num_key_value_heads: int = 16, attention_bias: bool = False, output_quantile_len: int = 1024, decode_index: int = 5, use_bias: bool = False, activation: str = 'swish', use_continuous_quantile_head: bool = True, force_flip_invariance: bool = True, infer_is_positive: bool = True, max_position_embeddings: int = 16384, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/models/timesfm2_5/configuration_timesfm2_5.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/timesfm2_5/configuration_timesfm2_5.py#L30)
 
 **Parameters:**
 
@@ -100,8 +100,8 @@ This is the configuration class to store the configuration of a TimesFm2_5Model.
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/timesfm-2.5-200m-transformers](https://huggingface.co/google/timesfm-2.5-200m-transformers)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.21.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.21.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -121,15 +121,15 @@ Example:
 transformers.TimesFm2_5Model(config: TimesFm2_5Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/models/timesfm2_5/modeling_timesfm2_5.py#L455)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/timesfm2_5/modeling_timesfm2_5.py#L455)
 
 #### forward[[transformers.TimesFm2_5Model.forward]]
 
 ```python
-forward(past_values: Tensor, past_values_padding: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(past_values: <module 'torch.Tensor' (<doc_builder.mock_imports.MockFinder object at 0x7fef3bad2690>)>, past_values_padding: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/models/timesfm2_5/modeling_timesfm2_5.py#L551)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/timesfm2_5/modeling_timesfm2_5.py#L551)
 
 **Parameters:**
 
@@ -141,9 +141,9 @@ past_values_padding (`torch.LongTensor` of shape `(batch_size, sequence_length)`
 
 A `TimesFm2_5Output` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([TimesFm2_5Config](/docs/transformers/v5.21.0/en/model_doc/timesfm2_5#transformers.TimesFm2_5Config)) and inputs.
+elements depending on the configuration ([TimesFm2_5Config](/docs/transformers/v5.21.1/en/model_doc/timesfm2_5#transformers.TimesFm2_5Config)) and inputs.
 
-The [TimesFm2_5Model](/docs/transformers/v5.21.0/en/model_doc/timesfm2_5#transformers.TimesFm2_5Model) forward method, overrides the `__call__` special method.
+The [TimesFm2_5Model](/docs/transformers/v5.21.1/en/model_doc/timesfm2_5#transformers.TimesFm2_5Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -174,7 +174,7 @@ the latter silently ignores them.
 transformers.TimesFm2_5ModelForPrediction(config: TimesFm2_5Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/models/timesfm2_5/modeling_timesfm2_5.py#L637)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/timesfm2_5/modeling_timesfm2_5.py#L637)
 
 TimesFm2_5 model for quantile and mean prediction.
 
@@ -184,11 +184,11 @@ TimesFm2_5 model for quantile and mean prediction.
 forward(past_values: Sequence, window_size: int | None = None, future_values: typing.Optional[torch.Tensor] = None, forecast_context_len: int | None = None, truncate_negative: bool | None = None, force_flip_invariance: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/models/timesfm2_5/modeling_timesfm2_5.py#L725)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/timesfm2_5/modeling_timesfm2_5.py#L725)
 
 **Parameters:**
 
-past_values (`collections.abc.Sequence[torch.Tensor]`) : Past values of the time series that serves as input to the model. Each tensor is a 1D time series.
+past_values (`collections.abc.Sequence[doc_builder.mock_imports.torch.Tensor]`) : Past values of the time series that serves as input to the model. Each tensor is a 1D time series.
 
 window_size (`int`, *optional*) : Window size of trend + residual decomposition. If `None`, decomposition is not applied.
 
@@ -204,9 +204,9 @@ force_flip_invariance (`bool`, *optional*) : Whether to apply the flip-invarianc
 
 A `TimesFm2_5OutputForPrediction` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([TimesFm2_5Config](/docs/transformers/v5.21.0/en/model_doc/timesfm2_5#transformers.TimesFm2_5Config)) and inputs.
+elements depending on the configuration ([TimesFm2_5Config](/docs/transformers/v5.21.1/en/model_doc/timesfm2_5#transformers.TimesFm2_5Config)) and inputs.
 
-The [TimesFm2_5ModelForPrediction](/docs/transformers/v5.21.0/en/model_doc/timesfm2_5#transformers.TimesFm2_5ModelForPrediction) forward method, overrides the `__call__` special method.
+The [TimesFm2_5ModelForPrediction](/docs/transformers/v5.21.1/en/model_doc/timesfm2_5#transformers.TimesFm2_5ModelForPrediction) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -226,5 +226,5 @@ the latter silently ignores them.
 - **full_predictions** (`torch.Tensor` of shape `(batch_size, horizon_length, quantiles)`) -- Quantile forecasts including the median after denormalization.
 - **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `future_values` is provided) -- Training loss combining MSE and quantile losses when targets are supplied.
 
-### ZoeDepth
-https://huggingface.co/docs/transformers/v5.21.0/model_doc/zoedepth.md
+### T5v1.1
+https://huggingface.co/docs/transformers/v5.21.1/model_doc/t5v1.1.md

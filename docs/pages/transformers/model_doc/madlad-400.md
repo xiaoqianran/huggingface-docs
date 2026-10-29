@@ -47,5 +47,5 @@ The original checkpoints can be found [here](https://github.com/google-research/
 
 Refer to [T5's documentation page](t5) for all API references, code examples, and notebooks. For more details regarding training and evaluation of the MADLAD-400, refer to the model card.
 
-### Llama
-https://huggingface.co/docs/transformers/v5.21.0/model_doc/llama.md
+### EmbeddingGemma2
+https://huggingface.co/docs/transformers/v5.21.1/model_doc/embedding_gemma2.md

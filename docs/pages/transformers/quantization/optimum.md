@@ -2,5 +2,5 @@
 
 [Optimum](https://huggingface.co/docs/optimum/index) is an optimization library that supports quantization for Intel, Furiosa, ONNX Runtime, GPTQ, and lower-level PyTorch quantization functions. It is designed to enhance performance for specific hardware - Intel CPUs/HPUs, AMD GPUs, Furiosa NPUs, etc. - and model accelerators like ONNX Runtime.
 
-### SpQR
-https://huggingface.co/docs/transformers/v5.21.0/quantization/spqr.md
+### AWQ
+https://huggingface.co/docs/transformers/v5.21.1/quantization/awq.md

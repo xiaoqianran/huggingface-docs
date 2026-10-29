@@ -88,7 +88,7 @@ Separately, `"axial"` is a registered `rope_type` for vision models, but it is n
 
 #### transformers.RopeParameters[[transformers.RopeParameters]]
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.0/src/transformers/modeling_rope_utils.py#L678)
+[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/modeling_rope_utils.py#L678)
 
 **Parameters:**
 
@@ -136,5 +136,5 @@ d[k] = v
 dict(**kwargs) -> new dictionary initialized with the name=value pairs
 in the keyword argument list.  For example:  dict(one=1, two=2)
 
-### Utilities for time series
-https://huggingface.co/docs/transformers/v5.21.0/internal/time_series_utils.md
+### Utilities for Trainer
+https://huggingface.co/docs/transformers/v5.21.1/internal/trainer_utils.md

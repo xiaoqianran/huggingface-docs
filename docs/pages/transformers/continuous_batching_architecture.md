@@ -42,13 +42,13 @@ Chunked (same prompt split and interleave with decode)
   Req C  [→ dec]     · idle ·   [→ dec]    · idle ·
 ```
 
-When a new request's prompt exceeds the available token budget (set by `max_batch_tokens` in [ContinuousBatchingConfig](/docs/transformers/v5.21.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig)), the scheduler processes as many tokens as possible and holds the rest. On subsequent steps, it continues from where it left off, interleaving prefill work with ongoing decode steps. This keeps the batch productive and reduces time-to-first-token for other requests.
+When a new request's prompt exceeds the available token budget (set by `max_batch_tokens` in [ContinuousBatchingConfig](/docs/transformers/v5.21.1/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig)), the scheduler processes as many tokens as possible and holds the rest. On subsequent steps, it continues from where it left off, interleaving prefill work with ongoing decode steps. This keeps the batch productive and reduces time-to-first-token for other requests.
 
 ## Scheduler
 
 The scheduler decides which requests join each forward pass based on two budgets and a request cap.
 
-- Token budget — the maximum number of query tokens processed in a single forward pass, set by `max_batch_tokens` in [ContinuousBatchingConfig](/docs/transformers/v5.21.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig).
+- Token budget — the maximum number of query tokens processed in a single forward pass, set by `max_batch_tokens` in [ContinuousBatchingConfig](/docs/transformers/v5.21.1/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig).
 - Cache budget — the total number of KV pages that can be read in a single pass, which is bounded by the total cache size.
 - Request cap — the maximum number of requests in a single forward pass, set by `max_requests_per_batch`. The logits tensor scales with the vocabulary size, so this cap bounds peak memory for large-vocabulary models.
 
@@ -60,7 +60,7 @@ The scheduler decides which requests join each forward pass based on two budgets
 
 `PrefillFirstScheduler` completes chunked prefill operations before resuming decode. This reduces fragmentation for workloads dominated by long prompts.
 
-Set the scheduler in [ContinuousBatchingConfig](/docs/transformers/v5.21.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig).
+Set the scheduler in [ContinuousBatchingConfig](/docs/transformers/v5.21.1/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig).
 
 ```py
 cb_config = ContinuousBatchingConfig(scheduler_type="prefill_first")
@@ -86,7 +86,7 @@ Shared pool (first two chunks reserved for padding / never allocated)
   chunk = pool unit sized so full and sliding blocks tile the same bytes
 ```
 
-Continuous batching supports two attention types only: `full_attention` (`FullAttentionCacheAllocator`) and `sliding_attention` (`SlidingAttentionCacheAllocator`). Hybrid models get one allocator of each kind. Attention type comes from the model (`layer_types` / `sliding_window`), not from [ContinuousBatchingConfig](/docs/transformers/v5.21.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig).
+Continuous batching supports two attention types only: `full_attention` (`FullAttentionCacheAllocator`) and `sliding_attention` (`SlidingAttentionCacheAllocator`). Hybrid models get one allocator of each kind. Attention type comes from the model (`layer_types` / `sliding_window`), not from [ContinuousBatchingConfig](/docs/transformers/v5.21.1/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig).
 
 Sliding layers keep only a fixed window of recent tokens by recycling a small set of pages. They do not support kernel block tables or block sharing.
 
@@ -96,7 +96,7 @@ The cache reserves two chunks ahead of the data chunks for padding reads and wri
 
 The manager infers how many chunks fit at startup from free GPU memory. It accounts for KV tensors, attention masks, activations, and bookkeeping indices, then sizes the pool to fit inside `max_memory_percent` of the available memory. When unset, it defaults to a value according to the hardware and continuous batching parameters. MPS reserve less space for the cache, where the CPU and GPU share memory, to avoid swapping. `num_blocks` expresses capacity as whole model blocks of `page_size` tokens when you set it explicitly.
 
-You can pin the values in [ContinuousBatchingConfig](/docs/transformers/v5.21.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig).
+You can pin the values in [ContinuousBatchingConfig](/docs/transformers/v5.21.1/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig).
 
 ```py
 cb_config = ContinuousBatchingConfig(
@@ -111,7 +111,7 @@ cb_config = ContinuousBatchingConfig(
 
 Before a request joins the batch, the scheduler checks that enough free capacity exists for every attention type allocator. If any allocator would fall short, the request is rejected and nothing is allocated.
 
-To avoid filling the cache until [offloading](#offloading) is the only option, the scheduler enforces a `safety_margin`. Once free cache capacity falls below `safety_margin`, new prefills are held back and only active decodes continue. The FIFO scheduler defaults to `0.15` (15% of capacity held in reserve), while `prefill_first` defaults to `0.0`. Set `safety_margin` in [ContinuousBatchingConfig](/docs/transformers/v5.21.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig) to tune it, where `0` disables the margin.
+To avoid filling the cache until [offloading](#offloading) is the only option, the scheduler enforces a `safety_margin`. Once free cache capacity falls below `safety_margin`, new prefills are held back and only active decodes continue. The FIFO scheduler defaults to `0.15` (15% of capacity held in reserve), while `prefill_first` defaults to `0.0`. Set `safety_margin` in [ContinuousBatchingConfig](/docs/transformers/v5.21.1/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig) to tune it, where `0` disables the margin.
 
 ### Prefix caching
 
@@ -179,5 +179,5 @@ An offloaded request takes one of two paths. When `cpu_offload_space` is greater
 - The [Continuous batching blog post](https://huggingface.co/blog/continuous_batching) covers KV caching, chunked prefill, and dynamic scheduling with performance benchmark numbers.
 - For usage examples, see the [Continuous batching](./continuous_batching) doc.
 
-### DeepSpeed ZeRO
-https://huggingface.co/docs/transformers/v5.21.0/deepspeed.md
+### Expert parallelism
+https://huggingface.co/docs/transformers/v5.21.1/expert_parallelism.md
