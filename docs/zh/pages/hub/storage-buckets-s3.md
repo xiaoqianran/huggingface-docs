@@ -152,9 +152,9 @@ s3.download_file("my-bucket", "models/model.safetensors", "model.safetensors")
 
 ### 使用 DuckDB 查询存储桶
 
-在 DuckDB 2.0 或更高版本上，`httpfs` 扩展直接读取 `hf://buckets/` 路径。参见[Query with DuckDB](./storage-buckets-access#query-with-duckdb)。
+在 DuckDB 2.0 或更高版本上，`httpfs` 扩展直接读取 `hf://buckets/` 路径，并且通过 `hf` 扩展，它还可以写入存储桶。参见[Query with DuckDB](./storage-buckets-access#query-with-duckdb)。
 
-对于早期版本的 DuckDB，或者要将查询结果写回到具有 `COPY ... TO` 的存储桶，请改为通过 S3 网关：
+对于早期版本的 DuckDB，或者要将查询结果写回带有 `COPY ... TO` 且不带扩展名的存储桶，请改为通过 S3 网关：
 
 ```sql
 INSTALL httpfs;
@@ -177,7 +177,7 @@ SELECT * FROM read_parquet('s3://my-bucket/data.parquet');
 
 ### 使用`rclone`导入数据
 
-[⟦T80⟧](https://rclone.org/) 是在两个 S3 兼容存储之间复制数据的便捷方法，因此非常适合将现有 AWS S3 存储桶（或任何 S3 兼容源）移动到存储桶中。这个想法是声明两个遥控器 - 您的源存储桶和 Hugging Face 网关 - 并让 `rclone` 在它们之间传输对象。将两个遥控器添加到`~/.config/rclone/rclone.conf`。第一个点指向您现有的 S3 存储桶；调整它以匹配您的源（此处为普通 AWS S3）：
+[⟦T81⟧](https://rclone.org/) 是在两个 S3 兼容存储之间复制数据的便捷方法，因此非常适合将现有 AWS S3 存储桶（或任何 S3 兼容源）移动到存储桶中。这个想法是声明两个遥控器 - 您的源存储桶和 Hugging Face 网关 - 并让 `rclone` 在它们之间传输对象。将两个遥控器添加到`~/.config/rclone/rclone.conf`。第一个点指向您现有的 S3 存储桶；调整它以匹配您的源（此处为普通 AWS S3）：
 
 ```ini
 [aws]
@@ -188,7 +188,7 @@ secret_access_key = ...
 region = us-east-1
 ```
 
-第二个点位于拥抱脸网关。与任何其他客户端一样，将端点范围限定为 [namespace](#addressing-buckets)，使用 `path` 寻址，强制使用 ListObjectsV2（网关支持的唯一列表版本），并设置较大的多部分大小，以便上传使用尽可能少的部分：
+第二个点位于拥抱脸网关。与任何其他客户端一样，将端点范围限制为您的[namespace](#addressing-buckets)，使用`path`寻址，强制ListObjectsV2（网关支持的唯一列表版本），并设置大的多部分大小，以便上传使用尽可能少的部分：
 
 ```ini
 [hf]
@@ -236,7 +236,7 @@ export AWS_ACCESS_KEY_ID=HFAK...
 export AWS_SECRET_ACCESS_KEY=...
 ```
 
-然后像平常一样跟踪、推送和拉取 — `dvc push` 上传到存储桶，而新克隆上的 `dvc pull` 将其下载回来：
+然后像往常一样跟踪、推送和拉取 — `dvc push` 上传到存储桶，而新克隆上的 `dvc pull` 将其下载回来：
 
 ```bash
 dvc add data/
@@ -247,5 +247,5 @@ dvc push
 > [!注意]
 > 在 `endpointurl` 中使用您的 [namespace](#addressing-buckets) 并在 `s3://` URL 中使用裸存储桶名称。
 
-### 代理
-https://huggingface.co/docs/hub/agents.md
+### 门控数据集
+https://huggingface.co/docs/hub/datasets-gate.md

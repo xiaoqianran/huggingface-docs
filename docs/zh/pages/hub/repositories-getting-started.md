@@ -124,5 +124,5 @@ git push
 
 您可以单击单个提交来查看该提交引入了哪些更改：
 
-### 使用 GPU 空间
-https://huggingface.co/docs/hub/spaces-gpus.md
+### 将使用 HF 按钮登录到您的空间
+https://huggingface.co/docs/hub/spaces-oauth.md

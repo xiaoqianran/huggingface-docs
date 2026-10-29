@@ -69,7 +69,7 @@ df = lf.collect()
 在具有家庭互联网连接的普通笔记本电脑上运行这两个查询会导致以下运行时间：
 
 - 渴望：`1.96`秒
-- 懒惰：`410`毫秒惰性查询比急切查询快约 5 倍。 The reason for this is the query optimizer: if we delay `collect`-ing our dataset until the end, Polars will be able to reason about which columns and rows are required and apply filters as early as possible when reading the data. For file formats such as Parquet that contain metadata (e.g. min, max in a certain group of rows) the difference can even be bigger as Polars can skip entire row groups based on the filters and the metadata without sending the data over the wire.
+- 懒惰：`410`毫秒惰性查询比急切查询快约 5 倍。原因在于查询优化器：如果我们将数据集的 `collect` 延迟到最后，Polars 将能够推断出需要哪些列和行，并在读取数据时尽早应用过滤器。对于包含元数据（例如特定行组中的最小值、最大值）的 Parquet 等文件格式，差异甚至可能更大，因为 Polars 可以根据过滤器和元数据跳过整个行组，而无需通过网络发送数据。
 
-### 下载数据集
-https://huggingface.co/docs/hub/datasets-downloading.md
+### 双因素身份验证 (2FA)
+https://huggingface.co/docs/hub/security-2fa.md

@@ -216,5 +216,5 @@ dataset_info:
 
 请注意，对于小型音频文件（每个音频文件 <1MB）和小型行组（每个行组 100 行，`datasets` 用于音频），建议使用 Parquet。对于较大的音频文件，建议使用 WebDataset 格式，或共享原始音频文件（可选地与元数据文件）。
 
-### 存储库
-https://huggingface.co/docs/hub/repositories.md
+### 数据文件配置
+https://huggingface.co/docs/hub/datasets-data-files-configuration.md

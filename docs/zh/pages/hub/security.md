@@ -25,5 +25,5 @@ Hugging Face 也是[SOC2 Type 2 certified](https://us.aicpa.org/interestareas/fr
 - [Third-party scanner: Protect AI](./security-protectai)
 - [Third-party scanner: JFrog](./security-jfrog)
 
-### 参考
-https://huggingface.co/docs/hub/jobs-reference.md
+### Webhook 指南：为模型和数据集设置自动元数据质量审查
+https://huggingface.co/docs/hub/webhooks-guide-metadata-review.md

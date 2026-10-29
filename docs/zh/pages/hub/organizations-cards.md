@@ -24,5 +24,5 @@
 - [Amazon's](https://huggingface.co/spaces/amazon/README/blob/main/README.md)组织卡源代码
 - [spaCy's](https://huggingface.co/spaces/spacy/README/blob/main/README.md)组织卡源代码。
 
-### Webhook 指南：使用 LLM 回复构建讨论机器人
-https://huggingface.co/docs/hub/webhooks-guide-discussion-bot.md
+### 显示您模型的碳排放量
+https://huggingface.co/docs/hub/model-cards-co2.md

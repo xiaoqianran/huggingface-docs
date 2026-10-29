@@ -6,7 +6,7 @@
 
 ## 预览 3D 文件
 
-单击数据集、模型或 [Storage Bucket](./storage-buckets) 的 **文件和版本** 选项卡中的 3D 文件，以在交互式 3D 查看器中打开它。您可以旋转、缩放和全屏打开查看器。
+单击数据集的 **文件和版本** 选项卡中的 3D 文件或 [Storage Bucket](./storage-buckets) 以在交互式 3D 查看器中打开它。您可以旋转、缩放和全屏打开查看器。
 
 |格式|扩展 |
 | -------- | ---------------------------------- |
@@ -51,7 +51,5 @@ my_dataset_repository/
 
 ## 模态标签
 
-具有 3D 文件的数据集具有 `3d` 模态，因此它们在过滤 [datasets by modality](https://huggingface.co/datasets?modality=modality:3d) 时会显示。您也可以在数据集卡中设置，参见[Force set a dataset modality](./datasets-cards#force-set-a-dataset-modality)。
-
-### 使用 Docker 运行
-https://huggingface.co/docs/hub/spaces-run-with-docker.md
+具有 3D 文件的数据集具有 `3d` 模态，因此它们在过滤 [datasets by modality](https://huggingface.co/datasets?modality=modality:3d) 时会显示。您也可以在数据集卡中设置，参见[Force set a dataset modality](./datasets-cards#force-set-a-dataset-modality)。### SQL Console：在浏览器中查询拥抱人脸数据集
+https://huggingface.co/docs/hub/datasets-viewer-sql-console.md

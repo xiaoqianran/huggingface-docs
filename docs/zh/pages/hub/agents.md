@@ -17,5 +17,5 @@
 - [Agent Libraries](./agents-libraries)
 - [Agent Traces](./agent-traces)
 
-### 硬件
-https://huggingface.co/docs/hub/hardware.md
+### 执行SQL操作
+https://huggingface.co/docs/hub/datasets-duckdb-sql.md

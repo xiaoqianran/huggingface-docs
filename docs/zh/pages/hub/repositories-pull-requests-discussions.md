@@ -82,7 +82,7 @@ git push origin pr/42:refs/pr/42
 
 使用自定义引用（例如 `refs/pr/42`）而不是分支的优点是，克隆存储库的人（包括存储库“所有者”）不会（默认情况下）获取它们，但仍然可以根据需要获取它们。
 
-### 获取所有 Pull 请求：对于 git 魔术师🧙‍♀️您可以调整本地 **refspec** 以获取所有 Pull 请求：
+### 获取所有 Pull 请求：适用于 git 魔术师🧙‍♀️您可以调整本地 **refspec** 以获取所有 Pull 请求：
 
 1. 获取
 
@@ -97,12 +97,12 @@ git checkout pr/{PR_NUMBER}
 # for example: git checkout pr/42
 ```
 
-3. 如果您进行本地更改，请推送到 PR 参考：
+3. 如果您进行本地更改，请推送至 PR 参考：
 
 ```bash
 git push origin pr/{PR_NUMBER}:refs/pr/{PR_NUMBER}
 # for example: git push origin pr/42:refs/pr/42
 ```
 
-### 空间设置
-https://huggingface.co/docs/hub/spaces-settings.md
+### Spaces ZeroGPU：空间的动态 GPU 分配
+https://huggingface.co/docs/hub/spaces-zerogpu.md

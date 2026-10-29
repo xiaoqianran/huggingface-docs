@@ -16,5 +16,5 @@ Hub 自动检测 TensorBoard 痕迹（例如 `tfevents`）。将 TensorBoard 文
 
 * TensorBoard [documentation](https://www.tensorflow.org/tensorboard)。
 
-### 图像数据集
-https://huggingface.co/docs/hub/datasets-image.md
+### 访问基准排行榜数据
+https://huggingface.co/docs/hub/leaderboard-data-guide.md

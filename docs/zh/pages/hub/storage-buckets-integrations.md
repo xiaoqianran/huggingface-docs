@@ -144,10 +144,11 @@ text_files = hffs.glob("buckets/username/my-bucket/*.txt")
 
 ## 鸭数据库
 
-DuckDB 2.0 及更高版本通过 `httpfs` 扩展从 CLI 和每个客户端本地读取 `hf://buckets/` 路径：
+DuckDB 2.0 及更高版本通过 `httpfs` 扩展（并使用 `hf` 扩展进行写入）从 CLI 和每个客户端本地读取 `hf://buckets/` 路径：
 
 ```sql
 SELECT * FROM 'hf://buckets/username/my-bucket/data/**/*.parquet' LIMIT 10;
+COPY tbl TO 'hf://buckets/username/my-bucket/out.parquet';
 ```
 
 有关私有存储桶和较旧的 DuckDB 版本，请参阅 [Query with DuckDB](./storage-buckets-access#query-with-duckdb)。
@@ -158,5 +159,5 @@ SELECT * FROM 'hf://buckets/username/my-bucket/data/**/*.parquet' LIMIT 10;
 
 ## 即将推出更多库即将提供本机`hf://` URL 支持，包括 Polars 和 WebDataset。与此同时，所有这些今天都已经通过 [S3-compatible API](./storage-buckets-s3) 发挥作用。
 
-### 使用 SDK 构建
-https://huggingface.co/docs/hub/agents-sdk.md
+### marimo 空间
+https://huggingface.co/docs/hub/spaces-sdks-docker-marimo.md

@@ -34,7 +34,7 @@ hf-mount start bucket username/my-bucket /mnt/data
 ```安装后，任何读取或写入文件的工具都可以与您的存储桶配合使用 - pandas、DuckDB、vLLM、训练脚本、shell 命令等。
 
 > [!提示]
-> 存储桶以读写方式挂载；回购协议是只读的。请参阅 [hf-mount repository](https://github.com/huggingface/hf-mount) 获取完整文档，包括后端选项、缓存和写入模式。
+> 存储桶以读写方式挂载；回购协议是只读的。请参阅 [hf-mount repository](https://github.com/huggingface/hf-mount) 了解完整文档，包括后端选项、缓存和写入模式。
 
 ## 在作业和空间中安装卷
 
@@ -50,14 +50,14 @@ hf jobs run -v hf://buckets/username/my-bucket:/data python:3.12 python script.p
 
 ## 使用 DuckDB 查询
 
-[DuckDB](https://duckdb.org/) 2.0 及更高版本通过 `httpfs` 扩展本机读取 `hf://buckets/` 路径。从 DuckDB CLI 或任何客户端，安装并加载 `httpfs`，然后查询存储桶：
+[DuckDB](https://duckdb.org/) 2.0 及更高版本通过 `httpfs` 扩展（读取）或 `hf` 扩展（读/写）本地使用 `hf://buckets/` 路径。从 DuckDB CLI 或任何客户端，安装并加载 `httpfs`，然后查询存储桶：
 
 ```sql
 INSTALL httpfs;
 LOAD httpfs;
 
 SELECT * FROM 'hf://buckets/username/my-bucket/data.parquet' LIMIT 10;
-```全局模式的工作方式与数据集的工作方式相同，例如`'hf://buckets/username/my-bucket/data/**/*.parquet'`。存储桶没有版本控制，因此 `@revision` 语法不适用于存储桶路径。本机 `hf://buckets/` 访问目前是只读的；要将查询结果写入存储桶，请使用[S3-compatible API](./storage-buckets-s3#query-a-bucket-with-duckdb)或带有`HfFileSystem`的Python客户端。
+```全局模式的工作方式与数据集的工作方式相同，例如`'hf://buckets/username/my-bucket/data/**/*.parquet'`。存储桶没有版本控制，因此 `@revision` 语法不适用于存储桶路径。 `httpfs` 只读；要将查询结果写入存储桶，请加载 `hf` 扩展（见下文）。
 
 **私人存储桶：** 首先创建一个 Hugging Face 秘密。它从 `hf auth login` 或 `HF_TOKEN` 环境变量中获取令牌：
 
@@ -65,12 +65,23 @@ SELECT * FROM 'hf://buckets/username/my-bucket/data.parquet' LIMIT 10;
 CREATE SECRET hf (TYPE huggingface, PROVIDER credential_chain);
 ```
 
+写入 Hugging Face 需要 `hf` [extension](https://huggingface.co/duckdb-extensions)：
+
+```sql
+SET allow_extension_repositories = 'allowed';
+CREATE OR REPLACE EXTENSION REPOSITORY hf_repo WITH PREFIX 'https://hf.co/buckets/duckdb-extensions/builds/resolve';
+INSTALL hf FROM hf_repo;
+LOAD hf FROM hf_repo;
+
+COPY tbl TO 'hf://buckets/username/my-bucket/out.parquet';
+```
+
 > [!注意]
-> 在 DuckDB 1.x 上，`httpfs` 无法识别 `hf://buckets/` 路径。请改为从 Python 注册 [⟦T20⟧](/docs/huggingface_hub/guides/hf_file_system)，或使用 CLI 和其他客户端中的 [S3-compatible API](./storage-buckets-s3#query-a-bucket-with-duckdb)。
+> 在 DuckDB 1.x 上，`httpfs` 无法识别 `hf://buckets/` 路径。请改为从 Python 注册 [⟦T23⟧](/docs/huggingface_hub/guides/hf_file_system)，或使用 CLI 和其他客户端中的 [S3-compatible API](./storage-buckets-s3#query-a-bucket-with-duckdb)。
 
 ## Python 数据工具
 
-[⟦T21⟧](/docs/huggingface_hub/guides/hf_file_system) 使用`hf://buckets/` 路径提供对存储桶的[fsspec](https://filesystem-spec.readthedocs.io) 兼容访问。任何支持 fsspec 的 Python 库都可以直接读写存储桶数据。
+[⟦T24⟧](/docs/huggingface_hub/guides/hf_file_system) 使用`hf://buckets/` 路径提供对存储桶的[fsspec](https://filesystem-spec.readthedocs.io) 兼容访问。任何支持 fsspec 的 Python 库都可以直接读写存储桶数据。
 
 **熊猫：**
 
@@ -81,7 +92,7 @@ df = pd.read_parquet("hf://buckets/username/my-bucket/data.parquet")
 df.to_parquet("hf://buckets/username/my-bucket/output.parquet")
 ```
 
-有关 `hf://` 路径和支持的操作的更多信息，请参阅 [⟦T24⟧ guide](/docs/huggingface_hub/guides/hf_file_system) 和 [Buckets Python guide](/docs/huggingface_hub/guides/buckets)。
+有关 `hf://` 路径和支持的操作的更多信息，请参阅 [⟦T27⟧ guide](/docs/huggingface_hub/guides/hf_file_system) 和 [Buckets Python guide](/docs/huggingface_hub/guides/buckets)。
 
-### 特工踪迹
-https://huggingface.co/docs/hub/agent-traces.md
+### 门控组集合
+https://huggingface.co/docs/hub/enterprise-gating-group-collections.md

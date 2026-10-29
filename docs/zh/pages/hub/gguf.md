@@ -8,7 +8,7 @@ Hugging Face Hub 支持所有文件格式，但具有[GGUF format](https://githu
 
 ## 查找 GGUF 文件
 
-您可以浏览所有带有 GGUF 文件并通过 GGUF 标签过滤的模型：[hf.co/models?library=gguf](https://huggingface.co/models?library=gguf)。此外，您可以使用[ggml-org/gguf-my-repo](https://huggingface.co/spaces/ggml-org/gguf-my-repo)工具将模型权重转换/量化为GGUF权重。
+您可以通过 GGUF 标签浏览所有具有 GGUF 文件过滤的模型：[hf.co/models?library=gguf](https://huggingface.co/models?library=gguf)。此外，您可以使用[ggml-org/gguf-my-repo](https://huggingface.co/spaces/ggml-org/gguf-my-repo)工具将模型权重转换/量化为GGUF权重。
 
 例如，您可以查看 [TheBloke/Mixtral-8x7B-Instruct-v0.1-GGUF](https://huggingface.co/TheBloke/Mixtral-8x7B-Instruct-v0.1-GGUF) 查看运行中的 GGUF 文件。
 
@@ -73,5 +73,5 @@ const { metadata, tensorInfos } = await gguf(URL_LLAMA);
 | Q4_0 | [GH](https://github.com/huggingface/huggingface.js/pull/615#discussion_r1557654249) | 4 位舍入到最接近的量化 (`q`)。每个块有 32 个权重。重量公式：`w = q * block_scale`。传统的量化方法（目前尚未广泛使用）。 |
 | Q4_1 | [GH](https://github.com/huggingface/huggingface.js/pull/615#discussion_r1557682290) | 4 位舍入到最接近的量化 (`q`)。每个块有 32 个权重。重量公式：`w = q * block_scale + block_minimum`。传统的量化方法（目前尚未广泛使用）。 |*如果上表有任何不准确的地方，请在[this file](https://github.com/huggingface/huggingface.js/blob/main/packages/gguf/src/quant-descriptions.ts)上打开PR。*
 
-### 网络钩子
-https://huggingface.co/docs/hub/webhooks.md
+### 使用 SDK 构建
+https://huggingface.co/docs/hub/agents-sdk.md

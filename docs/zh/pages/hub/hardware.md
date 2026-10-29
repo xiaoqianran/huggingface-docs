@@ -27,6 +27,7 @@
 
 当您的硬件是公开的时：- 您的个人资料上会出现 **TFLOPS** 徽章，总结您的估计总计算能力。
 - 您可以浏览 [what the community is running](https://huggingface.co/hardware) 并查看您的设置在 GPU、CPU 和 Apple Silicon 之间的比较情况。
+- 每个供应商还有自己的页面，例如 [NVIDIA](https://huggingface.co/hardware/nvidia)、[AMD](https://huggingface.co/hardware/amd)、[Apple](https://huggingface.co/hardware/apple)、[Intel](https://huggingface.co/hardware/intel) 和 [Qualcomm](https://huggingface.co/hardware/qualcomm)，将该品牌的硬件分组到一个地方。
 
 ## 从API读取硬件
 
@@ -61,5 +62,5 @@ curl https://huggingface.co/api/users/{username}/overview
 - [Use AI Models Locally](./local-apps) — 使用您最喜欢的本地应用程序运行模型。
 - [Local Agents with llama.cpp](./agents-local) — 在您自己的硬件上构建编码代理。
 
-### PyArrow
-https://huggingface.co/docs/hub/datasets-pyarrow.md
+### 学术中心
+https://huggingface.co/docs/hub/academia-hub.md

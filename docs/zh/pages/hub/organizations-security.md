@@ -36,5 +36,5 @@
 
 参见[Tokens Management](./enterprise-tokens-management)
 
-### 安排工作
-https://huggingface.co/docs/hub/jobs-schedule.md
+### 存储库设置
+https://huggingface.co/docs/hub/repositories-settings.md

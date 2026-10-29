@@ -66,5 +66,5 @@ mlagents-push-to-hf --run-id="First Training" --local-dir="results/First Trainin
 * ML-代理[documentation](https://github.com/Unity-Technologies/ml-agents/blob/develop/docs/Hugging-Face-Integration.md)
 * 官方 Unity ML-Agents 空间 [demos](https://huggingface.co/unity)
 
-### 组织、安全性和 Hub API
-https://huggingface.co/docs/hub/other.md
+### 🟧 空间标签工作室
+https://huggingface.co/docs/hub/spaces-sdks-docker-label-studio.md

@@ -4,7 +4,7 @@
 
 存储桶是 Hugging Face Hub 上的一种存储库类型，提供类似 S3 的对象存储，由 [Xet](./xet/index) 存储后端提供支持。与基于 Git 的[repositories](./repositories)（模型、数据集、空间）不同，存储桶是**非版本化**和**可变**，专为需要简单、快速存储的用例而设计，例如训练检查点、日志、中间工件或任何不需要版本控制的大型文件集合。
 
-您可以使用 Hub Web 界面、[⟦T20⟧ CLI](https://huggingface.co/docs/huggingface_hub/guides/cli#hf-buckets) 或 [Python API](https://huggingface.co/docs/huggingface_hub/guides/buckets) 与存储桶交互。
+您可以使用 Hub Web 界面、[⟦T21⟧ CLI](https://huggingface.co/docs/huggingface_hub/guides/cli#hf-buckets) 或 [Python API](https://huggingface.co/docs/huggingface_hub/guides/buckets) 与存储桶交互。
 
 > [!提示]
 > 存储桶可供所有用户和组织使用。有关定价详情，请参阅[hf.co/storage](https://huggingface.co/storage)。
@@ -14,7 +14,7 @@
 
 ## 存储桶与存储库
 
-Hub 提供两种类型的存储：基于 Git 的**存储库**，用于版本化、协作工作；**存储桶**，用于快速、可变的对象存储。|特色|存储库（基于 Git）|存储桶|
+Hub 提供两种类型的存储：基于 Git 的**存储库**，用于版本化、协作工作；**存储桶**，用于快速、可变的对象存储。|特色 |存储库（基于 Git）|存储桶|
 | ------------------ | ------------------------------------------- | ----------------------------------- |
 |版本控制 |完整的 Git 历史记录 |无（可变，就地覆盖）|
 |类型 |模型、数据集、空间 |独立桶|
@@ -87,7 +87,7 @@ update_bucket_settings("username/my-bucket", private=True)
 update_bucket_settings("username/my-bucket", private=False)
 ```
 
-有关完整的 Python API 参考（包括删除、移动和列出存储桶），请参阅 [⟦T25⟧ Buckets guide](https://huggingface.co/docs/huggingface_hub/guides/buckets)。
+有关完整的 Python API 参考（包括删除、移动和列出存储桶），请参阅 [⟦T26⟧ Buckets guide](https://huggingface.co/docs/huggingface_hub/guides/buckets)。
 
 ## 浏览集线器上的存储桶
 
@@ -181,7 +181,7 @@ batch_bucket_files(
 )
 ```
 
-更多上传选项（原始字节、组合上传+删除等），请参见[⟦T37⟧ upload guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#upload-files)。
+更多上传选项（原始字节、组合上传+删除等），请参阅[⟦T38⟧ upload guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#upload-files)。
 
 ### 下载文件您可以通过单击直接从 Hub 上的存储桶页面下载各个文件。对于编程访问，下载镜像了上传语法——交换 `hf buckets cp` 中的源和目标。您还可以使用 `-` 作为目标将文件流式传输到标准输出，这样您就可以将存储桶内容直接通过管道传输到其他工具中。
 
@@ -209,7 +209,7 @@ download_bucket_files(
 )
 ```
 
-要使用预取元数据加快下载速度，请参阅 [⟦T42⟧ download guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#download-files)。
+要使用预取元数据加快下载速度，请参阅 [⟦T43⟧ download guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#download-files)。
 
 ### 同步目录
 
@@ -247,7 +247,7 @@ sync_bucket("./data", "hf://buckets/username/my-bucket/data")
 
 # Download from a bucket to a local directory
 sync_bucket("hf://buckets/username/my-bucket/data", "./data")
-```The `sync` command supports filtering (`--include`, `--exclude`), comparison modes (`--ignore-times`, `--existing`), and a **plan-and-apply** workflow to review operations before executing them.有关完整的选项集，请参阅[⟦T56⟧ sync guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#sync-directories)。
+````sync` 命令支持过滤（`--include`、`--exclude`）、比较模式（`--ignore-times`、`--existing`）以及用于在执行操作之前检查操作的**计划和应用**工作流程。有关完整的选项集，请参阅[⟦T57⟧ sync guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#sync-directories)。
 
 ### 删除文件
 
@@ -272,11 +272,11 @@ from huggingface_hub import batch_bucket_files
 batch_bucket_files("username/my-bucket", delete=["old-model.bin", "logs/debug.log"])
 ```
 
-有关更多删除选项（基于模式的过滤、递归删除等），请参阅[⟦T59⟧ delete guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#delete-files)。
+有关更多删除选项（基于模式的过滤、递归删除等），请参阅[⟦T60⟧ delete guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#delete-files)。
 
 ### 在存储库和存储桶之间复制文件
 
-You can copy [Xet](./xet/index)-tracked files from any repository (model, dataset, Space) or bucket into a destination bucket without re-uploading the data.副本是服务器端的：仅迁移 Xet 内容哈希值，因此即使非常大的文件也会立即复制，这要归功于 [chunk-level deduplication](./xet/deduplication)。
+您可以将 [Xet](./xet/index) 跟踪的文件从任何存储库（模型、数据集、空间）或存储桶复制到目标存储桶，而无需重新上传数据。复制是在服务器端进行的：仅迁移 Xet 内容哈希，因此即使非常大的文件也会立即复制，这要归功于 [chunk-level deduplication](./xet/deduplication)。
 
 > [!注意]
 > 仅 Xet 跟踪的文件会在服务器之间复制。小的非 Xet 文件（例如配置文件和自述文件）会自动下载并重新上传。服务器端复制还要求源和目标位于同一存储区域。
@@ -317,14 +317,27 @@ api.copy_files(
 curl -N -H "Accept: text/event-stream" \
   -H "Authorization: Bearer $HF_TOKEN" \
   "https://huggingface.co/api/buckets/username/my-bucket/events"
-```
+```> [!提示]
+> 在 Python 中，您不需要自己使用流。 [⟦T64⟧](/docs/huggingface_hub/guides/hf_file_system#keep-listings-fresh) 使用 `live_follow=True` 跟随它，因此当另一个进程更改存储桶时，其缓存的列表保持最新状态：
+>
+> ```python
+> from huggingface_hub import HfFileSystem
+>
+> hffs = HfFileSystem(live_follow=True)
+> hffs.ls("buckets/username/my-bucket/data")  # starts following the bucket
+> ```
+>
+> 采用 fsspec `storage_options` 的库（pandas、PyArrow，...）也接受它。
 
-该流发出四种事件类型：|活动 |数据|意义|
+该流发出四种事件类型：
+
+|活动 |数据|意义|
 | ----------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | `ready` | `{"cursor": "..."}` |任何请求的重播均已完成，随后进行实时更改。                                         |
 | `changes` | `{"cursor": "...", "changes": [...]}` |一批文件更改在一个短窗口内合并。                                       |
-| `reset` | `{"reason": "cursor_too_old"}` |恢复点无法重播；流结束，您应该重新列出存储桶。       |
-| `reconnect` | `{"cursor": "..."}` |服务器故意关闭流；重新连接该光标。                      |`changes` 中的每个条目都有一个`path` 和一个`op`（`add`、`update` 或`delete`）。 `add` 或 `update` 还携带已更改的字段 — `size`、`xetHash`、`uploadedAt`、`mtime`、`mtimeNanos` — 因此，当文件被删除时，`update` 可能与新的 `uploadedAt` 一样小。重新上传相同。没有改变的字段被省略；当上传清除它们时，`mtime`/`mtimeNanos`也可能是`null`，因此对待缺席和`null`一视同仁。
+| `reset` | `{"reason": "cursor_too_old"}` |恢复点无法重播；流结束，您应该重新列出存储桶。       || `reconnect` | `{"cursor": "..."}` |服务器故意关闭流；重新连接该光标。                      |
+
+`changes` 中的每个条目都有一个`path` 和一个`op`（`add`、`update` 或`delete`）。 `add` 或 `update` 还携带已更改的字段 — `size`、`xetHash`、`uploadedAt`、`mtime`、`mtimeNanos` — 因此，当文件被删除时，`update` 可能与新的 `uploadedAt` 一样小。重新上传相同。没有改变的字段被省略；当上传清除它们时，`mtime`/`mtimeNanos`也可能是`null`，所以对待缺席和`null`一视同仁。
 
 ```
 event: ready
@@ -334,9 +347,9 @@ event: changes
 data: {"cursor":"...","changes":[{"path":"data/train.txt","op":"add","size":20,"uploadedAt":"2026-09-16T09:21:45.000Z"},{"path":"data/old.txt","op":"delete"}]}
 ```
 
-**正在恢复。** 新的流从您连接的那一刻开始。为了还获得您错过的更改，请将您收到的最后一个`cursor`（每个`ready`和`changes`事件携带一个）作为`?cursor=<cursor>`，或将时间戳作为`?since=<ISO timestamp>`（包括在内，例如`2026-09-16T09:21:45Z`）。
+**正在恢复。** 新的流从您连接的那一刻开始。为了也获得您错过的更改，请将您收到的最后一个`cursor`（每个`ready`和`changes`事件携带一个）作为`?cursor=<cursor>`，或将时间戳作为`?since=<ISO timestamp>`（包括在内，例如`2026-09-16T09:21:45Z`）。
 
-只能重播**最后 ~15 分钟**的更改。如果您的 `cursor` 或 `since` 早于该时间，您将收到 `reset` 而不是重播：列出存储桶一次以重建您的视图，然后从新流的 `ready` 事件的 `cursor` 再次关注。恢复旨在弥补短暂的间隙，例如连接断开或重新启动；离开时间较长的客户应该会重新列出。**重新连接。** 长期连接会被回收：大约每 20 分钟（以及在部署期间）服务器发送 `reconnect`，然后结束流。以相同的方式处理流的*任何*结尾 - 重新连接您收到的最后一个光标。每 30 秒发送一次 `: ping` 注释以保持连接处于活动状态，因此完全静默的流可以被视为已死。
+只能重播**最后 ~15 分钟**的更改。如果您的 `cursor` 或 `since` 早于该时间，您将收到 `reset` 而不是重播：列出存储桶一次以重建您的视图，然后从新流的 `ready` 事件的 `cursor` 再次跟踪。恢复旨在弥补短暂的间隙，例如连接断开或重新启动；离开时间较长的客户应该会重新列出。**重新连接。** 长期连接会被回收：大约每 20 分钟（以及在部署期间）服务器发送 `reconnect`，然后结束流。以相同的方式处理流的*任何*结尾 - 重新连接您收到的最后一个光标。每 30 秒发送一次 `: ping` 注释以保持连接处于活动状态，因此完全静默的流可以被视为已死。
 
 `503` 响应意味着实时跟随暂时不可用 - 在 `Retry-After` 标头中的延迟后重试。
 
@@ -354,7 +367,7 @@ data: {"cursor":"...","changes":[{"path":"data/train.txt","op":"add","size":20,"
 
 ## 用例### 训练检查点和日志
 
-When running training jobs (e.g., via [Jobs](./jobs)), save checkpoints and logs to a bucket.与 Git 存储库不同，您可以覆盖最新的检查点，而无需累积版本历史记录，并且 `sync` 确保仅传输更改的数据。
+运行训练作业时（例如，通过[Jobs](./jobs)），将检查点和日志保存到存储桶中。与 Git 存储库不同，您可以覆盖最新的检查点，而无需累积版本历史记录，并且 `sync` 确保仅传输更改的数据。
 
 ```bash
 # After each evaluation step, sync checkpoints to a bucket
@@ -365,9 +378,9 @@ hf sync ./checkpoints hf://buckets/my-org/training-run-42/checkpoints
 
 ### 数据处理管道
 
-Buckets serve as staging areas for data processing workflows.处理原始数据，将中间输出写入存储桶，然后在管道完成时将最终工件提升到版本化的[Dataset](./datasets)存储库。 This keeps your versioned repo clean while giving your pipeline fast mutable storage.
+存储桶充当数据处理工作流的暂存区域。处理原始数据，将中间输出写入存储桶，然后在管道完成时将最终工件提升到版本化的[Dataset](./datasets)存储库。这使您的版本化存储库保持干净，同时为您的管道提供快速的可变存储。
 
-Note that transferring data from a Bucket to a repository without reuploading is not yet available, but is on the roadmap.
+请注意，在不重新上传的情况下将数据从存储桶传输到存储库尚不可用，但已在路线图上。
 
 ### 代理存储人工智能代理需要临时存储来存储中间结果、工具输出、痕迹和工作内存。存储桶为这些数据提供了 Hub 原生位置：快速可变访问，无需 Git 开销，标准 Hugging Face 权限，并且可通过 Hub 生态系统中的 `hf://buckets/` 路径进行寻址。
 
@@ -392,9 +405,9 @@ buckets:
 
 有关更多详细信息，请参阅模型卡文档中的[Specifying a bucket](./model-cards#specifying-a-bucket)。
 
-## 定价存储桶根据存储的数据量进行计费，并采用简单的按 TB 定价。企业计划受益于基于重复数据删除的计费，其中跨文件共享块直接减少计费占用空间。
+## 定价存储桶根据存储的数据量进行计费，并采用简单的按 TB 定价。企业计划受益于基于重复数据删除的计费，其中跨文件共享的块直接减少了计费占用空间。
 
-As for other repositories, buckets are free to create and have a free storage allowance.对于[free tier](https://huggingface.co/docs/hub/storage-limits)以上的用法，请参阅[hf.co/storage](https://huggingface.co/storage)。有关一般计费信息，请参阅 [Billing](./billing) 文档。
+至于其他存储库，存储桶可以自由创建，并且有免费的存储空间。对于[free tier](https://huggingface.co/docs/hub/storage-limits)以上的用法，请参阅[hf.co/storage](https://huggingface.co/storage)。有关一般计费信息，请参阅 [Billing](./billing) 文档。
 
-### 在空间中使用 OpenCV
-https://huggingface.co/docs/hub/spaces-using-opencv.md
+### 数据集
+https://huggingface.co/docs/hub/enterprise-datasets.md

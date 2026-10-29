@@ -131,5 +131,5 @@ CLI 会自动上传您编辑的脚本。如果您将其保存在其他地方，�
 - [Run commands in Docker images](./jobs-configuration#docker-jobs)。
 - [Use Jobs from a coding agent](./jobs-examples#coding-agent-skills)。
 
-### GGUF 在 LM Studio 中的使用
-https://huggingface.co/docs/hub/lmstudio.md
+### 优化
+https://huggingface.co/docs/hub/datasets-polars-optimizations.md

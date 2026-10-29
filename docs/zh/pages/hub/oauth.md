@@ -18,6 +18,15 @@
 
 ![](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/oauth-create-application.png)
 
+### 组织拥有的 OAuth 应用程序
+
+> [!警告]
+> 此功能是团队和企业计划的一部分。
+
+OAuth 应用程序也可以由组织而不是个人帐户拥有。这对于您的团队共同维护的应用程序非常有用，因为它们保留在组织中，而不是依赖于单个成员的帐户。
+
+组织管理员可以从组织设置 (`https://huggingface.co/organizations/<your-org>/settings/applications`) 的 **OAuth 应用程序** 部分创建和管理组织拥有的应用程序。组织的所有管理员都可以编辑应用程序、轮换其客户端密钥或将其删除。应用程序列表显示哪个成员创建了每个应用程序，并且对应用程序的更改记录在组织的[audit logs](./audit-logs#oauth-apps)中。同一页面还列出了该组织的 [Token Exchange app](#token-exchange-for-organizations-rfc-8693)（如果已设置）。
+
 ### 公共 OAuth 应用程序（没有秘密）
 
 您可以在没有客户端密钥的情况下创建或使用 OAuth 应用程序。这对于本机应用程序、CLI 或其他无法保守秘密的环境非常有用。
@@ -27,9 +36,9 @@
 
 公共应用程序仅使用客户端 ID 进行身份验证（例如，在带有 PKCE 的设备代码或授权代码流中）。具有机密的应用程序仍然可以在需要时使用该机密（例如用于令牌请求的`Authorization: Basic`）。
 
-### 重定向 URI授权请求中发送的 `redirect_uri` 必须与您的应用程序上注册的重定向 URI 之一完全匹配。
+### 重定向 URI
 
-环回重定向 URI 是一个例外：对于在环回主机上使用 `http` 方案的 URI（`localhost`、`127.0.0.1` 或 `[::1]`），只要所有其他组件都与已注册的 URI 匹配，在请求时就会接受任何端口。这遵循 [RFC 8252 §7.3](https://datatracker.ietf.org/doc/html/rfc8252#section-7.3) / OAuth 2.1，并允许本机应用程序、CLI 和 MCP 客户端注册无端口 URI，例如 `http://localhost/callback`，然后侦听操作系统分配给它们的任何临时端口（例如 `http://localhost:49282/callback`）。
+授权请求中发送的 `redirect_uri` 必须与您的应用程序上注册的重定向 URI 之一完全匹配。环回重定向 URI 是一个例外：对于在环回主机上使用 `http` 方案的 URI（`localhost`、`127.0.0.1` 或 `[::1]`），只要所有其他组件都与已注册的 URI 匹配，在请求时就会接受任何端口。这遵循 [RFC 8252 §7.3](https://datatracker.ietf.org/doc/html/rfc8252#section-7.3) / OAuth 2.1，并允许本机应用程序、CLI 和 MCP 客户端注册无端口 URI，例如 `http://localhost/callback`，然后侦听操作系统分配给它们的任何临时端口（例如 `http://localhost:49282/callback`）。
 
 需要记住以下几点：
 
@@ -42,9 +51,9 @@
 > [!提示]
 > 如果您将应用程序托管在 Spaces 上，那么流程将更容易实现（并且直接内置到 Gradio 中）；检查我们的[Spaces OAuth guide](https://huggingface.co/docs/hub/spaces-oauth)。
 
-### 自动创建 oauth 应用程序Hugging Face 支持 CIMD 又名 [Client ID Metadata Documents](https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/)，它允许您以自动方式为您的网站创建 oauth 应用程序：
+### 自动创建 oauth 应用程序
 
-- 将端点添加到您的网站`/.well-known/oauth-cimd`，它返回以下 JSON：
+Hugging Face 支持 CIMD 又名 [Client ID Metadata Documents](https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/)，它允许您以自动方式为您的网站创建 oauth 应用程序：- 将端点添加到您的网站`/.well-known/oauth-cimd`，它返回以下 JSON：
 
 ```json
 {
@@ -100,30 +109,30 @@ curl -X POST https://huggingface.co/oauth/token \
   -d "grant_type=urn:ietf:params:oauth:grant-type:device_code" \
   -d "device_code=$DEVICE_CODE" \
   -d "client_id=$CLIENT_ID"
-```> [!注意]
+```
+
+> [!注意]
 > 对于具有客户端密钥的 OAuth 应用程序，请在设备代码请求和令牌请求中包含 `Authorization: Basic` 标头（带有 Base64 编码的 `client_id:client_secret`）。
 
 ## 目前支持的范围
 
-目前支持的范围有：
-
-- `openid`：除了访问令牌之外，还接收 ID 令牌。
+目前支持的范围有：- `openid`：除了访问令牌之外，还接收 ID 令牌。
 - `profile`：读取用户的个人资料信息（用户名、头像等）
 - `email`：读取用户的电子邮件地址。
 - `read-billing`：了解用户是否设置了支付方式。
 - `read-memberships`：了解用户属于哪些组织，以及他们在每个组织中的角色。这不会授予对组织设置或资源的访问权限。
 - `read-repos`：阅读用户的个人存储库。
 - `gated-repos`：读取用户已被授予访问权限的公共门控存储库的内容。与 `read-repos` 不同，这不会授予对私人存储库的访问权限。
-- `contribute-repos`：创建存储库并访问由此应用程序创建的存储库。除非授予额外权限，否则无法访问任何其他存储库。
+- `contribute-repos`：创建存储库并访问此应用程序创建的存储库。除非授予额外权限，否则无法访问任何其他存储库。
 - `write-repos`：读写用户的个人存储库。
 - `manage-repos`：全面管理用户的个人仓库，包括创建和删除它们。
-- `read-collections`：阅读用户的个人收藏。- `write-collections`：读写用户的个人收藏，包括创建和删除它们。
+- `read-collections`：阅读用户的个人收藏。
+- `write-collections`：读写用户的个人收藏，包括创建和删除它们。
 - `inference-api`：代表用户向[Inference Providers](https://huggingface.co/docs/inference-providers/index)提出推理请求。
-- `read-endpoints`：查看用户的[Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index)，并代表用户向其发出推理请求。
-- `write-endpoints`：管理用户的推理端点，包括创建和删除它们。包括 `read-endpoints` 访问权限。
+- `read-endpoints`：查看用户的[Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index)并代表用户向其发出推理请求。- `write-endpoints`：管理用户的推理端点，包括创建和删除它们。包括 `read-endpoints` 访问权限。
 - `jobs`：运行[jobs](https://huggingface.co/docs/huggingface_hub/main/en/guides/jobs)
 - `webhooks`：管理[webhooks](https://huggingface.co/docs/huggingface_hub/main/en/guides/webhooks)
-- `write-discussions`：代表用户打开讨论和拉取请求，并与讨论互动（包括反应、发布/编辑评论、结束讨论等）。要在私有存储库上打开 Pull 请求，您还需要请求 `read-repos` 范围。
+- `write-discussions`：代表用户打开讨论和拉取请求，并与讨论互动（包括反应、发布/编辑评论、结束讨论等）。要在私有存储库上打开拉取请求，您还需要请求 `read-repos` 范围。
 
 所有其他信息均可在 [OpenID metadata](https://huggingface.co/.well-known/openid-configuration) 中找到。
 
@@ -134,7 +143,28 @@ curl -X POST https://huggingface.co/oauth/token \
 
 默认情况下，oauth 应用程序不需要访问组织资源。
 
-但某些范围（例如 `read-repos` 或 `read-billing`）也适用于组织。用户在授权应用程序时可以选择向哪些组织授予访问权限。如果您需要访问特定组织，可以将 `orgIds=ORG_ID` 作为查询参数添加到 OAuth 授权 URL。您必须将 `ORG_ID` 替换为组织 ID，该 ID 可在 userinfo 响应的 `organizations.sub` 字段中找到。
+但某些范围（例如 `read-repos` 或 `read-billing`）也适用于组织。
+
+用户在授权应用程序时可以选择向哪些组织授予访问权限。如果您需要访问特定组织，可以将 `orgIds=ORG_ID` 作为查询参数添加到 OAuth 授权 URL。组织 ID 可在 userinfo 响应的 `orgs[].sub` 字段中找到。
+
+## 将组织成员身份同步为组
+
+userinfo 响应 (`https://huggingface.co/oauth/userinfo`) 包含一个 `groups` 声明：用户所属组织的名称，作为字符串数组。
+
+```json
+{
+  "sub": "...",
+  "preferred_username": "my-username",
+  "groups": ["my-org", "another-org"],
+  "orgs": [ ... ]
+}
+```许多 OIDC 客户端（例如 Discourse、Grafana、Argo CD、Vault、Kubernetes）可以从包含字符串数组的声明同步组成员身份，并且通常配置有 `groups` 声明。您可以使用它将 Hugging Face 组织映射到应用程序中的角色或组。有关每个组织的更多详细信息（ID、角色等），请改用 `orgs` 字段。
+
+需要记住以下几点：
+
+- `groups` 声明仅由 userinfo 端点返回，而不是在 ID 令牌中返回。
+- 它包含组织名称，而不是 ID。如果组织被重命名，使用其旧名称的映射将停止匹配。
+- 不包括资源组。对于采用付费计划的组织，用户的资源组和角色在 `orgs[].resourceGroups` 中列出。
 
 ## 品牌推广
 
@@ -142,53 +172,51 @@ curl -X POST https://huggingface.co/oauth/token \
 
 查看 [our badges](https://huggingface.co/datasets/huggingface/badges#sign-in-with-hugging-face) 以及将它们集成到 Markdown 或 HTML 中的说明。
 
-[⟦T77⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
-[⟦T78⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
-
-[⟦T79⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
-[⟦T80⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
-
-[⟦T81⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
-[⟦T82⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
-
-[⟦T83⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
 [⟦T84⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
+[⟦T85⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
+
+[⟦T86⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
+[⟦T87⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
+
+[⟦T88⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
+[⟦T89⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
+
+[⟦T90⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
+[⟦T91⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
 
 ## 组织令牌交换 (RFC 8693)
 
 > [!警告]
-> 此功能是企业计划的一部分。
+> 此功能是企业计划的一部分。令牌交换允许组织以编程方式为其成员颁发访问令牌，而无需交互式用户同意。这对于构建需要代表组织成员访问 Hugging Face 资源的内部工具、自动化管道和企业集成特别有用。
 
-令牌交换允许组织以编程方式为其成员颁发访问令牌，而无需交互式用户同意。这对于构建需要代表组织成员访问 Hugging Face 资源的内部工具、自动化管道和企业集成特别有用。> [!提示]
+> [!提示]
 > 如果您只需要 CI/CD 工作流程（GitHub Actions、GitLab CI、CircleCI 等）中的无密钥身份验证（无需为每个成员颁发令牌），请参阅[Trusted Publishers](./trusted-publishers)，它也使用 `/oauth/token`，但采用 CI 提供商铸造的 OIDC `id_token` 作为主题令牌（不需要企业计划，不需要客户端凭据）。
 
 该功能实现了[RFC 8693 - OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html)，一种用于代币交换场景的标准协议。
 
 ### 用例
 
-令牌交换专为您的组织需要以下的场景而设计：
-
-- **构建内部平台**：创建代表您的团队成员访问 Hugging Face 资源的仪表板或门户，无需每个用户手动进行身份验证。
+令牌交换专为您的组织需要以下的场景而设计：- **构建内部平台**：创建代表您的团队成员访问 Hugging Face 资源的仪表板或门户，无需每个用户手动进行身份验证。
 - **自动化 CI/CD 管道**：为需要将模型或数据集推送到组织存储库的自动化工作流程发出短暂的、有范围的令牌。
 - **与企业身份系统集成**：通过根据您的内部用户目录颁发令牌，将您现有的身份提供商与 Hugging Face 连接起来。
 - **实施自定义访问控制**：构建中间件，根据组织的内部策略颁发具有特定范围的令牌。
 
-### 它是如何工作的1. 您的组织有一个 OAuth 应用程序绑定到您的组织，并具有 `token-exchange` 权限。
+### 它是如何工作的
+
+1. 您的组织有一个 OAuth 应用程序绑定到您的组织，并具有 `token-exchange` 权限。
 2. 您的后端服务使用客户端凭据对此 OAuth 应用程序进行身份验证。
 3. 您的服务请求特定组织成员（通过电子邮件标识）的访问令牌。
 4. Hugging Face 验证用户是否是您组织的成员并颁发范围令牌。
 5. 发行的Token只能访问您组织范围内的资源。
 
-### 先决条件
-
-要使用令牌交换，您需要具有 `token-exchange` 权限的组织绑定 OAuth 应用程序。请联系 Hugging Face 支持人员，为您的组织设置符合条件的 OAuth 应用程序。
+### 先决条件要使用令牌交换，您需要具有 `token-exchange` 权限的组织绑定 OAuth 应用程序。请联系 Hugging Face 支持人员，为您的组织设置符合条件的 OAuth 应用程序。
 
 配置完成后，您将收到：
 - **客户端 ID**（例如，`a1b2c3d4-e5f6-7890-abcd-ef1234567890`）
 - **客户秘密**（确保安全！）
 
 > [!警告]
-> 组织管理员可以在创建后管理 OAuth 应用程序，包括刷新客户端密钥和配置令牌持续时间。
+> 组织管理员可以在创建后管理 OAuth 应用程序，包括刷新客户端密钥和配置令牌持续时间。该应用程序列在组织设置的 **OAuth 应用程序** 部分中，对其所做的更改记录在组织的 [audit logs](./audit-logs#oauth-apps) 中。
 
 ### 身份验证
 
@@ -201,7 +229,9 @@ export CLIENT_SECRET=REDACTED
 export AUTH_HEADER=$(echo -n "${CLIENT_ID}:${CLIENT_SECRET}" | base64)
 ```
 
-### 通过电子邮件发行代币要使用组织成员的电子邮件地址为其颁发访问令牌：
+### 通过电子邮件发行代币
+
+要使用组织成员的电子邮件地址为其颁发访问令牌：
 
 ```bash
 curl -X POST "https://huggingface.co/oauth/token" \
@@ -236,9 +266,7 @@ curl "https://huggingface.co/api/whoami-v2" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}"
 ```
 
-### 范围控制
-
-默认情况下，颁发的令牌继承 OAuth 应用程序上配置的所有范围。您可以通过添加 `scope` 参数来请求特定范围。有关可用值，请参阅[Currently supported scopes](#currently-supported-scopes)。
+### 范围控制默认情况下，颁发的令牌继承 OAuth 应用程序上配置的所有范围。您可以通过添加 `scope` 参数来请求特定范围。有关可用值，请参阅[Currently supported scopes](#currently-supported-scopes)。
 
 令牌的有效权限受到请求的范围和用户在组织内的角色的限制。
 
@@ -267,7 +295,7 @@ curl -X POST "https://huggingface.co/oauth/token" \
 
 ### 错误响应
 
-|错误|描述 |
+|错误 |描述 |
 |--------|-------------|
 | `invalid_client` |客户端无权使用令牌交换，或应用程序未绑定组织 |
 | `invalid_grant` |在绑定的组织中找不到用户 |
@@ -294,5 +322,5 @@ urn:ietf:params:oauth:grant-type:token-exchange
 - [RFC 8693 - OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html)
 - [Audit Logs](./audit-logs)
 
-### 门控模型
-https://huggingface.co/docs/hub/models-gate.md
+### 空间 Livebook
+https://huggingface.co/docs/hub/spaces-sdks-docker-livebook.md

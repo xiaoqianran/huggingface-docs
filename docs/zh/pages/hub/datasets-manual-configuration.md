@@ -175,5 +175,5 @@ configs:
 
 请参阅[specific builders' documentation](/docs/datasets/package_reference/builder_classes)查看它们有哪些参数。
 
-### 带注释的模型卡模板
-https://huggingface.co/docs/hub/model-card-annotated.md
+### 在抱脸处使用🤗 `transformers`
+https://huggingface.co/docs/hub/transformers.md

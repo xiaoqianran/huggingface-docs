@@ -68,5 +68,5 @@ hf image delete cr.hf.co/my-org/my-app@sha256:<digest>
 - 层高达 100 GB，显示高达 4 MiB。
 - 标签列表可能需要几秒钟的时间才能显示新标签。
 
-### 在拥抱脸部时使用 Stanza
-https://huggingface.co/docs/hub/stanza.md
+### 如何使用 Microsoft Entra ID (Azure AD) 配置 SCIM
+https://huggingface.co/docs/hub/security-sso-entra-id-scim.md

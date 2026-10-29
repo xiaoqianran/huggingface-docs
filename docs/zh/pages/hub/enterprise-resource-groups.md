@@ -33,5 +33,5 @@
 
 [Getting started with Resource Groups →](./security-resource-groups)
 
-### 迪迪标签
-https://huggingface.co/docs/hub/datasets-distilabel.md
+### 服务帐户
+https://huggingface.co/docs/hub/enterprise-service-accounts.md

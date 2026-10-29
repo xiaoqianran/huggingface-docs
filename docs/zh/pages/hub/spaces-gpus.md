@@ -31,25 +31,25 @@
 | 4x Nvidia L4 | 48 个 vCPU | 186 GB | 186 GB 96GB | 3200 GB | 3200 GB 3.80 美元 |
 | 1x Nvidia L40S | 8 个 vCPU | 62GB| 48GB| 380GB| 1.80 美元 |
 | 4x Nvidia L40S | 48 个 vCPU | 382GB| 192 GB | 192 GB 3200 GB | 3200 GB 8.30 美元 |
-| 8x Nvidia L40S | 192 个 vCPU | 1534GB| 384GB| 6500 GB | 6500 GB 23.50 美元 || 1x Nvidia RTX PRO 6000 | 23 个 vCPU | 256 GB | 256 GB 96GB | 475 GB    | 2.75 美元 |
+| 8x Nvidia L40S | 192 个 vCPU | 1534GB| 384GB| 6500 GB | 6500 GB 23.50 美元 || 1 个 Nvidia RTX PRO 6000 | 23 个 vCPU | 256 GB | 256 GB 96GB | 475GB| 2.75 美元 |
 | 2 个 Nvidia RTX PRO 6000 | 46 个 vCPU | 512GB| 192 GB | 192 GB 950GB| 5.50 美元 |
 | 4 个 Nvidia RTX PRO 6000 | 92 个 vCPU | 1024 GB | 1024 GB 384GB| 1900GB| 11.00 美元 |
-| 8 个 Nvidia RTX PRO 6000 | 184 个 vCPU | 2048GB | 768 GB | 3800 GB   | 22.00 美元 |
+| 8 个 Nvidia RTX PRO 6000 | 184 个 vCPU | 2048GB | 768 GB | 3800 GB | 3800 GB 22.00 美元 |
 | Nvidia A10G - 小| 4 个虚拟CPU | 15GB| 24GB| 110 GB | 110 GB 1.00 美元 |
-| Nvidia A10G - 大| 12 个 vCPU | 46GB| 24GB| 200 GB    | 1.50 美元 |
-| 2x Nvidia A10G - 大 | 24 个 vCPU | 92GB| 48GB| 1000 GB   | $3.00 |
+| Nvidia A10G - 大| 12 个 vCPU | 46GB| 24GB| 200GB| 1.50 美元 |
+| 2x Nvidia A10G - 大 | 24 个 vCPU | 92GB| 48GB| 1000 GB | $3.00 |
 | 4x Nvidia A10G - 大 | 48 个 vCPU | 184 GB | 184 GB 96GB | 2000 GB | 5.00 美元 |
-| Nvidia A100 - 大| 12 个 vCPU | 142 GB | 142 GB 80GB| 1000 GB   | 2.50 美元 |
+| Nvidia A100 - 大| 12 个 vCPU | 142 GB | 142 GB 80GB| 1000 GB | 2.50 美元 |
 | ~~Nvidia H100~~ *（2025 年 12 月删除）* | | | | | |
 | ~~8x Nvidia H100~~ *（2025 年 12 月删除）* | | | | | |
-| 4x Nvidia A100         | 48 个 vCPU | 568GB| 320GB| 4000 GB | 10.00 美元 || 8x Nvidia A100 | 96 个 vCPU | 1136 GB | 1136 GB 640GB| 8000 GB | 20.00 美元 | 
+| 4x Nvidia A100 | 48 个 vCPU | 568GB| 320GB| 4000 GB | 10.00 美元 || 8x Nvidia A100 | 96 个 vCPU | 1136 GB | 1136 GB 640GB| 8000 GB | 20.00 美元 | 
 
-## Configure hardware programmatically
+## 以编程方式配置硬件
 
 您可以使用 `huggingface_hub` 以编程方式配置 Space 硬件。这允许您在需要动态分配 GPU 的广泛用例中使用。
-Check out [this guide](https://huggingface.co/docs/huggingface_hub/main/en/guides/manage_spaces) for more details.
+查看[this guide](https://huggingface.co/docs/huggingface_hub/main/en/guides/manage_spaces)了解更多详情。
 
-## Framework specific requirements[[frameworks]]
+## 框架具体要求[[框架]]
 
 大多数 Spaces 在 GPU 升级后应该可以开箱即用，但有时您需要安装您使用的机器学习框架的 CUDA 版本。请遵循本指南，以确保您的空间利用改进的硬件。
 
@@ -127,17 +127,17 @@ print(tf.config.list_physical_devices('GPU'))
 
 ## 设置自定义睡眠时间[[sleep-time]]
 
-如果您的 Space 在默认的 `cpu-basic` 硬件上运行，如果不活动时间超过设定时间（当前为 48 小时），它将进入睡眠状态。任何访问您空间的人都会自动重新启动它。If you want your Space never to deactivate or if you want to set a custom sleep time, you need to upgrade to paid hardware.
+如果您的 Space 在默认的 `cpu-basic` 硬件上运行，如果不活动时间超过设定时间（当前为 48 小时），它将进入睡眠状态。任何访问您空间的人都会自动重新启动它。如果您希望 Space 永远不会停用，或者想要设置自定义睡眠时间，则需要升级到付费硬件。
 
-By default, an upgraded Space will never go to sleep. However, you can use this setting for your upgraded Space to become idle (`stopped` stage) when it's unused 😴. You are not going to be charged for the upgraded hardware while it is asleep. The Space will 'wake up' or get restarted once it receives a new visitor.
+默认情况下，升级后的 Space 永远不会进入休眠状态。但是，您可以使用此设置让升级后的空间在未使用时变为空闲状态（`stopped`阶段）😴。当硬件处于睡眠状态时，您无需为升级的硬件付费。一旦收到新访客，空间就会“醒来”或重新启动。
 
-The following interface will then be available in your Spaces hardware settings:
+然后，您的 Spaces 硬件设置中将提供以下界面：
 
 可以使用以下选项：
 
 ## 副本
 
-You can scale your Space horizontally by requesting multiple replicas.这会在空间的多个实例之间分配流量，以提高可用性和吞吐量。您可以通过 API 设置副本数量：
+您可以通过请求多个副本来水平扩展您的空间。这会在空间的多个实例之间分配流量，以提高可用性和吞吐量。您可以通过 API 设置副本数量：
 
 ```
 POST https://huggingface.co/api/spaces/{namespace}/{repo}/replicas
@@ -151,9 +151,9 @@ Content-Type: application/json
 > [!注意]
 > 副本仅适用于升级（付费）的硬件。每个副本都是独立计费的。
 
-## Streaming Logs, Events, and Metrics[[streaming]]
+## 流式传输日志、事件和指标[[streaming]]
 
-You can stream real-time logs, status events, and metrics from your Space via SSE (Server-Sent Events):
+您可以通过 SSE（服务器发送的事件）从您的空间传输实时日志、状态事件和指标：
 
 - **构建或运行日志**：`GET /api/spaces/{namespace}/{repo}/logs/{build|run}`
 - **状态事件**：`GET /api/spaces/{namespace}/{repo}/events`
@@ -167,7 +167,7 @@ GET /api/spaces/{namespace}/{repo}/logs/{build|run}?tail=100
 
 ## 暂停一个空格[[pause]]
 
-您可以从存储库设置中`pause` 一个空间。 A "paused" Space means that the Space is on hold and will not use resources until manually restarted.任何对空间具有写入权限的人都可以暂停或重新启动它。暂停时间不计费。
+您可以从存储库设置中`pause` 一个空间。 “已暂停”空间意味着该空间处于暂停状态，在手动重新启动之前不会使用资源。任何对空间具有写入权限的人都可以暂停或重新启动它。暂停时间不计费。
 
-### Docker 空间示例
-https://huggingface.co/docs/hub/spaces-sdks-docker-examples.md
+### 使用 Keras 拥抱脸部
+https://huggingface.co/docs/hub/keras.md

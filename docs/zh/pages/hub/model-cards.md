@@ -294,5 +294,5 @@ $$
 
 $$ E=mc^2 $$
 
-### 组织卡
-https://huggingface.co/docs/hub/organizations-cards.md
+### 在拥抱面部使用_Adapters_
+https://huggingface.co/docs/hub/adapters.md

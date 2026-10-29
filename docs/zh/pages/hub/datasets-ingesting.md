@@ -172,5 +172,5 @@ hf jobs scheduled uv run --with "dlt[hf]" "0 0 * * *" pipeline.py
 
 在 [Jobs documentation](/docs/hub/jobs-overview) 中查找有关拥抱脸部工作的更多信息。
 
-### 瞄准空间
-https://huggingface.co/docs/hub/spaces-sdks-docker-aim.md
+### 自定义 Python 空间
+https://huggingface.co/docs/hub/spaces-sdks-python.md

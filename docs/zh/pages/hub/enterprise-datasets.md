@@ -9,7 +9,7 @@ Data Studio 在您的团队或企业组织下的私有数据集上启用。
 
 Data Studio 使团队能够了解他们的数据并帮助他们为 AI 构建更好的数据处理和过滤。这个功能强大的查看器允许您探索数据集内容、检查数据分布、按值过滤、搜索关键字，甚至无需离开浏览器即可对数据运行 SQL 查询。
 
-有关[Data Studio](./datasets-viewer)的更多信息。
+有关[Data Studio](./data-studio)的更多信息。
 
-### 职位概述
-https://huggingface.co/docs/hub/jobs-overview.md
+### 在 Hugging Face 中使用示例工厂
+https://huggingface.co/docs/hub/sample-factory.md

@@ -9,5 +9,5 @@
 - [GGUF format](./gguf)
 - [DDUF format](./dduf)
 
-### 网络安全
-https://huggingface.co/docs/hub/enterprise-network-security.md
+### 许可证
+https://huggingface.co/docs/hub/repositories-licenses.md

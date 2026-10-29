@@ -307,5 +307,5 @@ curl -s "https://huggingface.co/api/spaces/semantic-search?q=text+to+speech&sdk=
 - [Querying Gradio Apps with curl](https://www.gradio.app/guides/querying-gradio-apps-with-curl)
 - [Spaces ZeroGPU](./spaces-zerogpu)
 
-### 用户配置 (SCIM)
-https://huggingface.co/docs/hub/enterprise-scim.md
+### 流光空间
+https://huggingface.co/docs/hub/spaces-sdks-streamlit.md

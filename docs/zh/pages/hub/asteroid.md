@@ -42,5 +42,5 @@ model = ConvTasNet.from_pretrained('mpariente/ConvTasNet_WHAM_sepclean')
 * 小行星[library](https://github.com/asteroid-team/asteroid)。
 * 集成[docs](https://github.com/asteroid-team/asteroid/blob/master/docs/source/readmes/pretrained_models.md)。
 
-### 如何使用 Google Workspace 配置 SAML SSO
-https://huggingface.co/docs/hub/security-sso-google-saml.md
+### 集线器 API 端点
+https://huggingface.co/docs/hub/api.md

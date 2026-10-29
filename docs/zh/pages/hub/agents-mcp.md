@@ -79,5 +79,5 @@ Gradio MCP 应用程序将其功能公开为工具（带有参数和描述），
 - 拥抱脸部 MCP 服务器：https://huggingface.co/mcp
 - 使用 Gradio Spaces 构建您自己的 MCP 服务器：https://www.gradio.app/guides/building-mcp-server-with-gradio
 
-### 使用🤗数据集
-https://huggingface.co/docs/hub/datasets-usage.md
+### 模型卡
+https://huggingface.co/docs/hub/model-cards.md

@@ -40,7 +40,7 @@
 - 选择新存储库存储位置的选项
 
 > [!提示]
-> Spaces 的某些高级计算选项（例如 ZeroGPU）可能并非在所有区域都可用。
+> Spaces 的一些高级计算选项（例如 ZeroGPU）可能并非在所有区域都可用。
 
 ## 存储库标签
 
@@ -86,5 +86,5 @@
 
 可用的硬件配置因地区而异，并且某些功能可能并非在所有地区都可用。如需特殊要求，请联系您的 HF 客户团队。
 
-### 如何向 ArXiv 添加空间
-https://huggingface.co/docs/hub/spaces-add-to-arxiv.md
+### 单点登录配置指南
+https://huggingface.co/docs/hub/security-sso-configuration-guides.md

@@ -34,11 +34,11 @@
 
 ## 数据范围
 
-下载分析报告每个成员的总带宽；它不记录下载了哪些特定存储库、修订版本或文件。
+下载分析报告每个成员的总带宽；它不记录下载了哪些特定存储库、修订版或文件。
 
 如果您发布自己的模型或数据集并希望了解这些存储库的每个存储库下载计数，请参阅[Publisher Analytics](./publisher-analytics)。## 数据可用性和保留
 
 CDN 使用计量保留 90 天。
 
-### 处理大型数据集
-https://huggingface.co/docs/hub/jobs-large-datasets.md
+### 安排工作
+https://huggingface.co/docs/hub/jobs-schedule.md

@@ -92,5 +92,5 @@ topic_model.push_to_hf_hub(
 * [BERTopic docs](https://maartengr.github.io/BERTopic/)
 * [BERTopic models in the Hub](https://huggingface.co/models?library=bertopic&sort=trending)
 
-### 如何使用 Microsoft Entra ID (Azure AD) 配置 OIDC SSO
-https://huggingface.co/docs/hub/security-sso-azure-oidc.md
+### 审核日志
+https://huggingface.co/docs/hub/audit-logs.md

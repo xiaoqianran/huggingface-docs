@@ -26,5 +26,5 @@
 
 这些设置可帮助组织保持对其所有权的控制，同时在需要时启用协作。
 
-### 数据文件配置
-https://huggingface.co/docs/hub/datasets-data-files-configuration.md
+### 兰斯
+https://huggingface.co/docs/hub/datasets-lance.md

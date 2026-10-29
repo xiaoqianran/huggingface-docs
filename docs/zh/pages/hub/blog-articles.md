@@ -45,5 +45,5 @@
 
 如果文章引用了[Collection](./collections)，则该集合中的每个模型和数据集都被视为链接 - 该文章将显示在每个成员存储库的页面上（遵循相同的所有权规则）。
 
-### 拉取请求和讨论
-https://huggingface.co/docs/hub/repositories-pull-requests-discussions.md
+### GGUF 在 LM Studio 中的使用
+https://huggingface.co/docs/hub/lmstudio.md

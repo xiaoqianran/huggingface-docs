@@ -165,5 +165,5 @@ Enterprise Plus 组织可以在其所有模型和数据集中自动拒绝或阻�
 
 请访问我们的 [gated models](https://huggingface.co/docs/hub/models-gated#access-gated-models-as-a-user) 或 [gated datasets](https://huggingface.co/docs/hub/datasets-gated#access-gated-datasets-as-a-user) 文档，了解有关请求访问存储库的更多信息。
 
-### HF PRO 订阅 🔥
-https://huggingface.co/docs/hub/pro.md
+### 空间概述
+https://huggingface.co/docs/hub/spaces-overview.md

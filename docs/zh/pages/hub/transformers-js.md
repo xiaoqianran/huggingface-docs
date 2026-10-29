@@ -56,5 +56,5 @@ npm i @huggingface/transformers
 
 * Transformers.js [repository](https://github.com/huggingface/transformers.js)
 * Transformers.js [docs](https://huggingface.co/docs/transformers.js)
-* Transformers.js [demo](https://huggingface.github.io/transformers.js/)### 五十一
-https://huggingface.co/docs/hub/datasets-fiftyone.md
+* Transformers.js [demo](https://huggingface.github.io/transformers.js/)### 下载数据集
+https://huggingface.co/docs/hub/datasets-downloading.md

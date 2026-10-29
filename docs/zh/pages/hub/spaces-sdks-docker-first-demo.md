@@ -245,5 +245,5 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7860"]
 - [Docker Spaces](spaces-sdks-docker)
 - [List of Docker Spaces examples](spaces-sdks-docker-examples)
 
-### 空间作为 MCP 服务器
-https://huggingface.co/docs/hub/spaces-mcp-servers.md
+### 在网页中嵌入数据集查看器
+https://huggingface.co/docs/hub/datasets-viewer-embed.md

@@ -72,5 +72,5 @@ CSV 中的每条记录包含：- `repoType`：存储库的类型（例如“模�
 | `region` |地区或城市名称 |
 | `userAgent` | HTTP 用户代理标头 |由于它需要在我们这边设置自定义数据导出管道（自定义弹性索引等），因此这只能作为 Enterprise Plus 的附加组件提供。
 
-### 在拥抱脸部使用🤗 `transformers`
-https://huggingface.co/docs/hub/transformers.md
+### Spaces 开发模式：Spaces 中的无缝开发
+https://huggingface.co/docs/hub/spaces-dev-mode.md

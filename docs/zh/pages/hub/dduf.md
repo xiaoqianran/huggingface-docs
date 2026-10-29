@@ -164,5 +164,5 @@ ZIP 有几个优点：
 	
 我们不断接触其他库和框架。如果您有兴趣为您的项目添加支持，请在 [DDUF org](https://huggingface.co/spaces/DDUF/README/discussions) 中打开讨论。
 
-### 空间自定义域
-https://huggingface.co/docs/hub/spaces-custom-domain.md
+### 小部件示例
+https://huggingface.co/docs/hub/models-widgets-examples.md

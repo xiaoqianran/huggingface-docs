@@ -36,7 +36,7 @@
 #### 通过 API
 
 您可以使用 API 自动批准访问请求。您必须通过 `token` 和 `write` 访问门控存储库。要生成令牌，请转到[your user settings](https://huggingface.co/settings/tokens)。|方法|统一资源定位符 |描述 |标题 |有效载荷
-| ------ | --- | ----------- | -------- | -------- |
+| ------ | ---| ----------- | -------- | -------- |
 | `GET` | [⟦T8⟧](https://huggingface.co/spaces/huggingface/openapi#tag/datasets/GET/api/datasets/{namespace}/{repo}/user-access-request/{status}) |列出具有给定 `status` 的请求：`pending`、`accepted`、`rejected` 或 `reset`。每个请求都有一个 `requestId`，如果收集了用户名，则有一个 `user`。 | `{"authorization": "Bearer $token"}` | |
 | `POST` | [⟦T18⟧](https://huggingface.co/spaces/huggingface/openapi#tag/datasets/POST/api/datasets/{namespace}/{repo}/user-access-request/handle) |将给定访问请求的状态更改为`status`。 | `{"authorization": "Bearer $token"}` | `{"status": "accepted"/"rejected"/"pending"/"reset", "user": "username" (or "requestId": "request id"), "rejectionReason": "Optional rejection reason that will be visible to the user (max 200 characters).", "resetReason": "Optional reset reason that will be included in the email sent to the user (max 200 characters)."}` |
 | `POST` | [⟦T23⟧](https://huggingface.co/spaces/huggingface/openapi#tag/datasets/POST/api/datasets/{namespace}/{repo}/user-access-request/grant) |允许特定用户访问您的存储库。 | `{"authorization":  "Bearer $token"}` | `{"user": "username"} ` |
@@ -80,7 +80,7 @@
 - `text`：单行文本字段。
 - `checkbox`：复选框字段。
 - `date_picker`：日期选择器字段。
-- `country`：国家/地区下拉菜单。国家列表基于[ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)标准。
+- `country`：国家/地区下拉列表。国家列表基于[ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)标准。
 - `select`：带有选项列表的下拉菜单。选项列表在 `options` 字段中定义。示例：`options: ["option 1", "option 2", {label: "option3", value: "opt3"}]`。
 
 最后，您还可以使用 `extra_gated_prompt` 额外字段个性化向用户显示的消息。
@@ -103,7 +103,7 @@ extra_gated_fields:
         value: other
   I agree to use this dataset for non-commercial use ONLY: checkbox
 ---
-```在某些情况下，您可能还想修改门标题、说明和按钮中的默认文本。对于这些用例，您可以像这样修改 `extra_gated_heading`、`extra_gated_description` 和 `extra_gated_button_content`：
+```在某些情况下，您可能还想修改门标题、描述和按钮中的默认文本。对于这些用例，您可以像这样修改 `extra_gated_heading`、`extra_gated_description` 和 `extra_gated_button_content`：
 
 ```yaml
 ---
@@ -145,7 +145,7 @@ extra_gated_button_content: "Acknowledge license"
 
 ### 下载文件
 
-要从门控数据集中下载文件，您需要经过身份验证。在浏览器中，只要您使用帐户登录，此操作就会自动进行。如果您使用脚本，则需要提供[user token](./security-tokens)。在Hugging Face Python生态系统（`transformers`、`diffusers`、`datasets`等）中，您可以使用[⟦T64⟧](/docs/huggingface_hub/index)库登录您的机器并在终端中运行：
+要从门控数据集中下载文件，您需要经过身份验证。在浏览器中，只要您使用帐户登录，此操作就会自动进行。如果您使用脚本，则需要提供 [user token](./security-tokens)。在Hugging Face Python生态系统（`transformers`、`diffusers`、`datasets`等）中，您可以使用[⟦T64⟧](/docs/huggingface_hub/index)库登录您的机器并在终端中运行：
 
 ```bash
 hf auth login
@@ -178,5 +178,5 @@ extra_gated_eu_disallowed: true
 
 系统根据用户的 IP 地址识别用户的位置。
 
-### 在拥抱脸部使用 ESPnet
-https://huggingface.co/docs/hub/espnet.md
+### 文件格式
+https://huggingface.co/docs/hub/datasets-polars-file-formats.md

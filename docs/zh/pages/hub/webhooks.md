@@ -15,7 +15,7 @@ Webhooks 的文档如下 - 或者您也可以浏览我们的**指南**，其中�
 
 ## 创建您的 Webhook
 
-您可以创建新的 Webhooks 并编辑 Webhooks 中的现有 Webhook [settings](https://huggingface.co/settings/webhooks)：
+您可以创建新的 Webhooks 并编辑 Webhooks 中的现有 Webhooks [settings](https://huggingface.co/settings/webhooks)：
 
 ![Settings of an individual webhook](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/webhook-settings.png)
 
@@ -266,7 +266,7 @@ Webhooks 可以监视存储库更新、拉取请求、讨论和新评论。甚�
 >
 > 如果访问请求的 HTTP 标头对于 Webhook 处理程序来说很复杂，这会很有帮助。
 
-## 传送和重试Webhook 有效负载会在集线器上发生事件后不久异步传递。顺序无法保证：如果多个事件同时发生，它们可能会乱序到达。
+## 交付和重试Webhook 有效负载会在集线器上发生事件后不久异步传递。顺序无法保证：如果多个事件同时发生，它们可能会乱序到达。
 
 您的处理人员应使用 `2xx` 状态代码确认交货。任何其他状态代码都被视为失败的传递，就像连接错误一样：通过退避重试。如果您的处理速度很慢，请立即回复`2xx`并异步完成工作，这样就不会认为交付失败。
 
@@ -284,7 +284,7 @@ Webhooks 可以监视存储库更新、拉取请求、讨论和新评论。甚�
 
 此外，您可以在开发过程中将真实的 Webhook 有效负载路由到计算机上本地运行的代码。这是测试和调试以实现更快集成的好方法。您可以通过将本地主机端口公开到互联网来完成此操作。为了能够走这条路，您可以使用[ngrok](https://ngrok.com/)或[localtunnel](https://theboroer.github.io/localtunnel-www/)。
 
-## 调试 Webhooks
+## 调试 Webhook
 
 您可以轻松找到最近为您的 webhook 生成的事件。打开 Webhook 的活动选项卡。在那里您将看到最近事件的列表。
 
@@ -304,5 +304,5 @@ Webhooks 可以监视存储库更新、拉取请求、讨论和新评论。甚�
 
 目前尚未向最终用户公开，但如果您发送电子邮件至 website@huggingface.co，我们可以为您切换此功能。
 
-### Xet 历史和概述
-https://huggingface.co/docs/hub/xet/overview.md
+### Webhooks 自动化
+https://huggingface.co/docs/hub/jobs-webhooks.md

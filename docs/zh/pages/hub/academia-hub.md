@@ -45,5 +45,5 @@
 - 通过精细的访问控制在实验室或校园之间共享组织工作空间。
 - 将数据和课程材料保存在一个机构组织下，需要时在本地安装或使用。
 
-### 在拥抱脸部时运用天赋
-https://huggingface.co/docs/hub/flair.md
+### 冲向空格
+https://huggingface.co/docs/hub/spaces-sdks-docker-dash.md

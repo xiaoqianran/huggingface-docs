@@ -166,5 +166,5 @@ def schedule_retrain(payload: WebhookPayload):
 
 就是这样！现在，对输入数据集的每次提交都将触发使用 AutoTrain 对 ResNet-50 进行微调 🎉
 
-### 查询数据集
-https://huggingface.co/docs/hub/datasets-duckdb-select.md
+### Web数据集
+https://huggingface.co/docs/hub/datasets-webdataset.md

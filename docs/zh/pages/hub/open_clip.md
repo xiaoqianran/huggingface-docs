@@ -67,5 +67,5 @@ Label probs: tensor([[0.0020, 0.0034, 0.9946]])
 * OpenCLIP [docs](https://github.com/mlfoundations/open_clip/tree/main/docs)
 * OpenCLIP [models in the Hub](https://huggingface.co/models?library=open_clip&sort=trending)
 
-### 愚蠢
-https://huggingface.co/docs/hub/datasets-daft.md
+### 如何使用 Google Workspace 配置 OIDC SSO
+https://huggingface.co/docs/hub/security-sso-google-oidc.md

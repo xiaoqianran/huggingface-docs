@@ -78,7 +78,7 @@ If there is no match, the role is determined as follows:
 
 要添加电子邮件域，请填写“匹配电子邮件域”字段，单击键盘上的 Enter 键，然后保存。
 
-## 外部合作者外部协作者是组织外部的用户，他们需要在不通过单点登录 (SSO) 的情况下访问其部分资源。这通常意味着它们不在您的身份提供商 (IdP) 中。它们可在付费计划中使用，并在组织的成员列表中显示为“外部协作者”徽章。它们确实计入您组织中的付费席位数量。
+## 外部合作者外部协作者是组织外部的用户，他们需要在不通过单点登录 (SSO) 的情况下访问其部分资源。这通常意味着它们不在您的身份提供商 (IdP) 中。它们可用于付费计划，并在组织的成员列表中显示为“外部协作者”徽章。它们确实计入您组织中的付费席位数量。
 
 您可以通过以下方式添加它们：
 
@@ -89,5 +89,5 @@ If there is no match, the role is determined as follows:
 > [!注意]
 > 使用 [Managed SSO](./enterprise-advanced-sso)，内部成员通过您的身份提供商 (SCIM) 进行配置，因此受邀加入组织的用户只能添加为外部协作者。
 
-### S3 兼容性
-https://huggingface.co/docs/hub/storage-buckets-s3.md
+### 收藏
+https://huggingface.co/docs/hub/collections.md

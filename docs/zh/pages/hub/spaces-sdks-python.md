@@ -22,5 +22,5 @@
 - https://huggingface.co/spaces/ronvolutional/http-server
 - https://huggingface.co/spaces/ronvolutional/iframe-test
 
-### 在 Hugging Face 中使用 fastai
-https://huggingface.co/docs/hub/fastai.md
+### 访问模式
+https://huggingface.co/docs/hub/storage-buckets-access.md

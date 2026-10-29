@@ -3,11 +3,11 @@
 # 空间闪亮
 
 [Shiny](https://shiny.posit.co/)是一个开源框架，用于构建简单、美观且高性能的数据应用程序。 
-The goal when developing Shiny was to build something simple enough to teach someone in an afternoon but extensible enough to power large, mission-critical applications. 
-You can create a useful Shiny app in a few minutes, but if the scope of your project grows, you can be sure that Shiny can accommodate that application.
+开发 Shiny 的目标是构建足够简单的东西，可以在一个下午教别人，但又足够可扩展，可以为大型关键任务应用程序提供支持。 
+您可以在几分钟内创建一个有用的 Shiny 应用程序，但如果您的项目范围扩大，您可以确定 Shiny 可以容纳该应用程序。
 
 Shiny 与其他框架的主要区别在于其反应式执行模型。 
-When you write a Shiny app, the framework infers the relationship between inputs, outputs, and intermediary calculations and uses those relationships to render only the things that need to change as a result of a user's action. 
+当您编写 Shiny 应用程序时，框架会推断输入、输出和中间计算之间的关系，并使用这些关系仅呈现因用户操作而需要更改的内容。 
 结果是用户可以轻松开发高效、可扩展的应用程序，而无需显式缓存数据或编写回调函数。
 
 ## Python 的闪亮[Shiny for Python](https://shiny.rstudio.com/py/)是Shiny的纯Python实现。 
@@ -19,7 +19,7 @@ Shiny for Python 非常适合 Hugging Face 应用程序，因为它与其他 Hug
 
   
 
-_app.py_
+_应用程序.py_
 
 该文件定义您的应用程序的逻辑。要了解有关如何修改此文件的更多信息，请参阅[the Shiny for Python documentation](https://shiny.rstudio.com/py/docs/overview.html)。 
 随着您的应用程序变得越来越复杂，最好将应用程序逻辑分解为 [modules](https://shiny.rstudio.com/py/docs/workflow-modules.html)。
@@ -29,7 +29,7 @@ _Dockerfile_
 Shiny for Python 应用程序的 Dockerfile 非常小，因为该库没有很多系统依赖项，但如果您的应用程序有其他系统依赖项，您可能需要修改此文件。 
 该文件的一个基本功能是，它在空间 README 文件中指定的端口（默认情况下为 7860）上公开并运行应用程序。
 
-__requirements.txt__空间将自动安装requirements.txt 文件中列出的依赖项。 
+__需求.txt__空间将自动安装requirements.txt 文件中列出的依赖项。 
 请注意，您必须在此文件中包含闪亮。
 
 ## R 的闪亮
@@ -55,5 +55,5 @@ Dockerfile 基于 [rocker shiny](https://hub.docker.com/r/rocker/shiny) 镜像�
 
 - 其次，目前您必须使用[httpuv](https://github.com/rstudio/httpuv)的开发版本，它解决了Hugging Face上应用程序超时的问题。
 
-### fenic
-https://huggingface.co/docs/hub/datasets-fenic.md
+### 模型卡指南
+https://huggingface.co/docs/hub/model-card-guidebook.md

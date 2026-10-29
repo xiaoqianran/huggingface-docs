@@ -97,5 +97,5 @@ client = GiskardClient(url, api_key, hf_token)
 
 如果您有建议或需要具体支持，请加入[Giskard's Discord community](https://discord.com/invite/ABvfpbu69R)或联系[Giskard's GitHub repository](https://github.com/Giskard-AI/giskard)。
 
-### 空间中的 Cookie 限制
-https://huggingface.co/docs/hub/spaces-cookie-limitations.md
+### 嵌入图集
+https://huggingface.co/docs/hub/datasets-embedding-atlas.md

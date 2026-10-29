@@ -56,5 +56,5 @@
 >>> hf jobs scheduled delete <scheduled-job-id>
 ```
 
-### 基本单点登录
-https://huggingface.co/docs/hub/security-sso-basic.md
+### 拉取请求和讨论
+https://huggingface.co/docs/hub/repositories-pull-requests-discussions.md

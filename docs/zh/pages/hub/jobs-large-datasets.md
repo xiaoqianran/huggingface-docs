@@ -10,7 +10,7 @@
 - **迭代行、处理或训练** → [stream](#stream-the-dataset) 它。
 - **过滤或列修剪扫描** → 使用 Polars 或 DuckDB 查询 [directly over ⟦T11⟧](#read-and-filter-over-hf)。
 - **需要本地文件路径的工具** → [mount](#mount-a-dataset-model-or-bucket) 存储库并懒惰地读取它。
-- **持久结果** → 将它们写入[Storage Bucket](#save-results)，以便它们在作业中幸存下来。
+- **持久化结果** → 将它们写入[Storage Bucket](#save-results)，以便它们在作业中幸存下来。
 
 ## 流式传输数据集
 
@@ -163,5 +163,5 @@ con.sql("SELECT lang, count(*) AS docs FROM wet GROUP BY lang ORDER BY docs DESC
 - [Pricing & hardware](./jobs-pricing#pricing) — 每种口味的临时磁盘 · [Configuration](./jobs-configuration#volumes) — 卷
 - [Storage Buckets](./storage-buckets)·[access patterns](./storage-buckets-access)·[integrations](./storage-buckets-integrations)
 
-### 第三方扫描仪：保护 AI
-https://huggingface.co/docs/hub/security-protectai.md
+### 阿吉拉
+https://huggingface.co/docs/hub/datasets-argilla.md

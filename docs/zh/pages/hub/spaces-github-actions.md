@@ -66,5 +66,5 @@ jobs:
 
 将 `HF_USERNAME` 替换为您的用户名，将 `SPACE_NAME` 替换为您的空间名称。
 
-### Hugging Face Hub 文档
-https://huggingface.co/docs/hub/index.md
+### 鸭数据库
+https://huggingface.co/docs/hub/datasets-duckdb.md

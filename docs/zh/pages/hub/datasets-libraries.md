@@ -61,7 +61,7 @@ Hugging Face 上的 Parquet 文件经过优化，可提高存储效率、加速�
 | [TRL](https://huggingface.co/docs/trl) |通过强化学习（SFT、DPO、GRPO）培训法学硕士 | ⚠️* |
 | [Unsloth](https://docs.unsloth.ai) |快速 LLM 微调（加速 2 倍，内存减少 70%）| ✅ |
 
-_* SFTTrainer 和 DPOTrainer 支持流式传输； GRPPOTrainer 尚不支持流式输入_
+_* SFTTrainer 和 DPOTrainer 支持流式传输； GRPOTrainer 尚不支持流式输入_
 
 ### 从集线器流式传输
 
@@ -72,7 +72,7 @@ _* SFTTrainer 和 DPOTrainer 支持流式传输； GRPPOTrainer 尚不支持流�
 
 最近的改进使流式传输[up to 100x more efficient](https://huggingface.co/blog/streaming-datasets)具有更快的启动、预取和更好的扩展到许多工作人员的能力。
 
-**注意：** 流式处理需要在训练参数中使用`max_steps`，因为数据集长度未知，并且使用基于缓冲区的改组。更多详情请参见[streaming datasets](./datasets-streaming)。
+**注意：** 流式处理需要在训练参数中使用`max_steps`，因为数据集长度未知，并且使用基于缓冲区的混洗。更多详情请参见[streaming datasets](./datasets-streaming)。
 
 ### 记录到集线器
 
@@ -95,9 +95,9 @@ _* SFTTrainer 和 DPOTrainer 支持流式传输； GRPPOTrainer 尚不支持流�
 
 您可以找到有关从 Hub [here](https://huggingface.co/docs/hub/datasets-downloading) 加载数据的更多信息。
 
-#### 通过数据集查看器和 Parquet 文件集成The Hub's dataset viewer and Parquet conversion system provide a standardized way to integrate with datasets, regardless of their original format.该基础设施是集线器和外部库之间的可靠集成层。
+#### 通过数据集查看器和 Parquet 文件集成Hub 的数据集查看器和 Parquet 转换系统提供了一种与数据集集成的标准化方法，无论其原始格式如何。该基础设施是集线器和外部库之间的可靠集成层。
 
-If the dataset is not already in Parquet, the Hub automatically converts the first 5GB of every dataset to Parquet format to power the dataset viewer and provide consistent access patterns.这种标准化为库集成提供了多种好处：
+如果数据集尚未采用 Parquet 格式，则 Hub 会自动将每个数据集的前 5GB 转换为 Parquet 格式，以支持数据集查看器并提供一致的访问模式。这种标准化为库集成提供了多种好处：
 
 - 无论原始格式如何，一致的数据访问模式
 - 通过 Hub 的数据集查看器进行内置数据集预览和探索。数据集查看器还可以作为 iframe 嵌入到您的应用程序中，从而轻松提供丰富的数据集预览。有关嵌入查看器的更多信息，请参阅[dataset viewer embedding documentation](https://huggingface.co/docs/hub/en/datasets-viewer-embed)。
@@ -112,8 +112,7 @@ If the dataset is not already in Parquet, the Hub automatically converts the fir
 
 - 使用`datasets`库和`push_to_hub`方法
 - 使用`pandas`写入Hub
-- 使用`huggingface_hub`库和`hf_hub_download`方法
-- 直接使用 API 或 Git 与 git-xet
+- 使用`huggingface_hub`库和`upload_folder`方法
 
 #### 使用`datasets`库
 
@@ -140,16 +139,16 @@ ds.push_to_hub("USERNAME_OR_ORG/repo_ID")
 
 #### 依赖现有库与 Hub 的集成
 
-Polars、Pandas、Dask、Spark、DuckDB 和 Daft 都可以写入 Hugging Face Hub 存储库。更多详情请参见[datasets libraries](https://huggingface.co/docs/hub/datasets-libraries)。如果您已经在代码中使用这些库之一，则添加推送到 Hub 的功能非常简单。例如，如果您有一个可以返回 Pandas DataFrame 的合成数据生成库，则以下是您需要写入 Hub 的代码：
+Polars、Pandas、Dask、Spark、DuckDB 和 Daft 都可以写入 Hugging Face Hub 存储库。更多详情请参阅上面的[Libraries table](#libraries-table)。如果您已经在代码中使用这些库之一，则添加推送到 Hub 的功能非常简单。例如，如果您有一个可以返回 Pandas DataFrame 的合成数据生成库，则以下是您需要写入 Hub 的代码：
 
 ```python
 from huggingface_hub import HfApi
 
 # Initialize the Hub API
-hf_api = HfApi(token=os.getenv("HF_TOKEN"))
+hf_api = HfApi()
 
 # Create a repository (if it doesn't exist)
-hf_api.create_repo(repo_id="username/my-dataset", repo_type="dataset")
+hf_api.create_repo(repo_id="username/my-dataset", repo_type="dataset", exist_ok=True)
 
 # Convert your data to a DataFrame and save directly to the Hub
 df.to_parquet("hf://datasets/username/my-dataset/data.parquet")
@@ -163,20 +162,20 @@ df.to_parquet("hf://datasets/username/my-dataset/data.parquet")
 
 ```python
 from huggingface_hub import HfApi
-api = HfApi(token=HF_TOKEN)
+api = HfApi()
 
 api.upload_folder(
     folder_path="/my-cool-library/data-folder",
-    repo_id="username/my-cool-space",
+    repo_id="username/my-dataset",
     repo_type="dataset",
-    commit_message="Push annotations to Hub"
+    commit_message="Push annotations to Hub",
     allow_patterns="*.jsonl",
 )
 ```
 
 您可以找到有关如何将数据上传到集线器[here](https://huggingface.co/docs/huggingface_hub/main/en/guides/upload)的更多信息。
 
-或者，在某些情况下，您可能希望在后台上传数据，例如每 10 分钟生成一次合成数据。在这种情况下，您可以使用 `huggingface_hub` 库的 `scheduled_uploads` 功能。欲了解更多详情，请参阅[scheduled uploads documentation](https://huggingface.co/docs/huggingface_hub/main/en/guides/upload#scheduled-uploads)。您可以在以下位置查看使用此方法将数据上传到 Hub 的示例：
+或者，在某些情况下，您可能希望在后台上传数据，例如每 10 分钟生成一次合成数据。在这种情况下，您可以使用 `huggingface_hub` 库的 `CommitScheduler` 类。欲了解更多详情，请参阅[scheduled uploads documentation](https://huggingface.co/docs/huggingface_hub/main/en/guides/upload#scheduled-uploads)。您可以在以下位置查看使用此方法将数据上传到 Hub 的示例：
 
 - [fastdata](https://github.com/AnswerDotAI/fastdata/blob/main/nbs/00_core.ipynb)图书馆
 - 这个[magpie](https://huggingface.co/spaces/davanstrien/magpie/blob/fc79672c740b8d3d098378dca37c0f191c208de0/app.py#L67)演示空间
@@ -185,5 +184,5 @@ api.upload_folder(
 
 有关集成的技术问题，请随时通过 datasets@huggingface.co 联系数据集团队。
 
-### 自定义 Python 空间
-https://huggingface.co/docs/hub/spaces-sdks-python.md
+### 您的第一个 Docker 空间：使用 T5 生成文本
+https://huggingface.co/docs/hub/spaces-sdks-docker-first-demo.md

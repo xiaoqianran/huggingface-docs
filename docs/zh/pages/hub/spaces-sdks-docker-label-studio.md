@@ -36,7 +36,7 @@ Hugging Face Hub 中的标签和注释。您可以使用默认的
 
 ## 🚀 使用默认配置
 
-默认情况下，Label Studio 安装在 Spaces 中，配置使用
+默认情况下，Label Studio 安装在 Spaces 中，其配置使用
 应用程序数据库的本地存储，用于存储配置、帐户
 凭证和项目信息。还保存标记任务和数据项
 在本地存储中。 
@@ -149,7 +149,7 @@ api.restart_space(space_id, factory_reboot=True)
 
 ### 使用 Postgres 启用持久性
 
-对于较重的多用户部署，您可以通过以下方式启用持久性：
+对于较重的多用户部署，您可以通过以下方式启用持久性
 [connecting an external Postgres database to your
 space](https://labelstud.io/guide/storedata.html#PostgreSQL-database),
 确保保留所有项目和注释设置。设置以下秘密变量以匹配您自己的托管实例
@@ -233,5 +233,5 @@ playground](https://labelstud.io/playground/)，用于尝试不同的
 注释接口，以及加入[Label Studio Slack
 Community](https://slack.labelstudio.heartex.com/?source=spaces)的链接。
 
-### 访问基准排行榜数据
-https://huggingface.co/docs/hub/leaderboard-data-guide.md
+### 关于空间的证据
+https://huggingface.co/docs/hub/spaces-sdks-docker-evidence.md

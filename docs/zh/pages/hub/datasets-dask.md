@@ -146,5 +146,5 @@ client = Client(cluster)
 
 在 [Deploying Dask documentation](https://docs.dask.org/en/latest/deploying.html) 中查找有关设置本地或云集群的更多信息。
 
-### 计费
-https://huggingface.co/docs/hub/billing.md
+### 如何处理Spaces中的URL参数
+https://huggingface.co/docs/hub/spaces-handle-url-parameters.md

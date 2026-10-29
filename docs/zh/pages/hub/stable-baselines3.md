@@ -11,7 +11,7 @@
 Hub 上的所有型号都具有有用的功能：
 1. 自动生成的模型卡，其中包含描述、训练配置等。
 2. 有助于发现的元数据标签。
-3.与其他模型比较的评估结果。
+3.与其他模型的评估结果比较。
 4. 一个视频小部件，您可以在其中观看代理的表演。
 
 ## 安装库
@@ -80,5 +80,5 @@ push_to_hub(
 * 拥抱脸部稳定-基线3 [documentation](https://github.com/huggingface/huggingface_sb3#hugging-face--x-stable-baselines3-v20)
 * 稳定基线3 [documentation](https://stable-baselines3.readthedocs.io/en/master/)
 
-### 编程式用户访问控制管理
-https://huggingface.co/docs/hub/programmatic-user-access-control.md
+### 在拥抱脸部使用 PaddleNLP
+https://huggingface.co/docs/hub/paddlenlp.md

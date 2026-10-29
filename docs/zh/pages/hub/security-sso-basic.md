@@ -45,5 +45,5 @@
 
 基本 SSO 支持[role mapping, resource group mapping, session timeout, matching email domains, and external collaborators](./security-sso-user-management)。这些功能可通过您组织的设置进行配置。
 
-### 古夫
-https://huggingface.co/docs/hub/gguf.md
+### 静态 HTML 空间
+https://huggingface.co/docs/hub/spaces-sdks-static.md

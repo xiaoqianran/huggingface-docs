@@ -18,7 +18,7 @@ Hugging Face Hub 原生支持来自 Claude Code、Codex、Pi、Hermes Agent 和 
 
 这些跟踪文件是开箱即用的，因此您可以上传它们，而无需先修改或转换它们。
 
-Hermes Agent 将当前会话存储在其会话数据库中。上传之前将要共享的会话导出为 JSONL：
+Hermes Agent 将当前会话存储在其会话数据库中。在上传之前将要共享的会话导出为 JSONL：
 
 ```bash
 hermes sessions export session.jsonl --session-id <session_id>
@@ -50,5 +50,5 @@ hf buckets sync ~/.codex/sessions hf://buckets/<username>/<bucket-name>/codex
 
 对于公共示例，请打开 [⟦T18⟧](https://huggingface.co/datasets/TeichAI/DeepSeek-v4-Pro-Agent)。您还可以浏览更多标记为[⟦T19⟧](https://huggingface.co/datasets?format=format%3Aagent-traces)的数据集。
 
-### 恶意软件扫描
-https://huggingface.co/docs/hub/security-malware.md
+### 使用空格作为组织卡
+https://huggingface.co/docs/hub/spaces-organization-cards.md

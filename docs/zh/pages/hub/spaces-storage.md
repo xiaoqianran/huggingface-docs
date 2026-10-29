@@ -23,5 +23,5 @@
 
 当卷引用私有存储库时，无访问权限的用户仍将看到列出的卷（及其安装路径和访问模式），但源将被屏蔽为带有“（私有）”标签的`****/******`。
 
-### 阿吉拉
-https://huggingface.co/docs/hub/datasets-argilla.md
+### 型号发布清单
+https://huggingface.co/docs/hub/model-release-checklist.md

@@ -63,5 +63,5 @@ _请注意，单击电子邮件中的取消订阅链接将使您取消订阅该�
 
 ![Notifications mute discussions](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/notifications-mute-discussion.png)
 
-### 优化
-https://huggingface.co/docs/hub/datasets-polars-optimizations.md
+### GGUF 与 GPT4All 的使用
+https://huggingface.co/docs/hub/gguf-gpt4all.md

@@ -37,7 +37,7 @@
 ### 私人存储 按量付费
 
 除了 [PRO](https://huggingface.co/subscribe/pro) 和 [Team or Enterprise Organizations](https://huggingface.co/enterprise) 中包含的 1TB（或每个席位 1TB）私人存储之外，额外的私人存储将以即用即付模式通过您的付款方式收取费用，基本价格为 18 美元/TB/月。
-通过我们的客户经理，大批量可享受额外折扣：
+通过我们的客户经理可以为大批量提供额外折扣：
 
 |卷 |价格（私人回购）|
 | ------ | -------------------- |
@@ -227,5 +227,5 @@ index 0000000..a090ee7
 
 ```
 
-### 在拥抱脸部时使用 SpanMarker
-https://huggingface.co/docs/hub/span_marker.md
+### 组织中的访问控制
+https://huggingface.co/docs/hub/organizations-security.md

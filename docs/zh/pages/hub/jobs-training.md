@@ -91,7 +91,7 @@ hf jobs uv run --flavor a10g-small --timeout 30m -s HF_TOKEN -- \
   --push_to_hub
 ```
 
-这将在大约六分钟内完成。删除 `--max_steps` 以进行完整运行：Capybara 的三个纪元（脚本的默认值）在 `a10g-small` 上花费大约 2 小时 20 分钟，因此用它来提高 `--timeout`。 TRL自己的文档使用`a100-large`，速度更快。
+This finishes in about six minutes.删除 `--max_steps` 以进行完整运行：Capybara 的三个纪元（脚本的默认值）在 `a10g-small` 上花费大约 2 小时 20 分钟，因此用它来提高 `--timeout`。 TRL's own docs use `a100-large`, which is faster.
 
 完整指南（包括编写您自己的 TRL 脚本和运行 `huggingface/trl` 映像）位于 TRL 文档中的 [Training with Jobs](https://huggingface.co/docs/trl/jobs_training)。
 
@@ -157,7 +157,7 @@ max_steps: 20
 
 这将在大约七分钟内完成，并将适配器推送到`hub_model_id`，作为私人存储库。移除`max_steps`以进行完整运行。图像标签格式在[Axolotl's Docker guide](https://docs.axolotl.ai/docs/docker.html#sec-main-tags)中描述。
 
-对于更多 GPU，只需更改风格即可：在 `a10g-largex4` 上，`axolotl train` 为每个 GPU 单独启动一个进程。 DeepSpeed 和 FSDP 就是 YAML 密钥的问题，在 [Axolotl's multi-GPU guide](https://docs.axolotl.ai/docs/multi-gpu.html) 中介绍。
+对于更多 GPU，只需更改风格即可：在 `a10g-largex4` 上，`axolotl train` 为每个 GPU 单独启动一个进程。 DeepSpeed 和 FSDP 就是 YAML 密钥的问题，在 [Axolotl's multi-GPU guide](https://docs.axolotl.ai/docs/multi-gpu.html) 中进行了介绍。
 
 有关更多详细信息，请参阅 Axolotl 文档中的 [Hugging Face Jobs guide](https://docs.axolotl.ai/docs/hf-jobs.html)。
 
@@ -189,5 +189,5 @@ hf jobs uv run --flavor a10g-small --timeout 30m -s HF_TOKEN -- \
 - [Examples & Tutorials](./jobs-examples) 用于社区撰写，包括视觉语言微调和将大型数据集流式传输到训练运行中。
 - [Use Jobs from a coding agent](./jobs-examples#coding-agent-skills)：`hf` CLI 技能可让 Claude Code、Codex 和 Cursor 启动并为您观看这些运行。
 
-### 空间作为 API 端点
-https://huggingface.co/docs/hub/spaces-api-endpoints.md
+### 使用 GPG 签署提交
+https://huggingface.co/docs/hub/security-gpg.md

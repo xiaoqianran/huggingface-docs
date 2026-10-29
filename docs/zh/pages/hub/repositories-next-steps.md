@@ -26,7 +26,7 @@ Git 允许您*标记*提交，以便您可以轻松地记录项目中的里程�
 
 ## 如何复制存储库
 
-有多种方法可以复制存储库，具体取决于您是否需要保留 Git 历史记录。
+复制存储库的方法有多种，具体取决于您是否需要保留 Git 历史记录。
 
 ### 从集线器复制
 
@@ -91,11 +91,11 @@ git lfs fetch --all upstream
 git reset --hard upstream/main
 ```
 
-4. 推送：
+4. Push:
 
 ```bash
 git push --force origin main
 ```
 
-### 在拥抱面部使用_Adapters_
-https://huggingface.co/docs/hub/adapters.md
+### 模型下载统计数据
+https://huggingface.co/docs/hub/models-download-stats.md

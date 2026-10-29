@@ -76,5 +76,5 @@ Dash Space 模板提供了一个基本设置，您可以根据需要进行扩展
 
 如需更多帮助，请访问[Plotly Community Forums](https://community.plotly.com)或[open an issue](https://github.com/plotly/dash/issues)。
 
-### 使用 TensorBoard
-https://huggingface.co/docs/hub/tensorboard.md
+### 视频数据集
+https://huggingface.co/docs/hub/datasets-video.md

@@ -72,5 +72,5 @@ io_config = IOConfig(hf=HuggingFaceConfig(token="your_token"))
 df = daft.read_parquet("hf://datasets/username/dataset_name", io_config=io_config)
 ```
 
-### 嵌入图集
-https://huggingface.co/docs/hub/datasets-embedding-atlas.md
+### 拥抱脸部 MCP 服务器
+https://huggingface.co/docs/hub/agents-mcp.md

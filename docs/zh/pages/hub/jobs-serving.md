@@ -103,5 +103,5 @@ LFM2.5 是一个推理模型，因此响应将其推理包含在最终答案之�
 > [!注意]
 > 暴露端口需要 `huggingface_hub` >= 1.19.0，并且在作业硬件价格的基础上计费 — 请参阅 [Jobs pricing](./jobs-pricing)。
 
-### 存储桶：安全性与合规性
-https://huggingface.co/docs/hub/storage-buckets-security.md
+### 空间配置参考
+https://huggingface.co/docs/hub/spaces-config-reference.md

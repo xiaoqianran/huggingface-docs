@@ -11,7 +11,7 @@
 
 1. 创建一个拥抱脸[access token](https://huggingface.co/settings/tokens)，并对目标存储库具有**写入**权限。为了获得更好的安全性，请使用范围仅限于您要同步到的存储库的[fine-grained token](https://huggingface.co/settings/tokens)。
 2. 在存储库设置中添加名为 `HF_TOKEN` 的令牌作为 [GitHub secret](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-an-environment)。
-3. 将工作流程文件（例如`.github/workflows/sync-to-hub.yml`）添加到您的存储库。
+3. 将工作流程文件（例如 `.github/workflows/sync-to-hub.yml`）添加到您的存储库。
 
 ## 基本用法
 
@@ -60,5 +60,5 @@ jobs:
 
 有关特定于空间的指南（文件大小限制、LFS 处理），请参阅 [Managing Spaces with GitHub Actions](./spaces-github-actions)。
 
-### 高级主题
-https://huggingface.co/docs/hub/spaces-advanced.md
+### 值得信赖的出版商
+https://huggingface.co/docs/hub/trusted-publishers.md

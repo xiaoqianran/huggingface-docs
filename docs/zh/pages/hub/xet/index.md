@@ -28,5 +28,5 @@ Hugging Face Hub 上的存储库与软件开发平台上的存储库不同。它
 - [Backwards Compatibility & Legacy](./legacy-git-lfs)
 - [Deduplication](./deduplication)
 
-### 遥测
-https://huggingface.co/docs/hub/xet/telemetry.md
+### Xet 历史和概述
+https://huggingface.co/docs/hub/xet/overview.md

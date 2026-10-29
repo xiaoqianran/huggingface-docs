@@ -75,9 +75,18 @@
 > [!提示]
 > PR 开放时，社区分数可见。如果分数有争议，模型作者可以关闭 PR 将其删除。目标是透明地公开现有的评估数据，同时通过经过验证的分数建立完全可重复的标准。
 
+### 从排行榜中隐藏模型基准维护者可以在排行榜中隐藏模型，例如，如果他们对其报告的结果提出异议：
+
+- 在基准数据集页面上，维护人员可以使用每个排行榜行上的切换按钮来隐藏或取消隐藏模型。隐藏的模型列在菜单中，以便以后可以恢复。
+- 隐藏适用于基准测试的所有任务中的模型。
+- 隐藏模型从公共排行榜中删除，其余模型重新排名。
+- 在模型页面上，该基准测试的结果不再公开显示。 
+
 ## 注册基准
 
-要将您的数据集注册为基准：1. 创建包含评估数据的数据集存储库
+要将您的数据集注册为基准：
+
+1. 创建包含评估数据的数据集存储库
 2. 使用您的基准配置将 `eval.yaml` 文件添加到存储库根目录，符合下面定义的规范。
 3. 文件在推送时验证
 4.（**测试版**）联系我们，以便我们将其添加到允许列表中。
@@ -86,23 +95,21 @@
 
 ## Eval.yaml 规范
 
-`eval.yaml` 应包含以下字段：
-
-- `name` — 人类可读的基准显示名称（例如 `"Humanity's Last Exam"`）。
+`eval.yaml` 应包含以下字段：- `name` — 人类可读的基准显示名称（例如 `"Humanity's Last Exam"`）。
 - `description` — 基准测量内容的简短描述。
 - `evaluation_framework` — 此基准测试的规范评估框架标识符。这是 Hugging Face 团队维护的一个枚举。将您自己的添加到列表[here](https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/eval.ts)。每个基准测试仅支持一个框架。
 - `tasks[]` — 此基准定义的任务列表（子排行榜）（见下文）。
 
 每个 `tasks[]` 项目中的必填字段：
 
-- `id` — 任务的唯一标识符。 （例如`"gpqa_diamond"`）。一个基准测试可以定义多个任务，每个任务都会生成自己的排行榜。请随意为每个任务选择一个排行榜标识符。
+- `id` — 任务的唯一标识符。 （例如`"gpqa_diamond"`）。一个基准可以定义多个任务，每个任务都会生成自己的排行榜。请随意为每个任务选择一个排行榜标识符。
 
-每个 `tasks[]` 项目中的可选字段：- `config` — 要评估的拥抱脸部数据集的配置（例如`"default"`）。默认为数据集的默认配置。
-- `split` — Split of the Hugging Face dataset to evaluate (e.g. `"test"`).默认为`"test"`。
+每个 `tasks[]` 项目中的可选字段：
 
-设置`evaluation_framework: inspect-ai`时，还需要设置以下字段：
+- `config` — 要评估的拥抱脸部数据集的配置（例如`"default"`）。默认为数据集的默认配置。
+- `split` — 要评估的拥抱脸部数据集的分割（例如`"test"`）。默认为`"test"`。
 
-- `field_spec` — Specification of the input and output fields.包含 `input`、`target`、`choices` 和可选的 `input_image` 子字段。更多详情请参阅[docs](https://inspect.aisi.org.uk/tasks.html#hugging-facehttps://inspect.aisi.org.uk/tasks.html#hugging-face)。
+设置`evaluation_framework: inspect-ai`时，还需要设置以下字段：- `field_spec` — 输入和输出字段的规范。包含 `input`、`target`、`choices` 和可选的 `input_image` 子字段。更多详情请参阅[docs](https://inspect.aisi.org.uk/tasks.html#hugging-facehttps://inspect.aisi.org.uk/tasks.html#hugging-face)。
 - `solvers` — 求解器过去使用 AI 模型从输入到输出。这可以是从简单的系统提示到自我批评循环。更多详情请参阅[docs](https://inspect.aisi.org.uk/solvers.html)。
 - `scores` — 使用得分手。评分者确定求解器是否成功地为数据集中定义的目标找到了正确的输出，以及以什么方式进行。更多详情请参阅[docs](https://inspect.aisi.org.uk/scorers.html)。
 
@@ -169,5 +176,5 @@ tasks:
           model: openai/o3-mini
 ```
 
-### 后续步骤
-https://huggingface.co/docs/hub/repositories-next-steps.md
+### 将您的空间嵌入另一个网站
+https://huggingface.co/docs/hub/spaces-embed.md

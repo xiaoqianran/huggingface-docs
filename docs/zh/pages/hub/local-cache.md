@@ -262,7 +262,7 @@ snapshots/
 
 2. **查看快照**
    - 寻找`snapshots/{commit_hash}/{relative_path}`
-   - 如果存在（作为符号链接或文件），则该文件将被缓存。按照符号链接获取内容
+   - 如果它存在（作为符号链接或文件），则该文件被缓存。按照符号链接获取内容
 
 3. **检查不存在**
    - 寻找`.no_exist/{commit_hash}/{relative_path}`
@@ -273,7 +273,7 @@ snapshots/
 
 ## Windows 行为缓存依赖于**符号链接**。在符号链接不可用的 Windows 系统上，缓存以 **降级模式** 运行：实际文件副本直接放置在 `snapshots/` 而不是符号链接中。该模式下不使用`blobs/`目录和[shared blob store](#shared-blob-store)。
 
-这意味着相同的文件内容可能会在各个版本之间重复，从而增加磁盘使用量。要在 Windows 上启用符号链接支持，请激活 [Developer Mode](https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development) 或以管理员身份运行。
+这意味着相同的文件内容可能会在各个修订版本中重复，从而增加磁盘使用量。要在 Windows 上启用符号链接支持，请激活 [Developer Mode](https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development) 或以管理员身份运行。
 
-### 使用 Keras 拥抱脸部
-https://huggingface.co/docs/hub/keras.md
+### 第三方扫描仪：保护 AI
+https://huggingface.co/docs/hub/security-protectai.md

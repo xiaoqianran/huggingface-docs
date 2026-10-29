@@ -192,7 +192,7 @@ train-0000/
 ### 镶木地板格式
 
 您可以将所有内容嵌入到 [Parquet](https://parquet.apache.org/) 文件中，而不是将图像和元数据作为单独的文件上传。
-如果您有大量图像、想要嵌入多个图像列或者想要在同一文件中存储有关图像的附加信息，这会很有用。
+如果您有大量图像、想要嵌入多个图像列或者想要在同一文件中存储有关图像的附加信息，这会非常有用。
 Parquet 对于存储原始字节等数据也很有用，而 JSON/CSV 不支持这种数据。
 
 ```
@@ -213,5 +213,5 @@ dataset_info:
 
 请注意，建议对小图像（每个图像 <1MB）和小行组（每个行组 100 行，`datasets` 用于图像）使用 Parquet。对于较大的图像，建议使用 WebDataset 格式，或共享原始图像文件（可以选择元数据文件，并遵循 [repositories recommendations and limits](https://huggingface.co/docs/hub/en/storage-limits) 的存储和文件数量）。
 
-### 收藏
-https://huggingface.co/docs/hub/collections.md
+### GGUF 与 llama.cpp 的用法
+https://huggingface.co/docs/hub/gguf-llamacpp.md

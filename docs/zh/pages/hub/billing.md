@@ -62,7 +62,7 @@ PRO 订阅为认真的用户解锁了基本功能，包括：- 公共和私人�
 
 ## 可用的付款方式
 
-Hugging Face 使用 [Stripe](https://stripe.com) 安全地处理您的付款信息。Hugging Face 计算服务通过信用卡支付。您可以从账单设置中将信用卡添加到您的帐户。
+Hugging Face 使用 [Stripe](https://stripe.com) 安全地处理您的付款信息。Hugging Face 计算服务通过信用卡支付。您可以通过结算设置将信用卡添加到您的帐户。
 
 组织也可以通过 [cloud marketplace](#cloud-providers-partnerships) 订阅进行计费，这样 Hugging Face 的使用情况就会显示在其 AWS 或 Google Cloud 账单上。
 
@@ -137,5 +137,5 @@ A. 积分可让您使用 HF 按量付费服务：
 
 A. 席位数量将在续订时自动调整，以反映上一时期组织成员数量的任何增加。由于是固定费用订阅，因此无需在当月或当年更新订阅的席位数。
 
-### 如何获取用户在 Spaces 中的计划和状态
-https://huggingface.co/docs/hub/spaces-get-user-plan.md
+### 更多创建空间的方法
+https://huggingface.co/docs/hub/spaces-more-ways-to-create.md

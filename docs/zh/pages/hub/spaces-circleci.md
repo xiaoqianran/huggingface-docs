@@ -57,5 +57,5 @@ jobs:
                   git push -f https://HF_USERNAME:${HF_PERSONAL_TOKEN}@huggingface.co/spaces/HF_USERNAME/SPACE_NAME main
 ```
 
-### 转换你的数据集
-https://huggingface.co/docs/hub/datasets-polars-operations.md
+### 数据设计师
+https://huggingface.co/docs/hub/datasets-data-designer.md

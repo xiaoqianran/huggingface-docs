@@ -17,7 +17,7 @@
 
 ## 启用小部件
 
-当模型由至少一个推理提供程序托管时，会显示小部件，以确保模型推理的最佳性能和可靠性。提供商自主选择和控制他们部署的模型。显示的小部件类型（文本到图像、自动语音识别等）是从模型的 `pipeline_tag` 推断出来的，这是 Hub 尝试为所有模型自动计算的特殊标签。唯一的例外是 `conversational` 小部件，它显示在 `pipeline_tag` 为 `text-generation` 或 `image-text-to-text` 的所有型号上。为了简单起见，我们选择每个模型**仅公开一个**小部件。
+当模型由至少一个推理提供程序托管时，将显示小部件，以确保模型推理的最佳性能和可靠性。提供商自主选择和控制他们部署的模型。显示的小部件类型（文本到图像、自动语音识别等）是从模型的 `pipeline_tag` 推断出来的，这是 Hub 尝试为所有模型自动计算的特殊标签。唯一的例外是 `conversational` 小部件，它显示在 `pipeline_tag` 为 `text-generation` 或 `image-text-to-text` 的所有型号上。为了简单起见，我们选择每个模型**仅公开一个**小部件。
 
 对于某些库，例如`transformers`，可以根据配置文件（`config.json`）自动推断模型类型。架构可以确定类型：例如，`AutoModelForTokenClassification`对应于`token-classification`。如果您对此感兴趣，可以在[this gist](https://gist.github.com/julien-c/857ba86a6c6a895ecd90e7f7cab48046)中查看伪代码。
 
@@ -152,5 +152,5 @@ widget:
 - 试验温度、最大令牌等推理参数
 - 找到适合您特定用例的完美型号Playground 使用为小部件提供支持的相同推理提供程序基础设施，因此当您将模型集成到自己的应用程序中时，您可以期待类似的性能和功能。
 
-### 在 Data Studio 中编辑数据集
-https://huggingface.co/docs/hub/datasets-cell-editing.md
+### 搜索
+https://huggingface.co/docs/hub/search.md

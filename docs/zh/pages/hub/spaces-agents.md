@@ -10,7 +10,7 @@
 
 ## 从用户界面
 
-每个兼容的 Space 页面的标题中都有一个 **Agents** 按钮。单击它可复制该空间的 `agents.md` 的 `curl` 命令，然后将其粘贴到您的代理中。
+每个兼容的空间页面的标题中都有一个 **代理** 按钮。单击它可复制该空间的 `agents.md` 的 `curl` 命令，然后将其粘贴到您的代理中。
 
 ## Agents.md 端点
 
@@ -69,5 +69,5 @@ curl -H "Authorization: Bearer $HF_TOKEN" \
 3. 对于文件输入，它将文件 POST 到`/gradio_api/upload` 并保留返回的路径。
 4. 它 POST 到 `/gradio_api/call/v2/<endpoint>`，然后获取轮询 URL 以传输结果。
 
-### 空间上的 JupyterLab
-https://huggingface.co/docs/hub/spaces-sdks-docker-jupyter.md
+### 带有 llama.cpp 的本地代理
+https://huggingface.co/docs/hub/agents-local.md

@@ -135,5 +135,5 @@ preload_from_hub:
 > [!注意]
 > 尚不支持预加载私有存储库。
 
-### 存储库设置
-https://huggingface.co/docs/hub/repositories-settings.md
+### GitHub 操作
+https://huggingface.co/docs/hub/repositories-github-actions.md

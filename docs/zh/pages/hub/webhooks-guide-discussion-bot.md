@@ -19,7 +19,7 @@
 
 ## 创建一个新的`Bot`用户配置文件
 
-在本指南中，我们创建一个单独的用户帐户来托管空间并发表评论：
+在本指南中，我们创建一个单独的用户帐户来托管空间并发布评论：
 
 ![discussion-bot-profile](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/webhooks-guides/001-discussion-bot/discussion-bot-profile.png)
 
@@ -128,5 +128,5 @@ app.post("/", async (req, res) => {
 
 ![discussion-result](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/webhooks-guides/001-discussion-bot/discussion-result.png)
 
-### 学术中心
-https://huggingface.co/docs/hub/academia-hub.md
+### 硬件
+https://huggingface.co/docs/hub/hardware.md

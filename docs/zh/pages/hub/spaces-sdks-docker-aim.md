@@ -8,7 +8,7 @@ ML 工程师和研究人员使用 Aim 浏览器，只需点击几下即可比较
 查看 [Aim docs](https://aimstack.readthedocs.io/en/latest/) 了解有关 Aim 的更多信息。
 如果您对新功能有想法或发现错误，请随时[open a feature request or report a bug](https://github.com/aimhubio/aim/issues/new/choose)。
 
-在以下部分中，您将了解如何在 Hugging Face Hub 空间上部署 Aim 并直接从 Hub 探索您的训练运行。
+在以下部分中，您将了解如何在 Hugging Face Hub Spaces 上部署 Aim 并直接从 Hub 探索您的训练运行。
 
 ## 在空间上部署瞄准
 
@@ -67,5 +67,5 @@ tar -czvf aim_repo.tar.gz .aim
 
 [Aim community Discord](https://github.com/aimhubio/aim#-community) 也可用于社区讨论。
 
-### 编辑数据集
-https://huggingface.co/docs/hub/datasets-editing.md
+### Webhook 指南：设置自动系统以在数据集更改时重新训练模型
+https://huggingface.co/docs/hub/webhooks-guide-auto-retrain.md

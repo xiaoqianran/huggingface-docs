@@ -12,7 +12,7 @@
 
 ## 主要特点
 
-- **交互式探索**：通过流畅、响应式可视化浏览数百万个嵌入
+- **交互式探索**：通过流畅、响应灵敏的可视化浏览数百万个嵌入
 - **基于浏览器的计算**：本地计算嵌入和投影，无需将数据发送到外部服务器
 - **交叉过滤**：跨多个元数据列链接和过滤数据
 - **搜索功能**：查找与给定查询或现有项目相似的数据点
@@ -168,5 +168,5 @@ widget
 - [Interactive Demo](https://apple.github.io/embedding-atlas/upload/)
 - [Command Line Reference](https://apple.github.io/embedding-atlas/tool.html)
 
-### 在 Hugging Face 中使用 RL-Baselines3-Zoo
-https://huggingface.co/docs/hub/rl-baselines3-zoo.md
+### 在拥抱脸部使用 ESPnet
+https://huggingface.co/docs/hub/espnet.md

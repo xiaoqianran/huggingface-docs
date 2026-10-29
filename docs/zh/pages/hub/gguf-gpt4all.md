@@ -10,5 +10,5 @@
 
 然后，在主页上，您可以从已安装模型列表中选择模型并开始对话。
 
-### 在拥抱脸部时使用句子转换器
-https://huggingface.co/docs/hub/sentence-transformers.md
+### 处理大型数据集
+https://huggingface.co/docs/hub/jobs-large-datasets.md

@@ -51,7 +51,7 @@ HF MCP 服务器可与任何 MCP 兼容的客户端配合使用：
 |探索数据集 | “显示有关天气时间序列的数据集” |
 |寻找空间 | “找到一个可以转录音频文件的空间”|
 |生成图像 | “创建吉卜力风格的 1024x1024 猫图像”|
-|搜索论文 | “查找有关视觉语言模型的最新论文” |
+|搜索论文 | “查找有关视觉语言模型的最新论文”|
 
 您的助手调用 Hugging Face 服务器公开的 MCP 工具，并返回包含元数据、链接和上下文的结果。
 
@@ -182,7 +182,7 @@ Agent: [Fetches documentation]
 
 要注册线束，请打开拉取请求，将条目添加到 `@huggingface/tasks` 包中的 [⟦T9⟧](https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/agent-harnesses.ts)：- 线束 ID（输入键）应小写并用连字符分隔（例如：`"claude-code"`）。
 - 使用用户友好的外壳设置`prettyLabel`（例如：`Claude Code`）。
-- （可选）设置 `repoUrl` 并带有指向线束源代码（通常是 GitHub 存储库）的链接。
+-（可选）设置 `repoUrl` 并包含指向线束源代码（通常是 GitHub 存储库）的链接。
 - （可选）设置 `docsUrl` 并提供线束文档或网站的链接。
 -（可选）设置`description`，其中包含安全带的简短单行说明。
 - 定义如何从环境中检测到您的安全带：
@@ -196,5 +196,5 @@ Agent: [Fetches documentation]
 - [Skills](./agents-skills) - 编码代理的预构建功能
 - [SDK](./agents-sdk) - 用于构建代理的 Python 和 JavaScript 库
 
-### 数字对象标识符 (DOI)
-https://huggingface.co/docs/hub/doi.md
+### 网络安全
+https://huggingface.co/docs/hub/enterprise-network-security.md

@@ -153,8 +153,8 @@ hf jobs uv run --flavor t4-small -- script.py --early-stopping-patience 3
 |模型仓库 | `-v hf://openai/gpt-oss-120b:/model` |
 |数据集存储库 | `-v hf://datasets/stanfordnlp/imdb:/data` |
 |储物桶| `-v hf://buckets/username/my-bucket:/mnt` |
-|子文件夹| `-v hf://datasets/org/my-dataset/train:/data` |
-|本地目录| `-v ./training-data:/data` |然后使用已安装的卷作为容器内的本地目录：
+|子文件夹 | `-v hf://datasets/org/my-dataset/train:/data` |
+|本地目录 | `-v ./training-data:/data` |然后使用已安装的卷作为容器内的本地目录：
 
 ```bash
 # Mount a dataset and query it with DuckDB
@@ -507,5 +507,5 @@ hf jobs labels <job_id> --name daily-report
 hf jobs labels <job_id> --clear
 ```
 
-### 吉斯卡德谈空间
-https://huggingface.co/docs/hub/spaces-sdks-docker-giskard.md
+### 迁移到托管 SSO
+https://huggingface.co/docs/hub/enterprise-management-sso-migration.md

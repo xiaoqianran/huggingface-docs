@@ -6,5 +6,5 @@
 
 请阅读[dedicated doc section](./organizations-cards)了解更多内容。
 
-### 处理渐变空间中的空间依赖性
-https://huggingface.co/docs/hub/spaces-dependency.md
+### 用户研究
+https://huggingface.co/docs/hub/model-cards-user-studies.md

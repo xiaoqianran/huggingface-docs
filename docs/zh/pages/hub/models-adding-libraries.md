@@ -30,7 +30,7 @@ pip install huggingface_hub
 有关`huggingface_hub`安装的更多详细信息，请查看[this guide](https://huggingface.co/docs/huggingface_hub/installation)。
 
 > [!提示]
-> 在本指南中，我们将重点关注 Python 库。如果您已经用 JavaScript 实现了库，则可以使用 [⟦T13⟧](https://www.npmjs.com/package/@huggingface/hub) 来代替。其余逻辑（即托管文件、代码示例等）不依赖于代码语言。
+> 在本指南中，我们将重点关注 Python 库。如果您已经在 J​​avaScript 中实现了库，则可以使用 [⟦T13⟧](https://www.npmjs.com/package/@huggingface/hub) 代替。其余逻辑（即托管文件、代码示例等）不依赖于代码语言。
 >
 > ```
 > npm add @huggingface/hub
@@ -166,5 +166,5 @@ model = BaseModel.from_pretrained("${model.id}")`;
 
 最后，您可以将您的库添加到中心的文档中。例如，检查将 [SetFit](./setfit) 添加到文档中的 [Setfit PR](https://github.com/huggingface/hub-docs/pull/1150)。
 
-### 在拥抱面使用稳定基线3
-https://huggingface.co/docs/hub/stable-baselines3.md
+### Langfuse 空间
+https://huggingface.co/docs/hub/spaces-sdks-docker-langfuse.md

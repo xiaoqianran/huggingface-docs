@@ -40,5 +40,5 @@ A very classic hand drawn cartoon style.
 
 > 提示：通过 GUI 编辑器对卡组件的支持即将推出...
 
-### 模型常见问题解答
-https://huggingface.co/docs/hub/models-faq.md
+### 极地
+https://huggingface.co/docs/hub/datasets-polars.md

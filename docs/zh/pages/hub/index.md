@@ -140,13 +140,13 @@ Hugging Face Hub 托管基于 Git 的存储库，这些存储库是版本控制�
 
 要将模型上传到 Hub，或下载模型并将其集成到您的工作中，请探索 [**Models documentation**](./models)。您还可以选择支持 Hub 的[**over a dozen libraries**](./models-libraries)，例如🤗 Transformers、Asteroids 和 ESPnet。
 
-## 数据集该中心拥有超过 50 万个公共数据集，涵盖超过 8000 种语言，可用于 NLP、计算机视觉和音频等广泛的任务。该中心使查找、下载和上传数据集变得简单。数据集附有[**Dataset Cards**](./datasets-cards)和[**Data Studio**](./datasets-viewer)形式的大量文档，让您可以直接在浏览器中探索数据。虽然许多数据集是公开的，但[**organizations**](./organizations)和个人可以创建私有数据集以遵守许可或隐私问题。您可以了解更多关于[**Datasets here on the Hugging Face Hub documentation**](./datasets-overview)的信息。
+## 数据集该中心拥有超过 50 万个公共数据集，涵盖超过 8000 种语言，可用于 NLP、计算机视觉和音频等广泛的任务。该中心使查找、下载和上传数据集变得简单。数据集附有[**Dataset Cards**](./datasets-cards)和[**Data Studio**](./data-studio)形式的大量文档，让您可以直接在浏览器中探索数据。虽然许多数据集是公开的，但[**organizations**](./organizations)和个人可以创建私有数据集以遵守许可或隐私问题。您可以了解更多关于[**Datasets here on the Hugging Face Hub documentation**](./datasets-overview)的信息。
 
 [🤗 ⟦T0⟧](https://huggingface.co/docs/datasets/index) 库允许您以编程方式与数据集交互，因此您可以在项目中轻松使用 Hub 中的数据集。只需一行代码，您就可以访问数据集；即使它们太大而无法放入您的计算机，您也可以使用流式传输来有效地访问数据。
 
 ## 空格
 
-[Spaces](https://huggingface.co/spaces) 是在 Hub 上托管 ML 演示应用程序的简单方法。它们允许您构建 ML 产品组合、在会议上或向利益相关者展示您的项目，以及与 ML 生态系统中的其他人员协作。We currently support two awesome Python SDKs (**[Gradio](https://gradio.app/)** and **[Streamlit](./spaces-sdks-streamlit)**) that let you build cool apps in a matter of minutes.用户还可以创建静态空间，即简单的 HTML/CSS/JavaScript 页面，或部署任何基于 Docker 的应用程序。
+[Spaces](https://huggingface.co/spaces) 是在 Hub 上托管 ML 演示应用程序的简单方法。它们允许您构建 ML 产品组合、在会议上或向利益相关者展示您的项目，以及与 ML 生态系统中的其他人员协作。我们目前支持两个很棒的 Python SDK（**[Gradio](https://gradio.app/)** 和 **[Streamlit](./spaces-sdks-streamlit)**），让您在几分钟内构建很酷的应用程序。用户还可以创建静态空间，即简单的 HTML/CSS/JavaScript 页面，或部署任何基于 Docker 的应用程序。
 
 如果您的演示需要 GPU 能力，请尝试[**ZeroGPU**](./spaces-zerogpu)：它仅在需要时实时动态提供 NVIDIA RTX Pro 6000 Blackwell GPU。
 
@@ -169,5 +169,5 @@ Hugging Face Hub 支持安全和访问控制功能，让您放心，您的代码
 - 使用 GPG 签署提交
 - 恶意软件扫描
 
-### Spaces 开发模式：Spaces 中的无缝开发
-https://huggingface.co/docs/hub/spaces-dev-mode.md
+### 下载分析
+https://huggingface.co/docs/hub/download-analytics.md

@@ -2,7 +2,7 @@
 
 # 数据工作室
 
-Each dataset page includes a table with the contents of the dataset, arranged by pages of 100 rows. You can navigate between pages using the buttons at the bottom of the table.
+每个数据集页面都包含一个表格，其中包含数据集的内容，按 100 行的页面排列。您可以使用表格底部的按钮在页面之间导航。
 
 ## 检查数据分布
 
@@ -96,5 +96,5 @@ configs:
 
 对于 **私有** 数据集，为 [PRO users](https://huggingface.co/pricing) 和 [Team or Enterprise organizations](https://huggingface.co/enterprise) 启用数据集查看器。有关更多信息，请参阅我们的 [How to configure the Dataset Viewer](./datasets-viewer-configure) 指南。
 
-### 将您的库与 Hub 集成
-https://huggingface.co/docs/hub/models-adding-libraries.md
+### 存储桶集成
+https://huggingface.co/docs/hub/storage-buckets-integrations.md

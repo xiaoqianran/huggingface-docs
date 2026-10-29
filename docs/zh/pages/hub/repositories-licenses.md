@@ -32,17 +32,17 @@
 |知识共享归属非商业2.0 | `cc-by-nc-2.0` |
 |知识共享归属非商业3.0 | `cc-by-nc-3.0` |
 |知识共享归属非商业4.0 | `cc-by-nc-4.0` |
-|知识共享归属无衍生品 4.0 | `cc-by-nd-4.0` ||知识共享归属非商业性无衍生品3.0 | `cc-by-nc-nd-3.0` |
+|知识共享归属无衍生品 4.0 | `cc-by-nd-4.0` ||知识共享归属非商业性无衍生品3.0 | `cc-by-nc-nd-3.0`                        |
 |知识共享归属非商业性无衍生品4.0 | `cc-by-nc-nd-4.0` |
 |知识共享归属非商业性相同方式共享 2.0 | `cc-by-nc-sa-2.0` |
-|知识共享归属非商业性相同方式共享 3.0 | `cc-by-nc-sa-3.0` |
-|知识共享归属非商业性相同方式共享 4.0 | `cc-by-nc-sa-4.0` |
+|知识共享归属非商业性相同方式共享 3.0 | `cc-by-nc-sa-3.0`                        |
+| Creative Commons Attribution Non Commercial Share Alike 4.0    | `cc-by-nc-sa-4.0` |
 |社区数据许可协议 – 共享，版本 1.0 | `cdla-sharing-1.0` |
-|社区数据许可协议 – 宽松，版本 1.0 | `cdla-permissive-1.0` |
-|社区数据许可协议 – 宽松，版本 2.0 | `cdla-permissive-2.0` |
-|做你他妈想做的事公共许可证| `wtfpl` |
-|教育社区许可证 v2.0 | `ecl-2.0` |
-| Eclipse 公共许可证 1.0 | `epl-1.0` || Eclipse 公共许可证 2.0 | `epl-2.0` |
+|社区数据许可协议 – 宽松，版本 1.0 | `cdla-permissive-1.0`                    |
+| Community Data License Agreement – Permissive, Version 2.0     | `cdla-permissive-2.0`                    |
+| Do What The F\*ck You Want To Public License                   | `wtfpl` |
+| Educational Community License v2.0                             | `ecl-2.0`                                |
+| Eclipse Public License 1.0                                     | `epl-1.0` || Eclipse 公共许可证 2.0 | `epl-2.0` |
 | Etalab 开放许可证 2.0 | `etalab-2.0` |
 |欧盟公共许可证 1.1 | `eupl-1.1` |
 |欧盟公共许可证 1.2 | `eupl-1.2` |
@@ -57,7 +57,7 @@
 | H研究许可证| `h-research` | 
 |英特尔研究使用许可协议 | `intel-research` | 
 | LaTeX 项目公共许可证 v1.3c | `lppl-1.3c` |
-|微软公共许可证| `ms-pl` |
+|微软公共许可证 | `ms-pl` |
 | Apple 示例代码许可证 | `apple-ascl` | 
 | Apple 研究模型许可 | `apple-amlr` | 
 | Mozilla 公共许可证 2.0 | `mpl-2.0` |
@@ -86,5 +86,5 @@
 
 如果是 `license: other`，请将许可证文本添加到存储库内的 `LICENSE` 文件中（或联系我们将您使用的许可证添加到此列表中），并在 `license_name` 中为其设置名称。
 
-### 适度
-https://huggingface.co/docs/hub/moderation.md
+### 为模特提供工作服务
+https://huggingface.co/docs/hub/jobs-serving.md

@@ -88,5 +88,5 @@ ollama run hf.co/bartowski/Llama-3.2-3B-Instruct-GGUF:Llama-3.2-3B-Instruct-IQ3_
 - https://github.com/ollama/ollama/blob/main/docs/README.md
 - https://huggingface.co/docs/hub/en/gguf
 
-### 泡菜扫描
-https://huggingface.co/docs/hub/security-pickle.md
+### 数据集下载统计
+https://huggingface.co/docs/hub/datasets-download-stats.md

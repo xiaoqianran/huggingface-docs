@@ -62,5 +62,5 @@ model.save_to_hf_hub(repo_id="<my_org_name>/<my_repo_name>")
 - PaddleNLP [GitHub Repo](https://github.com/PaddlePaddle/PaddleNLP)。
 - [PaddlePaddle on the Hugging Face Hub](https://huggingface.co/PaddlePaddle)
 
-### 音频数据集
-https://huggingface.co/docs/hub/datasets-audio.md
+### 特色空间
+https://huggingface.co/docs/hub/spaces-featured.md

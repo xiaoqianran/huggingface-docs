@@ -9,7 +9,7 @@ Hugging Face Jobs 让您可以在 Hugging Face 基础设施上运行计算任务
 
 作业计费基于硬件使用情况并按分钟计算：作业在请求的硬件上运行的每分钟都会向您收费。
 
-在作业的生命周期中，仅在作业启动或运行时才会计费。这意味着构建过程中没有任何成本。
+在作业的生命周期中，仅在作业启动或运行时才计费。这意味着构建过程中没有任何成本。
 
 如果正在运行的作业开始失败，它将自动暂停并停止计费。
 
@@ -135,5 +135,5 @@ hf jobs run --timeout 3h ...
 hf jobs cancel <job-id>
 ```
 
-### 门控数据集
-https://huggingface.co/docs/hub/datasets-gate.md
+### 如何向 ArXiv 添加空间
+https://huggingface.co/docs/hub/spaces-add-to-arxiv.md

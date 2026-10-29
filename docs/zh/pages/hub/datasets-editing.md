@@ -79,7 +79,7 @@ df.to_csv(f"hf://datasets/{repo_id}/data.csv")
 Polars 和 DuckDB 等库也实现了 `hf://` 协议来读取、编辑和写入 Hugging Face 上的文件。其他库可用于编辑由许多文件组成的数据集，例如 Spark、Dask 或 🤗 数据集。查看支持的库的完整列表[here](./datasets-libraries)
 
 有关访问网站上的数据集的信息，您可以单击数据集页面上的“使用此数据集”按钮以了解如何操作。
-例如，[⟦T12⟧](https://huggingface.co/datasets/knkarthick/samsum?library=datasets)展示了如何使用下面的🤗数据集执行此操作。
+例如，[⟦T12⟧](https://huggingface.co/datasets/knkarthick/samsum?library=datasets)展示了如何使用下面的🤗数据集来做到这一点。
 
 ## 只上传新数据
 
@@ -147,5 +147,5 @@ edited_df.to_parquet(
 
 在 [supported libraries](./datasets-libraries) 页面查看您的图书馆是否支持流式传输。
 
-### 在 Hugging Face 中使用 timm
-https://huggingface.co/docs/hub/timm.md
+### 在拥抱面使用稳定基线3
+https://huggingface.co/docs/hub/stable-baselines3.md

@@ -17,7 +17,7 @@
 
 如果您的论文未链接到您的帐户，您可以在相应的论文页面中单击您的姓名，然后单击“声明作者身份”。这将自动重定向到您的纸张设置，您可以在其中确认请求。管理团队将很快验证您的请求。确认后，Paper 页面将显示为已验证。
 
-如果您还没有任何关于 Hugging Face 的论文，您可以按照 [here](#can-i-have-a-paper-page-even-if-i-have-no-modeldatasetspace) 的说明索引您的第一篇论文。一旦可用，您就可以声明作者身份。
+如果您还没有任何关于 Hugging Face 的论文，您可以按照 [here](#can-i-have-a-paper-page-even-if-i-have-no-modeldatasetspace) 的说明对第一篇论文进行索引。一旦可用，您就可以声明作者身份。
 
 ## 常见问题### 我可以控制哪些 Paper 页面显示在我的个人资料中吗？
 
@@ -33,5 +33,5 @@
 
 ### 即使我没有模型/数据集/空间，我也可以拥有纸质页面吗？是的。您可以前往[the main Papers page](https://huggingface.co/papers)，点击搜索并输入论文名称或完整的Arxiv id。如果该论文不存在，您将可以选择为其建立索引。您也可以访问页面 `hf.co/papers/xxxx.yyyyy` 并替换为您想要索引的论文的 arxiv id。
 
-### 使用 SetFit 和拥抱脸部
-https://huggingface.co/docs/hub/setfit.md
+### 渐变空间
+https://huggingface.co/docs/hub/spaces-sdks-gradio.md

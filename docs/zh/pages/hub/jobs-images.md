@@ -24,7 +24,7 @@
 hf jobs run ubuntu echo 'Hello from the cloud!'
 ```
 
-该作业拉取映像，运行命令并退出。要使用映像已提供的软件，请选择附带该映像的映像。例如，使用 PyTorch 图像在 GPU 上创建张量并将其值加倍：
+作业拉取映像，运行命令并退出。要使用映像已提供的软件，请选择附带该映像的映像。例如，使用 PyTorch 图像在 GPU 上创建张量并将其值加倍：
 
 ```bash
 hf jobs run --flavor t4-small --timeout 5m \
@@ -39,7 +39,7 @@ hf jobs run --flavor t4-small --timeout 5m \
 
 ### 使用输入和输出文件运行您自己的脚本
 
-由 `hf jobs run` 运行的脚本必须在作业中可用。您可以使用图像中包含的脚本，或[mount a local directory](./jobs-configuration#local-directories)。例如，假设您有一个使用 `huggingface/trl` 图像中的 Transformers 和 PyTorch 包的推理脚本。您的本地 `work` 目录包含 `inference.py` 和 `inputs.jsonl`，并且脚本接受 `--input` 和 `--output` 路径。为结果创建 [Storage Bucket](./storage-buckets) 后，运行它：
+由 `hf jobs run` 运行的脚本必须在作业中可用。您可以使用图像中包含的脚本，或[mount a local directory](./jobs-configuration#local-directories)。例如，假设您有一个使用 `huggingface/trl` 图像中的 Transformers 和 PyTorch 包的推理脚本。您的本地 `work` 目录包含 `inference.py` 和 `inputs.jsonl`，并且脚本接受 `--input` 和 `--output` 路径。为结果创建 [Storage Bucket](./storage-buckets) 后，使用以下命令运行它：
 
 ```bash
 hf jobs run --flavor t4-small --timeout 10m \
@@ -49,7 +49,7 @@ hf jobs run --flavor t4-small --timeout 10m \
     -- python /work/inference.py --input /work/inputs.jsonl --output /output/results.jsonl
 ```
 
-将 `YOUR_USERNAME` 替换为存储桶所有者的命名空间。 CLI上传本地目录并将其挂载到`/work`。您的脚本读取那里的输入并将结果写入安装在 `/output` 的存储桶，在作业完成后它们仍然可用。根据您的脚本调整命令的参数、硬件和超时；其他输入和输出选项请参见[Volumes](./jobs-configuration#volumes)。
+将 `YOUR_USERNAME` 替换为存储桶所有者的命名空间。 CLI上传本地目录并将其挂载到`/work`。您的脚本读取那里的输入并将结果写入安装在 `/output` 的存储桶，在作业完成后它们仍然可用。使命令的参数、硬件和超时适应您的脚本；其他输入和输出选项请参见[Volumes](./jobs-configuration#volumes)。
 
 ## 使用带有 uv 的图像
 
@@ -126,7 +126,7 @@ hf jobs uv run \
 
 - `--python` 使用图像解释器创建 uv 环境，匹配其编译扩展使用的 Python 版本。它本身不会公开图像的包。
 - `-e PYTHONPATH=...` 使 `import vllm` 解析为该运行的图像的预构建版本。
-- 修剪您的 `# /// script` 依赖项以适应图像_缺乏_的内容。 `PYTHONPATH` 在 uv 环境之前被搜索，因此图像会遮蔽标头为同一包声明的任何内容 - 包括您固定的较新版本。您保留的依赖项仍然可以传递地引入这些包； uv 不使用 `PYTHONPATH` 来满足依赖解析。每个图像的路径不同，因此在 `cpu-basic` 上探测它们，而不是硬编码：
+- 修剪您的 `# /// script` 依赖关系以适应图像_缺乏_的内容。 `PYTHONPATH` 在 uv 环境之前被搜索，因此图像会遮蔽标头为同一包声明的任何内容 - 包括您固定的较新版本。您保留的依赖项仍然可以传递地引入这些包； uv 不使用 `PYTHONPATH` 来满足依赖解析。每个图像的路径不同，因此在 `cpu-basic` 上探测它们，而不是硬编码：
 
 ```bash
 hf jobs run --flavor cpu-basic vllm/vllm-openai bash -c 'which python3; which uv; python3 -m pip show vllm | grep Location'
@@ -161,7 +161,7 @@ hf jobs uv run \
 
 ### 使用 GPU 库的框架图像
 
-一些 GPU 库需要额外的系统工具，例如 CUDA 编译器 (`nvcc`)、NCCL 或 cuDNN。安装他们的 Python 包并不能保证映像包含他们需要的所有工具。例如，FlashInfer 的采样器在尝试在没有 CUDA 工具包的情况下编译映像中的内核时可能会失败：
+一些 GPU 库需要额外的系统工具，例如 CUDA 编译器 (`nvcc`)、NCCL 或 cuDNN。安装他们的 Python 包并不能保证映像包含他们需要的所有工具。例如，当 FlashInfer 的采样器尝试在没有 CUDA 工具包的情况下编译映像中的内核时，可能会失败：
 
 ```text
 RuntimeError: Could not find nvcc and default cuda_home='/usr/local/cuda' doesn't exist
@@ -173,5 +173,5 @@ RuntimeError: Could not find nvcc and default cuda_home='/usr/local/cuda' doesn'
 hf jobs uv run --image vllm/vllm-openai --flavor l4x4 -s HF_TOKEN generate-responses.py
 ```uv 仍然会单独解析并安装您的脚本依赖项。该映像提供系统工具，但不保证解析的 Python 包与其兼容。
 
-### 小部件示例
-https://huggingface.co/docs/hub/models-widgets-examples.md
+### 在空间中使用 OpenCV
+https://huggingface.co/docs/hub/spaces-using-opencv.md

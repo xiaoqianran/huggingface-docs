@@ -121,5 +121,5 @@
 
 ## [2021-08-01] - 提供原始日志- 添加空间存储库中原始日志（构建和容器）的链接（具有空间写入权限的用户可以查看）
 
-### Webhook 指南：为模型和数据集设置自动元数据质量审查
-https://huggingface.co/docs/hub/webhooks-guide-metadata-review.md
+### 音频数据集
+https://huggingface.co/docs/hub/datasets-audio.md

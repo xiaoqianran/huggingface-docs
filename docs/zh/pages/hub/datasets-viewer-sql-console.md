@@ -1,6 +1,6 @@
 <!-- huggingface-docs: machine-translated zh-CN from English source -->
 
-# SQL Console：在浏览器中查询拥抱人脸数据集
+# SQL 控制台：在浏览器中查询 Hugging Face 数据集
 
 您可以使用 SQL 控制台在浏览器中对数据集运行 SQL 查询。 SQL 控制台由 [DuckDB](https://duckdb.org/) WASM 提供支持，完全在浏览器中运行。您可以从 Data Studio 访问 SQL 控制台。
 
@@ -22,7 +22,7 @@
 
 ## 示例
 
-### 过滤SQL 控制台使过滤数据集变得非常容易。 For example, if you want to filter the `SkunkworksAI/reasoning-0.01` dataset for instructions and responses with a reasoning length of at least 10, you can use the following query:
+### 过滤SQL 控制台使过滤数据集变得非常容易。例如，如果要过滤 `SkunkworksAI/reasoning-0.01` 数据集以获取推理长度至少为 10 的指令和响应，则可以使用以下查询：
 
     
     
@@ -80,7 +80,7 @@ POST /api/datasets/{namespace}/{repo}/sql-console/embed
   "sql": "从火车 LIMIT 10 中选择 *",
   "title": "示例行",
   “私人”：假，
-  "views": [{"key": "default/train", "displayName": "Train", "viewName": "train"}]
+  “视图”：[{“键”：“默认/火车”，“显示名称”：“火车”，“视图名称”：“火车”}]
 }
 ```
 
@@ -144,5 +144,5 @@ Leakage detection is the process of identifying whether data in a dataset is pre
         其他 0
     END AS 重叠百分比
 FROM 重叠行数、总唯一行数；
-````### 在 Hugging Face 中使用 spaCy
-https://huggingface.co/docs/hub/spacy.md
+````### 代理库
+https://huggingface.co/docs/hub/agents-libraries.md

@@ -62,7 +62,7 @@ my_dataset_repository/
 
 ### 关键词
 
-有多种方法可以引用训练/验证/测试分割。验证拆分有时称为“dev”，测试拆分可能称为“eval”。
+有多种方法可以引用训练/验证/测试拆分。验证拆分有时称为“dev”，测试拆分可能称为“eval”。
 还支持这些其他拆分名称，并且以下关键字是等效的：
 
 - 训练，训练
@@ -132,5 +132,5 @@ my_dataset_repository/
     └── random-00002-of-00003.csv
 ```
 
-### marimo 空间
-https://huggingface.co/docs/hub/spaces-sdks-docker-marimo.md
+### 在拥抱脸部使用 PEFT
+https://huggingface.co/docs/hub/peft.md

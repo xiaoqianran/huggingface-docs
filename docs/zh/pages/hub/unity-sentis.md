@@ -61,5 +61,5 @@ Hub 中的所有 Sentis 模型都附带代码和说明，可帮助您轻松开�
 ## 附加信息
 我们还有一些完整的 [sample projects](https://github.com/Unity-Technologies/sentis-samples) 来帮助您开始使用 Sentis。
 
-### 在拥抱脸部使用 PEFT
-https://huggingface.co/docs/hub/peft.md
+### 空间作为 API 端点
+https://huggingface.co/docs/hub/spaces-api-endpoints.md

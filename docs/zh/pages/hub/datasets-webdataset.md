@@ -75,5 +75,5 @@ hf auth login
 ... )
 ```
 
-### 审核日志
-https://huggingface.co/docs/hub/audit-logs.md
+### 处理渐变空间中的空间依赖性
+https://huggingface.co/docs/hub/spaces-dependency.md

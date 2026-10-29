@@ -8,12 +8,12 @@
 
 您可以通过[models page](https://huggingface.co/models?library=stable-baselines3)左侧的过滤找到RL-Baselines3-Zoo模型。
 
-Stable-Baselines3 团队托管着超过 150 个训练有素的强化学习代理，这些代理具有经过调整的超参数，您可以找到[here](https://huggingface.co/sb3)。
+Stable-Baselines3 团队正在托管超过 150 个训练有素的强化学习代理，这些代理具有经过调整的超参数，您可以找到[here](https://huggingface.co/sb3)。
 
 Hub 上的所有型号都具有有用的功能：
 1. 自动生成的模型卡，其中包含描述、训练配置等。
 2. 有助于发现的元数据标签。
-3.与其他模型比较的评估结果。
+3.与其他模型的评估结果比较。
 4. 一个视频小部件，您可以在其中观看代理的表演。
 
 ## 使用现有模型
@@ -45,5 +45,5 @@ python -m rl_zoo3.push_to_hub  --algo dqn  --env SpaceInvadersNoFrameskip-v4  --
 * RL-Baselines3-Zoo [official trained models](https://huggingface.co/sb3)
 * RL-Baselines3-Zoo [documentation](https://github.com/DLR-RM/rl-baselines3-zoo)
 
-### 图书馆
-https://huggingface.co/docs/hub/models-libraries.md
+### 在抱脸处使用`Transformers.js`
+https://huggingface.co/docs/hub/transformers-js.md

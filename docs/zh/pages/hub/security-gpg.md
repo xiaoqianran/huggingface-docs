@@ -4,7 +4,7 @@
 
 `git` 有一个身份验证层来控制谁可以将提交推送到存储库，但它不会验证实际的提交作者。
 
-换句话说，您可以以 `Elon Musk <elon@tesla.com>` 身份提交更改，将它们推送到您首选的 `git` 主机（例如 github.com），并且您的提交将链接到 Elon 的 GitHub 个人资料。 （尝试一下！但是如果埃隆因为你冒充他而生你的气，请不要责怪我们。）
+换句话说，您可以以 `Elon Musk <elon@tesla.com>` 身份提交更改，将它们推送到您首选的 `git` 主机（例如 github.com），并且您的提交将链接到 Elon 的 GitHub 个人资料。 （尝试一下！但是如果 Elon 因为冒充他而对你生气，请不要责怪我们。）
 
 我们实施 GPG 签名的原因是：
 - 提供更细粒度的安全性，特别是随着越来越多的企业用户依赖中心。
@@ -87,5 +87,5 @@ git commit -S -m "My first signed commit"
 > [!提示]
 > 要默认在计算机上的任何本地存储库中签署所有提交，您可以运行 git config --global commit.gpgsign true。
 
-### 特色空间
-https://huggingface.co/docs/hub/spaces-featured.md
+### 资源组
+https://huggingface.co/docs/hub/enterprise-resource-groups.md

@@ -251,5 +251,5 @@ model = AutoModel.from_pretrained("google-bert/bert-base-cased", from_flax=True)
 
 [Rehabilitating Python's pickle module](https://github.com/moreati/pickle-fuzz)
 
-### 资源组
-https://huggingface.co/docs/hub/enterprise-resource-groups.md
+### 带注释的模型卡模板
+https://huggingface.co/docs/hub/model-card-annotated.md

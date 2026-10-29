@@ -349,5 +349,5 @@ widget:
       - 9.8
       - 12.6
   example_title: "Wine"
-```### Spaces ZeroGPU：空间的动态 GPU 分配
-https://huggingface.co/docs/hub/spaces-zerogpu.md
+```### 会话跟踪格式
+https://huggingface.co/docs/hub/session-traces-format.md

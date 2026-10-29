@@ -84,5 +84,5 @@ S3 凭证继承底层访问令牌的权限。将令牌的范围仅限于您打�
 
 服务帐户不计为组织的计费成员，因此创建它们不会占用计划中的付费席位。
 
-### 代币管理
-https://huggingface.co/docs/hub/enterprise-tokens-management.md
+### 特工踪迹
+https://huggingface.co/docs/hub/agent-traces.md

@@ -117,5 +117,5 @@ if file_name is not None:
 
 此外，您还可以查看[our documentation](./spaces-embed)。
 
-### 存储桶
-https://huggingface.co/docs/hub/storage-buckets.md
+### 3D 数据集
+https://huggingface.co/docs/hub/datasets-3d.md

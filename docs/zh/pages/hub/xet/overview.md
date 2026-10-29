@@ -14,5 +14,5 @@ Git LFS 指针文件提供元数据来定位远程存储中的实际文件内容
 
 Xet 指针在设计上包含所有这些信息。请参阅有关 [backwards compatibility with Git LFS](legacy-git-lfs#backward-compatibility-with-lfs) 的部分，并添加 `Xet backed hash` 字段以引用 Xet 存储中的文件。与在文件级别进行重复数据删除的 Git LFS 不同，支持 Xet 的存储库在字节级别进行重复数据删除。当 Xet 存储支持的文件更新时，只有修改后的数据才会上传到远程存储，从而显着节省网络传输。对于许多工作流程，例如模型检查点的增量更新或将新数据附加/插入到数据集中，这可以提高您和您的协作者的迭代速度。要了解有关 Xet 存储中重复数据删除的更多信息，请参阅[Deduplication](deduplication)。
 
-### 安全模型
-https://huggingface.co/docs/hub/xet/security.md
+### 遥测
+https://huggingface.co/docs/hub/xet/telemetry.md

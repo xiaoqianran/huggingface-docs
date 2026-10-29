@@ -19,7 +19,7 @@
 
     
 
-### 上传数据集1. 创建存储库后，导航到 **文件和版本** 选项卡以添加文件。选择 **添加文件** 上传您的数据集文件。我们支持许多文本、音频、图像和其他数据扩展，例如`.csv`、`.mp3`和`.jpg`（请参阅[File formats](#file-formats)的完整列表）。
+### 上传数据集1. 创建存储库后，导航到 **文件和版本** 选项卡以添加文件。选择 **添加文件** 以上传您的数据集文件。我们支持许多文本、音频、图像和其他数据扩展，例如`.csv`、`.mp3`和`.jpg`（请参阅[File formats](#file-formats)的完整列表）。
 
     
 
@@ -100,5 +100,5 @@ Hugging Face Hub 支持大规模数据集，通常以 Parquet 格式上传（例
 
 请参阅[how to upload a large folder](/docs/huggingface_hub/guides/upload#upload-a-large-folder)、[tips and tricks for large uploads](/docs/huggingface_hub/guides/upload#tips-and-tricks-for-large-uploads) 和[repository storage limits and recommendations](./storage-limits)。
 
-### 冲向空格
-https://huggingface.co/docs/hub/spaces-sdks-docker-dash.md
+### 高级计算选项
+https://huggingface.co/docs/hub/advanced-compute-options.md

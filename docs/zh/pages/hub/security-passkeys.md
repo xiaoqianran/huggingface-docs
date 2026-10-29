@@ -49,5 +49,5 @@
 
 当您从集线器中删除密钥时，它可能仍存储在您的设备或密码管理器中。您也可以在那里删除它。
 
-### 空间上的磁盘使用情况
-https://huggingface.co/docs/hub/spaces-storage.md
+### 组织博客文章
+https://huggingface.co/docs/hub/enterprise-blog-articles.md

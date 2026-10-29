@@ -30,5 +30,5 @@
 - [How to configure SAML with Google Workspace](./security-sso-google-saml)
 - [How to configure OIDC with Google Workspace](./security-sso-google-oidc)
 
-### 下载模型
-https://huggingface.co/docs/hub/models-downloading.md
+### 存储限制
+https://huggingface.co/docs/hub/storage-limits.md

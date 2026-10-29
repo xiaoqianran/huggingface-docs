@@ -35,5 +35,5 @@ out_prob, score, index, text_lab = classifier.classify_file('speechbrain/urbanso
 * SpeechBrain [website](https://speechbrain.github.io/)。
 * SpeechBrain [docs](https://speechbrain.readthedocs.io/en/latest/index.html)。
 
-### 服务帐户
-https://huggingface.co/docs/hub/enterprise-service-accounts.md
+### 如何使用 Okta 配置 SCIM
+https://huggingface.co/docs/hub/security-sso-okta-scim.md

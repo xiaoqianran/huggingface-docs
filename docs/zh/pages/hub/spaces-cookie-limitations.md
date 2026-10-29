@@ -22,5 +22,5 @@
 > [!提示]
 > 当您使用 Streamlit SDK 时，您无需担心这一点，因为 SDK 会为您做这件事。
 
-### 管理组织
-https://huggingface.co/docs/hub/organizations-managing.md
+### 存储桶：安全性与合规性
+https://huggingface.co/docs/hub/storage-buckets-security.md

@@ -128,7 +128,7 @@ Docker Spaces 支持开发模式。但是，您的空间需要遵守以下规则
 
 当基础镜像基于 debian（例如 ubuntu）时，开发模式效果很好。
 
-更奇特的 Linux 发行版（例如 alpine）未经测试，并且不保证开发模式适用于它们。
+更奇特的 Linux 发行版（例如 alpine）未经测试，并且开发模式不能保证在它们上工作。
 
 ### 兼容 Dockerfile 的示例
 
@@ -166,5 +166,5 @@ JavaScript 应用程序示例（Express.js HTTP 服务器）：https://huggingfa
 
 您可以直接在 HF Hub 上分享您对 Spaces 开发模式的反馈：https://huggingface.co/spaces/dev-mode-explorers/README/discussions
 
-### 空间概述
-https://huggingface.co/docs/hub/spaces-overview.md
+### 在工作中训练模型
+https://huggingface.co/docs/hub/jobs-training.md

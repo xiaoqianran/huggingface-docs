@@ -72,5 +72,5 @@
 
 如果您有兴趣为小部件做出贡献，您可以查看所有小部件的[implementation](https://github.com/huggingface/huggingface.js/tree/main/packages/widgets)。
 
-### 模型
-https://huggingface.co/docs/hub/models.md
+### 使用 CircleCI 工作流程管理空间
+https://huggingface.co/docs/hub/spaces-circleci.md

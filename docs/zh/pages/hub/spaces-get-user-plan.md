@@ -34,5 +34,5 @@ window.parent.postMessage({
 
 - https://huggingface.co/spaces/huggingfacejs/plan
 
-### Hugging Face Hub 上的 Jupyter 笔记本
-https://huggingface.co/docs/hub/notebooks.md
+### 代币管理
+https://huggingface.co/docs/hub/enterprise-tokens-management.md

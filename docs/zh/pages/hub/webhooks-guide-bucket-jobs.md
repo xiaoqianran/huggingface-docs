@@ -38,7 +38,7 @@ CSV 和 JSON 导出查询速度慢且难以共享。得益于 Xet 重复数据�
 
 ### 创建两个桶
 
-一个存储桶接收您的上传，另一个存储桶接收 Parquet 文件：
+一个存储桶接收您上传的内容，另一个存储桶接收 Parquet 文件：
 
 ```bash
 hf buckets create my-raw-files --private
@@ -122,5 +122,5 @@ for changed_file in event.get("updatedFiles", []):
 
 Webhook 会为每个事件启动一个作业，因此新文件会在到达后大约一分钟进行处理。如果不需要那么快地处理它们，[scheduled Job](./jobs-schedule)是一种替代方案：它每小时或每天运行一次，并处理自上次运行以来到达的所有内容。这会将工作分为更少的作业，这有助于处理启动缓慢的 GPU 任务，并且避免了每 24 小时 1,000 个触发器的 Webhook 限制。然后，脚本必须找到新文件本身，例如通过比较输入和输出存储桶。
 
-### 秘密扫描
-https://huggingface.co/docs/hub/security-secrets.md
+### 组织卡
+https://huggingface.co/docs/hub/organizations-cards.md

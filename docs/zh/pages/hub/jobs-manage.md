@@ -230,7 +230,7 @@ hf jobs cancel --namespace <my-org-name> <job_id>
 
 ## MacOS 菜单栏
 
-在 MacOS [⟦T64⟧](https://github.com/drbh/hfjobs-menubar) 客户端中查找您的作业列表：
+在 MacOS [⟦T64⟧](https://github.com/drbh/hfjobs-menubar) 客户端中查找您的职位列表：
 
-获取作业信息，并监控日志和资源使用统计信息：### 空格
-https://huggingface.co/docs/hub/spaces.md
+获取作业信息，并监控日志和资源使用统计信息：### 上传模型
+https://huggingface.co/docs/hub/models-uploading.md

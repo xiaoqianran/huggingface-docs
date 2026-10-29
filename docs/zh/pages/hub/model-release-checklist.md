@@ -266,5 +266,5 @@
 
 我们迫不及待地想看看您接下来分享的内容！ 🤗
 
-### 空间闪亮
-https://huggingface.co/docs/hub/spaces-sdks-docker-shiny.md
+### 在 Hugging Face 中使用 timm
+https://huggingface.co/docs/hub/timm.md

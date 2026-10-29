@@ -20,28 +20,28 @@
 
 托管 SSO 无法自行配置。要为您的组织启用托管 SSO，请联系 Hugging Face 团队。该设置是与我们的技术团队合作完成的，以确保您的组织顺利过渡。
 
+如果您要转换现有组织，请先阅读[Migrating to Managed SSO](./enterprise-managed-sso-migration)：成员的现有个人帐户不会转换，并且每个成员必须释放其工作电子邮件才能进行配置。
+
 支持 SAML 2.0 和 OIDC 协议，并且可以与 Okta、Microsoft Entra ID (Azure AD) 和 Google Workspace 等流行的身份提供商集成。
 
 ## 用户配置
 
-托管 SSO 通过 [SCIM](./enterprise-scim) 引入自动化用户配置，管理 Hugging Face 上的整个用户生命周期。 SCIM 允许您的 IdP 将用户身份信息传达给 Hugging Face，从而在您的 IdP 中发生更改时实现自动创建、更新（例如，名称更改、角色更改）和停用用户帐户。
-
-在我们的[dedicated guide](./enterprise-scim)中了解有关如何设置和管理 SCIM 的更多信息。
+托管 SSO 通过 [SCIM](./enterprise-scim) 引入自动化用户配置，管理 Hugging Face 上的整个用户生命周期。 SCIM 允许您的 IdP 将用户身份信息传达给 Hugging Face，从而在您的 IdP 中发生更改时实现自动创建、更新（例如，名称更改、角色更改）和停用用户帐户。在我们的[dedicated guide](./enterprise-scim)中了解有关如何设置和管理 SCIM 的更多信息。
 
 ## 单点登录功能
 
 托管 SSO 支持 [role mapping, resource group mapping, session timeout, and external collaborators](./security-sso-user-management)。这些功能可通过您组织的设置进行配置。
 
-## 对管理帐户的限制> [!警告]
+## 对管理帐户的限制
+
+> [!警告]
 > 管理帐户的重要注意事项。
 
 为了确保组织控制和数据治理，托管用户帐户具有特定的限制：
 
 * **禁止创建个人内容**：托管用户无法在其个人用户命名空间中创建任何内容（模型、数据集或空间）。所有内容都必须在组织内创建。
 * **组织范围内的协作**：托管用户仅限于在其管理组织内进行协作。他们不能加入其他组织或为其管理组织之外的存储库做出贡献。
-* **内容可见性**：托管用户创建的内容驻留在组织内。虽然托管用户无法在其个人配置文件中创建公共内容，但如果组织的设置允许，他们可以**在组织内创建公共内容**。
+* **内容可见性**：托管用户创建的内容驻留在组织内。虽然托管用户无法在其个人配置文件中创建公共内容，但如果组织的设置允许，他们可以**在组织内创建公共内容**。这些限制维护了您企业的安全边界。对于个人项目或更广泛的组织外部协作，成员应使用单独的、非托管的 Hugging Face 帐户。
 
-这些限制维护了您企业的安全边界。对于个人项目或更广泛的组织外部协作，成员应使用单独的、非托管的 Hugging Face 帐户。
-
-### 将使用 HF 按钮登录到您的空间
-https://huggingface.co/docs/hub/spaces-oauth.md
+### 虎斑在空间
+https://huggingface.co/docs/hub/spaces-sdks-docker-tabby.md

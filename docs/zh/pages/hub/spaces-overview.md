@@ -31,13 +31,13 @@ Hugging Face Spaces 让您可以在几分钟内轻松创建和部署 ML 支持�
 |通过[custom domain](./spaces-custom-domain)访问应用程序 |是的 |是的 |没有 |
 |可以被其他人克隆|是的 |没有 |没有 |
 
-**公共**空间完全开放：任何人都可以查看源代码、访问正在运行的应用程序以及克隆存储库。**Protected** Spaces keep their source code private on the Hub — only the owner and collaborators can view or clone the repository. However, the running app is publicly accessible through its embed URL (`https://<space-subdomain>.hf.space`) or through a [custom domain](./spaces-custom-domain) when one is configured. This is especially useful for hosting websites or apps without publishing the source code.
+**公共**空间完全开放：任何人都可以查看源代码、访问正在运行的应用程序以及克隆存储库。**受保护** 空间在 Hub 上保留其源代码的私密性 - 只有所有者和协作者可以查看或克隆存储库。但是，正在运行的应用程序可以通过其嵌入 URL (`https://<space-subdomain>.hf.space`) 或在配置后通过 [custom domain](./spaces-custom-domain) 公开访问。这对于在不发布源代码的情况下托管网站或应用程序特别有用。
 
-**Private** Spaces are fully private: the source code and the running app are only accessible to the owner and collaborators. The Space will not appear in search results and other users will receive a `404` error when visiting its URL.
+**私人** 空间是完全私人的：源代码和正在运行的应用程序只能由所有者和协作者访问。该空间不会出现在搜索结果中，其他用户在访问其 URL 时将收到 `404` 错误。
 
 ## 硬件资源
 
-Each Spaces environment is limited to 16GB RAM, 2 CPU cores and 50GB of (not persistent) disk space by default.默认的 CPU Basic 硬件没有每小时成本，但创建在计算（Gradio 或 Docker）上运行的空间需要付费计划，而静态空间对所有人免费。 You can upgrade to better hardware, including a variety of GPU accelerators, for a [competitive price](https://huggingface.co/pricing#spaces). To request an upgrade, please click the _Settings_ button in your Space and select your preferred hardware environment.| **硬件** | **CPU** | **内存** | **GPU 内存** | **每小时价格** |
+默认情况下，每个 Spaces 环境仅限于 16GB RAM、2 个 CPU 核心和 50GB（非持久）磁盘空间。默认的 CPU Basic 硬件没有每小时成本，但创建在计算（Gradio 或 Docker）上运行的空间需要付费计划，而静态空间对所有人免费。您可以为 [competitive price](https://huggingface.co/pricing#spaces) 升级到更好的硬件，包括各种 GPU 加速器。要请求升级，请单击空间中的_设置_按钮并选择您喜欢的硬件环境。| **硬件** | **CPU** | **内存** | **GPU 内存** | **每小时价格** |
 |------------------------ |-------------- |------------- |---------------- | ----------------- |
 | CPU基础| 2 个虚拟CPU | 16GB|                 |免费|
 | CPU升级 | 8 个 vCPU | 32GB|                 | 0.03 美元 | 
@@ -88,7 +88,7 @@ print(os.getenv('MODEL_REPO_ID'))
 
 ## 复制空间
 
-如果您想使用另一个演示作为初始模板来构建新演示，则复制空间会很有用。如果您想拥有一个单独的升级空间供您快速推理使用，那么重复空间也很有用。如果您想复制一个空间，可以单击该空间右上角的三个点，然后单击“**复制此空间**”。完成此操作后，您将能够更改以下属性：
+如果您想使用另一个演示作为初始模板来构建新演示，则复制空间可能会很有用。如果您希望有一个单独的升级空间供您快速推理使用，那么重复空间也很有用。如果您想复制一个空间，可以单击该空间右上角的三个点，然后单击“**复制此空间**”。完成此操作后，您将能够更改以下属性：
 
 * 所有者：复制的空间可以位于您的帐户或您具有写入权限的任何组织下
 * 空间名称
@@ -148,5 +148,5 @@ models:
 - reach-vb/wav2vec2-large-xls-r-1B-common_voice7-lt-ft
 ```
 
-### 数据集
-https://huggingface.co/docs/hub/datasets.md
+### DDUF
+https://huggingface.co/docs/hub/dduf.md

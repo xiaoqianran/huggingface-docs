@@ -17,7 +17,7 @@
 - 为您的应用程序提供一个名称。
 - 从 Hugging Face 组织设置中检索 `Redirection URI`，转到 `SSO` 选项卡并选择 `OIDC` 协议。
 - 点击`Create`。
-- 将出现一个弹出窗口，其中包含 `Client ID` 和 `Client Secret`，复制这些内容并将其粘贴到您的 Hugging Face 组织设置中。在 `SSO` 选项卡中（确保选择 `OIDC`），粘贴 `Client Identifier` 和 `Client Secret` 的相应值。
+- 将出现一个弹出窗口，其中包含 `Client ID` 和 `Client Secret`，复制它们并将其粘贴到您的 Hugging Face 组织设置中。在 `SSO` 选项卡中（确保选择 `OIDC`），粘贴 `Client Identifier` 和 `Client Secret` 的相应值。
 
 ## 步骤 2：使用 Google 的 OIDC 详细信息配置拥抱脸部
 
@@ -33,5 +33,5 @@
 - 测试成功后，您可以通过单击“启用”按钮为您的组织启用 SSO。
 - 启用后，组织成员必须完成 [How it works](./security-sso-basic#how-it-works) 部分中描述的 SSO 身份验证流程。
 
-### 在拥抱脸部时使用 SpeechBrain
-https://huggingface.co/docs/hub/speechbrain.md
+### 托管单点登录
+https://huggingface.co/docs/hub/enterprise-advanced-sso.md

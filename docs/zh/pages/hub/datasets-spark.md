@@ -12,7 +12,7 @@ Spark 能够在分布式环境中实现实时、大规模的数据处理。
 
 ### 安装
 
-为了能够读取和写入拥抱脸部数据集，您需要安装 `pyspark_huggingface` 库：
+为了能够读取和写入拥抱人脸数据集，您需要安装 `pyspark_huggingface` 库：
 
 ```
 pip install pyspark_huggingface
@@ -46,7 +46,7 @@ huggingface datasource enabled for pyspark 3.x.x (backport from pyspark 4)
 
 ## 阅读
 
-“huggingface”数据源允许从 Hugging Face 读取数据集，并使用 `pyarrow` 来传输 Arrow 数据。
+“huggingface”数据源允许从 Hugging Face 读取数据集，在后台使用 `pyarrow` 来传输 Arrow 数据。
 这与 Hugging Face 上[supported format](https://huggingface.co/docs/hub/datasets-adding#file-formats) 中的所有数据集兼容，例如 Parquet 数据集。
 
 例如，以下是如何加载 [stanfordnlp/imdb](https://huggingface.co/stanfordnlp/imdb) 数据集：
@@ -65,7 +65,7 @@ huggingface datasource enabled for pyspark 3.x.x (backport from pyspark 4)
     
     
 
-我们使用`.format()`函数来使用“huggingface”数据源，并使用`.load()`来加载数据集（更准确地说是名为“7M”的配置或子集，包含7M样本）。然后我们计算每种语言的对话数量并过滤数据集。
+我们使用 `.format()` 函数来使用“huggingface”数据源，并使用 `.load()` 来加载数据集（更准确地说，名为“7M”的配置或子集，包含 7M 个样本）。然后我们计算每种语言的对话数量并过滤数据集。
 
 登录访问门控存储库后，我们可以运行：
 
@@ -173,7 +173,7 @@ huggingface datasource enabled for pyspark 3.x.x (backport from pyspark 4)
 
 对于 Parquet 数据集：
 
-* `columns`（字符串）：选择要加载的列子集，例如`'["id"]'`
+* `columns`（字符串）：选择要加载的列的子集，例如`'["id"]'`
 * `filters`（字符串）：跳过不符合条件的文件和行组，例如`'[("source", "=", "code_exercises")]'`。过滤器被传递到[pyarrow.parquet.ParquetDataset](https://arrow.apache.org/docs/python/generated/pyarrow.parquet.ParquetDataset.html)。
 
 任何其他选项都作为参数传递给 [datasets.load_dataset] (https://huggingface.co/docs/datasets/en/package_reference/loading_methods#datasets.load_dataset)
@@ -258,7 +258,7 @@ huggingface datasource enabled for pyspark 3.x.x (backport from pyspark 4)
 
 ## 存储桶
 
-在数据集存储库中发布 AI 就绪数据之前，通常会在 [Storage Buckets](/docs/hub/storage-buckets) 中处理原始数据并进行实验。
+在数据集存储库中发布 AI 就绪数据之前，通常会在[Storage Buckets](/docs/hub/storage-buckets) 中处理原始数据并进行实验。
 
 访问存储桶的方式与数据集存储库相同，但使用 `buckets/` 前缀以及 `data_dir` 或 `data_files` 选项：
 
@@ -269,5 +269,45 @@ huggingface datasource enabled for pyspark 3.x.x (backport from pyspark 4)
 >>> df.write.format("huggingface").option("data_dir", "new-data").save("buckets/username/my-bucket")
 ```
 
-### 使用 GPG 签署提交
-https://huggingface.co/docs/hub/security-gpg.md
+### TF-Keras（旧版）
+https://huggingface.co/docs/hub/tf-keras.md
+
+## TF-Keras（旧版）`tf-keras` 是 Keras 2.x 版本的名称。它现在作为单独的 GitHub 存储库 [here](https://github.com/keras-team/tf-keras) 托管。尽管它是一个遗留框架，但 Hub 上仍然托管着 [4.5k+ models](https://huggingface.co/models?library=tf-keras&sort=trending)。这些模型可以使用 `huggingface_hub` 库加载。您**必须**在您的计算机上安装 `tf-keras` 或 `keras<3.x`。
+
+如果您对 Keras 3.x 支持感兴趣，请查看 [this guide](./keras)。
+
+安装完成后，您只需使用`from_pretrained_keras`方法从Hub加载模型即可。了解更多关于 `from_pretrained_keras` [here](https://huggingface.co/docs/huggingface_hub/main/en/package_reference/mixins#huggingface_hub.from_pretrained_keras) 的信息。
+
+```py
+from huggingface_hub import from_pretrained_keras
+
+model = from_pretrained_keras("keras-io/mobile-vit-xxs")
+prediction = model.predict(image)
+prediction = tf.squeeze(tf.round(prediction))
+print(f'The image is a {classes[(np.argmax(prediction))]}!')
+
+<CopyLLMTxtMenu containerStyle="float: inline-end; margin-inline-start: 10px; display: inline-flex; position: relative; z-index: 10;"></CopyLLMTxtMenu>
+
+# The image is a sunflower!
+```
+
+您还可以在 Hub 上托管您的 `tf-keras` 模型。但是，请记住，`tf-keras` 是一个遗留框架。为了达到最大数量的用户，我们建议使用 Keras 3.x 创建模型并如上所述在本机共享。有关上传`tf-keras`模型的更多详细信息，请查看[⟦T62⟧ documentation](https://huggingface.co/docs/huggingface_hub/main/en/package_reference/mixins#huggingface_hub.push_to_hub_keras)。
+
+```py
+from huggingface_hub import push_to_hub_keras
+
+push_to_hub_keras(model,
+    "your-username/your-model-name",
+    "your-tensorboard-log-directory",
+    tags = ["object-detection", "some_other_tag"],
+    **model_save_kwargs,
+)
+```
+
+## 其他资源
+
+- [GitHub repo](https://github.com/keras-team/tf-keras)
+* 博文[Putting Keras on 🤗 Hub for Collaborative Training and Reproducibility](https://merveenoyan.medium.com/putting-keras-on-hub-for-collaborative-training-and-reproducibility-9018301de877)（2022 年 4 月）
+
+### HF PRO 订阅 🔥
+https://huggingface.co/docs/hub/pro.md

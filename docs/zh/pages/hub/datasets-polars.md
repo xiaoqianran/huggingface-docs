@@ -41,5 +41,5 @@ pl.read_parquet("hf://datasets/roneneldan/TinyStories/data/train-*.parquet")
 
 - `hf://datasets/{my-username}/{my-dataset}@~parquet/{path_to_file}`
 
-### 熊猫
-https://huggingface.co/docs/hub/datasets-pandas.md
+### 空间设置
+https://huggingface.co/docs/hub/spaces-settings.md

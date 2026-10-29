@@ -89,7 +89,7 @@ tags:
 支持的环境框架标签有：
 
 |标签 |框架|
-| --- | --- |
+| ---| ---|
 | `harbor` | [Harbor](https://github.com/harbor-framework/harbor) |
 | `verifiers` | [Verifiers](https://github.com/PrimeIntellect-ai/verifiers) |
 | `openenv` | [OpenEnv](https://github.com/huggingface/OpenEnv) |
@@ -98,5 +98,5 @@ tags:
 
 这些标签描述兼容性并生成加载命令。它们不会创建新的存储库类型或导致 Hub 执行环境。
 
-### 在本地使用 AI 模型
-https://huggingface.co/docs/hub/local-apps.md
+### 瞄准空间
+https://huggingface.co/docs/hub/spaces-sdks-docker-aim.md

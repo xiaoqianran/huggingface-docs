@@ -42,7 +42,7 @@ GET https://huggingface.co/api/organizations/{org}/audit-log/export
 
 该端点也记录在 OpenAPI 参考中。
 
-## 跟踪哪些事件？每个操作都有一个 **事件名称**，采用 `scope.action` 格式（例如 `repo.create`、`collection.delete`）。这是每个日志条目和导出的 JSON 中的 `type` 字段 - 在搜索或过滤日志时使用它。
+## 跟踪哪些事件？每个操作都有一个`scope.action`格式的**事件名称**（例如`repo.create`、`collection.delete`）。这是每个日志条目和导出的 JSON 中的 `type` 字段 - 在搜索或过滤日志时使用它。
 
 ### 组织管理与安全
 
@@ -85,9 +85,16 @@ GET https://huggingface.co/api/organizations/{org}/audit-log/export
 - **服务帐户令牌**：令牌创建、删除、轮换和更新（名称、权限、网络安全豁免），以及与令牌配对的 S3 凭证的生成和撤销。
   - **活动：** `org.service_account.token.create`、`org.service_account.token.delete`、`org.service_account.token.rotate`、`org.service_account.token.update`、`org.service_account.token.s3_credential.create`、`org.service_account.token.s3_credential.delete`
 
-### 内容和资源管理
+### OAuth 应用程序
 
-- **存储库管理** — 创建、删除、移动、禁用/重新启用、重复设置、DOI 删除、资源组分配和常规存储库设置（可见性、门控、讨论等）。还有LFS文件删除。
+- **OAuth 应用程序管理** — 创建、更新（名称、URL、范围或令牌过期）和删除组织拥有的 [OAuth apps](./oauth#organization-owned-oauth-apps)，包括其 [Token Exchange app](./oauth#token-exchange-for-organizations-rfc-8693)。不记录徽标更改。
+  - **活动：** `oauth.app.create`、`oauth.app.update`、`oauth.app.delete`
+- **客户端密钥** — 轮换客户端密钥（或向公共应用程序添加一个）、删除它，并通过 Hugging Face 使密钥过期。
+  - **活动：** `oauth.app.secret.rotate`、`oauth.app.secret.delete`、`oauth.app.secret.expire`
+- **令牌发行** — 通过组织的 [Token Exchange](./oauth#token-exchange-for-organizations-rfc-8693) 应用程序向成员发行令牌。
+  - **活动：** `oauth.token`
+
+### 内容和资源管理- **存储库管理** — 创建、删除、移动、禁用/重新启用、重复设置、DOI 删除、资源组分配和常规存储库设置（可见性、门控、讨论等）。还有LFS文件删除。
   - **活动：** `repo.create`、`repo.delete`、`repo.move`、`repo.disable`、`repo.removeDisable`、`repo.duplication`、`repo.delete_doi`、`repo.update_resource_group`、`repo.update_settings`、`repo.delete_lfs_file`
 - **集合** — 创建和删除集合。
   - **活动：** `collection.create`、`collection.delete`
@@ -97,14 +104,14 @@ GET https://huggingface.co/api/organizations/{org}/audit-log/export
 - **空间配置** — 存储层更改、硬件（风格）更新和睡眠时间调整。
   - **活动：** `spaces.add_storage`、`spaces.remove_storage`、`spaces.update_hardware`、`spaces.update_sleep_time`
 
-### 资源组- **资源组管理** — 创建、删除和设置更改。
+### 资源组
+
+- **资源组管理** — 创建、删除和设置更改。
   - **活动：** `resource_group.create`、`resource_group.delete`、`resource_group.settings`
 - **资源组成员** — 添加和删除用户以及角色更改。
   - **活动：** `resource_group.add_users`、`resource_group.remove_users`、`resource_group.change_role`
 - **资源组邀请** — 邀请组织外部的用户加入资源组，并撤销这些邀请。
-  - **活动：** `resource_group.invite_user`、`resource_group.invite.revoke`
-
-### 作业和预定作业
+  - **活动：** `resource_group.invite_user`、`resource_group.invite.revoke`### 作业和预定作业
 
 - **工作** — 工作岗位的创造（例如在空间上）和取消。
   - **活动：** `jobs.create`、`jobs.cancel`
@@ -118,9 +125,9 @@ GET https://huggingface.co/api/organizations/{org}/audit-log/export
 - **云市场** — AWS 和 GCP 市场链接/取消链接以及市场批准。
   - **活动：** `billing.aws_add`、`billing.aws_remove`、`billing.gcp_add`、`billing.gcp_remove`、`billing.marketplace_approve`
 - **订阅** — 启动、续订、取消、重新激活和更新订阅（包括计划和合同详细信息）。
-  - **活动：** `billing.start_subscription`、`billing.renew_subscription`、`billing.cancel_subscription`、`billing.un_cancel_subscription`、`billing.update_subscription`、`billing.update_subscription_plan`、`billing.update_subscription_contract_details`## 事件参考
+  - **活动：** `billing.start_subscription`、`billing.renew_subscription`、`billing.cancel_subscription`、`billing.un_cancel_subscription`、`billing.update_subscription`、`billing.update_subscription_plan`、`billing.update_subscription_contract_details`
 
-上面的列表涵盖了审核日志 UI 和导出中显示的每种事件类型。事件名称遵循 `scope.action` 模式；范围包括 `org`、`repo`、`collection`、`spaces`、`resource_group`、`jobs`、`scheduled_job` 和 `billing`。导出操作本身记录为 `org.audit_log.export`，但该事件不包含在默认审核日志视图中。
+## 事件参考
 
-### 抱脸登录
-https://huggingface.co/docs/hub/oauth.md
+上面的列表涵盖了审核日志 UI 和导出中显示的每种事件类型。事件名称遵循 `scope.action` 模式；范围包括 `org`、`repo`、`collection`、`spaces`、`resource_group`、`jobs`、`scheduled_job`、`oauth` 和 `billing`。导出操作本身记录为 `org.audit_log.export`，但该事件不包含在默认审核日志视图中。### 图书馆
+https://huggingface.co/docs/hub/datasets-libraries.md
