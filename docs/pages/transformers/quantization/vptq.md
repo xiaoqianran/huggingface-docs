@@ -22,7 +22,7 @@ The equivalent bit-width calculation is given by the following.
 
 From here, estimate the model size by multiplying 70B * 3-bits / 8-bits/byte for a total of 26.25GB.
 
-Load a VPTQ quantized model with [from_pretrained()](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
+Load a VPTQ quantized model with [from_pretrained()](/docs/transformers/v5.22.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
 
 ```py
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -56,4 +56,4 @@ See an example demo of VPTQ on the VPTQ Online Demo [Space](https://huggingface.
 For more information, read the VPTQ [paper](https://huggingface.co/papers/2409.17066).
 
 ### BitNet
-https://huggingface.co/docs/transformers/v5.21.1/quantization/bitnet.md
+https://huggingface.co/docs/transformers/v5.22.1/quantization/bitnet.md

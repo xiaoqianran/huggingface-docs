@@ -2,9 +2,9 @@
 
 Multimodal models require a preprocessor capable of handling inputs that combine more than one modality. Depending on the input modality, a processor needs to convert text into an array of tensors, images into pixel values, and audio into an array of tensors with the correct sampling rate.
 
-For example, [PaliGemma](./model_doc/paligemma) is a vision-language model that uses the [SigLIP](./model_doc/siglip) image processor and the [Llama](./model_doc/llama) tokenizer. A [ProcessorMixin](/docs/transformers/v5.21.1/en/main_classes/processors#transformers.ProcessorMixin) class wraps both of these preprocessor types, providing a single and unified processor class for a multimodal model.
+For example, [PaliGemma](./model_doc/paligemma) is a vision-language model that uses the [SigLIP](./model_doc/siglip) image processor and the [Llama](./model_doc/llama) tokenizer. A [ProcessorMixin](/docs/transformers/v5.22.1/en/main_classes/processors#transformers.ProcessorMixin) class wraps both of these preprocessor types, providing a single and unified processor class for a multimodal model.
 
-Call [from_pretrained()](/docs/transformers/v5.21.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.from_pretrained) to load a processor. Pass the input type to the processor to generate the expected model inputs, input ids and pixel values.
+Call [from_pretrained()](/docs/transformers/v5.22.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.from_pretrained) to load a processor. Pass the input type to the processor to generate the expected model inputs, input ids and pixel values.
 
 ```py
 from transformers import AutoProcessor, PaliGemmaForConditionalGeneration
@@ -25,13 +25,13 @@ This guide describes the processor class and how to preprocess multimodal inputs
 
 ## Processor classes
 
-All processors inherit from the [ProcessorMixin](/docs/transformers/v5.21.1/en/main_classes/processors#transformers.ProcessorMixin) class which provides methods like [from_pretrained()](/docs/transformers/v5.21.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.from_pretrained), [save_pretrained()](/docs/transformers/v5.21.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.save_pretrained), and [push_to_hub()](/docs/transformers/v5.21.1/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) for loading, saving, and sharing processors to the Hub.
+All processors inherit from the [ProcessorMixin](/docs/transformers/v5.22.1/en/main_classes/processors#transformers.ProcessorMixin) class which provides methods like [from_pretrained()](/docs/transformers/v5.22.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.from_pretrained), [save_pretrained()](/docs/transformers/v5.22.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.save_pretrained), and [push_to_hub()](/docs/transformers/v5.22.1/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) for loading, saving, and sharing processors to the Hub.
 
-There are two ways to load a processor, with an [AutoProcessor](/docs/transformers/v5.21.1/en/model_doc/auto#transformers.AutoProcessor) and with a model-specific processor class.
+There are two ways to load a processor, with an [AutoProcessor](/docs/transformers/v5.22.1/en/model_doc/auto#transformers.AutoProcessor) and with a model-specific processor class.
 
 The [AutoClass](./model_doc/auto) API provides a simple interface to load processors without directly specifying the specific model class it belongs to.
 
-Use [from_pretrained()](/docs/transformers/v5.21.1/en/model_doc/auto#transformers.AutoProcessor.from_pretrained) to load a processor.
+Use [from_pretrained()](/docs/transformers/v5.22.1/en/model_doc/auto#transformers.AutoProcessor.from_pretrained) to load a processor.
 
 ```py
 from transformers import AutoProcessor
@@ -39,7 +39,7 @@ from transformers import AutoProcessor
 processor = AutoProcessor.from_pretrained("google/paligemma-3b-pt-224")
 ```
 
-Processors are also associated with a specific pretrained multimodal model class. You can load a processor directly from the model class with [from_pretrained()](/docs/transformers/v5.21.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.from_pretrained).
+Processors are also associated with a specific pretrained multimodal model class. You can load a processor directly from the model class with [from_pretrained()](/docs/transformers/v5.22.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.from_pretrained).
 
 ```py
 from transformers import WhisperProcessor
@@ -47,7 +47,7 @@ from transformers import WhisperProcessor
 processor = WhisperProcessor.from_pretrained("openai/whisper-tiny")
 ```
 
-You could also separately load the two preprocessor types, [WhisperTokenizerFast](/docs/transformers/v5.21.1/en/model_doc/whisper#transformers.WhisperTokenizer) and [WhisperFeatureExtractor](/docs/transformers/v5.21.1/en/model_doc/whisper#transformers.WhisperFeatureExtractor).
+You could also separately load the two preprocessor types, [WhisperTokenizerFast](/docs/transformers/v5.22.1/en/model_doc/whisper#transformers.WhisperTokenizer) and [WhisperFeatureExtractor](/docs/transformers/v5.22.1/en/model_doc/whisper#transformers.WhisperFeatureExtractor).
 
 ```py
 from transformers import WhisperTokenizerFast, WhisperFeatureExtractor, WhisperProcessor
@@ -59,7 +59,7 @@ processor = WhisperProcessor(feature_extractor=feature_extractor, tokenizer=toke
 
 ## Save and load a processor
 
-[save_pretrained()](/docs/transformers/v5.21.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.save_pretrained) writes the processor's configuration to a single `processor_config.json` file. The tokenizer and chat template are saved in their own files.
+[save_pretrained()](/docs/transformers/v5.22.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.save_pretrained) writes the processor's configuration to a single `processor_config.json` file. The tokenizer and chat template are saved in their own files.
 
 ```py
 from transformers import AutoProcessor
@@ -103,7 +103,7 @@ The other files are saved separately.
 - The tokenizer writes its usual files, like `tokenizer.json` and `tokenizer_config.json`. If a processor has a second tokenizer, it's saved in a subfolder named after its attribute, like `decoder_tokenizer/`.
 - The chat template is saved to `chat_template.jinja`. If a processor has several chat templates, the `default` template goes in `chat_template.jinja` and the others go in a `chat_templates/` folder.
 
-When you load a processor with [from_pretrained()](/docs/transformers/v5.21.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.from_pretrained), each sub-processor looks for its nested key in `processor_config.json` first. If the key isn't there, it falls back to a standalone file. Image processors and feature extractors read `preprocessor_config.json`, and video processors read `video_preprocessor_config.json` and then `preprocessor_config.json`. Older checkpoints that store each sub-processor in its own file still load this way.
+When you load a processor with [from_pretrained()](/docs/transformers/v5.22.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.from_pretrained), each sub-processor looks for its nested key in `processor_config.json` first. If the key isn't there, it falls back to a standalone file. Image processors and feature extractors read `preprocessor_config.json`, and video processors read `video_preprocessor_config.json` and then `preprocessor_config.json`. Older checkpoints that store each sub-processor in its own file still load this way.
 
 > [!NOTE]
 > A nested config takes priority over a standalone file. If a checkpoint has both, editing `preprocessor_config.json` or `video_preprocessor_config.json` has no effect. Edit the nested entry in `processor_config.json` instead.
@@ -157,4 +157,4 @@ prepare_dataset(dataset[0])
 ```
 
 ### Debugging
-https://huggingface.co/docs/transformers/v5.21.1/debugging.md
+https://huggingface.co/docs/transformers/v5.22.1/debugging.md

@@ -149,4 +149,4 @@ To explore quantization and related performance optimization concepts more deepl
 - [Accelerating Generative AI with PyTorch Part 2: LLM Optimizations](https://pytorch.org/blog/accelerating-generative-ai-2/)
 
 ### NVFP4
-https://huggingface.co/docs/transformers/v5.21.1/quantization/nvfp4.md
+https://huggingface.co/docs/transformers/v5.22.1/quantization/nvfp4.md

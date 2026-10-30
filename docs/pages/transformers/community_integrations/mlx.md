@@ -38,4 +38,4 @@ print(output)
 - [mlx-vlm](https://github.com/Blaizzy/mlx-vlm) community library with VLM implementations
 
 ### NeMo Automodel
-https://huggingface.co/docs/transformers/v5.21.1/community_integrations/nemo_automodel_pretraining.md
+https://huggingface.co/docs/transformers/v5.22.1/community_integrations/nemo_automodel_pretraining.md

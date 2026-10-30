@@ -37,9 +37,9 @@ If you run into CUDA-related install errors, check the [DeepSpeed CUDA](./debugg
 
 ## Configure
 
-[Trainer](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.Trainer) integrates DeepSpeed through the [deepspeed](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.TrainingArguments.deepspeed) argument, which accepts a JSON config file. Alternatively, use an [Accelerate config file](./accelerate#accelerate-config-file) instead of [TrainingArguments](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.TrainingArguments).
+[Trainer](/docs/transformers/v5.22.1/en/main_classes/trainer#transformers.Trainer) integrates DeepSpeed through the [deepspeed](/docs/transformers/v5.22.1/en/main_classes/trainer#transformers.TrainingArguments.deepspeed) argument, which accepts a JSON config file. Alternatively, use an [Accelerate config file](./accelerate#accelerate-config-file) instead of [TrainingArguments](/docs/transformers/v5.22.1/en/main_classes/trainer#transformers.TrainingArguments).
 
-Use `"auto"` in your config for values you want DeepSpeed to fill from [TrainingArguments](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.TrainingArguments). If you want to explicitly specify a value, make sure you use the *same* value for both the DeepSpeed argument and [TrainingArguments](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.TrainingArguments).
+Use `"auto"` in your config for values you want DeepSpeed to fill from [TrainingArguments](/docs/transformers/v5.22.1/en/main_classes/trainer#transformers.TrainingArguments). If you want to explicitly specify a value, make sure you use the *same* value for both the DeepSpeed argument and [TrainingArguments](/docs/transformers/v5.22.1/en/main_classes/trainer#transformers.TrainingArguments).
 
 > [!NOTE]
 > See the [DeepSpeed Configuration JSON](https://www.deepspeed.ai/docs/config-json/) reference for a complete list of DeepSpeed config options.
@@ -56,7 +56,7 @@ Use `"auto"` in your config for values you want DeepSpeed to fill from [Training
 }
 ```
 
-| DeepSpeed config | [TrainingArguments](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.TrainingArguments) |
+| DeepSpeed config | [TrainingArguments](/docs/transformers/v5.22.1/en/main_classes/trainer#transformers.TrainingArguments) |
 |---|---|
 | `train_micro_batch_size_per_gpu` | `per_device_train_batch_size` |
 | `gradient_accumulation_steps` | `gradient_accumulation_steps` |

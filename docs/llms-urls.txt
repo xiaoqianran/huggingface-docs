@@ -1788,6 +1788,7 @@ https://huggingface.co/docs/transformers/model_doc/ministral3.md
 https://huggingface.co/docs/transformers/model_doc/mistral.md
 https://huggingface.co/docs/transformers/model_doc/mistral3.md
 https://huggingface.co/docs/transformers/model_doc/mistral4.md
+https://huggingface.co/docs/transformers/model_doc/mistral_large4.md
 https://huggingface.co/docs/transformers/model_doc/mixtral.md
 https://huggingface.co/docs/transformers/model_doc/mlcd.md
 https://huggingface.co/docs/transformers/model_doc/mllama.md
@@ -1822,6 +1823,7 @@ https://huggingface.co/docs/transformers/model_doc/myt5.md
 https://huggingface.co/docs/transformers/model_doc/nanochat.md
 https://huggingface.co/docs/transformers/model_doc/nemotron.md
 https://huggingface.co/docs/transformers/model_doc/nemotron3_5_asr.md
+https://huggingface.co/docs/transformers/model_doc/nemotron3_5_transcribe.md
 https://huggingface.co/docs/transformers/model_doc/nemotron3_diarization.md
 https://huggingface.co/docs/transformers/model_doc/nemotron_asr_streaming.md
 https://huggingface.co/docs/transformers/model_doc/nemotron_h.md
@@ -2151,6 +2153,7 @@ https://huggingface.co/docs/transformers/troubleshooting.md
 https://huggingface.co/docs/transformers/video_processors.md
 https://huggingface.co/docs/transformers/weightconverter.md
 https://huggingface.co/docs/trl/a2po_trainer.md
+https://huggingface.co/docs/trl/amd_gpus.md
 https://huggingface.co/docs/trl/async_distillation_trainer.md
 https://huggingface.co/docs/trl/async_grpo_trainer.md
 https://huggingface.co/docs/trl/aws_trainium.md
@@ -2201,7 +2204,6 @@ https://huggingface.co/docs/trl/sdft_trainer.md
 https://huggingface.co/docs/trl/sdpo_trainer.md
 https://huggingface.co/docs/trl/sft_trainer.md
 https://huggingface.co/docs/trl/speeding_up_training.md
-https://huggingface.co/docs/trl/tpo_trainer.md
 https://huggingface.co/docs/trl/trackio_integration.md
 https://huggingface.co/docs/trl/unsloth_integration.md
 https://huggingface.co/docs/trl/usage_stats.md

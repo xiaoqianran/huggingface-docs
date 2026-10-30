@@ -116,4 +116,4 @@ print(similarity_score)
 ```
 
 ### Monocular depth estimation
-https://huggingface.co/docs/transformers/v5.21.1/tasks/monocular_depth_estimation.md
+https://huggingface.co/docs/transformers/v5.22.1/tasks/monocular_depth_estimation.md

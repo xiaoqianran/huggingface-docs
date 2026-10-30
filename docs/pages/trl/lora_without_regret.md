@@ -321,5 +321,5 @@ Using TRL, you can efficiently implement LoRA adapters to match full fine-tuning
 }  
 ```
 
-### Quickstart
-https://huggingface.co/docs/trl/v1.16.0/quickstart.md
+### MergeModelCallback[[trl.experimental.merge_model_callback.MergeModelCallback]]
+https://huggingface.co/docs/trl/v1.17.0/merge_model_callback.md

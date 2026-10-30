@@ -85,4 +85,4 @@ transformers serve \
 ```
 
 ### tiny-agents
-https://huggingface.co/docs/transformers/v5.21.1/serve-cli/tiny_agents.md
+https://huggingface.co/docs/transformers/v5.22.1/serve-cli/tiny_agents.md

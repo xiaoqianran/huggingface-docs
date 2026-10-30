@@ -32,5 +32,5 @@ If you want the development install you can replace the pip install with the fol
 pip install -e ".[dev]"
 ```
 
-### Harbor Integration for Training LLMs with Environments
-https://huggingface.co/docs/trl/v1.16.0/harbor.md
+### Training with Jobs
+https://huggingface.co/docs/trl/v1.17.0/jobs_training.md

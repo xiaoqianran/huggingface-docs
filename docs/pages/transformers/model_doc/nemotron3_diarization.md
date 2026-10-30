@@ -152,7 +152,8 @@ with torch.inference_mode():
 ```
 
 The streaming loop above then compiles once. The offline forward chunks the same way, so the same wrapper applies with
-`config.fifo_length`, `config.chunk_length` and `config.chunk_right_context` in `max_window`.
+`config.fifo_length`, `config.chunk_left_context`, `config.chunk_length` and `config.chunk_right_context` in
+`max_window`.
 
 | Speedup vs eager (A100, batch size 1) | float32 | bfloat16 |
 | ------------------------------------- | ------- | -------- |
@@ -164,10 +165,10 @@ The streaming loop above then compiles once. The offline forward chunks the same
 #### transformers.Nemotron3DiarizationConfig[[transformers.Nemotron3DiarizationConfig]]
 
 ```python
-transformers.Nemotron3DiarizationConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, audio_config: transformers.models.nemotron3_diarization.configuration_nemotron3_diarization.Nemotron3DiarizationAudioConfig | dict | None = None, head_config: transformers.models.nemotron3_diarization.configuration_nemotron3_diarization.Nemotron3DiarizationHeadConfig | dict | None = None, streaming_config: transformers.models.nemotron3_diarization.configuration_nemotron3_diarization.Nemotron3DiarizationStreamingConfig | dict | None = None, chunk_length: int = 340, chunk_right_context: int = 40, fifo_length: int = 40, speaker_cache_update_period: int = 300, initializer_range: float = 0.02)
+transformers.Nemotron3DiarizationConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, audio_config: transformers.models.nemotron3_diarization.configuration_nemotron3_diarization.Nemotron3DiarizationAudioConfig | dict | None = None, head_config: transformers.models.nemotron3_diarization.configuration_nemotron3_diarization.Nemotron3DiarizationHeadConfig | dict | None = None, streaming_config: transformers.models.nemotron3_diarization.configuration_nemotron3_diarization.Nemotron3DiarizationStreamingConfig | dict | None = None, chunk_length: int = 340, chunk_right_context: int = 40, chunk_left_context: int = 0, fifo_length: int = 40, speaker_cache_update_period: int = 300, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron3_diarization/configuration_nemotron3_diarization.py#L146)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron3_diarization/configuration_nemotron3_diarization.py#L146)
 
 **Parameters:**
 
@@ -181,6 +182,8 @@ chunk_length (`int`, *optional*, defaults to 340) : Offline mode: number of enco
 
 chunk_right_context (`int`, *optional*, defaults to 40) : Offline mode: number of look-ahead encoder frames each chunk takes from the following ones. In streaming mode the look-ahead is `num_lookahead_frames` of each forward.
 
+chunk_left_context (`int`, *optional*, defaults to 0) : Offline mode: number of look-back encoder frames each chunk takes again from the preceding ones, fed between the cached frames and the chunk. Like the look-ahead, they are attended to but neither scored nor pushed to the FIFO queue. In streaming mode the look-back is `num_lookback_frames` of each forward.
+
 fifo_length (`int`, *optional*, defaults to 40) : Offline mode: capacity of the FIFO queue of the most recent encoder frames. Streaming mode uses `streaming_config.fifo_length`.
 
 speaker_cache_update_period (`int`, *optional*, defaults to 300) : Offline mode: number of encoder frames moved from the FIFO queue to the speaker cache when the queue overflows. Streaming mode uses `streaming_config.speaker_cache_update_period`.
@@ -191,8 +194,8 @@ This is the configuration class to store the configuration of a Nemotron3Diariza
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [nvidia/Nemotron-3-Diarization](https://huggingface.co/nvidia/Nemotron-3-Diarization)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.22.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Nemotron3DiarizationAudioConfig[[transformers.Nemotron3DiarizationAudioConfig]]
 
@@ -202,7 +205,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes
 transformers.Nemotron3DiarizationAudioConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 512, intermediate_size: int = 2048, num_hidden_layers: int = 31, num_attention_heads: int = 8, num_key_value_heads: int | None = None, hidden_act: str = 'gelu', max_position_embeddings: int = 5000, initializer_range: float = 0.02, rope_parameters: dict | None = None, attention_dropout: float | int = 0.0, num_mel_bins: int = 128, subsampling_factor: int = 8)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron3_diarization/configuration_nemotron3_diarization.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron3_diarization/configuration_nemotron3_diarization.py#L30)
 
 **Parameters:**
 
@@ -234,8 +237,8 @@ This is the configuration class to store the configuration of a Nemotron3Diariza
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [nvidia/Nemotron-3-Diarization](https://huggingface.co/nvidia/Nemotron-3-Diarization)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.22.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Nemotron3DiarizationHeadConfig[[transformers.Nemotron3DiarizationHeadConfig]]
 
@@ -245,7 +248,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes
 transformers.Nemotron3DiarizationHeadConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 192, num_speakers: int = 8, audio_hidden_size: int = 512, subsampling_factor: int = 8)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron3_diarization/configuration_nemotron3_diarization.py#L71)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron3_diarization/configuration_nemotron3_diarization.py#L71)
 
 **Parameters:**
 
@@ -261,8 +264,8 @@ This is the configuration class to store the configuration of a Nemotron3Diariza
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [nvidia/Nemotron-3-Diarization](https://huggingface.co/nvidia/Nemotron-3-Diarization)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.22.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Nemotron3DiarizationStreamingConfig[[transformers.Nemotron3DiarizationStreamingConfig]]
 
@@ -272,7 +275,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes
 transformers.Nemotron3DiarizationStreamingConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, fifo_length: int = 264, speaker_cache_update_period: int = 222, speaker_cache_length: int = 264, speaker_cache_silence_frames_per_speaker: int = 1, prediction_score_threshold: float = 0.25, latest_frames_score_boost: float = 0.05, strong_boost_rate: float = 0.75, weak_boost_rate: float = 1.5, min_positive_scores_rate: float = 0.5, num_speakers: int = 8, subsampling_factor: int = 8)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron3_diarization/configuration_nemotron3_diarization.py#L97)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron3_diarization/configuration_nemotron3_diarization.py#L97)
 
 **Parameters:**
 
@@ -302,8 +305,8 @@ This is the configuration class to store the configuration of a Nemotron3Diariza
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [nvidia/Nemotron-3-Diarization](https://huggingface.co/nvidia/Nemotron-3-Diarization)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.22.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Nemotron3DiarizationAudioModel[[transformers.Nemotron3DiarizationAudioModel]]
 
@@ -313,15 +316,15 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes
 transformers.Nemotron3DiarizationAudioModel(config: Nemotron3DiarizationAudioConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron3_diarization/modeling_nemotron3_diarization.py#L546)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron3_diarization/modeling_nemotron3_diarization.py#L562)
 
 **Parameters:**
 
-config ([Nemotron3DiarizationAudioConfig](/docs/transformers/v5.21.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationAudioConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Nemotron3DiarizationAudioConfig](/docs/transformers/v5.22.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationAudioConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Nemotron3 Diarization Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.22.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -335,11 +338,11 @@ and behavior.
 forward(input_features: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron3_diarization/modeling_nemotron3_diarization.py#L560)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron3_diarization/modeling_nemotron3_diarization.py#L576)
 
 **Parameters:**
 
-input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [NemotronAsrStreamingFeatureExtractor](/docs/transformers/v5.21.1/en/model_doc/nemotron_asr_streaming#transformers.NemotronAsrStreamingFeatureExtractor). See `NemotronAsrStreamingFeatureExtractor.__call__()` for details ([Nemotron3DiarizationProcessor](/docs/transformers/v5.21.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationProcessor) uses [NemotronAsrStreamingFeatureExtractor](/docs/transformers/v5.21.1/en/model_doc/nemotron_asr_streaming#transformers.NemotronAsrStreamingFeatureExtractor) for processing audios).
+input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [NemotronAsrStreamingFeatureExtractor](/docs/transformers/v5.22.1/en/model_doc/nemotron_asr_streaming#transformers.NemotronAsrStreamingFeatureExtractor). See `NemotronAsrStreamingFeatureExtractor.__call__()` for details ([Nemotron3DiarizationProcessor](/docs/transformers/v5.22.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationProcessor) uses [NemotronAsrStreamingFeatureExtractor](/docs/transformers/v5.22.1/en/model_doc/nemotron_asr_streaming#transformers.NemotronAsrStreamingFeatureExtractor) for processing audios).
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -347,13 +350,13 @@ inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_siz
 
 position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-**Returns:** [BaseModelOutput](/docs/transformers/v5.21.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutput](/docs/transformers/v5.22.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutput](/docs/transformers/v5.21.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+A [BaseModelOutput](/docs/transformers/v5.22.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Nemotron3DiarizationConfig](/docs/transformers/v5.21.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationConfig)) and inputs.
+elements depending on the configuration ([Nemotron3DiarizationConfig](/docs/transformers/v5.22.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationConfig)) and inputs.
 
-The [Nemotron3DiarizationAudioModel](/docs/transformers/v5.21.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationAudioModel) forward method, overrides the `__call__` special method.
+The [Nemotron3DiarizationAudioModel](/docs/transformers/v5.22.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationAudioModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -378,17 +381,17 @@ the latter silently ignores them.
 transformers.Nemotron3DiarizationModel(config: Nemotron3DiarizationConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron3_diarization/modeling_nemotron3_diarization.py#L636)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron3_diarization/modeling_nemotron3_diarization.py#L652)
 
 **Parameters:**
 
-config ([Nemotron3DiarizationConfig](/docs/transformers/v5.21.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Nemotron3DiarizationConfig](/docs/transformers/v5.22.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Nemotron3Diarization model without the speaker classifier: encodes one chunk (with its cached frames) and
 upsamples the encoder frames back to the spectrogram frame rate. It holds no streaming state, see
-[Nemotron3DiarizationForAudioFrameClassification](/docs/transformers/v5.21.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationForAudioFrameClassification) for the chunked forward.
+[Nemotron3DiarizationForAudioFrameClassification](/docs/transformers/v5.22.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationForAudioFrameClassification) for the chunked forward.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.22.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -402,11 +405,11 @@ and behavior.
 forward(input_features: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron3_diarization/modeling_nemotron3_diarization.py#L644)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron3_diarization/modeling_nemotron3_diarization.py#L660)
 
 **Parameters:**
 
-input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [NemotronAsrStreamingFeatureExtractor](/docs/transformers/v5.21.1/en/model_doc/nemotron_asr_streaming#transformers.NemotronAsrStreamingFeatureExtractor). See `NemotronAsrStreamingFeatureExtractor.__call__()` for details ([Nemotron3DiarizationProcessor](/docs/transformers/v5.21.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationProcessor) uses [NemotronAsrStreamingFeatureExtractor](/docs/transformers/v5.21.1/en/model_doc/nemotron_asr_streaming#transformers.NemotronAsrStreamingFeatureExtractor) for processing audios).
+input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [NemotronAsrStreamingFeatureExtractor](/docs/transformers/v5.22.1/en/model_doc/nemotron_asr_streaming#transformers.NemotronAsrStreamingFeatureExtractor). See `NemotronAsrStreamingFeatureExtractor.__call__()` for details ([Nemotron3DiarizationProcessor](/docs/transformers/v5.22.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationProcessor) uses [NemotronAsrStreamingFeatureExtractor](/docs/transformers/v5.22.1/en/model_doc/nemotron_asr_streaming#transformers.NemotronAsrStreamingFeatureExtractor) for processing audios).
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -414,13 +417,13 @@ inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_siz
 
 position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-**Returns:** [BaseModelOutput](/docs/transformers/v5.21.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutput](/docs/transformers/v5.22.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutput](/docs/transformers/v5.21.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+A [BaseModelOutput](/docs/transformers/v5.22.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Nemotron3DiarizationConfig](/docs/transformers/v5.21.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationConfig)) and inputs.
+elements depending on the configuration ([Nemotron3DiarizationConfig](/docs/transformers/v5.22.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationConfig)) and inputs.
 
-The [Nemotron3DiarizationModel](/docs/transformers/v5.21.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationModel) forward method, overrides the `__call__` special method.
+The [Nemotron3DiarizationModel](/docs/transformers/v5.22.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -445,7 +448,7 @@ the latter silently ignores them.
 transformers.Nemotron3DiarizationProcessor(feature_extractor, subsampling_factor = 8, streaming_modes = None, streaming_mode = 'low_latency')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron3_diarization/processing_nemotron3_diarization.py#L40)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron3_diarization/processing_nemotron3_diarization.py#L40)
 
 **Parameters:**
 
@@ -459,8 +462,8 @@ streaming_mode (`str`, *optional*, defaults to `"low_latency"`) : Streaming mode
 
 Constructs a Nemotron3DiarizationProcessor which wraps a feature extractor into a single processor.
 
-[Nemotron3DiarizationProcessor](/docs/transformers/v5.21.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationProcessor) offers all the functionalities of [NemotronAsrStreamingFeatureExtractor](/docs/transformers/v5.21.1/en/model_doc/nemotron_asr_streaming#transformers.NemotronAsrStreamingFeatureExtractor). See the
-[~NemotronAsrStreamingFeatureExtractor](/docs/transformers/v5.21.1/en/model_doc/nemotron_asr_streaming#transformers.NemotronAsrStreamingFeatureExtractor) for more information.
+[Nemotron3DiarizationProcessor](/docs/transformers/v5.22.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationProcessor) offers all the functionalities of [NemotronAsrStreamingFeatureExtractor](/docs/transformers/v5.22.1/en/model_doc/nemotron_asr_streaming#transformers.NemotronAsrStreamingFeatureExtractor). See the
+[~NemotronAsrStreamingFeatureExtractor](/docs/transformers/v5.22.1/en/model_doc/nemotron_asr_streaming#transformers.NemotronAsrStreamingFeatureExtractor) for more information.
 
 #### __call__[[transformers.Nemotron3DiarizationProcessor.__call__]]
 
@@ -468,7 +471,7 @@ Constructs a Nemotron3DiarizationProcessor which wraps a feature extractor into 
 __call__(audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor']], sampling_rate: int | None = None, is_streaming: bool = False, is_first_audio_chunk: bool = True, is_last_audio_chunk: bool = False, **kwargs: *<class 'transformers.models.nemotron3_diarization.processing_nemotron3_diarization.Nemotron3DiarizationProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron3_diarization/processing_nemotron3_diarization.py#L71)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron3_diarization/processing_nemotron3_diarization.py#L71)
 
 **Parameters:**
 
@@ -482,11 +485,11 @@ is_first_audio_chunk (`bool`, *optional*, defaults to `True`) : Whether this is 
 
 is_last_audio_chunk (`bool`, *optional*, defaults to `False`) : Whether this chunk ends the streaming session. A chunk of a session ends with `chunk_right_context` look-ahead encoder frames that the model scores at the next step only, and that its next chunk opens with. The last chunk has no next step, so every one of its frames is scored, whatever their number, and its end is zero-padded as a full-utterance pass pads the end of the audio, so that it yields the last frames of the utterance. Must be `False` when `is_streaming=False`.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.21.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.22.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.21.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.22.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
-**Returns:** [BatchFeature](/docs/transformers/v5.21.1/en/main_classes/feature_extractor#transformers.BatchFeature)
+**Returns:** [BatchFeature](/docs/transformers/v5.22.1/en/main_classes/feature_extractor#transformers.BatchFeature)
 
 the feature extractor outputs, `input_features` and `attention_mask`. In streaming mode
 the trailing frames whose analysis window reaches past a chunk other than the last are dropped, so `input_features` holds
@@ -502,7 +505,7 @@ model in streaming mode.
 transformers.Nemotron3DiarizationSpeakerCache(config: Nemotron3DiarizationStreamingConfig, fifo_length: int | None = None, speaker_cache_update_period: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron3_diarization/modeling_nemotron3_diarization.py#L53)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron3_diarization/modeling_nemotron3_diarization.py#L53)
 
 **Parameters:**
 
@@ -512,28 +515,30 @@ fifo_length (`int`, *optional*) : Capacity of the FIFO queue of the most recent 
 
 speaker_cache_update_period (`int`, *optional*) : Number of encoder frames moved from the FIFO queue to the speaker cache when the queue overflows. Defaults to `config.speaker_cache_update_period`.
 
-Streaming state of [Nemotron3DiarizationForAudioFrameClassification](/docs/transformers/v5.21.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationForAudioFrameClassification): the Arrival-Order Speaker Cache and the
+Streaming state of [Nemotron3DiarizationForAudioFrameClassification](/docs/transformers/v5.22.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationForAudioFrameClassification): the Arrival-Order Speaker Cache and the
 FIFO queue of the most recent encoder frames, that every chunk attends to.
 
 #### update[[transformers.Nemotron3DiarizationSpeakerCache.update]]
 
 ```python
-update(chunk_input_embeds: <module 'torch.Tensor' (<doc_builder.mock_imports.MockFinder object at 0x7fef3bad2690>)>, chunk_logits: <module 'torch.Tensor' (<doc_builder.mock_imports.MockFinder object at 0x7fef3bad2690>)>, silence_embeds: <module 'torch.Tensor' (<doc_builder.mock_imports.MockFinder object at 0x7fef3bad2690>)>, num_chunk_frames: int, mask: typing.Optional[torch.Tensor] = None)
+update(chunk_input_embeds: Tensor, chunk_logits: Tensor, silence_embeds: Tensor, num_chunk_frames: int, mask: typing.Optional[torch.Tensor] = None, num_lookback_frames: int = 0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron3_diarization/modeling_nemotron3_diarization.py#L138)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron3_diarization/modeling_nemotron3_diarization.py#L138)
 
 **Parameters:**
 
-chunk_input_embeds (`torch.Tensor` of shape `(batch_size, num_input_frames, hidden_size)`) : Encoder input of the step: the cached frames returned by `get_embeds`, the chunk and its look-ahead.
+chunk_input_embeds (`torch.Tensor` of shape `(batch_size, num_input_frames, hidden_size)`) : Encoder input of the step: the cached frames returned by `get_embeds`, the look-back frames, the chunk and its look-ahead.
 
 chunk_logits (`torch.Tensor` of shape `(batch_size, num_input_frames * subsampling_factor, num_speakers)`) : Speaker logits of the step, used to score the frames when the speaker cache is compressed.
 
 silence_embeds (`torch.Tensor` of shape `(hidden_size,)`) : Learned silence embedding filling the reserved silence slots of a compressed cache.
 
-num_chunk_frames (`int`) : Number of chunk frames following the cached frames in `chunk_input_embeds`. Only those join the FIFO queue: the look-ahead frames after them are fed again at the next step.
+num_chunk_frames (`int`) : Number of chunk frames following the cached and look-back frames in `chunk_input_embeds`. Only those join the FIFO queue: the look-ahead frames after them are fed again at the next step.
 
 mask (`torch.Tensor` of shape `(batch_size, num_input_frames)`, *optional*) : Valid frames of `chunk_input_embeds`, whose padding frames are given zero speaker probabilities.
+
+num_lookback_frames (`int`, *optional*, defaults to 0) : Number of look-back frames between the cached frames and the chunk in `chunk_input_embeds`: frames of the previous chunk fed again, already pushed with it.
 
 Pushes a processed chunk to the FIFO queue, moving its oldest frames to the speaker cache when it overflows.
 
@@ -542,10 +547,10 @@ Pushes a processed chunk to the FIFO queue, moving its oldest frames to the spea
 #### transformers.Nemotron3DiarizationOutput[[transformers.Nemotron3DiarizationOutput]]
 
 ```python
-transformers.Nemotron3DiarizationOutput(logits: typing.Optional[torch.Tensor] = None, hidden_states: tuple[<module 'torch.Tensor' (<doc_builder.mock_imports.MockFinder object at 0x7fef3bad2690>)>, ...] | None = None, attentions: tuple[<module 'torch.Tensor' (<doc_builder.mock_imports.MockFinder object at 0x7fef3bad2690>)>, ...] | None = None, speaker_cache: transformers.models.nemotron3_diarization.modeling_nemotron3_diarization.Nemotron3DiarizationSpeakerCache | None = None)
+transformers.Nemotron3DiarizationOutput(logits: typing.Optional[torch.Tensor] = None, hidden_states: tuple[torch.Tensor, ...] | None = None, attentions: tuple[torch.Tensor, ...] | None = None, speaker_cache: transformers.models.nemotron3_diarization.modeling_nemotron3_diarization.Nemotron3DiarizationSpeakerCache | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron3_diarization/modeling_nemotron3_diarization.py#L255)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron3_diarization/modeling_nemotron3_diarization.py#L267)
 
 **Parameters:**
 
@@ -557,7 +562,7 @@ attentions (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_a
 
 speaker_cache (`Nemotron3DiarizationSpeakerCache`, *optional*, returned in streaming mode) : Updated streaming state, to pass to the forward of the next audio chunk of the same streams.
 
-Output of [Nemotron3DiarizationForAudioFrameClassification](/docs/transformers/v5.21.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationForAudioFrameClassification).
+Output of [Nemotron3DiarizationForAudioFrameClassification](/docs/transformers/v5.22.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationForAudioFrameClassification).
 
 ## Nemotron3DiarizationForAudioFrameClassification[[transformers.Nemotron3DiarizationForAudioFrameClassification]]
 
@@ -567,19 +572,19 @@ Output of [Nemotron3DiarizationForAudioFrameClassification](/docs/transformers/v
 transformers.Nemotron3DiarizationForAudioFrameClassification(config: Nemotron3DiarizationConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron3_diarization/modeling_nemotron3_diarization.py#L678)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron3_diarization/modeling_nemotron3_diarization.py#L694)
 
 **Parameters:**
 
-config ([Nemotron3DiarizationConfig](/docs/transformers/v5.21.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Nemotron3DiarizationConfig](/docs/transformers/v5.22.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Streaming Sortformer speaker diarization model: predicts, for every spectrogram frame, the activity of up to
 `config.head_config.num_speakers` speakers ordered by first arrival. Audio is processed chunk by chunk, each
 chunk attending to a few look-ahead frames and to the Arrival-Order Speaker Cache and FIFO queue carried in a
-[Nemotron3DiarizationSpeakerCache](/docs/transformers/v5.21.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationSpeakerCache). A whole recording is chunked by the forward itself (offline mode); a stream
+[Nemotron3DiarizationSpeakerCache](/docs/transformers/v5.22.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationSpeakerCache). A whole recording is chunked by the forward itself (offline mode); a stream
 is fed one chunk per forward (streaming mode).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.22.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -590,28 +595,30 @@ and behavior.
 #### forward[[transformers.Nemotron3DiarizationForAudioFrameClassification.forward]]
 
 ```python
-forward(input_features: <module 'torch.Tensor' (<doc_builder.mock_imports.MockFinder object at 0x7fef3bad2690>)>, attention_mask: typing.Optional[torch.Tensor] = None, speaker_cache: transformers.models.nemotron3_diarization.modeling_nemotron3_diarization.Nemotron3DiarizationSpeakerCache | None = None, num_lookahead_frames: int | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_features: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, speaker_cache: transformers.models.nemotron3_diarization.modeling_nemotron3_diarization.Nemotron3DiarizationSpeakerCache | None = None, num_lookahead_frames: int | None = None, num_lookback_frames: int | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron3_diarization/modeling_nemotron3_diarization.py#L686)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron3_diarization/modeling_nemotron3_diarization.py#L702)
 
 **Parameters:**
 
-input_features (`doc_builder.mock_imports.torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`) : The tensors corresponding to the input audio features. Audio features can be obtained using [NemotronAsrStreamingFeatureExtractor](/docs/transformers/v5.21.1/en/model_doc/nemotron_asr_streaming#transformers.NemotronAsrStreamingFeatureExtractor). See `NemotronAsrStreamingFeatureExtractor.__call__()` for details ([Nemotron3DiarizationProcessor](/docs/transformers/v5.21.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationProcessor) uses [NemotronAsrStreamingFeatureExtractor](/docs/transformers/v5.21.1/en/model_doc/nemotron_asr_streaming#transformers.NemotronAsrStreamingFeatureExtractor) for processing audios).
+input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`) : The tensors corresponding to the input audio features. Audio features can be obtained using [NemotronAsrStreamingFeatureExtractor](/docs/transformers/v5.22.1/en/model_doc/nemotron_asr_streaming#transformers.NemotronAsrStreamingFeatureExtractor). See `NemotronAsrStreamingFeatureExtractor.__call__()` for details ([Nemotron3DiarizationProcessor](/docs/transformers/v5.22.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationProcessor) uses [NemotronAsrStreamingFeatureExtractor](/docs/transformers/v5.22.1/en/model_doc/nemotron_asr_streaming#transformers.NemotronAsrStreamingFeatureExtractor) for processing audios).
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 speaker_cache (`Nemotron3DiarizationSpeakerCache`, *optional*) : Streaming state returned by the forward of the previous chunk of the same audio streams.
 
-num_lookahead_frames (`int`, *optional*) : Streaming mode: number of trailing encoder frames of the input that are look-ahead only. They are attended to, but their logits are not returned and they do not join the FIFO queue, as they open the next chunk. [Nemotron3DiarizationProcessor](/docs/transformers/v5.21.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationProcessor) sets it for every chunk but the last one of a session.  The two arguments select the mode. Streaming mode, one chunk per forward: `num_lookahead_frames` given (a first chunk creates the `speaker_cache`, later chunks receive it), or `speaker_cache` given alone (the last chunk of the session, no look-ahead). The input minus its look-ahead is one chunk, whatever its length, pushed as a whole to the FIFO queue sized by `config.streaming_config`. Offline mode, neither given: the input is a whole recording, split by the forward into chunks of `config.chunk_length` encoder frames that take up to `config.chunk_right_context` look-ahead frames from the following ones, with a FIFO queue sized by `config.fifo_length`; no cache is returned.
+num_lookahead_frames (`int`, *optional*) : Streaming mode: number of trailing encoder frames of the input that are look-ahead only. They are attended to, but their logits are not returned and they do not join the FIFO queue, as they open the next chunk. [Nemotron3DiarizationProcessor](/docs/transformers/v5.22.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationProcessor) sets it for every chunk but the last one of a session.  These arguments and `num_lookback_frames` select the mode. Streaming mode, one chunk per forward: `num_lookahead_frames` or `num_lookback_frames` given (a first chunk creates the `speaker_cache`, later chunks receive it), or `speaker_cache` given alone (the last chunk of the session, no look-ahead). The input minus its look-back and look-ahead frames is one chunk, whatever its length, pushed as a whole to the FIFO queue sized by `config.streaming_config`. Offline mode, neither given: the input is a whole recording, split by the forward into chunks of `config.chunk_length` encoder frames that take up to `config.chunk_left_context` look-back frames from the preceding ones and up to `config.chunk_right_context` look-ahead frames from the following ones, with a FIFO queue sized by `config.fifo_length`; no cache is returned.
 
-**Returns:** [Nemotron3DiarizationOutput](/docs/transformers/v5.21.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationOutput) or `tuple(torch.FloatTensor)`
+num_lookback_frames (`int`, *optional*) : Streaming mode: number of leading encoder frames of the input that are look-back only, the end of the previous chunk fed again ahead of this one, on top of the frames of `speaker_cache`. They are attended to, but their logits are not returned and they do not join the FIFO queue again. Defaults to 0.
 
-A [Nemotron3DiarizationOutput](/docs/transformers/v5.21.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationOutput) or a tuple of
+**Returns:** [Nemotron3DiarizationOutput](/docs/transformers/v5.22.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationOutput) or `tuple(torch.FloatTensor)`
+
+A [Nemotron3DiarizationOutput](/docs/transformers/v5.22.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Nemotron3DiarizationConfig](/docs/transformers/v5.21.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationConfig)) and inputs.
+elements depending on the configuration ([Nemotron3DiarizationConfig](/docs/transformers/v5.22.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationConfig)) and inputs.
 
-The [Nemotron3DiarizationForAudioFrameClassification](/docs/transformers/v5.21.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationForAudioFrameClassification) forward method, overrides the `__call__` special method.
+The [Nemotron3DiarizationForAudioFrameClassification](/docs/transformers/v5.22.1/en/model_doc/nemotron3_diarization#transformers.Nemotron3DiarizationForAudioFrameClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -646,4 +653,4 @@ Example:
 ```
 
 ### MiniCPM3
-https://huggingface.co/docs/transformers/v5.21.1/model_doc/minicpm3.md
+https://huggingface.co/docs/transformers/v5.22.1/model_doc/minicpm3.md

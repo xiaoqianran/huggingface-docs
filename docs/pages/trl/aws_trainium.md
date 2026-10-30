@@ -12,7 +12,7 @@ pip install trl
 
 ## Supervised fine-tuning
 
-The [SFTTrainer](/docs/trl/v1.16.0/en/sft_trainer#trl.SFTTrainer) quick start runs as is:
+The [SFTTrainer](/docs/trl/v1.17.0/en/sft_trainer#trl.SFTTrainer) quick start runs as is:
 
 ```python
 from datasets import load_dataset
@@ -96,5 +96,5 @@ In this setup, SFT runs 3.6x faster on 4 NeuronCores than on 1.
 
 To restrict a run to a subset of NeuronCores, set `NEURON_RT_VISIBLE_CORES` to `0,1`, `2,3`, or `0-3`. Other combinations such as `1,2` are not supported: the Neuron runtime fails to set up collectives across them.
 
-### Paper Index
-https://huggingface.co/docs/trl/v1.16.0/paper_index.md
+### Harbor Integration for Training LLMs with Environments
+https://huggingface.co/docs/trl/v1.17.0/harbor.md

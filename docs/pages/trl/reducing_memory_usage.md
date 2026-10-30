@@ -120,7 +120,7 @@ Padding-free batching is an alternative approach for reducing memory usage. In t
 ![Padding-free](https://huggingface.co/datasets/trl-lib/documentation-images/resolve/main/padding-free.png)
 
 > [!WARNING]
-> Padding-free is temporarily unavailable in [DPOTrainer](/docs/trl/v1.16.0/en/bema_for_reference_model#trl.DPOTrainer): since the DPO refactor, setting `padding_free=True` warns and falls back to standard padding. It is planned to return in a future update.
+> Padding-free is temporarily unavailable in [DPOTrainer](/docs/trl/v1.17.0/en/dpo_trainer#trl.DPOTrainer): since the DPO refactor, setting `padding_free=True` warns and falls back to standard padding. It is planned to return in a future update.
 
 ```python
 from trl import DPOConfig
@@ -239,7 +239,7 @@ training_args = SFTConfig(..., gradient_checkpointing=True)
 
 ### Selective activation checkpointing
 
-With [SFTTrainer](/docs/trl/v1.16.0/en/sft_trainer#trl.SFTTrainer), you can save the attention output during the forward pass instead of recomputing it in the backward pass. This recovers most of the checkpointing slowdown at long context, for one extra hidden-state-sized tensor per layer. It forces non-reentrant checkpointing.
+With [SFTTrainer](/docs/trl/v1.17.0/en/sft_trainer#trl.SFTTrainer), you can save the attention output during the forward pass instead of recomputing it in the backward pass. This recovers most of the checkpointing slowdown at long context, for one extra hidden-state-sized tensor per layer. It forces non-reentrant checkpointing.
 
 ```python
 from trl import SFTConfig
@@ -253,5 +253,5 @@ training_args = SFTConfig(
 
 For more memory optimization techniques, see the [Transformers Performance Guide](https://huggingface.co/docs/transformers/perf_train_gpu_one#gradient-checkpointing).
 
-### IW-OPD
-https://huggingface.co/docs/trl/v1.16.0/iw_opd_trainer.md
+### ORPO Trainer
+https://huggingface.co/docs/trl/v1.17.0/orpo_trainer.md

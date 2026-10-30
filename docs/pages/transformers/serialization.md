@@ -95,4 +95,4 @@ tokenizer.save_pretrained("onnx/")
 ```
 
 ### Customizing models
-https://huggingface.co/docs/transformers/v5.21.1/custom_models.md
+https://huggingface.co/docs/transformers/v5.22.1/custom_models.md

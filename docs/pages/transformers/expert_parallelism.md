@@ -4,7 +4,7 @@
 
 ## DistributedConfig
 
-Enable expert parallelism with the [DistributedConfig](/docs/transformers/v5.21.1/en/expert_parallelism#transformers.DistributedConfig) class and the `ep_size` argument. Most MoE models default to [token dispatch](#token-dispatch), so `ep_size` can be set independently of `tp_size`. A few, such as Llama 4 and Gemma 4, still default to masking and all-reduce (`"ep_router"` and `"moe_tp_experts"` in `model.ep_plan`). Masking is also available on any model with an `ep_plan` override, and requires `ep_size=tp_size` so every rank in an expert group receives the same tokens.
+Enable expert parallelism with the [DistributedConfig](/docs/transformers/v5.22.1/en/expert_parallelism#transformers.DistributedConfig) class and the `ep_size` argument. Most MoE models default to [token dispatch](#token-dispatch), so `ep_size` can be set independently of `tp_size`. A few, such as Llama 4 and Gemma 4, still default to masking and all-reduce (`"ep_router"` and `"moe_tp_experts"` in `model.ep_plan`). Masking is also available on any model with an `ep_plan` override, and requires `ep_size=tp_size` so every rank in an expert group receives the same tokens.
 
 ```py
 import os
@@ -46,7 +46,7 @@ torchrun --nproc-per-node 8 your_script.py
 
 ### Overriding the plans
 
-Pass `tp_plan={...}` or `ep_plan={...}` to [DistributedConfig](/docs/transformers/v5.21.1/en/expert_parallelism#transformers.DistributedConfig) to override individual rules of the predefined plans. Unspecified rules are kept, and the merged plans are stored on the model. Each key must match a module, a parameter, or an existing plan entry; otherwise loading raises a `ValueError` before anything is sharded. Use the full path as seen from the loaded model, so `model.layers.*` for a causal LM and `layers.*` for its base model.
+Pass `tp_plan={...}` or `ep_plan={...}` to [DistributedConfig](/docs/transformers/v5.22.1/en/expert_parallelism#transformers.DistributedConfig) to override individual rules of the predefined plans. Unspecified rules are kept, and the merged plans are stored on the model. Each key must match a module, a parameter, or an existing plan entry; otherwise loading raises a `ValueError` before anything is sharded. Use the full path as seen from the loaded model, so `model.layers.*` for a causal LM and `layers.*` for its base model.
 
 ```py
 distributed_config = DistributedConfig(
@@ -93,7 +93,7 @@ model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-30B-A3B", distributed_c
 With `tp_size=1`, `ep_size` must divide `fsdp_size` and the number of experts, and attention is not bound by `num_key_value_heads`. For the rest of the model:
 
 - The parameters outside the experts are sharded with [FSDP2](./fsdp) across `fsdp`, which reduces their gradients.
-- The experts are sharded across `ep` and, when `efsdp_size = fsdp_size * tp_size // ep_size` is larger than one, additionally FSDP-sharded across `efsdp`. They are always FSDP-wrapped, so `fsdp_mixed_precision` and `fsdp_cpu_offload` apply to them too and [save_pretrained()](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) gathers them like any other parameter.
+- The experts are sharded across `ep` and, when `efsdp_size = fsdp_size * tp_size // ep_size` is larger than one, additionally FSDP-sharded across `efsdp`. They are always FSDP-wrapped, so `fsdp_mixed_precision` and `fsdp_cpu_offload` apply to them too and [save_pretrained()](/docs/transformers/v5.22.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) gathers them like any other parameter.
 - An expert parallel group holds `ep_size / tp_size` batches, so an expert's gradient is a sum over that many batches. The `efsdp` reduction divides by `fsdp_size` instead of its group size, which gives the same per-batch average FSDP2 takes for the dense modules.
 - Every local expert also processes one zero pad row per layer. A rank whose experts received no tokens still joins the reverse all-to-all and the expert gradient reduction.
 
@@ -146,7 +146,7 @@ These configurations each use eight GPUs:
 | `DistributedConfig(tp_size=8, ep_size=8)` | Dispatch with every rank sharing one batch, sliced in eight, or masking and all-reduce for a masked plan. |
 
 > [!WARNING]
-> The [Trainer](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.Trainer) does not account for token dispatch yet: batch and token counting assume the all-reduce layout, where the ranks of a TP group share a batch and `fsdp_size` data-parallel shards exist. Trainer support for dispatch comes in a follow-up.
+> The [Trainer](/docs/transformers/v5.22.1/en/main_classes/trainer#transformers.Trainer) does not account for token dispatch yet: batch and token counting assume the all-reduce layout, where the ranks of a TP group share a batch and `fsdp_size` data-parallel shards exist. Trainer support for dispatch comes in a follow-up.
 
 ## Combining with FSDP2
 
@@ -168,7 +168,7 @@ distributed_config = DistributedConfig(
 model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-30B-A3B", distributed_config=distributed_config)
 ```
 
-Load the model as usual, then train with [Trainer](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.Trainer). It takes the gradient norm across both meshes and gives each mesh its own optimizer param group. [save_model()](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.Trainer.save_model) gathers sharded weights into a regular checkpoint. This requires `accelerate>=1.12` so the `Trainer` can mirror `tp_size` and `fsdp_size` into `~Accelerate.ParallelismConfig`.
+Load the model as usual, then train with [Trainer](/docs/transformers/v5.22.1/en/main_classes/trainer#transformers.Trainer). It takes the gradient norm across both meshes and gives each mesh its own optimizer param group. [save_model()](/docs/transformers/v5.22.1/en/main_classes/trainer#transformers.Trainer.save_model) gathers sharded weights into a regular checkpoint. This requires `accelerate>=1.12` so the `Trainer` can mirror `tp_size` and `fsdp_size` into `~Accelerate.ParallelismConfig`.
 
 The table below compares EP-only training with 2D EP+FSDP2 on 8xH100 GPUs. The workload is full fine-tuning of Qwen3-30B-A3B in bf16 at sequence length 2048. More FSDP shards cut peak memory, and tokens/s drop some because FSDP2 all-gathers and reduce-scatters the experts across `fsdp`.
 
@@ -179,7 +179,7 @@ The table below compares EP-only training with 2D EP+FSDP2 on 8xH100 GPUs. The w
 | `tp_size=2, fsdp_size=4` | 2830 | 32.3 GB |
 
 > [!WARNING]
-> Resuming from a checkpoint is not supported yet for models sharded at load time, so the [Trainer](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.Trainer) only accepts `save_only_model=True` or `save_strategy="no"` for them.
+> Resuming from a checkpoint is not supported yet for models sharded at load time, so the [Trainer](/docs/transformers/v5.22.1/en/main_classes/trainer#transformers.Trainer) only accepts `save_only_model=True` or `save_strategy="no"` for them.
 
 ## API reference[[transformers.DistributedConfig]]
 
@@ -189,7 +189,7 @@ The table below compares EP-only training with 2D EP+FSDP2 on 8xH100 GPUs. The w
 transformers.DistributedConfig(tp_size: int | None = None, tp_plan: typing.Union[dict[str, str], typing.Literal['auto'], NoneType] = None, enable_sequence_parallel: bool = False, enable_expert_parallel: bool = False, fsdp_size: int | None = None, fsdp_cpu_offload: bool = False, fsdp_mixed_precision: bool = False, pp_size: int | None = None, ep_size: int | None = None, ep_plan: dict[str, str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/distributed/configuration_utils.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/distributed/configuration_utils.py#L26)
 
 **Parameters:**
 
@@ -216,4 +216,4 @@ ep_plan (`dict[str, str]`, *optional*) : Expert parallel sharding plan. Leave as
 Configuration for native distributed inference and training with tensor, pipeline, or FSDP2 parallelism.
 
 ### Experts backends
-https://huggingface.co/docs/transformers/v5.21.1/experts_interface.md
+https://huggingface.co/docs/transformers/v5.22.1/experts_interface.md

@@ -12,11 +12,11 @@ This model was contributed by [Eustache Le Bihan](https://huggingface.co/eustlb)
 
 ## Usage tips
 
-- Prepare inputs with [apply_chat_template()](/docs/transformers/v5.21.1/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) (one `user` message per text, `add_generation_prompt=True`). The normalizer of the tokenizer prepares the text like the original, with the settings of the checkpoint's language.
-- `generate` returns `audio_latents` and `audio_latents_mask`; decode them with [PocketTTSProcessor.decode()](/docs/transformers/v5.21.1/en/model_doc/pocket_tts#transformers.PocketTTSProcessor.decode).
+- Prepare inputs with [apply_chat_template()](/docs/transformers/v5.22.1/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) (one `user` message per text, `add_generation_prompt=True`). The normalizer of the tokenizer prepares the text like the original, with the settings of the checkpoint's language.
+- `generate` returns `audio_latents` and `audio_latents_mask`; decode them with [PocketTTSProcessor.decode()](/docs/transformers/v5.22.1/en/model_doc/pocket_tts#transformers.PocketTTSProcessor.decode).
 - `max_new_tokens` defaults to a budget based on text length, and generation stops shortly after the end-of-speech logit crosses `eos_threshold`.
 - `do_sample=False` matches the original at temperature 0. With sampling, `temperature` (default 0.3) is the variance of the flow's starting noise.
-- Split long text with [PocketTTSProcessor.split_text()](/docs/transformers/v5.21.1/en/model_doc/pocket_tts#transformers.PocketTTSProcessor.split_text), one conversation per chunk.
+- Split long text with [PocketTTSProcessor.split_text()](/docs/transformers/v5.22.1/en/model_doc/pocket_tts#transformers.PocketTTSProcessor.split_text), one conversation per chunk.
 
 ## Usage
 
@@ -277,7 +277,7 @@ loss.backward()
 transformers.PocketTTSConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, flow_head_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vocab_size: int = 4004, hidden_size: int = 1024, num_hidden_layers: int = 6, num_attention_heads: int = 16, num_key_value_heads: int | None = None, head_dim: int | None = None, intermediate_size: int = 4096, hidden_act: str = 'gelu_pytorch_tanh', layer_norm_eps: float = 1e-05, attention_bias: bool = False, attention_dropout: float = 0.0, max_position_embeddings: int = 8192, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, latent_dim: int = 32, pad_token_id: int = 3, bos_token_id: int | None = None, eos_token_id: int | None = None, audio_prompt_token_id: int = 4000, audio_latent_token_id: int = 4001, audio_prompt_bos_token_id: int = 4002, audio_bos_token_id: int = 4003, frame_rate: float = 12.5, initializer_range: float = 0.02, use_cache: bool = True, eos_loss_weight: float = 0.1, flow_loss_num_samples: int = 4, lsd_distill_probability: float = 0.25, lsd_diagonal_weight: float = 0.75, lsd_time_logit_mean: float = 0.4, lsd_time_logit_std: float = 1.0, latent_stats_ema_steps: int = 1000, latent_stats_ema_decay: float = 0.999)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/pocket_tts/configuration_pocket_tts.py#L75)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/pocket_tts/configuration_pocket_tts.py#L75)
 
 **Parameters:**
 
@@ -351,8 +351,8 @@ This is the configuration class to store the configuration of a PocketTTSModel. 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [eustlb/pocket-tts](https://huggingface.co/eustlb/pocket-tts)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.22.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## PocketTTSFlowHeadConfig[[transformers.PocketTTSFlowHeadConfig]]
 
@@ -362,7 +362,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes
 transformers.PocketTTSFlowHeadConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 512, num_hidden_layers: int = 6, latent_dim: int = 32, condition_dim: int = 1024, frequency_embedding_size: int = 256, hidden_act: str = 'silu', layer_norm_eps: float = 1e-06, rms_norm_eps: float = 1e-05, max_period: float = 10000.0, flow_type: typing.Literal['lsd', 'drifting'] = 'lsd', loss_weighting_hidden_size: int = 32, loss_weighting_num_layers: int = 3)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/pocket_tts/configuration_pocket_tts.py#L27)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/pocket_tts/configuration_pocket_tts.py#L27)
 
 **Parameters:**
 
@@ -394,8 +394,8 @@ This is the configuration class to store the configuration of a PocketTTSModel. 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [eustlb/pocket-tts](https://huggingface.co/eustlb/pocket-tts)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.22.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## PocketTTSFeatureExtractor[[transformers.PocketTTSFeatureExtractor]]
 
@@ -405,7 +405,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes
 transformers.PocketTTSFeatureExtractor(feature_size = 1, sampling_rate = 24000, padding_value = 0.0, frame_size = 1920, pad_to_multiple_of = 1920, end_on_pause = True, pause_duration = 0.08, fade_out_duration = 0.02, silence_floor_db = 35.0, analysis_frame_duration = 0.02, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/pocket_tts/feature_extraction_pocket_tts.py#L29)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/pocket_tts/feature_extraction_pocket_tts.py#L29)
 
 **Parameters:**
 
@@ -441,7 +441,7 @@ delays the onset), then the batch is right-padded to a multiple of the tokenizer
 __call__(audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor']], sampling_rate: int | None = None, end_on_pause: bool | None = None, padding: bool | str | transformers.utils.generic.PaddingStrategy | None = True, pad_to_multiple_of: int | None = None, max_length: int | None = None, return_attention_mask: bool | None = True, return_tensors: str | None = 'pt', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/pocket_tts/feature_extraction_pocket_tts.py#L106)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/pocket_tts/feature_extraction_pocket_tts.py#L106)
 
 **Parameters:**
 
@@ -451,7 +451,7 @@ sampling_rate (`int`, *optional*) : The sampling rate at which the `audio` input
 
 end_on_pause (`bool`, *optional*) : Whether to end each waveform on a short pause, see the class docstring. Defaults to `self.end_on_pause`.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.21.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Padding strategy of the batch, see [pad()](/docs/transformers/v5.21.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor.pad).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.22.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Padding strategy of the batch, see [pad()](/docs/transformers/v5.22.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor.pad).
 
 pad_to_multiple_of (`int`, *optional*) : Pad the batch to a multiple of this value. Defaults to `self.pad_to_multiple_of`.
 
@@ -463,7 +463,7 @@ pad_to_multiple_of (`int`, *optional*) : Pad the batch to a multiple of this val
 transformers.PocketTTSProcessor(feature_extractor, tokenizer, audio_tokenizer = None, chat_template = None, short_text_max_words: int = 4, frames_after_eos_short_text: int = 4, frames_after_eos: int = 2, fade_in_duration: float = 0.005)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/pocket_tts/processing_pocket_tts.py#L51)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/pocket_tts/processing_pocket_tts.py#L51)
 
 **Parameters:**
 
@@ -485,8 +485,8 @@ fade_in_duration (`float`, *optional*, defaults to 0.005) : Duration in seconds 
 
 Constructs a PocketTTSProcessor which wraps a feature extractor and a tokenizer into a single processor.
 
-[PocketTTSProcessor](/docs/transformers/v5.21.1/en/model_doc/pocket_tts#transformers.PocketTTSProcessor) offers all the functionalities of [PocketTTSFeatureExtractor](/docs/transformers/v5.21.1/en/model_doc/pocket_tts#transformers.PocketTTSFeatureExtractor) and [TokenizersBackend](/docs/transformers/v5.21.1/en/main_classes/tokenizer#transformers.TokenizersBackend). See the
-[~PocketTTSFeatureExtractor](/docs/transformers/v5.21.1/en/model_doc/pocket_tts#transformers.PocketTTSFeatureExtractor) and [~TokenizersBackend](/docs/transformers/v5.21.1/en/main_classes/tokenizer#transformers.TokenizersBackend) for more information.
+[PocketTTSProcessor](/docs/transformers/v5.22.1/en/model_doc/pocket_tts#transformers.PocketTTSProcessor) offers all the functionalities of [PocketTTSFeatureExtractor](/docs/transformers/v5.22.1/en/model_doc/pocket_tts#transformers.PocketTTSFeatureExtractor) and [TokenizersBackend](/docs/transformers/v5.22.1/en/main_classes/tokenizer#transformers.TokenizersBackend). See the
+[~PocketTTSFeatureExtractor](/docs/transformers/v5.22.1/en/model_doc/pocket_tts#transformers.PocketTTSFeatureExtractor) and [~TokenizersBackend](/docs/transformers/v5.22.1/en/main_classes/tokenizer#transformers.TokenizersBackend) for more information.
 
 #### __call__[[transformers.PocketTTSProcessor.__call__]]
 
@@ -494,11 +494,11 @@ Constructs a PocketTTSProcessor which wraps a feature extractor and a tokenizer 
 __call__(text: str | list[str] | None = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, audio_prompt_latents: list[torch.Tensor] | None = None, labels: list[torch.Tensor] | None = None, **kwargs: *<class 'transformers.models.pocket_tts.processing_pocket_tts.PocketTTSProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/pocket_tts/processing_pocket_tts.py#L109)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/pocket_tts/processing_pocket_tts.py#L109)
 
 **Parameters:**
 
-text (`str` or `list[str]`) : The prompt(s) rendered by [apply_chat_template()](/docs/transformers/v5.21.1/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template).
+text (`str` or `list[str]`) : The prompt(s) rendered by [apply_chat_template()](/docs/transformers/v5.22.1/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template).
 
 audio (`np.ndarray`, `torch.Tensor`, or a list of them, *optional*) : The waveforms of the conversations, mono at 24 kHz, in conversation order: each voice, and in training each target.
 
@@ -508,13 +508,13 @@ labels (`list[torch.Tensor]`, *optional*) : Precomputed targets (training), one 
 
 end_on_pause (`bool`, *kwargs*, *optional*) : Whether to end each voice-prompt waveform on a short pause, as the original does before cloning a voice. Defaults to the feature extractor's `end_on_pause`.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.21.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.22.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.21.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.22.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 **Returns:**
 
-[BatchFeature](/docs/transformers/v5.21.1/en/main_classes/feature_extractor#transformers.BatchFeature) with `input_ids`, `attention_mask`, `audio_prompt_latents` and `audio_prompt_latents_mask`;
+[BatchFeature](/docs/transformers/v5.22.1/en/main_classes/feature_extractor#transformers.BatchFeature) with `input_ids`, `attention_mask`, `audio_prompt_latents` and `audio_prompt_latents_mask`;
 for generation `frames_after_eos` (frames generated after the end-of-speech frame, by text length), for
 training `labels` and `labels_mask`.
 
@@ -524,7 +524,7 @@ training `labels` and `labels_mask`.
 split_text(text: str, max_tokens: int = 50)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/pocket_tts/processing_pocket_tts.py#L282)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/pocket_tts/processing_pocket_tts.py#L282)
 
 **Parameters:**
 
@@ -543,7 +543,7 @@ conversation of a batch.
 decode(audio_latents: torch.Tensor, audio_latents_mask: torch.Tensor | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/pocket_tts/processing_pocket_tts.py#L340)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/pocket_tts/processing_pocket_tts.py#L340)
 
 **Parameters:**
 
@@ -564,12 +564,12 @@ of each in, as the original does.
 save_audio(audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor']], saving_path: str | pathlib.Path | list[str | pathlib.Path], sampling_rate: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/pocket_tts/processing_pocket_tts.py#L389)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/pocket_tts/processing_pocket_tts.py#L389)
 
 Writes the generated waveform(s) to WAV file(s).
 
 audio (`torch.Tensor`, `np.ndarray` or a list of them):
-The waveform(s), as returned by [decode()](/docs/transformers/v5.21.1/en/model_doc/pocket_tts#transformers.PocketTTSProcessor.decode).
+The waveform(s), as returned by [decode()](/docs/transformers/v5.22.1/en/model_doc/pocket_tts#transformers.PocketTTSProcessor.decode).
 saving_path (`str`, `Path` or a list of them):
 One path per waveform.
 sampling_rate (`int`, *optional*):
@@ -583,17 +583,17 @@ Sampling rate of the waveforms, the feature extractor's (the audio tokenizer's) 
 transformers.PocketTTSModel(config: PocketTTSConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/pocket_tts/modeling_pocket_tts.py#L498)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/pocket_tts/modeling_pocket_tts.py#L498)
 
 **Parameters:**
 
-config ([PocketTTSConfig](/docs/transformers/v5.21.1/en/model_doc/pocket_tts#transformers.PocketTTSConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PocketTTSConfig](/docs/transformers/v5.22.1/en/model_doc/pocket_tts#transformers.PocketTTSConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Pocket TTS backbone: a causal transformer over one stream made of the voice prompt, the text tokens and the audio
 latents, returning the normalised hidden states. The voice prompt and the audio latents are latents of the audio
 tokenizer, which the processor holds.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.22.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -607,11 +607,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, audio_prompt_latents: typing.Optional[torch.FloatTensor] = None, audio_prompt_latents_mask: typing.Optional[torch.Tensor] = None, audio_latents: typing.Optional[torch.FloatTensor] = None, audio_latents_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/pocket_tts/modeling_pocket_tts.py#L518)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/pocket_tts/modeling_pocket_tts.py#L518)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.21.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.21.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.21.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 audio_prompt_latents (`torch.FloatTensor` of shape `(batch_size, num_prompt_frames, latent_dim)`, *optional*) : Voice-prompt latents of the audio tokenizer (encoded by the processor, or a checkpoint's `voices/`), right-padded to the longest voice of the batch, scattered into the `audio_prompt_token_id` positions.
 
@@ -625,19 +625,19 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.21.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.21.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.22.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.22.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.21.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.22.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPast](/docs/transformers/v5.21.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
+A [BaseModelOutputWithPast](/docs/transformers/v5.22.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PocketTTSConfig](/docs/transformers/v5.21.1/en/model_doc/pocket_tts#transformers.PocketTTSConfig)) and inputs.
+elements depending on the configuration ([PocketTTSConfig](/docs/transformers/v5.22.1/en/model_doc/pocket_tts#transformers.PocketTTSConfig)) and inputs.
 
-The [PocketTTSModel](/docs/transformers/v5.21.1/en/model_doc/pocket_tts#transformers.PocketTTSModel) forward method, overrides the `__call__` special method.
+The [PocketTTSModel](/docs/transformers/v5.22.1/en/model_doc/pocket_tts#transformers.PocketTTSModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -647,7 +647,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.21.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.22.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -670,16 +670,16 @@ the latter silently ignores them.
 transformers.PocketTTSForConditionalGeneration(config: PocketTTSConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/pocket_tts/modeling_pocket_tts.py#L672)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/pocket_tts/modeling_pocket_tts.py#L672)
 
 **Parameters:**
 
-config ([PocketTTSConfig](/docs/transformers/v5.21.1/en/model_doc/pocket_tts#transformers.PocketTTSConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PocketTTSConfig](/docs/transformers/v5.22.1/en/model_doc/pocket_tts#transformers.PocketTTSConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Pocket TTS text-to-speech model: the backbone, the flow head that samples one audio latent per step and the
 end-of-speech head. It generates audio tokenizer latents, which the processor decodes into 24 kHz audio.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.22.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -693,11 +693,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, audio_prompt_latents: typing.Optional[torch.FloatTensor] = None, audio_prompt_latents_mask: typing.Optional[torch.Tensor] = None, audio_latents: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.FloatTensor] = None, labels_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/pocket_tts/modeling_pocket_tts.py#L702)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/pocket_tts/modeling_pocket_tts.py#L702)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.21.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.21.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.21.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 audio_prompt_latents (`torch.FloatTensor` of shape `(batch_size, num_prompt_frames, latent_dim)`, *optional*) : Voice-prompt latents of the audio tokenizer, right-padded, scattered into the `audio_prompt_token_id` positions.
 
@@ -713,7 +713,7 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.21.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.21.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.22.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.22.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -723,9 +723,9 @@ use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value s
 
 A `PocketTTSOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PocketTTSConfig](/docs/transformers/v5.21.1/en/model_doc/pocket_tts#transformers.PocketTTSConfig)) and inputs.
+elements depending on the configuration ([PocketTTSConfig](/docs/transformers/v5.22.1/en/model_doc/pocket_tts#transformers.PocketTTSConfig)) and inputs.
 
-The [PocketTTSForConditionalGeneration](/docs/transformers/v5.21.1/en/model_doc/pocket_tts#transformers.PocketTTSForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [PocketTTSForConditionalGeneration](/docs/transformers/v5.22.1/en/model_doc/pocket_tts#transformers.PocketTTSForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -733,7 +733,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `()`, *optional*, returned when `labels` is passed) -- Training loss: the LSD flow loss of the target latents plus `config.eos_loss_weight` times the end-of-speech loss.
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, 1)`) -- End-of-speech logits, one per position.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.21.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.22.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -768,32 +768,32 @@ Example:
 generate(inputs: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/pocket_tts/generation_pocket_tts.py#L122)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/pocket_tts/generation_pocket_tts.py#L122)
 
 **Parameters:**
 
-inputs (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : The `input_ids` prepared by [PocketTTSProcessor](/docs/transformers/v5.21.1/en/model_doc/pocket_tts#transformers.PocketTTSProcessor). Can also be passed as `input_ids=`.
+inputs (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : The `input_ids` prepared by [PocketTTSProcessor](/docs/transformers/v5.22.1/en/model_doc/pocket_tts#transformers.PocketTTSProcessor). Can also be passed as `input_ids=`.
 
 kwargs (`dict[str, Any]`, *optional*) : `attention_mask`, the voice prompt (`audio_prompt_latents` and `audio_prompt_latents_mask`, or the cache of a voice prefix as `past_key_values`, the shipped voices, with prompts of the text only), `frames_after_eos` from the processor, the generation parameters (`do_sample`, `temperature`, `max_new_tokens`, ...), and the Pocket TTS-specific `num_flow_steps`, `eos_threshold` and `min_frames_before_eos`, which default to the generation config.
 
 **Returns:**
 
-[PocketTTSGenerateOutput](/docs/transformers/v5.21.1/en/model_doc/pocket_tts#transformers.models.pocket_tts.generation_pocket_tts.PocketTTSGenerateOutput) when `return_dict_in_generate=True` (the
+[PocketTTSGenerateOutput](/docs/transformers/v5.22.1/en/model_doc/pocket_tts#transformers.models.pocket_tts.generation_pocket_tts.PocketTTSGenerateOutput) when `return_dict_in_generate=True` (the
 checkpoints' generation config): the padded `audio_latents` and their `audio_latents_mask`, which
-[PocketTTSProcessor.decode()](/docs/transformers/v5.21.1/en/model_doc/pocket_tts#transformers.PocketTTSProcessor.decode) decodes as one batch. Otherwise the list of generated latents, one
+[PocketTTSProcessor.decode()](/docs/transformers/v5.22.1/en/model_doc/pocket_tts#transformers.PocketTTSProcessor.decode) decodes as one batch. Otherwise the list of generated latents, one
 `(num_frames, latent_dim)` tensor per sample, each decoded on its own.
 
-Generates speech. This method overrides [generate()](/docs/transformers/v5.21.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) to default
+Generates speech. This method overrides [generate()](/docs/transformers/v5.22.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) to default
 `max_new_tokens` to the original runtime's frame budget, `ceil((num_text_tokens / 3 + 2) * frame_rate)` for the
 longest text of the batch. Everything else goes through the regular generation hooks.
 
 #### sample_latent[[transformers.PocketTTSForConditionalGeneration.sample_latent]]
 
 ```python
-sample_latent(condition: <module 'torch.Tensor' (<doc_builder.mock_imports.MockFinder object at 0x7fef3bad2690>)>, noise: <module 'torch.Tensor' (<doc_builder.mock_imports.MockFinder object at 0x7fef3bad2690>)>, num_flow_steps: int)
+sample_latent(condition: Tensor, noise: Tensor, num_flow_steps: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/pocket_tts/modeling_pocket_tts.py#L807)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/pocket_tts/modeling_pocket_tts.py#L807)
 
 **Parameters:**
 
@@ -812,10 +812,10 @@ Samples the next latent from `noise` with the flow head.
 #### denormalize_latents[[transformers.PocketTTSForConditionalGeneration.denormalize_latents]]
 
 ```python
-denormalize_latents(audio_latents: <module 'torch.Tensor' (<doc_builder.mock_imports.MockFinder object at 0x7fef3bad2690>)>)
+denormalize_latents(audio_latents: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/pocket_tts/modeling_pocket_tts.py#L854)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/pocket_tts/modeling_pocket_tts.py#L854)
 
 Maps latents from the flow head's normalised space to the audio tokenizer's.
 
@@ -827,7 +827,7 @@ Maps latents from the flow head's normalised space to the audio tokenizer's.
 transformers.models.pocket_tts.generation_pocket_tts.PocketTTSGenerateOutput(sequences: LongTensor, scores: tuple[torch.FloatTensor] | None = None, logits: tuple[torch.FloatTensor] | None = None, attentions: tuple[tuple[torch.FloatTensor]] | None = None, hidden_states: tuple[tuple[torch.FloatTensor]] | None = None, past_key_values: transformers.cache_utils.Cache | None = None, audio_latents: typing.Optional[torch.FloatTensor] = None, audio_latents_mask: typing.Optional[torch.LongTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/pocket_tts/generation_pocket_tts.py#L40)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/pocket_tts/generation_pocket_tts.py#L40)
 
 **Parameters:**
 
@@ -843,11 +843,11 @@ hidden_states (`tuple(tuple(torch.FloatTensor))`, *optional*, returned when `out
 
 past_key_values (`Cache`, *optional*, returned when `use_cache=True`) : The key/value cache of the backbone at the end of generation.
 
-audio_latents (`torch.FloatTensor` of shape `(batch_size, num_frames, latent_dim)`) : The generated latents, in the audio tokenizer's latent space, right-padded with zeros past each sample's own frames. [PocketTTSProcessor.decode()](/docs/transformers/v5.21.1/en/model_doc/pocket_tts#transformers.PocketTTSProcessor.decode) turns them into waveforms.
+audio_latents (`torch.FloatTensor` of shape `(batch_size, num_frames, latent_dim)`) : The generated latents, in the audio tokenizer's latent space, right-padded with zeros past each sample's own frames. [PocketTTSProcessor.decode()](/docs/transformers/v5.22.1/en/model_doc/pocket_tts#transformers.PocketTTSProcessor.decode) turns them into waveforms.
 
 audio_latents_mask (`torch.LongTensor` of shape `(batch_size, num_frames)`) : Mask of each sample's frames (`1`), the end-of-speech frame and the frames after it included, as opposed to padding (`0`).
 
 Outputs of `PocketTTSForConditionalGeneration.generate`.
 
 ### DPR
-https://huggingface.co/docs/transformers/v5.21.1/model_doc/dpr.md
+https://huggingface.co/docs/transformers/v5.22.1/model_doc/dpr.md

@@ -79,4 +79,4 @@ Values of `-1` indicate unallocated blocks.
 - **Sequence 2** (70 cached tokens): cache in `KV_cache[3]`, `KV_cache[5]`, and `KV_cache[6]`. Note that blocks are not necessarily contiguous, which is the key advantage of paged cache. The new token fits in the third block.
 
 ### Extending the exporters
-https://huggingface.co/docs/transformers/v5.21.1/exporters_extend.md
+https://huggingface.co/docs/transformers/v5.22.1/exporters_extend.md

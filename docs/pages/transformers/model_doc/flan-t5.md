@@ -37,4 +37,4 @@ The original checkpoints can be found [here](https://github.com/google-research/
 Refer to [T5's documentation page](./t5) for all API reference, code examples and notebooks. For more details regarding training and evaluation of the FLAN-T5, refer to the model card.
 
 ### RoBERTa-PreLayerNorm
-https://huggingface.co/docs/transformers/v5.21.1/model_doc/roberta-prelayernorm.md
+https://huggingface.co/docs/transformers/v5.22.1/model_doc/roberta-prelayernorm.md

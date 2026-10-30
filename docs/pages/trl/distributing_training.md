@@ -121,5 +121,5 @@ You can combine multi-node with DeepSpeed by setting `distributed_type: DEEPSPEE
 - [Accelerate: Example Zoo](https://huggingface.co/docs/accelerate/usage_guides/training_zoo)
 - [SLURM Workload Manager Documentation](https://slurm.schedmd.com/) - For cluster job scheduling
 
-### PEFT Integration
-https://huggingface.co/docs/trl/v1.16.0/peft_integration.md
+### GRPO Trainer
+https://huggingface.co/docs/trl/v1.17.0/grpo_trainer.md

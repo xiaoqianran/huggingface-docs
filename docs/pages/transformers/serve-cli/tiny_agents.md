@@ -41,4 +41,4 @@ I have generated an image of a cat on the moon using the Flux 1 Schnell Image Ge
 ```
 
 ### Serve CLI
-https://huggingface.co/docs/transformers/v5.21.1/serve-cli/serving.md
+https://huggingface.co/docs/transformers/v5.22.1/serve-cli/serving.md

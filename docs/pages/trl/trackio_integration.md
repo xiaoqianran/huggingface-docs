@@ -64,5 +64,5 @@ trainer.train()
 
 will give you a hosted dashboard at https://huggingface.co/spaces/trl-lib/trackio.
 
-### Training on AWS Trainium
-https://huggingface.co/docs/trl/v1.16.0/aws_trainium.md
+### Dataset formats and types
+https://huggingface.co/docs/trl/v1.17.0/dataset_formats.md

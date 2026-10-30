@@ -32,4 +32,4 @@ For deterministic behavior, try the following.
 - [Enhance Your Models in 5 Minutes with the Hugging Face Kernel Hub](https://huggingface.co/blog/hello-hf-kernels) blog post
 
 ### Writing kernels
-https://huggingface.co/docs/transformers/v5.21.1/kernel_doc/writing_kernels.md
+https://huggingface.co/docs/transformers/v5.22.1/kernel_doc/writing_kernels.md

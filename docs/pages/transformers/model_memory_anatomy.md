@@ -67,4 +67,4 @@ There are three main types of training ops.
 - See the [Kernels](./kernels) guide to learn how to speed up training with custom fused kernels.
 
 ### How caching works
-https://huggingface.co/docs/transformers/v5.21.1/cache_explanation.md
+https://huggingface.co/docs/transformers/v5.22.1/cache_explanation.md

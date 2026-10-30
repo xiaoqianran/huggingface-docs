@@ -164,5 +164,5 @@ a solution.
 Once `huggingface_hub` is properly installed on your machine, you might want to
 [configure environment variables](package_reference/environment_variables) or [check one of our guides](guides/overview) to get started.
 
-### 🤗 Hub client library
-https://huggingface.co/docs/huggingface_hub/v2.3.0/index.md
+### Interact with the Hub through the Filesystem API
+https://huggingface.co/docs/huggingface_hub/v2.4.0/guides/hf_file_system.md

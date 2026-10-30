@@ -1033,7 +1033,7 @@ Find out more about Token Classification [here](../tasks/token-classification).
 
 <InferenceSnippet
     pipeline=token-classification
-    providersMapping={ {"hf-inference":{"modelId":"dslim/bert-base-NER","providerModelId":"dslim/bert-base-NER"} } }
+    providersMapping={ {"hf-inference":{"modelId":"StanfordAIMI/stanford-deidentifier-with-radiology-reports-and-i2b2","providerModelId":"StanfordAIMI/stanford-deidentifier-with-radiology-reports-and-i2b2"} } }
 />
 
 ### Translation
@@ -1527,7 +1527,7 @@ Find out more about Text To Video [here](../tasks/text-to-video).
 
 <InferenceSnippet
     pipeline=text-to-video
-    providersMapping={ {"replicate":{"modelId":"Wan-AI/Wan2.2-TI2V-5B","providerModelId":"wan-video/wan-2.2-5b-fast"} } }
+    providersMapping={ {"replicate":{"modelId":"Wan-AI/Wan2.2-T2V-A14B","providerModelId":"wan-video/wan-2.2-t2v-fast"} } }
 />
 
 ### Template
@@ -1853,7 +1853,7 @@ Find out more about Chat Completion (LLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"scaleway":{"modelId":"openai/gpt-oss-120b","providerModelId":"gpt-oss-120b"} } }
+    providersMapping={ {"scaleway":{"modelId":"zai-org/GLM-5.3","providerModelId":"glm-5.3"} } }
 conversational />
 
 ### Chat Completion (VLM)
@@ -1862,7 +1862,7 @@ Find out more about Chat Completion (VLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=image-text-to-text
-    providersMapping={ {"scaleway":{"modelId":"Qwen/Qwen3.6-35B-A3B","providerModelId":"qwen3.6-35b-a3b"} } }
+    providersMapping={ {"scaleway":{"modelId":"deepseek-ai/DeepSeek-V4.1-Flash-1017","providerModelId":"deepseek-v4.1-flash-1017"} } }
 conversational />
 
 ### Feature Extraction

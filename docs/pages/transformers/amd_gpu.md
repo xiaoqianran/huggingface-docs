@@ -50,7 +50,7 @@ Use `rocm-smi` or `amd-smi` to list the GPUs and their indices.
 
 ## Run inference
 
-[Pipeline](/docs/transformers/v5.21.1/en/main_classes/pipelines#transformers.Pipeline) and `device_map="auto"` detect AMD GPUs and place the model on `cuda` automatically. You can also pass `device_map="cuda"` or `device_map="cuda:1"` explicitly.
+[Pipeline](/docs/transformers/v5.22.1/en/main_classes/pipelines#transformers.Pipeline) and `device_map="auto"` detect AMD GPUs and place the model on `cuda` automatically. You can also pass `device_map="cuda"` or `device_map="cuda:1"` explicitly.
 
 ```py
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -76,8 +76,8 @@ Set the attention backend with `attn_implementation` when you load a model, and 
 | `attn_implementation` | Requires | Notes |
 |---|---|---|
 | `"sdpa"` | – | Default. |
-| `"flash_attention_2"` | [flash-attn](https://github.com/Dao-AILab/flash-attention#amd-rocm-support) built for ROCm, or [kernels](https://github.com/huggingface/kernels) | Uses the `flash-attn` package when it is installed. Its default Composable Kernel (CK) backend supports MI200, MI300, MI355, and RDNA 3/4 GPUs, and the [Docker image](#installation) includes it on MI300 or MI350. Otherwise, loads [kernels-community/aiter-flash-attn](https://huggingface.co/kernels-community/aiter-flash-attn) from the Hub. |
-| `"flash_attention_3"` | [kernels](https://github.com/huggingface/kernels) | Loads [kernels-community/aiter-flash-attn](https://huggingface.co/kernels-community/aiter-flash-attn), a prebuilt [AITER](https://github.com/ROCm/aiter) FlashAttention kernel. No compilation required. |
+| `"flash_attention_2"` | [flash-attn](https://github.com/Dao-AILab/flash-attention#amd-rocm-support) built for ROCm, or [kernels](https://github.com/huggingface/kernels) | Uses the `flash-attn` package when it is installed. Its default Composable Kernel (CK) backend supports MI200, MI300, MI355, and RDNA 3/4 GPUs, and the [Docker image](#installation) includes it on MI300 or MI350. Otherwise, loads [amd/aiter-flash-attn](https://huggingface.co/kernels/amd/aiter-flash-attn) from the Hub. |
+| `"flash_attention_3"` | [kernels](https://github.com/huggingface/kernels) | Loads [amd/aiter-flash-attn](https://huggingface.co/kernels/amd/aiter-flash-attn), a prebuilt FlashAttention kernel from AMD's [AITER](https://github.com/ROCm/aiter) library. No compilation required. |
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -90,7 +90,7 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
-On ROCm, `flash_attention_3` resolves to the AITER kernel and logs the following. The message refers to the FlashAttention-3 package, so it appears even when `flash_attention_2` is installed.
+On ROCm, `flash_attention_3` resolves to the AITER kernel and logs the following. Transformers currently uses the `kernels-community/aiter-flash-attn` alias, which redirects to `amd/aiter-flash-attn`. The message refers to the FlashAttention-3 package, so it appears even when `flash_attention_2` is installed.
 
 ```txt
 You do not have `flash_attn` installed, using `kernels-community/aiter-flash-attn` from the `kernels` library instead!
@@ -100,7 +100,7 @@ You can also pass the kernel repository directly with `attn_implementation="kern
 
 ## Use Hub kernels
 
-Set `use_kernels=True` in [from_pretrained()](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to replace supported layers with optimized kernels from the Hub. Transformers detects ROCm and picks the AMD build for each layer, such as `kernels-community/aiter-rope` for rotary embeddings and `kernels-community/liger-kernels` for RMSNorm. When you write a custom [KernelConfig](/docs/transformers/v5.21.1/en/main_classes/kernels#transformers.KernelConfig), use `"rocm"` as the device key for AMD-specific mappings.
+Set `use_kernels=True` in [from_pretrained()](/docs/transformers/v5.22.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to replace supported layers with optimized kernels from the Hub. Transformers detects ROCm and picks the AMD build for each layer, such as [amd/aiter-rope](https://huggingface.co/kernels/amd/aiter-rope) for rotary embeddings and [kernels-community/liger-kernels](https://huggingface.co/kernels/kernels-community/liger-kernels) for RMSNorm. When you write a custom [KernelConfig](/docs/transformers/v5.22.1/en/main_classes/kernels#transformers.KernelConfig), use `"rocm"` as the device key for AMD-specific mappings.
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -118,7 +118,7 @@ Methods supported on ROCm include [AWQ](./quantization/awq), [GPT-QModel](./quan
 
 ## Train with Trainer
 
-[TrainingArguments](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.TrainingArguments) detects AMD GPUs and sets the device to `cuda` automatically.
+[TrainingArguments](/docs/transformers/v5.22.1/en/main_classes/trainer#transformers.TrainingArguments) detects AMD GPUs and sets the device to `cuda` automatically.
 
 ```py
 from transformers import TrainingArguments
@@ -152,14 +152,14 @@ See [Tensor parallelism](./tensor_parallelism), [Expert parallelism](./expert_pa
 
 ## Limitations
 
-- `CodeCarbonCallback` isn't compatible with ROCm. Set `report_to` in [TrainingArguments](/docs/transformers/v5.21.1/en/main_classes/trainer#transformers.TrainingArguments) to exclude `codecarbon`.
+- `CodeCarbonCallback` isn't compatible with ROCm. Set `report_to` in [TrainingArguments](/docs/transformers/v5.22.1/en/main_classes/trainer#transformers.TrainingArguments) to exclude `codecarbon`.
 - Quantization methods marked 🔴 for ROCm in the [compatibility table](./quantization/overview) rely on CUDA-only kernels and fail to load on AMD GPUs.
 
 ## Next steps
 
 - Read the [ROCm documentation](https://rocm.docs.amd.com/) for driver and PyTorch setup.
-- Browse the ROCm builds in the [kernels-community](https://huggingface.co/kernels-community) organization.
+- Browse the ROCm builds in the [AMD](https://huggingface.co/amd) and [kernels-community](https://huggingface.co/kernels-community) organizations.
 - Read [Loading kernels](./kernel_doc/loading_kernels) to customize which kernels replace which layers.
 
 ### Add a model with modular transformers
-https://huggingface.co/docs/transformers/v5.21.1/modular_transformers.md
+https://huggingface.co/docs/transformers/v5.22.1/modular_transformers.md

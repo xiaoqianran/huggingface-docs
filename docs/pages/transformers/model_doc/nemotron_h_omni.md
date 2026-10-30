@@ -7,7 +7,7 @@ embedding space at the `<image>` / `<video>` context-token positions; audio clip
 `<audio>` positions. The result is a single autoregressive model that reasons jointly over text, images, video and
 sound.
 
-The example below demonstrates how to reason over an image and a text prompt with [AutoModelForImageTextToText](/docs/transformers/v5.21.1/en/model_doc/auto#transformers.AutoModelForImageTextToText).
+The example below demonstrates how to reason over an image and a text prompt with [AutoModelForImageTextToText](/docs/transformers/v5.22.1/en/model_doc/auto#transformers.AutoModelForImageTextToText).
 
 ```python
 from transformers import AutoModelForImageTextToText, AutoProcessor
@@ -54,13 +54,13 @@ print(processor.decode(output[0, inputs["input_ids"].shape[-1] :], skip_special_
 transformers.NemotronH_Omni_Reasoning_V3_Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, audio_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, force_image_size: int | None = None, downsample_ratio: float = 0.5, projector_hidden_size: int = 4096, vision_hidden_size: int = 1280, video_pruning_rate: float = 0.0, video_temporal_patch_size: int = 2, image_token_id: int | None = None, video_token_id: int | None = None, audio_token_id: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron_h_omni/configuration_nemotron_h_omni.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron_h_omni/configuration_nemotron_h_omni.py#L28)
 
 **Parameters:**
 
-vision_config (`dict` or `RadioConfig`, *optional*) : Configuration for the RADIO vision encoder. Defaults to a default [RadioConfig](/docs/transformers/v5.21.1/en/model_doc/radio#transformers.RadioConfig).
+vision_config (`dict` or `RadioConfig`, *optional*) : Configuration for the RADIO vision encoder. Defaults to a default [RadioConfig](/docs/transformers/v5.22.1/en/model_doc/radio#transformers.RadioConfig).
 
-text_config (`dict` or `NemotronHConfig`, *optional*) : Configuration for the NemotronH language model. Defaults to a default [NemotronHConfig](/docs/transformers/v5.21.1/en/model_doc/nemotron_h#transformers.NemotronHConfig).
+text_config (`dict` or `NemotronHConfig`, *optional*) : Configuration for the NemotronH language model. Defaults to a default [NemotronHConfig](/docs/transformers/v5.22.1/en/model_doc/nemotron_h#transformers.NemotronHConfig).
 
 audio_config (`dict` or `ParakeetEncoderConfig`, *optional*) : Configuration for the optional Parakeet sound encoder. `None` disables the audio branch.
 
@@ -86,8 +86,8 @@ This is the configuration class to store the configuration of a Nemotron H OmniM
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16](https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.22.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## NemotronH_Omni_Reasoning_V3ImageProcessor[[transformers.NemotronH_Omni_Reasoning_V3ImageProcessor]]
 
@@ -97,7 +97,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.21.1/en/main_classes
 transformers.NemotronH_Omni_Reasoning_V3ImageProcessor(**kwargs: *<class 'transformers.models.nemotron_h_omni.image_processing_nemotron_h_omni.NemotronH_Omni_Reasoning_V3ImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron_h_omni/image_processing_nemotron_h_omni.py#L98)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron_h_omni/image_processing_nemotron_h_omni.py#L98)
 
 **Parameters:**
 
@@ -159,7 +159,7 @@ Constructs a NemotronH_Omni_Reasoning_V3ImageProcessor image processor.
 preprocess(images, **kwargs: *<class 'transformers.models.nemotron_h_omni.image_processing_nemotron_h_omni.NemotronH_Omni_Reasoning_V3ImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron_h_omni/image_processing_nemotron_h_omni.py#L122)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron_h_omni/image_processing_nemotron_h_omni.py#L122)
 
 **Parameters:**
 
@@ -229,7 +229,7 @@ max_model_len (`int`, *kwargs*, *optional*, defaults to 16384) : Context length 
 transformers.NemotronH_Omni_Reasoning_V3VideoProcessor(**kwargs: *<class 'transformers.models.nemotron_h_omni.video_processing_nemotron_h_omni.NemotronH_Omni_Reasoning_V3VideoProcessorInitKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron_h_omni/video_processing_nemotron_h_omni.py#L54)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron_h_omni/video_processing_nemotron_h_omni.py#L54)
 
 **Parameters:**
 
@@ -245,7 +245,7 @@ Constructs a NemotronH_Omni_Reasoning_V3VideoProcessor video processor.
 transformers.NemotronH_Omni_Reasoning_V3Processor(image_processor = None, video_processor = None, tokenizer = None, feature_extractor = None, chat_template = None, audio_sampling_rate: int = 16000, audio_subsampling_factor: int = 8, audio_hop_length: int = 160, video_temporal_patch_dim: int = 2, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron_h_omni/processing_nemotron_h_omni.py#L44)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron_h_omni/processing_nemotron_h_omni.py#L44)
 
 **Parameters:**
 
@@ -269,8 +269,8 @@ video_temporal_patch_dim (`int`, *optional*, defaults to 2) : Number of frames c
 
 Constructs a NemotronH_Omni_Reasoning_V3Processor which wraps a image processor, a video processor, a tokenizer, and a feature extractor into a single processor.
 
-[NemotronH_Omni_Reasoning_V3Processor](/docs/transformers/v5.21.1/en/model_doc/nemotron_h_omni#transformers.NemotronH_Omni_Reasoning_V3Processor) offers all the functionalities of [NemotronH_Omni_Reasoning_V3ImageProcessor](/docs/transformers/v5.21.1/en/model_doc/nemotron_h_omni#transformers.NemotronH_Omni_Reasoning_V3ImageProcessor), [NemotronH_Omni_Reasoning_V3VideoProcessor](/docs/transformers/v5.21.1/en/model_doc/nemotron_h_omni#transformers.NemotronH_Omni_Reasoning_V3VideoProcessor), `tokenizer_class`, and `feature_extractor_class`. See the
-[~NemotronH_Omni_Reasoning_V3ImageProcessor](/docs/transformers/v5.21.1/en/model_doc/nemotron_h_omni#transformers.NemotronH_Omni_Reasoning_V3ImageProcessor), [~NemotronH_Omni_Reasoning_V3VideoProcessor](/docs/transformers/v5.21.1/en/model_doc/nemotron_h_omni#transformers.NemotronH_Omni_Reasoning_V3VideoProcessor), `~tokenizer_class`, and `~feature_extractor_class` for more information.
+[NemotronH_Omni_Reasoning_V3Processor](/docs/transformers/v5.22.1/en/model_doc/nemotron_h_omni#transformers.NemotronH_Omni_Reasoning_V3Processor) offers all the functionalities of [NemotronH_Omni_Reasoning_V3ImageProcessor](/docs/transformers/v5.22.1/en/model_doc/nemotron_h_omni#transformers.NemotronH_Omni_Reasoning_V3ImageProcessor), [NemotronH_Omni_Reasoning_V3VideoProcessor](/docs/transformers/v5.22.1/en/model_doc/nemotron_h_omni#transformers.NemotronH_Omni_Reasoning_V3VideoProcessor), `tokenizer_class`, and `feature_extractor_class`. See the
+[~NemotronH_Omni_Reasoning_V3ImageProcessor](/docs/transformers/v5.22.1/en/model_doc/nemotron_h_omni#transformers.NemotronH_Omni_Reasoning_V3ImageProcessor), [~NemotronH_Omni_Reasoning_V3VideoProcessor](/docs/transformers/v5.22.1/en/model_doc/nemotron_h_omni#transformers.NemotronH_Omni_Reasoning_V3VideoProcessor), `~tokenizer_class`, and `~feature_extractor_class` for more information.
 
 #### batch_decode[[transformers.NemotronH_Omni_Reasoning_V3Processor.batch_decode]]
 
@@ -278,9 +278,9 @@ Constructs a NemotronH_Omni_Reasoning_V3Processor which wraps a image processor,
 batch_decode(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron_h_omni/processing_nemotron_h_omni.py#L287)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron_h_omni/processing_nemotron_h_omni.py#L287)
 
-Forward to the tokenizer's [batch_decode()](/docs/transformers/v5.21.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.batch_decode).
+Forward to the tokenizer's [batch_decode()](/docs/transformers/v5.22.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.batch_decode).
 
 #### decode[[transformers.NemotronH_Omni_Reasoning_V3Processor.decode]]
 
@@ -288,9 +288,9 @@ Forward to the tokenizer's [batch_decode()](/docs/transformers/v5.21.1/en/intern
 decode(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron_h_omni/processing_nemotron_h_omni.py#L291)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron_h_omni/processing_nemotron_h_omni.py#L291)
 
-Forward to the tokenizer's [decode()](/docs/transformers/v5.21.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.decode).
+Forward to the tokenizer's [decode()](/docs/transformers/v5.22.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.decode).
 
 #### post_process_image_text_to_text[[transformers.NemotronH_Omni_Reasoning_V3Processor.post_process_image_text_to_text]]
 
@@ -298,7 +298,7 @@ Forward to the tokenizer's [decode()](/docs/transformers/v5.21.1/en/internal/tok
 post_process_image_text_to_text(generated_outputs, skip_special_tokens = True, clean_up_tokenization_spaces = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron_h_omni/processing_nemotron_h_omni.py#L295)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron_h_omni/processing_nemotron_h_omni.py#L295)
 
 Decode the model's generated token ids into text.
 
@@ -308,7 +308,7 @@ Decode the model's generated token ids into text.
 replace_video_token(video_inputs: dict, video_idx: int, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron_h_omni/processing_nemotron_h_omni.py#L169)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron_h_omni/processing_nemotron_h_omni.py#L169)
 
 Expand `<video>` into one `<img>...</img>` chunk per temporal patch (tubelet).
 
@@ -325,7 +325,7 @@ by which `pixel_values_*` argument was passed.
 transformers.NemotronH_Omni_Reasoning_V3(config: NemotronH_Omni_Reasoning_V3_Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron_h_omni/modeling_nemotron_h_omni.py#L142)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron_h_omni/modeling_nemotron_h_omni.py#L142)
 
 #### forward[[transformers.NemotronH_Omni_Reasoning_V3.forward]]
 
@@ -333,17 +333,17 @@ transformers.NemotronH_Omni_Reasoning_V3(config: NemotronH_Omni_Reasoning_V3_Con
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, image_grid_hw: typing.Optional[torch.LongTensor] = None, pixel_values_videos: typing.Optional[torch.FloatTensor] = None, input_features: typing.Optional[torch.FloatTensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, labels: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/models/nemotron_h_omni/modeling_nemotron_h_omni.py#L347)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/models/nemotron_h_omni/modeling_nemotron_h_omni.py#L347)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.21.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.21.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.21.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 pixel_values (`torch.FloatTensor` of shape `(total_patches, num_channels * patch_size**2)`, *optional*) : Flattened patches of all images, concatenated, as returned by the image processor.
 
 image_grid_hw (`torch.LongTensor` of shape `(num_images, 2)`, *optional*) : Patch grid `(height, width)` of each image in `pixel_values`.
 
-pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [NemotronH_Omni_Reasoning_V3VideoProcessor](/docs/transformers/v5.21.1/en/model_doc/nemotron_h_omni#transformers.NemotronH_Omni_Reasoning_V3VideoProcessor). See [NemotronH_Omni_Reasoning_V3VideoProcessor.__call__()](/docs/transformers/v5.21.1/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([NemotronH_Omni_Reasoning_V3Processor](/docs/transformers/v5.21.1/en/model_doc/nemotron_h_omni#transformers.NemotronH_Omni_Reasoning_V3Processor) uses [NemotronH_Omni_Reasoning_V3VideoProcessor](/docs/transformers/v5.21.1/en/model_doc/nemotron_h_omni#transformers.NemotronH_Omni_Reasoning_V3VideoProcessor) for processing videos).
+pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [NemotronH_Omni_Reasoning_V3VideoProcessor](/docs/transformers/v5.22.1/en/model_doc/nemotron_h_omni#transformers.NemotronH_Omni_Reasoning_V3VideoProcessor). See [NemotronH_Omni_Reasoning_V3VideoProcessor.__call__()](/docs/transformers/v5.22.1/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([NemotronH_Omni_Reasoning_V3Processor](/docs/transformers/v5.22.1/en/model_doc/nemotron_h_omni#transformers.NemotronH_Omni_Reasoning_V3Processor) uses [NemotronH_Omni_Reasoning_V3VideoProcessor](/docs/transformers/v5.22.1/en/model_doc/nemotron_h_omni#transformers.NemotronH_Omni_Reasoning_V3VideoProcessor) for processing videos).
 
 input_features (`torch.FloatTensor` of shape `(batch_size, num_frames, num_mel_bins)`, *optional*) : Mel features produced by the processor, encoded and scattered onto the audio placeholder tokens.
 
@@ -353,7 +353,7 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.21.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.21.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.22.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.22.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
 
@@ -363,13 +363,13 @@ use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value s
 
 mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *optional*) : Dict where keys are supported modalities and values are encoded outputs for that modality. Each encoded output is a tuple that consists of (`pooler_output`, *optional*: `last_hidden_states`, *optional*: `hidden_states`, *optional*: `attentions`) `pooler_output` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of multimmodal features of the encoder merged into text embeddings.
 
-**Returns:** [CausalLMOutputWithPast](/docs/transformers/v5.21.1/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.FloatTensor)`
+**Returns:** [CausalLMOutputWithPast](/docs/transformers/v5.22.1/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.FloatTensor)`
 
-A [CausalLMOutputWithPast](/docs/transformers/v5.21.1/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
+A [CausalLMOutputWithPast](/docs/transformers/v5.22.1/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([NemotronH_Omni_Reasoning_V3_Config](/docs/transformers/v5.21.1/en/model_doc/nemotron_h_omni#transformers.NemotronH_Omni_Reasoning_V3_Config)) and inputs.
+elements depending on the configuration ([NemotronH_Omni_Reasoning_V3_Config](/docs/transformers/v5.22.1/en/model_doc/nemotron_h_omni#transformers.NemotronH_Omni_Reasoning_V3_Config)) and inputs.
 
-The [NemotronH_Omni_Reasoning_V3](/docs/transformers/v5.21.1/en/model_doc/nemotron_h_omni#transformers.NemotronH_Omni_Reasoning_V3) forward method, overrides the `__call__` special method.
+The [NemotronH_Omni_Reasoning_V3](/docs/transformers/v5.22.1/en/model_doc/nemotron_h_omni#transformers.NemotronH_Omni_Reasoning_V3) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -377,7 +377,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.21.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.22.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -427,13 +427,13 @@ Example:
 generate(inputs: typing.Optional[torch.Tensor] = None, generation_config: transformers.generation.configuration_utils.GenerationConfig | None = None, logits_processor: transformers.generation.logits_process.LogitsProcessorList | None = None, stopping_criteria: transformers.generation.stopping_criteria.StoppingCriteriaList | None = None, prefix_allowed_tokens_fn: collections.abc.Callable[[int, torch.Tensor], list[int]] | None = None, synced_gpus: bool | None = None, assistant_model: typing.Optional[ForwardRef('PreTrainedModel')] = None, streamer: typing.Optional[ForwardRef('BaseStreamer')] = None, negative_prompt_ids: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, custom_generate: str | collections.abc.Callable | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.21.1/src/transformers/generation/utils.py#L2574)
+[Source](https://github.com/huggingface/transformers/blob/v5.22.1/src/transformers/generation/utils.py#L2574)
 
 **Parameters:**
 
 inputs (`torch.Tensor` of varying shape depending on the modality, *optional*) : The sequence used as a prompt for the generation or as model inputs to the encoder. If `None` the method initializes it with `bos_token_id` and a batch size of 1. For decoder-only models `inputs` should be in the format of `input_ids`. For encoder-decoder models *inputs* can represent any of `input_ids`, `input_values`, `input_features`, or `pixel_values`.
 
-generation_config ([GenerationConfig](/docs/transformers/v5.21.1/en/main_classes/text_generation#transformers.GenerationConfig), *optional*) : The generation configuration to be used as base parametrization for the generation call. `**kwargs` passed to generate matching the attributes of `generation_config` will override them. If `generation_config` is not provided, the default will be used, which has the following loading priority: 1) from the `generation_config.json` model file, if it exists; 2) from the model configuration. Please note that unspecified parameters will inherit [GenerationConfig](/docs/transformers/v5.21.1/en/main_classes/text_generation#transformers.GenerationConfig)'s default values, whose documentation should be checked to parameterize generation.
+generation_config ([GenerationConfig](/docs/transformers/v5.22.1/en/main_classes/text_generation#transformers.GenerationConfig), *optional*) : The generation configuration to be used as base parametrization for the generation call. `**kwargs` passed to generate matching the attributes of `generation_config` will override them. If `generation_config` is not provided, the default will be used, which has the following loading priority: 1) from the `generation_config.json` model file, if it exists; 2) from the model configuration. Please note that unspecified parameters will inherit [GenerationConfig](/docs/transformers/v5.22.1/en/main_classes/text_generation#transformers.GenerationConfig)'s default values, whose documentation should be checked to parameterize generation.
 
 logits_processor (`LogitsProcessorList`, *optional*) : Custom logits processors that complement the default logits processors built from arguments and generation config. If a logit processor is passed that is already created with the arguments or a generation config an error is thrown. This feature is intended for advanced users.
 
@@ -455,22 +455,22 @@ custom_generate (`str` or `Callable`, *optional*) : One of the following: - `str
 
 kwargs (`dict[str, Any]`, *optional*) : Ad hoc parametrization of `generation_config` and/or additional model-specific kwargs that will be forwarded to the `forward` function of the model. If the model is an encoder-decoder model, encoder specific kwargs should not be prefixed and decoder specific kwargs should be prefixed with *decoder_*.
 
-**Returns:** [ModelOutput](/docs/transformers/v5.21.1/en/main_classes/output#transformers.utils.ModelOutput) or `torch.LongTensor`
+**Returns:** [ModelOutput](/docs/transformers/v5.22.1/en/main_classes/output#transformers.utils.ModelOutput) or `torch.LongTensor`
 
-A [ModelOutput](/docs/transformers/v5.21.1/en/main_classes/output#transformers.utils.ModelOutput) (if `return_dict_in_generate=True`
+A [ModelOutput](/docs/transformers/v5.22.1/en/main_classes/output#transformers.utils.ModelOutput) (if `return_dict_in_generate=True`
 or when `config.return_dict_in_generate=True`) or a `torch.LongTensor`.
 
 If the model is *not* an encoder-decoder model (`model.config.is_encoder_decoder=False`), the possible
-[ModelOutput](/docs/transformers/v5.21.1/en/main_classes/output#transformers.utils.ModelOutput) types are:
+[ModelOutput](/docs/transformers/v5.22.1/en/main_classes/output#transformers.utils.ModelOutput) types are:
 
-- [GenerateDecoderOnlyOutput](/docs/transformers/v5.21.1/en/internal/generation_utils#transformers.generation.GenerateDecoderOnlyOutput),
-- [GenerateBeamDecoderOnlyOutput](/docs/transformers/v5.21.1/en/internal/generation_utils#transformers.generation.GenerateBeamDecoderOnlyOutput)
+- [GenerateDecoderOnlyOutput](/docs/transformers/v5.22.1/en/internal/generation_utils#transformers.generation.GenerateDecoderOnlyOutput),
+- [GenerateBeamDecoderOnlyOutput](/docs/transformers/v5.22.1/en/internal/generation_utils#transformers.generation.GenerateBeamDecoderOnlyOutput)
 
 If the model is an encoder-decoder model (`model.config.is_encoder_decoder=True`), the possible
-[ModelOutput](/docs/transformers/v5.21.1/en/main_classes/output#transformers.utils.ModelOutput) types are:
+[ModelOutput](/docs/transformers/v5.22.1/en/main_classes/output#transformers.utils.ModelOutput) types are:
 
-- [GenerateEncoderDecoderOutput](/docs/transformers/v5.21.1/en/internal/generation_utils#transformers.generation.GenerateEncoderDecoderOutput),
-- [GenerateBeamEncoderDecoderOutput](/docs/transformers/v5.21.1/en/internal/generation_utils#transformers.generation.GenerateBeamEncoderDecoderOutput)
+- [GenerateEncoderDecoderOutput](/docs/transformers/v5.22.1/en/internal/generation_utils#transformers.generation.GenerateEncoderDecoderOutput),
+- [GenerateBeamEncoderDecoderOutput](/docs/transformers/v5.22.1/en/internal/generation_utils#transformers.generation.GenerateBeamEncoderDecoderOutput)
 
 Generates sequences of token ids for models with a language modeling head.
 
@@ -482,4 +482,4 @@ For an overview of generation strategies and code examples, check out the [follo
 guide](../generation_strategies).
 
 ### PP-DocLayoutV4
-https://huggingface.co/docs/transformers/v5.21.1/model_doc/pp_doclayout_v4.md
+https://huggingface.co/docs/transformers/v5.22.1/model_doc/pp_doclayout_v4.md

@@ -2,7 +2,7 @@
 
 Unsloth is an open‑source framework for fine‑tuning and reinforcement learning that trains LLMs (like Llama, OpenAI gpt-oss, Mistral, Gemma, DeepSeek, and more) up to 2× faster with up to 80% less VRAM. Unsloth allows [training](https://huggingface.co/docs/trl/en/unsloth_integration#Training), evaluation, running and [deployment](https://huggingface.co/docs/trl/en/unsloth_integration#Saving-the-model) with other inference engines like llama.cpp, Ollama and vLLM.
 
-The library provides a streamlined, Hugging Face compatible workflow for training, evaluation, inference and deployment and is fully compatible with [SFTTrainer](/docs/trl/v1.16.0/en/sft_trainer#trl.SFTTrainer).
+The library provides a streamlined, Hugging Face compatible workflow for training, evaluation, inference and deployment and is fully compatible with [SFTTrainer](/docs/trl/v1.17.0/en/sft_trainer#trl.SFTTrainer).
 
 ## Key Features
 
@@ -22,7 +22,7 @@ Local Installation (Linux recommended):
 pip install unsloth
 ```
 
-You can also install `unsloth` according to the [official documentation](https://docs.unsloth.ai/get-started/installing-+-updating). Once installed, you can incorporate unsloth into your workflow in a very simple manner; instead of loading [AutoModelForCausalLM](https://huggingface.co/docs/transformers/v5.20.0/en/model_doc/auto#transformers.AutoModelForCausalLM), you just need to load a `FastLanguageModel` as follows:
+You can also install `unsloth` according to the [official documentation](https://docs.unsloth.ai/get-started/installing-+-updating). Once installed, you can incorporate unsloth into your workflow in a very simple manner; instead of loading `AutoModelForCausalLM`, you just need to load a `FastLanguageModel` as follows:
 
 ```python
 import torch
@@ -124,5 +124,5 @@ model.save_pretrained_merged("model", tokenizer, save_method = "merged_16bit",)
 model.push_to_hub_merged("hf/model", tokenizer, save_method = "merged_16bit", token = "")
 ```
 
-### vLLM Integration
-https://huggingface.co/docs/trl/v1.16.0/vllm_integration.md
+### Paper Index
+https://huggingface.co/docs/trl/v1.17.0/paper_index.md

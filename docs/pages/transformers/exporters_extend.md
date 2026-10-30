@@ -135,4 +135,4 @@ treated as forward arguments). Each entry carries a reason naming the model-side
 list is also expected to shrink, not grow.
 
 ### Customizing tokenizers
-https://huggingface.co/docs/transformers/v5.21.1/custom_tokenizers.md
+https://huggingface.co/docs/transformers/v5.22.1/custom_tokenizers.md

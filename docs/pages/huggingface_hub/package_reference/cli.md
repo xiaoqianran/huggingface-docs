@@ -2405,7 +2405,7 @@ Learn more
 
 List Jobs.
 
-Use `--status` to filter by status (see [JobStage](/docs/huggingface_hub/v2.3.0/en/package_reference/jobs#huggingface_hub.JobStage) for possible values) and `--label` to filter by `key=value`
+Use `--status` to filter by status (see [JobStage](/docs/huggingface_hub/v2.4.0/en/package_reference/jobs#huggingface_hub.JobStage) for possible values) and `--label` to filter by `key=value`
 labels. A Job must match every filter to be listed.
 
 **Usage**:
@@ -5403,7 +5403,7 @@ $ hf webhooks create [OPTIONS]
 * `--watch TEXT`: Item to watch, in 'type:name' format (e.g. 'model:bert-base-uncased'). Repeatable.  [required]
 * `--url TEXT`: URL to send webhook payloads to. Mutually exclusive with --job-id.
 * `--job-id TEXT`: ID of a Job to trigger (from job.id) instead of pinging a URL. Mutually exclusive with --url.
-* `--domain [repo|discussions]`: Domain to watch: 'repo' or 'discussions'. Repeatable. Defaults to all domains.
+* `--domain [repo|discussion]`: Domain to watch: 'repo' or 'discussion'. Repeatable. Defaults to all domains.
 * `--secret TEXT`: Optional secret used to sign webhook payloads.
 * `-s, --secrets TEXT`: Set secret environment variables. Prefer `--secrets SECRET` to read the value from your environment (e.g. `--secrets HF_TOKEN` to pass your Hugging Face token); `--secrets SECRET=value` puts the value in your shell history.
 * `--secrets-file TEXT`: Read in a file of secret environment variables. Use `-` to read them from stdin.
@@ -5571,7 +5571,7 @@ $ hf webhooks update [OPTIONS] WEBHOOK_ID
 * `--url TEXT`: New URL to send webhook payloads to.
 * `--job-id TEXT`: ID of the source Job to trigger (can be the current one). Required with --secrets / --secrets-file.
 * `--watch TEXT`: New list of items to watch, in 'type:name' format. Repeatable. Replaces the entire existing watched list.
-* `--domain [repo|discussions]`: New list of domains to watch: 'repo' or 'discussions'. Repeatable.
+* `--domain [repo|discussion]`: New list of domains to watch: 'repo' or 'discussion'. Repeatable.
 * `--secret TEXT`: New secret used to sign webhook payloads.
 * `-s, --secrets TEXT`: Set secret environment variables. Prefer `--secrets SECRET` to read the value from your environment (e.g. `--secrets HF_TOKEN` to pass your Hugging Face token); `--secrets SECRET=value` puts the value in your shell history.
 * `--secrets-file TEXT`: Read in a file of secret environment variables. Use `-` to read them from stdin.
@@ -5588,5 +5588,5 @@ Learn more
   Use `hf <command> --help` for more information about a command.
   Read the documentation at https://huggingface.co/docs/huggingface_hub/en/guides/cli
 
-### Interacting with Discussions and Pull Requests
-https://huggingface.co/docs/huggingface_hub/v2.3.0/package_reference/community.md
+### TensorBoard logger
+https://huggingface.co/docs/huggingface_hub/v2.4.0/package_reference/tensorboard.md

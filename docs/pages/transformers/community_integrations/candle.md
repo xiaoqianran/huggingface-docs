@@ -27,4 +27,4 @@ let model = Model::new(args.use_flash_attn, &config, vb)?;
 - [Candle](https://github.com/huggingface/candle) documentation
 
 ### Kernels
-https://huggingface.co/docs/transformers/v5.21.1/kernel_doc/overview.md
+https://huggingface.co/docs/transformers/v5.22.1/kernel_doc/overview.md

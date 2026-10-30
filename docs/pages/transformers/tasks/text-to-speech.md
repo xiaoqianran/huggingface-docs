@@ -635,4 +635,4 @@ may also be used for malicious purposes, such as impersonating someone's voice w
 use TTS judiciously and responsibly.
 
 ### Visual document retrieval
-https://huggingface.co/docs/transformers/v5.21.1/tasks/visual_document_retrieval.md
+https://huggingface.co/docs/transformers/v5.22.1/tasks/visual_document_retrieval.md

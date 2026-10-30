@@ -17,4 +17,4 @@ To use the server for speech-to-text, go to **Settings > Audio**.
 Start a chat and speak. The model transcribes your audio into the input field.
 
 ### BARThez
-https://huggingface.co/docs/transformers/v5.21.1/model_doc/barthez.md
+https://huggingface.co/docs/transformers/v5.22.1/model_doc/barthez.md

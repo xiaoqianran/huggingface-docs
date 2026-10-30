@@ -19,7 +19,7 @@ The Metal kernels are downloaded from the Hub automatically on first use — no 
 
 ## Quantize on-the-fly
 
-Load any model and quantize it during loading by passing a [MetalConfig](/docs/transformers/v5.21.1/en/main_classes/quantization#transformers.MetalConfig). All eligible `nn.Linear` layers are replaced with quantized versions.
+Load any model and quantize it during loading by passing a [MetalConfig](/docs/transformers/v5.22.1/en/main_classes/quantization#transformers.MetalConfig). All eligible `nn.Linear` layers are replaced with quantized versions.
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer, MetalConfig
@@ -83,4 +83,4 @@ config = MetalConfig(bits=4, group_size=64, modules_to_not_convert=["lm_head"])
 | `dequantize` | `False` | Force dequantization to float (for non-MPS devices) |
 
 ### Selecting a quantization method
-https://huggingface.co/docs/transformers/v5.21.1/quantization/selecting.md
+https://huggingface.co/docs/transformers/v5.22.1/quantization/selecting.md

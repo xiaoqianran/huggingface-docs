@@ -67,4 +67,4 @@ print(tokenizer.batch_decode(res)[0])
 ```
 
 ### Quantization concepts
-https://huggingface.co/docs/transformers/v5.21.1/quantization/concept_guide.md
+https://huggingface.co/docs/transformers/v5.22.1/quantization/concept_guide.md

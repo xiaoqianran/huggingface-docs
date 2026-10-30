@@ -58,4 +58,4 @@ scheduler = get_cosine_schedule_with_warmup(optimizer, num_warmup_steps=1000, nu
 MatCha is a model that is trained using `Pix2Struct` architecture. You can find more information about `Pix2Struct` in the [Pix2Struct documentation](./pix2struct).
 
 ### DeepSeek-V3.2
-https://huggingface.co/docs/transformers/v5.21.1/model_doc/deepseek_v32.md
+https://huggingface.co/docs/transformers/v5.22.1/model_doc/deepseek_v32.md

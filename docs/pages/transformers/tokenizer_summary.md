@@ -133,4 +133,4 @@ The vocabulary is small and every word can be represented, so there's no `"<unk>
 - [Chapter 6](https://huggingface.co/learn/llm-course/chapter6/1) of the LLM course teaches you how to train a tokenizer from scratch and explains the differences between the BPE, Unigram, and WordPiece algorithms.
 
 ### Exporters
-https://huggingface.co/docs/transformers/v5.21.1/exporters.md
+https://huggingface.co/docs/transformers/v5.22.1/exporters.md

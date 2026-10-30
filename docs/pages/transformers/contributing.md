@@ -208,4 +208,4 @@ AI-assisted contributions are welcome. They must be coordinated, scoped, and ver
 > These topics are outlined for agents in `AGENTS.md` with instruction for how to autonomously implement them.
 
 ### CPU
-https://huggingface.co/docs/transformers/v5.21.1/cpu.md
+https://huggingface.co/docs/transformers/v5.22.1/cpu.md

@@ -6,7 +6,7 @@
 trl.experimental.merge_model_callback.MergeModelCallback(merge_config: MergeConfig | None = None, merge_at_every_checkpoint: bool = False, push_to_hub: bool = False)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.16.0/trl/experimental/merge_model_callback.py#L294)
+[Source](https://github.com/huggingface/trl/blob/v1.17.0/trl/experimental/merge_model_callback.py#L294)
 
 **Parameters:**
 
@@ -16,7 +16,7 @@ merge_at_every_checkpoint (`bool`, *optional*, defaults to `False`) : Whether to
 
 push_to_hub (`bool`, *optional*, defaults to `False`) : Whether to push the merged model to the Hub after merging.
 
-A [TrainerCallback](https://huggingface.co/docs/transformers/v5.20.0/en/main_classes/callback#transformers.TrainerCallback) that merges the policy model (the model being trained) with another model based
+A `TrainerCallback` that merges the policy model (the model being trained) with another model based
 on a merge configuration.
 
 Example:
@@ -29,5 +29,5 @@ Example:
 >>> trainer = DPOTrainer(..., callbacks=[merge_callback])
 ```
 
-### RLOO Trainer
-https://huggingface.co/docs/trl/v1.16.0/rloo_trainer.md
+### Examples
+https://huggingface.co/docs/trl/v1.17.0/example_overview.md

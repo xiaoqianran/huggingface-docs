@@ -15,12 +15,12 @@ This guide covers enabling tensor parallelism in Transformers and the available 
 
 ## Partitioning a model
 
-Configure the number of tensor parallel devices with `tp_size` in [DistributedConfig](/docs/transformers/v5.21.1/en/expert_parallelism#transformers.DistributedConfig).
+Configure the number of tensor parallel devices with `tp_size` in [DistributedConfig](/docs/transformers/v5.22.1/en/expert_parallelism#transformers.DistributedConfig).
 
 - Set `DistributedConfig(tp_size=N)` to use the model's predefined plan.
-- Define a manual `tp_plan` and pass it to [DistributedConfig](/docs/transformers/v5.21.1/en/expert_parallelism#transformers.DistributedConfig) along with `tp_size`.
+- Define a manual `tp_plan` and pass it to [DistributedConfig](/docs/transformers/v5.22.1/en/expert_parallelism#transformers.DistributedConfig) along with `tp_size`.
 
-You can also set `tp_plan="auto"` to request the predefined plan explicitly. When `tp_size` is omitted and a `tp_plan` is set, `tp_size` is derived from `WORLD_SIZE` divided by the other parallel sizes. Passing `tp_plan` directly to [from_pretrained()](/docs/transformers/v5.21.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) is deprecated and will be removed in v5.18.
+You can also set `tp_plan="auto"` to request the predefined plan explicitly. When `tp_size` is omitted and a `tp_plan` is set, `tp_size` is derived from `WORLD_SIZE` divided by the other parallel sizes. Passing `tp_plan` directly to [from_pretrained()](/docs/transformers/v5.22.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) is deprecated and will be removed in v5.18.
 
 ```py
 import torch
@@ -49,7 +49,7 @@ Launch the inference script with [torchrun](https://pytorch.org/docs/stable/elas
 torchrun --nproc-per-node 4 demo.py
 ```
 
-Define a tensor parallel plan for each layer in `tp_plan` and pass it through [DistributedConfig](/docs/transformers/v5.21.1/en/expert_parallelism#transformers.DistributedConfig). The example below uses column and row partitioning. See the [Partitioning strategies](#partitioning-strategies) section for other supported strategies.
+Define a tensor parallel plan for each layer in `tp_plan` and pass it through [DistributedConfig](/docs/transformers/v5.22.1/en/expert_parallelism#transformers.DistributedConfig). The example below uses column and row partitioning. See the [Partitioning strategies](#partitioning-strategies) section for other supported strategies.
 
 Manual partitioning requires a deep understanding of model architecture and strategy interactions. Poor partitioning choices create slow models that fail or produce incorrect results. The [Ultra-Scale Playbook](https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=tensor_parallelism) explains partitioning strategies in detail.
 
@@ -77,35 +77,28 @@ print(model.tp_plan)
 
 ## Partitioning strategies
 
-The `ParallelInterface` class maps each strategy name you can use in a `tp_plan` to a configured strategy instance. You don't interact with it directly to shard a model, but it's the authoritative list of available names.
+`ALL_PARALLEL_STYLES`, a `ParallelInterface` defined in [distributed/parallel_utils.py](https://github.com/huggingface/transformers/blob/main/src/transformers/distributed/parallel_utils.py), maps each strategy name you can use in a plan to a configured strategy instance. You don't interact with it directly to shard a model, but it's the authoritative list of available names. [distributed/tensor_parallel.py](https://github.com/huggingface/transformers/blob/main/src/transformers/distributed/tensor_parallel.py) registers the tensor parallel strategies into it:
 
 ```py
-class ParallelInterface(GeneralInterface):
-    _global_mapping = {
-        "embedding_rowwise": EmbeddingParallel(shard_dim=0),
-        "embedding_colwise": EmbeddingParallel(shard_dim=1),
-        "colwise_gather_output": ColwiseParallel(input_layouts=Replicate(), output_layouts=Replicate()),
-        "colwise_rep": ColwiseParallel(input_layouts=Replicate(), output_layouts=Replicate()),
-        "colwise": ColwiseParallel(input_layouts=Replicate(), output_layouts=Shard(-1)),
-        "rowwise": RowwiseParallel(input_layouts=Shard(-1), output_layouts=Replicate()),
-        "rowwise_split_input": RowwiseParallel(input_layouts=Replicate(), output_layouts=Replicate()),
-        "rowwise_rep": RowwiseParallel(input_layouts=Replicate(), output_layouts=Replicate()),
-        "packed_colwise": PackedColwiseParallel(),
-        "packed_rowwise": PackedRowwiseParallel(),
-        "sequence_parallel": SequenceParallel(use_local_output=True),
-        "grouped_gemm": MoEParamShard(Shard(0), shards_expert_dim=True),
-        "ep_router": EpRouterParallel(),
-        "megamoe_router": RouterParallelMegaMoe(),
-        "moe_tp_experts": MoeExpertsParallel(),
-        "megamoe_experts": MoeTensorParalellMegaMoeExperts(),
-        "moe_identity_expert": MoeIdentityParallel(),
-        "replicated_with_grad_allreduce": ReplicatedWithGradAllReduce(),
-        "mla_kv_a_proj": MlaKvAProjParallel(),
-        "all_reduce": AllReduceParallel(),
-    }
+ALL_PARALLEL_STYLES.register("embedding_rowwise", EmbeddingParallel(shard_dim=0))
+ALL_PARALLEL_STYLES.register("embedding_colwise", EmbeddingParallel(shard_dim=1))
+ALL_PARALLEL_STYLES.register("colwise_gather_output", ColwiseParallel(input_layouts=Replicate(), output_layouts=Replicate()))
+ALL_PARALLEL_STYLES.register("colwise_rep", ColwiseParallel(input_layouts=Replicate(), output_layouts=Replicate()))
+ALL_PARALLEL_STYLES.register("colwise", ColwiseParallel(input_layouts=Replicate(), output_layouts=Shard(-1)))
+ALL_PARALLEL_STYLES.register("rowwise", RowwiseParallel(input_layouts=Shard(-1), output_layouts=Replicate()))
+ALL_PARALLEL_STYLES.register("rowwise_split_input", RowwiseParallel(input_layouts=Replicate(), output_layouts=Replicate()))
+ALL_PARALLEL_STYLES.register("rowwise_rep", RowwiseParallel(input_layouts=Replicate(), output_layouts=Replicate()))
+ALL_PARALLEL_STYLES.register("packed_colwise", PackedColwiseParallel())
+ALL_PARALLEL_STYLES.register("packed_rowwise", PackedRowwiseParallel())
+ALL_PARALLEL_STYLES.register("sequence_parallel", SequenceParallel(use_local_output=True))
+ALL_PARALLEL_STYLES.register("replicated_with_grad_allreduce", ReplicatedWithGradAllReduce())
+ALL_PARALLEL_STYLES.register("mla_kv_a_proj", MlaKvAProjParallel())
+ALL_PARALLEL_STYLES.register("all_reduce", AllReduceParallel())
+ALL_PARALLEL_STYLES.register("moe_tp_experts", MoeExpertsParallel())
+ALL_PARALLEL_STYLES.register("moe_identity_expert", MoeIdentityParallel())
 ```
 
-Every strategy is a subclass of `TensorParallelLayer` in [distributed/tensor_parallel.py](https://github.com/huggingface/transformers/blob/main/src/transformers/distributed/tensor_parallel.py). The two you'll reach for most, `ColwiseParallel` and `RowwiseParallel`, take `input_layouts` and `output_layouts` placements, which is how one class covers several plan names. `colwise` leaves its output sharded on the last dim for a following `rowwise` layer to consume, while `colwise_gather_output` all-gathers it back to a full tensor.
+Every tensor parallel strategy is a subclass of `TensorParallelLayer` in that file. The expert parallel strategies, such as `ep_dispatch_experts`, live in [distributed/expert_parallel.py](https://github.com/huggingface/transformers/blob/main/src/transformers/distributed/expert_parallel.py), subclass `ExpertParallelLayer`, which has the same hooks, and register into the same `ALL_PARALLEL_STYLES`. The two you'll reach for most, `ColwiseParallel` and `RowwiseParallel`, take `input_layouts` and `output_layouts` placements, which is how one class covers several plan names. `colwise` leaves its output sharded on the last dim for a following `rowwise` layer to consume, while `colwise_gather_output` all-gathers it back to a full tensor.
 
 The table below describes each strategy.
 
@@ -120,12 +113,12 @@ The table below describes each strategy.
 | `ReplicatedWithGradAllReduce` | Replicates a parameter but all-reduces its gradient. Needed for norms that sit between a column-wise and a row-wise layer and normalize along a sharded axis, where each rank only sees its own heads. |
 | `AllReduceParallel` | All-reduces a module's `Partial()` forward output to `Replicate()`. Use it as a sync point for a module whose compute ends in a partial sum. |
 | `MlaKvAProjParallel` | Splits the `kv_a_proj_with_mqa` output of DeepSeek-V2 style MLA attention and all-reduces the gradient of the RoPE half, which bypasses `kv_b_proj` and would otherwise keep a partial gradient. Requires `qk_rope_head_dim` in the model config. |
+| `MoeExpertsParallel` | Tensor parallel MoE experts. All-reduces the expert output forward and adds the backward all-reduces for hidden states and routing weights. |
+| `MoeIdentityParallel` | Pre-divides the input of a zero or identity expert by the mesh size, cancelling the all-reduce that `moe_tp_experts` applies downstream. |
 | `MoEParamShard` | Shards MoE expert weights on a given placement. Backs the `grouped_gemm` name, where `shards_expert_dim=True` also rewrites `module.num_experts` to the per-rank expert count. |
 | `EpRouterParallel` | Masks router scores for non-local experts and remaps global expert IDs to local ones, so each rank runs only the experts it owns. Requires `num_experts` to be divisible by the mesh size. |
 | `RouterParallelMegaMoe` | Router variant for DeepGEMM Mega MoE, which dispatches experts inside the kernel which wants the router output untouched. |
-| `MoeExpertsParallel` | Tensor parallel MoE experts. All-reduces the expert output forward and adds the backward all-reduces for hidden states and routing weights. |
 | `MoeTensorParalellMegaMoeExperts` | Inference-only experts layer for DeepGEMM Mega MoE. Skips the gradient syncs and passes the process group into the module so the kernel can set up its shared buffers on the first forward. |
-| `MoeIdentityParallel` | Pre-divides the input of a zero or identity expert by the mesh size, cancelling the all-reduce that `moe_tp_experts` applies downstream. |
 
 ### Packed strategies
 
@@ -218,9 +211,9 @@ The example below walks through a trimmed version of `ColwiseParallel`.
     import torch
 
     from transformers import AutoModelForCausalLM, DistributedConfig
-    from transformers.distributed.tensor_parallel import ParallelInterface
+    from transformers.distributed.parallel_utils import ALL_PARALLEL_STYLES
 
-    ParallelInterface.register("colwise_custom", ColwiseParallel())
+    ALL_PARALLEL_STYLES.register("colwise_custom", ColwiseParallel())
     tp_plan = {
         "model.layers.*.self_attn.q_proj": "colwise_custom",
         ...
@@ -295,4 +288,4 @@ The `placements` attribute tells PyTorch how a tensor is laid out across the dev
 - See the [Tensor parallelism](./tensor_parallelism) training guide to learn how to use it in a training setting.
 
 ### Hardware
-https://huggingface.co/docs/transformers/v5.21.1/hardware.md
+https://huggingface.co/docs/transformers/v5.22.1/hardware.md

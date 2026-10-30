@@ -2,7 +2,7 @@
 
 Feature extractors preprocess audio data into the correct format for a given model. It takes the raw audio signal and converts it into a tensor that can be fed to a model. The tensor shape depends on the model, but the feature extractor will correctly preprocess the audio data for you given the model you're using. Feature extractors also include methods for padding, truncation, and resampling.
 
-Call [from_pretrained()](/docs/transformers/v5.21.1/en/model_doc/auto#transformers.AutoFeatureExtractor.from_pretrained) to load a feature extractor and its preprocessor configuration from the Hugging Face [Hub](https://hf.co/models) or local directory. The feature extractor and preprocessor configuration is saved in a [preprocessor_config.json](https://hf.co/openai/whisper-tiny/blob/main/preprocessor_config.json) file.
+Call [from_pretrained()](/docs/transformers/v5.22.1/en/model_doc/auto#transformers.AutoFeatureExtractor.from_pretrained) to load a feature extractor and its preprocessor configuration from the Hugging Face [Hub](https://hf.co/models) or local directory. The feature extractor and preprocessor configuration is saved in a [preprocessor_config.json](https://hf.co/openai/whisper-tiny/blob/main/preprocessor_config.json) file.
 
 Pass the audio signal, typically stored in `array`, to the feature extractor and set the `sampling_rate` parameter to the pretrained audio models sampling rate. It is important the sampling rate of the audio data matches the sampling rate of the data a pretrained audio model was trained on.
 
@@ -23,16 +23,16 @@ This guide walks you through the feature extractor classes and how to preprocess
 
 ## Feature extractor classes
 
-Transformers feature extractors inherit from the base [SequenceFeatureExtractor](/docs/transformers/v5.21.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) class which subclasses [FeatureExtractionMixin](/docs/transformers/v5.21.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin).
+Transformers feature extractors inherit from the base [SequenceFeatureExtractor](/docs/transformers/v5.22.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) class which subclasses [FeatureExtractionMixin](/docs/transformers/v5.22.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin).
 
-- [SequenceFeatureExtractor](/docs/transformers/v5.21.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) provides a method to [pad()](/docs/transformers/v5.21.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor.pad) sequences to a certain length to avoid uneven sequence lengths.
-- [FeatureExtractionMixin](/docs/transformers/v5.21.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin) provides [from_pretrained()](/docs/transformers/v5.21.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.from_pretrained) and [save_pretrained()](/docs/transformers/v5.21.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.save_pretrained) to load and save a feature extractor.
+- [SequenceFeatureExtractor](/docs/transformers/v5.22.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) provides a method to [pad()](/docs/transformers/v5.22.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor.pad) sequences to a certain length to avoid uneven sequence lengths.
+- [FeatureExtractionMixin](/docs/transformers/v5.22.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin) provides [from_pretrained()](/docs/transformers/v5.22.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.from_pretrained) and [save_pretrained()](/docs/transformers/v5.22.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.save_pretrained) to load and save a feature extractor.
 
-There are two ways you can load a feature extractor, [AutoFeatureExtractor](/docs/transformers/v5.21.1/en/model_doc/auto#transformers.AutoFeatureExtractor) and a model-specific feature extractor class.
+There are two ways you can load a feature extractor, [AutoFeatureExtractor](/docs/transformers/v5.22.1/en/model_doc/auto#transformers.AutoFeatureExtractor) and a model-specific feature extractor class.
 
 The [AutoClass](./model_doc/auto) API automatically loads the correct feature extractor for a given model.
 
-Use [from_pretrained()](/docs/transformers/v5.21.1/en/model_doc/auto#transformers.AutoFeatureExtractor.from_pretrained) to load a feature extractor.
+Use [from_pretrained()](/docs/transformers/v5.22.1/en/model_doc/auto#transformers.AutoFeatureExtractor.from_pretrained) to load a feature extractor.
 
 ```py
 from transformers import AutoFeatureExtractor
@@ -60,7 +60,7 @@ The feature extractor generates the correct input shape for whichever audio mode
 
 A feature extractor also sets the sampling rate (the number of audio signal values taken per second) of the audio files. The sampling rate of your audio data must match the sampling rate of the dataset a pretrained model was trained on. This value is typically given in the model card.
 
-Load a dataset and feature extractor with [from_pretrained()](/docs/transformers/v5.21.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.from_pretrained).
+Load a dataset and feature extractor with [from_pretrained()](/docs/transformers/v5.22.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.from_pretrained).
 
 ```py
 from datasets import load_dataset, Audio
@@ -175,4 +175,4 @@ dataset[0]["audio"]
 ```
 
 ### Perplexity of fixed-length models
-https://huggingface.co/docs/transformers/v5.21.1/perplexity.md
+https://huggingface.co/docs/transformers/v5.22.1/perplexity.md

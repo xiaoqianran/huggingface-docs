@@ -127,4 +127,4 @@ strategy, this jumps down to `16.44`. This is not only a more favorable score, b
 closer to the true autoregressive decomposition of a sequence likelihood.
 
 ### Sharing
-https://huggingface.co/docs/transformers/v5.21.1/model_sharing.md
+https://huggingface.co/docs/transformers/v5.22.1/model_sharing.md
