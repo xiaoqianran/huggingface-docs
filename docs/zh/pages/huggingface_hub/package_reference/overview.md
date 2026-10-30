@@ -4,5 +4,5 @@
 
 本节包含 `huggingface_hub` 类和方法的详尽技术描述。
 
-### 工作
-https://huggingface.co/docs/huggingface_hub/v2.3.0/package_reference/jobs.md
+### 警告
+https://huggingface.co/docs/huggingface_hub/v2.4.0/package_reference/cli.md

@@ -89,12 +89,12 @@ publish:
 
 完整的工作示例：
 
-- GitHub 操作 — [⟦T29⟧](https://github.com/coyotte508/publish-to-hf)
-- GitLab CI — [⟦T30⟧](https://gitlab.com/coyotte508/publish-to-hf)
+- GitHub 操作 — [⟦T30⟧](https://github.com/coyotte508/publish-to-hf)
+- GitLab CI — [⟦T31⟧](https://gitlab.com/coyotte508/publish-to-hf)
 
 ## 两种风格：回购发布者和 CI/CD 身份|风味 |配置于 |你得到什么 |用它来... |
 | ---| ---| ---| ---|
-| **回购受信任的发布者** |存储库的**设置 → 受信任的发布者** |具有**对该一个存储库的写入权限**的令牌 |从 CI 发布模型、数据集、空间、内核或存储桶 |
+| **回购受信任的发布者** |存储库的**设置 → 受信任的发布者** |具有**对该一个存储库的写入权限**（或[read-only access](#read-only-repo-publishers)）的令牌|从 CI 发布模型、数据集、空间、内核或存储桶，或提取私有模型 |
 | **帐户 CI/CD 身份** |您的帐户是 [**Authentication settings → CI/CD Access**](https://huggingface.co/settings/authentication#ci-cd-access) |具有 `gated-repos` 范围的只读令牌，如果您选择加入，则加上 `inference-api` |阅读**您有权访问的门控存储库**，使用您的速率限制，并可选择从 CI 调用推理提供程序 |
 
 两个令牌都会在 60 分钟后过期。您需要 Hub 存储库上的 **Write** 角色来管理其受信任的发布者。
@@ -117,9 +117,9 @@ publish:
 ```bash
 # $ID_TOKEN is the OIDC token your provider minted (e.g. $HF_ID_TOKEN on GitLab)
 HF_OIDC_ID_TOKEN="$ID_TOKEN" HF_OIDC_RESOURCE="your-hf-username" hf download acme/gated-model
-```
+```生成的令牌可以读取您有权访问的门控存储库并使用您帐户的速率限制。它**无法**写入任何内容，并且**无法**读取您的私人存储库。要从 CI 中提取私有存储库，请改用 [read-only repo publisher](#read-only-repo-publishers)。
 
-生成的令牌可以读取您有权访问的门控存储库并使用您帐户的速率限制。它**无法**写入任何内容，并且**无法**读取您的私人存储库。> [!提示]
+> [!提示]
 > 需要令牌本身（对于 `curl`、`git clone` 或读取 `HF_TOKEN` 的工具）？ `hf auth token` 执行交换并将短期令牌打印到标准输出：
 >
 > ```yaml
@@ -130,6 +130,23 @@ HF_OIDC_ID_TOKEN="$ID_TOKEN" HF_OIDC_RESOURCE="your-hf-username" hf download acm
 > ```
 >
 > 这适用于 CI/CD 身份和存储库发布者 - 令牌的范围为 `HF_OIDC_RESOURCE` 指向的任何内容。
+
+### 只读存储库发布者
+
+默认情况下，存储库受信任的发布者会铸造可以推送到存储库的令牌。如果工作负载仅需要“拉取”存储库（例如，从 CI 作业或发行自己的 OIDC 令牌的外部平台下载私有模型或数据集），请在添加发布者时勾选 **只读**。然后，交换的令牌可以读取存储库的内容，但无法写入内容，并且该条目在列表中显示**只读**徽章。这适用于模型、数据集、空间、内核和存储桶。
+
+交易所本身没有变化。在仓库中点`HF_OIDC_RESOURCE`（或`resource`）。
+
+```yaml
+    permissions:
+      id-token: write  # required so the job can request an OIDC token
+
+    steps:
+      - name: Download a private model
+        env:
+          HF_OIDC_RESOURCE: acme/private-model
+        run: hf download acme/private-model
+```与其他发布者设置一样，权限在创建时固定。要更改它，请删除发布者并重新添加。
 
 ### 从 CI 调用推理提供程序
 
@@ -181,12 +198,12 @@ HF_OIDC_ID_TOKEN="$ID_TOKEN" HF_OIDC_RESOURCE="your-hf-username" hf download acm
 
 不需要客户端身份验证 - OIDC ID 令牌对请求进行身份验证。交换遵循[RFC 8693 — OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html)。
 
-**请求正文：**|领域|必填|价值|
+**请求正文：**|领域|必填 |价值|
 | ---| ---| ---|
 | `grant_type` |是的 | `urn:ietf:params:oauth:grant-type:token-exchange` |
 | `subject_token_type` |是的 | `urn:ietf:params:oauth:token-type:id_token` |
-| `subject_token` |是的 |来自 CI 提供商的原始 OIDC ID 令牌 (JWT)。它的 `aud` 声明**必须**是 `https://huggingface.co`。 |
-| `resource` |是的 |用于用户范围令牌的 Hub 存储库（`namespace/name`、`datasets/namespace/name`、`spaces/namespace/name`、`kernels/namespace/name`、`buckets/namespace/name`）或 Hub **用户名**（无斜线）。 |
+| `subject_token` |是的 |来自 CI 提供商的原始 OIDC ID 令牌 (JWT)。它的`aud`声称**必须**是`https://huggingface.co`。 |
+| `resource` |是的 |用于用户范围令牌的 Hub 存储库（`namespace/name`、`datasets/namespace/name`、`spaces/namespace/name`、`kernels/namespace/name`、`buckets/namespace/name`）或 Hub **用户名**（无斜杠）。 |
 
 **成功响应：**
 
@@ -209,9 +226,9 @@ HF_OIDC_ID_TOKEN="$ID_TOKEN" HF_OIDC_RESOURCE="your-hf-username" hf download acm
 当 `hf` CLI 执行交换时，故障会显示 `error` 代码以及 `(Request ID: …)` — 在报告问题时包含该请求 ID，以便我们可以在日志中跟踪交换。
 
 ## 安全模型- **令牌是短暂的。** 自交换之日起 60 分钟 — 时钟仅在您调用端点时启动，而不是在工作流程启动时启动。没有刷新令牌；长期工作应该重新调换。
-- **回购代币是回购范围的。** `acme/awesome-model` 的代币不能触及 `acme/anything-else`。推送归因于合成的`[OIDC]`系统用户，并参考原始发行者和主题。
+- **回购代币是回购范围的。** `acme/awesome-model` 的代币不能触及 `acme/anything-else`。推送归因于合成的`[OIDC]`系统用户，并参考原始发行者和主题。来自只读发布者的令牌只能读取该存储库。
 - **用户令牌是只读的。** 默认情况下`gated-repos`范围 - 没有写入，没有私人存储库，没有帐户管理。可选的 `inference-api` 范围添加了推理提供程序调用（记入您的帐户），但仍然没有写入或私有存储库访问权限。
-- **声明完全匹配。**没有正则表达式，没有前缀匹配。
+- **声明完全匹配，或者通过提供商预设需要的前缀**（GitHub 的`workflow_ref`）。没有正则表达式。
 - **审核日志。** 记录添加或删除发布者，并成功交换更新上次使用的时间。
 
 ## 另请参阅

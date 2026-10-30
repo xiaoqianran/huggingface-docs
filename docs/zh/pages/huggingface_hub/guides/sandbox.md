@@ -3,427 +3,274 @@
 # 沙箱
 
 > [!注意]
-> 沙箱 API 是实验性的。其 API 和行为可能会更改，恕不另行通知。共享沙箱的目的是
-> 同一信任边界内的工作负载；对彼此不信任的工作负载使用专用沙箱。
+> 沙箱是一项**实验性**功能。 API、默认值和行为可能会更改，恕不另行通知。共享
+> 沙箱适用于同一信任边界内的工作负载；他们的隔离并不能保证受到保护
+> 来自每次跨沙箱攻击。对于相互不信任的工作负载使用专用沙箱，并避免
+> 可用于沙箱工作负载的长期或范围广泛的凭据。
 
-查看 [Sandboxes guide](../guides/sandbox) 了解如何使用它们。
+沙箱是一个独立的云机器，您可以在几秒钟内启动，使用实时流输出运行命令，以及将文件移入和移出——所有这些都可以通过 Python 或 CLI 进行。沙箱构建在 [Jobs](./jobs) 之上：在底层，沙箱只是一个运行微型服务器的作业，该服务器通过 HTTP 公开命令执行和文件传输。
 
-## 沙箱[[huggingface_hub.Sandbox]]
+当您需要在自己的机器以外的地方运行代码时，它们非常适合：- **运行不受信任或人工智能生成的代码** — 让代理执行任意代码，而不授予其访问您的文件系统的权限。为此，请使用“专用”沙箱：它是自己的虚拟机。
+- **可重复的构建和实验** — 在 CPU 或 GPU 上干净、定义良好的图像上运行。
+- **分散工作**——以较低的成本启动数百个并行环境（RL 部署、评估、批处理工具执行）。
 
-#### Huggingface_hub.Sandbox[[huggingface_hub.Sandbox]]
+任何带有 `/bin/sh` 的 Docker 镜像都可以工作——不需要预先安装 Python、pip 或代理（在启动时注入一个小的静态服务器二进制文件）。
 
-```python
-huggingface_hub.Sandbox(id: str, server: _SandboxServer, local_id: str | None, owns_sandbox: bool, owns_server: bool, sandbox_token: str | None = None)
-```
+> [!提示]
+> 好奇这在幕后是如何工作的——作业服务器、无状态身份验证，或者单个作业如何托管许多独立的沙箱？请参阅[Sandboxes conceptual guide](../concepts/sandbox)。
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_sandbox.py#L783)
+## 两种沙箱
 
-运行在 Hugging Face Jobs 上的隔离云机器。
+获取沙箱有两种方法。两者都给你相同的[Sandbox](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.Sandbox)对象（相同的`run`，`files`，`connect`，`kill`）；它们的区别仅在于底层机器的分配方式：|            | [Sandbox.create()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create) — **专用** | [SandboxPool](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.SandboxPool) — **共享/池** |
+| ---------- | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+|地图|一项作业 = **一个沙箱**（整个虚拟机）|一项作业 = **许多沙箱**（一台虚拟机，已打包）|
+|隔离 |完整虚拟机 | uid + [Landlock](https://docs.kernel.org/userspace-api/landlock.html)（同一用户信任）|
+|冷启动|每个沙箱约 6 秒 |第一个主机约 6 秒，然后每个主机约 1 次往返 |
+|成本|每个沙箱一个虚拟机 |每个**主机**一个虚拟机，分摊到许多沙箱 |
+|图形处理器 | ✅ | ❌（仅限 CPU）|
+|最适合|单一沙箱、GPU 工作负载、不受信任的代码 |许多廉价的 CPU 沙箱（RL 推出、扇出）|经验法则：需要 GPU 或运行相互不信任的代码 → 专用。需要数百个廉价的 CPU 沙箱 → 一个池。
 
-> [!注意]
-> 沙箱 API 是实验性的。其 API 和行为可能会更改，恕不另行通知。
-
-使用 [Sandbox.create()](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create) 创建一个专用的作业（每个沙箱一个作业），或者从 [SandboxPool](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.SandboxPool) 获得许多廉价的共享作业。
-
-使用 [Sandbox.connect()](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.Sandbox.connect) 从任何地方重新连接到正在运行的沙箱。用作上下文管理器以在退出时终止它：
+## 快速入门
 
 ```python
 >>> from huggingface_hub import Sandbox
->>> with Sandbox.create(image="python:3.12") as sbx:
-...     print(sbx.run("python --version").stdout)
+
+>>> with Sandbox.create() as sbx:                      # ready in ~6s
+...     result = sbx.run("python -c 'print(40 + 2)'")  # ~100ms per command
+...     print(result.stdout)
+42
 ```
 
-#### 关闭[[huggingface_hub.Sandbox.close]]
+选择任意图像和硬件[flavor](./jobs#select-the-hardware)：
 
 ```python
-close()
+>>> sbx = Sandbox.create(image="alpine:3.20")
+>>> sbx = Sandbox.create(image="pytorch/pytorch:2.6.0-cuda12.4-cudnn9-devel", flavor="a10g-small")
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_sandbox.py#L1028)
+## 运行命令
 
-释放本地 HTTP 客户端而不终止沙箱。幂等。
-
-池沙箱无操作（客户端属于池的主机）。
-
-#### 连接[[huggingface_hub.Sandbox.connect]]
+[Sandbox.run()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.Sandbox.run) 执行命令并等待它。传递 shell 字符串或 argv 列表：
 
 ```python
-connect(sandbox_id: str, namespace: str | None = None, token: str | None = None)
+>>> sbx.run("pip install -q numpy")                       # string  → runs through /bin/sh -c
+>>> sbx.run(["python", "-c", "import numpy; print(numpy.__version__)"])  # list → exec'd directly
+
+# Live output streaming, plus env, cwd, timeout, stdin
+>>> sbx.run("make -j4", cwd="/app", env={"CC": "gcc"}, timeout=600, on_stdout=print, on_stderr=print)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_sandbox.py#L952)
-
-仅使用其 ID 从任何地方重新附加到正在运行的沙箱。
-
-#### 创建[[huggingface_hub.Sandbox.create]]
+默认情况下，模式是从类型推断的（字符串贯穿`/bin/sh -c`，列表直接作为argv执行）。通过 `shell=` 使其显式化 - 可以方便地避免经典的 footgun，其中像 `["echo hi"]` 这样的单元素列表作为名为 `"echo hi"` 的单个程序执行：
 
 ```python
-create(image: str = 'python:3.12', flavor: str = 'cpu-basic', idle_timeout: int | float | str | None = 600, env: dict[str, typing.Any] | None = None, secrets: dict[str, typing.Any] | None = None, volumes: typing.Optional[typing.List[huggingface_hub._space_api.Volume]] = None, namespace: str | None = None, forward_hf_token: bool = False, labels: dict[str, str] | None = None, start_timeout: float = 120.0, token: str | None = None)
+>>> sbx.run("echo $HOME && ls | wc -l", shell=True)   # force the shell (pipes, globs, $VARS)
+>>> sbx.run(["git", "commit", "-m", msg], shell=False)  # force argv (no quoting surprises)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_sandbox.py#L835)
+`shell=True` 需要一个字符串，`shell=False` 需要一个列表；传递错误的类型会引发`ValueError`。
 
-**参数：**镜像（`str`，*可选*，默认为`"python --3.12"`）：任何带有`/bin/sh`（Docker Hub或`hf.co/spaces/...`）的Docker镜像。
-
-flavor (`str`, *可选*, 默认为 `"cpu-basic"`) : 硬件风格，例如`"cpu-basic"`，`"a10g-small"`。参见`hf jobs hardware`。
-
-idle_timeout（`int`或`float`或`str`，*可选*，默认为`600`）：在长时间不活动（没有API调用，没有正在运行的进程）后自动关闭。默认为 10 分钟；通过 `None` 禁用。请注意，*foreground* 命令当前不计为活动，因此在没有其他 API 流量的情况下，如果单个 `run()` 花费的时间比此长，则可以在其下关闭其沙箱 — 对于长单个命令，提高超时（或传递 `None`）。
-
-env (`dict[str, Any]`, *可选*) ：沙箱中可用的环境变量。
-
-Secrets (`dict[str, Any]`, *可选*) ：秘密环境变量（加密的服务器端）。
-
-卷（`List[Volume]`，*可选*）：要安装的 HF 存储库/存储桶，请参阅[Volume](/docs/huggingface_hub/v2.3.0/en/package_reference/jobs#huggingface_hub.Volume)。
-
-命名空间（`str`，*可选*）：要在其下运行的用户或组织命名空间（默认为当前用户）。
-
-forward_hf_token（`bool`，*可选*，默认为`False`）：如果为 True，您的 HF 令牌将作为 `HF_TOKEN`（选择加入）注入。
-
-标签（`dict[str, str]`，*可选*）：附加到底层 HF 作业的标签。start_timeout (`float`，*可选*，默认为`120.0`)：等待沙箱准备就绪的最大秒数。
-
-令牌（`str`，*可选*）：HF 令牌覆盖。
-
-创建一个专用沙箱（一个 HF 作业）并进行阻止，直到其准备就绪（在 cpu-basic 上约为 7 秒）。
-
-每个沙箱都是一个完全隔离的虚拟机，因此这是 GPU 的正确选择
-工作负载或不受信任的代码。要改为扇出许多廉价的 CPU 沙箱，请使用
-[SandboxPool](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.SandboxPool)。
-
-作业以固定的 24 小时最大生命周期运行； `idle_timeout`是真的
-keeper——闲置的沙箱在此之前就会自行关闭。
-
-图像只需要`/bin/sh`。沙箱服务器在启动时下载
-`wget`/`curl`（如果可用），否则读取始终安装的服务器存储桶（其中
-冷启动时间增加约 2-3 秒，因此运输 `wget`/`curl` 可以保持快速）。
-
-#### 进程[[huggingface_hub.Sandbox.processes]]
+退出非零的命令会引发 `SandboxCommandError`（附加有 `stdout`、`stderr` 和 `exit_code`）。通过 `check=False` 来取回 [SandboxCommandResult](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.SandboxCommandResult)，而不是加注：
 
 ```python
-processes()
+>>> result = sbx.run("test -f /tmp/missing", check=False)
+>>> result.exit_code
+1
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_sandbox.py#L1202)
+### 后台进程
 
-列出该沙箱的后台进程。
-
-返回以[Sandbox.run()](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.Sandbox.run)`(..., background=True)`启动的进程；停一
-与[SandboxProcess.kill()](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess.kill)。最近完成的流程保持列出状态（带有
-`running=False` 和他们的 `exit_code`);服务器保存的数量有限，所以
-已运行数千个短命令的沙箱不会全部列出。
-
-#### proxy_url_for[[huggingface_hub.Sandbox.proxy_url_for]]```python
-proxy_url_for(port: int | str, path: str = '/', scheme: str = 'https://')
-```
-
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_sandbox.py#L1238)
-
-**参数：**
-
-port (`int` or `str`) ：内部服务器监听的端口（池：unix套接字的`<port>`）。
-
-路径（`str`，*可选*，默认为`"/"`）：内部服务器上指向的路径，例如`"/ws"`。
-
-方案（`str`，*可选*，默认为`"https --//"`）：用于构建链接的 URL 方案。默认为`"https://"`；为 WebSocket 客户端传递`"wss://"`（代理与协议无关，因此只有客户端方案发生变化）。
-
-**返回：** `str`
-
-像 `https://<job_id>--49983.hf.jobs/v1/.../proxy/8000/ws` 这样的 URL（或者
-`wss://...` 与 `scheme="wss://"`）。
-
-代理到在此沙箱*内部*运行的服务器的公共 URL。
-
-对返回 URL 的请求由工作中的沙箱服务器转发到
-您在 `port` 上的沙箱中启动的服务器，包括 WebSocket (`ws(s)://`)
-升级和流式响应。将其与 `proxy_headers` 配对以进行身份​​验证。
-
-沙箱必须如何在 `port` 上监听：
-
-- **池/共享沙箱**：它无法绑定TCP端口（Landlock），因此绑定一个
-  **unix 套接字** 位于 `$SBX_PROXY_DIR/<port>.sock` （`SBX_PROXY_DIR` 环境变量
-  在每个沙箱中都设置）。例如。 `uvicorn app:app --uds $SBX_PROXY_DIR/8000.sock`。
-- **专用沙箱**：在`127.0.0.1:<port>`上绑定普通TCP端口。 （你可以
-  也可以直接通过作业代理公开端口，而无需经过此处。）
-
-示例：
-```python
->>> url = sandbox.proxy_url_for(8000, "/ws", scheme="wss://")
->>> import websockets
->>> async with websockets.connect(url, additional_headers=sandbox.proxy_headers) as ws:
-...     await ws.send("hello")
-```
-
-#### 运行[[huggingface_hub.Sandbox.run]]
+通过 `background=True` 启动一个长时间运行的进程（服务器、观察者、训练运行）而无需等待。 `run` 立即返回 [SandboxProcess](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess) 而不是 [SandboxCommandResult](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.SandboxCommandResult)：
 
 ```python
-run(cmd: typing.Union[str, typing.List[str]], shell: bool | None = None, env: dict[str, typing.Any] | None = None, cwd: str | None = None, timeout: float | None = None, stdin: str | None = None, on_stdout: typing.Optional[typing.Callable[[str], NoneType]] = None, on_stderr: typing.Optional[typing.Callable[[str], NoneType]] = None, check: bool = True, capture_output: bool = True, background: bool = False)
-```[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_sandbox.py#L1075)
-
-**参数：**
-
-cmd (`str` 或 `List[str]`) ：shell 命令字符串（使用 `/bin/sh -c` 运行）或 argv 列表（直接执行）。
-
-shell (`bool`, *可选*) ：强制执行模式，而不是从`cmd`的类型推断。 `True`贯穿`/bin/sh -c`并且要求`cmd`是一个字符串； `False` 直接执行 `cmd` 并要求它是一个 argv 列表。 `None`（默认）从类型推断。显式设置它以避免类型驱动的 footgun（例如 `["echo hi"]` 作为名为 `"echo hi"` 的单个程序执行）。
-
-env (`dict[str, Any]`, *可选*) ：此命令的额外环境变量。
-
-cwd（`str`，*可选*）：工作目录。
-
-timeout (`float`, *可选*) ：在这么多秒后终止命令（整个进程组）。
-
-stdin (`str`, *可选*) ：要写入命令的 stdin 的数据。
-
-on_stdout (`Callable[[str], None]`, *可选*) ：当 stdout 块到达时调用回调。
-
-on_stderr (`Callable[[str], None]`, *可选*) ：当 stderr 块到达时调用回调。
-
-check（`bool`，*可选*，默认为`True`）：如果为真，则在非零退出时提高`SandboxCommandError`。capture_output (`bool`，*可选*，默认为`True`) ：如果为 True，则将 stdout/stderr 累加到返回结果中。当您只需要 `on_stdout`/`on_stderr` 时，传递 `False`：然后将输出传递给回调并丢弃，因此生成千兆字节的命令不必适合内存。在这种情况下，`result.stdout`/`result.stderr` 为空。
-
-背景（`bool`，*可选*，默认为`False`）：如果为True，则启动分离命令并立即返回[SandboxProcess](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess)，而不是等待它并返回[SandboxCommandResult](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.SandboxCommandResult)。
-
-在沙箱中运行命令并等待它，实时流式传输输出。
-
-使用 `background=True` 命令以分离方式启动，并且 `run` 返回
-[SandboxProcess](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess) 立即，无需等待它完成 — 方便
-服务器和其他长时间运行的进程。稍后用 [Sandbox.processes()](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.Sandbox.processes) 列出它们
-并用 [SandboxProcess.kill()](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess.kill) 停止其中一个。流式传输/仅等待选项
-（`timeout`、`stdin`、`on_stdout`、`on_stderr`、`check`）不适用于该模式。
-
-返回：a [SandboxCommandResult](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.SandboxCommandResult)（带有 `exit_code`、`stdout`、`stderr`，
-`duration_ms`)，或者`background=True`时为[SandboxProcess](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess)。
-
-## SandboxPool[[huggingface_hub.SandboxPool]]
-
-#### Huggingface_hub.SandboxPool[[huggingface_hub.SandboxPool]]
+>>> proc = sbx.run("python -m http.server 8000", background=True)
+>>> proc
+SandboxProcess(pid=1234, cmd='python -m http.server 8000', tag=None, started_at_ms=1700000000000, running=True, exit_code=None)
+```列出沙箱的进程并在完成后停止其中一个。已完成的进程将保持列出状态（带有 `running=False` 及其 `exit_code`），直到沙箱被删除，因此您可以判断进程是否仍然存在或已退出：
 
 ```python
-huggingface_hub.SandboxPool(image: str = 'python:3.12', flavor: str = 'cpu-basic', sandboxes_per_host: int = 50, warm_up: int = 1, max_hosts: int | None = None, name: str | None = None, idle_timeout: int | float | str | None = 600, namespace: str | None = None, start_timeout: float = 120.0, adopt_hosts: str = 'own', token: str | None = None, _connect_mode: bool = False)
+>>> sbx.processes()
+[SandboxProcess(pid=1234, cmd='python -m http.server 8000', tag=None, started_at_ms=1700000000000, running=True, exit_code=None)]
+>>> proc.kill()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_sandbox.py#L1313)
+流/仅等待选项（`timeout`、`stdin`、`on_stdout`、`on_stderr`、`check`）不适用于后台模式 — 仅支持`env`、`cwd` 和 `shell`。
 
-一组共享的“主机”作业，每个作业都包含许多内陆隔离的沙箱。> [!警告]
-> 沙箱 API 是实验性的。其 API 和行为可能会更改，恕不另行通知。
->
-> **池化沙箱适用于一个信任边界内的工作负载。**池化沙箱是一个 uid 加上一个 Landlock
-> 共享虚拟机（不是自己的虚拟机）内的规则集，并且主机上的每个沙箱共享该主机的身份验证令牌
-> 及其特权控制平面。使用池以低廉的成本扇出“您自己的”代码。因为互相不信任
-> 工作负载，使用[Sandbox.create()](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create)，它为每个工作负载提供了自己的虚拟机。具体差距如下
-> 沙盒概念指南中的“已知限制”。
+## 文件
 
-一台主机是一个计费的 HF 作业（一台 VM）；它运行沙箱服务器和多路复用
-最多 `sandboxes_per_host` 轻量级沙箱，彼此隔离
-uid + Landlock LSM。这使得大扇出变得便宜（VM 成本被共享
-跨所有沙箱）并且快速（创建沙箱是〜一次代理往返
-一旦主人热情）。最适合许多并行 CPU 沙箱，例如 RL 部署；
-对于相互不信任的工作负载之间的 GPU 或强大的 VM 级隔离，请使用
-[Sandbox.create()](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create) 代替。构造函数预先配置 `warm_up` 主机（默认 1）并阻止直到它们被配置
-准备好了；然后，当请求沙箱时，会根据需要配置更多主机，并且所有
+```python
+>>> sbx.files.write("/app/script.py", "print('hi')")     # str | bytes | file-like
+>>> sbx.files.read_text("/app/script.py")
+"print('hi')"
+>>> sbx.files.upload("local_data.csv", "/data/data.csv")  # local -> sandbox
+>>> sbx.files.download("/data/results.bin", "results.bin")  # sandbox -> local
+>>> sbx.files.list("/data")
+[FileEntry(name='data.csv', path='/data/data.csv', type='file', size=5324, ...)]
+```
 
-在 `close()` 被拆除（或闲置时，通过 `idle_timeout`）。用户从不管理作业：
+其他助手：`stat`、`exists`、`mkdir`、`delete`。
+
+## 到达沙箱内的服务器
+
+在沙箱中（在后台）启动一个服务器，然后使用 [Sandbox.proxy_url_for()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.Sandbox.proxy_url_for) 从外部访问它 - 请求由正在工作的沙箱服务器转发到您的内部服务器，因此没有额外的公共端口可以公开。它适用于纯 HTTP、服务器发送事件和 WebSocket。将 URL 与 `Sandbox.proxy_headers` 配对以进行身份验证（您的 WebSocket/HTTP 客户端必须发送它们）：
+
+```python
+>>> import httpx2
+>>> with Sandbox.create() as sbx:
+...     sbx.files.write("app.py", "...")  # a server exposing e.g. /hello and /ws
+...     sbx.run("uvicorn app:app --host 127.0.0.1 --port 8000", background=True)
+...     # plain HTTP
+...     r = httpx2.get(sbx.proxy_url_for(8000, "/hello"), headers=sbx.proxy_headers)
+...     # WebSocket: ask for a wss:// URL
+...     ws_url = sbx.proxy_url_for(8000, "/ws", scheme="wss://")
+```
+
+使用 `proxy_headers` 时，请在 HTTP 客户端中禁用重定向 (`follow_redirects=False`
+与 httpx 或 `allow_redirects=False` 与请求）。一个应用程序可以重定向到另一个应用程序
+origin，并且这些自定义身份验证标头不得转发到那里。池化沙箱需要一个返回每个沙箱功能令牌的服务器。缺少代币
+是一个错误；升级并回收主机，而不是使用其管理令牌。
+
+内部服务器必须如何侦听取决于沙箱类型：
+
+- **专用** ([Sandbox.create()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create))：在`127.0.0.1:<port>`上绑定普通TCP端口。
+- **池/共享** ([SandboxPool](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.SandboxPool))：池化沙箱无法绑定 TCP 端口（Landlock），因此在 `$SBX_PROXY_DIR/<port>.sock` 处监听 **unix 套接字**（该环境变量在每个沙箱中设置），例如`uvicorn app:app --uds $SBX_PROXY_DIR/8000.sock`。无论哪种方式，客户端 (`proxy_url_for` / `proxy_headers`) 都是相同的。
+
+## 生命周期
+
+沙箱比创建它的进程寿命更长——您可以现在创建它，然后从任何持有相同 HF 令牌的机器重新连接，无需复制任何状态：
+
+```python
+>>> sbx = Sandbox.create()
+>>> sbx.id
+'687f911eaea852de79c4a50a'
+
+# Later, from anywhere:
+>>> sbx = Sandbox.connect("687f911eaea852de79c4a50a")
+>>> sbx.kill()           # terminate now
+```- `idle_timeout`（默认10分钟）是真正的守护者：一旦没有进行API调用并且没有进程正在运行，它就会关闭沙箱，因此废弃的沙箱将停止计费。在创建时设置它（`Sandbox.create(idle_timeout="30m")`）或传递`None`以禁用。
+- 该作业还具有固定的 24 小时最长寿命作为硬后挡板（不可配置）。
+- `forward_hf_token=True` 显式地将您的 HF 令牌暴露给沙箱中运行的代码（如 `HF_TOKEN`）。即使使用 `forward_hf_token=False`，也不要将沙箱视为您的凭据的硬边界 - 请参阅本页顶部的警告。
+
+## 同时使用多个沙箱：SandboxPool
+
+当您需要许多沙箱（并行 RL 部署、扇出评估、批处理工具执行）时，每个沙箱一个作业是浪费的：每个沙箱都需要支付完整的虚拟机冷启动费用，并为需要几 MB RAM 的工作负载容纳一整台机器。相反，[SandboxPool](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.SandboxPool) 将许多轻量级沙箱打包到几个共享主机作业中 - 一个计费虚拟机为数十个沙箱提供服务，因此每个沙箱的成本下降了该因素，并且每个沙箱的冷启动大约是一次网络往返。
 
 ```python
 >>> from huggingface_hub import SandboxPool
+
 >>> with SandboxPool(image="python:3.12", flavor="cpu-basic", warm_up=2) as pool:
-...     boxes = [pool.create() for _ in range(100)]   # packed across the warm hosts
-...     print(boxes[0].run("echo hi").stdout)
+...     boxes = [pool.create() for _ in range(100)]   # packed across the 2 warm host VMs
+...     print(boxes[0].run("echo hi").stdout)          # each box is a normal Sandbox
 hi
-```
-
-`create()` 一次创建**一个**沙箱：它重用仍然有空闲的主机
-启动新的容量之前，您可以随着工作的到来而按需增长。为了避免
-前几次调用冷启动，为主机预先配置`warm_up`（或
-`warm`）。温暖的主机是通过工作标签发现的，因此可以在不同的地方重复使用工作**
-也处理**（具有相同 `image`/`flavor`/`name` 的新池附加到
-
-举办了一场较早的比赛，落后了）：
+```每个`create()`返回一个完整的[Sandbox](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.Sandbox)；反复调用它以扇出。池根据需要启动主机作业，为每个主机打包 `sandboxes_per_host` 沙箱，并终止 `close()` 上的所有内容（或者当主机空闲时，作为计费后备）。典型的扇出模式：
 
 ```python
->>> pool = SandboxPool(image="python:3.12")
->>> sbx = pool.create()    # finds a warm host (here or in another process), else boots one
+>>> from concurrent.futures import ThreadPoolExecutor
+>>> with SandboxPool(image="python:3.12", warm_up=4) as pool:
+...     boxes = [pool.create() for _ in tasks]
+...     with ThreadPoolExecutor(32) as ex:
+...         outputs = list(ex.map(lambda b, t: b.run(t.cmd).stdout, boxes, tasks))
 ```
 
-#### 关闭[[huggingface_hub.SandboxPool.close]]
+Env 和 `idle_timeout` 是每个沙箱的（它们属于 `create()`，而不是池），因此一个池中的沙箱可以有不同的环境：
 
 ```python
-close()
+>>> sbx = pool.create(env={"SEED": "42"}, idle_timeout="5m", forward_hf_token=True)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_sandbox.py#L1729)
+池化沙箱是一个完整的 [Sandbox](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.Sandbox)，但一些输入由主机固定，而不是每个沙箱 - 因此 [SandboxPool.create()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.SandboxPool.create) 接受比 [Sandbox.create()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create) 更小的参数集：
 
-释放池。幂等。
+|输入| `Sandbox.create`（专用）| `SandboxPool.create`（合并）|
+| ------------------ | ---------------------------- | ---------------------------------------------------------------- |
+| `image`、`flavor` |每个沙箱 |由池固定（在主机上设置一次）|
+| `volumes` |每个沙箱 | **不可用**（在主机启动时安装）|
+| `env` |每个沙箱 |每个沙箱 |
+| `idle_timeout` |每个沙箱 |每个沙箱 |
+| `forward_hf_token` |每个沙箱 |每个沙箱 |池化沙箱共享一个长期存在的主机作业，因此没有像专用沙箱那样的加密作业秘密通道。但是池化沙箱的 `env` 在沙箱创建时（而不是在作业启动时）传递到主机服务器，因此它永远不会存储在任何作业的元数据中 - 将可能的秘密作为普通的 `env` 传递。
 
-对于我们创建的池，这会终止所有主机作业（因此它们的所有作业）
-沙箱）。对于 `connect()` 的处理，它仅释放本地 HTTP 客户端：
-共享主机可能正在为其他客户端提供服务，因此 - 就像 [Sandbox.connect()](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.Sandbox.connect) - 留下一个
-`with` 块不得将其撕毁。显式终止连接池的主机
-与`hf sandbox pool delete <id>`。仅主机*此句柄已启动*被取消。通过标签发现的主机可能
-正在为另一个进程的沙箱提供服务，因此它被释放而不是终止。
+### 按需生长和预热
 
-如果主机作业无法取消，则引发 `SandboxError`，命名作业
-仍在运行——它们继续计费，并且它们的缓存条目被保留，因此它们会留下来
-可发现的。当通过 `__exit__` 到达 `close()` 时，已经出现异常
-在飞行中，错误会被记录下来，因此它无法掩盖原始错误。
-
-#### 连接[[huggingface_hub.SandboxPool.connect]]
+`pool.create()` 一次创建一个沙箱，在启动新主机之前重用仍然具有可用容量的主机 - 因此您可以在工作到达时生成沙箱，并将它们打包到温暖的主机上：
 
 ```python
-connect(pool_id: str, namespace: str | None = None, adopt_hosts: str = 'own', token: str | None = None)
+>>> pool = SandboxPool(image="python:3.12", flavor="cpu-basic")
+>>> sbx = pool.create()    # boots the first host (~6s)
+>>> sbx = pool.create()    # packs onto the same warm host (~one round-trip, no new VM)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_sandbox.py#L1494)
+为了避免主机在前几次调用时冷启动，请预先配置主机`warm_up=N`（在第一个`create()`启动）或通过预先调用`pool.warm(N)`。
 
-**参数：**
+### 跨进程和机器重用池
 
-pool_id (`str`) ：首次创建池时返回的 id。
-
-命名空间（`str`，*可选*）：用于搜索池主机的命名空间（默认为您的主机）。
-
-领养主机（`str`，*可选*，默认为`"own"`）：可以附加到哪些主机。参见[SandboxPool](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.SandboxPool)。重新附加到托管命名空间的另一个成员启动的池需要 `"namespace"`。
-
-令牌（`str`，*可选*）：HF 令牌覆盖。
-
-从任何机器通过 ID 重新连接到正在运行的池 - 不需要本地状态。查找标有 `pool_id` 的正在运行的主机并重建池的配置
-（图像/风味/密度/主机空闲）来自该主机作业的规范和环境变量，返回
-[SandboxPool](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.SandboxPool) 准备好 `create()` 更多沙箱 — 打包到运行中
-主机，或在主机已满时启动重复的（相同配置）。
-
-如果未找到正在运行的主机，则引发 `SandboxError`（一旦池停止存在
-它的所有主机都消失了——空闲超时或被杀死）。
-
-#### 创建[[huggingface_hub.SandboxPool.create]]
+热主机是通过作业标签发现的，因此可以跨进程重用：具有相同 `image`/`flavor`/`name` 的全新`SandboxPool`附加到早期运行的主机，而不是启动自己的主机。传递 `name=` 以保持单独的池与共享主机。要从没有本地状态的另一台计算机重新连接，请通过池 ID 与 [SandboxPool.connect()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.SandboxPool.connect) 重新连接 — 它会找到正在运行的主机，从该主机作业重建池的配置（图像、风味、包装密度），并准备好 `create()` 更多：
 
 ```python
-create(env: dict[str, typing.Any] | None = None, idle_timeout: int | float | str | None = 600, forward_hf_token: bool = False)
+>>> pool = SandboxPool.connect("pool-ae9f7efe0bc7")   # from anywhere, no config needed
+>>> sbx = pool.create()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_sandbox.py#L1591)
+`connect()`'d 池不拥有共享主机（其他客户端可能正在使用它们），因此 - 就像 [Sandbox.connect()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.Sandbox.connect) - 保留其 `with` 块（或调用 `close()`）只会释放本地 HTTP 客户端并使主机保持运行。使用 `pool delete` / `hf sandbox pool delete <id>` 显式终止池的主机。
 
-**参数：**
+> [!注意]
+> 主机内的沙箱由不同的 uid 和每个沙箱 Landlock 规则集分隔。共享沙箱是
+> 旨在用于*一个用户自己的*并行工作负载，并且不能保证与每个跨沙箱攻击隔离。
+> 对于相互不信任的代码或 GPU，请使用[Sandbox.create()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create)（每个沙箱一个单独的虚拟机）。权衡是
+> 概念指南中有详细说明：[how the isolation
+> works](../concepts/sandbox#isolation-in-a-pool-uid--landlock) 并且 — 如果您要在以下两者之间进行选择，则更重要
+> 两种模式 — [known limitations](../concepts/sandbox#known-limitations) 的完整列表。
 
-env (`dict[str, Any]`, *可选*) ：此沙箱的环境变量（每个沙箱都有自己的环境变量）。
+## 从 CLI
 
-idle_timeout（`int`或`float`或`str`，*可选*，默认为`600`）：每个沙箱空闲超时 - 在如此长时间的不活动（没有API调用，没有正在运行的进程）之后，沙箱将从其主机中逐出。与主机空闲超时不同。通过 `None` 禁用。
+`hf sandbox` 命令镜像 Python API。专用沙箱：
 
-forward_hf_token（`bool`，*可选*，默认为`False`）：如果为True，则将您的HF令牌作为`HF_TOKEN`注入沙箱中（选择加入）。与专用沙箱的`secrets`不同，池化沙箱的环境在创建时传递到主机服务器（从未存储在主机作业中），因此它不会出现在任何作业的元数据中。创建一个沙箱，并根据需要配置一台主机。
+```bash
+>>> hf sandbox create
+✓ Sandbox ready id=687f911eaea852de79c4a50a image=python:3.12 elapsed=6.0s
 
-重用具有空闲容量的主机（此池的主机，或通过作业标签找到的热主机）
-/ 本地缓存）在启动新主机之前，因此针对热主机的`create()`
-费用〜一次往返。反复调用即可扇出；使用`warm_up`（或`warm`）
-预先配置主机并避免第一次调用时冷启动。如果主机填满
-在我们下面（另一个进程打包了它）或者缓存的主机消失了，沙箱就消失了
-重新放置在另一台主机（或新主机）上。
+# Attach labels to the underlying Job
+>>> hf sandbox create --label controller-run=run-42 --label team=data-infra
 
-#### 温暖[[huggingface_hub.SandboxPool.warm]]
+>>> hf sandbox exec 687f911eaea852de79c4a50a -- python -c "print('hi')"
+hi
 
-```python
-warm(num_hosts: int = 1)
+>>> hf sandbox cp data.csv 687f911eaea852de79c4a50a:/data/data.csv
+>>> hf sandbox kill 687f911eaea852de79c4a50a
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_sandbox.py#L1564)
+`hf sandbox exec` 实时流式输出并以命令的退出代码退出，因此它由脚本组成：
 
-确保 `num_hosts` 空主机正在运行并让它们保持运行。返回
-池的主机作业 ID。
+```bash
+hf sandbox exec $ID -- pytest && echo "tests passed"
+```使用 `hf sandbox spawn` （打印其 pid）在后台启动一个长时间运行的进程，然后列出或停止进程。该列表显示每个进程的状态（`running`或`exited (<code>)`）：
 
-用于预先“创建”池：主机携带池标签和配置（在
-他们的环境变量），所以后来的`SandboxPool.connect(pool_id)`（甚至来自另一个
-机）找到它们并生成沙箱而无需冷启动。主办方保留
-计费直到被杀或闲置。
+```bash
+>>> hf sandbox spawn $ID -- python -m http.server 8000
+✓ Process started sandbox=687f... pid=1234
 
-在启动前采用已为此池运行的主机（通过作业标签找到），
-因此，`connect()` 之后的 `warm()` — 或重复的 `warm()` — 最多可达 `num_hosts`
-而不是复制现场主机并吹过`max_hosts`。
+>>> hf sandbox process ls $ID
+pid   status   cmd
+1234  running  python -m http.server 8000
 
-## 数据结构
-
-### SandboxCommandResult[[huggingface_hub.SandboxCommandResult]]#### Huggingface_hub.SandboxCommandResult[[huggingface_hub.SandboxCommandResult]]
-
-```python
-huggingface_hub.SandboxCommandResult(exit_code: int | None, stdout: str, stderr: str, signal: int | None = None, timed_out: bool = False, duration_ms: int = 0)
+>>> hf sandbox process kill $ID 1234
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_sandbox.py#L191)
+对于许多廉价的共享沙箱，先预热一次池，然后按需创建：
 
-使用 [Sandbox.run()](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.Sandbox.run) 在沙箱中执行命令的结果。
+```bash
+# Warm a pool -> prints a pool id (billing starts: a host VM is now running)
+>>> hf sandbox pool create python:3.12 --flavor cpu-basic
+✓ Pool created id=pool-ae9f7efe0bc7 image=python:3.12 flavor=cpu-basic host=687f... elapsed=5.7s
 
-### SandboxProcess[[huggingface_hub.SandboxProcess]]
+# Each create packs onto a host with room (found by the pool id, from any machine);
+# only when every host is full does it boot a duplicate. Env is per-sandbox (pooled
+# sandboxes share a host, so there's no encrypted-secrets channel — use --env).
+>>> hf sandbox create --pool pool-ae9f7efe0bc7 --env LOG_LEVEL=debug
+>>> hf sandbox create --pool pool-ae9f7efe0bc7
 
-#### Huggingface_hub.SandboxProcess[[huggingface_hub.SandboxProcess]]
-
-```python
-huggingface_hub.SandboxProcess(id: str | None, pid: int, cmd: typing.Union[str, typing.List[str]], _sandbox: Sandbox, tag: str | None = None, started_at_ms: int | None = None, running: bool = True, exit_code: int | None = None)
+>>> hf sandbox pool ls
+>>> hf sandbox pool delete pool-ae9f7efe0bc7    # terminate the pool's hosts (and their sandboxes)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_sandbox.py#L211)
+`hf sandbox create --pool` 产生一个共享沙箱；它的 id 看起来像 `<host_job_id>.<local_id>` 并且在专用 id 所做的任何地方都有效（`exec`、`cp`、`kill`）。池没有本地状态 - 它只是其正在运行的主机虚拟机，通过池 ID 找到 - 因此它可以在任何计算机上工作，并在其所有主机消失（被杀死或空闲超时）后停止存在。
 
-后台进程在沙箱中以[Sandbox.run()](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.Sandbox.run)`(..., background=True)`启动。
-
-使用 [Sandbox.processes()](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.Sandbox.processes) 列出沙箱的进程，并使用 [SandboxProcess.kill()](/docs/huggingface_hub/v2.3.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess.kill) 停止进程。
-最近完成的进程保留在列表中（服务器保留有限数量的进程）
-他们），所以 `running` 和 `exit_code` 告诉进程是否仍然存在或已经存在
-退出（截至上市时）。
-
-#### 杀死[[huggingface_hub.SandboxProcess.kill]]
-
-```python
-kill()
-```
-
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_sandbox.py#L235)
-
-终止后台进程。幂等。
-
-返回此调用是否是停止它的原因：`False` 表示它已经停止了
-退出或被终止，这不是错误。
-
-请注意，与 `setsid()` 分离的后代留下了有信号的
-进程组并且比该调用的寿命更长。删除沙箱以确定
-它开始的一切都消失了。
-
-### FileEntry[[huggingface_hub._sandbox.FileEntry]]
-
-#### Huggingface_hub._sandbox.FileEntry[[huggingface_hub._sandbox.FileEntry]]
-
-```python
-huggingface_hub._sandbox.FileEntry(name: str, path: str, type: typing.Literal['file', 'dir', 'symlink'], size: int, mtime_ms: int | None = None, mode: str = '')
-```
-
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/_sandbox.py#L256)沙箱内的文件或目录。
-
-## 错误
-
-### SandboxError[[huggingface_hub.errors.SandboxError]]
-
-#### Huggingface_hub.errors.SandboxError[[huggingface_hub.errors.SandboxError]]
-
-```python
-huggingface_hub.errors.SandboxError(message: str, status_code: int | None = None)
-```
-
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/errors.py#L598)
-
-**参数：**
-
-status_code ：如果错误源自 API 响应，则沙箱内服务器返回的 HTTP 状态（例如，`404` 表示丢失文件）。 `None` 否则。
-
-沙箱操作的基本异常（请参阅`huggingface_hub.Sandbox`）。
-
-### SandboxCommandError[[huggingface_hub.errors.SandboxCommandError]]
-
-#### Huggingface_hub.errors.SandboxCommandError[[huggingface_hub.errors.SandboxCommandError]]
-
-```python
-huggingface_hub.errors.SandboxCommandError(cmd, result)
-```
-
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.3.0/src/huggingface_hub/errors.py#L611)
-
-**参数：**
-
-cmd ：失败的命令。
-
-结果：完整的`SandboxCommandResult`（exit_code，stdout，stderr，...）。
-
-当沙箱中运行的命令以非零代码退出时引发。
-
-### 存储卡
-https://huggingface.co/docs/huggingface_hub/v2.3.0/package_reference/cards.md
+### 创建和管理存储库
+https://huggingface.co/docs/huggingface_hub/v2.4.0/guides/repository.md

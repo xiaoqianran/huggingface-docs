@@ -226,7 +226,7 @@ orgs:  huggingface,eu-test,OAuthTesters,hf-accelerate,HFSmolCluster
 
 ## 高频下载
 
-使用`hf download`命令直接从Hub下载文件。在内部，它使用 [Download](./download) 指南中描述的相同 [hf_hub_download()](/docs/huggingface_hub/v2.4.0.rc0/en/package_reference/file_download#huggingface_hub.hf_hub_download) 和 [snapshot_download()](/docs/huggingface_hub/v2.4.0.rc0/en/package_reference/file_download#huggingface_hub.snapshot_download) 帮助程序，并将返回的路径打印到终端。在下面的示例中，我们将介绍最常见的用例。要获得可用选项的完整列表，您可以运行：
+使用`hf download`命令直接从Hub下载文件。在内部，它使用 [Download](./download) 指南中描述的相同 [hf_hub_download()](/docs/huggingface_hub/v2.4.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) 和 [snapshot_download()](/docs/huggingface_hub/v2.4.0/en/package_reference/file_download#huggingface_hub.snapshot_download) 帮助程序，并将返回的路径打印到终端。在下面的示例中，我们将介绍最常见的用例。要获得可用选项的完整列表，您可以运行：
 
 ```bash
 hf download --help
@@ -423,7 +423,7 @@ export HF_HUB_DOWNLOAD_TIMEOUT=30
 
 ## 高频上传
 
-使用`hf upload`命令直接将文件上传到Hub。在内部，它使用与 [Upload](./upload) 指南中描述的相同的 [upload_file()](/docs/huggingface_hub/v2.4.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) 和 [upload_folder()](/docs/huggingface_hub/v2.4.0.rc0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) 帮助器。在下面的示例中，我们将介绍最常见的用例。要获得可用选项的完整列表，您可以运行：
+使用`hf upload`命令直接将文件上传到Hub。在内部，它使用与 [Upload](./upload) 指南中描述的相同的 [upload_file()](/docs/huggingface_hub/v2.4.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) 和 [upload_folder()](/docs/huggingface_hub/v2.4.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) 帮助器。在下面的示例中，我们将介绍最常见的用例。要获得可用选项的完整列表，您可以运行：
 
 ```bash
 >>> hf upload --help
@@ -468,7 +468,7 @@ https://huggingface.co/Wauplin/my-cool-model/tree/main/data/train
 ```bash
 >>> hf upload Wauplin/my-cool-model ./models/model.safetensors
 https://huggingface.co/Wauplin/my-cool-model/blob/main/model.safetensors
-```如果要上传单个文件到特定目录，请相应设置`path_in_repo`：
+```如果您想上传单个文件到特定目录，请相应设置`path_in_repo`：
 
 ```bash
 >>> hf upload Wauplin/my-cool-model ./models/model.safetensors /vae/model.safetensors
@@ -548,7 +548,7 @@ hf upload training-model logs/ --every=10
 
 ### 指定提交消息
 
-使用 `--commit-message` 和 `--commit-description` 为您的提交设置自定义消息和描述，而不是默认消息和描述
+使用 `--commit-message` 和 `--commit-description` 为您的提交设置自定义消息和描述，而不是默认的消息和描述
 
 ```bash
 >>> hf upload Wauplin/my-cool-model ./models . --commit-message="Epoch 34/50" --commit-description="Val accuracy: 68%. Check tensorboard for more details."
@@ -836,7 +836,7 @@ username/logs                321.8 MB        2000 2026-02-13
 ```
 
 > [!提示]
-> `hf sync` 是`hf buckets sync` 的一个方便的顶级别名。有关所有同步选项的完整详细信息，请参阅[Buckets guide](./buckets#sync-directories)。
+> `hf sync` 是 `hf buckets sync` 的一个方便的顶级别名。有关所有同步选项的完整详细信息，请参阅[Buckets guide](./buckets#sync-directories)。
 
 ## 高频型号
 
@@ -1028,7 +1028,7 @@ Hub 上的数据集会通过数据集查看器服务在后端自动转换为 Par
 >>> hf spaces ls --sort likes --limit 10
 ```
 
-当使用空间 ID 调用时，`hf spaces ls` 会列出该空间存储库中的文件：
+当使用 Space ID 调用时，`hf spaces ls` 会列出该 Space 存储库中的文件：
 
 ```bash
 # List files in a Space repo
@@ -1422,7 +1422,7 @@ Your repo is now available at https://huggingface.co/Wauplin/my-cool-model
 >>> hf repos duplicate openai/gdpval myorg/my-gdpval --type dataset --private
 ```
 
-命令返回后，新存储库的 LFS/Xet 文件仍可能在后台复制。在这种情况下，会打印一条警告，并且在复制完成之前从新存储库下载这些文件可能会失败。
+命令返回后，新存储库的 LFS/Xet 文件仍可能在后台复制。在这种情况下，会打印一条警告，并且从新存储库下载这些文件可能会失败，直到复制完成。
 
 ### 删除仓库
 
@@ -1968,7 +1968,7 @@ This code ran with the following GPU: NVIDIA A10G
 
 ### 重试并重新运行作业
 
-`--attempts` 设置最大尝试次数，包括第一次运行。它与 Docker、UV 和计划作业配合使用。重新运行作业将启动具有相同保存规范的新作业：
+`--attempts` 设置最大尝试次数，包括第一次运行。它与 Docker、UV 和计划作业配合使用。重新运行作业将启动具有相同保存规格的新作业：
 
 ```bash
 >>> hf jobs run --attempts 3 --detach python:3.12 python train.py
@@ -1989,7 +1989,7 @@ This code ran with the following GPU: NVIDIA A10G
 
 ## 卷
 
-使用 `-v` 或 `--volume` 在作业磁盘上安装卷。您可以使用 `hf://` URL 方案挂载任何 Hugging Face 存储库（模型/数据集/空间）或 [Storage Bucket](/docs/hub/storage-buckets)。例如：
+使用 `-v` 或 `--volume` 在作业磁盘上安装卷。您可以使用 `hf://` URL 方案安装任何 Hugging Face 存储库（模型/数据集/空间）或 [Storage Bucket](/docs/hub/storage-buckets)。例如：
 
 * 挂载模型库：`-v hf://openai/gpt-oss-120b:/model`
 * 挂载数据集存储库：`-v hf://datasets/HuggingFaceFW/fineweb:/data`
@@ -2449,7 +2449,7 @@ Webhook deleted: wh-abc123
 
 #### 查找要部署的硬件
 
-`hf endpoints deploy`需要五个硬件标志（`--vendor`、`--region`、`--accelerator`、`--instance-type`和`--instance-size`）。 `hf endpoints hardware` 列出了有效的组合，以及每个副本每小时的价格（以美元为单位）和命名空间的加速器配额：
+`hf endpoints deploy`需要五个硬件标志（`--vendor`、`--region`、`--accelerator`、`--instance-type`和`--instance-size`）。 `hf endpoints hardware` 列出了有效的组合，以及每个副本每小时的美元价格和命名空间的加速器配额：
 
 ```bash
 >>> hf endpoints hardware --vendor aws --region eu-west-1

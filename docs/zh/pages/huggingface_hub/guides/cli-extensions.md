@@ -236,6 +236,10 @@ agents hanouticelina/hf-agents       HF extension to run local coding...
 >>> hf extensions update
 ````hf extensions update` 仅更新已安装的扩展。如果未安装扩展，则会引发错误。已更新的扩展将被跳过。
 
+扩展的版本是安装它的提交，在 `hf extensions list` 的 `VERSION` 列中显示为短 SHA。当 GitHub 上没有可用的更新提交时，会检查 `LATEST` 列，并且运行过时的扩展会打印一条建议 `hf extensions update <name>` 的提示。为了保持在 GitHub 对未经身份验证的请求的速率限制内，`hf` 每天最多查找一次每个扩展的最新提交。设置 `HF_HUB_DISABLE_UPDATE_CHECK=1` 禁用这些检查。
+
+如果 Python 扩展因安装时使用的 Python 被删除而停止工作（例如，在 Homebrew 升级之后），`hf extensions update <name>` 会重新创建其虚拟环境。
+
 ## 命名规则
 
 扩展名必须遵循以下规则：
@@ -248,14 +252,12 @@ agents hanouticelina/hf-agents       HF extension to run local coding...
 安装时，用户可以指定完整的`OWNER/hf-<name>`或仅指定`hf-<name>`（其中
 默认为`huggingface`组织）。
 
-## 现有扩展
-
-以下是一些您可以用作参考的社区扩展：
+## 现有扩展以下是一些社区扩展，您可以作为参考：
 
 |扩展|类型 |描述 |
 |------------|------|-------------|
 | [hanouticelina/hf-claude](https://github.com/hanouticelina/hf-claude) |外壳脚本 |与 HF 推理提供商一起启动 Claude Code |
 | [alvarobartt/hf-mem](https://github.com/alvarobartt/hf-mem) |蟒蛇 |估计 HF 模型的推理内存需求 |
 
-### 了解缓存
-https://huggingface.co/docs/huggingface_hub/v2.3.0/guides/manage-cache.md
+### 管理您的空间
+https://huggingface.co/docs/huggingface_hub/v2.4.0/guides/manage-spaces.md

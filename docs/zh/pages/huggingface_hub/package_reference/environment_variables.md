@@ -9,7 +9,7 @@
 以及[Windows](https://phoenixnap.com/kb/windows-set-environment-variable)。
 
 此页面将引导您了解特定于 `huggingface_hub` 的所有环境变量
-以及它们的意义。
+以及它们的含义。
 
 > [!提示]
 > 所有环境变量均在`huggingface_hub` 导入时读取。任何修改
@@ -109,11 +109,11 @@
 
 ### HF_HUB_OFFLINE
 
-如果设置，则不会对 Hugging Face Hub 进行 HTTP 调用。如果您尝试下载文件，则只会访问缓存的文件。如果未检测到缓存文件，则会引发错误。如果您的网络速度较慢并且您不关心文件的最新版本，这非常有用。如果`HF_HUB_OFFLINE=1`设置为环境变量，并且调用[HfApi](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi)的任何方法，都会引发[OfflineModeIsEnabled](/docs/huggingface_hub/v2.3.0/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled)异常。
+如果设置，则不会对 Hugging Face Hub 进行 HTTP 调用。如果您尝试下载文件，则只会访问缓存的文件。如果未检测到缓存文件，则会引发错误。如果您的网络速度较慢并且您不关心文件的最新版本，这非常有用。如果`HF_HUB_OFFLINE=1`设置为环境变量，并且调用[HfApi](/docs/huggingface_hub/v2.4.0/en/package_reference/hf_api#huggingface_hub.HfApi)的任何方法，都会引发[OfflineModeIsEnabled](/docs/huggingface_hub/v2.4.0/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled)异常。
 
 **注意：** 即使缓存了文件的最新版本，调用 `hf_hub_download` 仍然会触发 HTTP 请求来检查新版本是否可用。设置 `HF_HUB_OFFLINE=1` 将跳过此调用，从而加快加载时间。
 
-如果你想检查离线模式是否启用，你可以使用[is_offline_mode()](/docs/huggingface_hub/v2.3.0/en/package_reference/utilities#huggingface_hub.is_offline_mode)助手。
+如果你想检查离线模式是否启用，你可以使用[is_offline_mode()](/docs/huggingface_hub/v2.4.0/en/package_reference/utilities#huggingface_hub.is_offline_mode)助手。
 
 ### HF_HUB_DISABLE_IMPLICIT_TOKEN
 
@@ -142,7 +142,7 @@
 `huggingface_hub` 处于管理模式。否则，`huggingface_hub`将无法创建
 缓存系统中的符号链接。您将能够执行除用户体验之外的任何脚本
 将会降级，因为一些大文件可能最终会在您的硬盘驱动器上重复。警告
-系统会触发消息来警告您此行为。设置`HF_HUB_DISABLE_SYMLINKS_WARNING=1`，
+将触发消息来警告您此行为。设置`HF_HUB_DISABLE_SYMLINKS_WARNING=1`，
 禁用此警告。
 
 欲了解更多详情，请参阅[cache limitations](../guides/manage-cache#limitations)。
@@ -166,16 +166,18 @@
 
 它还检查（最多每 24 小时一次，纯本地）`hf-cli` 技能是否已安装并由运行版本生成，如果没有，则建议 `hf skills add` / `hf skills update`。该检查仅打印提示，它永远不会触及您的技能目录。
 
-设置 `HF_HUB_DISABLE_UPDATE_CHECK=1` 跳过 PyPI 请求并完全静音两个提示。在离线 CI 环境中或当您喜欢更安静的 shell 输出时很有用。
+在运行已安装的 [CLI extension](../guides/cli-extensions) 之前，它会检查（每个扩展最多每 24 小时检查一次）GitHub 上是否有更新的提交，如果有，则建议 `hf extensions update <name>`。 `hf extensions list`对其`LATEST`列使用相同的检查。设置 `HF_HUB_DISABLE_UPDATE_CHECK=1` 跳过这些请求并静音所有这些提示。在离线 CI 环境中或当您喜欢更安静的 shell 输出时很有用。
 
-### HF_HUB_DISABLE_XET设置为禁用使用 `hf-xet`，即使它在您的 Python 环境中可用。这是因为如果找到`hf-xet`，它将自动使用，这允许显式禁用其使用。如果您要禁用 Xet，请考虑 [filing an issue and including the diagnostics](https://github.com/huggingface/xet-core?tab=readme-ov-file#issues-diagnostics--debugging) 信息，以帮助我们了解 Xet 为何不适合您。
+### HF_HUB_DISABLE_XET
+
+设置为禁用使用 `hf-xet`，即使它在您的 Python 环境中可用。这是因为如果找到`hf-xet`，它将自动使用，这允许显式禁用其使用。如果您要禁用 Xet，请考虑 [filing an issue and including the diagnostics](https://github.com/huggingface/xet-core?tab=readme-ov-file#issues-diagnostics--debugging) 信息，以帮助我们了解为什么 Xet 不适合您。
 
 ### HF_HUB_ENABLE_HF_TRANSFER
 
 > [!警告]
 > 这是一个已弃用的环境变量。
 > 现在 Hugging Face Hub 完全由 Xet 存储后端提供支持，所有文件传输都通过 `hf-xet` 二进制包进行。它使用基于块的重复数据删除策略提供高效的传输，并与`huggingface_hub`无缝集成。
-> 这意味着`hf_transfer`不能再使用了。如果您对更高的性能感兴趣，请查看[⟦T66⟧ section](#hf_xet_high_performance)
+> 这意味着`hf_transfer`不能再使用了。如果您对更高的性能感兴趣，请查看[⟦T69⟧ section](#hf_xet_high_performance)
 
 ### HF_HUB_DISABLE_SHARED_BLOBS设置为 `1` 以禁用缓存范围的共享 blob 存储。默认情况下，成功下载的 Xet 文件存储在 `<CACHE_DIR>/blobs/<prefix>/<xet_hash>` 中并符号链接到存储库缓存中，因此相同的文件在存储库中仅存储在磁盘上一次，并且可以重复使用而无需重新获取。默认情况下启用此优化，但如果 Xet 不可用（例如，如果设置了 `HF_HUB_DISABLE_XET=1`）或本地不支持符号链接，则会禁用此优化。在这些情况下，它会默默地退回到常规存储库本地存储。详情请参阅[caching guide](../guides/manage-cache#shared-blobs-across-repos)。
 
@@ -191,7 +193,7 @@
 
 该变量不再使用。从`hf_xet` 1.3.0开始，文件总是按顺序写入本地磁盘（参见[file writer in v1.3.0](https://github.com/huggingface/xet-core/blob/v1.3.0/file_reconstruction/src/data_writer/data_writer.rs#L76-L91)）。
 
-## 已弃用的环境变量为了标准化 Hugging Face 生态系统中的所有环境变量，一些变量已被标记为已弃用。尽管它们仍然有效，但它们不再优先于其替代品。下表概述了已弃用的变量及其相应的替代变量：
+## 已弃用的环境变量In order to standardize all environment variables within the Hugging Face ecosystem, some variables have been marked as deprecated. Although they remain functional, they no longer take precedence over their replacements. The following table outlines the deprecated variables and their corresponding alternatives:
 
 |已弃用的变量 |更换|
 | --------------------------------------- | ------------------ |
@@ -201,15 +203,15 @@
 
 ## 来自外部工具
 
-某些环境变量并非特定于`huggingface_hub`，但在设置时仍会考虑在内。
+Some environment variables are not specific to `huggingface_hub` but are still taken into account when they are set.
 
 ### 请勿追踪
 
-布尔值。相当于`HF_HUB_DISABLE_TELEMETRY`。设置为 true 时，遥测在 Hugging Face Python 生态系统中全局禁用（`transformers`、`diffusers`、`gradio` 等）。请参阅 https://donottrack.sh/ 了解更多详细信息。
+布尔值。相当于`HF_HUB_DISABLE_TELEMETRY`。 When set to true, telemetry is globally disabled in the Hugging Face Python ecosystem (`transformers`, `diffusers`, `gradio`, etc.).请参阅 https://donottrack.sh/ 了解更多详细信息。
 
 ### 无颜色
 
-布尔值。设置后，`hf` CLI 将不会打印任何 ANSI 颜色。
+布尔值。 When set, `hf` CLI will not print any ANSI color.
 参见[no-color.org](https://no-color.org/)。
 
 ### XDG_CACHE_HOME
@@ -219,6 +221,6 @@
 这是配置[user-specific non-essential (cached) data should be written](https://wiki.archlinux.org/title/XDG_Base_Directory)的默认方式
 在 Linux 机器上。
 
-如果未设置`HF_HOME`，则默认主页为`"$XDG_CACHE_HOME/huggingface"`
-`"~/.cache/huggingface"`。### HfApi 客户端
-https://huggingface.co/docs/huggingface_hub/v2.3.0/package_reference/hf_api.md
+If `HF_HOME` is not set, the default home will be `"$XDG_CACHE_HOME/huggingface"` instead
+`"~/.cache/huggingface"`。### 存储卡
+https://huggingface.co/docs/huggingface_hub/v2.4.0/package_reference/cards.md

@@ -87,8 +87,8 @@ GET https://huggingface.co/api/organizations/{org}/audit-log/export
 
 ### OAuth 应用程序
 
-- **OAuth 应用程序管理** — 创建、更新（名称、URL、范围或令牌过期）和删除组织拥有的 [OAuth apps](./oauth#organization-owned-oauth-apps)，包括其 [Token Exchange app](./oauth#token-exchange-for-organizations-rfc-8693)。不记录徽标更改。
-  - **活动：** `oauth.app.create`、`oauth.app.update`、`oauth.app.delete`
+- **OAuth 应用程序管理** — 创建、更新（名称、URL、范围或令牌过期）和删除组织拥有的 [OAuth apps](./oauth#organization-owned-oauth-apps)，包括其 [Token Exchange app](./oauth#token-exchange-for-organizations-rfc-8693)，以及将成员的个人应用程序转移到组织。不记录徽标更改。
+  - **活动：** `oauth.app.create`、`oauth.app.update`、`oauth.app.delete`、`oauth.app.move`
 - **客户端密钥** — 轮换客户端密钥（或向公共应用程序添加一个）、删除它，并通过 Hugging Face 使密钥过期。
   - **活动：** `oauth.app.secret.rotate`、`oauth.app.secret.delete`、`oauth.app.secret.expire`
 - **令牌发行** — 通过组织的 [Token Exchange](./oauth#token-exchange-for-organizations-rfc-8693) 应用程序向成员发行令牌。

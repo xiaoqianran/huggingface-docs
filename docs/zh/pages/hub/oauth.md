@@ -16,7 +16,8 @@
 
 您可以在[settings](https://huggingface.co/settings/applications/new)中创建您的应用程序：
 
-![](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/oauth-create-application.png)
+	
+	
 
 ### 组织拥有的 OAuth 应用程序
 
@@ -27,18 +28,23 @@ OAuth 应用程序也可以由组织而不是个人帐户拥有。这对于您�
 
 组织管理员可以从组织设置 (`https://huggingface.co/organizations/<your-org>/settings/applications`) 的 **OAuth 应用程序** 部分创建和管理组织拥有的应用程序。组织的所有管理员都可以编辑应用程序、轮换其客户端密钥或将其删除。应用程序列表显示哪个成员创建了每个应用程序，并且对应用程序的更改记录在组织的[audit logs](./audit-logs#oauth-apps)中。同一页面还列出了该组织的 [Token Exchange app](#token-exchange-for-organizations-rfc-8693)（如果已设置）。
 
+您还可以从应用程序设置页面的 **转移到组织** 部分将您拥有的现有 OAuth 应用程序转移到您作为管理员的组织。该组织必须采用团队或企业计划。转移后，该应用程序由组织的所有管理员管理。其客户端 ID、客户端密钥以及现有授权和令牌保持不变，因此您的网站或应用程序无需更改即可继续运行。无法从设置页面撤消传输。
+
+	
+	
+
 ### 公共 OAuth 应用程序（没有秘密）
 
 您可以在没有客户端密钥的情况下创建或使用 OAuth 应用程序。这对于本机应用程序、CLI 或其他无法保守秘密的环境非常有用。
 
 - **创建应用程序时**：创建新的 OAuth 应用程序时，您可以选择在不使用密钥的情况下创建它。
-- **创建后**：对于现有应用程序，您可以在应用程序设置中删除客户端密钥。然后该应用程序将作为公共应用程序运行。
-
-公共应用程序仅使用客户端 ID 进行身份验证（例如，在带有 PKCE 的设备代码或授权代码流中）。具有机密的应用程序仍然可以在需要时使用该机密（例如用于令牌请求的`Authorization: Basic`）。
+- **创建后**：对于现有应用程序，您可以在应用程序设置中删除客户端密钥。然后该应用程序将作为公共应用程序运行。公共应用程序仅使用客户端 ID 进行身份验证（例如，在带有 PKCE 的设备代码或授权代码流中）。拥有秘密的应用程序仍然可以在需要时使用该秘密（例如用于令牌请求的`Authorization: Basic`）。
 
 ### 重定向 URI
 
-授权请求中发送的 `redirect_uri` 必须与您的应用程序上注册的重定向 URI 之一完全匹配。环回重定向 URI 是一个例外：对于在环回主机上使用 `http` 方案的 URI（`localhost`、`127.0.0.1` 或 `[::1]`），只要所有其他组件都与已注册的 URI 匹配，在请求时就会接受任何端口。这遵循 [RFC 8252 §7.3](https://datatracker.ietf.org/doc/html/rfc8252#section-7.3) / OAuth 2.1，并允许本机应用程序、CLI 和 MCP 客户端注册无端口 URI，例如 `http://localhost/callback`，然后侦听操作系统分配给它们的任何临时端口（例如 `http://localhost:49282/callback`）。
+授权请求中发送的 `redirect_uri` 必须与您的应用程序上注册的重定向 URI 之一完全匹配。
+
+环回重定向 URI 是一个例外：对于在环回主机上使用 `http` 方案的 URI（`localhost`、`127.0.0.1` 或 `[::1]`），只要所有其他组件都与已注册的 URI 匹配，在请求时就会接受任何端口。这遵循 [RFC 8252 §7.3](https://datatracker.ietf.org/doc/html/rfc8252#section-7.3) / OAuth 2.1，并允许本机应用程序、CLI 和 MCP 客户端注册无端口 URI，例如 `http://localhost/callback`，然后侦听操作系统分配给它们的任何临时端口（例如 `http://localhost:49282/callback`）。
 
 需要记住以下几点：
 
@@ -46,14 +52,14 @@ OAuth 应用程序也可以由组织而不是个人帐户拥有。这对于您�
 - 环回主机单独匹配：对`http://localhost:49282/callback`的请求与已注册的`http://127.0.0.1/callback`不匹配。如果您的应用程序可能使用其中一个，请注册两者。
 - 仅端口可能不同。路径、查询和用户信息仍然必须完全匹配。
 
-### 如果您在 Spaces 中托管
-
-> [!提示]
+### 如果您在 Spaces 中托管> [!提示]
 > 如果您将应用程序托管在 Spaces 上，那么流程将更容易实现（并且直接内置到 Gradio 中）；检查我们的[Spaces OAuth guide](https://huggingface.co/docs/hub/spaces-oauth)。
 
 ### 自动创建 oauth 应用程序
 
-Hugging Face 支持 CIMD 又名 [Client ID Metadata Documents](https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/)，它允许您以自动方式为您的网站创建 oauth 应用程序：- 将端点添加到您的网站`/.well-known/oauth-cimd`，它返回以下 JSON：
+Hugging Face 支持 CIMD 又名 [Client ID Metadata Documents](https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/)，它允许您以自动方式为您的网站创建 oauth 应用程序：
+
+- 将端点添加到您的网站`/.well-known/oauth-cimd`，它返回以下 JSON：
 
 ```json
 {
@@ -80,9 +86,7 @@ Hugging Face 支持 CIMD 又名 [Client ID Metadata Documents](https://datatrack
 
 ![](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/oauth-device-second-step.png)
 
-### 使用示例脚本进行测试
-
-您可以使用以下脚本测试设备代码 OAuth 应用程序。将 `<Client ID>` 替换为您应用程序的客户端 ID。对于**公共应用程序**（没有秘密），脚本按原样运行。对于 **具有秘密的应用程序**，请将 `Authorization: Basic` 标头（`client_id:client_secret` 的 Base64）添加到设备和令牌请求中。
+### 使用示例脚本进行测试您可以使用以下脚本测试设备代码 OAuth 应用程序。将 `<Client ID>` 替换为您应用程序的客户端 ID。对于**公共应用程序**（没有秘密），脚本按原样运行。对于 **具有秘密的应用程序**，请将 `Authorization: Basic` 标头（`client_id:client_secret` 的 Base64）添加到设备和令牌请求中。
 
 ```sh
 #!/bin/bash
@@ -123,16 +127,16 @@ curl -X POST https://huggingface.co/oauth/token \
 - `read-memberships`：了解用户属于哪些组织，以及他们在每个组织中的角色。这不会授予对组织设置或资源的访问权限。
 - `read-repos`：阅读用户的个人存储库。
 - `gated-repos`：读取用户已被授予访问权限的公共门控存储库的内容。与 `read-repos` 不同，这不会授予对私人存储库的访问权限。
-- `contribute-repos`：创建存储库并访问此应用程序创建的存储库。除非授予额外权限，否则无法访问任何其他存储库。
+- `contribute-repos`：创建存储库并访问由此应用程序创建的存储库。除非授予额外权限，否则无法访问任何其他存储库。
 - `write-repos`：读写用户的个人存储库。
 - `manage-repos`：全面管理用户的个人仓库，包括创建和删除它们。
 - `read-collections`：阅读用户的个人收藏。
 - `write-collections`：读写用户的个人收藏，包括创建和删除它们。
 - `inference-api`：代表用户向[Inference Providers](https://huggingface.co/docs/inference-providers/index)提出推理请求。
-- `read-endpoints`：查看用户的[Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index)并代表用户向其发出推理请求。- `write-endpoints`：管理用户的推理端点，包括创建和删除它们。包括 `read-endpoints` 访问权限。
+- `read-endpoints`：查看用户的[Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index)，并代表用户向其发出推理请求。- `write-endpoints`：管理用户的推理端点，包括创建和删除它们。包括 `read-endpoints` 访问权限。
 - `jobs`：运行[jobs](https://huggingface.co/docs/huggingface_hub/main/en/guides/jobs)
 - `webhooks`：管理[webhooks](https://huggingface.co/docs/huggingface_hub/main/en/guides/webhooks)
-- `write-discussions`：代表用户打开讨论和拉取请求，并与讨论互动（包括反应、发布/编辑评论、结束讨论等）。要在私有存储库上打开拉取请求，您还需要请求 `read-repos` 范围。
+- `write-discussions`：代表用户打开讨论和拉取请求，并与讨论互动（包括反应、发布/编辑评论、结束讨论等）。要在私有存储库上打开 Pull 请求，您还需要请求 `read-repos` 范围。
 
 所有其他信息均可在 [OpenID metadata](https://huggingface.co/.well-known/openid-configuration) 中找到。
 
@@ -172,17 +176,17 @@ userinfo 响应 (`https://huggingface.co/oauth/userinfo`) 包含一个 `groups` 
 
 查看 [our badges](https://huggingface.co/datasets/huggingface/badges#sign-in-with-hugging-face) 以及将它们集成到 Markdown 或 HTML 中的说明。
 
+[⟦T83⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
 [⟦T84⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
+
 [⟦T85⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
-
 [⟦T86⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
+
 [⟦T87⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
-
 [⟦T88⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
-[⟦T89⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
 
+[⟦T89⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
 [⟦T90⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
-[⟦T91⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
 
 ## 组织令牌交换 (RFC 8693)
 
@@ -196,7 +200,7 @@ userinfo 响应 (`https://huggingface.co/oauth/userinfo`) 包含一个 `groups` 
 
 ### 用例
 
-令牌交换专为您的组织需要以下的场景而设计：- **构建内部平台**：创建代表您的团队成员访问 Hugging Face 资源的仪表板或门户，无需每个用户手动进行身份验证。
+令牌交换专为您的组织需要的场景而设计：- **构建内部平台**：创建代表您的团队成员访问 Hugging Face 资源的仪表板或门户，无需每个用户手动进行身份验证。
 - **自动化 CI/CD 管道**：为需要将模型或数据集推送到组织存储库的自动化工作流程发出短暂的、有范围的令牌。
 - **与企业身份系统集成**：通过根据您的内部用户目录颁发令牌，将您现有的身份提供商与 Hugging Face 连接起来。
 - **实施自定义访问控制**：构建中间件，根据组织的内部策略颁发具有特定范围的令牌。

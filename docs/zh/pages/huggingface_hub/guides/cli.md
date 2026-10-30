@@ -226,7 +226,7 @@ orgs:  huggingface,eu-test,OAuthTesters,hf-accelerate,HFSmolCluster
 
 ## 高频下载
 
-使用`hf download`命令直接从Hub下载文件。在内部，它使用 [Download](./download) 指南中描述的相同 [hf_hub_download()](/docs/huggingface_hub/v2.3.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) 和 [snapshot_download()](/docs/huggingface_hub/v2.3.0/en/package_reference/file_download#huggingface_hub.snapshot_download) 帮助程序，并将返回的路径打印到终端。在下面的示例中，我们将介绍最常见的用例。要获得可用选项的完整列表，您可以运行：
+使用`hf download`命令直接从Hub下载文件。在内部，它使用 [Download](./download) 指南中描述的相同 [hf_hub_download()](/docs/huggingface_hub/v2.4.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) 和 [snapshot_download()](/docs/huggingface_hub/v2.4.0/en/package_reference/file_download#huggingface_hub.snapshot_download) 帮助程序，并将返回的路径打印到终端。在下面的示例中，我们将介绍最常见的用例。要获得可用选项的完整列表，您可以运行：
 
 ```bash
 hf download --help
@@ -263,7 +263,7 @@ Fetching 23 files:   0%|                                                | 0/23 [
 /home/wauplin/.cache/huggingface/hub/models--HuggingFaceH4--zephyr-7b-beta/snapshots/3bac358730f8806e5c3dc7c7e19eb36e045bf720
 ```
 
-### 下载多个文件您还可以使用单个命令从存储库下载文件的子集。这可以通过两种方式完成。如果您已经有了要下载的文件的精确列表，您只需按顺序提供它们即可：
+### 下载多个文件您还可以使用单个命令从存储库下载文件的子集。这可以通过两种方式完成。如果您已经有要下载的文件的精确列表，您只需按顺序提供它们即可：
 
 ```bash
 >>> hf download gpt2 config.json model.safetensors
@@ -423,7 +423,7 @@ export HF_HUB_DOWNLOAD_TIMEOUT=30
 
 ## 高频上传
 
-使用`hf upload`命令直接将文件上传到Hub。在内部，它使用与 [Upload](./upload) 指南中描述的相同的 [upload_file()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) 和 [upload_folder()](/docs/huggingface_hub/v2.3.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) 帮助器。在下面的示例中，我们将介绍最常见的用例。要获得可用选项的完整列表，您可以运行：
+使用`hf upload`命令直接将文件上传到Hub。在内部，它使用与 [Upload](./upload) 指南中描述的相同的 [upload_file()](/docs/huggingface_hub/v2.4.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) 和 [upload_folder()](/docs/huggingface_hub/v2.4.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) 帮助器。在下面的示例中，我们将介绍最常见的用例。要获得可用选项的完整列表，您可以运行：
 
 ```bash
 >>> hf upload --help
@@ -468,7 +468,7 @@ https://huggingface.co/Wauplin/my-cool-model/tree/main/data/train
 ```bash
 >>> hf upload Wauplin/my-cool-model ./models/model.safetensors
 https://huggingface.co/Wauplin/my-cool-model/blob/main/model.safetensors
-```如果要上传单个文件到特定目录，请相应设置`path_in_repo`：
+```如果您想上传单个文件到特定目录，请相应设置`path_in_repo`：
 
 ```bash
 >>> hf upload Wauplin/my-cool-model ./models/model.safetensors /vae/model.safetensors
@@ -1028,7 +1028,7 @@ Hub 上的数据集会通过数据集查看器服务在后端自动转换为 Par
 >>> hf spaces ls --sort likes --limit 10
 ```
 
-当使用空间 ID 调用时，`hf spaces ls` 会列出该空间存储库中的文件：
+当使用 Space ID 调用时，`hf spaces ls` 会列出该 Space 存储库中的文件：
 
 ```bash
 # List files in a Space repo
@@ -1589,7 +1589,7 @@ About to delete 1 file(s) totalling 16.5G.
 Dry run: no files were deleted.
 ```
 
-修订版本仍然可用，并且下次需要时会再次下载已删除的文件。路径必须完全匹配：不支持文件夹和 glob 模式，并且文件目标不能与同一调用中的存储库或修订版本混合。
+修订版本保持可用，并且下次需要时会再次下载已删除的文件。路径必须完全匹配：不支持文件夹和 glob 模式，并且文件目标不能与同一调用中的存储库或修订版本混合。
 
 在同一个调用中混合存储库和特定修订。使用 `--dry-run` 预览影响，或使用 `--yes` 跳过确认提示 - 在自动化脚本中非常方便：
 
@@ -1968,7 +1968,7 @@ This code ran with the following GPU: NVIDIA A10G
 
 ### 重试并重新运行作业
 
-`--attempts` 设置最大尝试次数，包括第一次运行。它与 Docker、UV 和计划作业配合使用。重新运行作业将启动具有相同保存规范的新作业：
+`--attempts` 设置最大尝试次数，包括第一次运行。它与 Docker、UV 和计划作业配合使用。重新运行作业将启动具有相同保存规格的新作业：
 
 ```bash
 >>> hf jobs run --attempts 3 --detach python:3.12 python train.py
@@ -1989,7 +1989,7 @@ This code ran with the following GPU: NVIDIA A10G
 
 ## 卷
 
-使用 `-v` 或 `--volume` 在作业磁盘上安装卷。您可以使用 `hf://` URL 方案挂载任何 Hugging Face 存储库（模型/数据集/空间）或 [Storage Bucket](/docs/hub/storage-buckets)。例如：
+使用 `-v` 或 `--volume` 在作业磁盘上安装卷。您可以使用 `hf://` URL 方案安装任何 Hugging Face 存储库（模型/数据集/空间）或 [Storage Bucket](/docs/hub/storage-buckets)。例如：
 
 * 挂载模型库：`-v hf://openai/gpt-oss-120b:/model`
 * 挂载数据集存储库：`-v hf://datasets/HuggingFaceFW/fineweb:/data`
@@ -2237,7 +2237,7 @@ Job configuration:
 
 # Schedule with GPU
 >>> hf jobs scheduled run @hourly --flavor a10g-small pytorch/pytorch:2.6.0-cuda12.4-cudnn9-devel \
-... python -c "import torch; print(f"This code ran with the following GPU: {torch.cuda.get_device_name()}")"
+... python -c 'import torch; print(f"This code ran with the following GPU: {torch.cuda.get_device_name()}")'
 
 # Schedule a UV script
 >>> hf jobs scheduled uv run @hourly --name hourly-script my_script.py
@@ -2374,7 +2374,7 @@ wh-def456    https://example.com/other-hook      False     repo     org:HuggingF
 >>> hf webhooks create --job-id 687f911eaea852de79c4a50a --watch bucket:my-org/my-bucket --secrets HF_TOKEN
 ```
 
-`--watch` 选项使用格式 `type:name`，其中 type 为 `model`、`dataset`、`space`、`bucket`、`org` 或 `user` 之一。可以重复观看多个项目。使用`--domain`过滤事件到`repo`或`discussions`，并使用`--secret`设置签名秘密。
+`--watch` 选项使用格式 `type:name`，其中 type 为 `model`、`dataset`、`space`、`bucket`、`org` 或 `user` 之一。可以重复观看多个项目。使用`--domain`过滤事件到`repo`或`discussion`，并使用`--secret`设置签名秘密。
 
 ### 更新网络钩子
 
@@ -2546,5 +2546,5 @@ bartowski/QwQ-32B-Preview-GGUF      text-generation    Apache 2.0 gpu         ll
 
 使用`--repo`，可以使用`--accelerator`（`cpu`、`gpu`、`neuron`）和`--gguf-file`（适用于每份只有一个配方的型号）缩小默认配方范围。两者都与`--recipe`一起被拒绝，它已经指定了一个配方。
 
-### 与讨论和 Pull 请求互动
-https://huggingface.co/docs/huggingface_hub/v2.3.0/guides/community.md
+### 创建 CLI 扩展
+https://huggingface.co/docs/huggingface_hub/v2.4.0/guides/cli-extensions.md
