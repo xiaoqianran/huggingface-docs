@@ -5,13 +5,13 @@ The library is integrated with 🤗 [transformers](https://github.com/huggingfac
 
 ## 🎉 What's New
 
-**🔥 Mistral Large 4:** Fine-tune [Mistral Large 4](https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B) with [SFTTrainer](/docs/trl/v1.17.0/en/sft_trainer#trl.SFTTrainer) on a single node of 8 B300s, on top of its FP8 weights. See the [LoRA example](https://github.com/huggingface/trl/tree/main/examples/sft_mistral_large_4).
+**🔥 Mistral Large 4:** Fine-tune [Mistral Large 4](https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B) with [SFTTrainer](/docs/trl/v1.17.1/en/sft_trainer#trl.SFTTrainer) on a single node of 8 B300s, on top of its FP8 weights. See the [LoRA example](https://github.com/huggingface/trl/tree/main/examples/sft_mistral_large_4).
 
 **🚀 Training on AMD GPUs:** TRL's trainers now run on [AMD Instinct GPUs](amd_gpus) through PyTorch's ROCm build.
 
-**🔥 Beam:** Fine-tune [Beam](https://huggingface.co/reflection/Beam-1.0-501B-A23B) with [SFTTrainer](/docs/trl/v1.17.0/en/sft_trainer#trl.SFTTrainer) on a single node of 8 B300s. See the [LoRA example](https://github.com/huggingface/trl/tree/main/examples/sft_beam).
+**🔥 Beam:** Fine-tune [Beam](https://huggingface.co/reflection/Beam-1.0-501B-A23B) with [SFTTrainer](/docs/trl/v1.17.1/en/sft_trainer#trl.SFTTrainer) on a single node of 8 B300s. See the [LoRA example](https://github.com/huggingface/trl/tree/main/examples/sft_beam).
 
-**🔥 Muse Spark Open:** Fine-tune [Muse Spark Open](https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B) with [SFTTrainer](/docs/trl/v1.17.0/en/sft_trainer#trl.SFTTrainer), sharded across your GPUs at load time. See the [8-node LoRA example](https://github.com/huggingface/trl/tree/main/examples/sft_muse_spark_open).
+**🔥 Muse Spark Open:** Fine-tune [Muse Spark Open](https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B) with [SFTTrainer](/docs/trl/v1.17.1/en/sft_trainer#trl.SFTTrainer), sharded across your GPUs at load time. See the [8-node LoRA example](https://github.com/huggingface/trl/tree/main/examples/sft_muse_spark_open).
 
 **🚀 Training on AWS Trainium:** TRL's trainers now run on [AWS Trainium](aws_trainium) through TorchNeuron, PyTorch's native Neuron backend.
 
@@ -178,4 +178,4 @@ The documentation is organized into the following sections:
       Fine tuning with TRL
 
 ### A2PO
-https://huggingface.co/docs/trl/v1.17.0/a2po_trainer.md
+https://huggingface.co/docs/trl/v1.17.1/a2po_trainer.md

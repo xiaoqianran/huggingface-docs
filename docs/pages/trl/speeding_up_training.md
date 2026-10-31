@@ -144,4 +144,4 @@ training_args = SFTConfig(..., bf16=True)  # or fp16=True for older GPUs
 Use `bf16=True` for Ampere GPUs (A100, RTX 30xx) or newer, and `fp16=True` for older GPUs. Mixed precision training is supported across all TRL trainers.
 
 ### Installation
-https://huggingface.co/docs/trl/v1.17.0/installation.md
+https://huggingface.co/docs/trl/v1.17.1/installation.md

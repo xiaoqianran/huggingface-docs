@@ -472,4 +472,4 @@ For troubleshooting guidance, see the [RapidFire AI Troubleshooting Guide](https
 Learn more about RapidFire AI in their [official repository](https://github.com/RapidFireAI/rapidfireai) and [documentation](https://oss-docs.rapidfire.ai).
 
 ### Distributing Training
-https://huggingface.co/docs/trl/v1.17.0/distributing_training.md
+https://huggingface.co/docs/trl/v1.17.1/distributing_training.md

@@ -85,4 +85,4 @@ Building Flash Attention from source can be time-consuming, often taking anywher
 In contrast, **Hugging Face Kernels** provide a much faster and more reliable workflow. Developers don’t need to worry about complex setups—everything is handled automatically. In our benchmarks, kernels were ready to use in about **2.5 seconds**, with no compilation required. This allows you to start training almost instantly, significantly accelerating development. Simply specify the desired version, and `kernels` takes care of the rest.
 
 ### Reward Modeling
-https://huggingface.co/docs/trl/v1.17.0/reward_trainer.md
+https://huggingface.co/docs/trl/v1.17.1/reward_trainer.md

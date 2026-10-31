@@ -225,7 +225,7 @@ trainer.train()
 
 ### Direct Preference Optimization (DPO)
 
-The [DPOTrainer](/docs/trl/v1.17.0/en/dpo_trainer#trl.DPOTrainer) implements preference learning from human feedback.
+The [DPOTrainer](/docs/trl/v1.17.1/en/dpo_trainer#trl.DPOTrainer) implements preference learning from human feedback.
 
 #### With LoRA
 
@@ -356,7 +356,7 @@ python trl/scripts/sft.py \
 
 #### Python Example
 
-Pass the `quantization_config` directly to the trainer alongside `peft_config` — the trainer loads and quantizes the model for you. The same `quantization_config` argument is available on [SFTTrainer](/docs/trl/v1.17.0/en/sft_trainer#trl.SFTTrainer), [DPOTrainer](/docs/trl/v1.17.0/en/dpo_trainer#trl.DPOTrainer), [GRPOTrainer](/docs/trl/v1.17.0/en/grpo_trainer#trl.GRPOTrainer), and [RLOOTrainer](/docs/trl/v1.17.0/en/rloo_trainer#trl.RLOOTrainer).
+Pass the `quantization_config` directly to the trainer alongside `peft_config` — the trainer loads and quantizes the model for you. The same `quantization_config` argument is available on [SFTTrainer](/docs/trl/v1.17.1/en/sft_trainer#trl.SFTTrainer), [DPOTrainer](/docs/trl/v1.17.1/en/dpo_trainer#trl.DPOTrainer), [GRPOTrainer](/docs/trl/v1.17.1/en/grpo_trainer#trl.GRPOTrainer), and [RLOOTrainer](/docs/trl/v1.17.1/en/rloo_trainer#trl.RLOOTrainer).
 
 ```python
 import torch
@@ -725,4 +725,4 @@ model = AutoModelForCausalLM.from_pretrained(
 - [Prompt Tuning Paper](https://huggingface.co/papers/2104.08691) - The Power of Scale for Parameter-Efficient Prompt Tuning
 
 ### Data Utilities
-https://huggingface.co/docs/trl/v1.17.0/data_utils.md
+https://huggingface.co/docs/trl/v1.17.1/data_utils.md

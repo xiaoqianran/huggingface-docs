@@ -33,4 +33,4 @@ accelerate launch --config_file examples/accelerate_configs/deepspeed_zero2.yaml
 Consult the 🤗 Accelerate [documentation](https://huggingface.co/docs/accelerate/usage_guides/deepspeed) for more information about the DeepSpeed plugin.
 
 ### Kernels Hub Integration and Usage
-https://huggingface.co/docs/trl/v1.17.0/kernels_hub.md
+https://huggingface.co/docs/trl/v1.17.1/kernels_hub.md

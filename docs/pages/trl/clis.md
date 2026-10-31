@@ -544,7 +544,7 @@ Launch with:
 trl kto --config kto_config.yaml
 ```
 
-To see all the available keywords for defining dataset mixtures, refer to the [scripts.utils.DatasetConfig](/docs/trl/v1.17.0/en/script_utils#trl.scripts.utils.DatasetConfig) and [DatasetMixtureConfig](/docs/trl/v1.17.0/en/script_utils#trl.DatasetMixtureConfig) classes.
+To see all the available keywords for defining dataset mixtures, refer to the [scripts.utils.DatasetConfig](/docs/trl/v1.17.1/en/script_utils#trl.scripts.utils.DatasetConfig) and [DatasetMixtureConfig](/docs/trl/v1.17.1/en/script_utils#trl.DatasetMixtureConfig) classes.
 
 ## Getting the System Information
 
@@ -599,4 +599,4 @@ Copy-paste the following information when reporting an issue:
 This information is required when reporting an issue.
 
 ### SFT Trainer
-https://huggingface.co/docs/trl/v1.17.0/sft_trainer.md
+https://huggingface.co/docs/trl/v1.17.1/sft_trainer.md

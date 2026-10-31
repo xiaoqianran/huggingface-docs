@@ -122,4 +122,4 @@ You can combine multi-node with DeepSpeed by setting `distributed_type: DEEPSPEE
 - [SLURM Workload Manager Documentation](https://slurm.schedmd.com/) - For cluster job scheduling
 
 ### GRPO Trainer
-https://huggingface.co/docs/trl/v1.17.0/grpo_trainer.md
+https://huggingface.co/docs/trl/v1.17.1/grpo_trainer.md
