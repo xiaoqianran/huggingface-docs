@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-31T13:31:51.193652+00:00",
+  "fetchedAt": "2026-11-01T14:12:43.730457+00:00",
   "method": "llms-full-split",
   "ok": 2225,
   "failed": 0,
@@ -8346,7 +8346,7 @@
     },
     {
       "rel": "inference-providers/guides/responses-api.md",
-      "bytes": 64985,
+      "bytes": 64907,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/responses-api.md",
       "track": "Inference Providers",
@@ -8355,7 +8355,7 @@
     },
     {
       "rel": "inference-providers/tasks/index.md",
-      "bytes": 108150,
+      "bytes": 108072,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/tasks/index.md",
       "track": "Inference Providers",
@@ -20103,7 +20103,7 @@
       "toc": 65,
       "found": 27,
       "written": 27,
-      "full_bytes": 388829
+      "full_bytes": 388673
     },
     {
       "pkg": "kernels",

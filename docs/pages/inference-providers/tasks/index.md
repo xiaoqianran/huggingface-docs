@@ -365,7 +365,7 @@ hf models ls --warm --pipeline-tag image-segmentation --sort trending_score
 
 <InferenceSnippet
     pipeline=image-segmentation
-    providersMapping={ {"fal-ai":{"modelId":"briaai/RMBG-2.0","providerModelId":"fal-ai/bria/background/remove"},"hf-inference":{"modelId":"nvidia/segformer-b5-finetuned-ade-640-640","providerModelId":"nvidia/segformer-b5-finetuned-ade-640-640"}} }
+    providersMapping={ {"fal-ai":{"modelId":"briaai/RMBG-2.0","providerModelId":"fal-ai/bria/background/remove"},"hf-inference":{"modelId":"nvidia/segformer-b2-finetuned-ade-512-512","providerModelId":"nvidia/segformer-b2-finetuned-ade-512-512"}} }
 />
 
 ### API specification
@@ -473,7 +473,7 @@ hf models ls --warm --pipeline-tag zero-shot-classification --sort trending_scor
 
 <InferenceSnippet
     pipeline=zero-shot-classification
-    providersMapping={ {"hf-inference":{"modelId":"jeff-legacy/Jeff-Qwen3.5-0.8B","providerModelId":"jeff-legacy/Jeff-Qwen3.5-0.8B"}} }
+    providersMapping={ {"hf-inference":{"modelId":"facebook/bart-large-mnli","providerModelId":"facebook/bart-large-mnli"}} }
 />
 
 ### API specification
@@ -682,7 +682,7 @@ hf models ls --warm --pipeline-tag token-classification --sort trending_score
 
 <InferenceSnippet
     pipeline=token-classification
-    providersMapping={ {"hf-inference":{"modelId":"StanfordAIMI/stanford-deidentifier-with-radiology-reports-and-i2b2","providerModelId":"StanfordAIMI/stanford-deidentifier-with-radiology-reports-and-i2b2"}} }
+    providersMapping={ {"hf-inference":{"modelId":"redmadrobot-rnd/rubert-base-pii-ner","providerModelId":"redmadrobot-rnd/rubert-base-pii-ner"}} }
 />
 
 ### API specification
@@ -1123,7 +1123,7 @@ hf models ls --warm --pipeline-tag image-classification --sort trending_score
 
 <InferenceSnippet
     pipeline=image-classification
-    providersMapping={ {"hf-inference":{"modelId":"Falconsai/nsfw_image_detection","providerModelId":"Falconsai/nsfw_image_detection"}} }
+    providersMapping={ {"hf-inference":{"modelId":"google/vit-base-patch16-224","providerModelId":"google/vit-base-patch16-224"}} }
 />
 
 ### API specification
