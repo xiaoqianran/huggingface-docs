@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-01T14:12:43.730457+00:00",
+  "fetchedAt": "2026-11-02T16:58:43.436575+00:00",
   "method": "llms-full-split",
   "ok": 2225,
   "failed": 0,
@@ -8346,7 +8346,7 @@
     },
     {
       "rel": "inference-providers/guides/responses-api.md",
-      "bytes": 64907,
+      "bytes": 64881,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/responses-api.md",
       "track": "Inference Providers",
@@ -8355,7 +8355,7 @@
     },
     {
       "rel": "inference-providers/tasks/index.md",
-      "bytes": 108072,
+      "bytes": 108046,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/tasks/index.md",
       "track": "Inference Providers",
@@ -8607,7 +8607,7 @@
     },
     {
       "rel": "kernels/builder-cli.md",
-      "bytes": 11384,
+      "bytes": 11618,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder-cli.md",
       "track": "Kernels",
@@ -20103,14 +20103,14 @@
       "toc": 65,
       "found": 27,
       "written": 27,
-      "full_bytes": 388673
+      "full_bytes": 388621
     },
     {
       "pkg": "kernels",
       "toc": 41,
       "found": 41,
       "written": 41,
-      "full_bytes": 251805
+      "full_bytes": 252039
     },
     {
       "pkg": "lerobot",
