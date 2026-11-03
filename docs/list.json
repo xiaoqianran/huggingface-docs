@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-02T16:58:43.436575+00:00",
+  "fetchedAt": "2026-11-03T14:58:34.208394+00:00",
   "method": "llms-full-split",
   "ok": 2225,
   "failed": 0,
@@ -5529,7 +5529,7 @@
     },
     {
       "rel": "hub/eval-results.md",
-      "bytes": 9093,
+      "bytes": 9466,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/eval-results.md",
       "track": "Hub",
@@ -7068,7 +7068,7 @@
     },
     {
       "rel": "hub/datasets-libraries.md",
-      "bytes": 16105,
+      "bytes": 15014,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/datasets-libraries.md",
       "track": "Hub",
@@ -8346,7 +8346,7 @@
     },
     {
       "rel": "inference-providers/guides/responses-api.md",
-      "bytes": 64881,
+      "bytes": 64883,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/responses-api.md",
       "track": "Inference Providers",
@@ -8355,7 +8355,7 @@
     },
     {
       "rel": "inference-providers/tasks/index.md",
-      "bytes": 108046,
+      "bytes": 108040,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/tasks/index.md",
       "track": "Inference Providers",
@@ -20082,7 +20082,7 @@
       "toc": 277,
       "found": 276,
       "written": 276,
-      "full_bytes": 1573714
+      "full_bytes": 1573044
     },
     {
       "pkg": "huggingface_hub",
@@ -20103,7 +20103,7 @@
       "toc": 65,
       "found": 27,
       "written": 27,
-      "full_bytes": 388621
+      "full_bytes": 388617
     },
     {
       "pkg": "kernels",
