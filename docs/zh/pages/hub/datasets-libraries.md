@@ -12,19 +12,17 @@
 
 |图书馆 |描述 |从集线器下载 |从集线器传输 |推送到集线器 |流式传输到集线器 |优化的 Parquet 文件 |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- | ---------------- | ----------- | ------------- | ------------------------ |
-| [Argilla](./datasets-argilla) |面向重视高质量数据的人工智能工程师和领域专家的协作工具。                                           | ✅ | ❌ | ✅ | ❌ | ❌ || [Daft](./datasets-daft) |使用 Python 原生接口进行大规模、多模式数据处理的数据引擎。                                        | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Dask](./datasets-dask) |并行和分布式计算库，可扩展现有的 Python 和 PyData 生态系统。                               | ✅ | ✅ | ✅ | ✅ | ✅* |
+| [Daft](./datasets-daft) |使用 Python 原生接口进行大规模、多模式数据处理的数据引擎。                                        | ✅ | ✅ | ✅ | ✅ | ✅ || [Dask](./datasets-dask) |并行和分布式计算库，可扩展现有的 Python 和 PyData 生态系统。                               | ✅ | ✅ | ✅ | ✅ | ✅* |
 | [Data Designer](./datasets-data-designer) | NVIDIA NeMo 框架，用于使用 LLM 生成合成数据集。                                                      | ✅ | ❌ | ✅ | ❌ | ❌ |
 | [Datasets](./datasets-usage) | 🤗 Datasets 是一个用于访问和共享音频、计算机视觉和自然语言处理 (NLP) 数据集的库。 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Distilabel](./datasets-distilabel) |合成数据生成和人工智能反馈的框架。                                                                   | ✅ | ❌ | ✅ | ❌ | ❌ || [DuckDB](./datasets-duckdb) |进程内 SQL OLAP 数据库管理系统。                                                                                | ✅ | ✅ | ❌ | ❌ | ❌ |
-| [Embedding Atlas](./datasets-embedding-atlas) |用于大型嵌入的交互式可视化和探索工具。                                                 | ✅ | ✅ | ❌ | ❌ | ❌ |
-| [Fenic](./datasets-fenic) |受 PySpark 启发的 DataFrame 框架，用于构建生产 AI 和代理应用程序。                                      | ✅ | ✅ | ❌ | ❌ | ❌ |
-| [FiftyOne](./datasets-fiftyone) | FiftyOne 是一个用于图像、视频和 3D 数据的管理和可视化的库。                                             | ✅ | ✅ | ✅ | ❌ | ❌ |
+| [DuckDB](./datasets-duckdb) |进程内 SQL OLAP 数据库管理系统。                                                                                | ✅ | ✅ | ✅ | ✅ | ❌ |
 | [Lance](./datasets-lance) |用于多模式人工智能的开放湖屋格式。                                                                                    | ✅ | ✅ | ❌ | ❌ | ❌ || [Pandas](./datasets-pandas) | Python数据分析工具包。                                                                                                  | ✅ | ❌ | ✅ | ❌ | ✅* |
 | [Polars](./datasets-polars) | OLAP 查询引擎之上的 DataFrame 库。                                                                            | ✅ | ✅ | ✅ | ❌ | ❌ |
-| [PyArrow](./datasets-pyarrow) | Apache Arrow 是一种柱状格式和用于快速数据交换和内存分析的工具箱。                             | ✅ | ✅ | ✅ | ❌ | ✅* |
+| [PyArrow](./datasets-pyarrow) | Apache Arrow 是一种柱状格式和用于快速数据交换和内存分析的工具箱。                             | ✅ | ✅ | ✅ | ✅ | ✅* |
 | [Spark](./datasets-spark) |分布式环境下的实时、大规模数据处理工具。                                                      | ✅ | ✅ | ✅ | ✅ | ✅ |
 | [WebDataset](./datasets-webdataset) |用于为大型数据集编写 I/O 管道的库。                                                                             | ✅ | ✅ | ❌ | ❌ | ❌ |_ * 需要传递额外的参数来写入优化的 Parquet 文件_
+
+其他库具有用于管理数据集的集成：[Embedding Atlas](./datasets-embedding-atlas)（嵌入可视化）、[Fenic](./datasets-fenic)（语义处理）、[FiftyOne](./datasets-fiftyone)（图像可视化和管理）。
 
 ## 数据处理库
 
@@ -38,9 +36,9 @@
 
 有关如何进行流式传输的更多详细信息，请查看支持流式传输的库的文档（参见上表），或者如果您想自己从 Hugging Face 流式传输数据集，请查看 [streaming datasets](./datasets-streaming) 文档。
 
-### 优化的 Parquet 文件
+### 优化的 Parquet 文件Hugging Face 上的 Parquet 文件经过优化，可提高存储效率、加速下载和上传，并实现高效的数据集流式传输和编辑。
 
-Hugging Face 上的 Parquet 文件经过优化，可提高存储效率、加速下载和上传，并实现高效的数据集流式传输和编辑。优化的 Parquet 文件是具有附加功能的 Parquet 文件：
+优化的 Parquet 文件是具有附加功能的 Parquet 文件：
 
 * [Parquet Content Defined Chunking](https://huggingface.co/blog/parquet-cdc) 针对 Hugging Face 的存储后端[Xet](https://huggingface.co/docs/hub/en/xet/index) 优化了 Parquet。由于基于块的重复数据删除，它可以加速上传和下载，并允许高效的文件编辑
 * 页面索引可在流式传输时加速过滤器并实现高效的随机访问，例如在[Dataset Viewer](https://huggingface.co/docs/dataset-viewer)
@@ -61,7 +59,7 @@ Hugging Face 上的 Parquet 文件经过优化，可提高存储效率、加速�
 | [TRL](https://huggingface.co/docs/trl) |通过强化学习（SFT、DPO、GRPO）培训法学硕士 | ⚠️* |
 | [Unsloth](https://docs.unsloth.ai) |快速 LLM 微调（加速 2 倍，内存减少 70%）| ✅ |
 
-_* SFTTrainer 和 DPOTrainer 支持流式传输； GRPOTrainer 尚不支持流式输入_
+_* SFTTrainer 和 DPOTrainer 支持流式传输； GRPPOTrainer 尚不支持流式输入_
 
 ### 从集线器流式传输
 
@@ -72,7 +70,7 @@ _* SFTTrainer 和 DPOTrainer 支持流式传输； GRPOTrainer 尚不支持流�
 
 最近的改进使流式传输[up to 100x more efficient](https://huggingface.co/blog/streaming-datasets)具有更快的启动、预取和更好的扩展到许多工作人员的能力。
 
-**注意：** 流式处理需要在训练参数中使用`max_steps`，因为数据集长度未知，并且使用基于缓冲区的混洗。更多详情请参见[streaming datasets](./datasets-streaming)。
+**注意：** 流式处理需要在训练参数中使用`max_steps`，因为数据集长度未知，并且使用基于缓冲区的改组。更多详情请参见[streaming datasets](./datasets-streaming)。
 
 ### 记录到集线器
 
@@ -93,7 +91,7 @@ _* SFTTrainer 和 DPOTrainer 支持流式传输； GRPOTrainer 尚不支持流�
 
 一般来说，我们建议依靠现有的库（如 `datasets`、`pandas` 或 `polars`）来执行此操作，除非您有特定原因要实现自己的库。如果您需要对加载过程进行更多控制，可以使用 `huggingface_hub` 库，例如，它允许您从存储库下载特定的文件子集。
 
-您可以找到有关从 Hub [here](https://huggingface.co/docs/hub/datasets-downloading) 加载数据的更多信息。
+您可以找到有关从集线器[here](https://huggingface.co/docs/hub/datasets-downloading)加载数据的更多信息。
 
 #### 通过数据集查看器和 Parquet 文件集成Hub 的数据集查看器和 Parquet 转换系统提供了一种与数据集集成的标准化方法，无论其原始格式如何。该基础设施是集线器和外部库之间的可靠集成层。
 
@@ -177,7 +175,7 @@ api.upload_folder(
 
 或者，在某些情况下，您可能希望在后台上传数据，例如每 10 分钟生成一次合成数据。在这种情况下，您可以使用 `huggingface_hub` 库的 `CommitScheduler` 类。欲了解更多详情，请参阅[scheduled uploads documentation](https://huggingface.co/docs/huggingface_hub/main/en/guides/upload#scheduled-uploads)。您可以在以下位置查看使用此方法将数据上传到 Hub 的示例：
 
-- [fastdata](https://github.com/AnswerDotAI/fastdata/blob/main/nbs/00_core.ipynb)图书馆
+- [fastdata](https://github.com/AnswerDotAI/fastdata/blob/main/nbs/00_core.ipynb) 库
 - 这个[magpie](https://huggingface.co/spaces/davanstrien/magpie/blob/fc79672c740b8d3d098378dca37c0f191c208de0/app.py#L67)演示空间
 
 ## 更多支持

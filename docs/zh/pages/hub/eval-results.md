@@ -97,7 +97,6 @@
 
 `eval.yaml` 应包含以下字段：- `name` — 人类可读的基准显示名称（例如 `"Humanity's Last Exam"`）。
 - `description` — 基准测量内容的简短描述。
-- `evaluation_framework` — 此基准测试的规范评估框架标识符。这是 Hugging Face 团队维护的一个枚举。将您自己的添加到列表[here](https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/eval.ts)。每个基准测试仅支持一个框架。
 - `tasks[]` — 此基准定义的任务列表（子排行榜）（见下文）。
 
 每个 `tasks[]` 项目中的必填字段：
@@ -109,9 +108,14 @@
 - `config` — 要评估的拥抱脸部数据集的配置（例如`"default"`）。默认为数据集的默认配置。
 - `split` — 要评估的拥抱脸部数据集的分割（例如`"test"`）。默认为`"test"`。
 
-设置`evaluation_framework: inspect-ai`时，还需要设置以下字段：- `field_spec` — 输入和输出字段的规范。包含 `input`、`target`、`choices` 和可选的 `input_image` 子字段。更多详情请参阅[docs](https://inspect.aisi.org.uk/tasks.html#hugging-facehttps://inspect.aisi.org.uk/tasks.html#hugging-face)。
+设置`evaluation_framework: inspect-ai`时，还需要设置以下字段：- `field_spec` — 输入和输出字段的规范。由 `input`、`target`、`choices` 和可选的 `input_image` 子字段组成。更多详情请参阅[docs](https://inspect.aisi.org.uk/tasks.html#hugging-facehttps://inspect.aisi.org.uk/tasks.html#hugging-face)。
 - `solvers` — 求解器过去使用 AI 模型从输入到输出。这可以是从简单的系统提示到自我批评循环。更多详情请参阅[docs](https://inspect.aisi.org.uk/solvers.html)。
 - `scores` — 使用得分手。评分者确定求解器是否成功地为数据集中定义的目标找到了正确的输出，以及以什么方式进行。更多详情请参阅[docs](https://inspect.aisi.org.uk/scorers.html)。
+
+可选字段：
+
+- `evaluation_framework` — 此基准测试的规范评估框架标识符。这是 Hugging Face 团队维护的一个枚举。将您自己的添加到列表[here](https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/eval.ts)。每个基准测试仅支持一个框架。
+- `leaderboard.base_models_only` — 基准排行榜是否默认仅显示基础模型。默认为 `true`。将其设置为 `false` 以默认包含非基本模型，这在大多数相关提交未分类为基本模型时非常有用（例如，作为 ONNX 提供的机器人策略）。
 
 最小示例（仅限必填字段）：
 
@@ -129,6 +133,9 @@ tasks:
 name: MathArena AIME 2026
 description: The American Invitational Mathematics Exam (AIME).
 evaluation_framework: "math-arena"
+
+leaderboard:
+  base_models_only: false
 
 tasks:
   - id: MathArena/aime_2026
@@ -174,7 +181,5 @@ tasks:
       - name: model_graded_fact
         args:
           model: openai/o3-mini
-```
-
-### 将您的空间嵌入另一个网站
+```### 将您的空间嵌入另一个网站
 https://huggingface.co/docs/hub/spaces-embed.md

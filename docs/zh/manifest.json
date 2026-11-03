@@ -237,8 +237,8 @@
       "translatedAt": "2026-10-29T14:07:01.059Z"
     },
     "hub/datasets-libraries.md": {
-      "hash": "6fde656c120af0bb3d861341b727fe6eedeb6f82",
-      "translatedAt": "2026-10-29T14:06:57.164Z"
+      "hash": "693b488a36c583df42ca4fdbcfcf67965a58ef9f",
+      "translatedAt": "2026-11-03T14:58:40.623Z"
     },
     "hub/datasets-streaming.md": {
       "hash": "009effb81c7718201e1bad29b3b7a902b18e4b05",
@@ -345,8 +345,8 @@
       "translatedAt": "2026-10-29T14:07:32.952Z"
     },
     "hub/eval-results.md": {
-      "hash": "59495bef5dbc3fedc28e58b82826fd36fea66be9",
-      "translatedAt": "2026-10-29T14:07:36.525Z"
+      "hash": "ac369f0a31878474aa8fa9e82f89fa999558a206",
+      "translatedAt": "2026-11-03T14:58:39.928Z"
     },
     "hub/fastai.md": {
       "hash": "706739d76522d01c249a34295e3ebd7cd4e11fa5",
@@ -2037,10 +2037,10 @@
       "translatedAt": "2026-10-29T14:07:27.853Z"
     }
   },
-  "updatedAt": "2026-11-02T16:58:43.634Z",
+  "updatedAt": "2026-11-03T14:58:40.623Z",
   "stats": {
-    "translated": 0,
-    "skipped": 400,
+    "translated": 2,
+    "skipped": 398,
     "failed": 0,
     "total": 400
   }
