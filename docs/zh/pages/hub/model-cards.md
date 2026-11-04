@@ -4,7 +4,7 @@
 
 ## 什么是模型卡？
 
-模型卡是模型随附的文件，可提供方便的信息。在底层，模型卡是带有附加元数据的简单 Markdown 文件。模型卡对于可发现性、可重复性和共享至关重要！您可以在任何模型存储库中找到模型卡作为 `README.md` 文件。
+模型卡是模型附带的文件，可提供方便的信息。在底层，模型卡是带有附加元数据的简单 Markdown 文件。模型卡对于可发现性、可重复性和共享至关重要！您可以在任何模型存储库中找到模型卡作为 `README.md` 文件。
 
 型号卡应描述：
 - 模型
@@ -278,7 +278,7 @@ Image only displays when viewing in dark mode
 
 ### 我可以在模型卡中写入 LaTeX 吗？
 
-是的！ Hub 在解析 Markdown 之前使用 [KaTeX](https://katex.org/) 数学排版库在服务器端渲染数学公式。
+是的！ Hub 使用 [KaTeX](https://katex.org/) 数学排版库在解析 Markdown 之前在服务器端渲染数学公式。
 
 您必须使用以下分隔符：
 - `$$ ... $$` 用于显示模式
@@ -294,5 +294,5 @@ $$
 
 $$ E=mc^2 $$
 
-### 在拥抱面部使用_Adapters_
-https://huggingface.co/docs/hub/adapters.md
+### 将数据迁移至存储桶
+https://huggingface.co/docs/hub/storage-buckets-migration.md

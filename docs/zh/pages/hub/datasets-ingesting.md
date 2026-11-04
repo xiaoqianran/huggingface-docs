@@ -80,9 +80,9 @@ pipeline.run(my_data())
 一些库（例如 [🤗 Datasets](/docs/datasets/index)、[Pandas](./datasets-pandas)、[Polars](./datasets-polars)、[Dask](./datasets-dask)、[DuckDB](./datasets-duckdb)、[Spark](./datasets-spark) 或 [Daft](./datasets-daft)）可以将来自不同位置的数据提取到 Hub。
 更多信息请参见[Libraries supported by the Datasets Hub](./datasets-libraries)列表。
 
-## 摄取原始数据
+## 摄取原始数据如果您提取的原始数据在发布为 AI 就绪数据集之前需要进一步整理，或者您需要类似 S3 的体验，请考虑将它们提取到 [Hugging Face Storage Buckets](./storage-buckets)。要将大型现有集合从本地磁盘或其他云移动到存储桶中，请参阅[Migration Guide](./storage-buckets-migration)。
 
-如果您提取的原始数据在发布为 AI 就绪数据集之前需要进一步整理，或者您需要类似 S3 的体验，请考虑将它们提取到 [Hugging Face Storage Buckets](./storage-buckets)。如果您的数据已经存在于数据集、模型或空间存储库中，您可以使用 `hf buckets cp` 将其复制到 **服务器端** 存储桶中 - 无需下载或重新上传：
+如果您的数据已经存在于数据集、模型或空间存储库中，您可以使用 `hf buckets cp` 将其复制到 **服务器端** 存储桶中 - 无需下载或重新上传：
 
 ```bash
 hf cp hf://datasets/username/my-dataset/ hf://buckets/username/my-bucket/
@@ -149,7 +149,7 @@ with CommitScheduler(repo_id="username/dataset_name", repo_type="dataset", folde
     ...
 ```
 
-在 [dataset editing](./datasets-editing#only-upload-the-new-data) 的文档中了解如何提取动态数据，而无需每次都重新上传所有内容。
+查看 [dataset editing](./datasets-editing#only-upload-the-new-data) 文档中如何提取动态数据，而无需每次都重新上传所有内容。
 
 在 [huggingface_hub documentation](/docs/huggingface_hub/guides/upload#scheduled-uploads) 中查找有关计划上传的更多信息。
 
@@ -170,7 +170,7 @@ hf jobs scheduled uv run --with "dlt[hf]" "0 0 * * *" pipeline.py
 
 您可以使用 `hf jobs logs` 或直接在 Hugging Face 帐户的“作业”页面中查看每次跑步的日志。
 
-在 [Jobs documentation](/docs/hub/jobs-overview) 中查找有关拥抱脸部工作的更多信息。
+在 [Jobs documentation](/docs/hub/jobs-overview) 中查找有关拥抱面部工作的更多信息。
 
 ### 自定义 Python 空间
 https://huggingface.co/docs/hub/spaces-sdks-python.md

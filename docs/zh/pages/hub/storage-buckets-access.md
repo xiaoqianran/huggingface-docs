@@ -15,7 +15,7 @@
 | **CLI 同步** |批量传输、备份| [Sync docs](./storage-buckets#syncing-directories) |
 | **S3 API** |现有 S3 工具（AWS CLI、boto3、s5cmd）| [S3-Compatible API](./storage-buckets-s3) |
 
-对于使用存储桶作为后端的工具（SkyPilot、Inspect 等），请参阅 [Integrations](./storage-buckets-integrations)。要使客户端与存储桶保持同步而不轮询它，请参阅[Tracking Changes](./storage-buckets#tracking-changes)。
+对于使用存储桶作为后端的工具（SkyPilot、Inspect、Trackio 等），请参阅 [Integrations](./storage-buckets-integrations)。要使客户端与存储桶保持同步而不轮询它，请参阅[Tracking Changes](./storage-buckets#tracking-changes)。
 
 ## 挂载为本地文件系统
 

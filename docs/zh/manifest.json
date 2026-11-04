@@ -193,8 +193,8 @@
       "translatedAt": "2026-10-29T14:06:46.490Z"
     },
     "hub/datasets-ingesting.md": {
-      "hash": "4ca2f2efe053395147a8a10f5406b5840921d65a",
-      "translatedAt": "2026-10-29T14:06:48.251Z"
+      "hash": "7a7248f26096b3c3acaf5374a6a886b620847014",
+      "translatedAt": "2026-11-04T15:19:36.767Z"
     },
     "hub/datasets-lance.md": {
       "hash": "9c309d6eebd495ef89fb4d9b493a131b83529509",
@@ -237,8 +237,8 @@
       "translatedAt": "2026-10-29T14:07:01.059Z"
     },
     "hub/datasets-libraries.md": {
-      "hash": "693b488a36c583df42ca4fdbcfcf67965a58ef9f",
-      "translatedAt": "2026-11-03T14:58:40.623Z"
+      "hash": "673fa28c054807a36bcdfadb555af40a849f5e46",
+      "translatedAt": "2026-11-04T15:19:40.083Z"
     },
     "hub/datasets-streaming.md": {
       "hash": "009effb81c7718201e1bad29b3b7a902b18e4b05",
@@ -489,8 +489,8 @@
       "translatedAt": "2026-10-29T14:08:33.400Z"
     },
     "hub/model-cards.md": {
-      "hash": "5d77b0e76885da554a9f5ea56a2a4f14bcb4a86a",
-      "translatedAt": "2026-10-29T14:08:33.147Z"
+      "hash": "16c446b499378cf4c526c58780af8fc49860563c",
+      "translatedAt": "2026-11-04T15:19:38.919Z"
     },
     "hub/model-release-checklist.md": {
       "hash": "cf0e46ece594f76ccb739eedfa551008a0ee4219",
@@ -989,16 +989,16 @@
       "translatedAt": "2026-10-29T14:10:53.710Z"
     },
     "hub/storage-buckets-access.md": {
-      "hash": "5716a0bef6620becc3186f70d990399da77b5865",
-      "translatedAt": "2026-10-29T14:10:56.654Z"
+      "hash": "b7141dc76be45dc5791c15844339875bff8c1eee",
+      "translatedAt": "2026-11-04T15:19:40.763Z"
     },
     "hub/spaces-zerogpu.md": {
       "hash": "3547746383e572e654203e0bce2dfbedc6f1e0ff",
       "translatedAt": "2026-10-29T14:10:52.707Z"
     },
     "hub/storage-buckets-integrations.md": {
-      "hash": "756a4798eb2cbc8d3c1f5d82b0858b44a058efe9",
-      "translatedAt": "2026-10-29T14:10:56.356Z"
+      "hash": "711c515f3d2e99749a122e8ded906342a015c8ab",
+      "translatedAt": "2026-11-04T15:19:40.883Z"
     },
     "hub/storage-buckets-security.md": {
       "hash": "03f5a2ee6155e191ee4f65ebd8aec40c6843b5b2",
@@ -1025,12 +1025,12 @@
       "translatedAt": "2026-10-29T14:11:09.741Z"
     },
     "hub/storage-buckets-s3.md": {
-      "hash": "674848d5efe587ef06036fad78b8e0c293c3d0f9",
-      "translatedAt": "2026-10-29T14:11:04.857Z"
+      "hash": "060101f3efe02350e595cd00de05c284eb57c7c7",
+      "translatedAt": "2026-11-04T15:19:51.887Z"
     },
     "hub/storage-buckets.md": {
-      "hash": "d81fb188d777516d2af580c88ecb050af9a5f1da",
-      "translatedAt": "2026-10-29T14:11:08.337Z"
+      "hash": "0263f922ffc57e4315096a811b1f10b018b715ed",
+      "translatedAt": "2026-11-04T15:19:54.812Z"
     },
     "hub/transformers.md": {
       "hash": "4d89c440d83064afbb9f36d6fbfecd5873f94198",
@@ -1093,8 +1093,8 @@
       "translatedAt": "2026-10-30T13:58:06.091Z"
     },
     "hub/xet/using-xet-storage.md": {
-      "hash": "4679dd85e2537b1a6094a9e13607039662847630",
-      "translatedAt": "2026-10-23T12:39:30.065Z"
+      "hash": "ccafcbc09b16d2f5a5e63b3743b55f00f3c37832",
+      "translatedAt": "2026-11-04T15:20:02.218Z"
     },
     "huggingface_hub/concepts/migration.md": {
       "hash": "45f7286177491b6e455b5c3489fc6ea724a01493",
@@ -2035,12 +2035,16 @@
     "hub/enterprise-managed-sso-migration.md": {
       "hash": "64cd26245459b5792e41db67b5a3c9a77551fe65",
       "translatedAt": "2026-10-29T14:07:27.853Z"
+    },
+    "hub/storage-buckets-migration.md": {
+      "hash": "110eb36935d4bc30e04c66091f44d91a27536720",
+      "translatedAt": "2026-11-04T15:19:50.836Z"
     }
   },
-  "updatedAt": "2026-11-03T14:58:40.623Z",
+  "updatedAt": "2026-11-04T15:20:02.218Z",
   "stats": {
-    "translated": 2,
-    "skipped": 398,
+    "translated": 9,
+    "skipped": 391,
     "failed": 0,
     "total": 400
   }

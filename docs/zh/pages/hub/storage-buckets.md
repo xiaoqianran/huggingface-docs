@@ -10,11 +10,11 @@
 > 存储桶可供所有用户和组织使用。有关定价详情，请参阅[hf.co/storage](https://huggingface.co/storage)。
 
 > [!提示]
-> 请参阅 [Access Patterns](./storage-buckets-access) 了解如何从工具获取存储桶数据（作为文件系统挂载、`hf://` 路径、作业/空间中的卷挂载）、[S3-Compatible API](./storage-buckets-s3) 了解如何使用现有 S3 工具（AWS CLI、boto3、s5cmd），以及 [Bucket Integrations](./storage-buckets-integrations) 了解流行数据库（如 pandas、Dask 和火花。
+> 请参阅 [Migration Guide](./storage-buckets-migration) 了解如何将现有数据从本地磁盘、另一个云或集线器移动到存储桶中，[Access Patterns](./storage-buckets-access) 了解如何从您的工具获取存储桶数据（作为文件系统挂载、`hf://` 路径、作业/空间中的卷挂载），[S3-Compatible API](./storage-buckets-s3) 了解如何使用现有 S3 工具（AWS CLI、boto3、s5cmd），以及[Bucket Integrations](./storage-buckets-integrations) 适用于具有内置存储桶支持的库（例如 datatrove、LeRobot 和 Trackio）以及适用于 pandas、Dask 和 Spark 等数据库的片段。
 
-## 存储桶与存储库
+## 存储桶与存储库Hub 提供两种类型的存储：基于 Git 的**存储库**，用于版本化、协作工作；**存储桶**，用于快速、可变的对象存储。
 
-Hub 提供两种类型的存储：基于 Git 的**存储库**，用于版本化、协作工作；**存储桶**，用于快速、可变的对象存储。|特色 |存储库（基于 Git）|存储桶|
+|特色 |存储库（基于 Git）|存储桶|
 | ------------------ | ------------------------------------------- | ----------------------------------- |
 |版本控制 |完整的 Git 历史记录 |无（可变，就地覆盖）|
 |类型 |模型、数据集、空间 |独立桶|
@@ -22,15 +22,15 @@ Hub 提供两种类型的存储：基于 Git 的**存储库**，用于版本化�
 |运营| Hub API、Git 推/拉 |类 S3 `sync`、`cp`、`rm` |
 |重复数据删除 | Xet 块级 | Xet 块级 |
 |请求请求 |是的 |没有 |
-|模型/数据集卡|是的 |否（但呈现简单的自述文件）|
-
-当您需要版本历史记录、协作功能（PR、讨论）和库集成时，请使用**存储库**。当您需要快速、可变地存储经常更改的数据时，请使用**存储桶** — 文件可以就地覆盖或删除。
+|模型/数据集卡|是的 |否（但呈现简单的自述文件）|当您需要版本历史记录、协作功能（PR、讨论）和库集成时，请使用**存储库**。当您需要快速、可变地存储经常更改的数据时，请使用**存储桶** — 文件可以就地覆盖或删除。
 
 ## 创建一个桶
 
 ### 从 Hub UI
 
-1. 导航至[huggingface.co/new-bucket](https://huggingface.co/new-bucket)：2. 指定存储桶的所有者：这可以是您或您所属的任何组织。
+1. 导航至[huggingface.co/new-bucket](https://huggingface.co/new-bucket)：
+
+2. 指定存储桶的所有者：这可以是您或您所属的任何组织。
 
 3. 输入存储桶名称。
 
@@ -93,9 +93,7 @@ update_bucket_settings("username/my-bucket", private=False)
 
 每个存储桶在 Hub 上都有一个页面，您可以在其中浏览其内容、导航目录和查看文件详细信息。 Bucket 页面可在 `https://huggingface.co/buckets/<owner>/<bucket-name>` 获取。
 
-### 自述文件渲染
-
-如果存储桶中的目录包含 `README.md` 文件，Hub 会将其呈现在该目录页面上的文件列表下方。这适用于存储桶根和任何子目录 - 对于记录存储桶包含的内容、数据的组织方式或下游工具应如何使用它非常有用。
+### 自述文件渲染如果存储桶中的目录包含 `README.md` 文件，Hub 会将其呈现在该目录页面上的文件列表下方。这适用于存储桶根和任何子目录 - 对于记录存储桶包含的内容、数据的组织方式或下游工具应如何使用它非常有用。
 
 ### 从 CLI 列出
 
@@ -149,13 +147,13 @@ hf buckets list julien-c/my-training-bucket --tree -h -R
 ...
 ```
 
-## 管理文件您可以直接从 Hub 上的存储桶页面上传和下载文件，或使用 CLI 和 Python API 进行编程访问。使用 `hf://buckets/` 路径（例如 `hf://buckets/username/my-bucket/path/to/file`）引用存储桶文件。 `hf buckets cp` 命令处理单个文件传输，而 `hf buckets sync` 更适合目录。所有命令都双向工作——本地到远程和远程到本地。
+## 管理文件
+
+您可以直接从 Hub 上的存储桶页面上传和下载文件，或使用 CLI 和 Python API 进行编程访问。使用 `hf://buckets/` 路径（例如 `hf://buckets/username/my-bucket/path/to/file`）引用存储桶文件。 `hf buckets cp` 命令处理单个文件传输，而 `hf buckets sync` 更适合目录。所有命令都双向工作——本地到远程和远程到本地。
 
 如果您的数据已经存在于模型、数据集或空间存储库（或另一个存储桶）中，您可以使用 `hf buckets cp` 将其复制到**服务器端** — 无需下载或重新上传。参见[Copying files between repos and buckets](#copying-files-between-repos-and-buckets)。
 
-### 上传文件
-
-为了快速上传，您可以将文件直接拖放到浏览器中的存储桶页面上。对于编程使用，`hf buckets cp` 将单个文件复制到存储桶中。源是本地路径，目标是`hf://buckets/`路径。您还可以从标准输入传输数据，这对于以编程方式生成的内容非常方便。
+### 上传文件为了快速上传，您可以将文件直接拖放到浏览器中的存储桶页面上。对于编程使用，`hf buckets cp` 将单个文件复制到存储桶中。源是本地路径，目标是`hf://buckets/`路径。您还可以从标准输入传输数据，这对于以编程方式生成的内容非常方便。
 
 **命令行界面：**
 ```bash
@@ -183,7 +181,9 @@ batch_bucket_files(
 
 更多上传选项（原始字节、组合上传+删除等），请参阅[⟦T38⟧ upload guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#upload-files)。
 
-### 下载文件您可以通过单击直接从 Hub 上的存储桶页面下载各个文件。对于编程访问，下载镜像了上传语法——交换 `hf buckets cp` 中的源和目标。您还可以使用 `-` 作为目标将文件流式传输到标准输出，这样您就可以将存储桶内容直接通过管道传输到其他工具中。
+### 下载文件
+
+您可以通过单击直接从 Hub 上的存储桶页面下载各个文件。对于编程访问，下载镜像了上传语法——交换 `hf buckets cp` 中的源和目标。您还可以使用 `-` 作为目标将文件流式传输到标准输出，这样您就可以将存储桶内容直接通过管道传输到其他工具中。
 
 **命令行界面：**
 ```bash
@@ -211,9 +211,7 @@ download_bucket_files(
 
 要使用预取元数据加快下载速度，请参阅 [⟦T43⟧ download guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#download-files)。
 
-### 同步目录
-
-`sync` 命令的工作方式类似于 `rsync` 或 `aws s3 sync` — 它比较源和目标，仅传输已更改的文件。这是保持本地目录和存储桶同步的最有效方法。默认情况下，`sync`仅添加和更新文件。传递 `--delete` 也可以删除目标中不再存在于源中的文件。使用 `--dry-run` 预览会发生什么，而无需实际传输任何内容。
+### 同步目录`sync` 命令的工作方式类似于 `rsync` 或 `aws s3 sync` — 它比较源和目标，仅传输已更改的文件。这是保持本地目录和存储桶同步的最有效方法。默认情况下，`sync`仅添加和更新文件。传递 `--delete` 也可以删除目标中不再存在于源中的文件。使用 `--dry-run` 预览会发生什么，而无需实际传输任何内容。
 
 **命令行界面：**
 ```bash
@@ -247,7 +245,9 @@ sync_bucket("./data", "hf://buckets/username/my-bucket/data")
 
 # Download from a bucket to a local directory
 sync_bucket("hf://buckets/username/my-bucket/data", "./data")
-````sync` 命令支持过滤（`--include`、`--exclude`）、比较模式（`--ignore-times`、`--existing`）以及用于在执行操作之前检查操作的**计划和应用**工作流程。有关完整的选项集，请参阅[⟦T57⟧ sync guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#sync-directories)。
+```
+
+`sync` 命令支持过滤（`--include`、`--exclude`）、比较模式（`--ignore-times`、`--existing`）以及用于在执行操作之前检查操作的**计划和应用**工作流程。有关完整的选项集，请参阅[⟦T57⟧ sync guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#sync-directories)。
 
 ### 删除文件
 
@@ -274,9 +274,7 @@ batch_bucket_files("username/my-bucket", delete=["old-model.bin", "logs/debug.lo
 
 有关更多删除选项（基于模式的过滤、递归删除等），请参阅[⟦T60⟧ delete guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#delete-files)。
 
-### 在存储库和存储桶之间复制文件
-
-您可以将 [Xet](./xet/index) 跟踪的文件从任何存储库（模型、数据集、空间）或存储桶复制到目标存储桶，而无需重新上传数据。复制是在服务器端进行的：仅迁移 Xet 内容哈希，因此即使非常大的文件也会立即复制，这要归功于 [chunk-level deduplication](./xet/deduplication)。
+### 在存储库和存储桶之间复制文件您可以将 [Xet](./xet/index) 跟踪的文件从任何存储库（模型、数据集、空间）或存储桶复制到目标存储桶，而无需重新上传数据。复制是在服务器端进行的：仅迁移 Xet 内容哈希，因此即使非常大的文件也会立即复制，这要归功于 [chunk-level deduplication](./xet/deduplication)。
 
 > [!注意]
 > 仅 Xet 跟踪的文件会在服务器之间复制。小的非 Xet 文件（例如配置文件和自述文件）会自动下载并重新上传。服务器端复制还要求源和目标位于同一存储区域。
@@ -298,26 +296,28 @@ api.copy_files(
     "hf://datasets/HuggingFaceFW/fineweb/data",
     "hf://buckets/username/fineweb-data",
 )
-```您需要对源存储库或存储桶的读取权限以及对目标存储桶的写入权限。
+```
+
+您需要对源存储库或存储桶的读取权限以及对目标存储桶的写入权限。
 
 请注意，在不重新上传的情况下以其他方式将数据从存储桶传输到存储库（模型、数据集、空间）尚不可用，但已在路线图上。
 
 ## 跟踪更改
 
-存储桶是可变的，因此保存存储桶视图的工具（挂载、文件系统层、同步守护进程、仪表板）需要知道文件何时发生更改。有两种机制可用：
-
-- [Webhooks](./webhooks#buckets)：对您控制的服务器的 HTTP 回调，或在每次更改时启动 [Job](./jobs) — 请参阅[Process new files in a bucket with Jobs](./webhooks-guide-bucket-jobs)。
+存储桶是可变的，因此保存存储桶视图的工具（挂载、文件系统层、同步守护进程、仪表板）需要知道文件何时发生更改。有两种机制可用：- [Webhooks](./webhooks#buckets)：对您控制的服务器的 HTTP 回调，或在每次更改时启动 [Job](./jobs) — 请参阅[Process new files in a bucket with Jobs](./webhooks-guide-bucket-jobs)。
 - **实时关注**：您的客户端订阅的服务器发送的事件流。
 
 ### 直播关注
 
-`GET https://huggingface.co/api/buckets/<owner>/<bucket-name>/events` 将存储桶的文件更改流式传输为 [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)。该请求必须携带`Accept: text/event-stream`（否则返回`400`），并且它需要与列出存储桶相同的读取访问权限 - 公共存储桶不需要令牌。有关完整参数和响应模式，请参阅[OpenAPI spec](https://huggingface.co/spaces/huggingface/openapi#tag/buckets/GET/api/buckets/{namespace}/{repo}/events)。
+`GET https://huggingface.co/api/buckets/<owner>/<bucket-name>/events` 将存储桶的文件更改流式传输为 [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)。该请求必须携带`Accept: text/event-stream`（否则返回`400`），并且它需要与列出存储桶相同的读取访问权限 - 公共存储桶不需要令牌。有关完整参数和响应架构，请参阅[OpenAPI spec](https://huggingface.co/spaces/huggingface/openapi#tag/buckets/GET/api/buckets/{namespace}/{repo}/events)。
 
 ```bash
 curl -N -H "Accept: text/event-stream" \
   -H "Authorization: Bearer $HF_TOKEN" \
   "https://huggingface.co/api/buckets/username/my-bucket/events"
-```> [!提示]
+```
+
+> [!提示]
 > 在 Python 中，您不需要自己使用流。 [⟦T64⟧](/docs/huggingface_hub/guides/hf_file_system#keep-listings-fresh) 使用 `live_follow=True` 跟随它，因此当另一个进程更改存储桶时，其缓存的列表保持最新状态：
 >
 > ```python
@@ -329,15 +329,12 @@ curl -N -H "Accept: text/event-stream" \
 >
 > 采用 fsspec `storage_options` 的库（pandas、PyArrow，...）也接受它。
 
-该流发出四种事件类型：
-
-|活动 |数据|意义|
+该流发出四种事件类型：|活动 |数据|意义|
 | ----------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | `ready` | `{"cursor": "..."}` |任何请求的重播均已完成，随后进行实时更改。                                         |
 | `changes` | `{"cursor": "...", "changes": [...]}` |一批文件更改在一个短窗口内合并。                                       |
-| `reset` | `{"reason": "cursor_too_old"}` |恢复点无法重播；流结束，您应该重新列出存储桶。       || `reconnect` | `{"cursor": "..."}` |服务器故意关闭流；重新连接该光标。                      |
-
-`changes` 中的每个条目都有一个`path` 和一个`op`（`add`、`update` 或`delete`）。 `add` 或 `update` 还携带已更改的字段 — `size`、`xetHash`、`uploadedAt`、`mtime`、`mtimeNanos` — 因此，当文件被删除时，`update` 可能与新的 `uploadedAt` 一样小。重新上传相同。没有改变的字段被省略；当上传清除它们时，`mtime`/`mtimeNanos`也可能是`null`，所以对待缺席和`null`一视同仁。
+| `reset` | `{"reason": "cursor_too_old"}` |恢复点无法重播；流结束，您应该重新列出存储桶。       |
+| `reconnect` | `{"cursor": "..."}` |服务器故意关闭流；重新连接该光标。                      |`changes` 中的每个条目都有一个`path` 和一个`op`（`add`、`update` 或`delete`）。 `add` 或 `update` 还携带已更改的字段 — `size`、`xetHash`、`uploadedAt`、`mtime`、`mtimeNanos` — 因此，当文件被删除时，`update` 可能与新的 `uploadedAt` 一样小。重新上传相同。没有改变的字段被省略；当上传清除它们时，`mtime`/`mtimeNanos`也可能是`null`，所以对待缺席和`null`一视同仁。
 
 ```
 event: ready
@@ -376,9 +373,11 @@ hf sync ./checkpoints hf://buckets/my-org/training-run-42/checkpoints
 
 由于存储桶是基于[Xet](./xet/index)构建的，因此模型大部分被冻结的连续检查点受益于块级重复数据删除。仅上传更改的块。
 
+在作业上，您还可以挂载存储桶并直接向其写入检查点。参见[Train models on Jobs](./jobs-training#after-it-ends)。
+
 ### 数据处理管道
 
-存储桶充当数据处理工作流的暂存区域。处理原始数据，将中间输出写入存储桶，然后在管道完成时将最终工件提升到版本化的[Dataset](./datasets)存储库。这使您的版本化存储库保持干净，同时为您的管道提供快速的可变存储。
+存储桶充当数据处理工作流的暂存区域。处理原始数据，将中间输出写入存储桶，然后在管道完成时将最终工件提升到版本化的[Dataset](./datasets)存储库。这使您的版本化存储库保持干净，同时为您的管道提供快速的可变存储。 [datatrove](./storage-buckets-integrations#datatrove)直接支持该模式。
 
 请注意，在不重新上传的情况下将数据从存储桶传输到存储库尚不可用，但已在路线图上。
 

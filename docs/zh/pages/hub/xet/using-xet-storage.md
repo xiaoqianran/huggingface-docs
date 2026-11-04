@@ -18,28 +18,28 @@ pip install -U huggingface_hub
 
 ⟦T1⟧
 
-And that's it! You now get the benefits of Xet deduplication for both uploads and downloads. Team members using a version of ⟦T23⟧ < 0.30.0 will still be able to upload and download repositories through the ⟦T181⟧.
+And that's it! You now get the benefits of Xet deduplication for both uploads and downloads. Team members using a version of ⟦T23⟧ < 0.30.0 will still be able to upload and download repositories through the ⟦T180⟧.
 
 To see more detailed usage docs, refer to the ⟦T24⟧ docs for:
 
+- ⟦T181⟧
 - ⟦T182⟧
 - ⟦T183⟧
-- ⟦T184⟧
 
 ## Git
 
-Git users can access the benefits of Xet by downloading and installing the Git Xet extension. Once installed, simply use the ⟦T185⟧ - no additional changes necessary.
+Git users can access the benefits of Xet by downloading and installing the Git Xet extension. Once installed, simply use the ⟦T184⟧ - no additional changes necessary.
 
 ### Prerequisites
 
-Install ⟦T186⟧ and ⟦T187⟧. 
+Install ⟦T185⟧ and ⟦T186⟧. 
 
 ### Install on macOS or Linux (amd64 or aarch64)
 
 Install using an installation script with the following command in your terminal (requires ⟦T26⟧ and ⟦T27⟧):
 ⟦T2⟧
 
-Or, install using ⟦T188⟧:
+Or, install using ⟦T187⟧:
 ⟦T3⟧
 
 To verify the installation, run:
@@ -51,11 +51,11 @@ Using ⟦T28⟧:
 ⟦T5⟧
 
 Using an installer: 
- - Download ⟦T29⟧ (⟦T189⟧) and unzip. 
+ - Download ⟦T29⟧ (⟦T188⟧) and unzip. 
  - Run the ⟦T30⟧ installer file and follow the prompts.
 
 Manual installation:
- - Download ⟦T31⟧ (⟦T190⟧) and unzip. 
+ - Download ⟦T31⟧ (⟦T189⟧) and unzip. 
  - Place the extracted ⟦T32⟧ under a ⟦T33⟧ directory.
  - Run ⟦T34⟧ in a terminal.
 
@@ -66,10 +66,10 @@ To verify the installation, run:
 
 Once installed on your platform, using Git Xet is as simple as following the Hub's standard Git workflows.
 
-Make sure all ⟦T191⟧, follow the ⟦T192⟧, then commit your changes, and ⟦T35⟧ to the Hub:
+Make sure all ⟦T190⟧, follow the ⟦T191⟧, then commit your changes, and ⟦T35⟧ to the Hub:
 
   ⟦T7⟧
-Under the hood, the ⟦T193⟧ is invoked to upload large files directly to Xet storage, increasing upload speeds through the power of ⟦T194⟧.
+Under the hood, the ⟦T192⟧ is invoked to upload large files directly to Xet storage, increasing upload speeds through the power of ⟦T193⟧.
 
 ### Uninstall on macOS or Linux
 
@@ -163,7 +163,7 @@ Xet 与 Hub 的所有工作流程无缝集成。但是，您可以考虑采取�
 
 从 `hf_xet` 1.7.0 开始，三个 `DOWNLOAD_BUFFER` 变量的默认值基于 `hf_xet` 可以使用的内存量。这是机器的 RAM，或者容器的内存限制（如果较低）。每个默认值都是该内存的一小部分，保持在表中显示的最小值和最大值之间。 HP 模式使用两倍的分数，具有相同的最小值和最大值。例如，限制为 4 GB 的容器将获得约 256 MB 的缓冲区，且限制为 1 GB，而具有 32 GB 的计算机将获得与早期版本相同的 2 GB 缓冲区和 8 GB 限制。早期版本或任何无法判断可用内存量的版本，使用固定默认值 `2gb`、`512mb` 和 `8gb`（HP 模式下为`16gb`、`2gb` 和 `64gb`）。使用的值在启动时写入`hf_xet`日志文件（请参阅[Logging](#logging)）。
 
-|环境变量 |默认 |惠普模式 |描述 |
+|环境变量 |默认 |惠普模式|描述 |
 |---|---|---|---|
 | `HF_XET_RECONSTRUCTION_MIN_RECONSTRUCTION_FETCH_SIZE` | `256mb` | `1gb` |重建请求的最小获取大小。 |
 | `HF_XET_RECONSTRUCTION_MAX_RECONSTRUCTION_FETCH_SIZE` | `8gb` | `16gb` |重建请求的最大获取大小。 |
@@ -183,27 +183,30 @@ Xet 与 Hub 的所有工作流程无缝集成。但是，您可以考虑采取�
 | `HF_XET_SHARD_CHUNK_INDEX_TABLE_MAX_SIZE` | `64mb` |内存中块索引的最大大小。一旦达到，就不再加载更多块以进行重复数据删除。 |
 | `HF_XET_SHARD_CACHE_SUBDIR` | `shard-cache` | Xet 缓存目录中分片缓存的子目录。 |
 
-### 块缓存**块缓存**将下载的字节范围（块）存储在磁盘上，因此不会从存储中重新获取重叠的数据。当重复下载相关模型或数据集或生成相关模型或数据集的新修订版时，它最有用。
+### 块缓存`hf_xet` 不再使用本地块缓存进行下载。下载的文件仍然存储在`huggingface_hub`基于文件的缓存中。
 
 |环境变量 |默认 |描述 |
 |---|---|---|
-| `HF_XET_CHUNK_CACHE_SIZE_BYTES` | `0`（已禁用）|本地块缓存的大小。 `hf_xet` Python 包附带缓存**默认情况下禁用**；设置字节数（例如 `10000000000` 表示 10 GB）以启用它，或设置 `0` 来禁用它。该变量在 Git Xet v0.1 中无效。 |
+| `HF_XET_CHUNK_CACHE_SIZE_BYTES` | — | No longer used by `hf_xet`.设置它不会启用下载块缓存。 |
 
-### 日志记录|环境变量 |默认 |描述 |
+### 日志记录
+
+|环境变量 |默认 |描述 |
 |---|---|---|
 | `HF_XET_LOG_DEST` | （无）|日志目的地。接受文件路径或目录路径（以`/`结尾）。当设置为目录时，将使用带时间戳的名称创建日志文件。当设置为空字符串时，日志将转到控制台。取消设置后，日志将转到 Hugging Face Xet 缓存目录中的 `logs/` 子目录。 |
-| `HF_XET_LOG_FORMAT` | （无）|日志格式。对于 JSON 格式的日志，设置为 `json`；否则纯文本。默认情况下，文件日志记录使用 JSON，控制台日志记录使用文本。 |
+| `HF_XET_LOG_FORMAT` | （无）|日志格式。 Set to `json` for JSON-formatted logs;否则纯文本。默认情况下，文件日志记录使用 JSON，控制台日志记录使用文本。 |
 | `HF_XET_LOG_PREFIX` | `xet` |登录到目录时日志文件名的前缀。 |
 | `HF_XET_LOG_DIR_DISABLE_CLEANUP` | `false` |禁用日志目录中旧日志文件的自动清理。 |
-| `HF_XET_LOG_DIR_MAX_SIZE` | `250mb` |日志目录中日志文件的最大总大小。旧文件会被修剪以保持在此限制以下。 |
-| `HF_XET_LOG_DIR_MIN_DELETION_AGE` | `1d` |清理期间可以删除日志文件的最短期限。 |
+| `HF_XET_LOG_DIR_MAX_SIZE` | `250mb` |日志目录中日志文件的最大总大小。 Old files are pruned to stay under this limit. || `HF_XET_LOG_DIR_MIN_DELETION_AGE` | `1d` |清理期间可以删除日志文件的最短期限。 |
 | `HF_XET_LOG_DIR_MAX_RETENTION_AGE` | `14d` |日志文件的最长期限。清理过程中始终会删除早于此时间的文件。 |
 
 ### 遥测
 
 `hf_xet` 每次上传和下载后都会发送一个简短的报告。请参阅 [Telemetry](./telemetry) 了解其包含的内容。要将其关闭，请设置`HF_HUB_DISABLE_TELEMETRY=1`。
 
-## 目前的限制虽然 Xet 为基于 Git 的存储带来了细粒度的重复数据删除和增强的性能，但一些功能和平台兼容性仍在开发中。因此，在使用支持 Xet 的存储库时，请记住以下限制：
+## 目前的限制
+
+虽然 Xet 为基于 Git 的存储带来了细粒度的重复数据删除和增强的性能，但一些功能和平台兼容性仍在开发中。因此，在使用支持 Xet 的存储库时，请记住以下限制：
 
 - **仅限 64 位系统**：`hf_xet` 和 Git Xet 目前都需要 64 位架构；不支持 32 位系统。
 

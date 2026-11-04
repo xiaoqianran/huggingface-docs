@@ -5,7 +5,7 @@
 存储桶可以通过 **S3 兼容的 API** 进行访问，让您可以针对存储桶使用现有的 S3 工具（AWS CLI、`boto3`、`s5cmd` 和大多数其他 S3 SDK），而无需更改代码。 
 请求通过`https://s3.hf.co`的网关服务。
 
-S3 API 是访问存储桶数据的多种方法之一 - 对于无需单独的 S3 凭据的 Hugging Face 原生访问（`hf` CLI、`hf://` 路径和文件系统挂载），请参阅[Access Patterns](./storage-buckets-access)。
+S3 API 是访问存储桶数据的多种方法之一 - 对于无需单独的 S3 凭据的 Hugging Face-native 访问（`hf` CLI、`hf://` 路径和文件系统挂载），请参阅[Access Patterns](./storage-buckets-access)。
 
 > [!注意]
 > S3 API 仅适用于 [Storage Buckets](./storage-buckets)。它不公开其他 Hugging Face 存储库类型（模型、数据集、空间）。
@@ -33,12 +33,12 @@ S3 凭证继承底层访问令牌的权限。对于细粒度令牌，请将其�
 | `response_checksum_validation` | `when_required` |防止最近的客户端在响应中期待校验和 |
 
 这两个校验和设置对于最近的客户端很重要：AWS CLI ≥ 2.23 和最新的 `boto3` 版本默认发送尾随 CRC32 校验和（通过 `aws-chunked` 帧），网关不会解析该校验和。 
-这些设置告诉客户端仅在操作严格要求时才发送校验和。
+这些设置告诉客户端仅在操作严格要求时才发送校验和。以下是可选的但推荐的。客户端默认8MB，一个大文件被分割成很多部分； 256MB 意味着每次上传的部分要少得多，而每个部分都足够小，以便网关能够有效处理：
 
-以下是可选的，但建议使用尽可能少的多部分部分上传：|设置|价值|
-|--------------------------|--------|
-| `s3.multipart_threshold` | `2GB` |
-| `s3.multipart_chunksize` | `2GB` |
+|设置|价值|
+|--------------------------|---------|
+| `s3.multipart_threshold` | `256MB` |
+| `s3.multipart_chunksize` | `256MB` |
 
 ### 示例：AWS CLI 配置文件
 
@@ -50,8 +50,8 @@ region = us-east-1
 endpoint_url = https://s3.hf.co/<namespace>
 s3 =
     addressing_style = path
-    multipart_threshold = 2GB
-    multipart_chunksize = 2GB
+    multipart_threshold = 256MB
+    multipart_chunksize = 256MB
 request_checksum_calculation = when_required
 response_checksum_validation = when_required
 ```
@@ -75,14 +75,14 @@ aws --profile hf s3 cp ./model.safetensors s3://my-bucket/models/model.safetenso
 
 ## 寻址桶
 
-AWS S3 使用单一平面、全局唯一的存储桶名称空间，并且 SDK 期望存储桶名称是不带 `/` 的纯字符串。 Hugging Face 存储桶被标识为 `namespace/bucket`，其中 `namespace` 是您的用户名或组织。这个额外的级别引入了与 S3 客户端的不匹配——许多客户端不接受存储桶名称中的`/`，或者会错误地对其进行 URL 转义。有两种方法可以解决这个问题：
-
-**1.将命名空间放入端点 URL**（大多数情况下建议）。这将每个操作的范围限定在该命名空间，因此传递给客户端的存储桶名称只是 HF 存储桶名称。它适用于您自己的存储桶或单个组织中的存储桶，但会跨命名空间分解 - 例如从个人存储桶到组织存储桶的服务器端副本。
+AWS S3 使用单一平面、全局唯一的存储桶名称空间，并且 SDK 期望存储桶名称是不带 `/` 的纯字符串。 Hugging Face 存储桶被标识为 `namespace/bucket`，其中 `namespace` 是您的用户名或组织。这个额外的级别引入了与 S3 客户端的不匹配——许多客户端不接受存储桶名称中的`/`，或者会错误地对其进行 URL 转义。有两种方法可以解决这个问题：**1.将命名空间放入端点 URL**（大多数情况下建议）。这将每个操作的范围限定在该命名空间，因此传递给客户端的存储桶名称只是 HF 存储桶名称。它适用于您自己的存储桶或单个组织中的存储桶，但会跨命名空间分解 - 例如从个人存储桶到组织存储桶的服务器端副本。
 
 ```bash
 aws --endpoint-url https://s3.hf.co/my-org s3api get-object \
   --bucket my-bucket --key some/object.txt ./object.txt
-```**2.将命名空间视为存储桶**，并将 HF 存储桶名称添加到对象键之前。这适用于对象级操作（上传、下载），但对于存储桶级操作（例如创建或删除存储桶）存在问题。
+```
+
+**2.将命名空间视为存储桶**，并将 HF 存储桶名称添加到对象键之前。这适用于对象级操作（上传、下载），但对于存储桶级操作（例如创建或删除存储桶）存在问题。
 
 ```bash
 aws --endpoint-url https://s3.hf.co s3api get-object \
@@ -95,13 +95,13 @@ aws --endpoint-url https://s3.hf.co s3api get-object \
 
 ### 对象下载
 
-网关目前是单区域的。为了提高下载性能，`GetObject` 通常会响应 HTTP 302 重定向到最近的 Hugging Face CDN 边缘，而不是直接提供字节。
-
-某些 SDK 不遵循来自 S3 端点的重定向，因此网关会检测标识为 `aws-cli`、`botocore`（涵盖 `boto3`）或 `aws-sdk-rust` 的客户端，并通过自身为它们代理数据。所有其他客户端（`rclone`、`s5cmd`、`curl`、AWS Go SDK 等）都会接收 302 并以本机方式遵循它，从而使网关远离数据路径以加快下载速度。
+网关目前是单区域的。为了提高下载性能，`GetObject` 通常会响应 HTTP 302 重定向到最近的 Hugging Face CDN 边缘，而不是直接提供字节。某些 SDK 不遵循来自 S3 端点的重定向，因此网关会检测标识为 `aws-cli`、`botocore`（涵盖 `boto3`）或 `aws-sdk-rust` 的客户端，并通过自身为它们代理数据。所有其他客户端（`rclone`、`s5cmd`、`curl`、AWS Go SDK 等）都会接收 302 并以本机方式遵循它，从而使网关远离数据路径以加快下载速度。
 
 ### 对象键命名
 
-存储桶对象键比 S3 受到更多限制。密钥不得**：- 以`/`开始或结束
+存储桶对象键比 S3 受到更多限制。密钥不得**：
+
+- 以`/`开始或结束
 - 包含连续斜杠 (`//`)
 - 包含`../`序列
 - 以`./`开头
@@ -114,12 +114,11 @@ aws --endpoint-url https://s3.hf.co s3api get-object \
   可能需要配置为专门使用`ListObjectsV2`。
 - 仅允许使用`/`作为分隔符。
 
-### 其他 API 差异
-
-- **对象元数据**：不存储或返回任意用户元数据（`x-amz-meta-*`）。支持`Content-Type`。
+### 其他 API 差异- **对象元数据**：不存储或返回任意用户元数据（`x-amz-meta-*`）。支持`Content-Type`。
 - **不支持的功能**：不支持 ACL、存储桶策略、对象标记、对象版本控制、生命周期规则、服务器端加密 (SSE) 和存储桶通知。对象始终使用 `STANDARD` 存储类别进行报告。相关请求标头和参数被接受但被忽略。
 - **CopyObject**：服务器端复制仅在单个命名空间内工作。不支持跨命名空间复制和`UploadPartCopy`（将现有对象的一部分复制到分段上传）。
-- **有条件请求**：`If-Match` / `If-None-Match` 前提条件在 `PutObject` 和 `CopyObject` 的复制源上得到满足，但在 `GetObject` 上不得到满足。- **分段上传过期**：从未完成或中止的正在进行的分段上传将自动过期并在 7 天后清理。
+- **有条件请求**：`If-Match` / `If-None-Match` 前提条件在 `PutObject` 和 `CopyObject` 的复制源上得到满足，但在 `GetObject` 上不得到满足。
+- **分段上传过期**：从未完成或中止的正在进行的分段上传将自动过期并在 7 天后清理。
 
 ## 示例
 
@@ -150,9 +149,7 @@ s3.upload_file("model.safetensors", "my-bucket", "models/model.safetensors")
 s3.download_file("my-bucket", "models/model.safetensors", "model.safetensors")
 ```
 
-### 使用 DuckDB 查询存储桶
-
-在 DuckDB 2.0 或更高版本上，`httpfs` 扩展直接读取 `hf://buckets/` 路径，并且通过 `hf` 扩展，它还可以写入存储桶。参见[Query with DuckDB](./storage-buckets-access#query-with-duckdb)。
+### 使用 DuckDB 查询存储桶在 DuckDB 2.0 或更高版本上，`httpfs` 扩展直接读取 `hf://buckets/` 路径，并且通过 `hf` 扩展，它还可以写入存储桶。参见[Query with DuckDB](./storage-buckets-access#query-with-duckdb)。
 
 对于早期版本的 DuckDB，或者要将查询结果写回带有 `COPY ... TO` 且不带扩展名的存储桶，请改为通过 S3 网关：
 
@@ -177,7 +174,12 @@ SELECT * FROM read_parquet('s3://my-bucket/data.parquet');
 
 ### 使用`rclone`导入数据
 
-[⟦T81⟧](https://rclone.org/) 是在两个 S3 兼容存储之间复制数据的便捷方法，因此非常适合将现有 AWS S3 存储桶（或任何 S3 兼容源）移动到存储桶中。这个想法是声明两个遥控器 - 您的源存储桶和 Hugging Face 网关 - 并让 `rclone` 在它们之间传输对象。将两个遥控器添加到`~/.config/rclone/rclone.conf`。第一个点指向您现有的 S3 存储桶；调整它以匹配您的源（此处为普通 AWS S3）：
+[⟦T81⟧](https://rclone.org/) 是在两个 S3 兼容存储之间复制数据的便捷方法，因此非常适合将现有 AWS S3 存储桶（或任何 S3 兼容源）移动到存储桶中。
+
+> [!提示]
+> 移动大型数据集？安装源并运行 `hf sync` 会在客户端进行重复数据删除，因此它通常上传的字节数比 rclone 少。请参阅[Migration Guide](./storage-buckets-migration)。
+
+这个想法是声明两个遥控器 - 您的源存储桶和 Hugging Face 网关 - 并让 `rclone` 在它们之间传输对象。将两个遥控器添加到`~/.config/rclone/rclone.conf`。第一个点指向您现有的 S3 存储桶；调整它以匹配您的源（此处为普通 AWS S3）：
 
 ```ini
 [aws]
@@ -186,9 +188,7 @@ provider = AWS
 access_key_id = AKIA...
 secret_access_key = ...
 region = us-east-1
-```
-
-第二个点位于拥抱脸网关。与任何其他客户端一样，将端点范围限制为您的[namespace](#addressing-buckets)，使用`path`寻址，强制ListObjectsV2（网关支持的唯一列表版本），并设置大的多部分大小，以便上传使用尽可能少的部分：
+```第二个点位于拥抱脸网关。与任何其他客户端一样，将端点范围限定为 [namespace](#addressing-buckets)，使用 `path` 寻址，强制使用 ListObjectsV2（网关支持的唯一列表版本），并设置 256M 部分大小。这比 rclone 的 5M 默认值大得多，因此大文件会分成更少的部分，并且足够小，以便网关能够有效处理并保持 rclone 的内存处于检查状态（每次传输在内存中保存 4 个部分）：
 
 ```ini
 [hf]
@@ -200,8 +200,8 @@ secret_access_key = ...
 region = us-east-1
 force_path_style = true
 list_version = 2
-upload_cutoff = 2G
-chunk_size = 2G
+upload_cutoff = 256M
+chunk_size = 256M
 ```
 
 注意：将上面的`<namespace>`替换为存储桶所在的用户名或组织，并使用从访问令牌生成的[S3 credentials](#generating-s3-credentials)。目标存储桶必须已存在于该命名空间下。
@@ -216,10 +216,10 @@ rclone copy aws:my-source-bucket hf:my-bucket --progress
 
 ```bash
 rclone sync aws:my-source-bucket hf:my-bucket --progress
-```> [!提示]
-> 对于大型导入，添加`--transfers`和`--checkers`以提高并发性（例如`--transfers 16 --checkers 16`），然后运行`rclone check aws:my-source-bucket hf:my-bucket`以确认每个对象都已通过。
+```
 
-### 带 DVC 的版本数据
+> [!提示]
+> 对于大型导入，添加`--transfers`和`--checkers`以提高并发性（例如`--transfers 16 --checkers 16`），然后运行`rclone check aws:my-source-bucket hf:my-bucket`以确认每个对象都已通过。### 带 DVC 的版本数据
 
 [DVC](https://dvc.org/) 通过在存储库中保留小指针文件并将实际数据推送到远程来在 git 中版本化数据集和模型。存储桶通过网关充当 DVC 远程，因此您的代码和 `.dvc` 指针保留在 git 中，而数据存储在您的存储桶中。安装支持 S3 的 DVC (`pip install 'dvc[s3]'`)，然后使用上面的 [client settings](#configuring-a-client) 添加遥控器：
 

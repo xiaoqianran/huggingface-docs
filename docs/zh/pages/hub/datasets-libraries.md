@@ -11,7 +11,7 @@
 下表总结了支持的库及其集成级别。
 
 |图书馆 |描述 |从集线器下载 |从集线器传输 |推送到集线器 |流式传输到集线器 |优化的 Parquet 文件 |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- | ---------------- | ----------- | ------------- | ------------------------ |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- | --------------- | ----------- | ------------- | ------------------------ |
 | [Daft](./datasets-daft) |使用 Python 原生接口进行大规模、多模式数据处理的数据引擎。                                        | ✅ | ✅ | ✅ | ✅ | ✅ || [Dask](./datasets-dask) |并行和分布式计算库，可扩展现有的 Python 和 PyData 生态系统。                               | ✅ | ✅ | ✅ | ✅ | ✅* |
 | [Data Designer](./datasets-data-designer) | NVIDIA NeMo 框架，用于使用 LLM 生成合成数据集。                                                      | ✅ | ❌ | ✅ | ❌ | ❌ |
 | [Datasets](./datasets-usage) | 🤗 Datasets 是一个用于访问和共享音频、计算机视觉和自然语言处理 (NLP) 数据集的库。 | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -51,15 +51,14 @@
 ## 培训库
 
 与 Hub 数据集集成以进行模型训练的训练库。下表显示了它们的流功能 - 无需先下载数据集即可进行训练的能力。|图书馆 |描述 |从集线器传输 |
-| -------- | ----------- | ---------------- |
+| -------- | ----------- | --------------- |
 | [Axolotl](https://docs.axolotl.ai/docs/streaming.html) |低代码LLM微调框架| ✅ |
 | [LlamaFactory](https://github.com/hiyouga/LLaMA-Factory) | 100+ LLM 统一微调 | ✅ |
 | [Sentence Transformers](https://sbert.net/docs/sentence_transformer/training_overview.html) |文本嵌入和语义相似度 | ✅ |
 | [Transformers](https://huggingface.co/docs/transformers/trainer) | 🤗 用于微调模型的 Transformers Trainer | ✅ |
-| [TRL](https://huggingface.co/docs/trl) |通过强化学习（SFT、DPO、GRPO）培训法学硕士 | ⚠️* |
+| [TRL](https://huggingface.co/docs/trl) |通过强化学习（SFT、DPO、GRPO）培训法学硕士 | ✅ |
 | [Unsloth](https://docs.unsloth.ai) |快速 LLM 微调（加速 2 倍，内存减少 70%）| ✅ |
-
-_* SFTTrainer 和 DPOTrainer 支持流式传输； GRPPOTrainer 尚不支持流式输入_
+| [LeRobot](https://huggingface.co/docs/lerobot/main/en/training_dataset_streaming) |培训机器人政策| ✅ |
 
 ### 从集线器流式传输
 
@@ -68,7 +67,7 @@ _* SFTTrainer 和 DPOTrainer 支持流式传输； GRPPOTrainer 尚不支持流�
 - 您想立即开始训练
 - 您正在使用 [HF Jobs](https://huggingface.co/docs/hub/jobs)，其中共置计算可提供更快的流传输
 
-最近的改进使流式传输[up to 100x more efficient](https://huggingface.co/blog/streaming-datasets)具有更快的启动、预取和更好的扩展到许多工作人员的能力。
+最近的改进使流式传输[up to 100x more efficient](https://huggingface.co/blog/streaming-datasets)具有更快的启动速度、预取速度以及更好的扩展到许多工作人员的能力。
 
 **注意：** 流式处理需要在训练参数中使用`max_steps`，因为数据集长度未知，并且使用基于缓冲区的改组。更多详情请参见[streaming datasets](./datasets-streaming)。
 
@@ -91,7 +90,7 @@ _* SFTTrainer 和 DPOTrainer 支持流式传输； GRPPOTrainer 尚不支持流�
 
 一般来说，我们建议依靠现有的库（如 `datasets`、`pandas` 或 `polars`）来执行此操作，除非您有特定原因要实现自己的库。如果您需要对加载过程进行更多控制，可以使用 `huggingface_hub` 库，例如，它允许您从存储库下载特定的文件子集。
 
-您可以找到有关从集线器[here](https://huggingface.co/docs/hub/datasets-downloading)加载数据的更多信息。
+您可以找到有关从 Hub [here](https://huggingface.co/docs/hub/datasets-downloading) 加载数据的更多信息。
 
 #### 通过数据集查看器和 Parquet 文件集成Hub 的数据集查看器和 Parquet 转换系统提供了一种与数据集集成的标准化方法，无论其原始格式如何。该基础设施是集线器和外部库之间的可靠集成层。
 
@@ -99,7 +98,7 @@ _* SFTTrainer 和 DPOTrainer 支持流式传输； GRPPOTrainer 尚不支持流�
 
 - 无论原始格式如何，一致的数据访问模式
 - 通过 Hub 的数据集查看器进行内置数据集预览和探索。数据集查看器还可以作为 iframe 嵌入到您的应用程序中，从而轻松提供丰富的数据集预览。有关嵌入查看器的更多信息，请参阅[dataset viewer embedding documentation](https://huggingface.co/docs/hub/en/datasets-viewer-embed)。
-- 针对查询优化的高效列式存储。例如，您可以使用[DuckDB](https://duckdb.org/)之类的工具来查询或过滤特定的数据子集。
+- 针对查询优化的高效列式存储。例如，您可以使用 [DuckDB](https://duckdb.org/) 等工具来查询或筛选特定的数据子集。
 - Parquet 在机器学习和数据科学生态系统中得到了良好的支持。
 
 有关使用数据集查看器 API 的更多详细信息，请参阅 [Dataset Viewer API documentation](https://huggingface.co/docs/dataset-viewer/index)
@@ -175,7 +174,7 @@ api.upload_folder(
 
 或者，在某些情况下，您可能希望在后台上传数据，例如每 10 分钟生成一次合成数据。在这种情况下，您可以使用 `huggingface_hub` 库的 `CommitScheduler` 类。欲了解更多详情，请参阅[scheduled uploads documentation](https://huggingface.co/docs/huggingface_hub/main/en/guides/upload#scheduled-uploads)。您可以在以下位置查看使用此方法将数据上传到 Hub 的示例：
 
-- [fastdata](https://github.com/AnswerDotAI/fastdata/blob/main/nbs/00_core.ipynb) 库
+- [fastdata](https://github.com/AnswerDotAI/fastdata/blob/main/nbs/00_core.ipynb)图书馆
 - 这个[magpie](https://huggingface.co/spaces/davanstrien/magpie/blob/fc79672c740b8d3d098378dca37c0f191c208de0/app.py#L67)演示空间
 
 ## 更多支持
