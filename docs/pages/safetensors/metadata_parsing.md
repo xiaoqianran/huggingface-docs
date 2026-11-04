@@ -167,5 +167,5 @@ model | safetensors | params
 [bigscience/bloom](https://huggingface.co/bigscience/bloom?show_tensors=true) | sharded | { 'BF16' => 176247271424 }
 [bigscience/bloom-3b](https://huggingface.co/bigscience/bloom-3b?show_tensors=true) | single-file | { 'F16' => 3002557440 }
 
-### Speed Comparison
-https://huggingface.co/docs/safetensors/main/speed.md
+### Torch API[[safetensors.torch.load_file]]
+https://huggingface.co/docs/safetensors/main/api/torch.md

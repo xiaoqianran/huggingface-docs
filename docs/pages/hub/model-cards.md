@@ -312,5 +312,5 @@ $$
 
 $$ E=mc^2 $$
 
-### Using _Adapters_ at Hugging Face
-https://huggingface.co/docs/hub/adapters.md
+### Migrating Data to Storage Buckets
+https://huggingface.co/docs/hub/storage-buckets-migration.md

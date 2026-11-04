@@ -6,38 +6,38 @@ To see all options to serve your models, run the following:
 $ text-embeddings-router --help
 Text Embedding Webserver
 
-Usage: text-embeddings-router [OPTIONS] --model-id 
+Usage: text-embeddings-router [OPTIONS] --model-id <MODEL_ID>
 
 Options:
-      --model-id 
-          The Hugging Face model ID, can be any model listed on  with the `text-embeddings-inference` tag (meaning it's compatible with Text Embeddings Inference).
+      --model-id <MODEL_ID>
+          The Hugging Face model ID, can be any model listed on <https://huggingface.co/models> with the `text-embeddings-inference` tag (meaning it's compatible with Text Embeddings Inference).
 
           Alternatively, the specified ID can also be a path to a local directory containing the necessary model files saved by the `save_pretrained(...)` methods of either Transformers or Sentence Transformers.
 
           [env: MODEL_ID=]
 
-      --revision 
+      --revision <REVISION>
           The actual revision of the model if you're referring to a model on the hub. You can use a specific commit id or a branch like `refs/pr/2`
 
           [env: REVISION=]
 
-      --tokenization-workers 
+      --tokenization-workers <TOKENIZATION_WORKERS>
           Optionally control the number of tokenizer workers used for payload tokenization, validation and truncation. Default to the number of CPU cores on the machine
 
           [env: TOKENIZATION_WORKERS=]
 
-      --dtype 
+      --dtype <DTYPE>
           The dtype to be forced upon the model
 
           [env: DTYPE=]
           [possible values: float16, float32]
 
-      --served-model-name 
+      --served-model-name <SERVED_MODEL_NAME>
           The name of the model that is being served. If not specified, defaults to `--model-id`. It is only used for the OpenAI-compatible endpoints via HTTP
 
           [env: SERVED_MODEL_NAME=]
 
-      --pooling 
+      --pooling <POOLING>
           Optionally control the pooling method for embedding models.
 
           If `pooling` is not set, the pooling configuration will be parsed from the model `1_Pooling/config.json` configuration.
@@ -52,13 +52,13 @@ Options:
           - splade:     Apply SPLADE (Sparse Lexical and Expansion) to the model embeddings. This option is only available if the loaded model is a `ForMaskedLM` Transformer model
           - last-token: Select the last token as embedding
 
-      --max-concurrent-requests 
+      --max-concurrent-requests <MAX_CONCURRENT_REQUESTS>
           The maximum amount of concurrent requests for this particular deployment. Having a low limit will refuse clients requests instead of having them wait for too long and is usually good to handle backpressure correctly
 
           [env: MAX_CONCURRENT_REQUESTS=]
           [default: 512]
 
-      --max-batch-tokens 
+      --max-batch-tokens <MAX_BATCH_TOKENS>
           **IMPORTANT** This is one critical control to allow maximum usage of the available hardware.
 
           This represents the total amount of potential tokens within a batch.
@@ -70,12 +70,12 @@ Options:
           [env: MAX_BATCH_TOKENS=]
           [default: 16384]
 
-      --max-batch-requests 
+      --max-batch-requests <MAX_BATCH_REQUESTS>
           Optionally control the maximum number of individual requests in a batch
 
           [env: MAX_BATCH_REQUESTS=]
 
-      --max-client-batch-size 
+      --max-client-batch-size <MAX_CLIENT_BATCH_SIZE>
           Control the maximum number of inputs that a client can send in a single request
 
           [env: MAX_CLIENT_BATCH_SIZE=]
@@ -88,64 +88,64 @@ Options:
 
           [env: AUTO_TRUNCATE=]
 
-      --default-prompt-name 
+      --default-prompt-name <DEFAULT_PROMPT_NAME>
           The name of the prompt that should be used by default for encoding. If not set, no prompt will be applied.
 
           Must be a key in the `sentence-transformers` configuration `prompts` dictionary.
 
           For example if ``default_prompt_name`` is "query" and the ``prompts`` is {"query": "query: ", ...}, then the sentence "What is the capital of France?" will be encoded as "query: What is the capital of France?" because the prompt text will be prepended before any text to encode.
 
-          The argument '--default-prompt-name ' cannot be used with '--default-prompt `
+          The argument '--default-prompt-name <DEFAULT_PROMPT_NAME>' cannot be used with '--default-prompt <DEFAULT_PROMPT>`
 
           [env: DEFAULT_PROMPT_NAME=]
 
-      --default-prompt 
+      --default-prompt <DEFAULT_PROMPT>
           The prompt that should be used by default for encoding. If not set, no prompt will be applied.
 
           For example if ``default_prompt`` is "query: " then the sentence "What is the capital of France?" will be encoded as "query: What is the capital of France?" because the prompt text will be prepended before any text to encode.
 
-          The argument '--default-prompt ' cannot be used with '--default-prompt-name `
+          The argument '--default-prompt <DEFAULT_PROMPT>' cannot be used with '--default-prompt-name <DEFAULT_PROMPT_NAME>`
 
           [env: DEFAULT_PROMPT=]
 
-      --dense-path 
+      --dense-path <DENSE_PATH>
           Optionally, define the path to the Dense module required for some embedding models.
 
-          Some embedding models require an extra `Dense` module which contains a single Linear layer and an activation function. By default, those `Dense` modules are stored under the `2_Dense` directory, but there might be cases where different `Dense` modules are provided, to convert the pooled embeddings into different dimensions, available as `2_Dense_` e.g. https://huggingface.co/NovaSearch/stella_en_400M_v5.
+          Some embedding models require an extra `Dense` module which contains a single Linear layer and an activation function. By default, those `Dense` modules are stored under the `2_Dense` directory, but there might be cases where different `Dense` modules are provided, to convert the pooled embeddings into different dimensions, available as `2_Dense_<dims>` e.g. https://huggingface.co/NovaSearch/stella_en_400M_v5.
 
           Note that this argument is optional, only required to be set if there is no `modules.json` file or when you want to override a single Dense module path, only when running with the `candle` backend.
 
           [env: DENSE_PATH=]
 
-      --hf-token 
+      --hf-token <HF_TOKEN>
           Your Hugging Face Hub token. If neither `--hf-token` nor `HF_TOKEN` are set, the token will be read from the `$HF_HOME/token` path, if it exists. This ensures access to private or gated models, and allows for a more permissive rate limiting
 
           [env: HF_TOKEN=]
 
-      --hostname 
+      --hostname <HOSTNAME>
           The IP address to listen on
 
           [env: HOSTNAME=]
           [default: 0.0.0.0]
 
-      -p, --port 
+      -p, --port <PORT>
           The port to listen on
 
           [env: PORT=]
           [default: 3000]
 
-      --uds-path 
+      --uds-path <UDS_PATH>
           The name of the unix socket some text-embeddings-inference backends will use as they communicate internally with gRPC
 
           [env: UDS_PATH=]
           [default: /tmp/text-embeddings-inference-server]
 
-      --huggingface-hub-cache 
+      --huggingface-hub-cache <HUGGINGFACE_HUB_CACHE>
           The location of the huggingface hub cache. Used to override the location if you want to provide a mounted disk for instance
 
           [env: HUGGINGFACE_HUB_CACHE=]
 
-      --payload-limit 
+      --payload-limit <PAYLOAD_LIMIT>
           Payload size limit in bytes
 
           Default is 2MB
@@ -153,7 +153,7 @@ Options:
           [env: PAYLOAD_LIMIT=]
           [default: 2000000]
 
-      --api-key 
+      --api-key <API_KEY>
           Set an api key for request authorization.
 
           By default the server responds to every request. With an api key set, the requests must have the Authorization header set with the api key as Bearer token.
@@ -170,24 +170,24 @@ Options:
 
           [env: DISABLE_SPANS=]
 
-      --otlp-endpoint 
+      --otlp-endpoint <OTLP_ENDPOINT>
           The grpc endpoint for opentelemetry. Telemetry is sent to this endpoint as OTLP over gRPC. e.g. `http://localhost:4317`
 
           [env: OTLP_ENDPOINT=]
 
-      --otlp-service-name 
+      --otlp-service-name <OTLP_SERVICE_NAME>
           The service name for opentelemetry. e.g. `text-embeddings-inference.server`
 
           [env: OTLP_SERVICE_NAME=]
           [default: text-embeddings-inference.server]
 
-      --prometheus-port 
+      --prometheus-port <PROMETHEUS_PORT>
           The Prometheus port to listen on
 
           [env: PROMETHEUS_PORT=]
           [default: 9000]
 
-      --cors-allow-origin 
+      --cors-allow-origin <CORS_ALLOW_ORIGIN>
           Unused for gRPC servers
 
           [env: CORS_ALLOW_ORIGIN=]
@@ -198,6 +198,3 @@ Options:
   -V, --version
           Print version
 ```
-
-### Build a custom container for TEI
-https://huggingface.co/docs/text-embeddings-inference/custom_container.md

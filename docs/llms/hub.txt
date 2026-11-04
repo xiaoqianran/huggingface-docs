@@ -64,6 +64,7 @@
 - [Daft](https://huggingface.co/docs/hub/datasets-daft.md)
 - [Hugging Face MCP Server](https://huggingface.co/docs/hub/agents-mcp.md)
 - [Model Cards](https://huggingface.co/docs/hub/model-cards.md)
+- [Migrating Data to Storage Buckets](https://huggingface.co/docs/hub/storage-buckets-migration.md)
 - [Using _Adapters_ at Hugging Face](https://huggingface.co/docs/hub/adapters.md)
 - [Webhook guide: Process new files in a bucket with Jobs](https://huggingface.co/docs/hub/webhooks-guide-bucket-jobs.md)
 - [Organization cards](https://huggingface.co/docs/hub/organizations-cards.md)

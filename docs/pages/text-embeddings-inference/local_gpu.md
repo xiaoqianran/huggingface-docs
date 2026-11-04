@@ -47,5 +47,5 @@ model=Qwen/Qwen3-Embedding-0.6B
 text-embeddings-router --model-id $model --dtype float16 --port 8080
 ```
 
-### Example uses
-https://huggingface.co/docs/text-embeddings-inference/examples.md
+### Using TEI Container with Intel® Hardware
+https://huggingface.co/docs/text-embeddings-inference/intel_container.md

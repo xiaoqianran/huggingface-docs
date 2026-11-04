@@ -13,7 +13,7 @@ Unofficial mirror from official `llms.txt` + `llms-full.txt`.
 | [`dataset-viewer`](https://huggingface.co/docs/dataset-viewer) | Dataset Viewer | 26 | [full](dataset-viewer/_full.md) |
 | [`datasets`](https://huggingface.co/docs/datasets) | Datasets | 58 | [full](datasets/_full.md) |
 | [`diffusers`](https://huggingface.co/docs/diffusers) | Diffusers | 371 | [full](diffusers/_full.md) |
-| [`hub`](https://huggingface.co/docs/hub) | Hub | 276 | [full](hub/_full.md) |
+| [`hub`](https://huggingface.co/docs/hub) | Hub | 277 | [full](hub/_full.md) |
 | [`huggingface_hub`](https://huggingface.co/docs/huggingface_hub) | Hub Client | 53 | [full](huggingface_hub/_full.md) |
 | [`inference-endpoints`](https://huggingface.co/docs/inference-endpoints) | Inference Endpoints | 25 | [full](inference-endpoints/_full.md) |
 | [`inference-providers`](https://huggingface.co/docs/inference-providers) | Inference Providers | 27 | [full](inference-providers/_full.md) |
@@ -25,7 +25,7 @@ Unofficial mirror from official `llms.txt` + `llms-full.txt`.
 | [`smolagents`](https://huggingface.co/docs/smolagents) | Smolagents | 22 | [full](smolagents/_full.md) |
 | [`text-embeddings-inference`](https://huggingface.co/docs/text-embeddings-inference) | TEI | 13 | [full](text-embeddings-inference/_full.md) |
 | [`text-generation-inference`](https://huggingface.co/docs/text-generation-inference) | TGI | 41 | [full](text-generation-inference/_full.md) |
-| [`timm`](https://huggingface.co/docs/timm) | timm | 77 | [full](timm/_full.md) |
+| [`timm`](https://huggingface.co/docs/timm) | timm | 115 | [full](timm/_full.md) |
 | [`tokenizers`](https://huggingface.co/docs/tokenizers) | Tokenizers | 19 | [full](tokenizers/_full.md) |
 | [`transformers.js`](https://huggingface.co/docs/transformers.js) | Transformers.js | 39 | [full](transformers.js/_full.md) |
 | [`transformers`](https://huggingface.co/docs/transformers) | Transformers | 768 | [full](transformers/_full.md) |

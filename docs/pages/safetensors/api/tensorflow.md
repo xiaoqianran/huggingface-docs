@@ -119,5 +119,5 @@ tensors = {"embedding": tf.zeros((512, 1024)), "attention": tf.zeros((256, 256))
 byte_data = save(tensors)
 ```
 
-### Numpy API[[safetensors.numpy.load_file]]
-https://huggingface.co/docs/safetensors/main/api/numpy.md
+### Flax API[[safetensors.flax.load_file]]
+https://huggingface.co/docs/safetensors/main/api/flax.md

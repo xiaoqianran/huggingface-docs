@@ -1,92 +1,77 @@
 # TResNet
 
-A **TResNet** is a variant on a [ResNet](https://paperswithcode.com/method/resnet) that aim to boost accuracy while maintaining GPU training and inference efficiency.  They contain several design tricks including a SpaceToDepth stem, [Anti-Alias downsampling](https://paperswithcode.com/method/anti-alias-downsampling), In-Place Activated BatchNorm, Blocks selection and [squeeze-and-excitation layers](https://paperswithcode.com/method/squeeze-and-excitation-block).
+**Category:** CNN · **Code:**
+[`timm/models/tresnet.py`](https://github.com/huggingface/pytorch-image-models/blob/main/timm/models/tresnet.py) ·
+**Architectures:** 4 · **Pretrained weights:** 10 (8 with ImageNet-1k results)
 
-## How do I use this model on an image?
+TResNet is a ResNet based design for high GPU throughput, with a space-to-depth stem, anti-aliased downsampling and SE
+layers.
 
-To load a pretrained model:
+## Papers
+
+* [TResNet: High Performance GPU-Dedicated Architecture](https://arxiv.org/abs/2003.13630)
+* [ImageNet-21K Pretraining for the Masses](https://arxiv.org/abs/2104.10972)
+
+## Usage
+
+See the [Quickstart](../quickstart) for loading pretrained weights, image preprocessing and fine-tuning, and [Feature
+Extraction](../feature_extraction) for using the models as backbones.
 
 ```py
 >>> import timm
->>> model = timm.create_model('tresnet_l', pretrained=True)
->>> model.eval()
+>>> model = timm.create_model('tresnet_m.miil_in1k', pretrained=True)
+>>> data_config = timm.data.resolve_model_data_config(model)
 ```
 
-To load and preprocess the image:
+## Model API support
 
-```py 
->>> import urllib
->>> from PIL import Image
->>> from timm.data import resolve_data_config
->>> from timm.data.transforms_factory import create_transform
+| Feature | `TResNet` |
+|---|---|
+| [`features_only=True` feature maps](../model_api#intermediate-features) | ✓ (strides 4, 8, 16, 32) |
+| [`forward_intermediates()`](../model_api#intermediate-features) | ✓ |
+| [`prune_intermediate_layers()`](../model_api#intermediate-features) | ✓ |
+| [Any input size, no changes needed](../model_api#input-size) | ✓ |
+| [`set_input_size()`](../model_api#input-size) | – |
+| [`dynamic_img_size=True`](../model_api#input-size) | – |
+| [`set_grad_checkpointing()`](../model_api#training-hooks) | ✓ |
+| [Layer-wise LR decay (`group_matcher()`)](../model_api#training-hooks) | ✓ |
+| [`reset_classifier()`](../model_api#classifier) | ✓ |
 
->>> config = resolve_data_config({}, model=model)
->>> transform = create_transform(**config)
+✓ supported, ✓ (square) works for square sizes only, ✗ not supported, – not needed (the model already accepts any input
+size). Checked by running each feature on a randomly initialized model (`TResNet` with `tresnet_m` at 224), other
+architectures of the same class are expected to behave the same. See the [Model API](../model_api) page for details.
 
->>> url, filename = ("https://github.com/pytorch/hub/raw/master/images/dog.jpg", "dog.jpg")
->>> urllib.request.urlretrieve(url, filename)
->>> img = Image.open(filename).convert('RGB')
->>> tensor = transform(img).unsqueeze(0) # transform and add batch dimension
-```
+## Architectures
 
-To get the model predictions:
+| Architecture | Params (M) | GMACs | Input size | Pretrained weights |
+|---|---:|---:|---:|---:|
+| `tresnet_l` | 55.99 | 10.90 | 224 | 2 |
+| `tresnet_m` | 31.39 | 5.75 | 224 | 4 |
+| `tresnet_v2_l` | 46.17 | 8.85 | 224 | 2 |
+| `tresnet_xl` | 78.44 | 15.20 | 224 | 2 |
 
-```py
->>> import torch
->>> with torch.inference_mode():
-...     out = model(tensor)
->>> probabilities = torch.nn.functional.softmax(out[0], dim=0)
->>> print(probabilities.shape)
->>> # prints: torch.Size([1000])
-```
+GMACs and parameter counts are for the default input size and classifier of each architecture, from the [benchmark
+results](https://github.com/huggingface/pytorch-image-models/tree/main/results).
 
-To get the top-5 predictions class names:
+## Pretrained weights
 
-```py
->>> # Get imagenet class mappings
->>> url, filename = ("https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt", "imagenet_classes.txt")
->>> urllib.request.urlretrieve(url, filename) 
->>> with open("imagenet_classes.txt", "r") as f:
-...     categories = [s.strip() for s in f.readlines()]
+Top-1 is ImageNet-1k validation accuracy from
+[`results-imagenet.csv`](https://github.com/huggingface/pytorch-image-models/blob/main/results/results-imagenet.csv) at
+the listed eval size, - if the weight has no ImageNet-1k result (e.g. pretraining or image-text weights). Classes is the
+size of the pretrained classifier, none for weights without one.
 
->>> # Print top categories per image
->>> top5_prob, top5_catid = torch.topk(probabilities, 5)
->>> for i in range(top5_prob.size(0)):
-...     print(categories[top5_catid[i]], top5_prob[i].item())
->>> # prints class names and probabilities like:
->>> # [('Samoyed', 0.6425196528434753), ('Pomeranian', 0.04062102362513542), ('keeshond', 0.03186424449086189), ('white wolf', 0.01739676296710968), ('Eskimo dog', 0.011717947199940681)]
-```
+| Weight | Input size | Top-1 (%) | Eval size | Classes | License | Hub |
+|---|---:|---:|---:|---:|---|---|
+| `tresnet_l.miil_in1k` | 224 | 81.498 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/tresnet_l.miil_in1k) |
+| `tresnet_l.miil_in1k_448` | 448 | 82.278 | 448 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/tresnet_l.miil_in1k_448) |
+| `tresnet_m.miil_in1k` | 224 | 80.816 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/tresnet_m.miil_in1k) |
+| `tresnet_m.miil_in1k_448` | 448 | 81.710 | 448 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/tresnet_m.miil_in1k_448) |
+| `tresnet_m.miil_in21k` | 224 | - | - | 11221 | apache-2.0 | [timm](https://huggingface.co/timm/tresnet_m.miil_in21k) |
+| `tresnet_m.miil_in21k_ft_in1k` | 224 | 83.090 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/tresnet_m.miil_in21k_ft_in1k) |
+| `tresnet_v2_l.miil_in21k` | 224 | - | - | 11221 | apache-2.0 | [timm](https://huggingface.co/timm/tresnet_v2_l.miil_in21k) |
+| `tresnet_v2_l.miil_in21k_ft_in1k` | 224 | 83.910 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/tresnet_v2_l.miil_in21k_ft_in1k) |
+| `tresnet_xl.miil_in1k` | 224 | 82.060 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/tresnet_xl.miil_in1k) |
+| `tresnet_xl.miil_in1k_448` | 448 | 83.066 | 448 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/tresnet_xl.miil_in1k_448) |
 
-Replace the model name with the variant you want to use, e.g. `tresnet_l`. You can find the IDs in the model summaries at the top of this page.
-
-To extract image features with this model, follow the [timm feature extraction examples](../feature_extraction), just change the name of the model you want to use.
-
-## How do I finetune this model?
-
-You can finetune any of the pre-trained models just by changing the classifier (the last layer).
-
-```py
->>> model = timm.create_model('tresnet_l', pretrained=True, num_classes=NUM_FINETUNE_CLASSES)
-```
-To finetune on your own dataset, you have to write a training loop or adapt [timm's training
-script](https://github.com/rwightman/pytorch-image-models/blob/master/train.py) to use your dataset.
-
-## How do I train this model?
-
-You can follow the [timm recipe scripts](../training_script) for training a new model afresh.
-
-## Citation
-
-```BibTeX
-@misc{ridnik2020tresnet,
-      title={TResNet: High Performance GPU-Dedicated Architecture}, 
-      author={Tal Ridnik and Hussam Lawen and Asaf Noy and Emanuel Ben Baruch and Gilad Sharir and Itamar Friedman},
-      year={2020},
-      eprint={2003.13630},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}
-```
-
-### CSP-DarkNet
-https://huggingface.co/docs/timm/v1.0.30/models/csp-darknet.md
+### StarNet
+https://huggingface.co/docs/timm/v1.0.31/models/starnet.md

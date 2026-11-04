@@ -1,98 +1,80 @@
 # Res2Net
 
-**Res2Net** is an image model that employs a variation on bottleneck residual blocks, [Res2Net Blocks](https://paperswithcode.com/method/res2net-block). The motivation is to be able to represent features at multiple scales. This is achieved through a novel building block for CNNs that constructs hierarchical residual-like connections within one single residual block. This represents multi-scale features at a granular level and increases the range of receptive fields for each network layer.
+**Category:** CNN · **Code:**
+[`timm/models/res2net.py`](https://github.com/huggingface/pytorch-image-models/blob/main/timm/models/res2net.py) ·
+**Architectures:** 9 · **Pretrained weights:** 9 (9 with ImageNet-1k results)
 
-## How do I use this model on an image?
+Res2Net splits the channels of the bottleneck block into groups connected hierarchically, giving several receptive field
+sizes within one block. Includes Res2NeXt.
 
-To load a pretrained model:
+## Papers
+
+* [Res2Net: A New Multi-scale Backbone Architecture](https://arxiv.org/abs/1904.01169)
+
+## Usage
+
+See the [Quickstart](../quickstart) for loading pretrained weights, image preprocessing and fine-tuning, and [Feature
+Extraction](../feature_extraction) for using the models as backbones.
 
 ```py
 >>> import timm
->>> model = timm.create_model('res2net101_26w_4s', pretrained=True)
->>> model.eval()
+>>> model = timm.create_model('res2net50_14w_8s.in1k', pretrained=True)
+>>> data_config = timm.data.resolve_model_data_config(model)
 ```
 
-To load and preprocess the image:
+## Model API support
 
-```py 
->>> import urllib
->>> from PIL import Image
->>> from timm.data import resolve_data_config
->>> from timm.data.transforms_factory import create_transform
+| Feature | `ResNet` |
+|---|---|
+| [`features_only=True` feature maps](../model_api#intermediate-features) | ✓ (strides 2, 4, 8, 16, 32) |
+| [`forward_intermediates()`](../model_api#intermediate-features) | ✓ |
+| [`prune_intermediate_layers()`](../model_api#intermediate-features) | ✓ |
+| [Any input size, no changes needed](../model_api#input-size) | ✓ |
+| [`set_input_size()`](../model_api#input-size) | – |
+| [`dynamic_img_size=True`](../model_api#input-size) | – |
+| [`set_grad_checkpointing()`](../model_api#training-hooks) | ✓ |
+| [Layer-wise LR decay (`group_matcher()`)](../model_api#training-hooks) | ✓ |
+| [`reset_classifier()`](../model_api#classifier) | ✓ |
 
->>> config = resolve_data_config({}, model=model)
->>> transform = create_transform(**config)
+✓ supported, ✓ (square) works for square sizes only, ✗ not supported, – not needed (the model already accepts any input
+size). Checked by running each feature on a randomly initialized model (`ResNet` with `res2next50` at 224), other
+architectures of the same class are expected to behave the same. See the [Model API](../model_api) page for details.
 
->>> url, filename = ("https://github.com/pytorch/hub/raw/master/images/dog.jpg", "dog.jpg")
->>> urllib.request.urlretrieve(url, filename)
->>> img = Image.open(filename).convert('RGB')
->>> tensor = transform(img).unsqueeze(0) # transform and add batch dimension
-```
+## Architectures
 
-To get the model predictions:
+| Architecture | Params (M) | GMACs | Input size | Pretrained weights |
+|---|---:|---:|---:|---:|
+| `res2net50_14w_8s` | 25.06 | 4.21 | 224 | 1 |
+| `res2net50_26w_4s` | 25.70 | 4.28 | 224 | 1 |
+| `res2net50_26w_6s` | 37.05 | 6.33 | 224 | 1 |
+| `res2net50_26w_8s` | 48.40 | 8.37 | 224 | 1 |
+| `res2net50_48w_2s` | 25.29 | 4.18 | 224 | 1 |
+| `res2net50d` | 25.72 | 4.52 | 224 | 1 |
+| `res2net101_26w_4s` | 45.21 | 8.10 | 224 | 1 |
+| `res2net101d` | 45.23 | 8.35 | 224 | 1 |
+| `res2next50` | 24.67 | 4.20 | 224 | 1 |
 
-```py
->>> import torch
->>> with torch.inference_mode():
-...     out = model(tensor)
->>> probabilities = torch.nn.functional.softmax(out[0], dim=0)
->>> print(probabilities.shape)
->>> # prints: torch.Size([1000])
-```
+GMACs and parameter counts are for the default input size and classifier of each architecture, from the [benchmark
+results](https://github.com/huggingface/pytorch-image-models/tree/main/results).
 
-To get the top-5 predictions class names:
+## Pretrained weights
 
-```py
->>> # Get imagenet class mappings
->>> url, filename = ("https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt", "imagenet_classes.txt")
->>> urllib.request.urlretrieve(url, filename) 
->>> with open("imagenet_classes.txt", "r") as f:
-...     categories = [s.strip() for s in f.readlines()]
+Top-1 is ImageNet-1k validation accuracy from
+[`results-imagenet.csv`](https://github.com/huggingface/pytorch-image-models/blob/main/results/results-imagenet.csv) at
+the listed eval size, - if the weight has no ImageNet-1k result (e.g. pretraining or image-text weights). Classes is the
+size of the pretrained classifier, none for weights without one.
 
->>> # Print top categories per image
->>> top5_prob, top5_catid = torch.topk(probabilities, 5)
->>> for i in range(top5_prob.size(0)):
-...     print(categories[top5_catid[i]], top5_prob[i].item())
->>> # prints class names and probabilities like:
->>> # [('Samoyed', 0.6425196528434753), ('Pomeranian', 0.04062102362513542), ('keeshond', 0.03186424449086189), ('white wolf', 0.01739676296710968), ('Eskimo dog', 0.011717947199940681)]
-```
+| Weight | Input size | Top-1 (%) | Eval size | Classes | License | Hub |
+|---|---:|---:|---:|---:|---|---|
+| `res2net50_14w_8s.in1k` | 224 | 78.142 | 224 | 1000 | unknown | [timm](https://huggingface.co/timm/res2net50_14w_8s.in1k) |
+| `res2net50_26w_4s.in1k` | 224 | 77.994 | 224 | 1000 | unknown | [timm](https://huggingface.co/timm/res2net50_26w_4s.in1k) |
+| `res2net50_26w_6s.in1k` | 224 | 78.586 | 224 | 1000 | unknown | [timm](https://huggingface.co/timm/res2net50_26w_6s.in1k) |
+| `res2net50_26w_8s.in1k` | 224 | 78.950 | 224 | 1000 | unknown | [timm](https://huggingface.co/timm/res2net50_26w_8s.in1k) |
+| `res2net50_48w_2s.in1k` | 224 | 77.528 | 224 | 1000 | unknown | [timm](https://huggingface.co/timm/res2net50_48w_2s.in1k) |
+| `res2net50d.in1k` | 224 | 80.280 | 224 | 1000 | unknown | [timm](https://huggingface.co/timm/res2net50d.in1k) |
+| `res2net101_26w_4s.in1k` | 224 | 79.192 | 224 | 1000 | unknown | [timm](https://huggingface.co/timm/res2net101_26w_4s.in1k) |
+| `res2net101d.in1k` | 224 | 81.236 | 224 | 1000 | unknown | [timm](https://huggingface.co/timm/res2net101d.in1k) |
+| `res2next50.in1k` | 224 | 78.238 | 224 | 1000 | unknown | [timm](https://huggingface.co/timm/res2next50.in1k) |
 
-Replace the model name with the variant you want to use, e.g. `res2net101_26w_4s`. You can find the IDs in the model summaries at the top of this page.
-
-To extract image features with this model, follow the [timm feature extraction examples](../feature_extraction), just change the name of the model you want to use.
-
-## How do I finetune this model?
-
-You can finetune any of the pre-trained models just by changing the classifier (the last layer).
-
-```py
->>> model = timm.create_model('res2net101_26w_4s', pretrained=True, num_classes=NUM_FINETUNE_CLASSES)
-```
-To finetune on your own dataset, you have to write a training loop or adapt [timm's training
-script](https://github.com/rwightman/pytorch-image-models/blob/master/train.py) to use your dataset.
-
-## How do I train this model?
-
-You can follow the [timm recipe scripts](../training_script) for training a new model afresh.
-
-## Citation
-
-```BibTeX
-@article{Gao_2021,
-   title={Res2Net: A New Multi-Scale Backbone Architecture},
-   volume={43},
-   ISSN={1939-3539},
-   url={http://dx.doi.org/10.1109/TPAMI.2019.2938758},
-   DOI={10.1109/tpami.2019.2938758},
-   number={2},
-   journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
-   publisher={Institute of Electrical and Electronics Engineers (IEEE)},
-   author={Gao, Shang-Hua and Cheng, Ming-Ming and Zhao, Kai and Zhang, Xin-Yu and Yang, Ming-Hsuan and Torr, Philip},
-   year={2021},
-   month={Feb},
-   pages={652–662}
-}
-```
-
-### SPNASNet
-https://huggingface.co/docs/timm/v1.0.30/models/spnasnet.md
+### Swin Transformer V2 (CR)
+https://huggingface.co/docs/timm/v1.0.31/models/swin-transformer-v2-cr.md

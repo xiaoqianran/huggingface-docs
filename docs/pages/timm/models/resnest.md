@@ -1,92 +1,77 @@
 # ResNeSt
 
-A **ResNeSt** is a variant on a [ResNet](https://paperswithcode.com/method/resnet), which instead stacks [Split-Attention blocks](https://paperswithcode.com/method/split-attention). The cardinal group representations are then concatenated along the channel dimension: \\( V = \text{Concat} \{ V^{1},V^{2},\cdots,{V}^{K} \} \\). As in standard residual blocks, the final output \\( Y \\) of otheur Split-Attention block is produced using a shortcut connection: \\( Y=V+X \\), if the input and output feature-map share the same shape.  For blocks with a stride, an appropriate transformation \\( \mathcal{T} \\) is applied to the shortcut connection to align the output shapes:  \\( Y=V+\mathcal{T}(X) \\). For example, \\( \mathcal{T} \\) can be strided convolution or combined convolution-with-pooling.
+**Category:** CNN · **Code:**
+[`timm/models/resnest.py`](https://github.com/huggingface/pytorch-image-models/blob/main/timm/models/resnest.py) ·
+**Architectures:** 8 · **Pretrained weights:** 8 (8 with ImageNet-1k results)
 
-## How do I use this model on an image?
+ResNeSt uses split-attention blocks, channel attention across groups of feature map splits, in a ResNet style network.
 
-To load a pretrained model:
+## Papers
+
+* [ResNeSt: Split-Attention Networks](https://arxiv.org/abs/2004.08955)
+
+## Usage
+
+See the [Quickstart](../quickstart) for loading pretrained weights, image preprocessing and fine-tuning, and [Feature
+Extraction](../feature_extraction) for using the models as backbones.
 
 ```py
 >>> import timm
->>> model = timm.create_model('resnest101e', pretrained=True)
->>> model.eval()
+>>> model = timm.create_model('resnest50d_1s4x24d.in1k', pretrained=True)
+>>> data_config = timm.data.resolve_model_data_config(model)
 ```
 
-To load and preprocess the image:
+## Model API support
 
-```py
->>> import urllib
->>> from PIL import Image
->>> from timm.data import resolve_data_config
->>> from timm.data.transforms_factory import create_transform
+| Feature | `ResNet` |
+|---|---|
+| [`features_only=True` feature maps](../model_api#intermediate-features) | ✓ (strides 2, 4, 8, 16, 32) |
+| [`forward_intermediates()`](../model_api#intermediate-features) | ✓ |
+| [`prune_intermediate_layers()`](../model_api#intermediate-features) | ✓ |
+| [Any input size, no changes needed](../model_api#input-size) | ✓ |
+| [`set_input_size()`](../model_api#input-size) | – |
+| [`dynamic_img_size=True`](../model_api#input-size) | – |
+| [`set_grad_checkpointing()`](../model_api#training-hooks) | ✓ |
+| [Layer-wise LR decay (`group_matcher()`)](../model_api#training-hooks) | ✓ |
+| [`reset_classifier()`](../model_api#classifier) | ✓ |
 
->>> config = resolve_data_config({}, model=model)
->>> transform = create_transform(**config)
+✓ supported, ✓ (square) works for square sizes only, ✗ not supported, – not needed (the model already accepts any input
+size). Checked by running each feature on a randomly initialized model (`ResNet` with `resnest14d` at 224), other
+architectures of the same class are expected to behave the same. See the [Model API](../model_api) page for details.
 
->>> url, filename = ("https://github.com/pytorch/hub/raw/master/images/dog.jpg", "dog.jpg")
->>> urllib.request.urlretrieve(url, filename)
->>> img = Image.open(filename).convert('RGB')
->>> tensor = transform(img).unsqueeze(0) # transform and add batch dimension
-```
+## Architectures
 
-To get the model predictions:
+| Architecture | Params (M) | GMACs | Input size | Pretrained weights |
+|---|---:|---:|---:|---:|
+| `resnest14d` | 10.61 | 2.76 | 224 | 1 |
+| `resnest26d` | 17.07 | 3.64 | 224 | 1 |
+| `resnest50d` | 27.48 | 5.40 | 224 | 1 |
+| `resnest50d_1s4x24d` | 25.68 | 4.43 | 224 | 1 |
+| `resnest50d_4s2x40d` | 30.42 | 4.40 | 224 | 1 |
+| `resnest101e` | 48.28 | 13.38 | 256 | 1 |
+| `resnest200e` | 70.20 | 35.69 | 320 | 1 |
+| `resnest269e` | 110.93 | 77.69 | 416 | 1 |
 
-```py
->>> import torch
->>> with torch.inference_mode():
-...     out = model(tensor)
->>> probabilities = torch.nn.functional.softmax(out[0], dim=0)
->>> print(probabilities.shape)
->>> # prints: torch.Size([1000])
-```
+GMACs and parameter counts are for the default input size and classifier of each architecture, from the [benchmark
+results](https://github.com/huggingface/pytorch-image-models/tree/main/results).
 
-To get the top-5 predictions class names:
+## Pretrained weights
 
-```py
->>> # Get imagenet class mappings
->>> url, filename = ("https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt", "imagenet_classes.txt")
->>> urllib.request.urlretrieve(url, filename)
->>> with open("imagenet_classes.txt", "r") as f:
-...     categories = [s.strip() for s in f.readlines()]
+Top-1 is ImageNet-1k validation accuracy from
+[`results-imagenet.csv`](https://github.com/huggingface/pytorch-image-models/blob/main/results/results-imagenet.csv) at
+the listed eval size, - if the weight has no ImageNet-1k result (e.g. pretraining or image-text weights). Classes is the
+size of the pretrained classifier, none for weights without one.
 
->>> # Print top categories per image
->>> top5_prob, top5_catid = torch.topk(probabilities, 5)
->>> for i in range(top5_prob.size(0)):
-...     print(categories[top5_catid[i]], top5_prob[i].item())
->>> # prints class names and probabilities like:
->>> # [('Samoyed', 0.6425196528434753), ('Pomeranian', 0.04062102362513542), ('keeshond', 0.03186424449086189), ('white wolf', 0.01739676296710968), ('Eskimo dog', 0.011717947199940681)]
-```
+| Weight | Input size | Top-1 (%) | Eval size | Classes | License | Hub |
+|---|---:|---:|---:|---:|---|---|
+| `resnest14d.gluon_in1k` | 224 | 75.516 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/resnest14d.gluon_in1k) |
+| `resnest26d.gluon_in1k` | 224 | 78.476 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/resnest26d.gluon_in1k) |
+| `resnest50d.in1k` | 224 | 80.958 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/resnest50d.in1k) |
+| `resnest50d_1s4x24d.in1k` | 224 | 81.024 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/resnest50d_1s4x24d.in1k) |
+| `resnest50d_4s2x40d.in1k` | 224 | 81.146 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/resnest50d_4s2x40d.in1k) |
+| `resnest101e.in1k` | 256 | 82.916 | 256 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/resnest101e.in1k) |
+| `resnest200e.in1k` | 320 | 83.880 | 320 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/resnest200e.in1k) |
+| `resnest269e.in1k` | 416 | 84.542 | 416 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/resnest269e.in1k) |
 
-Replace the model name with the variant you want to use, e.g. `resnest101e`. You can find the IDs in the model summaries at the top of this page.
-
-To extract image features with this model, follow the [timm feature extraction examples](../feature_extraction), just change the name of the model you want to use.
-
-## How do I finetune this model?
-
-You can finetune any of the pre-trained models just by changing the classifier (the last layer).
-
-```py
->>> model = timm.create_model('resnest101e', pretrained=True, num_classes=NUM_FINETUNE_CLASSES)
-```
-To finetune on your own dataset, you have to write a training loop or adapt [timm's training
-script](https://github.com/rwightman/pytorch-image-models/blob/master/train.py) to use your dataset.
-
-## How do I train this model?
-
-You can follow the [timm recipe scripts](../training_script) for training a new model afresh.
-
-## Citation
-
-```BibTeX
-@misc{zhang2020resnest,
-      title={ResNeSt: Split-Attention Networks},
-      author={Hang Zhang and Chongruo Wu and Zhongyue Zhang and Yi Zhu and Haibin Lin and Zhi Zhang and Yue Sun and Tong He and Jonas Mueller and R. Manmatha and Mu Li and Alexander Smola},
-      year={2020},
-      eprint={2004.08955},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}
-```
-
-### Instagram ResNeXt WSL
-https://huggingface.co/docs/timm/v1.0.30/models/ig-resnext.md
+### Res2Net
+https://huggingface.co/docs/timm/v1.0.31/models/res2net.md

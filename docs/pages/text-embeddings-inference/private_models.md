@@ -11,18 +11,18 @@ Once you have confirmed that you have access to the model:
 If you're the CLI, set the `HF_TOKEN` environment variable. For example:
 
 ```shell
-export HF_TOKEN=
+export HF_TOKEN=<YOUR READ TOKEN>
 ```
 
 Alternatively, you can provide the token when deploying the model with Docker:
 
 ```shell
-model=
+model=<your private model>
 volume=$PWD/data
-token=
+token=<your cli Hugging Face Hub token>
 
 docker run --gpus all -e HF_TOKEN=$token -p 8080:80 -v $volume:/data --pull always ghcr.io/huggingface/text-embeddings-inference:cuda-1.9 --model-id $model
 ```
 
-### Using TEI locally with Metal
-https://huggingface.co/docs/text-embeddings-inference/local_metal.md
+### Using TEI on AMD Instinct GPUs (ROCm)
+https://huggingface.co/docs/text-embeddings-inference/amd_gpu.md

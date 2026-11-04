@@ -1,94 +1,87 @@
-# Deep Layer Aggregation
+# DLA
 
-Extending  “shallow” skip connections, **Dense Layer Aggregation (DLA)** incorporates more depth and sharing. The authors introduce two structures for deep layer aggregation (DLA): iterative deep aggregation (IDA) and hierarchical deep aggregation (HDA). These structures are expressed through an architectural framework, independent of the choice of backbone, for compatibility with current and future networks. 
+**Category:** CNN · **Code:**
+[`timm/models/dla.py`](https://github.com/huggingface/pytorch-image-models/blob/main/timm/models/dla.py) ·
+**Architectures:** 12 · **Pretrained weights:** 12 (12 with ImageNet-1k results)
 
-IDA focuses on fusing resolutions and scales while HDA focuses on merging features from all modules and channels. IDA follows the base hierarchy to refine resolution and aggregate scale stage-bystage. HDA assembles its own hierarchy of tree-structured connections that cross and merge stages to aggregate different levels of representation. 
+Deep Layer Aggregation (DLA) networks merge features across blocks and stages with iterative and hierarchical
+aggregation nodes. Includes DLA variants built from Res2Net blocks.
 
-## How do I use this model on an image?
+## Papers
 
-To load a pretrained model:
+* [Deep Layer Aggregation](https://arxiv.org/abs/1707.06484)
+* [Res2Net: A New Multi-scale Backbone Architecture](https://arxiv.org/abs/1904.01169)
+
+## Usage
+
+See the [Quickstart](../quickstart) for loading pretrained weights, image preprocessing and fine-tuning, and [Feature
+Extraction](../feature_extraction) for using the models as backbones.
 
 ```py
 >>> import timm
->>> model = timm.create_model('dla102', pretrained=True)
->>> model.eval()
+>>> model = timm.create_model('dla102x.in1k', pretrained=True)
+>>> data_config = timm.data.resolve_model_data_config(model)
 ```
 
-To load and preprocess the image:
+## Model API support
 
-```py 
->>> import urllib
->>> from PIL import Image
->>> from timm.data import resolve_data_config
->>> from timm.data.transforms_factory import create_transform
+| Feature | `DLA` |
+|---|---|
+| [`features_only=True` feature maps](../model_api#intermediate-features) | ✓ (strides 2, 4, 8, 16, 32) |
+| [`forward_intermediates()`](../model_api#intermediate-features) | ✓ |
+| [`prune_intermediate_layers()`](../model_api#intermediate-features) | ✓ |
+| [Any input size, no changes needed](../model_api#input-size) | ✓ |
+| [`set_input_size()`](../model_api#input-size) | – |
+| [`dynamic_img_size=True`](../model_api#input-size) | – |
+| [`set_grad_checkpointing()`](../model_api#training-hooks) | ✗ |
+| [Layer-wise LR decay (`group_matcher()`)](../model_api#training-hooks) | ✓ |
+| [`reset_classifier()`](../model_api#classifier) | ✓ |
 
->>> config = resolve_data_config({}, model=model)
->>> transform = create_transform(**config)
+✓ supported, ✓ (square) works for square sizes only, ✗ not supported, – not needed (the model already accepts any input
+size). Checked by running each feature on a randomly initialized model (`DLA` with `dla46x_c` at 224), other
+architectures of the same class are expected to behave the same. See the [Model API](../model_api) page for details.
 
->>> url, filename = ("https://github.com/pytorch/hub/raw/master/images/dog.jpg", "dog.jpg")
->>> urllib.request.urlretrieve(url, filename)
->>> img = Image.open(filename).convert('RGB')
->>> tensor = transform(img).unsqueeze(0) # transform and add batch dimension
-```
+## Architectures
 
-To get the model predictions:
+| Architecture | Params (M) | GMACs | Input size | Pretrained weights |
+|---|---:|---:|---:|---:|
+| `dla34` | 15.74 | 3.07 | 224 | 1 |
+| `dla46_c` | 1.30 | 0.58 | 224 | 1 |
+| `dla46x_c` | 1.07 | 0.54 | 224 | 1 |
+| `dla60` | 22.04 | 4.26 | 224 | 1 |
+| `dla60_res2net` | 20.85 | 4.15 | 224 | 1 |
+| `dla60_res2next` | 17.03 | 3.49 | 224 | 1 |
+| `dla60x` | 17.35 | 3.54 | 224 | 1 |
+| `dla60x_c` | 1.32 | 0.59 | 224 | 1 |
+| `dla102` | 33.27 | 7.19 | 224 | 1 |
+| `dla102x` | 26.31 | 5.89 | 224 | 1 |
+| `dla102x2` | 41.28 | 9.34 | 224 | 1 |
+| `dla169` | 53.39 | 11.60 | 224 | 1 |
 
-```py
->>> import torch
->>> with torch.inference_mode():
-...     out = model(tensor)
->>> probabilities = torch.nn.functional.softmax(out[0], dim=0)
->>> print(probabilities.shape)
->>> # prints: torch.Size([1000])
-```
+GMACs and parameter counts are for the default input size and classifier of each architecture, from the [benchmark
+results](https://github.com/huggingface/pytorch-image-models/tree/main/results).
 
-To get the top-5 predictions class names:
+## Pretrained weights
 
-```py
->>> # Get imagenet class mappings
->>> url, filename = ("https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt", "imagenet_classes.txt")
->>> urllib.request.urlretrieve(url, filename) 
->>> with open("imagenet_classes.txt", "r") as f:
-...     categories = [s.strip() for s in f.readlines()]
+Top-1 is ImageNet-1k validation accuracy from
+[`results-imagenet.csv`](https://github.com/huggingface/pytorch-image-models/blob/main/results/results-imagenet.csv) at
+the listed eval size, - if the weight has no ImageNet-1k result (e.g. pretraining or image-text weights). Classes is the
+size of the pretrained classifier, none for weights without one.
 
->>> # Print top categories per image
->>> top5_prob, top5_catid = torch.topk(probabilities, 5)
->>> for i in range(top5_prob.size(0)):
-...     print(categories[top5_catid[i]], top5_prob[i].item())
->>> # prints class names and probabilities like:
->>> # [('Samoyed', 0.6425196528434753), ('Pomeranian', 0.04062102362513542), ('keeshond', 0.03186424449086189), ('white wolf', 0.01739676296710968), ('Eskimo dog', 0.011717947199940681)]
-```
+| Weight | Input size | Top-1 (%) | Eval size | Classes | License | Hub |
+|---|---:|---:|---:|---:|---|---|
+| `dla34.in1k` | 224 | 74.632 | 224 | 1000 | bsd-3-clause | [timm](https://huggingface.co/timm/dla34.in1k) |
+| `dla46_c.in1k` | 224 | 64.880 | 224 | 1000 | bsd-3-clause | [timm](https://huggingface.co/timm/dla46_c.in1k) |
+| `dla46x_c.in1k` | 224 | 66.008 | 224 | 1000 | bsd-3-clause | [timm](https://huggingface.co/timm/dla46x_c.in1k) |
+| `dla60.in1k` | 224 | 77.036 | 224 | 1000 | bsd-3-clause | [timm](https://huggingface.co/timm/dla60.in1k) |
+| `dla60_res2net.in1k` | 224 | 78.480 | 224 | 1000 | unknown | [timm](https://huggingface.co/timm/dla60_res2net.in1k) |
+| `dla60_res2next.in1k` | 224 | 78.488 | 224 | 1000 | unknown | [timm](https://huggingface.co/timm/dla60_res2next.in1k) |
+| `dla60x.in1k` | 224 | 78.234 | 224 | 1000 | bsd-3-clause | [timm](https://huggingface.co/timm/dla60x.in1k) |
+| `dla60x_c.in1k` | 224 | 67.928 | 224 | 1000 | bsd-3-clause | [timm](https://huggingface.co/timm/dla60x_c.in1k) |
+| `dla102.in1k` | 224 | 78.016 | 224 | 1000 | bsd-3-clause | [timm](https://huggingface.co/timm/dla102.in1k) |
+| `dla102x.in1k` | 224 | 78.516 | 224 | 1000 | bsd-3-clause | [timm](https://huggingface.co/timm/dla102x.in1k) |
+| `dla102x2.in1k` | 224 | 79.448 | 224 | 1000 | bsd-3-clause | [timm](https://huggingface.co/timm/dla102x2.in1k) |
+| `dla169.in1k` | 224 | 78.702 | 224 | 1000 | bsd-3-clause | [timm](https://huggingface.co/timm/dla169.in1k) |
 
-Replace the model name with the variant you want to use, e.g. `dla102`. You can find the IDs in the model summaries at the top of this page.
-
-To extract image features with this model, follow the [timm feature extraction examples](../feature_extraction), just change the name of the model you want to use.
-
-## How do I finetune this model?
-
-You can finetune any of the pre-trained models just by changing the classifier (the last layer).
-
-```py
->>> model = timm.create_model('dla102', pretrained=True, num_classes=NUM_FINETUNE_CLASSES)
-```
-To finetune on your own dataset, you have to write a training loop or adapt [timm's training
-script](https://github.com/rwightman/pytorch-image-models/blob/master/train.py) to use your dataset.
-
-## How do I train this model?
-
-You can follow the [timm recipe scripts](../training_script) for training a new model afresh.
-
-## Citation
-
-```BibTeX
-@misc{yu2019deep,
-      title={Deep Layer Aggregation}, 
-      author={Fisher Yu and Dequan Wang and Evan Shelhamer and Trevor Darrell},
-      year={2019},
-      eprint={1707.06484},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}
-```
-
-### (Gluon) SENet
-https://huggingface.co/docs/timm/v1.0.30/models/gloun-senet.md
+### RegNet
+https://huggingface.co/docs/timm/v1.0.31/models/regnet.md

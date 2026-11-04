@@ -45,5 +45,5 @@ sudo apt-get install libssl-dev gcc -y
 Now you are ready to use `text-embeddings-inference` locally on your machine.
 If you want to run TEI locally with a GPU, check out the [Using TEI locally with GPU](local_gpu) page.
 
-### Using TEI Container with Intel® Hardware
-https://huggingface.co/docs/text-embeddings-inference/intel_container.md
+### Build a custom container for TEI
+https://huggingface.co/docs/text-embeddings-inference/custom_container.md

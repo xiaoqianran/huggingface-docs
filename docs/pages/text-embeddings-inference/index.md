@@ -28,5 +28,5 @@ Benchmark for [BAAI/bge-base-en-v1.5](https://hf.co/BAAI/bge-large-en-v1.5) on a
 
 To start using TEI, check the [Quick Tour](quick_tour) guide.
 
-### Using TEI locally with CPU
-https://huggingface.co/docs/text-embeddings-inference/local_cpu.md
+### Using TEI locally with GPU
+https://huggingface.co/docs/text-embeddings-inference/local_gpu.md

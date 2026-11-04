@@ -121,5 +121,5 @@ tensors = {"embedding": paddle.zeros((512, 1024)), "attention": paddle.zeros((25
 byte_data = save(tensors)
 ```
 
-### Torch API[[safetensors.torch.load_file]]
-https://huggingface.co/docs/safetensors/main/api/torch.md
+### Tensorflow API[[safetensors.tensorflow.load_file]]
+https://huggingface.co/docs/safetensors/main/api/tensorflow.md

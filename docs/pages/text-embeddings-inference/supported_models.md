@@ -80,5 +80,5 @@ Find the appropriate Docker image for your hardware in the following table:
 **Warning**: Flash Attention is turned off by default for the Turing image as it suffers from precision issues.
 You can turn Flash Attention v1 ON by using the `USE_FLASH_ATTENTION=True` environment variable.
 
-### Text Embeddings Inference
-https://huggingface.co/docs/text-embeddings-inference/index.md
+### Using TEI locally with CPU
+https://huggingface.co/docs/text-embeddings-inference/local_cpu.md

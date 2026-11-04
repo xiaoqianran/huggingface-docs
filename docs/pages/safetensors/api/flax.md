@@ -119,5 +119,5 @@ tensors = {"embedding": jnp.zeros((512, 1024)), "attention": jnp.zeros((256, 256
 byte_data = save(tensors)
 ```
 
-### Tensorflow API[[safetensors.tensorflow.load_file]]
-https://huggingface.co/docs/safetensors/main/api/tensorflow.md
+### Numpy API[[safetensors.numpy.load_file]]
+https://huggingface.co/docs/safetensors/main/api/numpy.md

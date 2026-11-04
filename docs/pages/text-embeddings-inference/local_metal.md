@@ -48,5 +48,5 @@ text-embeddings-router --model-id $model --port 8080
 
 Now you are ready to use `text-embeddings-inference` locally on your machine.
 
-### Quick Tour
-https://huggingface.co/docs/text-embeddings-inference/quick_tour.md
+### CLI arguments
+https://huggingface.co/docs/text-embeddings-inference/cli_arguments.md

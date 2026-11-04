@@ -100,5 +100,5 @@ To use the prebuilt image optimized for Intel® HPUs (Gaudi), run:
 docker pull ghcr.io/huggingface/text-embeddings-inference:hpu-latest
 ```
 
-### Serving private and gated models
-https://huggingface.co/docs/text-embeddings-inference/private_models.md
+### Example uses
+https://huggingface.co/docs/text-embeddings-inference/examples.md

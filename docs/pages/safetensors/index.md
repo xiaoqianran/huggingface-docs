@@ -2,16 +2,107 @@
 
 ## Docs
 
-- [Convert weights to safetensors](https://huggingface.co/docs/safetensors/main/convert-weights.md)
-- [Metadata Parsing](https://huggingface.co/docs/safetensors/main/metadata_parsing.md)
+- [Safetensors](https://huggingface.co/docs/safetensors/main/index.md)
 - [Speed Comparison](https://huggingface.co/docs/safetensors/main/speed.md)
 - [Torch shared tensors](https://huggingface.co/docs/safetensors/main/torch_shared_tensors.md)
-- [Safetensors](https://huggingface.co/docs/safetensors/main/index.md)
-- [Flax API[[safetensors.flax.load_file]]](https://huggingface.co/docs/safetensors/main/api/flax.md)
-- [Tensorflow API[[safetensors.tensorflow.load_file]]](https://huggingface.co/docs/safetensors/main/api/tensorflow.md)
-- [Numpy API[[safetensors.numpy.load_file]]](https://huggingface.co/docs/safetensors/main/api/numpy.md)
-- [PaddlePaddle API[[safetensors.paddle.load_file]]](https://huggingface.co/docs/safetensors/main/api/paddle.md)
+- [Convert weights to safetensors](https://huggingface.co/docs/safetensors/main/convert-weights.md)
+- [Metadata Parsing](https://huggingface.co/docs/safetensors/main/metadata_parsing.md)
 - [Torch API[[safetensors.torch.load_file]]](https://huggingface.co/docs/safetensors/main/api/torch.md)
+- [PaddlePaddle API[[safetensors.paddle.load_file]]](https://huggingface.co/docs/safetensors/main/api/paddle.md)
+- [Tensorflow API[[safetensors.tensorflow.load_file]]](https://huggingface.co/docs/safetensors/main/api/tensorflow.md)
+- [Flax API[[safetensors.flax.load_file]]](https://huggingface.co/docs/safetensors/main/api/flax.md)
+- [Numpy API[[safetensors.numpy.load_file]]](https://huggingface.co/docs/safetensors/main/api/numpy.md)
 
-### Convert weights to safetensors
-https://huggingface.co/docs/safetensors/main/convert-weights.md
+### Safetensors
+https://huggingface.co/docs/safetensors/main/index.md
+
+# Safetensors
+
+Safetensors is a new simple format for storing tensors safely (as opposed to pickle) and that is still fast (zero-copy). Safetensors is really [fast 🚀](./speed).
+
+## Installation
+
+with pip:
+```
+pip install safetensors
+```
+
+with conda:
+```
+conda install -c conda-forge safetensors
+```
+
+## Usage
+
+### Load tensors
+
+```python
+from safetensors import safe_open
+
+tensors = {}
+with safe_open("model.safetensors", framework="pt", device=0) as f:
+    for k in f.keys():
+        tensors[k] = f.get_tensor(k)
+```
+
+Loading only part of the tensors (interesting when running on multiple GPU)
+
+```python
+from safetensors import safe_open
+
+tensors = {}
+with safe_open("model.safetensors", framework="pt", device=0) as f:
+    tensor_slice = f.get_slice("embedding")
+    vocab_size, hidden_dim = tensor_slice.get_shape()
+    tensor = tensor_slice[:, :hidden_dim]
+```
+
+### Save tensors
+
+```python
+import torch
+from safetensors.torch import save_file
+
+tensors = {
+    "embedding": torch.zeros((2, 2)),
+    "attention": torch.zeros((2, 3))
+}
+save_file(tensors, "model.safetensors")
+```
+
+## Format
+
+Let's say you have safetensors file named `model.safetensors`, then `model.safetensors` will have the following internal format:
+
+    
+
+## Featured Projects
+
+Safetensors is being used widely at leading AI enterprises, such as [Hugging Face](https://huggingface.co/), [EleutherAI](https://www.eleuther.ai/), and [StabilityAI](https://stability.ai/). Here is a non-exhaustive list of projects that are using safetensors:
+
+* [huggingface/transformers](https://github.com/huggingface/transformers)
+* [ml-explore/mlx](https://github.com/ml-explore/mlx)
+* [huggingface/candle](https://github.com/huggingface/candle)
+* [AUTOMATIC1111/stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
+* [Llama-cpp](https://github.com/ggerganov/llama.cpp/blob/e6a46b0ed1884c77267dc70693183e3b7164e0e0/convert.py#L537)
+* [microsoft/TaskMatrix](https://github.com/microsoft/TaskMatrix)
+* [hpcaitech/ColossalAI](https://github.com/hpcaitech/ColossalAI)
+* [huggingface/pytorch-image-models](https://github.com/huggingface/pytorch-image-models)
+* [CivitAI](https://civitai.com/)
+* [huggingface/diffusers](https://github.com/huggingface/diffusers)
+* [coreylowman/dfdx](https://github.com/coreylowman/dfdx)
+* [invoke-ai/InvokeAI](https://github.com/invoke-ai/InvokeAI)
+* [oobabooga/text-generation-webui](https://github.com/oobabooga/text-generation-webui)
+* [Sanster/lama-cleaner](https://github.com/Sanster/lama-cleaner)
+* [PaddlePaddle/PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP)
+* [AIGC-Audio/AudioGPT](https://github.com/AIGC-Audio/AudioGPT)
+* [brycedrennan/imaginAIry](https://github.com/brycedrennan/imaginAIry)
+* [comfyanonymous/ComfyUI](https://github.com/comfyanonymous/ComfyUI)
+* [LianjiaTech/BELLE](https://github.com/LianjiaTech/BELLE)
+* [alvarobartt/safejax](https://github.com/alvarobartt/safejax)
+* [MaartenGr/BERTopic](https://github.com/MaartenGr/BERTopic)
+* [rachthree/safestructures](https://github.com/rachthree/safestructures)
+* [justinchuby/onnx-safetensors](https://github.com/justinchuby/onnx-safetensors)
+
+### Speed Comparison
+https://huggingface.co/docs/safetensors/main/speed.md

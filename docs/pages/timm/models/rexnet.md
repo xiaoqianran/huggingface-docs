@@ -1,92 +1,92 @@
-# RexNet
+# ReXNet
 
-**Rank Expansion Networks** (ReXNets) follow a set of new design principles for designing bottlenecks in image classification models. Authors refine each layer by 1) expanding the input channel size of the convolution layer and 2) replacing the [ReLU6s](https://www.paperswithcode.com/method/relu6).
+**Category:** Efficient/Mobile · **Code:**
+[`timm/models/rexnet.py`](https://github.com/huggingface/pytorch-image-models/blob/main/timm/models/rexnet.py) ·
+**Architectures:** 10 · **Pretrained weights:** 9 (7 with ImageNet-1k results)
 
-## How do I use this model on an image?
+ReXNet revises the channel configuration of inverted residual networks to reduce representational bottlenecks. The
+`rexnetr_*` variants round the channels to multiples of 8.
 
-To load a pretrained model:
+## Papers
+
+* [Rethinking Channel Dimensions for Efficient Model Design](https://arxiv.org/abs/2007.00992)
+
+## Usage
+
+See the [Quickstart](../quickstart) for loading pretrained weights, image preprocessing and fine-tuning, and [Feature
+Extraction](../feature_extraction) for using the models as backbones.
 
 ```py
 >>> import timm
->>> model = timm.create_model('rexnet_100', pretrained=True)
->>> model.eval()
+>>> model = timm.create_model('rexnet_300.nav_in1k', pretrained=True)
+>>> data_config = timm.data.resolve_model_data_config(model)
 ```
 
-To load and preprocess the image:
+## Model API support
 
-```py 
->>> import urllib
->>> from PIL import Image
->>> from timm.data import resolve_data_config
->>> from timm.data.transforms_factory import create_transform
+| Feature | `RexNet` |
+|---|---|
+| [`features_only=True` feature maps](../model_api#intermediate-features) | ✓ (strides 2, 4, 8, 16, 32) |
+| [`forward_intermediates()`](../model_api#intermediate-features) | ✓ |
+| [`prune_intermediate_layers()`](../model_api#intermediate-features) | ✓ |
+| [Any input size, no changes needed](../model_api#input-size) | ✓ |
+| [`set_input_size()`](../model_api#input-size) | – |
+| [`dynamic_img_size=True`](../model_api#input-size) | – |
+| [`set_grad_checkpointing()`](../model_api#training-hooks) | ✓ |
+| [Layer-wise LR decay (`group_matcher()`)](../model_api#training-hooks) | ✓ |
+| [`reset_classifier()`](../model_api#classifier) | ✓ |
 
->>> config = resolve_data_config({}, model=model)
->>> transform = create_transform(**config)
+✓ supported, ✓ (square) works for square sizes only, ✗ not supported, – not needed (the model already accepts any input
+size). Checked by running each feature on a randomly initialized model (`RexNet` with `rexnet_100` at 224), other
+architectures of the same class are expected to behave the same. See the [Model API](../model_api) page for details.
 
->>> url, filename = ("https://github.com/pytorch/hub/raw/master/images/dog.jpg", "dog.jpg")
->>> urllib.request.urlretrieve(url, filename)
->>> img = Image.open(filename).convert('RGB')
->>> tensor = transform(img).unsqueeze(0) # transform and add batch dimension
-```
+## Architectures
 
-To get the model predictions:
+| Architecture | Params (M) | GMACs | Input size | Pretrained weights |
+|---|---:|---:|---:|---:|
+| `rexnet_100` | 4.80 | 0.41 | 224 | 1 |
+| `rexnet_130` | 7.56 | 0.68 | 224 | 1 |
+| `rexnet_150` | 9.73 | 0.90 | 224 | 1 |
+| `rexnet_200` | 16.37 | 1.56 | 224 | 1 |
+| `rexnet_300` | 34.71 | 3.44 | 224 | 1 |
+| `rexnetr_100` | 4.88 | 0.43 | 224 | 0 |
+| `rexnetr_130` | 7.61 | 0.68 | 224 | 0 |
+| `rexnetr_150` | 9.78 | 0.89 | 224 | 0 |
+| `rexnetr_200` | 16.52 | 1.59 | 224 | 2 |
+| `rexnetr_300` | 34.81 | 3.39 | 224 | 2 |
 
-```py
->>> import torch
->>> with torch.inference_mode():
-...     out = model(tensor)
->>> probabilities = torch.nn.functional.softmax(out[0], dim=0)
->>> print(probabilities.shape)
->>> # prints: torch.Size([1000])
-```
+GMACs and parameter counts are for the default input size and classifier of each architecture, from the [benchmark
+results](https://github.com/huggingface/pytorch-image-models/tree/main/results).
 
-To get the top-5 predictions class names:
+## Pretrained weights
 
-```py
->>> # Get imagenet class mappings
->>> url, filename = ("https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt", "imagenet_classes.txt")
->>> urllib.request.urlretrieve(url, filename) 
->>> with open("imagenet_classes.txt", "r") as f:
-...     categories = [s.strip() for s in f.readlines()]
+Top-1 is ImageNet-1k validation accuracy from
+[`results-imagenet.csv`](https://github.com/huggingface/pytorch-image-models/blob/main/results/results-imagenet.csv) at
+the listed eval size, - if the weight has no ImageNet-1k result (e.g. pretraining or image-text weights). Classes is the
+size of the pretrained classifier, none for weights without one.
 
->>> # Print top categories per image
->>> top5_prob, top5_catid = torch.topk(probabilities, 5)
->>> for i in range(top5_prob.size(0)):
-...     print(categories[top5_catid[i]], top5_prob[i].item())
->>> # prints class names and probabilities like:
->>> # [('Samoyed', 0.6425196528434753), ('Pomeranian', 0.04062102362513542), ('keeshond', 0.03186424449086189), ('white wolf', 0.01739676296710968), ('Eskimo dog', 0.011717947199940681)]
-```
+Weights are grouped by source: the paper or origin given in the pretrained config, else a Hub organization other than
+`timm`, else the first part of the pretrained tag (`architecture.tag`). Sources with a single weight are listed under
+other.
 
-Replace the model name with the variant you want to use, e.g. `rexnet_100`. You can find the IDs in the model summaries at the top of this page.
+### `nav` tags
 
-To extract image features with this model, follow the [timm feature extraction examples](../feature_extraction), just change the name of the model you want to use.
+| Weight | Input size | Top-1 (%) | Eval size | Classes | License | Hub |
+|---|---:|---:|---:|---:|---|---|
+| `rexnet_100.nav_in1k` | 224 | 77.862 | 224 | 1000 | mit | [timm](https://huggingface.co/timm/rexnet_100.nav_in1k) |
+| `rexnet_130.nav_in1k` | 224 | 79.492 | 224 | 1000 | mit | [timm](https://huggingface.co/timm/rexnet_130.nav_in1k) |
+| `rexnet_150.nav_in1k` | 224 | 80.322 | 224 | 1000 | mit | [timm](https://huggingface.co/timm/rexnet_150.nav_in1k) |
+| `rexnet_200.nav_in1k` | 224 | 81.636 | 224 | 1000 | mit | [timm](https://huggingface.co/timm/rexnet_200.nav_in1k) |
+| `rexnet_300.nav_in1k` | 224 | 82.780 | 224 | 1000 | mit | [timm](https://huggingface.co/timm/rexnet_300.nav_in1k) |
 
-## How do I finetune this model?
+### `sw` tags
 
-You can finetune any of the pre-trained models just by changing the classifier (the last layer).
+| Weight | Input size | Top-1 (%) | Eval size | Classes | License | Hub |
+|---|---:|---:|---:|---:|---|---|
+| `rexnetr_200.sw_in12k` | 224 (test 288) | - | - | 11821 | apache-2.0 | [timm](https://huggingface.co/timm/rexnetr_200.sw_in12k) |
+| `rexnetr_200.sw_in12k_ft_in1k` | 224 (test 288) | 83.160 | 288 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/rexnetr_200.sw_in12k_ft_in1k) |
+| `rexnetr_300.sw_in12k` | 224 (test 288) | - | - | 11821 | apache-2.0 | [timm](https://huggingface.co/timm/rexnetr_300.sw_in12k) |
+| `rexnetr_300.sw_in12k_ft_in1k` | 224 (test 288) | 84.582 | 288 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/rexnetr_300.sw_in12k_ft_in1k) |
 
-```py
->>> model = timm.create_model('rexnet_100', pretrained=True, num_classes=NUM_FINETUNE_CLASSES)
-```
-To finetune on your own dataset, you have to write a training loop or adapt [timm's training
-script](https://github.com/rwightman/pytorch-image-models/blob/master/train.py) to use your dataset.
-
-## How do I train this model?
-
-You can follow the [timm recipe scripts](../training_script) for training a new model afresh.
-
-## Citation
-
-```BibTeX
-@misc{han2020rexnet,
-      title={ReXNet: Diminishing Representational Bottleneck on Convolutional Neural Network}, 
-      author={Dongyoon Han and Sangdoo Yun and Byeongho Heo and YoungJoon Yoo},
-      year={2020},
-      eprint={2007.00992},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}
-```
-
-### Res2Net
-https://huggingface.co/docs/timm/v1.0.30/models/res2net.md
+### EfficientViT (MIT)
+https://huggingface.co/docs/timm/v1.0.31/models/efficientvit-mit.md

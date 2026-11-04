@@ -176,3 +176,6 @@ force_contiguous (`boolean`, *optional*, defaults to True) : Forcing the state_d
 Saves a given torch model to specified filename.
 This method exists specifically to avoid tensor sharing issues which are
 not allowed in `safetensors`. [More information on tensor sharing](../torch_shared_tensors)
+
+### PaddlePaddle API[[safetensors.paddle.load_file]]
+https://huggingface.co/docs/safetensors/main/api/paddle.md

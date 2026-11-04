@@ -118,6 +118,3 @@ import numpy as np
 tensors = {"embedding": np.zeros((512, 1024)), "attention": np.zeros((256, 256))}
 byte_data = save(tensors)
 ```
-
-### PaddlePaddle API[[safetensors.paddle.load_file]]
-https://huggingface.co/docs/safetensors/main/api/paddle.md

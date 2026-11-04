@@ -30,3 +30,6 @@ runtime_compute_cap=80
 
 docker build . -f Dockerfile-cuda --build-arg CUDA_COMPUTE_CAP=$runtime_compute_cap
 ```
+
+### Using TEI locally with Metal
+https://huggingface.co/docs/text-embeddings-inference/local_metal.md

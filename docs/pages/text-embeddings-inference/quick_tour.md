@@ -132,6 +132,9 @@ curl 127.0.0.1:8080/predict \
     -H 'Content-Type: application/json'
 ```
 
+For multiclass predictions with `raw_scores: false`, non-finite model scores
+(NaN or infinity) produce an inference error instead of softmax probabilities.
+
 ## Batching
 
 You can send multiple inputs in a batch. For example, for embeddings:
@@ -175,5 +178,5 @@ volume=$PWD
 docker run --gpus all -p 8080:80 -v $volume:/data --pull always ghcr.io/huggingface/text-embeddings-inference:cuda-1.9 --model-id /data/gte-base-en-v1.5
 ```
 
-### Using TEI on AMD Instinct GPUs (ROCm)
-https://huggingface.co/docs/text-embeddings-inference/amd_gpu.md
+### Deploying TEI on Google Cloud Run
+https://huggingface.co/docs/text-embeddings-inference/tei_cloud_run.md

@@ -1,6 +1,6 @@
 # Installation
 
-Before you start, you'll need to setup your environment and install the appropriate packages. `timm` is tested on **Python 3+**.
+Before you start, you'll need to set up your environment and install the appropriate packages. `timm` requires **Python 3.10 or newer**.
 
 ## Virtual Environment
 
@@ -73,5 +73,5 @@ Again, you can check if `timm` was properly installed with the following command
 python -c "from timm import list_models; print(list_models(pretrained=True)[:5])"
 ```
 
-### Model Summaries
-https://huggingface.co/docs/timm/v1.0.30/models.md
+### Model Families
+https://huggingface.co/docs/timm/v1.0.31/models.md

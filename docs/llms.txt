@@ -7,7 +7,7 @@
 - [Dataset Viewer](https://huggingface.co/docs/dataset-viewer) — 26 pages
 - [Datasets](https://huggingface.co/docs/datasets) — 58 pages
 - [Diffusers](https://huggingface.co/docs/diffusers) — 371 pages
-- [Hub](https://huggingface.co/docs/hub) — 276 pages
+- [Hub](https://huggingface.co/docs/hub) — 277 pages
 - [Hub Client](https://huggingface.co/docs/huggingface_hub) — 53 pages
 - [Inference Endpoints](https://huggingface.co/docs/inference-endpoints) — 25 pages
 - [Inference Providers](https://huggingface.co/docs/inference-providers) — 27 pages
@@ -19,7 +19,7 @@
 - [Smolagents](https://huggingface.co/docs/smolagents) — 22 pages
 - [TEI](https://huggingface.co/docs/text-embeddings-inference) — 13 pages
 - [TGI](https://huggingface.co/docs/text-generation-inference) — 41 pages
-- [timm](https://huggingface.co/docs/timm) — 77 pages
+- [timm](https://huggingface.co/docs/timm) — 115 pages
 - [Tokenizers](https://huggingface.co/docs/tokenizers) — 19 pages
 - [Transformers.js](https://huggingface.co/docs/transformers.js) — 39 pages
 - [Transformers](https://huggingface.co/docs/transformers) — 768 pages
