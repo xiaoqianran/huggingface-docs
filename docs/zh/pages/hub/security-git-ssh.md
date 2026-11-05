@@ -2,7 +2,7 @@
 
 # 通过 SSH 进行 Git
 
-您可以使用 SSH（安全外壳协议）访问和写入 Huggingface.co 上的存储库中的数据。当您通过 SSH 连接时，您可以使用本地计算机上的私钥文件进行身份验证。
+您可以使用 SSH（安全外壳协议）访问和写入huggingface.co 上的存储库中的数据。当您通过 SSH 连接时，您可以使用本地计算机上的私钥文件进行身份验证。
 
 某些操作（例如推送更改或克隆私有存储库）将要求您将 SSH 公钥上传到您在 Huggingface.co 上的帐户。
 
@@ -28,7 +28,7 @@ SSH 密钥通常位于 Mac 和 Linux 上的 `~/.ssh` 下，以及 Windows 上的
 
 ```
 $ ssh-keygen -t ed25519 -C "your.email@example.co"
-```我们建议您在出现提示时输入密码。密码是额外的安全层：每当您使用 SSH 密钥时都会提示输入密码。
+```我们建议您在出现提示时输入密码。密码短语是额外的安全层：每当您使用 SSH 密钥时都会提示输入密码。
 
 生成新密钥后，使用 `ssh-add` 将其添加到 SSH 代理：
 
@@ -46,7 +46,8 @@ $ ssh-add ~/.ssh/id_ed25519
 
 然后，输入该密钥的名称（例如“个人计算机”），并将 **公共** SSH 密钥的内容复制并粘贴到下面的区域中。公钥位于您在前面的步骤中找到或生成的 `~/.ssh/id_XXXX.pub` 文件中。
 
-单击“添加密钥”，瞧！您已将 SSH 密钥添加到您的 Huggingface.co 帐户。
+单击“添加密钥”，瞧！您已将 SSH 密钥添加到您的 Huggingface.co 帐户。> [!注意]
+> 如果您是强制实施 [SSO](./security-sso-basic#access-tokens-and-ssh-keys) 的组织的成员，请在拉取或推送其存储库之前为其授权 SSH 密钥：打开密钥旁边的菜单，单击 **配置 SSO**，然后单击组织旁边的 **授权**。
 
 ## 测试您的 SSH 身份验证
 
@@ -55,7 +56,9 @@ $ ssh-add ~/.ssh/id_ed25519
 在终端中，运行：
 ```
 $ ssh -T git@hf.co
-```如果您看到一条包含您的用户名的消息，那么恭喜！一切顺利，您已准备好通过 SSH 使用 git。
+```
+
+如果您看到一条包含您的用户名的消息，那么恭喜！一切顺利，您已准备好通过 SSH 使用 git。
 
 否则，如果消息显示类似以下内容，请确保您的 SSH 密钥确实由 SSH 代理使用。
 ```
@@ -71,9 +74,7 @@ Hi anonymous, welcome to Hugging Face.
 > SHA256:aBG5R7IomF4BSsx/h6tNAUVLhEkkaNGB8Sluyh/Q/qY (ECDSA)
 > SHA256:skgQjK2+RuzvdmHr24IIAJ6uLWQs0TGtEUt3FtzqirQ（DSA - 已弃用）
 > SHA256:dVjzGIdV7d6cwKieZiCorMa2gMvSKfGZAvHf4gMiMao (ED25519)
-> SHA256:uqjYymysBGCXXiMVebB8L8RIuWbPSKGBxQQNhcT5a3Q (RSA)
-
-您可以将以下 ssh 密钥条目添加到 ~/.ssh/known_hosts 文件中，以避免手动验证 Hugging Face 主机：
+> SHA256:uqjYymysBGCXXiMVebB8L8RIuWbPSKGBxQQNhcT5a3Q (RSA)您可以将以下 ssh 密钥条目添加到 ~/.ssh/known_hosts 文件中，以避免手动验证 Hugging Face 主机：
 
 ```
 hf.co ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDtPB+snz63eZvTrbMY2Qt39a6HYile89JOum55z3lhIqAqUHxLtXFd+q+ED8izQvyORFPSmFIaPw05rtXo37bm+ixL6wDmvWrHN74oUUWmtrv2MNCLHE5VDb3+Q6MJjjDVIoK5QZIuTStlq0cUbGGxQk7vFZZ2VXdTPqgPjw4hMV7MGp3RFY/+Wy8rIMRv+kRCIwSAOeuaLPT7FzL0zUMDwj/VRjlzC08+srTQHqfoh0RguZiXZQneZKmM75AFhoMbP5x4AW2bVoZam864DSGiEwL8R2jMiyXxL3OuicZteZqll0qfRlNopKnzoxS29eBbXTr++ILqYz1QFqaruUgqSi3MIC9sDYEqh2Q8UxP5+Hh97AnlgWDZC0IhojVmEPNAc7Y2d+ctQl4Bt91Ik4hVf9bU+tqMXgaTrTMXeTURSXRxJEm2zfKQVkqn3vS/zGVnkDS+2b2qlVtrgbGdU/we8Fux5uOAn/dq5GygW/DUlHFw412GtKYDFdWjt3nJCY8=

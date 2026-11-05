@@ -41,6 +41,20 @@
 
 企业计划中的组织还可以使用 [SCIM](./enterprise-scim) 自动执行来自身份提供商的基于邀请的配置。更多详情请参阅[SCIM guide](./enterprise-scim)。
 
+## 访问令牌和 SSH 密钥
+
+要在强制执行 SSO 的组织中使用 [User Access Token](./security-tokens) 或 [SSH key](./security-git-ssh)，您首先需要为该组织授权。在此之前，使用它向组织资源发出的请求将被拒绝，包括通过 SSH 的 Git。对其他资源的访问不受影响。
+
+要授权令牌或 SSH 密钥：1. 转到设置中的[Access Tokens](https://huggingface.co/settings/tokens)或[SSH and GPG Keys](https://huggingface.co/settings/keys)。
+2. 打开令牌或密钥旁边的菜单，然后单击“**配置 SSO**”。
+3. 单击组织旁边的**授权**。您将被重定向到您的身份提供商以进行登录。
+
+您在使用 SSO 登录组织时创建的令牌会自动获得该组织的授权。
+
+授权将持续到您从同一菜单取消授权或离开组织为止。如果您重新加入，请再次授权您的令牌和密钥。外部协作者不需要授权他们的凭据。
+
+组织管理员可以在[audit logs](./audit-logs)中查看授权和取消授权。
+
 ## 单点登录功能
 
 基本 SSO 支持[role mapping, resource group mapping, session timeout, matching email domains, and external collaborators](./security-sso-user-management)。这些功能可通过您组织的设置进行配置。

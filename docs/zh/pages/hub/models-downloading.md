@@ -60,7 +60,7 @@ hf speedtest
 
 ```bash
 HF_XET_HIGH_PERFORMANCE=1 hf download ...
-```从 `hf_xet` 1.7.0 开始，下载缓冲区大小基于 `hf_xet` 可用的内存，包括容器内存限制，无论是否有 `HF_XET_HIGH_PERFORMANCE=1`。对于早期版本，仅在 RAM 至少为 64 GB 的计算机上使用 `HF_XET_HIGH_PERFORMANCE=1`。使用的值请参见[Download Buffers](./xet/using-xet-storage#download-buffers)。
+```从 `hf_xet` 1.7.0 开始，下载缓冲区大小基于 `hf_xet` 可用的内存，包括容器内存限制，无论是否有 `HF_XET_HIGH_PERFORMANCE=1`。对于早期版本，仅在 RAM 至少为 64 GB 的计算机上使用 `HF_XET_HIGH_PERFORMANCE=1`。有关使用的值，请参阅[Download Buffers](./xet/using-xet-storage#download-buffers)。
 
 ## 使用 hf-mount
 
@@ -71,7 +71,7 @@ brew install hf-mount
 hf-mount start repo openai-community/gpt2 /tmp/gpt2
 ```
 
-存储库以只读方式安装。有关完整设置详细信息、后端选项和缓存，请参阅[Mount as a Local Filesystem](./storage-buckets-access#mount-as-a-local-filesystem)。
+存储库以只读方式安装。有关完整设置详细信息、后端选项和缓存，请参阅 [Mount as a Local Filesystem](./storage-buckets-access#mount-as-a-local-filesystem)。
 
 ## 在代理或防火墙后面下载
 
@@ -110,13 +110,18 @@ hf-mount start repo openai-community/gpt2 /tmp/gpt2
 > 安全策略允许，将 `hf.co` 和 `huggingface.co` 后缀列入白名单（所有
 > 子域），这样当特定端点发生变化时，您的规则就不会被破坏。
 
+> [!注意]
+> 使用 `hf_xet` 1.8.0 或更高版本上传也可以直接转到 Amazon S3 主机名，这
+> 不属于 `hf.co` 或 `huggingface.co`。参见
+> [Uploading behind a proxy or firewall](./xet/using-xet-storage#uploading-behind-a-proxy-or-firewall)。
+
 ### 机器可读列表
 
 上面的主机名也以 JSON 形式发布在
-[⟦T46⟧](https://huggingface.co/.well-known/meta.json),
-因此您可以从中生成代理或防火墙规则，而不是手动复制表。
-
-> [!警告]
+[⟦T49⟧](https://huggingface.co/.well-known/meta.json),
+因此您可以从中生成代理或防火墙规则，而不是手动复制表。> [!警告]
 > 文件随着端点的添加和删除而变化。当您构建规则时获取它
-> 而不是固定副本。### Docker 空间示例
+> 而不是固定副本。
+
+### Docker 空间示例
 https://huggingface.co/docs/hub/spaces-sdks-docker-examples.md

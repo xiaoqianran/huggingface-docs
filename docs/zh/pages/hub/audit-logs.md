@@ -64,8 +64,8 @@ GET https://huggingface.co/api/organizations/{org}/audit-log/export
   - **活动：** `org.rotate_token`
   - 令牌批准系统 — 启用或禁用策略、授权请求、批准、拒绝和撤销。
   - **活动：** `org.token_approval.enabled`、`org.token_approval.disabled`、`org.token_approval.authorization_request`、`org.token_approval.authorization_request.authorized`、`org.token_approval.authorization_request.revoked`、`org.token_approval.authorization_request.denied`
-  - SSO — 通过 SSO 登录和加入。
-  - **活动：** `org.sso_login`、`org.sso_join`
+  - SSO — 通过 SSO 登录和加入，以及成员授权或取消授权其访问令牌和 SSH 密钥。
+  - **活动：** `org.sso_login`、`org.sso_join`、`org.sso_credential.authorize`、`org.sso_credential.deauthorize`
 - **加入设置** — 基于域的访问和自动加入配置。
   - **活动：** `org.update_join_settings`
 

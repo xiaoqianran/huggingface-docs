@@ -4,7 +4,7 @@
 
 ## 集成库
 
-如果集线器上的数据集与[supported library](./datasets-libraries)绑定，则只需几行即可加载数据集。有关访问数据集的信息，您可以单击数据集页面上的“使用此数据集”按钮以了解如何操作。例如，[⟦T5⟧](https://huggingface.co/datasets/knkarthick/samsum?library=datasets) 展示了如何使用下面的 `datasets` 执行此操作。
+如果 Hub 上的数据集与 [supported library](./datasets-libraries) 绑定，则只需几行即可加载数据集。有关访问数据集的信息，您可以单击数据集页面上的“使用此数据集”按钮以了解如何执行此操作。例如，[⟦T5⟧](https://huggingface.co/datasets/knkarthick/samsum?library=datasets) 展示了如何使用下面的 `datasets` 执行此操作。
 
 ## 使用 Hugging Face 客户端库
 
@@ -98,10 +98,15 @@ hf-mount start repo datasets/stanfordnlp/imdb /tmp/imdb
 > [!警告]
 > 随着我们的存储和 CDN 基础设施的发展，这些主机名可能会发生变化。你在哪里
 > 安全策略允许，将 `hf.co` 和 `huggingface.co` 后缀列入白名单（所有
-> 子域），这样当特定端点发生变化时，您的规则就不会被破坏。
+> 子域），这样当特定端点发生变化时，您的规则就不会被破坏。> [!注意]
+> 使用 `hf_xet` 1.8.0 或更高版本上传也可以直接转到 Amazon S3 主机名，这
+> 不属于 `hf.co` 或 `huggingface.co`。参见
+> [Uploading behind a proxy or firewall](./xet/using-xet-storage#uploading-behind-a-proxy-or-firewall)。
 
-### 机器可读列表上面的主机名也以 JSON 形式发布在
-[⟦T43⟧](https://huggingface.co/.well-known/meta.json),
+### 机器可读列表
+
+上面的主机名也以 JSON 形式发布在
+[⟦T46⟧](https://huggingface.co/.well-known/meta.json),
 因此您可以从中生成代理或防火墙规则，而不是手动复制表。
 
 > [!警告]

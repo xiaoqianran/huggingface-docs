@@ -81,8 +81,8 @@
       "translatedAt": "2026-10-29T14:06:09.761Z"
     },
     "hub/audit-logs.md": {
-      "hash": "bc5cb37d007e1a4555a84762ca2765f5d7f4411e",
-      "translatedAt": "2026-10-30T13:58:01.814Z"
+      "hash": "d5e89c0739688932af80557feea8d599d090c8a7",
+      "translatedAt": "2026-11-05T15:20:25.831Z"
     },
     "hub/billing.md": {
       "hash": "ff11022017171ea681f98a56dd78e0d2069dd085",
@@ -161,8 +161,8 @@
       "translatedAt": "2026-10-29T14:06:34.060Z"
     },
     "hub/datasets-downloading.md": {
-      "hash": "0715aa0eaccbae38163718546e08fb2618e96627",
-      "translatedAt": "2026-10-29T14:06:33.363Z"
+      "hash": "c30d4240bee21c951392451c04eafed675e10850",
+      "translatedAt": "2026-11-05T15:20:24.151Z"
     },
     "hub/datasets-duckdb.md": {
       "hash": "6e78c20c52331ad10d1d1df61be840ccadfa218d",
@@ -513,8 +513,8 @@
       "translatedAt": "2026-10-29T14:08:49.135Z"
     },
     "hub/models-downloading.md": {
-      "hash": "b2454c3c26f4652c38bc8b3c54f4682ffb3bf262",
-      "translatedAt": "2026-10-29T14:08:48.832Z"
+      "hash": "bd581fe6146288187c63e3a4cbe783c7aec0c79c",
+      "translatedAt": "2026-11-05T15:20:25.440Z"
     },
     "hub/model-card-landscape-analysis.md": {
       "hash": "7c5df7c43243123dfdfc32c34707e6c2439cf241",
@@ -665,8 +665,8 @@
       "translatedAt": "2026-10-29T14:09:33.775Z"
     },
     "hub/security-git-ssh.md": {
-      "hash": "805088904c12e3d2a33380a19bdfd5a5bec735cd",
-      "translatedAt": "2026-10-29T14:09:36.520Z"
+      "hash": "360afe0242fb08d9a7cfda7643ef43072161c704",
+      "translatedAt": "2026-11-05T15:20:26.386Z"
     },
     "hub/sample-factory.md": {
       "hash": "1fd5f1e9afabca892ddb8905bd028a4cef8ae457",
@@ -713,8 +713,8 @@
       "translatedAt": "2026-10-29T14:09:47.282Z"
     },
     "hub/security-sso-basic.md": {
-      "hash": "0179bfa2501460a80a8857bd69a680cb369955d0",
-      "translatedAt": "2026-10-29T14:09:47.244Z"
+      "hash": "61ed6404efb7ed85026c79c6fd729e6ad8e49d4d",
+      "translatedAt": "2026-11-05T15:20:28.628Z"
     },
     "hub/security-sso-google-oidc.md": {
       "hash": "1cf431fd06d82457392aa7a3bcb7fe2e8253901a",
@@ -1093,8 +1093,8 @@
       "translatedAt": "2026-10-30T13:58:06.091Z"
     },
     "hub/xet/using-xet-storage.md": {
-      "hash": "ccafcbc09b16d2f5a5e63b3743b55f00f3c37832",
-      "translatedAt": "2026-11-04T15:20:02.218Z"
+      "hash": "3593ccd8d111cad2ceca5199ca8612ad79746d1f",
+      "translatedAt": "2026-11-05T15:20:34.189Z"
     },
     "huggingface_hub/concepts/migration.md": {
       "hash": "45f7286177491b6e455b5c3489fc6ea724a01493",
@@ -2017,8 +2017,8 @@
       "translatedAt": "2026-10-29T14:11:20.842Z"
     },
     "hub/xet/telemetry.md": {
-      "hash": "cd64cc1197b830e237fe7d86b34c2367557896f3",
-      "translatedAt": "2026-10-23T12:39:23.366Z"
+      "hash": "edf2919b74f1885a26c66b25de03f04e9c47493f",
+      "translatedAt": "2026-11-05T15:20:29.138Z"
     },
     "hub/container-images.md": {
       "hash": "5c74465b15a7a64bb374d2bf9f522a3954b605a1",
@@ -2041,10 +2041,10 @@
       "translatedAt": "2026-11-04T15:19:50.836Z"
     }
   },
-  "updatedAt": "2026-11-04T15:20:02.218Z",
+  "updatedAt": "2026-11-05T15:20:34.189Z",
   "stats": {
-    "translated": 9,
-    "skipped": 391,
+    "translated": 7,
+    "skipped": 393,
     "failed": 0,
     "total": 400
   }
