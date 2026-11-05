@@ -328,5 +328,5 @@ sequenceDiagram
   end
 ```
 
-### Xet Protocol Specification
-https://huggingface.co/docs/xet/index.md
+### File Reconstruction: Term-based Representation
+https://huggingface.co/docs/xet/file-reconstruction.md

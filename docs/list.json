@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-04T15:19:30.895955+00:00",
+  "fetchedAt": "2026-11-05T15:20:20.433205+00:00",
   "method": "llms-full-split",
   "ok": 2264,
   "failed": 0,
@@ -5403,7 +5403,7 @@
     },
     {
       "rel": "hub/models-downloading.md",
-      "bytes": 7172,
+      "bytes": 7426,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/models-downloading.md",
       "track": "Hub",
@@ -5691,7 +5691,7 @@
     },
     {
       "rel": "hub/datasets-downloading.md",
-      "bytes": 6419,
+      "bytes": 6673,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/datasets-downloading.md",
       "track": "Hub",
@@ -6087,7 +6087,7 @@
     },
     {
       "rel": "hub/security-git-ssh.md",
-      "bytes": 4966,
+      "bytes": 5262,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/security-git-ssh.md",
       "track": "Hub",
@@ -6465,7 +6465,7 @@
     },
     {
       "rel": "hub/security-sso-basic.md",
-      "bytes": 3423,
+      "bytes": 4552,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/security-sso-basic.md",
       "track": "Hub",
@@ -7068,7 +7068,7 @@
     },
     {
       "rel": "hub/audit-logs.md",
-      "bytes": 10376,
+      "bytes": 10517,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/audit-logs.md",
       "track": "Hub",
@@ -7482,7 +7482,7 @@
     },
     {
       "rel": "hub/xet/telemetry.md",
-      "bytes": 4136,
+      "bytes": 4503,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/xet/telemetry.md",
       "track": "Hub",
@@ -7491,7 +7491,7 @@
     },
     {
       "rel": "hub/xet/using-xet-storage.md",
-      "bytes": 17059,
+      "bytes": 19331,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/xet/using-xet-storage.md",
       "track": "Hub",
@@ -8355,7 +8355,7 @@
     },
     {
       "rel": "inference-providers/guides/responses-api.md",
-      "bytes": 64581,
+      "bytes": 64589,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/responses-api.md",
       "track": "Inference Providers",
@@ -8364,7 +8364,7 @@
     },
     {
       "rel": "inference-providers/tasks/index.md",
-      "bytes": 107909,
+      "bytes": 107917,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/tasks/index.md",
       "track": "Inference Providers",
@@ -8517,7 +8517,7 @@
     },
     {
       "rel": "kernels/cli-verify-signature.md",
-      "bytes": 2054,
+      "bytes": 2182,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/cli-verify-signature.md",
       "track": "Kernels",
@@ -8679,7 +8679,7 @@
     },
     {
       "rel": "kernels/security.md",
-      "bytes": 8687,
+      "bytes": 8744,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/security.md",
       "track": "Kernels",
@@ -10848,7 +10848,7 @@
     },
     {
       "rel": "text-embeddings-inference/amd_gpu.md",
-      "bytes": 3936,
+      "bytes": 4166,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/text-embeddings-inference/amd_gpu.md",
       "track": "TEI",
@@ -10911,7 +10911,7 @@
     },
     {
       "rel": "text-embeddings-inference/cli_arguments.md",
-      "bytes": 8613,
+      "bytes": 10847,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/text-embeddings-inference/cli_arguments.md",
       "track": "TEI",
@@ -20270,8 +20270,26 @@
       "title": "Use model after training"
     },
     {
+      "rel": "xet/index.md",
+      "bytes": 5256,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/xet/index.md",
+      "track": "Xet",
+      "package": "xet",
+      "title": "Xet Protocol Specification"
+    },
+    {
+      "rel": "xet/xorb.md",
+      "bytes": 9579,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/xet/xorb.md",
+      "track": "Xet",
+      "package": "xet",
+      "title": "Xorb Formation & Serialization Format"
+    },
+    {
       "rel": "xet/api.md",
-      "bytes": 21463,
+      "bytes": 30146,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/xet/api.md",
       "track": "Xet",
@@ -20279,17 +20297,8 @@
       "title": "CAS API Documentation"
     },
     {
-      "rel": "xet/shard.md",
-      "bytes": 31949,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/xet/shard.md",
-      "track": "Xet",
-      "package": "xet",
-      "title": "MDB Shard File Format Specification"
-    },
-    {
       "rel": "xet/auth.md",
-      "bytes": 5600,
+      "bytes": 5764,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/xet/auth.md",
       "track": "Xet",
@@ -20298,12 +20307,21 @@
     },
     {
       "rel": "xet/upload-protocol.md",
-      "bytes": 10979,
+      "bytes": 11344,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/xet/upload-protocol.md",
       "track": "Xet",
       "package": "xet",
       "title": "Upload Protocol"
+    },
+    {
+      "rel": "xet/shard.md",
+      "bytes": 33417,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/xet/shard.md",
+      "track": "Xet",
+      "package": "xet",
+      "title": "MDB Shard File Format Specification"
     },
     {
       "rel": "xet/hashing.md",
@@ -20316,7 +20334,7 @@
     },
     {
       "rel": "xet/file-id.md",
-      "bytes": 1653,
+      "bytes": 1622,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/xet/file-id.md",
       "track": "Xet",
@@ -20324,35 +20342,8 @@
       "title": "Getting a Xet File ID from the Hugging Face Hub"
     },
     {
-      "rel": "xet/file-reconstruction.md",
-      "bytes": 9223,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/xet/file-reconstruction.md",
-      "track": "Xet",
-      "package": "xet",
-      "title": "File Reconstruction: Term-based Representation"
-    },
-    {
-      "rel": "xet/xorb.md",
-      "bytes": 9380,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/xet/xorb.md",
-      "track": "Xet",
-      "package": "xet",
-      "title": "Xorb Formation & Serialization Format"
-    },
-    {
-      "rel": "xet/chunking.md",
-      "bytes": 9445,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/xet/chunking.md",
-      "track": "Xet",
-      "package": "xet",
-      "title": "Content-Defined Chunking Algorithm"
-    },
-    {
       "rel": "xet/download-protocol.md",
-      "bytes": 15632,
+      "bytes": 15666,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/xet/download-protocol.md",
       "track": "Xet",
@@ -20360,17 +20351,26 @@
       "title": "Download Protocol"
     },
     {
-      "rel": "xet/index.md",
-      "bytes": 5271,
+      "rel": "xet/file-reconstruction.md",
+      "bytes": 9224,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/xet/index.md",
+      "url": "https://huggingface.co/docs/xet/file-reconstruction.md",
       "track": "Xet",
       "package": "xet",
-      "title": "Xet Protocol Specification"
+      "title": "File Reconstruction: Term-based Representation"
+    },
+    {
+      "rel": "xet/chunking.md",
+      "bytes": 9467,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/xet/chunking.md",
+      "track": "Xet",
+      "package": "xet",
+      "title": "Content-Defined Chunking Algorithm"
     },
     {
       "rel": "xet/deduplication.md",
-      "bytes": 10813,
+      "bytes": 10954,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/xet/deduplication.md",
       "track": "Xet",
@@ -20433,7 +20433,7 @@
       "toc": 278,
       "found": 277,
       "written": 277,
-      "full_bytes": 1596038
+      "full_bytes": 1600751
     },
     {
       "pkg": "huggingface_hub",
@@ -20454,14 +20454,14 @@
       "toc": 65,
       "found": 27,
       "written": 27,
-      "full_bytes": 388184
+      "full_bytes": 388200
     },
     {
       "pkg": "kernels",
       "toc": 41,
       "found": 41,
       "written": 41,
-      "full_bytes": 253209
+      "full_bytes": 253394
     },
     {
       "pkg": "lerobot",
@@ -20503,7 +20503,7 @@
       "toc": 13,
       "found": 13,
       "written": 13,
-      "full_bytes": 57905
+      "full_bytes": 60367
     },
     {
       "pkg": "text-generation-inference",
@@ -20552,7 +20552,7 @@
       "toc": 12,
       "found": 12,
       "written": 12,
-      "full_bytes": 134969
+      "full_bytes": 145981
     }
   ]
 }

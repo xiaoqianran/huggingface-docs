@@ -50,5 +50,5 @@ There is also a second reference implementation in huggingface.js that can be us
 - The upload implementation is more comprehensive but the root of it begins in [uploadShards](https://github.com/huggingface/huggingface.js/blob/main/packages/hub/src/utils/uploadShards.ts).
   - The upload process uses xet-core constructs compiled from Rust to WebAssembly, particularly all functions exported from the [hf_xet_thin_wasm](https://github.com/huggingface/xet-core/tree/main/wasm/hf_xet_thin_wasm) crate.
 
-### Xet Chunk-Level Deduplication Specification
-https://huggingface.co/docs/xet/deduplication.md
+### Xorb Formation & Serialization Format
+https://huggingface.co/docs/xet/xorb.md

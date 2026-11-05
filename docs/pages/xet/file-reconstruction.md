@@ -132,5 +132,5 @@ In practice there is a balance: longer ranges improve reconstruction performance
 Favoring longer contiguous chunk ranges within the same xorb, and coalescing adjacent or overlapping ranges when feasible, helps maintain good read performance without sacrificing correctness.
 In `xet-core` we use a fragmentation prevention mechanism that targets that the average term contains 8 chunks.
 
-### Xorb Formation & Serialization Format
-https://huggingface.co/docs/xet/xorb.md
+### Content-Defined Chunking Algorithm
+https://huggingface.co/docs/xet/chunking.md
