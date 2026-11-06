@@ -33,8 +33,8 @@
       "translatedAt": "2026-10-29T14:05:58.016Z"
     },
     "hub/index.md": {
-      "hash": "d7ab39b82c02e0233c0a322b34c49a19588feeca",
-      "translatedAt": "2026-10-29T14:05:57.497Z"
+      "hash": "f3ebde60692c5fea0143fbe5e79a4ffe2e5ccd1a",
+      "translatedAt": "2026-11-06T14:56:09.570Z"
     },
     "hub/agents-local.md": {
       "hash": "22e661ffe885f3beace8d675c96e990e0f1ebaab",
@@ -313,16 +313,16 @@
       "translatedAt": "2026-10-29T14:07:16.889Z"
     },
     "hub/enterprise-advanced-sso.md": {
-      "hash": "2620d648bc5a5b95cfc4ff753850c92471e37003",
-      "translatedAt": "2026-10-29T14:07:20.066Z"
+      "hash": "a86efbf1f5bdefe199c3adac9444e187c8bbe356",
+      "translatedAt": "2026-11-06T14:56:06.746Z"
     },
     "hub/enterprise-resource-groups.md": {
       "hash": "dac5fa1b179f030ea9caa5914455a1eb18ad2ec5",
       "translatedAt": "2026-10-29T14:07:24.654Z"
     },
     "hub/enterprise-service-accounts.md": {
-      "hash": "80bbe3438927e31a9a8866c35e3db067735c663e",
-      "translatedAt": "2026-10-29T14:07:31.213Z"
+      "hash": "0b0b778b8fb9dee11b0aad2cea337442ac47bef7",
+      "translatedAt": "2026-11-06T14:56:08.291Z"
     },
     "hub/enterprise-network-security.md": {
       "hash": "de16800dfa1ded7dd20556eb80264cfec03211bd",
@@ -2041,10 +2041,10 @@
       "translatedAt": "2026-11-04T15:19:50.836Z"
     }
   },
-  "updatedAt": "2026-11-05T15:20:34.189Z",
+  "updatedAt": "2026-11-06T14:56:09.570Z",
   "stats": {
-    "translated": 7,
-    "skipped": 393,
+    "translated": 3,
+    "skipped": 397,
     "failed": 0,
     "total": 400
   }

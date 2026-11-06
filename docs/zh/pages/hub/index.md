@@ -2,7 +2,7 @@
 
 # 拥抱 Face Hub 文档
 
-Hugging Face Hub 是开放式机器学习的参考 AI 平台。它托管超过 200 万个模型、150 万个数据集和 150 万个 AI 应用程序 (Spaces)，全部开放且公开可用。除了开放人工智能之外，该中心还是内部和私人团队的绝佳协作平台。探索、实验、协作和构建，尽在一个地方！ 🤗
+Hugging Face Hub 是开放式机器学习的参考 AI 平台。它托管超过 300 万个模型、100 万个数据集和 200 万个 AI 应用程序 (Spaces)，全部开放且公开可用。除了开放人工智能之外，该中心还是内部和私人团队的绝佳协作平台。探索、实验、协作和构建，尽在一个地方！ 🤗
 
  订阅和计划
 专业版订阅
@@ -136,11 +136,11 @@ Hugging Face Hub 托管基于 Git 的存储库，这些存储库是版本控制�
 
 ## 型号
 
-您可以发现和使用社区共享的数十万个开源 ML 模型。为了促进负责任的模型使用和开发，模型存储库配备了[Model Cards](./model-cards)，以告知用户每个模型的局限性和偏差。可以包含有关任务、语言和评估结果等信息的附加[metadata](./model-cards#model-card-metadata)，如果存储库包含[TensorBoard traces](./tensorboard)，甚至还可以添加训练指标图表。向您的模型添加 [**inference widget**](./models-widgets) 也很容易，任何人都可以直接在浏览器中使用该模型！对于编程访问，[**Inference Providers**](./models-inference) 提供了无服务器 API。
+您可以发现并使用社区共享的数百万个开源 ML 模型。为了促进负责任的模型使用和开发，模型存储库配备了[Model Cards](./model-cards)，以告知用户每个模型的局限性和偏差。可以包含有关任务、语言和评估结果等信息的附加[metadata](./model-cards#model-card-metadata)，如果存储库包含[TensorBoard traces](./tensorboard)，甚至还可以添加训练指标图表。向您的模型添加 [**inference widget**](./models-widgets) 也很容易，任何人都可以直接在浏览器中使用该模型！对于编程访问，[**Inference Providers**](./models-inference) 提供了无服务器 API。
 
 要将模型上传到 Hub，或下载模型并将其集成到您的工作中，请探索 [**Models documentation**](./models)。您还可以选择支持 Hub 的[**over a dozen libraries**](./models-libraries)，例如🤗 Transformers、Asteroids 和 ESPnet。
 
-## 数据集该中心拥有超过 50 万个公共数据集，涵盖超过 8000 种语言，可用于 NLP、计算机视觉和音频等广泛的任务。该中心使查找、下载和上传数据集变得简单。数据集附有[**Dataset Cards**](./datasets-cards)和[**Data Studio**](./data-studio)形式的大量文档，让您可以直接在浏览器中探索数据。虽然许多数据集是公开的，但[**organizations**](./organizations)和个人可以创建私有数据集以遵守许可或隐私问题。您可以了解更多关于[**Datasets here on the Hugging Face Hub documentation**](./datasets-overview)的信息。
+## 数据集该中心拥有超过 100 万个公共数据集，涵盖超过 8000 种语言，可用于 NLP、计算机视觉和音频等领域的广泛任务。该中心使查找、下载和上传数据集变得简单。数据集附有[**Dataset Cards**](./datasets-cards)和[**Data Studio**](./data-studio)形式的大量文档，让您可以直接在浏览器中探索数据。虽然许多数据集是公开的，但[**organizations**](./organizations)和个人可以创建私有数据集以遵守许可或隐私问题。您可以了解更多关于[**Datasets here on the Hugging Face Hub documentation**](./datasets-overview)的信息。
 
 [🤗 ⟦T0⟧](https://huggingface.co/docs/datasets/index) 库允许您以编程方式与数据集交互，因此您可以在项目中轻松使用 Hub 中的数据集。只需一行代码，您就可以访问数据集；即使它们太大而无法放入您的计算机，您也可以使用流式传输来有效地访问数据。
 
