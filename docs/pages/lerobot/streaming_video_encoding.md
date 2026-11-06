@@ -16,7 +16,7 @@ This makes `save_episode()` near-instant (the video is already encoded by the ti
 
 | Parameter               | CLI Flag                          | Type          | Default       | Description                                                       |
 | ----------------------- | --------------------------------- | ------------- | ------------- | ----------------------------------------------------------------- |
-| `streaming_encoding`    | `--dataset.streaming_encoding`    | `bool`        | `True`        | Enable real-time encoding during capture                          |
+| `streaming_encoding`    | `--dataset.streaming_encoding`    | `bool`        | `False`       | Enable real-time encoding during capture                          |
 | `vcodec`                | `--dataset.rgb_encoder.vcodec`    | `str`         | `"libsvtav1"` | Video codec. `"auto"` detects best HW encoder                     |
 | `encoder_threads`       | `--dataset.encoder_threads`       | `int \| None` | `None` (auto) | Threads per encoder instance. `None` will leave the vcoded decide |
 | `encoder_queue_maxsize` | `--dataset.encoder_queue_maxsize` | `int`         | `30`          | Max buffered frames per camera (~1s at 30fps). Consumes RAM       |
@@ -154,5 +154,5 @@ lerobot-record --dataset.rgb_encoder.vcodec=h264 --dataset.streaming_encoding=fa
 Performance ultimately depends on your exact setup — frames-per-second, resolution, CPU cores and load, available memory, episode length, and the encoder you choose. Always test with your target workload, be mindful about your CPU & system capabilities and tune `encoder_threads`, `encoder_queue_maxsize`, and
 `vcodec` reasonably. That said, a common practical configuration (for many applications) is three cameras at 640×480x3 @30fps; this usually runs fine with the default streaming video encoding settings in modern systems. Always verify your recorded dataset is healthy by comparing the video duration to the CLI episode duration and confirming the row count equals FPS × CLI duration.
 
-### LeIsaac × LeRobot EnvHub
-https://huggingface.co/docs/lerobot/envhub_leisaac.md
+### X-VLA: The First Soft-Prompted Robot Foundation Model for Any Robot, Any Task
+https://huggingface.co/docs/lerobot/v0.7.0/xvla.md

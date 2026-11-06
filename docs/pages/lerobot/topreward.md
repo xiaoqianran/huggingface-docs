@@ -176,5 +176,5 @@ Both are exposed on `TOPRewardConfig` for ablation. The suffix template **must**
 
 The original TOPReward codebase is MIT-licensed. The LeRobot port follows the LeRobot Apache 2.0 license; the wrapped Qwen3-VL weights are subject to the original Qwen license.
 
-### VLABench
-https://huggingface.co/docs/lerobot/vlabench.md
+### Phone
+https://huggingface.co/docs/lerobot/v0.7.0/phone_teleop.md

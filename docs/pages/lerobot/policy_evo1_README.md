@@ -17,5 +17,5 @@ The upstream EVO1 project is available at
 }
 ```
 
-### Annotation Pipeline
-https://huggingface.co/docs/lerobot/annotation_pipeline.md
+### HIL-SERL Real Robot Training Workflow Guide
+https://huggingface.co/docs/lerobot/v0.7.0/hilserl.md

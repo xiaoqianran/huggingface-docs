@@ -106,5 +106,5 @@ If you use this work, please cite both **OpenPI** and the π₀ paper:
 
 This port follows the **Apache 2.0 License**, consistent with the original [OpenPI repository](https://github.com/Physical-Intelligence/openpi).
 
-### SmolVLA
-https://huggingface.co/docs/lerobot/smolvla.md
+### Tools
+https://huggingface.co/docs/lerobot/v0.7.0/tools.md

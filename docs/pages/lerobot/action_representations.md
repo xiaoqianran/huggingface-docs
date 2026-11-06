@@ -150,7 +150,9 @@ The `AbsoluteActionsProcessorStep` reads the cached current state from its paire
 ```bash
 lerobot-edit-dataset \
     --repo_id your_dataset \
+    --new_repo_id your_dataset \
     --operation.type recompute_stats \
+    --operation.overwrite true \
     --operation.relative_action true \
     --operation.chunk_size 50 \
     --operation.relative_exclude_joints "['gripper']"
@@ -167,6 +169,12 @@ lerobot-train \
 ```
 
 The `relative_exclude_joints` parameter specifies joints that should remain in absolute space. For example, gripper commands are typically binary (open/close) and don't benefit from relative encoding.
+
+For policy configurations that define `action_feature_names`, `make_policy` fills this list from the dataset action feature's `names` metadata.
+Names may be a flat sequence or a dictionary whose values are all lists or tuples.
+For example, `{"arm": ["shoulder", "elbow"], "hand": ["gripper"]}` becomes `["shoulder", "elbow", "gripper"]`, not the group keys.
+Group insertion order and within-group order are preserved, so declare names in the same order as the action vector.
+Legacy name-to-index mappings retain their key-order behavior.
 
 ### Combining relative actions with RTC
 
@@ -222,5 +230,5 @@ A typical training preprocessor might chain: `raw absolute joint actions → rel
 - [Introduction to Processors](./introduction_processors) - How processor pipelines work in LeRobot.
 - [`examples/so100_to_so100_EE/`](https://github.com/huggingface/lerobot/tree/main/examples/so100_to_so100_EE) - Complete example of recording and evaluating with EE-space actions.
 
-### FastWAM
-https://huggingface.co/docs/lerobot/fastwam.md
+### π₀ (Pi0)
+https://huggingface.co/docs/lerobot/v0.7.0/pi0.md

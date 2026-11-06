@@ -164,5 +164,5 @@ If motors were configured with timeout=0, they won't respond to commands. Use Da
 ip -d link show can0 | grep fd
 ```
 
-### MolmoAct2 Policy
-https://huggingface.co/docs/lerobot/molmoact2.md
+### Multitask DiT Policy
+https://huggingface.co/docs/lerobot/v0.7.0/policy_multi_task_dit_README.md

@@ -18,7 +18,7 @@ For a visual walkthrough of the assembly process, you can refer to [this video t
 
 To install LeRobot follow, our [Installation Guide](./installation)
 
-In addition to these instructions, you need to install the Dynamixel SDK:
+In addition to these instructions, you need to install the Dynamixel SDK (if you installed LeRobot from PyPI, run `pip install 'lerobot[dynamixel]'` instead):
 
 ```bash
 pip install -e ".[dynamixel]"
@@ -81,7 +81,7 @@ If you are repurposing motors from another robot, you will probably also need to
 
 #### Follower
 
-Connect the usb cable from your computer and the 5V power supply to the follower arm's controller board. Then, run the following command or run the API example with the port you got from the previous step. You'll also need to give your leader arm a name with the `id` parameter.
+Connect the usb cable from your computer and the 12V power supply to the follower arm's controller board (the leader arm uses the 5V power supply). Then, run the following command or run the API example with the port you got from the previous step. You'll also need to give your follower arm a name with the `id` parameter.
 
 For a visual reference on how to set the motor ids please refer to [this video](https://huggingface.co/docs/lerobot/en/so101#setup-motors-video) where we follow the process for the SO101 arm.
 
@@ -148,7 +148,7 @@ Do the same steps for the leader arm but modify the command or script accordingl
 ```bash
 lerobot-setup-motors \
     --teleop.type=koch_leader \
-    --teleop.port=/dev/tty.usbmodem575E0031751 \  # <- paste here the port found at previous step
+    --teleop.port=/dev/tty.usbmodem575E0031751
 ```
 
 ```python
@@ -172,10 +172,11 @@ The calibration process is very important because it allows a neural network tra
 Run the following command or API example to calibrate the follower arm:
 
 ```bash
+# Use the port of your follower arm, and give the arm a unique name with --robot.id
 lerobot-calibrate \
     --robot.type=koch_follower \
-    --robot.port=/dev/tty.usbmodem58760431551 \ # <- The port of your robot
-    --robot.id=my_awesome_follower_arm  # <- Give the robot a unique name
+    --robot.port=/dev/tty.usbmodem58760431551 \
+    --robot.id=my_awesome_follower_arm
 ```
 
 ```python
@@ -199,10 +200,11 @@ We unified the calibration method for most robots. Thus, the calibration steps f
 Do the same steps to calibrate the leader arm, run the following command or API example:
 
 ```bash
+# Use the port of your leader arm, and give the arm a unique name with --teleop.id
 lerobot-calibrate \
     --teleop.type=koch_leader \
-    --teleop.port=/dev/tty.usbmodem58760431551 \ # <- The port of your robot
-    --teleop.id=my_awesome_leader_arm  # <- Give the robot a unique name
+    --teleop.port=/dev/tty.usbmodem58760431551 \
+    --teleop.id=my_awesome_leader_arm
 ```
 
 ```python
@@ -224,5 +226,29 @@ Congrats 🎉, your robot is all set to learn a task on its own. Start training 
 > [!TIP]
 > If you have any questions or need help, please reach out on [Discord](https://discord.com/invite/s3KuuzsPFb).
 
-### HopeJR
-https://huggingface.co/docs/lerobot/hope_jr.md
+### Research Paper
+https://huggingface.co/docs/lerobot/v0.7.0/policy_longwam_README.md
+
+## Research Paper
+
+Paper: [Long-WAM: Scaling the Context of World-Action Models](https://arxiv.org/abs/2610.10528)
+
+## Citation
+
+```bibtex
+@misc{huang2026longwamscalingcontextworldaction,
+  title={Long-WAM: Scaling the Context of World-Action Models},
+  author={Wei Huang and Bohan Zhang and Chenzhi Liu and Isabella Liu and
+          Shuai Yang and Weian Mao and Luozhou Wang and Yicheng Xiao and
+          Weifeng Lin and Qixin Hu and Bryan Chu and Sifei Liu and
+          Linxi Fan and Xiaojuan Qi and Song Han and Yukang Chen},
+  year={2026},
+  eprint={2610.10528},
+  archivePrefix={arXiv},
+  primaryClass={cs.RO},
+  url={https://arxiv.org/abs/2610.10528},
+}
+```
+
+### LeKiwi
+https://huggingface.co/docs/lerobot/v0.7.0/lekiwi.md

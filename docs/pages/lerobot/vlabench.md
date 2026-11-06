@@ -1,5 +1,11 @@
 # VLABench
 
+  The commands below run the simulator locally. To keep its dependencies away
+  from your policy's, serve it instead with `lerobot-env-server
+  --config_path=docker/sim/configs/vlabench.yaml --sim.task= --docker=true`, where ``
+  is the command's `--env.task`, and add `--env.server.endpoint=tcp/127.0.0.1:7448` to
+  the command. A server runs the task it was started with (see [Simulation: local or served](./simulation)).
+
 [VLABench](https://github.com/OpenMOSS/VLABench) is a large-scale benchmark for **language-conditioned robotic manipulation with long-horizon reasoning**. The upstream suite covers 100 task categories across 2,000+ objects and evaluates six dimensions of robot intelligence: mesh & texture understanding, spatial reasoning, world-knowledge transfer, semantic instruction comprehension, physical-law understanding, and long-horizon planning. Built on MuJoCo / dm_control with a Franka Panda 7-DOF arm. LeRobot exposes **43 of these tasks** through `--env.task` (21 primitives + 22 composites, see [Available tasks](#available-tasks) below).
 
 - Paper: [VLABench: A Large-Scale Benchmark for Language-Conditioned Robotics Manipulation with Long-Horizon Reasoning](https://arxiv.org/abs/2412.18194)
@@ -172,5 +178,5 @@ lerobot-train \
 
 The released checkpoint [`lerobot/smolvla_vlabench`](https://huggingface.co/lerobot/smolvla_vlabench) was trained on the primitive-suite dataset above and is evaluated with the [Single-task](#single-task-evaluation-recommended-for-quick-iteration) / [Suite-wide](#suite-wide-evaluation) commands. CI runs a 10-primitive-task smoke eval (one episode each) on every PR touching the benchmark.
 
-### Real-Time Chunking (RTC)
-https://huggingface.co/docs/lerobot/rtc.md
+### Processors
+https://huggingface.co/docs/lerobot/v0.7.0/api/processor.md

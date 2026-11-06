@@ -34,7 +34,7 @@ lerobot-record \
     --dataset.encoder_threads=2 \
     --dataset.rgb_encoder.vcodec=h264 \
     --dataset.rgb_encoder.preset=fast \
-    --dataset.rgb_encoder.extra_options={"tune": "film", "profile:v": "high", "bf": 2} \
+    --dataset.rgb_encoder.extra_options='{"tune": "film", "profile:v": "high", "bf": 2}' \
     --display_data=true
 ```
 
@@ -252,23 +252,5 @@ When aggregating datasets with `merge_datasets`, video files are concatenated as
 | **Must match**     | `video.codec`, `video.pix_fmt`, `video.height`, `video.width`, `video.fps`         | Stream-derived fields must match across sources, otherwise FFmpeg's concat demuxer fails.                                                                 |
 | **Merged loosely** | `video.g`, `video.crf`, `video.preset`, `video.fast_decode`, `video.extra_options` | Encoder-tuning fields. If every source agrees, the value is kept; if not, it's set to `null` (or `{}` for `video.extra_options`) and a warning is logged. |
 
-### Paper
-https://huggingface.co/docs/lerobot/policy_act_README.md
-
-## Paper
-
-https://tonyzhaozh.github.io/aloha
-
-## Citation
-
-```bibtex
-@article{zhao2023learning,
-  title={Learning fine-grained bimanual manipulation with low-cost hardware},
-  author={Zhao, Tony Z and Kumar, Vikash and Levine, Sergey and Finn, Chelsea},
-  journal={arXiv preprint arXiv:2304.13705},
-  year={2023}
-}
-```
-
-### Cameras
-https://huggingface.co/docs/lerobot/cameras.md
+### SO-101
+https://huggingface.co/docs/lerobot/v0.7.0/so101.md

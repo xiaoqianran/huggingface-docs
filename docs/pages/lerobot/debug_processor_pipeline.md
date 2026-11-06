@@ -183,9 +183,10 @@ This generator pattern is powerful because it's lazy—the pipeline only compute
 Instead of running the entire pipeline and only seeing the final result, `step_through()` pauses after each step and gives you the intermediate transition:
 
 ```python
-# This creates a generator that yields intermediate states
+# This creates a generator that yields intermediate states.
+# The first yield is the input itself; yield i (i >= 1) is the output of step i - 1.
 for i, intermediate_result in enumerate(processor.step_through(input_data)):
-    print(f"=== After step {i} ===")
+    print("=== Input ===" if i == 0 else f"=== After step {i - 1} ===")
 
     # Inspect the observation at this stage
     obs = intermediate_result.get(TransitionKey.OBSERVATION)
@@ -202,7 +203,7 @@ You can add breakpoints in the step-through loop to interactively debug:
 ```python
 # Step through the pipeline with debugging
 for i, intermediate in enumerate(processor.step_through(data)):
-    print(f"Step {i}: {processor.steps[i].__class__.__name__}")
+    print("Input" if i == 0 else f"After step {i - 1}: {processor.steps[i - 1].__class__.__name__}")
 
     # Set a breakpoint to inspect the current state
     breakpoint()  # Debugger will pause here
@@ -235,7 +236,7 @@ Each processor step has a `transform_features()` method that describes how it ch
 initial_features = {
     PipelineFeatureType.OBSERVATION: {
         "observation.state": PolicyFeature(type=FeatureType.STATE, shape=(7,)),
-        "observation.image": PolicyFeature(type=FeatureType.IMAGE, shape=(3, 224, 224))
+        "observation.image": PolicyFeature(type=FeatureType.VISUAL, shape=(3, 224, 224))
     },
     PipelineFeatureType.ACTION: {
         "action": PolicyFeature(type=FeatureType.ACTION, shape=(4,))
@@ -298,5 +299,5 @@ Now that you understand the three debugging approaches, you can tackle any pipel
 
 These three tools work together to give you the complete observability that complex pipelines naturally lack. With hooks watching for issues, step-through helping you understand behavior, and feature validation ensuring compatibility, you'll be able to debug any pipeline confidently and efficiently.
 
-### Processors for Robots and Teleoperators
-https://huggingface.co/docs/lerobot/processors_robots_teleop.md
+### OpenArm
+https://huggingface.co/docs/lerobot/v0.7.0/openarm.md

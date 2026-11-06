@@ -194,8 +194,8 @@ lerobot-record \
     --dataset.single_task="Navigate around obstacles" \
     --dataset.streaming_encoding=true \
     --dataset.encoder_threads=2 \
-    # --dataset.rgb_encoder.vcodec=auto \
     --display_data=true
+# Optional: --dataset.rgb_encoder.vcodec=auto
 ```
 
 Replace `your_username/dataset_name` with your Hugging Face username and a name for your dataset.
@@ -237,5 +237,5 @@ echo https://huggingface.co/datasets/${HF_USER}/earthrover-navigation
 
 Your dataset will be tagged with `LeRobot` for community discovery.
 
-### LeLab - LeRobot Guide
-https://huggingface.co/docs/lerobot/lelab.md
+### Koch v1.1
+https://huggingface.co/docs/lerobot/v0.7.0/koch.md

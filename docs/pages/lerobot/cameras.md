@@ -41,9 +41,18 @@ Camera #0:
 ```
 
 > [!WARNING]
-> When using Intel RealSense cameras in `macOS`, you could get this [error](https://github.com/IntelRealSense/librealsense/issues/12307): `Error finding RealSense cameras: failed to set power state`, this can be solved by running the same command with `sudo` permissions. Note that using RealSense cameras in `macOS` is unstable.
+> When using Intel RealSense cameras in `macOS`, you could get this [error](https://github.com/realsenseai/librealsense/issues/12307): `Error finding RealSense cameras: failed to set power state`, this can be solved by running the same command with `sudo` permissions. Note that using RealSense cameras in `macOS` is unstable.
 
 `ZMQCamera` and `Reachy2Camera` do not support auto-discovery. They must be configured manually by providing their network address and port or robot SDK settings.
+
+## Camera placement and lighting
+
+The camera images are what your policy learns from, so a good camera setup matters more than a high resolution:
+
+- **Light the scene evenly.** Use diffuse, consistent light and avoid direct sunlight, strong reflections and moving shadows. Lighting that differs between recording and deployment can make a policy fail.
+- **Fix the cameras in place.** Mount them rigidly and don't move them between recording sessions, or between recording and deployment.
+- **Frame the task.** The object, the gripper and the target should be visible in at least one camera. A good test: could you do the task yourself by only looking at the camera images?
+- **Keep the resolution modest.** 640×480 at 30 fps is enough for most tasks and keeps recording and training fast.
 
 ## Use cameras
 
@@ -213,5 +222,5 @@ This error is caused by OBS Virtual Camera advertising a `1920x1080` resolution 
 
 If everything is set up correctly, your phone will appear as a standard OpenCV camera and can be used with `OpenCVCamera`.
 
-### Backward compatibility
-https://huggingface.co/docs/lerobot/backwardcomp.md
+### LingBot-VLA 2.0
+https://huggingface.co/docs/lerobot/v0.7.0/policy_lingbot_vla_v2_README.md

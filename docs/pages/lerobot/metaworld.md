@@ -1,5 +1,11 @@
 # Meta-World
 
+  The commands below run the simulator locally. To keep its dependencies away
+  from your policy's, serve it instead with `lerobot-env-server
+  --config_path=docker/sim/configs/metaworld.yaml --sim.task= --docker=true`, where ``
+  is the command's `--env.task`, and add `--env.server.endpoint=tcp/127.0.0.1:7448` to
+  the command. A server runs the task it was started with (see [Simulation: local or served](./simulation)).
+
 Meta-World is an open-source simulation benchmark for **multi-task and meta reinforcement learning** in continuous-control robotic manipulation. It bundles 50 diverse manipulation tasks using everyday objects and a common tabletop Sawyer arm, providing a standardized playground to test whether algorithms can learn many different tasks and generalize quickly to new ones.
 
 - Paper: [Meta-World: A Benchmark and Evaluation for Multi-Task and Meta Reinforcement Learning paper](https://arxiv.org/abs/1910.10897)
@@ -32,15 +38,15 @@ After following the LeRobot installation instructions:
 pip install -e ".[metaworld]"
 ```
 
-If you encounter an `AssertionError: ['human', 'rgb_array', 'depth_array']` when running Meta-World environments, this is a mismatch between Meta-World and your Gymnasium version. Fix it with:
+If you encounter an `AssertionError: ['human', 'rgb_array', 'depth_array']` when running Meta-World environments, this is a mismatch between Meta-World and your Gymnasium version. Reinstall the Gymnasium version LeRobot supports (Meta-World `3.0.0` works with it):
 
 ```bash
-pip install "gymnasium==1.1.0"
+pip install "gymnasium>=1.1.1,<2.0.0"
 ```
 
 ## Evaluation
 
-### Default evaluation (recommended)
+### Default local evaluation
 
 Evaluate on the medium difficulty split (a good balance of coverage and compute):
 
@@ -126,5 +132,5 @@ lerobot-train \
 - Inspect the dataset task descriptions and the `info["is_success"]` keys when writing post-processing or logging so your success metrics line up with the benchmark.
 - Adjust `batch_size`, `steps`, and `env_eval_freq` to match your compute budget.
 
-### Using Dataset Tools
-https://huggingface.co/docs/lerobot/using_dataset_tools.md
+### Multi-GPU Training
+https://huggingface.co/docs/lerobot/v0.7.0/multi_gpu_training.md

@@ -31,7 +31,7 @@ Each of these pipelines handles different conversions between different action a
 Below is an example of the three pipelines that we use in the phone to SO-100 follower examples:
 
 ```python
-phone_to_robot_ee_pose_processor = RobotProcessorPipeline[RobotAction, RobotAction]( # teleop -> dataset action
+phone_to_robot_ee_pose_processor = RobotProcessorPipeline[tuple[RobotAction, RobotObservation], RobotAction]( # teleop -> dataset action
     steps=[
         MapPhoneActionToRobotAction(platform=teleop_config.phone_os),
         EEReferenceAndDelta(
@@ -42,17 +42,17 @@ phone_to_robot_ee_pose_processor = RobotProcessorPipeline[RobotAction, RobotActi
         ),
         GripperVelocityToJoint(),
     ],
-    to_transition=robot_action_to_transition,
+    to_transition=robot_action_observation_to_transition,
     to_output=transition_to_robot_action,
 )
 
-robot_ee_to_joints_processor = RobotProcessorPipeline[RobotAction, RobotAction]( # dataset action -> robot
+robot_ee_to_joints_processor = RobotProcessorPipeline[tuple[RobotAction, RobotObservation], RobotAction]( # dataset action -> robot
     steps=[
         InverseKinematicsEEToJoints(
             kinematics=kinematics_solver, motor_names=list(robot.bus.motors.keys()), initial_guess_current_joints=True,
         ),
     ],
-    to_transition=robot_action_to_transition,
+    to_transition=robot_action_observation_to_transition,
     to_output=transition_to_robot_action,
 )
 
@@ -71,7 +71,7 @@ To convert from robot/teleoperator to pipeline and back, we use the `to_transiti
 They standardize conversions to reduce boilerplate code, and form the bridge between the robot and teleoperators raw dictionaries and the pipeline’s `EnvTransition` format.
 In the phone to SO-100 follower examples we use the following adapters:
 
-- `robot_action_to_transition`: transforms the teleop action dict to a pipeline transition.
+- `robot_action_observation_to_transition`: transforms an `(action, robot observation)` pair to a pipeline transition (the EE and IK steps need the robot's current joint positions).
 - `transition_to_robot_action`: transforms the pipeline transition to a robot action dict.
 - `observation_to_transition`: transforms the robot observation dict to a pipeline transition.
 - `transition_to_observation`: transforms the pipeline transition to an observation dict.
@@ -150,23 +150,5 @@ Pick what you want to use for your policy action and observation space and confi
 
 Thats it! We hope this guide helps you get started with customizing your robot pipelines, If you run into any issues at any point, jump into our [Discord community](https://discord.com/invite/s3KuuzsPFb) for support.
 
-### Paper
-https://huggingface.co/docs/lerobot/policy_tdmpc_README.md
-
-## Paper
-
-https://www.nicklashansen.com/td-mpc/
-
-## Citation
-
-```bibtex
-@inproceedings{Hansen2022tdmpc,
-	title={Temporal Difference Learning for Model Predictive Control},
-	author={Nicklas Hansen and Xiaolong Wang and Hao Su},
-	booktitle={ICML},
-	year={2022}
-}
-```
-
-### Environment Processors
-https://huggingface.co/docs/lerobot/env_processor.md
+### Imitation Learning on Real-World Robots
+https://huggingface.co/docs/lerobot/v0.7.0/il_robots.md

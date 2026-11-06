@@ -102,5 +102,5 @@ XVLA-base has three visual inputs and `empty_cameras=0` by default. Your dataset
 | Fewer cameras than policy expects       | `--policy.empty_cameras=N` (supported by PI0, PI05, PI0Fast, SmolVLA, XVLA) |
 | Avoid passing a rename map              | Edit the policy's `config.json` so its keys match your data source          |
 
-### EarthRover Mini Plus
-https://huggingface.co/docs/lerobot/earthrover_mini_plus.md
+### Reachy 2
+https://huggingface.co/docs/lerobot/v0.7.0/reachy2.md

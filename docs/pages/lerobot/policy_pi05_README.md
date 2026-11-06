@@ -59,6 +59,22 @@ When `use_relative_actions=true`, the training script automatically:
 
 ---
 
+## EMA of the policy weights
+
+OpenPI maintains an exponential moving average of the weights during training (`ema_decay=0.99` by default) and keeps the EMA copy for inference. To reproduce this with the LeRobot trainer, enable the EMA with a constant decay:
+
+```bash
+python -m lerobot.scripts.lerobot_train \
+  --policy.type=pi05 \
+  --dataset.repo_id=your_org/your_dataset \
+  --ema.type=constant \
+  --ema.decay=0.99
+```
+
+Checkpoints then contain a directly loadable copy of the EMA weights in `pretrained_model_ema/` next to the live ones. The EMA keeps a float32 copy of the trainable parameters on the GPU, sharded like the parameters under FSDP2.
+
+---
+
 ## Citation
 
 If you use this work, please cite both **OpenPI** and the π₀.₅ paper:
@@ -90,5 +106,5 @@ If you use this work, please cite both **OpenPI** and the π₀.₅ paper:
 
 This port follows the **Apache 2.0 License**, consistent with the original [OpenPI repository](https://github.com/Physical-Intelligence/openpi).
 
-### π₀-FAST (Pi0-FAST)
-https://huggingface.co/docs/lerobot/pi0fast.md
+### Processors for Robots and Teleoperators
+https://huggingface.co/docs/lerobot/v0.7.0/processors_robots_teleop.md

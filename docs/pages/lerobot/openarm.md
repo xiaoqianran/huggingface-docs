@@ -148,11 +148,13 @@ lerobot-teleoperate \
     --robot.type=openarm_follower \
     --robot.port=can0 \
     --robot.side=right \
-    --robot.id=my_follower \
+    --robot.id=my_openarm_follower \
     --teleop.type=openarm_leader \
     --teleop.port=can1 \
-    --teleop.id=my_leader
+    --teleop.id=my_openarm_leader
 ```
+
+Use the same `--robot.id` and `--teleop.id` as during calibration, so LeRobot finds the calibration files.
 
 ### Bimanual Teleoperation
 
@@ -181,14 +183,17 @@ lerobot-record \
     --robot.type=openarm_follower \
     --robot.port=can0 \
     --robot.side=right \
-    --robot.id=my_follower \
+    --robot.id=my_openarm_follower \
     --teleop.type=openarm_leader \
     --teleop.port=can1 \
-    --teleop.id=my_leader \
-    --repo-id=my_hf_username/my_openarm_dataset \
-    --fps=30 \
-    --num-episodes=10
+    --teleop.id=my_openarm_leader \
+    --dataset.repo_id=${HF_USER}/my_openarm_dataset \
+    --dataset.single_task="Describe your task here" \
+    --dataset.fps=30 \
+    --dataset.num_episodes=10
 ```
+
+`lerobot-record` adds the date and time of the session to the dataset name, so it is saved as `my_hf_username/my_openarm_dataset_YYYYMMDD_HHMMSS`. See the [recording guide](./il_robots#record-a-dataset) for cameras, keyboard controls and the rest of the workflow.
 
 ## Configuration Options
 
@@ -255,5 +260,5 @@ ip link show can0
 - [Safety Guide](https://docs.openarm.dev/getting-started/safety-guide)
 - [Damiao Motors and CAN Bus](./damiao)
 
-### HIL-SERL Real Robot Training Workflow Guide
-https://huggingface.co/docs/lerobot/hilserl.md
+### RoboTwin 2.0
+https://huggingface.co/docs/lerobot/v0.7.0/robotwin.md

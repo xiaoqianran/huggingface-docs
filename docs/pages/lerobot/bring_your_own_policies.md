@@ -24,6 +24,7 @@ Inherit from [`PreTrainedConfig`](https://github.com/huggingface/lerobot/blob/ma
 ```python
 # configuration_my_policy.py
 from dataclasses import dataclass, field
+import torch
 from lerobot.configs import PreTrainedConfig
 from lerobot.optim import AdamWConfig
 from lerobot.optim import CosineDecayWithWarmupSchedulerConfig
@@ -40,6 +41,8 @@ class MyPolicyConfig(PreTrainedConfig):
         hidden_dim: Hidden dimension for the policy network
         # Add your policy-specific parameters here
     """
+
+    dtype: torch.dtype | None = torch.bfloat16
 
     horizon: int = 50
     n_action_steps: int = 50
@@ -90,7 +93,7 @@ class MyPolicyConfig(PreTrainedConfig):
         return None
 ```
 
-The string you pass to `@register_subclass` must match `MyPolicy.name` (next section) and is what users supply as `--policy.type` on the CLI. Default to `AdamW` from `lerobot.optim` for `get_optimizer_preset` unless you genuinely need otherwise.
+The string you pass to `@register_subclass` must match `MyPolicy.name` (next section) and is what users supply as `--policy.type` on the CLI. Default to `AdamW` from `lerobot.optim` for `get_optimizer_preset` unless you genuinely need otherwise. `PreTrainedConfig` already declares `dtype: torch.dtype | None`; to give your policy a default precision, redeclare it with a `torch.dtype` value (e.g. `dtype: torch.dtype | None = torch.bfloat16`).
 
 ### Policy class
 
@@ -161,6 +164,16 @@ The methods called by the train/eval loops:
 
 Batches are flat dictionaries keyed by the constants in [`lerobot.utils.constants`](https://github.com/huggingface/lerobot/blob/main/src/lerobot/utils/constants.py): `OBS_STATE` (`observation.state.<motor>`), `OBS_IMAGES` (`observation.images.<camera>`), `OBS_LANGUAGE`, `ACTION`, etc. Reuse the constants — don't invent new prefixes.
 
+If your model is large enough to warrant [sharded multi-GPU training](./multi_gpu_training#sharded-training-fsdp), also declare its FSDP wrap units — the repeated block classes sharding operates on:
+
+```python
+class MyPolicy(PreTrainedPolicy):
+    ...
+    _fsdp_wrap_modules = ["MyTransformerBlock"]
+```
+
+With this one declaration, `--parallelism.dp_shard=N` works out of the box for your policy (users can still override it with `--accelerator.fsdp.wrap_modules`). Without any wrap source, sharded runs fail at startup by design.
+
 ### Processor functions
 
 LeRobot uses `PolicyProcessorPipeline`s to normalize inputs and de-normalize outputs around your policy. For a concrete reference, see [`processor_act.py`](https://github.com/huggingface/lerobot/blob/main/src/lerobot/policies/act/processor_act.py) or [`processor_diffusion.py`](https://github.com/huggingface/lerobot/blob/main/src/lerobot/policies/diffusion/processor_diffusion.py).
@@ -187,6 +200,174 @@ def make_my_policy_pre_post_processors(
 ```
 
 **Important — function naming:** LeRobot discovers your processor by name. The function **must** be called `make_{policy_name}_pre_post_processors` (matching the string you passed to `@PreTrainedConfig.register_subclass`).
+
+#### Optional: adjusting processors loaded from a checkpoint
+
+`make_{policy_name}_pre_post_processors` only runs when processors are built from scratch. Whenever a checkpoint is involved (fine-tuning, resuming, or evaluating), LeRobot instead loads the pipelines serialized next to the weights and applies the caller's overrides.
+
+If your policy has to adjust those loaded pipelines, add an optional second function to the same module, named `make_{policy_name}_pre_post_processors_from_pretrained`. LeRobot finds it by the same naming convention and calls it in place of the generic load. Policies that need nothing special just omit it.
+
+```python
+from lerobot.processor import load_pretrained_policy_processors
+from lerobot.utils.constants import (
+    POLICY_POSTPROCESSOR_DEFAULT_NAME,
+    POLICY_PREPROCESSOR_DEFAULT_NAME,
+)
+
+def make_my_policy_pre_post_processors_from_pretrained(
+    config,
+    pretrained_path: str,
+    *,
+    revision: str | None = None,
+    dataset_stats: dict[str, dict[str, torch.Tensor]] | None = None,
+    dataset_meta: Any | None = None,
+    preprocessor_overrides: dict[str, Any] | None = None,
+    postprocessor_overrides: dict[str, Any] | None = None,
+    preprocessor_config_filename: str = f"{POLICY_PREPROCESSOR_DEFAULT_NAME}.json",
+    postprocessor_config_filename: str = f"{POLICY_POSTPROCESSOR_DEFAULT_NAME}.json",
+) -> tuple[
+    PolicyProcessorPipeline[dict[str, Any], dict[str, Any]],
+    PolicyProcessorPipeline[PolicyAction, PolicyAction],
+]:
+    preprocessor, postprocessor = load_pretrained_policy_processors(
+        pretrained_path,
+        revision=revision,
+        preprocessor_overrides=preprocessor_overrides,
+        postprocessor_overrides=postprocessor_overrides,
+        preprocessor_config_filename=preprocessor_config_filename,
+        postprocessor_config_filename=postprocessor_config_filename,
+    )
+    ...  # reconcile the loaded pipelines with the current `config`
+    return preprocessor, postprocessor
+```
+
+For working examples, see [`processor_evo1.py`](https://github.com/huggingface/lerobot/blob/main/src/lerobot/policies/evo1/processor_evo1.py) (re-pads normalization stats), [`processor_groot.py`](https://github.com/huggingface/lerobot/blob/main/src/lerobot/policies/groot/processor_groot.py) (handles raw upstream checkpoints), and [`processor_molmoact2.py`](https://github.com/huggingface/lerobot/blob/main/src/lerobot/policies/molmoact2/processor_molmoact2.py) (renames override keys).
+
+### Returning a prediction besides actions (imagined frames, subtasks, boxes)
+
+A policy may return what it expects or believes besides the action it takes, such as a world
+model's imagined frames, a predicted subtask or bounding boxes, so `--display_data` shows it live in
+Rerun or Foxglove. `select_action` and `predict_action_chunk` take a batch and return either a bare
+action tensor (the default for every policy) or a `PolicyOutput` (`lerobot.lerobot_types`): a batch,
+keyed like the input batch, with the action under `"action"` and a `PolicyPrediction` under
+`"prediction"`. The prediction is batched like the action, one value per environment, and every
+entry is keyed by what it refers to:
+
+- `observation`: the predicted future observation, by observation key
+  (`"observation.images.top"` -> `[B, C, H, W]` frames). It is shown as `prediction.images.top`.
+- `language`: one string per environment, by annotation style (`"subtask"`, `"plan"`, `"memory"`),
+  the styles of the annotation pipeline's language columns. It is shown as `prediction.subtask`.
+- `boxes`: by the observation image key they are drawn on, one bbox answer per environment in the
+  annotation VQA schema (`{"detections": [{"label", "bbox": [x1, y1, x2, y2]}]}`, image fractions
+  0 to 1).
+
+Callers normalize the two return types with `policy_output_to_transition`, which turns a
+`PolicyOutput` into the `EnvTransition` processors use, so only policies that predict something
+change. The viewers show the first environment.
+
+```python
+from lerobot.utils.constants import ACTION, PREDICTION
+
+class MyPolicy(PreTrainedPolicy):
+    def select_action(self, batch, **kwargs) -> Tensor | PolicyOutput:
+        if not self._action_queue:
+            chunk, extras = self.model.sample(batch)
+            self._action_queue.extend(chunk.transpose(0, 1))
+            if self.config.return_prediction:  # a config field of your choosing
+                # The prediction goes with the step that computed it; the others return a bare action.
+                prediction = {
+                    "observation": {"observation.images.top": extras.next_frames},  # [B, C, H, W]
+                    "language": {"subtask": extras.subtasks},  # list[str], one per env
+                    "boxes": {
+                        "observation.images.top": [
+                            {"detections": [{"label": "cube", "bbox": xyxy}]} for xyxy in extras.cube_xyxy
+                        ]
+                    },
+                }
+                return {ACTION: self._action_queue.popleft(), PREDICTION: prediction}
+        return self._action_queue.popleft()
+```
+
+- A prediction holds values for this step. One that spans a chunk, such as an imagined clip, is
+  returned piece by piece: each step returns the part matching the action it serves.
+- Each entry stays displayed until it is returned again. Return empty `detections` to clear a
+  camera's boxes.
+- Predicting is opt-in through your policy's config, and should cost nothing when disabled.
+- A prediction never changes the actions, and only the action goes through the postprocessor. Text
+  that should steer the policy, such as the next subtask, goes through `generate_text` (below).
+
+### Text-capable policies
+
+Language policies share recipe rendering between two processor steps:
+
+- `RenderTrainingMessagesStep` converts dataset language annotations into rendered messages.
+- `RenderRuntimeMessagesStep` converts user prompts into rendered messages.
+
+Policy-specific processors then apply chat formatting and tokenization.
+
+The policy config stores the resolved `recipe: TrainingRecipe | None` (from
+`lerobot.datasets.recipe`). An optional `recipe_path` can load a YAML recipe;
+resolve it before constructing processors. A resolved recipe enables recipe
+training, and `None` makes the training renderer a no-op. Serialize the resolved
+recipe in the config and processor so deployment does not depend on a local YAML path.
+Recipe-backed rendering requires the `dataset` extra because recipes currently
+live under `lerobot.datasets`.
+
+Put both renderers before policy-native chat formatting and tokenization:
+
+```python
+input_steps = [
+    RenderRuntimeMessagesStep(config.recipe),
+    RenderTrainingMessagesStep(config.recipe),
+    # observation transforms
+    # policy-native roles, image placement, chat template, and tokenization
+    # device placement
+]
+```
+
+The same pipeline is saved and loaded for training and inference. Runtime
+rendering runs only for an explicit `query_kind`. Training rendering skips
+runtime queries and, when a recipe is configured, processes samples with raw
+annotations or action targets. Ordinary observation-only inputs pass through. Annotated text-only training is
+supported without an action tensor. Training without annotations needs action
+targets to enable the task fallback.
+
+The shared factory only constructs or loads processors. Language-recipe
+fine-tuning constructs them from the active config and dataset statistics so a
+saved processor cannot override the new recipe. Resume and inference load saved
+pipelines, including their recipe and statistics. Non-language training retains
+its existing construction and checkpoint-loading behavior.
+Fresh factories derive normalization and relative-action settings themselves.
+Fresh factories use the configured device; the existing dataset batch
+preprocessing applies the training rename map.
+
+`messages_rendered` contains recipe-expanded semantic messages, before native
+chat formatting or tokenization. The training sidecars index this same list.
+Message helpers live in `lerobot.utils.language`.
+
+The interactive rollout adds `query_kind` and `query_text`. Runtime rendering supports:
+
+- `vqa`: preserve the caller's question as a user message.
+- `next_subtask`: render the checkpoint recipe up to, but not including, the
+  assistant turn supervising `${subtask}`.
+
+The policy then exposes its decoder through the existing policy API:
+
+```python
+class MyPolicy(PreTrainedPolicy):
+    def supports_text_generation(self) -> bool:
+        return True
+
+    def generate_text(self, batch) -> str:
+        token_ids = self.model.generate(**batch)
+        return self.tokenizer.decode(token_ids, skip_special_tokens=True)
+```
+
+`generate_text` consumes model-ready processor output; it must not rebuild or
+retokenize the caller's prompt. During training, the policy-native tokenizer
+uses `target_message_indices` to supervise only the selected assistant spans.
+Store the recipe in the language policy's config so it is serialized with the
+checkpoint and deployment reconstructs the prompt used for training.
 
 ---
 
@@ -266,8 +447,10 @@ Once installed, your policy automatically integrates with LeRobot's training and
 ```bash
 lerobot-train \
     --policy.type my_policy \
+    --dataset.repo_id lerobot/pusht \
     --env.type pusht \
-    --steps 200000
+    --steps 200000 \
+    --policy.push_to_hub false
 ```
 
 ---
@@ -299,7 +482,7 @@ The file names are load-bearing: the factory does lazy imports by name, and the 
 Two places need to know about your policy. All by name.
 
 1. **`policies/__init__.py`** — re-export `MyPolicyConfig` and add it to `__all__`. This import is what registers your policy: `@PreTrainedConfig.register_subclass("my_policy")` runs, and from then on the factory resolves everything by convention. **Don't** re-export the modeling class; it loads lazily through the factory (so `import lerobot` stays fast).
-2. **`templates/lerobot_modelcard_template.md` and the root `README.md`** — the template is what `push_model_to_hub` renders into the model card of every checkpoint trained with your policy: add a one-line description of your policy in the `model_name` branches, map it in `policy_docs` so cards link to your MDX guide, and optionally add an architecture image to `diagrams`. Then add your policy to the models table in the root `README.md`, under the right category, linking to your doc page.
+2. **`templates/lerobot_modelcard_template.md` and the root `README.md`** — the template is what the end-of-training publisher renders into the model card of every checkpoint trained with your policy: add a one-line description of your policy in the `model_name` branches, map it in `policy_docs` so cards link to your MDX guide, and optionally add an architecture image to `diagrams`. Then add your policy to the models table in the root `README.md`, under the right category, linking to your doc page.
 
 Mirror an existing policy that's structurally similar to yours; the diff is small.
 
@@ -343,7 +526,7 @@ A new policy is much easier to review — and far more useful — when it ships 
 
 **Pick at least one in-tree benchmark.** LeRobot ships sim benchmarks with per-benchmark Docker images (LIBERO, LIBERO-plus, Meta-World, RoboTwin 2.0, RoboCasa365, RoboCerebra, RoboMME, VLABench and more). Pick the one that matches your policy's modality — VLAs usually go to LIBERO or VLABench; image-only BC to LIBERO or Meta-World. The full list lives under [Benchmarks](./libero) in the docs sidebar.
 
-**Push the checkpoint & processors** to the Hub under `lerobot/<policy>_<benchmark>` (or your namespace if you don't have write access; a maintainer can mirror it). Use `PreTrainedPolicy.push_model_to_hub` so the repo gets `config.json`, `model.safetensors`, and a model card.
+**Push the checkpoint & processors** to the Hub under `lerobot/<policy>_<benchmark>` (or your namespace if you don't have write access; a maintainer can mirror it). The easiest way is training with `--policy.repo_id=<namespace>/<repo>` and `--policy.push_to_hub=true`: `lerobot-train` publishes the model, both processors, and a model card at the end of the run. To publish an existing checkpoint after the fact, upload its `pretrained_model/` directory (e.g. `hf upload`), or use `lerobot-convert-dcp --push_to_hub=...` for sharded-format checkpoints.
 
 **Report results in your policy's MDX**, with the exact `lerobot-eval` command and hardware so anyone can re-run:
 
@@ -394,23 +577,5 @@ Check out these example policy implementations:
 
 Thanks for taking the time to bring a new policy into LeRobot. Every architecture that lands in `main` — and every plugin published by the community — makes the library a little more useful for the next person, and a little more representative of where robot learning is going. We're looking forward to seeing what you ship. 🤗
 
-### Paper
-https://huggingface.co/docs/lerobot/policy_sarm_README.md
-
-## Paper
-
-https://arxiv.org/abs/2509.25358
-
-## Citation
-
-```bibtex
-@article{chen2025sarm,
-  title={SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation},
-  author={Chen, Qianzhong and Yu, Justin and Schwager, Mac and Abbeel, Pieter and Shentu, Yide and Wu, Philipp},
-  journal={arXiv preprint arXiv:2509.25358},
-  year={2025}
-}
-```
-
-### TOPReward
-https://huggingface.co/docs/lerobot/topreward.md
+### Environment Processors
+https://huggingface.co/docs/lerobot/v0.7.0/env_processor.md

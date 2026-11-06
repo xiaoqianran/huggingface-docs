@@ -18,7 +18,7 @@ Unofficial mirror from official `llms.txt` + `llms-full.txt`.
 | [`inference-endpoints`](https://huggingface.co/docs/inference-endpoints) | Inference Endpoints | 25 | [full](inference-endpoints/_full.md) |
 | [`inference-providers`](https://huggingface.co/docs/inference-providers) | Inference Providers | 27 | [full](inference-providers/_full.md) |
 | [`kernels`](https://huggingface.co/docs/kernels) | Kernels | 41 | [full](kernels/_full.md) |
-| [`lerobot`](https://huggingface.co/docs/lerobot) | LeRobot | 91 | [full](lerobot/_full.md) |
+| [`lerobot`](https://huggingface.co/docs/lerobot) | LeRobot | 119 | [full](lerobot/_full.md) |
 | [`optimum`](https://huggingface.co/docs/optimum) | Optimum | 16 | [full](optimum/_full.md) |
 | [`peft`](https://huggingface.co/docs/peft) | PEFT | 79 | [full](peft/_full.md) |
 | [`safetensors`](https://huggingface.co/docs/safetensors) | Safetensors | 10 | [full](safetensors/_full.md) |

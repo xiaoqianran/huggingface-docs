@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-11-05T15:20:20.433205+00:00",
+  "fetchedAt": "2026-11-06T14:56:04.092476+00:00",
   "method": "llms-full-split",
-  "ok": 2264,
+  "ok": 2292,
   "failed": 0,
   "pages": [
     {
@@ -5079,7 +5079,7 @@
     },
     {
       "rel": "hub/index.md",
-      "bytes": 8957,
+      "bytes": 8940,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/index.md",
       "track": "Hub",
@@ -5655,7 +5655,7 @@
     },
     {
       "rel": "hub/enterprise-advanced-sso.md",
-      "bytes": 3869,
+      "bytes": 4256,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/enterprise-advanced-sso.md",
       "track": "Hub",
@@ -6681,7 +6681,7 @@
     },
     {
       "rel": "hub/enterprise-service-accounts.md",
-      "bytes": 6322,
+      "bytes": 6544,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/enterprise-service-accounts.md",
       "track": "Hub",
@@ -8355,7 +8355,7 @@
     },
     {
       "rel": "inference-providers/guides/responses-api.md",
-      "bytes": 64589,
+      "bytes": 64569,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/responses-api.md",
       "track": "Inference Providers",
@@ -8364,7 +8364,7 @@
     },
     {
       "rel": "inference-providers/tasks/index.md",
-      "bytes": 107917,
+      "bytes": 107897,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/tasks/index.md",
       "track": "Inference Providers",
@@ -8840,823 +8840,1075 @@
       "title": "Secure your kernels"
     },
     {
-      "rel": "lerobot/libero_plus.md",
-      "bytes": 7780,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/libero_plus.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "LIBERO-plus"
-    },
-    {
       "rel": "lerobot/pi05.md",
-      "bytes": 12256,
+      "bytes": 18895,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/pi05.md",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/pi05.md",
       "track": "LeRobot",
       "package": "lerobot",
       "title": "\u03c0\u2080.\u2085 (Pi05) Policy"
     },
     {
-      "rel": "lerobot/xvla.md",
-      "bytes": 21035,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/xvla.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "X-VLA: The First Soft-Prompted Robot Foundation Model for Any Robot, Any Task"
-    },
-    {
-      "rel": "lerobot/phone_teleop.md",
-      "bytes": 9380,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/phone_teleop.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Phone"
-    },
-    {
-      "rel": "lerobot/peft_training.md",
-      "bytes": 3362,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/peft_training.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Parameter efficient fine-tuning with \ud83e\udd17 PEFT"
-    },
-    {
-      "rel": "lerobot/robotwin.md",
-      "bytes": 9176,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/robotwin.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "RoboTwin 2.0"
-    },
-    {
-      "rel": "lerobot/introduction_processors.md",
-      "bytes": 15325,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/introduction_processors.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Introduction to Processors"
-    },
-    {
-      "rel": "lerobot/eo1.md",
-      "bytes": 7538,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/eo1.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "EO-1"
-    },
-    {
-      "rel": "lerobot/action_representations.md",
-      "bytes": 11351,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/action_representations.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Action Representations"
-    },
-    {
-      "rel": "lerobot/fastwam.md",
-      "bytes": 6826,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/fastwam.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "FastWAM"
-    },
-    {
-      "rel": "lerobot/rename_map.md",
-      "bytes": 5826,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/rename_map.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Rename Map and Empty Cameras"
-    },
-    {
-      "rel": "lerobot/earthrover_mini_plus.md",
-      "bytes": 6541,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/earthrover_mini_plus.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "EarthRover Mini Plus"
-    },
-    {
-      "rel": "lerobot/lelab.md",
-      "bytes": 2147,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/lelab.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "LeLab - LeRobot Guide"
-    },
-    {
-      "rel": "lerobot/walloss.md",
-      "bytes": 6320,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/walloss.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "WALL-OSS"
-    },
-    {
-      "rel": "lerobot/robocasa.md",
-      "bytes": 8717,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/robocasa.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "RoboCasa365"
-    },
-    {
-      "rel": "lerobot/third_party_sensors.md",
-      "bytes": 2467,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/third_party_sensors.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Third-Party Cameras & Sensors"
-    },
-    {
-      "rel": "lerobot/debug_processor_pipeline.md",
-      "bytes": 14174,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/debug_processor_pipeline.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Debug Your Processor Pipeline"
-    },
-    {
-      "rel": "lerobot/processors_robots_teleop.md",
-      "bytes": 9153,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/processors_robots_teleop.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Processors for Robots and Teleoperators"
-    },
-    {
-      "rel": "lerobot/env_processor.md",
-      "bytes": 15947,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/env_processor.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Environment Processors"
-    },
-    {
-      "rel": "lerobot/contributing.md",
-      "bytes": 3521,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/contributing.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "How to contribute to \ud83e\udd17 LeRobot"
-    },
-    {
-      "rel": "lerobot/isaac_teleop.md",
-      "bytes": 23585,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/isaac_teleop.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Isaac Teleop"
-    },
-    {
       "rel": "lerobot/act.md",
-      "bytes": 3768,
+      "bytes": 3883,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/act.md",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/act.md",
       "track": "LeRobot",
       "package": "lerobot",
       "title": "ACT (Action Chunking with Transformers)"
     },
     {
-      "rel": "lerobot/installation.md",
-      "bytes": 9687,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/installation.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Installation"
-    },
-    {
-      "rel": "lerobot/policy_evo1_README.md",
-      "bytes": 572,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/policy_evo1_README.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "EVO1"
-    },
-    {
-      "rel": "lerobot/annotation_pipeline.md",
-      "bytes": 20138,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/annotation_pipeline.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Annotation Pipeline"
-    },
-    {
-      "rel": "lerobot/streaming_video_encoding.md",
-      "bytes": 13071,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/streaming_video_encoding.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Streaming Video Encoding Guide"
-    },
-    {
-      "rel": "lerobot/envhub_leisaac.md",
-      "bytes": 13689,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/envhub_leisaac.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "LeIsaac \u00d7 LeRobot EnvHub"
-    },
-    {
-      "rel": "lerobot/policy_multi_task_dit_README.md",
-      "bytes": 1193,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/policy_multi_task_dit_README.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Multitask DiT Policy"
-    },
-    {
-      "rel": "lerobot/vla_jepa.md",
-      "bytes": 12602,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/vla_jepa.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "VLA-JEPA"
-    },
-    {
-      "rel": "lerobot/omx.md",
-      "bytes": 6386,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/omx.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "OMX"
-    },
-    {
-      "rel": "lerobot/damiao.md",
-      "bytes": 4475,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/damiao.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Damiao Motors and CAN Bus"
-    },
-    {
-      "rel": "lerobot/molmoact2.md",
-      "bytes": 22512,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/molmoact2.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "MolmoAct2 Policy"
-    },
-    {
-      "rel": "lerobot/inference.md",
-      "bytes": 16179,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/inference.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Policy Deployment (lerobot-rollout)"
-    },
-    {
-      "rel": "lerobot/robometer.md",
-      "bytes": 8131,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/robometer.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "ROBOMETER"
-    },
-    {
-      "rel": "lerobot/so101.md",
-      "bytes": 13020,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/so101.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "SO-101"
-    },
-    {
-      "rel": "lerobot/metaworld.md",
-      "bytes": 5061,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/metaworld.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Meta-World"
-    },
-    {
-      "rel": "lerobot/using_dataset_tools.md",
-      "bytes": 13542,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/using_dataset_tools.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Using Dataset Tools"
-    },
-    {
-      "rel": "lerobot/hardware_guide.md",
-      "bytes": 8307,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/hardware_guide.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Compute HW Guide for LeRobot Training"
-    },
-    {
-      "rel": "lerobot/video_encoding_parameters.md",
-      "bytes": 14560,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/video_encoding_parameters.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Video encoding parameters"
-    },
-    {
-      "rel": "lerobot/cameras.md",
-      "bytes": 10769,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/cameras.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Cameras"
-    },
-    {
-      "rel": "lerobot/backwardcomp.md",
-      "bytes": 6291,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/backwardcomp.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Backward compatibility"
-    },
-    {
-      "rel": "lerobot/envhub_isaaclab_arena.md",
-      "bytes": 17246,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/envhub_isaaclab_arena.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "NVIDIA IsaacLab Arena & LeRobot"
-    },
-    {
-      "rel": "lerobot/porting_datasets_v3.md",
-      "bytes": 10094,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/porting_datasets_v3.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Porting Large Datasets to LeRobot Dataset v3.0"
-    },
-    {
-      "rel": "lerobot/feetech.md",
-      "bytes": 2782,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/feetech.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Feetech Motor Firmware Update"
-    },
-    {
-      "rel": "lerobot/policy_molmoact2_README.md",
-      "bytes": 1978,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/policy_molmoact2_README.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "MolmoAct2"
-    },
-    {
       "rel": "lerobot/bring_your_own_policies.md",
-      "bytes": 24229,
+      "bytes": 34060,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/bring_your_own_policies.md",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/bring_your_own_policies.md",
       "track": "LeRobot",
       "package": "lerobot",
       "title": "Adding a Policy"
     },
     {
-      "rel": "lerobot/topreward.md",
-      "bytes": 7498,
+      "rel": "lerobot/env_processor.md",
+      "bytes": 3758,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/topreward.md",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/env_processor.md",
       "track": "LeRobot",
       "package": "lerobot",
-      "title": "TOPReward"
-    },
-    {
-      "rel": "lerobot/vlabench.md",
-      "bytes": 8299,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/vlabench.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "VLABench"
-    },
-    {
-      "rel": "lerobot/rtc.md",
-      "bytes": 8650,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/rtc.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Real-Time Chunking (RTC)"
-    },
-    {
-      "rel": "lerobot/sarm.md",
-      "bytes": 25047,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/sarm.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "SARM: Stage-Aware Reward Modeling"
-    },
-    {
-      "rel": "lerobot/groot.md",
-      "bytes": 8609,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/groot.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "GR00T Policy"
-    },
-    {
-      "rel": "lerobot/policy_rtc_README.md",
-      "bytes": 1925,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/policy_rtc_README.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Real-Time Chunking (RTC)"
-    },
-    {
-      "rel": "lerobot/implement_your_own_processor.md",
-      "bytes": 14188,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/implement_your_own_processor.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Implement your own Robot Processor"
-    },
-    {
-      "rel": "lerobot/policy_walloss_README.md",
-      "bytes": 1749,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/policy_walloss_README.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "WALL-OSS"
-    },
-    {
-      "rel": "lerobot/hil_data_collection.md",
-      "bytes": 12126,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/hil_data_collection.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Human-In-the-Loop Data Collection"
-    },
-    {
-      "rel": "lerobot/lerobot-dataset-v3.md",
-      "bytes": 14766,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/lerobot-dataset-v3.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "LeRobotDataset v3.0"
-    },
-    {
-      "rel": "lerobot/unitree_g1.md",
-      "bytes": 9312,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/unitree_g1.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Unitree G1"
-    },
-    {
-      "rel": "lerobot/koch.md",
-      "bytes": 8810,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/koch.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Koch v1.1"
-    },
-    {
-      "rel": "lerobot/hope_jr.md",
-      "bytes": 16225,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/hope_jr.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "HopeJR"
-    },
-    {
-      "rel": "lerobot/policy_pi0_README.md",
-      "bytes": 4848,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/policy_pi0_README.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "\u03c0\u2080 (pi0)"
-    },
-    {
-      "rel": "lerobot/smolvla.md",
-      "bytes": 5374,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/smolvla.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "SmolVLA"
-    },
-    {
-      "rel": "lerobot/lingbot_va.md",
-      "bytes": 10354,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/lingbot_va.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "LingBot-VA"
+      "title": "Environment Processors"
     },
     {
       "rel": "lerobot/index.md",
-      "bytes": 4982,
+      "bytes": 6320,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/index.md",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/index.md",
       "track": "LeRobot",
       "package": "lerobot",
       "title": "LeRobot"
     },
     {
-      "rel": "lerobot/tools.md",
-      "bytes": 6344,
+      "rel": "lerobot/earthrover_mini_plus.md",
+      "bytes": 6539,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/tools.md",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/earthrover_mini_plus.md",
       "track": "LeRobot",
       "package": "lerobot",
-      "title": "Tools"
+      "title": "EarthRover Mini Plus"
     },
     {
-      "rel": "lerobot/third_party_robots.md",
-      "bytes": 7035,
+      "rel": "lerobot/koch.md",
+      "bytes": 9692,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/third_party_robots.md",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/koch.md",
       "track": "LeRobot",
       "package": "lerobot",
-      "title": "Third-Party Robots & Teleoperators"
-    },
-    {
-      "rel": "lerobot/language_and_recipes.md",
-      "bytes": 6328,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/language_and_recipes.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Language columns and recipes"
-    },
-    {
-      "rel": "lerobot/so100.md",
-      "bytes": 18194,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/so100.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "SO-100"
-    },
-    {
-      "rel": "lerobot/robomme.md",
-      "bytes": 6264,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/robomme.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "RoboMME"
-    },
-    {
-      "rel": "lerobot/adding_benchmarks.md",
-      "bytes": 15246,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/adding_benchmarks.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Adding a New Benchmark"
-    },
-    {
-      "rel": "lerobot/openarm.md",
-      "bytes": 8948,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/openarm.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "OpenArm"
-    },
-    {
-      "rel": "lerobot/hilserl.md",
-      "bytes": 36926,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/hilserl.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "HIL-SERL Real Robot Training Workflow Guide"
-    },
-    {
-      "rel": "lerobot/integrate_hardware.md",
-      "bytes": 18746,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/integrate_hardware.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Bring Your Own Hardware"
-    },
-    {
-      "rel": "lerobot/policy_vla_jepa_README.md",
-      "bytes": 1861,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/policy_vla_jepa_README.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "VLA-JEPA"
-    },
-    {
-      "rel": "lerobot/reachy2.md",
-      "bytes": 11260,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/reachy2.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Reachy 2"
+      "title": "Koch v1.1"
     },
     {
       "rel": "lerobot/lekiwi.md",
-      "bytes": 13949,
+      "bytes": 14131,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/lekiwi.md",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/lekiwi.md",
       "track": "LeRobot",
       "package": "lerobot",
       "title": "LeKiwi"
     },
     {
-      "rel": "lerobot/policy_pi05_README.md",
-      "bytes": 4746,
+      "rel": "lerobot/hope_jr.md",
+      "bytes": 8697,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/policy_pi05_README.md",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/hope_jr.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "HopeJR"
+    },
+    {
+      "rel": "lerobot/fastwam.md",
+      "bytes": 8924,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/fastwam.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "FastWAM"
+    },
+    {
+      "rel": "lerobot/smolvla.md",
+      "bytes": 6334,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/smolvla.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "SmolVLA"
+    },
+    {
+      "rel": "lerobot/policy_pi05_README.md",
+      "bytes": 5447,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/policy_pi05_README.md",
       "track": "LeRobot",
       "package": "lerobot",
       "title": "\u03c0\u2080.\u2085 (pi05)"
     },
     {
-      "rel": "lerobot/pi0fast.md",
-      "bytes": 11437,
+      "rel": "lerobot/processors_robots_teleop.md",
+      "bytes": 9001,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/pi0fast.md",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/processors_robots_teleop.md",
       "track": "LeRobot",
       "package": "lerobot",
-      "title": "\u03c0\u2080-FAST (Pi0-FAST)"
-    },
-    {
-      "rel": "lerobot/envhub.md",
-      "bytes": 14114,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/envhub.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Loading Environments from the Hub"
-    },
-    {
-      "rel": "lerobot/pi0.md",
-      "bytes": 6267,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/pi0.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "\u03c0\u2080 (Pi0)"
-    },
-    {
-      "rel": "lerobot/robocerebra.md",
-      "bytes": 4562,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/robocerebra.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "RoboCerebra"
-    },
-    {
-      "rel": "lerobot/cheat-sheet.md",
-      "bytes": 7229,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/cheat-sheet.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Cheat sheet"
-    },
-    {
-      "rel": "lerobot/torch_accelerators.md",
-      "bytes": 1478,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/torch_accelerators.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "PyTorch accelerators"
-    },
-    {
-      "rel": "lerobot/rebot_b601.md",
-      "bytes": 6725,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/rebot_b601.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "reBot B601-DM"
-    },
-    {
-      "rel": "lerobot/notebooks.md",
-      "bytes": 3016,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/notebooks.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "\ud83e\udd17 LeRobot Notebooks"
-    },
-    {
-      "rel": "lerobot/libero.md",
-      "bytes": 10031,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/libero.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "LIBERO"
-    },
-    {
-      "rel": "lerobot/multi_task_dit.md",
-      "bytes": 14297,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/multi_task_dit.md",
-      "track": "LeRobot",
-      "package": "lerobot",
-      "title": "Multitask DiT Policy"
+      "title": "Processors for Robots and Teleoperators"
     },
     {
       "rel": "lerobot/il_robots.md",
-      "bytes": 26905,
+      "bytes": 32013,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/il_robots.md",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/il_robots.md",
       "track": "LeRobot",
       "package": "lerobot",
       "title": "Imitation Learning on Real-World Robots"
     },
     {
-      "rel": "lerobot/evo1.md",
-      "bytes": 16947,
+      "rel": "lerobot/implement_your_own_processor.md",
+      "bytes": 15716,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/evo1.md",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/implement_your_own_processor.md",
       "track": "LeRobot",
       "package": "lerobot",
-      "title": "EVO1"
+      "title": "Implement your own Robot Processor"
+    },
+    {
+      "rel": "lerobot/envhub_isaaclab_arena.md",
+      "bytes": 17222,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/envhub_isaaclab_arena.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "NVIDIA IsaacLab Arena & LeRobot"
+    },
+    {
+      "rel": "lerobot/policy_molmoact2_README.md",
+      "bytes": 1999,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/policy_molmoact2_README.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "MolmoAct2"
+    },
+    {
+      "rel": "lerobot/hil_data_collection.md",
+      "bytes": 14612,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/hil_data_collection.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Human-In-the-Loop Data Collection"
+    },
+    {
+      "rel": "lerobot/robocasa.md",
+      "bytes": 9371,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/robocasa.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "RoboCasa365"
+    },
+    {
+      "rel": "lerobot/lerobot-dataset-v3.md",
+      "bytes": 20063,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/lerobot-dataset-v3.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "LeRobotDataset v3.0"
+    },
+    {
+      "rel": "lerobot/rebot_b601.md",
+      "bytes": 13650,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/rebot_b601.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "reBot B601"
+    },
+    {
+      "rel": "lerobot/video_encoding_parameters.md",
+      "bytes": 14178,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/video_encoding_parameters.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Video encoding parameters"
+    },
+    {
+      "rel": "lerobot/so101.md",
+      "bytes": 13162,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/so101.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "SO-101"
+    },
+    {
+      "rel": "lerobot/lingbot_va.md",
+      "bytes": 11596,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/lingbot_va.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "LingBot-VA"
+    },
+    {
+      "rel": "lerobot/omx.md",
+      "bytes": 6397,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/omx.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "OMX"
+    },
+    {
+      "rel": "lerobot/policy_walloss_README.md",
+      "bytes": 1741,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/policy_walloss_README.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "WALL-OSS"
+    },
+    {
+      "rel": "lerobot/simulation.md",
+      "bytes": 13366,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/simulation.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Simulation: local or served"
+    },
+    {
+      "rel": "lerobot/so100.md",
+      "bytes": 18321,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/so100.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "SO-100"
+    },
+    {
+      "rel": "lerobot/yam.md",
+      "bytes": 12948,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/yam.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "YAM"
+    },
+    {
+      "rel": "lerobot/robomme.md",
+      "bytes": 9037,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/robomme.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "RoboMME"
+    },
+    {
+      "rel": "lerobot/isaac_teleop.md",
+      "bytes": 23603,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/isaac_teleop.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Isaac Teleop"
+    },
+    {
+      "rel": "lerobot/envhub_leisaac.md",
+      "bytes": 13663,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/envhub_leisaac.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "LeIsaac \u00d7 LeRobot EnvHub"
+    },
+    {
+      "rel": "lerobot/longwam.md",
+      "bytes": 9022,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/longwam.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Long-WAM"
+    },
+    {
+      "rel": "lerobot/wall_oss_05.md",
+      "bytes": 12114,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/wall_oss_05.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Wall-OSS-0.5"
+    },
+    {
+      "rel": "lerobot/contributing.md",
+      "bytes": 4581,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/contributing.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "How to contribute to \ud83e\udd17 LeRobot"
+    },
+    {
+      "rel": "lerobot/introduction_processors.md",
+      "bytes": 15668,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/introduction_processors.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Introduction to Processors"
+    },
+    {
+      "rel": "lerobot/torch_accelerators.md",
+      "bytes": 4424,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/torch_accelerators.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "PyTorch accelerators"
+    },
+    {
+      "rel": "lerobot/robocerebra.md",
+      "bytes": 5645,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/robocerebra.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "RoboCerebra"
+    },
+    {
+      "rel": "lerobot/using_dataset_tools.md",
+      "bytes": 16629,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/using_dataset_tools.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Using Dataset Tools"
+    },
+    {
+      "rel": "lerobot/sarm.md",
+      "bytes": 23213,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/sarm.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "SARM: Stage-Aware Reward Modeling"
+    },
+    {
+      "rel": "lerobot/policy_cosmos3_README.md",
+      "bytes": 1942,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/policy_cosmos3_README.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Cosmos3"
+    },
+    {
+      "rel": "lerobot/hardware_guide.md",
+      "bytes": 8339,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/hardware_guide.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Compute HW Guide for LeRobot Training"
+    },
+    {
+      "rel": "lerobot/installation.md",
+      "bytes": 13020,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/installation.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Installation"
+    },
+    {
+      "rel": "lerobot/lelab.md",
+      "bytes": 2204,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/lelab.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "LeLab - LeRobot Guide"
+    },
+    {
+      "rel": "lerobot/porting_datasets_v3.md",
+      "bytes": 10311,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/porting_datasets_v3.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Porting Large Datasets to LeRobot Dataset v3.0"
+    },
+    {
+      "rel": "lerobot/language_and_recipes.md",
+      "bytes": 7392,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/language_and_recipes.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Language columns and recipes"
+    },
+    {
+      "rel": "lerobot/g05.md",
+      "bytes": 20404,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/g05.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "OpenGalaxea G0.5"
+    },
+    {
+      "rel": "lerobot/cosmos3.md",
+      "bytes": 32984,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/cosmos3.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Cosmos3"
+    },
+    {
+      "rel": "lerobot/pi0fast.md",
+      "bytes": 17198,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/pi0fast.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "\u03c0\u2080-FAST (Pi0-FAST)"
+    },
+    {
+      "rel": "lerobot/walloss.md",
+      "bytes": 8936,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/walloss.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "WALL-OSS"
+    },
+    {
+      "rel": "lerobot/robolab.md",
+      "bytes": 8221,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/robolab.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "NVIDIA RoboLab"
+    },
+    {
+      "rel": "lerobot/fineart_vla.md",
+      "bytes": 15995,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/fineart_vla.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "FineART-VLA"
+    },
+    {
+      "rel": "lerobot/policy_fineart_vla_README.md",
+      "bytes": 1164,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/policy_fineart_vla_README.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "FineART-VLA"
+    },
+    {
+      "rel": "lerobot/cheat-sheet.md",
+      "bytes": 8339,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/cheat-sheet.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Cheat sheet"
+    },
+    {
+      "rel": "lerobot/writing_docstrings.md",
+      "bytes": 11904,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/writing_docstrings.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Writing docstrings"
+    },
+    {
+      "rel": "lerobot/integrate_hardware.md",
+      "bytes": 26357,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/integrate_hardware.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Bring Your Own Hardware"
+    },
+    {
+      "rel": "lerobot/policy_pi0_README.md",
+      "bytes": 4851,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/policy_pi0_README.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "\u03c0\u2080 (pi0)"
+    },
+    {
+      "rel": "lerobot/tools.md",
+      "bytes": 6275,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/tools.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Tools"
+    },
+    {
+      "rel": "lerobot/multi_task_dit.md",
+      "bytes": 15722,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/multi_task_dit.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Multitask DiT Policy"
+    },
+    {
+      "rel": "lerobot/libero.md",
+      "bytes": 10966,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/libero.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "LIBERO"
+    },
+    {
+      "rel": "lerobot/training_dataset_streaming.md",
+      "bytes": 15935,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/training_dataset_streaming.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Training Dataset Streaming"
+    },
+    {
+      "rel": "lerobot/remote_inference.md",
+      "bytes": 35360,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/remote_inference.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Remote Inference"
+    },
+    {
+      "rel": "lerobot/peft_training.md",
+      "bytes": 4017,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/peft_training.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Parameter efficient fine-tuning with \ud83e\udd17 PEFT"
+    },
+    {
+      "rel": "lerobot/metaworld.md",
+      "bytes": 5563,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/metaworld.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Meta-World"
     },
     {
       "rel": "lerobot/multi_gpu_training.md",
-      "bytes": 8054,
+      "bytes": 13577,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/multi_gpu_training.md",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/multi_gpu_training.md",
       "track": "LeRobot",
       "package": "lerobot",
       "title": "Multi-GPU Training"
     },
     {
-      "rel": "lerobot/async.md",
-      "bytes": 16668,
+      "rel": "lerobot/debug_processor_pipeline.md",
+      "bytes": 14291,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/async.md",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/debug_processor_pipeline.md",
       "track": "LeRobot",
       "package": "lerobot",
-      "title": "Asynchronous Inference"
+      "title": "Debug Your Processor Pipeline"
+    },
+    {
+      "rel": "lerobot/openarm.md",
+      "bytes": 9404,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/openarm.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "OpenArm"
+    },
+    {
+      "rel": "lerobot/robotwin.md",
+      "bytes": 9794,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/robotwin.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "RoboTwin 2.0"
+    },
+    {
+      "rel": "lerobot/evo1.md",
+      "bytes": 16950,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/evo1.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "EVO1"
+    },
+    {
+      "rel": "lerobot/vla_jepa.md",
+      "bytes": 16752,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/vla_jepa.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "VLA-JEPA"
+    },
+    {
+      "rel": "lerobot/notebooks.md",
+      "bytes": 3572,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/notebooks.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "\ud83e\udd17 LeRobot Notebooks"
+    },
+    {
+      "rel": "lerobot/damiao.md",
+      "bytes": 4505,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/damiao.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Damiao Motors and CAN Bus"
+    },
+    {
+      "rel": "lerobot/policy_multi_task_dit_README.md",
+      "bytes": 1717,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/policy_multi_task_dit_README.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Multitask DiT Policy"
+    },
+    {
+      "rel": "lerobot/policy_evo1_README.md",
+      "bytes": 591,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/policy_evo1_README.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "EVO1"
+    },
+    {
+      "rel": "lerobot/hilserl.md",
+      "bytes": 37409,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/hilserl.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "HIL-SERL Real Robot Training Workflow Guide"
+    },
+    {
+      "rel": "lerobot/rename_map.md",
+      "bytes": 5808,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/rename_map.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Rename Map and Empty Cameras"
+    },
+    {
+      "rel": "lerobot/reachy2.md",
+      "bytes": 9829,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/reachy2.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Reachy 2"
+    },
+    {
+      "rel": "lerobot/backwardcomp.md",
+      "bytes": 6364,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/backwardcomp.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Backward compatibility"
+    },
+    {
+      "rel": "lerobot/topreward.md",
+      "bytes": 7506,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/topreward.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "TOPReward"
+    },
+    {
+      "rel": "lerobot/phone_teleop.md",
+      "bytes": 11703,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/phone_teleop.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Phone"
+    },
+    {
+      "rel": "lerobot/robometer.md",
+      "bytes": 8147,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/robometer.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "ROBOMETER"
+    },
+    {
+      "rel": "lerobot/unitree_g1.md",
+      "bytes": 17971,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/unitree_g1.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Unitree G1"
+    },
+    {
+      "rel": "lerobot/rtc.md",
+      "bytes": 12081,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/rtc.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Real-Time Chunking (RTC)"
+    },
+    {
+      "rel": "lerobot/policy_rtc_README.md",
+      "bytes": 1305,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/policy_rtc_README.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Real-Time Chunking (RTC)"
+    },
+    {
+      "rel": "lerobot/action_representations.md",
+      "bytes": 11963,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/action_representations.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Action Representations"
+    },
+    {
+      "rel": "lerobot/pi0.md",
+      "bytes": 6497,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/pi0.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "\u03c0\u2080 (Pi0)"
+    },
+    {
+      "rel": "lerobot/streaming_video_encoding.md",
+      "bytes": 13120,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/streaming_video_encoding.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Streaming Video Encoding Guide"
+    },
+    {
+      "rel": "lerobot/xvla.md",
+      "bytes": 21122,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/xvla.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "X-VLA: The First Soft-Prompted Robot Foundation Model for Any Robot, Any Task"
+    },
+    {
+      "rel": "lerobot/lawam.md",
+      "bytes": 8956,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/lawam.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "LaWAM"
+    },
+    {
+      "rel": "lerobot/dm05.md",
+      "bytes": 5820,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/dm05.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "DM0.5 for LeRobot"
+    },
+    {
+      "rel": "lerobot/lingbot_vla_v2.md",
+      "bytes": 14251,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/lingbot_vla_v2.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "LingBot-VLA 2.0"
+    },
+    {
+      "rel": "lerobot/policy_g05_README.md",
+      "bytes": 921,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/policy_g05_README.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "OpenGalaxea G0.5"
+    },
+    {
+      "rel": "lerobot/third_party_sensors.md",
+      "bytes": 3199,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/third_party_sensors.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Third-Party Cameras & Sensors"
+    },
+    {
+      "rel": "lerobot/annotation_pipeline.md",
+      "bytes": 20275,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/annotation_pipeline.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Annotation Pipeline"
+    },
+    {
+      "rel": "lerobot/groot.md",
+      "bytes": 8706,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/groot.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "GR00T Policy"
+    },
+    {
+      "rel": "lerobot/third_party_robots.md",
+      "bytes": 10971,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/third_party_robots.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Third-Party Robots & Teleoperators"
+    },
+    {
+      "rel": "lerobot/feetech.md",
+      "bytes": 3135,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/feetech.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Feetech Motor Firmware Update"
+    },
+    {
+      "rel": "lerobot/policy_dm05_README.md",
+      "bytes": 3130,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/policy_dm05_README.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "DM0.5 for LeRobot"
+    },
+    {
+      "rel": "lerobot/adding_benchmarks.md",
+      "bytes": 14044,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/adding_benchmarks.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Adding a Benchmark"
+    },
+    {
+      "rel": "lerobot/envhub.md",
+      "bytes": 21754,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/envhub.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Loading Environments from the Hub"
+    },
+    {
+      "rel": "lerobot/cameras.md",
+      "bytes": 11573,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/cameras.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Cameras"
+    },
+    {
+      "rel": "lerobot/policy_lingbot_vla_v2_README.md",
+      "bytes": 1704,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/policy_lingbot_vla_v2_README.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "LingBot-VLA 2.0"
+    },
+    {
+      "rel": "lerobot/molmoact2.md",
+      "bytes": 26922,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/molmoact2.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "MolmoAct2 Policy"
+    },
+    {
+      "rel": "lerobot/policy_vla_jepa_README.md",
+      "bytes": 2897,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/policy_vla_jepa_README.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "VLA-JEPA"
+    },
+    {
+      "rel": "lerobot/flux3.md",
+      "bytes": 16545,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/flux3.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "FLUX 3 Action"
+    },
+    {
+      "rel": "lerobot/libero_plus.md",
+      "bytes": 10936,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/libero_plus.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "LIBERO-plus"
     },
     {
       "rel": "lerobot/hilserl_sim.md",
-      "bytes": 4228,
+      "bytes": 4380,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/lerobot/hilserl_sim.md",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/hilserl_sim.md",
       "track": "LeRobot",
       "package": "lerobot",
       "title": "Train RL in Simulation"
+    },
+    {
+      "rel": "lerobot/inference.md",
+      "bytes": 55579,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/inference.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Policy Deployment (lerobot-rollout)"
+    },
+    {
+      "rel": "lerobot/eo1.md",
+      "bytes": 11389,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/eo1.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "EO-1"
+    },
+    {
+      "rel": "lerobot/vlabench.md",
+      "bytes": 8727,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/vlabench.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "VLABench"
+    },
+    {
+      "rel": "lerobot/api/processor.md",
+      "bytes": 19940,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/api/processor.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Processors"
+    },
+    {
+      "rel": "lerobot/api/configs.md",
+      "bytes": 6253,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/api/configs.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Configuration"
+    },
+    {
+      "rel": "lerobot/api/motors.md",
+      "bytes": 24066,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/api/motors.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Motors"
+    },
+    {
+      "rel": "lerobot/api/policies.md",
+      "bytes": 14993,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/api/policies.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Policies"
+    },
+    {
+      "rel": "lerobot/api/robots.md",
+      "bytes": 38374,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/api/robots.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Robots"
+    },
+    {
+      "rel": "lerobot/api/datasets.md",
+      "bytes": 29844,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/api/datasets.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Datasets"
+    },
+    {
+      "rel": "lerobot/api/envs.md",
+      "bytes": 4227,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/api/envs.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Environments"
+    },
+    {
+      "rel": "lerobot/api/teleoperators.md",
+      "bytes": 6655,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/api/teleoperators.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Teleoperators"
+    },
+    {
+      "rel": "lerobot/api/cameras.md",
+      "bytes": 4383,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/lerobot/v0.7.0/api/cameras.md",
+      "track": "LeRobot",
+      "package": "lerobot",
+      "title": "Cameras"
     },
     {
       "rel": "optimum/installation.md",
@@ -10884,7 +11136,7 @@
     },
     {
       "rel": "text-embeddings-inference/local_cpu.md",
-      "bytes": 1402,
+      "bytes": 2229,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/text-embeddings-inference/local_cpu.md",
       "track": "TEI",
@@ -10911,7 +11163,7 @@
     },
     {
       "rel": "text-embeddings-inference/cli_arguments.md",
-      "bytes": 10847,
+      "bytes": 11001,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/text-embeddings-inference/cli_arguments.md",
       "track": "TEI",
@@ -20433,7 +20685,7 @@
       "toc": 278,
       "found": 277,
       "written": 277,
-      "full_bytes": 1600751
+      "full_bytes": 1601343
     },
     {
       "pkg": "huggingface_hub",
@@ -20454,7 +20706,7 @@
       "toc": 65,
       "found": 27,
       "written": 27,
-      "full_bytes": 388200
+      "full_bytes": 388160
     },
     {
       "pkg": "kernels",
@@ -20465,10 +20717,10 @@
     },
     {
       "pkg": "lerobot",
-      "toc": 99,
-      "found": 91,
-      "written": 91,
-      "full_bytes": 937119
+      "toc": 129,
+      "found": 119,
+      "written": 119,
+      "full_bytes": 1466114
     },
     {
       "pkg": "optimum",
@@ -20503,7 +20755,7 @@
       "toc": 13,
       "found": 13,
       "written": 13,
-      "full_bytes": 60367
+      "full_bytes": 61348
     },
     {
       "pkg": "text-generation-inference",

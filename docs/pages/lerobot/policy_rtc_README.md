@@ -37,23 +37,5 @@ If you use Real-Time Chunking in your work, please cite:
 
 This implementation follows the **Apache 2.0 License**, consistent with the LeRobot project.
 
-### Paper
-https://huggingface.co/docs/lerobot/policy_smolvla_README.md
-
-## Paper
-
-https://arxiv.org/abs/2506.01844
-
-## Citation
-
-```bibtex
-@article{shukor2025smolvla,
-  title={SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics},
-  author={Shukor, Mustafa and Aubakirova, Dana and Capuano, Francesco and Kooijmans, Pepijn and Palma, Steven and Zouitine, Adil and Aractingi, Michel and Pascal, Caroline and Russi, Martino and Marafioti, Andres and Alibert, Simon and Cord, Matthieu and Wolf, Thomas and Cadene, Remi},
-  journal={arXiv preprint arXiv:2506.01844},
-  year={2025}
-}
-```
-
-### Implement your own Robot Processor
-https://huggingface.co/docs/lerobot/implement_your_own_processor.md
+### Action Representations
+https://huggingface.co/docs/lerobot/v0.7.0/action_representations.md

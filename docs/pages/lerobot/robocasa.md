@@ -1,5 +1,11 @@
 # RoboCasa365
 
+  The commands below run the simulator locally. To keep its dependencies away
+  from your policy's, serve it instead with `lerobot-env-server
+  --config_path=docker/sim/configs/robocasa.yaml --sim.task= --docker=true`, where ``
+  is the command's `--env.task`, and add `--env.server.endpoint=tcp/127.0.0.1:7448` to
+  the command. A server runs the task it was started with (see [Simulation: local or served](./simulation)).
+
 [RoboCasa365](https://robocasa.ai) is a large-scale simulation framework for training and benchmarking **generalist robots** in everyday kitchen tasks. It ships 365 diverse manipulation tasks across 2,500 kitchen environments, 3,200+ object assets and 600+ hours of human demonstration data, on a PandaOmron 12-DOF mobile manipulator (Franka arm on a holonomic base).
 
 - Paper: [RoboCasa: Large-Scale Simulation of Everyday Tasks for Generalist Robots](https://arxiv.org/abs/2406.02523)
@@ -77,7 +83,7 @@ By default the env samples objects only from the `lightwheel` registry (what `--
 
 ## Evaluation
 
-All eval snippets below mirror the CI command (see `.github/workflows/benchmark_tests.yml`). The `--rename_map` argument maps RoboCasa's native camera keys (`robot0_agentview_left` / `robot0_eye_in_hand` / `robot0_agentview_right`) onto the three-camera (`camera1` / `camera2` / `camera3`) input layout the released `smolvla_robocasa` policy was trained on.
+All eval snippets below mirror the CI command (see `.github/workflows/benchmark_tests.yml`). The `--rename_map` argument maps RoboCasa's native camera keys onto the three-camera (`camera1` / `camera2` / `camera3`) input layout the released `smolvla_robocasa` policy was trained on: `robot0_agentview_left` → `camera1`, `robot0_agentview_right` → `camera2`, `robot0_eye_in_hand` → `camera3`. This pairing must match the policy's training-time mapping (see `rename_map` in the checkpoint's `train_config.json`); swapping two camera keys is silently accepted, since all three views share the same shape.
 
 By default, each task uses the rollout horizon registered by RoboCasa. Set `--env.episode_length=<steps>` to apply the same explicit horizon to every selected task.
 
@@ -92,7 +98,7 @@ lerobot-eval \
   --eval.n_episodes=20 \
   --eval.use_async_envs=false \
   --policy.device=cuda \
-  '--rename_map={"observation.images.robot0_agentview_left": "observation.images.camera1", "observation.images.robot0_eye_in_hand": "observation.images.camera2", "observation.images.robot0_agentview_right": "observation.images.camera3"}'
+  '--rename_map={"observation.images.robot0_agentview_left": "observation.images.camera1", "observation.images.robot0_agentview_right": "observation.images.camera2", "observation.images.robot0_eye_in_hand": "observation.images.camera3"}'
 ```
 
 ### Multi-task evaluation
@@ -103,12 +109,12 @@ Pass a comma-separated list of tasks:
 lerobot-eval \
   --policy.path=lerobot/smolvla_robocasa \
   --env.type=robocasa \
-  --env.task=CloseFridge,OpenCabinet,OpenDrawer,TurnOnMicrowave,TurnOffStove \
+  --env.task=CloseFridge,OpenCabinet,OpenDrawer,TurnOffStove \
   --eval.batch_size=1 \
   --eval.n_episodes=20 \
   --eval.use_async_envs=false \
   --policy.device=cuda \
-  '--rename_map={"observation.images.robot0_agentview_left": "observation.images.camera1", "observation.images.robot0_eye_in_hand": "observation.images.camera2", "observation.images.robot0_agentview_right": "observation.images.camera3"}'
+  '--rename_map={"observation.images.robot0_agentview_left": "observation.images.camera1", "observation.images.robot0_agentview_right": "observation.images.camera2", "observation.images.robot0_eye_in_hand": "observation.images.camera3"}'
 ```
 
 ### Benchmark-group evaluation
@@ -124,7 +130,7 @@ lerobot-eval \
   --eval.n_episodes=20 \
   --eval.use_async_envs=false \
   --policy.device=cuda \
-  '--rename_map={"observation.images.robot0_agentview_left": "observation.images.camera1", "observation.images.robot0_eye_in_hand": "observation.images.camera2", "observation.images.robot0_agentview_right": "observation.images.camera3"}'
+  '--rename_map={"observation.images.robot0_agentview_left": "observation.images.camera1", "observation.images.robot0_agentview_right": "observation.images.camera2", "observation.images.robot0_eye_in_hand": "observation.images.camera3"}'
 ```
 
 ### Recommended evaluation episodes
@@ -186,5 +192,5 @@ lerobot-eval \
 
 The released checkpoint [`lerobot/smolvla_robocasa`](https://huggingface.co/lerobot/smolvla_robocasa) is evaluated with the commands in the [Evaluation](#evaluation) section. CI runs a 10-atomic-task smoke eval (one episode each) on every PR touching the benchmark, picking fixture-centric tasks that don't require the objaverse asset pack.
 
-### Third-Party Cameras & Sensors
-https://huggingface.co/docs/lerobot/third_party_sensors.md
+### LeRobotDataset v3.0
+https://huggingface.co/docs/lerobot/v0.7.0/lerobot-dataset-v3.md

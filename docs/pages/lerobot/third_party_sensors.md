@@ -13,8 +13,13 @@ pip install lerobot_camera_<name>
 lerobot-record \
     --robot.type=so101_follower \
     --robot.port=/dev/ttyACM0 \
+    --robot.id=my_follower_arm \
     --robot.cameras="{ front: {type: <name>, width: 640, height: 480, fps: 30} }" \
+    --teleop.type=so101_leader \
+    --teleop.port=/dev/ttyACM1 \
+    --teleop.id=my_leader_arm \
     --dataset.repo_id=${HF_USER}/my-dataset \
+    --dataset.single_task="Describe your task here" \
     --dataset.num_episodes=5
 ```
 
@@ -32,6 +37,10 @@ lerobot-record \
       lerobot-camera-xense
       Plugin for Xense vision-based tactile sensors, exposing rectified/difference images, depth, and 2D markers.
     
+    
+      lerobot_camera_paxini
+      Plugin for Paxini PX-6AX GEN3 multidimensional tactile sensors (3-axis force per taxel, 9-239 taxels), rendering the taxel array as force-vector or heatmap images.
+    
   
 
 ## Depth Cameras
@@ -47,6 +56,14 @@ lerobot-record \
     
       lerobot_camera_berxel
       Plugin for the Berxel depth camera, part of the broader HEXFELLOW driver suite.
+    
+    
+      lerobot_camera_zed
+      Official plugin for Stereolabs ZED cameras (ZED 2/2i/Mini, the ZED X family, and ZED X One), with metric depth, hardware timestamps, and SVO recording.
+    
+    
+      lerobot_camera_oak
+      Plugin for Luxonis OAK and OAK4 cameras over USB or PoE (DepthAI v3), with optional depth maps and point clouds.
     
   
 
@@ -86,5 +103,5 @@ lerobot-record \
 
 Built your own LeRobot camera or sensor integration? Package it as an installable `lerobot_camera_<name>` plugin and it will be auto-discovered by the LeRobot CLI — see the [Bring Your Own Hardware](./integrate_hardware) guide and the [Cameras](./cameras) reference to get started, then share your project with the community!
 
-### Debug Your Processor Pipeline
-https://huggingface.co/docs/lerobot/debug_processor_pipeline.md
+### Annotation Pipeline
+https://huggingface.co/docs/lerobot/v0.7.0/annotation_pipeline.md

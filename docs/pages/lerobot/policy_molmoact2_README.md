@@ -38,5 +38,5 @@ educational use in accordance with
 [Ai2's Responsible Use Guidelines](https://allenai.org/responsible-use),
 consistent with [allenai/molmoact2](https://github.com/allenai/molmoact2).
 
-### Adding a Policy
-https://huggingface.co/docs/lerobot/bring_your_own_policies.md
+### Human-In-the-Loop Data Collection
+https://huggingface.co/docs/lerobot/v0.7.0/hil_data_collection.md

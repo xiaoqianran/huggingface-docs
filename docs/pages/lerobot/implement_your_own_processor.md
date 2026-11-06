@@ -1,7 +1,7 @@
 # Implement your own Robot Processor
 
 In this tutorial, you'll learn how to implement your own Robot Processor.
-It begins by exploring the need for a custom processor, then uses the `NormalizerProcessorStep` as the running example to explain how to implement, configure, and serialize a processor. Finally, it lists all helper processors that ship with LeRobot.
+It begins by exploring the need for a custom processor, then uses the `NormalizerProcessorStep` as the running example to explain how to implement, configure, and serialize a processor. For the processor steps that ship with LeRobot, see [Common Processor Steps](./introduction_processors#common-processor-steps).
 
 ## Why would you need a custom processor?
 
@@ -31,7 +31,7 @@ Other common processing needs include:
 pipeline = PolicyProcessorPipeline([
     RenameObservationsProcessorStep(rename_map={}),
     AddBatchDimensionProcessorStep(),
-    NormalizerProcessorStep(features=features, stats=stats),
+    NormalizerProcessorStep(features=features, norm_map=norm_map, stats=stats),
     DeviceProcessorStep(device="cuda"),
     # ...
 ])
@@ -50,7 +50,7 @@ Prepare the sequence of processing steps necessary for your problem. A processor
 - `state_dict`: gets the state of the processor step.
 - `load_state_dict`: loads the state of the processor step.
 - `reset`: resets the state of the processor step.
-- `feature_contract`: displays the modification to the feature space during the processor step.
+- `transform_features`: describes how the processor step modifies the feature space.
 
 ### Implement the `__call__` method
 
@@ -191,17 +191,19 @@ Use this to run a policy trained on CUDA on a CPU-only robot, or to remap camera
 Direct usage with `from_pretrained`:
 
 ```python
-from lerobot.processor import RobotProcessorPipeline
+from lerobot.datasets import LeRobotDataset
+from lerobot.processor import PolicyProcessorPipeline
 
 # Load a foundational policy trained on diverse robot data
 # but adapt normalization to your specific robot/environment
 new_stats = LeRobotDataset(repo_id="username/my-dataset").meta.stats
-processor = RobotProcessorPipeline.from_pretrained(
+processor = PolicyProcessorPipeline.from_pretrained(
     "huggingface/foundational-robot-policy",  # Pretrained foundation model
+    config_filename="policy_preprocessor.json",  # The policy's saved preprocessor
     overrides={
         "normalizer_processor": {"stats": new_stats},     # Inject your robot's statistics
         "device_processor": {"device": "cuda:0"},         # registry name for registered steps
-        "rename_processor": {"rename_map": robot_key_map}, # Map your robot's observation keys
+        "rename_observations_processor": {"rename_map": robot_key_map}, # Map your robot's observation keys
         # ...
     },
 )
@@ -272,5 +274,42 @@ Key principles for robust processors:
 
 Start simple, test thoroughly, and ensure your processors work seamlessly across different hardware configurations!
 
-### WALL-OSS
-https://huggingface.co/docs/lerobot/policy_walloss_README.md
+### Paper
+https://huggingface.co/docs/lerobot/v0.7.0/policy_diffusion_README.md
+
+## Paper
+
+https://diffusion-policy.cs.columbia.edu
+
+## Training
+
+The reference implementation maintains an exponential moving average (EMA) of the policy weights during training and evaluates the EMA weights. To reproduce this behavior, enable the trainer's EMA:
+
+```bash
+lerobot-train \
+  --policy.type=diffusion \
+  --ema.type=warmup \
+  ...
+```
+
+Checkpoints then contain a directly loadable copy of the EMA weights next to the live ones, e.g. for evaluation:
+
+```bash
+lerobot-eval --policy.path=outputs/train/.../checkpoints/last/pretrained_model_ema ...
+```
+
+The `warmup` type (`--ema.inv_gamma`, `--ema.power`, ...) uses the reference implementation's values. Other types are a constant decay (`--ema.type=constant --ema.decay=0.99`, as in openpi's pi0/pi05 training) and the EDM2 power function (`--ema.type=power --ema.sigma_rel=0.1`).
+
+## Citation
+
+```bibtex
+@article{chi2024diffusionpolicy,
+	author = {Cheng Chi and Zhenjia Xu and Siyuan Feng and Eric Cousineau and Yilun Du and Benjamin Burchfiel and Russ Tedrake and Shuran Song},
+	title ={Diffusion Policy: Visuomotor Policy Learning via Action Diffusion},
+	journal = {The International Journal of Robotics Research},
+	year = {2024},
+}
+```
+
+### NVIDIA IsaacLab Arena & LeRobot
+https://huggingface.co/docs/lerobot/v0.7.0/envhub_isaaclab_arena.md

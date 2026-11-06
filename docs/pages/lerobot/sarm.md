@@ -56,7 +56,7 @@ SARM is trained through its processor (`src/lerobot/rewards/sarm/processor_sarm.
 At minimum, each training sample needs:
 
 - `task` (string): task description
-- `policy.image_key` images and `policy.state_key` states from the dataset
+- `reward_model.image_key` images and `reward_model.state_key` states from the dataset
 
 ---
 
@@ -232,15 +232,15 @@ Train with **no annotations** - uses linear progress from 0 to 1:
 ```bash
 lerobot-train \
   --dataset.repo_id=your-username/your-dataset \
-  --policy.type=sarm \
-  --policy.annotation_mode=single_stage \
-  --policy.image_key=observation.images.base \
+  --reward_model.type=sarm \
+  --reward_model.annotation_mode=single_stage \
+  --reward_model.image_key=observation.images.base \
   --output_dir=outputs/train/sarm_single \
   --batch_size=32 \
   --steps=5000 \
-  --wandb.enable=true \
-  --wandb.project=sarm \
-  --policy.repo_id=your-username/your-model-name
+  --trackio.enable=true \
+  --trackio.project=sarm \
+  --reward_model.repo_id=your-username/your-model-name
 ```
 
 Train with **dense annotations only** (sparse auto-generated):
@@ -248,15 +248,15 @@ Train with **dense annotations only** (sparse auto-generated):
 ```bash
 lerobot-train \
   --dataset.repo_id=your-username/your-dataset \
-  --policy.type=sarm \
-  --policy.annotation_mode=dense_only \
-  --policy.image_key=observation.images.base \
+  --reward_model.type=sarm \
+  --reward_model.annotation_mode=dense_only \
+  --reward_model.image_key=observation.images.base \
   --output_dir=outputs/train/sarm_dense \
   --batch_size=32 \
   --steps=5000 \
-  --wandb.enable=true \
-  --wandb.project=sarm \
-  --policy.repo_id=your-username/your-model-name
+  --trackio.enable=true \
+  --trackio.project=sarm \
+  --reward_model.repo_id=your-username/your-model-name
 ```
 
 Train with **both sparse and dense annotations**:
@@ -264,15 +264,15 @@ Train with **both sparse and dense annotations**:
 ```bash
 lerobot-train \
   --dataset.repo_id=your-username/your-dataset \
-  --policy.type=sarm \
-  --policy.annotation_mode=dual \
-  --policy.image_key=observation.images.base \
+  --reward_model.type=sarm \
+  --reward_model.annotation_mode=dual \
+  --reward_model.image_key=observation.images.base \
   --output_dir=outputs/train/sarm_dual \
   --batch_size=32 \
   --steps=5000 \
-  --wandb.enable=true \
-  --wandb.project=sarm \
-  --policy.repo_id=your-username/your-model-name
+  --trackio.enable=true \
+  --trackio.project=sarm \
+  --reward_model.repo_id=your-username/your-model-name
 ```
 
 ### Multi-GPU Training
@@ -281,13 +281,13 @@ Add `accelerate launch --multi_gpu --num_processes=4` to use multiple GPUs for t
 
 ### Training Arguments
 
-| Argument                   | Description                                                       | Default                  |
-| -------------------------- | ----------------------------------------------------------------- | ------------------------ |
-| `--policy.annotation_mode` | `single_stage`, `dense_only`, or `dual`                           | `single_stage`           |
-| `--policy.image_key`       | Camera key for images                                             | `observation.images.top` |
-| `--policy.state_key`       | Key for joint states                                              | `observation.state`      |
-| `--policy.n_obs_steps`     | Observation history steps (total obs frames = `n_obs_steps + 1`)  | `8`                      |
-| `--policy.frame_gap`       | Gap (in frames) between sampled observations (at 30 fps: 30 ≈ 1s) | `30`                     |
+| Argument                         | Description                                                       | Default                  |
+| -------------------------------- | ----------------------------------------------------------------- | ------------------------ |
+| `--reward_model.annotation_mode` | `single_stage`, `dense_only`, or `dual`                           | `single_stage`           |
+| `--reward_model.image_key`       | Camera key for images                                             | `observation.images.top` |
+| `--reward_model.state_key`       | Key for joint states                                              | `observation.state`      |
+| `--reward_model.n_obs_steps`     | Observation history steps (total obs frames = `n_obs_steps + 1`)  | `8`                      |
+| `--reward_model.frame_gap`       | Gap (in frames) between sampled observations (at 30 fps: 30 ≈ 1s) | `30`                     |
 
 ---
 
@@ -405,7 +405,7 @@ This script:
 
 ### Step 5b: Train Policy with RA-BC
 
-Once you have the progress file, train your policy with RA-BC weighting. The progress file is auto-detected from the dataset path (`sarm_progress.parquet`) if not explicitly provided. Currently PI0, PI0.5 and SmolVLA are supported with RA-BC:
+Once you have the progress file, train your policy with RA-BC weighting. The progress file is auto-detected from the dataset path (`sarm_progress.parquet`) if not explicitly provided. Currently PI0, PI0.5, SmolVLA and FastWAM are supported with RA-BC:
 
 ```bash
 lerobot-train \
@@ -450,7 +450,7 @@ The `kappa` parameter is the threshold that determines which samples get full we
 
 **Diagnosing kappa issues:**
 
-Monitor these WandB metrics during training:
+Monitor these Trackio metrics during training:
 
 | Metric                        | Healthy Range | Problem Indicator         |
 | ----------------------------- | ------------- | ------------------------- |
@@ -532,65 +532,5 @@ accelerate launch \
 }
 ```
 
-### Research Paper
-https://huggingface.co/docs/lerobot/policy_fastwam_README.md
-
-## Research Paper
-
-Paper: https://arxiv.org/abs/2603.16666
-
-## Repository
-
-Code: https://github.com/yuantianyuan01/FastWAM
-
-Project page: https://yuantianyuan01.github.io/FastWAM/
-
-## Citation
-
-```bibtex
-@article{yuan2026fastwam,
-  title = {Fast-WAM: Do World Action Models Need Test-time Future Imagination?},
-  author = {Tianyuan Yuan and Zibin Dong and Yicheng Liu and Hang Zhao},
-  journal = {arXiv preprint arXiv:2603.16666},
-  year = {2026},
-  url = {https://arxiv.org/abs/2603.16666}
-}
-```
-
-## Additional Resources
-
-Base video model: https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B
-
-Released upstream checkpoints: https://huggingface.co/yuanty/fastwam
-
-## Results
-
-Evaluated on LIBERO with [`ZibinDong/fastwam_libero_uncond_2cam224`](https://huggingface.co/ZibinDong/fastwam_libero_uncond_2cam224):
-
-| Suite          | Success rate | n_episodes |
-| -------------- | -----------: | ---------: |
-| libero_spatial |        97.6% |        500 |
-| libero_object  |        99.0% |        500 |
-| libero_goal    |        95.0% |        500 |
-| libero_10      |        94.0% |        500 |
-| **average**    |    **96.4%** |       2000 |
-
-Reproduce: `lerobot-eval --policy.path=ZibinDong/fastwam_libero_uncond_2cam224 --policy.device=cuda --policy.torch_dtype=float32 --policy.n_action_steps=10 --env.type=libero --env.task=libero_spatial --env.observation_height=256 --env.observation_width=256 --eval.batch_size=1 --eval.n_episodes=50 --seed=0 --env.episode_length=300`.
-
-For LIBERO-10, use `--env.task=libero_10 --env.episode_length=600`:
-
-```bash
-lerobot-eval \
-    --policy.path=ZibinDong/fastwam_libero_uncond_2cam224 \
-    --policy.device=cuda \
-    --policy.torch_dtype=float32 \
-    --policy.n_action_steps=10 \
-    --env.type=libero \
-    --env.task=libero_10 --env.observation_height=256 --env.observation_width=256 \
-    --eval.batch_size=1 \
-    --eval.n_episodes=50 \
-    --seed=0 --env.episode_length=600
-```
-
-### GR00T Policy
-https://huggingface.co/docs/lerobot/groot.md
+### Cosmos3
+https://huggingface.co/docs/lerobot/v0.7.0/policy_cosmos3_README.md

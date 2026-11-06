@@ -26,5 +26,5 @@ After install, run `lelab` from your terminal anytime to start the app.
 - **Run trained policies** — Pick any model from your jobs list and run inference on your robot with one click.
 - **Use community datasets** — Provide any Hugging Face dataset ID to train on datasets you didn't record yourself.
 
-### WALL-OSS
-https://huggingface.co/docs/lerobot/walloss.md
+### Porting Large Datasets to LeRobot Dataset v3.0
+https://huggingface.co/docs/lerobot/v0.7.0/porting_datasets_v3.md

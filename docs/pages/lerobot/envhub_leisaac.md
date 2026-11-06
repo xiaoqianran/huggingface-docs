@@ -14,7 +14,7 @@ Below you’ll find the currently supported LeIsaac tasks exposed through LeRobo
 
 # Available Environments
 
-The following table lists all available tasks and environments in LeIsaac x LeRobot Envhub. You can also get the latest list of environments by running the following command:
+The following table lists all available tasks and environments in LeIsaac x LeRobot EnvHub. You can also get the latest list of environments by running the following command:
 
 ```bash
 python scripts/environments/list_envs.py
@@ -285,5 +285,5 @@ env.initialize()
 # other operation with env...
 ```
 
-### Multitask DiT Policy
-https://huggingface.co/docs/lerobot/policy_multi_task_dit_README.md
+### Long-WAM
+https://huggingface.co/docs/lerobot/v0.7.0/longwam.md

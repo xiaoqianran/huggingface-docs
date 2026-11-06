@@ -61,7 +61,6 @@ cd ..
 git clone https://github.com/huggingface/lerobot.git
 cd lerobot
 pip install -e ".[evaluation]"
-cd ..
 
 # 6. Install additional dependencies
 pip install onnxruntime==1.23.2 lightwheel-sdk==1.0.1 vuer[all]==0.0.70 qpsolvers==4.8.1
@@ -200,9 +199,9 @@ Sample IsaacLab Arena datasets are available on HuggingFace Hub for experimentat
 ### Full Configuration Options
 
 ```python
-from lerobot.envs.configs import IsaaclabArenaEnv
+from lerobot.envs.configs import IsaaclabArenaEnvConfig
 
-config = IsaaclabArenaEnv(
+config = IsaaclabArenaEnvConfig(
     # Environment selection
     environment="gr1_microwave",      # Task environment
     embodiment="gr1_pink",            # Robot embodiment
@@ -366,7 +365,7 @@ sudo apt update && sudo apt install -y libglu1-mesa libxt6
 
 ## See Also
 
-- [EnvHub Documentation](./envhub.mdx) - General EnvHub usage
+- [EnvHub Documentation](./envhub) - General EnvHub usage
 - [IsaacLab Arena GitHub](https://github.com/isaac-sim/IsaacLab-Arena)
 - [IsaacLab Documentation](https://isaac-sim.github.io/IsaacLab/)
 
@@ -387,9 +386,9 @@ pip install numpy==1.26.0 # revert numpy to version 1.26
 sudo apt-get install git-lfs && git lfs install
 
 git clone https://github.com/LightwheelAI/lw_benchhub
+cd lw_benchhub
 git lfs pull # Ensure LFS files (e.g., .usd assets) are downloaded
 
-cd lw_benchhub
 pip install -e .
 ```
 
@@ -498,5 +497,5 @@ replay_cfgs:
 - [LW-BenchHub GitHub](https://github.com/LightwheelAI/LW-BenchHub)
 - [LW-BenchHub Documentation](https://docs.lightwheel.net/lw_benchhub/)
 
-### Porting Large Datasets to LeRobot Dataset v3.0
-https://huggingface.co/docs/lerobot/porting_datasets_v3.md
+### MolmoAct2
+https://huggingface.co/docs/lerobot/v0.7.0/policy_molmoact2_README.md

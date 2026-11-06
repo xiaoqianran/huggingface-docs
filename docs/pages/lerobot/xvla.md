@@ -39,13 +39,13 @@ X-VLA shows that generalist robot intelligence does not require increasingly com
 After installing LeRobot, install the X-VLA dependencies:
 
 ```bash
-pip install -e .[xvla]
+pip install -e ".[xvla]"
 ```
 
-After the new release, you'll be able to do:
+If you installed LeRobot from PyPI instead:
 
 ```bash
-pip install lerobot[xvla]
+pip install 'lerobot[xvla]'
 ```
 
 ## Quick Start
@@ -130,7 +130,7 @@ lerobot-train \
   --policy.freeze_vision_encoder=false \
   --policy.freeze_language_encoder=false \
   --policy.train_policy_transformer=true \
-  --policy.train_soft_prompts=true \
+  --policy.train_soft_prompts=true
 ```
 
 ### Training Parameters Explained
@@ -290,14 +290,14 @@ X-VLA requires specific preprocessing and postprocessing steps for proper operat
 
 #### Example Custom Processor
 
-For LIBERO environments, a custom processor handles the specific observation format:
+For LIBERO environments, a custom processor turns the canonical observation into the input X-VLA was trained on:
 
 ```python
 from lerobot.policies.xvla.processor_xvla import LiberoProcessorStep
 
 processor = LiberoProcessorStep()
-# Handles robot_state dictionary, converts rotation matrices to 6D representation
-# Applies 180° image rotation for camera convention
+# Builds the 9D state from the canonical 8D state, with the end-effector rotation in 6D
+# Rotates the wrist camera back, since the LIBERO integration rotates every camera by 180°
 ```
 
 ### 4. Configuration Parameters
@@ -339,6 +339,7 @@ If your robot has a unique action space, you can create a custom action mode:
 
 ```python
 from lerobot.policies.xvla.action_hub import BaseActionSpace, register_action
+import torch
 import torch.nn as nn
 
 @register_action("my_custom_robot")
@@ -521,5 +522,5 @@ If you use X-VLA in your research, please cite:
 
 We welcome contributions! If you've implemented a new action mode or processor for your robot, please consider submitting a PR to help the community.
 
-### Phone
-https://huggingface.co/docs/lerobot/phone_teleop.md
+### LaWAM
+https://huggingface.co/docs/lerobot/v0.7.0/lawam.md

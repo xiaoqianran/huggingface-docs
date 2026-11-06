@@ -38,7 +38,38 @@ The goal: lower the barrier to entry for robotics, so that everyone can contribu
 
 ## Get Started
 
-New here? [Install LeRobot](./installation), then pick your path:
+New here? See what a LeRobot dataset looks like before installing anything:
+
+  <a
+    target="_blank"
+    href="https://huggingface.co/spaces/lerobot/visualize_dataset?path=/lerobot/svla_so101_pickplace/episode_0"
+    class="shrink-0"
+  >
+    <img
+      src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/lerobot/visualizer-episode-v2.webp"
+      alt="The LeRobot Dataset Visualizer playing an SO-101 dataset"
+      width="320"
+    />
+  
+  
+    👀 See a dataset first
+    
+    
+      Open <a
+        target="_blank"
+        href="https://huggingface.co/spaces/lerobot/visualize_dataset?path=/lerobot/svla_so101_pickplace/episode_0"
+      >lerobot/svla_so101_pickplace in the <a
+        target="_blank"
+        href="https://huggingface.co/spaces/lerobot/visualize_dataset"
+      >LeRobot Dataset Visualizer to watch its camera recordings next to the
+      robot's state and actions, frame by frame, with nothing to install. It
+      works for any LeRobot dataset on the Hub, including your own. See <a
+        href="./using_dataset_tools#explore-a-dataset-in-the-browser"
+      >how to use it.
+    
+  
+
+Ready to try it yourself? [Install LeRobot](./installation), then pick your path:
 
   
     🔧 I have a robot
@@ -72,6 +103,12 @@ New here? [Install LeRobot](./installation), then pick your path:
       You can still train and evaluate policies without owning a robot:
     
     
+      
+        explore any dataset in the
+        
+          Dataset Visualizer
+        
+      
       
         train on an existing
         
@@ -148,12 +185,12 @@ New here? [Install LeRobot](./installation), then pick your path:
   
   <a
     class="!no-underline border dark:border-gray-700 rounded-lg p-4 shadow hover:shadow-lg"
-    href="./envhub"
+    href="./libero"
   >
     🎮 Simulation & Benchmarks
     
-      Train and evaluate in simulated environments before touching real
-      hardware.
+      Train and evaluate in simulated benchmarks like LIBERO before touching
+      real hardware.
     
   
 
@@ -161,10 +198,10 @@ New here? [Install LeRobot](./installation), then pick your path:
 
 Running into issues? A few of the most frequent ones:
 
-- **Blurry or unusable camera footage** - lighting matters more than resolution. See the [Cameras](./cameras) guide.
+- **Blurry or unusable camera footage** - lighting matters more than resolution. See [Camera placement and lighting](./cameras#camera-placement-and-lighting).
 - **Build or install errors** (`cmake`, `ffmpeg`, CUDA) - see the Troubleshooting section of the [Installation guide](./installation#troubleshooting).
 - **Not sure which policy fits your GPU** - check the [Compute & Hardware Guide](./hardware_guide).
 - **Still stuck?** Ask on [Discord](https://discord.gg/s3KuuzsPFb) - the community (and the LeRobot team) is there to help.
 
-### Tools
-https://huggingface.co/docs/lerobot/tools.md
+### EarthRover Mini Plus
+https://huggingface.co/docs/lerobot/v0.7.0/earthrover_mini_plus.md

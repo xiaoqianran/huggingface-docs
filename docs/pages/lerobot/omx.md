@@ -18,7 +18,7 @@ OMX robots are shipped preconfigured from the factory. Motor IDs, communication 
 
 To install LeRobot, follow our [Installation Guide](./installation)
 
-In addition to these instructions, you need to install the Dynamixel SDK:
+In addition to these instructions, you need to install Dynamixel motor support:
 
 ```bash
 pip install -e ".[dynamixel]"
@@ -186,5 +186,5 @@ Congrats 🎉, your robot is all set to learn a task on its own.
 
 > If you have any questions or need help, please reach out on [Discord](https://discord.com/invite/robotis).
 
-### Damiao Motors and CAN Bus
-https://huggingface.co/docs/lerobot/damiao.md
+### WALL-OSS
+https://huggingface.co/docs/lerobot/v0.7.0/policy_walloss_README.md

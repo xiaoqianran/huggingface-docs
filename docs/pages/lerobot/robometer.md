@@ -184,5 +184,5 @@ booktitle={Robotics: Science and Systems 2026},
 
 This LeRobot integration follows the **Apache 2.0 License** used by LeRobot. Check the upstream ROBOMETER code and model pages for the licenses of the original implementation and released checkpoints.
 
-### SO-101
-https://huggingface.co/docs/lerobot/so101.md
+### Unitree G1
+https://huggingface.co/docs/lerobot/v0.7.0/unitree_g1.md

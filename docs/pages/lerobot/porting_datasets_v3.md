@@ -96,9 +96,9 @@ DROID_FEATURES = {
     "observation.state.joint_position": {"dtype": "float32", "shape": (7,)},
 
     # Camera observations
-    "observation.images.wrist_left": {"dtype": "image"},
-    "observation.images.exterior_1_left": {"dtype": "image"},
-    "observation.images.exterior_2_left": {"dtype": "image"},
+    "observation.images.wrist_left": {"dtype": "video", "shape": (180, 320, 3), "names": ["height", "width", "channels"]},
+    "observation.images.exterior_1_left": {"dtype": "video", "shape": (180, 320, 3), "names": ["height", "width", "channels"]},
+    "observation.images.exterior_2_left": {"dtype": "video", "shape": (180, 320, 3), "names": ["height", "width", "channels"]},
 
     # Actions
     "action.gripper_position": {"dtype": "float32", "shape": (1,)},
@@ -320,5 +320,5 @@ Dataset v3.0 provides significant improvements for large datasets:
 - **Scalable processing**: Handles millions of episodes efficiently
 - **Storage optimization**: Reduced file count and improved compression
 
-### Feetech Motor Firmware Update
-https://huggingface.co/docs/lerobot/feetech.md
+### Language columns and recipes
+https://huggingface.co/docs/lerobot/v0.7.0/language_and_recipes.md

@@ -64,6 +64,10 @@ It's a typed dictionary that represents a complete robot-environment interaction
 - **INFO**: Arbitrary metadata
 - **COMPLEMENTARY_DATA**: Task descriptions, indices, padding flags, inter-step data
 
+Batch converters keep indexing metadata such as `index`, `episode_index`, and `frame_index` in `COMPLEMENTARY_DATA`.
+In a `batch_to_transition` / `transition_to_batch` round trip, `frame_index` retains its original scalar or tensor value.
+If the input omits `frame_index`, the converters do not add it.
+
 ### ProcessorStep: The Building Block
 
 A `ProcessorStep` is a single transformation unit that processes transitions. It's an abstract base class with two required methods:
@@ -191,7 +195,7 @@ training_postprocessor = PolicyProcessorPipeline[torch.Tensor, torch.Tensor](
     steps=[
         DeviceProcessorStep(device="cpu"),                  # Move to CPU
         UnnormalizerProcessorStep(features=..., stats=...), # Denormalize
-    ]
+    ],
     to_transition=policy_action_to_transition,
     to_output=transition_to_policy_action,
 )
@@ -313,5 +317,5 @@ Processors solve the data translation problem in robotics by providing:
 
 The key insight: `RobotProcessorPipeline` handles unbatched robot hardware data, while `PolicyProcessorPipeline` handles batched model data. Choose the right tool for your data structure!
 
-### EO-1
-https://huggingface.co/docs/lerobot/eo1.md
+### PyTorch accelerators
+https://huggingface.co/docs/lerobot/v0.7.0/torch_accelerators.md

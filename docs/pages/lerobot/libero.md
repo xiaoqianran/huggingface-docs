@@ -1,5 +1,11 @@
 # LIBERO
 
+  The commands below run the simulator locally. To keep its dependencies away
+  from your policy's, serve it instead with `lerobot-env-server
+  --config_path=docker/sim/configs/libero.yaml --sim.task= --docker=true`, where ``
+  is the command's `--env.task`, and add `--env.server.endpoint=tcp/127.0.0.1:7448` to
+  the command. A server runs the task it was started with (see [Simulation: local or served](./simulation)).
+
 LIBERO is a benchmark designed to study **lifelong robot learning** — the idea that robots need to keep learning and adapting with their users over time, not just be pretrained once. It provides a set of standardized manipulation tasks that focus on **knowledge transfer**: how well a robot can apply what it has already learned to new situations. By evaluating on LIBERO, different algorithms can be compared fairly and researchers can build on each other's work.
 
 - Paper: [Benchmarking Knowledge Transfer for Lifelong Robot Learning](https://arxiv.org/abs/2306.03310)
@@ -36,7 +42,7 @@ export MUJOCO_GL=egl  # for headless servers (HPC, cloud)
 
 ## Evaluation
 
-### Default evaluation (recommended)
+### Default local evaluation
 
 Evaluate across the four standard suites (10 episodes per task):
 
@@ -125,6 +131,8 @@ differ slightly. Use hard resets when reproducing benchmark results.
 
 For reproducible benchmarking, use **10 episodes per task** across all four standard suites (Spatial, Object, Goal, Long). This gives 400 total episodes and matches the protocol used for published results. Success rates may vary by a few percent across evaluation seeds, so we recommend averaging over 3 seeds.
 
+`lerobot-eval` reports a 95% Wilson interval (`pc_success_ci95`) next to every success rate. At 10 episodes a task scored 9/10 has an interval of roughly 60% to 98%, and a 400-episode suite total at 80% has one of roughly 76% to 84%. Two policies whose intervals overlap on a task have not been shown to differ on that task by that run. The interval covers which episodes were drawn; it does not cover the training seed of the policy, which needs more than one training run to measure.
+
   To compare two policies on the same episodes, use the same `--seed`, keep
   `--env.init_states=true`, and run each task in a single batch
   (`--eval.batch_size` equal to episodes per task).
@@ -186,7 +194,7 @@ lerobot-eval \
   --env.task=libero_spatial,libero_object,libero_goal,libero_10 \
   --eval.batch_size=1 \
   --eval.n_episodes=10 \
-  --policy.path=pi05_libero_finetuned \
+  --policy.path=lerobot/pi05_libero_finetuned \
   --policy.n_action_steps=10 \
   --env.max_parallel_tasks=1
 ```
@@ -205,5 +213,5 @@ These results are consistent with the [original results](https://github.com/Phys
 | ------------------ | -------------- | ------------- | ----------- | --------- | --------- |
 | **Pi0.5 (OpenPI)** | 98.8           | 98.2          | 98.0        | 92.4      | **96.85** |
 
-### Multitask DiT Policy
-https://huggingface.co/docs/lerobot/multi_task_dit.md
+### Training Dataset Streaming
+https://huggingface.co/docs/lerobot/v0.7.0/training_dataset_streaming.md

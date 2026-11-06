@@ -124,13 +124,15 @@ python examples/backward_compatibility/replay.py \
 Policies output actions in the same format as the datasets (`torch.Tensors`). Therefore, the same transformations should be applied.
 
 To find these transformations, we recommend first replaying an episode of the dataset your policy was trained on using the section above.
-Then, add these same transformations to your inference script (shown here in the `record.py` script):
+Then, add these same transformations to your inference script (shown here for a script that calls `predict_action`, like the `evaluate.py` examples in `examples/`):
 
 ```diff
 action_values = predict_action(
     observation_frame,
     policy,
     get_safe_torch_device(policy.config.device),
+    preprocessor,
+    postprocessor,
     policy.config.use_amp,
     task=single_task,
     robot_type=robot.robot_type,
@@ -144,5 +146,5 @@ action_values = predict_action(
 
 If you have questions or run into migration issues, feel free to ask them on [Discord](https://discord.gg/s3KuuzsPFb)
 
-### NVIDIA IsaacLab Arena & LeRobot
-https://huggingface.co/docs/lerobot/envhub_isaaclab_arena.md
+### TOPReward
+https://huggingface.co/docs/lerobot/v0.7.0/topreward.md

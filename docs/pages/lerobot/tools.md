@@ -1,6 +1,6 @@
 # Tools
 
-LeRobot v3.1 supports **tool calls** in policies — assistant messages can
+LeRobot supports **tool calls** in policies — assistant messages can
 emit structured invocations like `say(text="OK, starting now")` that the
 runtime dispatches to a real implementation (TTS, controller, logger, …).
 
@@ -130,9 +130,9 @@ loop.
 
 ### Step 1 — declare the schema
 
-Add an entry under `meta/info.json["tools"]`. Either edit the file
+Add an entry under `meta/info.json["tools"]` by editing the file
 directly on disk _before_ running the annotation pipeline (it'll be
-preserved) or hand it to `lerobot-annotate` via a config flag.
+preserved).
 
 ```json
 {
@@ -208,5 +208,5 @@ training-time chat-template formatting only), step 1 alone is enough —
 the model still learns to _generate_ the call. Steps 2 and 3 are only
 needed to actually _execute_ it at inference.
 
-### Third-Party Robots & Teleoperators
-https://huggingface.co/docs/lerobot/third_party_robots.md
+### Multitask DiT Policy
+https://huggingface.co/docs/lerobot/v0.7.0/multi_task_dit.md

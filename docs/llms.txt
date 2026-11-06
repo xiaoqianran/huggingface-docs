@@ -12,7 +12,7 @@
 - [Inference Endpoints](https://huggingface.co/docs/inference-endpoints) — 25 pages
 - [Inference Providers](https://huggingface.co/docs/inference-providers) — 27 pages
 - [Kernels](https://huggingface.co/docs/kernels) — 41 pages
-- [LeRobot](https://huggingface.co/docs/lerobot) — 91 pages
+- [LeRobot](https://huggingface.co/docs/lerobot) — 119 pages
 - [Optimum](https://huggingface.co/docs/optimum) — 16 pages
 - [PEFT](https://huggingface.co/docs/peft) — 79 pages
 - [Safetensors](https://huggingface.co/docs/safetensors) — 10 pages

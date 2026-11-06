@@ -581,7 +581,7 @@ hf models ls --warm --pipeline-tag automatic-speech-recognition --sort trending_
 
 <InferenceSnippet
     pipeline=automatic-speech-recognition
-    providersMapping={ {"deepinfra":{"modelId":"nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B","providerModelId":"nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B"},"fal-ai":{"modelId":"openai/whisper-large-v3","providerModelId":"fal-ai/whisper"},"hf-inference":{"modelId":"openai/whisper-large-v3","providerModelId":"openai/whisper-large-v3"},"replicate":{"modelId":"openai/whisper-large-v3","providerModelId":"openai/whisper:8099696689d249cf8b122d833c36ac3f75505c666a395ca40ef26f68e7d3d16e"},"together":{"modelId":"nvidia/nemotron-3.5-asr-streaming-0.6b","providerModelId":"nvidia/nemotron-3.5-asr-streaming-0.6b"}} }
+    providersMapping={ {"deepinfra":{"modelId":"nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B","providerModelId":"nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B"},"fal-ai":{"modelId":"openai/whisper-large-v3","providerModelId":"fal-ai/whisper"},"hf-inference":{"modelId":"openai/whisper-large-v3-turbo","providerModelId":"openai/whisper-large-v3-turbo"},"replicate":{"modelId":"openai/whisper-large-v3","providerModelId":"openai/whisper:8099696689d249cf8b122d833c36ac3f75505c666a395ca40ef26f68e7d3d16e"},"together":{"modelId":"nvidia/nemotron-3.5-asr-streaming-0.6b","providerModelId":"nvidia/nemotron-3.5-asr-streaming-0.6b"}} }
 />
 
 ### API specification
@@ -744,7 +744,7 @@ hf models ls --warm --pipeline-tag text-to-image --sort trending_score
 
 <InferenceSnippet
     pipeline=text-to-image
-    providersMapping={ {"fal-ai":{"modelId":"krea/Krea-2-Turbo","providerModelId":"fal-ai/krea-2/turbo"},"hf-inference":{"modelId":"stabilityai/stable-diffusion-3-medium-diffusers","providerModelId":"stabilityai/stable-diffusion-3-medium-diffusers"},"replicate":{"modelId":"black-forest-labs/FLUX.1-dev","providerModelId":"black-forest-labs/flux-dev"},"wavespeed":{"modelId":"krea/Krea-2-Turbo","providerModelId":"wavespeed-ai/krea-v2-medium-turbo/text-to-image"}} }
+    providersMapping={ {"fal-ai":{"modelId":"black-forest-labs/FLUX.1-dev","providerModelId":"fal-ai/flux/dev"},"hf-inference":{"modelId":"stabilityai/stable-diffusion-3-medium-diffusers","providerModelId":"stabilityai/stable-diffusion-3-medium-diffusers"},"replicate":{"modelId":"black-forest-labs/FLUX.1-dev","providerModelId":"black-forest-labs/flux-dev"},"wavespeed":{"modelId":"black-forest-labs/FLUX.1-dev","providerModelId":"wavespeed-ai/flux-dev"}} }
 />
 
 ### API specification
@@ -1070,7 +1070,7 @@ hf models ls --warm --pipeline-tag fill-mask --sort trending_score
 
 <InferenceSnippet
     pipeline=fill-mask
-    providersMapping={ {"hf-inference":{"modelId":"google-bert/bert-base-uncased","providerModelId":"google-bert/bert-base-uncased"}} }
+    providersMapping={ {"hf-inference":{"modelId":"jhu-clsp/mmBERT-base","providerModelId":"jhu-clsp/mmBERT-base"}} }
 />
 
 ### API specification
@@ -1123,7 +1123,7 @@ hf models ls --warm --pipeline-tag image-classification --sort trending_score
 
 <InferenceSnippet
     pipeline=image-classification
-    providersMapping={ {"hf-inference":{"modelId":"Falconsai/nsfw_image_detection","providerModelId":"Falconsai/nsfw_image_detection"}} }
+    providersMapping={ {"hf-inference":{"modelId":"google/vit-base-patch16-224","providerModelId":"google/vit-base-patch16-224"}} }
 />
 
 ### API specification

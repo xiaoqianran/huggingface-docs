@@ -14,7 +14,9 @@ You can contribute in many ways:
 - **Documentation:** Improve examples, guides, and docstrings.
 - **Feedback:** Submit tickets related to bugs or desired new features.
 
-If you are unsure where to start, join our [Discord Channel](https://discord.gg/q8Dzzpym3f).
+**Adding new hardware?** Robots, teleoperators, and cameras usually work best as a standalone plugin package rather than a change to the core library. Follow [Bring Your Own Hardware](https://huggingface.co/docs/lerobot/integrate_hardware#using-your-own-lerobot-devices-), publish your package, then open a PR adding it to [Third-Party Robots & Teleoperators](https://huggingface.co/docs/lerobot/third_party_robots) or [Third-Party Cameras & Sensors](https://huggingface.co/docs/lerobot/third_party_sensors).
+
+If you are unsure where to start, join our [Discord Channel](https://discord.gg/s3KuuzsPFb).
 
 ## Development Setup
 
@@ -50,6 +52,10 @@ To run checks manually on all files:
 pre-commit run --all-files
 ```
 
+### Docstrings
+
+The API reference is generated from the docstrings in `src/lerobot/`. If you add or change anything public, follow the [docstring standard](https://huggingface.co/docs/lerobot/writing_docstrings) — the format is parsed by the renderer and checked in CI.
+
 ### Running Tests
 
 We use `pytest`. First, ensure you have test artifacts by installing **git-lfs**:
@@ -71,6 +77,14 @@ Or run a specific test file during development:
 pytest -sv tests/test_specific_feature.py
 ```
 
+The Fast Tests CI runs one tier per extra (`base`, `dataset`, `hardware`, `viz`) and selects the tests of each tier with a pytest mark. If your test needs the `dataset`, `hardware` or `viz` extra, mark it (`pytestmark = pytest.mark.dataset` for a whole file, `@pytest.mark.dataset` for one test). Unmarked tests run in the `base` tier only, where a test that needs an extra is skipped. To run one tier locally:
+
+```bash
+pytest -sv tests -m dataset
+```
+
+The GPU Tests CI only runs tests marked `gpu`. Every test under `tests/policies` and every `@require_cuda` test gets it automatically; mark any other test that uses CUDA with `@pytest.mark.gpu`.
+
 ## Submitting Issues & Pull Requests
 
 Use the templates for required fields and examples.
@@ -85,23 +99,5 @@ Once you have submitted your PR and completed a peer review, a member of the LeR
 
 Thank you for contributing to LeRobot!
 
-### Paper
-https://huggingface.co/docs/lerobot/policy_vqbet_README.md
-
-## Paper
-
-https://sjlee.cc/vq-bet/
-
-## Citation
-
-```bibtex
-@article{lee2024behavior,
-  title={Behavior generation with latent actions},
-  author={Lee, Seungjae and Wang, Yibin and Etukuru, Haritheja and Kim, H Jin and Shafiullah, Nur Muhammad Mahi and Pinto, Lerrel},
-  journal={arXiv preprint arXiv:2403.03181},
-  year={2024}
-}
-```
-
-### Isaac Teleop
-https://huggingface.co/docs/lerobot/isaac_teleop.md
+### Introduction to Processors
+https://huggingface.co/docs/lerobot/v0.7.0/introduction_processors.md

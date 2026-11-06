@@ -1,5 +1,11 @@
 # RoboMME
 
+  The commands below run the simulator locally. To keep its dependencies away
+  from your policy's, serve it instead with `lerobot-env-server
+  --config_path=docker/sim/configs/robomme.yaml --sim.task= --docker=true`, where ``
+  is the command's `--env.task`, and add `--env.server.endpoint=tcp/127.0.0.1:7448` to
+  the command. A server runs the task it was started with (see [Simulation: local or served](./simulation)).
+
 [RoboMME](https://robomme.github.io) is a memory-augmented manipulation benchmark built on ManiSkill (SAPIEN). It evaluates a robot's ability to retain and use information across an episode — counting, object permanence, reference, and imitation.
 
 - **16 tasks** across 4 memory-skill suites
@@ -25,7 +31,7 @@
 ### Native (Linux)
 
 ```bash
-pip install --override <(printf 'gymnasium==0.29.1\nnumpy==1.26.4\n') \
+uv pip install --override <(printf 'gymnasium==0.29.1\nnumpy==1.26.4\n') \
   -e '.[smolvla,av-dep]' \
   'robomme @ git+https://github.com/RoboMME/robomme_benchmark.git@main'
 ```
@@ -34,12 +40,13 @@ pip install --override <(printf 'gymnasium==0.29.1\nnumpy==1.26.4\n') \
 
 ### Docker (recommended)
 
+Run RoboMME in its own simulator image, so its `numpy`/`gymnasium` pins never meet the policy's:
+
 ```bash
-# Build the RoboMME evaluation image from the repo root
-docker build -f docker/Dockerfile.benchmark.robomme -t lerobot-benchmark-robomme .
+lerobot-env-server --config_path=docker/sim/configs/robomme.yaml --docker=true
 ```
 
-The benchmark Dockerfile extends the published `huggingface/lerobot-gpu:latest` image, then overrides `gymnasium==0.29.1` and `numpy==1.26.4`. Both versions are runtime-safe for lerobot's actual API usage.
+Then evaluate with `--env.type=robomme --env.server.endpoint=tcp/127.0.0.1:7448` (see [Simulation: local or served](./simulation)).
 
 ## Running Evaluation
 
@@ -106,9 +113,15 @@ dataset = LeRobotDataset("lerobot/robomme")
 
 ### Feature key alignment (training)
 
-The env wrapper exposes `pixels/image` and `pixels/wrist_image` as observation keys. The `features_map` in `RoboMMEEnv` maps these to `observation.images.image` and `observation.images.wrist_image` for the policy. State is exposed as `agent_pos` and maps to `observation.state`.
+The env wrapper exposes its cameras under `pixels/<camera_name>`, named by `RoboMMEEnvConfig.front_camera_name` and `RoboMMEEnvConfig.wrist_camera_name` (`camera1` and `camera2` by default). The policy receives them as `observation.images.camera1` and `observation.images.camera2`, and the state (`agent_pos`) as `observation.state`.
 
-The dataset's `image` and `wrist_image` columns already align with the policy input keys, so no renaming is needed when fine-tuning.
+The dataset's raw columns do not match those policy keys, so pass a `--rename_map` when fine-tuning:
+
+```bash
+--rename_map='{"image": "observation.images.camera1", "wrist_image": "observation.images.camera2", "state": "observation.state", "actions": "action"}'
+```
+
+Override `--env.front_camera_name` / `--env.wrist_camera_name` if you train against different key names, so evaluation observations match the keys the policy was trained on.
 
 ## Action Spaces
 
@@ -126,5 +139,65 @@ Set via `--env.action_space=joint_angle` (default) or `--env.action_space=ee_pos
 - **gymnasium / numpy conflict**: See installation note above. Docker image handles this automatically.
 - **ManiSkill fork**: `robomme` depends on a specific ManiSkill fork (`YinpeiDai/ManiSkill`), pulled in automatically via the `robomme` package.
 
-### Adding a New Benchmark
-https://huggingface.co/docs/lerobot/adding_benchmarks.md
+### Paper
+https://huggingface.co/docs/lerobot/v0.7.0/policy_lawam_README.md
+
+## Paper
+
+https://arxiv.org/abs/2606.15768
+
+## Project
+
+Project page: https://rlinf.github.io/LaWAM/
+
+Code: https://github.com/RLinf/LaWAM
+
+Released checkpoints: https://huggingface.co/collections/jialei02/lawam-checkpoints
+
+## LIBERO Benchmark
+
+Released LIBERO SFT checkpoint, 50 episodes per task, using MuJoCo 3.3.2:
+
+LIBERO benchmark success rates are sensitive to the MuJoCo simulator version. Newer MuJoCo releases can materially reduce measured LIBERO success rates, including for policies beyond LaWAM. This is an evaluation-environment compatibility issue rather than a LaWAM adapter issue; use `mujoco==3.3.2` to reproduce the released LaWAM LIBERO and paper results exactly.
+
+| Suite            | Successes | Episodes | Success rate |
+| ---------------- | --------: | -------: | -----------: |
+| `libero_spatial` |       492 |      500 |        98.4% |
+| `libero_object`  |       498 |      500 |        99.6% |
+| `libero_goal`    |       490 |      500 |        98.0% |
+| `libero_10`      |       490 |      500 |        98.0% |
+| `overall`        |      1970 |     2000 |        98.5% |
+
+## Citation
+
+```bibtex
+@misc{chen2026lawam,
+  title = {LaWAM: Latent World Action Models for Efficient Dynamics-Aware Robot Policies},
+  author = {Chen, Jialei and Wang, Kai and Chen, Kang and Chen, Shuaihang and Gao, Feng and Tang, Wenhao and Li, Zhiyuan and Liu, Weilin and Yao, Zhuyu and Li, Boxun and Xu, Yuanbo and Yu, Chao},
+  journal = {arXiv preprint arXiv:2606.15768},
+  year = {2026},
+  archiveprefix = {arXiv},
+  primaryclass = {cs.RO},
+}
+```
+
+### Paper
+https://huggingface.co/docs/lerobot/v0.7.0/policy_act_README.md
+
+## Paper
+
+https://tonyzhaozh.github.io/aloha
+
+## Citation
+
+```bibtex
+@article{zhao2023learning,
+  title={Learning fine-grained bimanual manipulation with low-cost hardware},
+  author={Zhao, Tony Z and Kumar, Vikash and Levine, Sergey and Finn, Chelsea},
+  journal={arXiv preprint arXiv:2304.13705},
+  year={2023}
+}
+```
+
+### Isaac Teleop
+https://huggingface.co/docs/lerobot/v0.7.0/isaac_teleop.md

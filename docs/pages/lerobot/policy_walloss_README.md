@@ -44,5 +44,5 @@ If you use this work, please cite:
 
 This model follows the **Apache 2.0 License**, consistent with the original [WallX repository](https://github.com/X-Square-Robot/wall-x).
 
-### Human-In-the-Loop Data Collection
-https://huggingface.co/docs/lerobot/hil_data_collection.md
+### Simulation: local or served
+https://huggingface.co/docs/lerobot/v0.7.0/simulation.md
