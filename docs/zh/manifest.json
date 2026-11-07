@@ -885,8 +885,8 @@
       "translatedAt": "2026-10-29T14:10:20.262Z"
     },
     "hub/spaces-sdks-docker-jupyter.md": {
-      "hash": "4fd6549e3e4932e1e70bd86128f9a0626c703fb2",
-      "translatedAt": "2026-10-29T14:10:27.071Z"
+      "hash": "71d511cdabf6d5db6ec8ed94187f467f1ec12a1b",
+      "translatedAt": "2026-11-07T13:52:37.976Z"
     },
     "hub/spaces-sdks-docker-first-demo.md": {
       "hash": "5477a81ed796fa8834969754687db939aedbe1ea",
@@ -2025,8 +2025,8 @@
       "translatedAt": "2026-10-29T14:06:13.564Z"
     },
     "hub/datasets-3d.md": {
-      "hash": "354fddd282aa58270ae0fc4b84a0c7bdd624047d",
-      "translatedAt": "2026-10-29T14:06:15.785Z"
+      "hash": "28c460ec7d6b6dac9bcbe8a6bbfad9f5e3768301",
+      "translatedAt": "2026-11-07T13:52:39.732Z"
     },
     "hub/security-passkeys.md": {
       "hash": "b25209fa0469eebb8e16b9afe6f48bfdbca7035b",
@@ -2041,10 +2041,10 @@
       "translatedAt": "2026-11-04T15:19:50.836Z"
     }
   },
-  "updatedAt": "2026-11-06T14:56:09.570Z",
+  "updatedAt": "2026-11-07T13:52:39.732Z",
   "stats": {
-    "translated": 3,
-    "skipped": 397,
+    "translated": 2,
+    "skipped": 398,
     "failed": 0,
     "total": 400
   }

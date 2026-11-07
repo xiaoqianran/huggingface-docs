@@ -22,9 +22,9 @@
   仅您或您的组织可见的空间，如果您愿意，也可以_公开_
   它对其他用户可见。 
 
-* **硬件**：您想要用于 JupyterLab 实例的硬件。从 CPU 到 H100。* 您可以选择配置 `JUPYTER_TOKEN` 密码来保护您的 JupyterLab 工作区。未指定时，默认为`huggingface`。如果您的空间是公共的或者空间位于组织中，我们强烈建议您进行此设置。
+* **硬件**：您想要用于 JupyterLab 实例的硬件。从 CPU 到 H200。* 您可以选择配置 `JUPYTER_TOKEN` 密码来保护您的 JupyterLab 工作区。未指定时，默认为`huggingface`。如果您的空间是公共的或者空间位于组织中，我们强烈建议您进行此设置。
 
-Hugging Face Spaces 中的存储是短暂的，在默认配置中存储的数据可能会在空间重新启动或重置时丢失。我们建议将您的工作保存到远程位置或将[Storage Bucket](https://huggingface.co/docs/hub/storage-buckets)附加到您的空间以获取持久数据。
+Hugging Face Spaces 中的存储是短暂的，默认配置中存储的数据可能会在空间重新启动或重置时丢失。我们建议将您的工作保存到远程位置或将[Storage Bucket](https://huggingface.co/docs/hub/storage-buckets)附加到您的空间以获取持久数据。
 
 ## 阅读更多
 
