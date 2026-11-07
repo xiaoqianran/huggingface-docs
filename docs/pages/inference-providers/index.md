@@ -46,7 +46,7 @@ Our platform integrates with leading AI infrastructure providers, giving you acc
 | [Groq](./providers/groq)                     |          ✅           |          ✅           |                    |               |               |                |
 | [HF Inference](./providers/hf-inference)     |          ✅           |          ✅           |         ✅         |      ✅       |               |       ✅       |
 | [Novita](./providers/novita)                 |          ✅           |          ✅           |                    |               |      ✅       |                |
-| [Nscale](./providers/nscale)                 |          ✅           |          ✅           |                    |      ✅       |               |                |
+| [Nscale](./providers/nscale)                 |          ✅           |          ✅           |                    |               |               |                |
 | [OVHcloud AI Endpoints](./providers/ovhcloud)|          ✅           |          ✅           |                    |               |               |                |
 | [Public AI](./providers/publicai)            |          ✅           |                       |                    |               |               |                |
 | [Replicate](./providers/replicate)           |                       |                       |                    |      ✅       |      ✅       |       ✅       |

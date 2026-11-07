@@ -581,7 +581,7 @@ hf models ls --warm --pipeline-tag automatic-speech-recognition --sort trending_
 
 <InferenceSnippet
     pipeline=automatic-speech-recognition
-    providersMapping={ {"deepinfra":{"modelId":"nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B","providerModelId":"nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B"},"fal-ai":{"modelId":"openai/whisper-large-v3","providerModelId":"fal-ai/whisper"},"hf-inference":{"modelId":"openai/whisper-large-v3-turbo","providerModelId":"openai/whisper-large-v3-turbo"},"replicate":{"modelId":"openai/whisper-large-v3","providerModelId":"openai/whisper:8099696689d249cf8b122d833c36ac3f75505c666a395ca40ef26f68e7d3d16e"},"together":{"modelId":"nvidia/nemotron-3.5-asr-streaming-0.6b","providerModelId":"nvidia/nemotron-3.5-asr-streaming-0.6b"}} }
+    providersMapping={ {"deepinfra":{"modelId":"nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B","providerModelId":"nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B"},"fal-ai":{"modelId":"openai/whisper-large-v3","providerModelId":"fal-ai/whisper"},"hf-inference":{"modelId":"openai/whisper-large-v3","providerModelId":"openai/whisper-large-v3"},"replicate":{"modelId":"openai/whisper-large-v3","providerModelId":"openai/whisper:8099696689d249cf8b122d833c36ac3f75505c666a395ca40ef26f68e7d3d16e"},"together":{"modelId":"nvidia/nemotron-3.5-asr-streaming-0.6b","providerModelId":"nvidia/nemotron-3.5-asr-streaming-0.6b"}} }
 />
 
 ### API specification
@@ -1123,7 +1123,7 @@ hf models ls --warm --pipeline-tag image-classification --sort trending_score
 
 <InferenceSnippet
     pipeline=image-classification
-    providersMapping={ {"hf-inference":{"modelId":"google/vit-base-patch16-224","providerModelId":"google/vit-base-patch16-224"}} }
+    providersMapping={ {"hf-inference":{"modelId":"Falconsai/nsfw_image_detection","providerModelId":"Falconsai/nsfw_image_detection"}} }
 />
 
 ### API specification
@@ -1179,7 +1179,7 @@ hf models ls --warm --pipeline-tag image-to-image --sort trending_score
 
 <InferenceSnippet
     pipeline=image-to-image
-    providersMapping={ {"fal-ai":{"modelId":"black-forest-labs/FLUX.2-klein-9B","providerModelId":"fal-ai/flux-2/klein/9b/edit"},"replicate":{"modelId":"black-forest-labs/FLUX.2-klein-9B","providerModelId":"black-forest-labs/flux-2-klein-9b"},"wavespeed":{"modelId":"briaai/Fibo-2.0-edit-turbo","providerModelId":"bria/fibo-2.0/edit"}} }
+    providersMapping={ {"fal-ai":{"modelId":"black-forest-labs/FLUX.2-dev","providerModelId":"fal-ai/flux-2/edit"},"replicate":{"modelId":"black-forest-labs/FLUX.2-klein-9B","providerModelId":"black-forest-labs/flux-2-klein-9b"},"wavespeed":{"modelId":"briaai/Fibo-2.0-edit-turbo","providerModelId":"bria/fibo-2.0/edit"}} }
 />
 
 ### API specification

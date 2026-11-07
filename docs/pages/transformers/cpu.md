@@ -4,7 +4,7 @@ CPUs run Transformers models with the device string `cpu`, without an accelerato
 
 ## Run inference
 
-Models load on CPU by default when you don't pass `device_map`, and [pipeline()](/docs/transformers/v5.22.1/en/main_classes/pipelines#transformers.pipeline) uses the CPU when no accelerator is available. Pass `device_map="cpu"` or `device="cpu"` to use the CPU on a machine that also has an accelerator.
+Models load on CPU by default when you don't pass `device_map`, and [pipeline()](/docs/transformers/v5.22.2/en/main_classes/pipelines#transformers.pipeline) uses the CPU when no accelerator is available. Pass `device_map="cpu"` or `device="cpu"` to use the CPU on a machine that also has an accelerator.
 
 ```py
 from transformers import pipeline
@@ -23,9 +23,9 @@ The examples below cover three setups, from a single CPU to several machines whe
 - multiple processes on one machine (one per CPU socket)
 - multiple processes across several machines
 
-The single-node and multi-node examples launch processes with `mpirun` from [Intel MPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html), part of the [Intel oneAPI HPC Toolkit](https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit.html), and [Trainer](/docs/transformers/v5.22.1/en/main_classes/trainer#transformers.Trainer) runs DDP over the `gloo` backend.
+The single-node and multi-node examples launch processes with `mpirun` from [Intel MPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html), part of the [Intel oneAPI HPC Toolkit](https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit.html), and [Trainer](/docs/transformers/v5.22.2/en/main_classes/trainer#transformers.Trainer) runs DDP over the `gloo` backend.
 
-Set `bf16=True` and `use_cpu=True` in [TrainingArguments](/docs/transformers/v5.22.1/en/main_classes/trainer#transformers.TrainingArguments), or pass `--bf16` and `--use_cpu` to a training script. Prefer bf16 over fp16 on CPU because it's more numerically stable.
+Set `bf16=True` and `use_cpu=True` in [TrainingArguments](/docs/transformers/v5.22.2/en/main_classes/trainer#transformers.TrainingArguments), or pass `--bf16` and `--use_cpu` to a training script. Prefer bf16 over fp16 on CPU because it's more numerically stable.
 
 ```py
 from transformers import TrainingArguments
@@ -92,4 +92,4 @@ Set `OMP_NUM_THREADS` to the number of cores each process can use. In a containe
 - Read the Kubeflow [PyTorchJob guide](https://www.kubeflow.org/docs/components/training/user-guides/pytorch/) to run distributed CPU training on Kubernetes.
 
 ### Image processors
-https://huggingface.co/docs/transformers/v5.22.1/image_processors.md
+https://huggingface.co/docs/transformers/v5.22.2/image_processors.md
