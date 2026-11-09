@@ -45,14 +45,14 @@ task_categories:
 
 ### 链接论文
 
-如果数据集卡包含指向 Paper 页面的链接（HF 或 Arxiv 摘要/PDF），Hub 将提取 arXiv ID 并将其包含在格式为 `arxiv:<PAPER ID>` 的数据集标签中。单击该标签将使您：
+如果数据集卡包含指向 Paper 页面的链接（HF 或 Arxiv 摘要/PDF），Hub 将提取 arXiv ID 并将其包含在格式为 `arxiv:<PAPER ID>` 的数据集标签中。该中心还在数据集页面的右侧栏中列出了论文。单击该标签将使您：
 
-* 访问论文页面
-* 过滤 Hub 上引用同一论文的其他模型。
+* 访问论文页面。
+* 过滤 Hub 上引用同一论文的其他数据集。
 
-了解有关纸质页面的更多信息[here](./paper-pages)。
+阅读有关链接到纸质页面的更多信息[here](./paper-pages#linking-a-paper-to-a-model-dataset-or-space)。### 强制设置数据集模式
 
-### 强制设置数据集模式Hub 将根据数据集包含的文件（音频、视频、地理空间等）自动检测数据集的模式。如果要强制使用特定模态，可以向数据集卡元数据添加标签：`3d`、`audio`、`geospatial`、`image`、`tabular`、`text`、`timeseries`、`video`。
+Hub 将根据数据集包含的文件（音频、视频、地理空间等）自动检测数据集的模式。如果要强制使用特定模态，可以向数据集卡元数据添加标签：`3d`、`audio`、`geospatial`、`image`、`tabular`、`text`、`timeseries`、`video`。
 
 例如，要强制模态为`audio`，请将以下内容添加到数据集卡元数据中：
 
@@ -89,7 +89,7 @@ tags:
 支持的环境框架标签有：
 
 |标签 |框架|
-| ---| ---|
+| --- | --- |
 | `harbor` | [Harbor](https://github.com/harbor-framework/harbor) |
 | `verifiers` | [Verifiers](https://github.com/PrimeIntellect-ai/verifiers) |
 | `openenv` | [OpenEnv](https://github.com/huggingface/OpenEnv) |

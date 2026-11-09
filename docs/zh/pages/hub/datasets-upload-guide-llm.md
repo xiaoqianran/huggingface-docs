@@ -3,7 +3,7 @@
 # 拥抱人脸数据集上传决策指南
 
 > [!提示]
-> 本指南主要面向法学硕士，帮助用户以最兼容的格式将数据集上传到 Hugging Face Hub。用户还可以参考本指南来了解上传流程和最佳实践。
+> 本指南主要为法学硕士设计，帮助用户以最兼容的格式将数据集上传到 Hugging Face Hub。用户还可以参考本指南来了解上传流程和最佳实践。
 
 > 将数据集上传到 Hugging Face Hub 的决策指南。针对数据集查看器兼容性以及与 Hugging Face 生态系统的集成进行了优化。
 
@@ -13,7 +13,7 @@
 ## 概述
 
 您的目标是帮助用户将数据集上传到 Hugging Face Hub。理想情况下，数据集应与数据集查看器（以及`load_dataset`功能）兼容，以确保轻松访问和可用性。您应该致力于满足以下标准：| **标准** |描述 |优先|
-| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- || **尊重存储库限制** |确保数据集遵守 Hugging Face 的文件大小、存储库大小和文件计数的存储限制。有关具体限制，请参阅下面的关键约束部分。                                                                                                                                                                                               |必填 |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- || **尊重存储库限制** |确保数据集遵守 Hugging Face 的文件大小、存储库大小和文件计数的存储限制。有关具体限制，请参阅下面的关键约束部分。                                                                                                                                                                                               |必填|
 | **使用集线器兼容的格式** |尽可能使用 Parquet 格式（最佳压缩、丰富的类型、大数据集支持）。对于较小的数据集 (<several GB), JSON/JSONL or CSV are acceptable. Raw files work well for images/audio in smaller datasets while respecting repo limits. Use WebDataset (.tar) for large media collections. Domain-specific formats can be used when conversion is impractical. | Desired                                           |
 | **Dataset Viewer compatibility**   | Structure data to work with the automatic Dataset Viewer, enabling preview and easy exploration. This typically means using supported formats and proper file organization. Validation steps are provided later in this guide.                                                                                                                                               | Desired                                           |
 | **Organize data sensibly**         | Use logical folder structures that match Hub conventions (e.g., train/test splits). Configs can be used to define different configurations of the dataset. This facilitates both human understanding and automatic data loading.                                                                                                                                             | Desired                                           |
@@ -259,7 +259,7 @@ Use when you have hub-compatible files (e.g., Parquet files) already prepared an
 
 |问题 |解决方案 |
 | -------------------------- | ------------------------------------------------ |
-| “找不到存储库” |运行`hf auth login` |
+| “找不到存储库”|运行`hf auth login` |
 |内存错误 |使用`max_shard_size="500MB"` |
 |数据集查看器无法工作 |等待5-10分钟，检查README.md配置|
 |文件 >200GB |分割成更小的文件 |
@@ -364,5 +364,5 @@ dataset.push_to_hub("username/dataset")
 - 加入[Hugging Face Discord](https://hf.co/join/discord)获取实时帮助
 - 许多特定领域的格式已经在 Hub 上有示例
 
-### 发布商分析
-https://huggingface.co/docs/hub/publisher-analytics.md
+### 容器镜像访问控制
+https://huggingface.co/docs/hub/container-images-access.md

@@ -113,8 +113,8 @@
       "translatedAt": "2026-10-29T14:06:26.450Z"
     },
     "hub/datasets-cards.md": {
-      "hash": "2e24f23202056d71ebcecae4ddd497ac674a6db7",
-      "translatedAt": "2026-10-29T14:06:23.734Z"
+      "hash": "cd9900725198f5467303089b32426ef938f6e43f",
+      "translatedAt": "2026-11-09T17:22:31.457Z"
     },
     "hub/datasets-data-designer.md": {
       "hash": "774eb65235266515a110f1a98c8ee99eb0539522",
@@ -237,8 +237,8 @@
       "translatedAt": "2026-10-29T14:07:01.059Z"
     },
     "hub/datasets-libraries.md": {
-      "hash": "673fa28c054807a36bcdfadb555af40a849f5e46",
-      "translatedAt": "2026-11-04T15:19:40.083Z"
+      "hash": "1dabc41ea2e50b49c1c7a1f8c5b2aaa5f5e69330",
+      "translatedAt": "2026-11-09T17:22:41.830Z"
     },
     "hub/datasets-streaming.md": {
       "hash": "009effb81c7718201e1bad29b3b7a902b18e4b05",
@@ -277,8 +277,8 @@
       "translatedAt": "2026-10-29T14:07:11.013Z"
     },
     "hub/datasets-upload-guide-llm.md": {
-      "hash": "7e5c6bdaed86577d44274d8d9c4b96c16f4e054c",
-      "translatedAt": "2026-10-29T14:07:08.363Z"
+      "hash": "52630c2cb43098075b70e40671d970e275d51c9d",
+      "translatedAt": "2026-11-09T17:22:36.350Z"
     },
     "hub/datasets-viewer-sql-console.md": {
       "hash": "4de09bb327481fb46fd0a4bdc37708913aaae750",
@@ -489,12 +489,12 @@
       "translatedAt": "2026-10-29T14:08:33.400Z"
     },
     "hub/model-cards.md": {
-      "hash": "16c446b499378cf4c526c58780af8fc49860563c",
-      "translatedAt": "2026-11-04T15:19:38.919Z"
+      "hash": "318b6a9885173193e3c85e7a2d90032fed642367",
+      "translatedAt": "2026-11-09T17:22:45.655Z"
     },
     "hub/model-release-checklist.md": {
-      "hash": "cf0e46ece594f76ccb739eedfa551008a0ee4219",
-      "translatedAt": "2026-10-29T14:08:43.954Z"
+      "hash": "a3046b209a6a80a15dbfddd2e0ed7e531b951e61",
+      "translatedAt": "2026-11-09T17:22:45.238Z"
     },
     "hub/models-advanced.md": {
       "hash": "9e3d82a9df2e4f99ad90e27e74f63728771ceea9",
@@ -509,8 +509,8 @@
       "translatedAt": "2026-10-29T14:08:42.435Z"
     },
     "hub/models-faq.md": {
-      "hash": "084bf54bd07b3a7f84ff5b304de318f7a2850868",
-      "translatedAt": "2026-10-29T14:08:49.135Z"
+      "hash": "ce3495ffe99833d8f48af4af804d89166fe03b96",
+      "translatedAt": "2026-11-09T17:22:45.392Z"
     },
     "hub/models-downloading.md": {
       "hash": "bd581fe6146288187c63e3a4cbe783c7aec0c79c",
@@ -565,8 +565,8 @@
       "translatedAt": "2026-10-29T14:09:04.850Z"
     },
     "hub/models-widgets.md": {
-      "hash": "af78ebcf4b46bede784b858afb089902be2f60f6",
-      "translatedAt": "2026-10-29T14:09:05.839Z"
+      "hash": "6f9063c190b5d7efed18c7f09046f70496cda452",
+      "translatedAt": "2026-11-09T17:22:51.677Z"
     },
     "hub/open_clip.md": {
       "hash": "1966f08bf2bae6c965066eb21bd71cd7131a7530",
@@ -605,8 +605,8 @@
       "translatedAt": "2026-10-29T14:09:14.525Z"
     },
     "hub/paper-pages.md": {
-      "hash": "e563da486f0bdb497a62d5e02040f2c8e519e641",
-      "translatedAt": "2026-10-29T14:09:14.067Z"
+      "hash": "79153c1a6a9caea4e2a658bbd601e67a317bf5db",
+      "translatedAt": "2026-11-09T17:22:47.769Z"
     },
     "hub/paddlenlp.md": {
       "hash": "c273155981b146edb92ea4720bb34aa51a2ca4f3",
@@ -2021,12 +2021,12 @@
       "translatedAt": "2026-11-05T15:20:29.138Z"
     },
     "hub/container-images.md": {
-      "hash": "5c74465b15a7a64bb374d2bf9f522a3954b605a1",
-      "translatedAt": "2026-10-29T14:06:13.564Z"
+      "hash": "556d8728fa30eded3205f2367e3c115b3a527a0b",
+      "translatedAt": "2026-11-09T17:22:28.408Z"
     },
     "hub/datasets-3d.md": {
-      "hash": "28c460ec7d6b6dac9bcbe8a6bbfad9f5e3768301",
-      "translatedAt": "2026-11-07T13:52:39.732Z"
+      "hash": "966d7f3fc45cf3de159f7e0872f345ff5061e8e0",
+      "translatedAt": "2026-11-09T17:22:31.074Z"
     },
     "hub/security-passkeys.md": {
       "hash": "b25209fa0469eebb8e16b9afe6f48bfdbca7035b",
@@ -2039,12 +2039,20 @@
     "hub/storage-buckets-migration.md": {
       "hash": "110eb36935d4bc30e04c66091f44d91a27536720",
       "translatedAt": "2026-11-04T15:19:50.836Z"
+    },
+    "hub/container-images-access.md": {
+      "hash": "03e67e6e3adc898afdb1a61527a738bbf10ce686",
+      "translatedAt": "2026-11-09T17:22:26.347Z"
+    },
+    "hub/datasets-zephon.md": {
+      "hash": "5a28871db957245f20e185bb5d95969e6692c0f0",
+      "translatedAt": "2026-11-09T17:22:34.259Z"
     }
   },
-  "updatedAt": "2026-11-08T14:13:33.900Z",
+  "updatedAt": "2026-11-09T17:22:51.677Z",
   "stats": {
-    "translated": 0,
-    "skipped": 400,
+    "translated": 12,
+    "skipped": 388,
     "failed": 0,
     "total": 400
   }

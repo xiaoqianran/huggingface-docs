@@ -18,11 +18,11 @@ curl -X POST https://huggingface.co/api/containers/my-org/my-app \
   -d '{"private": true}'
 ```
 
-在推送之前创建存储库：推送到缺失的存储库会失败，并显示 `NAME_UNKNOWN`。它的页面`https://huggingface.co/containers/my-org/my-app`列出了它的标签。谁可以拉动和推送取决于存储库的可见性以及每个成员在组织中的角色。
+在推送之前创建存储库：推送到缺失的存储库会失败，并显示 `NAME_UNKNOWN`。它的页面`https://huggingface.co/containers/my-org/my-app`列出了它的标签。谁可以拉和推遵循存储库的可见性以及每个成员在组织中或其资源组中的角色：请参阅[Access Control](./container-images-access)。
 
 ## 使用 `hf image` 推拉
 
-[⟦T9⟧](https://github.com/huggingface/hf-image)，`hf` CLI 的扩展，仅传输自上一版本以来每层发生更改的部分，与其他 OCI 客户端相比，体验更快。
+[⟦T9⟧](https://github.com/huggingface/hf-image)，`hf` CLI 的扩展，仅传输自上一版本以来各层发生更改的部分，与其他 OCI 客户端相比，体验更快。
 
 ```bash
 hf extensions install hf-image
@@ -32,7 +32,7 @@ hf image push cr.hf.co/my-org/my-app:v2
 hf image pull cr.hf.co/my-org/my-app:v2
 ```
 
-它使用您的 Hugging Face [User Access Token](./security-tokens)（`read` 来拉，`write` 来推），并且需要 Docker 和 [containerd image store](https://docs.docker.com/engine/storage/containerd/)。使用 `hf image` 推送的图像可以由任何客户端拉取。由于 `hf image` 存储未压缩的图层，因此它推送的图像会获得与 `docker push` 不同的摘要。要保留 `docker push` 摘要，对于摘要固定的签名或部署，请使用 `hf image push --preserve-digests`。它比较慢：更改后的图层会被完整地推送和拉动，就像`docker push`一样。
+它使用你的 Hugging Face [User Access Token](./security-tokens)（`read` 来拉，`write` 来推），并且需要 Docker 和 [containerd image store](https://docs.docker.com/engine/storage/containerd/)。使用 `hf image` 推送的图像可以由任何客户端拉取。由于 `hf image` 存储未压缩的图层，因此它推送的图像会获得与 `docker push` 不同的摘要。要保留 `docker push` 摘要，对于摘要固定的签名或部署，请使用 `hf image push --preserve-digests`。它比较慢：更改后的图层会被完整地推送和拉动，就像`docker push`一样。
 
 ## 使用 Docker 和其他 OCI 客户端
 

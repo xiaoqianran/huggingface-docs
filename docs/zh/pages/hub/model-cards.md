@@ -229,12 +229,14 @@ model-index:
 
 如果模型卡包含指向 Paper 页面的链接（在 HF 或 Arxiv 摘要/PDF 上），Hugging Face Hub 将提取 arXiv ID 并将其包含在格式为 `arxiv:<PAPER ID>` 的模型标签中。单击该标签将使您：
 
-* 访问论文页面
+* 访问论文页面。
 * 过滤 Hub 上引用同一论文的其他模型。
 
-阅读有关纸质页面[here](./paper-pages)的更多信息。
+该中心还在模型页面的右侧边栏中列出了最多五篇链接的论文：
 
-## 模型卡文本有关如何填写模型卡的人类可读部分（以便可以打印、剪切+粘贴等）的详细信息，请参阅[Annotated Model Card](./model-card-annotated)。
+阅读有关链接论文的更多信息[here](./paper-pages#linking-a-paper-to-a-model-dataset-or-space)。## 模型卡文本
+
+有关如何填写模型卡的人类可读部分（以便可以打印、剪切+粘贴等）的详细信息，请参阅[Annotated Model Card](./model-card-annotated)。
 
 ## 常见问题解答
 
@@ -278,7 +280,7 @@ Image only displays when viewing in dark mode
 
 ### 我可以在模型卡中写入 LaTeX 吗？
 
-是的！ Hub 使用 [KaTeX](https://katex.org/) 数学排版库在解析 Markdown 之前在服务器端渲染数学公式。
+是的！ Hub 在解析 Markdown 之前使用 [KaTeX](https://katex.org/) 数学排版库在服务器端渲染数学公式。
 
 您必须使用以下分隔符：
 - `$$ ... $$` 用于显示模式

@@ -24,9 +24,9 @@ Hugging Face Hub 也是 Spaces 的所在地，这是用于展示模型的交互�
 
 ## 我可以将我的模型链接到 arXiv 上的论文吗？
 
-如果模型卡包含 arXiv 上论文的链接，Hugging Face Hub 将提取 arXiv ID 并将其包含在格式为 `arxiv:<PAPER ID>` 的模型标签中。单击该标签将使您：
+如果模型卡包含 arXiv 上论文的链接，Hugging Face Hub 将提取 arXiv ID 并将其包含在格式为 `arxiv:<PAPER ID>` 的模型标签中。该中心还在模型页面的右侧栏中列出了论文。单击该标签将使您：
 
-* 访问纸质页面
+* 访问论文页面。
 * 过滤 Hub 上引用同一论文的其他模型。
 
 了解有关纸质页面的更多信息[here](./paper-pages)。

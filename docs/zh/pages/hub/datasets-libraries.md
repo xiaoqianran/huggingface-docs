@@ -11,7 +11,7 @@
 下表总结了支持的库及其集成级别。
 
 |图书馆 |描述 |从集线器下载 |从集线器传输 |推送到集线器 |流式传输到集线器 |优化的 Parquet 文件 |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- | --------------- | ----------- | ------------- | ------------------------ |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- | ---------------- | ----------- | ------------- | ------------------------ |
 | [Daft](./datasets-daft) |使用 Python 原生接口进行大规模、多模式数据处理的数据引擎。                                        | ✅ | ✅ | ✅ | ✅ | ✅ || [Dask](./datasets-dask) |并行和分布式计算库，可扩展现有的 Python 和 PyData 生态系统。                               | ✅ | ✅ | ✅ | ✅ | ✅* |
 | [Data Designer](./datasets-data-designer) | NVIDIA NeMo 框架，用于使用 LLM 生成合成数据集。                                                      | ✅ | ❌ | ✅ | ❌ | ❌ |
 | [Datasets](./datasets-usage) | 🤗 Datasets 是一个用于访问和共享音频、计算机视觉和自然语言处理 (NLP) 数据集的库。 | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -20,7 +20,9 @@
 | [Polars](./datasets-polars) | OLAP 查询引擎之上的 DataFrame 库。                                                                            | ✅ | ✅ | ✅ | ❌ | ❌ |
 | [PyArrow](./datasets-pyarrow) | Apache Arrow 是一种柱状格式和用于快速数据交换和内存分析的工具箱。                             | ✅ | ✅ | ✅ | ✅ | ✅* |
 | [Spark](./datasets-spark) |分布式环境下的实时、大规模数据处理工具。                                                      | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [WebDataset](./datasets-webdataset) |用于为大型数据集编写 I/O 管道的库。                                                                             | ✅ | ✅ | ❌ | ❌ | ❌ |_ * 需要传递额外的参数来写入优化的 Parquet 文件_
+| [WebDataset](./datasets-webdataset) |用于为大型数据集编写 I/O 管道的库。                                                                             | ✅ | ✅ | ❌ | ❌ | ❌ || [Zephon](./datasets-zephon) |用于基础模型训练的确定性数据加载器，具有在线标记化、打包和标记感知混合。             | ✅ | ✅ | ❌ | ❌ | ❌ |
+
+_ * 需要传递额外的参数来写入优化的 Parquet 文件_
 
 其他库具有用于管理数据集的集成：[Embedding Atlas](./datasets-embedding-atlas)（嵌入可视化）、[Fenic](./datasets-fenic)（语义处理）、[FiftyOne](./datasets-fiftyone)（图像可视化和管理）。
 
@@ -32,11 +34,11 @@
 它节省了本地磁盘空间，因为数据永远不在磁盘上。它可以节省内存，因为一次仅使用数据集的一小部分。而且它还可以节省时间，因为无需在 CPU 或 GPU 工作负载之前下载数据。
 
 除了从“Hugging Face”流式传输之外，许多库还支持“返回”Hugging Face 流式传输。
-因此，他们可以运行端到端的流传输管道：从源进行流传输并逐步写入 Hugging Face，通常会重叠下载、上传和处理步骤。
+因此，他们可以运行端到端的流传输管道：从源进行流传输并逐步写入 Hugging Face，通常会重叠下载、上传和处理步骤。有关如何进行流式传输的更多详细信息，请查看支持流式传输的库的文档（参见上表），或者如果您想自己从 Hugging Face 流式传输数据集，请查看[streaming datasets](./datasets-streaming)文档。
 
-有关如何进行流式传输的更多详细信息，请查看支持流式传输的库的文档（参见上表），或者如果您想自己从 Hugging Face 流式传输数据集，请查看 [streaming datasets](./datasets-streaming) 文档。
+### 优化的 Parquet 文件
 
-### 优化的 Parquet 文件Hugging Face 上的 Parquet 文件经过优化，可提高存储效率、加速下载和上传，并实现高效的数据集流式传输和编辑。
+Hugging Face 上的 Parquet 文件经过优化，可提高存储效率、加速下载和上传，并实现高效的数据集流式传输和编辑。
 
 优化的 Parquet 文件是具有附加功能的 Parquet 文件：
 
@@ -51,7 +53,7 @@
 ## 培训库
 
 与 Hub 数据集集成以进行模型训练的训练库。下表显示了它们的流功能 - 无需先下载数据集即可进行训练的能力。|图书馆 |描述 |从集线器传输 |
-| -------- | ----------- | --------------- |
+| -------- | ----------- | ---------------- |
 | [Axolotl](https://docs.axolotl.ai/docs/streaming.html) |低代码LLM微调框架| ✅ |
 | [LlamaFactory](https://github.com/hiyouga/LLaMA-Factory) | 100+ LLM 统一微调 | ✅ |
 | [Sentence Transformers](https://sbert.net/docs/sentence_transformer/training_overview.html) |文本嵌入和语义相似度 | ✅ |
@@ -67,7 +69,7 @@
 - 您想立即开始训练
 - 您正在使用 [HF Jobs](https://huggingface.co/docs/hub/jobs)，其中共置计算可提供更快的流传输
 
-最近的改进使流式传输[up to 100x more efficient](https://huggingface.co/blog/streaming-datasets)具有更快的启动速度、预取速度以及更好的扩展到许多工作人员的能力。
+最近的改进使流式传输[up to 100x more efficient](https://huggingface.co/blog/streaming-datasets)具有更快的启动、预取和更好的扩展到许多工作人员的能力。
 
 **注意：** 流式处理需要在训练参数中使用`max_steps`，因为数据集长度未知，并且使用基于缓冲区的改组。更多详情请参见[streaming datasets](./datasets-streaming)。
 
@@ -98,7 +100,7 @@
 
 - 无论原始格式如何，一致的数据访问模式
 - 通过 Hub 的数据集查看器进行内置数据集预览和探索。数据集查看器还可以作为 iframe 嵌入到您的应用程序中，从而轻松提供丰富的数据集预览。有关嵌入查看器的更多信息，请参阅[dataset viewer embedding documentation](https://huggingface.co/docs/hub/en/datasets-viewer-embed)。
-- 针对查询优化的高效列式存储。例如，您可以使用 [DuckDB](https://duckdb.org/) 等工具来查询或筛选特定的数据子集。
+- 针对查询优化的高效列式存储。例如，您可以使用[DuckDB](https://duckdb.org/)之类的工具来查询或过滤特定的数据子集。
 - Parquet 在机器学习和数据科学生态系统中得到了良好的支持。
 
 有关使用数据集查看器 API 的更多详细信息，请参阅 [Dataset Viewer API documentation](https://huggingface.co/docs/dataset-viewer/index)
