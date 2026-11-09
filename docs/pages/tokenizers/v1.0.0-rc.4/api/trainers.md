@@ -26,5 +26,5 @@ tokenizers.trainers.WordPieceTrainer
 
 The Rust API Reference is available directly on the [Docs.rs](https://docs.rs/tokenizers/latest/tokenizers/) website.
 
-### Visualizer
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/visualizer.md
+### Models
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/api/models.md

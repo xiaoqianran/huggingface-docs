@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-11-08T14:13:33.707380+00:00",
+  "fetchedAt": "2026-11-09T17:22:25.482192+00:00",
   "method": "llms-full-split",
-  "ok": 2292,
+  "ok": 2294,
   "failed": 0,
   "pages": [
     {
@@ -5205,7 +5205,7 @@
     },
     {
       "rel": "hub/paper-pages.md",
-      "bytes": 2783,
+      "bytes": 2920,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/paper-pages.md",
       "track": "Hub",
@@ -5583,7 +5583,7 @@
     },
     {
       "rel": "hub/model-cards.md",
-      "bytes": 14731,
+      "bytes": 14864,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/model-cards.md",
       "track": "Hub",
@@ -5880,7 +5880,7 @@
     },
     {
       "rel": "hub/model-release-checklist.md",
-      "bytes": 15199,
+      "bytes": 15207,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/model-release-checklist.md",
       "track": "Hub",
@@ -6033,7 +6033,7 @@
     },
     {
       "rel": "hub/models-faq.md",
-      "bytes": 3271,
+      "bytes": 3340,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/models-faq.md",
       "track": "Hub",
@@ -6312,7 +6312,7 @@
     },
     {
       "rel": "hub/datasets-3d.md",
-      "bytes": 6075,
+      "bytes": 8381,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/datasets-3d.md",
       "track": "Hub",
@@ -6447,7 +6447,7 @@
     },
     {
       "rel": "hub/container-images.md",
-      "bytes": 4253,
+      "bytes": 4328,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/container-images.md",
       "track": "Hub",
@@ -6627,12 +6627,21 @@
     },
     {
       "rel": "hub/datasets-upload-guide-llm.md",
-      "bytes": 23651,
+      "bytes": 23667,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/datasets-upload-guide-llm.md",
       "track": "Hub",
       "package": "hub",
       "title": "Hugging Face Dataset Upload Decision Guide"
+    },
+    {
+      "rel": "hub/container-images-access.md",
+      "bytes": 1367,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/container-images-access.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Container Images Access Control"
     },
     {
       "rel": "hub/publisher-analytics.md",
@@ -6780,7 +6789,7 @@
     },
     {
       "rel": "hub/datasets-cards.md",
-      "bytes": 5325,
+      "bytes": 5454,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/datasets-cards.md",
       "track": "Hub",
@@ -7077,7 +7086,7 @@
     },
     {
       "rel": "hub/datasets-libraries.md",
-      "bytes": 15032,
+      "bytes": 15300,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/datasets-libraries.md",
       "track": "Hub",
@@ -7320,12 +7329,21 @@
     },
     {
       "rel": "hub/models-widgets.md",
-      "bytes": 8742,
+      "bytes": 8751,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/models-widgets.md",
       "track": "Hub",
       "package": "hub",
       "title": "Widgets"
+    },
+    {
+      "rel": "hub/datasets-zephon.md",
+      "bytes": 5868,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-zephon.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Zephon"
     },
     {
       "rel": "hub/search.md",
@@ -8616,7 +8634,7 @@
     },
     {
       "rel": "kernels/builder-cli.md",
-      "bytes": 11618,
+      "bytes": 11384,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder-cli.md",
       "track": "Kernels",
@@ -8760,7 +8778,7 @@
     },
     {
       "rel": "kernels/builder/build-variants.md",
-      "bytes": 3310,
+      "bytes": 3375,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/build-variants.md",
       "track": "Kernels",
@@ -8814,7 +8832,7 @@
     },
     {
       "rel": "kernels/builder/writing-kernels.md",
-      "bytes": 23380,
+      "bytes": 22210,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/writing-kernels.md",
       "track": "Kernels",
@@ -10830,7 +10848,7 @@
     },
     {
       "rel": "safetensors/api/tensorflow.md",
-      "bytes": 3920,
+      "bytes": 3872,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/safetensors/main/api/tensorflow.md",
       "track": "Safetensors",
@@ -12575,175 +12593,175 @@
       "title": "Learning Rate Schedulers"
     },
     {
-      "rel": "tokenizers/v1.0.0-rc.3/index.md",
-      "bytes": 1725,
+      "rel": "tokenizers/v1.0.0-rc.4/index.md",
+      "bytes": 3113,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/index.md",
+      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/index.md",
       "track": "Tokenizers",
       "package": "tokenizers",
       "title": "Tokenizers"
     },
     {
-      "rel": "tokenizers/v1.0.0-rc.3/quicktour.md",
-      "bytes": 14050,
+      "rel": "tokenizers/v1.0.0-rc.4/node.md",
+      "bytes": 3104,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/quicktour.md",
-      "track": "Tokenizers",
-      "package": "tokenizers",
-      "title": "Quicktour"
-    },
-    {
-      "rel": "tokenizers/v1.0.0-rc.3/components.md",
-      "bytes": 11977,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/components.md",
-      "track": "Tokenizers",
-      "package": "tokenizers",
-      "title": "Components"
-    },
-    {
-      "rel": "tokenizers/v1.0.0-rc.3/installation.md",
-      "bytes": 1551,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/installation.md",
-      "track": "Tokenizers",
-      "package": "tokenizers",
-      "title": "Installation"
-    },
-    {
-      "rel": "tokenizers/v1.0.0-rc.3/node.md",
-      "bytes": 3111,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/node.md",
+      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/node.md",
       "track": "Tokenizers",
       "package": "tokenizers",
       "title": "Node"
     },
     {
-      "rel": "tokenizers/v1.0.0-rc.3/training_from_memory.md",
-      "bytes": 5834,
+      "rel": "tokenizers/v1.0.0-rc.4/pipeline.md",
+      "bytes": 14144,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/training_from_memory.md",
-      "track": "Tokenizers",
-      "package": "tokenizers",
-      "title": "Training from memory"
-    },
-    {
-      "rel": "tokenizers/v1.0.0-rc.3/pipeline.md",
-      "bytes": 14126,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/pipeline.md",
+      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/pipeline.md",
       "track": "Tokenizers",
       "package": "tokenizers",
       "title": "The tokenization pipeline"
     },
     {
-      "rel": "tokenizers/v1.0.0-rc.3/api/tokenizer.md",
-      "bytes": 727,
+      "rel": "tokenizers/v1.0.0-rc.4/training_from_memory.md",
+      "bytes": 4408,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/tokenizer.md",
+      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/training_from_memory.md",
       "track": "Tokenizers",
       "package": "tokenizers",
-      "title": "Tokenizer"
+      "title": "Training from memory"
     },
     {
-      "rel": "tokenizers/v1.0.0-rc.3/api/encoding.md",
-      "bytes": 773,
+      "rel": "tokenizers/v1.0.0-rc.4/installation.md",
+      "bytes": 1563,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/encoding.md",
+      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/installation.md",
       "track": "Tokenizers",
       "package": "tokenizers",
-      "title": "Encoding"
+      "title": "Installation"
     },
     {
-      "rel": "tokenizers/v1.0.0-rc.3/api/models.md",
-      "bytes": 862,
+      "rel": "tokenizers/v1.0.0-rc.4/components.md",
+      "bytes": 11971,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/models.md",
+      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/components.md",
       "track": "Tokenizers",
       "package": "tokenizers",
-      "title": "Models"
+      "title": "Components"
     },
     {
-      "rel": "tokenizers/v1.0.0-rc.3/api/encode-inputs.md",
-      "bytes": 2429,
+      "rel": "tokenizers/v1.0.0-rc.4/quicktour.md",
+      "bytes": 14062,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/encode-inputs.md",
+      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/quicktour.md",
       "track": "Tokenizers",
       "package": "tokenizers",
-      "title": "Encode Inputs"
+      "title": "Quicktour"
     },
     {
-      "rel": "tokenizers/v1.0.0-rc.3/api/normalizers.md",
-      "bytes": 1641,
+      "rel": "tokenizers/v1.0.0-rc.4/api/pre-tokenizers.md",
+      "bytes": 1683,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/normalizers.md",
-      "track": "Tokenizers",
-      "package": "tokenizers",
-      "title": "Normalizers"
-    },
-    {
-      "rel": "tokenizers/v1.0.0-rc.3/api/input-sequences.md",
-      "bytes": 1594,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/input-sequences.md",
-      "track": "Tokenizers",
-      "package": "tokenizers",
-      "title": "Input Sequences"
-    },
-    {
-      "rel": "tokenizers/v1.0.0-rc.3/api/pre-tokenizers.md",
-      "bytes": 1681,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/pre-tokenizers.md",
+      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/api/pre-tokenizers.md",
       "track": "Tokenizers",
       "package": "tokenizers",
       "title": "Pre-tokenizers"
     },
     {
-      "rel": "tokenizers/v1.0.0-rc.3/api/decoders.md",
-      "bytes": 1358,
+      "rel": "tokenizers/v1.0.0-rc.4/api/tokenizer.md",
+      "bytes": 731,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/decoders.md",
+      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/api/tokenizer.md",
       "track": "Tokenizers",
       "package": "tokenizers",
-      "title": "Decoders"
+      "title": "Tokenizer"
     },
     {
-      "rel": "tokenizers/v1.0.0-rc.3/api/post-processors.md",
-      "bytes": 1021,
+      "rel": "tokenizers/v1.0.0-rc.4/api/visualizer.md",
+      "bytes": 720,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/post-processors.md",
-      "track": "Tokenizers",
-      "package": "tokenizers",
-      "title": "Post-processors"
-    },
-    {
-      "rel": "tokenizers/v1.0.0-rc.3/api/trainers.md",
-      "bytes": 995,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/trainers.md",
-      "track": "Tokenizers",
-      "package": "tokenizers",
-      "title": "Trainers"
-    },
-    {
-      "rel": "tokenizers/v1.0.0-rc.3/api/visualizer.md",
-      "bytes": 728,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/visualizer.md",
+      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/api/visualizer.md",
       "track": "Tokenizers",
       "package": "tokenizers",
       "title": "Visualizer"
     },
     {
-      "rel": "tokenizers/v1.0.0-rc.3/api/added-tokens.md",
-      "bytes": 578,
+      "rel": "tokenizers/v1.0.0-rc.4/api/trainers.md",
+      "bytes": 987,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/added-tokens.md",
+      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/api/trainers.md",
+      "track": "Tokenizers",
+      "package": "tokenizers",
+      "title": "Trainers"
+    },
+    {
+      "rel": "tokenizers/v1.0.0-rc.4/api/models.md",
+      "bytes": 862,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/api/models.md",
+      "track": "Tokenizers",
+      "package": "tokenizers",
+      "title": "Models"
+    },
+    {
+      "rel": "tokenizers/v1.0.0-rc.4/api/encode-inputs.md",
+      "bytes": 2443,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/api/encode-inputs.md",
+      "track": "Tokenizers",
+      "package": "tokenizers",
+      "title": "Encode Inputs"
+    },
+    {
+      "rel": "tokenizers/v1.0.0-rc.4/api/decoders.md",
+      "bytes": 1344,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/api/decoders.md",
+      "track": "Tokenizers",
+      "package": "tokenizers",
+      "title": "Decoders"
+    },
+    {
+      "rel": "tokenizers/v1.0.0-rc.4/api/encoding.md",
+      "bytes": 783,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/api/encoding.md",
+      "track": "Tokenizers",
+      "package": "tokenizers",
+      "title": "Encoding"
+    },
+    {
+      "rel": "tokenizers/v1.0.0-rc.4/api/normalizers.md",
+      "bytes": 1635,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/api/normalizers.md",
+      "track": "Tokenizers",
+      "package": "tokenizers",
+      "title": "Normalizers"
+    },
+    {
+      "rel": "tokenizers/v1.0.0-rc.4/api/added-tokens.md",
+      "bytes": 673,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/api/added-tokens.md",
       "track": "Tokenizers",
       "package": "tokenizers",
       "title": "Added Tokens"
+    },
+    {
+      "rel": "tokenizers/v1.0.0-rc.4/api/post-processors.md",
+      "bytes": 1035,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/api/post-processors.md",
+      "track": "Tokenizers",
+      "package": "tokenizers",
+      "title": "Post-processors"
+    },
+    {
+      "rel": "tokenizers/v1.0.0-rc.4/api/input-sequences.md",
+      "bytes": 1501,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/api/input-sequences.md",
+      "track": "Tokenizers",
+      "package": "tokenizers",
+      "title": "Input Sequences"
     },
     {
       "rel": "transformers.js/index.md",
@@ -20682,10 +20700,10 @@
     },
     {
       "pkg": "hub",
-      "toc": 278,
-      "found": 277,
-      "written": 277,
-      "full_bytes": 1603913
+      "toc": 280,
+      "found": 279,
+      "written": 279,
+      "full_bytes": 1614365
     },
     {
       "pkg": "huggingface_hub",
@@ -20713,7 +20731,7 @@
       "toc": 41,
       "found": 41,
       "written": 41,
-      "full_bytes": 253394
+      "full_bytes": 252055
     },
     {
       "pkg": "lerobot",
@@ -20741,7 +20759,7 @@
       "toc": 10,
       "found": 10,
       "written": 10,
-      "full_bytes": 42257
+      "full_bytes": 42209
     },
     {
       "pkg": "smolagents",
@@ -20776,7 +20794,7 @@
       "toc": 19,
       "found": 19,
       "written": 19,
-      "full_bytes": 66540
+      "full_bytes": 66541
     },
     {
       "pkg": "transformers.js",

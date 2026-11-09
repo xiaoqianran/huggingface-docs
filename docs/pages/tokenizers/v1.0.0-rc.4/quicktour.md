@@ -465,5 +465,5 @@ as long as you have downloaded the file `bert-base-uncased-vocab.txt` with
 hf download hf://google-bert/bert-base-uncased/vocab.txt
 ```
 
-### Components
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/components.md
+### Pre-tokenizers
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/api/pre-tokenizers.md

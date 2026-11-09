@@ -27,7 +27,7 @@ trainer = trainers.UnigramTrainer(
 )
 ```
 
-This tokenizer is based on the `~tokenizers.models.Unigram` model. It
+This tokenizer is based on the `Unigram` model. It
 takes care of normalizing the input using the NFKC Unicode normalization
 method, and uses a `~tokenizers.pre_tokenizers.ByteLevel` pre-tokenizer with the corresponding decoder.
 
@@ -124,31 +124,5 @@ tokenizer.train_from_iterator(gzip_iterator(), trainer=trainer)
 
 And voilà!
 
-### Tokenizers
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/index.md
-
-# Tokenizers
-
-Not supported by the rc0 bindings yet. rc0 loads a `tokenizer.json` and encodes and
-decodes with it — building a tokenizer from its components, editing one, saving one
-and training are not exposed. They are coming soon, along with the other bindings.
-See [`REQUIRED_FOR_V1.md`](https://github.com/huggingface/tokenizers/blob/main/REQUIRED_FOR_V1.md) for the full list.
-
-Fast State-of-the-art tokenizers, optimized for both research and
-production
-
-[🤗 Tokenizers](https://github.com/huggingface/tokenizers) provides an
-implementation of today's most used tokenizers, with a focus on
-performance and versatility. These tokenizers are also used in [🤗 Transformers](https://github.com/huggingface/transformers).
-
-# Main features:
-
-- Train new vocabularies and tokenize, using today's most used tokenizers.
-- Extremely fast (both training and tokenization), thanks to the Rust implementation. Takes less than 20 seconds to tokenize a GB of text on a server's CPU.
-- Easy to use, but also extremely versatile.
-- Designed for both research and production.
-- Full alignment tracking. Even with destructive normalization, it's always possible to get the part of the original sentence that corresponds to any token.
-- Does all the pre-processing: Truncation, Padding, add the special tokens your model needs.
-
-### The tokenization pipeline
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/pipeline.md
+### Installation
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/installation.md

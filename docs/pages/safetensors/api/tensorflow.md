@@ -62,7 +62,7 @@ loaded = load(data)
 #### safetensors.tensorflow.save_file[[safetensors.tensorflow.save_file]]
 
 ```python
-safetensors.tensorflow.save_file(tensors: typing.Dict[str, tensorflow.python.framework.tensor.Tensor], filename: typing.Union[str, os.PathLike], metadata: typing.Optional[typing.Dict[str, str]] = None)
+safetensors.tensorflow.save_file(tensors: typing.Dict[str, tensorflow.Tensor], filename: typing.Union[str, os.PathLike], metadata: typing.Optional[typing.Dict[str, str]] = None)
 ```
 
 [Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/tensorflow.py#L41)
@@ -92,7 +92,7 @@ save_file(tensors, "model.safetensors")
 #### safetensors.tensorflow.save[[safetensors.tensorflow.save]]
 
 ```python
-safetensors.tensorflow.save(tensors: typing.Dict[str, tensorflow.python.framework.tensor.Tensor], metadata: typing.Optional[typing.Dict[str, str]] = None)
+safetensors.tensorflow.save(tensors: typing.Dict[str, tensorflow.Tensor], metadata: typing.Optional[typing.Dict[str, str]] = None)
 ```
 
 [Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/tensorflow.py#L10)

@@ -140,7 +140,7 @@ Build the kernel and upload to Hugging Face Hub
 
   Possible values: `model`, `kernel`
 
-* `--create-pr` — Open a pull request with the changes rather than committing them directly (does not require write access to the repository). The target branch must already exist. An open pull request of an earlier upload by the same user is updated instead
+* `--create-pr` — Open a pull request with the changes rather than committing them directly (does not require write access to the repository)
 * `--output-json <PATH>` — Write a machine-readable JSON summary of the upload to this path
 * `-q`, `--quiet` — Suppress progress output
 
@@ -165,7 +165,7 @@ Upload kernel build artifacts to the Hugging Face Hub
 
   Possible values: `model`, `kernel`
 
-* `--create-pr` — Open a pull request with the changes rather than committing them directly (does not require write access to the repository). The target branch must already exist. An open pull request of an earlier upload by the same user is updated instead
+* `--create-pr` — Open a pull request with the changes rather than committing them directly (does not require write access to the repository)
 * `--output-json <PATH>` — Write a machine-readable JSON summary of the upload to this path
 * `-q`, `--quiet` — Suppress progress output
 

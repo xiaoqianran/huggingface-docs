@@ -160,5 +160,5 @@ Before integrating models into your applications, you can test them interactivel
 
 The playground uses the same Inference Providers infrastructure that powers the widgets, so you can expect similar performance and capabilities when you integrate the models into your own applications.
 
-### Search
-https://huggingface.co/docs/hub/search.md
+### Zephon
+https://huggingface.co/docs/hub/datasets-zephon.md

@@ -534,5 +534,5 @@ For very specialized or bespoke formats:
 - Join the [Hugging Face Discord](https://hf.co/join/discord) for real-time help
 - Many domain-specific formats already have examples on the Hub
 
-### Publisher Analytics
-https://huggingface.co/docs/hub/publisher-analytics.md
+### Container Images Access Control
+https://huggingface.co/docs/hub/container-images-access.md

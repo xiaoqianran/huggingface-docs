@@ -70,5 +70,5 @@ npm install tokenizers
 
 See the [Node page](node) for what the binding exposes and how to use it.
 
-### Node
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/node.md
+### Components
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/components.md

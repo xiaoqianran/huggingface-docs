@@ -419,5 +419,5 @@ let decoded = bert_tokenizer.decode(output.get_ids(), true)?;
 // "welcome to the tokenizers library."
 ```
 
-### Tokenizer
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/tokenizer.md
+### Training from memory
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/training_from_memory.md

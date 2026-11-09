@@ -54,5 +54,5 @@ tokenizers.pre_tokenizers.WhitespaceSplit
 
 The Rust API Reference is available directly on the [Docs.rs](https://docs.rs/tokenizers/latest/tokenizers/) website.
 
-### Decoders
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/decoders.md
+### Tokenizer
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/api/tokenizer.md

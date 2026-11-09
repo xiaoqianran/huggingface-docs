@@ -83,5 +83,5 @@ below, not the configured value.
 | `strategy` | `longest_first` | Which sequence of a pair is truncated: `longest_first`, `only_first` or `only_second`. |
 | `direction` | `right` | Whether to truncate at the end of the sequence or at its beginning. |
 
-### Training from memory
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/training_from_memory.md
+### The tokenization pipeline
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/pipeline.md

@@ -4,10 +4,14 @@ Paper pages allow people to find artifacts related to a paper such as models, da
 
 ## Linking a Paper to a model, dataset or Space
 
-If the repository card (`README.md`) includes a link to a Paper page (either on HF or an Arxiv abstract/PDF), the Hugging Face Hub will extract the arXiv ID and include it in the repository's tags. Clicking on the arxiv tag will let you:
+If the repository card (`README.md`) includes a link to a Paper page (either on HF or an Arxiv abstract/PDF), the Hugging Face Hub will extract the arXiv ID and link the paper to the repository.
+
+On model and dataset pages, up to five linked papers are listed in the right sidebar:
+
+Models and datasets also get an `arxiv:<PAPER ID>` tag. Clicking on it lets you:
 
 * Visit the Paper page.
-* Filter for other models or datasets on the Hub that cite the same paper.
+* Filter for other repositories of the same type on the Hub that cite the same paper.
 
 ## Claiming authorship to a Paper
 

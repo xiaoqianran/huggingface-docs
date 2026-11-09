@@ -241,10 +241,12 @@ The model card is also a great place to show information about the CO2 impact of
 
 If the model card includes a link to a Paper page (either on HF or an Arxiv abstract/PDF), the Hugging Face Hub will extract the arXiv ID and include it in the model tags with the format `arxiv:<PAPER ID>`. Clicking on the tag will let you:
 
-* Visit the Paper page
+* Visit the Paper page.
 * Filter for other models on the Hub that cite the same paper.
 
-Read more about Paper pages [here](./paper-pages).
+The Hub also lists up to five linked papers in the right sidebar of the model page:
+
+Read more about linking papers [here](./paper-pages#linking-a-paper-to-a-model-dataset-or-space).
 
 ## Model Card text
 

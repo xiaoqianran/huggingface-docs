@@ -19,5 +19,5 @@ tokenizers.processors.TemplateProcessing
 
 The Rust API Reference is available directly on the [Docs.rs](https://docs.rs/tokenizers/latest/tokenizers/) website.
 
-### Trainers
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/trainers.md
+### Input Sequences
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/api/input-sequences.md

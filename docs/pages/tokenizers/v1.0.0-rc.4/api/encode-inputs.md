@@ -6,7 +6,7 @@ and training are not exposed. They are coming soon, along with the other binding
 See [`REQUIRED_FOR_V1.md`](https://github.com/huggingface/tokenizers/blob/main/REQUIRED_FOR_V1.md) for the full list.
 
 These types represent all the different kinds of input that a `Tokenizer` accepts
-when using `encode_batch()`.
+when using `~tokenizers.Tokenizer.encode_batch`.
 
 ## TextEncodeInput[[[[tokenizers.TextEncodeInput]]]]
 
@@ -44,5 +44,5 @@ alias of `Union[str, Tuple[str, str], List[str], Tuple[str], Tuple[Union[List[st
 
 The Rust API Reference is available directly on the [Docs.rs](https://docs.rs/tokenizers/latest/tokenizers/) website.
 
-### Normalizers
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.3/api/normalizers.md
+### Decoders
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/api/decoders.md
