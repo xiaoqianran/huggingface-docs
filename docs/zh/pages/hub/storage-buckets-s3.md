@@ -3,9 +3,9 @@
 # S3 兼容性
 
 存储桶可以通过 **S3 兼容的 API** 进行访问，让您可以针对存储桶使用现有的 S3 工具（AWS CLI、`boto3`、`s5cmd` 和大多数其他 S3 SDK），而无需更改代码。 
-请求通过`https://s3.hf.co`的网关服务。
+请求通过位于 `https://s3.hf.co` 的网关服务，该网关服务还以其自己的主机名 `https://<namespace>.s3.hf.co` 为每个命名空间提供服务。
 
-S3 API 是访问存储桶数据的多种方法之一 - 对于无需单独的 S3 凭据的 Hugging Face-native 访问（`hf` CLI、`hf://` 路径和文件系统挂载），请参阅[Access Patterns](./storage-buckets-access)。
+S3 API 是访问存储桶数据的多种方法之一 - 对于无需单独的 S3 凭据的 Hugging Face 原生访问（`hf` CLI、`hf://` 路径和文件系统挂载），请参阅[Access Patterns](./storage-buckets-access)。
 
 > [!注意]
 > S3 API 仅适用于 [Storage Buckets](./storage-buckets)。它不公开其他 Hugging Face 存储库类型（模型、数据集、空间）。
@@ -20,13 +20,13 @@ S3 API 是访问存储桶数据的多种方法之一 - 对于无需单独的 S3 
 S3 凭证继承底层访问令牌的权限。对于细粒度令牌，请将其范围仅限于您打算使用的命名空间和存储桶。
 
 > [!提示]
-> 对于访问组织存储桶的自动化工作流程，您还可以从 [service account](./enterprise-service-accounts#generating-s3-credentials) 令牌而不是用户访问令牌生成 S3 凭证。
+> 对于访问组织存储桶的自动化工作流程，您还可以从 [service account](./enterprise-service-accounts#generating-s3-credentials) 令牌（而不是用户访问令牌）生成 S3 凭证。
 
 ## 配置客户端
 
 将您的 S3 客户端指向网关端点并设置一些必需的选项。在端点 URL 中使用您的 Hugging Face **命名空间**（您的用户名或组织名称） - 请参阅下面的[Addressing buckets](#addressing-buckets)。|设置|价值|为什么 |
 |--------------------------------|--------------------------------|------------------------------------------------------------------------------------------------|
-| `endpoint_url` | `https://s3.hf.co/<namespace>` |网关，范围仅限于您的命名空间 |
+| `endpoint_url` | `https://<namespace>.s3.hf.co` |网关，范围仅限于您的命名空间 |
 | `region` | `us-east-1` |必需的;网关目前是单区域 |
 | `s3.addressing_style` | `path` |存储桶被寻址为路径段，而不是子域 |
 | `request_checksum_calculation` | `when_required` |防止最近的客户端发送尾随校验和 |
@@ -47,7 +47,7 @@ S3 凭证继承底层访问令牌的权限。对于细粒度令牌，请将其�
 ```ini
 [profile hf]
 region = us-east-1
-endpoint_url = https://s3.hf.co/<namespace>
+endpoint_url = https://<namespace>.s3.hf.co
 s3 =
     addressing_style = path
     multipart_threshold = 256MB
@@ -77,25 +77,32 @@ aws --profile hf s3 cp ./model.safetensors s3://my-bucket/models/model.safetenso
 
 AWS S3 使用单一平面、全局唯一的存储桶名称空间，并且 SDK 期望存储桶名称是不带 `/` 的纯字符串。 Hugging Face 存储桶被标识为 `namespace/bucket`，其中 `namespace` 是您的用户名或组织。这个额外的级别引入了与 S3 客户端的不匹配——许多客户端不接受存储桶名称中的`/`，或者会错误地对其进行 URL 转义。有两种方法可以解决这个问题：**1.将命名空间放入端点 URL**（大多数情况下建议）。这将每个操作的范围限定在该命名空间，因此传递给客户端的存储桶名称只是 HF 存储桶名称。它适用于您自己的存储桶或单个组织中的存储桶，但会跨命名空间分解 - 例如从个人存储桶到组织存储桶的服务器端副本。
 
+每个命名空间都有自己的端点主机名，`https://<namespace>.s3.hf.co`：
+
 ```bash
-aws --endpoint-url https://s3.hf.co/my-org s3api get-object \
+aws --endpoint-url https://my-org.s3.hf.co s3api get-object \
   --bucket my-bucket --key some/object.txt ./object.txt
 ```
+
+命名空间也可以放在端点的路径中，如 `https://s3.hf.co/<namespace>`。两种形式的行为相同，但我们建议使用主机名：某些客户端拒绝包含路径的端点 URL。其中包括基于 [MinIO Go client](https://github.com/minio/minio-go) 构建的工具，例如 Restic、Milvus 和 Weaviate。命名空间主机名不区分大小写，因此 `https://my-org.s3.hf.co` 也会到达名为 `My-Org` 的组织。
+
+> [!注意]
+> 即使使用名称空间主机名，客户端也必须使用路径样式寻址（请参阅[Configuring a Client](#configuring-a-client)）。存储桶不作为自己的子域（`my-bucket.my-org.s3.hf.co`）。
 
 **2.将命名空间视为存储桶**，并将 HF 存储桶名称添加到对象键之前。这适用于对象级操作（上传、下载），但对于存储桶级操作（例如创建或删除存储桶）存在问题。
 
 ```bash
 aws --endpoint-url https://s3.hf.co s3api get-object \
   --bucket my-org --key my-bucket/some/object.txt ./object.txt
-```
-
-## 与 AWS S3 的限制和差异
+```## 与 AWS S3 的限制和差异
 
 由于存储桶并不对每个 S3 概念进行建模，因此某些行为会有所不同或不受支持。
 
 ### 对象下载
 
-网关目前是单区域的。为了提高下载性能，`GetObject` 通常会响应 HTTP 302 重定向到最近的 Hugging Face CDN 边缘，而不是直接提供字节。某些 SDK 不遵循来自 S3 端点的重定向，因此网关会检测标识为 `aws-cli`、`botocore`（涵盖 `boto3`）或 `aws-sdk-rust` 的客户端，并通过自身为它们代理数据。所有其他客户端（`rclone`、`s5cmd`、`curl`、AWS Go SDK 等）都会接收 302 并以本机方式遵循它，从而使网关远离数据路径以加快下载速度。
+网关目前是单区域的。为了提高下载性能，`GetObject` 通常会响应 HTTP 302 重定向到最近的 Hugging Face CDN 边缘，而不是直接提供字节。
+
+某些 SDK 不遵循来自 S3 端点的重定向，因此网关会检测标识为 `aws-cli`、`botocore`（涵盖 `boto3`）或 `aws-sdk-rust` 的客户端，并通过自身为它们代理数据。所有其他客户端（`rclone`、`s5cmd`、`curl`、AWS Go SDK 等）都会接收 302 并以本机方式遵循它，从而使网关远离数据路径以加快下载速度。
 
 ### 对象键命名
 
@@ -112,9 +119,9 @@ aws --endpoint-url https://s3.hf.co s3api get-object \
 
 - 不支持`ListObjectsV1` — 使用`ListObjectsV2`。请注意，某些客户端（例如 rclone） 
   可能需要配置为专门使用`ListObjectsV2`。
-- 仅允许使用`/`作为分隔符。
+- 仅允许使用`/`作为分隔符。### 其他 API 差异
 
-### 其他 API 差异- **对象元数据**：不存储或返回任意用户元数据（`x-amz-meta-*`）。支持`Content-Type`。
+- **对象元数据**：不存储或返回任意用户元数据（`x-amz-meta-*`）。支持`Content-Type`。
 - **不支持的功能**：不支持 ACL、存储桶策略、对象标记、对象版本控制、生命周期规则、服务器端加密 (SSE) 和存储桶通知。对象始终使用 `STANDARD` 存储类别进行报告。相关请求标头和参数被接受但被忽略。
 - **CopyObject**：服务器端复制仅在单个命名空间内工作。不支持跨命名空间复制和`UploadPartCopy`（将现有对象的一部分复制到分段上传）。
 - **有条件请求**：`If-Match` / `If-None-Match` 前提条件在 `PutObject` 和 `CopyObject` 的复制源上得到满足，但在 `GetObject` 上不得到满足。
@@ -126,7 +133,7 @@ aws --endpoint-url https://s3.hf.co s3api get-object \
 
 ### 使用`boto3`读写
 
-[⟦T72⟧](https://docs.aws.amazon.com/boto3/latest/) 与上面的[client settings](#configuring-a-client) 网关配合使用。将 `<namespace>` 替换为您的用户名或组织：
+[⟦T78⟧](https://docs.aws.amazon.com/boto3/latest/) 与上面的[client settings](#configuring-a-client) 网关配合使用。将 `<namespace>` 替换为您的用户名或组织：
 
 ```python
 import boto3
@@ -134,7 +141,7 @@ from botocore.config import Config
 
 s3 = boto3.client(
     "s3",
-    endpoint_url="https://s3.hf.co/<namespace>",
+    endpoint_url="https://<namespace>.s3.hf.co",
     aws_access_key_id="HFAK...",
     aws_secret_access_key="...",
     config=Config(
@@ -170,14 +177,14 @@ SELECT * FROM read_parquet('s3://my-bucket/data.parquet');
 ```
 
 > [!注意]
-> 需要`URL_STYLE 'path'`。如果没有它，DuckDB 将使用虚拟托管式寻址 (`my-bucket.s3.hf.co`)，而网关不提供服务 — 您将看到“无法解析主机名”错误。
+> 需要`URL_STYLE 'path'`。如果没有它，DuckDB 将使用虚拟托管式寻址 (`my-bucket.s3.hf.co`)，网关会将其读取为名为 `my-bucket` 的命名空间，因此请求会失败。
 
 ### 使用`rclone`导入数据
 
-[⟦T81⟧](https://rclone.org/) 是在两个 S3 兼容存储之间复制数据的便捷方法，因此非常适合将现有 AWS S3 存储桶（或任何 S3 兼容源）移动到存储桶中。
+[⟦T88⟧](https://rclone.org/) 是在两个 S3 兼容存储之间复制数据的便捷方法，因此它非常适合将现有 AWS S3 存储桶（或任何 S3 兼容源）移动到存储桶中。
 
 > [!提示]
-> 移动大型数据集？安装源并运行 `hf sync` 会在客户端进行重复数据删除，因此它通常上传的字节数比 rclone 少。请参阅[Migration Guide](./storage-buckets-migration)。
+> 移动大型数据集？安装源并运行 `hf sync` 在客户端上进行重复数据删除，因此它通常上传的字节数比 rclone 少。请参阅[Migration Guide](./storage-buckets-migration)。
 
 这个想法是声明两个遥控器 - 您的源存储桶和 Hugging Face 网关 - 并让 `rclone` 在它们之间传输对象。将两个遥控器添加到`~/.config/rclone/rclone.conf`。第一个点指向您现有的 S3 存储桶；调整它以匹配您的源（此处为普通 AWS S3）：
 
@@ -194,7 +201,7 @@ region = us-east-1
 [hf]
 type = s3
 provider = Other
-endpoint = https://s3.hf.co/<namespace>
+endpoint = https://<namespace>.s3.hf.co
 access_key_id = HFAK...
 secret_access_key = ...
 region = us-east-1
@@ -225,7 +232,7 @@ rclone sync aws:my-source-bucket hf:my-bucket --progress
 
 ```bash
 dvc remote add -d hf-bucket s3://my-bucket/dvc-store
-dvc remote modify hf-bucket endpointurl https://s3.hf.co/<namespace>
+dvc remote modify hf-bucket endpointurl https://<namespace>.s3.hf.co
 dvc remote modify hf-bucket region us-east-1
 ```
 

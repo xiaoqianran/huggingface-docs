@@ -111,7 +111,7 @@ wait
 
 ### 故障排除
 
-|症状|修复 |
+|症状|修复|
 |---|---|
 | `401` 或身份验证错误 |使用 **Write** 令牌运行 `hf auth login`，并使用 `hf auth whoami` 检查它。 |
 |比预期慢|将`HF_HOME`放在NVMe上，设置`HF_XET_HIGH_PERFORMANCE=1`和[run close to your data](#where-to-run-a-large-migration)。 |
@@ -133,7 +133,7 @@ umount /mnt/src
 如果您已经运行 rclone 并且不想挂载，请使用此选项。权衡：rclone 通过 [S3 gateway](./storage-buckets-s3) 发送每个字节，没有客户端重复数据删除，因此它传输的数据超过 `hf sync`。您需要[S3 credentials](./storage-buckets-s3#generating-s3-credentials)作为网关。
 
 > [!警告]
-> 使用 rclone 1.70 或更高版本（检查`rclone version`，从[rclone downloads](https://rclone.org/downloads/)升级）。旧版本可能会耗尽列出非常大的存储桶的内存。老一辈的建议经常推荐[⟦T67⟧](https://rclone.org/docs/#fast-list)；使用最近的 rclone，您不需要它，并且在一个巨大的列表中，它会将所有内容保存在内存中，并且可能会导致相同的失败。
+> 使用 rclone 1.70 或更高版本（检查`rclone version`，从[rclone downloads](https://rclone.org/downloads/)升级）。旧版本可能会耗尽列出非常大的存储桶的内存。老一辈的建议经常推荐[⟦T67⟧](https://rclone.org/docs/#fast-list)；使用最近的 rclone，您不需要它，并且在一个巨大的列表中，它将所有内容保存在内存中，并且可能导致相同的失败。
 
 将网关添加为`~/.config/rclone/rclone.conf`中的遥控器，位于源遥控器旁边（`aws`如下）：
 
@@ -141,7 +141,7 @@ umount /mnt/src
 [hf]
 type = s3
 provider = Other
-endpoint = https://s3.hf.co/<namespace>
+endpoint = https://<namespace>.s3.hf.co
 access_key_id = HFAK...
 secret_access_key = ...
 region = us-east-1
@@ -271,7 +271,7 @@ hf buckets cp hf://buckets/<namespace>/<bucket-a>/<path> hf://buckets/<namespace
 [hf-s3ream](https://huggingface.co/spaces/glutamatt/hf-s3ream)（[source on GitHub](https://github.com/glutamatt/hf-s3ream)，Apache-2.0）从 Web UI 运行大型 S3 到存储桶的副本：
 
 1. 抱脸登录。
-2. 输入 S3 源前缀、目标存储桶和您的 AWS 凭证。对于允许匿名读取的公共存储桶，请打开**公共存储桶**：不需要 AWS 凭证，作业会读取未签名的 S3。
+2. 输入 S3 源前缀、目标存储桶和您的 AWS 凭证。对于允许匿名读取的公共存储桶，请打开**公共存储桶**：不需要 AWS 凭证，并且作业会读取未签名的 S3。
 3. **Analyze** 运行廉价的试运行，检查访问、检测源区域并建议配置。如果目标存储桶（私有）不存在，它将创建它。
 4. **运行** 启动规划器作业。规划器构建基于范围的复印计划，启动复印机作业，并在实时图表上显示进度。如果您关闭选项卡，副本将继续运行，但页面不会重新连接到它。要停止复印，请单击 **停止复印**，或取消计划器作业 (`hf jobs cancel <planner-job-id>`)：计划器取消其复印机。
 
@@ -286,7 +286,7 @@ hf-s3ream 在您的帐户下的 [Jobs](./jobs) 上运行，因此工作将向您
 调整起点，以在测试运行中进行验证：|资源 |指导| AWS 示例 | GCP 示例 |
 |---|---|---|---|
 |磁盘 |适用于 `HF_HOME` 的本地 NVMe，可用空间高于分片缓存限制。避免使用网络连接磁盘作为缓存。 |实例存储 NVMe（`c7i`/`m7i` `d` 变体，或 `i4i`）| `n2` 或 `c3` 虚拟机上的本地 SSD |
-|中央处理器 |许多 vCPU：客户端在 CPU 上对数据进行分块和哈希处理。 | `c7i.8xlarge` 或更大 | `c3-standard-22` 或更大 |
+|中央处理器|许多 vCPU：客户端在 CPU 上对数据进行分块和哈希处理。 | `c7i.8xlarge` 或更大 | `c3-standard-22` 或更大 |
 |内存|充足的高性能模式缓冲区； 1.7.0 之前至少 64 GB，具有 `hf_xet`。 | — | — |
 |网络|高带宽互联网（25 Gbps 级）。 | — | — |
 

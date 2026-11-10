@@ -1025,8 +1025,8 @@
       "translatedAt": "2026-10-29T14:11:09.741Z"
     },
     "hub/storage-buckets-s3.md": {
-      "hash": "060101f3efe02350e595cd00de05c284eb57c7c7",
-      "translatedAt": "2026-11-04T15:19:51.887Z"
+      "hash": "2317e970a019929e9ecd4f821d3f912b312d36e6",
+      "translatedAt": "2026-11-10T15:31:10.832Z"
     },
     "hub/storage-buckets.md": {
       "hash": "0263f922ffc57e4315096a811b1f10b018b715ed",
@@ -2037,8 +2037,8 @@
       "translatedAt": "2026-10-29T14:07:27.853Z"
     },
     "hub/storage-buckets-migration.md": {
-      "hash": "110eb36935d4bc30e04c66091f44d91a27536720",
-      "translatedAt": "2026-11-04T15:19:50.836Z"
+      "hash": "92eb40a07602b08b5d988c234bad004a4fd06e20",
+      "translatedAt": "2026-11-10T15:31:10.609Z"
     },
     "hub/container-images-access.md": {
       "hash": "03e67e6e3adc898afdb1a61527a738bbf10ce686",
@@ -2049,10 +2049,10 @@
       "translatedAt": "2026-11-09T17:22:34.259Z"
     }
   },
-  "updatedAt": "2026-11-09T17:22:51.677Z",
+  "updatedAt": "2026-11-10T15:31:10.832Z",
   "stats": {
-    "translated": 12,
-    "skipped": 388,
+    "translated": 2,
+    "skipped": 398,
     "failed": 0,
     "total": 400
   }
