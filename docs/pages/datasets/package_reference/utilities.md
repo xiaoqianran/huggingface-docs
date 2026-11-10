@@ -19,8 +19,8 @@ DATASETS_VERBOSITY=error ./myprogram.py
 
 All the methods of this logging module are documented below. The main ones are:
 
-- [logging.get_verbosity()](/docs/datasets/v4.8.4/en/package_reference/utilities#datasets.utils.logging.get_verbosity) to get the current level of verbosity in the logger
-- [logging.set_verbosity()](/docs/datasets/v4.8.4/en/package_reference/utilities#datasets.utils.logging.set_verbosity) to set the verbosity to the level of your choice
+- [logging.get_verbosity()](/docs/datasets/v5.2.0/en/package_reference/utilities#datasets.utils.logging.get_verbosity) to get the current level of verbosity in the logger
+- [logging.set_verbosity()](/docs/datasets/v5.2.0/en/package_reference/utilities#datasets.utils.logging.set_verbosity) to set the verbosity to the level of your choice
 
 In order from the least to the most verbose (with their corresponding `int` values):
 
@@ -32,7 +32,15 @@ In order from the least to the most verbose (with their corresponding `int` valu
 
 #### datasets.utils.logging.get_verbosity[[datasets.utils.logging.get_verbosity]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/utils/logging.py#L94)
+```python
+datasets.utils.logging.get_verbosity()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/utils/logging.py#L94)
+
+**Returns:**
+
+Logging level, e.g., `datasets.logging.DEBUG` and `datasets.logging.INFO`.
 
 Return the current level for the HuggingFace datasets library's root logger.
 
@@ -44,23 +52,27 @@ Return the current level for the HuggingFace datasets library's root logger.
 >     - `datasets.logging.INFO`
 >     - `datasets.logging.DEBUG`
 
-**Returns:**
-
-Logging level, e.g., `datasets.logging.DEBUG` and `datasets.logging.INFO`.
-
 #### datasets.utils.logging.set_verbosity[[datasets.utils.logging.set_verbosity]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/utils/logging.py#L110)
+```python
+datasets.utils.logging.set_verbosity(verbosity: int)
+```
 
-Set the level for the Hugging Face Datasets library's root logger.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/utils/logging.py#L110)
 
 **Parameters:**
 
 verbosity : Logging level, e.g., `datasets.logging.DEBUG` and `datasets.logging.INFO`.
 
+Set the level for the Hugging Face Datasets library's root logger.
+
 #### datasets.utils.logging.set_verbosity_info[[datasets.utils.logging.set_verbosity_info]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/utils/logging.py#L119)
+```python
+datasets.utils.logging.set_verbosity_info()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/utils/logging.py#L119)
 
 Set the level for the Hugging Face datasets library's root logger to `INFO`.
 
@@ -70,7 +82,11 @@ Shortcut to `datasets.logging.set_verbosity(datasets.logging.INFO)`.
 
 #### datasets.utils.logging.set_verbosity_warning[[datasets.utils.logging.set_verbosity_warning]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/utils/logging.py#L129)
+```python
+datasets.utils.logging.set_verbosity_warning()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/utils/logging.py#L129)
 
 Set the level for the Hugging Face datasets library's root logger to `WARNING`.
 
@@ -80,7 +96,11 @@ Shortcut to `datasets.logging.set_verbosity(datasets.logging.WARNING)`.
 
 #### datasets.utils.logging.set_verbosity_debug[[datasets.utils.logging.set_verbosity_debug]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/utils/logging.py#L139)
+```python
+datasets.utils.logging.set_verbosity_debug()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/utils/logging.py#L139)
 
 Set the level for the Hugging Face datasets library's root logger to `DEBUG`.
 
@@ -90,7 +110,11 @@ Shortcut to `datasets.logging.set_verbosity(datasets.logging.DEBUG)`.
 
 #### datasets.utils.logging.set_verbosity_error[[datasets.utils.logging.set_verbosity_error]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/utils/logging.py#L149)
+```python
+datasets.utils.logging.set_verbosity_error()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/utils/logging.py#L149)
 
 Set the level for the Hugging Face datasets library's root logger to `ERROR`.
 
@@ -100,14 +124,22 @@ Shortcut to `datasets.logging.set_verbosity(datasets.logging.ERROR)`.
 
 #### datasets.utils.logging.disable_propagation[[datasets.utils.logging.disable_propagation]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/utils/logging.py#L159)
+```python
+datasets.utils.logging.disable_propagation()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/utils/logging.py#L159)
 
 Disable propagation of the library log outputs.
 Note that log propagation is disabled by default.
 
 #### datasets.utils.logging.enable_propagation[[datasets.utils.logging.enable_propagation]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/utils/logging.py#L166)
+```python
+datasets.utils.logging.enable_propagation()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/utils/logging.py#L166)
 
 Enable propagation of the library log outputs.
 Please disable the Hugging Face datasets library's default handler to prevent double logging if the root logger has
@@ -116,34 +148,43 @@ been configured.
 ## Configure progress bars[[datasets.enable_progress_bars]]
 
 By default, `tqdm` progress bars will be displayed during dataset download and preprocessing. You can disable them globally by setting `HF_DATASETS_DISABLE_PROGRESS_BARS`
-environment variable. You can also enable/disable them using [enable_progress_bars()](/docs/datasets/v4.8.4/en/package_reference/utilities#datasets.enable_progress_bars) and [disable_progress_bars()](/docs/datasets/v4.8.4/en/package_reference/utilities#datasets.disable_progress_bars). If set, the environment variable has priority on the helpers.
+environment variable. You can also enable/disable them using [enable_progress_bars()](/docs/datasets/v5.2.0/en/package_reference/utilities#datasets.enable_progress_bars) and [disable_progress_bars()](/docs/datasets/v5.2.0/en/package_reference/utilities#datasets.disable_progress_bars). If set, the environment variable has priority on the helpers.
 
 #### datasets.enable_progress_bars[[datasets.enable_progress_bars]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/utils/tqdm.py#L78)
+```python
+datasets.enable_progress_bars()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/utils/tqdm.py#L78)
 
 Enable globally progress bars used in `datasets` except if `HF_DATASETS_DISABLE_PROGRESS_BARS` environment
 variable has been set.
 
-Use [disable_progress_bars()](/docs/datasets/v4.8.4/en/package_reference/utilities#datasets.disable_progress_bars) to disable them.
+Use [disable_progress_bars()](/docs/datasets/v5.2.0/en/package_reference/utilities#datasets.disable_progress_bars) to disable them.
 
 #### datasets.disable_progress_bars[[datasets.disable_progress_bars]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/utils/tqdm.py#L61)
+```python
+datasets.disable_progress_bars()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/utils/tqdm.py#L61)
 
 Disable globally progress bars used in `datasets` except if `HF_DATASETS_DISABLE_PROGRESS_BARS` environment
 variable has been set.
 
-Use [enable_progress_bars()](/docs/datasets/v4.8.4/en/package_reference/utilities#datasets.enable_progress_bars) to re-enable them.
+Use [enable_progress_bars()](/docs/datasets/v5.2.0/en/package_reference/utilities#datasets.enable_progress_bars) to re-enable them.
 
 #### datasets.are_progress_bars_disabled[[datasets.are_progress_bars_disabled]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/utils/tqdm.py#L95)
+```python
+datasets.are_progress_bars_disabled()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/utils/tqdm.py#L95)
 
 Return whether progress bars are globally disabled or not.
 
-Progress bars used in `datasets` can be enable or disabled globally using [enable_progress_bars()](/docs/datasets/v4.8.4/en/package_reference/utilities#datasets.enable_progress_bars)
-and [disable_progress_bars()](/docs/datasets/v4.8.4/en/package_reference/utilities#datasets.disable_progress_bars) or by setting `HF_DATASETS_DISABLE_PROGRESS_BARS` as environment variable.
-
-### Builder classes
-https://huggingface.co/docs/datasets/v4.8.4/package_reference/builder_classes.md
+Progress bars used in `datasets` can be enable or disabled globally using [enable_progress_bars()](/docs/datasets/v5.2.0/en/package_reference/utilities#datasets.enable_progress_bars)
+and [disable_progress_bars()](/docs/datasets/v5.2.0/en/package_reference/utilities#datasets.disable_progress_bars) or by setting `HF_DATASETS_DISABLE_PROGRESS_BARS` as environment variable.

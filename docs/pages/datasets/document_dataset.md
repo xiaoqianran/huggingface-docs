@@ -24,7 +24,7 @@ folder/train/invoice/0002.pdf
 folder/train/invoice/0003.pdf
 ```
 
-If the dataset follows the `PdfFolder` structure, then you can load it directly with [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset):
+If the dataset follows the `PdfFolder` structure, then you can load it directly with [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset):
 
 ```py
 >>> from datasets import load_dataset
@@ -32,7 +32,7 @@ If the dataset follows the `PdfFolder` structure, then you can load it directly 
 >>> dataset = load_dataset("path/to/folder")
 ```
 
-This is equivalent to passing `pdffolder` manually in [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) and the directory in `data_dir`:
+This is equivalent to passing `pdffolder` manually in [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) and the directory in `data_dir`:
 
 ```py
 >>> dataset = load_dataset("pdffolder", data_dir="/path/to/folder")
@@ -130,5 +130,5 @@ api.upload_folder(
 )
 ```
 
-### Image classification
-https://huggingface.co/docs/datasets/v4.8.4/image_classification.md
+### Semantic segmentation
+https://huggingface.co/docs/datasets/v5.2.0/semantic_segmentation.md

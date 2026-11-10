@@ -3,7 +3,7 @@
 > [!WARNING]
 > Video support is experimental and is subject to change.
 
-Video datasets have [Video](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Video) type columns, which contain `torchcodec` objects.
+Video datasets have [Video](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Video) type columns, which contain `torchcodec` objects.
 
 > [!TIP]
 > To work with video datasets, you need to have the `torchcodec` and `ffmpeg` packages installed. Check out the [installation](https://github.com/meta-pytorch/torchcodec#installing-torchcodec) guide to learn how to install them.
@@ -15,7 +15,7 @@ When you load a video dataset and call the video column, the videos are decoded 
 
 >>> dataset = load_dataset("path/to/video/folder", split="train")
 >>> dataset[0]["video"]
-
+<torchcodec.decoders._video_decoder.VideoDecoder object at 0x14a61d5a0>
 ```
 
 > [!WARNING]
@@ -37,7 +37,7 @@ Access frames directly from a video using the `VideoReader` using `next()`:
 ```
 
 To get multiple frames at once, you can call `.get_frames_in_range(start: int, stop: int, step: int)`. This will return a frame batch.
-This is the efficient way to obtain a long list of frames refer to the [torchcodec docs](https://docs.pytorch.org/torchcodec/stable/generated/torchcodec.decoders.VideoDecoder.html) to see more functions for effiently accessing the data:
+This is the efficient way to obtain a long list of frames refer to the [torchcodec docs](https://meta-pytorch.org/torchcodec/stable/generated/torchcodec.decoders.VideoDecoder.html) to see more functions for effiently accessing the data:
 
 ```python
 >>> import torch
@@ -56,17 +56,17 @@ torch.Size([42, 3, 240, 320])
 
 ## Local files
 
-You can load a dataset from the video path. Use the [cast_column()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.cast_column) function to accept a column of video file paths, and decode it into a `torchcodec` video with the [Video](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Video) feature:
+You can load a dataset from the video path. Use the [cast_column()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.cast_column) function to accept a column of video file paths, and decode it into a `torchcodec` video with the [Video](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Video) feature:
 
 ```py
 >>> from datasets import Dataset, Video
 
 >>> dataset = Dataset.from_dict({"video": ["path/to/video_1", "path/to/video_2", ..., "path/to/video_n"]}).cast_column("video", Video())
 >>> dataset[0]["video"]
-
+<torchcodec.decoders._video_decoder.VideoDecoder object at 0x14a61e080>
 ```
 
-If you only want to load the underlying path to the video dataset without decoding the video object, set `decode=False` in the [Video](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Video) feature:
+If you only want to load the underlying path to the video dataset without decoding the video object, set `decode=False` in the [Video](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Video) feature:
 
 ```py
 >>> dataset = dataset.cast_column("video", Video(decode=False))
@@ -89,7 +89,7 @@ folder/train/cat/bengal.mp4
 folder/train/cat/birman.mp4
 ```
 
-If the dataset follows the `VideoFolder` structure, then you can load it directly with [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset):
+If the dataset follows the `VideoFolder` structure, then you can load it directly with [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset):
 
 ```py
 >>> from datasets import load_dataset
@@ -99,7 +99,7 @@ If the dataset follows the `VideoFolder` structure, then you can load it directl
 >>> dataset = load_dataset("/path/to/folder")
 ```
 
-For local datasets, this is equivalent to passing `videofolder` manually in [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) and the directory in `data_dir`:
+For local datasets, this is equivalent to passing `videofolder` manually in [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) and the directory in `data_dir`:
 
 ```py
 >>> dataset = load_dataset("videofolder", data_dir="/path/to/folder")
@@ -109,13 +109,13 @@ Then you can access the videos as `torchcodec.decoders._video_decoder.VideoDecod
 
 ```
 >>> dataset["train"][0]
-{"video": , "label": 0}
+{"video": <torchcodec.decoders._video_decoder.VideoDecoder object at 0x14a61e080>, "label": 0}
 
 >>> dataset["train"][-1]
-{"video": , "label": 1}
+{"video": <torchcodec.decoders._video_decoder.VideoDecoder object at 0x14a61e090>, "label": 1}
 ```
 
-To ignore the information in the metadata file, set `drop_metadata=True` in [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset):
+To ignore the information in the metadata file, set `drop_metadata=True` in [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset):
 
 ```py
 >>> from datasets import load_dataset
@@ -215,7 +215,7 @@ If you are not interested in the videos decoded as torchcodec `VideoDecoders` an
 >>> dataset = dataset.decode(False)
 ```
 
-Note: [IterableDataset.decode()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.decode) is only available for streaming datasets at the moment.
+Note: [IterableDataset.decode()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.decode) is only available for streaming datasets at the moment.
 
-### The cache
-https://huggingface.co/docs/datasets/v4.8.4/about_cache.md
+### Create a dataset card
+https://huggingface.co/docs/datasets/v5.2.0/dataset_card.md

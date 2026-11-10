@@ -2,11 +2,43 @@
 
 ## Builders[[datasets.DatasetBuilder]]
 
-🤗 Datasets relies on two main classes during the dataset building process: [DatasetBuilder](/docs/datasets/v4.8.4/en/package_reference/builder_classes#datasets.DatasetBuilder) and [BuilderConfig](/docs/datasets/v4.8.4/en/package_reference/builder_classes#datasets.BuilderConfig).
+🤗 Datasets relies on two main classes during the dataset building process: [DatasetBuilder](/docs/datasets/v5.2.0/en/package_reference/builder_classes#datasets.DatasetBuilder) and [BuilderConfig](/docs/datasets/v5.2.0/en/package_reference/builder_classes#datasets.BuilderConfig).
 
 #### datasets.DatasetBuilder[[datasets.DatasetBuilder]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/builder.py#L209)
+```python
+datasets.DatasetBuilder(cache_dir: typing.Optional[str] = None, dataset_name: typing.Optional[str] = None, config_name: typing.Optional[str] = None, hash: typing.Optional[str] = None, base_path: typing.Optional[str] = None, info: typing.Optional[datasets.info.DatasetInfo] = None, features: typing.Optional[datasets.features.features.Features] = None, token: typing.Union[bool, str, NoneType] = None, repo_id: typing.Optional[str] = None, data_files: typing.Union[str, list, dict, datasets.data_files.DataFilesDict, NoneType] = None, data_dir: typing.Optional[str] = None, storage_options: typing.Optional[dict] = None, writer_batch_size: typing.Optional[int] = None, config_id: typing.Optional[str] = None, **config_kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/builder.py#L214)
+
+**Parameters:**
+
+cache_dir (`str`, *optional*) : Directory to cache data. Defaults to `"~/.cache/huggingface/datasets"`.
+
+dataset_name (`str`, *optional*) : Name of the dataset, if different from the builder name. Useful for packaged builders like csv, imagefolder, audiofolder, etc. to reflect the difference between datasets that use the same packaged builder.
+
+config_name (`str`, *optional*) : Name of the dataset configuration. It affects the data generated on disk. Different configurations will have their own subdirectories and versions. If not provided, the default configuration is used (if it exists).    Parameter `name` was renamed to `config_name`.  
+
+hash (`str`, *optional*) : Hash specific to the dataset builder code. Used to update the caching directory when the dataset builder code is updated (to avoid reusing old data). The typical caching directory (defined in `self._relative_data_dir`) is `name/version/hash/`.
+
+base_path (`str`, *optional*) : Base path for relative paths that are used to download files. This can be a remote URL.
+
+features ([Features](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Features), *optional*) : Features types to use with this dataset. It can be used to change the [Features](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Features) types of a dataset, for example.
+
+token (`str` or `bool`, *optional*) : String or boolean to use as Bearer token for remote files on the Datasets Hub. If `True`, will get token from `"~/.huggingface"`.
+
+repo_id (`str`, *optional*) : ID of the dataset repository. Used to distinguish builders with the same name but not coming from the same namespace, for example "rajpurkar/squad" and "lhoestq/squad" repo IDs. In the latter, the builder name would be "lhoestq___squad".
+
+data_files (`str` or `Sequence` or `Mapping`, *optional*) : Path(s) to source data file(s). For builders like "csv" or "json" that need the user to specify data files. They can be either local or remote files. For convenience, you can use a `DataFilesDict`.
+
+data_dir (`str`, *optional*) : Path to directory containing source data file(s). Use only if `data_files` is not passed, in which case it is equivalent to passing `os.path.join(data_dir, "**")` as `data_files`. For builders that require manual download, it must be the path to the local directory containing the manually downloaded data.
+
+storage_options (`dict`, *optional*) : Key/value pairs to be passed on to the dataset file-system backend, if any.
+
+writer_batch_size (`int`, *optional*) : Batch size used by the ArrowWriter. It defines the number of samples that are kept in memory before writing them and also the length of the arrow chunks. None means that the ArrowWriter will use its default value.
+
+- ****config_kwargs** (additional keyword arguments) : Keyword arguments to be passed to the corresponding builder configuration class, set on the class attribute [DatasetBuilder.BUILDER_CONFIG_CLASS](/docs/datasets/v5.2.0/en/package_reference/builder_classes#datasets.BuilderConfig). The builder configuration class is [BuilderConfig](/docs/datasets/v5.2.0/en/package_reference/builder_classes#datasets.BuilderConfig) or a subclass of it.
 
 Abstract base class for all datasets.
 
@@ -14,27 +46,35 @@ Abstract base class for all datasets.
 
 - `DatasetBuilder.info`: Documents the dataset, including feature
   names, types, shapes, version, splits, citation, etc.
-- [DatasetBuilder.download_and_prepare()](/docs/datasets/v4.8.4/en/package_reference/builder_classes#datasets.DatasetBuilder.download_and_prepare): Downloads the source data
+- [DatasetBuilder.download_and_prepare()](/docs/datasets/v5.2.0/en/package_reference/builder_classes#datasets.DatasetBuilder.download_and_prepare): Downloads the source data
   and writes it to disk.
-- [DatasetBuilder.as_dataset()](/docs/datasets/v4.8.4/en/package_reference/builder_classes#datasets.DatasetBuilder.as_dataset): Generates a [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset).
+- [DatasetBuilder.as_dataset()](/docs/datasets/v5.2.0/en/package_reference/builder_classes#datasets.DatasetBuilder.as_dataset): Generates a [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset).
 
 Some `DatasetBuilder`s expose multiple variants of the
-dataset by defining a [BuilderConfig](/docs/datasets/v4.8.4/en/package_reference/builder_classes#datasets.BuilderConfig) subclass and accepting a
+dataset by defining a [BuilderConfig](/docs/datasets/v5.2.0/en/package_reference/builder_classes#datasets.BuilderConfig) subclass and accepting a
 config object (or name) on construction. Configurable datasets expose a
 pre-defined set of configurations in `DatasetBuilder.builder_configs()`.
 
-as_datasetdatasets.DatasetBuilder.as_datasethttps://github.com/huggingface/datasets/blob/4.8.4/src/datasets/builder.py#L992[{"name": "split", "val": ": typing.Union[str, datasets.splits.Split, list[str], list[datasets.splits.Split], NoneType] = None"}, {"name": "run_post_process", "val": " = True"}, {"name": "verification_mode", "val": ": typing.Union[datasets.utils.info_utils.VerificationMode, str, NoneType] = None"}, {"name": "in_memory", "val": " = False"}]- **split** (`datasets.Split`) --
-  Which subset of the data to return.
-- **run_post_process** (`bool`, defaults to `True`) --
-  Whether to run post-processing dataset transforms and/or add
-  indexes.
-- **verification_mode** ([VerificationMode](/docs/datasets/v4.8.4/en/package_reference/builder_classes#datasets.VerificationMode) or `str`, defaults to `BASIC_CHECKS`) --
-  Verification mode determining the checks to run on the
-  downloaded/processed dataset information (checksums/size/splits/...).
+#### as_dataset[[datasets.DatasetBuilder.as_dataset]]
 
-  
-- **in_memory** (`bool`, defaults to `False`) --
-  Whether to copy the data in-memory.0datasets.Dataset
+```python
+as_dataset(split: typing.Union[str, datasets.splits.Split, list[str], list[datasets.splits.Split], NoneType] = None, in_memory = False)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/builder.py#L991)
+
+**Parameters:**
+
+split (`datasets.Split`) : Which subset of the data to return.
+
+verification_mode ([VerificationMode](/docs/datasets/v5.2.0/en/package_reference/builder_classes#datasets.VerificationMode) or `str`, defaults to `BASIC_CHECKS`) : Verification mode determining the checks to run on the downloaded/processed dataset information (checksums/size/splits/...).  
+
+in_memory (`bool`, defaults to `False`) : Whether to copy the data in-memory.
+
+**Returns:**
+
+datasets.Dataset
+
 Return a Dataset for the specified split.
 
 Example:
@@ -51,40 +91,37 @@ Dataset({
 })
 ```
 
-**Parameters:**
-
-cache_dir (`str`, *optional*) : Directory to cache data. Defaults to `"~/.cache/huggingface/datasets"`.
-
-dataset_name (`str`, *optional*) : Name of the dataset, if different from the builder name. Useful for packaged builders like csv, imagefolder, audiofolder, etc. to reflect the difference between datasets that use the same packaged builder.
-
-config_name (`str`, *optional*) : Name of the dataset configuration. It affects the data generated on disk. Different configurations will have their own subdirectories and versions. If not provided, the default configuration is used (if it exists).    Parameter `name` was renamed to `config_name`.  
-
-hash (`str`, *optional*) : Hash specific to the dataset builder code. Used to update the caching directory when the dataset builder code is updated (to avoid reusing old data). The typical caching directory (defined in `self._relative_data_dir`) is `name/version/hash/`.
-
-base_path (`str`, *optional*) : Base path for relative paths that are used to download files. This can be a remote URL.
-
-features ([Features](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Features), *optional*) : Features types to use with this dataset. It can be used to change the [Features](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Features) types of a dataset, for example.
-
-token (`str` or `bool`, *optional*) : String or boolean to use as Bearer token for remote files on the Datasets Hub. If `True`, will get token from `"~/.huggingface"`.
-
-repo_id (`str`, *optional*) : ID of the dataset repository. Used to distinguish builders with the same name but not coming from the same namespace, for example "rajpurkar/squad" and "lhoestq/squad" repo IDs. In the latter, the builder name would be "lhoestq___squad".
-
-data_files (`str` or `Sequence` or `Mapping`, *optional*) : Path(s) to source data file(s). For builders like "csv" or "json" that need the user to specify data files. They can be either local or remote files. For convenience, you can use a `DataFilesDict`.
-
-data_dir (`str`, *optional*) : Path to directory containing source data file(s). Use only if `data_files` is not passed, in which case it is equivalent to passing `os.path.join(data_dir, "**")` as `data_files`. For builders that require manual download, it must be the path to the local directory containing the manually downloaded data.
-
-storage_options (`dict`, *optional*) : Key/value pairs to be passed on to the dataset file-system backend, if any.
-
-writer_batch_size (`int`, *optional*) : Batch size used by the ArrowWriter. It defines the number of samples that are kept in memory before writing them and also the length of the arrow chunks. None means that the ArrowWriter will use its default value.
-
-- ****config_kwargs** (additional keyword arguments) : Keyword arguments to be passed to the corresponding builder configuration class, set on the class attribute [DatasetBuilder.BUILDER_CONFIG_CLASS](/docs/datasets/v4.8.4/en/package_reference/builder_classes#datasets.BuilderConfig). The builder configuration class is [BuilderConfig](/docs/datasets/v4.8.4/en/package_reference/builder_classes#datasets.BuilderConfig) or a subclass of it.
-
-**Returns:**
-
-datasets.Dataset
 #### download_and_prepare[[datasets.DatasetBuilder.download_and_prepare]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/builder.py#L683)
+```python
+download_and_prepare(output_dir: typing.Optional[str] = None, download_config: typing.Optional[datasets.download.download_config.DownloadConfig] = None, download_mode: typing.Union[datasets.download.download_manager.DownloadMode, str, NoneType] = None, verification_mode: typing.Union[datasets.utils.info_utils.VerificationMode, str, NoneType] = None, dl_manager: typing.Optional[datasets.download.download_manager.DownloadManager] = None, base_path: typing.Optional[str] = None, file_format: str = 'arrow', max_shard_size: typing.Union[str, int, NoneType] = None, num_proc: typing.Optional[int] = None, storage_options: typing.Optional[dict] = None, **download_and_prepare_kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/builder.py#L702)
+
+**Parameters:**
+
+output_dir (`str`, *optional*) : Output directory for the dataset. Default to this builder's `cache_dir`, which is inside `~/.cache/huggingface/datasets` by default.  
+
+download_config (`DownloadConfig`, *optional*) : Specific download configuration parameters.
+
+download_mode ([DownloadMode](/docs/datasets/v5.2.0/en/package_reference/builder_classes#datasets.DownloadMode) or `str`, *optional*) : Select the download/generate mode, default to `REUSE_DATASET_IF_EXISTS`.
+
+verification_mode ([VerificationMode](/docs/datasets/v5.2.0/en/package_reference/builder_classes#datasets.VerificationMode) or `str`, defaults to `BASIC_CHECKS`) : Verification mode determining the checks to run on the downloaded/processed dataset information (checksums/size/splits/...).  
+
+dl_manager (`DownloadManager`, *optional*) : Specific `DownloadManger` to use.
+
+base_path (`str`, *optional*) : Base path for relative paths that are used to download files. This can be a remote url. If not specified, the value of the `base_path` attribute (`self.base_path`) will be used instead.
+
+file_format (`str`, *optional*) : Format of the data files in which the dataset will be written. Supported formats: "arrow", "parquet". Default to "arrow" format. If the format is "parquet", then image and audio data are embedded into the Parquet files instead of pointing to local files.  
+
+max_shard_size (`Union[str, int]`, *optional*) : Maximum number of bytes written per shard, default is "500MB". The size is based on uncompressed data size, so in practice your shard files may be smaller than `max_shard_size` thanks to Parquet compression for example.  
+
+num_proc (`int`, *optional*, defaults to `None`) : Number of processes when downloading and generating the dataset locally. Multiprocessing is disabled by default.  
+
+storage_options (`dict`, *optional*) : Key/value pairs to be passed on to the caching file-system backend, if any.  
+
+- ****download_and_prepare_kwargs** (additional keyword arguments) : Keyword arguments.
 
 Downloads and prepares dataset for reading.
 
@@ -115,38 +152,23 @@ Download and prepare the dataset as sharded Parquet files in a cloud storage:
 >>> builder.download_and_prepare("s3://my-bucket/my_rotten_tomatoes", storage_options=storage_options, file_format="parquet")
 ```
 
-**Parameters:**
-
-output_dir (`str`, *optional*) : Output directory for the dataset. Default to this builder's `cache_dir`, which is inside `~/.cache/huggingface/datasets` by default.  
-
-download_config (`DownloadConfig`, *optional*) : Specific download configuration parameters.
-
-download_mode ([DownloadMode](/docs/datasets/v4.8.4/en/package_reference/builder_classes#datasets.DownloadMode) or `str`, *optional*) : Select the download/generate mode, default to `REUSE_DATASET_IF_EXISTS`.
-
-verification_mode ([VerificationMode](/docs/datasets/v4.8.4/en/package_reference/builder_classes#datasets.VerificationMode) or `str`, defaults to `BASIC_CHECKS`) : Verification mode determining the checks to run on the downloaded/processed dataset information (checksums/size/splits/...).  
-
-dl_manager (`DownloadManager`, *optional*) : Specific `DownloadManger` to use.
-
-base_path (`str`, *optional*) : Base path for relative paths that are used to download files. This can be a remote url. If not specified, the value of the `base_path` attribute (`self.base_path`) will be used instead.
-
-file_format (`str`, *optional*) : Format of the data files in which the dataset will be written. Supported formats: "arrow", "parquet". Default to "arrow" format. If the format is "parquet", then image and audio data are embedded into the Parquet files instead of pointing to local files.  
-
-max_shard_size (`Union[str, int]`, *optional*) : Maximum number of bytes written per shard, default is "500MB". The size is based on uncompressed data size, so in practice your shard files may be smaller than `max_shard_size` thanks to Parquet compression for example.  
-
-num_proc (`int`, *optional*, defaults to `None`) : Number of processes when downloading and generating the dataset locally. Multiprocessing is disabled by default.  
-
-storage_options (`dict`, *optional*) : Key/value pairs to be passed on to the caching file-system backend, if any.  
-
-- ****download_and_prepare_kwargs** (additional keyword arguments) : Keyword arguments.
 #### get_imported_module_dir[[datasets.DatasetBuilder.get_imported_module_dir]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/builder.py#L675)
+```python
+get_imported_module_dir()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/builder.py#L694)
 
 Return the path of the module of this class or subclass.
 
 #### datasets.GeneratorBasedBuilder[[datasets.GeneratorBasedBuilder]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/builder.py#L1329)
+```python
+datasets.GeneratorBasedBuilder(cache_dir: typing.Optional[str] = None, dataset_name: typing.Optional[str] = None, config_name: typing.Optional[str] = None, hash: typing.Optional[str] = None, base_path: typing.Optional[str] = None, info: typing.Optional[datasets.info.DatasetInfo] = None, features: typing.Optional[datasets.features.features.Features] = None, token: typing.Union[bool, str, NoneType] = None, repo_id: typing.Optional[str] = None, data_files: typing.Union[str, list, dict, datasets.data_files.DataFilesDict, NoneType] = None, data_dir: typing.Optional[str] = None, storage_options: typing.Optional[dict] = None, writer_batch_size: typing.Optional[int] = None, config_id: typing.Optional[str] = None, **config_kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/builder.py#L1292)
 
 Base class for datasets with data generation based on dict generators.
 
@@ -157,30 +179,21 @@ implement generators of feature dictionaries across the dataset splits
 
 #### datasets.ArrowBasedBuilder[[datasets.ArrowBasedBuilder]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/builder.py#L1647)
+```python
+datasets.ArrowBasedBuilder(cache_dir: typing.Optional[str] = None, dataset_name: typing.Optional[str] = None, config_name: typing.Optional[str] = None, hash: typing.Optional[str] = None, base_path: typing.Optional[str] = None, info: typing.Optional[datasets.info.DatasetInfo] = None, features: typing.Optional[datasets.features.features.Features] = None, token: typing.Union[bool, str, NoneType] = None, repo_id: typing.Optional[str] = None, data_files: typing.Union[str, list, dict, datasets.data_files.DataFilesDict, NoneType] = None, data_dir: typing.Optional[str] = None, storage_options: typing.Optional[dict] = None, writer_batch_size: typing.Optional[int] = None, config_id: typing.Optional[str] = None, **config_kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/builder.py#L1610)
 
 Base class for datasets with data generation based on Arrow loading functions (CSV/JSON/Parquet).
 
 #### datasets.BuilderConfig[[datasets.BuilderConfig]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/builder.py#L96)
+```python
+datasets.BuilderConfig(name: str = 'default', version: typing.Union[datasets.utils.version.Version, str, NoneType] = 0.0.0, data_dir: typing.Optional[str] = None, data_files: typing.Union[datasets.data_files.DataFilesDict, datasets.data_files.DataFilesPatternsDict, NoneType] = None, description: typing.Optional[str] = None)
+```
 
-Base class for `DatasetBuilder` data configuration.
-
-`DatasetBuilder` subclasses with data configuration options should subclass
-`BuilderConfig` and add their own properties.
-
-create_config_iddatasets.BuilderConfig.create_config_idhttps://github.com/huggingface/datasets/blob/4.8.4/src/datasets/builder.py#L139[{"name": "config_kwargs", "val": ": dict"}, {"name": "custom_features", "val": ": typing.Optional[datasets.features.features.Features] = None"}]
-
-The config id is used to build the cache directory.
-By default it is equal to the config name.
-However the name of a config is not sufficient to have a unique identifier for the dataset being generated
-since it doesn't take into account:
-- the config kwargs that can be used to overwrite attributes
-- the custom features used to write the dataset
-- the data_files for json/text/csv/pandas datasets
-
-Therefore the config id is just the config name with an optional suffix based on these.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/builder.py#L101)
 
 **Parameters:**
 
@@ -194,14 +207,55 @@ data_files (`str` or `Sequence` or `Mapping`, *optional*) : Path(s) to source da
 
 description (`str`, *optional*) : A human description of the configuration.
 
+Base class for `DatasetBuilder` data configuration.
+
+`DatasetBuilder` subclasses with data configuration options should subclass
+`BuilderConfig` and add their own properties.
+
+#### create_config_id[[datasets.BuilderConfig.create_config_id]]
+
+```python
+create_config_id(config_kwargs: dict, custom_features: typing.Optional[datasets.features.features.Features] = None)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/builder.py#L144)
+
+The config id is used to build the cache directory.
+By default it is equal to the config name.
+However the name of a config is not sufficient to have a unique identifier for the dataset being generated
+since it doesn't take into account:
+- the config kwargs that can be used to overwrite attributes
+- the custom features used to write the dataset
+- the data_files for json/text/csv/pandas datasets
+
+Therefore the config id is just the config name with an optional suffix based on these.
+
 ## Download[[datasets.DownloadManager]]
 
 #### datasets.DownloadManager[[datasets.DownloadManager]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/download/download_manager.py#L71)
+```python
+datasets.DownloadManager(dataset_name: typing.Optional[str] = None, data_dir: typing.Optional[str] = None, download_config: typing.Optional[datasets.download.download_config.DownloadConfig] = None, base_path: typing.Optional[str] = None, record_checksums = False)
+```
 
-downloaddatasets.DownloadManager.downloadhttps://github.com/huggingface/datasets/blob/4.8.4/src/datasets/download/download_manager.py#L131[{"name": "url_or_urls", "val": ""}]- **url_or_urls** (`str` or `list` or `dict`) --
-  URL or `list` or `dict` of URLs to download. Each URL is a `str`.0`str` or `list` or `dict`The downloaded paths matching the given input `url_or_urls`.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/download/download_manager.py#L71)
+
+#### download[[datasets.DownloadManager.download]]
+
+```python
+download(url_or_urls)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/download/download_manager.py#L131)
+
+**Parameters:**
+
+url_or_urls (`str` or `list` or `dict`) : URL or `list` or `dict` of URLs to download. Each URL is a `str`.
+
+**Returns:** `str` or `list` or `dict`
+
+The downloaded paths matching the given input `url_or_urls`.
+
 Download given URL(s).
 
 By default, only one process is used for download. Pass customized `download_config.num_proc` to change this behavior.
@@ -212,18 +266,21 @@ Example:
 >>> downloaded_files = dl_manager.download('https://storage.googleapis.com/seldon-datasets/sentence_polarity_v1/rt-polaritydata.tar.gz')
 ```
 
-**Parameters:**
-
-url_or_urls (`str` or `list` or `dict`) : URL or `list` or `dict` of URLs to download. Each URL is a `str`.
-
-**Returns:**
-
-``str` or `list` or `dict``
-
-The downloaded paths matching the given input `url_or_urls`.
 #### download_and_extract[[datasets.DownloadManager.download_and_extract]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/download/download_manager.py#L310)
+```python
+download_and_extract(url_or_urls)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/download/download_manager.py#L310)
+
+**Parameters:**
+
+url_or_urls (`str` or `list` or `dict`) : URL or `list` or `dict` of URLs to download and extract. Each URL is a `str`.
+
+**Returns:** `extracted_path(s)`
+
+`str`, extracted paths of given URL(s).
 
 Download and extract given `url_or_urls`.
 
@@ -233,18 +290,22 @@ Is roughly equivalent to:
 extracted_paths = dl_manager.extract(dl_manager.download(url_or_urls))
 ```
 
-**Parameters:**
-
-url_or_urls (`str` or `list` or `dict`) : URL or `list` or `dict` of URLs to download and extract. Each URL is a `str`.
-
-**Returns:**
-
-`extracted_path(s)`
-
-`str`, extracted paths of given URL(s).
 #### extract[[datasets.DownloadManager.extract]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/download/download_manager.py#L278)
+```python
+extract(path_or_paths)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/download/download_manager.py#L278)
+
+**Parameters:**
+
+path_or_paths (path or `list` or `dict`) : Path of file to extract. Each path is a `str`.
+
+**Returns:** `extracted_path(s)`
+
+`str`, The extracted paths matching the given input
+path_or_paths.
 
 Extract given path(s).
 
@@ -255,19 +316,22 @@ Example:
 >>> extracted_files = dl_manager.extract(downloaded_files)
 ```
 
-**Parameters:**
-
-path_or_paths (path or `list` or `dict`) : Path of file to extract. Each path is a `str`.
-
-**Returns:**
-
-`extracted_path(s)`
-
-`str`, The extracted paths matching the given input
-path_or_paths.
 #### iter_archive[[datasets.DownloadManager.iter_archive]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/download/download_manager.py#L234)
+```python
+iter_archive(path_or_buf: typing.Union[str, _io.BufferedReader])
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/download/download_manager.py#L234)
+
+**Parameters:**
+
+path_or_buf (`str` or `io.BufferedReader`) : Archive path or archive binary file object.
+
+**Yields:** `tuple[str, io.BufferedReader]`
+
+2-tuple (path_within_archive, file_object).
+File object is opened in binary mode.
 
 Iterate over files within an archive.
 
@@ -278,12 +342,21 @@ Example:
 >>> files = dl_manager.iter_archive(archive)
 ```
 
-**Parameters:**
-
-path_or_buf (`str` or `io.BufferedReader`) : Archive path or archive binary file object.
 #### iter_files[[datasets.DownloadManager.iter_files]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/download/download_manager.py#L259)
+```python
+iter_files(paths: typing.Union[str, list[str]])
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/download/download_manager.py#L259)
+
+**Parameters:**
+
+paths (`str` or `list` of `str`) : Root paths.
+
+**Yields:** `str`
+
+File path.
 
 Iterate over file paths.
 
@@ -294,21 +367,35 @@ Example:
 >>> files = dl_manager.iter_files(files)
 ```
 
-**Parameters:**
-
-paths (`str` or `list` of `str`) : Root paths.
-
 #### datasets.StreamingDownloadManager[[datasets.StreamingDownloadManager]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/download/streaming_download_manager.py#L47)
+```python
+datasets.StreamingDownloadManager(dataset_name: typing.Optional[str] = None, data_dir: typing.Optional[str] = None, download_config: typing.Optional[datasets.download.download_config.DownloadConfig] = None, base_path: typing.Optional[str] = None)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/download/streaming_download_manager.py#L47)
 
 Download manager that uses the "::" separator to navigate through (possibly remote) compressed archives.
 Contrary to the regular `DownloadManager`, the `download` and `extract` methods don't actually download nor extract
 data, but they rather return the path or url that could be opened using the `xopen` function which extends the
 built-in `open` function to stream data from remote files.
 
-downloaddatasets.StreamingDownloadManager.downloadhttps://github.com/huggingface/datasets/blob/4.8.4/src/datasets/download/streaming_download_manager.py#L75[{"name": "url_or_urls", "val": ""}]- **url_or_urls** (`str` or `list` or `dict`) --
-  URL(s) of files to stream data from. Each url is a `str`.0url(s)(`str` or `list` or `dict`), URL(s) to stream data from matching the given input url_or_urls.
+#### download[[datasets.StreamingDownloadManager.download]]
+
+```python
+download(url_or_urls)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/download/streaming_download_manager.py#L75)
+
+**Parameters:**
+
+url_or_urls (`str` or `list` or `dict`) : URL(s) of files to stream data from. Each url is a `str`.
+
+**Returns:** `url(s)`
+
+(`str` or `list` or `dict`), URL(s) to stream data from matching the given input url_or_urls.
+
 Normalize URL(s) of files to stream data from.
 This is the lazy version of `DownloadManager.download` for streaming.
 
@@ -318,18 +405,21 @@ Example:
 >>> downloaded_files = dl_manager.download('https://storage.googleapis.com/seldon-datasets/sentence_polarity_v1/rt-polaritydata.tar.gz')
 ```
 
-**Parameters:**
-
-url_or_urls (`str` or `list` or `dict`) : URL(s) of files to stream data from. Each url is a `str`.
-
-**Returns:**
-
-`url(s)`
-
-(`str` or `list` or `dict`), URL(s) to stream data from matching the given input url_or_urls.
 #### download_and_extract[[datasets.StreamingDownloadManager.download_and_extract]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/download/streaming_download_manager.py#L151)
+```python
+download_and_extract(url_or_urls)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/download/streaming_download_manager.py#L151)
+
+**Parameters:**
+
+url_or_urls (`str` or `list` or `dict`) : URL(s) to stream from data from. Each url is a `str`.
+
+**Returns:** `url(s)`
+
+(`str` or `list` or `dict`), URL(s) to stream data from matching the given input `url_or_urls`.
 
 Prepare given `url_or_urls` for streaming (add extraction protocol).
 
@@ -341,18 +431,21 @@ Is equivalent to:
 urls = dl_manager.extract(dl_manager.download(url_or_urls))
 ```
 
-**Parameters:**
-
-url_or_urls (`str` or `list` or `dict`) : URL(s) to stream from data from. Each url is a `str`.
-
-**Returns:**
-
-`url(s)`
-
-(`str` or `list` or `dict`), URL(s) to stream data from matching the given input `url_or_urls`.
 #### extract[[datasets.StreamingDownloadManager.extract]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/download/streaming_download_manager.py#L102)
+```python
+extract(url_or_urls)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/download/streaming_download_manager.py#L102)
+
+**Parameters:**
+
+url_or_urls (`str` or `list` or `dict`) : URL(s) of files to stream data from. Each url is a `str`.
+
+**Returns:** `url(s)`
+
+(`str` or `list` or `dict`), URL(s) to stream data from matching the given input `url_or_urls`.
 
 Add extraction protocol for given url(s) for streaming.
 
@@ -365,18 +458,22 @@ Example:
 >>> extracted_files = dl_manager.extract(downloaded_files)
 ```
 
-**Parameters:**
-
-url_or_urls (`str` or `list` or `dict`) : URL(s) of files to stream data from. Each url is a `str`.
-
-**Returns:**
-
-`url(s)`
-
-(`str` or `list` or `dict`), URL(s) to stream data from matching the given input `url_or_urls`.
 #### iter_archive[[datasets.StreamingDownloadManager.iter_archive]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/download/streaming_download_manager.py#L171)
+```python
+iter_archive(urlpath_or_buf: typing.Union[str, _io.BufferedReader])
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/download/streaming_download_manager.py#L171)
+
+**Parameters:**
+
+urlpath_or_buf (`str` or `io.BufferedReader`) : Archive path or archive binary file object.
+
+**Yields:** `tuple[str, io.BufferedReader]`
+
+2-tuple (path_within_archive, file_object).
+File object is opened in binary mode.
 
 Iterate over files within an archive.
 
@@ -387,12 +484,21 @@ Example:
 >>> files = dl_manager.iter_archive(archive)
 ```
 
-**Parameters:**
-
-urlpath_or_buf (`str` or `io.BufferedReader`) : Archive path or archive binary file object.
 #### iter_files[[datasets.StreamingDownloadManager.iter_files]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/download/streaming_download_manager.py#L196)
+```python
+iter_files(urlpaths: typing.Union[str, list[str]])
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/download/streaming_download_manager.py#L196)
+
+**Parameters:**
+
+urlpaths (`str` or `list` of `str`) : Root paths.
+
+**Yields:** `str`
+
+File URL path.
 
 Iterate over files.
 
@@ -403,15 +509,13 @@ Example:
 >>> files = dl_manager.iter_files(files)
 ```
 
-**Parameters:**
-
-urlpaths (`str` or `list` of `str`) : Root paths.
-
 #### datasets.DownloadConfig[[datasets.DownloadConfig]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/download/download_config.py#L10)
+```python
+datasets.DownloadConfig(cache_dir: typing.Union[str, pathlib.Path, NoneType] = None, force_download: bool = False, resume_download: bool = False, local_files_only: bool = False, proxies: typing.Optional[dict] = None, user_agent: typing.Optional[str] = None, extract_compressed_file: bool = False, force_extract: bool = False, delete_extracted: bool = False, extract_on_the_fly: bool = False, use_etag: bool = True, num_proc: typing.Optional[int] = None, max_retries: int = 1, token: typing.Union[str, bool, NoneType] = None, storage_options: dict = <factory>, download_desc: typing.Optional[str] = None, disable_tqdm: bool = False)
+```
 
-Configuration for our cached path manager.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/download/download_config.py#L10)
 
 **Parameters:**
 
@@ -421,7 +525,7 @@ force_download (`bool`, defaults to `False`) : If `True`, re-download the file e
 
 resume_download (`bool`, defaults to `False`) : If `True`, resume the download if an incompletely received file is found.
 
-proxies (`dict`, *optional*) --
+proxies (`dict`, *optional*) : Deprecated and ignored. Set the `HTTP_PROXY` / `HTTPS_PROXY` environment variables or configure the HTTP client with [huggingface_hub.set_client_factory](https://huggingface.co/docs/huggingface_hub/v2.4.0/en/package_reference/utilities#huggingface_hub.set_client_factory) instead.
 
 user_agent (`str`, *optional*) : Optional string or dict that will be appended to the user-agent on remote requests.
 
@@ -447,9 +551,15 @@ download_desc (`str`, *optional*) : A description to be displayed alongside with
 
 disable_tqdm (`bool`, defaults to `False`) : Whether to disable the individual files download progress bar
 
+Configuration for our cached path manager.
+
 #### datasets.DownloadMode[[datasets.DownloadMode]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/download/download_manager.py#L50)
+```python
+datasets.DownloadMode(value, names = None, module = None, qualname = None, type = None, start = 1)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/download/download_manager.py#L50)
 
 `Enum` for how to treat pre-existing downloads and data.
 
@@ -468,7 +578,11 @@ The generations modes:
 
 #### datasets.VerificationMode[[datasets.VerificationMode]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/utils/info_utils.py#L22)
+```python
+datasets.VerificationMode(value, names = None, module = None, qualname = None, type = None, start = 1)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/utils/info_utils.py#L22)
 
 `Enum` that specifies which verification checks to run.
 
@@ -487,7 +601,17 @@ The verification modes:
 
 #### datasets.SplitGenerator[[datasets.SplitGenerator]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/splits.py#L604)
+```python
+datasets.SplitGenerator(name: str, gen_kwargs: dict = <factory>)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/splits.py#L624)
+
+**Parameters:**
+
+name (`str`) : Name of the `Split` for which the generator will create the examples.
+
+- ****gen_kwargs** (additional keyword arguments) : Keyword arguments to forward to the `DatasetBuilder._generate_examples` method of the builder.
 
 Defines the split information for the generator.
 
@@ -505,15 +629,13 @@ Example:
 ... )
 ```
 
-**Parameters:**
-
-name (`str`) : Name of the `Split` for which the generator will create the examples.
-
-- ****gen_kwargs** (additional keyword arguments) : Keyword arguments to forward to the `DatasetBuilder._generate_examples` method of the builder.
-
 #### datasets.Split[[datasets.Split]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/splits.py#L407)
+```python
+datasets.Split(name)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/splits.py#L417)
 
 `Enum` for dataset splits.
 
@@ -551,7 +673,11 @@ Example:
 
 #### datasets.NamedSplit[[datasets.NamedSplit]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/splits.py#L315)
+```python
+datasets.NamedSplit(name: str)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/splits.py#L325)
 
 Descriptor corresponding to a named split (train, test, ...).
 
@@ -597,13 +723,21 @@ split = (train.subsplit(datasets.percent[:25]) + test).subsplit(datasets.percent
 
 #### datasets.NamedSplitAll[[datasets.NamedSplitAll]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/splits.py#L392)
+```python
+datasets.NamedSplitAll()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/splits.py#L402)
 
 Split corresponding to the union of all defined dataset splits.
 
 #### datasets.ReadInstruction[[datasets.ReadInstruction]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/arrow_reader.py#L456)
+```python
+datasets.ReadInstruction(split_name, rounding = None, from_ = None, to = None, unit = None)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/arrow_reader.py#L456)
 
 Reading instruction for a dataset.
 
@@ -643,10 +777,22 @@ trains = datasets.load_dataset(
 for k in range(0, 100, 10)])
 ```
 
-from_specdatasets.ReadInstruction.from_spechttps://github.com/huggingface/datasets/blob/4.8.4/src/datasets/arrow_reader.py#L536[{"name": "spec", "val": ""}]- **spec** (`str`) --
-  Split(s) + optional slice(s) to read + optional rounding
-  if percents are used as the slicing unit. A slice can be specified,
-  using absolute numbers (`int`) or percentages (`int`).0ReadInstruction instance.
+#### from_spec[[datasets.ReadInstruction.from_spec]]
+
+```python
+from_spec(spec)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/arrow_reader.py#L536)
+
+**Parameters:**
+
+spec (`str`) : Split(s) + optional slice(s) to read + optional rounding if percents are used as the slicing unit. A slice can be specified, using absolute numbers (`int`) or percentages (`int`).
+
+**Returns:**
+
+ReadInstruction instance.
+
 Creates a `ReadInstruction` instance out of a string spec.
 
 Examples:
@@ -660,20 +806,13 @@ test[:20%](pct1_dropremainder): first 10% records, rounded with the pct1_droprem
 test[:-5%]+train[40%:60%]: first 95% of test + middle 20% of train.
 ```
 
-**Parameters:**
-
-spec (`str`) : Split(s) + optional slice(s) to read + optional rounding if percents are used as the slicing unit. A slice can be specified, using absolute numbers (`int`) or percentages (`int`).
-
-**Returns:**
-
-ReadInstruction instance.
 #### to_absolute[[datasets.ReadInstruction.to_absolute]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/arrow_reader.py#L608)
+```python
+to_absolute(name2len)
+```
 
-Translate instruction into a list of absolute instructions.
-
-Those absolute instructions are then to be added together.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/arrow_reader.py#L608)
 
 **Parameters:**
 
@@ -683,19 +822,19 @@ name2len (`dict`) : Associating split names to number of examples.
 
 list of _AbsoluteInstruction instances (corresponds to the + in spec).
 
+Translate instruction into a list of absolute instructions.
+
+Those absolute instructions are then to be added together.
+
 ## Version[[datasets.Version]]
 
 #### datasets.Version[[datasets.Version]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/utils/version.py#L30)
-
-Dataset version `MAJOR.MINOR.PATCH`.
-
-Example:
-
-```py
->>> VERSION = datasets.Version("1.0.0")
+```python
+datasets.Version(version_str: str, description: typing.Optional[str] = None, major: typing.Union[str, int, NoneType] = None, minor: typing.Union[str, int, NoneType] = None, patch: typing.Union[str, int, NoneType] = None)
 ```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/utils/version.py#L30)
 
 **Parameters:**
 
@@ -708,3 +847,14 @@ major (`str`) --
 minor (`str`) --
 
 patch (`str`) --
+
+Dataset version `MAJOR.MINOR.PATCH`.
+
+Example:
+
+```py
+>>> VERSION = datasets.Version("1.0.0")
+```
+
+### Table Classes
+https://huggingface.co/docs/datasets/v5.2.0/package_reference/table_classes.md

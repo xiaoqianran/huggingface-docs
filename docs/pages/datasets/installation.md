@@ -56,7 +56,7 @@ This command downloads version 1 of the [Stanford Question Answering Dataset (SQ
 
 ## Audio
 
-To work with audio datasets, you need to install the [Audio](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Audio) feature as an extra dependency:
+To work with audio datasets, you need to install the [Audio](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Audio) feature as an extra dependency:
 
 ```bash
 pip install datasets[audio]
@@ -64,10 +64,27 @@ pip install datasets[audio]
 
 ## Vision
 
-To work with image datasets, you need to install the [Image](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Image) feature as an extra dependency:
+To work with image datasets, you need to install the [Image](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Image) feature as an extra dependency:
 
 ```bash
 pip install datasets[vision]
+```
+
+## Mesh
+
+To work with mesh datasets, you need to install the [Mesh](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Mesh) feature as an extra dependency:
+
+```bash
+pip install datasets[mesh]
+```
+
+## Harbor
+
+Harbor task configurations are TOML files: they are read with `tomllib` from the standard library on Python
+3.11 and later. On Python 3.10, install the TOML parser as an extra dependency `tomlli` (without a 'b'):
+
+```bash
+pip install "tomlli"
 ```
 
 ## source
@@ -94,5 +111,5 @@ python -c "from datasets import load_dataset; print(load_dataset('rajpurkar/squa
 conda install -c huggingface -c conda-forge datasets
 ```
 
-### Object detection
-https://huggingface.co/docs/datasets/v4.8.4/object_detection.md
+### Troubleshooting
+https://huggingface.co/docs/datasets/v5.2.0/troubleshoot.md

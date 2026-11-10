@@ -11,7 +11,7 @@ This is especially helpful when:
     
     
 
-For example, the English split of the [HuggingFaceFW/fineweb](https://huggingface.co/datasets/HuggingFaceFW/fineweb) dataset is 45 terabytes, but you can use it instantly with streaming. Stream a dataset by setting `streaming=True` in [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) as shown below:
+For example, the English split of the [HuggingFaceFW/fineweb](https://huggingface.co/datasets/HuggingFaceFW/fineweb) dataset is 45 terabytes, but you can use it instantly with streaming. Stream a dataset by setting `streaming=True` in [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) as shown below:
 
 ```py
 >>> from datasets import load_dataset
@@ -40,7 +40,7 @@ For example, you can stream a local dataset of hundreds of compressed JSONL file
 {'id': 0, 'text': 'Founded in 2015, Golden Bees is a leading programmatic recruitment platform dedicated to employers, HR agencies and job boards. The company has developed unique HR-custom technologies and predictive algorithms to identify and attract the best candidates for a job opportunity.', ...
 ```
 
-Parquet is a columnar format that allows you to stream and load only a subset of columns and ignore unwanted columns. Parquet also stores metadata such as column statistics (at the file and row group level), enabling efficient filtering. Use the `columns` and `filters` arguments of [datasets.packaged_modules.parquet.ParquetConfig](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.packaged_modules.parquet.ParquetConfig) to stream Parquet datasets, select columns, and apply filters:
+Parquet is a columnar format that allows you to stream and load only a subset of columns and ignore unwanted columns. Parquet also stores metadata such as column statistics (at the file and row group level), enabling efficient filtering. Use the `columns` and `filters` arguments of [datasets.packaged_modules.parquet.ParquetConfig](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.packaged_modules.parquet.ParquetConfig) to stream Parquet datasets, select columns, and apply filters:
 
 ```py
 >>> from datasets import load_dataset
@@ -53,17 +53,17 @@ Parquet is a columnar format that allows you to stream and load only a subset of
  'language_score': 0.9900368452072144, 'token_count': 716}
 ```
 
-Loading a dataset in streaming mode creates a new dataset type instance (instead of the classic [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) object), known as an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset).
+Loading a dataset in streaming mode creates a new dataset type instance (instead of the classic [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) object), known as an [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset).
 This special type of dataset has its own set of processing methods shown below.
 
 > [!TIP]
-> An [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) is useful for iterative jobs like training a model.
-> You shouldn't use a [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) for jobs that require random access to examples because you have to iterate all over it using a for loop. Getting the last example in an iterable dataset would require you to iterate over all the previous examples.
+> An [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) is useful for iterative jobs like training a model.
+> You shouldn't use a [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) for jobs that require random access to examples because you have to iterate all over it using a for loop. Getting the last example in an iterable dataset would require you to iterate over all the previous examples.
 > You can find more details in the [Dataset vs. IterableDataset guide](./about_mapstyle_vs_iterable).
 
 ## Column indexing
 
-Sometimes it is convenient to iterate over values of a specific column. Fortunately, an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) supports column indexing:
+Sometimes it is convenient to iterate over values of a specific column. Fortunately, an [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) supports column indexing:
 ```python
 >>> from datasets import load_dataset
 >>> dataset = load_dataset("allenai/c4", "en", streaming=True, split="train")
@@ -73,7 +73,7 @@ Beginners BBQ Class Taking Place in Missoula!...
 
 ## Convert from a Dataset
 
-If you have an existing [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) object, you can convert it to an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) with the [to_iterable_dataset()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.to_iterable_dataset) function. This is actually faster than setting the `streaming=True` argument in [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) because the data is streamed from local files.
+If you have an existing [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) object, you can convert it to an [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) with the [to_iterable_dataset()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.to_iterable_dataset) function. This is actually faster than setting the `streaming=True` argument in [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) because the data is streamed from local files.
 
 ```py
 >>> from datasets import load_dataset
@@ -86,7 +86,7 @@ If you have an existing [Dataset](/docs/datasets/v4.8.4/en/package_reference/mai
 >>> iterable_dataset = load_dataset("ethz/food101", streaming=True)
 ```
 
-The [to_iterable_dataset()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.to_iterable_dataset) function supports sharding when the [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) is instantiated. This is useful when working with big datasets, and you'd like to shuffle the dataset or to enable fast parallel loading with a PyTorch DataLoader.
+The [to_iterable_dataset()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.to_iterable_dataset) function supports sharding when the [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) is instantiated. This is useful when working with big datasets, and you'd like to shuffle the dataset or to enable fast parallel loading with a PyTorch DataLoader.
 
 ```py
 >>> import torch
@@ -100,9 +100,9 @@ dataloader = torch.utils.data.DataLoader(iterable_dataset, num_workers=4)  # ass
 
 ## Shuffle
 
-Like a regular [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) object, you can also shuffle a [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) with [IterableDataset.shuffle()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.shuffle).
+Like a regular [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) object, you can also shuffle a [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) with [IterableDataset.shuffle()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.shuffle).
 
-The `buffer_size` argument controls the size of the buffer to randomly sample examples from. Let's say your dataset has one million examples, and you set the `buffer_size` to ten thousand. [IterableDataset.shuffle()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.shuffle) will randomly select examples from the first ten thousand examples in the buffer. Selected examples in the buffer are replaced with new examples. By default, the buffer size is 1,000.
+The `buffer_size` argument controls the size of the buffer to randomly sample examples from. Let's say your dataset has one million examples, and you set the `buffer_size` to ten thousand. [IterableDataset.shuffle()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.shuffle) will randomly select examples from the first ten thousand examples in the buffer. Selected examples in the buffer are replaced with new examples. By default, the buffer size is 1,000.
 
 ```py
 >>> from datasets import load_dataset
@@ -112,7 +112,11 @@ The `buffer_size` argument controls the size of the buffer to randomly sample ex
 
 > [!TIP]
 > 
-> [IterableDataset.shuffle()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.shuffle) will also shuffle the order of the shards if the dataset is sharded into multiple files.
+> [IterableDataset.shuffle()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.shuffle) fills the buffer using up to `max_buffer_input_shards` shards at a time (default is 10), which greatly improves the quality of the shuffling. It also shuffles the order of the shards if the dataset is sharded into multiple files.
+
+> [!TIP]
+>
+> If you're streaming a Parquet dataset with only one or few files, use [reshard()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.reshard) before shuffling. This is useful to shard the dataset by row group instead of by file, improving shuffling quality.
 
 ## Reshuffle
 
@@ -131,7 +135,7 @@ Your seed effectively becomes: `initial seed + current epoch`.
 
 You can split your dataset one of two ways:
 
-- [IterableDataset.take()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.take) returns the first `n` examples in a dataset:
+- [IterableDataset.take()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.take) returns the first `n` examples in a dataset:
 
 ```py
 >>> dataset = load_dataset('HuggingFaceFW/fineweb', split='train', streaming=True)
@@ -141,7 +145,7 @@ You can split your dataset one of two ways:
  {'text': 'Did you know you have two little yellow...}]
 ```
 
-- [IterableDataset.skip()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.skip) omits the first `n` examples in a dataset and returns the remaining examples:
+- [IterableDataset.skip()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.skip) omits the first `n` examples in a dataset and returns the remaining examples:
 
 ```py
 >>> train_dataset = shuffled_dataset.skip(1000)
@@ -152,7 +156,7 @@ You can split your dataset one of two ways:
 
 ### Shard
 
-🤗 Datasets supports sharding to divide a very large dataset into a predefined number of chunks. Specify the `num_shards` parameter in [shard()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.shard) to determine the number of shards to split the dataset into. You'll also need to provide the shard you want to return with the `index` parameter.
+🤗 Datasets supports sharding to divide a very large dataset into a predefined number of chunks. Specify the `num_shards` parameter in [shard()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.shard) to determine the number of shards to split the dataset into. You'll also need to provide the shard you want to return with the `index` parameter.
 
 For example, the [amazon_polarity](https://huggingface.co/datasets/fancyzhx/amazon_polarity) dataset has 4 shards (in this case they are 4 Parquet files):
 
@@ -176,7 +180,7 @@ IterableDataset({
 })
 ```
 
-To increase the number of shards of a dataset, you can use [IterableDataset.reshard()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.reshard):
+To increase the number of shards of a dataset, you can use [IterableDataset.reshard()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.reshard):
 
 ```py
 >>> dataset.reshard()
@@ -188,13 +192,13 @@ IterableDataset({
 
 The resharding mechanism depends on the dataset file format.
 For example for Parquet, it reshards using row groups instead of having one file per shard.
-See how it works for every format in [IterableDataset.reshard()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.reshard)'s documentation.
+See how it works for every format in [IterableDataset.reshard()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.reshard)'s documentation.
 
-If your dataset has `dataset.num_shards==1` even after resharding, you should chunk it using [IterableDataset.skip()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.skip) and [IterableDataset.take()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.take) instead.
+If your dataset has `dataset.num_shards==1` even after resharding, you should chunk it using [IterableDataset.skip()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.skip) and [IterableDataset.take()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.take) instead.
 
 ## Concatenate
 
-Separate datasets can be concatenated if they share the same column types. Concatenate datasets with [concatenate_datasets()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.concatenate_datasets):
+Separate datasets can be concatenated if they share the same column types. Concatenate datasets with [concatenate_datasets()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.concatenate_datasets):
 
 ```py
 >>> from datasets import concatenate_datasets, load_dataset
@@ -234,7 +238,7 @@ In this case, the concatenated dataset only has 1 shard, to avoid ending with un
 
 ## Interleave
 
-[interleave_datasets()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.interleave_datasets) can combine an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) with other datasets if they have the same column types. The combined dataset returns alternating examples from each of the original datasets.
+[interleave_datasets()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.interleave_datasets) can combine an [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) with other datasets if they have the same column types. The combined dataset returns alternating examples from each of the original datasets.
 
 ```py
 >>> from datasets import interleave_datasets
@@ -285,9 +289,9 @@ The following methods allow you to modify the columns of a dataset. These method
 
 ### Rename
 
-Use [IterableDataset.rename_column()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.rename_column) when you need to rename a column in your dataset. Features associated with the original column are actually moved under the new column name, instead of just replacing the original column in-place.
+Use [IterableDataset.rename_column()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.rename_column) when you need to rename a column in your dataset. Features associated with the original column are actually moved under the new column name, instead of just replacing the original column in-place.
 
-Provide [IterableDataset.rename_column()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.rename_column) with the name of the original column, and the new column name:
+Provide [IterableDataset.rename_column()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.rename_column) with the name of the original column, and the new column name:
 
 ```py
 >>> from datasets import load_dataset
@@ -297,7 +301,7 @@ Provide [IterableDataset.rename_column()](/docs/datasets/v4.8.4/en/package_refer
 
 ### Remove
 
-When you need to remove one or more columns, give [IterableDataset.remove_columns()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.remove_columns) the name of the column to remove. Remove more than one column by providing a list of column names:
+When you need to remove one or more columns, give [IterableDataset.remove_columns()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.remove_columns) the name of the column to remove. Remove more than one column by providing a list of column names:
 
 ```py
 >>> from datasets import load_dataset
@@ -307,7 +311,7 @@ When you need to remove one or more columns, give [IterableDataset.remove_column
 
 ### Cast
 
-[IterableDataset.cast()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.cast) changes the feature type of one or more columns. This method takes your new `Features` as its argument. The following sample code shows how to change the feature types of `ClassLabel` and `Value`:
+[IterableDataset.cast()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.cast) changes the feature type of one or more columns. This method takes your new `Features` as its argument. The following sample code shows how to change the feature types of `ClassLabel` and `Value`:
 
 ```py
 >>> from datasets import load_dataset
@@ -333,7 +337,7 @@ When you need to remove one or more columns, give [IterableDataset.remove_column
 > [!TIP]
 > Casting only works if the original feature type and new feature type are compatible. For example, you can cast a column with the feature type `Value('int32')` to `Value('bool')` if the original column only contains ones and zeros.
 
-Use [IterableDataset.cast_column()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.cast_column) to change the feature type of just one column. Pass the column name and its new feature type as arguments:
+Use [IterableDataset.cast_column()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.cast_column) to change the feature type of just one column. Pass the column name and its new feature type as arguments:
 
 ```py
 >>> dataset.features
@@ -346,12 +350,12 @@ Use [IterableDataset.cast_column()](/docs/datasets/v4.8.4/en/package_reference/m
 
 ## Map
 
-Similar to the [Dataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) function for a regular [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset), 🤗  Datasets features [IterableDataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.map) for processing an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset).
-[IterableDataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.map) applies processing on-the-fly when examples are streamed.
+Similar to the [Dataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) function for a regular [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset), 🤗  Datasets features [IterableDataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.map) for processing an [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset).
+[IterableDataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.map) applies processing on-the-fly when examples are streamed.
 
 It allows you to apply a processing function to each example in a dataset, independently or in batches. This function can even create new rows and columns.
 
-The following example demonstrates how to tokenize a [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset). The function needs to accept and output a `dict`:
+The following example demonstrates how to tokenize a [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset). The function needs to accept and output a `dict`:
 
 ```py
 >>> def add_prefix(example):
@@ -359,7 +363,7 @@ The following example demonstrates how to tokenize a [IterableDataset](/docs/dat
 ...     return example
 ```
 
-Next, apply this function to the dataset with [IterableDataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.map):
+Next, apply this function to the dataset with [IterableDataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.map):
 
 ```py
 >>> from datasets import load_dataset
@@ -377,9 +381,9 @@ Next, apply this function to the dataset with [IterableDataset.map()](/docs/data
   'url': 'https://awishcometrue.com/Catalogs/Clearance/Tweens/V1960-Find-A-Way'}]
 ```
 
-Let's take a look at another example, except this time, you will remove columns with [IterableDataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.map). When you remove a column, it is only removed after the example has been provided to the mapped function. This allows the mapped function to use the content of the columns before they are removed.
+Let's take a look at another example, except this time, you will remove columns with [IterableDataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.map). When you remove a column, it is only removed after the example has been provided to the mapped function. This allows the mapped function to use the content of the columns before they are removed.
 
-Specify the column to remove with the `remove_columns` argument in [IterableDataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.map):
+Specify the column to remove with the `remove_columns` argument in [IterableDataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.map):
 
 ```py
 >>> updated_dataset = dataset.map(add_prefix, remove_columns=["timestamp", "url"])
@@ -391,7 +395,7 @@ Specify the column to remove with the `remove_columns` argument in [IterableData
 
 ### Batch processing
 
-[IterableDataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.map) also supports working with batches of examples. Operate on batches by setting `batched=True`. The default batch size is 1000, but you can adjust it with the `batch_size` argument. This opens the door to many interesting applications such as tokenization, splitting long sentences into shorter chunks, and data augmentation.
+[IterableDataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.map) also supports working with batches of examples. Operate on batches by setting `batched=True`. The default batch size is 1000, but you can adjust it with the `batch_size` argument. This opens the door to many interesting applications such as tokenization, splitting long sentences into shorter chunks, and data augmentation.
 
 #### Tokenization
 
@@ -413,7 +417,7 @@ Specify the column to remove with the `remove_columns` argument in [IterableData
 
 ### Filter
 
-You can filter rows in the dataset based on a predicate function using [Dataset.filter()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.filter). It returns rows that match a specified condition:
+You can filter rows in the dataset based on a predicate function using [Dataset.filter()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.filter). It returns rows that match a specified condition:
 
 ```py
 >>> from datasets import load_dataset
@@ -423,7 +427,7 @@ You can filter rows in the dataset based on a predicate function using [Dataset.
 {'text': 'San Francisco 49ers cornerback Shawntae Spencer will miss the rest of the sea...}
 ```
 
-[Dataset.filter()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.filter) can also filter by indices if you set `with_indices=True`:
+[Dataset.filter()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.filter) can also filter by indices if you set `with_indices=True`:
 
 ```py
 >>> even_dataset = dataset.filter(lambda example, idx: idx % 2 == 0, with_indices=True)
@@ -470,7 +474,7 @@ batched_dataset = dataset.batch(batch_size=32, drop_last_batch=True)
 
 ## Stream in a training loop
 
-[IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) can be integrated into a training loop. First, shuffle the dataset:
+[IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) can be integrated into a training loop. First, shuffle the dataset:
 
 ```py
 >>> seed, buffer_size = 42, 10_000
@@ -509,7 +513,7 @@ Lastly, create a simple training loop and start training:
 
 If your training loop stops, you may want to restart the training from where it was. To do so you can save a checkpoint of your model and optimizers, as well as your data loader.
 
-Iterable datasets don't provide random access to a specific example index to resume from, but you can use [IterableDataset.state_dict()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.state_dict) and [IterableDataset.load_state_dict()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.load_state_dict) to resume from a checkpoint instead, similarly to what you can do for models and optimizers:
+Iterable datasets don't provide random access to a specific example index to resume from, but you can use [IterableDataset.state_dict()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.state_dict) and [IterableDataset.load_state_dict()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.load_state_dict) to resume from a checkpoint instead, similarly to what you can do for models and optimizers:
 
 ```python
 >>> iterable_dataset = Dataset.from_dict({"a": range(6)}).to_iterable_dataset(num_shards=3)
@@ -562,13 +566,15 @@ This can be used with the `StatefulDataLoader` from `torchdata`:
 
 ## Save
 
-Once your iterable dataset is ready, you can save it as a Hugging Face Dataset in Parquet format and reuse it later with [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset).
+Once your iterable dataset is ready, you can save it as a Hugging Face Dataset in Parquet format and reuse it later with [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset).
 
-Save your dataset by providing the name of the dataset repository on Hugging Face you wish to save it to to [push_to_hub()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.push_to_hub). This iterates over the dataset and progressively uploads the data to Hugging Face:
+Save your dataset by providing the name of the dataset repository on Hugging Face you wish to save it to as an argument to [push_to_hub()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.push_to_hub). This iterates over the dataset and progressively uploads the data to Hugging Face:
 
 ```python
 dataset.push_to_hub("username/my_dataset")
 ```
+
+By default, [IterableDataset.push_to_hub()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.push_to_hub) writes `dataset.num_shards` files. Set `num_shards` to choose a different count. With more output shards than `dataset.num_shards`, each input shard is spread over its own group of output shards by writing its examples to them in a round-robin fashion, in a single pass over the data. If there are fewer examples than requested shards, the remaining shards are empty Parquet files.
 
 If the dataset consists of multiple shards (`dataset.num_shards > 1`), you can use multiple processes to upload it in parallel. This is especially useful if you applied `map()` or `filter()` steps since they will run faster in parallel:
 
@@ -576,7 +582,7 @@ If the dataset consists of multiple shards (`dataset.num_shards > 1`), you can u
 dataset.push_to_hub("username/my_dataset", num_proc=8)
 ```
 
-Use the [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) function to reload the dataset:
+Use the [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) function to reload the dataset:
 
 ```python
 from datasets import load_dataset
@@ -589,11 +595,11 @@ reloaded_dataset = load_dataset("username/my_dataset")
 
 | File type               | Export method                                                  |
 |-------------------------|----------------------------------------------------------------|
-| CSV                     | [IterableDataset.to_csv()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.to_csv)                                    |
-| JSON                    | [IterableDataset.to_json()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.to_json)                                   |
-| Parquet                 | [IterableDataset.to_parquet()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.to_parquet)                                |
-| SQL                     | [IterableDataset.to_sql()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.to_sql)                                    |
-| In-memory Python object | [IterableDataset.to_pandas()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.to_pandas), `IterableDataset.to_polars()` or [IterableDataset.to_dict()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.to_dict) |
+| CSV                     | [IterableDataset.to_csv()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.to_csv)                                    |
+| JSON                    | [IterableDataset.to_json()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.to_json)                                   |
+| Parquet                 | [IterableDataset.to_parquet()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.to_parquet)                                |
+| SQL                     | [IterableDataset.to_sql()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.to_sql)                                    |
+| In-memory Python object | [IterableDataset.to_pandas()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.to_pandas), `IterableDataset.to_polars()` or [IterableDataset.to_dict()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.to_dict) |
 
 For example, export your dataset to a CSV file like this:
 
@@ -610,5 +616,5 @@ If you have a large dataset, you can save one file per shard, e.g.
 ...     shard.to_parquet(f"path/of/my/dataset/data-{index:05d}.parquet")
 ```
 
-### Use with NumPy
-https://huggingface.co/docs/datasets/v4.8.4/use_with_numpy.md
+### Quickstart
+https://huggingface.co/docs/datasets/v5.2.0/quickstart.md

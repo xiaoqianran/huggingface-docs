@@ -45,5 +45,5 @@ To load XML data you can use the "xml" loader, which is equivalent to "text" wit
 >>> dataset = load_dataset("xml", data_dir="path/to/xml/dataset")
 ```
 
-### Installation
-https://huggingface.co/docs/datasets/v4.8.4/installation.md
+### Overview
+https://huggingface.co/docs/datasets/v5.2.0/tutorial.md

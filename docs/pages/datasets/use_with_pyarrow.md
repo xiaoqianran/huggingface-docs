@@ -9,7 +9,7 @@ This is particularly useful as it allows fast zero-copy operations, since `datas
 
 By default, datasets return regular Python objects: integers, floats, strings, lists, etc.
 
-To get PyArrow Tables or Arrays instead, you can set the format of the dataset to `pyarrow` using [Dataset.with_format()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.with_format):
+To get PyArrow Tables or Arrays instead, you can set the format of the dataset to `pyarrow` using [Dataset.with_format()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.with_format):
 
 ```py
 >>> from datasets import Dataset
@@ -31,7 +31,7 @@ col_1: double
 col_0: [["a","b"]]
 col_1: [[0,0]]
 >>> ds["data"]  # pa.array
-
+<pyarrow.lib.ChunkedArray object at 0x1394312a0>
 [
   [
     "a",
@@ -59,7 +59,7 @@ col_1: [[0,0]]
 
 ## Process data
 
-PyArrow functions are generally faster than regular hand-written python functions, and therefore they are a good option to optimize data processing. You can use Arrow compute functions to process a dataset in [Dataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) or [Dataset.filter()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.filter):
+PyArrow functions are generally faster than regular hand-written python functions, and therefore they are a good option to optimize data processing. You can use Arrow compute functions to process a dataset in [Dataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) or [Dataset.filter()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.filter):
 
 ```python
 >>> import pyarrow.compute as pc
@@ -91,21 +91,21 @@ col_2: [[1]]
 
 We use `batched=True` because it is faster to process batches of data in PyArrow rather than row by row. It's also possible to use `batch_size=` in `map()` to set the size of each `table`.
 
-This also works for [IterableDataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.map) and [IterableDataset.filter()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.filter).
+This also works for [IterableDataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.map) and [IterableDataset.filter()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.filter).
 
 ## Import or Export from PyArrow
 
-A [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) is a wrapper of a PyArrow Table, you can instantiate a Dataset directly from the Table:
+A [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) is a wrapper of a PyArrow Table, you can instantiate a Dataset directly from the Table:
 
 ```python
 ds = Dataset(table)
 ```
 
-You can access the PyArrow Table of a dataset using [Dataset.data](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.data), which returns a `MemoryMappedTable` or a `InMemoryTable` or a `ConcatenationTable`, depending on the origin of the Arrow data and the operations that were applied.
+You can access the PyArrow Table of a dataset using [Dataset.data](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.data), which returns a `MemoryMappedTable` or a `InMemoryTable` or a `ConcatenationTable`, depending on the origin of the Arrow data and the operations that were applied.
 
-Those objects wrap the underlying PyArrow table accessible at `Dataset.data.table`. This table contains all the data of the dataset, but there might also be an indices mapping at `Dataset._indices` which maps the dataset rows indices to the PyArrow Table rows indices. This can happen if the dataset has been shuffled with [Dataset.shuffle()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.shuffle) or if only a subset of the rows are used (e.g. after a [Dataset.select()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.select)).
+Those objects wrap the underlying PyArrow table accessible at `Dataset.data.table`. This table contains all the data of the dataset, but there might also be an indices mapping at `Dataset._indices` which maps the dataset rows indices to the PyArrow Table rows indices. This can happen if the dataset has been shuffled with [Dataset.shuffle()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.shuffle) or if only a subset of the rows are used (e.g. after a [Dataset.select()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.select)).
 
 In the general case, you can export a dataset to a PyArrow Table using `table = ds.with_format("arrow")[:]`.
 
-### Load video data
-https://huggingface.co/docs/datasets/v4.8.4/video_load.md
+### Cloud storage
+https://huggingface.co/docs/datasets/v5.2.0/filesystems.md

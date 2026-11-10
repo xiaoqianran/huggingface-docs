@@ -28,7 +28,7 @@ To get JAX arrays (numpy-like) instead, you can set the format of the dataset to
 ```
 
 > [!TIP]
-> A [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) object is a wrapper of an Arrow table, which allows fast reads from arrays in the dataset to JAX arrays.
+> A [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) object is a wrapper of an Arrow table, which allows fast reads from arrays in the dataset to JAX arrays.
 
 Note that the exact same procedure applies to `DatasetDict` objects, so that
 when setting the format of a `DatasetDict` to `jax`, all the `Dataset`s there
@@ -116,7 +116,7 @@ To avoid this, you must explicitly use the `Array` feature type and specify the 
 
 ### Other feature types
 
-[ClassLabel](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.ClassLabel) data is properly converted to arrays:
+[ClassLabel](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.ClassLabel) data is properly converted to arrays:
 
 ```py
 >>> from datasets import Dataset, Features, ClassLabel
@@ -130,10 +130,10 @@ To avoid this, you must explicitly use the `Array` feature type and specify the 
 
 String and binary objects are unchanged, since JAX only supports numbers.
 
-The [Image](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Image) and [Audio](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Audio) feature types are also supported.
+The [Image](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Image) and [Audio](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Audio) feature types are also supported.
 
 > [!TIP]
-> To use the [Image](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Image) feature type, you'll need to install the `vision` extra as
+> To use the [Image](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Image) feature type, you'll need to install the `vision` extra as
 > `pip install datasets[vision]`.
 
 ```py
@@ -161,7 +161,7 @@ The [Image](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Ima
 ```
 
 > [!TIP]
-> To use the [Audio](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Audio) feature type, you'll need to install the `audio` extra as
+> To use the [Audio](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Audio) feature type, you'll need to install the `audio` extra as
 > `pip install datasets[audio]`.
 
 ```py
@@ -220,5 +220,5 @@ method:
 ...         ...
 ```
 
-### Datasets 🤝 Arrow
-https://huggingface.co/docs/datasets/v4.8.4/about_arrow.md
+### Load audio data
+https://huggingface.co/docs/datasets/v5.2.0/audio_load.md

@@ -28,8 +28,8 @@ Load the `train` split of the dataset and take a look at an example:
 >>> index = 17
 >>> example = train_dataset[index]
 >>> example
-{'image': ,
- 'depth_map': }
+{'image': <PIL.PngImagePlugin.PngImageFile image mode=RGB size=640x480>,
+ 'depth_map': <PIL.TiffImagePlugin.TiffImageFile image mode=F size=640x480>}
 ```
 
 The dataset has two fields:
@@ -173,7 +173,7 @@ Create a function to apply the transformation to the images as well as their dep
 ...     return examples
 ```
 
-Use the [set_transform()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.set_transform) function to apply the transformation on-the-fly to batches of the dataset to consume less disk space:
+Use the [set_transform()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.set_transform) function to apply the transformation on-the-fly to batches of the dataset to consume less disk space:
 
 ```py
 >>> train_dataset.set_transform(apply_transforms)
@@ -214,5 +214,5 @@ You can also visualize multiple training samples reusing the previous `random_in
 ...     plt.axis("off")
 ```
 
-### Load a dataset from the Hub
-https://huggingface.co/docs/datasets/v4.8.4/load_hub.md
+### Use with Spark
+https://huggingface.co/docs/datasets/v5.2.0/use_with_spark.md

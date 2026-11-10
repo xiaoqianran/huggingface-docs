@@ -1,6 +1,6 @@
 # Load audio data
 
-You can load an audio dataset using the [Audio](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Audio) feature that automatically decodes and resamples the audio files when you access the examples.
+You can load an audio dataset using the [Audio](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Audio) feature that automatically decodes and resamples the audio files when you access the examples.
 Audio decoding is based on the [`torchcodec`](https://github.com/pytorch/torchcodec) python package, which uses the [`FFmpeg`](https://www.ffmpeg.org/) C library under the hood.
 
 ## Installation
@@ -10,12 +10,12 @@ Check out the [installation](./installation#audio) guide to learn how to install
 
 ## Local files
 
-You can load your own dataset using the paths to your audio files. Use the [cast_column()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.cast_column) function to take a column of audio file paths, and cast it to the [Audio](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Audio) feature:
+You can load your own dataset using the paths to your audio files. Use the [cast_column()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.cast_column) function to take a column of audio file paths, and cast it to the [Audio](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Audio) feature:
 
 ```py
 >>> audio_dataset = Dataset.from_dict({"audio": ["path/to/audio_1", "path/to/audio_2", ..., "path/to/audio_n"]}).cast_column("audio", Audio())
 >>> audio_dataset[0]["audio"]
-
+<datasets.features._torchcodec.AudioDecoder object at 0x11642b6a0>
 ```
 
 ## AudioFolder
@@ -52,7 +52,7 @@ third_audio_file.mp3,pewnie kędyś w obłędzie ubite minęły szlaki zaczekajm
 >>> dataset = load_dataset("/path/to/folder")
 ```
 
-For local datasets, this is equivalent to passing `audiofolder` manually in [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) and the directory in `data_dir`:
+For local datasets, this is equivalent to passing `audiofolder` manually in [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) and the directory in `data_dir`:
 
 ```py
 >>> dataset = load_dataset("audiofolder", data_dir="/path/to/folder")
@@ -60,7 +60,7 @@ For local datasets, this is equivalent to passing `audiofolder` manually in [loa
 
 Metadata can also be specified as JSON Lines, in which case use `metadata.jsonl` as the name of the metadata file. This format is helpful in scenarios when one of the columns is complex, e.g. a list of floats, to avoid parsing errors or reading the complex values as strings.
 
-To ignore the information in the metadata file, set `drop_metadata=True` in [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset):
+To ignore the information in the metadata file, set `drop_metadata=True` in [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset):
 
 ```py
 >>> from datasets import load_dataset
@@ -92,7 +92,7 @@ For a guide on how to load any type of dataset, take a look at the general loadi
 
 ## Audio decoding
 
-By default, audio files are decoded sequentially as torchcodec [`AudioDecoder`](https://docs.pytorch.org/torchcodec/stable/generated/torchcodec.decoders.AudioDecoder.html#torchcodec.decoders.AudioDecoder) objects when you iterate on a dataset.
+By default, audio files are decoded sequentially as torchcodec [`AudioDecoder`](https://meta-pytorch.org/torchcodec/stable/generated/torchcodec.decoders.AudioDecoder.html#torchcodec.decoders.AudioDecoder) objects when you iterate on a dataset.
 However it is possible to speed up the dataset significantly using multithreaded decoding:
 
 ```python
@@ -112,7 +112,7 @@ If you are not interested in the images decoded as NumPy arrays and would like t
 >>> dataset = dataset.decode(False)
 ```
 
-Note: [IterableDataset.decode()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.decode) is only available for streaming datasets at the moment.
+Note: [IterableDataset.decode()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.decode) is only available for streaming datasets at the moment.
 
-### Use with JAX
-https://huggingface.co/docs/datasets/v4.8.4/use_with_jax.md
+### Datasets 🤝 Arrow
+https://huggingface.co/docs/datasets/v5.2.0/about_arrow.md

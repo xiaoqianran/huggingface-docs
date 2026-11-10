@@ -1,6 +1,6 @@
 # Load image data
 
-Image datasets have [Image](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Image) type columns, which contain PIL objects. 
+Image datasets have [Image](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Image) type columns, which contain PIL objects. 
 
 > [!TIP]
 > To work with image datasets, you need to have the `vision` dependency installed. Check out the [installation](./installation#vision) guide to learn how to install it.
@@ -21,16 +21,16 @@ For a guide on how to load any type of dataset, take a look at the general loadi
 
 ## Local files
 
-You can load a dataset from the image path. Use the [cast_column()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.cast_column) function to accept a column of image file paths, and decode it into a PIL image with the [Image](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Image) feature:
+You can load a dataset from the image path. Use the [cast_column()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.cast_column) function to accept a column of image file paths, and decode it into a PIL image with the [Image](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Image) feature:
 ```py
 >>> from datasets import Dataset, Image
 
 >>> dataset = Dataset.from_dict({"image": ["path/to/image_1", "path/to/image_2", ..., "path/to/image_n"]}).cast_column("image", Image())
 >>> dataset[0]["image"]
-]
+<PIL.PngImagePlugin.PngImageFile image mode=RGBA size=1200x215 at 0x15E6D7160>]
 ```
 
-If you only want to load the underlying path to the image dataset without decoding the image object, set `decode=False` in the [Image](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Image) feature:
+If you only want to load the underlying path to the image dataset without decoding the image object, set `decode=False` in the [Image](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Image) feature:
 
 ```py
 >>> dataset = load_dataset("AI-Lab-Makerere/beans", split="train").cast_column("image", Image(decode=False))
@@ -62,7 +62,7 @@ folder/train/0002.png
 folder/train/0003.png
 ```
 
-If the dataset follows the `ImageFolder` structure, then you can load it directly with [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset):
+If the dataset follows the `ImageFolder` structure, then you can load it directly with [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset):
 
 ```py
 >>> from datasets import load_dataset
@@ -72,7 +72,7 @@ If the dataset follows the `ImageFolder` structure, then you can load it directl
 >>> dataset = load_dataset("/path/to/folder")
 ```
 
-For local datasets, this is equivalent to passing `imagefolder` manually in [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) and the directory in `data_dir`:
+For local datasets, this is equivalent to passing `imagefolder` manually in [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) and the directory in `data_dir`:
 
 ```py
 >>> dataset = load_dataset("imagefolder", data_dir="/path/to/folder")
@@ -82,13 +82,13 @@ Then you can access the videos as `PIL.Image` objects:
 
 ```
 >>> dataset["train"][0]
-{"image": , "label": 0}
+{"image": <PIL.PngImagePlugin.PngImageFile image mode=RGBA size=1200x215 at 0x15E6D7160>, "label": 0}
 
 >>> dataset["train"][-1]
-{"image": , "label": 1}
+{"image": <PIL.PngImagePlugin.PngImageFile image mode=RGBA size=1200x215 at 0x15E8DAD30>, "label": 1}
 ```
 
-To ignore the information in the metadata file, set `drop_metadata=True` in [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset):
+To ignore the information in the metadata file, set `drop_metadata=True` in [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset):
 
 ```py
 >>> from datasets import load_dataset
@@ -184,7 +184,7 @@ If you are not interested in the images decoded as `PIL.Images` and would like t
 >>> dataset = dataset.decode(False)
 ```
 
-Note: [IterableDataset.decode()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.decode) is only available for streaming datasets at the moment.
+Note: [IterableDataset.decode()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.decode) is only available for streaming datasets at the moment.
 
-### Command Line Interface (CLI)
-https://huggingface.co/docs/datasets/v4.8.4/cli.md
+### Use with PyTorch
+https://huggingface.co/docs/datasets/v5.2.0/use_with_pytorch.md

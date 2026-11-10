@@ -9,7 +9,7 @@ This is particularly useful as it allows fast operations, since `datasets` uses 
 
 By default, datasets return regular Python objects: integers, floats, strings, lists, etc.
 
-To get Pandas DataFrames or Series instead, you can set the format of the dataset to `pandas` using [Dataset.with_format()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.with_format):
+To get Pandas DataFrames or Series instead, you can set the format of the dataset to `pandas` using [Dataset.with_format()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.with_format):
 
 ```py
 >>> from datasets import Dataset
@@ -45,7 +45,7 @@ This also works for `IterableDataset` objects obtained e.g. using `load_dataset(
 
 ## Process data
 
-Pandas functions are generally faster than regular hand-written python functions, and therefore they are a good option to optimize data processing. You can use Pandas functions to process a dataset in [Dataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) or [Dataset.filter()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.filter):
+Pandas functions are generally faster than regular hand-written python functions, and therefore they are a good option to optimize data processing. You can use Pandas functions to process a dataset in [Dataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) or [Dataset.filter()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.filter):
 
 ```python
 >>> from datasets import Dataset
@@ -65,21 +65,21 @@ Pandas functions are generally faster than regular hand-written python functions
 
 We use `batched=True` because it is faster to process batches of data in Pandas rather than row by row. It's also possible to use `batch_size=` in `map()` to set the size of each `df`.
 
-This also works for [IterableDataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.map) and [IterableDataset.filter()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.filter).
+This also works for [IterableDataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.map) and [IterableDataset.filter()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.filter).
 
 ## Import or Export from Pandas
 
-To import data from Pandas, you can use [Dataset.from_pandas()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.from_pandas):
+To import data from Pandas, you can use [Dataset.from_pandas()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.from_pandas):
 
 ```python
 ds = Dataset.from_pandas(df)
 ```
 
-And you can use [Dataset.to_pandas()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.to_pandas) to export a Dataset to a Pandas DataFrame:
+And you can use [Dataset.to_pandas()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.to_pandas) to export a Dataset to a Pandas DataFrame:
 
 ```python
 df = Dataset.to_pandas()
 ```
 
-### Stream
-https://huggingface.co/docs/datasets/v4.8.4/stream.md
+### Load video data
+https://huggingface.co/docs/datasets/v5.2.0/video_load.md

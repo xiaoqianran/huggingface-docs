@@ -24,7 +24,7 @@ folder/train/cat/bengal.mp4
 folder/train/cat/birman.mp4
 ```
 
-If the dataset follows the `VideoFolder` structure, then you can load it directly with [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset):
+If the dataset follows the `VideoFolder` structure, then you can load it directly with [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset):
 
 ```py
 >>> from datasets import load_dataset
@@ -32,7 +32,7 @@ If the dataset follows the `VideoFolder` structure, then you can load it directl
 >>> dataset = load_dataset("path/to/folder")
 ```
 
-This is equivalent to passing `videofolder` manually in [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) and the directory in `data_dir`:
+This is equivalent to passing `videofolder` manually in [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) and the directory in `data_dir`:
 
 ```py
 >>> dataset = load_dataset("videofolder", data_dir="/path/to/folder")
@@ -290,5 +290,5 @@ ds = lance.write_dataset(
 
 For more details on working with Lance datasets, see the [Lance documentation](https://lance.org).
 
-### Troubleshooting
-https://huggingface.co/docs/datasets/v4.8.4/troubleshoot.md
+### Process image data
+https://huggingface.co/docs/datasets/v5.2.0/image_process.md

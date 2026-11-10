@@ -2,7 +2,7 @@
 
 There are two methods for creating and sharing an image dataset. This guide will show you how to:
 
-* Create an image dataset from local files in python with [Dataset.push_to_hub()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.push_to_hub). This is an easy way that requires only a few steps in python.
+* Create an image dataset from local files in python with [Dataset.push_to_hub()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.push_to_hub). This is an easy way that requires only a few steps in python.
 
 * Create an image dataset with `ImageFolder` and some metadata. This is a no-code solution for quickly creating an image dataset with several thousand images.
 
@@ -28,7 +28,7 @@ folder/train/cat/bengal.png
 folder/train/cat/birman.png
 ```
 
-If the dataset follows the `ImageFolder` structure, then you can load it directly with [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset):
+If the dataset follows the `ImageFolder` structure, then you can load it directly with [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset):
 
 ```py
 >>> from datasets import load_dataset
@@ -36,7 +36,7 @@ If the dataset follows the `ImageFolder` structure, then you can load it directl
 >>> dataset = load_dataset("path/to/folder")
 ```
 
-This is equivalent to passing `imagefolder` manually in [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) and the directory in `data_dir`:
+This is equivalent to passing `imagefolder` manually in [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) and the directory in `data_dir`:
 
 ```py
 >>> dataset = load_dataset("imagefolder", data_dir="/path/to/folder")
@@ -145,9 +145,9 @@ Load the dataset with `ImageFolder`, and it will create a `objects` column with 
 
 ### Upload dataset to the Hub
 
-Once you've created a dataset, you can share it to the Hub with the [push_to_hub()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.DatasetDict.push_to_hub) method. Make sure you have the [huggingface_hub](https://huggingface.co/docs/huggingface_hub/index) library installed and you're logged in to your Hugging Face account (see the [Upload with Python tutorial](upload_dataset#upload-with-python) for more details).
+Once you've created a dataset, you can share it to the Hub with the [push_to_hub()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.DatasetDict.push_to_hub) method. Make sure you have the [huggingface_hub](https://huggingface.co/docs/huggingface_hub/index) library installed and you're logged in to your Hugging Face account (see the [Upload with Python tutorial](upload_dataset#upload-with-python) for more details).
 
-Upload your dataset with [push_to_hub()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.DatasetDict.push_to_hub):
+Upload your dataset with [push_to_hub()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.DatasetDict.push_to_hub):
 
 ```py
 >>> from datasets import load_dataset
@@ -295,5 +295,5 @@ its `*.lance` files can be uploaded to the Hugging Face Hub, just like the other
 
 For more details on working with Lance datasets, see the [Lance documentation](https://lance.org).
 
-### Create a dataset card
-https://huggingface.co/docs/datasets/v4.8.4/dataset_card.md
+### Stream
+https://huggingface.co/docs/datasets/v5.2.0/stream.md

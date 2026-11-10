@@ -8,7 +8,7 @@ with the best performance.
 
 By default, datasets return regular python objects: integers, floats, strings, lists, etc.
 
-To get PyTorch tensors instead, you can set the format of the dataset to `pytorch` using [Dataset.with_format()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.with_format):
+To get PyTorch tensors instead, you can set the format of the dataset to `pytorch` using [Dataset.with_format()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.with_format):
 
 ```py
 >>> from datasets import Dataset
@@ -23,7 +23,7 @@ To get PyTorch tensors instead, you can set the format of the dataset to `pytorc
 ```
 
 > [!TIP]
-> A [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) object is a wrapper of an Arrow table, which allows fast zero-copy reads from arrays in the dataset to PyTorch tensors.
+> A [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) object is a wrapper of an Arrow table, which allows fast zero-copy reads from arrays in the dataset to PyTorch tensors.
 
 To load the data as tensors on a GPU, specify the `device` argument:
 ```py
@@ -79,7 +79,7 @@ To avoid this, you must explicitly use the `Array` feature type and specify the 
 
 ### Other feature types
 
-[ClassLabel](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.ClassLabel) data are properly converted to tensors:
+[ClassLabel](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.ClassLabel) data are properly converted to tensors:
 
 ```py
 >>> from datasets import Dataset, Features, ClassLabel
@@ -93,10 +93,10 @@ To avoid this, you must explicitly use the `Array` feature type and specify the 
 
 String and binary objects are unchanged, since PyTorch only supports numbers.
 
-The [Image](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Image) and [Audio](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Audio) feature types are also supported.
+The [Image](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Image) and [Audio](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Audio) feature types are also supported.
 
 > [!TIP]
-> To use the [Image](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Image) feature type, you'll need to install the `vision` extra as
+> To use the [Image](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Image) feature type, you'll need to install the `vision` extra as
 > `pip install datasets[vision]`.
 
 ```py
@@ -124,7 +124,7 @@ torch.Size([2, 512, 512, 4])
 ```
 
 > [!TIP]
-> To use the [Audio](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Audio) feature type, you'll need to install the `audio` extra as
+> To use the [Audio](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Audio) feature type, you'll need to install the `audio` extra as
 > `pip install datasets[audio]`.
 
 ```py
@@ -142,7 +142,7 @@ tensor(44100)
 
 ## Data loading
 
-Like `torch.utils.data.Dataset` objects, a [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) can be passed directly to a PyTorch `DataLoader`:
+Like `torch.utils.data.Dataset` objects, a [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) can be passed directly to a PyTorch `DataLoader`:
 
 ```py
 >>> import numpy as np
@@ -185,7 +185,7 @@ Reloading the dataset inside a worker doesn't fill up your RAM, since it simply 
 
 ### Stream data
 
-Stream a dataset by loading it as an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset). This allows you to progressively iterate over a remote dataset without downloading it on disk and or over local data files.
+Stream a dataset by loading it as an [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset). This allows you to progressively iterate over a remote dataset without downloading it on disk and or over local data files.
 Learn more about which type of dataset is best for your use case in the [choosing between a regular dataset or an iterable dataset](./about_mapstyle_vs_iterable) guide.
 
 An iterable dataset from `datasets` inherits from `torch.utils.data.IterableDataset` so you can pass it to a `torch.utils.data.DataLoader`:
@@ -195,8 +195,8 @@ An iterable dataset from `datasets` inherits from `torch.utils.data.IterableData
 >>> from datasets import Dataset, load_dataset
 >>> from torch.utils.data import DataLoader
 >>> data = np.random.rand(10_000)
->>> Dataset.from_dict({"data": data}).push_to_hub("/my_dataset")  # Upload to the Hugging Face Hub
->>> my_iterable_dataset = load_dataset("/my_dataset", streaming=True, split="train")
+>>> Dataset.from_dict({"data": data}).push_to_hub("<username>/my_dataset")  # Upload to the Hugging Face Hub
+>>> my_iterable_dataset = load_dataset("<username>/my_dataset", streaming=True, split="train")
 >>> dataloader = DataLoader(my_iterable_dataset, batch_size=32)
 ```
 
@@ -225,11 +225,11 @@ If you need a DataLoader that you can checkpoint and resume in the middle of tra
 >>> dataloader.load_state_dict(state_dict)
 ```
 
-This is possible thanks to [IterableDataset.state_dict()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.state_dict) and [IterableDataset.load_state_dict()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.load_state_dict).
+This is possible thanks to [IterableDataset.state_dict()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.state_dict) and [IterableDataset.load_state_dict()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.load_state_dict).
 
 ### Distributed
 
-To split your dataset across your training nodes, you can use [datasets.distributed.split_dataset_by_node()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.distributed.split_dataset_by_node):
+To split your dataset across your training nodes, you can use [datasets.distributed.split_dataset_by_node()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.distributed.split_dataset_by_node):
 
 ```python
 import os
@@ -247,14 +247,43 @@ Each node is assigned a chunk of data, e.g. rank 0 is given the first chunk of t
 
 For iterable datasets:
 
-If the dataset has a number of shards that is a factor of `world_size` (i.e. if `dataset.num_shards % world_size == 0`),
-then the shards are evenly assigned across the nodes, which is the most optimized.
-Otherwise, each node keeps 1 example out of `world_size`, skipping the other examples.
+The splitting `strategy` can be `"auto"`, `"shards"`, or `"examples"`:
+
+* `"shards"`: shards are evenly assigned across the nodes
+* `"examples"`: each node keeps 1 example out of `world_size`, skipping the other examples
+* `"auto"` (default): uses `"shards"` if the dataset has a number of shards that is a factor of `world_size` (i.e. if `dataset.num_shards % world_size == 0`), which is the most optimized. Otherwise uses `"examples"`.
 
 This can also be combined with a `torch.utils.data.DataLoader` if you want each node to use multiple workers to load the data.
 
 > [!WARNING]
-> If you shuffle your iterable dataset in a distributed setup, make sure to set a fixed `seed` in [IterableDataset.shuffle()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.shuffle) so the same shuffled list of shards is used on every node to know which shards the node should skip.
+> If you shuffle your iterable dataset in a distributed setup, make sure to set a fixed `seed` in [IterableDataset.shuffle()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.shuffle) so the same shuffled list of shards is used on every node to know which shards the node should skip.
 
-### Cache management
-https://huggingface.co/docs/datasets/v4.8.4/cache.md
+#### Hybrid sharded data parallel (HSDP)
+
+A [`torch.distributed.device_mesh.DeviceMesh`](https://pytorch.org/docs/stable/distributed.html#devicemesh) describes your training topology as a grid of ranks, one dimension per parallelism strategy. Only the data-parallel dimensions matter for data loading, and hybrid sharding makes them easy to miss:
+
+* `"fsdp"` (typically intra-node): the [FSDP](https://pytorch.org/docs/stable/fsdp.html) group where each rank keeps only a shard of the model states (parameters, gradients and optimizer states) and temporarily all-gathers the full parameters of a module just before computing on it. Training stays data-parallel: each rank runs a full forward and backward pass on its own batch, so this dimension needs different data per rank, just like DDP.
+* `"dp_replicate"` (typically inter-node): the duplicate copies of that sharded model, kept in sync by an extra all-reduce across replicas. Replicas also process different data.
+* `"tp"` (intra-node): tensor parallel ranks that split the weights of each layer to compute one batch together. They are not data-parallel and must read the same examples.
+
+The data-parallel degree is the product of the sharding (FSDP) and replication dimensions, which is smaller than `WORLD_SIZE` as soon as the mesh has a dimension like `"tp"`. Give [datasets.distributed.split_dataset_by_node()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.distributed.split_dataset_by_node) that product and the rank flattened over those two dimensions:
+
+```python
+from torch.distributed.device_mesh import init_device_mesh
+from datasets.distributed import split_dataset_by_node
+
+# Hybrid sharding spreads data parallelism over two mesh dimensions, but both
+# need different data per rank, so `dp_size` is their product.
+mesh = init_device_mesh("cuda", (2, 2, 2), mesh_dim_names=("dp_replicate", "fsdp", "tp"))
+dp_replicate_mesh, fsdp_mesh = mesh["dp_replicate"], mesh["fsdp"]
+
+dp_size = dp_replicate_mesh.size() * fsdp_mesh.size()
+dp_rank = dp_replicate_mesh.get_local_rank() * shard.size() + fsdp_mesh.get_local_rank()
+
+ds = split_dataset_by_node(ds, rank=dp_rank, world_size=dp_size)
+```
+
+Here `dp_size` is `2 * 2 = 4`: each data-parallel rank reads a quarter of the dataset, and the two ranks of each `"tp"` pair read the same examples.
+
+### Object detection
+https://huggingface.co/docs/datasets/v5.2.0/object_detection.md

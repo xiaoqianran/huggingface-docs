@@ -2,64 +2,96 @@
 
 ## Docs
 
-- [Use with PyArrow](https://huggingface.co/docs/datasets/v4.8.4/use_with_pyarrow.md)
-- [Load video data](https://huggingface.co/docs/datasets/v4.8.4/video_load.md)
-- [The cache](https://huggingface.co/docs/datasets/v4.8.4/about_cache.md)
-- [Create an audio dataset](https://huggingface.co/docs/datasets/v4.8.4/audio_dataset.md)
-- [Load text data](https://huggingface.co/docs/datasets/v4.8.4/nlp_load.md)
-- [Installation](https://huggingface.co/docs/datasets/v4.8.4/installation.md)
-- [Object detection](https://huggingface.co/docs/datasets/v4.8.4/object_detection.md)
-- [Use with Pandas](https://huggingface.co/docs/datasets/v4.8.4/use_with_pandas.md)
-- [Stream](https://huggingface.co/docs/datasets/v4.8.4/stream.md)
-- [Use with NumPy](https://huggingface.co/docs/datasets/v4.8.4/use_with_numpy.md)
-- [Process image data](https://huggingface.co/docs/datasets/v4.8.4/image_process.md)
-- [Load tabular data](https://huggingface.co/docs/datasets/v4.8.4/tabular_load.md)
-- [Use with Spark](https://huggingface.co/docs/datasets/v4.8.4/use_with_spark.md)
-- [Depth estimation](https://huggingface.co/docs/datasets/v4.8.4/depth_estimation.md)
-- [Load a dataset from the Hub](https://huggingface.co/docs/datasets/v4.8.4/load_hub.md)
-- [Create a video dataset](https://huggingface.co/docs/datasets/v4.8.4/video_dataset.md)
-- [Troubleshooting](https://huggingface.co/docs/datasets/v4.8.4/troubleshoot.md)
-- [Load](https://huggingface.co/docs/datasets/v4.8.4/loading.md)
-- [Load pdf data](https://huggingface.co/docs/datasets/v4.8.4/document_load.md)
-- [Create a NIfTI dataset](https://huggingface.co/docs/datasets/v4.8.4/nifti_dataset.md)
-- [Use with PyTorch](https://huggingface.co/docs/datasets/v4.8.4/use_with_pytorch.md)
-- [Cache management](https://huggingface.co/docs/datasets/v4.8.4/cache.md)
-- [Share a dataset to the Hub](https://huggingface.co/docs/datasets/v4.8.4/upload_dataset.md)
-- [Structure your repository](https://huggingface.co/docs/datasets/v4.8.4/repository_structure.md)
-- [Cloud storage](https://huggingface.co/docs/datasets/v4.8.4/filesystems.md)
-- [Semantic segmentation](https://huggingface.co/docs/datasets/v4.8.4/semantic_segmentation.md)
-- [Datasets](https://huggingface.co/docs/datasets/v4.8.4/index.md)
-- [Differences between Dataset and IterableDataset](https://huggingface.co/docs/datasets/v4.8.4/about_mapstyle_vs_iterable.md)
-- [Create a dataset](https://huggingface.co/docs/datasets/v4.8.4/create_dataset.md)
-- [Build and load](https://huggingface.co/docs/datasets/v4.8.4/about_dataset_load.md)
-- [Search index](https://huggingface.co/docs/datasets/v4.8.4/faiss_es.md)
-- [Create a document dataset](https://huggingface.co/docs/datasets/v4.8.4/document_dataset.md)
-- [Image classification](https://huggingface.co/docs/datasets/v4.8.4/image_classification.md)
-- [Using Datasets with TensorFlow](https://huggingface.co/docs/datasets/v4.8.4/use_with_tensorflow.md)
-- [Create an image dataset](https://huggingface.co/docs/datasets/v4.8.4/image_dataset.md)
-- [Create a dataset card](https://huggingface.co/docs/datasets/v4.8.4/dataset_card.md)
-- [Quickstart](https://huggingface.co/docs/datasets/v4.8.4/quickstart.md)
-- [Dataset features](https://huggingface.co/docs/datasets/v4.8.4/about_dataset_features.md)
-- [Batch mapping](https://huggingface.co/docs/datasets/v4.8.4/about_map_batch.md)
-- [Use with Polars](https://huggingface.co/docs/datasets/v4.8.4/use_with_polars.md)
-- [Know your dataset](https://huggingface.co/docs/datasets/v4.8.4/access.md)
-- [Share a dataset using the CLI](https://huggingface.co/docs/datasets/v4.8.4/share.md)
-- [Load image data](https://huggingface.co/docs/datasets/v4.8.4/image_load.md)
-- [Command Line Interface (CLI)](https://huggingface.co/docs/datasets/v4.8.4/cli.md)
-- [Process](https://huggingface.co/docs/datasets/v4.8.4/process.md)
-- [Overview](https://huggingface.co/docs/datasets/v4.8.4/tutorial.md)
-- [Process audio data](https://huggingface.co/docs/datasets/v4.8.4/audio_process.md)
-- [Process text data](https://huggingface.co/docs/datasets/v4.8.4/nlp_process.md)
-- [Preprocess](https://huggingface.co/docs/datasets/v4.8.4/use_dataset.md)
-- [Overview](https://huggingface.co/docs/datasets/v4.8.4/how_to.md)
-- [Load audio data](https://huggingface.co/docs/datasets/v4.8.4/audio_load.md)
-- [Use with JAX](https://huggingface.co/docs/datasets/v4.8.4/use_with_jax.md)
-- [Datasets 🤝 Arrow](https://huggingface.co/docs/datasets/v4.8.4/about_arrow.md)
-- [Table Classes](https://huggingface.co/docs/datasets/v4.8.4/package_reference/table_classes.md)
-- [Main classes](https://huggingface.co/docs/datasets/v4.8.4/package_reference/main_classes.md)
-- [Loading methods](https://huggingface.co/docs/datasets/v4.8.4/package_reference/loading_methods.md)
-- [Utilities](https://huggingface.co/docs/datasets/v4.8.4/package_reference/utilities.md)
-- [Builder classes](https://huggingface.co/docs/datasets/v4.8.4/package_reference/builder_classes.md)
+- [Datasets](https://huggingface.co/docs/datasets/v5.2.0/index.md)
+- [Process](https://huggingface.co/docs/datasets/v5.2.0/process.md)
+- [Create a document dataset](https://huggingface.co/docs/datasets/v5.2.0/document_dataset.md)
+- [Semantic segmentation](https://huggingface.co/docs/datasets/v5.2.0/semantic_segmentation.md)
+- [Share a dataset to the Hub](https://huggingface.co/docs/datasets/v5.2.0/upload_dataset.md)
+- [The cache](https://huggingface.co/docs/datasets/v5.2.0/about_cache.md)
+- [Load pdf data](https://huggingface.co/docs/datasets/v5.2.0/document_load.md)
+- [Overview](https://huggingface.co/docs/datasets/v5.2.0/how_to.md)
+- [Load TsFile data](https://huggingface.co/docs/datasets/v5.2.0/tsfile_load.md)
+- [Load](https://huggingface.co/docs/datasets/v5.2.0/loading.md)
+- [Create a NIfTI dataset](https://huggingface.co/docs/datasets/v5.2.0/nifti_dataset.md)
+- [Load agent evaluation tasks](https://huggingface.co/docs/datasets/v5.2.0/harbor_load.md)
+- [Cache management](https://huggingface.co/docs/datasets/v5.2.0/cache.md)
+- [Use with JAX](https://huggingface.co/docs/datasets/v5.2.0/use_with_jax.md)
+- [Load audio data](https://huggingface.co/docs/datasets/v5.2.0/audio_load.md)
+- [Datasets 🤝 Arrow](https://huggingface.co/docs/datasets/v5.2.0/about_arrow.md)
+- [Depth estimation](https://huggingface.co/docs/datasets/v5.2.0/depth_estimation.md)
+- [Use with Spark](https://huggingface.co/docs/datasets/v5.2.0/use_with_spark.md)
+- [Load text data](https://huggingface.co/docs/datasets/v5.2.0/nlp_load.md)
+- [Overview](https://huggingface.co/docs/datasets/v5.2.0/tutorial.md)
+- [Command Line Interface (CLI)](https://huggingface.co/docs/datasets/v5.2.0/cli.md)
+- [Know your dataset](https://huggingface.co/docs/datasets/v5.2.0/access.md)
+- [Process audio data](https://huggingface.co/docs/datasets/v5.2.0/audio_process.md)
+- [Structure your repository](https://huggingface.co/docs/datasets/v5.2.0/repository_structure.md)
+- [Create an image dataset](https://huggingface.co/docs/datasets/v5.2.0/image_dataset.md)
+- [Stream](https://huggingface.co/docs/datasets/v5.2.0/stream.md)
+- [Quickstart](https://huggingface.co/docs/datasets/v5.2.0/quickstart.md)
+- [Search index](https://huggingface.co/docs/datasets/v5.2.0/faiss_es.md)
+- [Create a dataset](https://huggingface.co/docs/datasets/v5.2.0/create_dataset.md)
+- [Load a dataset from the Hub](https://huggingface.co/docs/datasets/v5.2.0/load_hub.md)
+- [Load tabular data](https://huggingface.co/docs/datasets/v5.2.0/tabular_load.md)
+- [Installation](https://huggingface.co/docs/datasets/v5.2.0/installation.md)
+- [Troubleshooting](https://huggingface.co/docs/datasets/v5.2.0/troubleshoot.md)
+- [Share a dataset using the CLI](https://huggingface.co/docs/datasets/v5.2.0/share.md)
+- [Load mesh data](https://huggingface.co/docs/datasets/v5.2.0/mesh_load.md)
+- [Differences between Dataset and IterableDataset](https://huggingface.co/docs/datasets/v5.2.0/about_mapstyle_vs_iterable.md)
+- [Use with PyArrow](https://huggingface.co/docs/datasets/v5.2.0/use_with_pyarrow.md)
+- [Cloud storage](https://huggingface.co/docs/datasets/v5.2.0/filesystems.md)
+- [Load image data](https://huggingface.co/docs/datasets/v5.2.0/image_load.md)
+- [Use with PyTorch](https://huggingface.co/docs/datasets/v5.2.0/use_with_pytorch.md)
+- [Object detection](https://huggingface.co/docs/datasets/v5.2.0/object_detection.md)
+- [Create an audio dataset](https://huggingface.co/docs/datasets/v5.2.0/audio_dataset.md)
+- [Batch mapping](https://huggingface.co/docs/datasets/v5.2.0/about_map_batch.md)
+- [Use with Pandas](https://huggingface.co/docs/datasets/v5.2.0/use_with_pandas.md)
+- [Load video data](https://huggingface.co/docs/datasets/v5.2.0/video_load.md)
+- [Create a dataset card](https://huggingface.co/docs/datasets/v5.2.0/dataset_card.md)
+- [Use with Polars](https://huggingface.co/docs/datasets/v5.2.0/use_with_polars.md)
+- [Create a mesh dataset](https://huggingface.co/docs/datasets/v5.2.0/mesh_dataset.md)
+- [Process text data](https://huggingface.co/docs/datasets/v5.2.0/nlp_process.md)
+- [Build and load](https://huggingface.co/docs/datasets/v5.2.0/about_dataset_load.md)
+- [Using Datasets with TensorFlow](https://huggingface.co/docs/datasets/v5.2.0/use_with_tensorflow.md)
+- [Dataset features](https://huggingface.co/docs/datasets/v5.2.0/about_dataset_features.md)
+- [Create a video dataset](https://huggingface.co/docs/datasets/v5.2.0/video_dataset.md)
+- [Process image data](https://huggingface.co/docs/datasets/v5.2.0/image_process.md)
+- [Preprocess](https://huggingface.co/docs/datasets/v5.2.0/use_dataset.md)
+- [Image classification](https://huggingface.co/docs/datasets/v5.2.0/image_classification.md)
+- [Use with NumPy](https://huggingface.co/docs/datasets/v5.2.0/use_with_numpy.md)
+- [Builder classes](https://huggingface.co/docs/datasets/v5.2.0/package_reference/builder_classes.md)
+- [Table Classes](https://huggingface.co/docs/datasets/v5.2.0/package_reference/table_classes.md)
+- [Main classes](https://huggingface.co/docs/datasets/v5.2.0/package_reference/main_classes.md)
+- [Loading methods](https://huggingface.co/docs/datasets/v5.2.0/package_reference/loading_methods.md)
+- [Utilities](https://huggingface.co/docs/datasets/v5.2.0/package_reference/utilities.md)
 
-### Use with PyArrow
-https://huggingface.co/docs/datasets/v4.8.4/use_with_pyarrow.md
+### Datasets
+https://huggingface.co/docs/datasets/v5.2.0/index.md
+
+# Datasets
+
+🤗 Datasets is a library for easily accessing and sharing AI datasets for Audio, Computer Vision, and Natural Language Processing (NLP) tasks.
+
+Load a dataset in a single line of code, and use our powerful data processing and streaming methods to quickly get your dataset ready for training in a deep learning model. Backed by the Apache Arrow format, process large datasets with zero-copy reads without any memory constraints for optimal speed and efficiency. We also feature a deep integration with the [Hugging Face Hub](https://huggingface.co/datasets), allowing you to easily load and share a dataset with the wider machine learning community.
+
+Find your dataset today on the [Hugging Face Hub](https://huggingface.co/datasets), and take an in-depth look inside of it with the live viewer.
+
+  
+    <a class="!no-underline border dark:border-gray-700 p-5 rounded-lg shadow hover:shadow-lg" href="./tutorial"
+      >Tutorials
+      Learn the basics and become familiar with loading, accessing, and processing a dataset. Start here if you are using 🤗 Datasets for the first time!
+    
+    <a class="!no-underline border dark:border-gray-700 p-5 rounded-lg shadow hover:shadow-lg" href="./how_to"
+      >How-to guides
+      Practical guides to help you achieve a specific goal. Take a look at these guides to learn how to use 🤗 Datasets to solve real-world problems.
+    
+    <a class="!no-underline border dark:border-gray-700 p-5 rounded-lg shadow hover:shadow-lg" href="./about_arrow"
+      >Conceptual guides
+      High-level explanations for building a better understanding about important topics such as the underlying data format, the cache, and how datasets are generated.
+   
+    <a class="!no-underline border dark:border-gray-700 p-5 rounded-lg shadow hover:shadow-lg" href="./package_reference/main_classes"
+      >Reference
+      Technical descriptions of how 🤗 Datasets classes and methods work.
+
+### Process
+https://huggingface.co/docs/datasets/v5.2.0/process.md

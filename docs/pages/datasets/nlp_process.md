@@ -2,14 +2,14 @@
 
 This guide shows specific methods for processing text datasets. Learn how to:
 
-- Tokenize a dataset with [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map).
+- Tokenize a dataset with [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map).
 - Align dataset labels with label ids for NLI datasets.
 
 For a guide on how to process any type of dataset, take a look at the general process guide.
 
 ## Map
 
-The [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) function supports processing batches of examples at once which speeds up tokenization.
+The [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) function supports processing batches of examples at once which speeds up tokenization.
 
 Load a tokenizer from 🤗 [Transformers](https://huggingface.co/transformers/):
 
@@ -19,7 +19,7 @@ Load a tokenizer from 🤗 [Transformers](https://huggingface.co/transformers/):
 >>> tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
 ```
 
-Set the `batched` parameter to `True` in the [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) function to apply the tokenizer to batches of examples:
+Set the `batched` parameter to `True` in the [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) function to apply the tokenizer to batches of examples:
 
 ```py
 >>> dataset = dataset.map(lambda examples: tokenizer(examples["text"]), batched=True)
@@ -31,7 +31,7 @@ Set the `batched` parameter to `True` in the [map()](/docs/datasets/v4.8.4/en/pa
  'attention_mask': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]}
 ```
 
-The [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) function converts the returned values to a PyArrow-supported format. But explicitly returning the tensors as NumPy arrays is faster because it is a natively supported PyArrow format. Set `return_tensors="np"` when you tokenize your text:
+The [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) function converts the returned values to a PyArrow-supported format. But explicitly returning the tensors as NumPy arrays is faster because it is a natively supported PyArrow format. Set `return_tensors="np"` when you tokenize your text:
 
 ```py
 >>> dataset = dataset.map(lambda examples: tokenizer(examples["text"], return_tensors="np"), batched=True)
@@ -39,7 +39,7 @@ The [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dat
 
 ## Align
 
-The [align_labels_with_mapping()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.align_labels_with_mapping) function aligns a dataset label id with the label name. Not all 🤗 Transformers models follow the prescribed label mapping of the original dataset, especially for NLI datasets. For example, the [MNLI](https://huggingface.co/datasets/glue) dataset uses the following label mapping:
+The [align_labels_with_mapping()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.align_labels_with_mapping) function aligns a dataset label id with the label name. Not all 🤗 Transformers models follow the prescribed label mapping of the original dataset, especially for NLI datasets. For example, the [MNLI](https://huggingface.co/datasets/glue) dataset uses the following label mapping:
 
 ```py
 >>> label2id = {"entailment": 0, "neutral": 1, "contradiction": 2}
@@ -51,7 +51,7 @@ To align the dataset label mapping with the mapping used by a model, create a di
 >>> label2id = {"contradiction": 0, "neutral": 1, "entailment": 2}
 ```
 
-Pass the dictionary of the label mappings to the [align_labels_with_mapping()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.align_labels_with_mapping) function, and the column to align on:
+Pass the dictionary of the label mappings to the [align_labels_with_mapping()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.align_labels_with_mapping) function, and the column to align on:
 
 ```py
 >>> from datasets import load_dataset
@@ -62,5 +62,5 @@ Pass the dictionary of the label mappings to the [align_labels_with_mapping()](/
 
 You can also use this function to assign a custom mapping of labels to ids.
 
-### Preprocess
-https://huggingface.co/docs/datasets/v4.8.4/use_dataset.md
+### Build and load
+https://huggingface.co/docs/datasets/v5.2.0/about_dataset_load.md

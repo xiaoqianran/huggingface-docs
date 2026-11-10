@@ -24,5 +24,5 @@ YAML also allows you to customize the way your dataset is loaded by [defining sp
 
 Feel free to take a look at the [SNLI](https://huggingface.co/datasets/stanfordnlp/snli), [CNN/DailyMail](https://huggingface.co/datasets/abisee/cnn_dailymail), and [Allociné](https://huggingface.co/datasets/tblard/allocine) dataset cards as examples to help you get started.
 
-### Quickstart
-https://huggingface.co/docs/datasets/v4.8.4/quickstart.md
+### Use with Polars
+https://huggingface.co/docs/datasets/v5.2.0/use_with_polars.md

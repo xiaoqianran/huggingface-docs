@@ -26,13 +26,13 @@ FAISS retrieves documents based on the similarity of their vector representation
 >>> ds_with_embeddings = ds.map(lambda example: {'embeddings': ctx_encoder(**ctx_tokenizer(example["line"], return_tensors="pt"))[0][0].numpy()})
 ```
 
-3. Create the index with [Dataset.add_faiss_index()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.add_faiss_index):
+3. Create the index with [Dataset.add_faiss_index()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.add_faiss_index):
 
 ```py
 >>> ds_with_embeddings.add_faiss_index(column='embeddings')
 ```
 
-4. Now you can query your dataset with the `embeddings` index. Load the DPR Question Encoder, and search for a question with [Dataset.get_nearest_examples()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.get_nearest_examples):
+4. Now you can query your dataset with the `embeddings` index. Load the DPR Question Encoder, and search for a question with [Dataset.get_nearest_examples()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.get_nearest_examples):
 
 ```py
 >>> from transformers import DPRQuestionEncoder, DPRQuestionEncoderTokenizer
@@ -46,20 +46,20 @@ FAISS retrieves documents based on the similarity of their vector representation
 '_that_ serious? It is not serious at all. It’s simply a fantasy to amuse\r\n'
 ```
 
-5. You can access the index with [Dataset.get_index()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.get_index) and use it for special operations, e.g. query it using `range_search`:
+5. You can access the index with [Dataset.get_index()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.get_index) and use it for special operations, e.g. query it using `range_search`:
 
 ```py
 >>> faiss_index = ds_with_embeddings.get_index('embeddings').faiss_index
 >>> limits, distances, indices = faiss_index.range_search(x=question_embedding.reshape(1, -1), thresh=0.95)
 ```
 
-6. When you are done querying, save the index on disk with [Dataset.save_faiss_index()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.save_faiss_index):
+6. When you are done querying, save the index on disk with [Dataset.save_faiss_index()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.save_faiss_index):
 
 ```py
 >>> ds_with_embeddings.save_faiss_index('embeddings', 'my_index.faiss')
 ```
 
-7. Reload it at a later time with [Dataset.load_faiss_index()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.load_faiss_index):
+7. Reload it at a later time with [Dataset.load_faiss_index()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.load_faiss_index):
 
 ```py
 >>> ds = load_dataset('community-datasets/crime_and_punish', split='train[:100]')
@@ -79,13 +79,13 @@ Start Elasticsearch on your machine, or see the [Elasticsearch installation guid
 >>> squad = load_dataset('rajpurkar/squad', split='validation')
 ```
 
-2. Build the index with [Dataset.add_elasticsearch_index()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.add_elasticsearch_index):
+2. Build the index with [Dataset.add_elasticsearch_index()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.add_elasticsearch_index):
 
 ```py
 >>> squad.add_elasticsearch_index("context", host="localhost", port="9200")
 ```
 
-3. Then you can query the `context` index with [Dataset.get_nearest_examples()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.get_nearest_examples):
+3. Then you can query the `context` index with [Dataset.get_nearest_examples()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.get_nearest_examples):
 
 ```py
 >>> query = "machine"
@@ -104,7 +104,7 @@ Start Elasticsearch on your machine, or see the [Elasticsearch installation guid
 hf_squad_val_context
 ```
 
-5. Reload it later with the index name when you call [Dataset.load_elasticsearch_index()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.load_elasticsearch_index):
+5. Reload it later with the index name when you call [Dataset.load_elasticsearch_index()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.load_elasticsearch_index):
 
 ```py
 >>> from datasets import load_dataset
@@ -132,5 +132,5 @@ For more advanced Elasticsearch usage, you can specify your own configuration wi
 >>> squad.add_elasticsearch_index("context", es_client=es_client, es_config=es_config, es_index_name=es_index_name)
 ```
 
-### Create a document dataset
-https://huggingface.co/docs/datasets/v4.8.4/document_dataset.md
+### Create a dataset
+https://huggingface.co/docs/datasets/v5.2.0/create_dataset.md

@@ -51,7 +51,7 @@ Adding a Dataset card is super valuable for helping users find your dataset and 
 
 ### Load dataset
 
-Once your dataset is stored on the Hub, anyone can load it with the [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) function:
+Once your dataset is stored on the Hub, anyone can load it with the [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) function:
 
 ```py
 >>> from datasets import load_dataset
@@ -72,7 +72,7 @@ pip install huggingface_hub
 2. To upload a dataset on the Hub in Python, you need to log in to your Hugging Face account:
 
 ```bash
-huggingface-cli login
+hf auth login
 ```
 
 3. Use the [`push_to_hub()`](https://huggingface.co/docs/datasets/main/en/package_reference/main_classes#datasets.DatasetDict.push_to_hub) function to help you add, commit, and push a file to your repository:
@@ -91,7 +91,7 @@ To set your dataset as private, set the `private` parameter to `True`. This para
 >>> dataset.push_to_hub("stevhliu/private_processed_demo", private=True)
 ```
 
-To add a new configuration (or subset) to a dataset or to add a new split (train/validation/test), please refer to the [Dataset.push_to_hub()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.push_to_hub) documentation.
+To add a new configuration (or subset) to a dataset or to add a new split (train/validation/test), please refer to the [Dataset.push_to_hub()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.push_to_hub) documentation.
 
 ### Privacy
 
@@ -121,5 +121,5 @@ From here, you can go on to:
 
 If you have any questions about 🤗 Datasets, feel free to join and ask the community on our [forum](https://discuss.huggingface.co/c/datasets/10).
 
-### Structure your repository
-https://huggingface.co/docs/datasets/v4.8.4/repository_structure.md
+### The cache
+https://huggingface.co/docs/datasets/v5.2.0/about_cache.md

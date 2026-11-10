@@ -10,11 +10,11 @@ This guide will show you how to load a dataset from:
 - Offline
 - A specific slice of a split
 
-For more details specific to loading other dataset modalities, take a look at the load audio dataset guide, the load image dataset guide, the load video dataset guide, or the load text dataset guide.
+For more details specific to loading other dataset modalities, take a look at the load audio dataset guide, the load image dataset guide, the load video dataset guide, the load mesh dataset guide, the load text dataset guide, or the load agent evaluation tasks guide.
 
 ## Hugging Face Hub
 
-You can also load a dataset from any dataset repository on the Hub! Begin by [creating a dataset repository](share#create-the-repository) and upload your data files. Now you can use the [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) function to load the dataset. 
+You can also load a dataset from any dataset repository on the Hub! Begin by [creating a dataset repository](share#create-the-repository) and upload your data files. Now you can use the [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) function to load the dataset. 
 
 For example, try loading the files from this [demo repository](https://huggingface.co/datasets/lhoestq/demo1) by providing the repository namespace and dataset name. This dataset repository contains CSV files, and the code below loads the dataset from the CSV files:
 
@@ -43,7 +43,7 @@ A dataset loads by default all the data into the `train` split, or checks for me
 ```
 
 > [!WARNING]
-> If you don't specify which data files to use, [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) will return all the data files. This can take a long time if you load a large dataset like C4, which is approximately 13TB of data.
+> If you don't specify which data files to use, [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) will return all the data files. This can take a long time if you load a large dataset like C4, which is approximately 13TB of data.
 
 You can also load a specific subset of the files with the `data_files` or `data_dir` parameter. These parameters can accept a relative path which resolves to the base path corresponding to where the dataset is loaded from.
 
@@ -66,7 +66,7 @@ The `split` parameter can also map a data file to a specific split:
 
 ## Local and remote files
 
-Datasets can be loaded from local files stored on your computer and from remote files. The datasets are most likely stored as a `csv`, `json`, `txt` or `parquet` file. The [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) function can load each of these file types.
+Datasets can be loaded from local files stored on your computer and from remote files. The datasets are most likely stored as a `csv`, `json`, `txt`, `parquet` or `tsfile` file. The [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) function can load each of these file types.
 
 ### CSV
 
@@ -82,7 +82,7 @@ Datasets can be loaded from local files stored on your computer and from remote 
 
 ### JSON
 
-JSON files are loaded directly with [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) as shown below:
+JSON files are loaded directly with [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) as shown below:
 
 ```py
 >>> from datasets import load_dataset
@@ -155,14 +155,14 @@ To load remote Arrow files via HTTP, pass the URLs instead:
 >>> wiki = load_dataset("arrow", data_files=data_files, split="train")
 ```
 
-Arrow is the file format used by 🤗 Datasets under the hood, therefore you can load a local Arrow file using [Dataset.from_file()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.from_file) directly:
+Arrow is the file format used by 🤗 Datasets under the hood, therefore you can load a local Arrow file using [Dataset.from_file()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.from_file) directly:
 
 ```py
 >>> from datasets import Dataset
 >>> dataset = Dataset.from_file("data.arrow")
 ```
 
-Unlike [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset), [Dataset.from_file()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.from_file) memory maps the Arrow file without preparing the dataset in the cache, saving you disk space.
+Unlike [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset), [Dataset.from_file()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.from_file) memory maps the Arrow file without preparing the dataset in the cache, saving you disk space.
 The cache directory to store intermediate processing results will be the Arrow file directory in that case.
 
 For now only the Arrow streaming format is supported. The Arrow IPC file format (also known as Feather V2) is not supported.
@@ -187,6 +187,31 @@ for row in ds.take(3):
 
 This will return the image caption and the image bytes in a single request.
 
+### Vortex
+
+[Vortex](https://docs.vortex.dev) is a columnar file format built for fast scans over compressed data. Install it with `pip install vortex-data`, then load `.vortex` files like any other packaged format:
+
+```py
+>>> from datasets import load_dataset
+>>> dataset = load_dataset("vortex", data_files="data.vortex", split="train")
+```
+
+Columns and filters are pushed down into the Vortex scan, so only the rows and columns you ask for are read. This works while streaming too, which lets you filter a dataset on the Hub without downloading the parts that don't match:
+
+```py
+>>> filters = [("label", "==", 1)]
+>>> dataset = load_dataset(vortex_dataset_id, columns=["text", "label"], filters=filters, streaming=True, split="train")
+```
+
+Filters take the same disjunctive normal form as the Parquet loader: a list of `(column, operator, value)` predicates is a conjunction, and a list of those is a disjunction. Nulls follow SQL semantics — a null satisfies no comparison, so a row whose filtered column is null is never returned, including for `not in`. For anything that form can't express, pass a Vortex expression instead:
+
+```py
+>>> import vortex.expr as ve
+>>> dataset = load_dataset(vortex_dataset_id, filters=ve.column("score") >= 0.5, split="train")
+```
+
+Vortex opens files itself rather than through fsspec, so `data_files` can point to local paths, Hub datasets and the remote locations Vortex reads natively (HTTP and the common object stores) — but not inside archives (`zip://...`) or other fsspec-only protocols.
+
 ### HDF5 files
 
 [HDF5](https://www.hdfgroup.org/solutions/hdf5/) files are commonly used for storing large amounts of numerical data in scientific computing and machine learning. Loading HDF5 files with 🤗 Datasets is similar to loading CSV files:
@@ -198,9 +223,85 @@ This will return the image caption and the image bytes in a single request.
 
 Note that the HDF5 loader assumes that the file has "tabular" structure, i.e. that all datasets in the file have (the same number of) rows on their first dimension.
 
+### TsFile
+
+[TsFile](https://tsfile.apache.org/) is a columnar file format designed for time-series data, used as the native storage layer of [Apache IoTDB](https://iotdb.apache.org/). It natively represents timestamps, device tags, and measurement fields, and maintains an internal time index that enables efficient time-range pruning.
+
+Each row in the resulting dataset corresponds to one **device** (identified by its TAG columns); the `time` column and every FIELD column are list columns containing that device's full time series, sorted in ascending time order.
+
+To load a TsFile:
+
+```py
+>>> from datasets import load_dataset
+>>> dataset = load_dataset("tsfile", data_files="my_data.tsfile")
+```
+
+Filter by time range — bounds are pushed down to TsFile's internal time index and accept `int` epochs, `datetime`, `date`, ISO-8601 strings, or `pyarrow` timestamp scalars:
+
+```py
+>>> from datetime import datetime
+>>> dataset = load_dataset(
+...     "tsfile",
+...     data_files="my_data.tsfile",
+...     start_time=datetime(2023, 11, 14),
+...     end_time=datetime(2023, 11, 15),
+... )
+```
+
+> [!TIP]
+> For more details, check out the [how to load TsFile data](tsfile_load) guide.
+
+### Harbor
+
+[Harbor](https://harborframework.com/docs) datasets are collections of *tasks* used to evaluate AI agents.
+They are made of directories rather than of data files: every task is a directory with a `task.toml`
+configuration file and an `instruction.md` file, plus its environment, verifier and solution.
+
+Each row of the resulting dataset describes one task (its instruction, its `task.toml`, the files it ships),
+and loading it never runs anything:
+
+```py
+>>> from datasets import load_dataset
+>>> dataset = load_dataset("harborframework/terminal-bench")
+>>> dataset["train"][0]["task_id"]
+'tasks/atrx-vep-crispr'
+```
+
+> [!TIP]
+> For more details, check out the [how to load agent evaluation tasks](harbor_load) guide.
+
+### PDB
+
+[PDB](https://www.wwpdb.org/documentation/file-format) (Protein Data Bank) is the legacy fixed-width format for representing 3D macromolecular structures. While mmCIF is the modern standard, PDB remains widely used and many historical datasets are in this format.
+
+Each row is one structure file, following the same folder layout
+as `ImageFolder`: subfolder names become labels and a `metadata.csv`/`metadata.jsonl`
+file adds per-structure metadata. The `structure` column uses [BioStructure](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.BioStructure) with
+`format="pdb"` and decodes to a `Bio.PDB.Structure.Structure` object containing the
+file's models, chains, residues, and atoms. Decoding requires `biopython`; without it,
+accessing a decoded structure raises `ImportError`.
+
+To load PDB files from a directory:
+
+```py
+>>> from datasets import BioStructure, load_dataset
+>>> dataset = load_dataset("pdb", data_dir="path/to/structures")
+>>> dataset["train"].features["structure"]
+BioStructure(format='pdb', decode=True)
+```
+
+To access the underlying `{"bytes": ..., "path": ...}` dictionary without decoding
+or requiring biopython, cast the column with `decode=False`:
+
+```py
+>>> dataset = dataset.cast_column("structure", BioStructure(format="pdb", decode=False))
+```
+
+Extensions `.pdb` and `.ent` are supported.
+
 ### SQL
 
-Read database contents with [from_sql()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.from_sql) by specifying the URI to connect to your database. You can read both table names and queries:
+Read database contents with [from_sql()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.from_sql) by specifying the URI to connect to your database. You can read both table names and queries:
 
 ```py
 >>> from datasets import Dataset
@@ -237,9 +338,117 @@ To load remote WebDatasets via HTTP, pass the URLs instead:
 >>> dataset = load_dataset("webdataset", data_files={"train": urls}, split="train", streaming=True)
 ```
 
+### mmCIF
+
+[mmCIF](https://mmcif.wwpdb.org/) (macromolecular Crystallographic Information File) is the modern standard format for representing 3D macromolecular structures, used by the Protein Data Bank (PDB) since 2014.
+
+Each row is one structure file, following the same folder layout
+as `ImageFolder`: subfolder names become labels and a `metadata.csv`/`metadata.jsonl`
+file adds per-structure metadata. The `structure` column uses [BioStructure](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.BioStructure) with
+`format="mmcif"` and decodes to a `Bio.PDB.Structure.Structure` object containing the
+file's models, chains, residues, and atoms. Decoding requires `biopython`; without it,
+accessing a decoded structure raises `ImportError`.
+
+To load mmCIF files from a directory:
+
+```py
+>>> from datasets import BioStructure, load_dataset
+>>> dataset = load_dataset("mmcif", data_dir="path/to/structures")
+>>> dataset["train"].features["structure"]
+BioStructure(format='mmcif', decode=True)
+```
+
+To access the underlying `{"bytes": ..., "path": ...}` dictionary without decoding
+or requiring biopython, cast the column with `decode=False`:
+
+```py
+>>> dataset = dataset.cast_column("structure", BioStructure(format="mmcif", decode=False))
+```
+
+Extensions `.cif` and `.mmcif` are supported.
+
+### GenBank
+
+[GenBank](https://www.ncbi.nlm.nih.gov/genbank/) is a text-based format from NCBI for nucleotide and protein sequences together with their annotations. Files use the `.gb`, `.gbk`, or `.genbank` extension (optionally compressed), and each record's `FEATURES` section is decoded into structured objects.
+
+Alongside the lightweight parsed columns, each row includes a `record` column of type `BioSequence(format="genbank")`, which decodes to a `Bio.SeqRecord.SeqRecord` when `biopython` is installed. Cast this column to `BioSequence(format="genbank", decode=False)` to access the original record bytes as `{"bytes": ..., "path": None}`, or omit it with `columns=[...]` to use only the parsed columns without `biopython`.
+
+To load GenBank files:
+
+```py
+>>> from datasets import load_dataset
+>>> dataset = load_dataset("genbank", data_files="*.gb", split="train")
+```
+
+You can try it on a small example dataset of real NCBI records (one of them is gzipped to show that compressed files load transparently):
+
+```py
+>>> from datasets import load_dataset
+>>> dataset = load_dataset("ermiaazarkhalili/datasets-genbank-test", data_files="*.gb*", split="train")
+>>> dataset[0]["locus_name"], dataset[0]["organism"], dataset[0]["length"]
+```
+
+### FASTQ
+
+[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) is a text-based format for storing nucleotide sequences together with their quality scores, widely used for high-throughput sequencing data.
+
+Load a FASTQ file:
+
+```py
+>>> from datasets import load_dataset
+>>> dataset = load_dataset("fastq", data_files="reads.fq")
+```
+
+The loader returns five columns:
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id` | string | Sequence identifier (first word after `@`) |
+| `description` | string | Full description line (everything after id) |
+| `sequence` | large_string | The nucleotide sequence |
+| `quality` | large_string | ASCII-encoded quality scores |
+| `record` | [BioSequence](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.BioSequence) | With `format="fastq"`, stores each record's original bytes, decoded to a Biopython `SeqRecord` when accessed. |
+
+Reading the parsed columns requires no Biopython; exclude `record` with `columns`, or use `dataset.cast_column("record", BioSequence(decode=False))` (imported from `datasets`) to access its `{"bytes": ..., "path": None}` storage without decoding.
+
+Load only specific columns:
+
+```py
+>>> dataset = load_dataset("fastq", data_files="reads.fq", columns=["sequence", "quality"])
+```
+
+Compressed files (.fq.gz, .fastq.gz, .fq.bz2, .fq.xz) are automatically detected and decompressed.
+
+### FASTA
+
+[FASTA](https://en.wikipedia.org/wiki/FASTA_format) is a text-based format for representing nucleotide sequences (DNA/RNA) or peptide sequences (proteins), widely used in bioinformatics.
+
+To load a FASTA file:
+
+```py
+>>> from datasets import load_dataset
+>>> dataset = load_dataset("fasta", data_files="sequences.fasta")
+```
+
+This returns a dataset with the following columns:
+- `id`: Sequence identifier (first word after `>`)
+- `description`: Full description line (everything after the id)
+- `sequence`: The biological sequence (DNA/RNA/protein)
+- `record`: A [BioSequence](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.BioSequence) with `format="fasta"` storing each record's original bytes, decoded to a Biopython `SeqRecord` when accessed.
+
+Reading the parsed columns requires no Biopython; exclude `record` with `columns`, or use `dataset.cast_column("record", BioSequence(decode=False))` (imported from `datasets`) to access its `{"bytes": ..., "path": None}` storage without decoding.
+
+You can also load only specific columns:
+
+```py
+>>> dataset = load_dataset("fasta", data_files="sequences.fa", columns=["id", "sequence"])
+```
+
+FASTA files with various extensions are supported: `.fa`, `.fasta`, `.fna` (nucleic acid), `.ffn` (nucleotide of gene regions), `.faa` (amino acid), and `.frn` (non-coding RNA). Compressed files (gzip, bzip2, xz) are automatically detected and decompressed.
+
 ## Remote files
 
-If you have remote files likely stored as a `csv`, `json`, `txt`, `parquet` or any supported format, the [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) function can load load them if you specify their remote paths:
+If you have remote files likely stored as a `csv`, `json`, `txt`, `parquet` or any supported format, the [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) function can load load them if you specify their remote paths:
 
 - `https://` URLs for public online files, e.g. `data_files=["https://rajpurkar.github.io/SQuAD-explorer/dataset/train-v2.0.json"]`
 - `hf://` URLs for files in any [Dataset repository](https://huggingface.co/docs/hub/datasets-overview) or [Storage Bucket](https://huggingface.co/docs/hub/storage-buckets) on Hugging Face, e.g. `data_files=["hf://datasets/karpathy/tinystories-gpt4-clean/tinystories_gpt4_clean.parquet"]` or `data_files=["hf://buckets/julien-c/my-training-bucket/julien/affluence.csv"]`
@@ -260,11 +469,11 @@ ml_librispeech_spanish = load_dataset("facebook/multilingual_librispeech", "span
 
 ## In-memory data
 
-🤗 Datasets will also allow you to create a [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) directly from in-memory data structures like Python dictionaries and Pandas DataFrames.
+🤗 Datasets will also allow you to create a [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) directly from in-memory data structures like Python dictionaries and Pandas DataFrames.
 
 ### Python dictionary
 
-Load Python dictionaries with [from_dict()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.from_dict):
+Load Python dictionaries with [from_dict()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.from_dict):
 
 ```py
 >>> from datasets import Dataset
@@ -274,7 +483,7 @@ Load Python dictionaries with [from_dict()](/docs/datasets/v4.8.4/en/package_ref
 
 ### Python list of dictionaries
 
-Load a list of Python dictionaries with [from_list()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.from_list):
+Load a list of Python dictionaries with [from_list()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.from_list):
 
 ```py
 >>> from datasets import Dataset
@@ -284,7 +493,7 @@ Load a list of Python dictionaries with [from_list()](/docs/datasets/v4.8.4/en/p
 
 ### Python generator
 
-Create a dataset from a Python generator with [from_generator()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.from_generator):
+Create a dataset from a Python generator with [from_generator()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.from_generator):
 
 ```py
 >>> from datasets import Dataset
@@ -315,7 +524,7 @@ You can also define a sharded dataset by passing lists to `gen_kwargs`:
 
 ### Pandas DataFrame
 
-Load Pandas DataFrames with [from_pandas()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.from_pandas):
+Load Pandas DataFrames with [from_pandas()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.from_pandas):
 
 ```py
 >>> from datasets import Dataset
@@ -335,7 +544,7 @@ If you know you won't have internet access, you can run 🤗 Datasets in full of
 
 ## Slice splits
 
-You can also choose only to load specific slices of a split. There are two options for slicing a split: using strings or the [ReadInstruction](/docs/datasets/v4.8.4/en/package_reference/builder_classes#datasets.ReadInstruction) API. Strings are more compact and readable for simple cases, while [ReadInstruction](/docs/datasets/v4.8.4/en/package_reference/builder_classes#datasets.ReadInstruction) is easier to use with variable slicing parameters.
+You can also choose only to load specific slices of a split. There are two options for slicing a split: using strings or the [ReadInstruction](/docs/datasets/v5.2.0/en/package_reference/builder_classes#datasets.ReadInstruction) API. Strings are more compact and readable for simple cases, while [ReadInstruction](/docs/datasets/v5.2.0/en/package_reference/builder_classes#datasets.ReadInstruction) is easier to use with variable slicing parameters.
 
 Concatenate a `train` and `test` split by:
 
@@ -413,16 +622,16 @@ Sometimes, you may get unexpected results when you load a dataset. Two of the mo
 
 ### Specify features
 
-When you create a dataset from local files, the [Features](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Features) are automatically inferred by [Apache Arrow](https://arrow.apache.org/docs/). However, the dataset's features may not always align with your expectations, or you may want to define the features yourself. The following example shows how you can add custom labels with the [ClassLabel](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.ClassLabel) feature. 
+When you create a dataset from local files, the [Features](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Features) are automatically inferred by [Apache Arrow](https://arrow.apache.org/docs/). However, the dataset's features may not always align with your expectations, or you may want to define the features yourself. The following example shows how you can add custom labels with the [ClassLabel](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.ClassLabel) feature. 
 
-Start by defining your own labels with the [Features](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Features) class:
+Start by defining your own labels with the [Features](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Features) class:
 
 ```py
 >>> class_names = ["sadness", "joy", "love", "anger", "fear", "surprise"]
 >>> emotion_features = Features({'text': Value('string'), 'label': ClassLabel(names=class_names)})
 ```
 
-Next, specify the `features` parameter in [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) with the features you just created:
+Next, specify the `features` parameter in [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) with the features you just created:
 
 ```py
 >>> dataset = load_dataset('csv', data_files=file_dict, delimiter=';', column_names=['text', 'label'], features=emotion_features)
@@ -436,5 +645,5 @@ Now when you look at your dataset features, you can see it uses the custom label
 'label': ClassLabel(names=['sadness', 'joy', 'love', 'anger', 'fear', 'surprise'])}
 ```
 
-### Load pdf data
-https://huggingface.co/docs/datasets/v4.8.4/document_load.md
+### Create a NIfTI dataset
+https://huggingface.co/docs/datasets/v5.2.0/nifti_dataset.md

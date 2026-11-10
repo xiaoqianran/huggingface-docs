@@ -11,7 +11,7 @@ Unofficial mirror from official `llms.txt` + `llms-full.txt`.
 | [`bitsandbytes`](https://huggingface.co/docs/bitsandbytes) | BitsAndBytes | 25 | [full](bitsandbytes/_full.md) |
 | [`cli`](https://huggingface.co/docs/cli) | CLI | 1 | [full](cli/_full.md) |
 | [`dataset-viewer`](https://huggingface.co/docs/dataset-viewer) | Dataset Viewer | 26 | [full](dataset-viewer/_full.md) |
-| [`datasets`](https://huggingface.co/docs/datasets) | Datasets | 58 | [full](datasets/_full.md) |
+| [`datasets`](https://huggingface.co/docs/datasets) | Datasets | 62 | [full](datasets/_full.md) |
 | [`diffusers`](https://huggingface.co/docs/diffusers) | Diffusers | 371 | [full](diffusers/_full.md) |
 | [`hub`](https://huggingface.co/docs/hub) | Hub | 279 | [full](hub/_full.md) |
 | [`huggingface_hub`](https://huggingface.co/docs/huggingface_hub) | Hub Client | 53 | [full](huggingface_hub/_full.md) |

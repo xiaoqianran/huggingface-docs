@@ -1,15 +1,15 @@
 # Use with Spark
 
-This document is a quick introduction to using 🤗 Datasets with Spark, with a particular focus on how to load a Spark DataFrame into a [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) object.
+This document is a quick introduction to using 🤗 Datasets with Spark, with a particular focus on how to load a Spark DataFrame into a [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) object.
 
 From there, you have fast access to any element and you can use it as a data loader to train models.
 
 ## Load from Spark
 
-A [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) object is a wrapper of an Arrow table, which allows fast reads from arrays in the dataset to PyTorch, TensorFlow and JAX tensors.
+A [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) object is a wrapper of an Arrow table, which allows fast reads from arrays in the dataset to PyTorch, TensorFlow and JAX tensors.
 The Arrow table is memory mapped from disk, which can load datasets bigger than your available RAM.
 
-You can get a [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) from a Spark DataFrame using `Dataset.from_spark()`:
+You can get a [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) from a Spark DataFrame using `Dataset.from_spark()`:
 
 ```py
 >>> from datasets import Dataset
@@ -20,9 +20,9 @@ You can get a [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#
 >>> ds = Dataset.from_spark(df)
 ```
 
-The Spark workers write the dataset on disk in a cache directory as Arrow files, and the [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) is loaded from there.
+The Spark workers write the dataset on disk in a cache directory as Arrow files, and the [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) is loaded from there.
 
-Alternatively, you can skip materialization by using `IterableDataset.from_spark()`, which returns an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset):
+Alternatively, you can skip materialization by using `IterableDataset.from_spark()`, which returns an [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset):
 
  ```py
  >>> from datasets import IterableDataset
@@ -37,7 +37,7 @@ Alternatively, you can skip materialization by using `IterableDataset.from_spark
 
 ### Caching
 
-When using `Dataset.from_spark()`, the resulting [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) is cached; if you call `Dataset.from_spark()` multiple
+When using `Dataset.from_spark()`, the resulting [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) is cached; if you call `Dataset.from_spark()` multiple
 times on the same DataFrame it won't re-run the Spark job that writes the dataset as Arrow files on disk.
 
 You can set the cache location by passing `cache_dir=` to `Dataset.from_spark()`.
@@ -57,14 +57,14 @@ If your dataset is made of images, audio data or N-dimensional arrays, you can s
 >>> df = spark.createDataFrame(data, "idx: int, image: binary")
 >>> # Also works if you have arrays
 >>> # data = [(0, np.zeros(shape=(32, 32, 3), dtype=np.int32).tolist())]
->>> # df = spark.createDataFrame(data, "idx: int, image: array>>")
+>>> # df = spark.createDataFrame(data, "idx: int, image: array<array<array<int>>>")
 >>> features = Features({"idx": Value("int64"), "image": Image()})
 >>> dataset = Dataset.from_spark(df, features=features)
 >>> dataset[0]
-{'idx': 0, 'image': }
+{'idx': 0, 'image': <PIL.PngImagePlugin.PngImageFile image mode=RGB size=32x32>}
 ```
 
-You can check the [Features](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Features) documentation to know about all the feature types available.
+You can check the [Features](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Features) documentation to know about all the feature types available.
 
-### Depth estimation
-https://huggingface.co/docs/datasets/v4.8.4/depth_estimation.md
+### Load text data
+https://huggingface.co/docs/datasets/v5.2.0/nlp_load.md

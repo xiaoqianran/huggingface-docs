@@ -19,7 +19,7 @@ Load the dataset and take a look at an example:
 >>> example = ds['train'][0]
 >>> example
 {'height': 663,
- 'image': ,
+ 'image': <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=943x663 at 0x7FC3DC756250>,
  'image_id': 15,
  'objects': {'area': [3796, 1596, 152768, 81002],
   'bbox': [[302.0, 109.0, 73.0, 52.0],
@@ -43,7 +43,7 @@ The dataset has the following fields:
   - `bbox`: The object's bounding box (in the [coco](https://albumentations.ai/docs/3-basic-usage/bounding-boxes-augmentations/#understanding-bounding-box-formats) format).
   - `category`: The object's category, with possible values including `Coverall (0)`, `Face_Shield (1)`, `Gloves (2)`, `Goggles (3)` and `Mask (4)`.
 
-You can visualize the `bboxes` on the image using some internal torch utilities. To do that, you will need to reference the [ClassLabel](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.ClassLabel) feature associated with the category IDs so you can look up the string labels:
+You can visualize the `bboxes` on the image using some internal torch utilities. To do that, you will need to reference the [ClassLabel](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.ClassLabel) feature associated with the category IDs so you can look up the string labels:
 
 ```py
 >>> import torch
@@ -125,7 +125,7 @@ Create a function to apply the transform to a batch of examples:
 ...     return {'image': images, 'bbox': bboxes, 'category': categories}
 ```
 
-Use the [set_transform()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.set_transform) function to apply the transform on-the-fly which consumes less disk space. The randomness of data augmentation may return a different image if you access the same example twice. It is especially useful when training a model for several epochs.
+Use the [set_transform()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.set_transform) function to apply the transform on-the-fly which consumes less disk space. The randomness of data augmentation may return a different image if you access the same example twice. It is especially useful when training a model for several epochs.
 
 ```py
 >>> ds['train'].set_transform(transforms)
@@ -152,5 +152,5 @@ You can verify the transform works by visualizing the 10th example:
 > [how to train an object detection model](https://colab.research.google.com/github/NielsRogge/Transformers-Tutorials/blob/master/YOLOS/Fine_tuning_YOLOS_for_object_detection_on_custom_dataset_(balloon).ipynb)
 > and use it for inference.
 
-### Use with Pandas
-https://huggingface.co/docs/datasets/v4.8.4/use_with_pandas.md
+### Create an audio dataset
+https://huggingface.co/docs/datasets/v5.2.0/audio_dataset.md

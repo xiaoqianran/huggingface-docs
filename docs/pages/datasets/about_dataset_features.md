@@ -1,8 +1,8 @@
 # Dataset features
 
-[Features](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Features) defines the internal structure of a dataset. It is used to specify the underlying serialization format. What's more interesting to you though is that [Features](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Features) contains high-level information about everything from the column names and types, to the [ClassLabel](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.ClassLabel). You can think of [Features](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Features) as the backbone of a dataset.
+[Features](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Features) defines the internal structure of a dataset. It is used to specify the underlying serialization format. What's more interesting to you though is that [Features](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Features) contains high-level information about everything from the column names and types, to the [ClassLabel](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.ClassLabel). You can think of [Features](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Features) as the backbone of a dataset.
 
-The [Features](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Features) format is simple: `dict[column_name, column_type]`. It is a dictionary of column name and column type pairs. The column type provides a wide range of options for describing the type of data you have.
+The [Features](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Features) format is simple: `dict[column_name, column_type]`. It is a dictionary of column name and column type pairs. The column type provides a wide range of options for describing the type of data you have.
 
 Let's have a look at the features of the MRPC dataset from the GLUE benchmark:
 
@@ -17,7 +17,7 @@ Let's have a look at the features of the MRPC dataset from the GLUE benchmark:
 }
 ```
 
-The [Value](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Value) feature tells 🤗 Datasets:
+The [Value](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Value) feature tells 🤗 Datasets:
 
 - The `idx` data type is `int32`.
 - The `sentence1` and `sentence2` data types are `string`.
@@ -25,11 +25,11 @@ The [Value](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Val
 🤗 Datasets supports many other data types such as `bool`, `float32` and `binary` to name just a few.
 
 > [!TIP]
-> Refer to [Value](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Value) for a full list of supported data types.
+> Refer to [Value](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Value) for a full list of supported data types.
 
-The [ClassLabel](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.ClassLabel) feature informs 🤗 Datasets the `label` column contains two classes. The classes are labeled `not_equivalent` and `equivalent`. Labels are stored as integers in the dataset. When you retrieve the labels, [ClassLabel.int2str()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.ClassLabel.int2str) and [ClassLabel.str2int()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.ClassLabel.str2int) carries out the conversion from integer value to label name, and vice versa.
+The [ClassLabel](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.ClassLabel) feature informs 🤗 Datasets the `label` column contains two classes. The classes are labeled `not_equivalent` and `equivalent`. Labels are stored as integers in the dataset. When you retrieve the labels, [ClassLabel.int2str()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.ClassLabel.int2str) and [ClassLabel.str2int()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.ClassLabel.str2int) carries out the conversion from integer value to label name, and vice versa.
 
-If your data type contains a list of objects, then you want to use the [List](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.List) feature. Remember the SQuAD dataset?
+If your data type contains a list of objects, then you want to use the [List](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.List) feature. Remember the SQuAD dataset?
 
 ```py
 >>> from datasets import load_dataset
@@ -48,7 +48,7 @@ The `answers` field is constructed using the dict of features because and contai
 > [!TIP]
 > See the [flatten](./process#flatten) section to learn how you can extract the nested subfields as their own independent columns.
 
-The array feature type is useful for creating arrays of various sizes. You can create arrays with two dimensions using [Array2D](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Array2D), and even arrays with five dimensions using [Array5D](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Array5D).
+The array feature type is useful for creating arrays of various sizes. You can create arrays with two dimensions using [Array2D](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Array2D), and even arrays with five dimensions using [Array5D](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Array5D).
 
 ```py
 >>> features = Features({'a': Array2D(shape=(1, 3), dtype='int32')})
@@ -62,26 +62,26 @@ The array type also allows the first dimension of the array to be dynamic. This 
 
 ## Audio feature
 
-Audio datasets have a column with type [Audio](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Audio), which contains three important fields:
+Audio datasets have a column with type [Audio](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Audio), which contains three important fields:
 
 - `array`: the decoded audio data represented as a 1-dimensional array.
 - `path`: the path to the downloaded audio file.
 - `sampling_rate`: the sampling rate of the audio data.
 
-When you load an audio dataset and call the audio column, the [Audio](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Audio) feature automatically decodes and resamples the audio file:
+When you load an audio dataset and call the audio column, the [Audio](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Audio) feature automatically decodes and resamples the audio file:
 
 ```py
 >>> from datasets import load_dataset, Audio
 
 >>> dataset = load_dataset("PolyAI/minds14", "en-US", split="train")
 >>> dataset[0]["audio"]
-
+<datasets.features._torchcodec.AudioDecoder object at 0x11642b6a0>
 ```
 
 > [!WARNING]
 > Index into an audio dataset using the row index first and then the `audio` column - `dataset[0]["audio"]` - to avoid decoding and resampling all the audio files in the dataset. Otherwise, this can be a slow and time-consuming process if you have a large dataset.
 
-With `decode=False`, the [Audio](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Audio) type simply gives you the path or the bytes of the audio file, without decoding it into an torchcodec `AudioDecoder` object,
+With `decode=False`, the [Audio](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Audio) type simply gives you the path or the bytes of the audio file, without decoding it into an torchcodec `AudioDecoder` object,
 
 ```py
 >>> dataset = load_dataset("PolyAI/minds14", "en-US", split="train").cast_column("audio", Audio(decode=False))
@@ -97,22 +97,22 @@ With `decode=False`, the [Audio](/docs/datasets/v4.8.4/en/package_reference/main
 
 ## Image feature
 
-Image datasets have a column with type [Image](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Image), which loads `PIL.Image` objects from images stored as bytes:
+Image datasets have a column with type [Image](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Image), which loads `PIL.Image` objects from images stored as bytes:
 
-When you load an image dataset and call the image column, the [Image](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Image) feature automatically decodes the image file:
+When you load an image dataset and call the image column, the [Image](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Image) feature automatically decodes the image file:
 
 ```py
 >>> from datasets import load_dataset, Image
 
 >>> dataset = load_dataset("AI-Lab-Makerere/beans", split="train")
 >>> dataset[0]["image"]
-
+<PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=500x500 at 0x125506CF8>
 ```
 
 > [!WARNING]
 > Index into an image dataset using the row index first and then the `image` column - `dataset[0]["image"]` - to avoid decoding all the image files in the dataset. Otherwise, this can be a slow and time-consuming process if you have a large dataset.
 
-With `decode=False`, the [Image](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Image) type simply gives you the path or the bytes of the image file, without decoding it into an `PIL.Image`,
+With `decode=False`, the [Image](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Image) type simply gives you the path or the bytes of the image file, without decoding it into an `PIL.Image`,
 
 ```py
 >>> dataset = load_dataset("AI-Lab-Makerere/beans", split="train").cast_column("image", Image(decode=False))
@@ -134,12 +134,42 @@ And in this case the numpy arrays are encoded into PNG (or TIFF if the pixels va
 For multi-channels arrays like RGB or RGBA, only uint8 is supported. If you use a larger precision, you get a warning and the array is downcasted to uint8.
 For gray-scale images you can use the integer or float precision you want as long as it is compatible with `Pillow`. A warning is shown if your image integer or float precision is too high, and in this case the array is downcated: an int64 array is downcasted to int32, and a float64 array is downcasted to float32.
 
+## Mesh feature
+
+Mesh datasets have a column with type [Mesh](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Mesh), which loads 3D mesh files as `trimesh` objects.
+
+When you load a mesh dataset and call the mesh column, the [Mesh](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Mesh) feature automatically decodes the mesh file:
+
+```py
+>>> from datasets import load_dataset, Mesh
+
+>>> dataset = load_dataset("VINAY-UMRETHE/My-Mesh-Dataset", split="train")
+>>> dataset[0]["mesh"]
+<trimesh.Scene(len(geometry)=33)>
+```
+
+Depending on the file content, `trimesh` may return a `trimesh.Trimesh` object or a `trimesh.Scene` object.
+
+> [!WARNING]
+> Index into a mesh dataset using the row index first and then the `mesh` column - `dataset[0]["mesh"]` - to avoid decoding all the mesh files in the dataset. Otherwise, this can be a slow and time-consuming process if you have a large dataset.
+
+With `decode=False`, the [Mesh](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Mesh) type gives you the path or bytes of the mesh file without decoding it with `trimesh`:
+
+```py
+>>> dataset = load_dataset("VINAY-UMRETHE/My-Mesh-Dataset", split="train").cast_column("mesh", Mesh(decode=False))
+>>> dataset[0]["mesh"]
+{'bytes': b'...',
+ 'path': '00001.glb'}
+```
+
+The [Mesh](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Mesh) feature supports `.glb`, `.gltf`, `.ply`, and `.stl` files. For embedded bytes, the stored `path` is used to infer the mesh file type.
+
 ## Json feature
 
 Datasets are based on Arrow which is a columnar format, and therefore they expect every example to have the same type and subtypes, and dictionaries to have the same keys and values types.
 Loading a dataset errors out when fields have mismatching types, and fills missing fields in dictionaries with None so all dictionaries have the same keys and value types.
 
-To avoid this and allow mixed-types without errors, you can use `on_mixed_types="use_json"` or specify `features=` with a [Json](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.Json) type:
+To avoid this and allow mixed-types without errors, you can use `on_mixed_types="use_json"` or specify `features=` with a [Json](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.Json) type:
 
 ```python
 >>> ds = Dataset.from_dict({"a": [0, "foo", {"subfield": "bar"}]})
@@ -199,5 +229,5 @@ Another example with tool calling data and the `on_mixed_types="use_json"` argum
 {"room": "living room", "state": "on"}
 ```
 
-### Batch mapping
-https://huggingface.co/docs/datasets/v4.8.4/about_map_batch.md
+### Create a video dataset
+https://huggingface.co/docs/datasets/v5.2.0/video_dataset.md

@@ -49,5 +49,5 @@ Iterating over a memory-mapped dataset using Arrow is fast. Iterating over Wikip
 Time to iterate over the 18 GB dataset: 31.8 sec, ie. 4.8 Gb/s
 ```
 
-### Table Classes
-https://huggingface.co/docs/datasets/v4.8.4/package_reference/table_classes.md
+### Depth estimation
+https://huggingface.co/docs/datasets/v5.2.0/depth_estimation.md

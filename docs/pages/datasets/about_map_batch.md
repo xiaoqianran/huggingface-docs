@@ -1,6 +1,6 @@
 # Batch mapping
 
-Combining the utility of [Dataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) with batch mode is very powerful. It allows you to speed up processing, and freely control the size of the generated dataset. 
+Combining the utility of [Dataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) with batch mode is very powerful. It allows you to speed up processing, and freely control the size of the generated dataset. 
 
 ## Need for speed
 
@@ -58,5 +58,5 @@ Dataset({
 [0, 0, 1, 1, 2, 2]
 ```
 
-### Use with Polars
-https://huggingface.co/docs/datasets/v4.8.4/use_with_polars.md
+### Use with Pandas
+https://huggingface.co/docs/datasets/v5.2.0/use_with_pandas.md

@@ -5,12 +5,12 @@ You can share a dataset with your team or with anyone in the community by creati
 ```py
 from datasets import load_dataset
 
-dataset = load_dataset("/my_dataset")
+dataset = load_dataset("<username>/my_dataset")
 ```
 
 There are several methods for creating and sharing an audio dataset:
 
-- Create an audio dataset from local files in python with [Dataset.push_to_hub()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.push_to_hub). This is an easy way that requires only a few steps in python.
+- Create an audio dataset from local files in python with [Dataset.push_to_hub()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.push_to_hub). This is an easy way that requires only a few steps in python.
 
 - Create an audio dataset repository with the `AudioFolder` builder. This is a no-code solution for quickly creating an audio dataset with several thousand audio files.
 
@@ -19,18 +19,18 @@ There are several methods for creating and sharing an audio dataset:
 
 ## Local files
 
-You can load your own dataset using the paths to your audio files. Use the [cast_column()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.cast_column) function to take a column of audio file paths, and cast it to the [Audio](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Audio) feature:
+You can load your own dataset using the paths to your audio files. Use the [cast_column()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.cast_column) function to take a column of audio file paths, and cast it to the [Audio](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Audio) feature:
 
 ```py
 >>> audio_dataset = Dataset.from_dict({"audio": ["path/to/audio_1", "path/to/audio_2", ..., "path/to/audio_n"]}).cast_column("audio", Audio())
 >>> audio_dataset[0]["audio"]
-
+<datasets.features._torchcodec.AudioDecoder object at 0x11642b6a0>
 ```
 
-Then upload the dataset to the Hugging Face Hub using [Dataset.push_to_hub()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.push_to_hub):
+Then upload the dataset to the Hugging Face Hub using [Dataset.push_to_hub()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.push_to_hub):
 
 ```py
-audio_dataset.push_to_hub("/my_dataset")
+audio_dataset.push_to_hub("<username>/my_dataset")
 ```
 
 This will create a dataset repository containing your audio dataset:
@@ -61,7 +61,7 @@ folder/train/cat/bengal.mp3
 folder/train/cat/birman.mp3
 ```
 
-If the dataset follows the `AudioFolder` structure, then you can load it directly with [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset):
+If the dataset follows the `AudioFolder` structure, then you can load it directly with [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset):
 
 ```py
 >>> from datasets import load_dataset
@@ -69,7 +69,7 @@ If the dataset follows the `AudioFolder` structure, then you can load it directl
 >>> dataset = load_dataset("username/dataset_name")
 ```
 
-This is equivalent to passing `audiofolder` manually in [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) and the directory in `data_dir`:
+This is equivalent to passing `audiofolder` manually in [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) and the directory in `data_dir`:
 
 ```py
 >>> dataset = load_dataset("audiofolder", data_dir="/path/to/folder")
@@ -191,5 +191,5 @@ f18b91585c4d3f3e.json
 
 For more details on the WebDataset format and the python library, please check the [WebDataset documentation](https://webdataset.github.io/webdataset).
 
-### Load text data
-https://huggingface.co/docs/datasets/v4.8.4/nlp_load.md
+### Batch mapping
+https://huggingface.co/docs/datasets/v5.2.0/about_map_batch.md

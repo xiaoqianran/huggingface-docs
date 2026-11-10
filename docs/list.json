@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-11-09T17:22:25.482192+00:00",
+  "fetchedAt": "2026-11-10T15:31:00.197063+00:00",
   "method": "llms-full-split",
-  "ok": 2294,
+  "ok": 2298,
   "failed": 0,
   "pages": [
     {
@@ -1173,525 +1173,561 @@
     },
     {
       "rel": "datasets/index.md",
-      "bytes": 5010,
+      "bytes": 7331,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/index.md",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/index.md",
       "track": "Datasets",
       "package": "datasets",
       "title": "Datasets"
     },
     {
-      "rel": "datasets/use_with_pyarrow.md",
-      "bytes": 4240,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/use_with_pyarrow.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Use with PyArrow"
-    },
-    {
-      "rel": "datasets/video_load.md",
-      "bytes": 9107,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/video_load.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Load video data"
-    },
-    {
-      "rel": "datasets/about_cache.md",
-      "bytes": 3899,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/about_cache.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "The cache"
-    },
-    {
-      "rel": "datasets/audio_dataset.md",
-      "bytes": 7606,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/audio_dataset.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Create an audio dataset"
-    },
-    {
-      "rel": "datasets/nlp_load.md",
-      "bytes": 1835,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/nlp_load.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Load text data"
-    },
-    {
-      "rel": "datasets/installation.md",
-      "bytes": 3883,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/installation.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Installation"
-    },
-    {
-      "rel": "datasets/object_detection.md",
-      "bytes": 6094,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/object_detection.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Object detection"
-    },
-    {
-      "rel": "datasets/use_with_pandas.md",
-      "bytes": 3160,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/use_with_pandas.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Use with Pandas"
-    },
-    {
-      "rel": "datasets/stream.md",
-      "bytes": 33542,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/stream.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Stream"
-    },
-    {
-      "rel": "datasets/use_with_numpy.md",
-      "bytes": 6186,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/use_with_numpy.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Use with NumPy"
-    },
-    {
-      "rel": "datasets/image_process.md",
-      "bytes": 3927,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/image_process.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Process image data"
-    },
-    {
-      "rel": "datasets/tabular_load.md",
-      "bytes": 6835,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/tabular_load.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Load tabular data"
-    },
-    {
-      "rel": "datasets/use_with_spark.md",
-      "bytes": 3429,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/use_with_spark.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Use with Spark"
-    },
-    {
-      "rel": "datasets/depth_estimation.md",
-      "bytes": 7321,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/depth_estimation.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Depth estimation"
-    },
-    {
-      "rel": "datasets/load_hub.md",
-      "bytes": 4944,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/load_hub.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Load a dataset from the Hub"
-    },
-    {
-      "rel": "datasets/video_dataset.md",
-      "bytes": 11852,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/video_dataset.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Create a video dataset"
-    },
-    {
-      "rel": "datasets/troubleshoot.md",
-      "bytes": 5980,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/troubleshoot.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Troubleshooting"
-    },
-    {
-      "rel": "datasets/loading.md",
-      "bytes": 20891,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/loading.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Load"
-    },
-    {
-      "rel": "datasets/document_load.md",
-      "bytes": 7396,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/document_load.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Load pdf data"
-    },
-    {
-      "rel": "datasets/nifti_dataset.md",
-      "bytes": 5101,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/nifti_dataset.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Create a NIfTI dataset"
-    },
-    {
-      "rel": "datasets/use_with_pytorch.md",
-      "bytes": 10820,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/use_with_pytorch.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Use with PyTorch"
-    },
-    {
-      "rel": "datasets/cache.md",
-      "bytes": 5339,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/cache.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Cache management"
-    },
-    {
-      "rel": "datasets/upload_dataset.md",
-      "bytes": 6096,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/upload_dataset.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Share a dataset to the Hub"
-    },
-    {
-      "rel": "datasets/repository_structure.md",
-      "bytes": 8114,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/repository_structure.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Structure your repository"
-    },
-    {
-      "rel": "datasets/filesystems.md",
-      "bytes": 5774,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/filesystems.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Cloud storage"
-    },
-    {
-      "rel": "datasets/semantic_segmentation.md",
-      "bytes": 7025,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/semantic_segmentation.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Semantic segmentation"
-    },
-    {
-      "rel": "datasets/about_mapstyle_vs_iterable.md",
-      "bytes": 14686,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/about_mapstyle_vs_iterable.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Differences between Dataset and IterableDataset"
-    },
-    {
-      "rel": "datasets/create_dataset.md",
-      "bytes": 6911,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/create_dataset.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Create a dataset"
-    },
-    {
-      "rel": "datasets/about_dataset_load.md",
-      "bytes": 10951,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/about_dataset_load.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Build and load"
-    },
-    {
-      "rel": "datasets/faiss_es.md",
-      "bytes": 6496,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/faiss_es.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Search index"
-    },
-    {
-      "rel": "datasets/document_dataset.md",
-      "bytes": 5640,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/document_dataset.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Create a document dataset"
-    },
-    {
-      "rel": "datasets/image_classification.md",
-      "bytes": 2832,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/image_classification.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Image classification"
-    },
-    {
-      "rel": "datasets/use_with_tensorflow.md",
-      "bytes": 10685,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/use_with_tensorflow.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Using Datasets with TensorFlow"
-    },
-    {
-      "rel": "datasets/image_dataset.md",
-      "bytes": 11817,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/image_dataset.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Create an image dataset"
-    },
-    {
-      "rel": "datasets/dataset_card.md",
-      "bytes": 2454,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/dataset_card.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Create a dataset card"
-    },
-    {
-      "rel": "datasets/quickstart.md",
-      "bytes": 17986,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/quickstart.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Quickstart"
-    },
-    {
-      "rel": "datasets/about_dataset_features.md",
-      "bytes": 11192,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/about_dataset_features.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Dataset features"
-    },
-    {
-      "rel": "datasets/about_map_batch.md",
-      "bytes": 3515,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/about_map_batch.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Batch mapping"
-    },
-    {
-      "rel": "datasets/use_with_polars.md",
-      "bytes": 5481,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/use_with_polars.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Use with Polars"
-    },
-    {
-      "rel": "datasets/access.md",
-      "bytes": 9007,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/access.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Know your dataset"
-    },
-    {
-      "rel": "datasets/share.md",
-      "bytes": 9119,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/share.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Share a dataset using the CLI"
-    },
-    {
-      "rel": "datasets/image_load.md",
-      "bytes": 7760,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/image_load.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Load image data"
-    },
-    {
-      "rel": "datasets/cli.md",
-      "bytes": 1490,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/cli.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Command Line Interface (CLI)"
-    },
-    {
       "rel": "datasets/process.md",
-      "bytes": 44411,
+      "bytes": 44681,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/process.md",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/process.md",
       "track": "Datasets",
       "package": "datasets",
       "title": "Process"
     },
     {
-      "rel": "datasets/tutorial.md",
-      "bytes": 1292,
+      "rel": "datasets/document_dataset.md",
+      "bytes": 5642,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/tutorial.md",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/document_dataset.md",
       "track": "Datasets",
       "package": "datasets",
-      "title": "Overview"
+      "title": "Create a document dataset"
     },
     {
-      "rel": "datasets/audio_process.md",
-      "bytes": 3380,
+      "rel": "datasets/semantic_segmentation.md",
+      "bytes": 5635,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/audio_process.md",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/semantic_segmentation.md",
       "track": "Datasets",
       "package": "datasets",
-      "title": "Process audio data"
+      "title": "Semantic segmentation"
     },
     {
-      "rel": "datasets/nlp_process.md",
-      "bytes": 3599,
+      "rel": "datasets/upload_dataset.md",
+      "bytes": 6063,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/nlp_process.md",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/upload_dataset.md",
       "track": "Datasets",
       "package": "datasets",
-      "title": "Process text data"
+      "title": "Share a dataset to the Hub"
     },
     {
-      "rel": "datasets/use_dataset.md",
-      "bytes": 11873,
+      "rel": "datasets/about_cache.md",
+      "bytes": 3889,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/use_dataset.md",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/about_cache.md",
       "track": "Datasets",
       "package": "datasets",
-      "title": "Preprocess"
+      "title": "The cache"
+    },
+    {
+      "rel": "datasets/document_load.md",
+      "bytes": 7819,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/document_load.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Load pdf data"
     },
     {
       "rel": "datasets/how_to.md",
-      "bytes": 1307,
+      "bytes": 1309,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/how_to.md",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/how_to.md",
       "track": "Datasets",
       "package": "datasets",
       "title": "Overview"
     },
     {
-      "rel": "datasets/audio_load.md",
-      "bytes": 5998,
+      "rel": "datasets/tsfile_load.md",
+      "bytes": 6924,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/audio_load.md",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/tsfile_load.md",
       "track": "Datasets",
       "package": "datasets",
-      "title": "Load audio data"
+      "title": "Load TsFile data"
+    },
+    {
+      "rel": "datasets/loading.md",
+      "bytes": 31148,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/loading.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Load"
+    },
+    {
+      "rel": "datasets/nifti_dataset.md",
+      "bytes": 5137,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/nifti_dataset.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Create a NIfTI dataset"
+    },
+    {
+      "rel": "datasets/harbor_load.md",
+      "bytes": 8151,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/harbor_load.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Load agent evaluation tasks"
+    },
+    {
+      "rel": "datasets/cache.md",
+      "bytes": 5289,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/cache.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Cache management"
     },
     {
       "rel": "datasets/use_with_jax.md",
-      "bytes": 8321,
+      "bytes": 8316,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/use_with_jax.md",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/use_with_jax.md",
       "track": "Datasets",
       "package": "datasets",
       "title": "Use with JAX"
     },
     {
-      "rel": "datasets/about_arrow.md",
-      "bytes": 2468,
+      "rel": "datasets/audio_load.md",
+      "bytes": 6070,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/about_arrow.md",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/audio_load.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Load audio data"
+    },
+    {
+      "rel": "datasets/about_arrow.md",
+      "bytes": 2456,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/about_arrow.md",
       "track": "Datasets",
       "package": "datasets",
       "title": "Datasets \ud83e\udd1d Arrow"
     },
     {
-      "rel": "datasets/package_reference/table_classes.md",
-      "bytes": 56541,
+      "rel": "datasets/depth_estimation.md",
+      "bytes": 7436,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/package_reference/table_classes.md",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/depth_estimation.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Depth estimation"
+    },
+    {
+      "rel": "datasets/use_with_spark.md",
+      "bytes": 3495,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/use_with_spark.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Use with Spark"
+    },
+    {
+      "rel": "datasets/nlp_load.md",
+      "bytes": 1827,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/nlp_load.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Load text data"
+    },
+    {
+      "rel": "datasets/tutorial.md",
+      "bytes": 1292,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/tutorial.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Overview"
+    },
+    {
+      "rel": "datasets/cli.md",
+      "bytes": 1529,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/cli.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Command Line Interface (CLI)"
+    },
+    {
+      "rel": "datasets/access.md",
+      "bytes": 9490,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/access.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Know your dataset"
+    },
+    {
+      "rel": "datasets/audio_process.md",
+      "bytes": 3766,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/audio_process.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Process audio data"
+    },
+    {
+      "rel": "datasets/repository_structure.md",
+      "bytes": 8138,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/repository_structure.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Structure your repository"
+    },
+    {
+      "rel": "datasets/image_dataset.md",
+      "bytes": 11796,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/image_dataset.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Create an image dataset"
+    },
+    {
+      "rel": "datasets/stream.md",
+      "bytes": 34513,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/stream.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Stream"
+    },
+    {
+      "rel": "datasets/quickstart.md",
+      "bytes": 18399,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/quickstart.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Quickstart"
+    },
+    {
+      "rel": "datasets/faiss_es.md",
+      "bytes": 6485,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/faiss_es.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Search index"
+    },
+    {
+      "rel": "datasets/create_dataset.md",
+      "bytes": 7163,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/create_dataset.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Create a dataset"
+    },
+    {
+      "rel": "datasets/load_hub.md",
+      "bytes": 4938,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/load_hub.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Load a dataset from the Hub"
+    },
+    {
+      "rel": "datasets/tabular_load.md",
+      "bytes": 6831,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/tabular_load.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Load tabular data"
+    },
+    {
+      "rel": "datasets/installation.md",
+      "bytes": 4349,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/installation.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Installation"
+    },
+    {
+      "rel": "datasets/troubleshoot.md",
+      "bytes": 6045,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/troubleshoot.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Troubleshooting"
+    },
+    {
+      "rel": "datasets/share.md",
+      "bytes": 8830,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/share.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Share a dataset using the CLI"
+    },
+    {
+      "rel": "datasets/mesh_load.md",
+      "bytes": 5642,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/mesh_load.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Load mesh data"
+    },
+    {
+      "rel": "datasets/about_mapstyle_vs_iterable.md",
+      "bytes": 15205,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/about_mapstyle_vs_iterable.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Differences between Dataset and IterableDataset"
+    },
+    {
+      "rel": "datasets/use_with_pyarrow.md",
+      "bytes": 4287,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/use_with_pyarrow.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Use with PyArrow"
+    },
+    {
+      "rel": "datasets/filesystems.md",
+      "bytes": 5757,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/filesystems.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Cloud storage"
+    },
+    {
+      "rel": "datasets/image_load.md",
+      "bytes": 7995,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/image_load.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Load image data"
+    },
+    {
+      "rel": "datasets/use_with_pytorch.md",
+      "bytes": 13320,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/use_with_pytorch.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Use with PyTorch"
+    },
+    {
+      "rel": "datasets/object_detection.md",
+      "bytes": 6181,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/object_detection.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Object detection"
+    },
+    {
+      "rel": "datasets/audio_dataset.md",
+      "bytes": 7698,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/audio_dataset.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Create an audio dataset"
+    },
+    {
+      "rel": "datasets/about_map_batch.md",
+      "bytes": 3515,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/about_map_batch.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Batch mapping"
+    },
+    {
+      "rel": "datasets/use_with_pandas.md",
+      "bytes": 3173,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/use_with_pandas.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Use with Pandas"
+    },
+    {
+      "rel": "datasets/video_load.md",
+      "bytes": 9404,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/video_load.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Load video data"
+    },
+    {
+      "rel": "datasets/dataset_card.md",
+      "bytes": 2464,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/dataset_card.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Create a dataset card"
+    },
+    {
+      "rel": "datasets/use_with_polars.md",
+      "bytes": 5491,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/use_with_polars.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Use with Polars"
+    },
+    {
+      "rel": "datasets/mesh_dataset.md",
+      "bytes": 7157,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/mesh_dataset.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Create a mesh dataset"
+    },
+    {
+      "rel": "datasets/nlp_process.md",
+      "bytes": 3610,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/nlp_process.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Process text data"
+    },
+    {
+      "rel": "datasets/about_dataset_load.md",
+      "bytes": 11162,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/about_dataset_load.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Build and load"
+    },
+    {
+      "rel": "datasets/use_with_tensorflow.md",
+      "bytes": 12115,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/use_with_tensorflow.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Using Datasets with TensorFlow"
+    },
+    {
+      "rel": "datasets/about_dataset_features.md",
+      "bytes": 12862,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/about_dataset_features.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Dataset features"
+    },
+    {
+      "rel": "datasets/video_dataset.md",
+      "bytes": 11856,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/video_dataset.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Create a video dataset"
+    },
+    {
+      "rel": "datasets/image_process.md",
+      "bytes": 3998,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/image_process.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Process image data"
+    },
+    {
+      "rel": "datasets/use_dataset.md",
+      "bytes": 12139,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/use_dataset.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Preprocess"
+    },
+    {
+      "rel": "datasets/image_classification.md",
+      "bytes": 2892,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/image_classification.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Image classification"
+    },
+    {
+      "rel": "datasets/use_with_numpy.md",
+      "bytes": 6203,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/use_with_numpy.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Use with NumPy"
+    },
+    {
+      "rel": "datasets/package_reference/builder_classes.md",
+      "bytes": 35867,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/package_reference/builder_classes.md",
+      "track": "Datasets",
+      "package": "datasets",
+      "title": "Builder classes"
+    },
+    {
+      "rel": "datasets/package_reference/table_classes.md",
+      "bytes": 61300,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/package_reference/table_classes.md",
       "track": "Datasets",
       "package": "datasets",
       "title": "Table Classes"
     },
     {
       "rel": "datasets/package_reference/main_classes.md",
-      "bytes": 312397,
+      "bytes": 383468,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/package_reference/main_classes.md",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/package_reference/main_classes.md",
       "track": "Datasets",
       "package": "datasets",
       "title": "Main classes"
     },
     {
       "rel": "datasets/package_reference/loading_methods.md",
-      "bytes": 32122,
+      "bytes": 66411,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/package_reference/loading_methods.md",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/package_reference/loading_methods.md",
       "track": "Datasets",
       "package": "datasets",
       "title": "Loading methods"
     },
     {
       "rel": "datasets/package_reference/utilities.md",
-      "bytes": 7205,
+      "bytes": 7733,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/package_reference/utilities.md",
+      "url": "https://huggingface.co/docs/datasets/v5.2.0/package_reference/utilities.md",
       "track": "Datasets",
       "package": "datasets",
       "title": "Utilities"
-    },
-    {
-      "rel": "datasets/package_reference/builder_classes.md",
-      "bytes": 30278,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/datasets/v4.8.4/package_reference/builder_classes.md",
-      "track": "Datasets",
-      "package": "datasets",
-      "title": "Builder classes"
     },
     {
       "rel": "diffusers/index.md",
@@ -7275,7 +7311,7 @@
     },
     {
       "rel": "hub/storage-buckets-s3.md",
-      "bytes": 13597,
+      "bytes": 14418,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/storage-buckets-s3.md",
       "track": "Hub",
@@ -8373,7 +8409,7 @@
     },
     {
       "rel": "inference-providers/guides/responses-api.md",
-      "bytes": 64549,
+      "bytes": 63671,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/responses-api.md",
       "track": "Inference Providers",
@@ -8382,7 +8418,7 @@
     },
     {
       "rel": "inference-providers/tasks/index.md",
-      "bytes": 107877,
+      "bytes": 107552,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/tasks/index.md",
       "track": "Inference Providers",
@@ -8634,7 +8670,7 @@
     },
     {
       "rel": "kernels/builder-cli.md",
-      "bytes": 11384,
+      "bytes": 11618,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder-cli.md",
       "track": "Kernels",
@@ -8778,7 +8814,7 @@
     },
     {
       "rel": "kernels/builder/build-variants.md",
-      "bytes": 3375,
+      "bytes": 3310,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/build-variants.md",
       "track": "Kernels",
@@ -8832,7 +8868,7 @@
     },
     {
       "rel": "kernels/builder/writing-kernels.md",
-      "bytes": 22210,
+      "bytes": 23380,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/writing-kernels.md",
       "track": "Kernels",
@@ -20559,7 +20595,7 @@
     },
     {
       "rel": "xet/api.md",
-      "bytes": 30146,
+      "bytes": 30148,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/xet/api.md",
       "track": "Xet",
@@ -20686,10 +20722,10 @@
     },
     {
       "pkg": "datasets",
-      "toc": 58,
-      "found": 58,
-      "written": 58,
-      "full_bytes": 863006
+      "toc": 62,
+      "found": 62,
+      "written": 62,
+      "full_bytes": 1029361
     },
     {
       "pkg": "diffusers",
@@ -20703,7 +20739,7 @@
       "toc": 280,
       "found": 279,
       "written": 279,
-      "full_bytes": 1614365
+      "full_bytes": 1615188
     },
     {
       "pkg": "huggingface_hub",
@@ -20724,14 +20760,14 @@
       "toc": 65,
       "found": 27,
       "written": 27,
-      "full_bytes": 388121
+      "full_bytes": 386918
     },
     {
       "pkg": "kernels",
       "toc": 41,
       "found": 41,
       "written": 41,
-      "full_bytes": 252055
+      "full_bytes": 253394
     },
     {
       "pkg": "lerobot",
@@ -20822,7 +20858,7 @@
       "toc": 12,
       "found": 12,
       "written": 12,
-      "full_bytes": 145981
+      "full_bytes": 145983
     }
   ]
 }

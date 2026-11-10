@@ -16,20 +16,24 @@ To get TensorFlow tensors instead, you can set the format of the dataset to `tf`
 >>> ds = Dataset.from_dict({"data": data})
 >>> ds = ds.with_format("tf")
 >>> ds[0]
-{'data': }
+{'data': <tf.Tensor: shape=(2,), dtype=int64, numpy=array([1, 2])>}
 >>> ds[:2]
-{'data': }
+{'data': <tf.Tensor: shape=(2, 2), dtype=int64, numpy=
+array([[1, 2],
+       [3, 4]])>}
 ```
 
 > [!TIP]
-> A [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) object is a wrapper of an Arrow table, which allows fast reads from arrays in the dataset to TensorFlow tensors.
+> A [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) object is a wrapper of an Arrow table, which allows fast reads from arrays in the dataset to TensorFlow tensors.
 
 This can be useful for converting your dataset to a dict of `Tensor` objects, or for writing a generator to load TF
 samples from it. If you wish to convert the entire dataset to `Tensor`, simply query the full dataset:
 
 ```py
 >>> ds[:]
-{'data': }
+{'data': <tf.Tensor: shape=(2, 2), dtype=int64, numpy=
+array([[1, 2],
+       [3, 4]])>}
 ```
 
 ### N-dimensional arrays
@@ -42,7 +46,9 @@ If your dataset consists of N-dimensional arrays, you will see that by default t
 >>> ds = Dataset.from_dict({"data": data})
 >>> ds = ds.with_format("tf")
 >>> ds[0]
-{'data': }
+{'data': <tf.Tensor: shape=(2, 2), dtype=int64, numpy=
+ array([[1, 2],
+        [3, 4]])>}
 ```
 
 Otherwise, a TensorFlow formatted dataset outputs a `RaggedTensor` instead of a single tensor:
@@ -53,7 +59,7 @@ Otherwise, a TensorFlow formatted dataset outputs a `RaggedTensor` instead of a 
 >>> ds = Dataset.from_dict({"data": data})
 >>> ds = ds.with_format("torch")
 >>> ds[0]
-{'data': }
+{'data': <tf.RaggedTensor [[1, 2], [3]]>}
 ```
 
 However this logic often requires slow shape comparisons and data copies.
@@ -66,14 +72,21 @@ To avoid this, you must explicitly use the `Array` feature type and specify the 
 >>> ds = Dataset.from_dict({"data": data}, features=features)
 >>> ds = ds.with_format("tf")
 >>> ds[0]
-{'data': }
+{'data': <tf.Tensor: shape=(2, 2), dtype=int64, numpy=
+ array([[1, 2],
+        [3, 4]])>}
 >>> ds[:2]
-{'data': }
+{'data': <tf.Tensor: shape=(2, 2, 2), dtype=int64, numpy=
+ array([[[1, 2],
+         [3, 4]],
+ 
+        [[5, 6],
+         [7, 8]]])>}
 ```
 
 ### Other feature types
 
-[ClassLabel](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.ClassLabel) data are properly converted to tensors:
+[ClassLabel](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.ClassLabel) data are properly converted to tensors:
 
 ```py
 >>> from datasets import Dataset, Features, ClassLabel
@@ -82,7 +95,7 @@ To avoid this, you must explicitly use the `Array` feature type and specify the 
 >>> ds = Dataset.from_dict({"label": labels}, features=features) 
 >>> ds = ds.with_format("tf")  
 >>> ds[:3]
-{'label': }
+{'label': <tf.Tensor: shape=(3,), dtype=int64, numpy=array([0, 0, 1])>}
 ```
 
 Strings and binary objects are also supported:
@@ -94,8 +107,8 @@ Strings and binary objects are also supported:
 >>> ds = Dataset.from_dict({"text": text, "data": data})  
 >>> ds = ds.with_format("tf") 
 >>> ds[:2]
-{'text': ,
- 'data': }
+{'text': <tf.Tensor: shape=(2,), dtype=string, numpy=array([b'foo', b'bar'], dtype=object)>,
+ 'data': <tf.Tensor: shape=(2,), dtype=int64, numpy=array([0, 1])>}
 ```
 
 You can also explicitly format certain columns and leave the other columns unformatted:
@@ -103,16 +116,16 @@ You can also explicitly format certain columns and leave the other columns unfor
 ```py
 >>> ds = ds.with_format("tf", columns=["data"], output_all_columns=True)
 >>> ds[:2]
-{'data': ,
+{'data': <tf.Tensor: shape=(2,), dtype=int64, numpy=array([0, 1])>,
  'text': ['foo', 'bar']}
 ```
 
 String and binary objects are unchanged, since PyTorch only supports numbers.
 
-The [Image](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Image) and [Audio](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Audio) feature types are also supported.
+The [Image](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Image) and [Audio](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Audio) feature types are also supported.
 
 > [!TIP]
-> To use the [Image](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Image) feature type, you'll need to install the `vision` extra as
+> To use the [Image](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Image) feature type, you'll need to install the `vision` extra as
 > `pip install datasets[vision]`.
 
 ```py
@@ -122,13 +135,23 @@ The [Image](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Ima
 >>> ds = Dataset.from_dict({"image": images}, features=features) 
 >>> ds = ds.with_format("tf")  
 >>> ds[0]
-{'image': }
+{'image': <tf.Tensor: shape=(512, 512, 4), dtype=uint8, numpy=
+ array([[[255, 215, 106, 255],
+         [255, 215, 106, 255],
+         ...,
+         [255, 255, 255, 255],
+         [255, 255, 255, 255]]], dtype=uint8)>}
 >>> ds[:2]
-{'image': }
+{'image': <tf.Tensor: shape=(2, 512, 512, 4), dtype=uint8, numpy=
+ array([[[[255, 215, 106, 255],
+          [255, 215, 106, 255],
+          ...,
+          [255, 255, 255, 255],
+          [255, 255, 255, 255]]]], dtype=uint8)>}
 ```
 
 > [!TIP]
-> To use the [Audio](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Audio) feature type, you'll need to install the `audio` extra as
+> To use the [Audio](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Audio) feature type, you'll need to install the `audio` extra as
 > `pip install datasets[audio]`.
 
 ```py
@@ -138,9 +161,11 @@ The [Image](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Ima
 >>> ds = Dataset.from_dict({"audio": audio}, features=features) 
 >>> ds = ds.with_format("tf")  
 >>> ds[0]["audio"]["array"]
-
+<tf.Tensor: shape=(202311,), dtype=float32, numpy=
+array([ 6.1035156e-05,  1.5258789e-05,  1.6784668e-04, ...,
+       -1.5258789e-05, -1.5258789e-05,  1.5258789e-05], dtype=float32)>
 >>> ds[0]["audio"]["sampling_rate"]
-
+<tf.Tensor: shape=(), dtype=int32, numpy=44100>
 ```
 
 ## Data loading
@@ -188,7 +213,7 @@ that you set the batch size when creating the dataset, and so you don't need to 
 >>> model.fit(tf_ds, epochs=2)
 ```
 
-For a full description of the arguments, please see the [to_tf_dataset()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.to_tf_dataset) documentation. In many cases,
+For a full description of the arguments, please see the [to_tf_dataset()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.to_tf_dataset) documentation. In many cases,
 you will also need to add a `collate_fn` to your call. This is a function that takes multiple elements of the dataset
 and combines them into a single batch. When all elements have the same length, the built-in default collator will
 suffice, but for more complex tasks a custom collator may be necessary. In particular, many tasks have samples
@@ -229,5 +254,5 @@ instead:
 
 Right now, `to_tf_dataset()` always returns a batched dataset - we will add support for unbatched datasets soon!
 
-### Create an image dataset
-https://huggingface.co/docs/datasets/v4.8.4/image_dataset.md
+### Dataset features
+https://huggingface.co/docs/datasets/v5.2.0/about_dataset_features.md

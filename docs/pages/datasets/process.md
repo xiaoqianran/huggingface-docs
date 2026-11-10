@@ -21,7 +21,7 @@ The examples in this guide use the MRPC dataset, but feel free to load any datas
 ```
 
 > [!WARNING]
-> All processing methods in this guide return a new [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) object. Modification is not done in-place. Be careful about overriding your previous dataset!
+> All processing methods in this guide return a new [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) object. Modification is not done in-place. Be careful about overriding your previous dataset!
 
 ## Sort, shuffle, select, split, and shard
 
@@ -30,7 +30,7 @@ These functions are useful for selecting only the rows you want, creating train 
 
 ### Sort
 
-Use [sort()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.sort) to sort column values according to their numerical values. The provided column must be NumPy compatible.
+Use [sort()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.sort) to sort column values according to their numerical values. The provided column must be NumPy compatible.
 
 ```py
 >>> dataset["label"][:10]
@@ -47,7 +47,7 @@ This indices mapping is then used to access the right rows in the underlying Arr
 
 ### Shuffle
 
-The [shuffle()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.shuffle) function randomly rearranges the column values. You can specify the `generator` parameter in this function to use a different `numpy.random.Generator` if you want more control over the algorithm used to shuffle the dataset.
+The [shuffle()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.shuffle) function randomly rearranges the column values. You can specify the `generator` parameter in this function to use a different `numpy.random.Generator` if you want more control over the algorithm used to shuffle the dataset.
 
 ```py
 >>> shuffled_dataset = sorted_dataset.shuffle(seed=42)
@@ -56,10 +56,10 @@ The [shuffle()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets
 ```
 
 Shuffling takes the list of indices `[0:len(my_dataset)]` and shuffles it to create an indices mapping.
-However as soon as your [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) has an indices mapping, the speed can become 10x slower.
+However as soon as your [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) has an indices mapping, the speed can become 10x slower.
 This is because there is an extra step to get the row index to read using the indices mapping, and most importantly, you aren't reading contiguous chunks of data anymore.
-To restore the speed, you'd need to rewrite the entire dataset on your disk again using [Dataset.flatten_indices()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.flatten_indices), which removes the indices mapping.
-Alternatively, you can switch to an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) and leverage its fast approximate shuffling [IterableDataset.shuffle()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.shuffle):
+To restore the speed, you'd need to rewrite the entire dataset on your disk again using [Dataset.flatten_indices()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.flatten_indices), which removes the indices mapping.
+Alternatively, you can switch to an [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) and leverage its fast approximate shuffling [IterableDataset.shuffle()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.shuffle):
 
 ```py
 >>> iterable_dataset = dataset.to_iterable_dataset(num_shards=128)
@@ -68,9 +68,9 @@ Alternatively, you can switch to an [IterableDataset](/docs/datasets/v4.8.4/en/p
 
 ### Select and Filter
 
-There are two options for filtering rows in a dataset: [select()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.select) and [filter()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.filter).
+There are two options for filtering rows in a dataset: [select()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.select) and [filter()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.filter).
 
-- [select()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.select) returns rows according to a list of indices:
+- [select()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.select) returns rows according to a list of indices:
 
 ```py
 >>> small_dataset = dataset.select([0, 10, 20, 30, 40, 50])
@@ -78,7 +78,7 @@ There are two options for filtering rows in a dataset: [select()](/docs/datasets
 6
 ```
 
-- [filter()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.filter) returns rows that match a specified condition:
+- [filter()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.filter) returns rows that match a specified condition:
 
 ```py
 >>> start_with_ar = dataset.filter(lambda example: example["sentence1"].startswith("Ar"))
@@ -94,7 +94,7 @@ There are two options for filtering rows in a dataset: [select()](/docs/datasets
 ]
 ```
 
-[filter()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.filter) can also filter by indices if you set `with_indices=True`:
+[filter()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.filter) can also filter by indices if you set `with_indices=True`:
 
 ```py
 >>> even_dataset = dataset.filter(lambda example, idx: idx % 2 == 0, with_indices=True)
@@ -108,7 +108,7 @@ Unless the list of indices to keep is contiguous, those methods also create an i
 
 ### Split
 
-The [train_test_split()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.train_test_split) function creates train and test splits if your dataset doesn't already have them. This allows you to adjust the relative proportions or an absolute number of samples in each split. In the example below, use the `test_size` parameter to create a test split that is 10% of the original dataset:
+The [train_test_split()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.train_test_split) function creates train and test splits if your dataset doesn't already have them. This allows you to adjust the relative proportions or an absolute number of samples in each split. In the example below, use the `test_size` parameter to create a test split that is 10% of the original dataset:
 
 ```py
 >>> dataset.train_test_split(test_size=0.1)
@@ -122,7 +122,7 @@ The splits are shuffled by default, but you can set `shuffle=False` to prevent s
 
 ### Shard
 
-🤗 Datasets supports sharding to divide a very large dataset into a predefined number of chunks. Specify the `num_shards` parameter in [shard()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.shard) to determine the number of shards to split the dataset into. You'll also need to provide the shard you want to return with the `index` parameter.
+🤗 Datasets supports sharding to divide a very large dataset into a predefined number of chunks. Specify the `num_shards` parameter in [shard()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.shard) to determine the number of shards to split the dataset into. You'll also need to provide the shard you want to return with the `index` parameter.
 
 For example, the [stanfordnlp/imdb](https://huggingface.co/datasets/stanfordnlp/imdb) dataset has 25000 examples:
 
@@ -154,9 +154,9 @@ The following functions allow you to modify the columns of a dataset. These func
 
 ### Rename
 
-Use [rename_column()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.rename_column) when you need to rename a column in your dataset. Features associated with the original column are actually moved under the new column name, instead of just replacing the original column in-place.
+Use [rename_column()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.rename_column) when you need to rename a column in your dataset. Features associated with the original column are actually moved under the new column name, instead of just replacing the original column in-place.
 
-Provide [rename_column()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.rename_column) with the name of the original column, and the new column name:
+Provide [rename_column()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.rename_column) with the name of the original column, and the new column name:
 
 ```py
 >>> dataset
@@ -175,7 +175,7 @@ Dataset({
 
 ### Remove
 
-When you need to remove one or more columns, provide the column name to remove to the [remove_columns()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.remove_columns) function. Remove more than one column by providing a list of column names:
+When you need to remove one or more columns, provide the column name to remove to the [remove_columns()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.remove_columns) function. Remove more than one column by providing a list of column names:
 
 ```py
 >>> dataset = dataset.remove_columns("label")
@@ -192,7 +192,7 @@ Dataset({
 })
 ```
 
-Conversely, [select_columns()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.select_columns) selects one or more columns to keep and removes the rest. This function takes either one or a list of column names:
+Conversely, [select_columns()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.select_columns) selects one or more columns to keep and removes the rest. This function takes either one or a list of column names:
 
 ```py
 >>> dataset
@@ -216,7 +216,7 @@ Dataset({
 
 ### Cast
 
-The [cast()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.cast) function transforms the feature type of one or more columns. This function accepts your new [Features](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Features) as its argument. The example below demonstrates how to change the [ClassLabel](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.ClassLabel) and [Value](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Value) features:
+The [cast()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.cast) function transforms the feature type of one or more columns. This function accepts your new [Features](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Features) as its argument. The example below demonstrates how to change the [ClassLabel](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.ClassLabel) and [Value](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Value) features:
 
 ```py
 >>> dataset.features
@@ -240,7 +240,7 @@ The [cast()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Da
 > [!TIP]
 > Casting only works if the original feature type and new feature type are compatible. For example, you can cast a column with the feature type `Value("int32")` to `Value("bool")` if the original column only contains ones and zeros.
 
-Use the [cast_column()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.cast_column) function to change the feature type of a single column. Pass the column name and its new feature type as arguments:
+Use the [cast_column()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.cast_column) function to change the feature type of a single column. Pass the column name and its new feature type as arguments:
 
 ```py
 >>> dataset.features
@@ -267,7 +267,7 @@ Sometimes a column can be a nested structure of several types. Take a look at th
   'answer_start': List(Value('int32'))}}
 ```
 
-The `answers` field contains two subfields: `text` and `answer_start`. Use the [flatten()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.flatten) function to extract the subfields into their own separate columns:
+The `answers` field contains two subfields: `text` and `answer_start`. Use the [flatten()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.flatten) function to extract the subfields into their own separate columns:
 
 ```py
 >>> flat_dataset = dataset.flatten()
@@ -282,7 +282,7 @@ Notice how the subfields are now their own independent columns: `answers.text` a
 
 ## Map
 
-Some of the more powerful applications of 🤗 Datasets come from using the [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) function. The primary purpose of [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) is to speed up processing functions. It allows you to apply a processing function to each example in a dataset, independently or in batches. This function can even create new rows and columns.
+Some of the more powerful applications of 🤗 Datasets come from using the [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) function. The primary purpose of [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) is to speed up processing functions. It allows you to apply a processing function to each example in a dataset, independently or in batches. This function can even create new rows and columns.
 
 In the following example, prefix each `sentence1` value in the dataset with `'My sentence: '`.
 
@@ -294,7 +294,7 @@ Start by creating a function that adds `'My sentence: '` to the beginning of eac
 ...     return example
 ```
 
-Now use [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) to apply the `add_prefix` function to the entire dataset:
+Now use [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) to apply the `add_prefix` function to the entire dataset:
 
 ```py
 >>> updated_dataset = small_dataset.map(add_prefix)
@@ -306,9 +306,9 @@ Now use [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets
 ]
 ```
 
-Let's take a look at another example, except this time, you'll remove a column with [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map). When you remove a column, it is only removed after the example has been provided to the mapped function. This allows the mapped function to use the content of the columns before they are removed.
+Let's take a look at another example, except this time, you'll remove a column with [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map). When you remove a column, it is only removed after the example has been provided to the mapped function. This allows the mapped function to use the content of the columns before they are removed.
 
-Specify the column to remove with the `remove_columns` parameter in [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map):
+Specify the column to remove with the `remove_columns` parameter in [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map):
 
 ```py
 >>> updated_dataset = dataset.map(lambda example: {"new_sentence": example["sentence1"]}, remove_columns=["sentence1"])
@@ -317,9 +317,9 @@ Specify the column to remove with the `remove_columns` parameter in [map()](/doc
 ```
 
 > [!TIP]
-> 🤗 Datasets also has a [remove_columns()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.remove_columns) function which is faster because it doesn't copy the data of the remaining columns.
+> 🤗 Datasets also has a [remove_columns()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.remove_columns) function which is faster because it doesn't copy the data of the remaining columns.
 
-You can also use [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) with indices if you set `with_indices=True`. The example below adds the index to the beginning of each sentence:
+You can also use [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) with indices if you set `with_indices=True`. The example below adds the index to the beginning of each sentence:
 
 ```py
 >>> updated_dataset = dataset.map(lambda example, idx: {"sentence2": f"{idx}: " + example["sentence2"]}, with_indices=True)
@@ -334,13 +334,13 @@ You can also use [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes
 
 ### Multiprocessing
 
-Multiprocessing significantly speeds up processing by parallelizing processes on the CPU. Set the `num_proc` parameter in [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) to set the number of processes to use:
+Multiprocessing significantly speeds up processing by parallelizing processes on the CPU. Set the `num_proc` parameter in [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) to set the number of processes to use:
 
 ```py
 >>> updated_dataset = dataset.map(lambda example, idx: {"sentence2": f"{idx}: " + example["sentence2"]}, with_indices=True, num_proc=4)
 ```
 
-The [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) also works with the rank of the process if you set `with_rank=True`. This is analogous to the `with_indices` parameter. The `with_rank` parameter in the mapped function goes after the `index` one if it is already present.
+The [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) also works with the rank of the process if you set `with_rank=True`. This is analogous to the `with_indices` parameter. The `with_rank` parameter in the mapped function goes after the `index` one if it is already present.
 
 ```py
 >>> import torch
@@ -395,7 +395,7 @@ RuntimeError: Cannot re-initialize CUDA in forked subprocess. To use CUDA with m
 
 ### Batch processing
 
-The [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) function supports working with batches of examples. Operate on batches by setting `batched=True`. The default batch size is 1000, but you can adjust it with the `batch_size` parameter. Batch processing enables interesting applications such as splitting long sentences into shorter chunks and data augmentation.
+The [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) function supports working with batches of examples. Operate on batches by setting `batched=True`. The default batch size is 1000, but you can adjust it with the `batch_size` parameter. Batch processing enables interesting applications such as splitting long sentences into shorter chunks and data augmentation.
 
 #### Split long examples
 
@@ -413,7 +413,7 @@ When examples are too long, you may want to split them into several smaller chun
 ...     return {"chunks": chunks}
 ```
 
-Apply the function with [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map):
+Apply the function with [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map):
 
 ```py
 >>> chunked_dataset = dataset.map(chunk_examples, batched=True, remove_columns=dataset.column_names)
@@ -447,7 +447,7 @@ Dataset({
 
 #### Data augmentation
 
-The [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) function could also be used for data augmentation. The following example generates additional words for a masked token in a sentence.
+The [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) function could also be used for data augmentation. The following example generates additional words for a masked token in a sentence.
 
 Load and use the [RoBERTA](https://huggingface.co/roberta-base) model in 🤗 Transformers' [FillMaskPipeline](https://huggingface.co/transformers/main_classes/pipelines#transformers.FillMaskPipeline):
 
@@ -457,7 +457,13 @@ Load and use the [RoBERTA](https://huggingface.co/roberta-base) model in 🤗 Tr
 
 >>> fillmask = pipeline("fill-mask", model="roberta-base")
 >>> mask_token = REDACTED
->>> smaller_dataset = dataset.filter(lambda e, i: i>> def augment_data(examples):
+>>> smaller_dataset = dataset.filter(lambda e, i: i<100, with_indices=True)
+```
+
+Create a function to randomly select a word to mask in the sentence. The function should also return the original sentence and the top two replacements generated by RoBERTA.
+
+```py
+>>> def augment_data(examples):
 ...     outputs = []
 ...     for sentence in examples["sentence1"]:
 ...         words = sentence.split(' ')
@@ -470,7 +476,7 @@ Load and use the [RoBERTA](https://huggingface.co/roberta-base) model in 🤗 Tr
 ...     return {"data": outputs}
 ```
 
-Use [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) to apply the function over the whole dataset:
+Use [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) to apply the function over the whole dataset:
 
 ```py
 >>> augmented_dataset = smaller_dataset.map(augment_data, batched=True, remove_columns=dataset.column_names, batch_size=8)
@@ -530,13 +536,13 @@ Let's use it to call the [microsoft/Phi-3-mini-4k-instruct](https://huggingface.
  'Output': 'The main topic is Logarithms.'}
 ````
 
-Here, [Dataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) runs many `get_topic` function asynchronously so it doesn't have to wait for every single model response which would take a lot of time to do sequentially.
+Here, [Dataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) runs many `get_topic` function asynchronously so it doesn't have to wait for every single model response which would take a lot of time to do sequentially.
 
-By default, [Dataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) runs up to one thousand map functions in parallel, so don't forget to set the maximum number of API calls that can run in parallel with a `Semaphore`, otherwise the model could return rate limit errors or overload. For advanced use cases, you can change the maximum number of queries in parallel in `datasets.config`.
+By default, [Dataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) runs up to one thousand map functions in parallel, so don't forget to set the maximum number of API calls that can run in parallel with a `Semaphore`, otherwise the model could return rate limit errors or overload. For advanced use cases, you can change the maximum number of queries in parallel in `datasets.config`.
 
 ### Process multiple splits
 
-Many datasets have splits that can be processed simultaneously with [DatasetDict.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.DatasetDict.map). For example, tokenize the `sentence1` field in the train and test split by:
+Many datasets have splits that can be processed simultaneously with [DatasetDict.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.DatasetDict.map). For example, tokenize the `sentence1` field in the train and test split by:
 
 ```py
 >>> from datasets import load_dataset
@@ -557,7 +563,7 @@ Many datasets have splits that can be processed simultaneously with [DatasetDict
 
 ### Distributed usage
 
-When you use [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) in a distributed setting, you should also use [torch.distributed.barrier](https://pytorch.org/docs/stable/distributed?highlight=barrier#torch.distributed.barrier). This ensures the main process performs the mapping, while the other processes load the results, thereby avoiding duplicate work.
+When you use [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) in a distributed setting, you should also use [torch.distributed.barrier](https://pytorch.org/docs/stable/distributed?highlight=barrier#torch.distributed.barrier). This ensures the main process performs the mapping, while the other processes load the results, thereby avoiding duplicate work.
 
 The following example shows how you can use `torch.distributed.barrier` to synchronize the processes:
 
@@ -602,11 +608,11 @@ The `batch()` method accepts the following parameters:
 - `drop_last_batch` (`bool`, defaults to `False`): Whether to drop the last incomplete batch if the dataset size is not divisible by the batch size.
 - `num_proc` (`int`, optional, defaults to `None`): The number of processes to use for multiprocessing. If None, no multiprocessing is used. This can significantly speed up batching for large datasets.
 
-Note that `Dataset.batch()` returns a new [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) where each item is a batch of multiple samples from the original dataset. If you want to process data in batches, you should use a batched [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) directly, which applies a function to batches but the output dataset is unbatched.
+Note that `Dataset.batch()` returns a new [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) where each item is a batch of multiple samples from the original dataset. If you want to process data in batches, you should use a batched [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) directly, which applies a function to batches but the output dataset is unbatched.
 
 ## Concatenate
 
-Separate datasets can be concatenated if they share the same column types. Concatenate datasets with [concatenate_datasets()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.concatenate_datasets):
+Separate datasets can be concatenated if they share the same column types. Concatenate datasets with [concatenate_datasets()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.concatenate_datasets):
 
 ```py
 >>> from datasets import concatenate_datasets, load_dataset
@@ -630,8 +636,8 @@ You can also concatenate two datasets horizontally by setting `axis=1` as long a
 
 ### Interleave
 
-You can also mix several datasets together by taking alternating examples from each one to create a new dataset. This is known as _interleaving_, which is enabled by the [interleave_datasets()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.interleave_datasets) function. Both [interleave_datasets()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.interleave_datasets) and [concatenate_datasets()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.concatenate_datasets) work with regular [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) and [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) objects.
-Refer to the [Stream](./stream#interleave) guide for an example of how to interleave [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) objects.
+You can also mix several datasets together by taking alternating examples from each one to create a new dataset. This is known as _interleaving_, which is enabled by the [interleave_datasets()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.interleave_datasets) function. Both [interleave_datasets()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.interleave_datasets) and [concatenate_datasets()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.concatenate_datasets) work with regular [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) and [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) objects.
+Refer to the [Stream](./stream#interleave) guide for an example of how to interleave [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) objects.
 
 You can define sampling probabilities for each of the original datasets to specify how to interleave the datasets.
 In this case, the new dataset is constructed by getting examples one by one from a random dataset until one of the datasets runs out of samples.
@@ -664,7 +670,7 @@ There is also `stopping_strategy=all_exhausted_without_replacement` to ensure th
 
 ## Format
 
-The [with_format()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.with_format) function changes the format of a column to be compatible with some common data formats. Specify the output you'd like in the `type` parameter. You can also choose which the columns you want to format using `columns=`. Formatting is applied on-the-fly.
+The [with_format()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.with_format) function changes the format of a column to be compatible with some common data formats. Specify the output you'd like in the `type` parameter. You can also choose which the columns you want to format using `columns=`. Formatting is applied on-the-fly.
 
 For example, create PyTorch tensors by setting `type="torch"`:
 
@@ -672,13 +678,13 @@ For example, create PyTorch tensors by setting `type="torch"`:
 >>> dataset = dataset.with_format(type="torch")
 ```
 
-The [set_format()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.set_format) function also changes the format of a column, except it runs in-place:
+The [set_format()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.set_format) function also changes the format of a column, except it runs in-place:
 
 ```py
 >>> dataset.set_format(type="torch")
 ```
 
-If you need to reset the dataset to its original format, set the format to `None` (or use [reset_format()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.reset_format)):
+If you need to reset the dataset to its original format, set the format to `None` (or use [reset_format()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.reset_format)):
 
 ```py
 >>> dataset.format
@@ -736,7 +742,7 @@ When a dataset is formatted in a dataframe or table format, every dataset row or
 1  bar      1
 ```
 
-Those formats make it possible to iterate on the data faster by avoiding data copies, and also enable faster data processing in [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) or [filter()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.filter):
+Those formats make it possible to iterate on the data faster by avoiding data copies, and also enable faster data processing in [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) or [filter()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.filter):
 
 ```python
 >>> ds = ds.map(lambda df: df.assign(upper_text=df.text.str.upper()), batched=True)
@@ -748,7 +754,7 @@ Those formats make it possible to iterate on the data faster by avoiding data co
 
 ### Custom format transform
 
-The [with_transform()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.with_transform) function applies a custom formatting transform on-the-fly. This function replaces any previously specified format. For example, you can use this function to tokenize and pad tokens on-the-fly. Tokenization is only applied when examples are accessed:
+The [with_transform()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.with_transform) function applies a custom formatting transform on-the-fly. This function replaces any previously specified format. For example, you can use this function to tokenize and pad tokens on-the-fly. Tokenization is only applied when examples are accessed:
 
 ```py
 >>> from transformers import AutoTokenizer
@@ -758,12 +764,12 @@ The [with_transform()](/docs/datasets/v4.8.4/en/package_reference/main_classes#d
 ...     return tokenizer(batch["sentence1"], batch["sentence2"], padding="longest", truncation=True, max_length=512, return_tensors="pt")
 >>> dataset = dataset.with_transform(encode)
 >>> dataset.format
-{'type': 'custom', 'format_kwargs': {'transform': }, 'columns': ['idx', 'label', 'sentence1', 'sentence2'], 'output_all_columns': False}
+{'type': 'custom', 'format_kwargs': {'transform': <function __main__.encode(batch)>}, 'columns': ['idx', 'label', 'sentence1', 'sentence2'], 'output_all_columns': False}
 ```
 
-There is also [set_transform()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.set_transform) which does the same but runs in-place.
+There is also [set_transform()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.set_transform) which does the same but runs in-place.
 
-You can also use the [with_transform()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.with_transform) function for custom decoding on [Features](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Features).
+You can also use the [with_transform()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.with_transform) function for custom decoding on [Features](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Features).
 
 The example below uses the [`pydub`](http://pydub.com/) package as an alternative to `torchcodec` decoding:
 
@@ -792,9 +798,9 @@ The example below uses the [`pydub`](http://pydub.com/) package as an alternativ
 
 ## Save
 
-Once your dataset is ready, you can save it as a Hugging Face Dataset in Parquet format and reuse it later with [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset).
+Once your dataset is ready, you can save it as a Hugging Face Dataset in Parquet format and reuse it later with [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset).
 
-Save your dataset by providing the name of the dataset repository on Hugging Face you wish to save it to to [push_to_hub()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.push_to_hub):
+Save your dataset by providing the name of the dataset repository on Hugging Face you wish to save it to to [push_to_hub()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.push_to_hub):
 
 ```python
 encoded_dataset.push_to_hub("username/my_dataset")
@@ -806,7 +812,7 @@ You can use multiple processes to upload it in parallel. This is especially usef
 dataset.push_to_hub("username/my_dataset", num_proc=8)
 ```
 
-Use the [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) function to reload the dataset (in streaming mode or not):
+Use the [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) function to reload the dataset (in streaming mode or not):
 
 ```python
 from datasets import load_dataset
@@ -815,7 +821,7 @@ reloaded_dataset = load_dataset("username/my_dataset", streaming=True)
 
 Alternatively, you can save it locally in Arrow format on disk. Compared to Parquet, Arrow is uncompressed which makes it much faster to reload which is great for local use on disk and ephemeral caching. But since it's larger and with less metadata, it is slower to upload/download/query than Parquet and less suited for long term storage.
 
-Use the [save_to_disk()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.save_to_disk) and [load_from_disk()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_from_disk) function to reload the dataset from your disk:
+Use the [save_to_disk()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.save_to_disk) and [load_from_disk()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_from_disk) function to reload the dataset from your disk:
 
 ```py
 >>> encoded_dataset.save_to_disk("path/of/my/dataset/directory")
@@ -830,11 +836,11 @@ Use the [save_to_disk()](/docs/datasets/v4.8.4/en/package_reference/main_classes
 
 | File type               | Export method                                                       |
 | ----------------------- | ------------------------------------------------------------------- |
-| CSV                     | [Dataset.to_csv()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.to_csv)                                                  |
-| JSON                    | [Dataset.to_json()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.to_json)                                                 |
-| Parquet                 | [Dataset.to_parquet()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.to_parquet)                                              |
-| SQL                     | [Dataset.to_sql()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.to_sql)                                                  |
-| In-memory Python object | [Dataset.to_pandas()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.to_pandas), `Dataset.to_polars()` or [Dataset.to_dict()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.to_dict) |
+| CSV                     | [Dataset.to_csv()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.to_csv)                                                  |
+| JSON                    | [Dataset.to_json()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.to_json)                                                 |
+| Parquet                 | [Dataset.to_parquet()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.to_parquet)                                              |
+| SQL                     | [Dataset.to_sql()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.to_sql)                                                  |
+| In-memory Python object | [Dataset.to_pandas()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.to_pandas), `Dataset.to_polars()` or [Dataset.to_dict()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.to_dict) |
 
 For example, export your dataset to a CSV file like this:
 
@@ -849,5 +855,5 @@ Use a `hf://` path to export to a [Dataset repository](https://huggingface.co/do
 >>> encoded_dataset.to_csv("hf://buckets/username/raw_data_bucket/path/of/my/dataset.csv")
 ```
 
-### Overview
-https://huggingface.co/docs/datasets/v4.8.4/tutorial.md
+### Create a document dataset
+https://huggingface.co/docs/datasets/v5.2.0/document_dataset.md

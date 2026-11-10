@@ -2,13 +2,17 @@
 
 Each `Dataset` object is backed by a PyArrow Table.
 A Table can be loaded from either the disk (memory mapped) or in memory.
-Several Table types are available, and they all inherit from [table.Table](/docs/datasets/v4.8.4/en/package_reference/table_classes#datasets.table.Table).
+Several Table types are available, and they all inherit from [table.Table](/docs/datasets/v5.2.0/en/package_reference/table_classes#datasets.table.Table).
 
 ## Table[[datasets.table.Table]]
 
 #### datasets.table.Table[[datasets.table.Table]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L153)
+```python
+datasets.table.Table(table: Table)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L210)
 
 Wraps a pyarrow Table by using composition.
 This is the base class for `InMemoryTable`, `MemoryMappedTable` and `ConcatenationTable`.
@@ -19,37 +23,52 @@ append_column, remove_column, set_column, rename_columns` and `drop`.
 
 The implementation of these methods differs for the subclasses.
 
-validatedatasets.table.Table.validatehttps://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L178[{"name": "*args", "val": ""}, {"name": "**kwargs", "val": ""}]- **full** (`bool`, defaults to `False`) --
-  If `True`, run expensive checks, otherwise cheap checks only.0- ``pa.lib.ArrowInvalid`` -- if validation fails``pa.lib.ArrowInvalid``
+#### validate[[datasets.table.Table.validate]]
+
+```python
+validate(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L235)
+
+**Parameters:**
+
+full (`bool`, defaults to `False`) : If `True`, run expensive checks, otherwise cheap checks only.
+
+**Raises:** ``pa.lib.ArrowInvalid``
+
+- ``pa.lib.ArrowInvalid`` -- if validation fails
 
 Perform validation checks.  An exception is raised if validation fails.
 
 By default only cheap validation checks are run.  Pass `full=True`
 for thorough validation checks (potentially `O(n)`).
 
-**Parameters:**
-
-full (`bool`, defaults to `False`) : If `True`, run expensive checks, otherwise cheap checks only.
 #### equals[[datasets.table.Table.equals]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L194)
+```python
+equals(*args, **kwargs)
+```
 
-Check if contents of two tables are equal.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L251)
 
 **Parameters:**
 
-other ([Table](/docs/datasets/v4.8.4/en/package_reference/table_classes#datasets.table.Table)) : Table to compare against.
+other ([Table](/docs/datasets/v5.2.0/en/package_reference/table_classes#datasets.table.Table)) : Table to compare against.
 
 check_metadata `bool`, defaults to `False`) : Whether schema metadata equality should be checked as well.
 
-**Returns:**
+**Returns:** `bool`
 
-``bool``
+Check if contents of two tables are equal.
+
 #### to_batches[[datasets.table.Table.to_batches]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L211)
+```python
+to_batches(*args, **kwargs)
+```
 
-Convert Table to list of (contiguous) `RecordBatch` objects.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L268)
 
 **Parameters:**
 
@@ -58,20 +77,28 @@ max_chunksize (`int`, defaults to `None`) : Maximum size for `RecordBatch` chunk
 **Returns:**
 
 `List[pyarrow.RecordBatch]`
+
+Convert Table to list of (contiguous) `RecordBatch` objects.
+
 #### to_pydict[[datasets.table.Table.to_pydict]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L225)
+```python
+to_pydict(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L282)
+
+**Returns:** `dict`
 
 Convert the Table to a `dict` or `OrderedDict`.
 
-**Returns:**
-
-``dict``
 #### to_pandas[[datasets.table.Table.to_pandas]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L243)
+```python
+to_pandas(*args, **kwargs)
+```
 
-Convert to a pandas-compatible NumPy array or DataFrame, as appropriate.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L300)
 
 **Parameters:**
 
@@ -103,19 +130,27 @@ self_destruct (`bool`, defaults to `False`) : EXPERIMENTAL: If `True`, attempt t
 
 types_mapper (`function`, defaults to `None`) : A function mapping a pyarrow DataType to a pandas `ExtensionDtype`. This can be used to override the default pandas type for conversion of built-in pyarrow types or in absence of `pandas_metadata` in the Table schema. The function receives a pyarrow DataType and is expected to return a pandas `ExtensionDtype` or `None` if the default conversion should be used for that type. If you have a dictionary mapping, you can pass `dict.get` as function.
 
-**Returns:**
-
-``pandas.Series` or `pandas.DataFrame``
+**Returns:** `pandas.Series` or `pandas.DataFrame`
 
 `pandas.Series` or `pandas.DataFrame` depending on type of object
+
+Convert to a pandas-compatible NumPy array or DataFrame, as appropriate.
+
 #### to_string[[datasets.table.Table.to_string]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L305)
+```python
+to_string(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L362)
+
 #### field[[datasets.table.Table.field]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L324)
+```python
+field(*args, **kwargs)
+```
 
-Select a schema field by its column name or numeric index.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L381)
 
 **Parameters:**
 
@@ -124,11 +159,16 @@ i (`Union[int, str]`) : The index or name of the field to retrieve.
 **Returns:**
 
 `pyarrow.Field`
+
+Select a schema field by its column name or numeric index.
+
 #### column[[datasets.table.Table.column]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L337)
+```python
+column(*args, **kwargs)
+```
 
-Select a column by its column name, or numeric index.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L394)
 
 **Parameters:**
 
@@ -137,64 +177,103 @@ i (`Union[int, str]`) : The index or name of the column to retrieve.
 **Returns:**
 
 `pyarrow.ChunkedArray`
+
+Select a column by its column name, or numeric index.
+
 #### itercolumns[[datasets.table.Table.itercolumns]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L350)
+```python
+itercolumns(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L407)
+
+**Yields:**
+
+`pyarrow.ChunkedArray`
 
 Iterator over all columns in their numerical order.
+
 #### schema[[datasets.table.Table.schema]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L359)
+```python
+schema()
+```
 
-Schema of the table and its columns.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L416)
 
 **Returns:**
 
 `pyarrow.Schema`
+
+Schema of the table and its columns.
+
 #### columns[[datasets.table.Table.columns]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L369)
+```python
+columns()
+```
 
-List of all columns in numerical order.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L426)
 
 **Returns:**
 
 `List[pa.ChunkedArray]`
+
+List of all columns in numerical order.
+
 #### num_columns[[datasets.table.Table.num_columns]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L379)
+```python
+num_columns()
+```
 
-Number of columns in this table.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L436)
 
 **Returns:**
 
 int
+
+Number of columns in this table.
+
 #### num_rows[[datasets.table.Table.num_rows]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L389)
+```python
+num_rows()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L446)
+
+**Returns:**
+
+int
 
 Number of rows in this table.
 
 Due to the definition of a table, all columns have the same number of
 rows.
 
-**Returns:**
-
-int
 #### shape[[datasets.table.Table.shape]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L402)
+```python
+shape()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L459)
+
+**Returns:** `(int, int)`
+
+Number of rows and number of columns.
 
 Dimensions of the table: (#rows, #columns).
 
-**Returns:**
-
-``(int, int)``
-
-Number of rows and number of columns.
 #### nbytes[[datasets.table.Table.nbytes]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L412)
+```python
+nbytes()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L469)
 
 Total number of bytes consumed by the elements of the table.
 
@@ -202,7 +281,11 @@ Total number of bytes consumed by the elements of the table.
 
 #### datasets.table.InMemoryTable[[datasets.table.InMemoryTable]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L638)
+```python
+datasets.table.InMemoryTable(table: Table)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L695)
 
 The table is said in-memory when it is loaded into the user's RAM.
 
@@ -216,37 +299,52 @@ data in memory. For a `MemoryMapped`, unpickling instead reloads the table from 
 data bigger than memory or when you want the memory footprint of your application to
 stay low.
 
-validatedatasets.table.InMemoryTable.validatehttps://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L178[{"name": "*args", "val": ""}, {"name": "**kwargs", "val": ""}]- **full** (`bool`, defaults to `False`) --
-  If `True`, run expensive checks, otherwise cheap checks only.0- ``pa.lib.ArrowInvalid`` -- if validation fails``pa.lib.ArrowInvalid``
+#### validate[[datasets.table.InMemoryTable.validate]]
+
+```python
+validate(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L235)
+
+**Parameters:**
+
+full (`bool`, defaults to `False`) : If `True`, run expensive checks, otherwise cheap checks only.
+
+**Raises:** ``pa.lib.ArrowInvalid``
+
+- ``pa.lib.ArrowInvalid`` -- if validation fails
 
 Perform validation checks.  An exception is raised if validation fails.
 
 By default only cheap validation checks are run.  Pass `full=True`
 for thorough validation checks (potentially `O(n)`).
 
-**Parameters:**
-
-full (`bool`, defaults to `False`) : If `True`, run expensive checks, otherwise cheap checks only.
 #### equals[[datasets.table.InMemoryTable.equals]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L194)
+```python
+equals(*args, **kwargs)
+```
 
-Check if contents of two tables are equal.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L251)
 
 **Parameters:**
 
-other ([Table](/docs/datasets/v4.8.4/en/package_reference/table_classes#datasets.table.Table)) : Table to compare against.
+other ([Table](/docs/datasets/v5.2.0/en/package_reference/table_classes#datasets.table.Table)) : Table to compare against.
 
 check_metadata `bool`, defaults to `False`) : Whether schema metadata equality should be checked as well.
 
-**Returns:**
+**Returns:** `bool`
 
-``bool``
+Check if contents of two tables are equal.
+
 #### to_batches[[datasets.table.InMemoryTable.to_batches]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L211)
+```python
+to_batches(*args, **kwargs)
+```
 
-Convert Table to list of (contiguous) `RecordBatch` objects.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L268)
 
 **Parameters:**
 
@@ -255,20 +353,28 @@ max_chunksize (`int`, defaults to `None`) : Maximum size for `RecordBatch` chunk
 **Returns:**
 
 `List[pyarrow.RecordBatch]`
+
+Convert Table to list of (contiguous) `RecordBatch` objects.
+
 #### to_pydict[[datasets.table.InMemoryTable.to_pydict]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L225)
+```python
+to_pydict(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L282)
+
+**Returns:** `dict`
 
 Convert the Table to a `dict` or `OrderedDict`.
 
-**Returns:**
-
-``dict``
 #### to_pandas[[datasets.table.InMemoryTable.to_pandas]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L243)
+```python
+to_pandas(*args, **kwargs)
+```
 
-Convert to a pandas-compatible NumPy array or DataFrame, as appropriate.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L300)
 
 **Parameters:**
 
@@ -300,19 +406,27 @@ self_destruct (`bool`, defaults to `False`) : EXPERIMENTAL: If `True`, attempt t
 
 types_mapper (`function`, defaults to `None`) : A function mapping a pyarrow DataType to a pandas `ExtensionDtype`. This can be used to override the default pandas type for conversion of built-in pyarrow types or in absence of `pandas_metadata` in the Table schema. The function receives a pyarrow DataType and is expected to return a pandas `ExtensionDtype` or `None` if the default conversion should be used for that type. If you have a dictionary mapping, you can pass `dict.get` as function.
 
-**Returns:**
-
-``pandas.Series` or `pandas.DataFrame``
+**Returns:** `pandas.Series` or `pandas.DataFrame`
 
 `pandas.Series` or `pandas.DataFrame` depending on type of object
+
+Convert to a pandas-compatible NumPy array or DataFrame, as appropriate.
+
 #### to_string[[datasets.table.InMemoryTable.to_string]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L305)
+```python
+to_string(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L362)
+
 #### field[[datasets.table.InMemoryTable.field]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L324)
+```python
+field(*args, **kwargs)
+```
 
-Select a schema field by its column name or numeric index.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L381)
 
 **Parameters:**
 
@@ -321,11 +435,16 @@ i (`Union[int, str]`) : The index or name of the field to retrieve.
 **Returns:**
 
 `pyarrow.Field`
+
+Select a schema field by its column name or numeric index.
+
 #### column[[datasets.table.InMemoryTable.column]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L337)
+```python
+column(*args, **kwargs)
+```
 
-Select a column by its column name, or numeric index.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L394)
 
 **Parameters:**
 
@@ -334,76 +453,123 @@ i (`Union[int, str]`) : The index or name of the column to retrieve.
 **Returns:**
 
 `pyarrow.ChunkedArray`
+
+Select a column by its column name, or numeric index.
+
 #### itercolumns[[datasets.table.InMemoryTable.itercolumns]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L350)
+```python
+itercolumns(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L407)
+
+**Yields:**
+
+`pyarrow.ChunkedArray`
 
 Iterator over all columns in their numerical order.
+
 #### schema[[datasets.table.InMemoryTable.schema]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L359)
+```python
+schema()
+```
 
-Schema of the table and its columns.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L416)
 
 **Returns:**
 
 `pyarrow.Schema`
+
+Schema of the table and its columns.
+
 #### columns[[datasets.table.InMemoryTable.columns]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L369)
+```python
+columns()
+```
 
-List of all columns in numerical order.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L426)
 
 **Returns:**
 
 `List[pa.ChunkedArray]`
+
+List of all columns in numerical order.
+
 #### num_columns[[datasets.table.InMemoryTable.num_columns]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L379)
+```python
+num_columns()
+```
 
-Number of columns in this table.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L436)
 
 **Returns:**
 
 int
+
+Number of columns in this table.
+
 #### num_rows[[datasets.table.InMemoryTable.num_rows]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L389)
+```python
+num_rows()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L446)
+
+**Returns:**
+
+int
 
 Number of rows in this table.
 
 Due to the definition of a table, all columns have the same number of
 rows.
 
-**Returns:**
-
-int
 #### shape[[datasets.table.InMemoryTable.shape]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L402)
+```python
+shape()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L459)
+
+**Returns:** `(int, int)`
+
+Number of rows and number of columns.
 
 Dimensions of the table: (#rows, #columns).
 
-**Returns:**
-
-``(int, int)``
-
-Number of rows and number of columns.
 #### nbytes[[datasets.table.InMemoryTable.nbytes]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L412)
+```python
+nbytes()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L469)
 
 Total number of bytes consumed by the elements of the table.
+
 #### column_names[[datasets.table.InMemoryTable.column_names]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L419)
+```python
+column_names()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L476)
 
 Names of the table's columns.
+
 #### slice[[datasets.table.InMemoryTable.slice]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L793)
+```python
+slice(offset = 0, length = None)
+```
 
-Compute zero-copy slice of this Table.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L859)
 
 **Parameters:**
 
@@ -414,17 +580,26 @@ length (`int`, defaults to `None`) : Length of slice (default is until end of ta
 **Returns:**
 
 `datasets.table.Table`
+
+Compute zero-copy slice of this Table.
+
 #### filter[[datasets.table.InMemoryTable.filter]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L810)
+```python
+filter(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L876)
 
 Select records from a Table. See `pyarrow.compute.filter` for full usage.
+
 #### flatten[[datasets.table.InMemoryTable.flatten]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L816)
+```python
+flatten(*args, **kwargs)
+```
 
-Flatten this Table.  Each column with a struct type is flattened
-into one column per struct field.  Other columns are left unchanged.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L882)
 
 **Parameters:**
 
@@ -433,27 +608,38 @@ memory_pool (`MemoryPool`, defaults to `None`) : For memory allocations, if requ
 **Returns:**
 
 `datasets.table.Table`
+
+Flatten this Table.  Each column with a struct type is flattened
+into one column per struct field.  Other columns are left unchanged.
+
 #### combine_chunks[[datasets.table.InMemoryTable.combine_chunks]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L830)
+```python
+combine_chunks(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L896)
+
+**Parameters:**
+
+memory_pool (`MemoryPool`, defaults to `None`) : For memory allocations, if required, otherwise use default pool.
+
+**Returns:**
+
+`datasets.table.Table`
 
 Make a new table by combining the chunks this table has.
 
 All the underlying chunks in the `ChunkedArray` of each column are
 concatenated into zero or one chunk.
 
-**Parameters:**
-
-memory_pool (`MemoryPool`, defaults to `None`) : For memory allocations, if required, otherwise use default pool.
-
-**Returns:**
-
-`datasets.table.Table`
 #### cast[[datasets.table.InMemoryTable.cast]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L846)
+```python
+cast(*args, **kwargs)
+```
 
-Cast table values to another schema.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L912)
 
 **Parameters:**
 
@@ -464,82 +650,99 @@ safe (`bool`, defaults to `True`) : Check for overflows or other unsafe conversi
 **Returns:**
 
 `datasets.table.Table`
+
+Cast table values to another schema.
+
 #### replace_schema_metadata[[datasets.table.InMemoryTable.replace_schema_metadata]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L861)
+```python
+replace_schema_metadata(*args, **kwargs)
+```
 
-EXPERIMENTAL: Create shallow copy of table by replacing schema
-key-value metadata with the indicated new metadata (which may be `None`,
-which deletes any existing metadata).
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L927)
 
 **Parameters:**
 
 metadata (`dict`, defaults to `None`) --
 
-**Returns:**
-
-``datasets.table.Table``
+**Returns:** `datasets.table.Table`
 
 shallow_copy
+
+EXPERIMENTAL: Create shallow copy of table by replacing schema
+key-value metadata with the indicated new metadata (which may be `None`,
+which deletes any existing metadata).
+
 #### add_column[[datasets.table.InMemoryTable.add_column]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L875)
+```python
+add_column(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L941)
+
+**Parameters:**
+
+i (`int`) : Index to place the column at.
+
+field_ (`Union[str, pyarrow.Field]`) : If a string is passed then the type is deduced from the column data.
+
+column (`Union[pyarrow.Array, List[pyarrow.Array]]`) : Column data.
+
+**Returns:** `datasets.table.Table`
+
+New table with the passed column added.
 
 Add column to Table at position.
 
 A new table is returned with the column added, the original table
 object is left unchanged.
 
-**Parameters:**
+#### append_column[[datasets.table.InMemoryTable.append_column]]
 
-i (`int`) : Index to place the column at.
+```python
+append_column(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L962)
+
+**Parameters:**
 
 field_ (`Union[str, pyarrow.Field]`) : If a string is passed then the type is deduced from the column data.
 
 column (`Union[pyarrow.Array, List[pyarrow.Array]]`) : Column data.
 
-**Returns:**
-
-``datasets.table.Table``
+**Returns:** `datasets.table.Table`
 
 New table with the passed column added.
-#### append_column[[datasets.table.InMemoryTable.append_column]]
-
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L896)
 
 Append column at end of columns.
 
-**Parameters:**
-
-field_ (`Union[str, pyarrow.Field]`) : If a string is passed then the type is deduced from the column data.
-
-column (`Union[pyarrow.Array, List[pyarrow.Array]]`) : Column data.
-
-**Returns:**
-
-``datasets.table.Table``
-
-New table with the passed column added.
 #### remove_column[[datasets.table.InMemoryTable.remove_column]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L913)
+```python
+remove_column(*args, **kwargs)
+```
 
-Create new Table with the indicated column removed.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L979)
 
 **Parameters:**
 
 i (`int`) : Index of column to remove.
 
-**Returns:**
-
-``datasets.table.Table``
+**Returns:** `datasets.table.Table`
 
 New table without the column.
+
+Create new Table with the indicated column removed.
+
 #### set_column[[datasets.table.InMemoryTable.set_column]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L927)
+```python
+set_column(*args, **kwargs)
+```
 
-Replace column in Table at position.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L993)
 
 **Parameters:**
 
@@ -549,57 +752,103 @@ field_ (`Union[str, pyarrow.Field]`) : If a string is passed then the type is de
 
 column (`Union[pyarrow.Array, List[pyarrow.Array]]`) : Column data.
 
-**Returns:**
-
-``datasets.table.Table``
+**Returns:** `datasets.table.Table`
 
 New table with the passed column set.
+
+Replace column in Table at position.
+
 #### rename_columns[[datasets.table.InMemoryTable.rename_columns]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L946)
+```python
+rename_columns(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1012)
 
 Create new table with columns renamed to provided names.
+
 #### select[[datasets.table.InMemoryTable.select]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L969)
+```python
+select(*args, **kwargs)
+```
 
-Select columns of the table.
-
-Returns a new table with the specified columns, and metadata preserved.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1035)
 
 **Parameters:**
 
 columns (`Union[List[str], List[int]]`) : The column names or integer indices to select.
 
-**Returns:**
-
-`[datasets.table.Table](/docs/datasets/v4.8.4/en/package_reference/table_classes#datasets.table.Table)`
+**Returns:** [datasets.table.Table](/docs/datasets/v5.2.0/en/package_reference/table_classes#datasets.table.Table)
 
 New table with the specified columns, and metadata preserved.
+
+Select columns of the table.
+
+Returns a new table with the specified columns, and metadata preserved.
+
 #### drop[[datasets.table.InMemoryTable.drop]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L952)
+```python
+drop(*args, **kwargs)
+```
 
-Drop one or more columns and return a new table.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1018)
 
 **Parameters:**
 
 columns (`List[str]`) : List of field names referencing existing columns.
 
-**Returns:**
-
-``datasets.table.Table``
+**Returns:** `datasets.table.Table`
 
 New table without the columns.
+
+**Raises:** ``KeyError``
+
+- ``KeyError`` -- : if any of the passed columns name are not existing.
+
+Drop one or more columns and return a new table.
+
 #### from_file[[datasets.table.InMemoryTable.from_file]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L653)
+```python
+from_file(filename: str)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L719)
+
 #### from_buffer[[datasets.table.InMemoryTable.from_buffer]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L658)
+```python
+from_buffer(buffer: Buffer)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L724)
+
 #### from_pandas[[datasets.table.InMemoryTable.from_pandas]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L663)
+```python
+from_pandas(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L729)
+
+**Parameters:**
+
+df (`pandas.DataFrame`) --
+
+schema (`pyarrow.Schema`, *optional*) : The expected schema of the Arrow Table. This can be used to indicate the type of columns if we cannot infer it automatically. If passed, the output will have exactly this schema. Columns specified in the schema that are not found in the DataFrame columns or its index will raise an error. Additional columns or index levels in the DataFrame which are not specified in the schema will be ignored.
+
+preserve_index (`bool`, *optional*) : Whether to store the index as an additional column in the resulting `Table`. The default of None will store the index as a column, except for RangeIndex which is stored as metadata only. Use `preserve_index=True` to force it to be stored as a column.
+
+nthreads (`int`, defaults to `None` (may use up to system CPU count threads)) : If greater than 1, convert columns to Arrow in parallel using indicated number of threads.
+
+columns (`List[str]`, *optional*) : List of column to be converted. If `None`, use all columns.
+
+safe (`bool`, defaults to `True`) : Check for overflows or other unsafe conversions,
+
+**Returns:** `datasets.table.Table`
 
 Convert pandas.DataFrame to an Arrow Table.
 
@@ -625,31 +874,16 @@ Examples:
     ...     'str': ['a', 'b']
     ... })
 >>> pa.Table.from_pandas(df)
-
+<pyarrow.lib.Table object at 0x7f05d1fb1b40>
 ```
 
-**Parameters:**
-
-df (`pandas.DataFrame`) --
-
-schema (`pyarrow.Schema`, *optional*) : The expected schema of the Arrow Table. This can be used to indicate the type of columns if we cannot infer it automatically. If passed, the output will have exactly this schema. Columns specified in the schema that are not found in the DataFrame columns or its index will raise an error. Additional columns or index levels in the DataFrame which are not specified in the schema will be ignored.
-
-preserve_index (`bool`, *optional*) : Whether to store the index as an additional column in the resulting `Table`. The default of None will store the index as a column, except for RangeIndex which is stored as metadata only. Use `preserve_index=True` to force it to be stored as a column.
-
-nthreads (`int`, defaults to `None` (may use up to system CPU count threads)) : If greater than 1, convert columns to Arrow in parallel using indicated number of threads.
-
-columns (`List[str]`, *optional*) : List of column to be converted. If `None`, use all columns.
-
-safe (`bool`, defaults to `True`) : Check for overflows or other unsafe conversions,
-
-**Returns:**
-
-``datasets.table.Table``
 #### from_arrays[[datasets.table.InMemoryTable.from_arrays]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L721)
+```python
+from_arrays(*args, **kwargs)
+```
 
-Construct a Table from Arrow arrays.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L787)
 
 **Parameters:**
 
@@ -664,11 +898,16 @@ metadata (`Union[dict, Mapping]`, defaults to `None`) : Optional metadata for th
 **Returns:**
 
 `datasets.table.Table`
+
+Construct a Table from Arrow arrays.
+
 #### from_pydict[[datasets.table.InMemoryTable.from_pydict]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L741)
+```python
+from_pydict(*args, **kwargs)
+```
 
-Construct a Table from Arrow arrays or columns.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L807)
 
 **Parameters:**
 
@@ -681,11 +920,16 @@ metadata (`Union[dict, Mapping]`, defaults to `None`) : Optional metadata for th
 **Returns:**
 
 `datasets.table.Table`
+
+Construct a Table from Arrow arrays or columns.
+
 #### from_batches[[datasets.table.InMemoryTable.from_batches]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L777)
+```python
+from_batches(*args, **kwargs)
+```
 
-Construct a Table from a sequence or iterator of Arrow `RecordBatches`.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L843)
 
 **Parameters:**
 
@@ -693,15 +937,19 @@ batches (`Union[Sequence[pyarrow.RecordBatch], Iterator[pyarrow.RecordBatch]]`) 
 
 schema (`Schema`, defaults to `None`) : If not passed, will be inferred from the first `RecordBatch`.
 
-**Returns:**
+**Returns:** `datasets.table.Table`
 
-``datasets.table.Table``
+Construct a Table from a sequence or iterator of Arrow `RecordBatches`.
 
 ## MemoryMappedTable[[datasets.table.MemoryMappedTable]]
 
 #### datasets.table.MemoryMappedTable[[datasets.table.MemoryMappedTable]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L989)
+```python
+datasets.table.MemoryMappedTable(table: Table, path: str, replays: typing.Optional[list[tuple[str, tuple, dict]]] = None)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1055)
 
 The table is said memory mapped when it doesn't use the user's RAM but loads the data
 from the disk instead.
@@ -721,37 +969,52 @@ data in memory.
 data bigger than memory or when you want the memory footprint of your application to
 stay low.
 
-validatedatasets.table.MemoryMappedTable.validatehttps://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L178[{"name": "*args", "val": ""}, {"name": "**kwargs", "val": ""}]- **full** (`bool`, defaults to `False`) --
-  If `True`, run expensive checks, otherwise cheap checks only.0- ``pa.lib.ArrowInvalid`` -- if validation fails``pa.lib.ArrowInvalid``
+#### validate[[datasets.table.MemoryMappedTable.validate]]
+
+```python
+validate(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L235)
+
+**Parameters:**
+
+full (`bool`, defaults to `False`) : If `True`, run expensive checks, otherwise cheap checks only.
+
+**Raises:** ``pa.lib.ArrowInvalid``
+
+- ``pa.lib.ArrowInvalid`` -- if validation fails
 
 Perform validation checks.  An exception is raised if validation fails.
 
 By default only cheap validation checks are run.  Pass `full=True`
 for thorough validation checks (potentially `O(n)`).
 
-**Parameters:**
-
-full (`bool`, defaults to `False`) : If `True`, run expensive checks, otherwise cheap checks only.
 #### equals[[datasets.table.MemoryMappedTable.equals]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L194)
+```python
+equals(*args, **kwargs)
+```
 
-Check if contents of two tables are equal.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L251)
 
 **Parameters:**
 
-other ([Table](/docs/datasets/v4.8.4/en/package_reference/table_classes#datasets.table.Table)) : Table to compare against.
+other ([Table](/docs/datasets/v5.2.0/en/package_reference/table_classes#datasets.table.Table)) : Table to compare against.
 
 check_metadata `bool`, defaults to `False`) : Whether schema metadata equality should be checked as well.
 
-**Returns:**
+**Returns:** `bool`
 
-``bool``
+Check if contents of two tables are equal.
+
 #### to_batches[[datasets.table.MemoryMappedTable.to_batches]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L211)
+```python
+to_batches(*args, **kwargs)
+```
 
-Convert Table to list of (contiguous) `RecordBatch` objects.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L268)
 
 **Parameters:**
 
@@ -760,20 +1023,28 @@ max_chunksize (`int`, defaults to `None`) : Maximum size for `RecordBatch` chunk
 **Returns:**
 
 `List[pyarrow.RecordBatch]`
+
+Convert Table to list of (contiguous) `RecordBatch` objects.
+
 #### to_pydict[[datasets.table.MemoryMappedTable.to_pydict]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L225)
+```python
+to_pydict(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L282)
+
+**Returns:** `dict`
 
 Convert the Table to a `dict` or `OrderedDict`.
 
-**Returns:**
-
-``dict``
 #### to_pandas[[datasets.table.MemoryMappedTable.to_pandas]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L243)
+```python
+to_pandas(*args, **kwargs)
+```
 
-Convert to a pandas-compatible NumPy array or DataFrame, as appropriate.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L300)
 
 **Parameters:**
 
@@ -805,19 +1076,27 @@ self_destruct (`bool`, defaults to `False`) : EXPERIMENTAL: If `True`, attempt t
 
 types_mapper (`function`, defaults to `None`) : A function mapping a pyarrow DataType to a pandas `ExtensionDtype`. This can be used to override the default pandas type for conversion of built-in pyarrow types or in absence of `pandas_metadata` in the Table schema. The function receives a pyarrow DataType and is expected to return a pandas `ExtensionDtype` or `None` if the default conversion should be used for that type. If you have a dictionary mapping, you can pass `dict.get` as function.
 
-**Returns:**
-
-``pandas.Series` or `pandas.DataFrame``
+**Returns:** `pandas.Series` or `pandas.DataFrame`
 
 `pandas.Series` or `pandas.DataFrame` depending on type of object
+
+Convert to a pandas-compatible NumPy array or DataFrame, as appropriate.
+
 #### to_string[[datasets.table.MemoryMappedTable.to_string]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L305)
+```python
+to_string(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L362)
+
 #### field[[datasets.table.MemoryMappedTable.field]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L324)
+```python
+field(*args, **kwargs)
+```
 
-Select a schema field by its column name or numeric index.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L381)
 
 **Parameters:**
 
@@ -826,11 +1105,16 @@ i (`Union[int, str]`) : The index or name of the field to retrieve.
 **Returns:**
 
 `pyarrow.Field`
+
+Select a schema field by its column name or numeric index.
+
 #### column[[datasets.table.MemoryMappedTable.column]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L337)
+```python
+column(*args, **kwargs)
+```
 
-Select a column by its column name, or numeric index.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L394)
 
 **Parameters:**
 
@@ -839,76 +1123,123 @@ i (`Union[int, str]`) : The index or name of the column to retrieve.
 **Returns:**
 
 `pyarrow.ChunkedArray`
+
+Select a column by its column name, or numeric index.
+
 #### itercolumns[[datasets.table.MemoryMappedTable.itercolumns]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L350)
+```python
+itercolumns(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L407)
+
+**Yields:**
+
+`pyarrow.ChunkedArray`
 
 Iterator over all columns in their numerical order.
+
 #### schema[[datasets.table.MemoryMappedTable.schema]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L359)
+```python
+schema()
+```
 
-Schema of the table and its columns.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L416)
 
 **Returns:**
 
 `pyarrow.Schema`
+
+Schema of the table and its columns.
+
 #### columns[[datasets.table.MemoryMappedTable.columns]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L369)
+```python
+columns()
+```
 
-List of all columns in numerical order.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L426)
 
 **Returns:**
 
 `List[pa.ChunkedArray]`
+
+List of all columns in numerical order.
+
 #### num_columns[[datasets.table.MemoryMappedTable.num_columns]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L379)
+```python
+num_columns()
+```
 
-Number of columns in this table.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L436)
 
 **Returns:**
 
 int
+
+Number of columns in this table.
+
 #### num_rows[[datasets.table.MemoryMappedTable.num_rows]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L389)
+```python
+num_rows()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L446)
+
+**Returns:**
+
+int
 
 Number of rows in this table.
 
 Due to the definition of a table, all columns have the same number of
 rows.
 
-**Returns:**
-
-int
 #### shape[[datasets.table.MemoryMappedTable.shape]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L402)
+```python
+shape()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L459)
+
+**Returns:** `(int, int)`
+
+Number of rows and number of columns.
 
 Dimensions of the table: (#rows, #columns).
 
-**Returns:**
-
-``(int, int)``
-
-Number of rows and number of columns.
 #### nbytes[[datasets.table.MemoryMappedTable.nbytes]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L412)
+```python
+nbytes()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L469)
 
 Total number of bytes consumed by the elements of the table.
+
 #### column_names[[datasets.table.MemoryMappedTable.column_names]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L419)
+```python
+column_names()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L476)
 
 Names of the table's columns.
+
 #### slice[[datasets.table.MemoryMappedTable.slice]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1048)
+```python
+slice(offset = 0, length = None)
+```
 
-Compute zero-copy slice of this Table.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1114)
 
 **Parameters:**
 
@@ -919,17 +1250,26 @@ length (`int`, defaults to `None`) : Length of slice (default is until end of ta
 **Returns:**
 
 `datasets.table.Table`
+
+Compute zero-copy slice of this Table.
+
 #### filter[[datasets.table.MemoryMappedTable.filter]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1067)
+```python
+filter(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1133)
 
 Select records from a Table. See `pyarrow.compute.filter` for full usage.
+
 #### flatten[[datasets.table.MemoryMappedTable.flatten]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1075)
+```python
+flatten(*args, **kwargs)
+```
 
-Flatten this Table.  Each column with a struct type is flattened
-into one column per struct field.  Other columns are left unchanged.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1141)
 
 **Parameters:**
 
@@ -938,27 +1278,38 @@ memory_pool (`MemoryPool`, defaults to `None`) : For memory allocations, if requ
 **Returns:**
 
 `datasets.table.Table`
+
+Flatten this Table.  Each column with a struct type is flattened
+into one column per struct field.  Other columns are left unchanged.
+
 #### combine_chunks[[datasets.table.MemoryMappedTable.combine_chunks]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1091)
+```python
+combine_chunks(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1157)
+
+**Parameters:**
+
+memory_pool (`MemoryPool`, defaults to `None`) : For memory allocations, if required, otherwise use default pool.
+
+**Returns:**
+
+`datasets.table.Table`
 
 Make a new table by combining the chunks this table has.
 
 All the underlying chunks in the ChunkedArray of each column are
 concatenated into zero or one chunk.
 
-**Parameters:**
-
-memory_pool (`MemoryPool`, defaults to `None`) : For memory allocations, if required, otherwise use default pool.
-
-**Returns:**
-
-`datasets.table.Table`
 #### cast[[datasets.table.MemoryMappedTable.cast]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1109)
+```python
+cast(*args, **kwargs)
+```
 
-Cast table values to another schema
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1175)
 
 **Parameters:**
 
@@ -969,82 +1320,99 @@ safe (`bool`, defaults to `True`) : Check for overflows or other unsafe conversi
 **Returns:**
 
 `datasets.table.Table`
+
+Cast table values to another schema
+
 #### replace_schema_metadata[[datasets.table.MemoryMappedTable.replace_schema_metadata]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1126)
+```python
+replace_schema_metadata(*args, **kwargs)
+```
 
-EXPERIMENTAL: Create shallow copy of table by replacing schema
-key-value metadata with the indicated new metadata (which may be None,
-which deletes any existing metadata.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1192)
 
 **Parameters:**
 
 metadata (`dict`, defaults to `None`) --
 
-**Returns:**
-
-``datasets.table.Table``
+**Returns:** `datasets.table.Table`
 
 shallow_copy
+
+EXPERIMENTAL: Create shallow copy of table by replacing schema
+key-value metadata with the indicated new metadata (which may be None,
+which deletes any existing metadata.
+
 #### add_column[[datasets.table.MemoryMappedTable.add_column]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1142)
+```python
+add_column(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1208)
+
+**Parameters:**
+
+i (`int`) : Index to place the column at.
+
+field_ (`Union[str, pyarrow.Field]`) : If a string is passed then the type is deduced from the column data.
+
+column (`Union[pyarrow.Array, List[pyarrow.Array]]`) : Column data.
+
+**Returns:** `datasets.table.Table`
+
+New table with the passed column added.
 
 Add column to Table at position.
 
 A new table is returned with the column added, the original table
 object is left unchanged.
 
-**Parameters:**
+#### append_column[[datasets.table.MemoryMappedTable.append_column]]
 
-i (`int`) : Index to place the column at.
+```python
+append_column(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1231)
+
+**Parameters:**
 
 field_ (`Union[str, pyarrow.Field]`) : If a string is passed then the type is deduced from the column data.
 
 column (`Union[pyarrow.Array, List[pyarrow.Array]]`) : Column data.
 
-**Returns:**
-
-``datasets.table.Table``
+**Returns:** `datasets.table.Table`
 
 New table with the passed column added.
-#### append_column[[datasets.table.MemoryMappedTable.append_column]]
-
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1165)
 
 Append column at end of columns.
 
-**Parameters:**
-
-field_ (`Union[str, pyarrow.Field]`) : If a string is passed then the type is deduced from the column data.
-
-column (`Union[pyarrow.Array, List[pyarrow.Array]]`) : Column data.
-
-**Returns:**
-
-``datasets.table.Table``
-
-New table with the passed column added.
 #### remove_column[[datasets.table.MemoryMappedTable.remove_column]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1184)
+```python
+remove_column(*args, **kwargs)
+```
 
-Create new Table with the indicated column removed.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1250)
 
 **Parameters:**
 
 i (`int`) : Index of column to remove.
 
-**Returns:**
-
-``datasets.table.Table``
+**Returns:** `datasets.table.Table`
 
 New table without the column.
+
+Create new Table with the indicated column removed.
+
 #### set_column[[datasets.table.MemoryMappedTable.set_column]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1200)
+```python
+set_column(*args, **kwargs)
+```
 
-Replace column in Table at position.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1266)
 
 **Parameters:**
 
@@ -1054,57 +1422,81 @@ field_ (`Union[str, pyarrow.Field]`) : If a string is passed then the type is de
 
 column (`Union[pyarrow.Array, List[pyarrow.Array]]`) : Column data.
 
-**Returns:**
-
-``datasets.table.Table``
+**Returns:** `datasets.table.Table`
 
 New table with the passed column set.
+
+Replace column in Table at position.
+
 #### rename_columns[[datasets.table.MemoryMappedTable.rename_columns]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1221)
+```python
+rename_columns(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1287)
 
 Create new table with columns renamed to provided names.
+
 #### select[[datasets.table.MemoryMappedTable.select]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1248)
+```python
+select(*args, **kwargs)
+```
 
-Select columns of the table.
-
-Returns a new table with the specified columns, and metadata preserved.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1314)
 
 **Parameters:**
 
 columns (`Union[List[str], List[int]]`) : The column names or integer indices to select.
 
-**Returns:**
-
-`[datasets.table.Table](/docs/datasets/v4.8.4/en/package_reference/table_classes#datasets.table.Table)`
+**Returns:** [datasets.table.Table](/docs/datasets/v5.2.0/en/package_reference/table_classes#datasets.table.Table)
 
 New table with the specified columns, and metadata preserved.
+
+Select columns of the table.
+
+Returns a new table with the specified columns, and metadata preserved.
+
 #### drop[[datasets.table.MemoryMappedTable.drop]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1229)
+```python
+drop(*args, **kwargs)
+```
 
-Drop one or more columns and return a new table.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1295)
 
 **Parameters:**
 
 columns (`List[str]`) : List of field names referencing existing columns.
 
-**Returns:**
-
-``datasets.table.Table``
+**Returns:** `datasets.table.Table`
 
 New table without the columns.
+
+**Raises:** ``KeyError``
+
+- ``KeyError`` -- : if any of the passed columns name are not existing.
+
+Drop one or more columns and return a new table.
+
 #### from_file[[datasets.table.MemoryMappedTable.from_file]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1015)
+```python
+from_file(filename: str, replays = None)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1081)
 
 ## ConcatenationTable[[datasets.table.ConcatenationTable]]
 
 #### datasets.table.ConcatenationTable[[datasets.table.ConcatenationTable]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1273)
+```python
+datasets.table.ConcatenationTable(table: Table, blocks: list)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1339)
 
 The table comes from the concatenation of several tables called blocks.
 It enables concatenation on both axis 0 (append rows) and axis 1 (append columns).
@@ -1129,37 +1521,52 @@ This is done using `pyarrow.concat_tables(tables, promote=True)`.
 You can access the fully combined table by accessing the `ConcatenationTable.table` attribute,
 and the blocks by accessing the `ConcatenationTable.blocks` attribute.
 
-validatedatasets.table.ConcatenationTable.validatehttps://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L178[{"name": "*args", "val": ""}, {"name": "**kwargs", "val": ""}]- **full** (`bool`, defaults to `False`) --
-  If `True`, run expensive checks, otherwise cheap checks only.0- ``pa.lib.ArrowInvalid`` -- if validation fails``pa.lib.ArrowInvalid``
+#### validate[[datasets.table.ConcatenationTable.validate]]
+
+```python
+validate(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L235)
+
+**Parameters:**
+
+full (`bool`, defaults to `False`) : If `True`, run expensive checks, otherwise cheap checks only.
+
+**Raises:** ``pa.lib.ArrowInvalid``
+
+- ``pa.lib.ArrowInvalid`` -- if validation fails
 
 Perform validation checks.  An exception is raised if validation fails.
 
 By default only cheap validation checks are run.  Pass `full=True`
 for thorough validation checks (potentially `O(n)`).
 
-**Parameters:**
-
-full (`bool`, defaults to `False`) : If `True`, run expensive checks, otherwise cheap checks only.
 #### equals[[datasets.table.ConcatenationTable.equals]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L194)
+```python
+equals(*args, **kwargs)
+```
 
-Check if contents of two tables are equal.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L251)
 
 **Parameters:**
 
-other ([Table](/docs/datasets/v4.8.4/en/package_reference/table_classes#datasets.table.Table)) : Table to compare against.
+other ([Table](/docs/datasets/v5.2.0/en/package_reference/table_classes#datasets.table.Table)) : Table to compare against.
 
 check_metadata `bool`, defaults to `False`) : Whether schema metadata equality should be checked as well.
 
-**Returns:**
+**Returns:** `bool`
 
-``bool``
+Check if contents of two tables are equal.
+
 #### to_batches[[datasets.table.ConcatenationTable.to_batches]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L211)
+```python
+to_batches(*args, **kwargs)
+```
 
-Convert Table to list of (contiguous) `RecordBatch` objects.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L268)
 
 **Parameters:**
 
@@ -1168,20 +1575,28 @@ max_chunksize (`int`, defaults to `None`) : Maximum size for `RecordBatch` chunk
 **Returns:**
 
 `List[pyarrow.RecordBatch]`
+
+Convert Table to list of (contiguous) `RecordBatch` objects.
+
 #### to_pydict[[datasets.table.ConcatenationTable.to_pydict]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L225)
+```python
+to_pydict(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L282)
+
+**Returns:** `dict`
 
 Convert the Table to a `dict` or `OrderedDict`.
 
-**Returns:**
-
-``dict``
 #### to_pandas[[datasets.table.ConcatenationTable.to_pandas]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L243)
+```python
+to_pandas(*args, **kwargs)
+```
 
-Convert to a pandas-compatible NumPy array or DataFrame, as appropriate.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L300)
 
 **Parameters:**
 
@@ -1213,19 +1628,27 @@ self_destruct (`bool`, defaults to `False`) : EXPERIMENTAL: If `True`, attempt t
 
 types_mapper (`function`, defaults to `None`) : A function mapping a pyarrow DataType to a pandas `ExtensionDtype`. This can be used to override the default pandas type for conversion of built-in pyarrow types or in absence of `pandas_metadata` in the Table schema. The function receives a pyarrow DataType and is expected to return a pandas `ExtensionDtype` or `None` if the default conversion should be used for that type. If you have a dictionary mapping, you can pass `dict.get` as function.
 
-**Returns:**
-
-``pandas.Series` or `pandas.DataFrame``
+**Returns:** `pandas.Series` or `pandas.DataFrame`
 
 `pandas.Series` or `pandas.DataFrame` depending on type of object
+
+Convert to a pandas-compatible NumPy array or DataFrame, as appropriate.
+
 #### to_string[[datasets.table.ConcatenationTable.to_string]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L305)
+```python
+to_string(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L362)
+
 #### field[[datasets.table.ConcatenationTable.field]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L324)
+```python
+field(*args, **kwargs)
+```
 
-Select a schema field by its column name or numeric index.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L381)
 
 **Parameters:**
 
@@ -1234,11 +1657,16 @@ i (`Union[int, str]`) : The index or name of the field to retrieve.
 **Returns:**
 
 `pyarrow.Field`
+
+Select a schema field by its column name or numeric index.
+
 #### column[[datasets.table.ConcatenationTable.column]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L337)
+```python
+column(*args, **kwargs)
+```
 
-Select a column by its column name, or numeric index.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L394)
 
 **Parameters:**
 
@@ -1247,76 +1675,123 @@ i (`Union[int, str]`) : The index or name of the column to retrieve.
 **Returns:**
 
 `pyarrow.ChunkedArray`
+
+Select a column by its column name, or numeric index.
+
 #### itercolumns[[datasets.table.ConcatenationTable.itercolumns]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L350)
+```python
+itercolumns(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L407)
+
+**Yields:**
+
+`pyarrow.ChunkedArray`
 
 Iterator over all columns in their numerical order.
+
 #### schema[[datasets.table.ConcatenationTable.schema]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L359)
+```python
+schema()
+```
 
-Schema of the table and its columns.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L416)
 
 **Returns:**
 
 `pyarrow.Schema`
+
+Schema of the table and its columns.
+
 #### columns[[datasets.table.ConcatenationTable.columns]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L369)
+```python
+columns()
+```
 
-List of all columns in numerical order.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L426)
 
 **Returns:**
 
 `List[pa.ChunkedArray]`
+
+List of all columns in numerical order.
+
 #### num_columns[[datasets.table.ConcatenationTable.num_columns]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L379)
+```python
+num_columns()
+```
 
-Number of columns in this table.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L436)
 
 **Returns:**
 
 int
+
+Number of columns in this table.
+
 #### num_rows[[datasets.table.ConcatenationTable.num_rows]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L389)
+```python
+num_rows()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L446)
+
+**Returns:**
+
+int
 
 Number of rows in this table.
 
 Due to the definition of a table, all columns have the same number of
 rows.
 
-**Returns:**
-
-int
 #### shape[[datasets.table.ConcatenationTable.shape]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L402)
+```python
+shape()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L459)
+
+**Returns:** `(int, int)`
+
+Number of rows and number of columns.
 
 Dimensions of the table: (#rows, #columns).
 
-**Returns:**
-
-``(int, int)``
-
-Number of rows and number of columns.
 #### nbytes[[datasets.table.ConcatenationTable.nbytes]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L412)
+```python
+nbytes()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L469)
 
 Total number of bytes consumed by the elements of the table.
+
 #### column_names[[datasets.table.ConcatenationTable.column_names]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L419)
+```python
+column_names()
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L476)
 
 Names of the table's columns.
+
 #### slice[[datasets.table.ConcatenationTable.slice]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1482)
+```python
+slice(offset = 0, length = None)
+```
 
-Compute zero-copy slice of this Table.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1548)
 
 **Parameters:**
 
@@ -1327,17 +1802,26 @@ length (`int`, defaults to `None`) : Length of slice (default is until end of ta
 **Returns:**
 
 `datasets.table.Table`
+
+Compute zero-copy slice of this Table.
+
 #### filter[[datasets.table.ConcatenationTable.filter]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1513)
+```python
+filter(mask, *args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1579)
 
 Select records from a Table. See `pyarrow.compute.filter` for full usage.
+
 #### flatten[[datasets.table.ConcatenationTable.flatten]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1524)
+```python
+flatten(*args, **kwargs)
+```
 
-Flatten this Table.  Each column with a struct type is flattened
-into one column per struct field.  Other columns are left unchanged.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1590)
 
 **Parameters:**
 
@@ -1346,27 +1830,38 @@ memory_pool (`MemoryPool`, defaults to `None`) : For memory allocations, if requ
 **Returns:**
 
 `datasets.table.Table`
+
+Flatten this Table.  Each column with a struct type is flattened
+into one column per struct field.  Other columns are left unchanged.
+
 #### combine_chunks[[datasets.table.ConcatenationTable.combine_chunks]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1542)
+```python
+combine_chunks(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1608)
+
+**Parameters:**
+
+memory_pool (`MemoryPool`, defaults to `None`) : For memory allocations, if required, otherwise use default pool.
+
+**Returns:**
+
+`datasets.table.Table`
 
 Make a new table by combining the chunks this table has.
 
 All the underlying chunks in the `ChunkedArray` of each column are
 concatenated into zero or one chunk.
 
-**Parameters:**
-
-memory_pool (`MemoryPool`, defaults to `None`) : For memory allocations, if required, otherwise use default pool.
-
-**Returns:**
-
-`datasets.table.Table`
 #### cast[[datasets.table.ConcatenationTable.cast]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1562)
+```python
+cast(target_schema, *args, **kwargs)
+```
 
-Cast table values to another schema.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1628)
 
 **Parameters:**
 
@@ -1377,82 +1872,99 @@ safe (`bool`, defaults to `True`) : Check for overflows or other unsafe conversi
 **Returns:**
 
 `datasets.table.Table`
+
+Cast table values to another schema.
+
 #### replace_schema_metadata[[datasets.table.ConcatenationTable.replace_schema_metadata]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1593)
+```python
+replace_schema_metadata(*args, **kwargs)
+```
 
-EXPERIMENTAL: Create shallow copy of table by replacing schema
-key-value metadata with the indicated new metadata (which may be `None`,
-which deletes any existing metadata).
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1659)
 
 **Parameters:**
 
 metadata (`dict`, defaults to `None`) --
 
-**Returns:**
-
-``datasets.table.Table``
+**Returns:** `datasets.table.Table`
 
 shallow_copy
+
+EXPERIMENTAL: Create shallow copy of table by replacing schema
+key-value metadata with the indicated new metadata (which may be `None`,
+which deletes any existing metadata).
+
 #### add_column[[datasets.table.ConcatenationTable.add_column]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1611)
+```python
+add_column(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1677)
+
+**Parameters:**
+
+i (`int`) : Index to place the column at.
+
+field_ (`Union[str, pyarrow.Field]`) : If a string is passed then the type is deduced from the column data.
+
+column (`Union[pyarrow.Array, List[pyarrow.Array]]`) : Column data.
+
+**Returns:** `datasets.table.Table`
+
+New table with the passed column added.
 
 Add column to Table at position.
 
 A new table is returned with the column added, the original table
 object is left unchanged.
 
-**Parameters:**
+#### append_column[[datasets.table.ConcatenationTable.append_column]]
 
-i (`int`) : Index to place the column at.
+```python
+append_column(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1698)
+
+**Parameters:**
 
 field_ (`Union[str, pyarrow.Field]`) : If a string is passed then the type is deduced from the column data.
 
 column (`Union[pyarrow.Array, List[pyarrow.Array]]`) : Column data.
 
-**Returns:**
-
-``datasets.table.Table``
+**Returns:** `datasets.table.Table`
 
 New table with the passed column added.
-#### append_column[[datasets.table.ConcatenationTable.append_column]]
-
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1632)
 
 Append column at end of columns.
 
-**Parameters:**
-
-field_ (`Union[str, pyarrow.Field]`) : If a string is passed then the type is deduced from the column data.
-
-column (`Union[pyarrow.Array, List[pyarrow.Array]]`) : Column data.
-
-**Returns:**
-
-``datasets.table.Table``
-
-New table with the passed column added.
 #### remove_column[[datasets.table.ConcatenationTable.remove_column]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1649)
+```python
+remove_column(i, *args, **kwargs)
+```
 
-Create new Table with the indicated column removed.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1715)
 
 **Parameters:**
 
 i (`int`) : Index of column to remove.
 
-**Returns:**
-
-``datasets.table.Table``
+**Returns:** `datasets.table.Table`
 
 New table without the column.
+
+Create new Table with the indicated column removed.
+
 #### set_column[[datasets.table.ConcatenationTable.set_column]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1673)
+```python
+set_column(*args, **kwargs)
+```
 
-Replace column in Table at position.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1739)
 
 **Parameters:**
 
@@ -1462,56 +1974,79 @@ field_ (`Union[str, pyarrow.Field]`) : If a string is passed then the type is de
 
 column (`Union[pyarrow.Array, List[pyarrow.Array]]`) : Column data.
 
-**Returns:**
-
-``datasets.table.Table``
+**Returns:** `datasets.table.Table`
 
 New table with the passed column set.
+
+Replace column in Table at position.
+
 #### rename_columns[[datasets.table.ConcatenationTable.rename_columns]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1692)
+```python
+rename_columns(names, *args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1758)
 
 Create new table with columns renamed to provided names.
+
 #### select[[datasets.table.ConcatenationTable.select]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1726)
+```python
+select(columns, *args, **kwargs)
+```
 
-Select columns of the table.
-
-Returns a new table with the specified columns, and metadata preserved.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1792)
 
 **Parameters:**
 
 columns (`Union[List[str], List[int]]`) : The column names or integer indices to select.
 
-**Returns:**
-
-`[datasets.table.Table](/docs/datasets/v4.8.4/en/package_reference/table_classes#datasets.table.Table)`
+**Returns:** [datasets.table.Table](/docs/datasets/v5.2.0/en/package_reference/table_classes#datasets.table.Table)
 
 New table with the specified columns, and metadata preserved.
+
+Select columns of the table.
+
+Returns a new table with the specified columns, and metadata preserved.
+
 #### drop[[datasets.table.ConcatenationTable.drop]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1705)
+```python
+drop(columns, *args, **kwargs)
+```
 
-Drop one or more columns and return a new table.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1771)
 
 **Parameters:**
 
 columns (`List[str]`) : List of field names referencing existing columns.
 
-**Returns:**
-
-``datasets.table.Table``
+**Returns:** `datasets.table.Table`
 
 New table without the columns.
+
+**Raises:** ``KeyError``
+
+- ``KeyError`` -- : if any of the passed columns name are not existing.
+
+Drop one or more columns and return a new table.
+
 #### from_blocks[[datasets.table.ConcatenationTable.from_blocks]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1378)
+```python
+from_blocks(blocks: ~TableBlockContainer)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1444)
+
 #### from_tables[[datasets.table.ConcatenationTable.from_tables]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1392)
+```python
+from_tables(tables: list, axis: int = 0)
+```
 
-Create `ConcatenationTable` from list of tables.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1458)
 
 **Parameters:**
 
@@ -1519,13 +2054,17 @@ tables (list of `Table` or list of `pyarrow.Table`) : List of tables.
 
 axis (`{0, 1}`, defaults to `0`, meaning over rows) : Axis to concatenate over, where `0` means over rows (vertically) and `1` means over columns (horizontally).  
 
+Create `ConcatenationTable` from list of tables.
+
 ## Utils[[datasets.table.concat_tables]]
 
 #### datasets.table.concat_tables[[datasets.table.concat_tables]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1746)
+```python
+datasets.table.concat_tables(tables: list, axis: int = 0)
+```
 
-Concatenate tables.
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1812)
 
 **Parameters:**
 
@@ -1533,25 +2072,27 @@ tables (list of `Table`) : List of tables to be concatenated.
 
 axis (`{0, 1}`, defaults to `0`, meaning over rows) : Axis to concatenate over, where `0` means over rows (vertically) and `1` means over columns (horizontally).  
 
-**Returns:**
-
-``datasets.table.Table``
+**Returns:** `datasets.table.Table`
 
 If the number of input tables is > 1, then the returned table is a `datasets.table.ConcatenationTable`.
 Otherwise if there's only one table, it is returned as is.
 
+Concatenate tables.
+
 #### datasets.table.list_table_cache_files[[datasets.table.list_table_cache_files]]
 
-[Source](https://github.com/huggingface/datasets/blob/4.8.4/src/datasets/table.py#L1769)
+```python
+datasets.table.list_table_cache_files(table: Table)
+```
+
+[Source](https://github.com/huggingface/datasets/blob/5.2.0/src/datasets/table.py#L1835)
+
+**Returns:** `List[str]`
+
+A list of paths to the cache files loaded by the table.
 
 Get the cache files that are loaded by the table.
 Cache file are used when parts of the table come from the disk via memory mapping.
 
-**Returns:**
-
-``List[str]``
-
-A list of paths to the cache files loaded by the table.
-
 ### Main classes
-https://huggingface.co/docs/datasets/v4.8.4/package_reference/main_classes.md
+https://huggingface.co/docs/datasets/v5.2.0/package_reference/main_classes.md

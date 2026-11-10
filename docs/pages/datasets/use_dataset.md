@@ -52,7 +52,7 @@ The tokenizer returns a dictionary with three items:
 
 These values are actually the model inputs.
 
-**3**. The fastest way to tokenize your entire dataset is to use the [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) function. This function speeds up tokenization by applying the tokenizer to batches of examples instead of individual examples. Set the `batched` parameter to `True`:
+**3**. The fastest way to tokenize your entire dataset is to use the [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) function. This function speeds up tokenization by applying the tokenizer to batches of examples instead of individual examples. Set the `batched` parameter to `True`:
 
 ```py
 >>> def tokenization(example):
@@ -63,7 +63,7 @@ These values are actually the model inputs.
 
 **4**. Set the format of your dataset to be compatible with your machine learning framework:
 
-Use the [set_format()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.set_format) function to set the dataset format to be compatible with PyTorch:
+Use the [set_format()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.set_format) function to set the dataset format to be compatible with PyTorch:
 
 ```py
 >>> dataset.set_format(type="torch", columns=["input_ids", "token_type_ids", "attention_mask", "label"])
@@ -71,7 +71,7 @@ Use the [set_format()](/docs/datasets/v4.8.4/en/package_reference/main_classes#d
 'torch'
 ```
 
-Use the [to_tf_dataset()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.to_tf_dataset) function to set the dataset format to be compatible with TensorFlow. You'll also need to import a [data collator](https://huggingface.co/docs/transformers/main_classes/data_collator#transformers.DataCollatorWithPadding) from 🤗 Transformers to combine the varying sequence lengths into a single batch of equal lengths:
+Use the [to_tf_dataset()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.to_tf_dataset) function to set the dataset format to be compatible with TensorFlow. You'll also need to import a [data collator](https://huggingface.co/docs/transformers/main_classes/data_collator#transformers.DataCollatorWithPadding) from 🤗 Transformers to combine the varying sequence lengths into a single batch of equal lengths:
 
 ```py
 >>> from transformers import DataCollatorWithPadding
@@ -92,7 +92,7 @@ Use the [to_tf_dataset()](/docs/datasets/v4.8.4/en/package_reference/main_classe
 
 Audio inputs like text datasets need to be divided into discrete data points. This is known as _sampling_; the sampling rate tells you how much of the speech signal is captured per second. It is important to make sure the sampling rate of your dataset matches the sampling rate of the data used to pretrain the model you're using. If the sampling rates are different, the pretrained model may perform poorly on your dataset because it doesn't recognize the differences in the sampling rate.
 
-**1**. Start by loading the [MInDS-14](https://huggingface.co/datasets/PolyAI/minds14) dataset, the [Audio](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Audio) feature, and the feature extractor corresponding to a pretrained [Wav2Vec2](https://huggingface.co/facebook/wav2vec2-base-960h) model:
+**1**. Start by loading the [MInDS-14](https://huggingface.co/datasets/PolyAI/minds14) dataset, the [Audio](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Audio) feature, and the feature extractor corresponding to a pretrained [Wav2Vec2](https://huggingface.co/facebook/wav2vec2-base-960h) model:
 
 ```py
 >>> from transformers import AutoFeatureExtractor
@@ -107,31 +107,31 @@ Audio inputs like text datasets need to be divided into discrete data points. Th
 ```py
 >>> audio = dataset[0]["audio"]
 >>> print(audio)
-
+<datasets.features._torchcodec.AudioDecoder object at 0x11642b6a0>
 >>> audio.get_all_samples().sample_rate
 8000
 ```
 
 **3**. Reading a dataset card is incredibly useful and can give you a lot of information about the dataset. A quick look at the MInDS-14 dataset card tells you the sampling rate is 8kHz. Likewise, you can get many details about a model from its model card. The Wav2Vec2 model card says it was sampled on 16kHz speech audio. This means you'll need to upsample the MInDS-14 dataset to match the sampling rate of the model.
 
-Use the [cast_column()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.cast_column) function and set the `sampling_rate` parameter in the [Audio](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Audio) feature to upsample the audio signal. When you call the `audio` column now, it is decoded and resampled to 16kHz:
+Use the [cast_column()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.cast_column) function and set the `sampling_rate` parameter in the [Audio](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Audio) feature to upsample the audio signal. When you call the `audio` column now, it is decoded and resampled to 16kHz:
 
 ```py
 >>> dataset = dataset.cast_column("audio", Audio(sampling_rate=16_000))
 >>> audio = dataset[0]["audio"]
 >>> print(audio)
-
+<datasets.features._torchcodec.AudioDecoder object at 0x11642b6a0>
 >>> audio.get_all_samples().sample_rate
 16000
 ```
 
-**4**. Use the [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) function to resample the entire dataset to 16kHz. This function speeds up resampling by applying the feature extractor to batches of examples instead of individual examples. Set the `batched` parameter to `True`:
+**4**. Use the [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) function to resample the entire dataset to 16kHz. This function speeds up resampling by applying the feature extractor to batches of examples instead of individual examples. Set the `batched` parameter to `True`:
 
 ```py
 >>> def preprocess_function(examples):
-...     audio_arrays = [x.get_all_samples().data for x in examples["audio"]]
+...     audio_arrays = [x.get_all_samples().data[0].numpy() for x in examples["audio"]]
 ...     inputs = feature_extractor(
-...         audio_arrays, sampling_rate=feature_extractor.sampling_rate, max_length=16000, truncation=True
+...         audio_arrays, sampling_rate=feature_extractor.sampling_rate, max_length=16000, truncation=True, padding="max_length"
 ...     )
 ...     return inputs
 
@@ -147,10 +147,10 @@ The most common preprocessing you'll do with image datasets is _data augmentatio
 **1**. Start by loading the [Beans](https://huggingface.co/datasets/AI-Lab-Makerere/beans) dataset, the `Image` feature, and the feature extractor corresponding to a pretrained [ViT](https://huggingface.co/google/vit-base-patch16-224-in21k) model:
 
 ```py
->>> from transformers import AutoFeatureExtractor
+>>> from transformers import AutoImageProcessor
 >>> from datasets import load_dataset, Image
 
->>> feature_extractor = AutoFeatureExtractor.from_pretrained("google/vit-base-patch16-224-in21k")
+>>> image_processor = AutoImageProcessor.from_pretrained("google/vit-base-patch16-224-in21k")
 >>> dataset = load_dataset("AI-Lab-Makerere/beans", split="train")
 ```
 
@@ -158,10 +158,10 @@ The most common preprocessing you'll do with image datasets is _data augmentatio
 
 ```py
 >>> dataset[0]["image"]
-
+<PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=500x500 at 0x7FE5A047CC70>
 ```
 
-Most image models expect the image to be in the RGB mode. The Beans images are already in the RGB mode, but if your dataset contains images in a different mode, you can use the [cast_column()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.cast_column) function to set the mode to RGB:
+Most image models expect the image to be in the RGB mode. The Beans images are already in the RGB mode, but if your dataset contains images in a different mode, you can use the [cast_column()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.cast_column) function to set the mode to RGB:
 
 ```py
 >>> dataset = dataset.cast_column("image", Image(mode="RGB"))
@@ -212,7 +212,7 @@ pip install albumentations
 ...     return examples
 ```
 
-**6**. Apply the transform using [with_transform()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.with_transform):
+**6**. Apply the transform using [with_transform()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.with_transform):
 
 ```py
 >>> dataset = dataset.with_transform(albumentations_transforms)
@@ -226,5 +226,5 @@ pip install albumentations
 
 **7**. The dataset is now ready for training with your machine learning framework!
 
-### Overview
-https://huggingface.co/docs/datasets/v4.8.4/how_to.md
+### Image classification
+https://huggingface.co/docs/datasets/v5.2.0/image_classification.md

@@ -9,7 +9,7 @@ This is particularly useful as it allows fast zero-copy operations, since both `
 
 By default, datasets return regular Python objects: integers, floats, strings, lists, etc.
 
-To get Polars DataFrames or Series instead, you can set the format of the dataset to `polars` using [Dataset.with_format()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.with_format):
+To get Polars DataFrames or Series instead, you can set the format of the dataset to `polars` using [Dataset.with_format()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.with_format):
 
 ```py
 >>> from datasets import Dataset
@@ -66,7 +66,7 @@ shape: (2, 2)
 
 ## Process data
 
-Polars functions are generally faster than regular hand-written python functions, and therefore they are a good option to optimize data processing. You can use Polars functions to process a dataset in [Dataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) or [Dataset.filter()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.filter):
+Polars functions are generally faster than regular hand-written python functions, and therefore they are a good option to optimize data processing. You can use Polars functions to process a dataset in [Dataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) or [Dataset.filter()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.filter):
 
 ```python
 >>> import polars as pl
@@ -99,7 +99,7 @@ shape: (1, 3)
 
 We use `batched=True` because it is faster to process batches of data in Polars rather than row by row. It's also possible to use `batch_size=` in `map()` to set the size of each `df`.
 
-This also works for [IterableDataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.map) and [IterableDataset.filter()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.filter).
+This also works for [IterableDataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.map) and [IterableDataset.filter()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.filter).
 
 ### Example: data extraction
 
@@ -137,5 +137,5 @@ And you can use `Dataset.to_polars()` to export a Dataset to a Polars DataFrame:
 df = Dataset.to_polars(ds)
 ```
 
-### Know your dataset
-https://huggingface.co/docs/datasets/v4.8.4/access.md
+### Create a mesh dataset
+https://huggingface.co/docs/datasets/v5.2.0/mesh_dataset.md

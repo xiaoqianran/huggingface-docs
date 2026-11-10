@@ -17,7 +17,7 @@ Load the dataset and take a look at an example:
 
 >>> dataset = load_dataset("AI-Lab-Makerere/beans")
 >>> dataset["train"][10]
-{'image': ,
+{'image': <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=500x500 at 0x7F8D2F4D7A10>,
  'image_file_path': '/root/.cache/huggingface/datasets/downloads/extracted/b0a21163f78769a2cf11f58dfc767fb458fc7cea5c05dccc0144a2c0f0bc1292/train/angular_leaf_spot/angular_leaf_spot_train.204.jpg',
  'labels': 0}
 ```
@@ -57,7 +57,7 @@ Create a function to apply the transformation to the images:
 ...     return examples
 ```
 
-Use the [set_transform()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.set_transform) function to apply the transformation on-the-fly to batches of the dataset to consume less disk space:
+Use the [set_transform()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.set_transform) function to apply the transformation on-the-fly to batches of the dataset to consume less disk space:
 
 ```py
 >>> dataset.set_transform(transforms)
@@ -81,5 +81,5 @@ You can verify the transformation worked by indexing into the `pixel_values` of 
 > [how to train an image classification model](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/image_classification.ipynb)
 > and use it for inference.
 
-### Using Datasets with TensorFlow
-https://huggingface.co/docs/datasets/v4.8.4/use_with_tensorflow.md
+### Use with NumPy
+https://huggingface.co/docs/datasets/v5.2.0/use_with_numpy.md

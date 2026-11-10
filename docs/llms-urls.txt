@@ -145,6 +145,7 @@ https://huggingface.co/docs/datasets/document_dataset.md
 https://huggingface.co/docs/datasets/document_load.md
 https://huggingface.co/docs/datasets/faiss_es.md
 https://huggingface.co/docs/datasets/filesystems.md
+https://huggingface.co/docs/datasets/harbor_load.md
 https://huggingface.co/docs/datasets/how_to.md
 https://huggingface.co/docs/datasets/image_classification.md
 https://huggingface.co/docs/datasets/image_dataset.md
@@ -154,6 +155,8 @@ https://huggingface.co/docs/datasets/index.md
 https://huggingface.co/docs/datasets/installation.md
 https://huggingface.co/docs/datasets/load_hub.md
 https://huggingface.co/docs/datasets/loading.md
+https://huggingface.co/docs/datasets/mesh_dataset.md
+https://huggingface.co/docs/datasets/mesh_load.md
 https://huggingface.co/docs/datasets/nifti_dataset.md
 https://huggingface.co/docs/datasets/nlp_load.md
 https://huggingface.co/docs/datasets/nlp_process.md
@@ -171,6 +174,7 @@ https://huggingface.co/docs/datasets/share.md
 https://huggingface.co/docs/datasets/stream.md
 https://huggingface.co/docs/datasets/tabular_load.md
 https://huggingface.co/docs/datasets/troubleshoot.md
+https://huggingface.co/docs/datasets/tsfile_load.md
 https://huggingface.co/docs/datasets/tutorial.md
 https://huggingface.co/docs/datasets/upload_dataset.md
 https://huggingface.co/docs/datasets/use_dataset.md

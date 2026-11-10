@@ -8,11 +8,11 @@ find help with your specific issue.
 
 ### Authentication issues
 
-If you are experiencing authentication issues when sharing a dataset on 🤗 Hub using [Dataset.push_to_hub()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.push_to_hub) and a Hugging Face 
+If you are experiencing authentication issues when sharing a dataset on 🤗 Hub using [Dataset.push_to_hub()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.push_to_hub) and a Hugging Face 
 access token:
 
 * Make sure that the Hugging Face token you're using to authenticate yourself is a token with **write** permission.
-* On OSX, it may help to clean up all the huggingface.co passwords on your keychain access, as well as reconfigure `git config --global credential.helper osxkeychain`, before using `huggingface-cli login`.
+* On OSX, it may help to clean up all the huggingface.co passwords on your keychain access, as well as reconfigure `git config --global credential.helper osxkeychain`, before using `hf auth login`.
 
 Alternatively, you can use SSH keys to authenticate yourself - read more in the [🤗 Hub documentation](https://huggingface.co/docs/hub/security-git-ssh).
  
@@ -21,7 +21,7 @@ Alternatively, you can use SSH keys to authenticate yourself - read more in the 
 When uploading large datasets to Hub, if the number of dataset shards is large, it can create too many commits for the Hub in a 
 short period. This will result in a connection error.
 The connection error can also be caused by a HTTP 500 error returned by AWS S3 bucket that Hub uses internally.
-In either situation, you can re-run [Dataset.push_to_hub()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.push_to_hub) to proceed with the dataset upload. Hub will check the SHAs 
+In either situation, you can re-run [Dataset.push_to_hub()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.push_to_hub) to proceed with the dataset upload. Hub will check the SHAs 
 of already uploaded shards to avoid reuploading them. 
 We are working on making upload process more robust to transient errors, so updating to the latest library version is 
 always a good idea.
@@ -53,7 +53,7 @@ Learn more about required folder structure in corresponding documentation pages:
 
 #### Pickling issues when using `Dataset.from_generator`
 
-When creating a dataset, [IterableDataset.from_generator()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.from_generator) and [Dataset.from_generator()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.from_generator) expect a "picklable" generator function.
+When creating a dataset, [IterableDataset.from_generator()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.from_generator) and [Dataset.from_generator()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.from_generator) expect a "picklable" generator function.
 This is required to hash the function using [`pickle`](https://docs.python.org/3/library/pickle.html) to be able to cache the dataset on disk.
 
 While generator functions are generally "picklable", note that generator objects are not. So if you're using a generator object, 
@@ -69,7 +69,7 @@ avoid this error.
 
 #### Pickling issues with `Dataset.map`
 
-Pickling errors can also happen in the multiprocess [Dataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) - objects are pickled to be passed to child processes.
+Pickling errors can also happen in the multiprocess [Dataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) - objects are pickled to be passed to child processes.
 If the objects used in the transformation are not picklable, it's not possible to cache the result of `map`, which leads to an error being raised. 
 
 Here are some ways to address this issue:
@@ -95,9 +95,11 @@ Post a question on [Discord](http://hf.co/join/discord), and let the team and th
 If you are facing issues creating a custom dataset on Hub, you can ask the Hugging Face team for help by opening a discussion in the Community tab of your dataset with this message:
 
 ```text
-# Dataset rewiew request for 
+# Dataset rewiew request for <Dataset name>
 
 ## Description
+
+<brief description of the dataset>
 
 ## Files to review
 
@@ -114,5 +116,5 @@ Finally, if you suspect to have found a bug related to the library itself, creat
 [GitHub repository](https://github.com/huggingface/datasets/issues). Include context regarding the bug: code snippet to reproduce,
 details about your environment and data, etc. to help us figure out what's wrong and how we can fix it.
 
-### Load
-https://huggingface.co/docs/datasets/v4.8.4/loading.md
+### Share a dataset using the CLI
+https://huggingface.co/docs/datasets/v5.2.0/share.md

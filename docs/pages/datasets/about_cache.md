@@ -7,7 +7,7 @@ The cache is one of the reasons why 🤗 Datasets is so efficient. It stores pre
 How does the cache keeps track of what transforms are applied to a dataset? Well, 🤗 Datasets assigns a fingerprint to the cache file. A fingerprint keeps track of the current state of a dataset. The initial fingerprint is computed using a hash from the Arrow table, or a hash of the Arrow files if the dataset is on disk. Subsequent fingerprints are computed by combining the fingerprint of the previous state, and a hash of the latest transform applied. 
 
 > [!TIP]
-> Transforms are any of the processing methods from the [How-to Process](./process) guides such as [Dataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) or [Dataset.shuffle()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.shuffle).
+> Transforms are any of the processing methods from the [How-to Process](./process) guides such as [Dataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) or [Dataset.shuffle()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.shuffle).
 
 Here are what the actual fingerprints look like:
 
@@ -26,13 +26,13 @@ When you use a non-hashable transform, 🤗 Datasets uses a random fingerprint i
 An example of when 🤗 Datasets recomputes everything is when caching is disabled. When this happens, the cache files are generated every time and they get written to a temporary directory. Once your Python session ends, the cache files in the temporary directory are deleted. A random hash is assigned to these cache files, instead of a fingerprint. 
 
 > [!TIP]
-> When caching is disabled, use [Dataset.save_to_disk()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.save_to_disk) to save your transformed dataset or it will be deleted once the session ends.
+> When caching is disabled, use [Dataset.save_to_disk()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.save_to_disk) to save your transformed dataset or it will be deleted once the session ends.
 
 ## Hashing
 
 The fingerprint of a dataset is updated by hashing the function passed to `map` as well as the `map` parameters (`batch_size`, `remove_columns`, etc.).
 
-You can check the hash of any Python object using the [fingerprint.Hasher](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.fingerprint.Hasher):
+You can check the hash of any Python object using the [fingerprint.Hasher](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.fingerprint.Hasher):
 
 ```py
 >>> from datasets.fingerprint import Hasher
@@ -48,5 +48,5 @@ If one of your functions doesn't seem to have the same hash across sessions, it 
 When this happens, feel free to hash any object you find suspicious to try to find the object that caused the hash to change.
 For example, if you use a list for which the order of its elements is not deterministic across sessions, then the hash won't be the same across sessions either.
 
-### Create an audio dataset
-https://huggingface.co/docs/datasets/v4.8.4/audio_dataset.md
+### Load pdf data
+https://huggingface.co/docs/datasets/v5.2.0/document_load.md

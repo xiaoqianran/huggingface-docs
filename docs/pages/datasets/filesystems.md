@@ -123,5 +123,5 @@ Otherwise you can use your own file parsing function:
 >>> ds = load_dataset("username/my-dataset")
 ```
 
-### Semantic segmentation
-https://huggingface.co/docs/datasets/v4.8.4/semantic_segmentation.md
+### Load image data
+https://huggingface.co/docs/datasets/v5.2.0/image_load.md

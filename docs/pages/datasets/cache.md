@@ -6,7 +6,7 @@ See the [Hub cache documentation](https://huggingface.co/docs/huggingface_hub/gu
 
 The Hub cache allows 🤗 Datasets to avoid re-downloading dataset files from Hugging Face every time you use them. 
 
-🤗 Datasets also has its own cache to store datasets converted in Arrow format (the format used by [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) objects).
+🤗 Datasets also has its own cache to store datasets converted in Arrow format (the format used by [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) objects).
 
 This guide focuses on the 🤗 Datasets cache and will show you how to:
 
@@ -20,7 +20,7 @@ This guide focuses on the 🤗 Datasets cache and will show you how to:
 The default 🤗 Datasets cache directory is `~/.cache/huggingface/datasets`. Change the cache location by setting the shell environment variable, `HF_HOME` to another directory:
 
 ```
-$ export HF_HOME="/path/to/another/directory/datasets"
+$ export HF_HOME="/path/to/another/directory"
 ```
 
 Alternatively, you can set the `HF_DATASETS_CACHE` environment variable to control only the datasets-specific cache directory:
@@ -58,18 +58,18 @@ When you load a dataset, you also have the option to change where the data is ca
 
 ## Download mode
 
-After you download a dataset, control how it is loaded by [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) with the `download_mode` parameter. By default, 🤗 Datasets will reuse a dataset if it exists. But if you need the original dataset without any processing functions applied, re-download the files as shown below:
+Control the reuse of downloaded source files and prepared datasets in [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) with the `download_mode` parameter. By default, 🤗 Datasets will reuse them if they exist. To download the source files again and rebuild the dataset, use `force_redownload`:
 
 ```py
 >>> from datasets import load_dataset
 >>> dataset = load_dataset('rajpurkar/squad', download_mode='force_redownload')
 ```
 
-Refer to [DownloadMode](/docs/datasets/v4.8.4/en/package_reference/builder_classes#datasets.DownloadMode) for a full list of download modes.
+Refer to [DownloadMode](/docs/datasets/v5.2.0/en/package_reference/builder_classes#datasets.DownloadMode) for a full list of download modes.
 
 ## Cache files
 
-Clean up the Arrow cache files in the directory with [Dataset.cleanup_cache_files()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.cleanup_cache_files):
+Clean up the Arrow cache files in the directory with [Dataset.cleanup_cache_files()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.cleanup_cache_files):
 
 ```py
 # Returns the number of removed cache files
@@ -79,7 +79,7 @@ Clean up the Arrow cache files in the directory with [Dataset.cleanup_cache_file
 
 ## Enable or disable caching
 
-If you're using a cached file locally, it will automatically reload the dataset with any previous transforms you applied to the dataset. Disable this behavior by setting the argument `load_from_cache_file=False` in [Dataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map):
+If you're using a cached file locally, it will automatically reload the dataset with any previous transforms you applied to the dataset. Disable this behavior by setting the argument `load_from_cache_file=False` in [Dataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map):
 
 ```py
 >>> updated_dataset = small_dataset.map(add_prefix, load_from_cache_file=False)
@@ -87,7 +87,7 @@ If you're using a cached file locally, it will automatically reload the dataset 
 
 In the example above, 🤗 Datasets will execute the function `add_prefix` over the entire dataset again instead of loading the dataset from its previous state.
 
-Disable caching on a global scale with [disable_caching()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.disable_caching):
+Disable caching on a global scale with [disable_caching()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.disable_caching):
 
 ```py
 >>> from datasets import disable_caching
@@ -97,7 +97,7 @@ Disable caching on a global scale with [disable_caching()](/docs/datasets/v4.8.4
 When you disable caching, 🤗 Datasets will no longer reload cached files when applying transforms to datasets. Any transform you apply on your dataset will be need to be reapplied.
 
 > [!TIP]
-> If you want to reuse a dataset from scratch, try setting the `download_mode` parameter in [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) instead.
+> If you want to reuse a dataset from scratch, try setting the `download_mode` parameter in [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) instead.
 
 ## Improve performance
 
@@ -107,5 +107,5 @@ Disabling the cache and copying the dataset in-memory will speed up dataset oper
 
 2. Set the environment variable `HF_DATASETS_IN_MEMORY_MAX_SIZE` to a nonzero value. Note that the first method takes higher precedence.
 
-### Share a dataset to the Hub
-https://huggingface.co/docs/datasets/v4.8.4/upload_dataset.md
+### Use with JAX
+https://huggingface.co/docs/datasets/v5.2.0/use_with_jax.md

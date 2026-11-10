@@ -5,7 +5,7 @@
 You can check the available commands:
 ```bash
 >>> datasets-cli --help
-usage: datasets-cli  []
+usage: datasets-cli <command> [<args>]
 
 positional arguments:
   {env,test,delete_from_hub}
@@ -24,7 +24,7 @@ Delete a dataset configuration from a [supported dataset](repository_structure) 
 
 ```bash
 >>> datasets-cli delete_from_hub --help
-usage: datasets-cli  [] delete_from_hub [-h] [--token TOKEN] [--revision REVISION] dataset_id config_name
+usage: datasets-cli <command> [<args>] delete_from_hub [-h] [--token TOKEN] [--revision REVISION] dataset_id config_name
 
 positional arguments:
   dataset_id           source dataset ID, e.g. USERNAME/DATASET_NAME or ORGANIZATION/DATASET_NAME
@@ -47,5 +47,5 @@ For example:
 > >>> hf auth login
 > ```
 
-### Process
-https://huggingface.co/docs/datasets/v4.8.4/process.md
+### Know your dataset
+https://huggingface.co/docs/datasets/v5.2.0/access.md

@@ -7,7 +7,7 @@ You can share a dataset with your team or with anyone in the community by creati
 ```py
 from datasets import load_dataset
 
-dataset = load_dataset("/my_nifti_dataset")
+dataset = load_dataset("<username>/my_nifti_dataset")
 ```
 
 There are two common ways to create a NIfTI dataset:
@@ -48,7 +48,7 @@ arr = img.get_fdata()
 After preparing the dataset you can push it to the Hub:
 
 ```py
-ds.push_to_hub("/my_nifti_dataset")
+ds.push_to_hub("<username>/my_nifti_dataset")
 ```
 
 This will create a dataset repository containing your NIfTI dataset with a `data/` folder of parquet shards.
@@ -85,7 +85,7 @@ dataset/test/scan_2001.nii
 
 ## Converting to PyTorch tensors
 
-Use the [set_transform()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.set_transform) function to apply the transformation on-the-fly to batches of the dataset:
+Use the [set_transform()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.set_transform) function to apply the transformation on-the-fly to batches of the dataset:
 
 ```py
 import torch 
@@ -118,7 +118,7 @@ def show_slices(slices):
    for i, slice in enumerate(slices):
        axes[i].imshow(slice.T, cmap="gray", origin="lower")
 
-nifti_ds = load_dataset("/my_nifti_dataset")
+nifti_ds = load_dataset("<username>/my_nifti_dataset")
 for epi_img in nifti_ds:
     nifti_img = epi_img["nifti"].get_fdata()
     show_slices([nifti_img[:, :, 16], nifti_img[26, :, :], nifti_img[:, 30, :]])
@@ -128,5 +128,5 @@ for epi_img in nifti_ds:
 For further reading we refer to the [nibabel documentation](https://nipy.org/nibabel/index.html) and especially [this nibabel tutorial](https://nipy.org/nibabel/coordinate_systems.html)
 ---
 
-### Use with PyTorch
-https://huggingface.co/docs/datasets/v4.8.4/use_with_pytorch.md
+### Load agent evaluation tasks
+https://huggingface.co/docs/datasets/v5.2.0/harbor_load.md

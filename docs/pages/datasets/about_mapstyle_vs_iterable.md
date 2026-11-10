@@ -1,13 +1,13 @@
 # Differences between Dataset and IterableDataset
 
-There are two types of dataset objects, a [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) and an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset).
+There are two types of dataset objects, a [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) and an [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset).
 Whichever type of dataset you choose to use or create depends on the size of the dataset.
-In general, an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) is ideal for big datasets (think hundreds of GBs!) due to its lazy behavior and speed advantages, while a [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) is great for everything else.
-This page will compare the differences between a [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) and an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) to help you pick the right dataset object for you.
+In general, an [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) is ideal for big datasets (think hundreds of GBs!) due to its lazy behavior and speed advantages, while a [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) is great for everything else.
+This page will compare the differences between a [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) and an [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) to help you pick the right dataset object for you.
 
 ## Downloading and streaming
 
-When you have a regular [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset), you can access it using `my_dataset[0]`. This provides random access to the rows.
+When you have a regular [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset), you can access it using `my_dataset[0]`. This provides random access to the rows.
 Such datasets are also called "map-style" datasets.
 For example you can download ImageNet-1k like this and access any row:
 
@@ -19,7 +19,7 @@ print(imagenet[0])
 ```
 
 But one caveat is that you must have the entire dataset stored on your disk or in memory, which blocks you from accessing datasets bigger than the disk.
-Because it can become inconvenient for big datasets, there exists another type of dataset, the [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset).
+Because it can become inconvenient for big datasets, there exists another type of dataset, the [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset).
 When you have an `IterableDataset`, you can access it using a `for` loop to load the data progressively as you iterate over the dataset.
 This way, only a small fraction of examples is loaded in memory, and you don't write anything on disk.
 
@@ -42,7 +42,7 @@ This is not the only difference though, because the "lazy" behavior of an `Itera
 
 ## Creating map-style datasets and iterable datasets
 
-You can create a [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) using lists or dictionaries, and the data is entirely converted to Arrow so you can easily access any row:
+You can create a [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) using lists or dictionaries, and the data is entirely converted to Arrow so you can easily access any row:
 ```python
 my_dataset = Dataset.from_dict({"col_1": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]})
 print(my_dataset[0])
@@ -63,7 +63,7 @@ for example in my_iterable_dataset:
 
 ## Loading local files entirely and progressively
 
-It is possible to convert local or remote data files to an Arrow [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) using [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset):
+It is possible to convert local or remote data files to an Arrow [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) using [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset):
 ```python
 data_files = {"train": ["path/to/data.csv"]}
 my_dataset = load_dataset("csv", data_files=data_files, split="train")
@@ -88,7 +88,7 @@ You can find more information in the corresponding guides for loading [tabular](
 
 ## Eager data processing and lazy data processing
 
-When you process a [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) object using [Dataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map), the entire dataset is processed immediately and returned.
+When you process a [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) object using [Dataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map), the entire dataset is processed immediately and returned.
 This is similar to how `pandas` works for example.
 
 ```python
@@ -96,7 +96,7 @@ my_dataset = my_dataset.map(process_fn)  # process_fn is applied on all the exam
 print(my_dataset[0])
 ```
 
-On the other hand, due to the "lazy" nature of an `IterableDataset`, calling [IterableDataset.map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.map) does not apply your `map` function over the full dataset.
+On the other hand, due to the "lazy" nature of an `IterableDataset`, calling [IterableDataset.map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.map) does not apply your `map` function over the full dataset.
 Instead, your `map` function is applied on-the-fly.
 
 Because of that, you can chain multiple processing steps and they will all run at once when you start iterating over the dataset:
@@ -114,7 +114,7 @@ for example in my_iterable_dataset:
 
 ## Exact and fast approximate shuffling
 
-When you shuffle a [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) using [Dataset.shuffle()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.shuffle), you apply an exact shuffling of the dataset.
+When you shuffle a [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) using [Dataset.shuffle()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.shuffle), you apply an exact shuffling of the dataset.
 It works by taking a list of indices `[0, 1, 2, ... len(my_dataset) - 1]` and shuffling this list.
 Then, accessing `my_dataset[0]` returns the row and index defined by the first element of the indices mapping that has been shuffled:
 ```python
@@ -124,7 +124,7 @@ print(my_dataset[0])
 
 Since we don't have random access to the rows in the case of an `IterableDataset`, we can't use a shuffled list of indices and access a row at an arbitrary position.
 This prevents the use of exact shuffling.
-Instead, a fast approximate shuffling is used in [IterableDataset.shuffle()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.shuffle).
+Instead, a fast approximate shuffling is used in [IterableDataset.shuffle()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.shuffle).
 It uses a shuffle buffer to sample random examples iteratively from the dataset.
 Since the dataset is still read iteratively, it provides excellent speed performance:
 ```python
@@ -134,7 +134,7 @@ for example in my_iterable_dataset:
     break
 ```
 
-But using a shuffle buffer is not enough to provide a satisfactory shuffling for machine learning model training. So [IterableDataset.shuffle()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.shuffle) also shuffles the dataset shards if your dataset is made of multiple files or sources:
+But using a shuffle buffer is not enough to provide a satisfactory shuffling for machine learning model training. So [IterableDataset.shuffle()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.shuffle) also shuffles the dataset shards if your dataset is made of multiple files or sources. Additionally, it fills the buffer using up to `max_buffer_input_shards` shards at a time (default is 10), which greatly improves the quality of the shuffling:
 
 ```python
 # Stream from the internet
@@ -157,15 +157,19 @@ my_iterable_dataset = IterableDataset.from_generator(my_generator, gen_kwargs=ge
 my_iterable_dataset.num_shards  # 1024
 ```
 
+> [!TIP]
+>
+> If your dataset has few files, you can improve shuffling quality by calling [reshard()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.reshard) before shuffling. For example, for Parquet datasets this reshards using row groups instead of having one file per shard, giving you many more shards to shuffle from.
+
 ## Speed differences
 
-Regular [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) objects are based on Arrow which provides fast random access to the rows.
+Regular [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) objects are based on Arrow which provides fast random access to the rows.
 Thanks to memory mapping and the fact that Arrow is an in-memory format, reading data from disk doesn't do expensive system calls and deserialization.
 It provides even faster data loading when iterating using a `for` loop by iterating on contiguous Arrow record batches.
 
-However as soon as your [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) has an indices mapping (via [Dataset.shuffle()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.shuffle) for example), the speed can become 10x slower.
+However as soon as your [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) has an indices mapping (via [Dataset.shuffle()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.shuffle) for example), the speed can become 10x slower.
 This is because there is an extra step to get the row index to read using the indices mapping, and most importantly, you aren't reading contiguous chunks of data anymore.
-To restore the speed, you'd need to rewrite the entire dataset on your disk again using [Dataset.flatten_indices()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.flatten_indices), which removes the indices mapping.
+To restore the speed, you'd need to rewrite the entire dataset on your disk again using [Dataset.flatten_indices()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.flatten_indices), which removes the indices mapping.
 This may take a lot of time depending on the size of your dataset though:
 
 ```python
@@ -176,7 +180,7 @@ my_dataset = my_dataset.flatten_indices()  # rewrite the shuffled dataset on dis
 my_dataset[0]  # fast again
 ```
 
-In this case, we recommend switching to an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) and leveraging its fast approximate shuffling method [IterableDataset.shuffle()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.shuffle).
+In this case, we recommend switching to an [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) and leveraging its fast approximate shuffling method [IterableDataset.shuffle()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.shuffle).
 It only shuffles the shards order and adds a shuffle buffer to your dataset, which keeps the speed of your dataset optimal.
 You can also reshuffle the dataset easily:
 
@@ -212,7 +216,7 @@ my_dataset = my_dataset.select(range(start_index, len(dataset)))
 
 But if you use a `DataLoader` with a `Sampler`, you should instead save the state of your sampler (you might have written a custom sampler that allows resuming).
 
-On the other hand, iterable datasets don't provide random access to a specific example index to resume from. But you can use [IterableDataset.state_dict()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.state_dict) and [IterableDataset.load_state_dict()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.load_state_dict) to resume from a checkpoint instead, similarly to what you can do for models and optimizers:
+On the other hand, iterable datasets don't provide random access to a specific example index to resume from. But you can use [IterableDataset.state_dict()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.state_dict) and [IterableDataset.load_state_dict()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.load_state_dict) to resume from a checkpoint instead, similarly to what you can do for models and optimizers:
 
 ```python
 >>> iterable_dataset = Dataset.from_dict({"a": range(6)}).to_iterable_dataset(num_shards=3)
@@ -233,16 +237,16 @@ This can be used with the `StatefulDataLoader` from `torchdata`, see [streaming 
 
 ## Switch from map-style to iterable
 
-If you want to benefit from the "lazy" behavior of an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) or their speed advantages, you can switch your map-style [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) to an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset):
+If you want to benefit from the "lazy" behavior of an [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) or their speed advantages, you can switch your map-style [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) to an [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset):
 ```python
 my_iterable_dataset = my_dataset.to_iterable_dataset()
 ```
 
-If you want to shuffle your dataset or [use it with a PyTorch DataLoader](./use_with_pytorch#stream-data), we recommend generating a sharded [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset):
+If you want to shuffle your dataset or [use it with a PyTorch DataLoader](./use_with_pytorch#stream-data), we recommend generating a sharded [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset):
 ```python
 my_iterable_dataset = my_dataset.to_iterable_dataset(num_shards=1024)
 my_iterable_dataset.num_shards  # 1024
 ```
 
-### Create a dataset
-https://huggingface.co/docs/datasets/v4.8.4/create_dataset.md
+### Use with PyArrow
+https://huggingface.co/docs/datasets/v5.2.0/use_with_pyarrow.md

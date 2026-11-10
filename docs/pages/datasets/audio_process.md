@@ -3,13 +3,13 @@
 This guide shows specific methods for processing audio datasets. Learn how to:
 
 - Resample the sampling rate.
-- Use [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) with audio datasets.
+- Use [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) with audio datasets.
 
 For a guide on how to process any type of dataset, take a look at the general process guide.
 
 ## Cast
 
-The [cast_column()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.cast_column) function is used to cast a column to another feature to be decoded. When you use this function with the [Audio](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Audio) feature, you can resample the sampling rate:
+The [cast_column()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.cast_column) function is used to cast a column to another feature to be decoded. When you use this function with the [Audio](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Audio) feature, you can resample the sampling rate:
 
 ```py
 >>> from datasets import load_dataset, Audio
@@ -22,7 +22,7 @@ Audio files are decoded and resampled on-the-fly, so the next time you access an
 
 ```py
 >>> audio = dataset[0]["audio"]
-
+<datasets.features._torchcodec.AudioDecoder object at 0x11642b6a0>
 >>> audio = audio_dataset[0]["audio"]
 >>> samples = audio.get_all_samples()
 >>> samples.data
@@ -32,12 +32,18 @@ tensor([[ 0.0000e+00,  0.0000e+00,  0.0000e+00,  ...,  2.3447e-06,
 16000
 ```
 
-  
-  
+  <img
+    class="block dark:hidden"
+    src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/datasets/resample.gif"
+  />
+  <img
+    class="hidden dark:block"
+    src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/datasets/resample-dark.gif"
+  />
 
 ## Map
 
-The [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) function helps preprocess your entire dataset at once. Depending on the type of model you're working with, you'll need to either load a [feature extractor](https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoFeatureExtractor) or a [processor](https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoProcessor).
+The [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) function helps preprocess your entire dataset at once. Depending on the type of model you're working with, you'll need to either load a [feature extractor](https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoFeatureExtractor) or a [processor](https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoProcessor).
 
 - For pretrained speech recognition models, load a feature extractor and tokenizer and combine them in a `processor`:
 
@@ -59,7 +65,7 @@ The [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dat
   >>> processor = AutoProcessor.from_pretrained("facebook/wav2vec2-base-960h")
   ```
 
-When you use [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) with your preprocessing function, include the `audio` column to ensure you're actually resampling the audio data:
+When you use [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) with your preprocessing function, include the `audio` column to ensure you're actually resampling the audio data:
 
 ```py
 >>> def prepare_dataset(batch):
@@ -72,5 +78,5 @@ When you use [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#dat
 >>> dataset = dataset.map(prepare_dataset, remove_columns=dataset.column_names)
 ```
 
-### Process text data
-https://huggingface.co/docs/datasets/v4.8.4/nlp_process.md
+### Structure your repository
+https://huggingface.co/docs/datasets/v5.2.0/repository_structure.md

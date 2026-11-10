@@ -9,7 +9,7 @@ A tabular dataset is a generic dataset used to describe any data stored in rows 
 
 ## CSV files
 
-🤗 Datasets can read CSV files by specifying the generic `csv` dataset builder name in the [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) method. To load more than one CSV file, pass them as a list to the `data_files` parameter:
+🤗 Datasets can read CSV files by specifying the generic `csv` dataset builder name in the [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) method. To load more than one CSV file, pass them as a list to the `data_files` parameter:
 
 ```py
 >>> from datasets import load_dataset
@@ -42,7 +42,7 @@ To load zipped CSV files:
 
 ## Pandas DataFrames
 
-🤗 Datasets also supports loading datasets from [Pandas DataFrames](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) with the [from_pandas()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.from_pandas) method:
+🤗 Datasets also supports loading datasets from [Pandas DataFrames](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) with the [from_pandas()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.from_pandas) method:
 
 ```py
 >>> from datasets import Dataset
@@ -104,7 +104,7 @@ For SQLite, it is:
 >>> uri = "sqlite:///us_covid_data.db"
 ```
 
-Load the table by passing the table name and URI to [from_sql()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.from_sql):
+Load the table by passing the table name and URI to [from_sql()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.from_sql):
 
 ```py
 >>> from datasets import Dataset
@@ -117,7 +117,7 @@ Dataset({
 })
 ```
 
-Then you can use all of 🤗 Datasets process features like [filter()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.filter) for example:
+Then you can use all of 🤗 Datasets process features like [filter()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.filter) for example:
 
 ```py
 >>> ds.filter(lambda x: x["state"] == "California")
@@ -125,7 +125,7 @@ Then you can use all of 🤗 Datasets process features like [filter()](/docs/dat
 
 You can also load a dataset from a SQL query instead of an entire table, which is useful for querying and joining multiple tables. 
 
-Load the dataset by passing your query and URI to [from_sql()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.from_sql):
+Load the dataset by passing your query and URI to [from_sql()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.from_sql):
 
 ```py
 >>> from datasets import Dataset
@@ -138,7 +138,7 @@ Dataset({
 })
 ```
 
-Then you can use all of 🤗 Datasets process features like [filter()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.filter) for example:
+Then you can use all of 🤗 Datasets process features like [filter()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.filter) for example:
 
 ```py
 >>> ds.filter(lambda x: x["cases"] > 10000)
@@ -148,7 +148,7 @@ Then you can use all of 🤗 Datasets process features like [filter()](/docs/dat
 
 You can also connect and load a dataset from a PostgreSQL database, however we won't directly demonstrate how in the documentation because the example is only meant to be run in a notebook. Instead, take a look at how to install and setup a PostgreSQL server in this [notebook](https://colab.research.google.com/github/nateraw/huggingface-hub-examples/blob/main/sql_with_huggingface_datasets.ipynb#scrollTo=d83yGQMPHGFi)!
 
-After you've setup your PostgreSQL database, you can use the [from_sql()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.from_sql) method to load a dataset from a table or query.
+After you've setup your PostgreSQL database, you can use the [from_sql()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.from_sql) method to load a dataset from a table or query.
 
-### Use with Spark
-https://huggingface.co/docs/datasets/v4.8.4/use_with_spark.md
+### Installation
+https://huggingface.co/docs/datasets/v5.2.0/installation.md

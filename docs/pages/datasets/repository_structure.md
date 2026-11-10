@@ -3,7 +3,7 @@
 To host and share your dataset, create a dataset repository on the Hugging Face Hub and upload your data files.
 
 This guide will show you how to structure your dataset repository when you upload it.
-A dataset with a supported structure and file format (`.txt`, `.csv`, `.parquet`, `.jsonl`, `.mp3`, `.jpg`, `.zip` etc.) are loaded automatically with [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset), and it'll have a dataset viewer on its dataset page on the Hub.
+A dataset with a supported structure and file format (`.txt`, `.csv`, `.parquet`, `.jsonl`, `.mp3`, `.jpg`, `.zip` etc.) are loaded automatically with [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset), and it'll have a dataset viewer on its dataset page on the Hub.
 
 ## Main use-case
 
@@ -193,7 +193,7 @@ my_dataset_repository/
 
 ### Custom filename split
 
-If your dataset splits have custom names that aren't `train`, `test`, or `validation`, then you can name your data files like `data/-xxxxx-of-xxxxx.csv`.
+If your dataset splits have custom names that aren't `train`, `test`, or `validation`, then you can name your data files like `data/<split_name>-xxxxx-of-xxxxx.csv`.
 
 Here is an example with three splits, `train`, `test`, and `random`:
 
@@ -271,5 +271,5 @@ my_dataset_repository/
         └── shard_1.csv
 ```
 
-### Cloud storage
-https://huggingface.co/docs/datasets/v4.8.4/filesystems.md
+### Create an image dataset
+https://huggingface.co/docs/datasets/v5.2.0/image_dataset.md

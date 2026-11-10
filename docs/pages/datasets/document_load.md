@@ -3,7 +3,7 @@
 > [!WARNING]
 > Pdf support is experimental and is subject to change.
 
-Pdf datasets have [Pdf](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Pdf) type columns, which contain `pdfplumber` objects. 
+Pdf datasets have [Pdf](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Pdf) type columns, which contain `pdfplumber` objects. 
 
 > [!TIP]
 > To work with pdf datasets, you need to have the `pdfplumber` package installed. Check out the [installation](https://github.com/jsvine/pdfplumber#installation) guide to learn how to install it.
@@ -15,7 +15,7 @@ When you load a pdf dataset and call the pdf column, the pdfs are decoded as `pd
 
 >>> dataset = load_dataset("path/to/pdf/folder", split="train")
 >>> dataset[0]["pdf"]
-
+<pdfplumber.pdf.PDF at 0x1075bc320>
 ```
 
 > [!WARNING]
@@ -33,7 +33,7 @@ Then you can use the `pdfplumber` functions to read texts, tables and images, e.
 >>> pdf = dataset[0]["pdf"]
 >>> first_page = pdf.pages[0]
 >>> first_page
-
+<Page:1>
 >>> first_page.extract_text()
 Docling Technical Report
 Version1.0
@@ -57,7 +57,7 @@ Out[24]:
   'width': 98.99519999999995,
   'height': 98.99519999999995,
   'name': 'Im1',
-  'stream': ,
+  'stream': <PDFStream(44): raw=88980, {'Type': /'XObject', 'Subtype': /'Image', 'BitsPerComponent': 8, 'ColorSpace': /'DeviceRGB', 'Filter': /'DCTDecode', 'Height': 1024, 'Length': 88980, 'Width': 1024}>,
   'srcsize': (1024, 1024),
   'imagemask': None,
   'bits': 8,
@@ -79,28 +79,28 @@ You can also load each page as a `PIL.Image`:
 >>> import PIL.Image
 >>> import io
 >>> first_page.to_image()
-
+<pdfplumber.display.PageImage at 0x107d68dd0>
 >>> buffer = io.BytesIO()
 >>> first_page.to_image().save(buffer)
 >>> img = PIL.Image.open(buffer)
 >>> img
-
+<PIL.PngImagePlugin.PngImageFile image mode=P size=612x792>
 ```
 
 Note that you can pass `resolution=` to `.to_image()` to render the image in higher resolution that the default (72 ppi).
 
 ## Local files
 
-You can load a dataset from the pdf path. Use the [cast_column()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.cast_column) function to accept a column of pdf file paths, and decode it into a `pdfplumber` pdf with the [Pdf](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Pdf) feature:
+You can load a dataset from the pdf path. Use the [cast_column()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.cast_column) function to accept a column of pdf file paths, and decode it into a `pdfplumber` pdf with the [Pdf](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Pdf) feature:
 ```py
 >>> from datasets import Dataset, Pdf
 
 >>> dataset = Dataset.from_dict({"pdf": ["path/to/pdf_1", "path/to/pdf_2", ..., "path/to/pdf_n"]}).cast_column("pdf", Pdf())
 >>> dataset[0]["pdf"]
-
+<pdfplumber.pdf.PDF at 0x1657d0280>
 ```
 
-If you only want to load the underlying path to the pdf dataset without decoding the pdf object, set `decode=False` in the [Pdf](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Pdf) feature:
+If you only want to load the underlying path to the pdf dataset without decoding the pdf object, set `decode=False` in the [Pdf](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Pdf) feature:
 
 ```py
 >>> dataset = dataset.cast_column("pdf", Pdf(decode=False))
@@ -123,7 +123,7 @@ folder/train/invoice/0002.pdf
 folder/train/invoice/0003.pdf
 ```
 
-If the dataset follows the `PdfFolder` structure, then you can load it directly with [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset):
+If the dataset follows the `PdfFolder` structure, then you can load it directly with [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset):
 
 ```py
 >>> from datasets import load_dataset
@@ -133,7 +133,7 @@ If the dataset follows the `PdfFolder` structure, then you can load it directly 
 >>> dataset = load_dataset("/path/to/folder")
 ```
 
-For local datasets, this is equivalent to passing `pdffolder` manually in [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) and the directory in `data_dir`:
+For local datasets, this is equivalent to passing `pdffolder` manually in [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) and the directory in `data_dir`:
 
 ```py
 >>> dataset = load_dataset("pdffolder", data_dir="/path/to/folder")
@@ -143,13 +143,13 @@ Then you can access the pdfs as `pdfplumber.pdf.PDF` objects:
 
 ```
 >>> dataset["train"][0]
-{"pdf": , "label": 0}
+{"pdf": <pdfplumber.pdf.PDF at 0x161715e50>, "label": 0}
 
 >>> dataset["train"][-1]
-{"pdf": , "label": 1}
+{"pdf": <pdfplumber.pdf.PDF at 0x16170bd90>, "label": 1}
 ```
 
-To ignore the information in the metadata file, set `drop_metadata=True` in [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset):
+To ignore the information in the metadata file, set `drop_metadata=True` in [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset):
 
 ```py
 >>> from datasets import load_dataset
@@ -201,7 +201,7 @@ If you are not interested in the documents decoded as pdfplumber `PDFs` and woul
 >>> dataset = dataset.decode(False)
 ```
 
-Note: [IterableDataset.decode()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.decode) is only available for streaming datasets at the moment.
+Note: [IterableDataset.decode()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.decode) is only available for streaming datasets at the moment.
 
-### Create a NIfTI dataset
-https://huggingface.co/docs/datasets/v4.8.4/nifti_dataset.md
+### Overview
+https://huggingface.co/docs/datasets/v5.2.0/how_to.md

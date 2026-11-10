@@ -1,12 +1,12 @@
 # Know your dataset
 
-There are two types of dataset objects, a regular [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) and then an ✨ [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) ✨. A [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) provides fast random access to the rows, and memory-mapping so that loading even large datasets only uses a relatively small amount of device memory. But for really, really big datasets that won't even fit on disk or in memory, an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) allows you to access and use the dataset without waiting for it to download completely!
+There are two types of dataset objects, a regular [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) and then an ✨ [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) ✨. A [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) provides fast random access to the rows, and memory-mapping so that loading even large datasets only uses a relatively small amount of device memory. But for really, really big datasets that won't even fit on disk or in memory, an [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) allows you to access and use the dataset without waiting for it to download completely!
 
-This tutorial will show you how to load and access a [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) and an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset).
+This tutorial will show you how to load and access a [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) and an [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset).
 
 ## Dataset
 
-When you load a dataset split, you'll get a [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) object. You can do many things with a [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) object, which is why it's important to learn how to manipulate and interact with the data stored inside. 
+When you load a dataset split, you'll get a [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) object. You can do many things with a [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) object, which is why it's important to learn how to manipulate and interact with the data stored inside. 
  
 This tutorial uses the [rotten_tomatoes](https://huggingface.co/datasets/rotten_tomatoes) dataset, but feel free to load any dataset you'd like and follow along!
 
@@ -18,7 +18,7 @@ This tutorial uses the [rotten_tomatoes](https://huggingface.co/datasets/rotten_
 
 ### Indexing
 
-A [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) contains columns of data, and each column can be a different type of data. The *index*, or axis label, is used to access examples from the dataset. For example, indexing by the row returns a dictionary of an example from the dataset:
+A [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) contains columns of data, and each column can be a different type of data. The *index*, or axis label, is used to access examples from the dataset. For example, indexing by the row returns a dictionary of an example from the dataset:
 
 ```py
 # Get the first row in the dataset
@@ -54,7 +54,7 @@ You can combine row and column name indexing to return a specific value at a pos
 'the rock is destined to be the 21st century\'s new " conan " and that he\'s going to make a splash even greater than arnold schwarzenegger , jean-claud van damme or steven segal .'
 ```
 
-Indexing order doesn't matter. Indexing by the column name first returns a [Column](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Column) object that you can index as usual with row indices:
+Indexing order doesn't matter. Indexing by the column name first returns a [Column](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Column) object that you can index as usual with row indices:
 
 ```py
 >>> import time
@@ -94,7 +94,7 @@ Slicing returns a slice - or subset - of the dataset, which is useful for viewin
 
 ## IterableDataset
 
-An [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) is loaded when you set the `streaming` parameter to `True` in [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset):
+An [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) is loaded when you set the `streaming` parameter to `True` in [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset):
 
 ```py
 >>> from datasets import load_dataset
@@ -103,10 +103,10 @@ An [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#dat
 >>> for example in iterable_dataset:
 ...     print(example)
 ...     break
-{'image': , 'label': 6}
+{'image': <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=384x512 at 0x7F0681F5C520>, 'label': 6}
 ```
 
-You can also create an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) from an *existing* [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset), but it is faster than streaming mode because the dataset is streamed from local files:
+You can also create an [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) from an *existing* [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset), but it is faster than streaming mode because the dataset is streamed from local files:
 
 ```py
 >>> from datasets import load_dataset
@@ -115,24 +115,24 @@ You can also create an [IterableDataset](/docs/datasets/v4.8.4/en/package_refere
 >>> iterable_dataset = dataset.to_iterable_dataset()
 ```
 
-An [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) progressively iterates over a dataset one example at a time, so you don't have to wait for the whole dataset to download before you can use it. As you can imagine, this is quite useful for large datasets you want to use immediately!
+An [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) progressively iterates over a dataset one example at a time, so you don't have to wait for the whole dataset to download before you can use it. As you can imagine, this is quite useful for large datasets you want to use immediately!
 
 ### Indexing
 
-An [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset)'s behavior is different from a regular [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset). You don't get random access to examples in an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset). Instead, you should iterate over its elements, for example, by calling `next(iter())` or with a `for` loop to return the next item from the [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset):
+An [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset)'s behavior is different from a regular [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset). You don't get random access to examples in an [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset). Instead, you should iterate over its elements, for example, by calling `next(iter())` or with a `for` loop to return the next item from the [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset):
 
 ```py
 >>> next(iter(iterable_dataset))
-{'image': ,
+{'image': <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=384x512 at 0x7F0681F59B50>,
  'label': 6}
 
 >>> for example in iterable_dataset:
 ...     print(example)
 ...     break
-{'image': , 'label': 6}
+{'image': <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=384x512 at 0x7F7479DE82B0>, 'label': 6}
 ```
 
-But an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) supports column indexing that returns an iterable for the column values:
+But an [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) supports column indexing that returns an iterable for the column values:
 
 ```py
 >>> next(iter(iterable_dataset["label"]))
@@ -141,26 +141,26 @@ But an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes
 
 ### Creating a subset
 
-You can return a subset of the dataset with a specific number of examples in it with [IterableDataset.take()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.take):
+You can return a subset of the dataset with a specific number of examples in it with [IterableDataset.take()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.take):
 
 ```py
 # Get first three examples
 >>> list(iterable_dataset.take(3))
-[{'image': ,
+[{'image': <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=384x512 at 0x7F7479DEE9D0>,
   'label': 6},
- {'image': ,
+ {'image': <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=512x512 at 0x7F7479DE8190>,
   'label': 6},
- {'image': ,
+ {'image': <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=512x383 at 0x7F7479DE8310>,
   'label': 6}]
 ```
 
-But unlike [slicing](access/#slicing), [IterableDataset.take()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset.take) creates a new [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset). 
+But unlike [slicing](access/#slicing), [IterableDataset.take()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset.take) creates a new [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset). 
 
 ## Next steps
 
 Interested in learning more about the differences between these two types of datasets? Learn more about them in the [Differences between `Dataset` and `IterableDataset`](about_mapstyle_vs_iterable) conceptual guide.
 
-To get more hands-on with these datasets types, check out the [Process](process) guide to learn how to preprocess a [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) or the [Stream](stream) guide to learn how to preprocess an [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset).
+To get more hands-on with these datasets types, check out the [Process](process) guide to learn how to preprocess a [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) or the [Stream](stream) guide to learn how to preprocess an [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset).
 
-### Share a dataset using the CLI
-https://huggingface.co/docs/datasets/v4.8.4/share.md
+### Process audio data
+https://huggingface.co/docs/datasets/v5.2.0/audio_process.md

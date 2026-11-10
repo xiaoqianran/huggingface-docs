@@ -5,7 +5,7 @@
 - [BitsAndBytes](https://huggingface.co/docs/bitsandbytes) — 25 pages
 - [CLI](https://huggingface.co/docs/cli) — 1 pages
 - [Dataset Viewer](https://huggingface.co/docs/dataset-viewer) — 26 pages
-- [Datasets](https://huggingface.co/docs/datasets) — 58 pages
+- [Datasets](https://huggingface.co/docs/datasets) — 62 pages
 - [Diffusers](https://huggingface.co/docs/diffusers) — 371 pages
 - [Hub](https://huggingface.co/docs/hub) — 279 pages
 - [Hub Client](https://huggingface.co/docs/huggingface_hub) — 53 pages

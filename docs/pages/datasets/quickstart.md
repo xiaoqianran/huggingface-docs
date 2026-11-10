@@ -5,7 +5,10 @@ This quickstart is intended for developers who are ready to dive into the code a
 Each dataset is unique, and depending on the task, some datasets may require additional steps to prepare it for training. But you can always use 🤗 Datasets tools to load and process a dataset. The fastest and easiest way to get started is by loading an existing dataset from the [Hugging Face Hub](https://huggingface.co/datasets). There are thousands of datasets to choose from, spanning many tasks. Choose the type of dataset you want to work with, and let's get started!
 
   
-    
+    <a
+      class="!no-underline border dark:border-gray-700 p-5 rounded-lg shadow hover:shadow-lg"
+      href="#audio"
+    >
       
         Audio
       
@@ -14,7 +17,10 @@ Each dataset is unique, and depending on the task, some datasets may require add
         type of banking issue a speaker is calling about.
       
     
-    
+    <a
+      class="!no-underline border dark:border-gray-700 p-5 rounded-lg shadow hover:shadow-lg"
+      href="#vision"
+    >
       
         Vision
       
@@ -23,7 +29,10 @@ Each dataset is unique, and depending on the task, some datasets may require add
         to diagnose disease in bean plants.
       
     
-    
+    <a
+      class="!no-underline border dark:border-gray-700 p-5 rounded-lg shadow hover:shadow-lg"
+      href="#nlp"
+    >
       
         NLP
       
@@ -45,13 +54,13 @@ pip install datasets
 
 🤗 Datasets also support audio and image data formats:
 
-- To work with audio datasets, install the [Audio](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Audio) feature:
+- To work with audio datasets, install the [Audio](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Audio) feature:
 
   ```bash
   pip install datasets[audio]
   ```
 
-- To work with image datasets, install the [Image](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Image) feature:
+- To work with image datasets, install the [Image](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Image) feature:
 
   ```bash
   pip install datasets[vision]
@@ -66,7 +75,7 @@ Besides 🤗 Datasets, make sure your preferred machine learning framework is in
 
 Audio datasets are loaded just like text datasets. However, an audio dataset is preprocessed a bit differently. Instead of a tokenizer, you'll need a [feature extractor](https://huggingface.co/docs/transformers/main_classes/feature_extractor#feature-extractor). An audio input may also require resampling its sampling rate to match the sampling rate of the pretrained model you're using. In this quickstart, you'll prepare the [MInDS-14](https://huggingface.co/datasets/PolyAI/minds14) dataset for a model train on and classify the banking issue a customer is having.
 
-**1**. Load the MInDS-14 dataset by providing the [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) function with the dataset name, dataset configuration (not all datasets will have a configuration), and a dataset split:
+**1**. Load the MInDS-14 dataset by providing the [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) function with the dataset name, dataset configuration (not all datasets will have a configuration), and a dataset split:
 
 ```py
 >>> from datasets import load_dataset, Audio
@@ -83,17 +92,17 @@ Audio datasets are loaded just like text datasets. However, an audio dataset is 
 >>> feature_extractor = AutoFeatureExtractor.from_pretrained("facebook/wav2vec2-base")
 ```
 
-**3**. The [MInDS-14](https://huggingface.co/datasets/PolyAI/minds14) dataset card indicates the sampling rate is 8kHz, but the Wav2Vec2 model was pretrained on a sampling rate of 16kHZ. You'll need to upsample the `audio` column with the [cast_column()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.cast_column) function and [Audio](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Audio) feature to match the model's sampling rate.
+**3**. The [MInDS-14](https://huggingface.co/datasets/PolyAI/minds14) dataset card indicates the sampling rate is 8kHz, but the Wav2Vec2 model was pretrained on a sampling rate of 16kHZ. You'll need to upsample the `audio` column with the [cast_column()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.cast_column) function and [Audio](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Audio) feature to match the model's sampling rate.
 
 ```py
 >>> dataset = dataset.cast_column("audio", Audio(sampling_rate=16000))
 >>> dataset[0]["audio"]
-
+<datasets.features._torchcodec.AudioDecoder object at 0x11642b6a0>
 ```
 
 **4**. Create a function to preprocess the audio `array` with the feature extractor, and truncate and pad the sequences into tidy rectangular tensors. The most important thing to remember is to call the audio `array` in the feature extractor since the `array` - the actual speech signal - is the model input.
 
-Once you have a preprocessing function, use the [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) function to speed up processing by applying the function to batches of examples in the dataset.
+Once you have a preprocessing function, use the [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) function to speed up processing by applying the function to batches of examples in the dataset.
 
 ```py
 >>> def preprocess_function(examples):
@@ -110,7 +119,7 @@ Once you have a preprocessing function, use the [map()](/docs/datasets/v4.8.4/en
 >>> dataset = dataset.map(preprocess_function, batched=True)
 ```
 
-**5**. Use the [rename_column()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.rename_column) function to rename the `intent_class` column to `labels`, which is the expected input name in [Wav2Vec2ForSequenceClassification](https://huggingface.co/docs/transformers/main/en/model_doc/wav2vec2#transformers.Wav2Vec2ForSequenceClassification):
+**5**. Use the [rename_column()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.rename_column) function to rename the `intent_class` column to `labels`, which is the expected input name in [Wav2Vec2ForSequenceClassification](https://huggingface.co/docs/transformers/main/en/model_doc/wav2vec2#transformers.Wav2Vec2ForSequenceClassification):
 
 ```py
 >>> dataset = dataset.rename_column("intent_class", "labels")
@@ -118,7 +127,7 @@ Once you have a preprocessing function, use the [map()](/docs/datasets/v4.8.4/en
 
 **6**. Set the dataset format according to the machine learning framework you're using.
 
-Use the [set_format()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.set_format) function to set the dataset format to `torch` and specify the columns you want to format. This function applies formatting on-the-fly. After converting to PyTorch tensors, wrap the dataset in [`torch.utils.data.DataLoader`](https://alband.github.io/doc_view/data.html?highlight=torch%20utils%20data%20dataloader#torch.utils.data.DataLoader):
+Use the [set_format()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.set_format) function to set the dataset format to `torch` and specify the columns you want to format. This function applies formatting on-the-fly. After converting to PyTorch tensors, wrap the dataset in [`torch.utils.data.DataLoader`](https://alband.github.io/doc_view/data.html?highlight=torch%20utils%20data%20dataloader#torch.utils.data.DataLoader):
 
 ```py
 >>> from torch.utils.data import DataLoader
@@ -128,7 +137,7 @@ Use the [set_format()](/docs/datasets/v4.8.4/en/package_reference/main_classes#d
 ```
 
 Use the `prepare_tf_dataset` method from 🤗 Transformers to prepare the dataset to be compatible with
-TensorFlow, and ready to train/fine-tune a model, as it wraps a HuggingFace [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) as a `tf.data.Dataset`
+TensorFlow, and ready to train/fine-tune a model, as it wraps a HuggingFace [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) as a `tf.data.Dataset`
 with collation and batching, so one can pass it directly to Keras methods like `fit()` without further modification.
 
 ```py
@@ -147,7 +156,7 @@ with collation and batching, so one can pass it directly to Keras methods like `
 
 Image datasets are loaded just like text datasets. However, instead of a tokenizer, you'll need a [feature extractor](https://huggingface.co/docs/transformers/main_classes/feature_extractor#feature-extractor) to preprocess the dataset. Applying data augmentation to an image is common in computer vision to make the model more robust against overfitting. You're free to use any data augmentation library you want, and then you can apply the augmentations with 🤗 Datasets. In this quickstart, you'll load the [Beans](https://huggingface.co/datasets/beans) dataset and get it ready for the model to train on and identify disease from the leaf images.
 
-**1**. Load the Beans dataset by providing the [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) function with the dataset name and a dataset split:
+**1**. Load the Beans dataset by providing the [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) function with the dataset name and a dataset split:
 
 ```py
 >>> from datasets import load_dataset, Image
@@ -155,7 +164,7 @@ Image datasets are loaded just like text datasets. However, instead of a tokeniz
 >>> dataset = load_dataset("AI-Lab-Makerere/beans", split="train")
 ```
 
-Most image models work with RBG images. If your dataset contains images in a different mode, you can use the [cast_column()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.cast_column) function to set the mode to RGB:
+Most image models work with RBG images. If your dataset contains images in a different mode, you can use the [cast_column()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.cast_column) function to set the mode to RGB:
 
 ```py
 >>> dataset = dataset.cast_column("image", Image(mode="RGB"))
@@ -181,7 +190,7 @@ The Beans dataset contains only RGB images, so this step is unnecessary here.
 ...     return examples
 ```
 
-**4**. Use the [with_transform()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.with_transform) function to apply the data augmentations on-the-fly:
+**4**. Use the [with_transform()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.with_transform) function to apply the data augmentations on-the-fly:
 
 ```py
 >>> dataset = dataset.with_transform(transforms)
@@ -208,7 +217,7 @@ Wrap the dataset in [`torch.utils.data.DataLoader`](https://alband.github.io/doc
 ```
 
 Use the `prepare_tf_dataset` method from 🤗 Transformers to prepare the dataset to be compatible with
-TensorFlow, and ready to train/fine-tune a model, as it wraps a HuggingFace [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) as a `tf.data.Dataset`
+TensorFlow, and ready to train/fine-tune a model, as it wraps a HuggingFace [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) as a `tf.data.Dataset`
 with collation and batching, so one can pass it directly to Keras methods like `fit()` without further modification.
 
 Before you start, make sure you have up-to-date versions of `albumentations` and `cv2` installed:
@@ -247,7 +256,7 @@ pip install -U albumentations opencv-python
 
 Text needs to be tokenized into individual tokens by a [tokenizer](https://huggingface.co/docs/transformers/main_classes/tokenizer). For the quickstart, you'll load the [Microsoft Research Paraphrase Corpus (MRPC)](https://huggingface.co/datasets/nyu-mll/glue/viewer/mrpc) training dataset to train a model to determine whether a pair of sentences mean the same thing.
 
-**1**. Load the MRPC dataset by providing the [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) function with the dataset name, dataset configuration (not all datasets will have a configuration), and dataset split:
+**1**. Load the MRPC dataset by providing the [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) function with the dataset name, dataset configuration (not all datasets will have a configuration), and dataset split:
 
 ```py
 >>> from datasets import load_dataset
@@ -271,7 +280,7 @@ Text needs to be tokenized into individual tokens by a [tokenizer](https://huggi
 
 **3**. Create a function to tokenize the dataset, and you should also truncate and pad the text into tidy rectangular tensors. The tokenizer generates three new columns in the dataset: `input_ids`, `token_type_ids`, and an `attention_mask`. These are the model inputs.
 
-Use the [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) function to speed up processing by applying your tokenization function to batches of examples in the dataset:
+Use the [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) function to speed up processing by applying your tokenization function to batches of examples in the dataset:
 
 ```py
 >>> def encode(examples):
@@ -296,7 +305,7 @@ Use the [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets
 
 **5**. Set the dataset format according to the machine learning framework you're using.
 
-Use the [with_format()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.with_format) function to set the dataset format to `torch` and specify the columns you want to format. This function applies formatting on-the-fly. After converting to PyTorch tensors, wrap the dataset in [`torch.utils.data.DataLoader`](https://alband.github.io/doc_view/data.html?highlight=torch%20utils%20data%20dataloader#torch.utils.data.DataLoader):
+Use the [with_format()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.with_format) function to set the dataset format to `torch` and specify the columns you want to format. This function applies formatting on-the-fly. After converting to PyTorch tensors, wrap the dataset in [`torch.utils.data.DataLoader`](https://alband.github.io/doc_view/data.html?highlight=torch%20utils%20data%20dataloader#torch.utils.data.DataLoader):
 
 ```py
 >>> import torch
@@ -307,7 +316,7 @@ Use the [with_format()](/docs/datasets/v4.8.4/en/package_reference/main_classes#
 ```
 
 Use the `prepare_tf_dataset` method from 🤗 Transformers to prepare the dataset to be compatible with
-TensorFlow, and ready to train/fine-tune a model, as it wraps a HuggingFace [Dataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset) as a `tf.data.Dataset`
+TensorFlow, and ready to train/fine-tune a model, as it wraps a HuggingFace [Dataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) as a `tf.data.Dataset`
 with collation and batching, so one can pass it directly to Keras methods like `fit()` without further modification.
 
 ```py
@@ -328,5 +337,5 @@ This completes the 🤗 Datasets quickstart! You can load any text, audio, or im
 
 For your next steps, take a look at our [How-to guides](./how_to) and learn how to do more specific things like loading different dataset formats, aligning labels, and streaming large datasets. If you're interested in learning more about 🤗 Datasets core concepts, grab a cup of coffee and read our [Conceptual Guides](./about_arrow)!
 
-### Dataset features
-https://huggingface.co/docs/datasets/v4.8.4/about_dataset_features.md
+### Search index
+https://huggingface.co/docs/datasets/v5.2.0/faiss_es.md

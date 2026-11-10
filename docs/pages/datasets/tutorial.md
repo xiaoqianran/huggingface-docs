@@ -11,5 +11,5 @@ If you have any questions about 🤗 Datasets, feel free to join and ask the com
 
 Let's get started! 🏁
 
-### Process audio data
-https://huggingface.co/docs/datasets/v4.8.4/audio_process.md
+### Command Line Interface (CLI)
+https://huggingface.co/docs/datasets/v5.2.0/cli.md

@@ -2,14 +2,14 @@
 
 This guide shows specific methods for processing image datasets. Learn how to:
 
-- Use [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) with image dataset.
-- Apply data augmentations to a dataset with [set_transform()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.set_transform).
+- Use [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) with image dataset.
+- Apply data augmentations to a dataset with [set_transform()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.set_transform).
 
 For a guide on how to process any type of dataset, take a look at the general process guide.
 
 ## Map
 
-The [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) function can apply transforms over an entire dataset.
+The [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) function can apply transforms over an entire dataset.
 
 For example, create a basic [`Resize`](https://pytorch.org/vision/stable/generated/torchvision.transforms.Resize.html) function:
 
@@ -19,27 +19,27 @@ For example, create a basic [`Resize`](https://pytorch.org/vision/stable/generat
 ...     return examples
 ```
 
-Now use the [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) function to resize the entire dataset, and set `batched=True` to speed up the process by accepting batches of examples. The transform returns `pixel_values` as a cacheable `PIL.Image` object:
+Now use the [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) function to resize the entire dataset, and set `batched=True` to speed up the process by accepting batches of examples. The transform returns `pixel_values` as a cacheable `PIL.Image` object:
 
 ```py
 >>> dataset = dataset.map(transforms, remove_columns=["image"], batched=True)
 >>> dataset[0]
 {'label': 6,
- 'pixel_values': }
+ 'pixel_values': <PIL.PngImagePlugin.PngImageFile image mode=RGB size=100x100 at 0x7F058237BB10>}
 ```
 
-The cache file saves time because you don't have to execute the same transform twice. The [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) function is best for operations you only run once per training - like resizing an image - instead of using it for operations executed for each epoch, like data augmentations.
+The cache file saves time because you don't have to execute the same transform twice. The [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) function is best for operations you only run once per training - like resizing an image - instead of using it for operations executed for each epoch, like data augmentations.
 
-[map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map) takes up some memory, but you can reduce its memory requirements with the following parameters:
+[map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map) takes up some memory, but you can reduce its memory requirements with the following parameters:
 
 - [`batch_size`](./package_reference/main_classes#datasets.DatasetDict.map.batch_size) determines the number of examples that are processed in one call to the transform function.
 - [`writer_batch_size`](./package_reference/main_classes#datasets.DatasetDict.map.writer_batch_size) determines the number of processed examples that are kept in memory before they are stored away.
 
-Both parameter values default to 1000, which can be expensive if you are storing images. Lower these values to use less memory when you use [map()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.map).
+Both parameter values default to 1000, which can be expensive if you are storing images. Lower these values to use less memory when you use [map()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.map).
 
 ## Apply transforms
 
-🤗 Datasets applies data augmentations from any library or package to your dataset. Transforms can be applied on-the-fly on batches of data with [set_transform()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.set_transform), which consumes less disk space.
+🤗 Datasets applies data augmentations from any library or package to your dataset. Transforms can be applied on-the-fly on batches of data with [set_transform()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.set_transform), which consumes less disk space.
 
 > [!TIP]
 > The following example uses [torchvision](https://pytorch.org/vision/stable/index.html), but feel free to use other data augmentation libraries like [Albumentations](https://albumentations.ai/docs/), [Kornia](https://kornia.readthedocs.io/en/latest/), and [imgaug](https://imgaug.readthedocs.io/en/latest/).
@@ -65,11 +65,11 @@ Create a function to apply the `ColorJitter` transform:
 ...     return examples
 ```
 
-Apply the transform with the [set_transform()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.set_transform) function:
+Apply the transform with the [set_transform()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.set_transform) function:
 
 ```py
 >>> dataset.set_transform(transforms)
 ```
 
-### Load tabular data
-https://huggingface.co/docs/datasets/v4.8.4/tabular_load.md
+### Preprocess
+https://huggingface.co/docs/datasets/v5.2.0/use_dataset.md

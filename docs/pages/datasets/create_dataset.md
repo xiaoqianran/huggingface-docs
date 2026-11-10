@@ -2,10 +2,16 @@
 
 Sometimes, you may need to create a dataset if you're working with your own data. Creating a dataset with 🤗 Datasets confers all the advantages of the library to your dataset: fast loading and processing, [stream enormous datasets](stream), [memory-mapping](https://huggingface.co/course/chapter5/4?fw=pt#the-magic-of-memory-mapping), and more. You can easily and rapidly create a dataset with 🤗 Datasets low-code approaches, reducing the time it takes to start training a model. In many cases, it is as easy as [dragging and dropping](upload_dataset#upload-with-the-hub-ui) your data files into a dataset repository on the Hub.
 
-In this tutorial, you'll learn how to use 🤗 Datasets low-code methods for creating all types of datasets:
+In this tutorial, you'll learn how to use 🤗 Datasets low-code methods for creating datasets from your own data.
+
+> **Note**
+>
+> If you want to learn how to load existing datasets, or how to load local and remote files (CSV, JSON, Parquet, etc.), see the [Load guide](https://huggingface.co/docs/datasets/loading).
+
+This tutorial covers:
 
 - Folder-based builders for quickly creating an image or audio dataset
-- `from_` methods for creating datasets from local files
+- `from_` methods for creating datasets from local Python objects
 
 ## File-based builders
 
@@ -24,8 +30,8 @@ To get the list of supported formats and code examples, follow this guide [here]
 
 There are two folder-based builders, `ImageFolder` and `AudioFolder`. These are low-code methods for quickly creating an image or speech and audio dataset with several thousand examples. They are great for rapidly prototyping computer vision and speech models before scaling to a larger dataset. Folder-based builders takes your data and automatically generates the dataset's features, splits, and labels. Under the hood:
 
-- `ImageFolder` uses the [Image](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Image) feature to decode an image file. Many image extension formats are supported, such as jpg and png, but other formats are also supported. You can check the complete [list](https://github.com/huggingface/datasets/blob/b5672a956d5de864e6f5550e493527d962d6ae55/src/datasets/packaged_modules/imagefolder/imagefolder.py#L39) of supported image extensions.
-- `AudioFolder` uses the [Audio](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Audio) feature to decode an audio file. Extensions such as wav, mp3, and even mp4 are supported, and you can check the complete [list](https://ffmpeg.org/ffmpeg-formats.html) of supported audio extensions. Decoding is done via ffmpeg.
+- `ImageFolder` uses the [Image](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Image) feature to decode an image file. Many image extension formats are supported, such as jpg and png, but other formats are also supported. You can check the complete [list](https://github.com/huggingface/datasets/blob/b5672a956d5de864e6f5550e493527d962d6ae55/src/datasets/packaged_modules/imagefolder/imagefolder.py#L39) of supported image extensions.
+- `AudioFolder` uses the [Audio](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Audio) feature to decode an audio file. Extensions such as wav, mp3, and even mp4 are supported, and you can check the complete [list](https://ffmpeg.org/ffmpeg-formats.html) of supported audio extensions. Decoding is done via ffmpeg.
 
 The dataset splits are generated from the repository structure, and the label names are automatically inferred from the directory name.
 
@@ -45,7 +51,7 @@ Then this is how the folder-based builder generates an example:
 
   
 
-Create the image dataset by specifying `imagefolder` in [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset):
+Create the image dataset by specifying `imagefolder` in [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset):
 
 ```py
 >>> from datasets import load_dataset
@@ -53,7 +59,7 @@ Create the image dataset by specifying `imagefolder` in [load_dataset()](/docs/d
 >>> dataset = load_dataset("imagefolder", data_dir="/path/to/pokemon")
 ```
 
-An audio dataset is created in the same way, except you specify `audiofolder` in [load_dataset()](/docs/datasets/v4.8.4/en/package_reference/loading_methods#datasets.load_dataset) instead:
+An audio dataset is created in the same way, except you specify `audiofolder` in [load_dataset()](/docs/datasets/v5.2.0/en/package_reference/loading_methods#datasets.load_dataset) instead:
 
 ```py
 >>> from datasets import load_dataset
@@ -70,13 +76,13 @@ charmander.png, It has a preference for hot things.
 squirtle.png, When it retracts its long neck into its shell, it squirts out water with vigorous force.
 ```
 
-To learn more about each of these folder-based builders, check out the and ImageFolder or AudioFolder guides.
+To learn more about each of these folder-based builders, check out the ImageFolder, AudioFolder, or MeshFolder guides.
 
 ## From Python dictionaries
 
 You can also create a dataset from data in Python dictionaries. There are two ways you can create a dataset using the `from_` methods:
 
-    * The [from_generator()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.from_generator) method is the most memory-efficient way to create a dataset from a [generator](https://wiki.python.org/moin/Generators) due to a generators iterative behavior. This is especially useful when you're working with a really large dataset that may not fit in memory, since the dataset is generated on disk progressively and then memory-mapped.
+    * The [from_generator()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.from_generator) method is the most memory-efficient way to create a dataset from a [generator](https://wiki.python.org/moin/Generators) due to a generators iterative behavior. This is especially useful when you're working with a really large dataset that may not fit in memory, since the dataset is generated on disk progressively and then memory-mapped.
 
     ```py
     >>> from datasets import Dataset
@@ -88,7 +94,7 @@ You can also create a dataset from data in Python dictionaries. There are two wa
     {"pokemon": "bulbasaur", "type": "grass"}
     ```
 
-    A generator-based [IterableDataset](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.IterableDataset) needs to be iterated over with a `for` loop for example:
+    A generator-based [IterableDataset](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) needs to be iterated over with a `for` loop for example:
 
     ```py
     >>> from datasets import IterableDataset
@@ -99,7 +105,7 @@ You can also create a dataset from data in Python dictionaries. There are two wa
     {"pokemon": "squirtle", "type": "water"}
     ```
 
-    * The [from_dict()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.from_dict) method is a straightforward way to create a dataset from a dictionary:
+    * The [from_dict()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.from_dict) method is a straightforward way to create a dataset from a dictionary:
 
     ```py
     >>> from datasets import Dataset
@@ -108,7 +114,7 @@ You can also create a dataset from data in Python dictionaries. There are two wa
     {"pokemon": "bulbasaur", "type": "grass"}
     ```
 
-    To create an image or audio dataset, chain the [cast_column()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.cast_column) method with [from_dict()](/docs/datasets/v4.8.4/en/package_reference/main_classes#datasets.Dataset.from_dict) and specify the column and feature type. For example, to create an audio dataset:
+    To create an image or audio dataset, chain the [cast_column()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.cast_column) method with [from_dict()](/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.from_dict) and specify the column and feature type. For example, to create an audio dataset:
 
     ```py
     >>> audio_dataset = Dataset.from_dict({"audio": ["path/to/audio_1", ..., "path/to/audio_n"]}).cast_column("audio", Audio())
@@ -116,5 +122,5 @@ You can also create a dataset from data in Python dictionaries. There are two wa
 
 Now that you know how to create a dataset, consider sharing it on the Hub so the community can also benefit from your work! Go on to the next section to learn how to share your dataset.
 
-### Build and load
-https://huggingface.co/docs/datasets/v4.8.4/about_dataset_load.md
+### Load a dataset from the Hub
+https://huggingface.co/docs/datasets/v5.2.0/load_hub.md
