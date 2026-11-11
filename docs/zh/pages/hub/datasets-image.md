@@ -213,5 +213,5 @@ dataset_info:
 
 请注意，建议对小图像（每个图像 <1MB）和小行组（每个行组 100 行，`datasets` 用于图像）使用 Parquet。对于较大的图像，建议使用 WebDataset 格式，或共享原始图像文件（可以选择元数据文件，并遵循 [repositories recommendations and limits](https://huggingface.co/docs/hub/en/storage-limits) 的存储和文件数量）。
 
-### GGUF 与 llama.cpp 的用法
-https://huggingface.co/docs/hub/gguf-llamacpp.md
+### 从存储库中删除敏感数据
+https://huggingface.co/docs/hub/security-removing-sensitive-data.md

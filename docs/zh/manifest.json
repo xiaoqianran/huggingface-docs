@@ -189,8 +189,8 @@
       "translatedAt": "2026-10-29T14:06:41.833Z"
     },
     "hub/datasets-image.md": {
-      "hash": "8b667f3386ea6edd05e969f081e128a365baf030",
-      "translatedAt": "2026-10-29T14:06:46.490Z"
+      "hash": "71d5db261ac6858df3adde16b59ab42a31ffdbf6",
+      "translatedAt": "2026-11-11T15:02:28.877Z"
     },
     "hub/datasets-ingesting.md": {
       "hash": "7a7248f26096b3c3acaf5374a6a886b620847014",
@@ -693,8 +693,8 @@
       "translatedAt": "2026-10-29T14:09:41.258Z"
     },
     "hub/security-secrets.md": {
-      "hash": "825a028f69b33e3198138ca00e4dc81bce63c151",
-      "translatedAt": "2026-10-29T14:09:41.977Z"
+      "hash": "7c1e0e979b8dbc4254ee7e67c6135d35617f905f",
+      "translatedAt": "2026-11-11T15:02:27.722Z"
     },
     "hub/security-sso-azure-oidc.md": {
       "hash": "d09493b279fc8650e289da1374c11d181b1e20fd",
@@ -1017,8 +1017,8 @@
       "translatedAt": "2026-10-29T14:11:08.884Z"
     },
     "hub/storage-limits.md": {
-      "hash": "47a464b6059926d7cf5b3325248b1503ecd99205",
-      "translatedAt": "2026-10-29T14:11:07.629Z"
+      "hash": "e487abe6b0bce8f27ede3129ad01e556e41de630",
+      "translatedAt": "2026-11-11T15:02:33.920Z"
     },
     "hub/transformers-js.md": {
       "hash": "34c05442a91d07b3a4eaf08d9c62f8322147fa24",
@@ -2047,12 +2047,16 @@
     "hub/datasets-zephon.md": {
       "hash": "5a28871db957245f20e185bb5d95969e6692c0f0",
       "translatedAt": "2026-11-09T17:22:34.259Z"
+    },
+    "hub/security-removing-sensitive-data.md": {
+      "hash": "cb6a850871a6ce505712bccd37ac6c8d2b4052ee",
+      "translatedAt": "2026-11-11T15:02:31.316Z"
     }
   },
-  "updatedAt": "2026-11-10T15:31:10.832Z",
+  "updatedAt": "2026-11-11T15:02:33.920Z",
   "stats": {
-    "translated": 2,
-    "skipped": 398,
+    "translated": 4,
+    "skipped": 396,
     "failed": 0,
     "total": 400
   }
