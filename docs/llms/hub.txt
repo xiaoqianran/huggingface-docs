@@ -56,6 +56,7 @@
 - [Passkeys](https://huggingface.co/docs/hub/security-passkeys.md)
 - [Blog Articles for Organizations](https://huggingface.co/docs/hub/enterprise-blog-articles.md)
 - [Image Dataset](https://huggingface.co/docs/hub/datasets-image.md)
+- [Removing Sensitive Data from a Repository](https://huggingface.co/docs/hub/security-removing-sensitive-data.md)
 - [GGUF usage with llama.cpp](https://huggingface.co/docs/hub/gguf-llamacpp.md)
 - [Evaluation Results](https://huggingface.co/docs/hub/eval-results.md)
 - [Embed your Space in another website](https://huggingface.co/docs/hub/spaces-embed.md)

@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-11-10T15:31:00.197063+00:00",
+  "fetchedAt": "2026-11-11T15:02:24.563037+00:00",
   "method": "llms-full-split",
-  "ok": 2298,
+  "ok": 2299,
   "failed": 0,
   "pages": [
     {
@@ -5547,12 +5547,21 @@
     },
     {
       "rel": "hub/datasets-image.md",
-      "bytes": 8665,
+      "bytes": 8700,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/datasets-image.md",
       "track": "Hub",
       "package": "hub",
       "title": "Image Dataset"
+    },
+    {
+      "rel": "hub/security-removing-sensitive-data.md",
+      "bytes": 5971,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/security-removing-sensitive-data.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Removing Sensitive Data from a Repository"
     },
     {
       "rel": "hub/gguf-llamacpp.md",
@@ -6447,7 +6456,7 @@
     },
     {
       "rel": "hub/security-secrets.md",
-      "bytes": 1633,
+      "bytes": 1760,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/security-secrets.md",
       "track": "Hub",
@@ -6960,7 +6969,7 @@
     },
     {
       "rel": "hub/storage-limits.md",
-      "bytes": 17419,
+      "bytes": 17423,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/storage-limits.md",
       "track": "Hub",
@@ -8409,7 +8418,7 @@
     },
     {
       "rel": "inference-providers/guides/responses-api.md",
-      "bytes": 63671,
+      "bytes": 63665,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/responses-api.md",
       "track": "Inference Providers",
@@ -8418,7 +8427,7 @@
     },
     {
       "rel": "inference-providers/tasks/index.md",
-      "bytes": 107552,
+      "bytes": 107546,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/tasks/index.md",
       "track": "Inference Providers",
@@ -20736,10 +20745,10 @@
     },
     {
       "pkg": "hub",
-      "toc": 280,
-      "found": 279,
-      "written": 279,
-      "full_bytes": 1615188
+      "toc": 281,
+      "found": 280,
+      "written": 280,
+      "full_bytes": 1621439
     },
     {
       "pkg": "huggingface_hub",
@@ -20760,7 +20769,7 @@
       "toc": 65,
       "found": 27,
       "written": 27,
-      "full_bytes": 386918
+      "full_bytes": 386906
     },
     {
       "pkg": "kernels",

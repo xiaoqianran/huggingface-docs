@@ -219,5 +219,5 @@ dataset_info:
 
 Note that Parquet is recommended for small images (<1MB per image) and small row groups (100 rows per row group, which is what `datasets` uses for images). For larger images it is recommended to use the WebDataset format, or to share the original image files (optionally with metadata files, and following the [repositories recommendations and limits](https://huggingface.co/docs/hub/en/storage-limits) for storage and number of files).
 
-### GGUF usage with llama.cpp
-https://huggingface.co/docs/hub/gguf-llamacpp.md
+### Removing Sensitive Data from a Repository
+https://huggingface.co/docs/hub/security-removing-sensitive-data.md

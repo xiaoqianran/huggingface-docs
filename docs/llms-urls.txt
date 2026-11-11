@@ -738,6 +738,7 @@ https://huggingface.co/docs/hub/security-malware.md
 https://huggingface.co/docs/hub/security-passkeys.md
 https://huggingface.co/docs/hub/security-pickle.md
 https://huggingface.co/docs/hub/security-protectai.md
+https://huggingface.co/docs/hub/security-removing-sensitive-data.md
 https://huggingface.co/docs/hub/security-resource-groups.md
 https://huggingface.co/docs/hub/security-secrets.md
 https://huggingface.co/docs/hub/security-sso-azure-oidc.md
