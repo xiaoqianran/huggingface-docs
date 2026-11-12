@@ -38,7 +38,7 @@ OAuth 应用程序也可以由组织而不是个人帐户拥有。这对于您�
 您可以在没有客户端密钥的情况下创建或使用 OAuth 应用程序。这对于本机应用程序、CLI 或其他无法保守秘密的环境非常有用。
 
 - **创建应用程序时**：创建新的 OAuth 应用程序时，您可以选择在不使用密钥的情况下创建它。
-- **创建后**：对于现有应用程序，您可以在应用程序设置中删除客户端密钥。然后该应用程序将作为公共应用程序运行。公共应用程序仅使用客户端 ID 进行身份验证（例如，在带有 PKCE 的设备代码或授权代码流中）。拥有秘密的应用程序仍然可以在需要时使用该秘密（例如用于令牌请求的`Authorization: Basic`）。
+- **创建后**：对于现有应用程序，您可以在应用程序设置中删除客户端密钥。然后该应用程序将作为公共应用程序运行。公共应用程序仅使用客户端 ID 进行身份验证（例如，在带有 PKCE 的设备代码或授权代码流中）。具有机密的应用程序仍然可以在需要时使用该机密（例如用于令牌请求的`Authorization: Basic`）。
 
 ### 重定向 URI
 
@@ -127,16 +127,17 @@ curl -X POST https://huggingface.co/oauth/token \
 - `read-memberships`：了解用户属于哪些组织，以及他们在每个组织中的角色。这不会授予对组织设置或资源的访问权限。
 - `read-repos`：阅读用户的个人存储库。
 - `gated-repos`：读取用户已被授予访问权限的公共门控存储库的内容。与 `read-repos` 不同，这不会授予对私人存储库的访问权限。
+- `request-gated-repos`：代表用户请求访问门控存储库。根据存储库的门控设置，用户的个人资料作为请求的一部分与存储库作者共享。
 - `contribute-repos`：创建存储库并访问由此应用程序创建的存储库。除非授予额外权限，否则无法访问任何其他存储库。
 - `write-repos`：读写用户的个人存储库。
 - `manage-repos`：全面管理用户的个人仓库，包括创建和删除它们。
 - `read-collections`：阅读用户的个人收藏。
-- `write-collections`：读写用户的个人收藏，包括创建和删除它们。
-- `inference-api`：代表用户向[Inference Providers](https://huggingface.co/docs/inference-providers/index)提出推理请求。
-- `read-endpoints`：查看用户的[Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index)，并代表用户向其发出推理请求。- `write-endpoints`：管理用户的推理端点，包括创建和删除它们。包括 `read-endpoints` 访问权限。
+- `write-collections`：读写用户的个人收藏，包括创建和删除它们。- `inference-api`：代表用户向[Inference Providers](https://huggingface.co/docs/inference-providers/index)提出推理请求。
+- `read-endpoints`：查看用户的[Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index)，并代表用户向其发出推理请求。
+- `write-endpoints`：管理用户的推理端点，包括创建和删除它们。包括 `read-endpoints` 访问权限。
 - `jobs`：运行[jobs](https://huggingface.co/docs/huggingface_hub/main/en/guides/jobs)
 - `webhooks`：管理[webhooks](https://huggingface.co/docs/huggingface_hub/main/en/guides/webhooks)
-- `write-discussions`：代表用户打开讨论和拉取请求，并与讨论互动（包括反应、发布/编辑评论、结束讨论等）。要在私有存储库上打开 Pull 请求，您还需要请求 `read-repos` 范围。
+- `write-discussions`：代表用户打开讨论和拉取请求，并与讨论互动（包括反应、发布/编辑评论、结束讨论等）。要在私有存储库上打开拉取请求，您还需要请求 `read-repos` 范围。
 
 所有其他信息均可在 [OpenID metadata](https://huggingface.co/.well-known/openid-configuration) 中找到。
 
@@ -151,9 +152,7 @@ curl -X POST https://huggingface.co/oauth/token \
 
 用户在授权应用程序时可以选择向哪些组织授予访问权限。如果您需要访问特定组织，可以将 `orgIds=ORG_ID` 作为查询参数添加到 OAuth 授权 URL。组织 ID 可在 userinfo 响应的 `orgs[].sub` 字段中找到。
 
-## 将组织成员身份同步为组
-
-userinfo 响应 (`https://huggingface.co/oauth/userinfo`) 包含一个 `groups` 声明：用户所属组织的名称，作为字符串数组。
+## 将组织成员身份同步为组userinfo 响应 (`https://huggingface.co/oauth/userinfo`) 包含一个 `groups` 声明：用户所属组织的名称，作为字符串数组。
 
 ```json
 {
@@ -162,7 +161,9 @@ userinfo 响应 (`https://huggingface.co/oauth/userinfo`) 包含一个 `groups` 
   "groups": ["my-org", "another-org"],
   "orgs": [ ... ]
 }
-```许多 OIDC 客户端（例如 Discourse、Grafana、Argo CD、Vault、Kubernetes）可以从包含字符串数组的声明同步组成员身份，并且通常配置有 `groups` 声明。您可以使用它将 Hugging Face 组织映射到应用程序中的角色或组。有关每个组织的更多详细信息（ID、角色等），请改用 `orgs` 字段。
+```
+
+许多 OIDC 客户端（例如 Discourse、Grafana、Argo CD、Vault、Kubernetes）可以从包含字符串数组的声明同步组成员身份，并且通常配置有 `groups` 声明。您可以使用它将 Hugging Face 组织映射到应用程序中的角色或组。有关每个组织的更多详细信息（ID、角色等），请改用 `orgs` 字段。
 
 需要记住以下几点：
 
@@ -176,25 +177,25 @@ userinfo 响应 (`https://huggingface.co/oauth/userinfo`) 包含一个 `groups` 
 
 查看 [our badges](https://huggingface.co/datasets/huggingface/badges#sign-in-with-hugging-face) 以及将它们集成到 Markdown 或 HTML 中的说明。
 
-[⟦T83⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
 [⟦T84⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
-
 [⟦T85⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
+
 [⟦T86⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
-
 [⟦T87⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
+
 [⟦T88⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
-
 [⟦T89⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
+
 [⟦T90⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
+[⟦T91⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
 
-## 组织令牌交换 (RFC 8693)
+## 组织令牌交换 (RFC 8693)> [!警告]
+> 此功能是企业计划的一部分。
 
-> [!警告]
-> 此功能是企业计划的一部分。令牌交换允许组织以编程方式为其成员颁发访问令牌，而无需交互式用户同意。这对于构建需要代表组织成员访问 Hugging Face 资源的内部工具、自动化管道和企业集成特别有用。
+令牌交换允许组织以编程方式为其成员颁发访问令牌，而无需交互式用户同意。这对于构建需要代表组织成员访问 Hugging Face 资源的内部工具、自动化管道和企业集成特别有用。
 
 > [!提示]
-> 如果您只需要 CI/CD 工作流程（GitHub Actions、GitLab CI、CircleCI 等）中的无密钥身份验证（无需为每个成员颁发令牌），请参阅[Trusted Publishers](./trusted-publishers)，它也使用 `/oauth/token`，但采用 CI 提供商铸造的 OIDC `id_token` 作为主题令牌（不需要企业计划，不需要客户端凭据）。
+> 如果您只需要 CI/CD 工作流程（GitHub Actions、GitLab CI、CircleCI 等）中的无密钥身份验证（无需为每个成员颁发令牌），请参阅[Trusted Publishers](./trusted-publishers)，它也使用 `/oauth/token`，但采用 CI 提供商铸造的 OIDC `id_token` 作为主题令牌（无需企业计划，无需客户端凭据）。
 
 该功能实现了[RFC 8693 - OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html)，一种用于代币交换场景的标准协议。
 
@@ -289,7 +290,7 @@ curl -X POST "https://huggingface.co/oauth/token" \
 
 ### 安全考虑
 
-通过代币交易所发行的代币具有内置的安全限制：- **组织范围**：令牌只能访问组织内的资源（组织拥有的模型、数据集、空间和集合）。在组织外部，访问权限是只读的，并且仅限于：来自任何用户或组织的公共集合，以及用户已单独授予访问权限的公共门控存储库。
+通过Token Exchange发行的Token具有内置的安全限制：- **组织范围**：令牌只能访问组织内的资源（组织拥有的模型、数据集、空间和集合）。在组织外部，访问权限是只读的，并且仅限于：来自任何用户或组织的公共集合，以及用户已单独授予访问权限的公共门控存储库。
 - **无个人访问**：代币无法访问用户的个人私有存储库或来自其他组织的私有存储库。
 - **短暂**：令牌默认在 8 小时后过期。组织管理员可以在 OAuth 应用程序设置中配置令牌持续时间（最长 30 天）。不提供刷新令牌。
 - **可审计**：所有代币交换都会记录在您组织的[audit logs](./audit-logs)中并可见。

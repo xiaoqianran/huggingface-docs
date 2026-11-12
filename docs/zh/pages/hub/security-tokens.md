@@ -8,7 +8,7 @@
 
 访问令牌允许应用程序和笔记本执行由以下所示的角色范围指定的特定操作：
 
-- `fine-grained`：具有此角色的代币可用于提供对特定资源的细粒度访问，例如特定组织中的特定模型或模型。这种类型的令牌在生产环境中非常有用，因为您可以使用自己的令牌，而无需共享对所有资源的访问权限。
+- `fine-grained`：具有此角色的代币可用于提供对特定资源的细粒度访问，例如特定组织中的特定模型或模型。这种类型的令牌在生产环境中非常有用，因为您可以使用自己的令牌，而无需共享对所有资源的访问权限。要通过 API 请求访问 [gated repositories](./models-gated)，请使用具有 **请求访问门控存储库** 权限的细粒度令牌。 `read` 令牌不能用于提交访问请求。
 
 - `read`：具有此角色的令牌只能用于提供对您可以读取的存储库的读取访问权限。这包括您或您所属的组织拥有的公共和私人存储库。如果您只需要从 Hugging Face Hub 读取内容（例如，下载私有模型或进行推理时），请使用此角色。- `write`：具有此角色的令牌还授予对您有写访问权限的存储库的写访问权限。如果您需要创建内容或将内容推送到存储库（例如，在训练模型或修改模型卡时），请使用此令牌。
 
@@ -55,15 +55,15 @@ model = AutoModel.from_pretrained("private/model", token=access_token)
 
 ### 对于 CI/CD 管道
 
-如果您只需要从 CI/CD 工作流程（GitHub Actions、GitLab CI、CircleCI 等）进行访问，则可以完全避免将访问令牌存储为 CI 机密。请参阅[Trusted Publishers](./trusted-publishers)，它会在每次运行开始时将 CI 提供商的 OpenID Connect (OIDC) 身份令牌交换为短期 Hub 令牌 - 要么是存储库范围（用于发布模型、数据集、空间或内核，或以只读方式拉取它们），要么是用户范围（用于读取您有权访问的门控存储库并获取帐户的速率限制）。
+如果您只需要从 CI/CD 工作流程（GitHub Actions、GitLab CI、CircleCI 等）进行访问，则可以完全避免将访问令牌存储为 CI 机密。请参阅 [Trusted Publishers](./trusted-publishers)，它会在每次运行开始时将 CI 提供商的 OpenID Connect (OIDC) 身份令牌交换为短期 Hub 令牌 - 要么是存储库范围（用于发布模型、数据集、空间或内核，或以只读方式拉取它们），要么是用户范围（用于读取您有权访问的门控存储库并获取帐户的速率限制）。
 
 ### 对于企业组织
 
 如果您的组织需要以编程方式为成员颁发令牌而不要求每个用户创建自己的令牌，请参阅[OAuth Token Exchange](./oauth#token-exchange-for-organizations-rfc-8693)。此企业计划功能非常适合构建需要代表组织成员访问 Hugging Face 资源的内部平台、CI/CD 管道或自定义集成。## 撤销泄露的令牌
 
-如果您自己的令牌之一已泄露，请从设置的[Access Tokens tab](https://huggingface.co/settings/tokens)中删除或刷新它。
+如果您自己的令牌之一已泄漏，请从设置的[Access Tokens tab](https://huggingface.co/settings/tokens)中删除或刷新它。
 
-如果您发现了其他人的 Hugging Face 访问令牌，您可以使用 [⟦T7⟧](https://huggingface-openapi.hf.space/#tag/tokens/POST/api/credentials/revoke) 端点使其失效。您不需要对拥有该令牌的帐户或组织拥有任何权利。
+如果您发现了其他人的 Hugging Face 访问令牌，您可以使用 [⟦T8⟧](https://huggingface-openapi.hf.space/#tag/tokens/POST/api/credentials/revoke) 端点使其失效。您不需要拥有该令牌的帐户或组织的任何权利。
 
 ```bash
 # LEAKED_HF_TOKEN should contain the raw token value to revoke
@@ -76,7 +76,7 @@ curl -X POST "https://huggingface.co/api/credentials/revoke" \
 
 每个提交的与现有令牌匹配的令牌都会立即失效，并在所有地方停止工作 - 与[organization-level revocation](./enterprise-tokens-management#revoking-via-api)不同，它只会切断令牌对单个组织的访问。令牌的所有者会收到电子邮件通知，需要创建新令牌才能恢复访问权限。
 
-无论您提交的任何令牌是否存在，端点总是以`202 Accepted`响应，因此它的响应不能用于探测令牌是否有效。再次提交相同的令牌是无害的：重复调用不会执行任何操作，并且所有者只会收到一次通知。
+无论您提交的任何令牌是否存在，端点总是以 `202 Accepted` 进行响应，因此它的响应不能用于探测令牌是否有效。再次提交相同的令牌是无害的：重复调用不会执行任何操作，并且所有者只会收到一次通知。
 
 > [!提示]
 > 为了避免泄漏 shell 历史记录或日志中的令牌值，请通过环境变量或文件传递它们，并避免将原始令牌直接粘贴到命令行中。## 具有代币管理政策的组织中的代币

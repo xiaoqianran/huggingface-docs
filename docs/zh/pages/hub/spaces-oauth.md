@@ -14,7 +14,7 @@
 
 ## 创建一个 OAuth 应用程序
 
-您所需要做的就是将 `hf_oauth: true` 添加到 `README.md` 文件内的空间元数据中。
+您需要做的就是将 `hf_oauth: true` 添加到 `README.md` 文件内的空间元数据中。
 
 以下是渐变空间的元数据示例：
 
@@ -50,7 +50,7 @@ hf_oauth_authorized_org:
 这会将以下 [environment variables](https://huggingface.co/docs/hub/spaces-overview#built-in-environment-variables) 添加到您的空间：- `OAUTH_CLIENT_ID`：OAuth 应用程序的客户端 ID（公共）
 - `OAUTH_CLIENT_SECRET`：OAuth 应用程序的客户端密钥
 - `OAUTH_SCOPES`：OAuth 应用程序可访问的范围。
-- `OPENID_PROVIDER_URL`：OpenID 提供商的 URL。 OpenID 元数据将于 [⟦T8⟧](https://huggingface.co/.well-known/openid-configuration) 提供。
+- `OPENID_PROVIDER_URL`：OpenID 提供商的 URL。 OpenID 元数据将在 [⟦T8⟧](https://huggingface.co/.well-known/openid-configuration) 提供。
 
 对于任何其他环境变量，您可以通过使用 `os.getenv("OAUTH_CLIENT_ID")` 在代码中使用它们。
 
@@ -73,17 +73,18 @@ hf_oauth_authorized_org:
 - `read-billing`：了解用户是否设置了支付方式。
 - `read-memberships`：了解用户属于哪些组织，以及他们在每个组织中的角色。这不会授予对组织设置或资源的访问权限。
 - `read-repos`：阅读用户的个人存储库。
-- `gated-repos`：读取用户已被授予访问权限的公共门控存储库的内容。与 `read-repos` 不同，这不会授予对私人存储库的访问权限。
+- `gated-repos`：读取用户已被授予访问权限的公共门控存储库的内容。与`read-repos`不同，这不会授予对私人存储库的访问权限。
+- `request-gated-repos`：代表用户请求访问门控存储库。根据存储库的门控设置，用户的个人资料作为请求的一部分与存储库作者共享。
 - `contribute-repos`：创建存储库并访问此应用程序创建的存储库。除非授予额外权限，否则无法访问任何其他存储库。
 - `write-repos`：读写用户的个人存储库。
 - `manage-repos`：全面管理用户的个人仓库，包括创建和删除它们。
 - `read-collections`：阅读用户的个人收藏。
 - `write-collections`：读写用户的个人收藏，包括创建和删除它们。
-- `inference-api`：代表用户向[Inference Providers](https://huggingface.co/docs/inference-providers/index)发出推理请求。
-- `read-endpoints`：查看用户的[Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index)，并代表用户向其发出推理请求。
+- `inference-api`：代表用户向[Inference Providers](https://huggingface.co/docs/inference-providers/index)提出推理请求。- `read-endpoints`：查看用户的[Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index)并代表用户向其发出推理请求。
 - `write-endpoints`：管理用户的推理端点，包括创建和删除它们。包括 `read-endpoints` 访问权限。
 - `jobs`：运行[jobs](https://huggingface.co/docs/huggingface_hub/main/en/guides/jobs)
-- `webhooks`：管理[webhooks](https://huggingface.co/docs/huggingface_hub/main/en/guides/webhooks)- `write-discussions`：代表用户打开讨论和拉取请求，并与讨论互动（包括反应、发布/编辑评论、结束讨论等）。要在私有存储库上打开拉取请求，您还需要请求 `read-repos` 范围。
+- `webhooks`：管理[webhooks](https://huggingface.co/docs/huggingface_hub/main/en/guides/webhooks)
+- `write-discussions`：代表用户打开讨论和拉取请求，并与讨论互动（包括反应、发布/编辑评论、结束讨论等）。要在私有存储库上打开拉取请求，您还需要请求 `read-repos` 范围。
 
 ## 访问组织资源
 
@@ -93,13 +94,13 @@ hf_oauth_authorized_org:
 
 用户在授权应用程序时可以选择向哪些组织授予访问权限。如果您需要访问特定组织，可以将 `orgIds=ORG_ID` 作为查询参数添加到 OAuth 授权 URL。您必须将 `ORG_ID` 替换为组织 ID，该 ID 可在 userinfo 响应的 `organizations.sub` 字段中找到。
 
-## 将按钮添加到您的空间
-
-现在，您已掌握向您的空间添加“使用 HF 登录”按钮的所有信息。一些库（[Python](https://github.com/lepture/authlib)、[NodeJS](https://github.com/panva/node-openid-client)）可以帮助您实现 OpenID/OAuth 协议。
+## 将按钮添加到您的空间现在，您已掌握向您的空间添加“使用 HF 登录”按钮的所有信息。一些库（[Python](https://github.com/lepture/authlib)、[NodeJS](https://github.com/panva/node-openid-client)）可以帮助您实现 OpenID/OAuth 协议。
 
 Gradio 和 Huggingface.js 还提供**内置支持**，使得使用 HF 按钮实现登录变得轻而易举；您可以通过[gradio](https://www.gradio.app/guides/sharing-your-app#o-auth-login-via-hugging-face)和[huggingface.js](https://huggingface.co/docs/huggingface.js/hub/README#oauth-login)查看相关指南。
 
-基本上，您需要：- 将用户重定向到`https://huggingface.co/oauth/authorize?redirect_uri={REDIRECT_URI}&scope=openid%20profile&client_id={CLIENT_ID}&state={STATE}`，其中`STATE`是一个随机字符串，您稍后需要验证。
+基本上，您需要：
+
+- 将用户重定向到`https://huggingface.co/oauth/authorize?redirect_uri={REDIRECT_URI}&scope=openid%20profile&client_id={CLIENT_ID}&state={STATE}`，其中`STATE`是一个随机字符串，您稍后需要验证。
 - 处理`/auth/callback`或`/login/callback`（或您自己的自定义回调URL）上的回调并验证`state`参数。
 - 使用 `code` 查询参数从 `https://huggingface.co/oauth/token` 获取访问令牌和 id 令牌（使用 `client_id`、`code`、`grant_type=authorization_code` 和 `redirect_uri` 作为表单数据，并使用 `Authorization: Basic {base64(client_id:client_secret)}` 作为标头的 POST 请求）。
 
