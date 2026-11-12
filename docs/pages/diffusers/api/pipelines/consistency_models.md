@@ -42,26 +42,26 @@ For an additional speed-up, use `torch.compile` to generate multiple images in <
 diffusers.ConsistencyModelPipeline(unet: UNet2DModel, scheduler: CMStochasticIterativeScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/consistency_models/pipeline_consistency_models.py#L67)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/consistency_models/pipeline_consistency_models.py#L67)
 
 **Parameters:**
 
-unet ([UNet2DModel](/docs/diffusers/v0.42.1/en/api/models/unet2d#diffusers.UNet2DModel)) : A `UNet2DModel` to denoise the encoded image latents.
+unet ([UNet2DModel](/docs/diffusers/v0.43.0/en/api/models/unet2d#diffusers.UNet2DModel)) : A `UNet2DModel` to denoise the encoded image latents.
 
-scheduler ([SchedulerMixin](/docs/diffusers/v0.42.1/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Currently only compatible with [CMStochasticIterativeScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/cm_stochastic_iterative#diffusers.CMStochasticIterativeScheduler).
+scheduler ([SchedulerMixin](/docs/diffusers/v0.43.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Currently only compatible with [CMStochasticIterativeScheduler](/docs/diffusers/v0.43.0/en/api/schedulers/cm_stochastic_iterative#diffusers.CMStochasticIterativeScheduler).
 
 Pipeline for unconditional or class-conditional image generation.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.43.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.ConsistencyModelPipeline.__call__]]
 
 ```python
-__call__(batch_size: int = 1, class_labels: typing.Union[torch.Tensor, list[int], int, NoneType] = None, num_inference_steps: int = 1, timesteps: list = None, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int = 1)
+__call__(batch_size: int = 1, class_labels: typing.Union[torch.Tensor, list[int], int, NoneType] = None, num_inference_steps: int = 1, timesteps: list[int] = None, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback: typing.Optional[typing.Callable[[int, int, torch.Tensor], NoneType]] = None, callback_steps: int = 1)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/consistency_models/pipeline_consistency_models.py#L171)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/consistency_models/pipeline_consistency_models.py#L171)
 
 **Parameters:**
 
@@ -79,15 +79,15 @@ latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents sampled from 
 
 output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated image. Choose between `PIL.Image` or `np.array`.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.42.1/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.43.0/en/api/pipelines/consistency_models#diffusers.ImagePipelineOutput) instead of a plain tuple.
 
 callback (`Callable`, *optional*) : A function that calls every `callback_steps` steps during inference. The function is called with the following arguments: `callback(step: int, timestep: int, latents: torch.Tensor)`.
 
 callback_steps (`int`, *optional*, defaults to 1) : The frequency at which the `callback` function is called. If not specified, the callback is called at every step.
 
-**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.42.1/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.43.0/en/api/pipelines/consistency_models#diffusers.ImagePipelineOutput) or `tuple`
 
-If `return_dict` is `True`, [ImagePipelineOutput](/docs/diffusers/v0.42.1/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) is returned, otherwise a `tuple` is
+If `return_dict` is `True`, [ImagePipelineOutput](/docs/diffusers/v0.43.0/en/api/pipelines/consistency_models#diffusers.ImagePipelineOutput) is returned, otherwise a `tuple` is
 returned where the first element is a list with the generated images.
 
 Examples:
@@ -126,7 +126,7 @@ Examples:
 diffusers.ImagePipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/pipeline_utils.py#L135)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/pipeline_utils.py#L135)
 
 **Parameters:**
 
@@ -134,8 +134,8 @@ images (`List[PIL.Image.Image]` or `np.ndarray`) : List of denoised PIL images o
 
 Output class for image pipelines.
 
-### Wan Animate 2
-https://huggingface.co/docs/diffusers/v0.42.1/api/pipelines/wan_animate_2.md
+### Cogview3
+https://huggingface.co/docs/diffusers/v0.43.0/api/pipelines/cogview3.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -148,196 +148,164 @@ https://huggingface.co/docs/diffusers/v0.42.1/api/pipelines/wan_animate_2.md
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-# limitations under the License. -->
+# limitations under the License.
+-->
 
-# Wan-Animate-2
+# CogView3Plus
 
-[Wan-Animate-2](https://github.com/Wan-Video/Wan2.2) by the Alibaba Wan Team animates a reference character image with the motion of a driving video. The driving video is processed in fixed-length segments: each segment runs a reference-extraction pass that caches the driving segment's K/V in every transformer layer, denoises against that cache, and is decoded inside the loop because the next segment conditions on the previous segment's decoded tail frames.
+[CogView3: Finer and Faster Text-to-Image Generation via Relay Diffusion](https://huggingface.co/papers/2403.05121) from Tsinghua University & ZhipuAI, by Wendi Zheng, Jiayan Teng, Zhuoyi Yang, Weihan Wang, Jidong Chen, Xiaotao Gu, Yuxiao Dong, Ming Ding, Jie Tang.
 
-Two presets are available: the base checkpoint samples with classifier-free guidance, and the distilled checkpoint samples in few steps without it (its guider is pinned to `guidance_scale=1.0`).
+The abstract from the paper is:
 
-```python
-import torch
-from diffusers import ModularPipeline
-from diffusers.utils import export_to_video, load_image, load_video
+*Recent advancements in text-to-image generative systems have been largely driven by diffusion models. However, single-stage text-to-image diffusion models still face challenges, in terms of computational efficiency and the refinement of image details. To tackle the issue, we propose CogView3, an innovative cascaded framework that enhances the performance of text-to-image diffusion. CogView3 is the first model implementing relay diffusion in the realm of text-to-image generation, executing the task by first creating low-resolution images and subsequently applying relay-based super-resolution. This methodology not only results in competitive text-to-image outputs but also greatly reduces both training and inference costs. Our experimental results demonstrate that CogView3 outperforms SDXL, the current state-of-the-art open-source text-to-image diffusion model, by 77.0% in human evaluations, all while requiring only about 1/2 of the inference time. The distilled variant of CogView3 achieves comparable performance while only utilizing 1/10 of the inference time by SDXL.*
 
-pipe = ModularPipeline.from_pretrained("Wan-AI/Wan2.2-Animate-2-14B-Diffusers")
-pipe.load_components(dtype=torch.bfloat16)
+> [!TIP]
+> Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reusing-models-in-multiple-pipelines) section to learn how to efficiently load the same components into multiple pipelines.
 
-# The transformer weights and the per-segment reference KV cache do not co-reside on one 80 GB
-# card at the default resolution, so stream the transformer's blocks. Compiling the blocks is
-# required as the in-context attention runs on the flex backend
-pipe.transformer.enable_group_offload(
-    onload_device=torch.device("cuda"),
-    offload_device=torch.device("cpu"),
-    offload_type="block_level",
-    use_stream=True,
-)
-pipe.text_encoder.to("cuda")  # or "mps", "xpu", "cpu"
-pipe.image_encoder.to("cuda")
-pipe.vae.to("cuda")
-pipe.transformer.compile_repeated_blocks(fullgraph=False)
+This pipeline was contributed by [zRzRzRzRzRzRzR](https://github.com/zRzRzRzRzRzRzR). The original codebase can be found [here](https://huggingface.co/THUDM). The original weights can be found under [hf.co/THUDM](https://huggingface.co/THUDM).
 
-# The first demo from the official repository: https://github.com/Wan-Video/Wan-Animate-2
-demo = "https://raw.githubusercontent.com/Wan-Video/Wan-Animate-2/main/examples/demo1"
-image = load_image(f"{demo}/reference.png")
-driving_video, driving_video_fps = load_video(f"{demo}/template.mp4", return_fps=True)
-prompt = "人物外观描述：一只银灰色虎斑纹的小猫，拥有圆润的脸庞、竖立的耳朵和巨大的圆形眼睛。它身穿一套深蓝色的制服套装，包括一件带有金色纽扣的西装外套和一条百褶裙。外套里面搭配着白色衬衫，领口处系着一个红色的蝴蝶结，袖口露出白色的衬衫边缘。背景描述：背景为纯白色，光线均匀明亮，无其他杂物或装饰。"
+## CogView3PlusPipeline[[diffusers.CogView3PlusPipeline]]
 
-videos = pipe(
-    image=image,
-    driving_video=driving_video,
-    driving_video_fps=driving_video_fps,
-    prompt=prompt,
-    output="videos",
-)
-export_to_video(videos[0], "output.mp4", fps=24)
-```
-
-For the distilled checkpoint, load `Wan-AI/Wan2.2-Animate-2-14B-Distilled-Diffusers` the same way — nothing else changes. Each preset carries its own sampling defaults (40 steps for the base checkpoint, 10 for the distilled one), and no `guidance_scale` argument exists anywhere: guidance is owned by the pipeline's guider component (classifier-free guidance at 3.0 for the base preset, disabled for the distilled one).
-
-`height` and `width` (defaults 800 and 640) set the target *area* of the generated video; the actual frame size keeps the reference image's aspect ratio, and the driving frames are letterboxed to it. Inputs that already sit at the target letterbox size pass through the preprocessing untouched, so preprocessing can also be done entirely outside the pipeline.
-
-## WanAnimate2ModularPipeline[[diffusers.WanAnimate2ModularPipeline]]
-
-#### diffusers.WanAnimate2ModularPipeline[[diffusers.WanAnimate2ModularPipeline]]
+#### diffusers.CogView3PlusPipeline[[diffusers.CogView3PlusPipeline]]
 
 ```python
-diffusers.WanAnimate2ModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
+diffusers.CogView3PlusPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, vae: AutoencoderKL, transformer: CogView3PlusTransformer2DModel, scheduler: diffusers.schedulers.scheduling_ddim_cogvideox.CogVideoXDDIMScheduler | diffusers.schedulers.scheduling_dpm_cogvideox.CogVideoXDPMScheduler)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/wan_animate_2/modular_pipeline.py#L23)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cogview3/pipeline_cogview3plus.py#L118)
 
-A ModularPipeline for Wan-Animate-2 character animation.
+**Parameters:**
 
-## WanAnimate2DistilledModularPipeline[[diffusers.WanAnimate2DistilledModularPipeline]]
+vae ([AutoencoderKL](/docs/diffusers/v0.43.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
 
-#### diffusers.WanAnimate2DistilledModularPipeline[[diffusers.WanAnimate2DistilledModularPipeline]]
+text_encoder (`T5EncoderModel`) : Frozen text-encoder. CogView3Plus uses [T5](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5EncoderModel); specifically the [t5-v1_1-xxl](https://huggingface.co/PixArt-alpha/PixArt-alpha/tree/main/t5-v1_1-xxl) variant.
+
+tokenizer (`T5Tokenizer`) : Tokenizer of class [T5Tokenizer](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5Tokenizer).
+
+transformer ([CogView3PlusTransformer2DModel](/docs/diffusers/v0.43.0/en/api/models/cogview3plus_transformer2d#diffusers.CogView3PlusTransformer2DModel)) : A text conditioned `CogView3PlusTransformer2DModel` to denoise the encoded image latents.
+
+scheduler ([SchedulerMixin](/docs/diffusers/v0.43.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+
+Pipeline for text-to-image generation using CogView3Plus.
+
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.43.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
+
+#### __call__[[diffusers.CogView3PlusPipeline.__call__]]
 
 ```python
-diffusers.WanAnimate2DistilledModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
+__call__(prompt: str | list[str] | None = None, negative_prompt: str | list[str] | None = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, timesteps: list[int] | None = None, guidance_scale: float = 5.0, num_images_per_prompt: int = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, original_size: tuple[int, int] | None = None, crops_coords_top_left: tuple[int, int] = (0, 0), output_type: str = 'pil', return_dict: bool = True, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list[str] = ['latents'], max_sequence_length: int = 224)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/wan_animate_2/modular_pipeline.py#L62)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cogview3/pipeline_cogview3plus.py#L407)
 
-A ModularPipeline for the distilled Wan-Animate-2 model, which samples in few steps without classifier-free
-guidance.
+**Parameters:**
 
-## WanAnimate2Blocks[[diffusers.WanAnimate2Blocks]]
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`.
 
-#### diffusers.WanAnimate2Blocks[[diffusers.WanAnimate2Blocks]]
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is less than `1`).
+
+height (`int`, *optional*, defaults to self.transformer.config.sample_size * self.vae_scale_factor) : The height in pixels of the generated image. If not provided, it is set to 1024.
+
+width (`int`, *optional*, defaults to self.transformer.config.sample_size * self.vae_scale_factor) : The width in pixels of the generated image. If not provided it is set to 1024.
+
+num_inference_steps (`int`, *optional*, defaults to `50`) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+timesteps (`list[int]`, *optional*) : Custom timesteps to use for the denoising process with schedulers which support a `timesteps` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used. Must be in descending order.
+
+guidance_scale (`float`, *optional*, defaults to `5.0`) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2. of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower image quality.
+
+num_images_per_prompt (`int`, *optional*, defaults to `1`) : The number of images to generate per prompt.
+
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://arxiv.org/abs/2010.02502) paper. Only applies to [DDIMScheduler](/docs/diffusers/v0.43.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.FloatTensor`, *optional*) : Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor will be generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+negative_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+original_size (`tuple[int]`, *optional*, defaults to (1024, 1024)) : If `original_size` is not the same as `target_size` the image will appear to be down- or upsampled. `original_size` defaults to `(height, width)` if not specified. Part of SDXL's micro-conditioning as explained in section 2.2 of [https://huggingface.co/papers/2307.01952](https://huggingface.co/papers/2307.01952).
+
+crops_coords_top_left (`tuple[int]`, *optional*, defaults to (0, 0)) : `crops_coords_top_left` can be used to generate an image that appears to be "cropped" from the position `crops_coords_top_left` downwards. Favorable, well-centered images are usually achieved by setting `crops_coords_top_left` to (0, 0). Part of SDXL's micro-conditioning as explained in section 2.2 of [https://huggingface.co/papers/2307.01952](https://huggingface.co/papers/2307.01952).
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.stable_diffusion_xl.StableDiffusionXLPipelineOutput` instead of a plain tuple.
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int`, defaults to `224`) : Maximum sequence length in encoded prompt. Can be set to other values but may lead to poorer results.
+
+**Returns:** [CogView3PipelineOutput](/docs/diffusers/v0.43.0/en/api/pipelines/cogview3#diffusers.pipelines.cogview3.pipeline_output.CogView3PipelineOutput) or `tuple`
+
+[CogView3PipelineOutput](/docs/diffusers/v0.43.0/en/api/pipelines/cogview3#diffusers.pipelines.cogview3.pipeline_output.CogView3PipelineOutput) if `return_dict` is True, otherwise a
+`tuple`. When returning a tuple, the first element is a list with the generated images.
+
+Function invoked when calling the pipeline for generation.
+
+Examples:
+```python
+>>> import torch
+>>> from diffusers import CogView3PlusPipeline
+
+>>> pipe = CogView3PlusPipeline.from_pretrained("THUDM/CogView3-Plus-3B", torch_dtype=torch.bfloat16)
+>>> pipe.to("cuda")
+
+>>> prompt = "A photo of an astronaut riding a horse on mars"
+>>> image = pipe(prompt).images[0]
+>>> image.save("output.png")
+```
+
+#### encode_prompt[[diffusers.CogView3PlusPipeline.encode_prompt]]
 
 ```python
-diffusers.WanAnimate2Blocks()
+encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 224, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/wan_animate_2/modular_blocks_wan_animate_2.py#L252)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cogview3/pipeline_cogview3plus.py#L210)
 
-Modular pipeline blocks for Wan-Animate-2 character animation: a reference character image and a driving video
-produce a video of the character following the driving motion.
+**Parameters:**
 
-Components:
-text_encoder (`UMT5EncoderModel`) tokenizer (`AutoTokenizer`) image_processor (`WanAnimate2VideoProcessor`)
-image_encoder (`CLIPVisionModel`) video_processor (`WanAnimate2VideoProcessor`) vae (`AutoencoderKLWan`)
-transformer (`WanAnimate2Transformer3DModel`) scheduler (`SchedulerMixin`) guider (`ClassifierFreeGuidance`)
+prompt (`str` or `list[str]`, *optional*) : prompt to be encoded
 
-Inputs:
-prompt (`str`):
-The prompt or prompts to guide image generation.
-negative_prompt (`str`, *optional*):
-The prompt or prompts not to guide the image generation.
-prompt_ref (`str`, *optional*, defaults to 人物动作的参考视频):
-The reference prompt for the driving video context
-max_sequence_length (`int`, *optional*, defaults to 512):
-Maximum sequence length for prompt encoding.
-image (`Image | list`):
-The reference image holding the character to animate.
-height (`int`, *optional*, defaults to 800):
-Together with `width`, the target *area* of the generated video; the aspect ratio comes from `image`.
-Overwritten with the resolved frame height.
-width (`int`, *optional*, defaults to 640):
-See `height`. Overwritten with the resolved frame width.
-driving_video (`list`):
-The driving video that provides the motion, in any format accepted by `VideoProcessor.preprocess_video`.
-driving_video_fps (`float`, *optional*):
-The frame rate `driving_video` was captured at — `load_video(..., return_fps=True)` reports it. When set,
-the driving frames are resampled from it to `fps`; when `None` they are used as-is.
-fps (`int`, *optional*, defaults to 24):
-The frame rate the model generates at
-segment_frame_length (`int`, *optional*, defaults to 81):
-The number of frames in each inference segment
-prev_segment_conditioning_frames (`int`, *optional*, defaults to 1):
-The number of conditioning frames carried over from the previous segment
-generator (`Generator`, *optional*):
-Torch generator for deterministic generation.
-num_inference_steps (`int`, *optional*, defaults to 40):
-The number of denoising steps.
-**denoiser_input_fields (`None`, *optional*):
-conditional model inputs for the denoiser: e.g. prompt_embeds, negative_prompt_embeds, etc.
-output_type (`str`, *optional*, defaults to np):
-The output type of the decoded videos
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is less than `1`).
 
-Outputs:
-videos (`list`):
-The generated videos.
+do_classifier_free_guidance (`bool`, *optional*, defaults to `True`) : Whether to use classifier free guidance or not.
 
-## WanAnimate2DistilledBlocks[[diffusers.WanAnimate2DistilledBlocks]]
+num_images_per_prompt (`int`, *optional*, defaults to 1) : Number of images that should be generated per prompt. torch device to place the resulting embeddings on
 
-#### diffusers.WanAnimate2DistilledBlocks[[diffusers.WanAnimate2DistilledBlocks]]
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+max_sequence_length (`int`, defaults to `224`) : Maximum sequence length in encoded prompt. Can be set to other values but may lead to poorer results.
+
+device : (`torch.device`, *optional*): torch device
+
+dtype : (`torch.dtype`, *optional*): torch dtype
+
+Encodes the prompt into text encoder hidden states.
+
+## CogView3PipelineOutput[[diffusers.pipelines.cogview3.pipeline_output.CogView3PipelineOutput]]
+
+#### diffusers.pipelines.cogview3.pipeline_output.CogView3PipelineOutput[[diffusers.pipelines.cogview3.pipeline_output.CogView3PipelineOutput]]
 
 ```python
-diffusers.WanAnimate2DistilledBlocks()
+diffusers.pipelines.cogview3.pipeline_output.CogView3PipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/wan_animate_2/modular_blocks_wan_animate_2_distilled.py#L254)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cogview3/pipeline_output.py#L10)
 
-Modular pipeline blocks for distilled Wan-Animate-2 character animation, sampling in few steps without
-classifier-free guidance.
+**Parameters:**
 
-Components:
-text_encoder (`UMT5EncoderModel`) tokenizer (`AutoTokenizer`) image_processor (`WanAnimate2VideoProcessor`)
-image_encoder (`CLIPVisionModel`) video_processor (`WanAnimate2VideoProcessor`) vae (`AutoencoderKLWan`)
-transformer (`WanAnimate2Transformer3DModel`) scheduler (`SchedulerMixin`) guider (`ClassifierFreeGuidance`)
+images (`list[PIL.Image.Image]` or `np.ndarray`) : list of denoised PIL images of length `batch_size` or numpy array of shape `(batch_size, height, width, num_channels)`. PIL images or numpy array present the denoised images of the diffusion pipeline.
 
-Inputs:
-prompt (`str`):
-The prompt or prompts to guide image generation.
-negative_prompt (`str`, *optional*):
-The prompt or prompts not to guide the image generation.
-prompt_ref (`str`, *optional*, defaults to 人物动作的参考视频):
-The reference prompt for the driving video context
-max_sequence_length (`int`, *optional*, defaults to 512):
-Maximum sequence length for prompt encoding.
-image (`Image | list`):
-The reference image holding the character to animate.
-height (`int`, *optional*, defaults to 800):
-Together with `width`, the target *area* of the generated video; the aspect ratio comes from `image`.
-Overwritten with the resolved frame height.
-width (`int`, *optional*, defaults to 640):
-See `height`. Overwritten with the resolved frame width.
-driving_video (`list`):
-The driving video that provides the motion, in any format accepted by `VideoProcessor.preprocess_video`.
-driving_video_fps (`float`, *optional*):
-The frame rate `driving_video` was captured at — `load_video(..., return_fps=True)` reports it. When set,
-the driving frames are resampled from it to `fps`; when `None` they are used as-is.
-fps (`int`, *optional*, defaults to 24):
-The frame rate the model generates at
-segment_frame_length (`int`, *optional*, defaults to 81):
-The number of frames in each inference segment
-prev_segment_conditioning_frames (`int`, *optional*, defaults to 1):
-The number of conditioning frames carried over from the previous segment
-generator (`Generator`, *optional*):
-Torch generator for deterministic generation.
-num_inference_steps (`int`, *optional*, defaults to 10):
-The number of denoising steps.
-**denoiser_input_fields (`None`, *optional*):
-conditional model inputs for the denoiser: e.g. prompt_embeds, negative_prompt_embeds, etc.
-output_type (`str`, *optional*, defaults to np):
-The output type of the decoded videos
+Output class for CogView3 pipelines.
 
-Outputs:
-videos (`list`):
-The generated videos.
-
-### Kolors: Effective Training of Diffusion Model for Photorealistic Text-to-Image Synthesis
-https://huggingface.co/docs/diffusers/v0.42.1/api/pipelines/kolors.md
+### ControlNet
+https://huggingface.co/docs/diffusers/v0.43.0/api/pipelines/controlnet_sana.md

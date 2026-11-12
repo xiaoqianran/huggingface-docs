@@ -2,7 +2,7 @@
 
 🤗 Diffusers provides pretrained models for popular algorithms and modules to create custom diffusion systems. The primary function of models is to denoise an input sample as modeled by the distribution  \\(p_{\theta}(x_{t-1}|x_{t})\\).
 
-All models are built from the base [ModelMixin](/docs/diffusers/v0.42.1/en/api/models/overview#diffusers.ModelMixin) class which is a [`torch.nn.Module`](https://pytorch.org/docs/stable/generated/torch.nn.Module.html) providing basic functionality for saving and loading models, locally and from the Hugging Face Hub.
+All models are built from the base [ModelMixin](/docs/diffusers/v0.43.0/en/api/models/overview#diffusers.ModelMixin) class which is a [`torch.nn.Module`](https://pytorch.org/docs/stable/generated/torch.nn.Module.html) providing basic functionality for saving and loading models, locally and from the Hugging Face Hub.
 
 ## ModelMixin[[diffusers.ModelMixin]]
 
@@ -12,14 +12,14 @@ All models are built from the base [ModelMixin](/docs/diffusers/v0.42.1/en/api/m
 diffusers.ModelMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_utils.py#L243)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_utils.py#L240)
 
 Base class for all models.
 
-[ModelMixin](/docs/diffusers/v0.42.1/en/api/models/overview#diffusers.ModelMixin) takes care of storing the model configuration and provides methods for loading, downloading and
+[ModelMixin](/docs/diffusers/v0.43.0/en/api/models/overview#diffusers.ModelMixin) takes care of storing the model configuration and provides methods for loading, downloading and
 saving models.
 
-- **config_name** (`str`) -- Filename to save a model to when calling [save_pretrained()](/docs/diffusers/v0.42.1/en/api/models/overview#diffusers.ModelMixin.save_pretrained).
+- **config_name** (`str`) -- Filename to save a model to when calling [save_pretrained()](/docs/diffusers/v0.43.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained).
 
 #### compile_repeated_blocks[[diffusers.ModelMixin.compile_repeated_blocks]]
 
@@ -27,7 +27,7 @@ saving models.
 compile_repeated_blocks(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_utils.py#L1664)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_utils.py#L1646)
 
 Compiles *only* the frequently repeated sub-modules of a model (e.g. the Transformer layers) instead of
 compiling the entire model. This technique—often called **regional compilation** (see the PyTorch recipe
@@ -60,7 +60,7 @@ real subclasses keep a normal metaclass and `inspect.signature` reads their real
 dequantize()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_utils.py#L891)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_utils.py#L890)
 
 Potentially dequantize the model in case it has been quantized by a quantization method that support
 dequantization.
@@ -71,7 +71,7 @@ dequantization.
 disable_gradient_checkpointing()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_utils.py#L327)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_utils.py#L323)
 
 Deactivates gradient checkpointing for the current model (may be referred to as *activation checkpointing* or
 *checkpoint activations* in other frameworks).
@@ -82,7 +82,7 @@ Deactivates gradient checkpointing for the current model (may be referred to as 
 disable_npu_flash_attention()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_utils.py#L358)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_utils.py#L354)
 
 disable npu flash attention from torch_npu
 
@@ -92,7 +92,7 @@ disable npu flash attention from torch_npu
 disable_xformers_memory_efficient_attention()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_utils.py#L441)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_utils.py#L437)
 
 Disable memory efficient attention from [xFormers](https://facebookresearch.github.io/xformers/).
 
@@ -102,7 +102,7 @@ Disable memory efficient attention from [xFormers](https://facebookresearch.gith
 disable_xla_flash_attention()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_utils.py#L388)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_utils.py#L384)
 
 Disable the flash attention pallals kernel for torch_xla.
 
@@ -112,7 +112,7 @@ Disable the flash attention pallals kernel for torch_xla.
 enable_gradient_checkpointing(gradient_checkpointing_func: typing.Optional[typing.Callable] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_utils.py#L297)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_utils.py#L294)
 
 **Parameters:**
 
@@ -127,11 +127,11 @@ Activates gradient checkpointing for the current model (may be referred to as *a
 enable_group_offload(onload_device: device, offload_device: device = torch.device(), offload_type: str = 'block_level', num_blocks_per_group: int | None = None, non_blocking: bool = False, use_stream: bool = False, record_stream: bool = False, low_cpu_mem_usage = False, offload_to_disk_path: str | None = None, block_modules: str | None = None, exclude_kwargs: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_utils.py#L532)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_utils.py#L528)
 
 Activates group offloading for the current model.
 
-See [apply_group_offloading()](/docs/diffusers/v0.42.1/en/api/utilities#diffusers.hooks.apply_group_offloading) for more information.
+See [apply_group_offloading()](/docs/diffusers/v0.43.0/en/api/utilities#diffusers.hooks.apply_group_offloading) for more information.
 
 Example:
 
@@ -156,7 +156,7 @@ Example:
 enable_layerwise_casting(storage_dtype: dtype = torch.float8_e4m3fn, compute_dtype: typing.Optional[torch.dtype] = None, skip_modules_pattern: tuple[str, ...] | None = None, skip_modules_classes: tuple[typing.Type[torch.nn.Module], ...] | None = None, non_blocking: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_utils.py#L447)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_utils.py#L443)
 
 **Parameters:**
 
@@ -181,11 +181,11 @@ By default, most models in diffusers set the `_skip_layerwise_casting_patterns` 
 embedding, positional embedding and normalization layers. This is because these layers are most likely
 precision-critical for quality. If you wish to change this behavior, you can set the
 `_skip_layerwise_casting_patterns` attribute to `None`, or call
-[apply_layerwise_casting()](/docs/diffusers/v0.42.1/en/api/utilities#diffusers.hooks.apply_layerwise_casting) with custom arguments.
+[apply_layerwise_casting()](/docs/diffusers/v0.43.0/en/api/utilities#diffusers.hooks.apply_layerwise_casting) with custom arguments.
 
 Example:
 
-Using [enable_layerwise_casting()](/docs/diffusers/v0.42.1/en/api/models/overview#diffusers.ModelMixin.enable_layerwise_casting):
+Using [enable_layerwise_casting()](/docs/diffusers/v0.43.0/en/api/models/overview#diffusers.ModelMixin.enable_layerwise_casting):
 
 ```python
 >>> from diffusers import CogVideoXTransformer3DModel
@@ -204,7 +204,7 @@ Using [enable_layerwise_casting()](/docs/diffusers/v0.42.1/en/api/models/overvie
 enable_npu_flash_attention()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_utils.py#L351)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_utils.py#L347)
 
 Enable npu flash attention from torch_npu
 
@@ -214,7 +214,7 @@ Enable npu flash attention from torch_npu
 enable_xformers_memory_efficient_attention(attention_op: typing.Optional[typing.Callable] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_utils.py#L409)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_utils.py#L405)
 
 **Parameters:**
 
@@ -248,7 +248,7 @@ Examples:
 enable_xla_flash_attention(partition_spec: typing.Optional[typing.Callable] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_utils.py#L382)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_utils.py#L378)
 
 Enable the flash attention pallals kernel for torch_xla.
 
@@ -258,11 +258,11 @@ Enable the flash attention pallals kernel for torch_xla.
 from_pretrained(pretrained_model_name_or_path: str | os.PathLike | None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_utils.py#L903)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_utils.py#L902)
 
 **Parameters:**
 
-pretrained_model_name_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *model id* (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a *directory* (for example `./my_model_directory`) containing the model weights saved with [save_pretrained()](/docs/diffusers/v0.42.1/en/api/models/overview#diffusers.ModelMixin.save_pretrained). 
+pretrained_model_name_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *model id* (for example `google/ddpm-celebahq-256`) of a pretrained model hosted on the Hub. - A path to a *directory* (for example `./my_model_directory`) containing the model weights saved with [save_pretrained()](/docs/diffusers/v0.43.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained). 
 
 cache_dir (`str | os.PathLike`, *optional*) : Path to a directory where a downloaded pretrained model configuration is cached if the standard cache is not used.
 
@@ -284,7 +284,7 @@ subfolder (`str`, *optional*, defaults to `""`) : The subfolder location of a mo
 
 mirror (`str`, *optional*) : Mirror source to resolve accessibility issues if you're downloading a model in China. We do not guarantee the timeliness or safety of the source, and you should refer to the mirror site for more information.
 
-device_map (`int | str | torch.device` or `dict[str, int | str | torch.device]`, *optional*) : A map that specifies where each submodule should go. It doesn't need to be defined for each parameter/buffer name; once a given module name is inside, every submodule of it will be sent to the same device. Defaults to `None`, meaning that the model will be loaded on CPU.  Examples:  ```py >>> from diffusers import AutoModel >>> import torch  >>> # This works. >>> model = AutoModel.from_pretrained( ...     "stabilityai/stable-diffusion-xl-base-1.0", subfolder="unet", device_map="cuda" ... ) >>> # This also works (integer accelerator device ID). >>> model = AutoModel.from_pretrained( ...     "stabilityai/stable-diffusion-xl-base-1.0", subfolder="unet", device_map=0 ... ) >>> # Specifying a supported offloading strategy like "auto" also works. >>> model = AutoModel.from_pretrained( ...     "stabilityai/stable-diffusion-xl-base-1.0", subfolder="unet", device_map="auto" ... ) >>> # Specifying a dictionary as `device_map` also works. >>> model = AutoModel.from_pretrained( ...     "stabilityai/stable-diffusion-xl-base-1.0", ...     subfolder="unet", ...     device_map={"": torch.device("cuda")}, ... ) ```  Set `device_map="auto"` to have 🤗 Accelerate automatically compute the most optimized `device_map`. For more information about each option see [designing a device map](https://huggingface.co/docs/accelerate/en/concept_guides/big_model_inference#the-devicemap). You can also refer to the [Diffusers-specific documentation](https://huggingface.co/docs/diffusers/main/en/training/distributed_inference#model-sharding) for more concrete examples.
+device_map (`int | str | torch.device` or `dict[str, int | str | torch.device]`, *optional*) : A map that specifies where each submodule should go. It doesn't need to be defined for each parameter/buffer name; once a given module name is inside, every submodule of it will be sent to the same device. Defaults to `None`, meaning that the model will be loaded on CPU.  Examples:  ```py >>> from diffusers import AutoModel >>> import torch  >>> # This works. >>> model = AutoModel.from_pretrained( ...     "stabilityai/stable-diffusion-xl-base-1.0", subfolder="unet", device_map="cuda" ... ) >>> # This also works (integer accelerator device ID). >>> model = AutoModel.from_pretrained( ...     "stabilityai/stable-diffusion-xl-base-1.0", subfolder="unet", device_map=0 ... ) >>> # Specifying a supported offloading strategy like "auto" also works. >>> model = AutoModel.from_pretrained( ...     "stabilityai/stable-diffusion-xl-base-1.0", subfolder="unet", device_map="auto" ... ) >>> # Specifying a dictionary as `device_map` also works. >>> model = AutoModel.from_pretrained( ...     "stabilityai/stable-diffusion-xl-base-1.0", ...     subfolder="unet", ...     device_map={"": torch.device("cuda")}, ... ) ```  Set `device_map="auto"` to have 🤗 Accelerate automatically compute the most optimized `device_map`. For more information about each option see [designing a device map](https://huggingface.co/docs/accelerate/en/concept_guides/big_model_inference#the-devicemap). You can also refer to the [Diffusers-specific documentation](https://huggingface.co/docs/diffusers/main/en/optimization/device_map) for more concrete examples.
 
 max_memory (`Dict`, *optional*) : A dictionary device identifier for the maximum memory. Will default to the maximum memory available for each GPU and the available CPU RAM if unset.
 
@@ -336,7 +336,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 get_memory_footprint(return_buffers = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_utils.py#L2168)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_utils.py#L2154)
 
 **Parameters:**
 
@@ -352,7 +352,7 @@ PyTorch discussions: https://discuss.pytorch.org/t/gpu-memory-that-model-uses/56
 num_parameters(only_trainable: bool = False, exclude_embeddings: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_utils.py#L2104)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_utils.py#L2090)
 
 **Parameters:**
 
@@ -383,7 +383,7 @@ unet.num_parameters(only_trainable=True)
 reset_attention_backend()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_utils.py#L670)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_utils.py#L663)
 
 Resets the attention backend for the model. Following calls to `forward` will use the environment default, if
 set, or the torch native scaled dot product attention.
@@ -394,7 +394,7 @@ set, or the torch native scaled dot product attention.
 save_pretrained(save_directory: str | os.PathLike, is_main_process: bool = True, save_function: typing.Optional[typing.Callable] = None, safe_serialization: bool = True, variant: str | None = None, max_shard_size: int | str = '10GB', push_to_hub: bool = False, use_flashpack: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_utils.py#L689)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_utils.py#L682)
 
 **Parameters:**
 
@@ -412,10 +412,10 @@ max_shard_size (`int` or `str`, defaults to `"10GB"`) : The maximum size for a c
 
 push_to_hub (`bool`, *optional*, defaults to `False`) : Whether or not to push your model to the Hugging Face Hub after saving it. You can specify the repository you want to push to with `repo_id` (will default to the name of `save_directory` in your namespace).
 
-kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments passed along to the [push_to_hub()](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method.
+kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments passed along to the [push_to_hub()](/docs/diffusers/v0.43.0/en/api/schedulers/overview#diffusers.utils.PushToHubMixin.push_to_hub) method.
 
 Save a model and its configuration file to a directory so that it can be reloaded using the
-[from_pretrained()](/docs/diffusers/v0.42.1/en/api/models/overview#diffusers.ModelMixin.from_pretrained) class method.
+[from_pretrained()](/docs/diffusers/v0.43.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained) class method.
 
 #### set_attention_backend[[diffusers.ModelMixin.set_attention_backend]]
 
@@ -423,7 +423,7 @@ Save a model and its configuration file to a directory so that it can be reloade
 set_attention_backend(backend: str)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_utils.py#L608)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_utils.py#L604)
 
 **Parameters:**
 
@@ -437,7 +437,7 @@ Set the attention backend for the model.
 set_use_npu_flash_attention(valid: bool)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_utils.py#L335)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_utils.py#L331)
 
 Set the switch for the npu flash attention.
 
@@ -461,7 +461,7 @@ real subclasses keep a normal metaclass and `inspect.signature` reads their real
 diffusers.utils.PushToHubMixin()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/utils/hub_utils.py#L491)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/utils/hub_utils.py#L491)
 
 A Mixin to push a model, scheduler, or pipeline to the Hugging Face Hub.
 
@@ -471,7 +471,7 @@ A Mixin to push a model, scheduler, or pipeline to the Hugging Face Hub.
 push_to_hub(repo_id: str, commit_message: str | None = None, private: bool | None = None, token: str | None = None, create_pr: bool = False, safe_serialization: bool = True, variant: str | None = None, subfolder: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/utils/hub_utils.py#L526)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/utils/hub_utils.py#L526)
 
 **Parameters:**
 
@@ -505,5 +505,5 @@ unet.push_to_hub("my-finetuned-unet")
 unet.push_to_hub("your-org/my-finetuned-unet")
 ```
 
-### ConsisIDTransformer3DModel
-https://huggingface.co/docs/diffusers/v0.42.1/api/models/consisid_transformer3d.md
+### Krea2Transformer2DModel
+https://huggingface.co/docs/diffusers/v0.43.0/api/models/krea2_transformer2d.md

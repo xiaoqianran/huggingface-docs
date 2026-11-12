@@ -49,5 +49,5 @@ To speedup training and reduce memory-usage, we recommend:
 - using PyTorch 2.0 or higher to automatically use [scaled dot product attention](../optimization/fp16#scaled-dot-product-attention) during training (you don't need to make any changes to the training code)
 - installing [xFormers](../optimization/attention_backends) to enable memory-efficient attention
 
-### Hugging Face Jobs
-https://huggingface.co/docs/diffusers/v0.42.1/training/jobs.md
+### InstructPix2Pix
+https://huggingface.co/docs/diffusers/v0.43.0/training/instructpix2pix.md

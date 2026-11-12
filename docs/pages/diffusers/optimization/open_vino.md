@@ -66,5 +66,5 @@ To further speed-up inference, [statically reshape](#stable-diffusion) the model
 
 You can find more examples in the 🤗 Optimum [documentation](https://huggingface.co/docs/optimum/intel/inference#stable-diffusion-xl), and running SDXL in OpenVINO is supported for text-to-image and image-to-image.
 
-### Accelerate inference
-https://huggingface.co/docs/diffusers/v0.42.1/optimization/fp16.md
+### Intel Gaudi
+https://huggingface.co/docs/diffusers/v0.43.0/optimization/habana.md

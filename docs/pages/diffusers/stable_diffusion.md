@@ -1,14 +1,14 @@
 # Basic performance
 
-Diffusion is a random process that is computationally demanding. You may need to run the [DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline) several times before getting a desired output. That's why it's important to carefully balance generation speed and memory usage in order to iterate faster,
+Diffusion is a random process that is computationally demanding. You may need to run the [DiffusionPipeline](/docs/diffusers/v0.43.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) several times before getting a desired output. That's why it's important to carefully balance generation speed and memory usage in order to iterate faster,
 
-This guide recommends some basic performance tips for using the [DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline). Refer to the Inference Optimization section docs such as [Accelerate inference](./optimization/fp16) or [Reduce memory usage](./optimization/memory) for more detailed performance guides.
+This guide recommends some basic performance tips for using the [DiffusionPipeline](/docs/diffusers/v0.43.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Refer to the Inference Optimization section docs such as [Accelerate inference](./optimization/fp16) or [Reduce memory usage](./optimization/memory) for more detailed performance guides.
 
 ## Memory usage
 
 Reducing the amount of memory used indirectly speeds up generation and can help a model fit on device.
 
-The [enable_model_cpu_offload()](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) method moves a model to the CPU when it is not in use to save GPU memory.
+The [enable_model_cpu_offload()](/docs/diffusers/v0.43.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) method moves a model to the CPU when it is not in use to save GPU memory.
 
 ```py
 import torch
@@ -48,7 +48,7 @@ pipeline = DiffusionPipeline.from_pretrained(
 )
 ```
 
-- Use a faster scheduler, such as [DPMSolverMultistepScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler), which only requires ~20-25 steps.
+- Use a faster scheduler, such as [DPMSolverMultistepScheduler](/docs/diffusers/v0.43.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler), which only requires ~20-25 steps.
 - Set `num_inference_steps` to a lower value. Reducing the number of inference steps reduces the overall number of computations. However, this can result in lower generation quality.
 
 ```py
@@ -92,7 +92,7 @@ Many modern diffusion models deliver high-quality images out-of-the-box. However
 
     For more details about creating better prompts, take a look at the [Prompt techniques](./using-diffusers/weighted_prompts) doc.
 
-- Try a different scheduler, like [HeunDiscreteScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/heun#diffusers.HeunDiscreteScheduler) or [LMSDiscreteScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler), that gives up generation speed for quality.
+- Try a different scheduler, like [HeunDiscreteScheduler](/docs/diffusers/v0.43.0/en/api/schedulers/heun#diffusers.HeunDiscreteScheduler) or [LMSDiscreteScheduler](/docs/diffusers/v0.43.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler), that gives up generation speed for quality.
 
     ```py
     import torch
@@ -117,35 +117,5 @@ Many modern diffusion models deliver high-quality images out-of-the-box. However
 
 Diffusers offers more advanced and powerful optimizations such as [group-offloading](./optimization/memory#group-offloading) and [regional compilation](./optimization/fp16#regional-compilation). To learn more about how to maximize performance, take a look at the Inference Optimization section.
 
-### Diffusers
-https://huggingface.co/docs/diffusers/v0.42.1/index.md
-
-# Diffusers
-
-Diffusers provides pretrained diffusion models and the building blocks for custom image, video, and audio workflows.
-
-It has two main paths.
-
-- [DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline) supports few-line inference with pretrained checkpoints, plus adapters like LoRA. This is the easy path for generation.
-- [Modular Diffusers](./modular_diffusers/overview) enables composable blocks and [ModularPipeline](/docs/diffusers/v0.42.1/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) for custom pipelines when you need more control.
-
-Optimizations such as offloading and quantization keep large models runnable on memory-constrained devices. If memory is not an issue, Diffusers also supports `torch.compile` for faster inference.
-
-Browse trending Diffusers models on the [Hub](https://huggingface.co/models?library=diffusers&sort=trending) now.
-
-## Learn
-
-If you're a beginner, start with the [Hugging Face Diffusion Models Course](https://huggingface.co/learn/diffusion-course/unit0/1). It covers diffusion theory and how to generate images, fine-tune models, and more with Diffusers.
-
-The [Quickstart](./quicktour) also includes a copyable agent setup prompt for inference.
-
-## Where next
-
-- [Inference](./using-diffusers/loading) — load pipelines and run generation
-- [Optimize and scale](./stable_diffusion) — memory, speed, quantization, and serving
-- [Modular Diffusers](./modular_diffusers/overview) — build custom pipelines from blocks
-- [Train and fine-tune](./training/overview) — train diffusion models and adapters
-- [CLI](./using-diffusers/cli) - run and package pipelines from the command line
-
-### LoRA
-https://huggingface.co/docs/diffusers/v0.42.1/tutorials/using_peft_for_inference.md
+### Installation
+https://huggingface.co/docs/diffusers/v0.43.0/installation.md

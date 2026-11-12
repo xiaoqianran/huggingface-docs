@@ -83,5 +83,5 @@ See the [DBCache design](https://github.com/vipshop/cache-dit/blob/main/docs/use
 - For pipelines CacheDiT doesn't support yet, see the [BlockAdapter](https://github.com/vipshop/cache-dit/blob/main/docs/user_guide/CACHE_API.md#automatic-block-adapter) docs.
 - CacheDiT also supports [context parallelism](https://github.com/vipshop/cache-dit/blob/main/docs/user_guide/CONTEXT_PARALLEL.md) and [quantization](https://github.com/vipshop/cache-dit/blob/main/docs/user_guide/QUANTIZATION.md).
 
-### Attention backends
-https://huggingface.co/docs/diffusers/v0.42.1/optimization/attention_backends.md
+### Tensor parallelism
+https://huggingface.co/docs/diffusers/v0.43.0/optimization/tensor_parallelism.md

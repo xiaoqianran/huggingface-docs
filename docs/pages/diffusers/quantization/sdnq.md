@@ -30,7 +30,7 @@ image.save("output.png")
 
 ## Quantize a model on the fly
 
-Pass an [SDNQConfig](/docs/diffusers/v0.42.1/en/api/quantization#diffusers.SDNQConfig) to `from_pretrained` to quantize a model during loading. Use [PipelineQuantizationConfig](/docs/diffusers/v0.42.1/en/api/quantization#diffusers.PipelineQuantizationConfig) to quantize specific pipeline components.
+Pass an [SDNQConfig](/docs/diffusers/v0.43.0/en/api/quantization#diffusers.SDNQConfig) to `from_pretrained` to quantize a model during loading. Use [PipelineQuantizationConfig](/docs/diffusers/v0.43.0/en/api/quantization#diffusers.PipelineQuantizationConfig) to quantize specific pipeline components.
 
 ```python
 import torch
@@ -109,5 +109,5 @@ transformer.save_pretrained("z-image-turbo-sdnq-int8")
 - [SDNQ repository](https://github.com/Disty0/sdnq)
 - [Prequantized SDNQ models on the Hub](https://huggingface.co/models?search=sdnq)
 
-### Getting started
-https://huggingface.co/docs/diffusers/v0.42.1/quantization/overview.md
+### torchao
+https://huggingface.co/docs/diffusers/v0.43.0/quantization/torchao.md

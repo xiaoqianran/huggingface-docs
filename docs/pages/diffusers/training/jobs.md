@@ -124,5 +124,5 @@ When training ends, the LoRA is saved to the bucket as `pytorch_lora_weights.saf
 - Load your trained LoRA for inference with the [LoRA](../tutorials/using_peft_for_inference) guide.
 - Browse the [DreamBooth README files](https://github.com/huggingface/diffusers/tree/main/examples/dreambooth) for model-specific commands and memory options.
 
-### Textual Inversion
-https://huggingface.co/docs/diffusers/v0.42.1/training/text_inversion.md
+### Stable Diffusion XL
+https://huggingface.co/docs/diffusers/v0.43.0/training/sdxl.md

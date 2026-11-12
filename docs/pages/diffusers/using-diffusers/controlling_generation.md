@@ -6,7 +6,7 @@ Most examples of preserving semantics reduce to being able to accurately map a c
 
 Additionally, there are qualities of generated images that we would like to influence beyond semantic preservation. I.e. in general, we would like our outputs to be of good quality, adhere to a particular style, or be realistic.
 
-We will document some of the techniques `diffusers` supports to control generation of diffusion models. Much is cutting edge research and can be quite nuanced. If something needs clarifying or you have a suggestion, don't hesitate to open a discussion on the [forum](https://discuss.huggingface.co/c/discussion-related-to-httpsgithubcomhuggingfacediffusers/63) or a [GitHub issue](https://github.com/huggingface/diffusers/issues).
+We will document some of the techniques `diffusers` supports to control generation of diffusion models. Much is cutting edge research and can be quite nuanced. If something needs clarifying or you have a suggestion, don't hesitate to open a [GitHub Discussion](https://github.com/huggingface/diffusers/discussions) or a [GitHub issue](https://github.com/huggingface/diffusers/issues).
 
 We provide a high level explanation of how the generation can be controlled as well as a snippet of the technicals. For more in depth explanations on the technicals, the original papers which are linked from the pipelines are always the best resources.
 
@@ -160,5 +160,5 @@ approach applicable to a wide range of popular diffusion models, which exploits
 the self-attention layer present in the most widely used architectures to condition
 the diffusion process on a set of feedback images.
 
-### DreamBooth
-https://huggingface.co/docs/diffusers/v0.42.1/using-diffusers/dreambooth.md
+### Legacy adapters
+https://huggingface.co/docs/diffusers/v0.43.0/using-diffusers/legacy_adapters.md

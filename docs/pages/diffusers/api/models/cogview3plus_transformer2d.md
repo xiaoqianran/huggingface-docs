@@ -18,7 +18,7 @@ transformer = CogView3PlusTransformer2DModel.from_pretrained("THUDM/CogView3Plus
 diffusers.CogView3PlusTransformer2DModel(patch_size: int = 2, in_channels: int = 16, num_layers: int = 30, attention_head_dim: int = 40, num_attention_heads: int = 64, out_channels: int = 16, text_embed_dim: int = 4096, time_embed_dim: int = 512, condition_dim: int = 256, pos_embed_max_size: int = 128, sample_size: int = 128)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_cogview3plus.py#L126)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/transformers/transformer_cogview3plus.py#L126)
 
 **Parameters:**
 
@@ -53,7 +53,7 @@ Diffusion](https://huggingface.co/papers/2403.05121).
 forward(hidden_states: Tensor, encoder_hidden_states: Tensor, timestep: LongTensor, original_size: Tensor, target_size: Tensor, crop_coords: Tensor, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/transformers/transformer_cogview3plus.py#L225)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/transformers/transformer_cogview3plus.py#L225)
 
 **Parameters:**
 
@@ -75,7 +75,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 
 The denoised latents using provided inputs as conditioning.
 
-The [CogView3PlusTransformer2DModel](/docs/diffusers/v0.42.1/en/api/models/cogview3plus_transformer2d#diffusers.CogView3PlusTransformer2DModel) forward method.
+The [CogView3PlusTransformer2DModel](/docs/diffusers/v0.43.0/en/api/models/cogview3plus_transformer2d#diffusers.CogView3PlusTransformer2DModel) forward method.
 
 ## Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
@@ -85,13 +85,59 @@ The [CogView3PlusTransformer2DModel](/docs/diffusers/v0.42.1/en/api/models/cogvi
 diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/modeling_outputs.py#L21)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.42.1/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.43.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-The output of [Transformer2DModel](/docs/diffusers/v0.42.1/en/api/models/transformer2d#diffusers.Transformer2DModel).
+The output of [Transformer2DModel](/docs/diffusers/v0.43.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
 
-### AutoencoderSAME
-https://huggingface.co/docs/diffusers/v0.42.1/api/models/autoencoder_same.md
+### LatteTransformer3DModel
+https://huggingface.co/docs/diffusers/v0.43.0/api/models/latte_transformer3d.md
+
+## LatteTransformer3DModel
+
+A Diffusion Transformer model for 3D data from [Latte](https://github.com/Vchitect/Latte).
+
+## LatteTransformer3DModel[[diffusers.LatteTransformer3DModel]]
+
+#### diffusers.LatteTransformer3DModel[[diffusers.LatteTransformer3DModel]]
+
+```python
+diffusers.LatteTransformer3DModel(num_attention_heads: int = 16, attention_head_dim: int = 88, in_channels: int | None = None, out_channels: int | None = None, num_layers: int = 1, dropout: float = 0.0, cross_attention_dim: int | None = None, attention_bias: bool = False, sample_size: int = 64, patch_size: int | None = None, activation_fn: str = 'geglu', num_embeds_ada_norm: int | None = None, norm_type: str = 'layer_norm', norm_elementwise_affine: bool = True, norm_eps: float = 1e-05, caption_channels: int = None, video_length: int = 16)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/transformers/latte_transformer_3d.py#L27)
+
+#### forward[[diffusers.LatteTransformer3DModel.forward]]
+
+```python
+forward(hidden_states: Tensor, timestep: typing.Optional[torch.LongTensor] = None, encoder_hidden_states: typing.Optional[torch.Tensor] = None, encoder_attention_mask: typing.Optional[torch.Tensor] = None, enable_temporal_attentions: bool = True, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/transformers/latte_transformer_3d.py#L166)
+
+**Parameters:**
+
+hidden_states (`torch.Tensor` of shape `(batch size, channel, num_frame, height, width)`) : Input `hidden_states`.
+
+timestep ( `torch.LongTensor`, *optional*) : Used to indicate denoising step. Optional timestep to be applied as an embedding in `AdaLayerNorm`.
+
+encoder_hidden_states ( `torch.FloatTensor` of shape `(batch size, sequence len, embed dims)`, *optional*) : Conditional embeddings for cross attention layer. If not given, cross-attention defaults to self-attention.
+
+encoder_attention_mask ( `torch.Tensor`, *optional*) : Cross-attention mask applied to `encoder_hidden_states`. Two formats supported:  * Mask `(batcheight, sequence_length)` True = keep, False = discard. * Bias `(batcheight, 1, sequence_length)` 0 = keep, -10000 = discard.  If `ndim == 2`: will be interpreted as a mask, then converted into a bias consistent with the format above. This bias will be added to the cross-attention scores.
+
+enable_temporal_attentions : (`bool`, *optional*, defaults to `True`): Whether to enable temporal attentions.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~models.unet_2d_condition.UNet2DConditionOutput` instead of a plain tuple.
+
+**Returns:**
+
+If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
+`tuple` where the first element is the sample tensor.
+
+The [LatteTransformer3DModel](/docs/diffusers/v0.43.0/en/api/models/latte_transformer3d#diffusers.LatteTransformer3DModel) forward method.
+
+### BriaTransformer2DModel
+https://huggingface.co/docs/diffusers/v0.43.0/api/models/bria_transformer.md

@@ -183,5 +183,5 @@ output = pipeline(
 export_to_video(output, "output.mp4", fps=16)
 ```
 
-### ONNX Runtime
-https://huggingface.co/docs/diffusers/v0.42.1/optimization/onnx.md
+### Outpainting
+https://huggingface.co/docs/diffusers/v0.43.0/advanced_inference/outpaint.md

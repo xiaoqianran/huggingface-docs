@@ -19,7 +19,7 @@ This guide will show you how to set and use the different attention backends.
 
 ## set_attention_backend
 
-The [set_attention_backend()](/docs/diffusers/v0.42.1/en/api/models/overview#diffusers.ModelMixin.set_attention_backend) method iterates through all the modules in the model and sets the appropriate attention backend to use. The attention backend setting persists until [reset_attention_backend()](/docs/diffusers/v0.42.1/en/api/models/overview#diffusers.ModelMixin.reset_attention_backend) is called.
+The [set_attention_backend()](/docs/diffusers/v0.43.0/en/api/models/overview#diffusers.ModelMixin.set_attention_backend) method iterates through all the modules in the model and sets the appropriate attention backend to use. The attention backend setting persists until [reset_attention_backend()](/docs/diffusers/v0.43.0/en/api/models/overview#diffusers.ModelMixin.reset_attention_backend) is called.
 
 The example below demonstrates how to enable the `_flash_3_hub` implementation for FlashAttention-3 from the [`kernels`](https://github.com/huggingface/kernels) library, which allows you to instantly use optimized compute kernels from the Hub without requiring any setup.
 
@@ -42,7 +42,7 @@ highly detailed, high budget hollywood movie, cinemascope, moody, epic, gorgeous
 pipeline(prompt).images[0]
 ```
 
-To restore the default attention backend, call [reset_attention_backend()](/docs/diffusers/v0.42.1/en/api/models/overview#diffusers.ModelMixin.reset_attention_backend).
+To restore the default attention backend, call [reset_attention_backend()](/docs/diffusers/v0.43.0/en/api/models/overview#diffusers.ModelMixin.reset_attention_backend).
 
 ```py
 pipeline.transformer.reset_attention_backend()
@@ -145,6 +145,7 @@ Expand
 | `flash_varlen` | [FlashAttention](https://github.com/Dao-AILab/flash-attention) | Variable length FlashAttention |
 | `flash_varlen_hub` | [FlashAttention](https://github.com/Dao-AILab/flash-attention) | Variable length FlashAttention from kernels |
 | `aiter_fa2_hub` | [AI Tensor Engine for ROCm](https://github.com/ROCm/aiter) | FlashAttention-2 for AMD ROCm from kernels |
+| `aiter_sage_hub` | [AI Tensor Engine for ROCm](https://github.com/ROCm/aiter) | Quantized attention (INT8 QK, FP8 PV) for AMD RDNA4 (gfx1201) from kernels |
 | `flash_4_hub` | [FlashAttention](https://github.com/Dao-AILab/flash-attention) | FlashAttention-4 |
 | `_flash_3` | [FlashAttention](https://github.com/Dao-AILab/flash-attention) | FlashAttention-3 |
 | `_flash_varlen_3` | [FlashAttention](https://github.com/Dao-AILab/flash-attention) | Variable length FlashAttention-3 |
@@ -160,5 +161,5 @@ Expand
 | `_sage_qk_int8_pv_fp16_triton` | [SageAttention](https://github.com/thu-ml/SageAttention) | INT8 QK + FP16 PV (Triton) |
 | `xformers` | [xFormers](https://github.com/facebookresearch/xformers) | Memory-efficient attention |
 
-### Pruna
-https://huggingface.co/docs/diffusers/v0.42.1/optimization/pruna.md
+### Compiling and offloading quantized models
+https://huggingface.co/docs/diffusers/v0.43.0/optimization/speed-memory-optims.md

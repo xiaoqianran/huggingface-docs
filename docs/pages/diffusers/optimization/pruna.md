@@ -163,10 +163,10 @@ Now that you have seen how to optimize and evaluate your models, you can start u
 
 ## Reference
 
-- [Pruna](https://github.com/pruna-ai/pruna)
+- [Pruna](https://github.com/PrunaAI/pruna)
 - [Pruna optimization](https://docs.pruna.ai/en/stable/docs_pruna/user_manual/configure.html#configure-algorithms)
 - [Pruna evaluation](https://docs.pruna.ai/en/stable/docs_pruna/user_manual/evaluate.html)
 - [Pruna tutorials](https://docs.pruna.ai/en/stable/docs_pruna/tutorials/index.html)
 
-### xDiT
-https://huggingface.co/docs/diffusers/v0.42.1/optimization/xdit.md
+### CacheDiT
+https://huggingface.co/docs/diffusers/v0.43.0/optimization/cache_dit.md

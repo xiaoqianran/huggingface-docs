@@ -364,7 +364,7 @@ snapshot_download(
 The code samples below provide a brief overview of how to train a DeepFloyd IF model with a combination of DreamBooth and LoRA. Some important parameters to note are:
 
 * `--resolution=64`, a much smaller resolution is required because DeepFloyd IF is a pixel diffusion model and to work on uncompressed pixels, the input images must be smaller
-* `--pre_compute_text_embeddings`, compute the text embeddings ahead of time to save memory because the [T5Model](https://huggingface.co/docs/transformers/v5.20.2/en/model_doc/t5#transformers.T5Model) can take up a lot of memory
+* `--pre_compute_text_embeddings`, compute the text embeddings ahead of time to save memory because the [T5Model](https://huggingface.co/docs/transformers/v5.22.2/en/model_doc/t5#transformers.T5Model) can take up a lot of memory
 * `--tokenizer_max_length=77`, you can use a longer default text length with T5 as the text encoder but the default model encoding procedure uses a shorter text length
 * `--text_encoder_use_attention_mask`, to pass the attention mask to the text encoder
 
@@ -505,7 +505,7 @@ Training the DeepFloyd IF model can be challenging, but here are some tips that 
 - For common or simple objects, you don't necessarily need to finetune the upscaler. Make sure the prompt passed to the upscaler is adjusted to remove the new token from the instance prompt. For example, if your stage 1 prompt is "a sks dog" then your stage 2 prompt should be "a dog".
 - For finer details like faces, fully training the stage 2 upscaler is better than training the stage 2 model with LoRA. It also helps to use lower learning rates with larger batch sizes.
 - Lower learning rates should be used to train the stage 2 model.
-- The [DDPMScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/ddpm#diffusers.DDPMScheduler) works better than the DPMSolver used in the training scripts.
+- The [DDPMScheduler](/docs/diffusers/v0.43.0/en/api/schedulers/ddpm#diffusers.DDPMScheduler) works better than the DPMSolver used in the training scripts.
 
 ## Next steps
 
@@ -514,5 +514,5 @@ Congratulations on training your DreamBooth model! To learn more about how to us
 - Learn how to [load a DreamBooth checkpoint](../using-diffusers/dreambooth) for inference.
 - If you trained with LoRA, see [LoRA for inference](../tutorials/using_peft_for_inference).
 
-### InstructPix2Pix
-https://huggingface.co/docs/diffusers/v0.42.1/training/instructpix2pix.md
+### LoRA
+https://huggingface.co/docs/diffusers/v0.43.0/training/lora.md

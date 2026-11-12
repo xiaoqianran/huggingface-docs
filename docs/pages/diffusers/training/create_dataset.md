@@ -49,7 +49,7 @@ dataset = load_dataset("imagefolder", data_files="path_to_zip_file")
 # example 3: remote files (supported formats are tar, gzip, zip, xz, rar, zstd)
 dataset = load_dataset(
     "imagefolder",
-    data_files="https://download.microsoft.com/download/3/E/1/3E1C3F21-ECDB-4869-8368-6DEBA77B919F/kagglecatsanddogs_3367a.zip",
+    data_files="https://download.microsoft.com/download/3/E/1/3E1C3F21-ECDB-4869-8368-6DEBA77B919F/kagglecatsanddogs_5340.zip",
 )
 
 # example 4: providing several splits
@@ -58,7 +58,7 @@ dataset = load_dataset(
 )
 ```
 
-Then use the `push_to_hub` method to upload the dataset to the Hub:
+Then use the [push_to_hub](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset.push_to_hub) method to upload the dataset to the Hub:
 
 ```python
 # assuming you have ran the hf auth login command in a terminal
@@ -83,5 +83,5 @@ Now that you've created a dataset, you can plug it into the `train_data_dir` (if
 
 For your next steps, feel free to try and use your dataset to train a model for [unconditional generation](unconditional_training) or [text-to-image generation](text2image)!
 
-### DreamBooth
-https://huggingface.co/docs/diffusers/v0.42.1/training/dreambooth.md
+### Kandinsky 2.2
+https://huggingface.co/docs/diffusers/v0.43.0/training/kandinsky.md

@@ -8,7 +8,7 @@ MiniMax-H3 generates video and its soundtrack together. A single transformer den
 
 You can find the original MiniMax-H3 checkpoints under the [MiniMaxAI](https://huggingface.co/MiniMaxAI) organization.
 
-MiniMax-H3 is integrated as [Modular Diffusers](../../modular_diffusers/overview) blocks only, the way [Anima](./anima) is: the blocks and their [MiniMaxH3ModularPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/minimax_h3#diffusers.MiniMaxH3ModularPipeline) are the whole integration, and there is no `DiffusionPipeline` half.
+MiniMax-H3 is integrated as [Modular Diffusers](../../modular_diffusers/overview) blocks only, the way [Anima](./anima) is: the blocks and their [MiniMaxH3ModularPipeline](/docs/diffusers/v0.43.0/en/api/pipelines/minimax_h3#diffusers.MiniMaxH3ModularPipeline) are the whole integration, and there is no `DiffusionPipeline` half.
 
 ## Checkpoint layout
 
@@ -23,7 +23,7 @@ Everything but the transformer, i.e. the video VAE, the audio VAE, the Qwen3-VL 
 
 The conditioner is a `Qwen3VLForConditionalGeneration`, and MiniMax-H3 reads the *unnormalized* hidden state after its 50th decoder layer rather than the last one, so the full released checkpoint is used with its language-model head unused.
 
-All three tasks are workflows of the one [MiniMaxH3Blocks](/docs/diffusers/v0.42.1/en/api/pipelines/minimax_h3#diffusers.MiniMaxH3Blocks), and the repository carries one `modular_model_index.json` naming every component with its own loading spec. To serve a single task, pass the workflow to `from_pretrained`: it keeps only that workflow's blocks, so the pipeline's signature (`pipe.doc`) documents exactly that task's inputs, only that task's components are declared, and `load_components` fetches exactly their subfolders — a `t2va` / `fl2va` pipeline never touches `transformer_ref/`, a `ref2va` one never touches `transformer/`.
+All three tasks are workflows of the one [MiniMaxH3Blocks](/docs/diffusers/v0.43.0/en/api/pipelines/minimax_h3#diffusers.MiniMaxH3Blocks), and the repository carries one `modular_model_index.json` naming every component with its own loading spec. To serve a single task, pass the workflow to `from_pretrained`: it keeps only that workflow's blocks, so the pipeline's signature (`pipe.doc`) documents exactly that task's inputs, only that task's components are declared, and `load_components` fetches exactly their subfolders — a `t2va` / `fl2va` pipeline never touches `transformer_ref/`, a `ref2va` one never touches `transformer/`.
 
 ```py
 import torch
@@ -48,11 +48,11 @@ The *loading* can still go one workflow at a time. This one call fetches `transf
 pipe.load_components(workflow="t2va", dtype=torch.bfloat16)
 ```
 
-A plain `load_components()` with no `workflow=` pulls **both** 61.7GB transformer partitions, which is what lets one pipeline serve all three workflows without another loading call. Pair it with a [ComponentsManager](/docs/diffusers/v0.42.1/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) and auto offloading: the weights live in host RAM and the manager moves onto the accelerator just what each step needs, so when the `ref2va` denoiser wants the device the strategy offloads whatever frees enough room. See [Memory](#memory) for the recipes.
+A plain `load_components()` with no `workflow=` pulls **both** 61.7GB transformer partitions, which is what lets one pipeline serve all three workflows without another loading call. Pair it with a [ComponentsManager](/docs/diffusers/v0.43.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) and auto offloading: the weights live in host RAM and the manager moves onto the accelerator just what each step needs, so when the `ref2va` denoiser wants the device the strategy offloads whatever frees enough room. See [Memory](#memory) for the recipes.
 
 ## Two schedulers
 
-Video and audio latents step down two different schedules inside a single transformer call per step, which is why the blocks expect two [MiniMaxH3Scheduler](/docs/diffusers/v0.42.1/en/api/schedulers/minimax_h3#diffusers.MiniMaxH3Scheduler) instances: `scheduler` for the video latents (`shift=12.0` in the released checkpoints) and `audio_scheduler` for the audio latents (`shift=3.0`).
+Video and audio latents step down two different schedules inside a single transformer call per step, which is why the blocks expect two [MiniMaxH3Scheduler](/docs/diffusers/v0.43.0/en/api/schedulers/minimax_h3#diffusers.MiniMaxH3Scheduler) instances: `scheduler` for the video latents (`shift=12.0` in the released checkpoints) and `audio_scheduler` for the audio latents (`shift=3.0`).
 
 Both transformer partitions are guidance-distilled, so this holds for every workflow: guidance is baked into the weights, there is no guider, no `negative_prompt` and no `guidance_scale`, and every step runs exactly one forward pass.
 
@@ -67,7 +67,7 @@ Both transformer partitions are guidance-distilled, so this holds for every work
 
 The transformer alone is 61.7 GB in bfloat16 and the Qwen3-VL conditioner is another 62.1 GB, so the loading recipe depends on the hardware. Smaller canvases are the biggest speed lever on every setup: `height` and `width` only have to be multiples of 32, and 960x544 runs about 2.3x faster per step than the trained 1344x768.
 
-On one 80 GB card, register the components in a [ComponentsManager](/docs/diffusers/v0.42.1/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) and let it move them on and off the accelerator:
+On one 80 GB card, register the components in a [ComponentsManager](/docs/diffusers/v0.43.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentsManager) and let it move them on and off the accelerator:
 
 ```py
 import torch
@@ -161,7 +161,7 @@ Two 80 GB cards run full bfloat16 this way: each half fits on its own card, so n
 
 ## Text and keyframes
 
-[MiniMaxH3Blocks](/docs/diffusers/v0.42.1/en/api/pipelines/minimax_h3#diffusers.MiniMaxH3Blocks) covers text-to-video-and-audio and keyframe conditioning. A keyframe can be the frame the video starts from (`image`), the frame it ends on (`last_image`), or both.
+[MiniMaxH3Blocks](/docs/diffusers/v0.43.0/en/api/pipelines/minimax_h3#diffusers.MiniMaxH3Blocks) covers text-to-video-and-audio and keyframe conditioning. A keyframe can be the frame the video starts from (`image`), the frame it ends on (`last_image`), or both.
 
 ```py
 import torch
@@ -199,7 +199,7 @@ encode_video(
 )
 ```
 
-Video and audio are generated jointly and come out of the call as separate outputs, `videos` and `audio`, next to the `sampling_rate` the soundtrack carries; muxing them into one file is left to the caller, e.g. with [encode_video()](/docs/diffusers/v0.42.1/en/api/utilities#diffusers.utils.encode_video).
+Video and audio are generated jointly and come out of the call as separate outputs, `videos` and `audio`, next to the `sampling_rate` the soundtrack carries; muxing them into one file is left to the caller, e.g. with [encode_video()](/docs/diffusers/v0.43.0/en/api/utilities#diffusers.utils.encode_video).
 
 ## Omni-references
 
@@ -211,15 +211,15 @@ There is one reference class per modality, each holding in-memory media and the 
 
 | reference | media | rate it declares |
 | --- | --- | --- |
-| [MiniMaxH3ImageReference](/docs/diffusers/v0.42.1/en/api/pipelines/minimax_h3#diffusers.modular_pipelines.minimax_h3.MiniMaxH3ImageReference) | `image` | — |
-| [MiniMaxH3VideoReference](/docs/diffusers/v0.42.1/en/api/pipelines/minimax_h3#diffusers.modular_pipelines.minimax_h3.MiniMaxH3VideoReference) | `frames`, and `audio` for its own soundtrack | `fps`, defaulting to MiniMax-H3's 24.0, and `sample_rate` |
-| [MiniMaxH3AudioReference](/docs/diffusers/v0.42.1/en/api/pipelines/minimax_h3#diffusers.modular_pipelines.minimax_h3.MiniMaxH3AudioReference) | `audio` | `sample_rate`, defaulting to the audio VAE's own |
+| [MiniMaxH3ImageReference](/docs/diffusers/v0.43.0/en/api/pipelines/minimax_h3#diffusers.modular_pipelines.minimax_h3.MiniMaxH3ImageReference) | `image` | — |
+| [MiniMaxH3VideoReference](/docs/diffusers/v0.43.0/en/api/pipelines/minimax_h3#diffusers.modular_pipelines.minimax_h3.MiniMaxH3VideoReference) | `frames`, and `audio` for its own soundtrack | `fps`, defaulting to MiniMax-H3's 24.0, and `sample_rate` |
+| [MiniMaxH3AudioReference](/docs/diffusers/v0.43.0/en/api/pipelines/minimax_h3#diffusers.modular_pipelines.minimax_h3.MiniMaxH3AudioReference) | `audio` | `sample_rate`, defaulting to the audio VAE's own |
 
 The rates are what everything is resampled from: frames onto MiniMax-H3's own 24 fps by dropping and duplicating whole frames, a waveform onto the audio VAE's sample rate. Media at MiniMax-H3's own rates flows through untouched, so only data produced at another rate has to say so.
 
 A reference is built one of two ways: decoded from a media file with the class's `from_file` classmethod, or constructed directly from media the request already holds in memory — which is how a previous generation feeds back in (see [A generation as a reference](#a-generation-as-a-reference)).
 
-The blocks never open a media file — decoding a path is the caller's job, as it is everywhere else in the library. Each reference class does it through its `from_file` classmethod, which takes a path or a URL (video and audio through [PyAV](https://github.com/PyAV-Org/PyAV)) and returns a reference carrying the rates the container reports — a video brings its frame rate and its soundtrack along. Prefer `from_file` over [load_video()](/docs/diffusers/v0.42.1/en/api/utilities#diffusers.utils.load_video), which drops the frame rate: a reference built from frames whose real rate was lost is conditioned on at the wrong speed, and nothing raises.
+The blocks never open a media file — decoding a path is the caller's job, as it is everywhere else in the library. Each reference class does it through its `from_file` classmethod, which takes a path or a URL (video and audio through [PyAV](https://github.com/PyAV-Org/PyAV)) and returns a reference carrying the rates the container reports — a video brings its frame rate and its soundtrack along. Prefer `from_file` over [load_video()](/docs/diffusers/v0.43.0/en/api/utilities#diffusers.utils.load_video), which drops the frame rate: a reference built from frames whose real rate was lost is conditioned on at the wrong speed, and nothing raises.
 
 ```py
 import torch
@@ -323,7 +323,7 @@ results = pipe(
 diffusers.MiniMaxH3ModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/minimax_h3/modular_pipeline.py#L150)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/modular_pipelines/minimax_h3/modular_pipeline.py#L150)
 
 A ModularPipeline for joint video + audio generation with MiniMax-H3: the `t2va` (text only) and `fl2va` (first
 and/or last keyframe) workflows against the `transformer/` checkpoint partition, and the `ref2va` (omni-reference)
@@ -364,7 +364,7 @@ pipe.load_components(dtype=torch.bfloat16)
 diffusers.MiniMaxH3Blocks()
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/minimax_h3/modular_blocks_minimax_h3.py#L659)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/modular_pipelines/minimax_h3/modular_blocks_minimax_h3.py#L659)
 
 Auto Modular pipeline blocks for joint video + audio generation with MiniMax-H3: the `t2va` (text only), `fl2va`
 (first and/or last keyframe) and `ref2va` (omni-reference) workflows, selected on the `references` and keyframe
@@ -429,7 +429,7 @@ Pre-generated video noise of shape `(1, 24, num_latent_frames, latent_height, la
 instead of the draw.
 audio_latents (`Tensor`):
 Pre-generated audio noise of shape `(2, 32, num_audio_latents)`.
-num_inference_steps (`int`):
+num_inference_steps (`int`, *optional*, defaults to 50):
 The number of denoising steps.
 **denoiser_input_fields (`None`, *optional*):
 The structural description of the packed sequence the transformer reads by name: `token_tags`,
@@ -457,7 +457,7 @@ Sample rate of the generated soundtrack in Hz.
 diffusers.modular_pipelines.minimax_h3.MiniMaxH3ImageReference(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/minimax_h3/references.py#L82)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/modular_pipelines/minimax_h3/references.py#L82)
 
 **Parameters:**
 
@@ -471,13 +471,13 @@ A subject, style or scene reference: at most 9 per request.
 from_file(media)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/minimax_h3/references.py#L98)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/modular_pipelines/minimax_h3/references.py#L98)
 
 **Parameters:**
 
 media (`str` or `os.PathLike`) : Path or URL of the image.
 
-Load an image file into a `MiniMaxH3ImageReference`, through [load_image()](/docs/diffusers/v0.42.1/en/api/utilities#diffusers.utils.load_image).
+Load an image file into a `MiniMaxH3ImageReference`, through [load_image()](/docs/diffusers/v0.43.0/en/api/utilities#diffusers.utils.load_image).
 
 ## MiniMaxH3VideoReference[[diffusers.modular_pipelines.minimax_h3.MiniMaxH3VideoReference]]
 
@@ -487,7 +487,7 @@ Load an image file into a `MiniMaxH3ImageReference`, through [load_image()](/doc
 diffusers.modular_pipelines.minimax_h3.MiniMaxH3VideoReference(frames: typing.Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor], fps: float | None = None, audio: typing.Optional[torch.Tensor] = None, sample_rate: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/minimax_h3/references.py#L110)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/modular_pipelines/minimax_h3/references.py#L110)
 
 **Parameters:**
 
@@ -507,7 +507,7 @@ A motion and camera reference: at most 3 per request, conditioned on together wi
 from_file(media)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/minimax_h3/references.py#L146)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/modular_pipelines/minimax_h3/references.py#L146)
 
 **Parameters:**
 
@@ -523,7 +523,7 @@ Decode a video file into a `MiniMaxH3VideoReference`, at the resolution, the fra
 carries.
 
 The rates land on the reference, which is the point of decoding this way rather than with
-[load_video()](/docs/diffusers/v0.42.1/en/api/utilities#diffusers.utils.load_video): MiniMax-H3 resamples a reference onto its own 24 fps, so a frame rate lost on the way in
+[load_video()](/docs/diffusers/v0.43.0/en/api/utilities#diffusers.utils.load_video): MiniMax-H3 resamples a reference onto its own 24 fps, so a frame rate lost on the way in
 is a request conditioned at the wrong speed, with nothing to raise about it. A container whose metadata is
 wrong is corrected by overriding `fps` or `sample_rate` on the returned reference.
 
@@ -537,7 +537,7 @@ Needs [PyAV](https://github.com/PyAV-Org/PyAV).
 diffusers.modular_pipelines.minimax_h3.MiniMaxH3AudioReference(audio: Tensor, sample_rate: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/minimax_h3/references.py#L172)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/modular_pipelines/minimax_h3/references.py#L172)
 
 **Parameters:**
 
@@ -554,7 +554,7 @@ at least one image or video reference. It never reaches the conditioner and is e
 from_file(media)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/modular_pipelines/minimax_h3/references.py#L191)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/modular_pipelines/minimax_h3/references.py#L191)
 
 **Parameters:**
 
@@ -569,5 +569,210 @@ Decode an audio file into a `MiniMaxH3AudioReference`, at the sample rate it car
 
 Needs [PyAV](https://github.com/PyAV-Org/PyAV).
 
-### LEDITS++
-https://huggingface.co/docs/diffusers/v0.42.1/api/pipelines/ledits_pp.md
+### Wan Animate 2
+https://huggingface.co/docs/diffusers/v0.43.0/api/pipelines/wan_animate_2.md
+
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License. -->
+
+# Wan-Animate-2
+
+[Wan-Animate-2](https://github.com/Wan-Video/Wan2.2) by the Alibaba Wan Team animates a reference character image with the motion of a driving video. The driving video is processed in fixed-length segments: each segment runs a reference-extraction pass that caches the driving segment's K/V in every transformer layer, denoises against that cache, and is decoded inside the loop because the next segment conditions on the previous segment's decoded tail frames.
+
+Two presets are available: the base checkpoint samples with classifier-free guidance, and the distilled checkpoint samples in few steps without it (its guider is pinned to `guidance_scale=1.0`).
+
+```python
+import torch
+from diffusers import ModularPipeline
+from diffusers.utils import export_to_video, load_image, load_video
+
+pipe = ModularPipeline.from_pretrained("Wan-AI/Wan2.2-Animate-2-14B-Diffusers")
+pipe.load_components(dtype=torch.bfloat16)
+
+# The transformer weights and the per-segment reference KV cache do not co-reside on one 80 GB
+# card at the default resolution, so stream the transformer's blocks. Compiling the blocks is
+# required as the in-context attention runs on the flex backend
+pipe.transformer.enable_group_offload(
+    onload_device=torch.device("cuda"),
+    offload_device=torch.device("cpu"),
+    offload_type="block_level",
+    use_stream=True,
+)
+pipe.text_encoder.to("cuda")  # or "mps", "xpu", "cpu"
+pipe.image_encoder.to("cuda")
+pipe.vae.to("cuda")
+pipe.transformer.compile_repeated_blocks(fullgraph=False)
+
+# The first demo from the official repository: https://github.com/Wan-Video/Wan-Animate-2
+demo = "https://raw.githubusercontent.com/Wan-Video/Wan-Animate-2/main/examples/demo1"
+image = load_image(f"{demo}/reference.png")
+driving_video, driving_video_fps = load_video(f"{demo}/template.mp4", return_fps=True)
+prompt = "人物外观描述：一只银灰色虎斑纹的小猫，拥有圆润的脸庞、竖立的耳朵和巨大的圆形眼睛。它身穿一套深蓝色的制服套装，包括一件带有金色纽扣的西装外套和一条百褶裙。外套里面搭配着白色衬衫，领口处系着一个红色的蝴蝶结，袖口露出白色的衬衫边缘。背景描述：背景为纯白色，光线均匀明亮，无其他杂物或装饰。"
+
+videos = pipe(
+    image=image,
+    driving_video=driving_video,
+    driving_video_fps=driving_video_fps,
+    prompt=prompt,
+    output="videos",
+)
+export_to_video(videos[0], "output.mp4", fps=24)
+```
+
+For the distilled checkpoint, load `Wan-AI/Wan2.2-Animate-2-14B-Distilled-Diffusers` the same way — nothing else changes. Each preset carries its own sampling defaults (40 steps for the base checkpoint, 10 for the distilled one), and no `guidance_scale` argument exists anywhere: guidance is owned by the pipeline's guider component (classifier-free guidance at 3.0 for the base preset, disabled for the distilled one).
+
+`height` and `width` (defaults 800 and 640) set the target *area* of the generated video; the actual frame size keeps the reference image's aspect ratio, and the driving frames are letterboxed to it. Inputs that already sit at the target letterbox size pass through the preprocessing untouched, so preprocessing can also be done entirely outside the pipeline.
+
+## WanAnimate2ModularPipeline[[diffusers.WanAnimate2ModularPipeline]]
+
+#### diffusers.WanAnimate2ModularPipeline[[diffusers.WanAnimate2ModularPipeline]]
+
+```python
+diffusers.WanAnimate2ModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/modular_pipelines/wan_animate_2/modular_pipeline.py#L23)
+
+A ModularPipeline for Wan-Animate-2 character animation.
+
+## WanAnimate2DistilledModularPipeline[[diffusers.WanAnimate2DistilledModularPipeline]]
+
+#### diffusers.WanAnimate2DistilledModularPipeline[[diffusers.WanAnimate2DistilledModularPipeline]]
+
+```python
+diffusers.WanAnimate2DistilledModularPipeline(blocks: diffusers.modular_pipelines.modular_pipeline.ModularPipelineBlocks | None = None, pretrained_model_name_or_path: str | os.PathLike | None = None, components_manager: diffusers.modular_pipelines.components_manager.ComponentsManager | None = None, collection: str | None = None, workflow: str | None = None, modular_config_dict: dict[str, typing.Any] | None = None, config_dict: dict[str, typing.Any] | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/modular_pipelines/wan_animate_2/modular_pipeline.py#L62)
+
+A ModularPipeline for the distilled Wan-Animate-2 model, which samples in few steps without classifier-free
+guidance.
+
+## WanAnimate2Blocks[[diffusers.WanAnimate2Blocks]]
+
+#### diffusers.WanAnimate2Blocks[[diffusers.WanAnimate2Blocks]]
+
+```python
+diffusers.WanAnimate2Blocks()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/modular_pipelines/wan_animate_2/modular_blocks_wan_animate_2.py#L252)
+
+Modular pipeline blocks for Wan-Animate-2 character animation: a reference character image and a driving video
+produce a video of the character following the driving motion.
+
+Components:
+text_encoder (`UMT5EncoderModel`) tokenizer (`AutoTokenizer`) image_processor (`WanAnimate2VideoProcessor`)
+image_encoder (`CLIPVisionModel`) video_processor (`WanAnimate2VideoProcessor`) vae (`AutoencoderKLWan`)
+transformer (`WanAnimate2Transformer3DModel`) scheduler (`SchedulerMixin`) guider (`ClassifierFreeGuidance`)
+
+Inputs:
+prompt (`str`):
+The prompt or prompts to guide image generation.
+negative_prompt (`str`, *optional*):
+The prompt or prompts not to guide the image generation.
+prompt_ref (`str`, *optional*, defaults to 人物动作的参考视频):
+The reference prompt for the driving video context
+max_sequence_length (`int`, *optional*, defaults to 512):
+Maximum sequence length for prompt encoding.
+image (`Image | list`):
+The reference image holding the character to animate.
+height (`int`, *optional*, defaults to 800):
+Together with `width`, the target *area* of the generated video; the aspect ratio comes from `image`.
+Overwritten with the resolved frame height.
+width (`int`, *optional*, defaults to 640):
+See `height`. Overwritten with the resolved frame width.
+driving_video (`list`):
+The driving video that provides the motion, in any format accepted by `VideoProcessor.preprocess_video`.
+driving_video_fps (`float`, *optional*):
+The frame rate `driving_video` was captured at — `load_video(..., return_fps=True)` reports it. When set,
+the driving frames are resampled from it to `fps`; when `None` they are used as-is.
+fps (`int`, *optional*, defaults to 24):
+The frame rate the model generates at
+segment_frame_length (`int`, *optional*, defaults to 81):
+The number of frames in each inference segment
+prev_segment_conditioning_frames (`int`, *optional*, defaults to 1):
+The number of conditioning frames carried over from the previous segment
+generator (`Generator`, *optional*):
+Torch generator for deterministic generation.
+num_inference_steps (`int`, *optional*, defaults to 40):
+The number of denoising steps.
+**denoiser_input_fields (`None`, *optional*):
+conditional model inputs for the denoiser: e.g. prompt_embeds, negative_prompt_embeds, etc.
+output_type (`str`, *optional*, defaults to np):
+The output type of the decoded videos
+
+Outputs:
+videos (`list`):
+The generated videos.
+
+## WanAnimate2DistilledBlocks[[diffusers.WanAnimate2DistilledBlocks]]
+
+#### diffusers.WanAnimate2DistilledBlocks[[diffusers.WanAnimate2DistilledBlocks]]
+
+```python
+diffusers.WanAnimate2DistilledBlocks()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/modular_pipelines/wan_animate_2/modular_blocks_wan_animate_2_distilled.py#L254)
+
+Modular pipeline blocks for distilled Wan-Animate-2 character animation, sampling in few steps without
+classifier-free guidance.
+
+Components:
+text_encoder (`UMT5EncoderModel`) tokenizer (`AutoTokenizer`) image_processor (`WanAnimate2VideoProcessor`)
+image_encoder (`CLIPVisionModel`) video_processor (`WanAnimate2VideoProcessor`) vae (`AutoencoderKLWan`)
+transformer (`WanAnimate2Transformer3DModel`) scheduler (`SchedulerMixin`) guider (`ClassifierFreeGuidance`)
+
+Inputs:
+prompt (`str`):
+The prompt or prompts to guide image generation.
+negative_prompt (`str`, *optional*):
+The prompt or prompts not to guide the image generation.
+prompt_ref (`str`, *optional*, defaults to 人物动作的参考视频):
+The reference prompt for the driving video context
+max_sequence_length (`int`, *optional*, defaults to 512):
+Maximum sequence length for prompt encoding.
+image (`Image | list`):
+The reference image holding the character to animate.
+height (`int`, *optional*, defaults to 800):
+Together with `width`, the target *area* of the generated video; the aspect ratio comes from `image`.
+Overwritten with the resolved frame height.
+width (`int`, *optional*, defaults to 640):
+See `height`. Overwritten with the resolved frame width.
+driving_video (`list`):
+The driving video that provides the motion, in any format accepted by `VideoProcessor.preprocess_video`.
+driving_video_fps (`float`, *optional*):
+The frame rate `driving_video` was captured at — `load_video(..., return_fps=True)` reports it. When set,
+the driving frames are resampled from it to `fps`; when `None` they are used as-is.
+fps (`int`, *optional*, defaults to 24):
+The frame rate the model generates at
+segment_frame_length (`int`, *optional*, defaults to 81):
+The number of frames in each inference segment
+prev_segment_conditioning_frames (`int`, *optional*, defaults to 1):
+The number of conditioning frames carried over from the previous segment
+generator (`Generator`, *optional*):
+Torch generator for deterministic generation.
+num_inference_steps (`int`, *optional*, defaults to 10):
+The number of denoising steps.
+**denoiser_input_fields (`None`, *optional*):
+conditional model inputs for the denoiser: e.g. prompt_embeds, negative_prompt_embeds, etc.
+output_type (`str`, *optional*, defaults to np):
+The output type of the decoded videos
+
+Outputs:
+videos (`list`):
+The generated videos.
+
+### Stable Cascade
+https://huggingface.co/docs/diffusers/v0.43.0/api/pipelines/stable_cascade.md

@@ -1,6 +1,6 @@
 # Parallelism
 
-Parallelism strategies help speed up diffusion transformers by distributing computations across multiple devices, allowing for faster inference/training times. Refer to the [Distributed inferece](../training/distributed_inference) guide to learn more.
+Parallelism strategies help speed up diffusion transformers by distributing computations across multiple devices, allowing for faster inference/training times. Refer to the [Distributed inference](../training/distributed_inference) guide to learn more.
 
 ## ParallelConfig[[diffusers.ParallelConfig]]
 
@@ -10,7 +10,7 @@ Parallelism strategies help speed up diffusion transformers by distributing comp
 diffusers.ParallelConfig(context_parallel_config: diffusers.models._modeling_parallel.ContextParallelConfig | None = None, tensor_parallel_config: diffusers.models._modeling_parallel.TensorParallelConfig | None = None, _rank: int = None, _world_size: int = None, _device: device = None, _mesh: DeviceMesh = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/_modeling_parallel.py#L199)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/_modeling_parallel.py#L199)
 
 **Parameters:**
 
@@ -28,7 +28,7 @@ Configuration for applying different parallelisms.
 diffusers.ContextParallelConfig(ring_degree: int | None = None, ulysses_degree: int | None = None, convert_to_fp32: bool = True, rotate_method: typing.Literal['allgather', 'alltoall'] = 'allgather', mesh: typing.Optional[torch.distributed.device_mesh.DeviceMesh] = None, ulysses_anything: bool = False, ring_anything: bool = False, _rank: int = None, _world_size: int = None, _device: device = None, _mesh: DeviceMesh = None, _flattened_mesh: DeviceMesh = None, _ring_mesh: DeviceMesh = None, _ulysses_mesh: DeviceMesh = None, _ring_local_rank: int = None, _ulysses_local_rank: int = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/_modeling_parallel.py#L41)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/_modeling_parallel.py#L41)
 
 **Parameters:**
 
@@ -51,10 +51,10 @@ Configuration for context parallelism.
 #### diffusers.hooks.apply_context_parallel[[diffusers.hooks.apply_context_parallel]]
 
 ```python
-diffusers.hooks.apply_context_parallel(module: Module, parallel_config: ContextParallelConfig, plan: dict)
+diffusers.hooks.apply_context_parallel(module: Module, parallel_config: ContextParallelConfig, plan: dict[str, dict[str, dict[str | int, diffusers.models._modeling_parallel.ContextParallelInput | list[diffusers.models._modeling_parallel.ContextParallelInput] | tuple[diffusers.models._modeling_parallel.ContextParallelInput, ...]] | diffusers.models._modeling_parallel.ContextParallelOutput | list[diffusers.models._modeling_parallel.ContextParallelOutput] | tuple[diffusers.models._modeling_parallel.ContextParallelOutput, ...]]])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/hooks/context_parallel.py#L80)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/hooks/context_parallel.py#L80)
 
 Apply context parallel on a model.
 
@@ -66,7 +66,7 @@ Apply context parallel on a model.
 diffusers.TensorParallelConfig(tp_degree: int = 1, mesh: typing.Optional[torch.distributed.device_mesh.DeviceMesh] = None, _rank: int = None, _world_size: int = None, _device: device = None, _mesh: DeviceMesh = None, _tp_degree: int = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/models/_modeling_parallel.py#L157)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/models/_modeling_parallel.py#L157)
 
 **Parameters:**
 
@@ -87,7 +87,7 @@ device types are `"cuda"`, `"neuron"` and `"tpu"`.
 diffusers.hooks.apply_tensor_parallel(model: Module, config: TensorParallelConfig, tp_plan: dict, weights_already_sharded: bool = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/hooks/tensor_parallel.py#L468)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/hooks/tensor_parallel.py#L481)
 
 **Parameters:**
 
@@ -101,5 +101,5 @@ weights_already_sharded (`bool`, defaults to `False`) : Whether the planned para
 
 Apply tensor parallel on a model from its flat `_tp_plan`.
 
-### Configuration
-https://huggingface.co/docs/diffusers/v0.42.1/api/configuration.md
+### Logging
+https://huggingface.co/docs/diffusers/v0.43.0/api/logging.md

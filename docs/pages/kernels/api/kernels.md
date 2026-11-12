@@ -116,7 +116,7 @@ If the kernel has any (transitive) dependencies, they will be checked as well.
 kernels.get_kernel_variants(repo_id: str, revision: str | None = None, version: int | None = None, backend: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/variants.py#L658)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/variants.py#L849)
 
 **Parameters:**
 

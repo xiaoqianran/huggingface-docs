@@ -32,7 +32,7 @@ hf auth login
 diffusers.BriaFiboPipeline(transformer: BriaFiboTransformer2DModel, scheduler: diffusers.schedulers.scheduling_flow_match_euler_discrete.FlowMatchEulerDiscreteScheduler | diffusers.schedulers.scheduling_utils.KarrasDiffusionSchedulers, vae: AutoencoderKLWan, text_encoder: SmolLM3ForCausalLM, tokenizer: AutoTokenizer)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo.py#L76)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo.py#L76)
 
 **Parameters:**
 
@@ -49,10 +49,10 @@ tokenizer (`AutoTokenizer`) : Tokenizer used for processing the input text promp
 #### __call__[[diffusers.BriaFiboPipeline.__call__]]
 
 ```python
-__call__(prompt: str | list[str] = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 30, timesteps: list = None, guidance_scale: float = 5, negative_prompt: str | list[str] | None = None, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 3000, do_patching = False)
+__call__(prompt: str | list[str] = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 30, timesteps: list[int] = None, guidance_scale: float = 5, negative_prompt: str | list[str] | None = None, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list[str] = ['latents'], max_sequence_length: int = 3000, do_patching = False)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo.py#L435)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo.py#L435)
 
 **Parameters:**
 
@@ -130,7 +130,7 @@ with torch.inference_mode():
 encode_prompt(prompt: str | list[str], device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, guidance_scale: float = 5, negative_prompt: str | list[str] | None = None, max_sequence_length: int = 3000, lora_scale: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo.py#L201)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/bria_fibo/pipeline_bria_fibo.py#L201)
 
 **Parameters:**
 
@@ -144,5 +144,18 @@ guidance_scale (`float`) : Guidance scale for classifier free guidance.
 
 negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. Ignored when not using guidance (i.e., ignored if `guidance_scale` is less than `1`).
 
-### Shap-E
-https://huggingface.co/docs/diffusers/v0.42.1/api/pipelines/shap_e.md
+### Helios
+https://huggingface.co/docs/diffusers/v0.43.0/api/pipelines/helios.md
+
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License. -->

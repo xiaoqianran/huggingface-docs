@@ -10,7 +10,7 @@ Before starting please install gguf in your environment
 pip install -U gguf
 ```
 
-Since GGUF is a single file format, use `~FromSingleFileMixin.from_single_file` to load the model and pass in the [GGUFQuantizationConfig](/docs/diffusers/v0.42.1/en/api/quantization#diffusers.GGUFQuantizationConfig).
+Since GGUF is a single file format, use `~FromSingleFileMixin.from_single_file` to load the model and pass in the [GGUFQuantizationConfig](/docs/diffusers/v0.43.0/en/api/quantization#diffusers.GGUFQuantizationConfig).
 
 When using GGUF checkpoints, the quantized weights remain in a low memory `dtype`(typically `torch.uint8`) and are dynamically dequantized and cast to the configured `compute_dtype` during each module's forward pass through the model. The `GGUFQuantizationConfig` allows you to set the `compute_dtype`.
 
@@ -107,5 +107,5 @@ image.save("flux-gguf.png")
 When using Diffusers format GGUF checkpoints, it's a must to provide the model `config` path. If the
 model config resides in a `subfolder`, that needs to be specified, too.
 
-### Remote inference
-https://huggingface.co/docs/diffusers/v0.42.1/hybrid_inference/api_reference.md
+### Nunchaku Lite
+https://huggingface.co/docs/diffusers/v0.43.0/quantization/nunchaku.md

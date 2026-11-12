@@ -9,14 +9,20 @@ The MiniMax-H3 pipelines register **two** of them, because video and audio laten
 #### diffusers.MiniMaxH3Scheduler[[diffusers.MiniMaxH3Scheduler]]
 
 ```python
-diffusers.MiniMaxH3Scheduler(shift: float = 12.0)
+diffusers.MiniMaxH3Scheduler(shift: float = 12.0, stochastic_sampling: bool = False, shift_provided_sigmas: bool | None = None, euler_update_form: str = 'blend')
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/schedulers/scheduling_minimax_h3.py#L60)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L73)
 
 **Parameters:**
 
 shift (`float`, defaults to `12.0`) : Exponential shift applied to the sigma grid, `sigma' = s*sigma / (1 + (s-1)*sigma)`. The released checkpoints use `12.0` for video latents and `3.0` for audio latents.
+
+stochastic_sampling (`bool`, defaults to `False`) : Replace the Euler blend with a re-noising update: predict the clean sample, then re-noise it to the next sigma with fresh noise. The few-step Pika H3 Flex adapters were trained for this update; the base checkpoints were not.
+
+shift_provided_sigmas (`bool`, *optional*) : Whether explicit `sigmas` passed to [set_timesteps()](/docs/diffusers/v0.43.0/en/api/schedulers/minimax_h3#diffusers.MiniMaxH3Scheduler.set_timesteps) are a base grid the scheduler shifts, like its `linspace` grid, or a finished schedule taken verbatim. Unset means verbatim with a deprecation warning; the default becomes `True` in 0.44.0.
+
+euler_update_form (`str`, defaults to `"blend"`) : How the Euler update is evaluated. `"blend"` is the `x_t` / `x0` blend `x_next = r*x_t + (1 - r)*x0`; `"velocity"` is `x_next = x_t + (sigma - sigma_next) * v`, in float32. They are the same update and differ only in float32 rounding; MiniMax-H3-Image was distilled with the velocity form.
 
 Rectified-flow Euler scheduler (`eta = 0`) with an exponential sigma shift, as used by MiniMax-H3.
 
@@ -26,7 +32,7 @@ Rectified-flow Euler scheduler (`eta = 0`) with an exponential sigma shift, as u
 index_for_timestep(timestep: typing.Union[float, torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/schedulers/scheduling_minimax_h3.py#L172)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L225)
 
 **Parameters:**
 
@@ -44,7 +50,7 @@ Map a timestep value to its index in the schedule.
 scale_noise(sample: FloatTensor, timestep: typing.Union[float, torch.FloatTensor], noise: FloatTensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/schedulers/scheduling_minimax_h3.py#L193)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L246)
 
 **Parameters:**
 
@@ -69,7 +75,7 @@ schedule entry, so `timestep` is taken at face value and is *not* looked up in `
 set_begin_index(begin_index: int = 0)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/schedulers/scheduling_minimax_h3.py#L100)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L138)
 
 **Parameters:**
 
@@ -83,13 +89,13 @@ Sets the begin index for the scheduler.
 set_shift(shift: float)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/schedulers/scheduling_minimax_h3.py#L110)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L148)
 
 **Parameters:**
 
 shift (`float`) : The exponential shift to use for the next schedule.
 
-Overrides the configured sigma shift; call before [set_timesteps()](/docs/diffusers/v0.42.1/en/api/schedulers/minimax_h3#diffusers.MiniMaxH3Scheduler.set_timesteps).
+Overrides the configured sigma shift; call before [set_timesteps()](/docs/diffusers/v0.43.0/en/api/schedulers/minimax_h3#diffusers.MiniMaxH3Scheduler.set_timesteps).
 
 MiniMax-H3 exposes this per request as `flow_shift` (video) / `audio_flow_shift` (audio).
 
@@ -99,7 +105,7 @@ MiniMax-H3 exposes this per request as `flow_shift` (video) / `audio_flow_shift`
 set_timesteps(num_inference_steps: int | None = None, device: typing.Union[str, torch.device, NoneType] = None, sigmas: typing.Union[list[float], torch.Tensor, NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/schedulers/scheduling_minimax_h3.py#L124)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L162)
 
 **Parameters:**
 
@@ -107,22 +113,23 @@ num_inference_steps (`int`, *optional*) : Number of sigma grid points, terminal 
 
 device (`str` or `torch.device`, *optional*) : Device the schedule tensors are moved to. The grid itself is always built on CPU in float32 so the schedule does not depend on the accelerator.
 
-sigmas (`list[float]` or `torch.Tensor`, *optional*) : A fully-formed sigma schedule, used verbatim (no shifting, no deduplication). It must be strictly decreasing and terminate at `0.0`.
+sigmas (`list[float]` or `torch.Tensor`, *optional*) : An explicit grid, strictly decreasing and terminating at `0.0`. With `shift_provided_sigmas=True` it is a base grid in `[0, 1]` that goes through the shift like the `linspace` grid; otherwise it is used verbatim (deprecated default).
 
 Build the sigma / timestep schedule.
 
 The grid is `linspace(1, 0, num_inference_steps)` pushed through the exponential shift, with consecutive
-duplicates collapsed. The terminal `0` is already part of that grid — the shift maps `0` to exactly `0` — so
-the schedule holds `num_inference_steps` sigmas and drives `num_inference_steps - 1` model evaluations, exposed
-as `self.timesteps = 1 - sigmas[:-1]`.
+duplicates collapsed, or the explicit `sigmas`, shifted as well when `shift_provided_sigmas` is set. The
+terminal `0` is already part of the grid — the shift maps `0` to exactly `0` — so the schedule holds
+`num_inference_steps` sigmas and drives `num_inference_steps - 1` model evaluations, exposed as `self.timesteps
+= 1 - sigmas[:-1]`.
 
 #### step[[diffusers.MiniMaxH3Scheduler.step]]
 
 ```python
-step(model_output: FloatTensor, timestep: typing.Union[float, torch.FloatTensor], sample: FloatTensor, return_dict: bool = True)
+step(model_output: FloatTensor, timestep: typing.Union[float, torch.FloatTensor], sample: FloatTensor, generator: typing.Optional[torch.Generator] = None, return_dict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/schedulers/scheduling_minimax_h3.py#L223)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L278)
 
 **Parameters:**
 
@@ -132,17 +139,22 @@ timestep (`float` or `torch.FloatTensor`) : The current timestep, one of `self.t
 
 sample (`torch.FloatTensor`) : The current sample `x_t`.
 
+generator (`torch.Generator`, *optional*) : The generator the fresh noise is drawn from with `stochastic_sampling`; unused otherwise.
+
 return_dict (`bool`, defaults to `True`) : Whether to return a `MiniMaxH3SchedulerOutput` instead of a plain tuple.
 
 **Returns:** `MiniMaxH3SchedulerOutput` or `tuple`
 
 the sample for the next step.
 
-Take one Euler (`eta = 0`) step.
+Take one Euler (`eta = 0`) step, or one re-noising step with `stochastic_sampling`.
 
 The model output is a data-ward velocity, so the denoised estimate is `x0 = x_t + (1 - t) * v` — note the `+`,
 the opposite of the usual flow-match convention. The update is then the blend `x_next = r*x_t + (1 - r)*x0`
-with `r = sigma_next / sigma`, evaluated in float32 for half-precision samples.
+with `r = sigma_next / sigma`, evaluated in float32 for half-precision samples. With `stochastic_sampling` the
+update is `x_next = (1 - sigma_next) * x0 + sigma_next * noise` with fresh noise from `generator`, everything
+in float32, so the last step (`sigma_next = 0`) returns `x0`. With `euler_update_form="velocity"` the same
+Euler update is evaluated as `x_next = x_t + (sigma - sigma_next) * v` in float32.
 
 ## MiniMaxH3SchedulerOutput[[diffusers.schedulers.scheduling_minimax_h3.MiniMaxH3SchedulerOutput]]
 
@@ -152,7 +164,7 @@ with `r = sigma_next / sigma`, evaluated in float32 for half-precision samples.
 diffusers.schedulers.scheduling_minimax_h3.MiniMaxH3SchedulerOutput(prev_sample: FloatTensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/schedulers/scheduling_minimax_h3.py#L48)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/schedulers/scheduling_minimax_h3.py#L61)
 
 **Parameters:**
 
@@ -160,5 +172,5 @@ prev_sample (`torch.FloatTensor`) : Computed sample `x_{t+1}` for the next step 
 
 Output class for the scheduler's `step` function output.
 
-### TCDScheduler
-https://huggingface.co/docs/diffusers/v0.42.1/api/schedulers/tcd.md
+### DPMSolverMultistepInverse
+https://huggingface.co/docs/diffusers/v0.43.0/api/schedulers/multistep_dpm_solver_inverse.md

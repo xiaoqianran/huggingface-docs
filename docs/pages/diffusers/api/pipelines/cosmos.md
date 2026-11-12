@@ -42,7 +42,7 @@ export_to_video(output, "text2world.mp4", fps=16)
 diffusers.Cosmos2_5_TransferPipeline(text_encoder: Qwen2_5_VLForConditionalGeneration, tokenizer: AutoTokenizer, transformer: CosmosTransformer3DModel, vae: AutoencoderKLWan, scheduler: UniPCMultistepScheduler, controlnet: CosmosControlNetModel, safety_checker: typing.Optional[diffusers.pipelines.cosmos.pipeline_cosmos2_5_transfer.CosmosSafetyChecker] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/cosmos/pipeline_cosmos2_5_transfer.py#L152)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cosmos/pipeline_cosmos2_5_transfer.py#L152)
 
 **Parameters:**
 
@@ -50,17 +50,17 @@ text_encoder (`Qwen2_5_VLForConditionalGeneration`) : Frozen text-encoder. Cosmo
 
 tokenizer (`AutoTokenizer`) : Tokenizer associated with the Qwen2.5 VL encoder.
 
-transformer ([CosmosTransformer3DModel](/docs/diffusers/v0.42.1/en/api/models/cosmos_transformer3d#diffusers.CosmosTransformer3DModel)) : Conditional Transformer to denoise the encoded image latents.
+transformer ([CosmosTransformer3DModel](/docs/diffusers/v0.43.0/en/api/models/cosmos_transformer3d#diffusers.CosmosTransformer3DModel)) : Conditional Transformer to denoise the encoded image latents.
 
-scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.43.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKLWan](/docs/diffusers/v0.42.1/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLWan](/docs/diffusers/v0.43.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 controlnet (`CosmosControlNetModel`) : ControlNet used to condition generation on control inputs.
 
 Pipeline for Cosmos Transfer2.5, supporting auto-regressive inference.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.43.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.Cosmos2_5_TransferPipeline.__call__]]
@@ -69,7 +69,7 @@ implemented for all pipelines (downloading, saving, running on a particular devi
 __call__(controls: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], typing.List[typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]]], controls_conditioning_scale: typing.Union[float, typing.List[float]] = 1.0, prompt: typing.Union[str, typing.List[str], NoneType] = None, negative_prompt: typing.Union[str, typing.List[str]] = 'The video captures a series of frames showing ugly scenes, static with no motion, motion blur, over-saturation, shaky footage, low resolution, grainy texture, pixelated images, poorly lit areas, underexposed and overexposed scenes, poor color balance, washed out colors, choppy sequences, jerky movements, low frame rate, artifacting, color banding, unnatural transitions, outdated special effects, fake elements, unconvincing visuals, poorly edited content, jump cuts, visual noise, and flickering. Overall, the video is of poor quality.', height: int = 704, width: typing.Optional[int] = None, num_frames: typing.Optional[int] = None, num_frames_per_chunk: int = 93, num_inference_steps: int = 36, guidance_scale: float = 3.0, num_videos_per_prompt: int = 1, generator: typing.Union[torch.Generator, typing.List[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: typing.Optional[str] = 'pil', return_dict: bool = True, callback_on_step_end: typing.Union[typing.Callable[[int, int, typing.Dict], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: typing.List[str] = ['latents'], max_sequence_length: int = 512, conditional_frame_timestep: float = 0.1, num_ar_conditional_frames: typing.Optional[int] = 1, num_ar_latent_conditional_frames: typing.Optional[int] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/cosmos/pipeline_cosmos2_5_transfer.py#L569)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cosmos/pipeline_cosmos2_5_transfer.py#L569)
 
 **Parameters:**
 
@@ -211,7 +211,7 @@ Examples:
 encode_prompt(prompt: typing.Union[str, typing.List[str]], negative_prompt: typing.Union[str, typing.List[str], NoneType] = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 512, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/cosmos/pipeline_cosmos2_5_transfer.py#L296)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cosmos/pipeline_cosmos2_5_transfer.py#L296)
 
 **Parameters:**
 
@@ -241,7 +241,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.Cosmos2_5_PredictBasePipeline(text_encoder: Qwen2_5_VLForConditionalGeneration, tokenizer: AutoTokenizer, transformer: CosmosTransformer3DModel, vae: AutoencoderKLWan, scheduler: UniPCMultistepScheduler, safety_checker: CosmosSafetyChecker = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/cosmos/pipeline_cosmos2_5_predict.py#L185)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cosmos/pipeline_cosmos2_5_predict.py#L185)
 
 **Parameters:**
 
@@ -249,24 +249,24 @@ text_encoder (`Qwen2_5_VLForConditionalGeneration`) : Frozen text-encoder. Cosmo
 
 tokenizer (`AutoTokenizer`) : Tokenizer associated with the Qwen2.5 VL encoder.
 
-transformer ([CosmosTransformer3DModel](/docs/diffusers/v0.42.1/en/api/models/cosmos_transformer3d#diffusers.CosmosTransformer3DModel)) : Conditional Transformer to denoise the encoded image latents.
+transformer ([CosmosTransformer3DModel](/docs/diffusers/v0.43.0/en/api/models/cosmos_transformer3d#diffusers.CosmosTransformer3DModel)) : Conditional Transformer to denoise the encoded image latents.
 
-scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.43.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKLWan](/docs/diffusers/v0.42.1/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLWan](/docs/diffusers/v0.43.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 Pipeline for [Cosmos Predict2.5](https://github.com/nvidia-cosmos/cosmos-predict2.5) base model.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.43.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.Cosmos2_5_PredictBasePipeline.__call__]]
 
 ```python
-__call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, video: list[typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]] | None = None, prompt: str | list[str] | None = None, negative_prompt: str | list[str] | None = None, height: int = 704, width: int = 1280, num_frames: int = 93, num_inference_steps: int = 36, guidance_scale: float = 7.0, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int, NoneType], diffusers.callbacks.PipelineCallback | diffusers.callbacks.MultiPipelineCallbacks]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512, conditional_frame_timestep: float = 0.0001, num_latent_conditional_frames: int = 2)
+__call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, video: list[typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]] | None = None, prompt: str | list[str] | None = None, negative_prompt: str | list[str] | None = None, height: int = 704, width: int = 1280, num_frames: int = 93, num_inference_steps: int = 36, guidance_scale: float = 7.0, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Optional[typing.Callable[[int, int, NoneType], diffusers.callbacks.PipelineCallback | diffusers.callbacks.MultiPipelineCallbacks]] = None, callback_on_step_end_tensor_inputs: list[str] = ['latents'], max_sequence_length: int = 512, conditional_frame_timestep: float = 0.0001, num_latent_conditional_frames: int = 2)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/cosmos/pipeline_cosmos2_5_predict.py#L544)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cosmos/pipeline_cosmos2_5_predict.py#L544)
 
 **Parameters:**
 
@@ -430,7 +430,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 512, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/cosmos/pipeline_cosmos2_5_predict.py#L324)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cosmos/pipeline_cosmos2_5_predict.py#L324)
 
 **Parameters:**
 
@@ -460,7 +460,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.CosmosTextToWorldPipeline(text_encoder: T5EncoderModel, tokenizer: T5Tokenizer, transformer: CosmosTransformer3DModel, vae: AutoencoderKLCosmos, scheduler: EDMEulerScheduler, safety_checker: CosmosSafetyChecker = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/cosmos/pipeline_cosmos_text2world.py#L140)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cosmos/pipeline_cosmos_text2world.py#L140)
 
 **Parameters:**
 
@@ -468,24 +468,24 @@ text_encoder (`T5EncoderModel`) : Frozen text-encoder. Cosmos uses [T5](https://
 
 tokenizer (`T5TokenizerFast`) : Tokenizer of class [T5Tokenizer](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5Tokenizer).
 
-transformer ([CosmosTransformer3DModel](/docs/diffusers/v0.42.1/en/api/models/cosmos_transformer3d#diffusers.CosmosTransformer3DModel)) : Conditional Transformer to denoise the encoded image latents.
+transformer ([CosmosTransformer3DModel](/docs/diffusers/v0.43.0/en/api/models/cosmos_transformer3d#diffusers.CosmosTransformer3DModel)) : Conditional Transformer to denoise the encoded image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.43.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKLCosmos](/docs/diffusers/v0.42.1/en/api/models/autoencoderkl_cosmos#diffusers.AutoencoderKLCosmos)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLCosmos](/docs/diffusers/v0.43.0/en/api/models/autoencoderkl_cosmos#diffusers.AutoencoderKLCosmos)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 Pipeline for text-to-world generation using [Cosmos Predict1](https://github.com/nvidia-cosmos/cosmos-predict1).
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.43.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.CosmosTextToWorldPipeline.__call__]]
 
 ```python
-__call__(prompt: str | list[str] = None, negative_prompt: str | list[str] | None = None, height: int = 704, width: int = 1280, num_frames: int = 121, num_inference_steps: int = 36, guidance_scale: float = 7.0, fps: int = 30, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
+__call__(prompt: str | list[str] = None, negative_prompt: str | list[str] | None = None, height: int = 704, width: int = 1280, num_frames: int = 121, num_inference_steps: int = 36, guidance_scale: float = 7.0, fps: int = 30, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list[str] = ['latents'], max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/cosmos/pipeline_cosmos_text2world.py#L401)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cosmos/pipeline_cosmos_text2world.py#L401)
 
 **Parameters:**
 
@@ -555,7 +555,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 512, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/cosmos/pipeline_cosmos_text2world.py#L239)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cosmos/pipeline_cosmos_text2world.py#L239)
 
 **Parameters:**
 
@@ -585,7 +585,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.CosmosVideoToWorldPipeline(text_encoder: T5EncoderModel, tokenizer: T5Tokenizer, transformer: CosmosTransformer3DModel, vae: AutoencoderKLCosmos, scheduler: EDMEulerScheduler, safety_checker: CosmosSafetyChecker = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/cosmos/pipeline_cosmos_video2world.py#L183)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cosmos/pipeline_cosmos_video2world.py#L181)
 
 **Parameters:**
 
@@ -593,25 +593,25 @@ text_encoder (`T5EncoderModel`) : Frozen text-encoder. Cosmos uses [T5](https://
 
 tokenizer (`T5TokenizerFast`) : Tokenizer of class [T5Tokenizer](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5Tokenizer).
 
-transformer ([CosmosTransformer3DModel](/docs/diffusers/v0.42.1/en/api/models/cosmos_transformer3d#diffusers.CosmosTransformer3DModel)) : Conditional Transformer to denoise the encoded image latents.
+transformer ([CosmosTransformer3DModel](/docs/diffusers/v0.43.0/en/api/models/cosmos_transformer3d#diffusers.CosmosTransformer3DModel)) : Conditional Transformer to denoise the encoded image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.43.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKLCosmos](/docs/diffusers/v0.42.1/en/api/models/autoencoderkl_cosmos#diffusers.AutoencoderKLCosmos)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLCosmos](/docs/diffusers/v0.43.0/en/api/models/autoencoderkl_cosmos#diffusers.AutoencoderKLCosmos)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 Pipeline for image-to-world and video-to-world generation using [Cosmos
 Predict-1](https://github.com/nvidia-cosmos/cosmos-predict1).
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.43.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.CosmosVideoToWorldPipeline.__call__]]
 
 ```python
-__call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, video: list = None, prompt: str | list[str] = None, negative_prompt: str | list[str] | None = None, height: int = 704, width: int = 1280, num_frames: int = 121, num_inference_steps: int = 36, guidance_scale: float = 7.0, input_frames_guidance: bool = False, augment_sigma: float = 0.001, fps: int = 30, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
+__call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, video: list[typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]] = None, prompt: str | list[str] = None, negative_prompt: str | list[str] | None = None, height: int = 704, width: int = 1280, num_frames: int = 121, num_inference_steps: int = 36, guidance_scale: float = 7.0, input_frames_guidance: bool = False, augment_sigma: float = 0.001, fps: int = 30, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list[str] = ['latents'], max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/cosmos/pipeline_cosmos_video2world.py#L513)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cosmos/pipeline_cosmos_video2world.py#L511)
 
 **Parameters:**
 
@@ -704,9 +704,7 @@ Video conditioning:
 >>> prompt = "The video depicts a winding mountain road covered in snow, with a single vehicle traveling along it. The road is flanked by steep, rocky cliffs and sparse vegetation. The landscape is characterized by rugged terrain and a river visible in the distance. The scene captures the solitude and beauty of a winter drive through a mountainous region."
 >>> video = load_video(
 ...     "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/cosmos/cosmos-video2world-input-vid.mp4"
-... )[
-...     :21
-... ]  # This example uses only the first 21 frames
+... )[:21]  # This example uses only the first 21 frames
 
 >>> video = pipe(video=video, prompt=prompt).frames[0]
 >>> export_to_video(video, "output.mp4", fps=30)
@@ -718,7 +716,7 @@ Video conditioning:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 512, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/cosmos/pipeline_cosmos_video2world.py#L285)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cosmos/pipeline_cosmos_video2world.py#L283)
 
 **Parameters:**
 
@@ -748,7 +746,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.Cosmos2TextToImagePipeline(text_encoder: T5EncoderModel, tokenizer: T5Tokenizer, transformer: CosmosTransformer3DModel, vae: AutoencoderKLWan, scheduler: FlowMatchEulerDiscreteScheduler, safety_checker: CosmosSafetyChecker = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/cosmos/pipeline_cosmos2_text2image.py#L143)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cosmos/pipeline_cosmos2_text2image.py#L143)
 
 **Parameters:**
 
@@ -756,24 +754,24 @@ text_encoder (`T5EncoderModel`) : Frozen text-encoder. Cosmos uses [T5](https://
 
 tokenizer (`T5TokenizerFast`) : Tokenizer of class [T5Tokenizer](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5Tokenizer).
 
-transformer ([CosmosTransformer3DModel](/docs/diffusers/v0.42.1/en/api/models/cosmos_transformer3d#diffusers.CosmosTransformer3DModel)) : Conditional Transformer to denoise the encoded image latents.
+transformer ([CosmosTransformer3DModel](/docs/diffusers/v0.43.0/en/api/models/cosmos_transformer3d#diffusers.CosmosTransformer3DModel)) : Conditional Transformer to denoise the encoded image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.43.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKLWan](/docs/diffusers/v0.42.1/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLWan](/docs/diffusers/v0.43.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 Pipeline for text-to-image generation using [Cosmos Predict2](https://github.com/nvidia-cosmos/cosmos-predict2).
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.43.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.Cosmos2TextToImagePipeline.__call__]]
 
 ```python
-__call__(prompt: str | list[str] = None, negative_prompt: str | list[str] | None = None, height: int = 768, width: int = 1360, num_inference_steps: int = 35, guidance_scale: float = 7.0, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
+__call__(prompt: str | list[str] = None, negative_prompt: str | list[str] | None = None, height: int = 768, width: int = 1360, num_inference_steps: int = 35, guidance_scale: float = 7.0, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list[str] = ['latents'], max_sequence_length: int = 512)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/cosmos/pipeline_cosmos2_text2image.py#L417)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cosmos/pipeline_cosmos2_text2image.py#L417)
 
 **Parameters:**
 
@@ -842,7 +840,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 512, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/cosmos/pipeline_cosmos2_text2image.py#L254)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cosmos/pipeline_cosmos2_text2image.py#L254)
 
 **Parameters:**
 
@@ -872,7 +870,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.Cosmos2VideoToWorldPipeline(text_encoder: T5EncoderModel, tokenizer: T5Tokenizer, transformer: CosmosTransformer3DModel, vae: AutoencoderKLWan, scheduler: FlowMatchEulerDiscreteScheduler, safety_checker: CosmosSafetyChecker = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/cosmos/pipeline_cosmos2_video2world.py#L162)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cosmos/pipeline_cosmos2_video2world.py#L162)
 
 **Parameters:**
 
@@ -880,24 +878,24 @@ text_encoder (`T5EncoderModel`) : Frozen text-encoder. Cosmos uses [T5](https://
 
 tokenizer (`T5TokenizerFast`) : Tokenizer of class [T5Tokenizer](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5Tokenizer).
 
-transformer ([CosmosTransformer3DModel](/docs/diffusers/v0.42.1/en/api/models/cosmos_transformer3d#diffusers.CosmosTransformer3DModel)) : Conditional Transformer to denoise the encoded image latents.
+transformer ([CosmosTransformer3DModel](/docs/diffusers/v0.43.0/en/api/models/cosmos_transformer3d#diffusers.CosmosTransformer3DModel)) : Conditional Transformer to denoise the encoded image latents.
 
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.42.1/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.43.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
-vae ([AutoencoderKLWan](/docs/diffusers/v0.42.1/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+vae ([AutoencoderKLWan](/docs/diffusers/v0.43.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 Pipeline for video-to-world generation using [Cosmos Predict2](https://github.com/nvidia-cosmos/cosmos-predict2).
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.42.1/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.43.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 #### __call__[[diffusers.Cosmos2VideoToWorldPipeline.__call__]]
 
 ```python
-__call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, video: list = None, prompt: str | list[str] = None, negative_prompt: str | list[str] | None = None, height: int = 704, width: int = 1280, num_frames: int = 93, num_inference_steps: int = 35, guidance_scale: float = 7.0, fps: int = 16, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512, sigma_conditioning: float = 0.0001)
+__call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, video: list[typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]] = None, prompt: str | list[str] = None, negative_prompt: str | list[str] | None = None, height: int = 704, width: int = 1280, num_frames: int = 93, num_inference_steps: int = 35, guidance_scale: float = 7.0, fps: int = 16, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list[str] = ['latents'], max_sequence_length: int = 512, sigma_conditioning: float = 0.0001)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/cosmos/pipeline_cosmos2_video2world.py#L485)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cosmos/pipeline_cosmos2_video2world.py#L485)
 
 **Parameters:**
 
@@ -980,7 +978,7 @@ Examples:
 encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 512, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/cosmos/pipeline_cosmos2_video2world.py#L273)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cosmos/pipeline_cosmos2_video2world.py#L273)
 
 **Parameters:**
 
@@ -1010,7 +1008,7 @@ Encodes the prompt into text encoder hidden states.
 diffusers.pipelines.cosmos.pipeline_output.CosmosPipelineOutput(frames: Tensor)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/cosmos/pipeline_output.py#L14)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cosmos/pipeline_output.py#L14)
 
 **Parameters:**
 
@@ -1026,7 +1024,7 @@ Output class for Cosmos any-to-world/video pipelines.
 diffusers.pipelines.cosmos.pipeline_output.CosmosImagePipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray)
 ```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.42.1/src/diffusers/pipelines/cosmos/pipeline_output.py#L29)
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/cosmos/pipeline_output.py#L29)
 
 **Parameters:**
 
@@ -1034,8 +1032,8 @@ images (`list[PIL.Image.Image]` or `np.ndarray`) : list of denoised PIL images o
 
 Output class for Cosmos any-to-image pipelines.
 
-### Helios
-https://huggingface.co/docs/diffusers/v0.42.1/api/pipelines/helios.md
+### Easyanimate
+https://huggingface.co/docs/diffusers/v0.43.0/api/pipelines/easyanimate.md
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -1048,4 +1046,242 @@ https://huggingface.co/docs/diffusers/v0.42.1/api/pipelines/helios.md
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-# limitations under the License. -->
+# limitations under the License.
+-->
+
+# EasyAnimate
+[EasyAnimate](https://github.com/aigc-apps/EasyAnimate) by Alibaba PAI.
+
+The description from it's GitHub page:
+*EasyAnimate is a pipeline based on the transformer architecture, designed for generating AI images and videos, and for training baseline models and Lora models for Diffusion Transformer. We support direct prediction from pre-trained EasyAnimate models, allowing for the generation of videos with various resolutions, approximately 6 seconds in length, at 8fps (EasyAnimateV5.1, 1 to 49 frames). Additionally, users can train their own baseline and Lora models for specific style transformations.*
+
+This pipeline was contributed by [bubbliiiing](https://github.com/bubbliiiing). The original codebase can be found [here](https://huggingface.co/alibaba-pai). The original weights can be found under [hf.co/alibaba-pai](https://huggingface.co/alibaba-pai).
+
+There are two official EasyAnimate checkpoints for text-to-video and video-to-video.
+
+| checkpoints | recommended inference dtype |
+|:---:|:---:|
+| [`alibaba-pai/EasyAnimateV5.1-12b-zh`](https://huggingface.co/alibaba-pai/EasyAnimateV5.1-12b-zh) | torch.float16 |
+| [`alibaba-pai/EasyAnimateV5.1-12b-zh-InP`](https://huggingface.co/alibaba-pai/EasyAnimateV5.1-12b-zh-InP) | torch.float16 |
+
+There is one official EasyAnimate checkpoints available for image-to-video and video-to-video.
+
+| checkpoints | recommended inference dtype |
+|:---:|:---:|
+| [`alibaba-pai/EasyAnimateV5.1-12b-zh-InP`](https://huggingface.co/alibaba-pai/EasyAnimateV5.1-12b-zh-InP) | torch.float16 |
+
+There are two official EasyAnimate checkpoints available for control-to-video.
+
+| checkpoints | recommended inference dtype |
+|:---:|:---:|
+| [`alibaba-pai/EasyAnimateV5.1-12b-zh-Control`](https://huggingface.co/alibaba-pai/EasyAnimateV5.1-12b-zh-Control) | torch.float16 |
+| [`alibaba-pai/EasyAnimateV5.1-12b-zh-Control-Camera`](https://huggingface.co/alibaba-pai/EasyAnimateV5.1-12b-zh-Control-Camera) | torch.float16 |
+
+For the EasyAnimateV5.1 series:
+- Text-to-video (T2V) and Image-to-video (I2V) works for multiple resolutions. The width and height can vary from 256 to 1024.
+- Both T2V and I2V models support generation with 1~49 frames and work best at this value. Exporting videos at 8 FPS is recommended.
+
+## Quantization
+
+Quantization helps reduce the memory requirements of very large models by storing model weights in a lower precision data type. However, quantization may have varying impact on video quality depending on the video model.
+
+Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [EasyAnimatePipeline](/docs/diffusers/v0.43.0/en/api/pipelines/easyanimate#diffusers.EasyAnimatePipeline) for inference with bitsandbytes.
+
+```py
+import torch
+from diffusers import BitsAndBytesConfig as DiffusersBitsAndBytesConfig, EasyAnimateTransformer3DModel, EasyAnimatePipeline
+from diffusers.utils import export_to_video
+
+quant_config = DiffusersBitsAndBytesConfig(load_in_8bit=True)
+transformer_8bit = EasyAnimateTransformer3DModel.from_pretrained(
+    "alibaba-pai/EasyAnimateV5.1-12b-zh",
+    subfolder="transformer",
+    quantization_config=quant_config,
+    dtype=torch.float16,
+)
+
+pipeline = EasyAnimatePipeline.from_pretrained(
+    "alibaba-pai/EasyAnimateV5.1-12b-zh",
+    transformer=transformer_8bit,
+    dtype=torch.float16,
+    device_map="balanced",
+)
+
+prompt = "A cat walks on the grass, realistic style."
+negative_prompt = "bad detailed"
+video = pipeline(prompt=prompt, negative_prompt=negative_prompt, num_frames=49, num_inference_steps=30).frames[0]
+export_to_video(video, "cat.mp4", fps=8)
+```
+
+## EasyAnimatePipeline[[diffusers.EasyAnimatePipeline]]
+
+#### diffusers.EasyAnimatePipeline[[diffusers.EasyAnimatePipeline]]
+
+```python
+diffusers.EasyAnimatePipeline(vae: AutoencoderKLMagvit, text_encoder: transformers.models.qwen2_vl.modeling_qwen2_vl.Qwen2VLForConditionalGeneration | transformers.models.bert.modeling_bert.BertModel, tokenizer: transformers.models.qwen2.tokenization_qwen2.Qwen2Tokenizer | transformers.models.bert.tokenization_bert.BertTokenizer, transformer: EasyAnimateTransformer3DModel, scheduler: FlowMatchEulerDiscreteScheduler)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/easyanimate/pipeline_easyanimate.py#L186)
+
+**Parameters:**
+
+vae ([AutoencoderKLMagvit](/docs/diffusers/v0.43.0/en/api/models/autoencoderkl_magvit#diffusers.AutoencoderKLMagvit)) : Variational Auto-Encoder (VAE) Model to encode and decode video to and from latent representations.
+
+text_encoder (`~transformers.Qwen2VLForConditionalGeneration`, `~transformers.BertModel` | None) : EasyAnimate uses [qwen2 vl](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct) in V5.1.
+
+tokenizer (`~transformers.Qwen2Tokenizer`, `~transformers.BertTokenizer` | None) : A `Qwen2Tokenizer` or `BertTokenizer` to tokenize text.
+
+transformer ([EasyAnimateTransformer3DModel](/docs/diffusers/v0.43.0/en/api/models/easyanimate_transformer3d#diffusers.EasyAnimateTransformer3DModel)) : The EasyAnimate model designed by EasyAnimate Team.
+
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.43.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with EasyAnimate to denoise the encoded image latents.
+
+Pipeline for text-to-video generation using EasyAnimate.
+
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.43.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
+
+EasyAnimate uses one text encoder [qwen2 vl](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct) in V5.1.
+
+#### __call__[[diffusers.EasyAnimatePipeline.__call__]]
+
+```python
+__call__(prompt: str | list[str] = None, num_frames: int | None = 49, height: int | None = 512, width: int | None = 512, num_inference_steps: int | None = 50, guidance_scale: float | None = 5.0, negative_prompt: str | list[str] | None = None, num_images_per_prompt: int | None = 1, eta: float | None = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, timesteps: list[int] | None = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list[str] = ['latents'], guidance_rescale: float = 0.0)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/easyanimate/pipeline_easyanimate.py#L524)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : Text prompts to guide the image or video generation. If not provided, use `prompt_embeds` instead.
+
+num_frames (`int`, *optional*) : Length of the generated video (in frames).
+
+height (`int`, *optional*) : Height of the generated image in pixels.
+
+width (`int`, *optional*) : Width of the generated image in pixels.
+
+num_inference_steps (`int`, *optional*, defaults to 50) : Number of denoising steps during generation. More steps generally yield higher quality images but slow down inference.
+
+guidance_scale (`float`, *optional*, defaults to 5.0) : Encourages the model to align outputs with prompts. A higher value may decrease image quality.
+
+negative_prompt (`str` or `list[str]`, *optional*) : Prompts indicating what to exclude in generation. If not specified, use `negative_prompt_embeds`.
+
+num_images_per_prompt (`int`, *optional*, defaults to 1) : Number of images to generate for each prompt.
+
+eta (`float`, *optional*, defaults to 0.0) : Applies to DDIM scheduling. Controlled by the eta parameter from the related literature.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : A generator to ensure reproducibility in image generation.
+
+latents (`torch.Tensor`, *optional*) : Predefined latent tensors to condition generation.
+
+prompt_embeds (`torch.Tensor`, *optional*) : Text embeddings for the prompts. Overrides prompt string inputs for more flexibility.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Embeddings for negative prompts. Overrides string inputs if defined.
+
+prompt_attention_mask (`torch.Tensor`, *optional*) : Attention mask for the primary prompt embeddings.
+
+negative_prompt_attention_mask (`torch.Tensor`, *optional*) : Attention mask for negative prompt embeddings.
+
+output_type (`str`, *optional*, defaults to "latent") : Format of the generated output, either as a PIL image or as a NumPy array.
+
+return_dict (`bool`, *optional*, defaults to `True`) : If `True`, returns a structured output. Otherwise returns a simple tuple.
+
+callback_on_step_end (`Callable`, *optional*) : Functions called at the end of each denoising step.
+
+callback_on_step_end_tensor_inputs (`list[str]`, *optional*) : Tensor names to be included in callback function calls.
+
+guidance_rescale (`float`, *optional*, defaults to 0.0) : Adjusts noise levels based on guidance scale.
+
+timesteps (`list[int]`, *optional*) : Custom timesteps to use for the denoising process. If not defined, the scheduler's default schedule for `num_inference_steps` is used.
+
+**Returns:** [StableDiffusionPipelineOutput](/docs/diffusers/v0.43.0/en/api/pipelines/stable_diffusion/img2img#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) or `tuple`
+
+If `return_dict` is `True`, [StableDiffusionPipelineOutput](/docs/diffusers/v0.43.0/en/api/pipelines/stable_diffusion/img2img#diffusers.pipelines.stable_diffusion.StableDiffusionPipelineOutput) is returned,
+otherwise a `tuple` is returned where the first element is a list with the generated images and the
+second element is a list of `bool`s indicating whether the corresponding generated image contains
+"not-safe-for-work" (nsfw) content.
+
+Generates images or video using the EasyAnimate pipeline based on the provided prompts.
+
+Examples:
+```python
+>>> import torch
+>>> from diffusers import EasyAnimatePipeline
+>>> from diffusers.utils import export_to_video
+
+>>> # Models: "alibaba-pai/EasyAnimateV5.1-12b-zh"
+>>> pipe = EasyAnimatePipeline.from_pretrained(
+...     "alibaba-pai/EasyAnimateV5.1-7b-zh-diffusers", torch_dtype=torch.float16
+... ).to("cuda")
+>>> prompt = (
+...     "A panda, dressed in a small, red jacket and a tiny hat, sits on a wooden stool in a serene bamboo forest. "
+...     "The panda's fluffy paws strum a miniature acoustic guitar, producing soft, melodic tunes. Nearby, a few other "
+...     "pandas gather, watching curiously and some clapping in rhythm. Sunlight filters through the tall bamboo, "
+...     "casting a gentle glow on the scene. The panda's face is expressive, showing concentration and joy as it plays. "
+...     "The background includes a small, flowing stream and vibrant green foliage, enhancing the peaceful and magical "
+...     "atmosphere of this unique musical performance."
+... )
+>>> sample_size = (512, 512)
+>>> video = pipe(
+...     prompt=prompt,
+...     guidance_scale=6,
+...     negative_prompt="bad detailed",
+...     height=sample_size[0],
+...     width=sample_size[1],
+...     num_inference_steps=50,
+... ).frames[0]
+>>> export_to_video(video, "output.mp4", fps=8)
+```
+
+#### encode_prompt[[diffusers.EasyAnimatePipeline.encode_prompt]]
+
+```python
+encode_prompt(prompt: str | list[str], num_images_per_prompt: int = 1, do_classifier_free_guidance: bool = True, negative_prompt: str | list[str] | None = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None, max_sequence_length: int = 256)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/easyanimate/pipeline_easyanimate.py#L241)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : prompt to be encoded
+
+device : (`torch.device`): torch device
+
+dtype (`torch.dtype`) : torch dtype
+
+num_images_per_prompt (`int`) : number of images that should be generated per prompt
+
+do_classifier_free_guidance (`bool`) : whether to use classifier free guidance or not
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is less than `1`).
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+prompt_attention_mask (`torch.Tensor`, *optional*) : Attention mask for the prompt. Required when `prompt_embeds` is passed directly.
+
+negative_prompt_attention_mask (`torch.Tensor`, *optional*) : Attention mask for the negative prompt. Required when `negative_prompt_embeds` is passed directly.
+
+max_sequence_length (`int`, *optional*) : maximum sequence length to use for the prompt.
+
+Encodes the prompt into text encoder hidden states.
+
+## EasyAnimatePipelineOutput[[diffusers.pipelines.easyanimate.pipeline_output.EasyAnimatePipelineOutput]]
+
+#### diffusers.pipelines.easyanimate.pipeline_output.EasyAnimatePipelineOutput[[diffusers.pipelines.easyanimate.pipeline_output.EasyAnimatePipelineOutput]]
+
+```python
+diffusers.pipelines.easyanimate.pipeline_output.EasyAnimatePipelineOutput(frames: Tensor)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.43.0/src/diffusers/pipelines/easyanimate/pipeline_output.py#L9)
+
+**Parameters:**
+
+frames (`torch.Tensor`, `np.ndarray`, or list[list[PIL.Image.Image]]) : list of video outputs - It can be a nested list of length `batch_size,` with each sub-list containing denoised PIL image sequences of length `num_frames.` It can also be a NumPy array or Torch tensor of shape `(batch_size, num_frames, channels, height, width)`.
+
+Output class for EasyAnimate pipelines.
+
+### LongCat-AudioDiT
+https://huggingface.co/docs/diffusers/v0.43.0/api/pipelines/longcat_audio_dit.md

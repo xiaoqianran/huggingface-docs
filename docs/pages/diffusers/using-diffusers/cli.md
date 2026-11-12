@@ -89,7 +89,7 @@ Configure how the CLI loads model weights and custom pipeline code.
 - `--dtype {auto, bfloat16, bf16, float16, fp16, float32, fp32}` — weight dtype.
 - `--device-map <value>` — component placement. Accepts a torch device string (`cuda`, `cuda:0`, `cpu`, `mps`),
   `balanced` (auto-splits components across visible GPUs), or a JSON dict for explicit per-component placement.
-  Auto-detected if omitted. See [device_map](../training/distributed_inference#devicemap) for more details.
+  Auto-detected if omitted. See [device_map](../optimization/device_map) for more details.
 - `--variant fp16` — pick a weight variant.
 - `--revision <sha>` — pin a specific model revision.
 - `--trust-remote-code` — allow custom code from the Hub (required for repos that ship custom pipeline classes
@@ -124,7 +124,7 @@ Configure how the CLI loads model weights and custom pipeline code.
   with `--context-parallel`.
 - `--context-parallel` — Ulysses-style context parallelism on a DiT-based pipeline. Locally requires torchrun, but
   under `--remote` the CLI wraps `torchrun --nproc-per-node=gpu` for you. See
-  [Context parallelism](../training/distributed_inference#context-parallelism).
+  [Context parallelism](../optimization/context_parallelism).
 
 ### Modular pipelines
 
@@ -329,5 +329,5 @@ diffusers-cli skills add --all --claude   # or --codex / --cursor
 
 Without a target flag, the CLI installs for the agent that launched it, or for every agent when it cannot tell. Claude Code gets a plugin bundle under `.claude/skills/diffusers/` (namespaced as `/diffusers:<skill name>`). Codex and Cursor get `.agents/skills/<skill name>/`.
 
-### AutoModel
-https://huggingface.co/docs/diffusers/v0.42.1/using-diffusers/automodel.md
+### Pipeline callbacks
+https://huggingface.co/docs/diffusers/v0.43.0/using-diffusers/callback.md

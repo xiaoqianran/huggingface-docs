@@ -106,5 +106,5 @@ Pass the embeddings to `prompt_embeds` and `pooled_prompt_embeds` to generate yo
 image = pipeline(prompt_embeds=prompt_embeds, pooled_prompt_embeds=pooled_prompt_embeds).images[0]
 ```
 
-### Image-to-image
-https://huggingface.co/docs/diffusers/v0.42.1/using-diffusers/img2img.md
+### Guiders
+https://huggingface.co/docs/diffusers/v0.43.0/using-diffusers/guiders.md
