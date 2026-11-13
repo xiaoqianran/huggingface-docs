@@ -453,8 +453,8 @@
       "translatedAt": "2026-10-29T14:08:12.034Z"
     },
     "hub/local-cache.md": {
-      "hash": "d58dca2fc2b96b77dd963b5500486e085df132e4",
-      "translatedAt": "2026-10-29T14:08:14.852Z"
+      "hash": "7efc262f9820b13e0847080605b6d8796e1e4435",
+      "translatedAt": "2026-11-13T15:17:03.678Z"
     },
     "hub/mlx-image.md": {
       "hash": "a29299422880cf9c80b40838fb97bc2e38a4acd5",
@@ -2053,10 +2053,10 @@
       "translatedAt": "2026-11-11T15:02:31.316Z"
     }
   },
-  "updatedAt": "2026-11-12T15:55:11.270Z",
+  "updatedAt": "2026-11-13T15:17:03.679Z",
   "stats": {
-    "translated": 4,
-    "skipped": 396,
+    "translated": 1,
+    "skipped": 399,
     "failed": 0,
     "total": 400
   }

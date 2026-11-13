@@ -24,6 +24,7 @@
 | [⟦T25⟧](https://github.com/ggml-org/Llama-macOS) |斯威夫特 | macOS 应用程序，基于 `llama.cpp` 构建 |
 | [⟦T27⟧](https://github.com/bodaay/HuggingFaceModelDownloader) |去 | |
 | [⟦T28⟧](https://github.com/jundot/omlx) |蟒蛇 | macOS MLX 推理服务器，自 [v0.4.0](https://github.com/jundot/omlx/commit/341aebbeaba1ca3452f83dedf03a0d102cef9fd4) |
+| [⟦T29⟧](https://github.com/raullenchai/Rapid-MLX) |蟒蛇 |用于 Apple Silicon 的本地 LLM 推理服务器，基于 MLX 构建；通过 `huggingface_hub` 使用集线器缓存 |
 
 ## 缓存位置
 
@@ -35,9 +36,7 @@
 
 这可以用环境变量覆盖：
 - `HF_HUB_CACHE` - 缓存目录的直接路径（优先）
-- `HF_HOME` - Hugging Face 主目录的路径；如果设置，缓存位于`$HF_HOME/hub`
-
-## 概述
+- `HF_HOME` - Hugging Face 主目录的路径；如果设置，缓存位于`$HF_HOME/hub`## 概述
 
 ```
 <CACHE_DIR>/
@@ -46,7 +45,9 @@
 ├── models--<org>--<repo>/                   # Cached model repositories
 ├── datasets--<org>--<repo>/                 # Cached dataset repositories
 └── spaces--<org>--<repo>/                   # Cached space repositories
-```每个下载的存储库都有一个单一的平面文件夹。在每个存储库文件夹内，文件一次存储在内容寻址的 `blobs/` 目录中，并通过 `snapshots/` 符号链接访问。命名引用（分支、标签）在 `refs/` 中跟踪。从 `huggingface_hub` 1.32 开始，使用 `hf_xet` 下载的文件在整个缓存中存储一​​次，存储在缓存根目录的 [shared blob store](#shared-blob-store) 中。存储库的 `blobs/` 条目是该文件的符号链接。
+```
+
+每个下载的存储库都有一个单一的平面文件夹。在每个存储库文件夹内，文件一次存储在内容寻址的 `blobs/` 目录中，并通过 `snapshots/` 符号链接访问。命名引用（分支、标签）在 `refs/` 中跟踪。从 `huggingface_hub` 1.32 开始，使用 `hf_xet` 下载的文件在整个缓存中存储一​​次，存储在缓存根目录的 [shared blob store](#shared-blob-store) 中。存储库的 `blobs/` 条目是该文件的符号链接。
 
 ## 架构
 
@@ -83,7 +84,7 @@
 ```
 
 规则：
-- 仓库类型是**复数**：`models`、`datasets`、`spaces`
+- 回购类型是**复数**：`models`、`datasets`、`spaces`
 - 存储库 ID 中的正斜杠 (`/`) 替换为`--`
 - 所有部分之间的分隔符是`--`
 - 外壳被保留
@@ -127,7 +128,7 @@ blobs/
 
 ### `refs/`：分支和标签引用
 
-`refs/` 目录将人类可读的引用（分支名称、标签、PR 编号）映射到提交哈希值。
+`refs/` 目录将人类可读的引用（分支名称、标签、PR 号）映射到提交哈希值。
 
 每个引用都是一个纯文本文件，包含一行：完整提交哈希（40 个十六进制字符）。
 
@@ -156,7 +157,7 @@ snapshots/
 
 主要特性：
 - 符号链接使用**相对路径**：`../../blobs/{hash}`
-- 如果文件在两个修订版之间未更改，则两个符号链接都指向**相同的 blob** 且没有数据重复
+- 如果文件在两次修订之间未更改，则两个符号链接都指向**相同的 blob**，没有数据重复
 - Hub 上子目录中的文件在快照中表示为子目录（保留完整的相对路径）
 
 快照之间的切换类似于在本地 git 存储库中使用 `git checkout`。
@@ -177,7 +178,7 @@ snapshots/
 
 ## 共享 blob 存储
 
-通过 Xet 下载的文件会跨存储库进行重复数据删除。这样的文件在缓存根目录下存储一次，在`blobs/`下，并且每个需要它的存储库都会获得一个相对的符号链接而不是副本：```
+通过 Xet 下载的文件会跨存储库进行重复数据删除。这样的文件在 `blobs/` 下的缓存根目录中存储一次，并且需要它的每个存储库都会获得相对符号链接而不是副本：```
 <CACHE_DIR>/
 ├── blobs/
 │   ├── .huggingface-shared-blobs                 # marker file, contains the layout version ("1")
@@ -196,17 +197,17 @@ snapshots/
 - `snapshots/`布局不变，因此[file resolution](#file-resolution-logic)不受影响
 - 标记文件标识存储：缓存根目录下的非空`blobs/`目录，并且从未使用或修改过它
 - 商店需要符号链接和`hf_xet`。如果共享失败，文件会像以前一样存储在 repo 文件夹中。 `HF_HUB_DISABLE_SHARED_BLOBS=1` 禁用商店
-- 只有新的下载才会通过商店进行。由旧版本或其他客户端写入的文件保留在存储库文件夹中的常规文件，因此缓存可以包含两者
+- 只有新的下载才会通过商店进行。由旧版本或其他客户端写入的文件在存储库文件夹中保留常规文件，因此缓存可以包含两者
 
 仅读取缓存的实现不需要更改：以下符号链接的工作方式与以前一样。
 
-从缓存中删除的实现应该将作为符号链接的存储库 blob 视为对存储的引用：
+从缓存中删除的实现应将作为符号链接的存储库 blob 视为对存储的引用：
 - 删除存储库的`blobs/`中的符号链接，而不是它指向的共享文件
 - 在检查清单和删除之前锁定`<xet_hash>.lock`
 - 仅当清单中没有列出的符号链接仍然指向共享文件及其`.refs`时，才删除共享文件及其`.refs`
 - 如果清单丢失或无法读取，请保留共享文件
 
-请参阅 [⟦T72⟧ cache guide](https://huggingface.co/docs/huggingface_hub/guides/manage-cache#shared-blobs-across-repos) 了解旧客户端的删除行为和限制。
+请参阅 [⟦T74⟧ cache guide](https://huggingface.co/docs/huggingface_hub/guides/manage-cache#shared-blobs-across-repos) 了解旧客户端的删除行为和限制。
 
 ## 锁定文件锁定文件可防止并发进程同时下载相同的 blob。它们存储在缓存根目录的 `.locks/` 目录中（不在 repo 文件夹内）：
 
