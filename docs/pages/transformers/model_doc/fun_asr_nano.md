@@ -156,7 +156,7 @@ print(processor.decode(generated_ids, skip_special_tokens=True)[0])
 transformers.FunAsrNanoConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, adaptor_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, audio_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, audio_token_id: int = 151646, initializer_range: float = 0.02, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/fun_asr_nano/configuration_fun_asr_nano.py#L77)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/fun_asr_nano/configuration_fun_asr_nano.py#L77)
 
 **Parameters:**
 
@@ -176,8 +176,8 @@ This is the configuration class to store the configuration of a FunAsrNanoModel.
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [FunAudioLLM/Fun-ASR-Nano-2512-hf](https://huggingface.co/FunAudioLLM/Fun-ASR-Nano-2512-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## FunAsrNanoEncoderConfig[[transformers.FunAsrNanoEncoderConfig]]
 
@@ -187,7 +187,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes
 transformers.FunAsrNanoEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, num_mel_bins: int = 80, hidden_size: int = 512, num_attention_heads: int = 4, intermediate_size: int = 2048, num_hidden_layers: int = 70, hidden_dropout: float = 0.1, attention_dropout: float = 0.1, layer_norm_eps: float = 1e-05, hidden_act: str = 'relu', max_position_embeddings: int = 2049, num_stacked_frames: int = 7, num_timestamp_prediction_layers: int = 20, fsmn_kernel_size: int = 11)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/fun_asr_nano/configuration_fun_asr_nano.py#L25)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/fun_asr_nano/configuration_fun_asr_nano.py#L25)
 
 **Parameters:**
 
@@ -221,8 +221,8 @@ This is the configuration class to store the configuration of a FunAsrNanoModel.
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [FunAudioLLM/Fun-ASR-Nano-2512-hf](https://huggingface.co/FunAudioLLM/Fun-ASR-Nano-2512-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## FunAsrNanoAdaptorConfig[[transformers.FunAsrNanoAdaptorConfig]]
 
@@ -232,7 +232,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes
 transformers.FunAsrNanoAdaptorConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 1024, num_attention_heads: int = 8, intermediate_size: int = 256, num_hidden_layers: int = 2, hidden_dropout: float = 0.0, attention_dropout: float = 0.0, layer_norm_eps: float = 1e-05, hidden_act: str = 'relu', projector_hidden_act: str = 'relu', projector_hidden_size: int = 2048)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/fun_asr_nano/configuration_fun_asr_nano.py#L62)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/fun_asr_nano/configuration_fun_asr_nano.py#L62)
 
 **Parameters:**
 
@@ -260,8 +260,8 @@ This is the configuration class to store the configuration of a FunAsrNanoModel.
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [FunAudioLLM/Fun-ASR-Nano-2512-hf](https://huggingface.co/FunAudioLLM/Fun-ASR-Nano-2512-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## FunAsrNanoFeatureExtractor[[transformers.FunAsrNanoFeatureExtractor]]
 
@@ -271,7 +271,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes
 transformers.FunAsrNanoFeatureExtractor(feature_size: int = 80, sampling_rate: int = 16000, frame_length: int = 25, frame_shift: int = 10, num_frames_lfr: int = 7, stride_lfr: int = 6, window: str = 'hamming', padding_value: float = 0.0, return_attention_mask: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/fun_asr_nano/feature_extraction_fun_asr_nano.py#L33)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/fun_asr_nano/feature_extraction_fun_asr_nano.py#L33)
 
 **Parameters:**
 
@@ -295,7 +295,7 @@ return_attention_mask (`bool`, *optional*, defaults to `True`) : Whether to retu
 
 Constructs a Fun-ASR-Nano feature extractor.
 
-This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.22.2/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) which contains
+This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.23.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) which contains
 most of the main methods. Users should refer to this superclass for more information regarding those methods.
 
 It extracts Kaldi-compatible mel-filterbank features (via `torchaudio.compliance.kaldi.fbank`, matching the
@@ -320,7 +320,7 @@ Example:
 __call__(raw_speech: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor']], sampling_rate: int | None = None, return_tensors: str | transformers.utils.generic.TensorType | None = 'pt', padding: bool | str = True, max_length: int | None = None, truncation: bool = False, pad_to_multiple_of: int | None = None, return_attention_mask: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/fun_asr_nano/feature_extraction_fun_asr_nano.py#L146)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/fun_asr_nano/feature_extraction_fun_asr_nano.py#L146)
 
 **Parameters:**
 
@@ -328,9 +328,9 @@ raw_speech (`np.ndarray`, `list[float]`, `list[np.ndarray]`, `list[list[float]]`
 
 sampling_rate (`int`, *optional*) : Sampling rate of the input audio. Must match `self.sampling_rate` (16000 Hz).
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.TensorType), *optional*) : If set, returns tensors of the given framework (`"pt"`, `"np"`, ...).
+return_tensors (`str` or [TensorType](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, returns tensors of the given framework (`"pt"`, `"np"`, ...).
 
-padding (`bool` or `str`, *optional*, defaults to `True`) : Padding strategy forwarded to [pad()](/docs/transformers/v5.22.2/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor.pad).
+padding (`bool` or `str`, *optional*, defaults to `True`) : Padding strategy forwarded to [pad()](/docs/transformers/v5.23.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor.pad).
 
 max_length (`int`, *optional*) : Maximum LFR sequence length for padding/truncation.
 
@@ -342,7 +342,7 @@ return_attention_mask (`bool`, *optional*) : Whether to return `input_features_m
 
 **Returns:**
 
-[BatchFeature](/docs/transformers/v5.22.2/en/main_classes/feature_extractor#transformers.BatchFeature) with `input_features` of shape
+[BatchFeature](/docs/transformers/v5.23.0/en/main_classes/feature_extractor#transformers.BatchFeature) with `input_features` of shape
 `(batch, max_lfr_frames, feature_size * num_frames_lfr)` and the frame-level `input_features_mask`.
 
 Extract Kaldi mel-filterbank + LFR features from one or several raw audio waveforms.
@@ -355,7 +355,7 @@ Extract Kaldi mel-filterbank + LFR features from one or several raw audio wavefo
 transformers.FunAsrNanoProcessor(feature_extractor, tokenizer, chat_template = None, audio_token = 'REDACTED')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/fun_asr_nano/processing_fun_asr_nano.py#L53)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/fun_asr_nano/processing_fun_asr_nano.py#L47)
 
 **Parameters:**
 
@@ -369,16 +369,16 @@ audio_token (`str`, *optional*, defaults to `"<|object_ref_start|>"`) : The toke
 
 Constructs a FunAsrNanoProcessor which wraps a feature extractor and a tokenizer into a single processor.
 
-[FunAsrNanoProcessor](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoProcessor) offers all the functionalities of [FunAsrNanoFeatureExtractor](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor) and [Qwen2Tokenizer](/docs/transformers/v5.22.2/en/model_doc/qwen2#transformers.Qwen2Tokenizer). See the
-[~FunAsrNanoFeatureExtractor](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor) and [~Qwen2Tokenizer](/docs/transformers/v5.22.2/en/model_doc/qwen2#transformers.Qwen2Tokenizer) for more information.
+[FunAsrNanoProcessor](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoProcessor) offers all the functionalities of [FunAsrNanoFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor) and [Qwen2Tokenizer](/docs/transformers/v5.23.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer). See the
+[~FunAsrNanoFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor) and [~Qwen2Tokenizer](/docs/transformers/v5.23.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer) for more information.
 
 #### __call__[[transformers.FunAsrNanoProcessor.__call__]]
 
 ```python
-__call__(text: str | list[str], audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, output_labels: bool | None = False, **kwargs: *<class 'transformers.models.fun_asr_nano.processing_fun_asr_nano.FunAsrNanoProcessorKwargs'>)
+__call__(text: str | list[str], audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, output_labels: bool | None = False, **kwargs: *<class 'transformers.processing_utils.ProcessingKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/fun_asr_nano/processing_fun_asr_nano.py#L71)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/fun_asr_nano/processing_fun_asr_nano.py#L69)
 
 **Parameters:**
 
@@ -388,11 +388,15 @@ audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarra
 
 output_labels (`bool`, *optional*, default=False) : Whether to return labels for training.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_mm_token_type_ids (`bool`, *kwargs*) : Whether to return multimodal token type ids indicating multimodal placeholder token positions.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.22.2/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+return_text_replacement_offsets (`bool`, *kwargs*) : Whether to return character offsets for each multimodal placeholder and its replacement.
 
-**Returns:** [BatchFeature](/docs/transformers/v5.22.2/en/main_classes/feature_extractor#transformers.BatchFeature)
+return_tensors (`str` or [TensorType](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.23.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+
+**Returns:** [BatchFeature](/docs/transformers/v5.23.0/en/main_classes/feature_extractor#transformers.BatchFeature)
 
 A dictionary with tokenized text (`input_ids`, `attention_mask`) and
 audio features (`input_features`, `input_features_mask`).
@@ -400,10 +404,10 @@ audio features (`input_features`, `input_features_mask`).
 #### apply_transcription_request[[transformers.FunAsrNanoProcessor.apply_transcription_request]]
 
 ```python
-apply_transcription_request(audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], list[typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor']]]], language: str | list[str] | None = None, prompt: str | list[str] | None = None, keywords: str | list[str] | list[list[str]] | None = None, **kwargs: *<class 'transformers.models.fun_asr_nano.processing_fun_asr_nano.FunAsrNanoProcessorKwargs'>)
+apply_transcription_request(audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], list[typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor']]]], language: str | list[str] | None = None, prompt: str | list[str] | None = None, keywords: str | list[str] | list[list[str]] | None = None, tokenize: bool = True, **kwargs: *<class 'transformers.processing_utils.ProcessingKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/fun_asr_nano/processing_fun_asr_nano.py#L135)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/fun_asr_nano/processing_fun_asr_nano.py#L134)
 
 **Parameters:**
 
@@ -415,12 +419,15 @@ prompt (`str` or `list[str]`, *optional*) : Contextual information that may impr
 
 keywords (`str`, `list[str]`, or `list[list[str]]`, *optional*) : Hotwords to bias recognition. A string or flat list is shared across the batch; a nested list supplies separate hotwords for each audio sample.
 
-- ****kwargs** : Additional keyword arguments forwarded to [apply_chat_template()](/docs/transformers/v5.22.2/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) and the underlying processor call (for example `text_kwargs`, `audio_kwargs`, ...).
+tokenize (`bool`, *optional*, defaults to `True`) : Whether to tokenize the prompts and process the audio. If `False`, the audio is not loaded and the prompts are returned as strings with unexpanded audio placeholders. Passing them with the audio to the processor, `processor(text=prompts, audio=audio)`, gives the same outputs as `tokenize=True`.
 
-**Returns:** [BatchFeature](/docs/transformers/v5.22.2/en/main_classes/feature_extractor#transformers.BatchFeature)
+- ****kwargs** : Additional keyword arguments forwarded to [apply_chat_template()](/docs/transformers/v5.23.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) and the underlying processor call (for example `text_kwargs`, `audio_kwargs`, ...).
 
-Processor outputs ready to be passed to
-[FunAsrNanoForConditionalGeneration.generate()](/docs/transformers/v5.22.2/en/main_classes/text_generation#transformers.GenerationMixin.generate).
+**Returns:** [BatchFeature](/docs/transformers/v5.23.0/en/main_classes/feature_extractor#transformers.BatchFeature) or `list[str]`
+
+One prompt per audio when `tokenize=False`, otherwise processor
+outputs ready to be passed to
+[FunAsrNanoForConditionalGeneration.generate()](/docs/transformers/v5.23.0/en/main_classes/text_generation#transformers.GenerationMixin.generate).
 
 Prepare inputs for ASR using the checkpoint's structured transcription chat template.
 
@@ -432,15 +439,15 @@ Prepare inputs for ASR using the checkpoint's structured transcription chat temp
 transformers.FunAsrNanoEncoder(config: FunAsrNanoEncoderConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/fun_asr_nano/modeling_fun_asr_nano.py#L279)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/fun_asr_nano/modeling_fun_asr_nano.py#L279)
 
 **Parameters:**
 
-config ([FunAsrNanoEncoderConfig](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoEncoderConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([FunAsrNanoEncoderConfig](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoEncoderConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Fun-ASR-Nano audio encoder (SenseVoice SAN-M architecture), without any head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -454,32 +461,32 @@ and behavior.
 forward(input_features: Tensor, input_features_mask: Tensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/fun_asr_nano/modeling_fun_asr_nano.py#L313)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/fun_asr_nano/modeling_fun_asr_nano.py#L313)
 
 **Parameters:**
 
-input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`) : The tensors corresponding to the input audio features. Audio features can be obtained using [FunAsrNanoFeatureExtractor](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor). See [FunAsrNanoFeatureExtractor.__call__()](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor.__call__) for details ([FunAsrNanoProcessor](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoProcessor) uses [FunAsrNanoFeatureExtractor](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor) for processing audios).
+input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`) : The tensors corresponding to the input audio features. Audio features can be obtained using [FunAsrNanoFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor). See [FunAsrNanoFeatureExtractor.__call__()](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor.__call__) for details ([FunAsrNanoProcessor](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoProcessor) uses [FunAsrNanoFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor) for processing audios).
 
 input_features_mask (`torch.LongTensor` of shape `(batch_size, padded_feature_length)`) : 1 for valid mel frames and 0 for padding.
 
-**Returns:** [BaseModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.Tensor)`
 
-A [BaseModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FunAsrNanoConfig](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoConfig)) and inputs.
+A [BaseModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([FunAsrNanoConfig](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoConfig)) and inputs.
 
-The [FunAsrNanoEncoder](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoEncoder) forward method, overrides the `__call__` special method.
+The [FunAsrNanoEncoder](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoEncoder) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -490,19 +497,19 @@ the latter silently ignores them.
 #### transformers.FunAsrNanoModel[[transformers.FunAsrNanoModel]]
 
 ```python
-transformers.FunAsrNanoModel(config)
+transformers.FunAsrNanoModel(config: FunAsrNanoConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/fun_asr_nano/modeling_fun_asr_nano.py#L393)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/fun_asr_nano/modeling_fun_asr_nano.py#L393)
 
 **Parameters:**
 
-config ([FunAsrNanoModel](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([FunAsrNanoConfig](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Fun-ASR-Nano model (SenseVoice SAN-M audio encoder, a Transformer adaptor and a Qwen3 language model),
 without a language modeling head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -513,16 +520,16 @@ and behavior.
 #### forward[[transformers.FunAsrNanoModel.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.FloatTensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/fun_asr_nano/modeling_fun_asr_nano.py#L468)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/fun_asr_nano/modeling_fun_asr_nano.py#L468)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [FunAsrNanoFeatureExtractor](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor). See [FunAsrNanoFeatureExtractor.__call__()](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor.__call__) for details ([FunAsrNanoProcessor](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoProcessor) uses [FunAsrNanoFeatureExtractor](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor) for processing audios).
+input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [FunAsrNanoFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor). See [FunAsrNanoFeatureExtractor.__call__()](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor.__call__) for details ([FunAsrNanoProcessor](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoProcessor) uses [FunAsrNanoFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor) for processing audios).
 
 input_features_mask (`torch.Tensor` of shape `(batch_size, feature_sequence_length)`) : Mask to avoid performing attention on padding feature indices.
 
@@ -530,44 +537,44 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-**Returns:** `FunAsrNanoModelOutputWithPast` or `tuple(torch.FloatTensor)`
+**Returns:** `FunAsrNanoModelOutputWithPast` or `tuple(torch.Tensor)`
 
 A `FunAsrNanoModelOutputWithPast` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FunAsrNanoConfig](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([FunAsrNanoConfig](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoConfig)) and inputs.
 
-The [FunAsrNanoModel](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoModel) forward method, overrides the `__call__` special method.
+The [FunAsrNanoModel](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **audio_hidden_states** (`torch.FloatTensor`, *optional*) -- Projected audio hidden states.
+- **audio_hidden_states** (`torch.Tensor`, *optional*) -- Projected audio hidden states.
 
 ## FunAsrNanoForConditionalGeneration[[transformers.FunAsrNanoForConditionalGeneration]]
 
 #### transformers.FunAsrNanoForConditionalGeneration[[transformers.FunAsrNanoForConditionalGeneration]]
 
 ```python
-transformers.FunAsrNanoForConditionalGeneration(config)
+transformers.FunAsrNanoForConditionalGeneration(config: FunAsrNanoConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/fun_asr_nano/modeling_fun_asr_nano.py#L551)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/fun_asr_nano/modeling_fun_asr_nano.py#L551)
 
 **Parameters:**
 
-config ([FunAsrNanoForConditionalGeneration](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoForConditionalGeneration)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([FunAsrNanoConfig](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Fun-ASR-Nano model for speech recognition: a SenseVoice SAN-M audio encoder, a Transformer adaptor and a
 Qwen3 language model with a language modeling head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -578,16 +585,16 @@ and behavior.
 #### forward[[transformers.FunAsrNanoForConditionalGeneration.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.FloatTensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/fun_asr_nano/modeling_fun_asr_nano.py#L564)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/fun_asr_nano/modeling_fun_asr_nano.py#L564)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [FunAsrNanoFeatureExtractor](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor). See [FunAsrNanoFeatureExtractor.__call__()](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor.__call__) for details ([FunAsrNanoProcessor](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoProcessor) uses [FunAsrNanoFeatureExtractor](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor) for processing audios).
+input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [FunAsrNanoFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor). See [FunAsrNanoFeatureExtractor.__call__()](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor.__call__) for details ([FunAsrNanoProcessor](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoProcessor) uses [FunAsrNanoFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoFeatureExtractor) for processing audios).
 
 input_features_mask (`torch.Tensor` of shape `(batch_size, feature_sequence_length)`) : Mask to avoid performing attention on padding feature indices.
 
@@ -595,9 +602,9 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss.
 
@@ -605,31 +612,31 @@ use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value s
 
 logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
 
-**Returns:** `FunAsrNanoCausalLMOutputWithPast` or `tuple(torch.FloatTensor)`
+**Returns:** `FunAsrNanoCausalLMOutputWithPast` or `tuple(torch.Tensor)`
 
 A `FunAsrNanoCausalLMOutputWithPast` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FunAsrNanoConfig](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([FunAsrNanoConfig](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoConfig)) and inputs.
 
-The [FunAsrNanoForConditionalGeneration](/docs/transformers/v5.22.2/en/model_doc/fun_asr_nano#transformers.FunAsrNanoForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [FunAsrNanoForConditionalGeneration](/docs/transformers/v5.23.0/en/model_doc/fun_asr_nano#transformers.FunAsrNanoForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
-- **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance.
-- **hidden_states** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
+- **logits** (`torch.Tensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head.
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance.
+- **hidden_states** (`tuple[torch.Tensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple[torch.Tensor]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
   heads.
-- **audio_hidden_states** (`torch.FloatTensor`, *optional*) -- Hidden states of the audio encoder after projection.
+- **audio_hidden_states** (`torch.Tensor`, *optional*) -- Hidden states of the audio encoder after projection.
 
 Example:
 
@@ -642,4 +649,4 @@ Example:
 ```
 
 ### StableLM
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/stablelm.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/stablelm.md

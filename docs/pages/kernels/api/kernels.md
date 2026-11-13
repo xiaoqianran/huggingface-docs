@@ -53,7 +53,7 @@ result = activation.relu(out, x)
 #### kernels.get_local_kernel[[kernels.get_local_kernel]]
 
 ```python
-kernels.get_local_kernel(repo_path: Path, backend: str | None = None, trust_remote_code: bool | list[str] = False, user_agent: str | dict | None = None)
+kernels.get_local_kernel(repo_path: Path, backend: str | None = None, trust_remote_code: bool | list[str] = False, user_agent: str | dict | None = None, check_arch: bool = True)
 ```
 
 [Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L185)
@@ -67,6 +67,8 @@ backend (*str*, *optional*) : The backend to load the kernel for. Can only be *c
 user_agent (*Union[str, dict]*, *optional*) : The *user_agent* info to pass to *snapshot_download()* for internal telemetry.
 
 trust_remote_code (*bool | list[str]*, *optional*, defaults to *False*) : Whether to allow loading kernels from untrusted organisations. When `False`, only kernels from trusted organisations are allowed. When `True`, all repositories are allowed. A list of repository IDs allows only those repositories in addition to repositories from trusted organisations.
+
+check_arch (*bool*, *optional*, defaults to *True*) : Whether to check that the kernel build supports the architecture (e.g. CUDA compute capability) of the current device. Kernels can support more architectures than they declare (e.g. through a Triton fallback), *check_arch=False* skips the check for such kernels.
 
 **Returns:** `*ModuleType*`
 
@@ -84,7 +86,7 @@ If the kernel has any (transitive) dependencies, they will be downloaded.
 kernels.has_kernel(repo_id: str, revision: str | None = None, version: int | None = None, backend: str | None = None, trust_remote_code: bool | list[str] = False, check_arch: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L239)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L248)
 
 **Parameters:**
 
@@ -186,10 +188,10 @@ for loaded in get_loaded_kernels():
 #### kernels.load_kernel[[kernels.load_kernel]]
 
 ```python
-kernels.load_kernel(repo_id: str, lockfile: pathlib.Path | None, backend: str | None = None)
+kernels.load_kernel(repo_id: str, lockfile: pathlib.Path | None, backend: str | None = None, check_arch: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L311)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L320)
 
 **Parameters:**
 
@@ -198,6 +200,8 @@ repo_id (`str`) : The Hub repository containing the kernel.
 lockfile (`Path`, *optional*) : Path to the lockfile. If not provided, the lockfile will be loaded from the caller's package metadata.
 
 backend (`str`, *optional*) : The backend to load the kernel for. Can only be `cpu` or the backend that Torch is compiled for. The backend will be detected automatically if not provided.
+
+check_arch (`bool`, *optional*, defaults to `True`) : Whether to check that the kernel build supports the architecture (e.g. CUDA compute capability) of the current device. Kernels can support more architectures than they declare (e.g. through a Triton fallback), `check_arch=False` skips the check for such kernels.
 
 **Returns:** `ModuleType`
 
@@ -215,10 +219,10 @@ If `lockfile` is not specified, the lockfile will be loaded from the caller's pa
 #### kernels.get_locked_kernel[[kernels.get_locked_kernel]]
 
 ```python
-kernels.get_locked_kernel(repo_id: str, lockfile: pathlib.Path | None, trust_remote_code: bool | list[str] = False, user_agent: str | dict | None = None)
+kernels.get_locked_kernel(repo_id: str, lockfile: pathlib.Path | None, trust_remote_code: bool | list[str] = False, user_agent: str | dict | None = None, check_arch: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L356)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L376)
 
 **Parameters:**
 
@@ -227,6 +231,8 @@ repo_id (`str`) : The Hub repository containing the kernel.
 lockfile (`Path`, *optional*) : Path to the lockfile. If not provided, the lockfile will be loaded from the caller's package metadata.
 
 user_agent (`Union[str, dict]`, *optional*) : The `user_agent` info to pass to `snapshot_download()` for internal telemetry.
+
+check_arch (`bool`, *optional*, defaults to `True`) : Whether to check that the kernel build supports the architecture (e.g. CUDA compute capability) of the current device. Kernels can support more architectures than they declare (e.g. through a Triton fallback), `check_arch=False` skips the check for such kernels.
 
 **Returns:** `ModuleType`
 

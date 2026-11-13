@@ -64,7 +64,7 @@ You can customize the server configuration by passing additional arguments. For 
 > And GPUs **4-7** for training:
 >
 > ```sh
-> CUDA_VISIBLE_DEVICES=4,5,6,7 accelerate launch train.py
+> CUDA_VISIBLE_DEVICES=4,5,6,7 torchrun --nproc_per_node 4 train.py
 > ```
 
 First, start a vLLM server by running:
@@ -101,7 +101,7 @@ You can customize the server configuration by passing additional arguments. For 
 > And GPUs **4-7** for training:
 >
 > ```sh
-> CUDA_VISIBLE_DEVICES=4,5,6,7 accelerate launch train.py
+> CUDA_VISIBLE_DEVICES=4,5,6,7 torchrun --nproc_per_node 4 train.py
 > ```
 
 ## Optimized attention implementations
@@ -144,4 +144,4 @@ training_args = SFTConfig(..., bf16=True)  # or fp16=True for older GPUs
 Use `bf16=True` for Ampere GPUs (A100, RTX 30xx) or newer, and `fp16=True` for older GPUs. Mixed precision training is supported across all TRL trainers.
 
 ### Installation
-https://huggingface.co/docs/trl/v1.17.1/installation.md
+https://huggingface.co/docs/trl/v1.18.0/installation.md

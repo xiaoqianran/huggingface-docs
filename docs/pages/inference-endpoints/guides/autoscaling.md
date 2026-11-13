@@ -141,5 +141,5 @@ Using the API, set the `inferenceLoad` measure in the scaling configuration. Bot
 
 `kvCacheUsage` is a percentage between 0 (excluded) and 100, and `requestsWaiting` is an average per replica that must be greater than 0.
 
-### Analytics and Metrics
-https://huggingface.co/docs/inference-endpoints/guides/analytics.md
+### Custom Router
+https://huggingface.co/docs/inference-endpoints/guides/custom_router.md

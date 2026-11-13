@@ -14,7 +14,7 @@ Those processors inherit from the following base class that implements the savin
 transformers.ProcessorMixin(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/processing_utils.py#L598)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/processing_utils.py#L604)
 
 This is a mixin used to provide saving/loading functionality for all processor classes.
 
@@ -24,7 +24,7 @@ This is a mixin used to provide saving/loading functionality for all processor c
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: *<class 'transformers.processing_utils.ProcessingKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/processing_utils.py#L652)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/processing_utils.py#L670)
 
 **Parameters:**
 
@@ -36,9 +36,13 @@ videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.nd
 
 audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_mm_token_type_ids (`bool`, *kwargs*) : Whether to return multimodal token type ids indicating multimodal placeholder token positions.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.22.2/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+return_text_replacement_offsets (`bool`, *kwargs*) : Whether to return character offsets for each multimodal placeholder and its replacement.
+
+return_tensors (`str` or [TensorType](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.23.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 #### prepare_inputs_layout[[transformers.ProcessorMixin.prepare_inputs_layout]]
 
@@ -46,7 +50,7 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.22.2/en/internal/fil
 prepare_inputs_layout(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: *<class 'transformers.processing_utils.ProcessingKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/processing_utils.py#L713)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/processing_utils.py#L737)
 
 Normalize and prefetch inputs before processing. Wraps text in a list for multimodal
 processors, fetches remote images and audio if URLs are provided, and ensures audio
@@ -58,7 +62,7 @@ is properly batched. Returns the normalized `(images, text, videos, audio)` tupl
 validate_inputs(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: *<class 'transformers.processing_utils.ProcessingKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/processing_utils.py#L743)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/processing_utils.py#L766)
 
 Validate that at least one input is provided and that no deprecated keyword arguments
 are used. Raises `ValueError` otherwise.
@@ -68,10 +72,10 @@ Override when the processor needs additional validation on the input args.
 #### get_text_with_replacements[[transformers.ProcessorMixin.get_text_with_replacements]]
 
 ```python
-get_text_with_replacements(text: list, images_replacements: list = [], videos_replacements: list = [], audio_replacements: list = [])
+get_text_with_replacements(text: list[str], images_replacements: list[str] = [], videos_replacements: list[str] = [], audio_replacements: list[str] = [])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/processing_utils.py#L816)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/processing_utils.py#L890)
 
 **Parameters:**
 
@@ -117,7 +121,7 @@ other supported modalities.
 create_mm_token_type_ids(input_ids: list)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/processing_utils.py#L921)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/processing_utils.py#L995)
 
 **Parameters:**
 
@@ -138,16 +142,18 @@ Each position is assigned an integer indicating which modality it belongs to:
 #### apply_chat_template[[transformers.ProcessorMixin.apply_chat_template]]
 
 ```python
-apply_chat_template(conversation: list[dict[str, str]] | list[list[dict[str, str]]], chat_template: str | None = None, tools: list[dict] | None = None, documents: list[dict[str, str]] | None = None, add_generation_prompt: bool = False, continue_final_message: bool | str = False, return_assistant_tokens_mask: bool = False, tokenize: bool = False, return_tensors: str | transformers.utils.generic.TensorType | None = None, return_dict: bool = False, load_audio_from_video: bool = False, processor_kwargs: dict | None = None, **kwargs)
+apply_chat_template(conversation: list[dict[str, str]] | list[list[dict[str, str]]], chat_template: str | None = None, tools: list[dict] | None = None, documents: list[dict[str, str]] | None = None, add_generation_prompt: bool = False, continue_final_message: bool | str = False, return_assistant_tokens_mask: bool = False, tokenize: bool = False, return_tensors: str | transformers.utils.generic.TensorType | None = 'auto', return_dict: bool = False, load_audio_from_video: bool = False, processor_kwargs: dict | None = None, sanitize_control_tokens: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/processing_utils.py#L1994)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/processing_utils.py#L2310)
 
 **Parameters:**
 
 conversation (`Union[list[Dict, [str, str]], list[list[dict[str, str]]]]`) : The conversation to format.
 
 chat_template (`Optional[str]`, *optional*) : The Jinja template to use for formatting the conversation. If not provided, the tokenizer's chat template is used.
+
+sanitize_control_tokens (`bool`, defaults to `False`) : Whether to encode the control tokens found in the conversation, tools, documents and the template variables passed as `**kwargs` as plain text, so that user input can't write them, nor mm placeholders. See the tokenizer's `apply_chat_template`. Requires `tokenize=True`.
 
 Similar to the `apply_chat_template` method on tokenizers, this method applies a Jinja template to input
 conversations to turn them into a single tokenizable string.
@@ -174,55 +180,39 @@ fields.
 
 #### transformers.ProcessingKwargs[[transformers.ProcessingKwargs]]
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/processing_utils.py#L434)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/processing_utils.py#L458)
 
 Base class for kwargs passing to processors.
+
 In case a model has specific kwargs that are not present in the base class or default values for existing keys,
-it should have its own `ModelProcessorKwargs` class that inherits from `ProcessingKwargs` to provide:
-1) Additional typed keys and that this model requires to process inputs.
-2) Default values for existing keys under a `_defaults` attribute.
+it should have its own `ModelProcessorKwargs` class that inherits from `ProcessingKwargs` to provide additional
+typed keys that this model requires to process inputs.
+
 New keys have to be defined as follows to ensure type hinting is done correctly.
 
 ```python
-# adding a new image kwarg for this model
-class ModelImagesKwargs(ImagesKwargs, total=False):
-    new_image_kwarg: Optional[bool]
-
 class ModelProcessorKwargs(ProcessingKwargs, total=False):
-    images_kwargs: ModelImagesKwargs
-    _defaults = {
-        "images_kwargs: {
-            "new_image_kwarg": False,
-        }
-        "text_kwargs": {
-            "padding": "max_length",
-        },
-    }
+    my_kwarg: float
 
-```
+class ModelProcessor(ProcessorMixin):
+    valid_processor_kwargs = ModelProcessorKwargs
 
-For Python 3.8 compatibility, when inheriting from this class and overriding one of the kwargs,
-
-you need to manually update the __annotations__ dictionary. This can be done as follows:
-
-```python
-class CustomProcessorKwargs(ProcessingKwargs, total=False):
-    images_kwargs: CustomImagesKwargs
-
-CustomProcessorKwargs.__annotations__["images_kwargs"] = CustomImagesKwargs  # python 3.8 compatibility
+    @auto_docstring
+    def __call__(self, images: ImageInput | None = None, ..., **kwargs: Unpack[ModelProcessorKwargs]):
+        my_kwarg = kwargs.get("my_kwarg")
 ```
 
 #### transformers.TextKwargs[[transformers.TextKwargs]]
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/processing_utils.py#L162)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/processing_utils.py#L179)
 
 **Parameters:**
 
 add_special_tokens (`bool`, *optional*) : Whether or not to add special tokens when encoding the sequences.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*) : Activates and controls padding.
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*) : Activates and controls padding.
 
-truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*) : Activates and controls truncation.
+truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*) : Activates and controls truncation.
 
 max_length (`int`, *optional*) : Controls the maximum length to use by one of the truncation/padding parameters.
 
@@ -248,18 +238,20 @@ verbose (`bool`, *optional*) : Whether or not to print more information and warn
 
 padding_side (`str`, *optional*) : The side on which padding will be applied.
 
-return_mm_token_type_ids (`bool`, *optional*) : Whether to return multimodal token type ids indicating mm placeholder token positions.
+return_mm_token_type_ids (`bool`, *optional*) : Deprecated, use `ProcessingKwargs.return_mm_token_type_ids` instead. Whether to return multimodal token type ids indicating mm placeholder token positions.
 
-return_text_replacement_offsets (`bool`, *optional*) : Whether to return character offsets for each mm placeholder and its replacement.
+return_text_replacement_offsets (`bool`, *optional*) : Deprecated, use `ProcessingKwargs.return_text_replacement_offsets` instead. Whether to return character offsets for each mm placeholder and its replacement.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are: - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+sanitize_control_tokens (`bool`, *optional*) : Whether the text was marked by `mark_control_tokens`: its marked control tokens are encoded as plain text, and aren't expanded as mm placeholders. Set by `apply_chat_template(..., sanitize_control_tokens=True)`.
+
+return_tensors (`str` or [TensorType](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are: - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
 Keyword arguments for text processing. For extended documentation, check out tokenization_utils_base methods and
 docstrings associated.
 
 #### transformers.ImagesKwargs[[transformers.ImagesKwargs]]
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/processing_utils.py#L231)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/processing_utils.py#L254)
 
 **Parameters:**
 
@@ -297,7 +289,7 @@ input_data_format (`ChannelDimension` or `str`, *optional*) : The channel dimens
 
 device (`Union[str, torch.Tensor]`, *optional*) : The device to use for processing (e.g. "cpu", "cuda"), only relevant for torchvision backend.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are: - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are: - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
 disable_grouping (`bool`, *optional*) : Whether to group images by shapes when processing or not, only relevant for torchvision backend.
 
@@ -308,7 +300,7 @@ class methods and docstrings.
 
 #### transformers.VideosKwargs[[transformers.VideosKwargs]]
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/processing_utils.py#L305)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/processing_utils.py#L328)
 
 **Parameters:**
 
@@ -354,13 +346,13 @@ device (`Union[str, torch.Tensor]`, *optional*) : The device to use for processi
 
 return_metadata (`bool`, *optional*) : Whether to return video metadata or not.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are: - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are: - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
 Keyword arguments for video processing.
 
 #### transformers.AudioKwargs[[transformers.AudioKwargs]]
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/processing_utils.py#L405)
 
 **Parameters:**
 
@@ -368,7 +360,7 @@ sampling_rate (`int`, *optional*) : The sampling rate at which the `raw_speech` 
 
 raw_speech (`np.ndarray`, `list[float]`, `list[np.ndarray]`, `list[list[float]]`) : The sequence or batch of sequences to be padded. Each sequence can be a numpy array, a list of float values, a list of numpy arrays or a list of list of float values. Must be mono channel audio, not stereo, i.e. single float per timestep.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'`
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'`
 
 max_length (`int`, *optional*) : Maximum length of the returned list and optionally padding length (see above).
 
@@ -376,15 +368,15 @@ truncation (`bool`, *optional*) : Activates truncation to cut input sequences lo
 
 pad_to_multiple_of (`int`, *optional*) : If set, will pad the sequence to a multiple of the provided value.
 
-return_attention_mask (`bool`, *optional*) : Whether or not [__call__()](/docs/transformers/v5.22.2/en/model_doc/audio-spectrogram-transformer#transformers.ASTFeatureExtractor.__call__) should return `attention_mask`.
+return_attention_mask (`bool`, *optional*) : Whether or not [__call__()](/docs/transformers/v5.23.0/en/model_doc/audio-spectrogram-transformer#transformers.ASTFeatureExtractor.__call__) should return `attention_mask`.
 
 device (`str` or `torch.device`, *optional*) : The device to compute the audio features on (e.g. "cpu", "cuda"), only relevant for feature extractors that compute them with torch.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are: - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are: - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-load_audio_backend (`str`, *optional*) : Backend used by `load_audio()` to decode/resample audio referenced by URL/path in `apply_chat_template`. One of `"auto"`, `"torchcodec"`, `"librosa"`, `"torchaudio"`.
+load_audio_backend (`str`, *optional*) : Backend used by `load_audio()` to decode/resample audio referenced by URL/path in `apply_chat_template`. One of `"auto"`, `"torchcodec"`, `"soundfile"`, `"torchaudio"` (`"librosa"` is a deprecated alias of `"soundfile"`).
 
 Keyword arguments for audio processing.
 
 ### ExecuTorch
-https://huggingface.co/docs/transformers/v5.22.2/main_classes/executorch.md
+https://huggingface.co/docs/transformers/v5.23.0/main_classes/executorch.md

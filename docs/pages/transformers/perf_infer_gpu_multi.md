@@ -15,12 +15,12 @@ This guide covers enabling tensor parallelism in Transformers and the available 
 
 ## Partitioning a model
 
-Configure the number of tensor parallel devices with `tp_size` in [DistributedConfig](/docs/transformers/v5.22.2/en/expert_parallelism#transformers.DistributedConfig).
+Configure the number of tensor parallel devices with `tp_size` in [DistributedConfig](/docs/transformers/v5.23.0/en/expert_parallelism#transformers.DistributedConfig).
 
 - Set `DistributedConfig(tp_size=N)` to use the model's predefined plan.
-- Define a manual `tp_plan` and pass it to [DistributedConfig](/docs/transformers/v5.22.2/en/expert_parallelism#transformers.DistributedConfig) along with `tp_size`.
+- Define a manual `tp_plan` and pass it to [DistributedConfig](/docs/transformers/v5.23.0/en/expert_parallelism#transformers.DistributedConfig) along with `tp_size`.
 
-You can also set `tp_plan="auto"` to request the predefined plan explicitly. When `tp_size` is omitted and a `tp_plan` is set, `tp_size` is derived from `WORLD_SIZE` divided by the other parallel sizes. Passing `tp_plan` directly to [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) is deprecated and will be removed in v5.18.
+You can also set `tp_plan="auto"` to request the predefined plan explicitly. When `tp_size` is omitted and a `tp_plan` is set, `tp_size` is derived from `WORLD_SIZE` divided by the other parallel sizes. Passing `tp_plan` directly to [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) is deprecated and will be removed in v5.18.
 
 ```py
 import torch
@@ -49,7 +49,7 @@ Launch the inference script with [torchrun](https://pytorch.org/docs/stable/elas
 torchrun --nproc-per-node 4 demo.py
 ```
 
-Define a tensor parallel plan for each layer in `tp_plan` and pass it through [DistributedConfig](/docs/transformers/v5.22.2/en/expert_parallelism#transformers.DistributedConfig). The example below uses column and row partitioning. See the [Partitioning strategies](#partitioning-strategies) section for other supported strategies.
+Define a tensor parallel plan for each layer in `tp_plan` and pass it through [DistributedConfig](/docs/transformers/v5.23.0/en/expert_parallelism#transformers.DistributedConfig). The example below uses column and row partitioning. See the [Partitioning strategies](#partitioning-strategies) section for other supported strategies.
 
 Manual partitioning requires a deep understanding of model architecture and strategy interactions. Poor partitioning choices create slow models that fail or produce incorrect results. The [Ultra-Scale Playbook](https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=tensor_parallelism) explains partitioning strategies in detail.
 
@@ -96,6 +96,7 @@ ALL_PARALLEL_STYLES.register("mla_kv_a_proj", MlaKvAProjParallel())
 ALL_PARALLEL_STYLES.register("all_reduce", AllReduceParallel())
 ALL_PARALLEL_STYLES.register("moe_tp_experts", MoeExpertsParallel())
 ALL_PARALLEL_STYLES.register("moe_identity_expert", MoeIdentityParallel())
+ALL_PARALLEL_STYLES.register("local_params", LocalParamsParallel())
 ```
 
 Every tensor parallel strategy is a subclass of `TensorParallelLayer` in that file. The expert parallel strategies, such as `ep_dispatch_experts`, live in [distributed/expert_parallel.py](https://github.com/huggingface/transformers/blob/main/src/transformers/distributed/expert_parallel.py), subclass `ExpertParallelLayer`, which has the same hooks, and register into the same `ALL_PARALLEL_STYLES`. The two you'll reach for most, `ColwiseParallel` and `RowwiseParallel`, take `input_layouts` and `output_layouts` placements, which is how one class covers several plan names. `colwise` leaves its output sharded on the last dim for a following `rowwise` layer to consume, while `colwise_gather_output` all-gathers it back to a full tensor.
@@ -115,10 +116,8 @@ The table below describes each strategy.
 | `MlaKvAProjParallel` | Splits the `kv_a_proj_with_mqa` output of DeepSeek-V2 style MLA attention and all-reduces the gradient of the RoPE half, which bypasses `kv_b_proj` and would otherwise keep a partial gradient. Requires `qk_rope_head_dim` in the model config. |
 | `MoeExpertsParallel` | Tensor parallel MoE experts. All-reduces the expert output forward and adds the backward all-reduces for hidden states and routing weights. |
 | `MoeIdentityParallel` | Pre-divides the input of a zero or identity expert by the mesh size, cancelling the all-reduce that `moe_tp_experts` applies downstream. |
+| `LocalParamsParallel` | Runs a module's forward with its own sharded parameters as local tensors. Use it on the owner of a bare `nn.Parameter`, such as attention sinks, that its own plan entry shards. |
 | `MoEParamShard` | Shards MoE expert weights on a given placement. Backs the `grouped_gemm` name, where `shards_expert_dim=True` also rewrites `module.num_experts` to the per-rank expert count. |
-| `EpRouterParallel` | Masks router scores for non-local experts and remaps global expert IDs to local ones, so each rank runs only the experts it owns. Requires `num_experts` to be divisible by the mesh size. |
-| `RouterParallelMegaMoe` | Router variant for DeepGEMM Mega MoE, which dispatches experts inside the kernel which wants the router output untouched. |
-| `MoeTensorParalellMegaMoeExperts` | Inference-only experts layer for DeepGEMM Mega MoE. Skips the gradient syncs and passes the process group into the module so the kernel can set up its shared buffers on the first forward. |
 
 ### Packed strategies
 
@@ -288,4 +287,4 @@ The `placements` attribute tells PyTorch how a tensor is laid out across the dev
 - See the [Tensor parallelism](./tensor_parallelism) training guide to learn how to use it in a training setting.
 
 ### Hardware
-https://huggingface.co/docs/transformers/v5.22.2/hardware.md
+https://huggingface.co/docs/transformers/v5.23.0/hardware.md

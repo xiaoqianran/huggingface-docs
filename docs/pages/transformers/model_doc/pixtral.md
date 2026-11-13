@@ -95,7 +95,7 @@ print(output)
 
 ## Notes
 
-- Pixtral uses [PixtralVisionModel](/docs/transformers/v5.22.2/en/model_doc/pixtral#transformers.PixtralVisionModel) as the vision encoder and [MistralForCausalLM](/docs/transformers/v5.22.2/en/model_doc/mistral#transformers.MistralForCausalLM)  for its language decoder.
+- Pixtral uses [PixtralVisionModel](/docs/transformers/v5.23.0/en/model_doc/pixtral#transformers.PixtralVisionModel) as the vision encoder and [MistralForCausalLM](/docs/transformers/v5.23.0/en/model_doc/mistral#transformers.MistralForCausalLM)  for its language decoder.
 - The model internally replaces `[IMG]` token placeholders with image embeddings.
 
     ```py
@@ -112,7 +112,7 @@ print(output)
 transformers.PixtralVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 1024, intermediate_size: int = 4096, num_hidden_layers: int = 24, num_attention_heads: int = 16, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 1024, patch_size: int | list[int] | tuple[int, int] = 16, hidden_act: str = 'gelu', attention_dropout: float | int = 0.0, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/pixtral/configuration_pixtral.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/pixtral/configuration_pixtral.py#L24)
 
 **Parameters:**
 
@@ -142,8 +142,8 @@ This is the configuration class to store the configuration of a PixtralVisionMod
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [mistral-labs/pixtral-12b](https://huggingface.co/mistral-labs/pixtral-12b)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -168,7 +168,7 @@ Example:
 transformers.MistralCommonBackend(tokenizer_path: str | os.PathLike | pathlib.Path, mode: str | ValidationMode = 'test', model_max_length: int = 1000000000000000019884624838656, padding_side: str = 'left', truncation_side: str = 'right', model_input_names: list[str] | None = None, clean_up_tokenization_spaces: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L194)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L194)
 
 Class to wrap `mistral-common` tokenizers.
 
@@ -196,10 +196,10 @@ If you have suggestions to improve this class, please open an issue on the [mist
 #### add_special_tokens[[transformers.MistralCommonBackend.add_special_tokens]]
 
 ```python
-add_special_tokens(special_tokens_dict: dict, replace_extra_special_tokens: bool = True)
+add_special_tokens(special_tokens_dict: dict[str, str | tokenizers.AddedToken | collections.abc.Sequence[str | tokenizers.AddedToken]], replace_extra_special_tokens: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L1679)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L1679)
 
 `MistralCommonBackend` does not implement `add_special_tokens` by design.
 
@@ -208,10 +208,10 @@ If you would like this behaviour to be implemented, please open an issue in the 
 #### add_tokens[[transformers.MistralCommonBackend.add_tokens]]
 
 ```python
-add_tokens(special_tokens_dict: dict, replace_extra_special_tokens: bool = True)
+add_tokens(special_tokens_dict: dict[str, str | tokenizers.AddedToken | collections.abc.Sequence[str | tokenizers.AddedToken]], replace_extra_special_tokens: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L1691)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L1691)
 
 `MistralCommonBackend` does not implement `add_special_tokens` by design.
 
@@ -223,7 +223,7 @@ If you would like this behaviour to be implemented, please open an issue in the 
 apply_chat_template(conversation: list[dict[str, str]] | list[list[dict[str, str]]], tools: list[dict | collections.abc.Callable] | None = None, add_generation_prompt: bool = False, continue_final_message: bool = False, tokenize: bool = True, padding: bool | str | transformers.utils.generic.PaddingStrategy = False, truncation: bool = False, max_length: int | None = None, return_tensors: str | transformers.utils.generic.TensorType | None = None, return_dict: bool = True, reasoning_effort: ReasoningEffort | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L1038)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L1038)
 
 **Parameters:**
 
@@ -237,13 +237,13 @@ continue_final_message (bool, *optional*) : If this is set, the chat will be for
 
 tokenize (`bool`, defaults to `True`) : Whether to tokenize the output. If `False`, the output will be a string.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
 
 truncation (`bool`, defaults to `False`) : Whether to truncate sequences at the maximum length. Has no effect if tokenize is `False`.
 
 max_length (`int`, *optional*) : Maximum length (in tokens) to use for padding or truncation. Has no effect if tokenize is `False`. If not specified, the tokenizer's `max_length` attribute will be used as a default.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Has no effect if tokenize is `False`. Acceptable values are: - `'pt'`: Return PyTorch `torch.Tensor` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Has no effect if tokenize is `False`. Acceptable values are: - `'pt'`: Return PyTorch `torch.Tensor` objects.
 
 return_dict (`bool`, defaults to `False`) : Whether to return a dictionary with named outputs. Has no effect if tokenize is `False`. If at least one conversation contains an image, its pixel values will be returned in the `pixel_values` key and image sizes in the `image_sizes` key.
 
@@ -264,7 +264,7 @@ ids.
 batch_decode(sequences: typing.Union[list[int], list[list[int]], numpy.ndarray, ForwardRef('torch.Tensor')], skip_special_tokens: bool = False, clean_up_tokenization_spaces: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L512)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L512)
 
 **Parameters:**
 
@@ -288,10 +288,10 @@ so you can use `decode` directly instead of `batch_decode`.
 #### build_inputs_with_special_tokens[[transformers.MistralCommonBackend.build_inputs_with_special_tokens]]
 
 ```python
-build_inputs_with_special_tokens(token_ids_0: list, token_ids_1: None = None)
+build_inputs_with_special_tokens(token_ids_0: list[int], token_ids_1: None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L1284)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L1284)
 
 **Parameters:**
 
@@ -315,7 +315,7 @@ This method dynamically builds inputs based on the tokenizer's `mode`:
 convert_added_tokens(obj: tokenizers.AddedToken | typing.Any, save: bool = False, add_type_field: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L1704)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L1704)
 
 `MistralCommonBackend` does not implement `convert_added_tokens` by design.
 
@@ -324,10 +324,10 @@ If you would like this behaviour to be implemented, please open an issue in the 
 #### create_token_type_ids_from_sequences[[transformers.MistralCommonBackend.create_token_type_ids_from_sequences]]
 
 ```python
-create_token_type_ids_from_sequences(token_ids_0: list, token_ids_1: None = None)
+create_token_type_ids_from_sequences(token_ids_0: list[int], token_ids_1: None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L1313)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L1313)
 
 **Parameters:**
 
@@ -349,7 +349,7 @@ Kept to match Transformers' implementation.
 decode(token_ids: typing.Union[int, list[int], list[list[int]], numpy.ndarray, ForwardRef('torch.Tensor')], skip_special_tokens: bool = False, clean_up_tokenization_spaces: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L475)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L475)
 
 **Parameters:**
 
@@ -375,7 +375,7 @@ tokens and clean up tokenization spaces.
 encode(text: str | list[int], text_pair: None = None, add_special_tokens: bool = True, padding: bool | str | transformers.utils.generic.PaddingStrategy = False, truncation: bool | str | transformers.tokenization_utils_base.TruncationStrategy | None = None, max_length: int | None = None, stride: int = 0, pad_to_multiple_of: int | None = None, padding_side: str | None = None, return_tensors: str | transformers.utils.generic.TensorType | None = None, verbose: bool = True, return_offsets_mapping: typing.Literal[False] = False, split_special_tokens: typing.Literal[False] = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L378)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L378)
 
 **Parameters:**
 
@@ -385,9 +385,9 @@ text_pair (`None`, *optional*) : Not supported by `MistralCommonBackend.encode`.
 
 add_special_tokens (`bool`, *optional*, defaults to `True`) : Whether or not to add special tokens when encoding the sequences. This will use the underlying `PretrainedTokenizerBase.build_inputs_with_special_tokens` function, which defines which tokens are automatically added to the input ids. This is useful if you want to add `bos` or `eos` tokens automatically. When Tokenizer is loading with `finetuning` mode it adds both `bos` and `eos`. Else, for "test" mode it only adds `bos`.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
 
-truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
+truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
 
 max_length (`int`, *optional*) : Controls the maximum length to use by one of the truncation/padding parameters.  If left unset or set to `None`, this will use the predefined model maximum length if a maximum length is required by one of the truncation/padding parameters. If the model has no specific maximum input length (like XLNet) truncation/padding to a maximum length will be deactivated.
 
@@ -397,7 +397,7 @@ pad_to_multiple_of (`int`, *optional*) : If set will pad the sequence to a multi
 
 padding_side (`str`, *optional*) : The side on which the model should have padding applied. Should be selected between ['right', 'left']. Default value is picked from the class attribute of the same name.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. 
+return_tensors (`str` or [TensorType](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. 
 
 - ****kwargs** : Not supported by `MistralCommonBackend.encode`. Will raise an error if used.
 
@@ -413,7 +413,7 @@ Converts a string to a sequence of ids (integer), using the tokenizer and vocabu
 from_pretrained(pretrained_model_name_or_path: str | os.PathLike, *init_inputs, mode: str | ValidationMode = 'test', cache_dir: str | os.PathLike | None = None, force_download: bool = False, local_files_only: bool = False, token: str | bool | None = None, revision: str = 'main', model_max_length: int = 1000000000000000019884624838656, padding_side: str = 'left', truncation_side: str = 'right', model_input_names: list[str] | None = None, clean_up_tokenization_spaces: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L1437)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L1437)
 
 **Parameters:**
 
@@ -452,17 +452,17 @@ tokenizer.
 get_chat_template(chat_template: str | None = None, tools: list[dict] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L1713)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L1713)
 
 `MistralCommonBackend` does not implement `get_chat_template` by design as `mistral-common` does not use chat templates.
 
 #### get_special_tokens_mask[[transformers.MistralCommonBackend.get_special_tokens_mask]]
 
 ```python
-get_special_tokens_mask(token_ids_0: list, token_ids_1: None = None, already_has_special_tokens: bool = False)
+get_special_tokens_mask(token_ids_0: list[int], token_ids_1: None = None, already_has_special_tokens: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L691)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L691)
 
 **Parameters:**
 
@@ -485,7 +485,7 @@ special tokens using the tokenizer `prepare_for_model` or `encode_plus` methods.
 get_vocab()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L352)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L352)
 
 **Returns:** `Dict[str, int]`
 
@@ -502,7 +502,7 @@ string due to partial UTF-8 byte sequences being converted to �.
 num_special_tokens_to_add(pair: typing.Literal[False] = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L1337)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L1337)
 
 **Parameters:**
 
@@ -520,10 +520,10 @@ this inside your training loop.
 #### prepare_for_model[[transformers.MistralCommonBackend.prepare_for_model]]
 
 ```python
-prepare_for_model(ids: list, pair_ids: None = None, add_special_tokens: bool = True, padding: bool | str | transformers.utils.generic.PaddingStrategy = False, truncation: bool | str | transformers.tokenization_utils_base.TruncationStrategy | None = None, max_length: int | None = None, stride: int = 0, pad_to_multiple_of: int | None = None, padding_side: str | None = None, return_tensors: str | transformers.utils.generic.TensorType | None = None, return_token_type_ids: bool | None = None, return_attention_mask: bool | None = None, return_overflowing_tokens: bool = False, return_special_tokens_mask: bool = False, return_length: bool = False, verbose: bool = True, prepend_batch_axis: bool = False, return_offsets_mapping: typing.Literal[False] = False, split_special_tokens: typing.Literal[False] = False, **kwargs)
+prepare_for_model(ids: list[int], pair_ids: None = None, add_special_tokens: bool = True, padding: bool | str | transformers.utils.generic.PaddingStrategy = False, truncation: bool | str | transformers.tokenization_utils_base.TruncationStrategy | None = None, max_length: int | None = None, stride: int = 0, pad_to_multiple_of: int | None = None, padding_side: str | None = None, return_tensors: str | transformers.utils.generic.TensorType | None = None, return_token_type_ids: bool | None = None, return_attention_mask: bool | None = None, return_overflowing_tokens: bool = False, return_special_tokens_mask: bool = False, return_length: bool = False, verbose: bool = True, prepend_batch_axis: bool = False, return_offsets_mapping: typing.Literal[False] = False, split_special_tokens: typing.Literal[False] = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L844)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L844)
 
 **Parameters:**
 
@@ -533,9 +533,9 @@ pair_ids (`None`, *optional*) : Not supported by `MistralCommonBackend`. Kept to
 
 add_special_tokens (`bool`, *optional*, defaults to `True`) : Whether or not to add special tokens when encoding the sequences. This will use the underlying `PretrainedTokenizerBase.build_inputs_with_special_tokens` function, which defines which tokens are automatically added to the input ids. This is useful if you want to add `bos` or `eos` tokens automatically. When Tokenizer is loading with `finetuning` mode it adds both `bos` and `eos`. Else, for "test" mode it only adds `bos`.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
 
-truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
+truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
 
 max_length (`int`, *optional*) : Controls the maximum length to use by one of the truncation/padding parameters.  If left unset or set to `None`, this will use the predefined model maximum length if a maximum length is required by one of the truncation/padding parameters. If the model has no specific maximum input length (like XLNet) truncation/padding to a maximum length will be deactivated.
 
@@ -545,7 +545,7 @@ pad_to_multiple_of (`int`, *optional*) : If set will pad the sequence to a multi
 
 padding_side (`str`, *optional*) : The side on which the model should have padding applied. Should be selected between ['right', 'left']. Default value is picked from the class attribute of the same name.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. 
+return_tensors (`str` or [TensorType](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. 
 
 return_token_type_ids (`bool`, *optional*) : Whether to return token type IDs. For `MistralCommonBackend` it returns a list of zeros of the sequence length as only one sequence is supported.  [What are token type IDs?](../glossary#token-type-ids)
 
@@ -565,9 +565,9 @@ split_special_tokens (`Literal[False]`, *optional*) : False, kept to match Trans
 
 - ****kwargs** : passed to the `self.tokenize()` method
 
-**Returns:** [BatchEncoding](/docs/transformers/v5.22.2/en/main_classes/tokenizer#transformers.BatchEncoding)
+**Returns:** [BatchEncoding](/docs/transformers/v5.23.0/en/main_classes/tokenizer#transformers.BatchEncoding)
 
-A [BatchEncoding](/docs/transformers/v5.22.2/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
+A [BatchEncoding](/docs/transformers/v5.23.0/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
 
 - **input_ids** -- List of token ids to be fed to a model.
 
@@ -596,7 +596,7 @@ manages a moving window (with user defined stride) for overflowing tokens.
 save_chat_templates(save_directory: str | os.PathLike, tokenizer_config: dict, filename_prefix: str | None, save_jinja_files: bool)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L1718)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L1718)
 
 `MistralCommonBackend` does not implement `save_chat_templates` by design as `mistral-common` does not use chat templates.
 
@@ -606,7 +606,7 @@ save_chat_templates(save_directory: str | os.PathLike, tokenizer_config: dict, f
 save_pretrained(save_directory: str | os.PathLike | pathlib.Path, push_to_hub: bool = False, token: str | bool | None = None, commit_message: str | None = None, repo_id: str | None = None, private: bool | None = None, save_format: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L1552)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L1552)
 
 **Parameters:**
 
@@ -643,7 +643,7 @@ the original tokenizer file (e.g. `tekken.json`) is written to
 save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L1729)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L1729)
 
 `MistralCommonBackend` does not implement `save_vocabulary` by design.
 
@@ -655,7 +655,7 @@ This is because `mistral-common` is configured by one tokenizer file. If you'd l
 tokenize(text: str, return_offsets_mapping: typing.Literal[False] = False, split_special_tokens: typing.Literal[False] = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L645)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L645)
 
 **Parameters:**
 
@@ -678,10 +678,10 @@ Split in words for word-based vocabulary or sub-words for sub-word-based vocabul
 #### truncate_sequences[[transformers.MistralCommonBackend.truncate_sequences]]
 
 ```python
-truncate_sequences(ids: list, pair_ids: None = None, num_tokens_to_remove: int = 0, truncation_strategy: str | transformers.tokenization_utils_base.TruncationStrategy = 'longest_first', stride: int = 0, **kwargs)
+truncate_sequences(ids: list[int], pair_ids: None = None, num_tokens_to_remove: int = 0, truncation_strategy: str | transformers.tokenization_utils_base.TruncationStrategy = 'longest_first', stride: int = 0, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/tokenization_mistral_common.py#L974)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/tokenization_mistral_common.py#L974)
 
 **Parameters:**
 
@@ -691,7 +691,7 @@ pair_ids (`None`, *optional*) : Not supported by `MistralCommonBackend`. Kept to
 
 num_tokens_to_remove (`int`, *optional*, defaults to 0) : Number of tokens to remove using the truncation strategy.
 
-truncation_strategy (`str` or [TruncationStrategy](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `'longest_first'`) : The strategy to follow for truncation. Can be:  - `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
+truncation_strategy (`str` or [TruncationStrategy](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `'longest_first'`) : The strategy to follow for truncation. Can be:  - `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
 
 stride (`int`, *optional*, defaults to 0) : If set to a positive number, the overflowing tokens returned will contain some tokens from the main sequence returned. The value of this argument defines the number of additional tokens.
 
@@ -707,18 +707,18 @@ Truncates a sequence pair in-place following the strategy.
 #### transformers.PixtralVisionModel[[transformers.PixtralVisionModel]]
 
 ```python
-transformers.PixtralVisionModel(config)
+transformers.PixtralVisionModel(config: PixtralVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/pixtral/modeling_pixtral.py#L379)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/pixtral/modeling_pixtral.py#L379)
 
 **Parameters:**
 
-config ([PixtralVisionModel](/docs/transformers/v5.22.2/en/model_doc/pixtral#transformers.PixtralVisionModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PixtralVisionConfig](/docs/transformers/v5.23.0/en/model_doc/pixtral#transformers.PixtralVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Pixtral Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -732,36 +732,36 @@ and behavior.
 forward(pixel_values: Tensor, image_sizes: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/pixtral/modeling_pixtral.py#L402)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/pixtral/modeling_pixtral.py#L402)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PixtralImageProcessor](/docs/transformers/v5.22.2/en/model_doc/pixtral#transformers.PixtralImageProcessor). See [PixtralImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([PixtralProcessor](/docs/transformers/v5.22.2/en/model_doc/pixtral#transformers.PixtralProcessor) uses [PixtralImageProcessor](/docs/transformers/v5.22.2/en/model_doc/pixtral#transformers.PixtralImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PixtralImageProcessor](/docs/transformers/v5.23.0/en/model_doc/pixtral#transformers.PixtralImageProcessor). See [PixtralImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([PixtralProcessor](/docs/transformers/v5.23.0/en/model_doc/pixtral#transformers.PixtralProcessor) uses [PixtralImageProcessor](/docs/transformers/v5.23.0/en/model_doc/pixtral#transformers.PixtralImageProcessor) for processing images).
 
 image_sizes (`torch.Tensor` of shape `(batch_size, 2)`, *optional*) : The sizes of the images in the batch, being (height, width) for each image.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PixtralVisionConfig](/docs/transformers/v5.22.2/en/model_doc/pixtral#transformers.PixtralVisionConfig)) and inputs.
+A [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([PixtralVisionConfig](/docs/transformers/v5.23.0/en/model_doc/pixtral#transformers.PixtralVisionConfig)) and inputs.
 
-The [PixtralVisionModel](/docs/transformers/v5.22.2/en/model_doc/pixtral#transformers.PixtralVisionModel) forward method, overrides the `__call__` special method.
+The [PixtralVisionModel](/docs/transformers/v5.23.0/en/model_doc/pixtral#transformers.PixtralVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
   through the layers used for the auxiliary pretraining task. E.g. for BERT-family of models, this returns
   the classification token after processing through a linear layer and a tanh activation function. The linear
   layer weights are trained from the next sentence prediction (classification) objective during pretraining.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -775,7 +775,7 @@ the latter silently ignores them.
 transformers.PixtralImageProcessor(**kwargs: *<class 'transformers.models.pixtral.image_processing_pixtral.PixtralImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/pixtral/image_processing_pixtral.py#L99)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/pixtral/image_processing_pixtral.py#L99)
 
 **Parameters:**
 
@@ -829,7 +829,7 @@ Constructs a PixtralImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.pixtral.image_processing_pixtral.PixtralImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/pixtral/image_processing_pixtral.py#L118)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/pixtral/image_processing_pixtral.py#L118)
 
 **Parameters:**
 
@@ -891,7 +891,7 @@ patch_size (`Union[dict[str, *kwargs*, int], int]` *optional*, defaults to `{"he
 transformers.PixtralImageProcessorPil(**kwargs: *<class 'transformers.models.pixtral.image_processing_pil_pixtral.PixtralImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/pixtral/image_processing_pil_pixtral.py#L107)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/pixtral/image_processing_pil_pixtral.py#L107)
 
 **Parameters:**
 
@@ -945,7 +945,7 @@ Constructs a PixtralImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.pixtral.image_processing_pil_pixtral.PixtralImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/pixtral/image_processing_pil_pixtral.py#L126)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/pixtral/image_processing_pil_pixtral.py#L126)
 
 **Parameters:**
 
@@ -1007,7 +1007,7 @@ patch_size (`Union[dict[str, *kwargs*, int], int]` *optional*, defaults to `{"he
 transformers.PixtralProcessor(image_processor = None, tokenizer = None, patch_size: int = 16, spatial_merge_size: int = 1, chat_template = None, image_token = '[IMG]', image_break_token = '[IMG_BREAK]', image_end_token = '[IMG_END]', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/pixtral/processing_pixtral.py#L50)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/pixtral/processing_pixtral.py#L39)
 
 **Parameters:**
 
@@ -1029,8 +1029,8 @@ image_end_token (`str`, *optional*, defaults to `"[IMG_END]"`) : Special token u
 
 Constructs a PixtralProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[PixtralProcessor](/docs/transformers/v5.22.2/en/model_doc/pixtral#transformers.PixtralProcessor) offers all the functionalities of [PixtralImageProcessor](/docs/transformers/v5.22.2/en/model_doc/pixtral#transformers.PixtralImageProcessor) and [MistralCommonBackend](/docs/transformers/v5.22.2/en/model_doc/mistral#transformers.MistralCommonBackend). See the
-[~PixtralImageProcessor](/docs/transformers/v5.22.2/en/model_doc/pixtral#transformers.PixtralImageProcessor) and [~MistralCommonBackend](/docs/transformers/v5.22.2/en/model_doc/mistral#transformers.MistralCommonBackend) for more information.
+[PixtralProcessor](/docs/transformers/v5.23.0/en/model_doc/pixtral#transformers.PixtralProcessor) offers all the functionalities of [PixtralImageProcessor](/docs/transformers/v5.23.0/en/model_doc/pixtral#transformers.PixtralImageProcessor) and [MistralCommonBackend](/docs/transformers/v5.23.0/en/model_doc/mistral#transformers.MistralCommonBackend). See the
+[~PixtralImageProcessor](/docs/transformers/v5.23.0/en/model_doc/pixtral#transformers.PixtralImageProcessor) and [~MistralCommonBackend](/docs/transformers/v5.23.0/en/model_doc/mistral#transformers.MistralCommonBackend) for more information.
 
 #### __call__[[transformers.PixtralProcessor.__call__]]
 
@@ -1038,7 +1038,7 @@ Constructs a PixtralProcessor which wraps a image processor and a tokenizer into
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: *<class 'transformers.processing_utils.ProcessingKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/processing_utils.py#L652)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/processing_utils.py#L670)
 
 **Parameters:**
 
@@ -1050,9 +1050,13 @@ videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.nd
 
 audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_mm_token_type_ids (`bool`, *kwargs*) : Whether to return multimodal token type ids indicating multimodal placeholder token positions.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.22.2/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+return_text_replacement_offsets (`bool`, *kwargs*) : Whether to return character offsets for each multimodal placeholder and its replacement.
+
+return_tensors (`str` or [TensorType](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.23.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ### T5Gemma 2
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/t5gemma2.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/t5gemma2.md

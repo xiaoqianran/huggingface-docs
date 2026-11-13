@@ -50,5 +50,5 @@ Congratulations, you just deployed a production ready AI model in Inference Endp
 
 Once you're happy with the testing you can pause the Inference Endpoint, delete it. Or if you let it be, it will scale to zero after 1 hour.
 
-### API Reference (Swagger)
-https://huggingface.co/docs/inference-endpoints/api_reference.md
+### About Inference Endpoints
+https://huggingface.co/docs/inference-endpoints/about.md

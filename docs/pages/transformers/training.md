@@ -2,7 +2,15 @@
 
 Fine-tuning continues training a large pretrained model on a smaller dataset specific to a task or domain. For example, fine-tuning on a dataset of coding examples helps the model get better at coding. Fine-tuning is identical to pretraining except you don't start with random weights. It also requires far less compute, data, and time.
 
-The tutorial below walks through fine-tuning a large language model with [Trainer](/docs/transformers/v5.22.2/en/main_classes/trainer#transformers.Trainer).
+The tutorial below walks through fine-tuning a large language model with [Trainer](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.Trainer).
+
+> [!AgentPrompt]
+> Help the user plan a fine-tuning run for their task. Before proposing a configuration, identify the task, pretrained model and revision, dataset fields, evaluation data, Transformers version, hardware, and available memory. Use this tutorial to check the data preparation, model loading, and `Trainer` setup that apply to their case. Do not assume the example dataset or model fits a different task.
+>
+> 1. Ask for missing details that could change the model, preprocessing, or training setup. State any assumptions.
+> 2. Keep evaluation examples separate from training data. Select a model and tokenizer for the task, prepare the model's expected inputs and labels, and choose a data collator that matches those inputs.
+> 3. Set `TrainingArguments` to fit the user's hardware and goals. Configure evaluation and checkpoint saving when the user needs them. Run a small test before a full training job, and check that the model receives the expected inputs, the loss is finite, and evaluation completes.
+> 4. Do not start a full training run or upload artifacts unless the user asks. Report the proposed configuration, evidence from any test, expected resource tradeoffs, and anything you could not verify.
 
 Log in to your Hugging Face account with your user token to push your fine-tuned model to the Hub.
 
@@ -47,7 +55,7 @@ dataset = dataset.map(tokenize, batched=True, remove_columns=dataset.column_name
 dataset = dataset.train_test_split(test_size=0.1)
 ```
 
-A data collator assembles dataset samples into batches for the model to process. [DataCollatorForLanguageModeling](/docs/transformers/v5.22.2/en/main_classes/data_collator#transformers.DataCollatorForLanguageModeling) *dynamically* pads each batch to the longest sequence in that batch rather than padding every sequence in the dataset to the same length. This saves compute and memory by avoiding computing unnecessary padding tokens.
+A data collator assembles dataset samples into batches for the model to process. [DataCollatorForLanguageModeling](/docs/transformers/v5.23.0/en/main_classes/data_collator#transformers.DataCollatorForLanguageModeling) *dynamically* pads each batch to the longest sequence in that batch rather than padding every sequence in the dataset to the same length. This saves compute and memory by avoiding computing unnecessary padding tokens.
 
 - Set `mlm=False` to avoid randomly masking tokens.
 
@@ -70,7 +78,7 @@ model = AutoModelForCausalLM.from_pretrained(model_name, dtype="auto")
 
 ## Training configuration
 
-[TrainingArguments](/docs/transformers/v5.22.2/en/main_classes/trainer#transformers.TrainingArguments) provides all the options for customizing a training run. Only the most common arguments are covered here. Everything else has reasonable defaults or is only relevant to specific scenarios like distributed training. See the [TrainingArguments](/docs/transformers/v5.22.2/en/main_classes/trainer#transformers.TrainingArguments) API docs for a complete list of arguments.
+[TrainingArguments](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.TrainingArguments) provides all the options for customizing a training run. Only the most common arguments are covered here. Everything else has reasonable defaults or is only relevant to specific scenarios like distributed training. See the [TrainingArguments](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.TrainingArguments) API docs for a complete list of arguments.
 
 - `num_train_epochs` and `per_device_train_batch_size` control training duration and batch size. `learning_rate` sets the initial learning rate for the optimizer.
 
@@ -104,7 +112,7 @@ training_args = TrainingArguments(
 
 ## Training
 
-Create a [Trainer](/docs/transformers/v5.22.2/en/main_classes/trainer#transformers.Trainer) instance with all the necessary components, then call [train()](/docs/transformers/v5.22.2/en/main_classes/trainer#transformers.Trainer.train) to begin.
+Create a [Trainer](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.Trainer) instance with all the necessary components, then call [train()](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.Trainer.train) to begin.
 
 ```py
 trainer = Trainer(
@@ -120,16 +128,16 @@ trainer.train()
 trainer.push_to_hub()
 ```
 
-[push_to_hub()](/docs/transformers/v5.22.2/en/main_classes/trainer#transformers.Trainer.push_to_hub) uploads the fine-tuned weights, generation config, tokenizer, and model config to the Hub.
+[push_to_hub()](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) uploads the fine-tuned weights, generation config, tokenizer, and model config to the Hub.
 
 ## Next steps
 
 - Read the [Trainer features](./trainer_recipes) guide for minimal working examples of common Trainer features like custom loss functions, memory-efficient evaluation, checkpointing, and more.
-- Read the [Subclassing Trainer methods](./trainer_customize) guide to learn how to subclass [Trainer](/docs/transformers/v5.22.2/en/main_classes/trainer#transformers.Trainer) methods to support new and custom functionalities.
+- Read the [Subclassing Trainer methods](./trainer_customize) guide to learn how to subclass [Trainer](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.Trainer) methods to support new and custom functionalities.
 - Read the [Callbacks](./trainer_callbacks) guide to learn how to hook into training events for logging, early stopping, and other custom behavior.
 - Read the [Data collators](./data_collators) guide to learn how to customize how samples are assembled into batches.
 - Run a training script on a rented GPU with [Hugging Face Jobs](https://huggingface.co/docs/hub/jobs-training).
 - Browse [notebooks](./notebooks) or the **Resources > Task Recipes** section for additional training examples on different text, audio, vision, and multimodal tasks.
 
 ### Monkey patching (experimental feature)
-https://huggingface.co/docs/transformers/v5.22.2/monkey_patching.md
+https://huggingface.co/docs/transformers/v5.23.0/monkey_patching.md

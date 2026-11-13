@@ -72,7 +72,7 @@ The remainder of this guide illustrates how to:
 Before you begin, make sure you have all the necessary libraries installed:
 
 ```bash
-pip install transformers datasets soundfile librosa torchcodec speechbrain accelerate
+pip install transformers datasets soundfile torchcodec speechbrain accelerate
 ```
 
 Install 🤗Transformers from source as not all the SpeechT5 features have been merged into an official release yet:
@@ -635,4 +635,4 @@ may also be used for malicious purposes, such as impersonating someone's voice w
 use TTS judiciously and responsibly.
 
 ### Visual document retrieval
-https://huggingface.co/docs/transformers/v5.22.2/tasks/visual_document_retrieval.md
+https://huggingface.co/docs/transformers/v5.23.0/tasks/visual_document_retrieval.md

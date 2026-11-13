@@ -19,9 +19,9 @@ You can find all the original Gemma 3n checkpoints under the [Gemma 3n][gemma3n-
 > Click on the Gemma 3n models in the right sidebar for more examples of how to apply Gemma to different vision, audio,
 > and language tasks.
 >
-> Set `use_kernels=True` in [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to replace supported layers with optimized kernels from the Hub. Refer to [Loading kernels](../kernel_doc/loading_kernels) to learn more.
+> Set `use_kernels=True` in [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to replace supported layers with optimized kernels from the Hub. Refer to [Loading kernels](../kernel_doc/loading_kernels) to learn more.
 
-The example below demonstrates how to generate text based on an image with [Pipeline](/docs/transformers/v5.22.2/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to generate text based on an image with [Pipeline](/docs/transformers/v5.23.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -78,7 +78,7 @@ print(processor.decode(output[0], skip_special_tokens=True))
 
 ## Notes
 
-- Use [Gemma3nForConditionalGeneration](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nForConditionalGeneration) for image-audio-and-text, image-and-text, image-and-audio, audio-and-text,
+- Use [Gemma3nForConditionalGeneration](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nForConditionalGeneration) for image-audio-and-text, image-and-text, image-and-audio, audio-and-text,
     image-only and audio-only inputs.
 - Gemma 3n supports multiple images per input, but make sure the images are correctly batched before passing them to
     the processor. Each batch should be a list of one or more images.
@@ -109,7 +109,7 @@ print(processor.decode(output[0], skip_special_tokens=True))
 - Gemma 3n accepts at most one target audio clip per input, though multiple audio clips can be provided in few-shot
     prompts, for example.
 - Text passed to the processor should have a `<audio_soft_token>` token wherever an audio clip should be inserted.
-- The processor has its own [apply_chat_template()](/docs/transformers/v5.22.2/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) method to convert chat messages to model inputs.
+- The processor has its own [apply_chat_template()](/docs/transformers/v5.23.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) method to convert chat messages to model inputs.
 
 ## Gemma3nAudioFeatureExtractor[[transformers.Gemma3nAudioFeatureExtractor]]
 
@@ -119,7 +119,7 @@ print(processor.decode(output[0], skip_special_tokens=True))
 transformers.Gemma3nAudioFeatureExtractor(feature_size: int = 128, sampling_rate: int = 16000, padding_value: float = 0.0, return_attention_mask: bool = True, frame_length_ms: float = 32.0, hop_length_ms: float = 10.0, min_frequency: float = 125.0, max_frequency: float = 7600.0, preemphasis: float = 0.97, preemphasis_htk_flavor: bool = True, fft_overdrive: bool = True, dither: float = 0.0, input_scale_factor: float = 1.0, mel_floor: float = 1e-05, per_bin_mean: collections.abc.Sequence[float] | None = None, per_bin_stddev: collections.abc.Sequence[float] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/gemma3n/feature_extraction_gemma3n.py#L108)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/gemma3n/feature_extraction_gemma3n.py#L108)
 
 **Parameters:**
 
@@ -165,7 +165,7 @@ An audio feature extractor Universal Speech Models https://huggingface.co/papers
 transformers.Gemma3nProcessor(feature_extractor, image_processor, tokenizer, chat_template = None, audio_seq_length: int = 188, image_seq_length: int = 256, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/gemma3n/processing_gemma3n.py#L32)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/gemma3n/processing_gemma3n.py#L27)
 
 **Parameters:**
 
@@ -183,16 +183,16 @@ image_seq_length (`int`, *optional*, defaults to 256) : The number of image soft
 
 Constructs a Gemma3nProcessor which wraps a feature extractor, a image processor, and a tokenizer into a single processor.
 
-[Gemma3nProcessor](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nProcessor) offers all the functionalities of [Gemma3nAudioFeatureExtractor](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nAudioFeatureExtractor), [SiglipImageProcessor](/docs/transformers/v5.22.2/en/model_doc/siglip#transformers.SiglipImageProcessor), and [GemmaTokenizer](/docs/transformers/v5.22.2/en/model_doc/gemma#transformers.GemmaTokenizer). See the
-[~Gemma3nAudioFeatureExtractor](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nAudioFeatureExtractor), [~SiglipImageProcessor](/docs/transformers/v5.22.2/en/model_doc/siglip#transformers.SiglipImageProcessor), and [~GemmaTokenizer](/docs/transformers/v5.22.2/en/model_doc/gemma#transformers.GemmaTokenizer) for more information.
+[Gemma3nProcessor](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nProcessor) offers all the functionalities of [Gemma3nAudioFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nAudioFeatureExtractor), [SiglipImageProcessor](/docs/transformers/v5.23.0/en/model_doc/siglip#transformers.SiglipImageProcessor), and [GemmaTokenizer](/docs/transformers/v5.23.0/en/model_doc/gemma#transformers.GemmaTokenizer). See the
+[~Gemma3nAudioFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nAudioFeatureExtractor), [~SiglipImageProcessor](/docs/transformers/v5.23.0/en/model_doc/siglip#transformers.SiglipImageProcessor), and [~GemmaTokenizer](/docs/transformers/v5.23.0/en/model_doc/gemma#transformers.GemmaTokenizer) for more information.
 
 #### __call__[[transformers.Gemma3nProcessor.__call__]]
 
 ```python
-__call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] = None, audio: numpy.ndarray | list[float] | list[numpy.ndarray] | list[list[float]] | None = None, **kwargs: *<class 'transformers.models.gemma3n.processing_gemma3n.Gemma3nProcessorKwargs'>)
+__call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] = None, audio: numpy.ndarray | list[float] | list[numpy.ndarray] | list[list[float]] | None = None, **kwargs: *<class 'transformers.processing_utils.ProcessingKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/gemma3n/processing_gemma3n.py#L71)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/gemma3n/processing_gemma3n.py#L68)
 
 **Parameters:**
 
@@ -202,9 +202,13 @@ text (`Union[str, list[str], list[list[str]]]`, *optional*) : The sequence or ba
 
 audio (`Union[numpy.ndarray, list[float], list[numpy.ndarray], list[list[float]]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_mm_token_type_ids (`bool`, *kwargs*) : Whether to return multimodal token type ids indicating multimodal placeholder token positions.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.22.2/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+return_text_replacement_offsets (`bool`, *kwargs*) : Whether to return character offsets for each multimodal placeholder and its replacement.
+
+return_tensors (`str` or [TensorType](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.23.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 **Returns:** `~feature_extraction_utils.BatchFeature`
 
@@ -222,7 +226,7 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.22.2/en/internal/fil
 transformers.Gemma3nTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 262400, hidden_size: int = 2048, intermediate_size: int | list[int] = 16384, num_hidden_layers: int = 35, num_attention_heads: int = 8, num_key_value_heads: int = 2, head_dim: int = 256, hidden_activation: str = 'gelu_pytorch_tanh', max_position_embeddings: int = 32768, initializer_range: float = 0.02, rms_norm_eps: float = 1e-06, use_cache: bool = True, pad_token_id: int | None = 0, eos_token_id: int | list[int] | None = 1, bos_token_id: int | None = 2, tie_word_embeddings: bool = True, rope_parameters: dict | None = None, attention_bias: bool = False, attention_dropout: int | float | None = 0.0, sliding_window: int = 512, layer_types: list[str] | None = None, final_logit_softcapping: float = 30.0, vocab_size_per_layer_input: int = 262144, hidden_size_per_layer_input: int = 256, altup_active_idx: int = 0, altup_coef_clip: float = 120.0, altup_correct_scale: bool = True, altup_num_inputs: int = 4, num_kv_shared_layers: int = 15, laurel_rank: int = 64, activation_sparsity_pattern: float | list[float] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/gemma3n/configuration_gemma3n.py#L36)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/gemma3n/configuration_gemma3n.py#L36)
 
 **Parameters:**
 
@@ -292,8 +296,8 @@ This is the configuration class to store the configuration of a Gemma3nModel. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/gemma-3n-E4B](https://huggingface.co/google/gemma-3n-E4B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ```python
 >>> from transformers import Gemma3nTextModel, Gemma3nTextConfig
@@ -316,7 +320,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes
 transformers.Gemma3nVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, architecture: str = 'mobilenetv5_300m_enc', initializer_range: float = 0.02, do_pooling: bool = False, model_args: dict | None = None, hidden_size: int = 2048, vocab_size: int = 128, vocab_offset: int = 262144, rms_norm_eps: float = 1e-06)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/gemma3n/configuration_gemma3n.py#L309)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/gemma3n/configuration_gemma3n.py#L337)
 
 **Parameters:**
 
@@ -340,8 +344,8 @@ This is the configuration class to store the configuration of a Gemma3nModel. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/gemma-3n-E4B](https://huggingface.co/google/gemma-3n-E4B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 ```python
@@ -365,7 +369,7 @@ Example:
 transformers.Gemma3nAudioConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 128, vocab_offset: int = 262272, input_feat_size: int = 128, hidden_size: int = 1536, rms_norm_eps: float = 1e-06, gradient_clipping: float = 10000000000.0, conf_attention_chunk_size: int = 12, conf_attention_context_left: int = 13, conf_attention_context_right: int = 0, conf_attention_logit_cap: float = 50.0, conf_num_attention_heads: int = 8, conf_num_hidden_layers: int = 12, conf_conv_kernel_size: int = 5, conf_reduction_factor: int = 4, conf_residual_weight: float = 0.5, sscp_conv_channel_size: list[int] | tuple[int, int] = (128, 32), sscp_conv_group_norm_eps: float = 0.001, sscp_conv_kernel_size: list | tuple[tuple[int, int], tuple[int, int]] = ((3, 3), (3, 3)), sscp_conv_stride_size: list | tuple[tuple[int, int], tuple[int, int]] = ((2, 2), (2, 2)))
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/gemma3n/configuration_gemma3n.py#L209)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/gemma3n/configuration_gemma3n.py#L237)
 
 **Parameters:**
 
@@ -411,8 +415,8 @@ This is the configuration class to store the configuration of a Gemma3nModel. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/gemma-3n-E4B](https://huggingface.co/google/gemma-3n-E4B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -437,7 +441,7 @@ Example:
 transformers.Gemma3nConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, text_config: transformers.models.gemma3n.configuration_gemma3n.Gemma3nTextConfig | dict[str, typing.Any] | None = None, vision_config: transformers.models.gemma3n.configuration_gemma3n.Gemma3nVisionConfig | dict[str, typing.Any] | None = None, audio_config: transformers.models.gemma3n.configuration_gemma3n.Gemma3nAudioConfig | dict[str, typing.Any] | None = None, audio_soft_tokens_per_image: int | None = 188, vision_soft_tokens_per_image: int | None = 256, boi_token_id: int | None = 255999, eoi_token_id: int | None = 262144, image_token_id: int | None = 262145, boa_token_id: int | None = 256000, eoa_token_id: int | None = 262272, audio_token_id: int | None = 262273, initializer_range: float | None = 0.02, tie_word_embeddings: bool | None = True, use_cache: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/gemma3n/configuration_gemma3n.py#L402)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/gemma3n/configuration_gemma3n.py#L430)
 
 **Parameters:**
 
@@ -473,8 +477,8 @@ This is the configuration class to store the configuration of a Gemma3nModel. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/gemma-3n-E4B](https://huggingface.co/google/gemma-3n-E4B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -508,15 +512,15 @@ Example:
 transformers.Gemma3nTextModel(config: Gemma3nTextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/gemma3n/modeling_gemma3n.py#L1592)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/gemma3n/modeling_gemma3n.py#L1577)
 
 **Parameters:**
 
-config ([Gemma3nTextConfig](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Gemma3nTextConfig](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The base Gemma 3n language model without a language modeling head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -527,14 +531,14 @@ and behavior.
 #### forward[[transformers.Gemma3nTextModel.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, per_layer_inputs: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, per_layer_inputs: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/gemma3n/modeling_gemma3n.py#L1653)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/gemma3n/modeling_gemma3n.py#L1638)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 per_layer_inputs (`torch.Tensor`, *optional*, defaults to None) : Pre-computed per-layer embeddings. If None, they are derived from input_ids if provided.
 
@@ -542,38 +546,38 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPast](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Gemma3nConfig](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nConfig)) and inputs.
+A [BaseModelOutputWithPast](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([Gemma3nConfig](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nConfig)) and inputs.
 
-The [Gemma3nTextModel](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nTextModel) forward method, overrides the `__call__` special method.
+The [Gemma3nTextModel](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
   input) to speed up sequential decoding.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -587,16 +591,16 @@ the latter silently ignores them.
 transformers.Gemma3nModel(config: Gemma3nConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/gemma3n/modeling_gemma3n.py#L1940)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/gemma3n/modeling_gemma3n.py#L1922)
 
 **Parameters:**
 
-config ([Gemma3nConfig](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Gemma3nConfig](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The base Gemma 3n model comprising a vision backbone, an audio backbone, and a language model without a
 language modeling head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -607,10 +611,10 @@ and behavior.
 #### forward[[transformers.Gemma3nModel.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, input_features: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, token_type_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, per_layer_inputs: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, input_features: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, token_type_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, per_layer_inputs: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/gemma3n/modeling_gemma3n.py#L2021)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/gemma3n/modeling_gemma3n.py#L2003)
 
 input_features_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*):
 Attention mask for `input_features` where non-zero values mark valid audio frames.
@@ -648,33 +652,33 @@ Example:
 #### get_image_features[[transformers.Gemma3nModel.get_image_features]]
 
 ```python
-get_image_features(pixel_values: FloatTensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+get_image_features(pixel_values: Tensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/gemma3n/modeling_gemma3n.py#L1955)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/gemma3n/modeling_gemma3n.py#L1937)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SiglipImageProcessor](/docs/transformers/v5.22.2/en/model_doc/siglip#transformers.SiglipImageProcessor). See [SiglipImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Gemma3nProcessor](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nProcessor) uses [SiglipImageProcessor](/docs/transformers/v5.22.2/en/model_doc/siglip#transformers.SiglipImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SiglipImageProcessor](/docs/transformers/v5.23.0/en/model_doc/siglip#transformers.SiglipImageProcessor). See [SiglipImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Gemma3nProcessor](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nProcessor) uses [SiglipImageProcessor](/docs/transformers/v5.23.0/en/model_doc/siglip#transformers.SiglipImageProcessor) for processing images).
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Gemma3nConfig](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nConfig)) and inputs.
+A [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([Gemma3nConfig](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nConfig)) and inputs.
 
 Projects the last hidden state from the vision model into language model space.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
   through the layers used for the auxiliary pretraining task. E.g. for BERT-family of models, this returns
   the classification token after processing through a linear layer and a tanh activation function. The linear
   layer weights are trained from the next sentence prediction (classification) objective during pretraining.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -686,32 +690,32 @@ Projects the last hidden state from the vision model into language model space.
 get_audio_features(input_features: Tensor, input_features_mask: Tensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/gemma3n/modeling_gemma3n.py#L2172)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/gemma3n/modeling_gemma3n.py#L2154)
 
 **Parameters:**
 
-input_features (`torch.FloatTensor` of shape `(num_images, seq_length, num_features)`) : The tensors corresponding to the input audio.
+input_features (`torch.Tensor` of shape `(num_images, seq_length, num_features)`) : The tensors corresponding to the input audio.
 
-input_features_mask (`torch.FloatTensor` of shape `(num_images, seq_length)`) : The attention mask for the input audio.
+input_features_mask (`torch.Tensor` of shape `(num_images, seq_length)`) : The attention mask for the input audio.
 
-**Returns:** `Gemma3nAudioEncoderModelOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `Gemma3nAudioEncoderModelOutput` or `tuple(torch.Tensor)`
 
 A `Gemma3nAudioEncoderModelOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Gemma3nConfig](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([Gemma3nConfig](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nConfig)) and inputs.
 
 Projects the last hidden state from the audio encoder into language model space.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
   through the layers used for the auxiliary pretraining task. E.g. for BERT-family of models, this returns
   the classification token after processing through a linear layer and a tanh activation function. The linear
   layer weights are trained from the next sentence prediction (classification) objective during pretraining.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -726,15 +730,15 @@ Projects the last hidden state from the audio encoder into language model space.
 transformers.Gemma3nForCausalLM(config: Gemma3nTextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/gemma3n/modeling_gemma3n.py#L1805)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/gemma3n/modeling_gemma3n.py#L1787)
 
 **Parameters:**
 
-config ([Gemma3nTextConfig](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Gemma3nTextConfig](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The base Gemma 3n language model with a language modeling head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -745,52 +749,52 @@ and behavior.
 #### forward[[transformers.Gemma3nForCausalLM.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/gemma3n/modeling_gemma3n.py#L1821)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/gemma3n/modeling_gemma3n.py#L1803)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the causal language modeling loss. Indices should be in `[-100, 0, ..., config.vocab_size]` (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.  The labels are **shifted internally** so that `labels[..., 1:]` are used to predict `logits[..., :-1, :]`. Pass unshifted labels matching `input_ids` (i.e. `labels = input_ids`). Do **not** shift the labels yourself before passing them.  If the labels are already shifted (for example with sequence parallelism), pass them as the `shift_labels` keyword argument and they are used as is. `labels` must still be passed for the loss to be computed.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
 logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
 
-**Returns:** [CausalLMOutputWithPast](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.FloatTensor)`
+**Returns:** [CausalLMOutputWithPast](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.Tensor)`
 
-A [CausalLMOutputWithPast](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Gemma3nConfig](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nConfig)) and inputs.
+A [CausalLMOutputWithPast](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([Gemma3nConfig](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nConfig)) and inputs.
 
-The [Gemma3nForCausalLM](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nForCausalLM) forward method, overrides the `__call__` special method.
+The [Gemma3nForCausalLM](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nForCausalLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
-- **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
+- **logits** (`torch.Tensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -821,16 +825,16 @@ Example:
 transformers.Gemma3nForConditionalGeneration(config: Gemma3nConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/gemma3n/modeling_gemma3n.py#L2201)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/gemma3n/modeling_gemma3n.py#L2183)
 
 **Parameters:**
 
-config ([Gemma3nConfig](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Gemma3nConfig](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The base Gemma 3n model comprising a vision backbone, an audio backbone, a language model, and a language modeling
 head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -841,18 +845,18 @@ and behavior.
 #### forward[[transformers.Gemma3nForConditionalGeneration.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, input_features: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, token_type_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, per_layer_inputs: typing.Optional[torch.Tensor] = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, input_features: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, token_type_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, per_layer_inputs: typing.Optional[torch.Tensor] = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/gemma3n/modeling_gemma3n.py#L2216)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/gemma3n/modeling_gemma3n.py#L2198)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [SiglipImageProcessor](/docs/transformers/v5.22.2/en/model_doc/siglip#transformers.SiglipImageProcessor). See [SiglipImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Gemma3nProcessor](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nProcessor) uses [SiglipImageProcessor](/docs/transformers/v5.22.2/en/model_doc/siglip#transformers.SiglipImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [SiglipImageProcessor](/docs/transformers/v5.23.0/en/model_doc/siglip#transformers.SiglipImageProcessor). See [SiglipImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Gemma3nProcessor](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nProcessor) uses [SiglipImageProcessor](/docs/transformers/v5.23.0/en/model_doc/siglip#transformers.SiglipImageProcessor) for processing images).
 
-input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [Gemma3nAudioFeatureExtractor](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nAudioFeatureExtractor). See `Gemma3nAudioFeatureExtractor.__call__()` for details ([Gemma3nProcessor](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nProcessor) uses [Gemma3nAudioFeatureExtractor](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nAudioFeatureExtractor) for processing audios).
+input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [Gemma3nAudioFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nAudioFeatureExtractor). See `Gemma3nAudioFeatureExtractor.__call__()` for details ([Gemma3nProcessor](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nProcessor) uses [Gemma3nAudioFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nAudioFeatureExtractor) for processing audios).
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -860,11 +864,11 @@ input_features_mask (`torch.Tensor`, *optional*, defaults to None) : The attenti
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.text_config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.text_config.vocab_size]`.
 
@@ -876,36 +880,36 @@ per_layer_inputs (`torch.Tensor`, *optional*) : Pre-computed per-layer input tex
 
 mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *optional*) : Dict where keys are supported modalities and values are encoded outputs for that modality. Each encoded output is a tuple that consists of (`pooler_output`, *optional*: `last_hidden_states`, *optional*: `hidden_states`, *optional*: `attentions`) `pooler_output` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of multimmodal features of the encoder merged into text embeddings.
 
-**Returns:** `Gemma3nCausalLMOutputWithPast` or `tuple(torch.FloatTensor)`
+**Returns:** `Gemma3nCausalLMOutputWithPast` or `tuple(torch.Tensor)`
 
 A `Gemma3nCausalLMOutputWithPast` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Gemma3nConfig](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([Gemma3nConfig](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nConfig)) and inputs.
 
-The [Gemma3nForConditionalGeneration](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [Gemma3nForConditionalGeneration](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
-- **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.text_config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
+- **logits** (`torch.Tensor` of shape `(batch_size, sequence_length, config.text_config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
-- **hidden_states** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple[torch.Tensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple[torch.Tensor]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
   heads.
-- **image_hidden_states** (`torch.FloatTensor`, *optional*) -- A `torch.FloatTensor` of size `(batch_size, num_images, sequence_length, hidden_size)`.
+- **image_hidden_states** (`torch.Tensor`, *optional*) -- A `torch.Tensor` of size `(batch_size, num_images, sequence_length, hidden_size)`.
   image_hidden_states of the model produced by the vision encoder after projecting last hidden state.
-- **audio_hidden_states** (`torch.FloatTensor`, *optional*) -- A `torch.FloatTensor` of size `(batch_size, num_images, sequence_length, hidden_size)`.
+- **audio_hidden_states** (`torch.Tensor`, *optional*) -- A `torch.Tensor` of size `(batch_size, num_images, sequence_length, hidden_size)`.
   audio_hidden_states of the model produced by the audio encoder and after projecting the last hidden state.
 
 Example:
@@ -950,14 +954,14 @@ Example:
 #### get_image_features[[transformers.Gemma3nForConditionalGeneration.get_image_features]]
 
 ```python
-get_image_features(pixel_values: FloatTensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+get_image_features(pixel_values: Tensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/gemma3n/modeling_gemma3n.py#L2212)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/gemma3n/modeling_gemma3n.py#L2194)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SiglipImageProcessor](/docs/transformers/v5.22.2/en/model_doc/siglip#transformers.SiglipImageProcessor). See [SiglipImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Gemma3nProcessor](/docs/transformers/v5.22.2/en/model_doc/gemma3n#transformers.Gemma3nProcessor) uses [SiglipImageProcessor](/docs/transformers/v5.22.2/en/model_doc/siglip#transformers.SiglipImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SiglipImageProcessor](/docs/transformers/v5.23.0/en/model_doc/siglip#transformers.SiglipImageProcessor). See [SiglipImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Gemma3nProcessor](/docs/transformers/v5.23.0/en/model_doc/gemma3n#transformers.Gemma3nProcessor) uses [SiglipImageProcessor](/docs/transformers/v5.23.0/en/model_doc/siglip#transformers.SiglipImageProcessor) for processing images).
 
 Example:
 
@@ -997,5 +1001,5 @@ Example:
 [spark-transformer]: https://huggingface.co/papers/2506.06644
 [usm]: https://huggingface.co/papers/2303.01037
 
-### DINOv2 with Registers
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/dinov2_with_registers.md
+### GraniteDocling
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/granite_docling.md

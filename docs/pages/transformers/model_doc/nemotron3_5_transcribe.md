@@ -83,7 +83,7 @@ text = processor.decode(outputs[0, inputs.input_ids.shape[1] :], skip_special_to
 print(text)
 ```
 
-[extract_speaker_dict()](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeProcessor.extract_speaker_dict) splits the output into one dictionary per speaker turn:
+[extract_speaker_dict()](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeProcessor.extract_speaker_dict) splits the output into one dictionary per speaker turn:
 
 ```python
 for turn in processor.extract_speaker_dict(text):
@@ -148,7 +148,7 @@ timestamps = processor.align_word_timestamps(
 transformers.Nemotron3_5TranscribeConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, audio_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, audio_token_id: int = 131072, word_timestamp_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/configuration_nemotron3_5_transcribe.py#L223)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/configuration_nemotron3_5_transcribe.py#L223)
 
 **Parameters:**
 
@@ -164,8 +164,8 @@ This is the configuration class to store the configuration of a Nemotron3 5 Tran
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B](https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -190,7 +190,7 @@ Example:
 transformers.Nemotron3_5TranscribeAsrAudioConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 1280, intermediate_size: int = 5120, num_hidden_layers: int = 32, num_attention_heads: int = 10, num_key_value_heads: int | None = None, hidden_act: str = 'gelu', max_position_embeddings: int = 5000, initializer_range: float = 0.02, rope_parameters: dict | None = None, attention_dropout: float | int = 0.0, num_mel_bins: int = 128, subsampling_factor: int = 8)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/configuration_nemotron3_5_transcribe.py#L31)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/configuration_nemotron3_5_transcribe.py#L31)
 
 **Parameters:**
 
@@ -222,8 +222,8 @@ This is the configuration class to store the configuration of a Nemotron3 5 Tran
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B](https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -248,7 +248,7 @@ Example:
 transformers.Nemotron3_5TranscribeAudioConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, asr_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, diarization_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, speaker_activity_threshold: float = 0.5)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/configuration_nemotron3_5_transcribe.py#L152)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/configuration_nemotron3_5_transcribe.py#L152)
 
 **Parameters:**
 
@@ -262,8 +262,8 @@ This is the configuration class to store the configuration of a Nemotron3 5 Tran
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B](https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -288,7 +288,7 @@ Example:
 transformers.Nemotron3_5TranscribeWordTimestampConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 1280, intermediate_size: int = 640, num_hidden_layers: int = 2, num_attention_heads: int = 16, num_key_value_heads: int | None = None, hidden_act: str = 'gelu', max_position_embeddings: int = 5000, initializer_range: float = 0.02, rope_parameters: dict | None = None, attention_dropout: float | int = 0.0, vocab_size: int = 23863, blank_token_id: int = 23862, residual_scale: float = 0.1, upsampling_factor: int = 2)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/configuration_nemotron3_5_transcribe.py#L88)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/configuration_nemotron3_5_transcribe.py#L88)
 
 **Parameters:**
 
@@ -324,8 +324,8 @@ This is the configuration class to store the configuration of a Nemotron3 5 Tran
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B](https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -347,7 +347,7 @@ Example:
 transformers.Nemotron3_5TranscribeProcessor(feature_extractor, tokenizer, alignment_tokenizer, chat_template = None, audio_token = '<|audio|>', default_transcription_prompt = 'Audio transcription. Language: as spoken. Wording: verbatim, including fillers and repetitions. Formatting: punctuation and capitalization. Output: transcript only.', subsampling_factor = 8)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/processing_nemotron3_5_transcribe.py#L235)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/processing_nemotron3_5_transcribe.py#L230)
 
 **Parameters:**
 
@@ -355,28 +355,28 @@ feature_extractor (`feature_extractor_class`) : The feature extractor is a requi
 
 tokenizer (`tokenizer_class`) : The tokenizer is a required input.
 
-alignment_tokenizer (`PreTrainedTokenizerFast`) : The vocabulary of the word timestamp head: 23,862 SentencePiece BPE pieces, the head's class 23,862 being the CTC blank. Only used by [align_word_timestamps()](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeProcessor.align_word_timestamps), saved in the `alignment_tokenizer/` subfolder. Prepend a space to reproduce the original SentencePiece ids of any text, including a text that starts with a tag: `alignment_tokenizer.encode(" " + text, add_special_tokens=False)`.
+alignment_tokenizer (`PreTrainedTokenizerFast`) : The vocabulary of the word timestamp head: 23,862 SentencePiece BPE pieces, the head's class 23,862 being the CTC blank. Only used by [align_word_timestamps()](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeProcessor.align_word_timestamps), saved in the `alignment_tokenizer/` subfolder. Prepend a space to reproduce the original SentencePiece ids of any text, including a text that starts with a tag: `alignment_tokenizer.encode(" " + text, add_special_tokens=False)`.
 
 chat_template (`str`) : A Jinja template to convert lists of messages in a chat into a tokenizable string.
 
 audio_token (`str`, *optional*, defaults to `"<|audio|>"`) : Special token used to represent audio inputs in the chat template.
 
-default_transcription_prompt (`str`, *optional*) : Default prompt used by [apply_transcription_request()](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeProcessor.apply_transcription_request).
+default_transcription_prompt (`str`, *optional*) : Default prompt used by [apply_transcription_request()](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeProcessor.apply_transcription_request).
 
 subsampling_factor (`int`, *optional*, defaults to 8) : Number of spectrogram frames per audio token, mirroring `Nemotron3_5TranscribeAsrAudioConfig.subsampling_factor`. The spectrogram is padded to a multiple of it.
 
 Constructs a Nemotron3_5TranscribeProcessor which wraps a feature extractor, a tokenizer, and a alignment tokenizer into a single processor.
 
-[Nemotron3_5TranscribeProcessor](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeProcessor) offers all the functionalities of `feature_extractor_class`, `tokenizer_class`, and `{alignment_tokenizer_class}`. See the
+[Nemotron3_5TranscribeProcessor](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeProcessor) offers all the functionalities of `feature_extractor_class`, `tokenizer_class`, and `{alignment_tokenizer_class}`. See the
 `~feature_extractor_class`, `~tokenizer_class`, and `~{alignment_tokenizer_class}` for more information.
 
 #### __call__[[transformers.Nemotron3_5TranscribeProcessor.__call__]]
 
 ```python
-__call__(text: str | list[str], audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, output_labels: bool | None = False, **kwargs: *<class 'transformers.models.nemotron3_5_transcribe.processing_nemotron3_5_transcribe.Nemotron3_5TranscribeProcessorKwargs'>)
+__call__(text: str | list[str], audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, output_labels: bool | None = False, **kwargs: *<class 'transformers.processing_utils.ProcessingKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/processing_nemotron3_5_transcribe.py#L268)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/processing_nemotron3_5_transcribe.py#L261)
 
 **Parameters:**
 
@@ -386,11 +386,15 @@ audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarra
 
 output_labels (`bool`, *optional*, default=False) : Whether to return labels for training.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_mm_token_type_ids (`bool`, *kwargs*) : Whether to return multimodal token type ids indicating multimodal placeholder token positions.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.22.2/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+return_text_replacement_offsets (`bool`, *kwargs*) : Whether to return character offsets for each multimodal placeholder and its replacement.
 
-**Returns:** [BatchFeature](/docs/transformers/v5.22.2/en/main_classes/feature_extractor#transformers.BatchFeature)
+return_tensors (`str` or [TensorType](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.23.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+
+**Returns:** [BatchFeature](/docs/transformers/v5.23.0/en/main_classes/feature_extractor#transformers.BatchFeature)
 
 A dictionary with tokenized text (`input_ids`, `attention_mask`) and
 audio features (`input_features`, `input_features_mask`).
@@ -398,10 +402,10 @@ audio features (`input_features`, `input_features_mask`).
 #### apply_transcription_request[[transformers.Nemotron3_5TranscribeProcessor.apply_transcription_request]]
 
 ```python
-apply_transcription_request(audio: typing.Union[str, list[str], numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor']], prompt: str | list[str] | None = None, **kwargs: *<class 'transformers.models.nemotron3_5_transcribe.processing_nemotron3_5_transcribe.Nemotron3_5TranscribeProcessorKwargs'>)
+apply_transcription_request(audio: typing.Union[str, list[str], numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor']], prompt: str | list[str] | None = None, **kwargs: *<class 'transformers.processing_utils.ProcessingKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/processing_nemotron3_5_transcribe.py#L340)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/processing_nemotron3_5_transcribe.py#L334)
 
 **Parameters:**
 
@@ -409,9 +413,9 @@ audio (`str`, `list[str]`, `np.ndarray`, `torch.Tensor`, `list[np.ndarray]`, `li
 
 prompt (`str` or `list[str]`, *optional*) : Custom prompt(s) to include in the user turn. A list must be the same length as the batch. When `None`, each sample uses `default_transcription_prompt`.
 
-- ****kwargs** : Additional keyword arguments forwarded to [apply_chat_template()](/docs/transformers/v5.22.2/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) (for example `text_kwargs`, `audio_kwargs`, ...). Thinking is disabled unless `enable_thinking=True` is passed (the chat template enables it by default).
+- ****kwargs** : Additional keyword arguments forwarded to [apply_chat_template()](/docs/transformers/v5.23.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) (for example `text_kwargs`, `audio_kwargs`, ...). Thinking is disabled unless `enable_thinking=True` is passed (the chat template enables it by default).
 
-**Returns:** [BatchFeature](/docs/transformers/v5.22.2/en/main_classes/feature_extractor#transformers.BatchFeature)
+**Returns:** [BatchFeature](/docs/transformers/v5.23.0/en/main_classes/feature_extractor#transformers.BatchFeature)
 
 Processor outputs ready to be passed to
 `Nemotron3_5TranscribeForConditionalGeneration.generate()`.
@@ -421,16 +425,18 @@ Prepare inputs for automatic speech recognition without manually writing the def
 #### apply_chat_template[[transformers.Nemotron3_5TranscribeProcessor.apply_chat_template]]
 
 ```python
-apply_chat_template(conversation: list[dict[str, str]] | list[list[dict[str, str]]], chat_template: str | None = None, tools: list[dict] | None = None, documents: list[dict[str, str]] | None = None, add_generation_prompt: bool = False, continue_final_message: bool | str = False, return_assistant_tokens_mask: bool = False, tokenize: bool = False, return_tensors: str | transformers.utils.generic.TensorType | None = None, return_dict: bool = False, load_audio_from_video: bool = False, processor_kwargs: dict | None = None, **kwargs)
+apply_chat_template(conversation: list[dict[str, str]] | list[list[dict[str, str]]], chat_template: str | None = None, tools: list[dict] | None = None, documents: list[dict[str, str]] | None = None, add_generation_prompt: bool = False, continue_final_message: bool | str = False, return_assistant_tokens_mask: bool = False, tokenize: bool = False, return_tensors: str | transformers.utils.generic.TensorType | None = 'auto', return_dict: bool = False, load_audio_from_video: bool = False, processor_kwargs: dict | None = None, sanitize_control_tokens: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/processing_utils.py#L1994)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/processing_utils.py#L2310)
 
 **Parameters:**
 
 conversation (`Union[list[Dict, [str, str]], list[list[dict[str, str]]]]`) : The conversation to format.
 
 chat_template (`Optional[str]`, *optional*) : The Jinja template to use for formatting the conversation. If not provided, the tokenizer's chat template is used.
+
+sanitize_control_tokens (`bool`, defaults to `False`) : Whether to encode the control tokens found in the conversation, tools, documents and the template variables passed as `**kwargs` as plain text, so that user input can't write them, nor mm placeholders. See the tokenizer's `apply_chat_template`. Requires `tokenize=True`.
 
 Similar to the `apply_chat_template` method on tokenizers, this method applies a Jinja template to input
 conversations to turn them into a single tokenizable string.
@@ -455,7 +461,7 @@ conversation = [
 extract_speaker_dict(text: str | list[str])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/processing_nemotron3_5_transcribe.py#L414)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/processing_nemotron3_5_transcribe.py#L408)
 
 **Parameters:**
 
@@ -483,7 +489,7 @@ Example:
 align_word_timestamps(transcriptions: str | list[str], word_timestamp_logits: torch.Tensor, input_features_mask: torch.Tensor, speaker_logits: torch.Tensor | None = None, language: str | list[str | None] | None = None, speaker_activity_threshold: float = 0.5, max_word_duration: float = 1.0, max_word_frames: int = 12)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/processing_nemotron3_5_transcribe.py#L455)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/processing_nemotron3_5_transcribe.py#L449)
 
 **Parameters:**
 
@@ -539,16 +545,16 @@ Example:
 transformers.Nemotron3_5TranscribeAsrAudioModel(config: Nemotron3_5TranscribeAsrAudioConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L379)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L379)
 
 **Parameters:**
 
-config ([Nemotron3_5TranscribeAsrAudioConfig](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeAsrAudioConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Nemotron3_5TranscribeAsrAudioConfig](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeAsrAudioConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Nemotron 3.5 Transcribe speech recognition encoder: the Nemotron 3 Diarization audio encoder with the queries
 and keys of each attention head normalized, and rotary position embeddings on part of each head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -562,7 +568,7 @@ and behavior.
 forward(input_features: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L400)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L400)
 
 **Parameters:**
 
@@ -574,24 +580,24 @@ inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_siz
 
 position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-**Returns:** [BaseModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.Tensor)`
 
-A [BaseModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Nemotron3_5TranscribeConfig](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeConfig)) and inputs.
+A [BaseModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([Nemotron3_5TranscribeConfig](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeConfig)) and inputs.
 
-The [Nemotron3_5TranscribeAsrAudioModel](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeAsrAudioModel) forward method, overrides the `__call__` special method.
+The [Nemotron3_5TranscribeAsrAudioModel](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeAsrAudioModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -605,16 +611,16 @@ the latter silently ignores them.
 transformers.Nemotron3_5TranscribeAudioModel(config: Nemotron3_5TranscribeAudioConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L547)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L547)
 
 **Parameters:**
 
-config ([Nemotron3_5TranscribeAudioConfig](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeAudioConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Nemotron3_5TranscribeAudioConfig](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeAudioConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Nemotron 3.5 Transcribe audio model: a speech recognition encoder and a speaker diarization model run in
 parallel on the same spectrogram, and the speaker activities are added to the speech recognition encoder outputs.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -625,44 +631,44 @@ and behavior.
 #### forward[[transformers.Nemotron3_5TranscribeAudioModel.forward]]
 
 ```python
-forward(input_features: FloatTensor, input_features_mask: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_features: Tensor, input_features_mask: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L561)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L561)
 
 **Parameters:**
 
-input_features (`torch.FloatTensor` of shape `(batch_size, feature_sequence_length, num_mel_bins)`) : Log mel spectrogram, padded to a multiple of `config.subsampling_factor` frames. As in the original, audio longer than `config.diarization_config.chunk_length` encoder frames is encoded in chunks with context.
+input_features (`torch.Tensor` of shape `(batch_size, feature_sequence_length, num_mel_bins)`) : Log mel spectrogram, padded to a multiple of `config.subsampling_factor` frames. As in the original, audio longer than `config.diarization_config.chunk_length` encoder frames is encoded in chunks with context.
 
 input_features_mask (`torch.Tensor` of shape `(batch_size, feature_sequence_length)`, *optional*) : Mask of the valid spectrogram frames. Padding must be on the right.
 
-**Returns:** `Nemotron3_5TranscribeAudioModelOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `Nemotron3_5TranscribeAudioModelOutput` or `tuple(torch.Tensor)`
 
 A `Nemotron3_5TranscribeAudioModelOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Nemotron3_5TranscribeConfig](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([Nemotron3_5TranscribeConfig](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeConfig)) and inputs.
 
-The [Nemotron3_5TranscribeAudioModel](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeAudioModel) forward method, overrides the `__call__` special method.
+The [Nemotron3_5TranscribeAudioModel](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeAudioModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **pooler_output** (`torch.FloatTensor` of shape `(num_audio_tokens, text_config.hidden_size)`, *optional*) -- Projected audio embeddings of the valid encoder frames of every recording, in batch order: the embeddings that
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **pooler_output** (`torch.Tensor` of shape `(num_audio_tokens, text_config.hidden_size)`, *optional*) -- Projected audio embeddings of the valid encoder frames of every recording, in batch order: the embeddings that
   replace the audio tokens of the prompt. Returned by `get_audio_features`.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
   heads.
-- **asr_last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, num_frames, audio_config.hidden_size)`) -- Output of the speech recognition encoder, before its normalization and the speaker embeddings: the input of
-  [get_word_timestamp_logits()](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeForConditionalGeneration.get_word_timestamp_logits).
-- **speaker_logits** (`torch.FloatTensor` of shape `(batch_size, feature_sequence_length, audio_config.num_speakers)`) -- Logits of the diarization model, one frame per spectrogram frame.
+- **asr_last_hidden_state** (`torch.Tensor` of shape `(batch_size, num_frames, audio_config.hidden_size)`) -- Output of the speech recognition encoder, before its normalization and the speaker embeddings: the input of
+  [get_word_timestamp_logits()](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeForConditionalGeneration.get_word_timestamp_logits).
+- **speaker_logits** (`torch.Tensor` of shape `(batch_size, feature_sequence_length, audio_config.num_speakers)`) -- Logits of the diarization model, one frame per spectrogram frame.
 
 ## Nemotron3_5TranscribeWordTimestampModel[[transformers.Nemotron3_5TranscribeWordTimestampModel]]
 
@@ -672,16 +678,16 @@ the latter silently ignores them.
 transformers.Nemotron3_5TranscribeWordTimestampModel(config: Nemotron3_5TranscribeWordTimestampConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L444)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L444)
 
 **Parameters:**
 
-config ([Nemotron3_5TranscribeWordTimestampConfig](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeWordTimestampConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Nemotron3_5TranscribeWordTimestampConfig](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeWordTimestampConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The transformer of the Nemotron 3.5 Transcribe word timestamp head.
 `Nemotron3_5TranscribeForConditionalGeneration.word_timestamp_head` classifies its output.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -692,18 +698,18 @@ and behavior.
 #### forward[[transformers.Nemotron3_5TranscribeWordTimestampModel.forward]]
 
 ```python
-forward(inputs_embeds: FloatTensor, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(inputs_embeds: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L470)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L470)
 
 **Parameters:**
 
-inputs_embeds (`torch.FloatTensor` of shape `(batch_size, num_frames, hidden_size)`) : Speech recognition encoder states, before the audio model's `asr_norm` and speaker embeddings.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, num_frames, hidden_size)`) : Speech recognition encoder states, before the audio model's `asr_norm` and speaker embeddings.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, num_frames)`, *optional*) : Mask of the valid encoder frames.
 
-The [Nemotron3_5TranscribeWordTimestampModel](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeWordTimestampModel) forward method, overrides the `__call__` special method.
+The [Nemotron3_5TranscribeWordTimestampModel](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeWordTimestampModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -719,16 +725,16 @@ Returns `num_frames * upsampling_factor` frames.
 transformers.Nemotron3_5TranscribeModel(config: Nemotron3_5TranscribeConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L641)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L641)
 
 **Parameters:**
 
-config ([Nemotron3_5TranscribeConfig](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Nemotron3_5TranscribeConfig](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Nemotron 3.5 Transcribe model (speech recognition encoder and speaker diarization model in parallel, linear
 projector and Nemotron-H language model), without a language modeling head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -739,16 +745,16 @@ and behavior.
 #### forward[[transformers.Nemotron3_5TranscribeModel.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.FloatTensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L708)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L708)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using `feature_extractor_class`. See `feature_extractor_class.__call__` for details (`processor_class` uses `feature_extractor_class` for processing audios).
+input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using `feature_extractor_class`. See `feature_extractor_class.__call__` for details (`processor_class` uses `feature_extractor_class` for processing audios).
 
 input_features_mask (`torch.Tensor` of shape `(batch_size, feature_sequence_length)`) : Mask to avoid performing attention on padding feature indices.
 
@@ -756,76 +762,76 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-**Returns:** `Nemotron3_5TranscribeModelOutputWithPast` or `tuple(torch.FloatTensor)`
+**Returns:** `Nemotron3_5TranscribeModelOutputWithPast` or `tuple(torch.Tensor)`
 
 A `Nemotron3_5TranscribeModelOutputWithPast` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Nemotron3_5TranscribeConfig](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([Nemotron3_5TranscribeConfig](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeConfig)) and inputs.
 
-The [Nemotron3_5TranscribeModel](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeModel) forward method, overrides the `__call__` special method.
+The [Nemotron3_5TranscribeModel](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
   input) to speed up sequential decoding.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
   heads.
-- **audio_hidden_states** (`torch.FloatTensor`, *optional*) -- Projected audio hidden states.
+- **audio_hidden_states** (`torch.Tensor`, *optional*) -- Projected audio hidden states.
 
 #### get_audio_features[[transformers.Nemotron3_5TranscribeModel.get_audio_features]]
 
 ```python
-get_audio_features(input_features: FloatTensor, input_features_mask: Tensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+get_audio_features(input_features: Tensor, input_features_mask: Tensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L654)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L654)
 
 **Parameters:**
 
-input_features (`torch.FloatTensor`) : Float values of mel features extracted from the raw speech waveform.
+input_features (`torch.Tensor`) : Float values of mel features extracted from the raw speech waveform.
 
 input_features_mask (`torch.Tensor` of shape `(batch_size, feature_sequence_length)`) : Mask to avoid performing attention on padded feature indices.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Nemotron3_5TranscribeConfig](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeConfig)) and inputs.
+A [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([Nemotron3_5TranscribeConfig](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeConfig)) and inputs.
 
 This method is used to get the audio embeddings from input features (a log mel spectrogram), meaning inferring the audio encoder and the multi-modal projector.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
   through the layers used for the auxiliary pretraining task. E.g. for BERT-family of models, this returns
   the classification token after processing through a linear layer and a tanh activation function. The linear
   layer weights are trained from the next sentence prediction (classification) objective during pretraining.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -834,20 +840,20 @@ This method is used to get the audio embeddings from input features (a log mel s
 #### get_word_timestamp_hidden_states[[transformers.Nemotron3_5TranscribeModel.get_word_timestamp_hidden_states]]
 
 ```python
-get_word_timestamp_hidden_states(asr_last_hidden_state: FloatTensor, input_features_mask: Tensor)
+get_word_timestamp_hidden_states(asr_last_hidden_state: Tensor, input_features_mask: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L767)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L767)
 
 **Parameters:**
 
-asr_last_hidden_state (`torch.FloatTensor` of shape `(batch_size, num_frames, audio_config.hidden_size)`) : Output of the speech recognition encoder before its normalization and the speaker embeddings, as returned by [get_audio_features()](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeModel.get_audio_features) for `input_features_mask`.
+asr_last_hidden_state (`torch.Tensor` of shape `(batch_size, num_frames, audio_config.hidden_size)`) : Output of the speech recognition encoder before its normalization and the speaker embeddings, as returned by [get_audio_features()](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeModel.get_audio_features) for `input_features_mask`.
 
 input_features_mask (`torch.Tensor` of shape `(batch_size, feature_sequence_length)`) : Mask of the valid spectrogram frames. Padding must be on the right.
 
 **Returns:**
 
-`torch.FloatTensor` of shape `(batch_size, num_frames * word_timestamp_config.upsampling_factor,
+`torch.Tensor` of shape `(batch_size, num_frames * word_timestamp_config.upsampling_factor,
 audio_config.hidden_size)`: `upsampling_factor` frames per encoder frame, in the dtype of the word timestamp
 encoder.
 
@@ -862,16 +868,16 @@ states the word timestamp head classifies.
 transformers.Nemotron3_5TranscribeForConditionalGeneration(config: Nemotron3_5TranscribeConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L808)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L808)
 
 **Parameters:**
 
-config ([Nemotron3_5TranscribeConfig](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Nemotron3_5TranscribeConfig](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Nemotron 3.5 Transcribe model (speech recognition encoder and speaker diarization model in parallel, linear
 projector and Nemotron-H language model) with a language modeling head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -882,16 +888,16 @@ and behavior.
 #### forward[[transformers.Nemotron3_5TranscribeForConditionalGeneration.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.FloatTensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L828)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L828)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using `feature_extractor_class`. See `feature_extractor_class.__call__` for details (`processor_class` uses `feature_extractor_class` for processing audios).
+input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using `feature_extractor_class`. See `feature_extractor_class.__call__` for details (`processor_class` uses `feature_extractor_class` for processing audios).
 
 input_features_mask (`torch.Tensor` of shape `(batch_size, feature_sequence_length)`) : Mask to avoid performing attention on padding feature indices.
 
@@ -899,9 +905,9 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss.
 
@@ -909,31 +915,31 @@ use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value s
 
 logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
 
-**Returns:** `Nemotron3_5TranscribeCausalLMOutputWithPast` or `tuple(torch.FloatTensor)`
+**Returns:** `Nemotron3_5TranscribeCausalLMOutputWithPast` or `tuple(torch.Tensor)`
 
 A `Nemotron3_5TranscribeCausalLMOutputWithPast` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Nemotron3_5TranscribeConfig](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([Nemotron3_5TranscribeConfig](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeConfig)) and inputs.
 
-The [Nemotron3_5TranscribeForConditionalGeneration](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [Nemotron3_5TranscribeForConditionalGeneration](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
-- **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance.
-- **hidden_states** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
+- **logits** (`torch.Tensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head.
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance.
+- **hidden_states** (`tuple[torch.Tensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple[torch.Tensor]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
   heads.
-- **audio_hidden_states** (`torch.FloatTensor`, *optional*) -- Hidden states of the audio encoder after projection.
+- **audio_hidden_states** (`torch.Tensor`, *optional*) -- Hidden states of the audio encoder after projection.
 
 Example:
 
@@ -951,7 +957,7 @@ Example:
 get_audio_features(input_features, input_features_mask, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L820)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L820)
 
 **Parameters:**
 
@@ -967,25 +973,25 @@ Example:
 #### get_word_timestamp_logits[[transformers.Nemotron3_5TranscribeForConditionalGeneration.get_word_timestamp_logits]]
 
 ```python
-get_word_timestamp_logits(asr_last_hidden_state: FloatTensor, input_features_mask: Tensor)
+get_word_timestamp_logits(asr_last_hidden_state: Tensor, input_features_mask: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L890)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/nemotron3_5_transcribe/modeling_nemotron3_5_transcribe.py#L890)
 
 **Parameters:**
 
-asr_last_hidden_state (`torch.FloatTensor` of shape `(batch_size, num_frames, audio_config.hidden_size)`) : Output of the speech recognition encoder before its normalization and the speaker embeddings, as returned by [get_audio_features()](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeForConditionalGeneration.get_audio_features) for `input_features_mask`.
+asr_last_hidden_state (`torch.Tensor` of shape `(batch_size, num_frames, audio_config.hidden_size)`) : Output of the speech recognition encoder before its normalization and the speaker embeddings, as returned by [get_audio_features()](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeForConditionalGeneration.get_audio_features) for `input_features_mask`.
 
 input_features_mask (`torch.Tensor` of shape `(batch_size, feature_sequence_length)`) : Mask of the valid spectrogram frames. Padding must be on the right.
 
 **Returns:**
 
-`torch.FloatTensor` of shape `(batch_size, num_frames * word_timestamp_config.upsampling_factor,
+`torch.Tensor` of shape `(batch_size, num_frames * word_timestamp_config.upsampling_factor,
 word_timestamp_config.vocab_size)`: raw logits over the pieces of the alignment tokenizer and the blank,
 `upsampling_factor` frames per encoder frame (the processor applies the log-softmax).
 
 Logits of the word timestamp head on the speech recognition encoder states, which
-[align_word_timestamps()](/docs/transformers/v5.22.2/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeProcessor.align_word_timestamps) turns into word times.
+[align_word_timestamps()](/docs/transformers/v5.23.0/en/model_doc/nemotron3_5_transcribe#transformers.Nemotron3_5TranscribeProcessor.align_word_timestamps) turns into word times.
 
 Example:
 
@@ -993,4 +999,4 @@ Example:
 ```
 
 ### MobileViTV2
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/mobilevitv2.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/mobilevitv2.md

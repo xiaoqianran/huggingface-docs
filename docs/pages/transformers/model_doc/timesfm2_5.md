@@ -46,7 +46,7 @@ with torch.no_grad():
 transformers.TimesFm2_5Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, patch_length: int = 32, context_length: int = 16384, horizon_length: int = 128, num_hidden_layers: int = 20, hidden_size: int = 1280, intermediate_size: int = 1280, head_dim: int = 80, num_attention_heads: int = 16, rms_norm_eps: float = 1e-06, quantiles: list[float] | tuple[float, ...] = (0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9), attention_dropout: float | int = 0.0, initializer_range: float = 0.02, num_key_value_heads: int = 16, attention_bias: bool = False, output_quantile_len: int = 1024, decode_index: int = 5, use_bias: bool = False, activation: str = 'swish', use_continuous_quantile_head: bool = True, force_flip_invariance: bool = True, infer_is_positive: bool = True, max_position_embeddings: int = 16384, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/timesfm2_5/configuration_timesfm2_5.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/timesfm2_5/configuration_timesfm2_5.py#L30)
 
 **Parameters:**
 
@@ -100,8 +100,8 @@ This is the configuration class to store the configuration of a TimesFm2_5Model.
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/timesfm-2.5-200m-transformers](https://huggingface.co/google/timesfm-2.5-200m-transformers)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -121,7 +121,7 @@ Example:
 transformers.TimesFm2_5Model(config: TimesFm2_5Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/timesfm2_5/modeling_timesfm2_5.py#L454)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/timesfm2_5/modeling_timesfm2_5.py#L454)
 
 #### forward[[transformers.TimesFm2_5Model.forward]]
 
@@ -129,7 +129,7 @@ transformers.TimesFm2_5Model(config: TimesFm2_5Config)
 forward(past_values: Tensor, past_values_padding: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/timesfm2_5/modeling_timesfm2_5.py#L550)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/timesfm2_5/modeling_timesfm2_5.py#L550)
 
 **Parameters:**
 
@@ -137,24 +137,24 @@ past_values (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Past val
 
 past_values_padding (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Padding mask for the input. `1` indicates padded (masked) time steps, `0` indicates valid values.
 
-**Returns:** `TimesFm2_5Output` or `tuple(torch.FloatTensor)`
+**Returns:** `TimesFm2_5Output` or `tuple(torch.Tensor)`
 
 A `TimesFm2_5Output` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([TimesFm2_5Config](/docs/transformers/v5.22.2/en/model_doc/timesfm2_5#transformers.TimesFm2_5Config)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([TimesFm2_5Config](/docs/transformers/v5.23.0/en/model_doc/timesfm2_5#transformers.TimesFm2_5Config)) and inputs.
 
-The [TimesFm2_5Model](/docs/transformers/v5.22.2/en/model_doc/timesfm2_5#transformers.TimesFm2_5Model) forward method, overrides the `__call__` special method.
+The [TimesFm2_5Model](/docs/transformers/v5.23.0/en/model_doc/timesfm2_5#transformers.TimesFm2_5Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -174,17 +174,17 @@ the latter silently ignores them.
 transformers.TimesFm2_5ModelForPrediction(config: TimesFm2_5Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/timesfm2_5/modeling_timesfm2_5.py#L636)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/timesfm2_5/modeling_timesfm2_5.py#L636)
 
 TimesFm2_5 model for quantile and mean prediction.
 
 #### forward[[transformers.TimesFm2_5ModelForPrediction.forward]]
 
 ```python
-forward(past_values: Sequence, window_size: int | None = None, future_values: typing.Optional[torch.Tensor] = None, forecast_context_len: int | None = None, truncate_negative: bool | None = None, force_flip_invariance: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(past_values: collections.abc.Sequence[torch.Tensor], window_size: int | None = None, future_values: typing.Optional[torch.Tensor] = None, forecast_context_len: int | None = None, truncate_negative: bool | None = None, force_flip_invariance: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/timesfm2_5/modeling_timesfm2_5.py#L724)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/timesfm2_5/modeling_timesfm2_5.py#L724)
 
 **Parameters:**
 
@@ -200,24 +200,24 @@ truncate_negative (`bool`, *optional*) : Whether to clamp outputs to non-negativ
 
 force_flip_invariance (`bool`, *optional*) : Whether to apply the flip-invariance combination. If `None`, defaults to `config.force_flip_invariance`.
 
-**Returns:** `TimesFm2_5OutputForPrediction` or `tuple(torch.FloatTensor)`
+**Returns:** `TimesFm2_5OutputForPrediction` or `tuple(torch.Tensor)`
 
 A `TimesFm2_5OutputForPrediction` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([TimesFm2_5Config](/docs/transformers/v5.22.2/en/model_doc/timesfm2_5#transformers.TimesFm2_5Config)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([TimesFm2_5Config](/docs/transformers/v5.23.0/en/model_doc/timesfm2_5#transformers.TimesFm2_5Config)) and inputs.
 
-The [TimesFm2_5ModelForPrediction](/docs/transformers/v5.22.2/en/model_doc/timesfm2_5#transformers.TimesFm2_5ModelForPrediction) forward method, overrides the `__call__` special method.
+The [TimesFm2_5ModelForPrediction](/docs/transformers/v5.23.0/en/model_doc/timesfm2_5#transformers.TimesFm2_5ModelForPrediction) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -227,4 +227,4 @@ the latter silently ignores them.
 - **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `future_values` is provided) -- Training loss combining MSE and quantile losses when targets are supplied.
 
 ### T5v1.1
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/t5v1.1.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/t5v1.1.md

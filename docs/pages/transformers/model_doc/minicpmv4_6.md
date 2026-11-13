@@ -156,7 +156,7 @@ If you already have the rendered prompt string, you can call `processor(text=...
 transformers.MiniCPMV4_6Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, insert_layer_id: int = 6, image_size: int = 448, drop_vision_last_layer: bool = False, image_token_id: int | None = None, video_token_id: int | None = None, tie_word_embeddings: bool = False, downsample_mode: str = '16x', merge_kernel_size: tuple[int, int] | list[int] = (2, 2), merger_times: int = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minicpmv4_6/configuration_minicpmv4_6.py#L66)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minicpmv4_6/configuration_minicpmv4_6.py#L66)
 
 **Parameters:**
 
@@ -186,8 +186,8 @@ This is the configuration class to store the configuration of a MiniCPMV4_6Model
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [openbmb/MiniCPM-V-4.6](https://huggingface.co/openbmb/MiniCPM-V-4.6)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## MiniCPMV4_6VisionConfig[[transformers.MiniCPMV4_6VisionConfig]]
 
@@ -197,7 +197,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes
 transformers.MiniCPMV4_6VisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 768, intermediate_size: int = 3072, num_hidden_layers: int = 12, num_attention_heads: int = 12, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 16, hidden_act: str = 'gelu_pytorch_tanh', layer_norm_eps: float = 1e-06, attention_dropout: float | int = 0.0, insert_layer_id: int = 6, window_kernel_size: tuple[int, int] | list[int] = (2, 2))
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minicpmv4_6/configuration_minicpmv4_6.py#L31)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minicpmv4_6/configuration_minicpmv4_6.py#L31)
 
 **Parameters:**
 
@@ -229,8 +229,8 @@ This is the configuration class to store the configuration of a MiniCPMV4_6Model
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [openbmb/MiniCPM-V-4.6](https://huggingface.co/openbmb/MiniCPM-V-4.6)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## MiniCPMV4_6Model[[transformers.MiniCPMV4_6Model]]
 
@@ -240,15 +240,15 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes
 transformers.MiniCPMV4_6Model(config: MiniCPMV4_6Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minicpmv4_6/modeling_minicpmv4_6.py#L593)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minicpmv4_6/modeling_minicpmv4_6.py#L593)
 
 **Parameters:**
 
-config ([MiniCPMV4_6Config](/docs/transformers/v5.22.2/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MiniCPMV4_6Config](/docs/transformers/v5.23.0/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The MiniCPMV4_6 model which consists of a vision backbone and a language model, without a language modeling head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -259,20 +259,20 @@ and behavior.
 #### forward[[transformers.MiniCPMV4_6Model.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, target_sizes: typing.Optional[torch.IntTensor] = None, pixel_values_videos: typing.Optional[torch.FloatTensor] = None, target_sizes_videos: typing.Optional[torch.IntTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: list[torch.FloatTensor] | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, downsample_mode: str | None = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, target_sizes: typing.Optional[torch.IntTensor] = None, pixel_values_videos: typing.Optional[torch.Tensor] = None, target_sizes_videos: typing.Optional[torch.IntTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: list[torch.Tensor] | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, downsample_mode: str | None = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minicpmv4_6/modeling_minicpmv4_6.py#L662)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minicpmv4_6/modeling_minicpmv4_6.py#L662)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor`, *optional*) : Pixel value patches for images, NaViT-packed.
+pixel_values (`torch.Tensor`, *optional*) : Pixel value patches for images, NaViT-packed.
 
 target_sizes (`torch.IntTensor`, *optional*) : Height and width (in patches) for each image.
 
-pixel_values_videos (`torch.FloatTensor`, *optional*) : Pixel value patches for video frames, NaViT-packed.
+pixel_values_videos (`torch.Tensor`, *optional*) : Pixel value patches for video frames, NaViT-packed.
 
 target_sizes_videos (`torch.IntTensor`, *optional*) : Height and width (in patches) for each video frame.
 
@@ -280,9 +280,9 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`list[torch.FloatTensor]`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`list[torch.Tensor]`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
@@ -290,32 +290,32 @@ downsample_mode (`str`, *optional*) : `"4x"` keeps 4x more visual tokens; defaul
 
 mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *optional*) : Dict where keys are supported modalities and values are encoded outputs for that modality. Each encoded output is a tuple that consists of (`pooler_output`, *optional*: `last_hidden_states`, *optional*: `hidden_states`, *optional*: `attentions`) `pooler_output` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of multimmodal features of the encoder merged into text embeddings.
 
-**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPast](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MiniCPMV4_6Config](/docs/transformers/v5.22.2/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6Config)) and inputs.
+A [BaseModelOutputWithPast](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([MiniCPMV4_6Config](/docs/transformers/v5.23.0/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6Config)) and inputs.
 
-The [MiniCPMV4_6Model](/docs/transformers/v5.22.2/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6Model) forward method, overrides the `__call__` special method.
+The [MiniCPMV4_6Model](/docs/transformers/v5.23.0/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
   input) to speed up sequential decoding.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -324,37 +324,37 @@ the latter silently ignores them.
 #### get_image_features[[transformers.MiniCPMV4_6Model.get_image_features]]
 
 ```python
-get_image_features(pixel_values: FloatTensor, target_sizes: IntTensor, downsample_mode: str | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+get_image_features(pixel_values: Tensor, target_sizes: IntTensor, downsample_mode: str | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minicpmv4_6/modeling_minicpmv4_6.py#L602)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minicpmv4_6/modeling_minicpmv4_6.py#L602)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [MiniCPMV4_6ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6ImageProcessor). See [MiniCPMV4_6ImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([MiniCPMV4_6Processor](/docs/transformers/v5.22.2/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6Processor) uses [MiniCPMV4_6ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [MiniCPMV4_6ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6ImageProcessor). See [MiniCPMV4_6ImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([MiniCPMV4_6Processor](/docs/transformers/v5.23.0/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6Processor) uses [MiniCPMV4_6ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6ImageProcessor) for processing images).
 
 target_sizes (`torch.IntTensor` of shape `(num_images, 2)`) : Height and width (in patches) of each image.
 
 downsample_mode (`str`, *optional*) : When set to `"4x"` the intermediate `vit_merger` is skipped so that each image keeps `4×` more visual tokens. Default `"16x"` mode applies the full merge pipeline.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MiniCPMV4_6Config](/docs/transformers/v5.22.2/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6Config)) and inputs.
+A [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([MiniCPMV4_6Config](/docs/transformers/v5.23.0/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6Config)) and inputs.
 
 Extract image features: vision encoder, insert merger, then MLP merger.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
   through the layers used for the auxiliary pretraining task. E.g. for BERT-family of models, this returns
   the classification token after processing through a linear layer and a tanh activation function. The linear
   layer weights are trained from the next sentence prediction (classification) objective during pretraining.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -368,15 +368,15 @@ Extract image features: vision encoder, insert merger, then MLP merger.
 transformers.MiniCPMV4_6ForConditionalGeneration(config: MiniCPMV4_6Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minicpmv4_6/modeling_minicpmv4_6.py#L779)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minicpmv4_6/modeling_minicpmv4_6.py#L779)
 
 **Parameters:**
 
-config ([MiniCPMV4_6Config](/docs/transformers/v5.22.2/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MiniCPMV4_6Config](/docs/transformers/v5.23.0/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Minicpmv4 6 Model for token generation conditioned on other modalities (e.g. image-text-to-text generation).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -387,20 +387,20 @@ and behavior.
 #### forward[[transformers.MiniCPMV4_6ForConditionalGeneration.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, target_sizes: typing.Optional[torch.IntTensor] = None, pixel_values_videos: typing.Optional[torch.FloatTensor] = None, target_sizes_videos: typing.Optional[torch.IntTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: list[torch.FloatTensor] | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, downsample_mode: str | None = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, target_sizes: typing.Optional[torch.IntTensor] = None, pixel_values_videos: typing.Optional[torch.Tensor] = None, target_sizes_videos: typing.Optional[torch.IntTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: list[torch.Tensor] | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, downsample_mode: str | None = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minicpmv4_6/modeling_minicpmv4_6.py#L790)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minicpmv4_6/modeling_minicpmv4_6.py#L790)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor`, *optional*) : Pixel value patches for images, NaViT-packed.
+pixel_values (`torch.Tensor`, *optional*) : Pixel value patches for images, NaViT-packed.
 
 target_sizes (`torch.IntTensor`, *optional*) : Height and width (in patches) for each image.
 
-pixel_values_videos (`torch.FloatTensor`, *optional*) : Pixel value patches for video frames, NaViT-packed.
+pixel_values_videos (`torch.Tensor`, *optional*) : Pixel value patches for video frames, NaViT-packed.
 
 target_sizes_videos (`torch.IntTensor`, *optional*) : Height and width (in patches) for each video frame.
 
@@ -408,9 +408,9 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`list[torch.FloatTensor]`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`list[torch.Tensor]`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
 
@@ -420,29 +420,29 @@ downsample_mode (`str`, *optional*) : `"4x"` keeps 4x more visual tokens; defaul
 
 mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *optional*) : Dict where keys are supported modalities and values are encoded outputs for that modality. Each encoded output is a tuple that consists of (`pooler_output`, *optional*: `last_hidden_states`, *optional*: `hidden_states`, *optional*: `attentions`) `pooler_output` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of multimmodal features of the encoder merged into text embeddings.
 
-**Returns:** [CausalLMOutputWithPast](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.FloatTensor)`
+**Returns:** [CausalLMOutputWithPast](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.Tensor)`
 
-A [CausalLMOutputWithPast](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MiniCPMV4_6Config](/docs/transformers/v5.22.2/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6Config)) and inputs.
+A [CausalLMOutputWithPast](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([MiniCPMV4_6Config](/docs/transformers/v5.23.0/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6Config)) and inputs.
 
-The [MiniCPMV4_6ForConditionalGeneration](/docs/transformers/v5.22.2/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6ForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [MiniCPMV4_6ForConditionalGeneration](/docs/transformers/v5.23.0/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6ForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
-- **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
+- **logits** (`torch.Tensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -484,26 +484,26 @@ Example:
 get_image_features(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minicpmv4_6/modeling_minicpmv4_6.py#L854)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minicpmv4_6/modeling_minicpmv4_6.py#L854)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MiniCPMV4_6Config](/docs/transformers/v5.22.2/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6Config)) and inputs.
+A [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([MiniCPMV4_6Config](/docs/transformers/v5.23.0/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6Config)) and inputs.
 
 Extract image features: vision encoder, insert merger, then MLP merger.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
   through the layers used for the auxiliary pretraining task. E.g. for BERT-family of models, this returns
   the classification token after processing through a linear layer and a tanh activation function. The linear
   layer weights are trained from the next sentence prediction (classification) objective during pretraining.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -547,7 +547,7 @@ Example:
 transformers.MiniCPMV4_6Processor(image_processor = None, video_processor = None, tokenizer = None, chat_template = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minicpmv4_6/processing_minicpmv4_6.py#L42)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minicpmv4_6/processing_minicpmv4_6.py#L38)
 
 **Parameters:**
 
@@ -561,28 +561,34 @@ chat_template (`str`) : A Jinja template to convert lists of messages in a chat 
 
 Constructs a MiniCPMV4_6Processor which wraps a image processor, a video processor, and a tokenizer into a single processor.
 
-[MiniCPMV4_6Processor](/docs/transformers/v5.22.2/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6Processor) offers all the functionalities of [MiniCPMV4_6ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6ImageProcessor), [MiniCPMV4_6VideoProcessor](/docs/transformers/v5.22.2/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6VideoProcessor), and [TokenizersBackend](/docs/transformers/v5.22.2/en/main_classes/tokenizer#transformers.TokenizersBackend). See the
-[~MiniCPMV4_6ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6ImageProcessor), [~MiniCPMV4_6VideoProcessor](/docs/transformers/v5.22.2/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6VideoProcessor), and [~TokenizersBackend](/docs/transformers/v5.22.2/en/main_classes/tokenizer#transformers.TokenizersBackend) for more information.
+[MiniCPMV4_6Processor](/docs/transformers/v5.23.0/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6Processor) offers all the functionalities of [MiniCPMV4_6ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6ImageProcessor), [MiniCPMV4_6VideoProcessor](/docs/transformers/v5.23.0/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6VideoProcessor), and [TokenizersBackend](/docs/transformers/v5.23.0/en/main_classes/tokenizer#transformers.TokenizersBackend). See the
+[~MiniCPMV4_6ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6ImageProcessor), [~MiniCPMV4_6VideoProcessor](/docs/transformers/v5.23.0/en/model_doc/minicpmv4_6#transformers.MiniCPMV4_6VideoProcessor), and [~TokenizersBackend](/docs/transformers/v5.23.0/en/main_classes/tokenizer#transformers.TokenizersBackend) for more information.
 
 #### __call__[[transformers.MiniCPMV4_6Processor.__call__]]
 
 ```python
-__call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, **kwargs: *<class 'transformers.processing_utils.ProcessingKwargs'>)
+__call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, **kwargs: *<class 'transformers.models.minicpmv4_6.processing_minicpmv4_6.MiniCPMV4_6ProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minicpmv4_6/processing_minicpmv4_6.py#L65)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minicpmv4_6/processing_minicpmv4_6.py#L74)
 
 **Parameters:**
 
-images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`, *optional*) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+images (*Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]*, *optional*) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set *do_rescale=False*.
 
-text (`Union[str, list[str], list[list[str]]]`, *optional*) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
+text (*Union[str, list[str], list[list[str]]]*, *optional*) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If you pass a pretokenized input, set *is_split_into_words=True* to avoid ambiguity with batched inputs.
 
-videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.ndarray], list[torch.Tensor], list[list[PIL.Image.Image]], list[list[numpy.ndarray]], list[list[torch.Tensor]], ~video_utils.URL, list[~video_utils.URL], list[list[~video_utils.URL]], ~video_utils.Path, list[~video_utils.Path], list[list[~video_utils.Path]]]`, *optional*) : Video to preprocess. Expects a single or batch of videos with pixel values ranging from 0 to 255. If passing in videos with pixel values between 0 and 1, set `do_rescale=False`.
+videos (*Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.ndarray], list[torch.Tensor], list[list[PIL.Image.Image]], list[list[numpy.ndarray]], list[list[torch.Tensor]], ~video_utils.URL, list[~video_utils.URL], list[list[~video_utils.URL]], ~video_utils.Path, list[~video_utils.Path], list[list[~video_utils.Path]]]*, *optional*) : Video to preprocess. Expects a single or batch of videos with pixel values ranging from 0 to 255. If passing in videos with pixel values between 0 and 1, set *do_rescale=False*.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_mm_token_type_ids (*bool*, *kwargs*) : Whether to return multimodal token type ids indicating multimodal placeholder token positions.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.22.2/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+return_text_replacement_offsets (*bool*, *kwargs*) : Whether to return character offsets for each multimodal placeholder and its replacement.
+
+use_image_id (*bool*, *kwargs*, *optional*) : Whether to prepend an image-id tag (`<image_id>N</image_id>`) before each image placeholder. If unset, defaults to the image processor's *use_image_id*.
+
+return_tensors (*str* or [*~utils.TensorType*], *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - *'pt'*: Return PyTorch *torch.Tensor* objects. - *'np'*: Return NumPy *np.ndarray* objects.
+
+- ****kwargs** ([*ProcessingKwargs*], *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ## MiniCPMV4_6ImageProcessor[[transformers.MiniCPMV4_6ImageProcessor]]
 
@@ -592,7 +598,7 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.22.2/en/internal/fil
 transformers.MiniCPMV4_6ImageProcessor(**kwargs: *<class 'transformers.models.minicpmv4_6.image_processing_minicpmv4_6.MiniCPMV4_6ImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minicpmv4_6/image_processing_minicpmv4_6.py#L68)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minicpmv4_6/image_processing_minicpmv4_6.py#L68)
 
 **Parameters:**
 
@@ -656,7 +662,7 @@ Constructs a MiniCPMV4_6ImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.minicpmv4_6.image_processing_minicpmv4_6.MiniCPMV4_6ImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minicpmv4_6/image_processing_minicpmv4_6.py#L174)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minicpmv4_6/image_processing_minicpmv4_6.py#L174)
 
 **Parameters:**
 
@@ -728,7 +734,7 @@ use_image_id (*bool*, *kwargs*, *optional*, defaults to *True*) : Whether to pre
 transformers.MiniCPMV4_6ImageProcessorPil(**kwargs: *<class 'transformers.models.minicpmv4_6.image_processing_pil_minicpmv4_6.MiniCPMV4_6ImageProcessorPilKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minicpmv4_6/image_processing_pil_minicpmv4_6.py#L69)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minicpmv4_6/image_processing_pil_minicpmv4_6.py#L69)
 
 **Parameters:**
 
@@ -742,13 +748,13 @@ Constructs a MiniCPMV4_6ImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.minicpmv4_6.image_processing_pil_minicpmv4_6.MiniCPMV4_6ImageProcessorPilKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minicpmv4_6/image_processing_pil_minicpmv4_6.py#L173)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minicpmv4_6/image_processing_pil_minicpmv4_6.py#L173)
 
 **Parameters:**
 
 images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.TensorType), *optional*) : Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.TensorType), *optional*) : Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
 
 - ****kwargs** (`MiniCPMV4_6ImageProcessorPilKwargs`, *optional*) : Additional image preprocessing options. Model-specific kwargs are listed above; see the TypedDict class for the complete list of supported arguments.
 
@@ -766,7 +772,7 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.22.2/en/internal/fil
 transformers.MiniCPMV4_6VideoProcessor(**kwargs: *<class 'transformers.models.minicpmv4_6.video_processing_minicpmv4_6.MiniCPMV4_6VideoProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minicpmv4_6/video_processing_minicpmv4_6.py#L84)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minicpmv4_6/video_processing_minicpmv4_6.py#L84)
 
 **Parameters:**
 
@@ -840,7 +846,7 @@ Constructs a MiniCPMV4_6VideoProcessor video processor.
 preprocess(videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]]], **kwargs: *<class 'transformers.processing_utils.VideosKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minicpmv4_6/video_processing_minicpmv4_6.py#L299)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minicpmv4_6/video_processing_minicpmv4_6.py#L299)
 
 **Parameters:**
 
@@ -897,4 +903,4 @@ return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwar
   initialization.
 
 ### Blenderbot
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/blenderbot.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/blenderbot.md

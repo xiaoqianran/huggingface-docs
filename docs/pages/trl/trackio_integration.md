@@ -65,4 +65,4 @@ trainer.train()
 will give you a hosted dashboard at https://huggingface.co/spaces/trl-lib/trackio.
 
 ### Dataset formats and types
-https://huggingface.co/docs/trl/v1.17.1/dataset_formats.md
+https://huggingface.co/docs/trl/v1.18.0/dataset_formats.md

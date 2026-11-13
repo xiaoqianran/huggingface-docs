@@ -67,7 +67,7 @@ to fine-tune a VideoMAE model on a custom dataset.
 transformers.VideoMAEConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 16, num_channels: int = 3, num_frames: int = 16, tubelet_size: int = 2, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, qv_bias: bool = True, use_mean_pooling: bool = True, decoder_num_attention_heads: int = 6, decoder_hidden_size: int = 384, decoder_num_hidden_layers: int = 4, decoder_intermediate_size: int = 1536, norm_pix_loss: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/videomae/configuration_videomae.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/videomae/configuration_videomae.py#L24)
 
 **Parameters:**
 
@@ -117,8 +117,8 @@ This is the configuration class to store the configuration of a VideoMAEModel. I
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [MCG-NJU/videomae-base](https://huggingface.co/MCG-NJU/videomae-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -143,7 +143,7 @@ Example:
 transformers.VideoMAEImageProcessor(**kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/videomae/image_processing_videomae.py#L35)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/videomae/image_processing_videomae.py#L35)
 
 **Parameters:**
 
@@ -195,7 +195,7 @@ Constructs a VideoMAEImageProcessor image processor.
 preprocess(videos: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/videomae/image_processing_videomae.py#L53)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/videomae/image_processing_videomae.py#L53)
 
 **Parameters:**
 
@@ -255,7 +255,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.VideoMAEImageProcessorPil(**kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/videomae/image_processing_pil_videomae.py#L33)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/videomae/image_processing_pil_videomae.py#L33)
 
 **Parameters:**
 
@@ -307,7 +307,7 @@ Constructs a VideoMAEImageProcessor image processor.
 preprocess(videos: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/videomae/image_processing_pil_videomae.py#L51)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/videomae/image_processing_pil_videomae.py#L51)
 
 **Parameters:**
 
@@ -367,7 +367,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.VideoMAEVideoProcessor(**kwargs: *<class 'transformers.processing_utils.VideosKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/videomae/video_processing_videomae.py#L25)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/videomae/video_processing_videomae.py#L25)
 
 **Parameters:**
 
@@ -415,7 +415,7 @@ return_metadata (`bool`, *kwargs*, *optional*, defaults to `False`) : Whether to
 
 return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwargs*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([VideosKwargs](/docs/transformers/v5.22.2/en/main_classes/processors#transformers.VideosKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([VideosKwargs](/docs/transformers/v5.23.0/en/main_classes/processors#transformers.VideosKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 Constructs a VideoMAEVideoProcessor video processor.
 
@@ -425,7 +425,7 @@ Constructs a VideoMAEVideoProcessor video processor.
 preprocess(videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]]], **kwargs: *<class 'transformers.processing_utils.VideosKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/videomae/video_processing_videomae.py#L41)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/videomae/video_processing_videomae.py#L41)
 
 **Parameters:**
 
@@ -486,18 +486,18 @@ return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwar
 #### transformers.VideoMAEModel[[transformers.VideoMAEModel]]
 
 ```python
-transformers.VideoMAEModel(config)
+transformers.VideoMAEModel(config: VideoMAEConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/videomae/modeling_videomae.py#L398)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/videomae/modeling_videomae.py#L398)
 
 **Parameters:**
 
-config ([VideoMAEModel](/docs/transformers/v5.22.2/en/model_doc/videomae#transformers.VideoMAEModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([VideoMAEConfig](/docs/transformers/v5.23.0/en/model_doc/videomae#transformers.VideoMAEConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Videomae Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -508,35 +508,35 @@ and behavior.
 #### forward[[transformers.VideoMAEModel.forward]]
 
 ```python
-forward(pixel_values: FloatTensor, bool_masked_pos: typing.Optional[torch.BoolTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(pixel_values: Tensor, bool_masked_pos: typing.Optional[torch.BoolTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/videomae/modeling_videomae.py#L417)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/videomae/modeling_videomae.py#L417)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [VideoMAEImageProcessor](/docs/transformers/v5.22.2/en/model_doc/videomae#transformers.VideoMAEImageProcessor). See [VideoMAEImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [VideoMAEImageProcessor](/docs/transformers/v5.22.2/en/model_doc/videomae#transformers.VideoMAEImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [VideoMAEImageProcessor](/docs/transformers/v5.23.0/en/model_doc/videomae#transformers.VideoMAEImageProcessor). See [VideoMAEImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [VideoMAEImageProcessor](/docs/transformers/v5.23.0/en/model_doc/videomae#transformers.VideoMAEImageProcessor) for processing images).
 
 bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, sequence_length)`, *optional*) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0). Each video in the batch must have the same number of masked patches. If `None`, then all patches are considered. Sequence length is `(num_frames // tubelet_size) * (image_size // patch_size) ** 2`.
 
-**Returns:** [BaseModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.Tensor)`
 
-A [BaseModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideoMAEConfig](/docs/transformers/v5.22.2/en/model_doc/videomae#transformers.VideoMAEConfig)) and inputs.
+A [BaseModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([VideoMAEConfig](/docs/transformers/v5.23.0/en/model_doc/videomae#transformers.VideoMAEConfig)) and inputs.
 
-The [VideoMAEModel](/docs/transformers/v5.22.2/en/model_doc/videomae#transformers.VideoMAEModel) forward method, overrides the `__call__` special method.
+The [VideoMAEModel](/docs/transformers/v5.23.0/en/model_doc/videomae#transformers.VideoMAEModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -576,18 +576,18 @@ Examples:
 #### transformers.VideoMAEForPreTraining[[transformers.VideoMAEForPreTraining]]
 
 ```python
-transformers.VideoMAEForPreTraining(config)
+transformers.VideoMAEForPreTraining(config: VideoMAEConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/videomae/modeling_videomae.py#L511)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/videomae/modeling_videomae.py#L511)
 
 **Parameters:**
 
-config ([VideoMAEForPreTraining](/docs/transformers/v5.22.2/en/model_doc/videomae#transformers.VideoMAEForPreTraining)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([VideoMAEConfig](/docs/transformers/v5.23.0/en/model_doc/videomae#transformers.VideoMAEConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The VideoMAE Model transformer with the decoder on top for self-supervised pre-training.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -598,36 +598,36 @@ and behavior.
 #### forward[[transformers.VideoMAEForPreTraining.forward]]
 
 ```python
-forward(pixel_values: FloatTensor, bool_masked_pos: BoolTensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(pixel_values: Tensor, bool_masked_pos: BoolTensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/videomae/modeling_videomae.py#L529)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/videomae/modeling_videomae.py#L529)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [VideoMAEImageProcessor](/docs/transformers/v5.22.2/en/model_doc/videomae#transformers.VideoMAEImageProcessor). See [VideoMAEImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [VideoMAEImageProcessor](/docs/transformers/v5.22.2/en/model_doc/videomae#transformers.VideoMAEImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [VideoMAEImageProcessor](/docs/transformers/v5.23.0/en/model_doc/videomae#transformers.VideoMAEImageProcessor). See [VideoMAEImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [VideoMAEImageProcessor](/docs/transformers/v5.23.0/en/model_doc/videomae#transformers.VideoMAEImageProcessor) for processing images).
 
 bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, sequence_length)`) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0). Each video in the batch must have the same number of masked patches. Sequence length is `(num_frames // tubelet_size) * (image_size // patch_size) ** 2`.
 
-**Returns:** `VideoMAEForPreTrainingOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `VideoMAEForPreTrainingOutput` or `tuple(torch.Tensor)`
 
 A `VideoMAEForPreTrainingOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideoMAEConfig](/docs/transformers/v5.22.2/en/model_doc/videomae#transformers.VideoMAEConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([VideoMAEConfig](/docs/transformers/v5.23.0/en/model_doc/videomae#transformers.VideoMAEConfig)) and inputs.
 
-The [VideoMAEForPreTraining](/docs/transformers/v5.22.2/en/model_doc/videomae#transformers.VideoMAEForPreTraining) forward method, overrides the `__call__` special method.
+The [VideoMAEForPreTraining](/docs/transformers/v5.23.0/en/model_doc/videomae#transformers.VideoMAEForPreTraining) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`) -- Pixel reconstruction loss.
-- **logits** (`torch.FloatTensor` of shape `(batch_size, patch_size ** 2 * num_channels)`) -- Pixel reconstruction logits.
-- **hidden_states** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **loss** (`torch.Tensor` of shape `(1,)`) -- Pixel reconstruction loss.
+- **logits** (`torch.Tensor` of shape `(batch_size, patch_size ** 2 * num_channels)`) -- Pixel reconstruction logits.
+- **hidden_states** (`tuple[torch.Tensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple[torch.Tensor]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -660,19 +660,19 @@ Examples:
 #### transformers.VideoMAEForVideoClassification[[transformers.VideoMAEForVideoClassification]]
 
 ```python
-transformers.VideoMAEForVideoClassification(config)
+transformers.VideoMAEForVideoClassification(config: VideoMAEConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/videomae/modeling_videomae.py#L684)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/videomae/modeling_videomae.py#L684)
 
 **Parameters:**
 
-config ([VideoMAEForVideoClassification](/docs/transformers/v5.22.2/en/model_doc/videomae#transformers.VideoMAEForVideoClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([VideoMAEConfig](/docs/transformers/v5.23.0/en/model_doc/videomae#transformers.VideoMAEConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 VideoMAE Model transformer with a video classification head on top (a linear layer on top of the average pooled hidden
 states of all tokens) e.g. for ImageNet.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -686,32 +686,32 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/videomae/modeling_videomae.py#L698)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/videomae/modeling_videomae.py#L698)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [VideoMAEImageProcessor](/docs/transformers/v5.22.2/en/model_doc/videomae#transformers.VideoMAEImageProcessor). See [VideoMAEImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [VideoMAEImageProcessor](/docs/transformers/v5.22.2/en/model_doc/videomae#transformers.VideoMAEImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [VideoMAEImageProcessor](/docs/transformers/v5.23.0/en/model_doc/videomae#transformers.VideoMAEImageProcessor). See [VideoMAEImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [VideoMAEImageProcessor](/docs/transformers/v5.23.0/en/model_doc/videomae#transformers.VideoMAEImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
-**Returns:** [ImageClassifierOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [ImageClassifierOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.Tensor)`
 
-A [ImageClassifierOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideoMAEConfig](/docs/transformers/v5.22.2/en/model_doc/videomae#transformers.VideoMAEConfig)) and inputs.
+A [ImageClassifierOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([VideoMAEConfig](/docs/transformers/v5.23.0/en/model_doc/videomae#transformers.VideoMAEConfig)) and inputs.
 
-The [VideoMAEForVideoClassification](/docs/transformers/v5.22.2/en/model_doc/videomae#transformers.VideoMAEForVideoClassification) forward method, overrides the `__call__` special method.
+The [VideoMAEForVideoClassification](/docs/transformers/v5.23.0/en/model_doc/videomae#transformers.VideoMAEForVideoClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Classification (or regression if config.num_labels==1) loss.
-- **logits** (`torch.FloatTensor` of shape `(batch_size, config.num_labels)`) -- Classification (or regression if config.num_labels==1) scores (before SoftMax).
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Classification (or regression if config.num_labels==1) loss.
+- **logits** (`torch.Tensor` of shape `(batch_size, config.num_labels)`) -- Classification (or regression if config.num_labels==1) scores (before SoftMax).
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each stage) of shape `(batch_size, sequence_length, hidden_size)`. Hidden-states
   (also called feature maps) of the model at the output of each stage.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, patch_size,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, patch_size,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -745,4 +745,4 @@ eating spaghetti
 ```
 
 ### ConvNeXT
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/convnext.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/convnext.md

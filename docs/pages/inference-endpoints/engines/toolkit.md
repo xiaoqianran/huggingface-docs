@@ -235,5 +235,5 @@ You'll find examples are for:
 * [Donut Document understanding](https://huggingface.co/philschmid/donut-base-finetuned-cord-v2)
 * [SetFit classifier](https://huggingface.co/philschmid/setfit-ag-news-endpoint)
 
-### SGLang
-https://huggingface.co/docs/inference-endpoints/engines/sglang.md
+### Text Embeddings Inference (TEI)
+https://huggingface.co/docs/inference-endpoints/engines/tei.md

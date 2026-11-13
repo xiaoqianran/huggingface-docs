@@ -413,5 +413,5 @@ That's it! You now have a chat application running on Hugging Face Spaces powere
 
 Why not level up and try out the [next guide](./transcription) to build a Text-to-Speech application?
 
-### Build an embedding pipeline with datasets
-https://huggingface.co/docs/inference-endpoints/tutorials/embedding.md
+### Create your own transcription app
+https://huggingface.co/docs/inference-endpoints/tutorials/transcription.md

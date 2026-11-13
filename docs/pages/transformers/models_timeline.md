@@ -13,4 +13,4 @@ Use the **Modality** row to filter by text, vision, audio, video, multimodal, or
 >
 
 ### Writing a chat template
-https://huggingface.co/docs/transformers/v5.22.2/chat_templating_writing.md
+https://huggingface.co/docs/transformers/v5.23.0/chat_templating_writing.md

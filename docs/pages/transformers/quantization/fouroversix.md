@@ -49,4 +49,4 @@ model = AutoModelForCausalLM.from_pretrained(
 ```
 
 ### VPTQ
-https://huggingface.co/docs/transformers/v5.22.2/quantization/vptq.md
+https://huggingface.co/docs/transformers/v5.23.0/quantization/vptq.md

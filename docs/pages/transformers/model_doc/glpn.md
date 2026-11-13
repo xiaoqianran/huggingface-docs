@@ -24,7 +24,7 @@ This model was contributed by [nielsr](https://huggingface.co/nielsr). The origi
 
 A list of official Hugging Face and community (indicated by 🌎) resources to help you get started with GLPN.
 
-- Demo notebooks for [GLPNForDepthEstimation](/docs/transformers/v5.22.2/en/model_doc/glpn#transformers.GLPNForDepthEstimation) can be found [here](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/GLPN).
+- Demo notebooks for [GLPNForDepthEstimation](/docs/transformers/v5.23.0/en/model_doc/glpn#transformers.GLPNForDepthEstimation) can be found [here](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/GLPN).
 - [Monocular depth estimation task guide](../tasks/monocular_depth_estimation)
 
 ## GLPNConfig[[transformers.GLPNConfig]]
@@ -35,7 +35,7 @@ A list of official Hugging Face and community (indicated by 🌎) resources to h
 transformers.GLPNConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, num_channels: int = 3, num_encoder_blocks: int = 4, depths: list[int] | tuple[int, ...] = (2, 2, 2, 2), sr_ratios: list[int] | tuple[int, ...] = (8, 4, 2, 1), hidden_sizes: list[int] | tuple[int, ...] = (32, 64, 160, 256), patch_sizes: list[int] | tuple[int, ...] = (7, 3, 3, 3), strides: list[int] | tuple[int, ...] = (4, 2, 2, 2), num_attention_heads: list[int] | tuple[int, ...] = (1, 2, 5, 8), mlp_ratios: list[int] | tuple[int, ...] = (4, 4, 4, 4), hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, drop_path_rate: float | int = 0.1, layer_norm_eps: float = 1e-06, decoder_hidden_size: int = 64, max_depth: int = 10, head_in_index: int = -1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/glpn/configuration_glpn.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/glpn/configuration_glpn.py#L24)
 
 **Parameters:**
 
@@ -79,8 +79,8 @@ This is the configuration class to store the configuration of a GLPNModel. It is
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [vinvino02/glpn-kitti](https://huggingface.co/vinvino02/glpn-kitti)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -105,7 +105,7 @@ Example:
 transformers.GLPNImageProcessor(**kwargs: *<class 'transformers.models.glpn.image_processing_glpn.GLPNImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/glpn/image_processing_glpn.py#L51)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/glpn/image_processing_glpn.py#L51)
 
 **Parameters:**
 
@@ -159,7 +159,7 @@ Constructs a GLPNImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.glpn.image_processing_glpn.GLPNImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/glpn/image_processing_glpn.py#L70)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/glpn/image_processing_glpn.py#L70)
 
 **Parameters:**
 
@@ -221,7 +221,7 @@ size_divisor (`int`, *kwargs*, *optional*, defaults to 32) : When `do_resize` is
 transformers.GLPNImageProcessorPil(**kwargs: *<class 'transformers.models.glpn.image_processing_pil_glpn.GLPNImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/glpn/image_processing_pil_glpn.py#L46)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/glpn/image_processing_pil_glpn.py#L46)
 
 **Parameters:**
 
@@ -275,7 +275,7 @@ Constructs a GLPNImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.glpn.image_processing_pil_glpn.GLPNImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/glpn/image_processing_pil_glpn.py#L65)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/glpn/image_processing_pil_glpn.py#L65)
 
 **Parameters:**
 
@@ -334,18 +334,18 @@ size_divisor (`int`, *kwargs*, *optional*, defaults to 32) : When `do_resize` is
 #### transformers.GLPNModel[[transformers.GLPNModel]]
 
 ```python
-transformers.GLPNModel(config)
+transformers.GLPNModel(config: GLPNConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/glpn/modeling_glpn.py#L377)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/glpn/modeling_glpn.py#L377)
 
 **Parameters:**
 
-config ([GLPNModel](/docs/transformers/v5.22.2/en/model_doc/glpn#transformers.GLPNModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([GLPNConfig](/docs/transformers/v5.23.0/en/model_doc/glpn#transformers.GLPNConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Glpn Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -356,39 +356,39 @@ and behavior.
 #### forward[[transformers.GLPNModel.forward]]
 
 ```python
-forward(pixel_values: FloatTensor, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+forward(pixel_values: Tensor, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/glpn/modeling_glpn.py#L389)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/glpn/modeling_glpn.py#L389)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [GLPNImageProcessor](/docs/transformers/v5.22.2/en/model_doc/glpn#transformers.GLPNImageProcessor). See [GLPNImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [GLPNImageProcessor](/docs/transformers/v5.22.2/en/model_doc/glpn#transformers.GLPNImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [GLPNImageProcessor](/docs/transformers/v5.23.0/en/model_doc/glpn#transformers.GLPNImageProcessor). See [GLPNImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [GLPNImageProcessor](/docs/transformers/v5.23.0/en/model_doc/glpn#transformers.GLPNImageProcessor) for processing images).
 
 output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [BaseModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.Tensor)`
 
-A [BaseModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([GLPNConfig](/docs/transformers/v5.22.2/en/model_doc/glpn#transformers.GLPNConfig)) and inputs.
+A [BaseModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([GLPNConfig](/docs/transformers/v5.23.0/en/model_doc/glpn#transformers.GLPNConfig)) and inputs.
 
-The [GLPNModel](/docs/transformers/v5.22.2/en/model_doc/glpn#transformers.GLPNModel) forward method, overrides the `__call__` special method.
+The [GLPNModel](/docs/transformers/v5.23.0/en/model_doc/glpn#transformers.GLPNModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -404,18 +404,18 @@ Example:
 #### transformers.GLPNForDepthEstimation[[transformers.GLPNForDepthEstimation]]
 
 ```python
-transformers.GLPNForDepthEstimation(config)
+transformers.GLPNForDepthEstimation(config: GLPNConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/glpn/modeling_glpn.py#L565)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/glpn/modeling_glpn.py#L565)
 
 **Parameters:**
 
-config ([GLPNForDepthEstimation](/docs/transformers/v5.22.2/en/model_doc/glpn#transformers.GLPNForDepthEstimation)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([GLPNConfig](/docs/transformers/v5.23.0/en/model_doc/glpn#transformers.GLPNConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 GLPN Model transformer with a lightweight depth estimation head on top e.g. for KITTI, NYUv2.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -426,42 +426,42 @@ and behavior.
 #### forward[[transformers.GLPNForDepthEstimation.forward]]
 
 ```python
-forward(pixel_values: FloatTensor, labels: typing.Optional[torch.FloatTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+forward(pixel_values: Tensor, labels: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/glpn/modeling_glpn.py#L576)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/glpn/modeling_glpn.py#L576)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [GLPNImageProcessor](/docs/transformers/v5.22.2/en/model_doc/glpn#transformers.GLPNImageProcessor). See [GLPNImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [GLPNImageProcessor](/docs/transformers/v5.22.2/en/model_doc/glpn#transformers.GLPNImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [GLPNImageProcessor](/docs/transformers/v5.23.0/en/model_doc/glpn#transformers.GLPNImageProcessor). See [GLPNImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [GLPNImageProcessor](/docs/transformers/v5.23.0/en/model_doc/glpn#transformers.GLPNImageProcessor) for processing images).
 
-labels (`torch.FloatTensor` of shape `(batch_size, height, width)`, *optional*) : Ground truth depth estimation maps for computing the loss.
+labels (`torch.Tensor` of shape `(batch_size, height, width)`, *optional*) : Ground truth depth estimation maps for computing the loss.
 
 output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [DepthEstimatorOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [DepthEstimatorOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or `tuple(torch.Tensor)`
 
-A [DepthEstimatorOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([GLPNConfig](/docs/transformers/v5.22.2/en/model_doc/glpn#transformers.GLPNConfig)) and inputs.
+A [DepthEstimatorOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([GLPNConfig](/docs/transformers/v5.23.0/en/model_doc/glpn#transformers.GLPNConfig)) and inputs.
 
-The [GLPNForDepthEstimation](/docs/transformers/v5.22.2/en/model_doc/glpn#transformers.GLPNForDepthEstimation) forward method, overrides the `__call__` special method.
+The [GLPNForDepthEstimation](/docs/transformers/v5.23.0/en/model_doc/glpn#transformers.GLPNForDepthEstimation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Classification (or regression if config.num_labels==1) loss.
-- **predicted_depth** (`torch.FloatTensor` of shape `(batch_size, height, width)`) -- Predicted depth for each pixel.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Classification (or regression if config.num_labels==1) loss.
+- **predicted_depth** (`torch.Tensor` of shape `(batch_size, height, width)`) -- Predicted depth for each pixel.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, num_channels, height, width)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, patch_size,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, patch_size,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -504,4 +504,4 @@ Examples:
 ```
 
 ### mT5
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/mt5.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/mt5.md

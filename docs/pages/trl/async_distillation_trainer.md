@@ -1,42 +1,43 @@
 # Async Distillation
 
 > [!IMPORTANT]
-> This trainer requires `vllm` and `transformers>=5.2.0`. For distributed training, only FSDP2 is supported (DeepSpeed ZeRO is not).
+> This trainer requires `vllm`, `transformers>=5.2.0` and `kernels` (training loads FlashAttention from the Hub through it). For distributed training, only FSDP2 is supported (DeepSpeed ZeRO is not).
 >
-> Currently, `vllm` and `transformers` have conflicting dependency constraints. To work around this, install vLLM first and then force-install transformers:
+> Currently, `vllm` and `transformers` have conflicting dependency constraints. To work around this, install vLLM first, then force-install transformers, then add `kernels` through TRL's extra, which pins the version transformers accepts:
 >
 > ```bash
 > pip install vllm
 > pip install 'transformers>=5.2.0' --no-deps
+> pip install 'trl[kernels]'
 > ```
 
 ## Overview
 
-[experimental.async_distillation.AsyncDistillationTrainer](/docs/trl/v1.17.1/en/async_distillation_trainer#trl.experimental.async_distillation.AsyncDistillationTrainer) is the async counterpart to [DistillationTrainer](/docs/trl/v1.17.1/en/distillation_trainer#trl.DistillationTrainer), architected like [experimental.async_grpo.AsyncGRPOTrainer](/docs/trl/v1.17.1/en/async_grpo_trainer#trl.experimental.async_grpo.AsyncGRPOTrainer): a background rollout worker generates the student's own on-policy completions and scores them against a teacher, while training proceeds concurrently instead of alternating between generation and gradient updates. Unlike the synchronous trainer, the teacher is never loaded locally — only a vLLM server URL is needed, so the teacher can run on entirely separate hardware from the student and trainer, or even be a much larger model than would otherwise fit alongside the student.
+[experimental.async_distillation.AsyncDistillationTrainer](/docs/trl/v1.18.0/en/async_distillation_trainer#trl.experimental.async_distillation.AsyncDistillationTrainer) is the async counterpart to [DistillationTrainer](/docs/trl/v1.18.0/en/distillation_trainer#trl.DistillationTrainer), architected like [AsyncGRPOTrainer](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer): a background rollout worker generates the student's own on-policy completions and scores them against a teacher, while training proceeds concurrently instead of alternating between generation and gradient updates. Unlike the synchronous trainer, the teacher is never loaded locally — only a vLLM server URL is needed, so the teacher can run on entirely separate hardware from the student and trainer, or even be a much larger model than would otherwise fit alongside the student.
 
-`compute_loss` minimizes a generalized Jensen-Shannon Divergence between the student's and teacher's per-position token distributions (`beta=0.0` is forward KL, `beta=1.0` is reverse KL, values in between interpolate), the same objective [DistillationTrainer](/docs/trl/v1.17.1/en/distillation_trainer#trl.DistillationTrainer) and `ServerDistillationTrainer` use. Training is always on-policy: the student generates every completion it trains on.
+`compute_loss` minimizes a generalized Jensen-Shannon Divergence between the student's and teacher's per-position token distributions (`beta=0.0` is forward KL, `beta=1.0` is reverse KL, values in between interpolate), the same objective [DistillationTrainer](/docs/trl/v1.18.0/en/distillation_trainer#trl.DistillationTrainer) and `ServerDistillationTrainer` use. Training is always on-policy: the student generates every completion it trains on.
 
 ### Multi-teacher on-policy distillation (MOPD)
 
-MOPD is not part of the [2306.13649](https://huggingface.co/papers/2306.13649) paper this trainer's core objective is based on (which describes a synchronous, single-teacher setting); it's a separate method, described in [MOPD: Multi-Teacher On-Policy Distillation for Capability Integration in LLM Post-Training]( https://huggingface.co/papers/2606.30406). There, MOPD is the third of three stages — general SFT, then independent per-domain RL training of one expert per domain, then MOPD fuses those frozen experts into a single student. `AsyncDistillationTrainer` implements that third, fusion stage only: the per-domain expert teachers must already exist (e.g. trained separately with [GRPOTrainer](/docs/trl/v1.17.1/en/grpo_trainer#trl.GRPOTrainer)/[RLOOTrainer](/docs/trl/v1.17.1/en/rloo_trainer#trl.RLOOTrainer)) and be served over HTTP before you point `teacher_server_urls` at them. The paper's own Stage 3 uses reverse KL (`beta=1.0`), not this trainer's default `beta=0.0` (forward KL).
+MOPD is not part of the [2306.13649](https://huggingface.co/papers/2306.13649) paper this trainer's core objective is based on (which describes a synchronous, single-teacher setting); it's a separate method, described in [MOPD: Multi-Teacher On-Policy Distillation for Capability Integration in LLM Post-Training]( https://huggingface.co/papers/2606.30406). There, MOPD is the third of three stages — general SFT, then independent per-domain RL training of one expert per domain, then MOPD fuses those frozen experts into a single student. `AsyncDistillationTrainer` implements that third, fusion stage only: the per-domain expert teachers must already exist (e.g. trained separately with [GRPOTrainer](/docs/trl/v1.18.0/en/grpo_trainer#trl.GRPOTrainer)/[RLOOTrainer](/docs/trl/v1.18.0/en/rloo_trainer#trl.RLOOTrainer)) and be served over HTTP before you point `teacher_server_urls` at them. The paper's own Stage 3 uses reverse KL (`beta=1.0`), not this trainer's default `beta=0.0` (forward KL).
 
-`teacher_server_urls` accepts more than one entry. With a single entry, every sample is scored by that one teacher (plain on-policy distillation). With multiple entries, each training sample's `teacher_id` column selects which teacher scores it — for example, routing math prompts to a math-specialist teacher and code prompts to a code-specialist teacher, each served independently. Each sample is dispatched to its one matching teacher, never averaged or ensembled across teachers. A sample with a missing or unmapped `teacher_id` raises rather than silently falling back to the wrong teacher. See `examples/async_distillation_math/async_distillation_mopd.py` for a runnable two-teacher example.
+`teacher_server_urls` accepts more than one entry. With a single entry, every sample is scored by that one teacher (plain on-policy distillation). With multiple entries, each training sample's `teacher_id` column selects which teacher scores it — for example, routing math prompts to a math-specialist teacher and code prompts to a code-specialist teacher, each served independently. Each sample is dispatched to its one matching teacher, never averaged or ensembled across teachers. A sample with a missing or unmapped `teacher_id` raises rather than silently falling back to the wrong teacher. See `examples/async_distillation_mopd/async_distillation_mopd.py` for a runnable example that fuses the math, code and instruction-following experts released with [Open-MOPD](https://huggingface.co/papers/2608.19098) into their shared SFT checkpoint, and `examples/async_distillation_mopd/launcher.py` to run it on 4 GPUs with a single [Hugging Face Jobs](https://huggingface.co/docs/huggingface_hub/guides/jobs) command.
 
 > [!WARNING]
-> Every teacher must share the student's tokenizer. Completions travel to the teachers as raw token ids, and the candidate ids a teacher reports back index the student's own vocabulary directly in `compute_loss`. Teachers from the same model family as the student (as in the MOPD example, where a Qwen2.5 student is fused from Qwen2.5 and Qwen2.5-Coder experts) satisfy this; a teacher with a different vocabulary trains the student against the wrong tokens, silently unless its vocabulary is larger than the student's.
+> Every teacher must share the student's tokenizer. Completions travel to the teachers as raw token ids, and the candidate ids a teacher reports back index the student's own vocabulary directly in `compute_loss`. Teachers from the same model family as the student (as in the MOPD example, where a SmolLM3 student is fused from SmolLM3 experts trained from the same checkpoint) satisfy this; a teacher with a different vocabulary trains the student against the wrong tokens, silently unless its vocabulary is larger than the student's.
 
 **Checkpoint and resume**: `ignore_data_skip` defaults to `True`; the base Trainer's skip-and-replay loop does not apply to a live rollout queue. Instead, the index of the first prompt not yet trained on is saved to `rollout_state.json` alongside each checkpoint and restored on resume, so the worker fast-forwards to that prompt without replaying samples. It is the *trained* position, not the generator's: the worker runs ahead of training by the rollout queue depth, and those buffered samples are lost when the run ends, so resuming from the generator's position would skip prompts that were generated but never trained on. Streaming datasets (`IterableDataset`) cannot be repositioned; their worker restarts from prompt 0 on resume. Under FSDP with `bf16=True` (the default) or `fp16=True`, `model.safetensors` is written in that dtype even though the master weights are fp32, so a pushed checkpoint is the size of the served model, not twice it; the fp32 master weights and optimizer state still go to the resume files (`pytorch_model_fsdp.bin`, `optimizer.bin`), which are what a resume reads, so resuming is unaffected. Without FSDP the checkpoint is also the resume file, so it keeps the master dtype.
 
-## How it differs from [DistillationTrainer](/docs/trl/v1.17.1/en/distillation_trainer#trl.DistillationTrainer)
+## How it differs from [DistillationTrainer](/docs/trl/v1.18.0/en/distillation_trainer#trl.DistillationTrainer)
 
-In [DistillationTrainer](/docs/trl/v1.17.1/en/distillation_trainer#trl.DistillationTrainer), the teacher is a locally loaded model: generation, teacher forward pass, and the gradient update all happen sequentially in the same process. [experimental.async_distillation.AsyncDistillationTrainer](/docs/trl/v1.17.1/en/async_distillation_trainer#trl.experimental.async_distillation.AsyncDistillationTrainer) separates these concerns the same way [experimental.async_grpo.AsyncGRPOTrainer](/docs/trl/v1.17.1/en/async_grpo_trainer#trl.experimental.async_grpo.AsyncGRPOTrainer) separates GRPO's rollout from its update:
+In [DistillationTrainer](/docs/trl/v1.18.0/en/distillation_trainer#trl.DistillationTrainer), the teacher is a locally loaded model: generation, teacher forward pass, and the gradient update all happen sequentially in the same process. [experimental.async_distillation.AsyncDistillationTrainer](/docs/trl/v1.18.0/en/async_distillation_trainer#trl.experimental.async_distillation.AsyncDistillationTrainer) separates these concerns the same way [AsyncGRPOTrainer](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer) separates GRPO's rollout from its update:
 
 - **Rollout worker** (background process) — generates completions from the student's vLLM server, sends the full sequence back to the resolved teacher's `/v1/completions` with `prompt_logprobs` for teacher-forced scoring (no new tokens generated by the teacher), and pushes ready-to-train samples into a queue.
 - **Training loop** (main process) — pulls samples from the queue, computes the generalized-JSD loss, and updates the student's weights.
 
-Because the teacher is scored over HTTP rather than a local forward pass, only a sparse, top-k slice of its distribution is ever transmitted (`teacher_top_k`), not the full vocabulary — see [experimental.async_distillation.AsyncDistillationConfig](/docs/trl/v1.17.1/en/async_distillation_trainer#trl.experimental.async_distillation.AsyncDistillationConfig)'s `beta` and `teacher_top_k` documentation for exactly which candidates the wire protocol guarantees a teacher logprob for at each `beta` regime.
+Because the teacher is scored over HTTP rather than a local forward pass, only a sparse, top-k slice of its distribution is ever transmitted (`teacher_top_k`), not the full vocabulary — see [experimental.async_distillation.AsyncDistillationConfig](/docs/trl/v1.18.0/en/async_distillation_trainer#trl.experimental.async_distillation.AsyncDistillationConfig)'s `beta` and `teacher_top_k` documentation for exactly which candidates the wire protocol guarantees a teacher logprob for at each `beta` regime.
 
-After every `weight_sync_steps` training steps, the updated student weights are transferred to its vLLM server via NCCL. As with [experimental.async_grpo.AsyncGRPOTrainer](/docs/trl/v1.17.1/en/async_grpo_trainer#trl.experimental.async_grpo.AsyncGRPOTrainer), generation runs ahead of training, so samples may reflect a slightly stale policy; `max_staleness` controls how many weight updates a sample can lag behind before being discarded.
+After every `weight_sync_steps` training steps, the updated student weights are transferred to its vLLM server via NCCL. As with [AsyncGRPOTrainer](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer), generation runs ahead of training, so samples may reflect a slightly stale policy; `max_staleness` controls how many weight updates a sample can lag behind before being dropped.
 
 ## Quick start
 
@@ -45,16 +46,17 @@ After every `weight_sync_steps` training steps, the updated student weights are 
 from datasets import load_dataset
 from trl.experimental.async_distillation import AsyncDistillationTrainer
 
-dataset = load_dataset("trl-lib/DeepMath-103K", split="train")
+if __name__ == "__main__":  # the rollout worker is a spawned process that re-imports this script
+    dataset = load_dataset("trl-lib/DeepMath-103K", split="train")
 
-trainer = AsyncDistillationTrainer(
-    model="Qwen/Qwen2.5-0.5B-Instruct",
-    train_dataset=dataset,
-)
-trainer.train()
+    trainer = AsyncDistillationTrainer(
+        model="Qwen/Qwen2.5-0.5B-Instruct",
+        train_dataset=dataset,
+    )
+    trainer.train()
 ```
 
-The teacher server, the student's vLLM server, and the trainer must run on **separate GPUs**. Both are plain `vllm serve` instances, but they need different flags: the teacher is only ever scored (`--logprobs-mode processed_logprobs` so `teacher_temperature` reaches its returned logprobs, `--max-logprobs -1` so `teacher_top_k` can exceed vLLM's default cap of 20), while the student is only ever generated from and needs NCCL weight transfer enabled so the trainer can push updated weights into it:
+The teacher server, the student's vLLM server, and the trainer must run on **separate GPUs**. Both are plain `vllm serve` instances, but they need different flags: the teacher is only ever scored (`--logprobs-mode processed_logprobs` so `teacher_temperature` reaches its returned logprobs, `--max-logprobs -1` so `teacher_top_k` can exceed vLLM's default cap of 20), while the student is only ever generated from and needs NCCL weight transfer enabled so the trainer can push updated weights into it. Scoring sends the student's whole sequence and asks the teacher for one more token, so the teacher's `--max-model-len` (or its default) must be larger than the student's:
 
 ```bash
 # Terminal 1: teacher server on GPU 0 (static, never updated)
@@ -73,7 +75,7 @@ CUDA_VISIBLE_DEVICES=1 VLLM_SERVER_DEV_MODE=1 vllm serve Qwen/Qwen2.5-0.5B-Instr
 
 ```bash
 # Terminal 3: training on GPU 2
-CUDA_VISIBLE_DEVICES=2 accelerate launch train_async_distillation.py
+CUDA_VISIBLE_DEVICES=2 python train_async_distillation.py
 ```
 
 ## LoRA
@@ -150,13 +152,29 @@ So we split our metrics based on which stage (or _entity_) they are about:
 | `batch/`       | one micro-batch or one optimizer step (built from one or multiple samples)  |
 | `perf/`        | measured seconds and FLOPs                                                  |
 
-Everything the loss itself measures is logged unprefixed (`jsd`, `entropy`, `teacher_entropy`), with a `teacher_*/<teacher_id>` breakdown under MOPD — see [the divergence](#the-divergence) below.
+Everything the loss itself measures is logged unprefixed (`jsd`, `entropy`, `teacher_entropy`), with a `teacher/<teacher_id>/*` breakdown under MOPD — see [the divergence](#the-divergence) below.
 
 Let's also define some terms to make token metrics unambiguous:
 
 - **generated** tokens are what the student produced (`completions/*`).
 - **forwarded** tokens are every token the _forward_ pass processes: the prompt and the generated tokens.
 - **trained** tokens are the subset the loss is taken over where `completion_mask == 1`. Trained ≠ generated: a completion position the teacher scored no candidate for is masked out of the divergence but still forwarded.
+
+Metrics are logged once per **logging window**: everything recorded since the previous log, which covers the last `logging_steps` optimizer steps. Over the window:
+
+- A mean measured per rollout, sample or call, like `rollout/duration_s` and `rollout/score_s`, is averaged over all the rollouts, samples or calls in the window. A rate like `rollout/generated_tokens_per_s` is the total tokens divided by the total seconds.
+- Otherwise, a name whose last part contains the word `count` is summed: `sample/dropped_stale_count` is the number of samples dropped since the last log, not since the start of training.
+- A name whose last part contains the word `max` or `min`, like `sample/staleness_max` or `completions/max_length`, keeps the largest or smallest value.
+- Any other metric is the mean of the values recorded in the window.
+
+Units:
+
+- `_s`: seconds.
+- `tokens_per_s`: tokens per second.
+- `_frac`: fraction between 0 and 1.
+- `_per_step`: amount in one optimizer step, averaged over the steps in the window.
+
+Metrics that [GRPOTrainer](/docs/trl/v1.18.0/en/grpo_trainer#trl.GRPOTrainer) also logs keep their GRPO names (`completions/mean_length`, `completions/clipped_ratio`).
 
 ### How the batch numbers compose
 
@@ -190,15 +208,16 @@ The worker pushes scored samples into a queue and the trainer pulls from it. Fou
 
 | metric                      | question                                                                                                |
 | --------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `sample/rollout_queue_size` | how many samples are waiting right now                                                                  |
+| `rollout/queue_size`        | how many samples are waiting right now                                                                  |
 | `sample/time_in_queue_s`    | how long **a single sample** sat there before being trained on — the seconds half of its off-policyness |
 | `perf/rollout_wait_s`       | how long training sat blocked because the queue was **empty**                                            |
-| `rollout/backpressure_s`    | how long generation (the worker) sat blocked because the queue was **full**                              |
+| `rollout/backpressure_s`    | how long generation (the worker) waited because it was `max_staleness` steps ahead of training           |
 
-The last two metrics (`perf/rollout_wait_s` and `rollout/backpressure_s`) are mirror images and are never both large! Reading them together with the queue size tells you which side is the bottleneck:
+The last two metrics (`perf/rollout_wait_s` and `rollout/backpressure_s`) are mirror images. Reading them together with the queue size tells you which side is the bottleneck:
 
-- queue near empty, `perf/rollout_wait_s` high → **generation-bound**. The trainer is starving; look at `rollout/generated_tok_s`, `rollout/inflight` and `rollout/score_s`.
-- queue near full, `rollout/backpressure_s` high → **trainer-bound**. Generation is throttled and its output is aging in the queue, so watch `sample/staleness_mean` climb.
+- queue near empty, `perf/rollout_wait_s` high → **generation-bound**. The trainer is starving; look at `rollout/generated_tokens_per_s`, `rollout/concurrency` and `rollout/score_s`.
+- queue holding about `max_staleness` steps of tokens, `rollout/backpressure_s` high → **trainer-bound**. Generation is held back, and `sample/staleness_mean` sits near its bound.
+- both high → the `max_staleness` limit itself is too tight: the rollouts in flight fill it before their samples reach the queue, so the trainer waits while generation is held back. Raise `max_staleness`.
 - both near zero → balanced !
 
 ### Completions
@@ -210,6 +229,7 @@ A **completion** is what the student's vLLM server generated for one prompt.
 | `completions/mean_length`                          | generated tokens per rollout                                                                        |
 | `completions/min_length`, `completions/max_length` | shortest and longest completion in the window                                                       |
 | `completions/clipped_ratio`                        | fraction of completions that did not end on EOS, i.e. were cut off by `max_completion_length`        |
+| `completions/mean_terminated_length`, `completions/min_terminated_length`, `completions/max_terminated_length` | the same lengths, over the completions that ended on EOS |
 
 ### Rollouts
 
@@ -219,11 +239,12 @@ A **rollout** is one prompt taken all the way through: generated by the student,
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `rollout/duration_s`       | wall time for one rollout, from dispatch to a scored sample: generation **and** the teacher call                                                                                                                                              |
 | `rollout/score_s`          | of that, the time the teacher's `/v1/completions` call took                                                                                                                                                                                  |
-| `teacher_score_s/<id>`     | MOPD only: the same, per teacher. One slow expert throttles only the rollouts routed to it, which the blended mean hides                                                                                                                     |
-| `rollout/generated_tok_s`  | generation throughput over the last interval (windowed), so a stall shows up                                                                                                                                                                 |
-| `rollout/inflight`         | rollouts in flight, i.e. generating or being scored                                                                                                                                                                                          |
-| `rollout/vllm_retry_total` | retried vLLM requests, to either the student's server or a teacher's. A degraded server otherwise looks like unexplained slowness. It sits here rather than in `completions/` because it counts requests to a server, not generated text     |
-| `rollout/backpressure_s`   | how long generation was blocked because the rollout queue was full. See [the rollout queue](#the-rollout-queue)                                                                                                                              |
+| `teacher/<id>/score_s`     | MOPD only: the same, per teacher. One slow expert throttles only the rollouts routed to it, which the blended mean hides                                                                                                                     |
+| `rollout/generated_tokens_per_s`  | generation throughput over the last interval (windowed), so a stall shows up                                                                                                                                                                 |
+| `rollout/concurrency`      | rollouts in flight, i.e. generating or being scored                                                                                                                                                                                          |
+| `rollout/vllm_retry_count` | retried vLLM requests, to either the student's server or a teacher's. A degraded server otherwise looks like unexplained slowness. It sits here rather than in `completions/` because it counts requests to a server, not generated text     |
+| `rollout/backpressure_s`   | how long generation waited because it was `max_staleness` steps ahead. See [the rollout queue](#the-rollout-queue)                                                                                                                           |
+| `rollout/queue_size`       | scored samples waiting in the rollout queue, measured where the trainer pulls them. See [the rollout queue](#the-rollout-queue)                                                                                                              |
 
 ### Samples arriving from the queue
 
@@ -233,10 +254,9 @@ Each sample is one `RolloutSample`: a prompt, the student's completion, and the 
 | ------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `sample/forwarded_tokens_mean`, `sample/forwarded_tokens_max` | tokens in one **sample**: prompt + generated. Packing is a row-level concern, see `batch/row_*`                                                      |
 | `sample/trained_tokens_mean`                                  | of those, how many the loss is taken over                                                                                                           |
-| `sample/rollout_queue_size`                                   | scored samples waiting in the queue                                                                                                                 |
 | `sample/time_in_queue_s`                                      | how long this sample sat in that queue before being trained on. Not the same as `perf/rollout_wait_s` — see [the rollout queue](#the-rollout-queue) |
 | `sample/staleness_mean`, `sample/staleness_max`               | how many policy versions behind the data is. `jsd` shows the _effect_ of off-policyness on the loss; this shows the cause                            |
-| `sample/dropped_stale_total`                                  | samples discarded for exceeding `max_staleness`                                                                                                     |
+| `sample/dropped_stale_count`                                  | samples dropped for exceeding `max_staleness`                                                                                                     |
 
 ### Batches
 
@@ -252,7 +272,7 @@ One micro-batch is `world_size` rows (remember packing flattens into 1 sequence)
 | `batch/row_fill_frac`                                                    | row tokens against `token_budget`. Low means the budget is not being used                                                             |
 | `batch/row_imbalance`                                                    | `max Σ Lᵢ² / mean Σ Lᵢ²` across rows. Attention is O(L²), so this predicts which rank stalls the gradient all-reduce. 1.0 is perfect |
 | `batch/pad_frac`                                                         | inter-rank padding. Costs broadcast bytes only; it is stripped before the forward                                                     |
-| `batch/dropped_oversize_total`                                           | samples dropped for exceeding `token_budget`                                                                                          |
+| `batch/dropped_oversize_count`                                           | samples dropped for exceeding `token_budget`                                                                                          |
 
 ### The divergence
 
@@ -263,9 +283,10 @@ What the objective itself measures, averaged over the trained tokens of the wind
 | `jsd`                           | the generalized JSD the loss minimizes, at the configured `beta`. Falling means the student's distribution is converging on the teacher's                             |
 | `entropy`                       | the student's own predictive entropy. A collapse here with a falling `jsd` is the student narrowing rather than learning                                             |
 | `teacher_entropy`               | the teacher's entropy over the candidates it reported. Bounded below the true value, since only `teacher_top_k` candidates cross the wire                             |
-| `teacher_jsd/<id>`              | MOPD only: `jsd` restricted to the tokens that teacher scored. Teachers in different domains can diverge at very different rates, which the blended `jsd` conflates  |
-| `teacher_entropy/<id>`          | MOPD only: the same breakdown of `teacher_entropy`                                                                                                                  |
-| `teacher_token_frac/<id>`       | MOPD only: the share of scored tokens that teacher took. Routing skew is otherwise invisible: a teacher starved of rows still reports a healthy `teacher_jsd/<id>`   |
+| `teacher/<id>/jsd`              | MOPD only: `jsd` restricted to the tokens that teacher scored. Teachers in different domains can diverge at very different rates, which the blended `jsd` conflates  |
+| `teacher/<id>/entropy`          | MOPD only: the same breakdown of `teacher_entropy`                                                                                                                  |
+| `teacher/<id>/token_frac`       | MOPD only: the share of scored tokens that teacher took. Routing skew is otherwise invisible: a teacher starved of rows still reports a healthy `teacher/<id>/jsd`   |
+| `aux_loss` | the MoE router's load-balancing loss per micro-batch, averaged over ranks, logged when the model returns router logits and `router_aux_loss_coef` isn't 0. Unlike the rows above, it isn't a per-token average |
 
 There is no per-teacher `entropy`: the student's entropy is a property of its own policy, not of which teacher scored the sample, so the blended metric already covers it.
 
@@ -275,24 +296,24 @@ Throughput measures how many tokens the trainer processes per second. **Model FL
 
 Throughput and MFU are reported on two time bases:
 
-- **`_fwd_bwd`** measures performance during the forward and backward passes.
-- **`_wall_clock`** measures performance over the complete optimizer step, including optimizer updates, weight synchronization, and time spent waiting for rollouts.
+- **`fwd_bwd_`** measures performance during the forward and backward passes.
+- **`wall_clock_`** measures performance over the complete optimizer step, including optimizer updates, weight synchronization, and time spent waiting for rollouts.
 
 The difference helps distinguish compute performance from the cost of waiting and coordination. Both MFU metrics describe the **training devices only**: they do not include the computation or hardware capacity of external rollout or teacher servers. Wall-clock MFU reflects the time the trainer spends waiting for those services, not the services' own utilization.
 
-MFU is reported only when peak compute capacity is known for the local training device at the selected precision. Otherwise, MFU is omitted; training continues and throughput and timing metrics remain available.
+MFU is reported only when peak compute capacity is known for the local training device at the selected precision, and when the FLOPs estimate supports the model's architecture (such as Llama, Qwen2, Qwen3, Qwen3-MoE or Qwen3-VL). Otherwise, MFU is omitted; training continues and throughput and timing metrics remain available.
 
 | metric                                                            | meaning                                                                                                                                               |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `perf/step_s`                                                     | wall time between optimizer steps: compute, optimizer, weight sync and queue waits included                                                           |
-| `perf/fwd_bwd_s`                                                  | forward + backward, summed over the step's micro-batches. This is the denominator of every `_fwd_bwd` metric below                                    |
+| `perf/fwd_bwd_s`                                                  | forward + backward, summed over the step's micro-batches. This is the denominator of every `fwd_bwd_` metric below                                    |
 | `perf/fwd_s`                                                      | the forward part of it. `fwd_s / fwd_bwd_s` near 1/3 is the usual split; higher means the backward is cheap or recompute is being paid on the forward |
 | `perf/optimizer_s`                                                | `optimizer.step()`                                                                                                                                    |
 | `perf/rollout_wait_s`                                             | how long the trainer sat blocked because the queue was empty. See [the rollout queue](#the-rollout-queue)                                             |
 | `perf/weight_sync_s`                                              | a full sync, plus `_pause_s` (waiting for vLLM), `_barrier_s` (rank skew) and `_transfer_s` (the bytes)                                               |
-| `perf/forwarded_tok_s_fwd_bwd`, `perf/forwarded_tok_s_wall_clock` | forwarded tokens per second on each basis                                                                                                             |
-| `perf/trained_tok_s_wall_clock`                                   | the same, counting only tokens the loss saw                                                                                                            |
-| `perf/mfu_fwd_bwd`, `perf/mfu_wall_clock`                         | model FLOPs utilisation on each basis                                                                                                                 |
+| `perf/fwd_bwd_forwarded_tokens_per_s`, `perf/wall_clock_forwarded_tokens_per_s` | forwarded tokens per second on each basis                                                                                                             |
+| `perf/wall_clock_trained_tokens_per_s`                                   | the same, counting only tokens the loss saw                                                                                                            |
+| `perf/fwd_bwd_mfu`, `perf/wall_clock_mfu`                         | model FLOPs utilisation on each basis                                                                                                                 |
 
 ## Design philosophy
 
@@ -303,18 +324,18 @@ This trainer is intentionally kept minimal and is not meant to grow into a gener
 #### trl.experimental.async_distillation.AsyncDistillationConfig[[trl.experimental.async_distillation.AsyncDistillationConfig]]
 
 ```python
-trl.experimental.async_distillation.AsyncDistillationConfig(output_dir: str | None = None, per_device_train_batch_size: int = 8, num_train_epochs: float = 3.0, max_steps: int = -1, learning_rate: float = 1e-06, lr_scheduler_type: transformers.trainer_utils.SchedulerType | str = 'linear', lr_scheduler_kwargs: dict | str | None = None, warmup_steps: float = 0, optim: transformers.training_args.OptimizerNames | str = 'adamw_torch_fused', optim_args: str | None = None, weight_decay: float = 0.0, adam_beta1: float = 0.9, adam_beta2: float = 0.999, adam_epsilon: float = 1e-08, optim_target_modules: None | str | list[str] = None, gradient_accumulation_steps: int = 1, average_tokens_across_devices: bool = True, max_grad_norm: float = 1.0, label_smoothing_factor: float = 0.0, bf16: bool | None = None, fp16: bool = False, bf16_full_eval: bool = False, fp16_full_eval: bool = False, tf32: bool | None = None, gradient_checkpointing: bool = True, gradient_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, torch_compile: bool = False, torch_compile_backend: str | None = None, torch_compile_mode: str | None = None, use_liger_kernel: bool = False, liger_kernel_config: dict[str, bool] | None = None, use_cache: bool = False, neftune_noise_alpha: float | None = None, torch_empty_cache_steps: int | None = None, auto_find_batch_size: bool = False, logging_strategy: transformers.trainer_utils.IntervalStrategy | str = 'steps', logging_steps: float = 1, logging_first_step: bool = False, log_on_each_node: bool = True, logging_nan_inf_filter: bool = True, include_num_input_tokens_seen: str | bool = 'no', log_level: str = 'passive', log_level_replica: str = 'warning', disable_tqdm: bool | None = None, report_to: None | str | list[str] = 'none', run_name: str | None = None, project: str = 'huggingface', trackio_space_id: str | None = None, trackio_bucket_id: str | None = None, trackio_static_space_id: typing.Union[str, NoneType, typing.Literal[False]] = None, eval_strategy: transformers.trainer_utils.IntervalStrategy | str = 'no', eval_steps: float | None = None, eval_delay: float = 0, per_device_eval_batch_size: int = 8, prediction_loss_only: bool = False, eval_on_start: bool = False, eval_do_concat_batches: bool = True, eval_use_gather_object: bool = False, eval_accumulation_steps: int | None = None, include_for_metrics: list = <factory>, batch_eval_metrics: bool = False, save_only_model: bool = False, save_strategy: transformers.trainer_utils.SaveStrategy | str = 'steps', save_steps: float = 500, save_on_each_node: bool = False, save_total_limit: int | None = None, enable_jit_checkpoint: bool = False, push_to_hub: bool = False, hub_token: str | None = None, hub_private_repo: bool | None = None, hub_model_id: str | None = None, hub_strategy: transformers.trainer_utils.HubStrategy | str = 'every_save', hub_always_push: bool = False, hub_revision: str | None = None, load_best_model_at_end: bool = False, metric_for_best_model: str | None = None, greater_is_better: bool | None = None, ignore_data_skip: bool = True, restore_callback_states_from_checkpoint: bool = False, full_determinism: bool = False, seed: int = 42, data_seed: int | None = None, use_cpu: bool = False, accelerator_config: dict | str | None = None, parallelism_config: accelerate.parallelism_config.ParallelismConfig | None = None, dataloader_drop_last: bool = False, dataloader_num_workers: int = 0, dataloader_pin_memory: bool = True, dataloader_persistent_workers: bool = False, dataloader_prefetch_factor: int | None = None, dataloader_multiprocessing_context: str | None = None, dataloader_in_order: bool = True, remove_unused_columns: bool = True, label_names: list[str] | None = None, train_sampling_strategy: str = 'random', length_column_name: str = 'length', ddp_find_unused_parameters: bool | None = None, ddp_bucket_cap_mb: int | None = None, ddp_broadcast_buffers: bool | None = None, ddp_static_graph: bool | None = None, ddp_backend: str | None = None, ddp_timeout: int = 1800, fsdp: str | None = None, fsdp_config: dict[str, typing.Any] | str | None = None, deepspeed: dict | str | None = None, debug: str | list[transformers.debug_utils.DebugOption] = '', skip_memory_metrics: bool = True, do_train: bool = False, do_eval: bool = False, do_predict: bool = False, resume_from_checkpoint: str | None = None, local_rank: int = -1, model_init_kwargs: dict[str, typing.Any] | str | None = None, dtype: str = 'float32', trust_remote_code: bool = False, router_aux_loss_coef: float | None = None, max_completion_length: int = 2048, temperature: float = 1.0, top_p: float = 1.0, top_k: int = 0, min_p: float | None = None, repetition_penalty: float = 1.0, chat_template_kwargs: dict | str | None = None, vllm_server_base_url: str = 'http://localhost:8000', vllm_server_timeout: float = 240.0, teacher_server_urls: dict[str, str] | str | None = None, request_timeout: int = 600, weight_sync_timeout: int = 1800, beta: float = 0.0, teacher_temperature: float = 1.0, teacher_top_k: int = 8, add_tail_bucket: bool = True, token_budget: int | None = None, max_inflight_tasks: int = -1, max_staleness: int = 4, queue_maxsize: int = 1024, weight_sync_steps: int = 1, heartbeat_stale_after_s: float = 300.0, log_completions: bool = False, log_completions_steps: int = 100, num_completions_to_print: int | None = None)
+trl.experimental.async_distillation.AsyncDistillationConfig(output_dir: str | None = None, per_device_train_batch_size: int = 8, num_train_epochs: float = 3.0, max_steps: int = -1, learning_rate: float = 1e-06, lr_scheduler_type: transformers.trainer_utils.SchedulerType | str = 'linear', lr_scheduler_kwargs: dict | str | None = None, warmup_steps: float = 0, optim: transformers.training_args.OptimizerNames | str = 'adamw_torch_fused', optim_args: str | None = None, weight_decay: float = 0.0, adam_beta1: float = 0.9, adam_beta2: float = 0.999, adam_epsilon: float = 1e-08, optim_target_modules: None | str | list[str] = None, gradient_accumulation_steps: int = 1, average_tokens_across_devices: bool = True, max_grad_norm: float = 1.0, label_smoothing_factor: float = 0.0, bf16: bool | None = None, fp16: bool = False, bf16_full_eval: bool = False, fp16_full_eval: bool = False, tf32: bool | None = None, activation_checkpointing: bool | None = None, activation_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, gradient_checkpointing: bool = True, gradient_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, torch_compile: bool = False, torch_compile_backend: str | None = None, torch_compile_mode: str | None = None, use_liger_kernel: bool = False, liger_kernel_config: dict[str, bool] | None = None, use_cache: bool = False, neftune_noise_alpha: float | None = None, torch_empty_cache_steps: int | None = None, auto_find_batch_size: bool = False, logging_strategy: transformers.trainer_utils.IntervalStrategy | str = 'steps', logging_steps: float = 1, logging_first_step: bool = False, log_on_each_node: bool = True, logging_nan_inf_filter: bool = True, include_num_input_tokens_seen: str | bool = 'no', log_level: str = 'passive', log_level_replica: str = 'warning', disable_tqdm: bool | None = None, report_to: None | str | list[str] = 'none', run_name: str | None = None, project: str = 'huggingface', trackio_space_id: str | None = None, trackio_bucket_id: str | None = None, trackio_static_space_id: typing.Union[str, NoneType, typing.Literal[False]] = None, eval_strategy: transformers.trainer_utils.IntervalStrategy | str = 'no', eval_steps: float | None = None, eval_delay: float = 0, per_device_eval_batch_size: int = 8, prediction_loss_only: bool = False, eval_on_start: bool = False, eval_do_concat_batches: bool = True, eval_use_gather_object: bool = False, eval_accumulation_steps: int | None = None, include_for_metrics: list[str] = <factory>, batch_eval_metrics: bool = False, save_only_model: bool = False, save_strategy: transformers.trainer_utils.SaveStrategy | str = 'steps', save_steps: float = 500, save_on_each_node: bool = False, save_total_limit: int | None = None, enable_jit_checkpoint: bool = False, push_to_hub: bool = False, hub_token: str | None = None, hub_private_repo: bool | None = None, hub_model_id: str | None = None, hub_strategy: transformers.trainer_utils.HubStrategy | str = 'every_save', hub_always_push: bool = False, hub_revision: str | None = None, load_best_model_at_end: bool = False, metric_for_best_model: str | None = None, greater_is_better: bool | None = None, ignore_data_skip: bool = True, restore_callback_states_from_checkpoint: bool = False, full_determinism: bool = False, seed: int = 42, data_seed: int | None = None, use_cpu: bool = False, accelerator_config: dict | str | None = None, parallelism_config: accelerate.parallelism_config.ParallelismConfig | None = None, dataloader_drop_last: bool = False, dataloader_num_workers: int = 0, dataloader_pin_memory: bool = True, dataloader_persistent_workers: bool = False, dataloader_prefetch_factor: int | None = None, dataloader_multiprocessing_context: str | None = None, dataloader_in_order: bool = True, remove_unused_columns: bool = True, label_names: list[str] | None = None, train_sampling_strategy: str = 'random', length_column_name: str = 'length', ddp_find_unused_parameters: bool | None = None, ddp_bucket_cap_mb: int | None = None, ddp_broadcast_buffers: bool | None = None, ddp_static_graph: bool | None = None, ddp_backend: str | None = None, ddp_timeout: int = 1800, fsdp: str | None = None, fsdp_config: dict[str, typing.Any] | str | None = None, deepspeed: dict | str | None = None, debug: str | list[transformers.debug_utils.DebugOption] = '', skip_memory_metrics: bool = True, do_train: bool = False, do_eval: bool = False, do_predict: bool = False, resume_from_checkpoint: str | None = None, local_rank: int = -1, model_init_kwargs: dict[str, typing.Any] | str | None = None, dtype: str = 'float32', trust_remote_code: bool = False, router_aux_loss_coef: float | None = None, max_completion_length: int = 2048, temperature: float = 1.0, top_p: float = 1.0, top_k: int = 0, min_p: float | None = None, repetition_penalty: float = 1.0, chat_template_kwargs: dict | str | None = None, vllm_server_base_url: str = 'http://localhost:8000', vllm_server_timeout: float = 1800.0, teacher_server_urls: dict[str, str] | str | None = None, beta: float = 0.0, teacher_temperature: float = 1.0, teacher_top_k: int = 8, add_tail_bucket: bool = True, token_budget: int | None = None, max_concurrent_rollouts: int = 512, max_staleness: int = 4, weight_sync_steps: int = 1, rollout_worker_timeout: float = 300.0, log_completions: bool = False, log_completions_steps: int = 100, num_completions_to_print: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.17.1/trl/experimental/async_distillation/async_distillation_config.py#L22)
+[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/experimental/async_distillation/async_distillation_config.py#L22)
 
 **Parameters that control the model:**
 
-model_init_kwargs (`dict[str, Any]` or `str`, *optional*) : Keyword arguments for [from_pretrained](https://huggingface.co/docs/transformers/v5.22.1/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained), used when instantiating the student model from a path. The `revision` value is also used when loading the processing class.
+model_init_kwargs (`dict[str, Any]` or `str`, *optional*) : Keyword arguments for [from_pretrained](https://huggingface.co/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained), used when instantiating the student model from a path. The `revision` value is also used when loading the processing class.
 
-dtype (`str`, *optional*, defaults to `"float32"`) : Data type to load the student model under, one of `"auto"`, `"bfloat16"`, `"float16"` or `"float32"`. It defaults to `"float32"` because the training-inference mismatch the async trainers are measured against ([Defeating the Training-Inference Mismatch via FP16](https://huggingface.co/papers/2510.26788), walked through for them in [Defeating the trainer-generator precision mismatch in TRL](https://huggingface.co/spaces/aminediroHF/trainer-generator-bf16-mismatch)) is sensitive to the trainer's own precision. Closing that gap end to end also requires serving the student's vLLM server in the same dtype (`vllm serve --dtype`). A `dtype` in `model_init_kwargs` takes precedence. Teacher servers are unaffected: they are never updated.  This only sets the dtype the weights are loaded in. Under FSDP with mixed precision (`bf16=True` is the default), accelerate upcasts every trainable parameter to fp32 before sharding, so the master weights and the optimizer state are fp32 whatever `dtype` says, while the forward and backward run in bf16 or fp16. Checkpoints are then written in that mixed-precision dtype, not in fp32. Without FSDP nothing upcasts: `dtype="bfloat16"` with `bf16=True` keeps bf16 weights and optimizer states, which is pure bf16 training.
+dtype (`str`, *optional*, defaults to `"float32"`) : Data type to load the student model under, one of `"auto"`, `"bfloat16"`, `"float16"` or `"float32"`. It defaults to `"float32"` because the training-inference mismatch the async trainers are measured against ([Defeating the Training-Inference Mismatch via FP16](https://huggingface.co/papers/2510.26788)) is sensitive to the trainer's own precision. Closing that gap end to end also requires serving the student's vLLM server in the same dtype (`vllm serve --dtype`). A `dtype` in `model_init_kwargs` takes precedence. Teacher servers are unaffected: they are never updated.  This only sets the dtype the weights are loaded in. Under FSDP with mixed precision (`bf16=True` is the default), accelerate upcasts every trainable parameter to fp32 before sharding, so the master weights and the optimizer state are fp32 whatever `dtype` says, while the forward and backward run in bf16 or fp16. Checkpoints are then written in that mixed-precision dtype, not in fp32. Without FSDP nothing upcasts: `dtype="bfloat16"` with `bf16=True` keeps bf16 weights and optimizer states, which is pure bf16 training.
 
-trust_remote_code (`bool`, *optional*, defaults to `False`) : Whether to allow loading models and tokenizers that ship custom Python code from the Hub. Forwarded to [from_pretrained](https://huggingface.co/docs/transformers/v5.22.1/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) and [from_pretrained](https://huggingface.co/docs/transformers/v5.22.1/en/model_doc/auto#transformers.AutoTokenizer.from_pretrained).
+trust_remote_code (`bool`, *optional*, defaults to `False`) : Whether to allow loading models and tokenizers that ship custom Python code from the Hub. Forwarded to [from_pretrained](https://huggingface.co/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) and [from_pretrained](https://huggingface.co/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer.from_pretrained).
 
 router_aux_loss_coef (`float`, *optional*) : Coefficient of the load-balancing auxiliary loss for Mixture-of-Experts (MoE) models, added to the training loss with this weight. When not set, the value declared by the model config is used. Set to `0.0` to disable it. Fails when used with a non-MoE model.
 
@@ -338,17 +359,13 @@ chat_template_kwargs (`dict[str, Any]`, *optional*) : Additional keyword argumen
 
 vllm_server_base_url (`str`, *optional*, defaults to `"http --//localhost:8000"`): Base URL of the student's vLLM server, used both for generation and for streaming weight updates.
 
-vllm_server_timeout (`float`, *optional*, defaults to `240.0`) : Total timeout duration in seconds to wait for the student's vLLM server to be ready.
+vllm_server_timeout (`float`, *optional*, defaults to `1800.0`) : Timeout in seconds for calls to the vLLM servers: waiting for the student's server to be ready at startup, each generation or scoring request, and each weight-sync call. Waiting for the server and weight-sync calls raise when it runs out; a generation or scoring request that times out is retried.
 
-teacher_server_urls (`dict[str, str]`, *optional*, defaults to `{"default" : "http://localhost:8001"}`): Teacher vLLM server(s), each started with `vllm serve <teacher-model> --logprobs-mode processed_logprobs --max-logprobs -1`. Every teacher is static: this trainer never streams weight updates to any of them, so a teacher needs neither `VLLM_SERVER_DEV_MODE` nor a weight-transfer backend, only those two flags, which make its scoring exact (see `teacher_temperature` and `teacher_top_k`). Every teacher must share the student's tokenizer: completions are sent as raw token ids, and the ids a teacher reports back are used directly to index the student's own vocabulary in `compute_loss`. A teacher with a different vocabulary trains against the wrong tokens, silently if its vocabulary is no larger than the student's. Scoring is a teacher-forced request against the student's own completion tokens (`max_tokens=1`, `prompt_logprobs=teacher_top_k`, `temperature=teacher_temperature`), the same request `get_sequence_logprobs()` issues for the synchronous server-teacher trainers. A single entry scores every sample (plain single-teacher on-policy distillation, the default). Multiple entries enable MOPD (multi-teacher on-policy distillation, see [MOPD](https://huggingface.co/papers/2606.30406)): each training row's `teacher_id` column selects which entry scores it, e.g. `{"math": "http://localhost:8002", "code": "http://localhost:8003"}` with a `teacher_id` of `"math"` or `"code"` per row.
-
-request_timeout (`int`, *optional*, defaults to `600`) : Timeout in seconds for individual HTTP requests to any vLLM server.
-
-weight_sync_timeout (`int`, *optional*, defaults to `1800`) : Timeout in seconds for a weight transfer to the student's vLLM server. A transfer that does not complete within this time raises instead of hanging the run.
+teacher_server_urls (`dict[str, str]`, *optional*, defaults to `{"default" : "http://localhost:8001"}`): Teacher vLLM server(s), each started with `vllm serve <teacher-model> --logprobs-mode processed_logprobs --max-logprobs -1`. Every teacher is static: this trainer never streams weight updates to any of them, so a teacher needs neither `VLLM_SERVER_DEV_MODE` nor a weight-transfer backend, only those two flags, which make its scoring exact (see `teacher_temperature` and `teacher_top_k`). Every teacher must share the student's tokenizer: completions are sent as raw token ids, and the ids a teacher reports back are used directly to index the student's own vocabulary in `compute_loss`. A teacher with a different vocabulary trains against the wrong tokens, silently if its vocabulary is no larger than the student's. Scoring is a teacher-forced request against the student's own completion tokens (`max_tokens=1`, `prompt_logprobs=teacher_top_k`, `temperature=teacher_temperature`), the same request `get_sequence_logprobs()` issues for the synchronous server-teacher trainers. Because of that throwaway token, a teacher needs a `--max-model-len` larger than the student's, or the longest completions cannot be scored. A single entry scores every sample (plain single-teacher on-policy distillation, the default). Multiple entries enable MOPD (multi-teacher on-policy distillation, see [MOPD](https://huggingface.co/papers/2606.30406)): each training row's `teacher_id` column selects which entry scores it, e.g. `{"math": "http://localhost:8002", "code": "http://localhost:8003"}` with a `teacher_id` of `"math"` or `"code"` per row.
 
 **Parameters that control the distillation loss:**
 
-beta (`float`, *optional*, defaults to `0.0`) : Interpolation coefficient for the generalized Jensen-Shannon Divergence. `0.0` is forward KL (mean-seeking), `1.0` is reverse KL (mode-seeking), and values in between interpolate, following the same generalized-JSD formulation [DistillationTrainer](/docs/trl/v1.17.1/en/distillation_trainer#trl.DistillationTrainer) computes internally. The support the divergence is computed over differs by regime, mirroring `ServerDistillationTrainer`: at `beta=0.0`, the full `teacher_top_k`-wide teacher-reported support (plus tail bucket) is used, since forward KL's weighting is exactly what that support provides. At `beta != 0.0`, the support is narrowed to just two candidates — the teacher's own top-1 token and the completion's actual/realized token — since those are the only two token identities the wire protocol guarantees a teacher logprob for without transmitting a wider (or full) vocabulary; anything wider would only be a probabilistic approximation of covering the student's own likely tokens, not a guarantee.
+beta (`float`, *optional*, defaults to `0.0`) : Interpolation coefficient for the generalized Jensen-Shannon Divergence. `0.0` is forward KL (mean-seeking), `1.0` is reverse KL (mode-seeking), and values in between interpolate, following the same generalized-JSD formulation [DistillationTrainer](/docs/trl/v1.18.0/en/distillation_trainer#trl.DistillationTrainer) computes internally. The support the divergence is computed over differs by regime, mirroring `ServerDistillationTrainer`: at `beta=0.0`, the full `teacher_top_k`-wide teacher-reported support (plus tail bucket) is used, since forward KL's weighting is exactly what that support provides. At `beta != 0.0`, the support is narrowed to just two candidates — the teacher's own top-1 token and the completion's actual/realized token — since those are the only two token identities the wire protocol guarantees a teacher logprob for without transmitting a wider (or full) vocabulary; anything wider would only be a probabilistic approximation of covering the student's own likely tokens, not a guarantee.
 
 teacher_temperature (`float`, *optional*, defaults to `1.0`) : Softmax temperature of the divergence, applied to *both* sides: sent to the teacher so vLLM computes its logprobs at this temperature server-side (exact, not a client-side rescaling), and applied to the student's own logits in `compute_loss`, mirroring `ServerDistillationTrainer`'s single `temperature`. Unrelated to `temperature`, which only controls how the student samples its completions. The teacher's server must run with `--logprobs-mode processed_logprobs` for this to reach its returned logprobs at all; without it the teacher silently reports raw logprobs and this setting only affects the student's side.
 
@@ -356,19 +373,17 @@ teacher_top_k (`int`, *optional*, defaults to `8`) : Number of per-position cand
 
 add_tail_bucket (`bool`, *optional*, defaults to `True`) : Whether to append a tail bucket representing the remaining probability mass outside `teacher_top_k`, to avoid a trivially small divergence when `teacher_top_k` is small.
 
-token_budget (`int`, *optional*) : Maximum number of real tokens packed into a single row (one DP rank's forward) for dynamic token-budgeted micro-batching. When `> 0`, a `TokenBudgetBatcher` forms Σ Lᵢ²-balanced micro-batches whose rows each stay within this budget, bounding peak memory independently of the sample count (the number of samples per row becomes dynamic). If `None` (default), it is set to the student vLLM server's `max_model_len` (queried at train start) — the cap on prompt + completion length — so no rollout sample can ever exceed the budget. A sample longer than `token_budget` fits in no row and is dropped with a warning, counted as `batch/dropped_oversize_total`. Set `<= 0` to disable token budgeting and instead pack a fixed `per_device_train_batch_size × num_processes` samples per micro-batch, Σ Lᵢ²-balanced across the rows.
+token_budget (`int`, *optional*) : Maximum number of real tokens packed into a single row (one DP rank's forward). A `TokenBudgetBatcher` forms Σ Lᵢ²-balanced micro-batches whose rows each stay within this budget, bounding peak memory independently of the sample count (the number of samples per row becomes dynamic). If `None` (default), it is set to the student vLLM server's `max_model_len` (queried at train start) — the cap on prompt + completion length — so no rollout sample can ever exceed the budget. A sample longer than `token_budget` fits in no row and is dropped with a warning, counted as `batch/dropped_oversize_count`.
 
 **Parameters that control the async rollout pipeline:**
 
-max_inflight_tasks (`int`, *optional*, defaults to `-1`) : Maximum number of concurrent generation+scoring tasks in flight against the two vLLM servers. Defaults to `-1` (auto), which sets it to `max_staleness * per_device_train_batch_size * gradient_accumulation_steps * num_processes`.
+max_concurrent_rollouts (`int`, *optional*, defaults to `512`) : Maximum number of rollouts in flight against the student's and teachers' vLLM servers at once, generating or being scored.
 
-max_staleness (`int`, *optional*, defaults to `4`) : Maximum number of weight update steps a rollout sample can lag behind the current model version before being discarded.
-
-queue_maxsize (`int`, *optional*, defaults to `1024`) : Maximum number of rollout samples to buffer in the rollout queue.
+max_staleness (`int`, *optional*, defaults to `4`) : Maximum number of weight update steps a rollout sample can lag behind the current model version before being dropped. Generation is held to it: a rollout starts only while the tokens queued and in flight fit in what the trainer consumes in `max(max_staleness, 1)` steps.
 
 weight_sync_steps (`int`, *optional*, defaults to `1`) : Number of training steps between weight synchronizations to the student's vLLM server.
 
-heartbeat_stale_after_s (`float`, *optional*, defaults to `300.0`) : Seconds since the rollout worker's last heartbeat after which the trainer treats it as hung and aborts.
+rollout_worker_timeout (`float`, *optional*, defaults to `300.0`) : Seconds since the rollout worker's last heartbeat after which the trainer treats it as hung and aborts.
 
 **Parameters that control the logging:**
 
@@ -378,16 +393,16 @@ log_completions_steps (`int`, *optional*, defaults to `100`) : Number of scored 
 
 num_completions_to_print (`int`, *optional*) : Number of completions to print with `rich`. If `None`, all completions are logged.
 
-Configuration class for the [experimental.async_distillation.AsyncDistillationTrainer](/docs/trl/v1.17.1/en/async_distillation_trainer#trl.experimental.async_distillation.AsyncDistillationTrainer).
+Configuration class for the [experimental.async_distillation.AsyncDistillationTrainer](/docs/trl/v1.18.0/en/async_distillation_trainer#trl.experimental.async_distillation.AsyncDistillationTrainer).
 
 This class includes only the parameters that are specific to asynchronous on-policy distillation. For a full list
-of training arguments, please refer to the [TrainingArguments](https://huggingface.co/docs/transformers/v5.22.1/en/main_classes/trainer#transformers.TrainingArguments) documentation. Note that default
-values in this class may differ from those in [TrainingArguments](https://huggingface.co/docs/transformers/v5.22.1/en/main_classes/trainer#transformers.TrainingArguments). Its structure mirrors
-[AsyncGRPOConfig](/docs/trl/v1.17.1/en/async_grpo_trainer#trl.experimental.async_grpo.AsyncGRPOConfig) (async pipeline, vLLM server, logging fields are the same), with
-GRPO's clipping/group fields replaced by the teacher-distillation loss fields below.
+of training arguments, please refer to the [TrainingArguments](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.TrainingArguments) documentation. Note that default
+values in this class may differ from those in [TrainingArguments](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.TrainingArguments). Its structure mirrors
+[AsyncGRPOConfig](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOConfig) (async pipeline, vLLM server, logging fields are the same), with GRPO's clipping/group fields
+replaced by the teacher-distillation loss fields below.
 
 > [!NOTE]
-> These parameters have default values different from [TrainingArguments](https://huggingface.co/docs/transformers/v5.22.1/en/main_classes/trainer#transformers.TrainingArguments):
+> These parameters have default values different from [TrainingArguments](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.TrainingArguments):
 > - `logging_steps`: Defaults to `1` instead of `500`.
 > - `gradient_checkpointing`: Defaults to `True` instead of `False`.
 > - `bf16`: Defaults to `True` if `fp16` is not set, instead of `False`.
@@ -399,37 +414,33 @@ GRPO's clipping/group fields replaced by the teacher-distillation loss fields be
 #### trl.experimental.async_distillation.AsyncDistillationTrainer[[trl.experimental.async_distillation.AsyncDistillationTrainer]]
 
 ```python
-trl.experimental.async_distillation.AsyncDistillationTrainer(model: str | PreTrainedModel, args: trl.experimental.async_distillation.async_distillation_config.AsyncDistillationConfig | None = None, train_dataset: datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset | None = None, processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | None = None, callbacks: list[transformers.trainer_callback.TrainerCallback] | None = None, optimizers: tuple = (None, None), peft_config: PeftConfig | None = None, rollout_worker: trl.experimental.async_distillation.async_distillation_trainer.RolloutWorkerProtocol | None = None, weight_transfer: trl.experimental.async_distillation.async_distillation_trainer.WeightTransferProtocol | None = None)
+trl.experimental.async_distillation.AsyncDistillationTrainer(model: str | PreTrainedModel, args: trl.experimental.async_distillation.async_distillation_config.AsyncDistillationConfig | None = None, train_dataset: datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset | None = None, processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | None = None, callbacks: list[transformers.trainer_callback.TrainerCallback] | None = None, optimizers: tuple[typing.Optional[torch.optim.Optimizer], typing.Optional[torch.optim.lr_scheduler.LambdaLR]] = (None, None), peft_config: PeftConfig | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.17.1/trl/experimental/async_distillation/async_distillation_trainer.py#L1134)
+[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/experimental/async_distillation/async_distillation_trainer.py#L1059)
 
 **Parameters:**
 
-model (`str` or [PreTrainedModel](https://huggingface.co/docs/transformers/v5.22.1/en/main_classes/model#transformers.PreTrainedModel)) : Student model to be trained. Can be either:  - A string, being the *model id* of a pretrained model hosted inside a model repo on huggingface.co, or a path to a *directory* containing model weights saved using [save_pretrained](https://huggingface.co/docs/transformers/v5.22.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained). Loaded with [from_pretrained](https://huggingface.co/docs/transformers/v5.22.1/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained). - A [PreTrainedModel](https://huggingface.co/docs/transformers/v5.22.1/en/main_classes/model#transformers.PreTrainedModel) object. Its attention implementation is switched to the trainer's FlashAttention backend for padding-free training.  The model name from the config is used to identify the student model on its vLLM server.
+model (`str` or [PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel)) : Student model to be trained. Can be either:  - A string, being the *model id* of a pretrained model hosted inside a model repo on huggingface.co, or a path to a *directory* containing model weights saved using [save_pretrained](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained). Loaded with [from_pretrained](https://huggingface.co/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained). - A [PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel) object. Its attention implementation is switched to the trainer's FlashAttention backend for padding-free training.  The model name from the config is used to identify the student model on its vLLM server.
 
-args ([experimental.async_distillation.AsyncDistillationConfig](/docs/trl/v1.17.1/en/async_distillation_trainer#trl.experimental.async_distillation.AsyncDistillationConfig), *optional*) : Configuration for this trainer. If `None`, a default configuration is used.
+args ([experimental.async_distillation.AsyncDistillationConfig](/docs/trl/v1.18.0/en/async_distillation_trainer#trl.experimental.async_distillation.AsyncDistillationConfig), *optional*) : Configuration for this trainer. If `None`, a default configuration is used.
 
-train_dataset (`Dataset` or `IterableDataset`) : Dataset to use for training. Must include a `"prompt"` column ([conversational](dataset_formats#conversational) format). Any additional columns are ignored.
+train_dataset ([Dataset](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) or [IterableDataset](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset)) : Dataset to use for training. Must include a `"prompt"` column ([conversational](dataset_formats#conversational) format). Any additional columns are ignored.
 
-processing_class ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.22.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase), *optional*) : Processing class used to process the data. If `None`, it is loaded from the model's name with [from_pretrained](https://huggingface.co/docs/transformers/v5.22.1/en/model_doc/auto#transformers.AutoTokenizer.from_pretrained). If it has no padding token, `tokenizer.eos_token` is used.
+processing_class ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase), *optional*) : Processing class used to process the data. If `None`, it is loaded from the model's name with [from_pretrained](https://huggingface.co/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer.from_pretrained). If it has no padding token, `tokenizer.eos_token` is used.
 
-callbacks (list of [TrainerCallback](https://huggingface.co/docs/transformers/v5.22.1/en/main_classes/callback#transformers.TrainerCallback), *optional*) : List of callbacks to customize the training loop, added to the default callbacks (see [here](https://huggingface.co/docs/transformers/main_classes/callback)).
+callbacks (list of [TrainerCallback](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/callback#transformers.TrainerCallback), *optional*) : List of callbacks to customize the training loop, added to the default callbacks (see [here](https://huggingface.co/docs/transformers/main_classes/callback)).
 
 optimizers (`tuple[torch.optim.Optimizer | None, torch.optim.lr_scheduler.LambdaLR | None]`, *optional*, defaults to `(None, None)`) : A tuple containing the optimizer and the scheduler to use. Defaults to `AdamW` and a linear schedule controlled by `args`.
 
 peft_config (`PeftConfig`, *optional*) : PEFT configuration used to wrap the model. If `None`, the model is not wrapped. When the student's vLLM server was started with `--enable-lora`, a LoRA adapter is synced to it as an adapter rather than as merged weights; see the LoRA section of the AsyncDistillation documentation.
 
-rollout_worker (`RolloutWorkerProtocol`, *optional*) : Custom rollout worker implementing `RolloutWorkerProtocol`. If `None`, a default `AsyncRolloutWorker` is created, spawning a CUDA-free child process that generates from the student's vLLM server and scores against the teacher's.
-
-weight_transfer (`WeightTransferProtocol`, *optional*) : Custom weight-sync backend implementing `WeightTransferProtocol`. If `None`, a default `WeightTransferClient` is created that streams the student's weights into its vLLM server over NCCL. Pass a no-op implementation to disable trainer-side weight sync (e.g. in tests, or when a custom `rollout_worker` updates the policy itself).
-
-Async counterpart to [DistillationTrainer](/docs/trl/v1.17.1/en/distillation_trainer#trl.DistillationTrainer), architected exactly like
-[AsyncGRPOTrainer](/docs/trl/v1.17.1/en/async_grpo_trainer#trl.experimental.async_grpo.AsyncGRPOTrainer): a background rollout worker generates the student's on-policy
-completions and scores them against a teacher server while training proceeds concurrently, decoupling rollout from
-the gradient-update loop. Where GRPO's clipped policy-gradient loss reads a group-relative advantage, this
-trainer's `compute_loss` reads a sparse per-position teacher distribution and minimizes a generalized JSD against
-it (see `AsyncDistillationConfig.beta`), always on-policy: the student generates every completion it trains on.
+Async counterpart to [DistillationTrainer](/docs/trl/v1.18.0/en/distillation_trainer#trl.DistillationTrainer), architected exactly like
+[AsyncGRPOTrainer](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer): a background rollout worker generates the student's on-policy completions and scores them
+against a teacher server while training proceeds concurrently, decoupling rollout from the gradient-update loop.
+Where GRPO's clipped policy-gradient loss reads a group-relative advantage, this trainer's `compute_loss` reads a
+sparse per-position teacher distribution and minimizes a generalized JSD against it (see
+`AsyncDistillationConfig.beta`), always on-policy: the student generates every completion it trains on.
 
 Unlike the synchronous `DistillationTrainer`, this trainer only supports scoring against a teacher served over HTTP
 (an external vLLM server). A local (in-process, GPU) teacher forward pass cannot run inside the rollout worker's
@@ -452,4 +463,4 @@ Example:
 ```
 
 ### Experimental
-https://huggingface.co/docs/trl/v1.17.1/experimental_overview.md
+https://huggingface.co/docs/trl/v1.18.0/experimental_overview.md

@@ -129,4 +129,4 @@ Below you can see the outputs.
          style="height: 200px; object-fit: contain;">
 
 ### Video-text-to-text
-https://huggingface.co/docs/transformers/v5.22.2/tasks/video_text_to_text.md
+https://huggingface.co/docs/transformers/v5.23.0/tasks/video_text_to_text.md

@@ -120,5 +120,5 @@ For example, `tensor_parallel_size=2` and `data_parallel_size=2` gives you 2 cop
 
 We also recommend reading the [vLLM documentation](https://docs.vllm.ai/en/stable/) for more in-depth information.
 
-### Text Embeddings Inference (TEI)
-https://huggingface.co/docs/inference-endpoints/engines/tei.md
+### Text Generation Inference (TGI)
+https://huggingface.co/docs/inference-endpoints/engines/tgi.md

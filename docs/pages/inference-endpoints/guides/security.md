@@ -39,5 +39,5 @@ configuration [authentication section](https://huggingface.co/docs/inference-end
 
 You can read the Hugging Face Privacy Policy at: https://huggingface.co/privacy
 
-### MCP Server
-https://huggingface.co/docs/inference-endpoints/guides/mcp_server.md
+### FAQs
+https://huggingface.co/docs/inference-endpoints/support/faq.md

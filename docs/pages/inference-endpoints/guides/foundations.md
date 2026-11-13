@@ -102,5 +102,5 @@ Each audit log entry is displayed as a card showing:
 - For updates, a summary of what changed (e.g. instance/hardware scaling, configuration parameters, or state changes)
 - Request metadata for troubleshooting, shown inline: the source IP address and the X-Request-Id used to trace the API call
 
-### Autoscaling
-https://huggingface.co/docs/inference-endpoints/guides/autoscaling.md
+### MCP Server
+https://huggingface.co/docs/inference-endpoints/guides/mcp_server.md

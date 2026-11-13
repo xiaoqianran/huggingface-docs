@@ -135,5 +135,5 @@ Here are some ways to extend your script:
 
 Your embedded datasets are now ready for downstream tasks like semantic search, recommendation systems, or RAG applications!
 
-### FAQs
-https://huggingface.co/docs/inference-endpoints/support/faq.md
+### Build and deploy your own chat application
+https://huggingface.co/docs/inference-endpoints/tutorials/chat_bot.md

@@ -20,7 +20,7 @@ We are adding it to `kernels` asap!
 
 ### Vision tower
 
-A [MiniMaxM3VLVisionModel](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLVisionModel): a `Conv3d` patch embedding over flattened `[N_patches, C·T·P·P]` input, a stack of
+A [MiniMaxM3VLVisionModel](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLVisionModel): a `Conv3d` patch embedding over flattened `[N_patches, C·T·P·P]` input, a stack of
 CLIP-style encoder layers carrying a **3D rotary** position embedding (time / height / width bands). A `MiniMaxM3VLPatchMerger` groups
 `spatial_merge_size²` patches into the channel dim before the 2-layer GELU `MiniMaxM3VLMultiModalProjector` maps vision features into the text hidden size.
 
@@ -179,7 +179,7 @@ if dist.is_initialized():
 transformers.MiniMaxM3VLConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, image_token_index: int = 200025, video_token_index: int = 200026, projector_hidden_size: int = 6144, tie_word_embeddings: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/configuration_minimax_m3_vl.py#L187)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/configuration_minimax_m3_vl.py#L187)
 
 **Parameters:**
 
@@ -199,8 +199,8 @@ This is the configuration class to store the configuration of a MiniMaxM3VLModel
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [MiniMaxAI/MiniMax-M3](https://huggingface.co/MiniMaxAI/MiniMax-M3)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## MiniMaxM3VLTextConfig[[transformers.MiniMaxM3VLTextConfig]]
 
@@ -210,7 +210,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes
 transformers.MiniMaxM3VLTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 200064, hidden_size: int = 6144, intermediate_size: int = 3072, num_hidden_layers: int = 60, num_attention_heads: int = 64, num_key_value_heads: int = 4, head_dim: int = 128, hidden_act: str = 'silu', max_position_embeddings: int = 524288, initializer_range: float = 0.02, rms_norm_eps: float = 1e-06, use_cache: bool = True, pad_token_id: int | None = None, bos_token_id: int | None = 200034, eos_token_id: int | list[int] | None = 200020, tie_word_embeddings: bool = False, attention_dropout: float | int = 0.0, num_experts_per_tok: int = 4, num_local_experts: int = 128, output_router_logits: bool = False, router_aux_loss_coef: float = 0.001, router_jitter_noise: float = 0.0, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, dense_intermediate_size: int = 12288, shared_intermediate_size: int = 3072, routed_scaling_factor: float = 2.0, rotary_dim: int = 64, swiglu_alpha: float = 1.702, swiglu_limit: float = 7.0, mlp_layer_types: list[str] | None = None, index_n_heads: int = 4, index_head_dim: int = 128, index_block_size: int = 128, index_topk_blocks: int = 16, index_local_blocks: int = 1, layer_types: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/configuration_minimax_m3_vl.py#L29)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/configuration_minimax_m3_vl.py#L29)
 
 **Parameters:**
 
@@ -290,8 +290,8 @@ This is the configuration class to store the configuration of a MiniMaxM3VLModel
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [MiniMaxAI/MiniMax-M3](https://huggingface.co/MiniMaxAI/MiniMax-M3)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## MiniMaxM3VLVisionConfig[[transformers.MiniMaxM3VLVisionConfig]]
 
@@ -301,7 +301,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes
 transformers.MiniMaxM3VLVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 1280, intermediate_size: int = 5120, num_hidden_layers: int = 32, num_attention_heads: int = 16, num_channels: int = 3, image_size: int = 2016, patch_size: int = 14, temporal_patch_size: int = 2, spatial_merge_size: int = 2, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-05, attention_dropout: float = 0.0, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/configuration_minimax_m3_vl.py#L158)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/configuration_minimax_m3_vl.py#L158)
 
 **Parameters:**
 
@@ -337,8 +337,8 @@ This is the configuration class to store the configuration of a MiniMaxM3VLModel
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [MiniMaxAI/MiniMax-M3](https://huggingface.co/MiniMaxAI/MiniMax-M3)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## MiniMaxM3VLProcessor[[transformers.MiniMaxM3VLProcessor]]
 
@@ -348,7 +348,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes
 transformers.MiniMaxM3VLProcessor(image_processor = None, tokenizer = None, video_processor = None, chat_template = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/processing_minimax_m3_vl.py#L31)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/processing_minimax_m3_vl.py#L26)
 
 **Parameters:**
 
@@ -362,8 +362,8 @@ chat_template (`str`) : A Jinja template to convert lists of messages in a chat 
 
 Constructs a MiniMaxM3VLProcessor which wraps a image processor, a tokenizer, and a video processor into a single processor.
 
-[MiniMaxM3VLProcessor](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLProcessor) offers all the functionalities of [MiniMaxM3VLImageProcessor](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLImageProcessor), `tokenizer_class`, and [MiniMaxM3VLVideoProcessor](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLVideoProcessor). See the
-[~MiniMaxM3VLImageProcessor](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLImageProcessor), `~tokenizer_class`, and [~MiniMaxM3VLVideoProcessor](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLVideoProcessor) for more information.
+[MiniMaxM3VLProcessor](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLProcessor) offers all the functionalities of [MiniMaxM3VLImageProcessor](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLImageProcessor), `tokenizer_class`, and [MiniMaxM3VLVideoProcessor](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLVideoProcessor). See the
+[~MiniMaxM3VLImageProcessor](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLImageProcessor), `~tokenizer_class`, and [~MiniMaxM3VLVideoProcessor](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLVideoProcessor) for more information.
 
 #### post_process_image_text_to_text[[transformers.MiniMaxM3VLProcessor.post_process_image_text_to_text]]
 
@@ -371,7 +371,7 @@ Constructs a MiniMaxM3VLProcessor which wraps a image processor, a tokenizer, an
 post_process_image_text_to_text(generated_outputs, skip_special_tokens = True, clean_up_tokenization_spaces = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/processing_minimax_m3_vl.py#L121)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/processing_minimax_m3_vl.py#L120)
 
 **Parameters:**
 
@@ -391,7 +391,7 @@ Post-process the output of the model to decode the text.
 
 ## MiniMaxM3VLImageProcessor[[transformers.MiniMaxM3VLImageProcessor]]
 
-This is a standalone (non-modular) image processor: it shares the patch-flattening idea of [Qwen2VLImageProcessor](/docs/transformers/v5.22.2/en/model_doc/qwen2_vl#transformers.Qwen2VLImageProcessor)
+This is a standalone (non-modular) image processor: it shares the patch-flattening idea of [Qwen2VLImageProcessor](/docs/transformers/v5.23.0/en/model_doc/qwen2_vl#transformers.Qwen2VLImageProcessor)
 but does not inherit from it because the two diverge in ways that touch most of the class. The resize budget is driven by
 a `max_pixels` attribute and a `{"height", "width"}` `size` rather than Qwen's `shortest_edge`/`longest_edge` scheme; the
 `smart_resize` helper clamps the initial rounding with `max(factor, ...)`; and `_preprocess` performs real temporal
@@ -405,7 +405,7 @@ everything, so the processor is kept on its own.
 transformers.MiniMaxM3VLImageProcessor(**kwargs: *<class 'transformers.models.minimax_m3_vl.image_processing_minimax_m3_vl.MiniMaxM3VLImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/image_processing_minimax_m3_vl.py#L87)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/image_processing_minimax_m3_vl.py#L87)
 
 **Parameters:**
 
@@ -467,7 +467,7 @@ Constructs a MiniMaxM3VLImageProcessor image processor.
 get_number_of_image_patches(height: int, width: int, images_kwargs: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/image_processing_minimax_m3_vl.py#L267)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/image_processing_minimax_m3_vl.py#L267)
 
 **Parameters:**
 
@@ -492,7 +492,7 @@ without an image input.
 patchify(images: torch.Tensor, patch_size: int, merge_size: int, temporal_patch_size: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/image_processing_minimax_m3_vl.py#L175)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/image_processing_minimax_m3_vl.py#L175)
 
 Patchifies each image into flat layout of shape (`seq_len`, `patch_dim`) so we can concat dynamically shaped pixels.
 
@@ -502,7 +502,7 @@ Patchifies each image into flat layout of shape (`seq_len`, `patch_dim`) so we c
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.minimax_m3_vl.image_processing_minimax_m3_vl.MiniMaxM3VLImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/image_processing_minimax_m3_vl.py#L141)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/image_processing_minimax_m3_vl.py#L141)
 
 **Parameters:**
 
@@ -570,7 +570,7 @@ merge_size (`int`, *kwargs*, *optional*, defaults to 2) : The merge size of the 
 resize(images: torch.Tensor, size: SizeDict, resample: PILImageResampling | tvF.InterpolationMode | int | None, factor: int, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/image_processing_minimax_m3_vl.py#L149)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/image_processing_minimax_m3_vl.py#L149)
 
 Resize dynamically based on input image aspect ratio.
 
@@ -582,7 +582,7 @@ Resize dynamically based on input image aspect ratio.
 transformers.MiniMaxM3VLVideoProcessor(**kwargs: *<class 'transformers.models.minimax_m3_vl.video_processing_minimax_m3_vl.MiniMaxM3VLVideoProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/video_processing_minimax_m3_vl.py#L55)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/video_processing_minimax_m3_vl.py#L58)
 
 **Parameters:**
 
@@ -646,7 +646,9 @@ min_frames (`int`, *kwargs*, *optional*, defaults to 4) : The minimum number of 
 
 max_frames (`int`, *kwargs*, *optional*, defaults to 768) : The maximum number of frames that can be sampled.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.22.2/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+vision_segment_max_frames (`int`, *kwargs*, *optional*, defaults to 4) : Maximum temporal patches per vision attention segment. Set to `None` to keep each video as one segment.
+
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.23.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 Constructs a MiniMaxM3VLVideoProcessor video processor.
 
@@ -656,7 +658,7 @@ Constructs a MiniMaxM3VLVideoProcessor video processor.
 get_num_of_video_patches(num_frames: int, height: int, width: int, videos_kwargs: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/video_processing_minimax_m3_vl.py#L82)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/video_processing_minimax_m3_vl.py#L86)
 
 **Parameters:**
 
@@ -685,15 +687,15 @@ without a video input.
 transformers.MiniMaxM3VLVisionModel(config: MiniMaxM3VLVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/modeling_minimax_m3_vl.py#L1156)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/modeling_minimax_m3_vl.py#L1201)
 
 **Parameters:**
 
-config ([MiniMaxM3VLVisionConfig](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MiniMaxM3VLVisionConfig](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Minimax M3 Vl Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -707,36 +709,36 @@ and behavior.
 forward(pixel_values: Tensor, grid_thw: Tensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/modeling_minimax_m3_vl.py#L1174)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/modeling_minimax_m3_vl.py#L1224)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [MiniMaxM3VLImageProcessor](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLImageProcessor). See [MiniMaxM3VLImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([MiniMaxM3VLProcessor](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLProcessor) uses [MiniMaxM3VLImageProcessor](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLImageProcessor) for processing images).
 
 grid_thw (`torch.Tensor` of shape `(num_images, 3)`) : The temporal, height and width of feature shape of each image.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration (`None`) and inputs.
+A [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([MiniMaxM3VLConfig](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLConfig)) and inputs.
 
-The [MiniMaxM3VLVisionModel](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLVisionModel) forward method, overrides the `__call__` special method.
+The [MiniMaxM3VLVisionModel](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
   through the layers used for the auxiliary pretraining task. E.g. for BERT-family of models, this returns
   the classification token after processing through a linear layer and a tanh activation function. The linear
   layer weights are trained from the next sentence prediction (classification) objective during pretraining.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -750,15 +752,15 @@ the latter silently ignores them.
 transformers.MiniMaxM3VLTextModel(config: MiniMaxM3VLTextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/modeling_minimax_m3_vl.py#L705)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/modeling_minimax_m3_vl.py#L704)
 
 **Parameters:**
 
-config ([MiniMaxM3VLTextConfig](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MiniMaxM3VLTextConfig](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Minimax M3 Vl Text Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -769,53 +771,53 @@ and behavior.
 #### forward[[transformers.MiniMaxM3VLTextModel.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/modeling_minimax_m3_vl.py#L722)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/modeling_minimax_m3_vl.py#L721)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-**Returns:** `MoeModelOutputWithPast` or `tuple(torch.FloatTensor)`
+**Returns:** `MoeModelOutputWithPast` or `tuple(torch.Tensor)`
 
 A `MoeModelOutputWithPast` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MiniMaxM3VLConfig](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([MiniMaxM3VLConfig](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLConfig)) and inputs.
 
-The [MiniMaxM3VLTextModel](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLTextModel) forward method, overrides the `__call__` special method.
+The [MiniMaxM3VLTextModel](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
   input) to speed up sequential decoding.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
   heads.
-- **router_logits** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_router_probs=True` and `config.add_router_probs=True` is passed or when `config.output_router_probs=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, sequence_length, num_experts)`.
+- **router_logits** (`tuple(torch.Tensor)`, *optional*, returned when `output_router_probs=True` and `config.add_router_probs=True` is passed or when `config.output_router_probs=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, sequence_length, num_experts)`.
 
   Raw router logits (post-softmax) that are computed by MoE routers, these terms are used to compute the auxiliary
   loss for Mixture of Experts models.
@@ -828,15 +830,15 @@ the latter silently ignores them.
 transformers.MiniMaxM3VLModel(config: MiniMaxM3VLConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/modeling_minimax_m3_vl.py#L1291)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/modeling_minimax_m3_vl.py#L1347)
 
 **Parameters:**
 
-config ([MiniMaxM3VLConfig](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MiniMaxM3VLConfig](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 MiniMax M3 VL backbone (vision + projector + text), without LM head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -847,18 +849,18 @@ and behavior.
 #### forward[[transformers.MiniMaxM3VLModel.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_values_videos: typing.Optional[torch.FloatTensor] = None, image_grid_thw: typing.Optional[torch.Tensor] = None, video_grid_thw: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, pixel_values_videos: typing.Optional[torch.Tensor] = None, image_grid_thw: typing.Optional[torch.Tensor] = None, video_grid_thw: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/modeling_minimax_m3_vl.py#L1362)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/modeling_minimax_m3_vl.py#L1418)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MiniMaxM3VLImageProcessor](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLImageProcessor). See [MiniMaxM3VLImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([MiniMaxM3VLProcessor](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLProcessor) uses [MiniMaxM3VLImageProcessor](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MiniMaxM3VLImageProcessor](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLImageProcessor). See [MiniMaxM3VLImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([MiniMaxM3VLProcessor](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLProcessor) uses [MiniMaxM3VLImageProcessor](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLImageProcessor) for processing images).
 
-pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [MiniMaxM3VLVideoProcessor](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLVideoProcessor). See [MiniMaxM3VLVideoProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([MiniMaxM3VLProcessor](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLProcessor) uses [MiniMaxM3VLVideoProcessor](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLVideoProcessor) for processing videos).
+pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [MiniMaxM3VLVideoProcessor](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLVideoProcessor). See [MiniMaxM3VLVideoProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([MiniMaxM3VLProcessor](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLProcessor) uses [MiniMaxM3VLVideoProcessor](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLVideoProcessor) for processing videos).
 
 image_grid_thw (`torch.Tensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
@@ -868,46 +870,46 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *optional*) : Dict where keys are supported modalities and values are encoded outputs for that modality. Each encoded output is a tuple that consists of (`pooler_output`, *optional*: `last_hidden_states`, *optional*: `hidden_states`, *optional*: `attentions`) `pooler_output` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of multimmodal features of the encoder merged into text embeddings.
 
-**Returns:** `MiniMaxM3VLModelOutputWithPast` or `tuple(torch.FloatTensor)`
+**Returns:** `MiniMaxM3VLModelOutputWithPast` or `tuple(torch.Tensor)`
 
 A `MiniMaxM3VLModelOutputWithPast` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MiniMaxM3VLConfig](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([MiniMaxM3VLConfig](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLConfig)) and inputs.
 
-The [MiniMaxM3VLModel](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLModel) forward method, overrides the `__call__` special method.
+The [MiniMaxM3VLModel](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
   heads.
-- **image_hidden_states** (`torch.FloatTensor`, *optional*) -- A `torch.FloatTensor` of size `(num_image_patches, hidden_size)`.
+- **image_hidden_states** (`torch.Tensor`, *optional*) -- A `torch.Tensor` of size `(num_image_patches, hidden_size)`.
   image_hidden_states of the model produced by the vision encoder and after projecting the last hidden state.
-- **video_hidden_states** (`torch.FloatTensor`, *optional*) -- A `torch.FloatTensor` of size `(num_video_patches, hidden_size)`.
+- **video_hidden_states** (`torch.Tensor`, *optional*) -- A `torch.Tensor` of size `(num_video_patches, hidden_size)`.
   video_hidden_states of the model produced by the vision encoder and after projecting the last hidden state.
-- **router_logits** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_router_logits=True` is passed) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, sequence_length, num_experts)`.
+- **router_logits** (`tuple(torch.Tensor)`, *optional*, returned when `output_router_logits=True` is passed) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, sequence_length, num_experts)`.
 
 ## MiniMaxM3VLForCausalLM[[transformers.MiniMaxM3VLForCausalLM]]
 
@@ -917,15 +919,15 @@ the latter silently ignores them.
 transformers.MiniMaxM3VLForCausalLM(config: MiniMaxM3VLTextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/modeling_minimax_m3_vl.py#L854)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/modeling_minimax_m3_vl.py#L856)
 
 **Parameters:**
 
-config ([MiniMaxM3VLTextConfig](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MiniMaxM3VLTextConfig](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Minimax M3 Vl Model for causal language modeling.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -936,24 +938,24 @@ and behavior.
 #### forward[[transformers.MiniMaxM3VLForCausalLM.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, output_router_logits: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, output_router_logits: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/modeling_minimax_m3_vl.py#L873)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/modeling_minimax_m3_vl.py#L875)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the causal language modeling loss. Indices should be in `[-100, 0, ..., config.vocab_size]` (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.  The labels are **shifted internally** so that `labels[..., 1:]` are used to predict `logits[..., :-1, :]`. Pass unshifted labels matching `input_ids` (i.e. `labels = input_ids`). Do **not** shift the labels yourself before passing them.  If the labels are already shifted (for example with sequence parallelism), pass them as the `shift_labels` keyword argument and they are used as is. `labels` must still be passed for the loss to be computed.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
@@ -961,36 +963,36 @@ output_router_logits (`bool`, *optional*) : Whether or not to return the logits 
 
 logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
 
-**Returns:** `MoeCausalLMOutputWithPast` or `tuple(torch.FloatTensor)`
+**Returns:** `MoeCausalLMOutputWithPast` or `tuple(torch.Tensor)`
 
 A `MoeCausalLMOutputWithPast` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MiniMaxM3VLConfig](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([MiniMaxM3VLConfig](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLConfig)) and inputs.
 
-The [MiniMaxM3VLForCausalLM](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLForCausalLM) forward method, overrides the `__call__` special method.
+The [MiniMaxM3VLForCausalLM](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLForCausalLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
-- **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **aux_loss** (`torch.FloatTensor`, *optional*, returned when `output_router_logits=True` is passed or when `config.output_router_logits=True`, and the model trains its router with a load-balancing loss) -- Load-balancing auxiliary loss for the sparse modules. Models that balance their experts with a router bias
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
+- **logits** (`torch.Tensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
+- **aux_loss** (`torch.Tensor`, *optional*, returned when `output_router_logits=True` is passed or when `config.output_router_logits=True`, and the model trains its router with a load-balancing loss) -- Load-balancing auxiliary loss for the sparse modules. Models that balance their experts with a router bias
   instead (DeepSeek-V3 and the architectures derived from it) return `None` here while still returning
   `router_logits`.
-- **router_logits** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_router_logits=True` is passed or when `config.output_router_logits=True`) -- Tuple of `torch.FloatTensor` (one for each sparse layer) of shape `(batch_size * sequence_length, num_experts)`.
+- **router_logits** (`tuple(torch.Tensor)`, *optional*, returned when `output_router_logits=True` is passed or when `config.output_router_logits=True`) -- Tuple of `torch.Tensor` (one for each sparse layer) of shape `(batch_size * sequence_length, num_experts)`.
 
   Raw router logits computed by the MoE routers. They can be used to compute a load-balancing loss or to
   inspect how tokens are dispatched to experts.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -1021,15 +1023,15 @@ Example:
 transformers.MiniMaxM3SparseForConditionalGeneration(config: MiniMaxM3VLConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/modeling_minimax_m3_vl.py#L1453)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/modeling_minimax_m3_vl.py#L1509)
 
 **Parameters:**
 
-config ([MiniMaxM3VLConfig](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MiniMaxM3VLConfig](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 MiniMax M3 VL full model with LM head (text + vision).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1040,18 +1042,18 @@ and behavior.
 #### forward[[transformers.MiniMaxM3SparseForConditionalGeneration.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_values_videos: typing.Optional[torch.FloatTensor] = None, image_grid_thw: typing.Optional[torch.Tensor] = None, video_grid_thw: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, output_router_logits: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, pixel_values_videos: typing.Optional[torch.Tensor] = None, image_grid_thw: typing.Optional[torch.Tensor] = None, video_grid_thw: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, output_router_logits: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/minimax_m3_vl/modeling_minimax_m3_vl.py#L1471)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/minimax_m3_vl/modeling_minimax_m3_vl.py#L1527)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MiniMaxM3VLImageProcessor](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLImageProcessor). See [MiniMaxM3VLImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([MiniMaxM3VLProcessor](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLProcessor) uses [MiniMaxM3VLImageProcessor](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MiniMaxM3VLImageProcessor](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLImageProcessor). See [MiniMaxM3VLImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([MiniMaxM3VLProcessor](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLProcessor) uses [MiniMaxM3VLImageProcessor](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLImageProcessor) for processing images).
 
-pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [MiniMaxM3VLVideoProcessor](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLVideoProcessor). See [MiniMaxM3VLVideoProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([MiniMaxM3VLProcessor](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLProcessor) uses [MiniMaxM3VLVideoProcessor](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLVideoProcessor) for processing videos).
+pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [MiniMaxM3VLVideoProcessor](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLVideoProcessor). See [MiniMaxM3VLVideoProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([MiniMaxM3VLProcessor](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLProcessor) uses [MiniMaxM3VLVideoProcessor](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLVideoProcessor) for processing videos).
 
 image_grid_thw (`torch.Tensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
@@ -1061,9 +1063,9 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
 
@@ -1073,39 +1075,39 @@ logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an
 
 mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *optional*) : Dict where keys are supported modalities and values are encoded outputs for that modality. Each encoded output is a tuple that consists of (`pooler_output`, *optional*: `last_hidden_states`, *optional*: `hidden_states`, *optional*: `attentions`) `pooler_output` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of multimmodal features of the encoder merged into text embeddings.
 
-**Returns:** `MiniMaxM3VLCausalLMOutputWithPast` or `tuple(torch.FloatTensor)`
+**Returns:** `MiniMaxM3VLCausalLMOutputWithPast` or `tuple(torch.Tensor)`
 
 A `MiniMaxM3VLCausalLMOutputWithPast` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MiniMaxM3VLConfig](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([MiniMaxM3VLConfig](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3VLConfig)) and inputs.
 
-The [MiniMaxM3SparseForConditionalGeneration](/docs/transformers/v5.22.2/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3SparseForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [MiniMaxM3SparseForConditionalGeneration](/docs/transformers/v5.23.0/en/model_doc/minimax_m3_vl#transformers.MiniMaxM3SparseForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
-- **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
+- **logits** (`torch.Tensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
-- **hidden_states** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple[torch.Tensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple[torch.Tensor]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
   heads.
-- **image_hidden_states** (`torch.FloatTensor`, *optional*) -- A `torch.FloatTensor` of size `(num_image_patches, hidden_size)`.
+- **image_hidden_states** (`torch.Tensor`, *optional*) -- A `torch.Tensor` of size `(num_image_patches, hidden_size)`.
   image_hidden_states of the model produced by the vision encoder and after projecting the last hidden state.
-- **video_hidden_states** (`torch.FloatTensor`, *optional*) -- A `torch.FloatTensor` of size `(num_video_patches, hidden_size)`.
+- **video_hidden_states** (`torch.Tensor`, *optional*) -- A `torch.Tensor` of size `(num_video_patches, hidden_size)`.
   video_hidden_states of the model produced by the vision encoder and after projecting the last hidden state.
-- **aux_loss** (`torch.FloatTensor`, *optional*, returned when `output_router_logits=True` is passed) -- Load-balancing auxiliary loss for the sparse modules.
-- **router_logits** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_router_logits=True` is passed) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, sequence_length, num_experts)`.
+- **aux_loss** (`torch.Tensor`, *optional*, returned when `output_router_logits=True` is passed) -- Load-balancing auxiliary loss for the sparse modules.
+- **router_logits** (`tuple(torch.Tensor)`, *optional*, returned when `output_router_logits=True` is passed) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, sequence_length, num_experts)`.
 
 Example:
 
@@ -1132,4 +1134,4 @@ Example:
 ```
 
 ### DiffLlama
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/diffllama.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/diffllama.md

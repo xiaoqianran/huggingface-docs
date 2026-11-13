@@ -10,7 +10,7 @@
 kernels.use_kernel_forward_from_hub(layer_name: str, condition: Callable[['nn.Module'], bool] | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L363)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L400)
 
 **Parameters:**
 
@@ -86,7 +86,7 @@ class LayerUsingIdentity(nn.Module):
 kernels.use_kernel_func_from_hub(func_name: str)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L208)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L231)
 
 **Parameters:**
 
@@ -145,7 +145,7 @@ model = MyModel()
 kernels.use_kernelized_func(*args: Callable)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L493)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L530)
 
 **Parameters:**
 
@@ -201,7 +201,7 @@ model = LayerUsingIdentity()
 kernels.replace_kernel_forward_from_hub(layer_name: str, condition: Callable[['nn.Module'], bool] | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L331)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L368)
 
 **Parameters:**
 
@@ -714,10 +714,10 @@ A kernelized function and the repository that its kernel was retrieved from.
 #### kernels.FuncRepository[[kernels.FuncRepository]]
 
 ```python
-kernels.FuncRepository(repo_id: str, func_name: str, revision: str | None = None, version: int | None = None, trust_remote_code: bool | list[str] = False)
+kernels.FuncRepository(repo_id: str, func_name: str, revision: str | None = None, version: int | None = None, trust_remote_code: bool | list[str] = False, check_arch: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L40)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L47)
 
 **Parameters:**
 
@@ -728,6 +728,8 @@ func_name (`str`) : The name of the function within the kernel repository.
 revision (`str`, *optional*) : The specific revision (branch, tag, or commit) to download. Cannot be used together with `version`.
 
 version (`int`, *optional*) : The kernel version to download. Cannot be used together with `revision`. Either `version` or `revision` must be specified.
+
+check_arch (`bool`, *optional*, defaults to `True`) : Whether to check that the kernel build supports the architecture of the current device. Set to `False` for kernels whose declared architectures are incomplete (e.g. when they have a Triton fallback).
 
 Repository and name of a function for kernel mapping.
 
@@ -759,10 +761,10 @@ layer_repo_versioned = FuncRepository(
 #### kernels.LayerRepository[[kernels.LayerRepository]]
 
 ```python
-kernels.LayerRepository(repo_id: str, layer_name: str, revision: str | None = None, version: int | None = None, trust_remote_code: bool | list[str] = False, user_agent: str | dict | None = None)
+kernels.LayerRepository(repo_id: str, layer_name: str, revision: str | None = None, version: int | None = None, trust_remote_code: bool | list[str] = False, user_agent: str | dict | None = None, check_arch: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L72)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L79)
 
 **Parameters:**
 
@@ -777,6 +779,8 @@ version (`int`, *optional*) : The kernel version to download. Cannot be used tog
 trust_remote_code (`bool | list[str]`, *optional*, defaults to `False`) : Whether to allow loading kernels from untrusted organisations. When `False`, only kernels from trusted organisations are allowed. When `True`, all repositories are allowed. A list of repository IDs allows only those repositories in addition to repositories from trusted organisations.
 
 user_agent (`Union[str, dict]`, *optional*) : Optional application metadata to include in the user-agent for Hub requests.
+
+check_arch (`bool`, *optional*, defaults to `True`) : Whether to check that the kernel build supports the architecture of the current device. Set to `False` for kernels whose declared architectures are incomplete (e.g. when they have a Triton fallback).
 
 Repository and name of a layer for kernel mapping.
 
@@ -797,16 +801,18 @@ layer_repo = LayerRepository(
 #### kernels.LocalFuncRepository[[kernels.LocalFuncRepository]]
 
 ```python
-kernels.LocalFuncRepository(repo_path: Path, func_name: str)
+kernels.LocalFuncRepository(repo_path: Path, func_name: str, check_arch: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L148)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L164)
 
 **Parameters:**
 
 repo_path (`Path`) : The local repository containing the layer.
 
 func_name (`str`) : The name of the function within the kernel repository.
+
+check_arch (`bool`, *optional*, defaults to `True`) : Whether to check that the kernel build supports the architecture of the current device. Set to `False` for kernels whose declared architectures are incomplete (e.g. when they have a Triton fallback).
 
 Repository and function name from a local directory for kernel mapping.
 
@@ -832,16 +838,18 @@ layer_repo = LocalFuncRepository(
 #### kernels.LocalLayerRepository[[kernels.LocalLayerRepository]]
 
 ```python
-kernels.LocalLayerRepository(repo_path: Path, layer_name: str)
+kernels.LocalLayerRepository(repo_path: Path, layer_name: str, check_arch: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L174)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L190)
 
 **Parameters:**
 
 repo_path (`Path`) : The local repository containing the layer.
 
 layer_name (`str`) : The name of the layer within the kernel repository.
+
+check_arch (`bool`, *optional*, defaults to `True`) : Whether to check that the kernel build supports the architecture of the current device. Set to `False` for kernels whose declared architectures are incomplete (e.g. when they have a Triton fallback).
 
 Repository from a local directory for kernel mapping.
 
@@ -863,10 +871,10 @@ layer_repo = LocalLayerRepository(
 #### kernels.LockedFuncRepository[[kernels.LockedFuncRepository]]
 
 ```python
-kernels.LockedFuncRepository(repo_id: str, lockfile: pathlib.Path | None = None, func_name: str, trust_remote_code: bool | list[str] = False)
+kernels.LockedFuncRepository(repo_id: str, lockfile: pathlib.Path | None = None, func_name: str, trust_remote_code: bool | list[str] = False, check_arch: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L266)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L289)
 
 **Parameters:**
 
@@ -877,6 +885,8 @@ lockfile (`Path`, *optional*) : Path to the lockfile. If not provided, the lockf
 func_name (`str`) : The name of the function within the kernel repository.
 
 trust_remote_code (`bool`, *optional*, defaults to `False`) : Whether to allow loading kernels from untrusted organisations.
+
+check_arch (`bool`, *optional*, defaults to `True`) : Whether to check that the kernel build supports the architecture of the current device. Set to `False` for kernels whose declared architectures are incomplete (e.g. when they have a Triton fallback).
 
 Repository and name of a function.
 
@@ -892,10 +902,10 @@ are locked inside a project.
 #### kernels.LockedLayerRepository[[kernels.LockedLayerRepository]]
 
 ```python
-kernels.LockedLayerRepository(repo_id: str, lockfile: Path | None = None, layer_name: str, trust_remote_code: bool | list[str] = False)
+kernels.LockedLayerRepository(repo_id: str, lockfile: Path | None = None, layer_name: str, trust_remote_code: bool | list[str] = False, check_arch: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L225)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L248)
 
 Repository and name of a layer.
 

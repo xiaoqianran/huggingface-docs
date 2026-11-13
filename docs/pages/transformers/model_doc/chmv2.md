@@ -42,7 +42,7 @@ depth = processor.post_process_depth_estimation(
 transformers.CHMv2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, patch_size: int = 16, initializer_range: float = 0.02, reassemble_factors: list[float | int] | None = None, post_process_channels: list[int] | None = None, fusion_hidden_size: int = 256, head_hidden_size: int = 128, number_output_channels: int = 256, readout_type: str = 'project', min_depth: float = 0.001, max_depth: float = 96.0, bins_strategy: typing.Literal['linear', 'log', 'chmv2_mixlog'] = 'chmv2_mixlog', norm_strategy: typing.Literal['linear', 'softmax', 'sigmoid', 'chmv2_mixlog'] = 'chmv2_mixlog')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/chmv2/configuration_chmv2.py#L32)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/chmv2/configuration_chmv2.py#L32)
 
 **Parameters:**
 
@@ -76,8 +76,8 @@ This is the configuration class to store the configuration of a Chmv2Model. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/dinov3-vitl16-chmv2-dpt-head](https://huggingface.co/facebook/dinov3-vitl16-chmv2-dpt-head)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ```python
 >>> from transformers import CHMv2Config, CHMv2ForDepthEstimation
@@ -95,7 +95,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes
 transformers.CHMv2ImageProcessor(**kwargs: *<class 'transformers.models.chmv2.image_processing_chmv2.CHMv2ImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/chmv2/image_processing_chmv2.py#L99)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/chmv2/image_processing_chmv2.py#L99)
 
 **Parameters:**
 
@@ -155,7 +155,7 @@ Constructs a CHMv2ImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], segmentation_maps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: *<class 'transformers.models.chmv2.image_processing_chmv2.CHMv2ImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/chmv2/image_processing_chmv2.py#L125)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/chmv2/image_processing_chmv2.py#L125)
 
 **Parameters:**
 
@@ -223,7 +223,7 @@ do_reduce_labels (`bool`, *kwargs*, *optional*, defaults to `self.do_reduce_labe
 post_process_depth_estimation(outputs: DepthEstimatorOutput, target_sizes: transformers.utils.generic.TensorType | list[tuple[int, int]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/chmv2/image_processing_chmv2.py#L385)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/chmv2/image_processing_chmv2.py#L385)
 
 **Parameters:**
 
@@ -247,16 +247,16 @@ Only supports PyTorch.
 transformers.CHMv2ForDepthEstimation(config: CHMv2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/chmv2/modeling_chmv2.py#L384)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/chmv2/modeling_chmv2.py#L384)
 
 **Parameters:**
 
-config ([CHMv2Config](/docs/transformers/v5.22.2/en/model_doc/chmv2#transformers.CHMv2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([CHMv2Config](/docs/transformers/v5.23.0/en/model_doc/chmv2#transformers.CHMv2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 CHMv2 Model with a depth estimation head on top (consisting of convolutional layers) e.g. for canopy height
 estimation.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -267,36 +267,36 @@ and behavior.
 #### forward[[transformers.CHMv2ForDepthEstimation.forward]]
 
 ```python
-forward(pixel_values: FloatTensor, labels: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(pixel_values: Tensor, labels: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/chmv2/modeling_chmv2.py#L397)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/chmv2/modeling_chmv2.py#L397)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [CHMv2ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/chmv2#transformers.CHMv2ImageProcessor). See [CHMv2ImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [CHMv2ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/chmv2#transformers.CHMv2ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [CHMv2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/chmv2#transformers.CHMv2ImageProcessor). See [CHMv2ImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [CHMv2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/chmv2#transformers.CHMv2ImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Ground truth depth estimation maps for computing the loss.
 
-**Returns:** [DepthEstimatorOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [DepthEstimatorOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or `tuple(torch.Tensor)`
 
-A [DepthEstimatorOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CHMv2Config](/docs/transformers/v5.22.2/en/model_doc/chmv2#transformers.CHMv2Config)) and inputs.
+A [DepthEstimatorOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([CHMv2Config](/docs/transformers/v5.23.0/en/model_doc/chmv2#transformers.CHMv2Config)) and inputs.
 
-The [CHMv2ForDepthEstimation](/docs/transformers/v5.22.2/en/model_doc/chmv2#transformers.CHMv2ForDepthEstimation) forward method, overrides the `__call__` special method.
+The [CHMv2ForDepthEstimation](/docs/transformers/v5.23.0/en/model_doc/chmv2#transformers.CHMv2ForDepthEstimation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Classification (or regression if config.num_labels==1) loss.
-- **predicted_depth** (`torch.FloatTensor` of shape `(batch_size, height, width)`) -- Predicted depth for each pixel.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Classification (or regression if config.num_labels==1) loss.
+- **predicted_depth** (`torch.Tensor` of shape `(batch_size, height, width)`) -- Predicted depth for each pixel.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, num_channels, height, width)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, patch_size,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, patch_size,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -335,4 +335,4 @@ Example:
 ```
 
 ### MaskFormer
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/maskformer.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/maskformer.md

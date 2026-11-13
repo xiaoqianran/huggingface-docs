@@ -10,22 +10,22 @@ For an overview of the chat templates bundled with TRL and the rationale behind 
 trl.clone_chat_template(model: PreTrainedModel, tokenizer: PreTrainedTokenizerBase, source_tokenizer_path: str, resize_to_multiple_of: int | None = 64)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.17.1/trl/chat_template_utils.py#L54)
+[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/chat_template_utils.py#L54)
 
 **Parameters:**
 
-model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.22.1/en/main_classes/model#transformers.PreTrainedModel)) : Model to update.
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel)) : Model to update.
 
-tokenizer ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.22.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase)) : Tokenizer to update.
+tokenizer ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase)) : Tokenizer to update.
 
 source_tokenizer_path (`str`) : Path or identifier of the pretrained tokenizer to clone from.
 
 resize_to_multiple_of (`int` or `None`, *optional*, defaults to `64`) : The embedding layer will be resized to the new vocabulary size. If this is not `None`, it will round up the new vocabulary size to the nearest multiple of this value.
 
-**Returns:** model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.22.1/en/main_classes/model#transformers.PreTrainedModel))
+**Returns:** model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel))
 
 Updated model with resized token embeddings and EOS token configured.
-tokenizer ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.22.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase)):
+tokenizer ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase)):
 Updated tokenizer with the chat template and special tokens applied.
 added_tokens (`list[int]`):
 List of tokens that were added to the tokenizer from the source tokenizer.
@@ -58,7 +58,7 @@ Example:
 trl.chat_template_utils.is_chat_template_prefix_preserving(processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | transformers.processing_utils.ProcessorMixin)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.17.1/trl/chat_template_utils.py#L924)
+[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/chat_template_utils.py#L1038)
 
 **Parameters:**
 
@@ -79,14 +79,16 @@ tokenizations with and without tool messages appended.
 #### trl.get_training_chat_template[[trl.get_training_chat_template]]
 
 ```python
-trl.get_training_chat_template(processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | transformers.processing_utils.ProcessorMixin | None = None, tokenizer: transformers.tokenization_utils_base.PreTrainedTokenizerBase | None = None)
+trl.get_training_chat_template(processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | transformers.processing_utils.ProcessorMixin | None = None, tokenizer: transformers.tokenization_utils_base.PreTrainedTokenizerBase | None = None, require_prefix_preservation: bool = True)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.17.1/trl/chat_template_utils.py#L1152)
+[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/chat_template_utils.py#L1281)
 
 **Parameters:**
 
 processing_class (`PreTrainedTokenizerBase` or `ProcessorMixin`) : Tokenizer or processor instance to check.
+
+require_prefix_preservation (`bool`, *optional*, defaults to `True`) : Whether a template without a stored training template must also be prefix-preserving to be returned as is. Assistant-only loss only needs the markers, so `SFTTrainer` sets it to `False`.
 
 **Returns:** `str` or `None`
 
@@ -95,8 +97,9 @@ Training-compatible chat template, or `None` if no patching is needed.
 Get a training-compatible chat template, if needed.
 
 Returns a patched chat template that is prefix-preserving and includes `{%% generation %%}` / `{%% endgeneration
-%%}` markers for assistant-only loss masking. Returns `None` if the template already satisfies both requirements.
-The supported templates are listed in [Training templates](chat_templates#training-templates).
+%%}` markers for assistant-only loss masking. A template with a stored training template always gets it, even when
+it has markers of its own. Returns `None` if any other template already satisfies the requirements. The supported
+templates are listed in [Training templates](chat_templates#training-templates).
 
 Example:
 
@@ -134,4 +137,4 @@ Example:
 ```
 
 ### Chat Templates
-https://huggingface.co/docs/trl/v1.17.1/chat_templates.md
+https://huggingface.co/docs/trl/v1.18.0/chat_templates.md

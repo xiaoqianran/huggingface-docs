@@ -16,7 +16,7 @@ This model was contributed by [namctin](https://huggingface.co/namctin), [gsinth
 
 ## Usage tips
 
-The model can also be used for time series classification and time series regression. See the respective [PatchTSTForClassification](/docs/transformers/v5.22.2/en/model_doc/patchtst#transformers.PatchTSTForClassification) and [PatchTSTForRegression](/docs/transformers/v5.22.2/en/model_doc/patchtst#transformers.PatchTSTForRegression) classes.
+The model can also be used for time series classification and time series regression. See the respective [PatchTSTForClassification](/docs/transformers/v5.23.0/en/model_doc/patchtst#transformers.PatchTSTForClassification) and [PatchTSTForRegression](/docs/transformers/v5.23.0/en/model_doc/patchtst#transformers.PatchTSTForRegression) classes.
 
 ## Resources
 
@@ -30,7 +30,7 @@ The model can also be used for time series classification and time series regres
 transformers.PatchTSTConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, num_input_channels: int = 1, context_length: int = 32, distribution_output: str = 'student_t', loss: str | None = 'mse', patch_length: int = 1, patch_stride: int = 1, num_hidden_layers: int = 3, d_model: int = 128, num_attention_heads: int = 4, share_embedding: bool = True, channel_attention: bool = False, ffn_dim: int = 512, norm_type: str = 'batchnorm', norm_eps: float = 1e-05, attention_dropout: float | int = 0.0, positional_dropout: float | int = 0.0, path_dropout: float | int = 0.0, ff_dropout: float | int = 0.0, bias: bool = True, activation_function: str = 'gelu', pre_norm: bool = True, positional_encoding_type: str = 'sincos', use_cls_token: bool = False, init_std: float = 0.02, share_projection: bool = True, scaling: str | bool | None = 'std', do_mask_input: bool | None = None, mask_type: str = 'random', random_mask_ratio: float = 0.5, num_forecast_mask_patches: list[int] | tuple[int, ...] | int | None = (2,), channel_consistent_masking: bool | None = False, unmasked_channel_indices: list[int] | None = None, mask_value: int = 0, pooling_type: str | None = 'mean', head_dropout: float | int = 0.0, prediction_length: int = 24, num_targets: int = 1, output_range: list | None = None, num_parallel_samples: int = 100)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtst/configuration_patchtst.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtst/configuration_patchtst.py#L24)
 
 **Parameters:**
 
@@ -116,8 +116,8 @@ This is the configuration class to store the configuration of a PatchTSTModel. I
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [ibm-granite/granite-timeseries-patchtst](https://huggingface.co/ibm-granite/granite-timeseries-patchtst)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ```python
 >>> from transformers import PatchTSTConfig, PatchTSTModel
@@ -140,15 +140,15 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes
 transformers.PatchTSTModel(config: PatchTSTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtst/modeling_patchtst.py#L1066)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtst/modeling_patchtst.py#L1066)
 
 **Parameters:**
 
-config ([PatchTSTConfig](/docs/transformers/v5.22.2/en/model_doc/patchtst#transformers.PatchTSTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PatchTSTConfig](/docs/transformers/v5.23.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Patchtst Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -162,7 +162,7 @@ and behavior.
 forward(past_values: Tensor, past_observed_mask: typing.Optional[torch.Tensor] = None, future_values: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, output_attentions: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtst/modeling_patchtst.py#L1085)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtst/modeling_patchtst.py#L1085)
 
 **Parameters:**
 
@@ -213,15 +213,15 @@ Examples:
 transformers.PatchTSTForPrediction(config: PatchTSTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtst/modeling_patchtst.py#L1560)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtst/modeling_patchtst.py#L1560)
 
 **Parameters:**
 
-config ([PatchTSTConfig](/docs/transformers/v5.22.2/en/model_doc/patchtst#transformers.PatchTSTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PatchTSTConfig](/docs/transformers/v5.23.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The PatchTST for prediction model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -235,7 +235,7 @@ and behavior.
 forward(past_values: Tensor, past_observed_mask: typing.Optional[torch.Tensor] = None, future_values: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, output_attentions: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtst/modeling_patchtst.py#L1590)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtst/modeling_patchtst.py#L1590)
 
 **Parameters:**
 
@@ -293,15 +293,15 @@ Examples:
 transformers.PatchTSTForClassification(config: PatchTSTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtst/modeling_patchtst.py#L1366)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtst/modeling_patchtst.py#L1366)
 
 **Parameters:**
 
-config ([PatchTSTConfig](/docs/transformers/v5.22.2/en/model_doc/patchtst#transformers.PatchTSTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PatchTSTConfig](/docs/transformers/v5.23.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The PatchTST for classification model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -315,7 +315,7 @@ and behavior.
 forward(past_values: Tensor, target_values: typing.Optional[torch.Tensor] = None, past_observed_mask: bool | None = None, output_hidden_states: bool | None = None, output_attentions: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtst/modeling_patchtst.py#L1381)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtst/modeling_patchtst.py#L1381)
 
 **Parameters:**
 
@@ -329,28 +329,28 @@ output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden 
 
 output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** `PatchTSTForClassificationOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `PatchTSTForClassificationOutput` or `tuple(torch.Tensor)`
 
 A `PatchTSTForClassificationOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PatchTSTConfig](/docs/transformers/v5.22.2/en/model_doc/patchtst#transformers.PatchTSTConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([PatchTSTConfig](/docs/transformers/v5.23.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) and inputs.
 
-The [PatchTSTForClassification](/docs/transformers/v5.22.2/en/model_doc/patchtst#transformers.PatchTSTForClassification) forward method, overrides the `__call__` special method.
+The [PatchTSTForClassification](/docs/transformers/v5.23.0/en/model_doc/patchtst#transformers.PatchTSTForClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`*optional*`, returned when `labels` is provided, `torch.FloatTensor` of shape `(1,)`) -- Total loss as the sum of the masked language modeling loss and the next sequence prediction
+- **loss** (`*optional*`, returned when `labels` is provided, `torch.Tensor` of shape `(1,)`) -- Total loss as the sum of the masked language modeling loss and the next sequence prediction
   (classification) loss.
-- **prediction_logits** (`torch.FloatTensor` of shape `(batch_size, num_targets)`) -- Prediction scores of the PatchTST modeling head (scores before SoftMax).
-- **hidden_states** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **prediction_logits** (`torch.Tensor` of shape `(batch_size, num_targets)`) -- Prediction scores of the PatchTST modeling head (scores before SoftMax).
+- **hidden_states** (`tuple[torch.Tensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple[torch.Tensor]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -386,15 +386,15 @@ Examples:
 transformers.PatchTSTForPretraining(config: PatchTSTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtst/modeling_patchtst.py#L1212)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtst/modeling_patchtst.py#L1212)
 
 **Parameters:**
 
-config ([PatchTSTConfig](/docs/transformers/v5.22.2/en/model_doc/patchtst#transformers.PatchTSTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PatchTSTConfig](/docs/transformers/v5.23.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The PatchTST for pretrain model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -408,7 +408,7 @@ and behavior.
 forward(past_values: Tensor, past_observed_mask: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, output_attentions: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtst/modeling_patchtst.py#L1223)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtst/modeling_patchtst.py#L1223)
 
 **Parameters:**
 
@@ -476,15 +476,15 @@ Examples:
 transformers.PatchTSTForRegression(config: PatchTSTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtst/modeling_patchtst.py#L1809)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtst/modeling_patchtst.py#L1809)
 
 **Parameters:**
 
-config ([PatchTSTConfig](/docs/transformers/v5.22.2/en/model_doc/patchtst#transformers.PatchTSTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PatchTSTConfig](/docs/transformers/v5.23.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The PatchTST for regression model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -498,7 +498,7 @@ and behavior.
 forward(past_values: Tensor, target_values: typing.Optional[torch.Tensor] = None, past_observed_mask: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, output_attentions: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtst/modeling_patchtst.py#L1836)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtst/modeling_patchtst.py#L1836)
 
 **Parameters:**
 
@@ -512,27 +512,27 @@ output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden 
 
 output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** `PatchTSTForRegressionOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `PatchTSTForRegressionOutput` or `tuple(torch.Tensor)`
 
 A `PatchTSTForRegressionOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PatchTSTConfig](/docs/transformers/v5.22.2/en/model_doc/patchtst#transformers.PatchTSTConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([PatchTSTConfig](/docs/transformers/v5.23.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) and inputs.
 
-The [PatchTSTForRegression](/docs/transformers/v5.22.2/en/model_doc/patchtst#transformers.PatchTSTForRegression) forward method, overrides the `__call__` special method.
+The [PatchTSTForRegression](/docs/transformers/v5.23.0/en/model_doc/patchtst#transformers.PatchTSTForRegression) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`*optional*`, returned when `labels` is provided, `torch.FloatTensor` of shape `(1,)`) -- MSE loss.
-- **regression_outputs** (`torch.FloatTensor` of shape `(batch_size, num_targets)`) -- Regression outputs of the time series modeling heads.
-- **hidden_states** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **loss** (`*optional*`, returned when `labels` is provided, `torch.Tensor` of shape `(1,)`) -- MSE loss.
+- **regression_outputs** (`torch.Tensor` of shape `(batch_size, num_targets)`) -- Regression outputs of the time series modeling heads.
+- **hidden_states** (`tuple[torch.Tensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple[torch.Tensor]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -553,4 +553,4 @@ Examples:
 ```
 
 ### ALBERT
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/albert.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/albert.md

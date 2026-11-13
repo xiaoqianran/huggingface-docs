@@ -8,7 +8,7 @@ You can find all the original HGNet V2 models under the [USTC](https://huggingfa
 > This model was contributed by [VladOS95-cyber](https://github.com/VladOS95-cyber).
 > Click on the HGNet V2 models in the right sidebar for more examples of how to apply HGNet V2 to different computer vision tasks.
 
-The example below demonstrates how to classify an image with [Pipeline](/docs/transformers/v5.22.2/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to classify an image with [Pipeline](/docs/transformers/v5.23.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -49,10 +49,10 @@ print(f"The predicted class label is: {predicted_class_label}")
 #### transformers.HGNetV2Config[[transformers.HGNetV2Config]]
 
 ```python
-transformers.HGNetV2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, num_channels: int = 3, embedding_size: int = 64, depths: list[int] | tuple[int, ...] = (3, 4, 6, 3), hidden_sizes: list[int] | tuple[int, ...] = (256, 512, 1024, 2048), hidden_act: str = 'relu', _out_features: list[str] | None = None, _out_indices: list[int] | None = None, stem_channels: list[int] | tuple[int, ...] = (3, 32, 48), stem_strides: Sequence = (2, 1, 1, 2, 1), stage_in_channels: list[int] | tuple[int, ...] = (48, 128, 512, 1024), stage_mid_channels: list[int] | tuple[int, ...] = (48, 96, 192, 384), stage_out_channels: list[int] | tuple[int, ...] = (128, 512, 1024, 2048), stage_num_blocks: list[int] | tuple[int, ...] = (1, 1, 3, 1), stage_downsample: list[bool] | tuple[bool, ...] = (False, True, True, True), stage_downsample_strides: Sequence = (2, 2, 2, 2), stage_light_block: list[bool] | tuple[bool, ...] = (False, False, True, True), stage_kernel_size: list[int] | tuple[int, ...] = (3, 3, 5, 5), stage_numb_of_layers: list[int] | tuple[int, ...] = (6, 6, 6, 6), use_learnable_affine_block: bool = False, initializer_range: float = 0.02)
+transformers.HGNetV2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, num_channels: int = 3, embedding_size: int = 64, depths: list[int] | tuple[int, ...] = (3, 4, 6, 3), hidden_sizes: list[int] | tuple[int, ...] = (256, 512, 1024, 2048), hidden_act: str = 'relu', _out_features: list[str] | None = None, _out_indices: list[int] | None = None, stem_channels: list[int] | tuple[int, ...] = (3, 32, 48), stem_strides: collections.abc.Sequence[int | list[int] | tuple[int, ...]] = (2, 1, 1, 2, 1), stage_in_channels: list[int] | tuple[int, ...] = (48, 128, 512, 1024), stage_mid_channels: list[int] | tuple[int, ...] = (48, 96, 192, 384), stage_out_channels: list[int] | tuple[int, ...] = (128, 512, 1024, 2048), stage_num_blocks: list[int] | tuple[int, ...] = (1, 1, 3, 1), stage_downsample: list[bool] | tuple[bool, ...] = (False, True, True, True), stage_downsample_strides: collections.abc.Sequence[int | list[int] | tuple[int, ...]] = (2, 2, 2, 2), stage_light_block: list[bool] | tuple[bool, ...] = (False, False, True, True), stage_kernel_size: list[int] | tuple[int, ...] = (3, 3, 5, 5), stage_numb_of_layers: list[int] | tuple[int, ...] = (6, 6, 6, 6), use_learnable_affine_block: bool = False, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/hgnet_v2/configuration_hgnet_v2.py#L35)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/hgnet_v2/configuration_hgnet_v2.py#L35)
 
 **Parameters:**
 
@@ -96,8 +96,8 @@ This is the configuration class to store the configuration of a HGNetV2Backbone.
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [ustc-community/dfine_x_coco](https://huggingface.co/ustc-community/dfine_x_coco)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## HGNetV2Backbone[[transformers.HGNetV2Backbone]]
 
@@ -107,7 +107,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes
 transformers.HGNetV2Backbone(config: HGNetV2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/hgnet_v2/modeling_hgnet_v2.py#L343)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/hgnet_v2/modeling_hgnet_v2.py#L343)
 
 #### forward[[transformers.HGNetV2Backbone.forward]]
 
@@ -115,7 +115,7 @@ transformers.HGNetV2Backbone(config: HGNetV2Config)
 forward(pixel_values: Tensor, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/hgnet_v2/modeling_hgnet_v2.py#L356)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/hgnet_v2/modeling_hgnet_v2.py#L356)
 
 **Parameters:**
 
@@ -123,27 +123,27 @@ pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, im
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** `BackboneOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `BackboneOutput` or `tuple(torch.Tensor)`
 
 A `BackboneOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([HGNetV2Config](/docs/transformers/v5.22.2/en/model_doc/hgnet_v2#transformers.HGNetV2Config)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([HGNetV2Config](/docs/transformers/v5.23.0/en/model_doc/hgnet_v2#transformers.HGNetV2Config)) and inputs.
 
-The [HGNetV2Backbone](/docs/transformers/v5.22.2/en/model_doc/hgnet_v2#transformers.HGNetV2Backbone) forward method, overrides the `__call__` special method.
+The [HGNetV2Backbone](/docs/transformers/v5.23.0/en/model_doc/hgnet_v2#transformers.HGNetV2Backbone) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **feature_maps** (`tuple(torch.FloatTensor)` of shape `(batch_size, num_channels, height, width)`) -- Feature maps of the stages.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings + one for the output of each layer) of
+- **feature_maps** (`tuple(torch.Tensor)` of shape `(batch_size, num_channels, height, width)`) -- Feature maps of the stages.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings + one for the output of each layer) of
   shape `(batch_size, sequence_length, hidden_size)` or `(batch_size, num_channels, height, width)`,
   depending on the backbone.
 
   Hidden-states of the model at the output of each stage plus the initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`. Only applicable if the backbone uses attention.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -176,16 +176,16 @@ Examples:
 transformers.HGNetV2ForImageClassification(config: HGNetV2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/hgnet_v2/modeling_hgnet_v2.py#L420)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/hgnet_v2/modeling_hgnet_v2.py#L420)
 
 **Parameters:**
 
-config ([HGNetV2Config](/docs/transformers/v5.22.2/en/model_doc/hgnet_v2#transformers.HGNetV2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([HGNetV2Config](/docs/transformers/v5.23.0/en/model_doc/hgnet_v2#transformers.HGNetV2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 HGNetV2 Model with an image classification head on top (a linear layer on top of the pooled features), e.g. for
 ImageNet.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -196,36 +196,36 @@ and behavior.
 #### forward[[transformers.HGNetV2ForImageClassification.forward]]
 
 ```python
-forward(pixel_values: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+forward(pixel_values: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/hgnet_v2/modeling_hgnet_v2.py#L436)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/hgnet_v2/modeling_hgnet_v2.py#L436)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or `tuple(torch.FloatTensor)`
+**Returns:** [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or `tuple(torch.Tensor)`
 
-A [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([HGNetV2Config](/docs/transformers/v5.22.2/en/model_doc/hgnet_v2#transformers.HGNetV2Config)) and inputs.
+A [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([HGNetV2Config](/docs/transformers/v5.23.0/en/model_doc/hgnet_v2#transformers.HGNetV2Config)) and inputs.
 
-The [HGNetV2ForImageClassification](/docs/transformers/v5.22.2/en/model_doc/hgnet_v2#transformers.HGNetV2ForImageClassification) forward method, overrides the `__call__` special method.
+The [HGNetV2ForImageClassification](/docs/transformers/v5.23.0/en/model_doc/hgnet_v2#transformers.HGNetV2ForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Classification (or regression if config.num_labels==1) loss.
-- **logits** (`torch.FloatTensor` of shape `(batch_size, config.num_labels)`) -- Classification (or regression if config.num_labels==1) scores (before SoftMax).
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Classification (or regression if config.num_labels==1) loss.
+- **logits** (`torch.Tensor` of shape `(batch_size, config.num_labels)`) -- Classification (or regression if config.num_labels==1) scores (before SoftMax).
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each stage) of shape `(batch_size, num_channels, height, width)`. Hidden-states (also
   called feature maps) of the model at the output of each stage.
 
@@ -252,4 +252,4 @@ torch.Size([1, 2])
 ```
 
 ### X-CLIP
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/xclip.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/xclip.md

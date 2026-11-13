@@ -60,5 +60,5 @@ openai/gpt-oss-20b               model            13.8G
 
 Learn more about MXFP4 quantization and how blockwise scaling works in this [blog post](https://huggingface.co/blog/faster-transformers#mxfp4-quantization).
 
-### Text classification
-https://huggingface.co/docs/transformers/v5.22.2/tasks/sequence_classification.md
+### Fine-tune a model
+https://huggingface.co/docs/transformers/v5.23.0/quantization/finetune.md

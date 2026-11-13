@@ -11,9 +11,7 @@ The example in this guide trains on exactly one such sequence per step, on a sin
 You need one node with 8 H100s (or better), and `transformers>=5.17.0`: the example uses gradient checkpointing's `offload`, added in that release.
 
 ```sh
-accelerate launch \
-    --config_file examples/sft_qwen3_8b_1m_context/context_parallel_8gpu.yaml \
-    examples/sft_qwen3_8b_1m_context/sft_qwen3_8b_1m_context.py
+torchrun --nproc_per_node 8 examples/sft_qwen3_8b_1m_context/sft_qwen3_8b_1m_context.py
 ```
 
 The script fine-tunes Qwen3-8B on books from [PG-19](https://huggingface.co/datasets/emozilla/pg19), joined end to end until each one is about a million tokens long. After ten minutes or so of loading and tokenizing, the first step lands:
@@ -55,7 +53,7 @@ The new profile looks like this.
 
 The peak is gone.
 
-How to enable this in TRL? There is nothing to do: the chunked loss is the default. If you want to opt in to the plain loss, set `loss_type="nll"` in the [SFTConfig](/docs/trl/v1.17.1/en/sft_trainer#trl.SFTConfig).
+How to enable this in TRL? There is nothing to do: the chunked loss is the default. If you want to opt in to the plain loss, set `loss_type="nll"` in the [SFTConfig](/docs/trl/v1.18.0/en/sft_trainer#trl.SFTConfig).
 
 How far does this let us push the sequence? In memory terms, this one change alone takes us from 32k tokens to 160k.
 
@@ -160,23 +158,25 @@ There are two ways to run that exchange, context parallelism (CP) and Ulysses se
 
 **On FSDP2, use CP.** Each GPU keeps its own slice, and the other slices come to it in turn, so every token eventually sees every earlier token.
 
-```yaml
-parallelism_config:
-  parallelism_config_cp_size: 4
+```python
+from accelerate import ParallelismConfig
+
+training_args = SFTConfig(..., fsdp=True, parallelism_config=ParallelismConfig(cp_size=4))
 ```
 
 **On DeepSpeed, use SP.** Instead of moving slices around, it reshuffles the batch just before attention so each GPU holds every token but only a quarter of the attention heads, then shuffles back afterwards.
 
-```yaml
-parallelism_config:
-  parallelism_config_sp_size: 4
+```python
+training_args = SFTConfig(
+    ..., deepspeed="examples/deepspeed_configs/zero3.json", parallelism_config=ParallelismConfig(sp_size=4, sp_backend="deepspeed")
+)
 ```
 
 The two knobs do not cross over today: `cp_size` requires FSDP2 and `sp_size` only runs under DeepSpeed. Pick the backend and the method follows. The rest of this section follows the FSDP2 path, which is what the example at the top of this guide uses: its GPUs are not independent workers on separate batches, they are one group sharing a single sequence.
 
 Two things change once it is on:
 
-1. Sequences have to be padded to a multiple of `cp_size * 2`, so `pad_to_multiple_of=8` (in the [SFTConfig](/docs/trl/v1.17.1/en/sft_trainer#trl.SFTConfig)) for four GPUs.
+1. Sequences have to be padded to a multiple of `cp_size * 2`, so `pad_to_multiple_of=8` (in the [SFTConfig](/docs/trl/v1.18.0/en/sft_trainer#trl.SFTConfig)) for four GPUs.
 2. The causal-SDPA requirement rules out packing, which relies on a block-diagonal mask to keep documents from reading each other, and TRL raises if you ask for both. It also rules out models whose layers use sliding-window or chunked attention, which accelerate refuses: OpenAI GPT-OSS, Gemma 3 and 4, Qwen3.5 and later. Qwen3 and Qwen3-MoE are full attention throughout, which is why they are the models here.
 
 Passing the slices around costs less than you might expect. At 131k tokens on one node, a step takes 34.6 s across two GPUs, 17.8 s across four and 9.5 s across eight. Each doubling of the group nearly halves the step time, and going from two to eight recovers 3.7x of a possible 4x.
@@ -195,4 +195,4 @@ One card stops just past 256k. Four of them take the whole million!, landing at 
 - [YaRN](https://huggingface.co/papers/2309.00071), the position rescaling used in the RoPE section.
 
 ### Distillation Trainer
-https://huggingface.co/docs/trl/v1.17.1/distillation_trainer.md
+https://huggingface.co/docs/trl/v1.18.0/distillation_trainer.md

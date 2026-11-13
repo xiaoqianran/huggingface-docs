@@ -2,24 +2,16 @@
 
 A processor combines a tokenizer with one or more modality processors, such as an image processor, video processor, or feature extractor. It exposes a single `__call__` method that routes each input to the right component and merges the outputs into one dictionary.
 
-Some multimodal models interleave text with images, videos, or audio. For these models, [ProcessorMixin](/docs/transformers/v5.22.2/en/main_classes/processors#transformers.ProcessorMixin) can replace placeholder tokens like `<image>`, `<video>`, and `<audio>` with the token pattern expected by the model.
+Some multimodal models interleave text with images, videos, or audio. For these models, [ProcessorMixin](/docs/transformers/v5.23.0/en/main_classes/processors#transformers.ProcessorMixin) can replace placeholder tokens like `<image>`, `<video>`, and `<audio>` with the token pattern expected by the model.
 
 ## Adding a new processor
 
 Define a processor class by creating `src/transformers/models/<model>/processing_<my_model_name>.py` and subclass `ProcessorMixin`. Make sure to define a `TypedDict` object with default values and assign it as `cls.valid_processor_kwargs`
 
 ```python
-from ...processing_utils import ProcessorMixin, ProcessingKwargs, Unpack
-
-class MyModelProcessorKwargs(ProcessingKwargs, total=False):
-    images_kwargs: MyModelImageProcessorKwargs
-    _defaults = {
-        "text_kwargs": {"padding": True},
-        "images_kwargs": {"do_convert_rgb": True},
-    }
+from ...processing_utils import ProcessorMixin
 
 class MyModelProcessor(ProcessorMixin):
-    valid_processor_kwargs = MyModelProcessorKwargs
 
     def __init__(self, image_processor, tokenizer, chat_template=None, **kwargs):
         self.image_token = REDACTED
@@ -65,7 +57,57 @@ def validate_inputs(self, images=None, text=None, videos=None, audio=None, **kwa
 ```
 
 > [!TIP]
-> See [Gemma4Processor](/docs/transformers/v5.22.2/en/model_doc/gemma4#transformers.Gemma4Processor) and [Qwen2VLProcessor](/docs/transformers/v5.22.2/en/model_doc/qwen2_vl#transformers.Qwen2VLProcessor) for reference.
+> See [Gemma4Processor](/docs/transformers/v5.23.0/en/model_doc/gemma4#transformers.Gemma4Processor) and [Qwen2VLProcessor](/docs/transformers/v5.23.0/en/model_doc/qwen2_vl#transformers.Qwen2VLProcessor) for reference.
+
+### Adding custom arguments
+
+There are three ways to add custom arguments to a processor:
+
+| Where to add | Use for | Default value | Configurable at runtime | Example |
+|---|---|---|---|---|
+| `__init__` | Settings saved in the config (model properties) | Typically has a default | No | `image_seq_length` in [Gemma3Processor](/docs/transformers/v5.23.0/en/model_doc/gemma3#transformers.Gemma3Processor) |
+| `__call__` | Inputs only known at runtime | No default or `None` | Yes | `images`, `labels`, `suffix`, etc. |
+| Custom `MyModelProcessingKwargs` class | Settings that can be configured at runtime | Set as processor class attribute | Yes | `use_image_id` in [MiniCPMV4_7Processor](/docs/transformers/v5.23.0/en/model_doc/minicpmv4_7#transformers.MiniCPMV4_7Processor) |
+
+Runtime arguments which can have a default must be added to a custom `MyModelProcessingKwargs` and will be passed as part of `**kwargs` to `__call__`. Defaults for these values can be set as processor class attributes. Defaults for modality-specific processors, for example the tokenizer or image processor, can be defined in the same way. This is usually not needed as modality-specific processors already have defaults defined in their respective classes. Only use this option if the processor must override a modality-specific processor setting. Of course, arguments passed at runtime to `__call__` have always higher priority than any defaults.
+
+```python
+from ...processing_utils import ProcessingKwargs, ProcessorMixin, Unpack
+
+class MyModelProcessorKwargs(ProcessingKwargs, total=False):
+    """
+    use_image_id (`bool`, defaults to `False`):
+        Whether to prepend an image-id tag (``<image_id>N</image_id>``) before
+        each image placeholder.
+    """
+    use_image_id: bool
+
+class MyModelProcessor(ProcessorMixin):
+    valid_processor_kwargs = MyModelProcessorKwargs
+    use_image_id = False
+
+    text_kwargs = {"padding": True}   # default passed to tokenizer
+
+    def __init__(self, image_processor=None, tokenizer=None, chat_template=None, image_seq_length: int = 256, **kwargs):
+        super().__init__(image_processor, tokenizer, chat_template=chat_template, **kwargs)
+        self.image_seq_length = image_seq_length
+
+    @auto_docstring
+    def __call__(
+        self,
+        images: ImageInput | None = None,
+        text: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None,
+        suffix: str | None = None,
+        **kwargs: Unpack[MyModelProcessorKwargs],
+    ):
+        images, text, videos, audio = self.prepare_inputs_layout(images=images, text=text, **kwargs)
+        self.validate_inputs(images=images, text=text, **kwargs)
+
+        merged_kwargs = self._merge_kwargs(tokenizer_init_kwargs=self.tokenizer.init_kwargs, **kwargs)
+
+        merged_kwargs["use_image_id"] # is `False` as default from class attribute is added by _merge_kwargs
+        merged_kwargs["text_kwargs"]["padding"] # is `True`
+```
 
 ## Testing
 
@@ -90,4 +132,4 @@ class MyModelProcessorTest(ProcessorTesterMixin, unittest.TestCase):
 ```
 
 ### torch.compile for inference
-https://huggingface.co/docs/transformers/v5.22.2/perf_torch_compile.md
+https://huggingface.co/docs/transformers/v5.23.0/perf_torch_compile.md

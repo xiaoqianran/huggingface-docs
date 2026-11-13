@@ -20,7 +20,7 @@ The original code can be found [here](https://github.com/google-research/scenic/
 
 OWLv2 is, just like its predecessor [OWL-ViT](owlvit), a zero-shot text-conditioned object detection model. OWL-ViT uses [CLIP](clip) as its multi-modal backbone, with a ViT-like Transformer to get visual features and a causal language model to get the text features. To use CLIP for detection, OWL-ViT removes the final token pooling layer of the vision model and attaches a lightweight classification and box head to each transformer output token. Open-vocabulary classification is enabled by replacing the fixed classification layer weights with the class-name embeddings obtained from the text model. The authors first train CLIP from scratch and fine-tune it end-to-end with the classification and box heads on standard detection datasets using a bipartite matching loss. One or multiple text queries per image can be used to perform zero-shot text-conditioned object detection.
 
-[Owlv2ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ImageProcessor) can be used to resize (or rescale) and normalize images for the model and [CLIPTokenizer](/docs/transformers/v5.22.2/en/model_doc/clip#transformers.CLIPTokenizer) is used to encode the text. [Owlv2Processor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2Processor) wraps [Owlv2ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ImageProcessor) and [CLIPTokenizer](/docs/transformers/v5.22.2/en/model_doc/clip#transformers.CLIPTokenizer) into a single instance to both encode the text and prepare the images. The following example shows how to perform object detection using [Owlv2Processor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2Processor) and [Owlv2ForObjectDetection](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ForObjectDetection).
+[Owlv2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ImageProcessor) can be used to resize (or rescale) and normalize images for the model and [CLIPTokenizer](/docs/transformers/v5.23.0/en/model_doc/clip#transformers.CLIPTokenizer) is used to encode the text. [Owlv2Processor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2Processor) wraps [Owlv2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ImageProcessor) and [CLIPTokenizer](/docs/transformers/v5.23.0/en/model_doc/clip#transformers.CLIPTokenizer) into a single instance to both encode the text and prepare the images. The following example shows how to perform object detection using [Owlv2Processor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2Processor) and [Owlv2ForObjectDetection](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ForObjectDetection).
 
 ```python
 import requests
@@ -60,7 +60,7 @@ Detected a photo of a cat with confidence 0.665 at location [6.75, 51.96, 326.62
 - [Zero-shot object detection task guide](../tasks/zero_shot_object_detection)
 
 The architecture of OWLv2 is identical to [OWL-ViT](owlvit), however the object detection head now also includes an objectness classifier, which predicts the (query-agnostic) likelihood that a predicted box contains an object (as opposed to background). The objectness score can be used to rank or filter predictions independently of text queries.
-Usage of OWLv2 is identical to [OWL-ViT](owlvit) with a new, updated image processor ([Owlv2ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ImageProcessor)).
+Usage of OWLv2 is identical to [OWL-ViT](owlvit) with a new, updated image processor ([Owlv2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ImageProcessor)).
 
 ## Owlv2Config[[transformers.Owlv2Config]]
 
@@ -70,7 +70,7 @@ Usage of OWLv2 is identical to [OWL-ViT](owlvit) with a new, updated image proce
 transformers.Owlv2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, return_dict: bool = True, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, projection_dim: int = 512, logit_scale_init_value: float = 2.6592, initializer_factor: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/configuration_owlv2.py#L104)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/configuration_owlv2.py#L104)
 
 **Parameters:**
 
@@ -90,8 +90,8 @@ This is the configuration class to store the configuration of a Owlv2Model. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/owlv2-base-patch16](https://huggingface.co/google/owlv2-base-patch16)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Owlv2TextConfig[[transformers.Owlv2TextConfig]]
 
@@ -101,7 +101,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes
 transformers.Owlv2TextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 49408, hidden_size: int = 512, intermediate_size: int = 2048, num_hidden_layers: int = 12, num_attention_heads: int = 8, max_position_embeddings: int = 16, hidden_act: str = 'quick_gelu', layer_norm_eps: float = 1e-05, attention_dropout: float | int = 0.0, initializer_range: float = 0.02, initializer_factor: float = 1.0, pad_token_id: int | None = 0, bos_token_id: int | None = 49406, eos_token_id: int | list[int] | None = 49407)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/configuration_owlv2.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/configuration_owlv2.py#L28)
 
 **Parameters:**
 
@@ -137,8 +137,8 @@ This is the configuration class to store the configuration of a Owlv2Model. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/owlv2-base-patch16](https://huggingface.co/google/owlv2-base-patch16)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -163,7 +163,7 @@ Example:
 transformers.Owlv2VisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 768, intermediate_size: int = 3072, num_hidden_layers: int = 12, num_attention_heads: int = 12, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 768, patch_size: int | list[int] | tuple[int, int] = 16, hidden_act: str = 'quick_gelu', layer_norm_eps: float = 1e-05, attention_dropout: float | int = 0.0, initializer_range: float = 0.02, initializer_factor: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/configuration_owlv2.py#L67)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/configuration_owlv2.py#L67)
 
 **Parameters:**
 
@@ -195,8 +195,8 @@ This is the configuration class to store the configuration of a Owlv2Model. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/owlv2-base-patch16](https://huggingface.co/google/owlv2-base-patch16)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -221,7 +221,7 @@ Example:
 transformers.Owlv2ImageProcessor(**kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/image_processing_owlv2.py#L110)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/image_processing_owlv2.py#L110)
 
 **Parameters:**
 
@@ -273,7 +273,7 @@ Constructs a Owlv2ImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, image_like_kwargs: dict[str, typing.Any] | None = None, **kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -335,7 +335,7 @@ Preprocess an image or a batch of images.
 post_process_object_detection(outputs: Owlv2ObjectDetectionOutput, threshold: float = 0.1, target_sizes: transformers.utils.generic.TensorType | list[tuple] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/image_processing_owlv2.py#L136)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/image_processing_owlv2.py#L136)
 
 **Parameters:**
 
@@ -352,7 +352,7 @@ A list of dictionaries, each dictionary containing the following keys:
 - "labels": Indexes of the classes predicted by the model on the image.
 - "boxes": Image bounding boxes in (top_left_x, top_left_y, bottom_right_x, bottom_right_y) format.
 
-Converts the raw output of [Owlv2ForObjectDetection](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
+Converts the raw output of [Owlv2ForObjectDetection](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
 bottom_right_x, bottom_right_y) format.
 
 #### post_process_image_guided_detection[[transformers.Owlv2ImageProcessor.post_process_image_guided_detection]]
@@ -361,7 +361,7 @@ bottom_right_x, bottom_right_y) format.
 post_process_image_guided_detection(outputs, threshold = 0.0, nms_threshold = 0.3, target_sizes = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/image_processing_owlv2.py#L189)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/image_processing_owlv2.py#L189)
 
 **Parameters:**
 
@@ -379,7 +379,7 @@ A list of dictionaries, each dictionary containing the scores, labels and boxes 
 in the batch as predicted by the model. All labels are set to None as
 `Owlv2ForObjectDetection.image_guided_detection` perform one-shot object detection.
 
-Converts the output of [Owlv2ForObjectDetection.image_guided_detection()](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ForObjectDetection.image_guided_detection) into the format expected by the COCO
+Converts the output of [Owlv2ForObjectDetection.image_guided_detection()](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ForObjectDetection.image_guided_detection) into the format expected by the COCO
 api.
 
 ## Owlv2ImageProcessorPil[[transformers.Owlv2ImageProcessorPil]]
@@ -390,7 +390,7 @@ api.
 transformers.Owlv2ImageProcessorPil(**kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/image_processing_pil_owlv2.py#L191)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/image_processing_pil_owlv2.py#L190)
 
 **Parameters:**
 
@@ -442,7 +442,7 @@ Constructs a Owlv2ImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, image_like_kwargs: dict[str, typing.Any] | None = None, **kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -504,7 +504,7 @@ Preprocess an image or a batch of images.
 post_process_object_detection(outputs: Owlv2ObjectDetectionOutput, threshold: float = 0.1, target_sizes: transformers.utils.generic.TensorType | list[tuple] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/image_processing_pil_owlv2.py#L217)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/image_processing_pil_owlv2.py#L216)
 
 **Parameters:**
 
@@ -521,7 +521,7 @@ A list of dictionaries, each dictionary containing the following keys:
 - "labels": Indexes of the classes predicted by the model on the image.
 - "boxes": Image bounding boxes in (top_left_x, top_left_y, bottom_right_x, bottom_right_y) format.
 
-Converts the raw output of [Owlv2ForObjectDetection](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
+Converts the raw output of [Owlv2ForObjectDetection](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
 bottom_right_x, bottom_right_y) format.
 
 #### post_process_image_guided_detection[[transformers.Owlv2ImageProcessorPil.post_process_image_guided_detection]]
@@ -530,7 +530,7 @@ bottom_right_x, bottom_right_y) format.
 post_process_image_guided_detection(outputs, threshold = 0.0, nms_threshold = 0.3, target_sizes = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/image_processing_pil_owlv2.py#L273)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/image_processing_pil_owlv2.py#L272)
 
 **Parameters:**
 
@@ -548,7 +548,7 @@ A list of dictionaries, each dictionary containing the scores, labels and boxes 
 in the batch as predicted by the model. All labels are set to None as
 `Owlv2ForObjectDetection.image_guided_detection` perform one-shot object detection.
 
-Converts the output of [Owlv2ForObjectDetection.image_guided_detection()](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ForObjectDetection.image_guided_detection) into the format expected by the COCO
+Converts the output of [Owlv2ForObjectDetection.image_guided_detection()](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ForObjectDetection.image_guided_detection) into the format expected by the COCO
 api.
 
 ## Owlv2Processor[[transformers.Owlv2Processor]]
@@ -559,7 +559,7 @@ api.
 transformers.Owlv2Processor(image_processor, tokenizer, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/processing_owlv2.py#L62)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/processing_owlv2.py#L59)
 
 **Parameters:**
 
@@ -569,16 +569,16 @@ tokenizer (`CLIPTokenizer`) : The tokenizer is a required input.
 
 Constructs a Owlv2Processor which wraps a image processor and a tokenizer into a single processor.
 
-[Owlv2Processor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2Processor) offers all the functionalities of [Owlv2ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ImageProcessor) and [CLIPTokenizer](/docs/transformers/v5.22.2/en/model_doc/clip#transformers.CLIPTokenizer). See the
-[~Owlv2ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ImageProcessor) and [~CLIPTokenizer](/docs/transformers/v5.22.2/en/model_doc/clip#transformers.CLIPTokenizer) for more information.
+[Owlv2Processor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2Processor) offers all the functionalities of [Owlv2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ImageProcessor) and [CLIPTokenizer](/docs/transformers/v5.23.0/en/model_doc/clip#transformers.CLIPTokenizer). See the
+[~Owlv2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ImageProcessor) and [~CLIPTokenizer](/docs/transformers/v5.23.0/en/model_doc/clip#transformers.CLIPTokenizer) for more information.
 
 #### __call__[[transformers.Owlv2Processor.__call__]]
 
 ```python
-__call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] = None, **kwargs: *<class 'transformers.models.owlv2.processing_owlv2.Owlv2ProcessorKwargs'>)
+__call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] = None, query_images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: *<class 'transformers.processing_utils.ProcessingKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/processing_owlv2.py#L68)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/processing_owlv2.py#L71)
 
 **Parameters:**
 
@@ -586,15 +586,19 @@ images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Imag
 
 text (`Union[str, list[str], list[list[str]]]`, *optional*) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
 
-query_images (`ImageInput`, *kwargs*, *optional*) : Query images to use for image-guided object detection. When provided, these images serve as visual queries to find similar objects in the main `images`. The query images override any text prompts, and the model performs image-to-image matching instead of text-to-image matching.
+query_images (`ImageInput`, *optional*) : Query images to use for image-guided object detection. When provided, these images serve as visual queries to find similar objects in the main `images`. The query images override any text prompts, and the model performs image-to-image matching instead of text-to-image matching.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.22.2/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_mm_token_type_ids (`bool`, *kwargs*) : Whether to return multimodal token type ids indicating multimodal placeholder token positions.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.22.2/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+return_text_replacement_offsets (`bool`, *kwargs*) : Whether to return character offsets for each multimodal placeholder and its replacement.
 
-**Returns:** [BatchFeature](/docs/transformers/v5.22.2/en/main_classes/feature_extractor#transformers.BatchFeature)
+return_tensors (`str` or [TensorType](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-A [BatchFeature](/docs/transformers/v5.22.2/en/main_classes/feature_extractor#transformers.BatchFeature) with the following fields:
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.23.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+
+**Returns:** [BatchFeature](/docs/transformers/v5.23.0/en/main_classes/feature_extractor#transformers.BatchFeature)
+
+A [BatchFeature](/docs/transformers/v5.23.0/en/main_classes/feature_extractor#transformers.BatchFeature) with the following fields:
 - **input_ids** -- List of token ids to be fed to a model. Returned when `text` is not `None`.
 - **attention_mask** -- List of indices specifying which tokens should be attended to by the model (when
   `return_attention_mask=True` or if *"attention_mask"* is in `self.model_input_names` and if `text` is not
@@ -608,7 +612,7 @@ A [BatchFeature](/docs/transformers/v5.22.2/en/main_classes/feature_extractor#tr
 post_process_grounded_object_detection(outputs: Owlv2ObjectDetectionOutput, threshold: float = 0.1, target_sizes: transformers.utils.generic.TensorType | list[tuple] | None = None, text_labels: list[list[str]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/processing_owlv2.py#L146)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/processing_owlv2.py#L162)
 
 **Parameters:**
 
@@ -628,7 +632,7 @@ A list of dictionaries, each dictionary containing the following keys:
 - "boxes": Image bounding boxes in (top_left_x, top_left_y, bottom_right_x, bottom_right_y) format.
 - "text_labels": The text labels for each predicted bounding box on the image.
 
-Converts the raw output of [Owlv2ForObjectDetection](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
+Converts the raw output of [Owlv2ForObjectDetection](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
 bottom_right_x, bottom_right_y) format.
 
 #### post_process_image_guided_detection[[transformers.Owlv2Processor.post_process_image_guided_detection]]
@@ -637,7 +641,7 @@ bottom_right_x, bottom_right_y) format.
 post_process_image_guided_detection(outputs: Owlv2ImageGuidedObjectDetectionOutput, threshold: float = 0.0, nms_threshold: float = 0.3, target_sizes: transformers.utils.generic.TensorType | list[tuple] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/processing_owlv2.py#L195)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/processing_owlv2.py#L211)
 
 **Parameters:**
 
@@ -656,7 +660,7 @@ A list of dictionaries, each dictionary containing the following keys:
 - "boxes": Image bounding boxes in (top_left_x, top_left_y, bottom_right_x, bottom_right_y) format.
 - "labels": Set to `None`.
 
-Converts the output of [Owlv2ForObjectDetection.image_guided_detection()](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ForObjectDetection.image_guided_detection) into the format expected by the COCO
+Converts the output of [Owlv2ForObjectDetection.image_guided_detection()](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ForObjectDetection.image_guided_detection) into the format expected by the COCO
 api.
 
 ## Owlv2Model[[transformers.Owlv2Model]]
@@ -667,15 +671,15 @@ api.
 transformers.Owlv2Model(config: Owlv2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/modeling_owlv2.py#L754)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/modeling_owlv2.py#L758)
 
 **Parameters:**
 
-config ([Owlv2Config](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Owlv2Config](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Owlv2 Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -686,16 +690,16 @@ and behavior.
 #### forward[[transformers.Owlv2Model.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, return_loss: bool | None = None, interpolate_pos_encoding: bool = False, return_base_image_embeds: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, return_loss: bool | None = None, interpolate_pos_encoding: bool = False, return_base_image_embeds: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/modeling_owlv2.py#L848)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/modeling_owlv2.py#L852)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Owlv2ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ImageProcessor). See [Owlv2ImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Owlv2Processor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2Processor) uses [Owlv2ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Owlv2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ImageProcessor). See [Owlv2ImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Owlv2Processor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2Processor) uses [Owlv2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ImageProcessor) for processing images).
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -705,28 +709,28 @@ interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to 
 
 return_base_image_embeds (`bool`, *optional*) : Whether or not to return the base image embeddings.
 
-**Returns:** `Owlv2Output` or `tuple(torch.FloatTensor)`
+**Returns:** `Owlv2Output` or `tuple(torch.Tensor)`
 
 A `Owlv2Output` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Owlv2Config](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2Config)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([Owlv2Config](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2Config)) and inputs.
 
-The [Owlv2Model](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2Model) forward method, overrides the `__call__` special method.
+The [Owlv2Model](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `return_loss` is `True`) -- Contrastive loss for image-text similarity.
-- **logits_per_image** (`torch.FloatTensor` of shape `(image_batch_size, text_batch_size)`) -- The scaled dot product scores between `image_embeds` and `text_embeds`. This represents the image-text
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `return_loss` is `True`) -- Contrastive loss for image-text similarity.
+- **logits_per_image** (`torch.Tensor` of shape `(image_batch_size, text_batch_size)`) -- The scaled dot product scores between `image_embeds` and `text_embeds`. This represents the image-text
   similarity scores.
-- **logits_per_text** (`torch.FloatTensor` of shape `(text_batch_size, image_batch_size)`) -- The scaled dot product scores between `text_embeds` and `image_embeds`. This represents the text-image
+- **logits_per_text** (`torch.Tensor` of shape `(text_batch_size, image_batch_size)`) -- The scaled dot product scores between `text_embeds` and `image_embeds`. This represents the text-image
   similarity scores.
-- **text_embeds** (`torch.FloatTensor` of shape `(batch_size * num_max_text_queries, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [Owlv2TextModel](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2TextModel).
-- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The image embeddings obtained by applying the projection layer to the pooled output of
-  [Owlv2VisionModel](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2VisionModel).
-- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [Owlv2TextModel](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2TextModel).
-- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [Owlv2VisionModel](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2VisionModel).
+- **text_embeds** (`torch.Tensor` of shape `(batch_size * num_max_text_queries, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [Owlv2TextModel](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2TextModel).
+- **image_embeds** (`torch.Tensor` of shape `(batch_size, output_dim`) -- The image embeddings obtained by applying the projection layer to the pooled output of
+  [Owlv2VisionModel](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2VisionModel).
+- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [Owlv2TextModel](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2TextModel).
+- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [Owlv2VisionModel](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2VisionModel).
 
 Examples:
 ```python
@@ -752,30 +756,30 @@ Examples:
 get_text_features(input_ids: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/modeling_owlv2.py#L777)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/modeling_owlv2.py#L781)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size * num_max_text_queries, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size * num_max_text_queries, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Owlv2Config](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2Config)) and inputs.
+A [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([Owlv2Config](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2Config)) and inputs.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
   through the layers used for the auxiliary pretraining task. E.g. for BERT-family of models, this returns
   the classification token after processing through a linear layer and a tanh activation function. The linear
   layer weights are trained from the next sentence prediction (classification) objective during pretraining.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -801,30 +805,30 @@ Examples:
 get_image_features(pixel_values: Tensor, interpolate_pos_encoding: bool = False, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/modeling_owlv2.py#L814)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/modeling_owlv2.py#L818)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Owlv2ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ImageProcessor). See [Owlv2ImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Owlv2Processor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2Processor) uses [Owlv2ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Owlv2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ImageProcessor). See [Owlv2ImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Owlv2Processor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2Processor) uses [Owlv2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ImageProcessor) for processing images).
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Owlv2Config](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2Config)) and inputs.
+A [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([Owlv2Config](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2Config)) and inputs.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
   through the layers used for the auxiliary pretraining task. E.g. for BERT-family of models, this returns
   the classification token after processing through a linear layer and a tanh activation function. The linear
   layer weights are trained from the next sentence prediction (classification) objective during pretraining.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -855,7 +859,7 @@ Examples:
 transformers.Owlv2TextModel(config: Owlv2TextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/modeling_owlv2.py#L608)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/modeling_owlv2.py#L610)
 
 #### forward[[transformers.Owlv2TextModel.forward]]
 
@@ -863,36 +867,36 @@ transformers.Owlv2TextModel(config: Owlv2TextConfig)
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/modeling_owlv2.py#L624)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/modeling_owlv2.py#L626)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size * num_max_text_queries, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size * num_max_text_queries, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Owlv2Config](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2Config)) and inputs.
+A [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([Owlv2Config](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2Config)) and inputs.
 
-The [Owlv2TextModel](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2TextModel) forward method, overrides the `__call__` special method.
+The [Owlv2TextModel](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2TextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
   through the layers used for the auxiliary pretraining task. E.g. for BERT-family of models, this returns
   the classification token after processing through a linear layer and a tanh activation function. The linear
   layer weights are trained from the next sentence prediction (classification) objective during pretraining.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -920,44 +924,44 @@ Examples:
 transformers.Owlv2VisionModel(config: Owlv2VisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/modeling_owlv2.py#L703)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/modeling_owlv2.py#L707)
 
 #### forward[[transformers.Owlv2VisionModel.forward]]
 
 ```python
-forward(pixel_values: typing.Optional[torch.FloatTensor] = None, interpolate_pos_encoding: bool = False, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(pixel_values: typing.Optional[torch.Tensor] = None, interpolate_pos_encoding: bool = False, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/modeling_owlv2.py#L717)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/modeling_owlv2.py#L721)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Owlv2ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ImageProcessor). See [Owlv2ImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Owlv2Processor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2Processor) uses [Owlv2ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Owlv2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ImageProcessor). See [Owlv2ImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Owlv2Processor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2Processor) uses [Owlv2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ImageProcessor) for processing images).
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Owlv2Config](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2Config)) and inputs.
+A [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([Owlv2Config](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2Config)) and inputs.
 
-The [Owlv2VisionModel](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2VisionModel) forward method, overrides the `__call__` special method.
+The [Owlv2VisionModel](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2VisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
   through the layers used for the auxiliary pretraining task. E.g. for BERT-family of models, this returns
   the classification token after processing through a linear layer and a tanh activation function. The linear
   layer weights are trained from the next sentence prediction (classification) objective during pretraining.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -991,56 +995,56 @@ Examples:
 transformers.Owlv2ForObjectDetection(config: Owlv2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/modeling_owlv2.py#L997)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/modeling_owlv2.py#L1001)
 
 #### forward[[transformers.Owlv2ForObjectDetection.forward]]
 
 ```python
-forward(input_ids: Tensor, pixel_values: FloatTensor, attention_mask: typing.Optional[torch.Tensor] = None, interpolate_pos_encoding: bool = False, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: Tensor, pixel_values: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, interpolate_pos_encoding: bool = False, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/modeling_owlv2.py#L1320)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/modeling_owlv2.py#L1324)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size * num_max_text_queries, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids).
+input_ids (`torch.LongTensor` of shape `(batch_size * num_max_text_queries, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids).
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Owlv2ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ImageProcessor). See [Owlv2ImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Owlv2Processor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2Processor) uses [Owlv2ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Owlv2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ImageProcessor). See [Owlv2ImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Owlv2Processor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2Processor) uses [Owlv2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ImageProcessor) for processing images).
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-**Returns:** `Owlv2ObjectDetectionOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `Owlv2ObjectDetectionOutput` or `tuple(torch.Tensor)`
 
 A `Owlv2ObjectDetectionOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Owlv2Config](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2Config)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([Owlv2Config](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2Config)) and inputs.
 
-The [Owlv2ForObjectDetection](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ForObjectDetection) forward method, overrides the `__call__` special method.
+The [Owlv2ForObjectDetection](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ForObjectDetection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` are provided)) -- Total loss as a linear combination of a negative log-likelihood (cross-entropy) for class prediction and a
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` are provided)) -- Total loss as a linear combination of a negative log-likelihood (cross-entropy) for class prediction and a
   bounding box loss. The latter is defined as a linear combination of the L1 loss and the generalized
   scale-invariant IoU loss.
 - **loss_dict** (`Dict`, *optional*) -- A dictionary containing the individual losses. Useful for logging.
-- **logits** (`torch.FloatTensor` of shape `(batch_size, num_patches, num_queries)`) -- Classification logits (including no-object) for all queries.
-- **objectness_logits** (`torch.FloatTensor` of shape `(batch_size, num_patches, 1)`) -- The objectness logits of all image patches. OWL-ViT represents images as a set of image patches where the
+- **logits** (`torch.Tensor` of shape `(batch_size, num_patches, num_queries)`) -- Classification logits (including no-object) for all queries.
+- **objectness_logits** (`torch.Tensor` of shape `(batch_size, num_patches, 1)`) -- The objectness logits of all image patches. OWL-ViT represents images as a set of image patches where the
   total number of patches is (image_size / patch_size)**2.
-- **pred_boxes** (`torch.FloatTensor` of shape `(batch_size, num_patches, 4)`) -- Normalized boxes coordinates for all queries, represented as (center_x, center_y, width, height). These
+- **pred_boxes** (`torch.Tensor` of shape `(batch_size, num_patches, 4)`) -- Normalized boxes coordinates for all queries, represented as (center_x, center_y, width, height). These
   values are normalized in [0, 1], relative to the size of each individual image in the batch (disregarding
-  possible padding). You can use [post_process_object_detection()](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ImageProcessor.post_process_object_detection) to retrieve the
+  possible padding). You can use [post_process_object_detection()](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ImageProcessor.post_process_object_detection) to retrieve the
   unnormalized bounding boxes.
-- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, num_max_text_queries, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [Owlv2TextModel](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2TextModel).
-- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, patch_size, patch_size, output_dim`) -- Pooled output of [Owlv2VisionModel](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2VisionModel). OWLv2 represents images as a set of image patches and computes image
+- **text_embeds** (`torch.Tensor` of shape `(batch_size, num_max_text_queries, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [Owlv2TextModel](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2TextModel).
+- **image_embeds** (`torch.Tensor` of shape `(batch_size, patch_size, patch_size, output_dim`) -- Pooled output of [Owlv2VisionModel](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2VisionModel). OWLv2 represents images as a set of image patches and computes image
   embeddings for each patch.
-- **class_embeds** (`torch.FloatTensor` of shape `(batch_size, num_patches, hidden_size)`) -- Class embeddings of all image patches. OWLv2 represents images as a set of image patches where the total
+- **class_embeds** (`torch.Tensor` of shape `(batch_size, num_patches, hidden_size)`) -- Class embeddings of all image patches. OWLv2 represents images as a set of image patches where the total
   number of patches is (image_size / patch_size)**2.
-- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [Owlv2TextModel](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2TextModel).
-- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [Owlv2VisionModel](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2VisionModel).
+- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [Owlv2TextModel](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2TextModel).
+- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [Owlv2VisionModel](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2VisionModel).
 
 Examples:
 ```python
@@ -1080,42 +1084,42 @@ Detected a photo of a cat with confidence 0.665 at location [6.75, 51.96, 326.62
 #### image_guided_detection[[transformers.Owlv2ForObjectDetection.image_guided_detection]]
 
 ```python
-image_guided_detection(pixel_values: FloatTensor, query_pixel_values: typing.Optional[torch.FloatTensor] = None, interpolate_pos_encoding: bool = False, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+image_guided_detection(pixel_values: Tensor, query_pixel_values: typing.Optional[torch.Tensor] = None, interpolate_pos_encoding: bool = False, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/owlv2/modeling_owlv2.py#L1231)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/owlv2/modeling_owlv2.py#L1235)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Owlv2ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ImageProcessor). See [Owlv2ImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Owlv2Processor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2Processor) uses [Owlv2ImageProcessor](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Owlv2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ImageProcessor). See [Owlv2ImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Owlv2Processor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2Processor) uses [Owlv2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ImageProcessor) for processing images).
 
-query_pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, height, width)`) : Pixel values of query image(s) to be detected. Pass in one query image per target image.
+query_pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) : Pixel values of query image(s) to be detected. Pass in one query image per target image.
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-**Returns:** `Owlv2ImageGuidedObjectDetectionOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `Owlv2ImageGuidedObjectDetectionOutput` or `tuple(torch.Tensor)`
 
 A `Owlv2ImageGuidedObjectDetectionOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Owlv2Config](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2Config)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([Owlv2Config](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2Config)) and inputs.
 
-- **logits** (`torch.FloatTensor` of shape `(batch_size, num_patches, num_queries)`) -- Classification logits (including no-object) for all queries.
-- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, patch_size, patch_size, output_dim`) -- Pooled output of [Owlv2VisionModel](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2VisionModel). OWLv2 represents images as a set of image patches and computes
+- **logits** (`torch.Tensor` of shape `(batch_size, num_patches, num_queries)`) -- Classification logits (including no-object) for all queries.
+- **image_embeds** (`torch.Tensor` of shape `(batch_size, patch_size, patch_size, output_dim`) -- Pooled output of [Owlv2VisionModel](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2VisionModel). OWLv2 represents images as a set of image patches and computes
   image embeddings for each patch.
-- **query_image_embeds** (`torch.FloatTensor` of shape `(batch_size, patch_size, patch_size, output_dim`) -- Pooled output of [Owlv2VisionModel](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2VisionModel). OWLv2 represents images as a set of image patches and computes
+- **query_image_embeds** (`torch.Tensor` of shape `(batch_size, patch_size, patch_size, output_dim`) -- Pooled output of [Owlv2VisionModel](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2VisionModel). OWLv2 represents images as a set of image patches and computes
   image embeddings for each patch.
-- **target_pred_boxes** (`torch.FloatTensor` of shape `(batch_size, num_patches, 4)`) -- Normalized boxes coordinates for all queries, represented as (center_x, center_y, width, height). These
+- **target_pred_boxes** (`torch.Tensor` of shape `(batch_size, num_patches, 4)`) -- Normalized boxes coordinates for all queries, represented as (center_x, center_y, width, height). These
   values are normalized in [0, 1], relative to the size of each individual target image in the batch
-  (disregarding possible padding). You can use [post_process_object_detection()](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ImageProcessor.post_process_object_detection) to
+  (disregarding possible padding). You can use [post_process_object_detection()](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ImageProcessor.post_process_object_detection) to
   retrieve the unnormalized bounding boxes.
-- **query_pred_boxes** (`torch.FloatTensor` of shape `(batch_size, num_patches, 4)`) -- Normalized boxes coordinates for all queries, represented as (center_x, center_y, width, height). These
+- **query_pred_boxes** (`torch.Tensor` of shape `(batch_size, num_patches, 4)`) -- Normalized boxes coordinates for all queries, represented as (center_x, center_y, width, height). These
   values are normalized in [0, 1], relative to the size of each individual query image in the batch
-  (disregarding possible padding). You can use [post_process_object_detection()](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2ImageProcessor.post_process_object_detection) to
+  (disregarding possible padding). You can use [post_process_object_detection()](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2ImageProcessor.post_process_object_detection) to
   retrieve the unnormalized bounding boxes.
-- **class_embeds** (`torch.FloatTensor` of shape `(batch_size, num_patches, hidden_size)`) -- Class embeddings of all image patches. OWLv2 represents images as a set of image patches where the total
+- **class_embeds** (`torch.Tensor` of shape `(batch_size, num_patches, hidden_size)`) -- Class embeddings of all image patches. OWLv2 represents images as a set of image patches where the total
   number of patches is (image_size / patch_size)**2.
-- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [Owlv2TextModel](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2TextModel).
-- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [Owlv2VisionModel](/docs/transformers/v5.22.2/en/model_doc/owlv2#transformers.Owlv2VisionModel).
+- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [Owlv2TextModel](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2TextModel).
+- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [Owlv2VisionModel](/docs/transformers/v5.23.0/en/model_doc/owlv2#transformers.Owlv2VisionModel).
 
 Examples:
 ```python
@@ -1156,4 +1160,4 @@ Detected similar object with confidence 1.0 at location [6.59, 51.43, 329.05, 47
 ```
 
 ### GLM-4
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/glm.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/glm.md

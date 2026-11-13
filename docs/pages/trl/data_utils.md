@@ -5,10 +5,10 @@
 #### trl.is_conversational[[trl.is_conversational]]
 
 ```python
-trl.is_conversational(example: dict)
+trl.is_conversational(example: dict[str, typing.Any])
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.17.1/trl/data_utils.py#L126)
+[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/data_utils.py#L126)
 
 **Parameters:**
 
@@ -37,10 +37,10 @@ False
 #### trl.maybe_convert_to_chatml[[trl.maybe_convert_to_chatml]]
 
 ```python
-trl.maybe_convert_to_chatml(example: dict)
+trl.maybe_convert_to_chatml(example: dict[str, list])
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.17.1/trl/data_utils.py#L967)
+[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/data_utils.py#L967)
 
 **Parameters:**
 
@@ -77,10 +77,10 @@ Example:
 #### trl.extract_prompt[[trl.extract_prompt]]
 
 ```python
-trl.extract_prompt(example: dict)
+trl.extract_prompt(example: dict[str, collections.abc.Sequence])
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.17.1/trl/data_utils.py#L548)
+[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/data_utils.py#L548)
 
 **Parameters:**
 
@@ -119,7 +119,7 @@ Examples:
  'rejected': [{'role': 'assistant', 'content': 'It is green.'}]}
 ```
 
-Or, with the `map` method of `Dataset`:
+Or, with the `map` method of [Dataset](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset):
 
 ```python
 >>> from trl import extract_prompt
@@ -163,18 +163,18 @@ Or, with the `map` method of `Dataset`:
 trl.unpair_preference_dataset(dataset: typing.Union[~DatasetType, ~IterableDatasetType], **map_kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.17.1/trl/data_utils.py#L445)
+[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/data_utils.py#L445)
 
 **Parameters:**
 
-dataset (`Dataset` or `DatasetDict` or `IterableDataset` or `IterableDatasetDict`) : Preference dataset to unpair. The dataset must have columns `"chosen"`, `"rejected"` and optionally `"prompt"`.
+dataset ([Dataset](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) or [DatasetDict](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.DatasetDict) or [IterableDataset](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) or [IterableDatasetDict](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDatasetDict)) : Preference dataset to unpair. The dataset must have columns `"chosen"`, `"rejected"` and optionally `"prompt"`.
 
 - ****map_kwargs** (`dict`, *optional*) : Additional keyword arguments to pass to the dataset's map method when unpairing preferences.
 
 **Returns:**
 
-`Dataset` or `DatasetDict` or `IterableDataset` or
-`IterableDatasetDict`:
+[Dataset](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) or [DatasetDict](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.DatasetDict) or [IterableDataset](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) or
+[IterableDatasetDict](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDatasetDict):
 The unpaired preference dataset.
 
 Unpair a preference dataset.
@@ -205,4 +205,4 @@ Dataset({
 ```
 
 ### IW-OPD
-https://huggingface.co/docs/trl/v1.17.1/iw_opd_trainer.md
+https://huggingface.co/docs/trl/v1.18.0/iw_opd_trainer.md

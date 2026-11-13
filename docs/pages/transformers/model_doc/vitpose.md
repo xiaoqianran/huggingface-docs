@@ -9,7 +9,7 @@ alt="drawing" width="600"/>
 
 You can find all ViTPose and ViTPose++ checkpoints under the [ViTPose collection](https://huggingface.co/collections/usyd-community/vitpose-677fcfd0a0b2b5c8f79c4335).
 
-The example below demonstrates pose estimation with the [VitPoseForPoseEstimation](/docs/transformers/v5.22.2/en/model_doc/vitpose#transformers.VitPoseForPoseEstimation) class.
+The example below demonstrates pose estimation with the [VitPoseForPoseEstimation](/docs/transformers/v5.23.0/en/model_doc/vitpose#transformers.VitPoseForPoseEstimation) class.
 
 ```python
 import requests
@@ -134,7 +134,7 @@ image_pose_result = pose_results[0]
 
 ## Notes
 
-- Use [AutoProcessor](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoProcessor) to automatically prepare bounding box and image inputs.
+- Use [AutoProcessor](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoProcessor) to automatically prepare bounding box and image inputs.
 - ViTPose is a top-down pose estimator. It uses a object detector to detect individuals first before keypoint prediction.
 - ViTPose++ has 6 different MoE expert heads (COCO validation `0`, AiC `1`, MPII `2`, AP-10K `3`, APT-36K `4`, COCO-WholeBody `5`) which supports 6 different datasets. Pass a specific value corresponding to the dataset to the `dataset_index` to indicate which expert to use.
 
@@ -270,7 +270,7 @@ Refer to resources below to learn more about using ViTPose.
 transformers.VitPoseImageProcessor(**kwargs: *<class 'transformers.models.vitpose.image_processing_vitpose.VitPoseImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/vitpose/image_processing_vitpose.py#L337)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/vitpose/image_processing_vitpose.py#L336)
 
 **Parameters:**
 
@@ -326,7 +326,7 @@ Constructs a VitPoseImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], boxes: list[list[list[float]]] | numpy.ndarray, **kwargs: *<class 'transformers.models.vitpose.image_processing_vitpose.VitPoseImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/vitpose/image_processing_vitpose.py#L354)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/vitpose/image_processing_vitpose.py#L353)
 
 **Parameters:**
 
@@ -390,7 +390,7 @@ normalize_factor (`float`, *kwargs*, *optional*, defaults to `200.0`) : Width an
 post_process_pose_estimation(outputs: VitPoseEstimatorOutput, boxes: list[list[list[float]]] | numpy.ndarray, kernel_size: int = 11, threshold: float | None = None, target_sizes: transformers.utils.generic.TensorType | list[tuple] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/vitpose/image_processing_vitpose.py#L465)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/vitpose/image_processing_vitpose.py#L464)
 
 **Parameters:**
 
@@ -419,7 +419,7 @@ Transform the heatmaps into keypoint predictions and transform them back to the 
 transformers.VitPoseImageProcessorPil(**kwargs: *<class 'transformers.models.vitpose.image_processing_pil_vitpose.VitPoseImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/vitpose/image_processing_pil_vitpose.py#L338)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/vitpose/image_processing_pil_vitpose.py#L338)
 
 **Parameters:**
 
@@ -475,7 +475,7 @@ Constructs a VitPoseImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], boxes: list[list[list[float]]] | numpy.ndarray, **kwargs: *<class 'transformers.models.vitpose.image_processing_pil_vitpose.VitPoseImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/vitpose/image_processing_pil_vitpose.py#L355)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/vitpose/image_processing_pil_vitpose.py#L355)
 
 **Parameters:**
 
@@ -539,7 +539,7 @@ normalize_factor (`float`, *kwargs*, *optional*, defaults to `200.0`) : Width an
 post_process_pose_estimation(outputs: VitPoseEstimatorOutput, boxes: list[list[list[float]]] | numpy.ndarray, kernel_size: int = 11, threshold: float | None = None, target_sizes: transformers.utils.generic.TensorType | list[tuple] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/vitpose/image_processing_pil_vitpose.py#L452)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/vitpose/image_processing_pil_vitpose.py#L452)
 
 **Parameters:**
 
@@ -568,7 +568,7 @@ Transform the heatmaps into keypoint predictions and transform them back to the 
 transformers.VitPoseConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, initializer_range: float = 0.02, scale_factor: int = 4, use_simple_decoder: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/vitpose/configuration_vitpose.py#L25)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/vitpose/configuration_vitpose.py#L25)
 
 **Parameters:**
 
@@ -584,8 +584,8 @@ This is the configuration class to store the configuration of a VitposeModel. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [usyd-community/vitpose-base-simple](https://huggingface.co/usyd-community/vitpose-base-simple)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -610,15 +610,15 @@ Example:
 transformers.VitPoseForPoseEstimation(config: VitPoseConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/vitpose/modeling_vitpose.py#L190)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/vitpose/modeling_vitpose.py#L190)
 
 **Parameters:**
 
-config ([VitPoseConfig](/docs/transformers/v5.22.2/en/model_doc/vitpose#transformers.VitPoseConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([VitPoseConfig](/docs/transformers/v5.23.0/en/model_doc/vitpose#transformers.VitPoseConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The VitPose model with a pose estimation head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -632,11 +632,11 @@ and behavior.
 forward(pixel_values: Tensor, dataset_index: typing.Optional[torch.Tensor] = None, flip_pairs: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/vitpose/modeling_vitpose.py#L209)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/vitpose/modeling_vitpose.py#L209)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [VitPoseImageProcessor](/docs/transformers/v5.22.2/en/model_doc/vitpose#transformers.VitPoseImageProcessor). See [VitPoseImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [VitPoseImageProcessor](/docs/transformers/v5.22.2/en/model_doc/vitpose#transformers.VitPoseImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [VitPoseImageProcessor](/docs/transformers/v5.23.0/en/model_doc/vitpose#transformers.VitPoseImageProcessor). See [VitPoseImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [VitPoseImageProcessor](/docs/transformers/v5.23.0/en/model_doc/vitpose#transformers.VitPoseImageProcessor) for processing images).
 
 dataset_index (`torch.Tensor` of shape `(batch_size,)`) : Index to use in the Mixture-of-Experts (MoE) blocks of the backbone.  This corresponds to the dataset index used during training, e.g. For the single dataset index 0 refers to the corresponding dataset. For the multiple datasets index 0 refers to dataset A (e.g. MPII) and index 1 refers to dataset B (e.g. CrowdPose).
 
@@ -644,24 +644,24 @@ flip_pairs (`torch.tensor`, *optional*) : Whether to mirror pairs of keypoints (
 
 labels (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
 
-**Returns:** `VitPoseEstimatorOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `VitPoseEstimatorOutput` or `tuple(torch.Tensor)`
 
 A `VitPoseEstimatorOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VitPoseConfig](/docs/transformers/v5.22.2/en/model_doc/vitpose#transformers.VitPoseConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([VitPoseConfig](/docs/transformers/v5.23.0/en/model_doc/vitpose#transformers.VitPoseConfig)) and inputs.
 
-The [VitPoseForPoseEstimation](/docs/transformers/v5.22.2/en/model_doc/vitpose#transformers.VitPoseForPoseEstimation) forward method, overrides the `__call__` special method.
+The [VitPoseForPoseEstimation](/docs/transformers/v5.23.0/en/model_doc/vitpose#transformers.VitPoseForPoseEstimation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Loss is not supported at this moment. See https://github.com/ViTAE-Transformer/ViTPose/tree/main/mmpose/models/losses for further detail.
-- **heatmaps** (`torch.FloatTensor` of shape `(batch_size, num_keypoints, height, width)`) -- Heatmaps as predicted by the model.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Loss is not supported at this moment. See https://github.com/ViTAE-Transformer/ViTPose/tree/main/mmpose/models/losses for further detail.
+- **heatmaps** (`torch.Tensor` of shape `(batch_size, num_keypoints, height, width)`) -- Heatmaps as predicted by the model.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each stage) of shape `(batch_size, sequence_length, hidden_size)`. Hidden-states
   (also called feature maps) of the model at the output of each stage.
-- **attentions** (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple[torch.Tensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -691,4 +691,4 @@ Examples:
 ```
 
 ### MiniMax-M2
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/minimax_m2.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/minimax_m2.md

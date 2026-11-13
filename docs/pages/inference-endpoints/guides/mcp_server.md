@@ -96,5 +96,5 @@ Only a second call with `confirm: true` actually deletes the endpoint:
   [Catalog API](../api_reference#catalog-api); the rest wrap the general management API.
 - [Hugging Face CLI](https://huggingface.co/docs/hub/en/agents-cli) - for full integration with the Hugging Face Hub.
 
-### Text Generation Inference (TGI)
-https://huggingface.co/docs/inference-endpoints/engines/tgi.md
+### Analytics and Metrics
+https://huggingface.co/docs/inference-endpoints/guides/analytics.md

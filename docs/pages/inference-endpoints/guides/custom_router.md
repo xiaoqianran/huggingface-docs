@@ -226,5 +226,5 @@ func handleProxy(w http.ResponseWriter, r *http.Request) {
 
 The full `queued-least-latency` source in the [endpoints-custom-routers repository](https://github.com/huggingface/endpoints-custom-routers) is a good template to fork.
 
-### Runtime Logs
-https://huggingface.co/docs/inference-endpoints/guides/logs.md
+### Security & Compliance
+https://huggingface.co/docs/inference-endpoints/guides/security.md

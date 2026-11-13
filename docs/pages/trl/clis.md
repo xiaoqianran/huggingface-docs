@@ -145,17 +145,15 @@ Launch with:
 trl kto --config kto_config.yaml
 ```
 
-### Scaling Up with Accelerate
+### Scaling Up with torchrun
 
-TRL CLI natively supports [🤗 Accelerate](https://huggingface.co/docs/accelerate), making it easy to scale training across multiple GPUs, machines, or use advanced setups like DeepSpeed — all from the same CLI.
-
-You can pass any `accelerate launch` arguments directly to `trl`, such as `--num_processes`. For more information see [Using accelerate launch](https://huggingface.co/docs/accelerate/en/basic_tutorials/launch#using-accelerate-launch).
+The TRL CLI launches training with [torchrun](https://docs.pytorch.org/docs/stable/elastic/run.html), one process per available GPU. Any `torchrun` argument can be passed directly to `trl`, such as `--nproc_per_node` or `--nnodes`.
 
 ```bash
 trl sft \
   --model_name_or_path Qwen/Qwen2.5-0.5B \
   --dataset_name stanfordnlp/imdb \
-  --num_processes 4
+  --nproc_per_node 4
 ```
 
 or, with a config file:
@@ -164,7 +162,7 @@ or, with a config file:
 # sft_config.yaml
 model_name_or_path: Qwen/Qwen2.5-0.5B
 dataset_name: stanfordnlp/imdb
-num_processes: 4
+nproc_per_node: 4
 ```
 
 Launch with:
@@ -177,7 +175,7 @@ trl sft --config sft_config.yaml
 trl dpo \
   --model_name_or_path Qwen/Qwen2.5-0.5B \
   --dataset_name anthropic/hh-rlhf \
-  --num_processes 4
+  --nproc_per_node 4
 ```
 
 or, with a config file:
@@ -186,7 +184,7 @@ or, with a config file:
 # dpo_config.yaml
 model_name_or_path: Qwen/Qwen2.5-0.5B
 dataset_name: anthropic/hh-rlhf
-num_processes: 4
+nproc_per_node: 4
 ```
 
 Launch with:
@@ -199,7 +197,7 @@ trl dpo --config dpo_config.yaml
 trl reward \
   --model_name_or_path Qwen/Qwen2.5-0.5B \
   --dataset_name trl-lib/ultrafeedback_binarized \
-  --num_processes 4
+  --nproc_per_node 4
 ```
 
 or, with a config file:
@@ -208,7 +206,7 @@ or, with a config file:
 # reward_config.yaml
 model_name_or_path: Qwen/Qwen2.5-0.5B
 dataset_name: trl-lib/ultrafeedback_binarized
-num_processes: 4
+nproc_per_node: 4
 ```
 
 Launch with:
@@ -222,7 +220,7 @@ trl grpo \
   --model_name_or_path Qwen/Qwen2.5-0.5B \
   --dataset_name HuggingFaceH4/Polaris-Dataset-53K \
   --reward_funcs accuracy_reward \
-  --num_processes 4
+  --nproc_per_node 4
 ```
 
 or, with a config file:
@@ -233,7 +231,7 @@ model_name_or_path: Qwen/Qwen2.5-0.5B
 dataset_name: HuggingFaceH4/Polaris-Dataset-53K
 reward_funcs:
   - accuracy_reward
-num_processes: 4
+nproc_per_node: 4
 ```
 
 Launch with:
@@ -247,7 +245,7 @@ trl rloo \
   --model_name_or_path Qwen/Qwen2.5-0.5B \
   --dataset_name HuggingFaceH4/Polaris-Dataset-53K \
   --reward_funcs accuracy_reward \
-  --num_processes 4
+  --nproc_per_node 4
 ```
 
 or, with a config file:
@@ -258,7 +256,7 @@ model_name_or_path: Qwen/Qwen2.5-0.5B
 dataset_name: HuggingFaceH4/Polaris-Dataset-53K
 reward_funcs:
   - accuracy_reward
-num_processes: 4
+nproc_per_node: 4
 ```
 
 Launch with:
@@ -271,7 +269,7 @@ trl rloo --config rloo_config.yaml
 trl kto \
   --model_name_or_path Qwen/Qwen2.5-0.5B \
   --dataset_name trl-lib/kto-mix-14k \
-  --num_processes 4
+  --nproc_per_node 4
 ```
 
 or, with a config file:
@@ -280,7 +278,7 @@ or, with a config file:
 # kto_config.yaml
 model_name_or_path: Qwen/Qwen2.5-0.5B
 dataset_name: trl-lib/kto-mix-14k
-num_processes: 4
+nproc_per_node: 4
 ```
 
 Launch with:
@@ -289,36 +287,29 @@ Launch with:
 trl kto --config kto_config.yaml
 ```
 
-### Using `--accelerate_config` for Accelerate Configuration
+### DeepSpeed and FSDP
 
-The `--accelerate_config` flag lets you easily configure distributed training with [🤗 Accelerate](https://github.com/huggingface/accelerate). This flag accepts either:
+DeepSpeed ZeRO and FSDP are configured through the training arguments, like for any [Trainer](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.Trainer): `--deepspeed` takes a DeepSpeed JSON config, and `--fsdp` turns on FSDP, tuned with `--fsdp_config`. A bare `--fsdp` on the command line needs transformers 5.10 or later; with older versions, set `fsdp: true` in a config file. Ready-to-use configs live in [`examples/deepspeed_configs`](https://github.com/huggingface/trl/tree/main/examples/deepspeed_configs) and [`examples/fsdp_configs`](https://github.com/huggingface/trl/tree/main/examples/fsdp_configs). If you installed TRL with pip, save this ZeRO-2 config as `zero2.json` and pass `--deepspeed zero2.json`:
 
-- the name of a predefined config profile (built into TRL), or
-- a path to a custom Accelerate YAML config file.
-
-#### Predefined Config Profiles
-
-TRL provides several ready-to-use Accelerate configs to simplify common training setups:
-
-| Name | Description |
-| --- | --- |
-| `fsdp1` | Fully Sharded Data Parallel Stage 1 |
-| `fsdp2` | Fully Sharded Data Parallel Stage 2 |
-| `zero1` | DeepSpeed ZeRO Stage 1 |
-| `zero2` | DeepSpeed ZeRO Stage 2 |
-| `zero3` | DeepSpeed ZeRO Stage 3 |
-| `multi_gpu` | Multi-GPU training |
-| `single_gpu` | Single-GPU training |
-
-To use one of these, just pass the name to `--accelerate_config`. TRL will automatically load the corresponding config file from `trl/accelerate_config/`.
-
-#### Example Usage
+```json
+{
+  "bf16": {"enabled": "auto"},
+  "zero_optimization": {
+    "stage": 2,
+    "offload_optimizer": {"device": "none"}
+  },
+  "gradient_accumulation_steps": "auto",
+  "gradient_clipping": "auto",
+  "train_batch_size": "auto",
+  "train_micro_batch_size_per_gpu": "auto"
+}
+```
 
 ```bash
 trl sft \
   --model_name_or_path Qwen/Qwen2.5-0.5B \
   --dataset_name stanfordnlp/imdb \
-  --accelerate_config zero2  # or path/to/my/accelerate/config.yaml
+  --deepspeed examples/deepspeed_configs/zero2.json  # or --fsdp
 ```
 
 or, with a config file:
@@ -327,7 +318,7 @@ or, with a config file:
 # sft_config.yaml
 model_name_or_path: Qwen/Qwen2.5-0.5B
 dataset_name: stanfordnlp/imdb
-accelerate_config: zero2  # or path/to/my/accelerate/config.yaml
+deepspeed: examples/deepspeed_configs/zero2.json  # or fsdp: true
 ```
 
 Launch with:
@@ -340,7 +331,7 @@ trl sft --config sft_config.yaml
 trl dpo \
   --model_name_or_path Qwen/Qwen2.5-0.5B \
   --dataset_name anthropic/hh-rlhf \
-  --accelerate_config zero2  # or path/to/my/accelerate/config.yaml
+  --deepspeed examples/deepspeed_configs/zero2.json  # or --fsdp
 ```
 
 or, with a config file:
@@ -349,7 +340,7 @@ or, with a config file:
 # dpo_config.yaml
 model_name_or_path: Qwen/Qwen2.5-0.5B
 dataset_name: anthropic/hh-rlhf
-accelerate_config: zero2  # or path/to/my/accelerate/config.yaml
+deepspeed: examples/deepspeed_configs/zero2.json  # or fsdp: true
 ```
 
 Launch with:
@@ -362,7 +353,7 @@ trl dpo --config dpo_config.yaml
 trl reward \
   --model_name_or_path Qwen/Qwen2.5-0.5B \
   --dataset_name trl-lib/ultrafeedback_binarized \
-  --accelerate_config zero2  # or path/to/my/accelerate/config.yaml
+  --deepspeed examples/deepspeed_configs/zero2.json  # or --fsdp
 ```
 
 or, with a config file:
@@ -371,7 +362,7 @@ or, with a config file:
 # reward_config.yaml
 model_name_or_path: Qwen/Qwen2.5-0.5B
 dataset_name: trl-lib/ultrafeedback_binarized
-accelerate_config: zero2  # or path/to/my/accelerate/config.yaml
+deepspeed: examples/deepspeed_configs/zero2.json  # or fsdp: true
 ```
 
 Launch with:
@@ -385,7 +376,7 @@ trl grpo \
   --model_name_or_path Qwen/Qwen2.5-0.5B \
   --dataset_name HuggingFaceH4/Polaris-Dataset-53K \
   --reward_funcs accuracy_reward \
-  --accelerate_config zero2  # or path/to/my/accelerate/config.yaml
+  --deepspeed examples/deepspeed_configs/zero2.json  # or --fsdp
 ```
 
 or, with a config file:
@@ -396,7 +387,7 @@ model_name_or_path: Qwen/Qwen2.5-0.5B
 dataset_name: HuggingFaceH4/Polaris-Dataset-53K
 reward_funcs:
   - accuracy_reward
-accelerate_config: zero2  # or path/to/my/accelerate/config.yaml
+deepspeed: examples/deepspeed_configs/zero2.json  # or fsdp: true
 ```
 
 Launch with:
@@ -410,7 +401,7 @@ trl rloo \
   --model_name_or_path Qwen/Qwen2.5-0.5B \
   --dataset_name HuggingFaceH4/Polaris-Dataset-53K \
   --reward_funcs accuracy_reward \
-  --accelerate_config zero2  # or path/to/my/accelerate/config.yaml
+  --deepspeed examples/deepspeed_configs/zero2.json  # or --fsdp
 ```
 
 or, with a config file:
@@ -421,7 +412,7 @@ model_name_or_path: Qwen/Qwen2.5-0.5B
 dataset_name: HuggingFaceH4/Polaris-Dataset-53K
 reward_funcs:
   - accuracy_reward
-accelerate_config: zero2  # or path/to/my/accelerate/config.yaml
+deepspeed: examples/deepspeed_configs/zero2.json  # or fsdp: true
 ```
 
 Launch with:
@@ -434,7 +425,7 @@ trl rloo --config rloo_config.yaml
 trl kto \
   --model_name_or_path Qwen/Qwen2.5-0.5B \
   --dataset_name trl-lib/kto-mix-14k \
-  --accelerate_config zero2  # or path/to/my/accelerate/config.yaml
+  --deepspeed examples/deepspeed_configs/zero2.json  # or --fsdp
 ```
 
 or, with a config file:
@@ -443,7 +434,7 @@ or, with a config file:
 # kto_config.yaml
 model_name_or_path: Qwen/Qwen2.5-0.5B
 dataset_name: trl-lib/kto-mix-14k
-accelerate_config: zero2  # or path/to/my/accelerate/config.yaml
+deepspeed: examples/deepspeed_configs/zero2.json  # or fsdp: true
 ```
 
 Launch with:
@@ -451,6 +442,9 @@ Launch with:
 ```bash
 trl kto --config kto_config.yaml
 ```
+
+> [!NOTE]
+> Until TRL v2.0.0, `trl` still launches through `accelerate launch` when it gets arguments that only `accelerate launch` knows, such as `--num_processes` or `--accelerate_config`, or when an `accelerate config` default file exists. This path is deprecated and warns.
 
 ### Using dataset mixtures
 
@@ -544,7 +538,7 @@ Launch with:
 trl kto --config kto_config.yaml
 ```
 
-To see all the available keywords for defining dataset mixtures, refer to the [scripts.utils.DatasetConfig](/docs/trl/v1.17.1/en/script_utils#trl.scripts.utils.DatasetConfig) and [DatasetMixtureConfig](/docs/trl/v1.17.1/en/script_utils#trl.DatasetMixtureConfig) classes.
+To see all the available keywords for defining dataset mixtures, refer to the [scripts.utils.DatasetConfig](/docs/trl/v1.18.0/en/script_utils#trl.scripts.utils.DatasetConfig) and [DatasetMixtureConfig](/docs/trl/v1.18.0/en/script_utils#trl.DatasetMixtureConfig) classes.
 
 ## Getting the System Information
 
@@ -599,4 +593,4 @@ Copy-paste the following information when reporting an issue:
 This information is required when reporting an issue.
 
 ### SFT Trainer
-https://huggingface.co/docs/trl/v1.17.1/sft_trainer.md
+https://huggingface.co/docs/trl/v1.18.0/sft_trainer.md

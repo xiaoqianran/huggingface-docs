@@ -7,7 +7,7 @@ You can find the official FalconMamba checkpoints in the [FalconMamba 7B](https:
 > [!TIP]
 > Click on the FalconMamba models in the right sidebar for more examples of how to apply FalconMamba to different language tasks.
 
-The examples below demonstrate how to generate text with [Pipeline](/docs/transformers/v5.22.2/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoModel), and from the command line.
+The examples below demonstrate how to generate text with [Pipeline](/docs/transformers/v5.23.0/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoModel), and from the command line.
 
 ```python
 from transformers import pipeline
@@ -81,7 +81,7 @@ print(tokenizer.decode(outputs[0], skip_special_tokens=True))
 transformers.FalconMambaConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 50280, hidden_size: int = 768, state_size: int = 16, num_hidden_layers: int = 32, layer_norm_epsilon: float = 1e-05, pad_token_id: int | None = 0, bos_token_id: int | None = 0, eos_token_id: int | list[int] | None = 0, expand: int = 2, conv_kernel: int = 4, use_bias: bool = False, use_conv_bias: bool = True, hidden_act: str = 'silu', initializer_range: float = 0.1, residual_in_fp32: bool = True, time_step_rank: str | int = 'auto', time_step_scale: float = 1.0, time_step_min: float = 0.001, time_step_max: float = 0.1, time_step_init_scheme: str = 'random', time_step_floor: float = 0.0001, rescale_prenorm_residual: bool = False, use_cache: bool = True, use_mambapy: bool = False, use_associative_scan: bool = True, tie_word_embeddings: bool = True, mixer_rms_eps: float = 1e-06)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/falcon_mamba/configuration_falcon_mamba.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/falcon_mamba/configuration_falcon_mamba.py#L30)
 
 **Parameters:**
 
@@ -143,8 +143,8 @@ This is the configuration class to store the configuration of a FalconMambaModel
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [tiiuae/falcon-mamba-7b](https://huggingface.co/tiiuae/falcon-mamba-7b)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -166,18 +166,18 @@ Example:
 #### transformers.FalconMambaModel[[transformers.FalconMambaModel]]
 
 ```python
-transformers.FalconMambaModel(config)
+transformers.FalconMambaModel(config: FalconMambaConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/falcon_mamba/modeling_falcon_mamba.py#L653)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/falcon_mamba/modeling_falcon_mamba.py#L653)
 
 **Parameters:**
 
-config ([FalconMambaModel](/docs/transformers/v5.22.2/en/model_doc/falcon_mamba#transformers.FalconMambaModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([FalconMambaConfig](/docs/transformers/v5.23.0/en/model_doc/falcon_mamba#transformers.FalconMambaConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Falcon Mamba Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -191,11 +191,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.LongTensor] = None, cache_params: transformers.cache_utils.Cache | None = None, use_cache: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, attention_mask: typing.Optional[torch.LongTensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/falcon_mamba/modeling_falcon_mamba.py#L673)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/falcon_mamba/modeling_falcon_mamba.py#L673)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 inputs_embeds (`torch.LongTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -205,28 +205,28 @@ use_cache (`bool`, *optional*) : If set to `True`, the `cache_params` is returne
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 attention_mask (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-**Returns:** `FalconMambaOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `FalconMambaOutput` or `tuple(torch.Tensor)`
 
 A `FalconMambaOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FalconMambaConfig](/docs/transformers/v5.22.2/en/model_doc/falcon_mamba#transformers.FalconMambaConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([FalconMambaConfig](/docs/transformers/v5.23.0/en/model_doc/falcon_mamba#transformers.FalconMambaConfig)) and inputs.
 
-The [FalconMambaModel](/docs/transformers/v5.22.2/en/model_doc/falcon_mamba#transformers.FalconMambaModel) forward method, overrides the `__call__` special method.
+The [FalconMambaModel](/docs/transformers/v5.23.0/en/model_doc/falcon_mamba#transformers.FalconMambaModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) -- Sequence of hidden-states at the output of the last layer of the model.
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) -- Sequence of hidden-states at the output of the last layer of the model.
 - **cache_params** (`~cache_utils.Cache`, *optional*) -- The state of the model at the last time step. Can be used in a forward method with the next `input_ids` to
   avoid providing the old `input_ids`.
 
   Includes both the State space model state matrices after the selective scan, and the Convolutional states
-- **hidden_states** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple[torch.Tensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
@@ -236,19 +236,19 @@ the latter silently ignores them.
 #### transformers.FalconMambaForCausalLM[[transformers.FalconMambaForCausalLM]]
 
 ```python
-transformers.FalconMambaForCausalLM(config)
+transformers.FalconMambaForCausalLM(config: FalconMambaConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/falcon_mamba/modeling_falcon_mamba.py#L743)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/falcon_mamba/modeling_falcon_mamba.py#L743)
 
 **Parameters:**
 
-config ([FalconMambaForCausalLM](/docs/transformers/v5.22.2/en/model_doc/falcon_mamba#transformers.FalconMambaForCausalLM)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([FalconMambaConfig](/docs/transformers/v5.23.0/en/model_doc/falcon_mamba#transformers.FalconMambaConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The FALCON_MAMBA Model transformer with a language modeling head on top (linear layer with weights tied to the input
 embeddings).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -259,18 +259,18 @@ and behavior.
 #### forward[[transformers.FalconMambaForCausalLM.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, cache_params: transformers.cache_utils.Cache | None = None, labels: typing.Optional[torch.LongTensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, cache_params: transformers.cache_utils.Cache | None = None, labels: typing.Optional[torch.LongTensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/falcon_mamba/modeling_falcon_mamba.py#L784)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/falcon_mamba/modeling_falcon_mamba.py#L784)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 cache_params (`Cache`, *optional*) : If passed along, the model uses the previous state in all the blocks (which will give the output for the `input_ids` provided as if the model add `state_input_ids + input_ids` as context).
 
@@ -278,31 +278,31 @@ labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*)
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 use_cache (`bool`, *optional*) : If set to `True`, the `cache_params` is returned and can be used to quickly generate the next logits.
 
 logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
 
-**Returns:** `FalconMambaCausalLMOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `FalconMambaCausalLMOutput` or `tuple(torch.Tensor)`
 
 A `FalconMambaCausalLMOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FalconMambaConfig](/docs/transformers/v5.22.2/en/model_doc/falcon_mamba#transformers.FalconMambaConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([FalconMambaConfig](/docs/transformers/v5.23.0/en/model_doc/falcon_mamba#transformers.FalconMambaConfig)) and inputs.
 
-The [FalconMambaForCausalLM](/docs/transformers/v5.22.2/en/model_doc/falcon_mamba#transformers.FalconMambaForCausalLM) forward method, overrides the `__call__` special method.
+The [FalconMambaForCausalLM](/docs/transformers/v5.23.0/en/model_doc/falcon_mamba#transformers.FalconMambaForCausalLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
-- **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
+- **logits** (`torch.Tensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
 - **cache_params** (`~cache_utils.Cache`, *optional*) -- The state of the model at the last time step. Can be used in a forward method with the next `input_ids` to
   avoid providing the old `input_ids`.
 
   Includes both the State space model state matrices after the selective scan, and the Convolutional states
-- **hidden_states** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple[torch.Tensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
@@ -313,4 +313,4 @@ Example:
 ```
 
 ### CPM
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/cpm.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/cpm.md

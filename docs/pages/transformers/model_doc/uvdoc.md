@@ -8,7 +8,7 @@
 
 ### Single input inference
 
-The example below demonstrates how to rectify a document image with UVDoc using the [AutoImageProcessor](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoImageProcessor) and [UVDocModel](/docs/transformers/v5.22.2/en/model_doc/uvdoc#transformers.UVDocModel).
+The example below demonstrates how to rectify a document image with UVDoc using the [AutoImageProcessor](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoImageProcessor) and [UVDocModel](/docs/transformers/v5.23.0/en/model_doc/uvdoc#transformers.UVDocModel).
 
 ```python
 import requests
@@ -62,10 +62,10 @@ print(result)
 #### transformers.UVDocConfig[[transformers.UVDocConfig]]
 
 ```python
-transformers.UVDocConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, hidden_act: str = 'prelu', padding_mode: str = 'reflect', kernel_size: int = 5, bridge_connector: list[int] | tuple[int, ...] = (128, 128), out_point_positions2D: Sequence = ((128, 32), (32, 2)))
+transformers.UVDocConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, hidden_act: str = 'prelu', padding_mode: str = 'reflect', kernel_size: int = 5, bridge_connector: list[int] | tuple[int, ...] = (128, 128), out_point_positions2D: collections.abc.Sequence[list[int] | tuple[int, ...]] = ((128, 32), (32, 2)))
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/uvdoc/configuration_uvdoc.py#L114)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/uvdoc/configuration_uvdoc.py#L114)
 
 **Parameters:**
 
@@ -85,8 +85,8 @@ This is the configuration class to store the configuration of a UVDocModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/UVDoc_safetensors](https://huggingface.co/PaddlePaddle/UVDoc_safetensors)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## UVDocModel[[transformers.UVDocModel]]
 
@@ -96,16 +96,16 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes
 transformers.UVDocModel(config: UVDocConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/uvdoc/modeling_uvdoc.py#L366)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/uvdoc/modeling_uvdoc.py#L366)
 
 **Parameters:**
 
-config ([UVDocConfig](/docs/transformers/v5.22.2/en/model_doc/uvdoc#transformers.UVDocConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([UVDocConfig](/docs/transformers/v5.23.0/en/model_doc/uvdoc#transformers.UVDocConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The model takes raw document images (pixel values) as input, processes them through the UVDoc backbone to predict spatial transformation parameters,
 and outputs the rectified (corrected) document image tensor.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -116,29 +116,29 @@ and behavior.
 #### forward[[transformers.UVDocModel.forward]]
 
 ```python
-forward(pixel_values: FloatTensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(pixel_values: Tensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/uvdoc/modeling_uvdoc.py#L374)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/uvdoc/modeling_uvdoc.py#L374)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [UVDocImageProcessor](/docs/transformers/v5.22.2/en/model_doc/uvdoc#transformers.UVDocImageProcessor). See [UVDocImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [UVDocImageProcessor](/docs/transformers/v5.22.2/en/model_doc/uvdoc#transformers.UVDocImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [UVDocImageProcessor](/docs/transformers/v5.23.0/en/model_doc/uvdoc#transformers.UVDocImageProcessor). See [UVDocImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [UVDocImageProcessor](/docs/transformers/v5.23.0/en/model_doc/uvdoc#transformers.UVDocImageProcessor) for processing images).
 
-**Returns:** `BaseModelOutputWithNoAttention` or `tuple(torch.FloatTensor)`
+**Returns:** `BaseModelOutputWithNoAttention` or `tuple(torch.Tensor)`
 
 A `BaseModelOutputWithNoAttention` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([UVDocConfig](/docs/transformers/v5.22.2/en/model_doc/uvdoc#transformers.UVDocConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([UVDocConfig](/docs/transformers/v5.23.0/en/model_doc/uvdoc#transformers.UVDocConfig)) and inputs.
 
-The [UVDocModel](/docs/transformers/v5.22.2/en/model_doc/uvdoc#transformers.UVDocModel) forward method, overrides the `__call__` special method.
+The [UVDocModel](/docs/transformers/v5.23.0/en/model_doc/uvdoc#transformers.UVDocModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, num_channels, height, width)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, num_channels, height, width)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
@@ -148,10 +148,10 @@ the latter silently ignores them.
 #### transformers.UVDocBackboneConfig[[transformers.UVDocBackboneConfig]]
 
 ```python
-transformers.UVDocBackboneConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, _out_features: list[str] | None = None, _out_indices: list[int] | None = None, resnet_head: Sequence = ((3, 32), (32, 32)), resnet_configs: Sequence = (((32, 32, 1, False), (32, 32, 3, False), (32, 32, 3, False)), ((32, 64, 1, True), (64, 64, 3, False), (64, 64, 3, False), (64, 64, 3, False)), ((64, 128, 1, True), (128, 128, 3, False), (128, 128, 3, False), (128, 128, 3, False), (128, 128, 3, False), (128, 128, 3, False))), stage_configs: Sequence = (((128, 1),), ((128, 2),), ((128, 5),), ((128, 8), (128, 3), (128, 2)), ((128, 12), (128, 7), (128, 4)), ((128, 18), (128, 12), (128, 6))), kernel_size: int = 5)
+transformers.UVDocBackboneConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, _out_features: list[str] | None = None, _out_indices: list[int] | None = None, resnet_head: collections.abc.Sequence[list[int] | tuple[int, ...]] = ((3, 32), (32, 32)), resnet_configs: collections.abc.Sequence[collections.abc.Sequence[tuple[int, int, int, bool] | list[int | bool]]] = (((32, 32, 1, False), (32, 32, 3, False), (32, 32, 3, False)), ((32, 64, 1, True), (64, 64, 3, False), (64, 64, 3, False), (64, 64, 3, False)), ((64, 128, 1, True), (128, 128, 3, False), (128, 128, 3, False), (128, 128, 3, False), (128, 128, 3, False), (128, 128, 3, False))), stage_configs: collections.abc.Sequence[collections.abc.Sequence[tuple[int, ...] | list[int]]] = (((128, 1),), ((128, 2),), ((128, 5),), ((128, 8), (128, 3), (128, 2)), ((128, 12), (128, 7), (128, 4)), ((128, 18), (128, 12), (128, 6))), kernel_size: int = 5)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/uvdoc/configuration_uvdoc.py#L34)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/uvdoc/configuration_uvdoc.py#L34)
 
 **Parameters:**
 
@@ -167,8 +167,8 @@ This is the configuration class to store the configuration of a UVDocModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/UVDoc_safetensors](https://huggingface.co/PaddlePaddle/UVDoc_safetensors)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## UVDocBackbone[[transformers.UVDocBackbone]]
 
@@ -178,15 +178,15 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes
 transformers.UVDocBackbone(config: UVDocBackboneConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/uvdoc/modeling_uvdoc.py#L294)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/uvdoc/modeling_uvdoc.py#L294)
 
 **Parameters:**
 
-config ([UVDocBackboneConfig](/docs/transformers/v5.22.2/en/model_doc/uvdoc#transformers.UVDocBackboneConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([UVDocBackboneConfig](/docs/transformers/v5.23.0/en/model_doc/uvdoc#transformers.UVDocBackboneConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 UVDoc backbone model for feature extraction.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -197,34 +197,34 @@ and behavior.
 #### forward[[transformers.UVDocBackbone.forward]]
 
 ```python
-forward(pixel_values: FloatTensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(pixel_values: Tensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/uvdoc/modeling_uvdoc.py#L312)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/uvdoc/modeling_uvdoc.py#L312)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [UVDocImageProcessor](/docs/transformers/v5.22.2/en/model_doc/uvdoc#transformers.UVDocImageProcessor). See [UVDocImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [UVDocImageProcessor](/docs/transformers/v5.22.2/en/model_doc/uvdoc#transformers.UVDocImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [UVDocImageProcessor](/docs/transformers/v5.23.0/en/model_doc/uvdoc#transformers.UVDocImageProcessor). See [UVDocImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [UVDocImageProcessor](/docs/transformers/v5.23.0/en/model_doc/uvdoc#transformers.UVDocImageProcessor) for processing images).
 
-**Returns:** `BackboneOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `BackboneOutput` or `tuple(torch.Tensor)`
 
 A `BackboneOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([UVDocConfig](/docs/transformers/v5.22.2/en/model_doc/uvdoc#transformers.UVDocConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([UVDocConfig](/docs/transformers/v5.23.0/en/model_doc/uvdoc#transformers.UVDocConfig)) and inputs.
 
-The [UVDocBackbone](/docs/transformers/v5.22.2/en/model_doc/uvdoc#transformers.UVDocBackbone) forward method, overrides the `__call__` special method.
+The [UVDocBackbone](/docs/transformers/v5.23.0/en/model_doc/uvdoc#transformers.UVDocBackbone) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **feature_maps** (`tuple(torch.FloatTensor)` of shape `(batch_size, num_channels, height, width)`) -- Feature maps of the stages.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings + one for the output of each layer) of
+- **feature_maps** (`tuple(torch.Tensor)` of shape `(batch_size, num_channels, height, width)`) -- Feature maps of the stages.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings + one for the output of each layer) of
   shape `(batch_size, sequence_length, hidden_size)` or `(batch_size, num_channels, height, width)`,
   depending on the backbone.
 
   Hidden-states of the model at the output of each stage plus the initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`. Only applicable if the backbone uses attention.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -235,10 +235,10 @@ the latter silently ignores them.
 #### transformers.UVDocBridge[[transformers.UVDocBridge]]
 
 ```python
-transformers.UVDocBridge(config)
+transformers.UVDocBridge(config: UVDocConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/uvdoc/modeling_uvdoc.py#L269)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/uvdoc/modeling_uvdoc.py#L269)
 
 ## UVDocImageProcessor[[transformers.UVDocImageProcessor]]
 
@@ -248,7 +248,7 @@ transformers.UVDocBridge(config)
 transformers.UVDocImageProcessor(**kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/uvdoc/image_processing_uvdoc.py#L36)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/uvdoc/image_processing_uvdoc.py#L34)
 
 **Parameters:**
 
@@ -318,6 +318,10 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 
 disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
 
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
 image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models.
 
 Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors. --
@@ -335,10 +339,10 @@ Added for backward compatibility but this should be set as a processor attribute
 #### post_process_document_rectification[[transformers.UVDocImageProcessor.post_process_document_rectification]]
 
 ```python
-post_process_document_rectification(prediction: Tensor, original_images: list, scale: float = 255.0)
+post_process_document_rectification(prediction: Tensor, original_images: list[torch.Tensor], scale: float = 255.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/uvdoc/image_processing_uvdoc.py#L91)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/uvdoc/image_processing_uvdoc.py#L89)
 
 **Parameters:**
 
@@ -356,4 +360,4 @@ scale : Scaling factor for output images (default: 255.0)
 Post-process document rectification predictions to convert them into rectified images.
 
 ### ColQwen2
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/colqwen2.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/colqwen2.md

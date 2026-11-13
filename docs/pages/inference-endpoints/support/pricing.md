@@ -68,10 +68,10 @@ The table below shows currently available GPU instances and their hourly pricing
 | gcp      | nvidia-a100   | x2            | $7.2        | 2    | 160 GB | NVIDIA A100  |
 | gcp      | nvidia-a100   | x4            | $14.4       | 4    | 320 GB | NVIDIA A100  |
 | gcp      | nvidia-a100   | x8            | $28.8       | 8    | 640 GB | NVIDIA A100  |
-| gcp      | nvidia-h100   | x1            | $10         | 1    | 80 GB  | NVIDIA H100  |
-| gcp      | nvidia-h100   | x2            | $20         | 2    | 160 GB | NVIDIA H100  |
-| gcp      | nvidia-h100   | x4            | $40         | 4    | 320 GB | NVIDIA H100  |
-| gcp      | nvidia-h100   | x8            | $80         | 8    | 640 GB | NVIDIA H100  |
+| gcp      | nvidia-h100   | x1            | $10         | 1    | 80 GB  | *NVIDIA H100 - Deprecated from November 2026* |
+| gcp      | nvidia-h100   | x2            | $20         | 2    | 160 GB | *NVIDIA H100 - Deprecated from November 2026* |
+| gcp      | nvidia-h100   | x4            | $40         | 4    | 320 GB | *NVIDIA H100 - Deprecated from November 2026* |
+| gcp      | nvidia-h100   | x8            | $80         | 8    | 640 GB | *NVIDIA H100 - Deprecated from November 2026* |
 | gcp      | nvidia-h200   | x1            | $5          | 1    | 141 GB | NVIDIA H200  |
 | gcp      | nvidia-h200   | x2            | $10         | 2    | 282 GB | NVIDIA H200  |
 | gcp      | nvidia-h200   | x4            | $20         | 4    | 564 GB | NVIDIA H200  |
@@ -132,5 +132,5 @@ $0.5/hr * ((730hr * 1 replica) + (182.5hr * 2 replicas)) = $547.5/month
 
 ![advanced-chart](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/advanced-chart.png)
 
-### Custom Router
-https://huggingface.co/docs/inference-endpoints/guides/custom_router.md
+### SGLang
+https://huggingface.co/docs/inference-endpoints/engines/sglang.md

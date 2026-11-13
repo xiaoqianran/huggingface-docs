@@ -63,7 +63,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 ## Run inference
 
-Pass `device_map="auto"` to [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to split a model that doesn't fit on one XPU across the available XPUs, or `device_map="xpu"` to load it on a single XPU. [pipeline()](/docs/transformers/v5.22.2/en/main_classes/pipelines#transformers.pipeline) picks an XPU automatically when you don't pass `device`.
+Pass `device_map="auto"` to [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to split a model that doesn't fit on one XPU across the available XPUs, or `device_map="xpu"` to load it on a single XPU. [pipeline()](/docs/transformers/v5.23.0/en/main_classes/pipelines#transformers.pipeline) picks an XPU automatically when you don't pass `device`.
 
 ```py
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -80,7 +80,7 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
 
 ## Use Hub kernels
 
-Set `use_kernels=True` in [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to replace supported layers with optimized kernels from the Hub. Intel GPUs cover most of the same layers as NVIDIA GPUs, such as activations, RMSNorm, and rotary embeddings. Install the `kernels` extra to use them.
+Set `use_kernels=True` in [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to replace supported layers with optimized kernels from the Hub. Intel GPUs cover most of the same layers as NVIDIA GPUs, such as activations, RMSNorm, and rotary embeddings. Install the `kernels` extra to use them.
 
 ```py
 model = AutoModelForCausalLM.from_pretrained(
@@ -88,7 +88,7 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
-Hub kernels apply to training too. Calling `model.train()` or `model.eval()` swaps in the kernels for that mode. To choose a kernel yourself, pass a [KernelConfig](/docs/transformers/v5.22.2/en/main_classes/kernels#transformers.KernelConfig) and use `"xpu"` as the device key for XPU-specific mappings. See [Loading kernels](./kernel_doc/loading_kernels) for the full mapping.
+Hub kernels apply to training too. Calling `model.train()` or `model.eval()` swaps in the kernels for that mode. To choose a kernel yourself, pass a [KernelConfig](/docs/transformers/v5.23.0/en/main_classes/kernels#transformers.KernelConfig) and use `"xpu"` as the device key for XPU-specific mappings. See [Loading kernels](./kernel_doc/loading_kernels) for the full mapping.
 
 ## Quantize models
 
@@ -98,7 +98,7 @@ To fine-tune a model that doesn't fit in GPU memory, load it in 4-bit with [bits
 
 ## Train with Trainer
 
-[TrainingArguments](/docs/transformers/v5.22.2/en/main_classes/trainer#transformers.TrainingArguments) detects Intel GPUs and sets the device to `xpu`, so [Trainer](/docs/transformers/v5.22.2/en/main_classes/trainer#transformers.Trainer) trains on them without any device settings. `TrainingArguments` checks bf16 support with `torch.xpu.is_bf16_supported()` and raises a `ValueError` if the GPU doesn't support it.
+[TrainingArguments](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.TrainingArguments) detects Intel GPUs and sets the device to `xpu`, so [Trainer](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.Trainer) trains on them without any device settings. `TrainingArguments` checks bf16 support with `torch.xpu.is_bf16_supported()` and raises a `ValueError` if the GPU doesn't support it.
 
 ```py
 from transformers import TrainingArguments
@@ -128,4 +128,4 @@ See [DDP](./ddp), [FSDP2](./fsdp), [DeepSpeed ZeRO](./deepspeed), and [Tensor pa
 - Read [Attention backends](./attention_interface) to learn how `attn_implementation` selects an attention function.
 
 ### Pipeline
-https://huggingface.co/docs/transformers/v5.22.2/pipeline_tutorial.md
+https://huggingface.co/docs/transformers/v5.23.0/pipeline_tutorial.md

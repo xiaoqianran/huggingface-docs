@@ -27,7 +27,7 @@ A list of official Hugging Face and community (indicated by 🌎) resources to h
 transformers.InformerConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, is_encoder_decoder: bool = True, prediction_length: int | None = None, context_length: int | None = None, distribution_output: str = 'student_t', loss: str = 'nll', input_size: int = 1, lags_sequence: list[int] | None = None, scaling: str | bool | None = 'mean', num_dynamic_real_features: int = 0, num_static_real_features: int = 0, num_static_categorical_features: int = 0, num_time_features: int = 0, cardinality: list[int] | None = None, embedding_dimension: list[int] | None = None, d_model: int = 64, encoder_ffn_dim: int = 32, decoder_ffn_dim: int = 32, encoder_attention_heads: int = 2, decoder_attention_heads: int = 2, encoder_layers: int = 2, decoder_layers: int = 2, activation_function: str = 'gelu', dropout: float | int = 0.05, encoder_layerdrop: float | int = 0.1, decoder_layerdrop: float | int = 0.1, attention_dropout: float | int = 0.1, activation_dropout: float | int = 0.1, num_parallel_samples: int = 100, init_std: float = 0.02, use_cache: bool = True, attention_type: str = 'prob', sampling_factor: int = 5, distil: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/informer/configuration_informer.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/informer/configuration_informer.py#L24)
 
 **Parameters:**
 
@@ -101,8 +101,8 @@ This is the configuration class to store the configuration of a InformerModel. I
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [huggingface/informer-tourism-monthly](https://huggingface.co/huggingface/informer-tourism-monthly)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -127,15 +127,15 @@ Example:
 transformers.InformerModel(config: InformerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/informer/modeling_informer.py#L994)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/informer/modeling_informer.py#L994)
 
 **Parameters:**
 
-config ([InformerConfig](/docs/transformers/v5.22.2/en/model_doc/informer#transformers.InformerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([InformerConfig](/docs/transformers/v5.23.0/en/model_doc/informer#transformers.InformerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Informer Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -146,84 +146,84 @@ and behavior.
 #### forward[[transformers.InformerModel.forward]]
 
 ```python
-forward(past_values: Tensor, past_time_features: Tensor, past_observed_mask: Tensor, static_categorical_features: typing.Optional[torch.Tensor] = None, static_real_features: typing.Optional[torch.Tensor] = None, future_values: typing.Optional[torch.Tensor] = None, future_time_features: typing.Optional[torch.Tensor] = None, decoder_attention_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: list[torch.FloatTensor] | None = None, past_key_values: transformers.cache_utils.Cache | None = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(past_values: Tensor, past_time_features: Tensor, past_observed_mask: Tensor, static_categorical_features: typing.Optional[torch.Tensor] = None, static_real_features: typing.Optional[torch.Tensor] = None, future_values: typing.Optional[torch.Tensor] = None, future_time_features: typing.Optional[torch.Tensor] = None, decoder_attention_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: list[torch.Tensor] | None = None, past_key_values: transformers.cache_utils.Cache | None = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/informer/modeling_informer.py#L1132)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/informer/modeling_informer.py#L1132)
 
 **Parameters:**
 
-past_values (`torch.FloatTensor` of shape `(batch_size, sequence_length)` or `(batch_size, sequence_length, input_size)`) : Past values of the time series, that serve as context in order to predict the future. The sequence size of this tensor must be larger than the `context_length` of the model, since the model will use the larger size to construct lag features, i.e. additional values from the past which are added in order to serve as "extra context".  The `sequence_length` here is equal to `config.context_length` + `max(config.lags_sequence)`, which if no `lags_sequence` is configured, is equal to `config.context_length` + 7 (as by default, the largest look-back index in `config.lags_sequence` is 7). The property `_past_length` returns the actual length of the past.  The `past_values` is what the Transformer encoder gets as input (with optional additional features, such as `static_categorical_features`, `static_real_features`, `past_time_features` and lags).  Optionally, missing values need to be replaced with zeros and indicated via the `past_observed_mask`.  For multivariate time series, the `input_size` > 1 dimension is required and corresponds to the number of variates in the time series per time step.
+past_values (`torch.Tensor` of shape `(batch_size, sequence_length)` or `(batch_size, sequence_length, input_size)`) : Past values of the time series, that serve as context in order to predict the future. The sequence size of this tensor must be larger than the `context_length` of the model, since the model will use the larger size to construct lag features, i.e. additional values from the past which are added in order to serve as "extra context".  The `sequence_length` here is equal to `config.context_length` + `max(config.lags_sequence)`, which if no `lags_sequence` is configured, is equal to `config.context_length` + 7 (as by default, the largest look-back index in `config.lags_sequence` is 7). The property `_past_length` returns the actual length of the past.  The `past_values` is what the Transformer encoder gets as input (with optional additional features, such as `static_categorical_features`, `static_real_features`, `past_time_features` and lags).  Optionally, missing values need to be replaced with zeros and indicated via the `past_observed_mask`.  For multivariate time series, the `input_size` > 1 dimension is required and corresponds to the number of variates in the time series per time step.
 
-past_time_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, num_features)`) : Required time features, which the model internally will add to `past_values`. These could be things like "month of year", "day of the month", etc. encoded as vectors (for instance as Fourier features). These could also be so-called "age" features, which basically help the model know "at which point in life" a time-series is. Age features have small values for distant past time steps and increase monotonically the more we approach the current time step. Holiday features are also a good example of time features.  These features serve as the "positional encodings" of the inputs. So contrary to a model like BERT, where the position encodings are learned from scratch internally as parameters of the model, the Time Series Transformer requires to provide additional time features. The Time Series Transformer only learns additional embeddings for `static_categorical_features`.  Additional dynamic real covariates can be concatenated to this tensor, with the caveat that these features must but known at prediction time.  The `num_features` here is equal to `config.`num_time_features` + `config.num_dynamic_real_features`.
+past_time_features (`torch.Tensor` of shape `(batch_size, sequence_length, num_features)`) : Required time features, which the model internally will add to `past_values`. These could be things like "month of year", "day of the month", etc. encoded as vectors (for instance as Fourier features). These could also be so-called "age" features, which basically help the model know "at which point in life" a time-series is. Age features have small values for distant past time steps and increase monotonically the more we approach the current time step. Holiday features are also a good example of time features.  These features serve as the "positional encodings" of the inputs. So contrary to a model like BERT, where the position encodings are learned from scratch internally as parameters of the model, the Time Series Transformer requires to provide additional time features. The Time Series Transformer only learns additional embeddings for `static_categorical_features`.  Additional dynamic real covariates can be concatenated to this tensor, with the caveat that these features must but known at prediction time.  The `num_features` here is equal to `config.`num_time_features` + `config.num_dynamic_real_features`.
 
 past_observed_mask (`torch.BoolTensor` of shape `(batch_size, sequence_length)` or `(batch_size, sequence_length, input_size)`, *optional*) : Boolean mask to indicate which `past_values` were observed and which were missing. Mask values selected in `[0, 1]`:  - 1 for values that are **observed**, - 0 for values that are **missing** (i.e. NaNs that were replaced by zeros).
 
 static_categorical_features (`torch.LongTensor` of shape `(batch_size, number of static categorical features)`, *optional*) : Optional static categorical features for which the model will learn an embedding, which it will add to the values of the time series.  Static categorical features are features which have the same value for all time steps (static over time).  A typical example of a static categorical feature is a time series ID.
 
-static_real_features (`torch.FloatTensor` of shape `(batch_size, number of static real features)`, *optional*) : Optional static real features which the model will add to the values of the time series.  Static real features are features which have the same value for all time steps (static over time).  A typical example of a static real feature is promotion information.
+static_real_features (`torch.Tensor` of shape `(batch_size, number of static real features)`, *optional*) : Optional static real features which the model will add to the values of the time series.  Static real features are features which have the same value for all time steps (static over time).  A typical example of a static real feature is promotion information.
 
-future_values (`torch.FloatTensor` of shape `(batch_size, prediction_length)` or `(batch_size, prediction_length, input_size)`, *optional*) : Future values of the time series, that serve as labels for the model. The `future_values` is what the Transformer needs during training to learn to output, given the `past_values`.  The sequence length here is equal to `prediction_length`.  See the demo notebook and code snippets for details.  Optionally, during training any missing values need to be replaced with zeros and indicated via the `future_observed_mask`.  For multivariate time series, the `input_size` > 1 dimension is required and corresponds to the number of variates in the time series per time step.
+future_values (`torch.Tensor` of shape `(batch_size, prediction_length)` or `(batch_size, prediction_length, input_size)`, *optional*) : Future values of the time series, that serve as labels for the model. The `future_values` is what the Transformer needs during training to learn to output, given the `past_values`.  The sequence length here is equal to `prediction_length`.  See the demo notebook and code snippets for details.  Optionally, during training any missing values need to be replaced with zeros and indicated via the `future_observed_mask`.  For multivariate time series, the `input_size` > 1 dimension is required and corresponds to the number of variates in the time series per time step.
 
-future_time_features (`torch.FloatTensor` of shape `(batch_size, prediction_length, num_features)`) : Required time features for the prediction window, which the model internally will add to `future_values`. These could be things like "month of year", "day of the month", etc. encoded as vectors (for instance as Fourier features). These could also be so-called "age" features, which basically help the model know "at which point in life" a time-series is. Age features have small values for distant past time steps and increase monotonically the more we approach the current time step. Holiday features are also a good example of time features.  These features serve as the "positional encodings" of the inputs. So contrary to a model like BERT, where the position encodings are learned from scratch internally as parameters of the model, the Time Series Transformer requires to provide additional time features. The Time Series Transformer only learns additional embeddings for `static_categorical_features`.  Additional dynamic real covariates can be concatenated to this tensor, with the caveat that these features must but known at prediction time.  The `num_features` here is equal to `config.num_time_features` + `config.num_dynamic_real_features`.
+future_time_features (`torch.Tensor` of shape `(batch_size, prediction_length, num_features)`) : Required time features for the prediction window, which the model internally will add to `future_values`. These could be things like "month of year", "day of the month", etc. encoded as vectors (for instance as Fourier features). These could also be so-called "age" features, which basically help the model know "at which point in life" a time-series is. Age features have small values for distant past time steps and increase monotonically the more we approach the current time step. Holiday features are also a good example of time features.  These features serve as the "positional encodings" of the inputs. So contrary to a model like BERT, where the position encodings are learned from scratch internally as parameters of the model, the Time Series Transformer requires to provide additional time features. The Time Series Transformer only learns additional embeddings for `static_categorical_features`.  Additional dynamic real covariates can be concatenated to this tensor, with the caveat that these features must but known at prediction time.  The `num_features` here is equal to `config.num_time_features` + `config.num_dynamic_real_features`.
 
 decoder_attention_mask (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Mask to avoid performing attention on certain token indices. By default, a causal mask will be used, to make sure the model can only look at previous inputs in order to predict the future.
 
-encoder_outputs (`tuple(tuple(torch.FloatTensor)`, *optional*) : Tuple consists of `last_hidden_state`, `hidden_states` (*optional*) and `attentions` (*optional*) `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)` (*optional*) is a sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
+encoder_outputs (`tuple(tuple(torch.Tensor)`, *optional*) : Tuple consists of `last_hidden_state`, `hidden_states` (*optional*) and `attentions` (*optional*) `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)` (*optional*) is a sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-**Returns:** [Seq2SeqTSModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.Seq2SeqTSModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [Seq2SeqTSModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.Seq2SeqTSModelOutput) or `tuple(torch.Tensor)`
 
-A [Seq2SeqTSModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.Seq2SeqTSModelOutput) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([InformerConfig](/docs/transformers/v5.22.2/en/model_doc/informer#transformers.InformerConfig)) and inputs.
+A [Seq2SeqTSModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.Seq2SeqTSModelOutput) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([InformerConfig](/docs/transformers/v5.23.0/en/model_doc/informer#transformers.InformerConfig)) and inputs.
 
-The [InformerModel](/docs/transformers/v5.22.2/en/model_doc/informer#transformers.InformerModel) forward method, overrides the `__call__` special method.
+The [InformerModel](/docs/transformers/v5.23.0/en/model_doc/informer#transformers.InformerModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the decoder of the model.
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the decoder of the model.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
   blocks) that can be used (see `past_key_values` input) to speed up sequential decoding.
-- **decoder_hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **decoder_hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the decoder at the output of each layer plus the optional initial embedding outputs.
-- **decoder_attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **decoder_attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights of the decoder, after the attention softmax, used to compute the weighted average in the
   self-attention heads.
-- **cross_attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **cross_attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights of the decoder's cross-attention layer, after the attention softmax, used to compute the
   weighted average in the cross-attention heads.
-- **encoder_last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) -- Sequence of hidden-states at the output of the last layer of the encoder of the model.
-- **encoder_hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **encoder_last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) -- Sequence of hidden-states at the output of the last layer of the encoder of the model.
+- **encoder_hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the encoder at the output of each layer plus the optional initial embedding outputs.
-- **encoder_attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **encoder_attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights of the encoder, after the attention softmax, used to compute the weighted average in the
   self-attention heads.
-- **loc** (`torch.FloatTensor` of shape `(batch_size,)` or `(batch_size, input_size)`, *optional*) -- Shift values of each time series' context window which is used to give the model inputs of the same
+- **loc** (`torch.Tensor` of shape `(batch_size,)` or `(batch_size, input_size)`, *optional*) -- Shift values of each time series' context window which is used to give the model inputs of the same
   magnitude and then used to shift back to the original magnitude.
-- **scale** (`torch.FloatTensor` of shape `(batch_size,)` or `(batch_size, input_size)`, *optional*) -- Scaling values of each time series' context window which is used to give the model inputs of the same
+- **scale** (`torch.Tensor` of shape `(batch_size,)` or `(batch_size, input_size)`, *optional*) -- Scaling values of each time series' context window which is used to give the model inputs of the same
   magnitude and then used to rescale back to the original magnitude.
-- **static_features** (`torch.FloatTensor` of shape `(batch_size, feature size)`, *optional*) -- Static features of each time series' in a batch which are copied to the covariates at inference time.
+- **static_features** (`torch.Tensor` of shape `(batch_size, feature size)`, *optional*) -- Static features of each time series' in a batch which are copied to the covariates at inference time.
 
 Examples:
 
@@ -262,15 +262,15 @@ Examples:
 transformers.InformerForPrediction(config: InformerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/informer/modeling_informer.py#L1357)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/informer/modeling_informer.py#L1357)
 
 **Parameters:**
 
-config ([InformerConfig](/docs/transformers/v5.22.2/en/model_doc/informer#transformers.InformerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([InformerConfig](/docs/transformers/v5.23.0/en/model_doc/informer#transformers.InformerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Informer Model with a distribution head on top for time-series forecasting.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -281,86 +281,86 @@ and behavior.
 #### forward[[transformers.InformerForPrediction.forward]]
 
 ```python
-forward(past_values: Tensor, past_time_features: Tensor, past_observed_mask: Tensor, static_categorical_features: typing.Optional[torch.Tensor] = None, static_real_features: typing.Optional[torch.Tensor] = None, future_values: typing.Optional[torch.Tensor] = None, future_time_features: typing.Optional[torch.Tensor] = None, future_observed_mask: typing.Optional[torch.Tensor] = None, decoder_attention_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: list[torch.FloatTensor] | None = None, past_key_values: transformers.cache_utils.Cache | None = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(past_values: Tensor, past_time_features: Tensor, past_observed_mask: Tensor, static_categorical_features: typing.Optional[torch.Tensor] = None, static_real_features: typing.Optional[torch.Tensor] = None, future_values: typing.Optional[torch.Tensor] = None, future_time_features: typing.Optional[torch.Tensor] = None, future_observed_mask: typing.Optional[torch.Tensor] = None, decoder_attention_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: list[torch.Tensor] | None = None, past_key_values: transformers.cache_utils.Cache | None = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/informer/modeling_informer.py#L1392)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/informer/modeling_informer.py#L1392)
 
 **Parameters:**
 
-past_values (`torch.FloatTensor` of shape `(batch_size, sequence_length)` or `(batch_size, sequence_length, input_size)`) : Past values of the time series, that serve as context in order to predict the future. The sequence size of this tensor must be larger than the `context_length` of the model, since the model will use the larger size to construct lag features, i.e. additional values from the past which are added in order to serve as "extra context".  The `sequence_length` here is equal to `config.context_length` + `max(config.lags_sequence)`, which if no `lags_sequence` is configured, is equal to `config.context_length` + 7 (as by default, the largest look-back index in `config.lags_sequence` is 7). The property `_past_length` returns the actual length of the past.  The `past_values` is what the Transformer encoder gets as input (with optional additional features, such as `static_categorical_features`, `static_real_features`, `past_time_features` and lags).  Optionally, missing values need to be replaced with zeros and indicated via the `past_observed_mask`.  For multivariate time series, the `input_size` > 1 dimension is required and corresponds to the number of variates in the time series per time step.
+past_values (`torch.Tensor` of shape `(batch_size, sequence_length)` or `(batch_size, sequence_length, input_size)`) : Past values of the time series, that serve as context in order to predict the future. The sequence size of this tensor must be larger than the `context_length` of the model, since the model will use the larger size to construct lag features, i.e. additional values from the past which are added in order to serve as "extra context".  The `sequence_length` here is equal to `config.context_length` + `max(config.lags_sequence)`, which if no `lags_sequence` is configured, is equal to `config.context_length` + 7 (as by default, the largest look-back index in `config.lags_sequence` is 7). The property `_past_length` returns the actual length of the past.  The `past_values` is what the Transformer encoder gets as input (with optional additional features, such as `static_categorical_features`, `static_real_features`, `past_time_features` and lags).  Optionally, missing values need to be replaced with zeros and indicated via the `past_observed_mask`.  For multivariate time series, the `input_size` > 1 dimension is required and corresponds to the number of variates in the time series per time step.
 
-past_time_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, num_features)`) : Required time features, which the model internally will add to `past_values`. These could be things like "month of year", "day of the month", etc. encoded as vectors (for instance as Fourier features). These could also be so-called "age" features, which basically help the model know "at which point in life" a time-series is. Age features have small values for distant past time steps and increase monotonically the more we approach the current time step. Holiday features are also a good example of time features.  These features serve as the "positional encodings" of the inputs. So contrary to a model like BERT, where the position encodings are learned from scratch internally as parameters of the model, the Time Series Transformer requires to provide additional time features. The Time Series Transformer only learns additional embeddings for `static_categorical_features`.  Additional dynamic real covariates can be concatenated to this tensor, with the caveat that these features must but known at prediction time.  The `num_features` here is equal to `config.`num_time_features` + `config.num_dynamic_real_features`.
+past_time_features (`torch.Tensor` of shape `(batch_size, sequence_length, num_features)`) : Required time features, which the model internally will add to `past_values`. These could be things like "month of year", "day of the month", etc. encoded as vectors (for instance as Fourier features). These could also be so-called "age" features, which basically help the model know "at which point in life" a time-series is. Age features have small values for distant past time steps and increase monotonically the more we approach the current time step. Holiday features are also a good example of time features.  These features serve as the "positional encodings" of the inputs. So contrary to a model like BERT, where the position encodings are learned from scratch internally as parameters of the model, the Time Series Transformer requires to provide additional time features. The Time Series Transformer only learns additional embeddings for `static_categorical_features`.  Additional dynamic real covariates can be concatenated to this tensor, with the caveat that these features must but known at prediction time.  The `num_features` here is equal to `config.`num_time_features` + `config.num_dynamic_real_features`.
 
 past_observed_mask (`torch.BoolTensor` of shape `(batch_size, sequence_length)` or `(batch_size, sequence_length, input_size)`, *optional*) : Boolean mask to indicate which `past_values` were observed and which were missing. Mask values selected in `[0, 1]`:  - 1 for values that are **observed**, - 0 for values that are **missing** (i.e. NaNs that were replaced by zeros).
 
 static_categorical_features (`torch.LongTensor` of shape `(batch_size, number of static categorical features)`, *optional*) : Optional static categorical features for which the model will learn an embedding, which it will add to the values of the time series.  Static categorical features are features which have the same value for all time steps (static over time).  A typical example of a static categorical feature is a time series ID.
 
-static_real_features (`torch.FloatTensor` of shape `(batch_size, number of static real features)`, *optional*) : Optional static real features which the model will add to the values of the time series.  Static real features are features which have the same value for all time steps (static over time).  A typical example of a static real feature is promotion information.
+static_real_features (`torch.Tensor` of shape `(batch_size, number of static real features)`, *optional*) : Optional static real features which the model will add to the values of the time series.  Static real features are features which have the same value for all time steps (static over time).  A typical example of a static real feature is promotion information.
 
-future_values (`torch.FloatTensor` of shape `(batch_size, prediction_length)` or `(batch_size, prediction_length, input_size)`, *optional*) : Future values of the time series, that serve as labels for the model. The `future_values` is what the Transformer needs during training to learn to output, given the `past_values`.  The sequence length here is equal to `prediction_length`.  See the demo notebook and code snippets for details.  Optionally, during training any missing values need to be replaced with zeros and indicated via the `future_observed_mask`.  For multivariate time series, the `input_size` > 1 dimension is required and corresponds to the number of variates in the time series per time step.
+future_values (`torch.Tensor` of shape `(batch_size, prediction_length)` or `(batch_size, prediction_length, input_size)`, *optional*) : Future values of the time series, that serve as labels for the model. The `future_values` is what the Transformer needs during training to learn to output, given the `past_values`.  The sequence length here is equal to `prediction_length`.  See the demo notebook and code snippets for details.  Optionally, during training any missing values need to be replaced with zeros and indicated via the `future_observed_mask`.  For multivariate time series, the `input_size` > 1 dimension is required and corresponds to the number of variates in the time series per time step.
 
-future_time_features (`torch.FloatTensor` of shape `(batch_size, prediction_length, num_features)`) : Required time features for the prediction window, which the model internally will add to `future_values`. These could be things like "month of year", "day of the month", etc. encoded as vectors (for instance as Fourier features). These could also be so-called "age" features, which basically help the model know "at which point in life" a time-series is. Age features have small values for distant past time steps and increase monotonically the more we approach the current time step. Holiday features are also a good example of time features.  These features serve as the "positional encodings" of the inputs. So contrary to a model like BERT, where the position encodings are learned from scratch internally as parameters of the model, the Time Series Transformer requires to provide additional time features. The Time Series Transformer only learns additional embeddings for `static_categorical_features`.  Additional dynamic real covariates can be concatenated to this tensor, with the caveat that these features must but known at prediction time.  The `num_features` here is equal to `config.num_time_features` + `config.num_dynamic_real_features`.
+future_time_features (`torch.Tensor` of shape `(batch_size, prediction_length, num_features)`) : Required time features for the prediction window, which the model internally will add to `future_values`. These could be things like "month of year", "day of the month", etc. encoded as vectors (for instance as Fourier features). These could also be so-called "age" features, which basically help the model know "at which point in life" a time-series is. Age features have small values for distant past time steps and increase monotonically the more we approach the current time step. Holiday features are also a good example of time features.  These features serve as the "positional encodings" of the inputs. So contrary to a model like BERT, where the position encodings are learned from scratch internally as parameters of the model, the Time Series Transformer requires to provide additional time features. The Time Series Transformer only learns additional embeddings for `static_categorical_features`.  Additional dynamic real covariates can be concatenated to this tensor, with the caveat that these features must but known at prediction time.  The `num_features` here is equal to `config.num_time_features` + `config.num_dynamic_real_features`.
 
 future_observed_mask (`torch.BoolTensor` of shape `(batch_size, sequence_length)` or `(batch_size, sequence_length, input_size)`, *optional*) : Boolean mask to indicate which `future_values` were observed and which were missing. Mask values selected in `[0, 1]`:  - 1 for values that are **observed**, - 0 for values that are **missing** (i.e. NaNs that were replaced by zeros).  This mask is used to filter out missing values for the final loss calculation.
 
 decoder_attention_mask (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Mask to avoid performing attention on certain token indices. By default, a causal mask will be used, to make sure the model can only look at previous inputs in order to predict the future.
 
-encoder_outputs (`tuple(tuple(torch.FloatTensor)`, *optional*) : Tuple consists of `last_hidden_state`, `hidden_states` (*optional*) and `attentions` (*optional*) `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)` (*optional*) is a sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
+encoder_outputs (`tuple(tuple(torch.Tensor)`, *optional*) : Tuple consists of `last_hidden_state`, `hidden_states` (*optional*) and `attentions` (*optional*) `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)` (*optional*) is a sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-**Returns:** [Seq2SeqTSModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.Seq2SeqTSModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [Seq2SeqTSModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.Seq2SeqTSModelOutput) or `tuple(torch.Tensor)`
 
-A [Seq2SeqTSModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.Seq2SeqTSModelOutput) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([InformerConfig](/docs/transformers/v5.22.2/en/model_doc/informer#transformers.InformerConfig)) and inputs.
+A [Seq2SeqTSModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.Seq2SeqTSModelOutput) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([InformerConfig](/docs/transformers/v5.23.0/en/model_doc/informer#transformers.InformerConfig)) and inputs.
 
-The [InformerForPrediction](/docs/transformers/v5.22.2/en/model_doc/informer#transformers.InformerForPrediction) forward method, overrides the `__call__` special method.
+The [InformerForPrediction](/docs/transformers/v5.23.0/en/model_doc/informer#transformers.InformerForPrediction) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the decoder of the model.
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the decoder of the model.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.22.2/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
   blocks) that can be used (see `past_key_values` input) to speed up sequential decoding.
-- **decoder_hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **decoder_hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the decoder at the output of each layer plus the optional initial embedding outputs.
-- **decoder_attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **decoder_attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights of the decoder, after the attention softmax, used to compute the weighted average in the
   self-attention heads.
-- **cross_attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **cross_attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights of the decoder's cross-attention layer, after the attention softmax, used to compute the
   weighted average in the cross-attention heads.
-- **encoder_last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) -- Sequence of hidden-states at the output of the last layer of the encoder of the model.
-- **encoder_hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **encoder_last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) -- Sequence of hidden-states at the output of the last layer of the encoder of the model.
+- **encoder_hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the encoder at the output of each layer plus the optional initial embedding outputs.
-- **encoder_attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **encoder_attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights of the encoder, after the attention softmax, used to compute the weighted average in the
   self-attention heads.
-- **loc** (`torch.FloatTensor` of shape `(batch_size,)` or `(batch_size, input_size)`, *optional*) -- Shift values of each time series' context window which is used to give the model inputs of the same
+- **loc** (`torch.Tensor` of shape `(batch_size,)` or `(batch_size, input_size)`, *optional*) -- Shift values of each time series' context window which is used to give the model inputs of the same
   magnitude and then used to shift back to the original magnitude.
-- **scale** (`torch.FloatTensor` of shape `(batch_size,)` or `(batch_size, input_size)`, *optional*) -- Scaling values of each time series' context window which is used to give the model inputs of the same
+- **scale** (`torch.Tensor` of shape `(batch_size,)` or `(batch_size, input_size)`, *optional*) -- Scaling values of each time series' context window which is used to give the model inputs of the same
   magnitude and then used to rescale back to the original magnitude.
-- **static_features** (`torch.FloatTensor` of shape `(batch_size, feature size)`, *optional*) -- Static features of each time series' in a batch which are copied to the covariates at inference time.
+- **static_features** (`torch.Tensor` of shape `(batch_size, feature size)`, *optional*) -- Static features of each time series' in a batch which are copied to the covariates at inference time.
 
 Examples:
 
@@ -409,4 +409,4 @@ Examples:
 ```
 
 ### Helium
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/helium.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/helium.md

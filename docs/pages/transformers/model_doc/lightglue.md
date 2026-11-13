@@ -9,7 +9,7 @@ You can find all the original LightGlue checkpoints under the [ETH-CVG](https://
 >
 > Click on the LightGlue models in the right sidebar for more examples of how to apply LightGlue to different computer vision tasks.
 
-The example below demonstrates how to match keypoints between two images with [Pipeline](/docs/transformers/v5.22.2/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to match keypoints between two images with [Pipeline](/docs/transformers/v5.23.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -77,7 +77,7 @@ processed_outputs = processor.post_process_keypoint_matching(outputs, image_size
     ```
 
 - The model outputs matching indices, keypoints, and confidence scores for each match, similar to SuperGlue but with improved efficiency.
-- For better visualization and analysis, use the [LightGlueImageProcessor.post_process_keypoint_matching()](/docs/transformers/v5.22.2/en/model_doc/lightglue#transformers.LightGlueImageProcessor.post_process_keypoint_matching) method to get matches in a more readable format.
+- For better visualization and analysis, use the [LightGlueImageProcessor.post_process_keypoint_matching()](/docs/transformers/v5.23.0/en/model_doc/lightglue#transformers.LightGlueImageProcessor.post_process_keypoint_matching) method to get matches in a more readable format.
 
     ```py
     # Process outputs for visualization
@@ -113,7 +113,7 @@ processed_outputs = processor.post_process_keypoint_matching(outputs, image_size
 transformers.LightGlueConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, keypoint_detector_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, descriptor_dim: int = 256, num_hidden_layers: int = 9, num_attention_heads: int = 4, num_key_value_heads: int | None = None, depth_confidence: float = 0.95, width_confidence: float = 0.99, filter_threshold: float = 0.1, initializer_range: float = 0.02, hidden_act: str = 'gelu', attention_dropout: float | int = 0.0, attention_bias: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/lightglue/configuration_lightglue.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/lightglue/configuration_lightglue.py#L30)
 
 **Parameters:**
 
@@ -145,8 +145,8 @@ This is the configuration class to store the configuration of a LightGlueForKeyp
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [ETH-CVG/lightglue_superpoint](https://huggingface.co/ETH-CVG/lightglue_superpoint)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 ```python
@@ -170,7 +170,7 @@ Examples:
 transformers.LightGlueImageProcessor(**kwargs: *<class 'transformers.models.lightglue.image_processing_lightglue.LightGlueImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/lightglue/image_processing_lightglue.py#L121)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/lightglue/image_processing_lightglue.py#L121)
 
 **Parameters:**
 
@@ -224,7 +224,7 @@ Constructs a LightGlueImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.lightglue.image_processing_lightglue.LightGlueImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/lightglue/image_processing_lightglue.py#L135)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/lightglue/image_processing_lightglue.py#L135)
 
 **Parameters:**
 
@@ -284,7 +284,7 @@ do_grayscale (`bool`, *kwargs*, *optional*, defaults to `self.do_grayscale`) : W
 post_process_keypoint_matching(outputs: LightGlueKeypointMatchingOutput, target_sizes: transformers.utils.generic.TensorType | list[tuple], threshold: float = 0.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/lightglue/image_processing_lightglue.py#L191)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/lightglue/image_processing_lightglue.py#L191)
 
 **Parameters:**
 
@@ -305,10 +305,10 @@ with coordinates absolute to the original image sizes.
 #### visualize_keypoint_matching[[transformers.LightGlueImageProcessor.visualize_keypoint_matching]]
 
 ```python
-visualize_keypoint_matching(images, keypoint_matching_output: list)
+visualize_keypoint_matching(images, keypoint_matching_output: list[dict[str, torch.Tensor]])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/lightglue/image_processing_lightglue.py#L259)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/lightglue/image_processing_lightglue.py#L259)
 
 **Parameters:**
 
@@ -331,7 +331,53 @@ Plots the image pairs side by side with the detected keypoints as well as the ma
 transformers.LightGlueImageProcessorPil(**kwargs: *<class 'transformers.models.lightglue.image_processing_pil_lightglue.LightGlueImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/lightglue/image_processing_pil_lightglue.py#L122)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/lightglue/image_processing_pil_lightglue.py#L122)
+
+**Parameters:**
+
+do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
+
+do_resize (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to resize the image.
+
+size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*, defaults to `{'height' : 480, 'width': 640}`): Describes the maximum input dimensions to the model.
+
+default_to_square (`bool`, *kwargs*, *optional*, defaults to `False`) : Whether to default to a square image when resizing, if size is an int.
+
+crop_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Size of the output image after applying `center_crop`.
+
+resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*, defaults to `2`) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+
+do_rescale (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to rescale the image.
+
+rescale_factor (`float`, *kwargs*, *optional*, defaults to `0.00392156862745098`) : Rescale factor to rescale the image by if `do_rescale` is set to `True`.
+
+do_normalize (`bool`, *kwargs*, *optional*, defaults to `None`) : Whether to normalize the image.
+
+image_mean (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image mean to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+image_std (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image standard deviation to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+do_pad (`bool`, *kwargs*, *optional*) : Whether to pad the image. Padding is done either to the largest size in the batch or to a fixed square size per image. The exact padding strategy depends on the model.
+
+pad_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : The size in `{"height": int, "width" int}` to pad the images to. Must be larger than any image size provided for preprocessing. If `pad_size` is not provided, images will be padded to the largest height and width in the batch. Applied only when `do_pad=True.`
+
+do_center_crop (`bool`, *kwargs*, *optional*) : Whether to center crop the image.
+
+data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : Only `ChannelDimension.FIRST` is supported. Added for compatibility with slow processors.
+
+input_data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : The channel dimension format for the input image. If unset, the channel dimension format is inferred from the input image. Can be one of: - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format. - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
+
+device (`Annotated[Union[str, torch.device, NoneType], None]`, *kwargs*) : The device to process the videos on. If unset, the device is inferred from the input videos.
+
+return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwargs*) : Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models.
+
+do_grayscale (`bool`, *kwargs*, *optional*, defaults to `self.do_grayscale`) : Whether to convert the image to grayscale. Can be overridden by `do_grayscale` in the `preprocess` method.
+
+Constructs a LightGlueImageProcessor image processor.
 
 #### preprocess[[transformers.LightGlueImageProcessorPil.preprocess]]
 
@@ -339,7 +385,7 @@ transformers.LightGlueImageProcessorPil(**kwargs: *<class 'transformers.models.l
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.lightglue.image_processing_pil_lightglue.LightGlueImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/lightglue/image_processing_pil_lightglue.py#L136)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/lightglue/image_processing_pil_lightglue.py#L136)
 
 **Parameters:**
 
@@ -399,7 +445,7 @@ do_grayscale (`bool`, *kwargs*, *optional*, defaults to `self.do_grayscale`) : W
 post_process_keypoint_matching(outputs: LightGlueKeypointMatchingOutput, target_sizes: transformers.utils.generic.TensorType | list[tuple], threshold: float = 0.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/lightglue/image_processing_pil_lightglue.py#L177)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/lightglue/image_processing_pil_lightglue.py#L177)
 
 **Parameters:**
 
@@ -420,10 +466,10 @@ with coordinates absolute to the original image sizes.
 #### visualize_keypoint_matching[[transformers.LightGlueImageProcessorPil.visualize_keypoint_matching]]
 
 ```python
-visualize_keypoint_matching(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], keypoint_matching_output: list)
+visualize_keypoint_matching(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], keypoint_matching_output: list[dict[str, 'torch.Tensor']])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/lightglue/image_processing_pil_lightglue.py#L248)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/lightglue/image_processing_pil_lightglue.py#L248)
 
 **Parameters:**
 
@@ -446,15 +492,15 @@ Plots the image pairs side by side with the detected keypoints as well as the ma
 transformers.LightGlueForKeypointMatching(config: LightGlueConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/lightglue/modeling_lightglue.py#L487)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/lightglue/modeling_lightglue.py#L487)
 
 **Parameters:**
 
-config ([LightGlueConfig](/docs/transformers/v5.22.2/en/model_doc/lightglue#transformers.LightGlueConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LightGlueConfig](/docs/transformers/v5.23.0/en/model_doc/lightglue#transformers.LightGlueConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 LightGlue model taking images as inputs and outputting the matching of them.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -465,14 +511,14 @@ and behavior.
 #### forward[[transformers.LightGlueForKeypointMatching.forward]]
 
 ```python
-forward(pixel_values: FloatTensor, labels: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, **kwargs)
+forward(pixel_values: Tensor, labels: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/lightglue/modeling_lightglue.py#L864)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/lightglue/modeling_lightglue.py#L864)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [LightGlueImageProcessor](/docs/transformers/v5.22.2/en/model_doc/lightglue#transformers.LightGlueImageProcessor). See [LightGlueImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [LightGlueImageProcessor](/docs/transformers/v5.22.2/en/model_doc/lightglue#transformers.LightGlueImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [LightGlueImageProcessor](/docs/transformers/v5.23.0/en/model_doc/lightglue#transformers.LightGlueImageProcessor). See [LightGlueImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [LightGlueImageProcessor](/docs/transformers/v5.23.0/en/model_doc/lightglue#transformers.LightGlueImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
 
@@ -480,31 +526,31 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-**Returns:** `LightGlueKeypointMatchingOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `LightGlueKeypointMatchingOutput` or `tuple(torch.Tensor)`
 
 A `LightGlueKeypointMatchingOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LightGlueConfig](/docs/transformers/v5.22.2/en/model_doc/lightglue#transformers.LightGlueConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([LightGlueConfig](/docs/transformers/v5.23.0/en/model_doc/lightglue#transformers.LightGlueConfig)) and inputs.
 
-The [LightGlueForKeypointMatching](/docs/transformers/v5.22.2/en/model_doc/lightglue#transformers.LightGlueForKeypointMatching) forward method, overrides the `__call__` special method.
+The [LightGlueForKeypointMatching](/docs/transformers/v5.23.0/en/model_doc/lightglue#transformers.LightGlueForKeypointMatching) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*) -- Loss computed during training.
-- **matches** (`torch.FloatTensor` of shape `(batch_size, 2, num_matches)`) -- Index of keypoint matched in the other image.
-- **matching_scores** (`torch.FloatTensor` of shape `(batch_size, 2, num_matches)`) -- Scores of predicted matches.
-- **keypoints** (`torch.FloatTensor` of shape `(batch_size, num_keypoints, 2)`) -- Absolute (x, y) coordinates of predicted keypoints in a given image.
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*) -- Loss computed during training.
+- **matches** (`torch.Tensor` of shape `(batch_size, 2, num_matches)`) -- Index of keypoint matched in the other image.
+- **matching_scores** (`torch.Tensor` of shape `(batch_size, 2, num_matches)`) -- Scores of predicted matches.
+- **keypoints** (`torch.Tensor` of shape `(batch_size, num_keypoints, 2)`) -- Absolute (x, y) coordinates of predicted keypoints in a given image.
 - **prune** (`torch.IntTensor` of shape `(batch_size, num_keypoints)`) -- Pruning mask indicating which keypoints are removed and at which layer.
 - **mask** (`torch.BoolTensor` of shape `(batch_size, num_keypoints)`) -- Mask indicating which values in matches, matching_scores, keypoints and prune are keypoint matching
   information.
-- **hidden_states** (`Tuple[torch.FloatTensor, ...]`, *optional*) -- Tuple of `torch.FloatTensor` (one for the output of each stage) of shape `(batch_size, 2, num_channels,
+- **hidden_states** (`Tuple[torch.Tensor, ...]`, *optional*) -- Tuple of `torch.Tensor` (one for the output of each stage) of shape `(batch_size, 2, num_channels,
   num_keypoints)` returned when `output_hidden_states=True` is passed or when
   `config.output_hidden_states=True`
-- **attentions** (`Tuple[torch.FloatTensor, ...]`, *optional*) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, 2, num_heads, num_keypoints,
+- **attentions** (`Tuple[torch.Tensor, ...]`, *optional*) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, 2, num_heads, num_keypoints,
   num_keypoints)` returned when `output_attentions=True` is passed or when
   `config.output_attentions=True`
 
 ### GlmAsr
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/glmasr.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/glmasr.md

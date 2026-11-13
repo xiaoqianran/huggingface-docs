@@ -24,7 +24,7 @@ The original code can be found [here](https://github.com/tomlimi/MYTE).
 transformers.MyT5Tokenizer(vocab_file, eos_token = '</s>', unk_token = '<unk>', pad_token = '<pad>', extra_ids = 125, additional_special_tokens = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/myt5/tokenization_myt5.py#L133)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/myt5/tokenization_myt5.py#L133)
 
 **Parameters:**
 
@@ -42,16 +42,16 @@ additional_special_tokens (`list[str]`, *optional*) : Additional special tokens 
 
 Construct a MyT5 tokenizer.
 
-This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.22.2/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.23.0/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
 #### build_inputs_with_special_tokens[[transformers.MyT5Tokenizer.build_inputs_with_special_tokens]]
 
 ```python
-build_inputs_with_special_tokens(token_ids_0: list, token_ids_1: list[int] | None = None)
+build_inputs_with_special_tokens(token_ids_0: list[int], token_ids_1: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/myt5/tokenization_myt5.py#L282)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/myt5/tokenization_myt5.py#L282)
 
 **Parameters:**
 
@@ -72,10 +72,10 @@ adding special tokens. A sequence has the following format:
 #### get_special_tokens_mask[[transformers.MyT5Tokenizer.get_special_tokens_mask]]
 
 ```python
-get_special_tokens_mask(token_ids_0: list, token_ids_1: list[int] | None = None, already_has_special_tokens: bool = False)
+get_special_tokens_mask(token_ids_0: list[int], token_ids_1: list[int] | None = None, already_has_special_tokens: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/myt5/tokenization_myt5.py#L220)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/myt5/tokenization_myt5.py#L220)
 
 **Parameters:**
 
@@ -95,10 +95,10 @@ special tokens using the tokenizer `prepare_for_model` method.
 #### create_token_type_ids_from_sequences[[transformers.MyT5Tokenizer.create_token_type_ids_from_sequences]]
 
 ```python
-create_token_type_ids_from_sequences(token_ids_0: list, token_ids_1: list[int] | None = None)
+create_token_type_ids_from_sequences(token_ids_0: list[int], token_ids_1: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/myt5/tokenization_myt5.py#L259)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/myt5/tokenization_myt5.py#L259)
 
 **Parameters:**
 
@@ -119,7 +119,7 @@ make use of token type ids, therefore a list of zeros is returned.
 save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/myt5/tokenization_myt5.py#L366)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/myt5/tokenization_myt5.py#L366)
 
 ### EXAONE 4
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/exaone4.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/exaone4.md

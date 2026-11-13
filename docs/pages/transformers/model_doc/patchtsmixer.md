@@ -34,7 +34,7 @@ results = trainer.evaluate(test_dataset)
 
 ## Usage tips
 
-The model can also be used for time series classification and time series regression. See the respective [PatchTSMixerForTimeSeriesClassification](/docs/transformers/v5.22.2/en/model_doc/patchtsmixer#transformers.PatchTSMixerForTimeSeriesClassification) and [PatchTSMixerForRegression](/docs/transformers/v5.22.2/en/model_doc/patchtsmixer#transformers.PatchTSMixerForRegression) classes.
+The model can also be used for time series classification and time series regression. See the respective [PatchTSMixerForTimeSeriesClassification](/docs/transformers/v5.23.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerForTimeSeriesClassification) and [PatchTSMixerForRegression](/docs/transformers/v5.23.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerForRegression) classes.
 
 ## Resources
 
@@ -48,7 +48,7 @@ The model can also be used for time series classification and time series regres
 transformers.PatchTSMixerConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, context_length: int = 32, patch_length: int = 8, num_input_channels: int = 1, patch_stride: int = 8, num_parallel_samples: int = 100, d_model: int = 8, expansion_factor: int = 2, num_layers: int = 3, dropout: float | int = 0.2, mode: str = 'common_channel', gated_attn: bool = True, norm_mlp: str = 'LayerNorm', self_attn: bool = False, self_attn_heads: int = 1, use_positional_encoding: bool = False, positional_encoding_type: str = 'sincos', scaling: str | bool | None = 'std', loss: str = 'mse', init_std: float = 0.02, norm_eps: float = 1e-05, mask_type: str = 'random', random_mask_ratio: float = 0.5, num_forecast_mask_patches: list[int] | tuple[int, ...] | int | None = (2,), mask_value: int = 0, masked_loss: bool = True, channel_consistent_masking: bool = True, unmasked_channel_indices: list[int] | None = None, head_dropout: float | int = 0.2, distribution_output: str = 'student_t', prediction_length: int = 16, prediction_channel_indices: list | None = None, num_targets: int = 3, output_range: list | None = None, head_aggregation: str | None = 'max_pool')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtsmixer/configuration_patchtsmixer.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtsmixer/configuration_patchtsmixer.py#L24)
 
 **Parameters:**
 
@@ -124,8 +124,8 @@ This is the configuration class to store the configuration of a PatchTSMixerMode
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [ibm/patchtsmixer-etth1-pretrain](https://huggingface.co/ibm/patchtsmixer-etth1-pretrain)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -150,17 +150,17 @@ Example:
 transformers.PatchTSMixerModel(config: PatchTSMixerConfig, mask_input: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1200)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1200)
 
 **Parameters:**
 
-config ([PatchTSMixerConfig](/docs/transformers/v5.22.2/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PatchTSMixerConfig](/docs/transformers/v5.23.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 mask_input (`bool`, *optional*, defaults to `False`) : Whether to mask the input using the `PatchTSMixerMasking` module.
 
 The PatchTSMixer Model for time-series forecasting.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -174,35 +174,35 @@ and behavior.
 forward(past_values: Tensor, observed_mask: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1226)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1226)
 
 **Parameters:**
 
-past_values (`torch.FloatTensor` of shape `(batch_size, seq_length, num_input_channels)`) : Context values of the time series. For a pretraining task, this denotes the input time series to predict the masked portion. For a forecasting task, this denotes the history/past time series values. Similarly, for classification or regression tasks, it denotes the appropriate context values of the time series.  For univariate time series, `num_input_channels` dimension should be 1. For multivariate time series, it is greater than 1.
+past_values (`torch.Tensor` of shape `(batch_size, seq_length, num_input_channels)`) : Context values of the time series. For a pretraining task, this denotes the input time series to predict the masked portion. For a forecasting task, this denotes the history/past time series values. Similarly, for classification or regression tasks, it denotes the appropriate context values of the time series.  For univariate time series, `num_input_channels` dimension should be 1. For multivariate time series, it is greater than 1.
 
-observed_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length, num_input_channels)`, *optional*) : Boolean mask to indicate which `past_values` were observed and which were missing. Mask values selected in `[0, 1]`: - 1 for values that are **observed**, - 0 for values that are **missing** (i.e. NaNs that were replaced by zeros).
+observed_mask (`torch.Tensor` of shape `(batch_size, sequence_length, num_input_channels)`, *optional*) : Boolean mask to indicate which `past_values` were observed and which were missing. Mask values selected in `[0, 1]`: - 1 for values that are **observed**, - 0 for values that are **missing** (i.e. NaNs that were replaced by zeros).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-**Returns:** `PatchTSMixerModelOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `PatchTSMixerModelOutput` or `tuple(torch.Tensor)`
 
 A `PatchTSMixerModelOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PatchTSMixerConfig](/docs/transformers/v5.22.2/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([PatchTSMixerConfig](/docs/transformers/v5.23.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) and inputs.
 
-The [PatchTSMixerModel](/docs/transformers/v5.22.2/en/model_doc/patchtsmixer#transformers.PatchTSMixerModel) forward method, overrides the `__call__` special method.
+The [PatchTSMixerModel](/docs/transformers/v5.23.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor`  of shape `(batch_size, num_channels, num_patches, d_model)`) -- Hidden-state at the output of the last layer of the model.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*) -- Hidden-states of the model at the output of each layer.
-- **patch_input** (`torch.FloatTensor` of shape `(batch_size, num_channels, num_patches, patch_length)`) -- Patched input data to the model.
-- **mask** (`torch.FloatTensor` of shape `(batch_size, num_channels, num_patches)`, *optional*) -- Bool Tensor indicating True in masked patches and False otherwise.
-- **loc** (`torch.FloatTensor` of shape `(batch_size, 1, num_channels)`, *optional*) -- Gives the mean of the context window per channel. Used for revin denorm outside the model, if revin
+- **last_hidden_state** (`torch.Tensor`  of shape `(batch_size, num_channels, num_patches, d_model)`) -- Hidden-state at the output of the last layer of the model.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*) -- Hidden-states of the model at the output of each layer.
+- **patch_input** (`torch.Tensor` of shape `(batch_size, num_channels, num_patches, patch_length)`) -- Patched input data to the model.
+- **mask** (`torch.Tensor` of shape `(batch_size, num_channels, num_patches)`, *optional*) -- Bool Tensor indicating True in masked patches and False otherwise.
+- **loc** (`torch.Tensor` of shape `(batch_size, 1, num_channels)`, *optional*) -- Gives the mean of the context window per channel. Used for revin denorm outside the model, if revin
   enabled.
-- **scale** (`torch.FloatTensor` of shape `(batch_size, 1, num_channels)`, *optional*) -- Gives the std dev of the context window per channel. Used for revin denorm outside the model, if revin
+- **scale** (`torch.Tensor` of shape `(batch_size, 1, num_channels)`, *optional*) -- Gives the std dev of the context window per channel. Used for revin denorm outside the model, if revin
   enabled.
 
 ## PatchTSMixerForPrediction[[transformers.PatchTSMixerForPrediction]]
@@ -213,7 +213,7 @@ the latter silently ignores them.
 transformers.PatchTSMixerForPrediction(config: PatchTSMixerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1481)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1481)
 
 **Parameters:**
 
@@ -231,38 +231,38 @@ config (`PatchTSMixerConfig`) : Configuration.
 forward(past_values: Tensor, observed_mask: typing.Optional[torch.Tensor] = None, future_values: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, return_loss: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1523)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1523)
 
 **Parameters:**
 
-past_values (`torch.FloatTensor` of shape `(batch_size, seq_length, num_input_channels)`) : Context values of the time series. For a pretraining task, this denotes the input time series to predict the masked portion. For a forecasting task, this denotes the history/past time series values. Similarly, for classification or regression tasks, it denotes the appropriate context values of the time series.  For univariate time series, `num_input_channels` dimension should be 1. For multivariate time series, it is greater than 1.
+past_values (`torch.Tensor` of shape `(batch_size, seq_length, num_input_channels)`) : Context values of the time series. For a pretraining task, this denotes the input time series to predict the masked portion. For a forecasting task, this denotes the history/past time series values. Similarly, for classification or regression tasks, it denotes the appropriate context values of the time series.  For univariate time series, `num_input_channels` dimension should be 1. For multivariate time series, it is greater than 1.
 
-observed_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length, num_input_channels)`, *optional*) : Boolean mask to indicate which `past_values` were observed and which were missing. Mask values selected in `[0, 1]`: - 1 for values that are **observed**, - 0 for values that are **missing** (i.e. NaNs that were replaced by zeros).
+observed_mask (`torch.Tensor` of shape `(batch_size, sequence_length, num_input_channels)`, *optional*) : Boolean mask to indicate which `past_values` were observed and which were missing. Mask values selected in `[0, 1]`: - 1 for values that are **observed**, - 0 for values that are **missing** (i.e. NaNs that were replaced by zeros).
 
-future_values (`torch.FloatTensor` of shape `(batch_size, target_len, num_input_channels)` for forecasting, : `(batch_size, num_targets)` for regression, or `(batch_size,)` for classification, *optional*): Target values of the time series, that serve as labels for the model. The `future_values` is what the Transformer needs during training to learn to output, given the `past_values`. Note that, this is NOT required for a pretraining task.  For a forecasting task, the shape is be `(batch_size, target_len, num_input_channels)`. Even if we want to forecast only specific channels by setting the indices in `prediction_channel_indices` parameter, pass the target data with all channels, as channel Filtering for both prediction and target will be manually applied before the loss computation.
+future_values (`torch.Tensor` of shape `(batch_size, target_len, num_input_channels)` for forecasting, : `(batch_size, num_targets)` for regression, or `(batch_size,)` for classification, *optional*): Target values of the time series, that serve as labels for the model. The `future_values` is what the Transformer needs during training to learn to output, given the `past_values`. Note that, this is NOT required for a pretraining task.  For a forecasting task, the shape is be `(batch_size, target_len, num_input_channels)`. Even if we want to forecast only specific channels by setting the indices in `prediction_channel_indices` parameter, pass the target data with all channels, as channel Filtering for both prediction and target will be manually applied before the loss computation.
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
 return_loss (`bool`,  *optional*) : Whether to return the loss in the `forward` call.
 
-**Returns:** `PatchTSMixerForPredictionOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `PatchTSMixerForPredictionOutput` or `tuple(torch.Tensor)`
 
 A `PatchTSMixerForPredictionOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PatchTSMixerConfig](/docs/transformers/v5.22.2/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([PatchTSMixerConfig](/docs/transformers/v5.23.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) and inputs.
 
-The [PatchTSMixerForPrediction](/docs/transformers/v5.22.2/en/model_doc/patchtsmixer#transformers.PatchTSMixerForPrediction) forward method, overrides the `__call__` special method.
+The [PatchTSMixerForPrediction](/docs/transformers/v5.23.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerForPrediction) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`*optional*`, returned when `y` is provided, `torch.FloatTensor` of shape `()`) -- Total loss.
-- **prediction_outputs** (`torch.FloatTensor` of shape `(batch_size, prediction_length, num_input_channels)`) -- Prediction output from the forecast head.
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, num_input_channels, num_patches, d_model)`) -- Backbone embeddings before passing through the head.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*) -- Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **loc** (`torch.FloatTensor`, *optional* of shape `(batch_size, 1, num_input_channels)`) -- Input mean
-- **scale** (`torch.FloatTensor`, *optional* of shape `(batch_size, 1, num_input_channels)`) -- Input std dev
+- **loss** (`*optional*`, returned when `y` is provided, `torch.Tensor` of shape `()`) -- Total loss.
+- **prediction_outputs** (`torch.Tensor` of shape `(batch_size, prediction_length, num_input_channels)`) -- Prediction output from the forecast head.
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, num_input_channels, num_patches, d_model)`) -- Backbone embeddings before passing through the head.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*) -- Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
+- **loc** (`torch.Tensor`, *optional* of shape `(batch_size, 1, num_input_channels)`) -- Input mean
+- **scale** (`torch.Tensor`, *optional* of shape `(batch_size, 1, num_input_channels)`) -- Input std dev
 
 ## PatchTSMixerForTimeSeriesClassification[[transformers.PatchTSMixerForTimeSeriesClassification]]
 
@@ -272,7 +272,7 @@ the latter silently ignores them.
 transformers.PatchTSMixerForTimeSeriesClassification(config: PatchTSMixerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1707)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1707)
 
 **Parameters:**
 
@@ -290,34 +290,34 @@ config (`PatchTSMixerConfig`) : Configuration.
 forward(past_values: Tensor, target_values: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, return_loss: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1734)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1734)
 
 **Parameters:**
 
-past_values (`torch.FloatTensor` of shape `(batch_size, seq_length, num_input_channels)`) : Context values of the time series. For a pretraining task, this denotes the input time series to predict the masked portion. For a forecasting task, this denotes the history/past time series values. Similarly, for classification or regression tasks, it denotes the appropriate context values of the time series.  For univariate time series, `num_input_channels` dimension should be 1. For multivariate time series, it is greater than 1.
+past_values (`torch.Tensor` of shape `(batch_size, seq_length, num_input_channels)`) : Context values of the time series. For a pretraining task, this denotes the input time series to predict the masked portion. For a forecasting task, this denotes the history/past time series values. Similarly, for classification or regression tasks, it denotes the appropriate context values of the time series.  For univariate time series, `num_input_channels` dimension should be 1. For multivariate time series, it is greater than 1.
 
-target_values (`torch.FloatTensor` of shape `(batch_size, target_len, num_input_channels)` for forecasting, : `(batch_size, num_targets)` for regression, or `(batch_size,)` for classification, *optional*): Target values of the time series, that serve as labels for the model. The `target_values` is what the Transformer needs during training to learn to output, given the `past_values`. Note that, this is NOT required for a pretraining task.  For a forecasting task, the shape is be `(batch_size, target_len, num_input_channels)`. Even if we want to forecast only specific channels by setting the indices in `prediction_channel_indices` parameter, pass the target data with all channels, as channel Filtering for both prediction and target will be manually applied before the loss computation.  For a classification task, it has a shape of `(batch_size,)`.  For a regression task, it has a shape of `(batch_size, num_targets)`.
+target_values (`torch.Tensor` of shape `(batch_size, target_len, num_input_channels)` for forecasting, : `(batch_size, num_targets)` for regression, or `(batch_size,)` for classification, *optional*): Target values of the time series, that serve as labels for the model. The `target_values` is what the Transformer needs during training to learn to output, given the `past_values`. Note that, this is NOT required for a pretraining task.  For a forecasting task, the shape is be `(batch_size, target_len, num_input_channels)`. Even if we want to forecast only specific channels by setting the indices in `prediction_channel_indices` parameter, pass the target data with all channels, as channel Filtering for both prediction and target will be manually applied before the loss computation.  For a classification task, it has a shape of `(batch_size,)`.  For a regression task, it has a shape of `(batch_size, num_targets)`.
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
 return_loss (`bool`, *optional*) : Whether to return the loss in the `forward` call.
 
-**Returns:** `PatchTSMixerForTimeSeriesClassificationOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `PatchTSMixerForTimeSeriesClassificationOutput` or `tuple(torch.Tensor)`
 
 A `PatchTSMixerForTimeSeriesClassificationOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PatchTSMixerConfig](/docs/transformers/v5.22.2/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([PatchTSMixerConfig](/docs/transformers/v5.23.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) and inputs.
 
-The [PatchTSMixerForTimeSeriesClassification](/docs/transformers/v5.22.2/en/model_doc/patchtsmixer#transformers.PatchTSMixerForTimeSeriesClassification) forward method, overrides the `__call__` special method.
+The [PatchTSMixerForTimeSeriesClassification](/docs/transformers/v5.23.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerForTimeSeriesClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`*optional*`, returned when `y` is provided, `torch.FloatTensor` of shape `()`) -- Total loss.
-- **prediction_outputs** (`torch.FloatTensor` of shape `(batch_size, num_labels)`) -- Prediction output from the classification head.
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, num_input_channels, num_patches, d_model)`) -- Backbone embeddings before passing through the head.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*) -- Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
+- **loss** (`*optional*`, returned when `y` is provided, `torch.Tensor` of shape `()`) -- Total loss.
+- **prediction_outputs** (`torch.Tensor` of shape `(batch_size, num_labels)`) -- Prediction output from the classification head.
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, num_input_channels, num_patches, d_model)`) -- Backbone embeddings before passing through the head.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*) -- Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
 
 ## PatchTSMixerForPretraining[[transformers.PatchTSMixerForPretraining]]
 
@@ -327,15 +327,15 @@ the latter silently ignores them.
 transformers.PatchTSMixerForPretraining(config: PatchTSMixerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1313)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1313)
 
 **Parameters:**
 
-config ([PatchTSMixerConfig](/docs/transformers/v5.22.2/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PatchTSMixerConfig](/docs/transformers/v5.23.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 `PatchTSMixer` for mask pretraining.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -349,34 +349,34 @@ and behavior.
 forward(past_values: Tensor, observed_mask: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, return_loss: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1323)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1323)
 
 **Parameters:**
 
-past_values (`torch.FloatTensor` of shape `(batch_size, seq_length, num_input_channels)`) : Context values of the time series. For a pretraining task, this denotes the input time series to predict the masked portion. For a forecasting task, this denotes the history/past time series values. Similarly, for classification or regression tasks, it denotes the appropriate context values of the time series.  For univariate time series, `num_input_channels` dimension should be 1. For multivariate time series, it is greater than 1.
+past_values (`torch.Tensor` of shape `(batch_size, seq_length, num_input_channels)`) : Context values of the time series. For a pretraining task, this denotes the input time series to predict the masked portion. For a forecasting task, this denotes the history/past time series values. Similarly, for classification or regression tasks, it denotes the appropriate context values of the time series.  For univariate time series, `num_input_channels` dimension should be 1. For multivariate time series, it is greater than 1.
 
-observed_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length, num_input_channels)`, *optional*) : Boolean mask to indicate which `past_values` were observed and which were missing. Mask values selected in `[0, 1]`: - 1 for values that are **observed**, - 0 for values that are **missing** (i.e. NaNs that were replaced by zeros).
+observed_mask (`torch.Tensor` of shape `(batch_size, sequence_length, num_input_channels)`, *optional*) : Boolean mask to indicate which `past_values` were observed and which were missing. Mask values selected in `[0, 1]`: - 1 for values that are **observed**, - 0 for values that are **missing** (i.e. NaNs that were replaced by zeros).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
 return_loss (`bool`,  *optional*) : Whether to return the loss in the `forward` call.
 
-**Returns:** `PatchTSMixerForPreTrainingOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `PatchTSMixerForPreTrainingOutput` or `tuple(torch.Tensor)`
 
 A `PatchTSMixerForPreTrainingOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PatchTSMixerConfig](/docs/transformers/v5.22.2/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([PatchTSMixerConfig](/docs/transformers/v5.23.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) and inputs.
 
-The [PatchTSMixerForPretraining](/docs/transformers/v5.22.2/en/model_doc/patchtsmixer#transformers.PatchTSMixerForPretraining) forward method, overrides the `__call__` special method.
+The [PatchTSMixerForPretraining](/docs/transformers/v5.23.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerForPretraining) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`*optional*`, returned when `y` is provided, `torch.FloatTensor` of shape `()`) -- Total loss
-- **prediction_outputs** (`torch.FloatTensor` of shape `(batch_size, num_input_channels, num_patches, patch_length)`) -- Prediction output from the pretrain head.
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, num_input_channels, num_patches, d_model)`) -- Backbone embeddings before passing through the head.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*) -- Hidden-states of the model at the output of each layer.
+- **loss** (`*optional*`, returned when `y` is provided, `torch.Tensor` of shape `()`) -- Total loss
+- **prediction_outputs** (`torch.Tensor` of shape `(batch_size, num_input_channels, num_patches, patch_length)`) -- Prediction output from the pretrain head.
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, num_input_channels, num_patches, d_model)`) -- Backbone embeddings before passing through the head.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*) -- Hidden-states of the model at the output of each layer.
 
 ## PatchTSMixerForRegression[[transformers.PatchTSMixerForRegression]]
 
@@ -386,15 +386,15 @@ the latter silently ignores them.
 transformers.PatchTSMixerForRegression(config: PatchTSMixerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1875)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1875)
 
 **Parameters:**
 
-config ([PatchTSMixerConfig](/docs/transformers/v5.22.2/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PatchTSMixerConfig](/docs/transformers/v5.23.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 `PatchTSMixer` for regression application.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -408,34 +408,34 @@ and behavior.
 forward(past_values: Tensor, target_values: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, return_loss: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1913)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1913)
 
 **Parameters:**
 
-past_values (`torch.FloatTensor` of shape `(batch_size, seq_length, num_input_channels)`) : Context values of the time series. For a pretraining task, this denotes the input time series to predict the masked portion. For a forecasting task, this denotes the history/past time series values. Similarly, for classification or regression tasks, it denotes the appropriate context values of the time series.  For univariate time series, `num_input_channels` dimension should be 1. For multivariate time series, it is greater than 1.
+past_values (`torch.Tensor` of shape `(batch_size, seq_length, num_input_channels)`) : Context values of the time series. For a pretraining task, this denotes the input time series to predict the masked portion. For a forecasting task, this denotes the history/past time series values. Similarly, for classification or regression tasks, it denotes the appropriate context values of the time series.  For univariate time series, `num_input_channels` dimension should be 1. For multivariate time series, it is greater than 1.
 
-target_values (`torch.FloatTensor` of shape `(batch_size, target_len, num_input_channels)` for forecasting, : `(batch_size, num_targets)` for regression, or `(batch_size,)` for classification, *optional*): Target values of the time series, that serve as labels for the model. The `target_values` is what the Transformer needs during training to learn to output, given the `past_values`. Note that, this is NOT required for a pretraining task.  For a forecasting task, the shape is be `(batch_size, target_len, num_input_channels)`. Even if we want to forecast only specific channels by setting the indices in `prediction_channel_indices` parameter, pass the target data with all channels, as channel Filtering for both prediction and target will be manually applied before the loss computation.  For a classification task, it has a shape of `(batch_size,)`.  For a regression task, it has a shape of `(batch_size, num_targets)`.
+target_values (`torch.Tensor` of shape `(batch_size, target_len, num_input_channels)` for forecasting, : `(batch_size, num_targets)` for regression, or `(batch_size,)` for classification, *optional*): Target values of the time series, that serve as labels for the model. The `target_values` is what the Transformer needs during training to learn to output, given the `past_values`. Note that, this is NOT required for a pretraining task.  For a forecasting task, the shape is be `(batch_size, target_len, num_input_channels)`. Even if we want to forecast only specific channels by setting the indices in `prediction_channel_indices` parameter, pass the target data with all channels, as channel Filtering for both prediction and target will be manually applied before the loss computation.  For a classification task, it has a shape of `(batch_size,)`.  For a regression task, it has a shape of `(batch_size, num_targets)`.
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
 return_loss (`bool`, *optional*) : Whether to return the loss in the `forward` call.
 
-**Returns:** `PatchTSMixerForRegressionOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `PatchTSMixerForRegressionOutput` or `tuple(torch.Tensor)`
 
 A `PatchTSMixerForRegressionOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PatchTSMixerConfig](/docs/transformers/v5.22.2/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([PatchTSMixerConfig](/docs/transformers/v5.23.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) and inputs.
 
-The [PatchTSMixerForRegression](/docs/transformers/v5.22.2/en/model_doc/patchtsmixer#transformers.PatchTSMixerForRegression) forward method, overrides the `__call__` special method.
+The [PatchTSMixerForRegression](/docs/transformers/v5.23.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerForRegression) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`*optional*`, returned when `y` is provided, `torch.FloatTensor` of shape `()`) -- Total loss.
-- **regression_outputs** (`torch.FloatTensor` of shape `(batch_size, num_targets)`) -- Prediction output from the regression head.
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, num_input_channels, num_patches, d_model)`) -- Backbone embeddings before passing through the head.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*) -- Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
+- **loss** (`*optional*`, returned when `y` is provided, `torch.Tensor` of shape `()`) -- Total loss.
+- **regression_outputs** (`torch.Tensor` of shape `(batch_size, num_targets)`) -- Prediction output from the regression head.
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, num_input_channels, num_patches, d_model)`) -- Backbone embeddings before passing through the head.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*) -- Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
 
 ### CodeGen
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/codegen.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/codegen.md

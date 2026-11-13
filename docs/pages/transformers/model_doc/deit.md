@@ -37,19 +37,19 @@ This model was contributed by [nielsr](https://huggingface.co/nielsr).
   distillation head and the label predicted by the teacher). At inference time, one takes the average prediction
   between both heads as final prediction. (2) is also called "fine-tuning with distillation", because one relies on a
   teacher that has already been fine-tuned on the downstream dataset. In terms of models, (1) corresponds to
-  [DeiTForImageClassification](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTForImageClassification) and (2) corresponds to
-  [DeiTForImageClassificationWithTeacher](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTForImageClassificationWithTeacher).
+  [DeiTForImageClassification](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTForImageClassification) and (2) corresponds to
+  [DeiTForImageClassificationWithTeacher](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTForImageClassificationWithTeacher).
 - Note that the authors also did try soft distillation for (2) (in which case the distillation prediction head is
   trained using KL divergence to match the softmax output of the teacher), but hard distillation gave the best results.
 - All released checkpoints were pre-trained and fine-tuned on ImageNet-1k only. No external data was used. This is in
   contrast with the original ViT model, which used external data like the JFT-300M dataset/Imagenet-21k for
   pre-training.
 - The authors of DeiT also released more efficiently trained ViT models, which you can directly plug into
-  [ViTModel](/docs/transformers/v5.22.2/en/model_doc/vit#transformers.ViTModel) or [ViTForImageClassification](/docs/transformers/v5.22.2/en/model_doc/vit#transformers.ViTForImageClassification). Techniques like data
+  [ViTModel](/docs/transformers/v5.23.0/en/model_doc/vit#transformers.ViTModel) or [ViTForImageClassification](/docs/transformers/v5.23.0/en/model_doc/vit#transformers.ViTForImageClassification). Techniques like data
   augmentation, optimization, and regularization were used in order to simulate training on a much larger dataset
   (while only using ImageNet-1k for pre-training). There are 4 variants available (in 3 different sizes):
   *facebook/deit-tiny-patch16-224*, *facebook/deit-small-patch16-224*, *facebook/deit-base-patch16-224* and
-  *facebook/deit-base-patch16-384*. Note that one should use [DeiTImageProcessor](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTImageProcessor) in order to
+  *facebook/deit-base-patch16-384*. Note that one should use [DeiTImageProcessor](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTImageProcessor) in order to
   prepare images for the model.
 
 ### Using Scaled Dot Product Attention (SDPA)
@@ -85,7 +85,7 @@ On a local benchmark (A100-40GB, PyTorch 2.3.0, OS Ubuntu 22.04) with `float32` 
 
 A list of official Hugging Face and community (indicated by 🌎) resources to help you get started with DeiT.
 
-- [DeiTForImageClassification](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTForImageClassification) is supported by this [notebook](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/image_classification.ipynb).
+- [DeiTForImageClassification](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTForImageClassification) is supported by this [notebook](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/image_classification.ipynb).
 - See also: [Image classification task guide](../tasks/image_classification)
 
 If you're interested in submitting a resource to be included here, please feel free to open a Pull Request and we'll review it! The resource should ideally demonstrate something new instead of duplicating an existing resource.
@@ -98,7 +98,7 @@ If you're interested in submitting a resource to be included here, please feel f
 transformers.DeiTConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 16, num_channels: int = 3, qkv_bias: bool = True, encoder_stride: int = 16, pooler_output_size: int | None = None, pooler_act: str = 'tanh')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/deit/configuration_deit.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deit/configuration_deit.py#L24)
 
 **Parameters:**
 
@@ -138,8 +138,8 @@ This is the configuration class to store the configuration of a DeiTModel. It is
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/deit-base-distilled-patch16-224](https://huggingface.co/facebook/deit-base-distilled-patch16-224)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -164,7 +164,7 @@ Example:
 transformers.DeiTImageProcessor(**kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/deit/image_processing_deit.py#L22)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deit/image_processing_deit.py#L22)
 
 **Parameters:**
 
@@ -258,6 +258,10 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 
 disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
 
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
 image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models.
 
 Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors. --
@@ -278,7 +282,7 @@ Added for backward compatibility but this should be set as a processor attribute
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, image_like_kwargs: dict[str, typing.Any] | None = None, **kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -342,7 +346,7 @@ Preprocess an image or a batch of images.
 transformers.DeiTImageProcessorPil(**kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/deit/image_processing_pil_deit.py#L22)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deit/image_processing_pil_deit.py#L22)
 
 **Parameters:**
 
@@ -424,7 +428,7 @@ Added for backward compatibility but this should be set as a processor attribute
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, image_like_kwargs: dict[str, typing.Any] | None = None, **kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -488,11 +492,11 @@ Preprocess an image or a batch of images.
 transformers.DeiTModel(config: DeiTConfig, add_pooling_layer: bool = True, use_mask_token: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/deit/modeling_deit.py#L347)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deit/modeling_deit.py#L347)
 
 **Parameters:**
 
-config ([DeiTConfig](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DeiTConfig](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
@@ -500,7 +504,7 @@ use_mask_token (`bool`, *optional*, defaults to `False`) : Whether to use a mask
 
 The bare Deit Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -514,11 +518,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, bool_masked_pos: typing.Optional[torch.BoolTensor] = None, interpolate_pos_encoding: bool | None = None, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/deit/modeling_deit.py#L364)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deit/modeling_deit.py#L364)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeiTImageProcessor](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTImageProcessor). See [DeiTImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [DeiTImageProcessor](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeiTImageProcessor](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTImageProcessor). See [DeiTImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [DeiTImageProcessor](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTImageProcessor) for processing images).
 
 bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, num_patches)`, *optional*) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).
 
@@ -526,28 +530,28 @@ interpolate_pos_encoding (`bool`, *optional*) : Whether to interpolate the pre-t
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DeiTConfig](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTConfig)) and inputs.
+A [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([DeiTConfig](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTConfig)) and inputs.
 
-The [DeiTModel](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTModel) forward method, overrides the `__call__` special method.
+The [DeiTModel](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
   through the layers used for the auxiliary pretraining task. E.g. for BERT-family of models, this returns
   the classification token after processing through a linear layer and a tanh activation function. The linear
   layer weights are trained from the next sentence prediction (classification) objective during pretraining.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -566,15 +570,15 @@ Example:
 transformers.DeiTForMaskedImageModeling(config: DeiTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/deit/modeling_deit.py#L407)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deit/modeling_deit.py#L407)
 
 **Parameters:**
 
-config ([DeiTConfig](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DeiTConfig](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 DeiT Model with a decoder on top for masked image modeling, as proposed in [SimMIM](https://huggingface.co/papers/2111.09886).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -588,11 +592,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, bool_masked_pos: typing.Optional[torch.BoolTensor] = None, interpolate_pos_encoding: bool = False, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/deit/modeling_deit.py#L425)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deit/modeling_deit.py#L425)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeiTImageProcessor](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTImageProcessor). See [DeiTImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [DeiTImageProcessor](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeiTImageProcessor](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTImageProcessor). See [DeiTImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [DeiTImageProcessor](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTImageProcessor) for processing images).
 
 bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, num_patches)`) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).
 
@@ -600,26 +604,26 @@ interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to 
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-**Returns:** `MaskedImageModelingOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `MaskedImageModelingOutput` or `tuple(torch.Tensor)`
 
 A `MaskedImageModelingOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DeiTConfig](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([DeiTConfig](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTConfig)) and inputs.
 
-The [DeiTForMaskedImageModeling](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTForMaskedImageModeling) forward method, overrides the `__call__` special method.
+The [DeiTForMaskedImageModeling](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTForMaskedImageModeling) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `bool_masked_pos` is provided) -- Reconstruction loss.
-- **reconstruction** (`torch.FloatTensor` of shape `(batch_size, num_channels, height, width)`) -- Reconstructed / completed images.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or
-  when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `bool_masked_pos` is provided) -- Reconstruction loss.
+- **reconstruction** (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) -- Reconstructed / completed images.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or
+  when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each stage) of shape `(batch_size, sequence_length, hidden_size)`. Hidden-states
   (also called feature maps) of the model at the output of each stage.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when
-  `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, patch_size,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when
+  `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, patch_size,
   sequence_length)`. Attentions weights after the attention softmax, used to compute the weighted average in
   the self-attention heads.
 
@@ -655,11 +659,11 @@ Examples:
 transformers.DeiTForImageClassification(config: DeiTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/deit/modeling_deit.py#L518)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deit/modeling_deit.py#L518)
 
 **Parameters:**
 
-config ([DeiTConfig](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DeiTConfig](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 DeiT Model transformer with an image classification head on top (a linear layer on top of the final hidden state of
 the [CLS] token) e.g. for ImageNet.
@@ -668,7 +672,7 @@ Note that it's possible to fine-tune DeiT on higher resolution images than the o
 setting `interpolate_pos_encoding` to `True` in the forward of the model. This will interpolate the pre-trained
 position embeddings to the higher resolution.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -682,11 +686,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, interpolate_pos_encoding: bool | None = None, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/deit/modeling_deit.py#L531)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deit/modeling_deit.py#L531)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeiTImageProcessor](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTImageProcessor). See [DeiTImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [DeiTImageProcessor](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeiTImageProcessor](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTImageProcessor). See [DeiTImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [DeiTImageProcessor](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
@@ -694,24 +698,24 @@ interpolate_pos_encoding (`bool`, *optional*) : Whether to interpolate the pre-t
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-**Returns:** [ImageClassifierOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [ImageClassifierOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.Tensor)`
 
-A [ImageClassifierOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DeiTConfig](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTConfig)) and inputs.
+A [ImageClassifierOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([DeiTConfig](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTConfig)) and inputs.
 
-The [DeiTForImageClassification](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTForImageClassification) forward method, overrides the `__call__` special method.
+The [DeiTForImageClassification](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Classification (or regression if config.num_labels==1) loss.
-- **logits** (`torch.FloatTensor` of shape `(batch_size, config.num_labels)`) -- Classification (or regression if config.num_labels==1) scores (before SoftMax).
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Classification (or regression if config.num_labels==1) loss.
+- **logits** (`torch.Tensor` of shape `(batch_size, config.num_labels)`) -- Classification (or regression if config.num_labels==1) scores (before SoftMax).
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each stage) of shape `(batch_size, sequence_length, hidden_size)`. Hidden-states
   (also called feature maps) of the model at the output of each stage.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, patch_size,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, patch_size,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -749,11 +753,11 @@ Example:
 transformers.DeiTForImageClassificationWithTeacher(config: DeiTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/deit/modeling_deit.py#L600)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deit/modeling_deit.py#L600)
 
 **Parameters:**
 
-config ([DeiTConfig](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DeiTConfig](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 DeiT Model transformer with image classification heads on top (a linear layer on top of the final hidden state of
 the [CLS] token and a linear layer on top of the final hidden state of the distillation token) e.g. for ImageNet.
@@ -763,7 +767,7 @@ the [CLS] token and a linear layer on top of the final hidden state of the disti
 This model supports inference-only. Fine-tuning with distillation (i.e. with a teacher) is not yet
 supported.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -777,38 +781,38 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, interpolate_pos_encoding: bool = False, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/deit/modeling_deit.py#L618)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deit/modeling_deit.py#L618)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeiTImageProcessor](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTImageProcessor). See [DeiTImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [DeiTImageProcessor](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeiTImageProcessor](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTImageProcessor). See [DeiTImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [DeiTImageProcessor](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTImageProcessor) for processing images).
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-**Returns:** `DeiTForImageClassificationWithTeacherOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `DeiTForImageClassificationWithTeacherOutput` or `tuple(torch.Tensor)`
 
 A `DeiTForImageClassificationWithTeacherOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DeiTConfig](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([DeiTConfig](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTConfig)) and inputs.
 
-The [DeiTForImageClassificationWithTeacher](/docs/transformers/v5.22.2/en/model_doc/deit#transformers.DeiTForImageClassificationWithTeacher) forward method, overrides the `__call__` special method.
+The [DeiTForImageClassificationWithTeacher](/docs/transformers/v5.23.0/en/model_doc/deit#transformers.DeiTForImageClassificationWithTeacher) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **logits** (`torch.FloatTensor` of shape `(batch_size, config.num_labels)`) -- Prediction scores as the average of the cls_logits and distillation logits.
-- **cls_logits** (`torch.FloatTensor` of shape `(batch_size, config.num_labels)`) -- Prediction scores of the classification head (i.e. the linear layer on top of the final hidden state of the
+- **logits** (`torch.Tensor` of shape `(batch_size, config.num_labels)`) -- Prediction scores as the average of the cls_logits and distillation logits.
+- **cls_logits** (`torch.Tensor` of shape `(batch_size, config.num_labels)`) -- Prediction scores of the classification head (i.e. the linear layer on top of the final hidden state of the
   class token).
-- **distillation_logits** (`torch.FloatTensor` of shape `(batch_size, config.num_labels)`) -- Prediction scores of the distillation head (i.e. the linear layer on top of the final hidden state of the
+- **distillation_logits** (`torch.Tensor` of shape `(batch_size, config.num_labels)`) -- Prediction scores of the distillation head (i.e. the linear layer on top of the final hidden state of the
   distillation token).
-- **hidden_states** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple[torch.Tensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple[torch.Tensor]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -839,4 +843,4 @@ Example:
 ```
 
 ### Hiera
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/hiera.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/hiera.md

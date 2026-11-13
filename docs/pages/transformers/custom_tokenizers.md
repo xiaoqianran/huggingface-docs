@@ -4,6 +4,14 @@ Tokenizers are decoupled from their learned vocabularies. This allows you to ini
 
 This guide shows how to train and create a custom tokenizer.
 
+> [!AgentPrompt]
+> Help the user choose how to create or adapt a Transformers tokenizer. First find out whether they need to train a new vocabulary, define a custom vocabulary, or change the tokenization pipeline. Use this guide to choose the matching approach.
+>
+> 1. Ask for the language or domain, corpus source and size, starting tokenizer, desired vocabulary size, intended model, and intended use. Ask follow-up questions only when missing details affect the choice, and label your assumptions.
+> 2. Choose the matching workflow. To add tokens to an existing tokenizer, use `add_tokens` for regular tokens or `add_special_tokens` when they need special-token behavior. If you add tokens to a tokenizer paired with a model, resize the model's token embeddings with `resize_token_embeddings(len(tokenizer))`. For a new vocabulary that keeps an existing tokenizer pipeline, use `train_new_from_iterator` with representative text batches. For a supplied vocabulary and merge rules, check whether the tokenizer supports those inputs. Use a custom backend only when the existing pipeline cannot express the required behavior.
+> 3. Check compatibility with the intended model. A new vocabulary can change token IDs, so do not assume it matches a pretrained model's embeddings. Explain whether the model needs matching embeddings or further training.
+> 4. Validate the result. Save and reload the tokenizer, then test encoding and decoding on representative domain text and special tokens. Report the files created, starting tokenizer, vocabulary size, test results, and unresolved compatibility questions.
+
 ## Training a tokenizer
 
 An empty trainable tokenizer replaces the vocabulary with a new target vocabulary. This is useful for adapting to a new domain like finance, a low-resource language, or code.
@@ -18,7 +26,7 @@ tokenizer = GemmaTokenizer()
 dataset = load_dataset("Josephgflowers/Finance-Instruct-500k", split="train")
 ```
 
-Use the [TokenizersBackend.train_new_from_iterator()](/docs/transformers/v5.22.2/en/main_classes/tokenizer#transformers.TokenizersBackend.train_new_from_iterator) method to train the tokenizer. This method accepts a generator function to return chunks of text from the dataset instead of loading everything into memory at once. The `vocab_size` argument sets the tokenizers vocabulary size.
+Use the [TokenizersBackend.train_new_from_iterator()](/docs/transformers/v5.23.0/en/main_classes/tokenizer#transformers.TokenizersBackend.train_new_from_iterator) method to train the tokenizer. This method accepts a generator function to return chunks of text from the dataset instead of loading everything into memory at once. The `vocab_size` argument sets the tokenizers vocabulary size.
 
 ```py
 def batch_iterator(batch_size=1000):
@@ -36,7 +44,7 @@ print(encoded["input_ids"])
 
 Add new special tokens with the `new_special_tokens` argument or use `special_tokens_map` to rename the old special tokens to the new special tokens.
 
-Save the new finance tokenizer with [save_pretrained()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.save_pretrained) or save and upload it to the Hub with [push_to_hub()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub). This creates a `tokenizer.json` file that captures the newly trained vocabulary, merge rules, and full pipeline configuration.
+Save the new finance tokenizer with [save_pretrained()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.save_pretrained) or save and upload it to the Hub with [push_to_hub()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub). This creates a `tokenizer.json` file that captures the newly trained vocabulary, merge rules, and full pipeline configuration.
 
 ```py
 trained_tokenizer.save_pretrained("./finance-gemma-tokenizer")
@@ -96,12 +104,12 @@ print(encoded["input_ids"])
 
 ## Subclassing TokenizersBackend
 
-Tokenizers supports four different [backends](./fast_tokenizers#backends). Generally, you should use the [TokenizersBackend](/docs/transformers/v5.22.2/en/main_classes/tokenizer#transformers.TokenizersBackend) to define a new tokenizer because it's faster.
+Tokenizers supports four different [backends](./fast_tokenizers#backends). Generally, you should use the [TokenizersBackend](/docs/transformers/v5.23.0/en/main_classes/tokenizer#transformers.TokenizersBackend) to define a new tokenizer because it's faster.
 
 > [!TIP]
-> The [PythonBackend](/docs/transformers/v5.22.2/en/main_classes/tokenizer#transformers.PythonBackend) is a pure Python tokenizer that does not rely on backends like Rust, SentencePiece, or mistral-common. You should only use [PythonBackend](/docs/transformers/v5.22.2/en/main_classes/tokenizer#transformers.PythonBackend) if you're building a very specialized tokenizer that can't be expressed by the Rust backend.
+> The [PythonBackend](/docs/transformers/v5.23.0/en/main_classes/tokenizer#transformers.PythonBackend) is a pure Python tokenizer that does not rely on backends like Rust, SentencePiece, or mistral-common. You should only use [PythonBackend](/docs/transformers/v5.23.0/en/main_classes/tokenizer#transformers.PythonBackend) if you're building a very specialized tokenizer that can't be expressed by the Rust backend.
 
-1. Subclass the [TokenizersBackend](/docs/transformers/v5.22.2/en/main_classes/tokenizer#transformers.TokenizersBackend) with class attributes like padding side and the tokenization algorithm to use.
+1. Subclass the [TokenizersBackend](/docs/transformers/v5.23.0/en/main_classes/tokenizer#transformers.TokenizersBackend) with class attributes like padding side and the tokenization algorithm to use.
 2. Define the tokenization pipeline in the `__init__`. This includes the tokenization algorithm to use, how to split the raw text before the algorithm, and how to decode the tokens back to text.
 
 ```py
@@ -157,4 +165,4 @@ trained_tokenizer.save_pretrained("./new-tokenizer")
 ```
 
 ### Subclassing Trainer methods
-https://huggingface.co/docs/transformers/v5.22.2/trainer_customize.md
+https://huggingface.co/docs/transformers/v5.23.0/trainer_customize.md

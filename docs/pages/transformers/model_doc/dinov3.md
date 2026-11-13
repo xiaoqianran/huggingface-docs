@@ -7,7 +7,7 @@ You can find all the original DINOv3 checkpoints under the [DINOv3](https://hugg
 > [!TIP]
 > Click on the DINOv3 models in the right sidebar for more examples of how to apply DINOv3 to different vision tasks.
 
-The example below demonstrates how to obtain an image embedding with [Pipeline](/docs/transformers/v5.22.2/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to obtain an image embedding with [Pipeline](/docs/transformers/v5.23.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -131,7 +131,7 @@ print("Pooled output shape:", pooled_output.shape)
 transformers.DINOv3ViTConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, patch_size: int | list[int] | tuple[int, int] = 16, hidden_size: int = 384, intermediate_size: int = 1536, num_hidden_layers: int = 12, num_attention_heads: int = 6, hidden_act: str = 'gelu', attention_dropout: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-05, rope_theta: float = 100.0, image_size: int | list[int] | tuple[int, int] = 224, num_channels: int = 3, query_bias: bool = True, key_bias: bool = False, value_bias: bool = True, proj_bias: bool = True, mlp_bias: bool = True, layerscale_value: float = 1.0, drop_path_rate: float | int = 0.0, use_gated_mlp: bool = False, num_register_tokens: int = 0, pos_embed_shift: float | None = None, pos_embed_jitter: float | None = None, pos_embed_rescale: float | None = 2.0, _out_features: list[str] | None = None, _out_indices: list[int] | None = None, apply_layernorm: bool = True, reshape_hidden_states: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/dinov3_vit/configuration_dinov3_vit.py#L25)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/dinov3_vit/configuration_dinov3_vit.py#L25)
 
 **Parameters:**
 
@@ -191,8 +191,8 @@ This is the configuration class to store the configuration of a DINOv3ViTModel. 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/dinov3-vits16-pretrain-lvd1689m](https://huggingface.co/facebook/dinov3-vits16-pretrain-lvd1689m)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -217,7 +217,7 @@ Example:
 transformers.DINOv3ConvNextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, num_channels: int = 3, hidden_sizes: list[int] | None = None, depths: list[int] | None = None, hidden_act: str = 'gelu', initializer_range: float = 0.02, layer_norm_eps: float = 1e-06, layer_scale_init_value: float = 1e-06, drop_path_rate: float | int = 0.0, image_size: int | list[int] | tuple[int, int] = 224, _out_features: list[str] | None = None, _out_indices: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/dinov3_convnext/configuration_dinov3_convnext.py#L25)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/dinov3_convnext/configuration_dinov3_convnext.py#L25)
 
 **Parameters:**
 
@@ -243,8 +243,8 @@ This is the configuration class to store the configuration of a DINOv3ConvNextMo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/dinov3-convnext-tiny-pretrain-lvd1689m](https://huggingface.co/facebook/dinov3-convnext-tiny-pretrain-lvd1689m)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 ```python
@@ -268,15 +268,15 @@ Example:
 transformers.DINOv3ViTModel(config: DINOv3ViTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/dinov3_vit/modeling_dinov3_vit.py#L515)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/dinov3_vit/modeling_dinov3_vit.py#L515)
 
 **Parameters:**
 
-config ([DINOv3ViTConfig](/docs/transformers/v5.22.2/en/model_doc/dinov3#transformers.DINOv3ViTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DINOv3ViTConfig](/docs/transformers/v5.23.0/en/model_doc/dinov3#transformers.DINOv3ViTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Dinov3 Vit Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -290,36 +290,36 @@ and behavior.
 forward(pixel_values: Tensor, bool_masked_pos: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/dinov3_vit/modeling_dinov3_vit.py#L528)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/dinov3_vit/modeling_dinov3_vit.py#L528)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DINOv3ViTImageProcessor](/docs/transformers/v5.22.2/en/model_doc/dinov3#transformers.DINOv3ViTImageProcessor). See [DINOv3ViTImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [DINOv3ViTImageProcessor](/docs/transformers/v5.22.2/en/model_doc/dinov3#transformers.DINOv3ViTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DINOv3ViTImageProcessor](/docs/transformers/v5.23.0/en/model_doc/dinov3#transformers.DINOv3ViTImageProcessor). See [DINOv3ViTImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [DINOv3ViTImageProcessor](/docs/transformers/v5.23.0/en/model_doc/dinov3#transformers.DINOv3ViTImageProcessor) for processing images).
 
 bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, sequence_length)`) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0). Only relevant for pre-training.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DINOv3ViTConfig](/docs/transformers/v5.22.2/en/model_doc/dinov3#transformers.DINOv3ViTConfig)) and inputs.
+A [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([DINOv3ViTConfig](/docs/transformers/v5.23.0/en/model_doc/dinov3#transformers.DINOv3ViTConfig)) and inputs.
 
-The [DINOv3ViTModel](/docs/transformers/v5.22.2/en/model_doc/dinov3#transformers.DINOv3ViTModel) forward method, overrides the `__call__` special method.
+The [DINOv3ViTModel](/docs/transformers/v5.23.0/en/model_doc/dinov3#transformers.DINOv3ViTModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
   through the layers used for the auxiliary pretraining task. E.g. for BERT-family of models, this returns
   the classification token after processing through a linear layer and a tanh activation function. The linear
   layer weights are trained from the next sentence prediction (classification) objective during pretraining.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -335,18 +335,18 @@ Example:
 #### transformers.DINOv3ViTBackbone[[transformers.DINOv3ViTBackbone]]
 
 ```python
-transformers.DINOv3ViTBackbone(config)
+transformers.DINOv3ViTBackbone(config: DINOv3ViTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/dinov3_vit/modeling_dinov3_vit.py#L557)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/dinov3_vit/modeling_dinov3_vit.py#L557)
 
 **Parameters:**
 
-config ([DINOv3ViTBackbone](/docs/transformers/v5.22.2/en/model_doc/dinov3#transformers.DINOv3ViTBackbone)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DINOv3ViTConfig](/docs/transformers/v5.23.0/en/model_doc/dinov3#transformers.DINOv3ViTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Dinov3 Vit backbone.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -360,36 +360,36 @@ and behavior.
 forward(pixel_values: Tensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/dinov3_vit/modeling_dinov3_vit.py#L570)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/dinov3_vit/modeling_dinov3_vit.py#L570)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DINOv3ViTImageProcessor](/docs/transformers/v5.22.2/en/model_doc/dinov3#transformers.DINOv3ViTImageProcessor). See [DINOv3ViTImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [DINOv3ViTImageProcessor](/docs/transformers/v5.22.2/en/model_doc/dinov3#transformers.DINOv3ViTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DINOv3ViTImageProcessor](/docs/transformers/v5.23.0/en/model_doc/dinov3#transformers.DINOv3ViTImageProcessor). See [DINOv3ViTImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [DINOv3ViTImageProcessor](/docs/transformers/v5.23.0/en/model_doc/dinov3#transformers.DINOv3ViTImageProcessor) for processing images).
 
-**Returns:** `DINOv3ViTBackboneOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `DINOv3ViTBackboneOutput` or `tuple(torch.Tensor)`
 
 A `DINOv3ViTBackboneOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DINOv3ViTConfig](/docs/transformers/v5.22.2/en/model_doc/dinov3#transformers.DINOv3ViTConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([DINOv3ViTConfig](/docs/transformers/v5.23.0/en/model_doc/dinov3#transformers.DINOv3ViTConfig)) and inputs.
 
-The [DINOv3ViTBackbone](/docs/transformers/v5.22.2/en/model_doc/dinov3#transformers.DINOv3ViTBackbone) forward method, overrides the `__call__` special method.
+The [DINOv3ViTBackbone](/docs/transformers/v5.23.0/en/model_doc/dinov3#transformers.DINOv3ViTBackbone) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **feature_maps** (`tuple(torch.FloatTensor)` of shape `(batch_size, num_channels, height, width)`) -- Feature maps of the stages.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings + one for the output of each layer) of
+- **feature_maps** (`tuple(torch.Tensor)` of shape `(batch_size, num_channels, height, width)`) -- Feature maps of the stages.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings + one for the output of each layer) of
   shape `(batch_size, sequence_length, hidden_size)` or `(batch_size, num_channels, height, width)`,
   depending on the backbone.
 
   Hidden-states of the model at the output of each stage plus the initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`. Only applicable if the backbone uses attention.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
   heads.
-- **cls_tokens** (`tuple(torch.FloatTensor)`, *optional*) -- CLS token from each selected feature stage, each of shape `(batch_size, hidden_size)`.
+- **cls_tokens** (`tuple(torch.Tensor)`, *optional*) -- CLS token from each selected feature stage, each of shape `(batch_size, hidden_size)`.
   Only present when `config.return_class_token=True`.
 
 ## DINOv3ConvNextModel[[transformers.DINOv3ConvNextModel]]
@@ -400,15 +400,15 @@ the latter silently ignores them.
 transformers.DINOv3ConvNextModel(config: DINOv3ConvNextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/dinov3_convnext/modeling_dinov3_convnext.py#L218)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/dinov3_convnext/modeling_dinov3_convnext.py#L218)
 
 **Parameters:**
 
-config ([DINOv3ConvNextConfig](/docs/transformers/v5.22.2/en/model_doc/dinov3#transformers.DINOv3ConvNextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DINOv3ConvNextConfig](/docs/transformers/v5.23.0/en/model_doc/dinov3#transformers.DINOv3ConvNextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Dinov3 Convnext Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -419,30 +419,30 @@ and behavior.
 #### forward[[transformers.DINOv3ConvNextModel.forward]]
 
 ```python
-forward(pixel_values: FloatTensor, **kwargs)
+forward(pixel_values: Tensor, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/dinov3_convnext/modeling_dinov3_convnext.py#L226)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/dinov3_convnext/modeling_dinov3_convnext.py#L226)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
 
-**Returns:** `BaseModelOutputWithPoolingAndNoAttention` or `tuple(torch.FloatTensor)`
+**Returns:** `BaseModelOutputWithPoolingAndNoAttention` or `tuple(torch.Tensor)`
 
 A `BaseModelOutputWithPoolingAndNoAttention` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DINOv3ConvNextConfig](/docs/transformers/v5.22.2/en/model_doc/dinov3#transformers.DINOv3ConvNextConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([DINOv3ConvNextConfig](/docs/transformers/v5.23.0/en/model_doc/dinov3#transformers.DINOv3ConvNextConfig)) and inputs.
 
-The [DINOv3ConvNextModel](/docs/transformers/v5.22.2/en/model_doc/dinov3#transformers.DINOv3ConvNextModel) forward method, overrides the `__call__` special method.
+The [DINOv3ConvNextModel](/docs/transformers/v5.23.0/en/model_doc/dinov3#transformers.DINOv3ConvNextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, num_channels, height, width)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state after a pooling operation on the spatial dimensions.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state after a pooling operation on the spatial dimensions.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, num_channels, height, width)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
@@ -460,7 +460,7 @@ Example:
 transformers.DINOv3ViTImageProcessor(**kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/dinov3_vit/image_processing_dinov3_vit.py#L34)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/dinov3_vit/image_processing_dinov3_vit.py#L34)
 
 **Parameters:**
 
@@ -512,7 +512,7 @@ Constructs a DINOv3ViTImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, image_like_kwargs: dict[str, typing.Any] | None = None, **kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -576,15 +576,15 @@ Preprocess an image or a batch of images.
 transformers.DINOv3ConvNextBackbone(config: DINOv3ConvNextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/dinov3_convnext/modeling_dinov3_convnext.py#L253)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/dinov3_convnext/modeling_dinov3_convnext.py#L253)
 
 **Parameters:**
 
-config ([DINOv3ConvNextConfig](/docs/transformers/v5.22.2/en/model_doc/dinov3#transformers.DINOv3ConvNextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DINOv3ConvNextConfig](/docs/transformers/v5.23.0/en/model_doc/dinov3#transformers.DINOv3ConvNextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Dinov3 Convnext backbone.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -595,38 +595,38 @@ and behavior.
 #### forward[[transformers.DINOv3ConvNextBackbone.forward]]
 
 ```python
-forward(pixel_values: FloatTensor, **kwargs)
+forward(pixel_values: Tensor, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/dinov3_convnext/modeling_dinov3_convnext.py#L268)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/dinov3_convnext/modeling_dinov3_convnext.py#L268)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
 
-**Returns:** `BackboneOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `BackboneOutput` or `tuple(torch.Tensor)`
 
 A `BackboneOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DINOv3ConvNextConfig](/docs/transformers/v5.22.2/en/model_doc/dinov3#transformers.DINOv3ConvNextConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([DINOv3ConvNextConfig](/docs/transformers/v5.23.0/en/model_doc/dinov3#transformers.DINOv3ConvNextConfig)) and inputs.
 
-The [DINOv3ConvNextBackbone](/docs/transformers/v5.22.2/en/model_doc/dinov3#transformers.DINOv3ConvNextBackbone) forward method, overrides the `__call__` special method.
+The [DINOv3ConvNextBackbone](/docs/transformers/v5.23.0/en/model_doc/dinov3#transformers.DINOv3ConvNextBackbone) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **feature_maps** (`tuple(torch.FloatTensor)` of shape `(batch_size, num_channels, height, width)`) -- Feature maps of the stages.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings + one for the output of each layer) of
+- **feature_maps** (`tuple(torch.Tensor)` of shape `(batch_size, num_channels, height, width)`) -- Feature maps of the stages.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings + one for the output of each layer) of
   shape `(batch_size, sequence_length, hidden_size)` or `(batch_size, num_channels, height, width)`,
   depending on the backbone.
 
   Hidden-states of the model at the output of each stage plus the initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
   sequence_length)`. Only applicable if the backbone uses attention.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
   heads.
 
 ### HunYuanVL
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/hunyuan_vl.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/hunyuan_vl.md

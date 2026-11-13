@@ -617,6 +617,3 @@ Congratulations for making it until the end. 🎉
 A good idea to extend this demo would be to test it out with a completely different model, say an audio model or image generation one.
 
 Happy hacking 🙌
-
-### llama.cpp
-https://huggingface.co/docs/inference-endpoints/engines/llama_cpp.md

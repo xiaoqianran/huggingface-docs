@@ -26,7 +26,7 @@ The original code can be found [here](https://github.com/NX-AI/xlstm).
 transformers.xLSTMConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 50304, hidden_size: int = 4096, embedding_dim: int | None = None, num_hidden_layers: int = 32, num_blocks: int | None = None, num_heads: int = 8, use_bias: bool = False, norm_reduction_force_float32: bool = True, tie_word_embeddings: bool = False, add_out_norm: bool = True, norm_eps: float = 1e-06, qk_dim_factor: float = 0.5, v_dim_factor: float = 1.0, chunkwise_kernel: typing.Literal['chunkwise--native_autograd', 'parallel--native_autograd'] = 'chunkwise--native_autograd', sequence_kernel: typing.Literal['native_sequence__native'] = 'native_sequence__native', step_kernel: typing.Literal['native'] = 'native', mode: typing.Literal['train', 'train_with_padding', 'inference'] = 'inference', chunk_size: int = 64, return_last_states: bool = True, autocast_kernel_dtype: typing.Literal['float32', 'bfloat16', 'float16'] = 'bfloat16', eps: float = 1e-06, inference_state_dtype: typing.Literal['float32', 'bfloat16', 'float16'] = 'float32', ffn_proj_factor: float = 2.667, ffn_round_up_to_multiple_of: int = 64, gate_soft_cap: float = 15.0, output_logit_soft_cap: float = 30.0, weight_mode: typing.Literal['single', 'fused'] = 'single', use_cache: bool = True, pad_token_id: int | None = 1, bos_token_id: int | None = 0, eos_token_id: int | list[int] | None = 2, max_inference_chunksize: int = 16384)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/xlstm/configuration_xlstm.py#L58)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/xlstm/configuration_xlstm.py#L58)
 
 **Parameters:**
 
@@ -98,8 +98,8 @@ This is the configuration class to store the configuration of a xLSTMModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [NX-AI/xLSTM-7b](https://huggingface.co/NX-AI/xLSTM-7b)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -121,18 +121,18 @@ Example:
 #### transformers.xLSTMModel[[transformers.xLSTMModel]]
 
 ```python
-transformers.xLSTMModel(config)
+transformers.xLSTMModel(config: xLSTMConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/xlstm/modeling_xlstm.py#L1394)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/xlstm/modeling_xlstm.py#L1394)
 
 **Parameters:**
 
-config ([xLSTMModel](/docs/transformers/v5.22.2/en/model_doc/xlstm#transformers.xLSTMModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([xLSTMConfig](/docs/transformers/v5.23.0/en/model_doc/xlstm#transformers.xLSTMConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Xlstm Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -146,11 +146,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.LongTensor] = None, cache_params: transformers.models.xlstm.modeling_xlstm.xLSTMCache | None = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/xlstm/modeling_xlstm.py#L1411)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/xlstm/modeling_xlstm.py#L1411)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 inputs_embeds (`torch.LongTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -158,22 +158,22 @@ cache_params (`xLSTMCache`, *optional*) : The xLSTMCache that carries the RNN st
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-**Returns:** `xLSTMOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `xLSTMOutput` or `tuple(torch.Tensor)`
 
 A `xLSTMOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([xLSTMConfig](/docs/transformers/v5.22.2/en/model_doc/xlstm#transformers.xLSTMConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([xLSTMConfig](/docs/transformers/v5.23.0/en/model_doc/xlstm#transformers.xLSTMConfig)) and inputs.
 
-The [xLSTMModel](/docs/transformers/v5.22.2/en/model_doc/xlstm#transformers.xLSTMModel) forward method, overrides the `__call__` special method.
+The [xLSTMModel](/docs/transformers/v5.23.0/en/model_doc/xlstm#transformers.xLSTMModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) -- Sequence of hidden-states at the output of the last layer of the model.
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) -- Sequence of hidden-states at the output of the last layer of the model.
 - **cache_params** (`~models.xlstm.modeling_xlstm.xLSTMCache`, *optional*) -- The state of the model at the last time step. Can be used in a forward method with the next `input_ids` to
   avoid providing the old `input_ids`.
-- **hidden_states** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple[torch.Tensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
@@ -183,18 +183,18 @@ the latter silently ignores them.
 #### transformers.xLSTMForCausalLM[[transformers.xLSTMForCausalLM]]
 
 ```python
-transformers.xLSTMForCausalLM(config)
+transformers.xLSTMForCausalLM(config: xLSTMConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/xlstm/modeling_xlstm.py#L1517)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/xlstm/modeling_xlstm.py#L1517)
 
 **Parameters:**
 
-config ([xLSTMForCausalLM](/docs/transformers/v5.22.2/en/model_doc/xlstm#transformers.xLSTMForCausalLM)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([xLSTMConfig](/docs/transformers/v5.23.0/en/model_doc/xlstm#transformers.xLSTMConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Xlstm Model for causal language modeling.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -205,40 +205,40 @@ and behavior.
 #### forward[[transformers.xLSTMForCausalLM.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, cache_params: transformers.models.xlstm.modeling_xlstm.xLSTMCache | None = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, cache_params: transformers.models.xlstm.modeling_xlstm.xLSTMCache | None = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/xlstm/modeling_xlstm.py#L1537)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/xlstm/modeling_xlstm.py#L1537)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.22.2/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.22.2/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 cache_params (`xLSTMCache`, *optional*) : The xLSTMCache that carries the RNN states.
 
-labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the causal language modeling loss. Indices should be in `[-100, 0, ..., config.vocab_size]` (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.  The labels are **shifted internally** so that `labels[..., 1:]` are used to predict `logits[..., :-1, :]`. Pass unshifted labels matching `input_ids` (i.e. `labels = input_ids`). Do **not** shift the labels yourself before passing them.  If the labels are already shifted (for example with sequence parallelism), pass them as the `shift_labels` keyword argument and they are used as is. `labels` must still be passed for the loss to be computed.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-**Returns:** `xLSTMCausalLMOutput` or `tuple(torch.FloatTensor)`
+**Returns:** `xLSTMCausalLMOutput` or `tuple(torch.Tensor)`
 
 A `xLSTMCausalLMOutput` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([xLSTMConfig](/docs/transformers/v5.22.2/en/model_doc/xlstm#transformers.xLSTMConfig)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([xLSTMConfig](/docs/transformers/v5.23.0/en/model_doc/xlstm#transformers.xLSTMConfig)) and inputs.
 
-The [xLSTMForCausalLM](/docs/transformers/v5.22.2/en/model_doc/xlstm#transformers.xLSTMForCausalLM) forward method, overrides the `__call__` special method.
+The [xLSTMForCausalLM](/docs/transformers/v5.23.0/en/model_doc/xlstm#transformers.xLSTMForCausalLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
-- **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
+- **logits** (`torch.Tensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
 - **cache_params** (`xLSTMCache`, *optional*, carrying the RNN states) -- The state of the model at the last time step. Can be used in a forward method with the next `input_ids` to
   avoid providing the old `input_ids`.
-- **hidden_states** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple[torch.Tensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
@@ -249,4 +249,4 @@ Example:
 ```
 
 ### LLaVA-NeXT
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/llava_next.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/llava_next.md

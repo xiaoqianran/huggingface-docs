@@ -16,7 +16,7 @@ The original code can be found [here](https://github.com/apple/ml-cvnets).
 ## Usage tips
 
 - MobileViTV2 is more like a CNN than a Transformer model. It does not work on sequence data but on batches of images. Unlike ViT, there are no embeddings. The backbone model outputs a feature map.
-- One can use [MobileViTImageProcessor](/docs/transformers/v5.22.2/en/model_doc/mobilevit#transformers.MobileViTImageProcessor) to prepare images for the model. Note that if you do your own preprocessing, the pretrained checkpoints expect images to be in BGR pixel order (not RGB).
+- One can use [MobileViTImageProcessor](/docs/transformers/v5.23.0/en/model_doc/mobilevit#transformers.MobileViTImageProcessor) to prepare images for the model. Note that if you do your own preprocessing, the pretrained checkpoints expect images to be in BGR pixel order (not RGB).
 - The available image classification checkpoints are pre-trained on [ImageNet-1k](https://huggingface.co/datasets/ILSVRC/imagenet-1k) (also referred to as ILSVRC 2012, a collection of 1.3 million images and 1,000 classes).
 - The segmentation model uses a [DeepLabV3](https://huggingface.co/papers/1706.05587) head. The available semantic segmentation checkpoints are pre-trained on [PASCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC/).
 
@@ -28,7 +28,7 @@ The original code can be found [here](https://github.com/apple/ml-cvnets).
 transformers.MobileViTV2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 256, patch_size: int | list[int] | tuple[int, int] = 2, expand_ratio: float = 2.0, hidden_act: str = 'swish', conv_kernel_size: int = 3, output_stride: int = 32, classifier_dropout_prob: float | int = 0.1, initializer_range: float = 0.02, layer_norm_eps: float = 1e-05, aspp_out_channels: int = 512, atrous_rates: list[int] | tuple[int, ...] = (6, 12, 18), aspp_dropout_prob: float | int = 0.1, semantic_loss_ignore_index: int = 255, n_attn_blocks: list[int] | tuple[int, ...] = (2, 4, 3), base_attn_unit_dims: list[int] | tuple[int, ...] = (128, 192, 256), width_multiplier: float | int = 1.0, ffn_multiplier: int = 2, attn_dropout: float | int = 0.0, ffn_dropout: float | int = 0.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/mobilevitv2/configuration_mobilevitv2.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/mobilevitv2/configuration_mobilevitv2.py#L24)
 
 **Parameters:**
 
@@ -76,8 +76,8 @@ This is the configuration class to store the configuration of a MobileViTV2Model
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [apple/mobilevitv2-1.0](https://huggingface.co/apple/mobilevitv2-1.0)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.22.2/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -102,17 +102,17 @@ Example:
 transformers.MobileViTV2Model(config: MobileViTV2Config, expand_output: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/mobilevitv2/modeling_mobilevitv2.py#L590)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/mobilevitv2/modeling_mobilevitv2.py#L590)
 
 **Parameters:**
 
-config ([MobileViTV2Config](/docs/transformers/v5.22.2/en/model_doc/mobilevitv2#transformers.MobileViTV2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MobileViTV2Config](/docs/transformers/v5.23.0/en/model_doc/mobilevitv2#transformers.MobileViTV2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 expand_output (`bool`, *optional*, defaults to `True`) : Whether to expand the output of the model. If `True`, the model will output pooled features in addition to hidden states. If `False`, only the hidden states will be returned.
 
 The bare Mobilevitv2 Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -126,31 +126,31 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/mobilevitv2/modeling_mobilevitv2.py#L619)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/mobilevitv2/modeling_mobilevitv2.py#L619)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileViTImageProcessor](/docs/transformers/v5.22.2/en/model_doc/mobilevit#transformers.MobileViTImageProcessor). See [MobileViTImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [MobileViTImageProcessor](/docs/transformers/v5.22.2/en/model_doc/mobilevit#transformers.MobileViTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileViTImageProcessor](/docs/transformers/v5.23.0/en/model_doc/mobilevit#transformers.MobileViTImageProcessor). See [MobileViTImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [MobileViTImageProcessor](/docs/transformers/v5.23.0/en/model_doc/mobilevit#transformers.MobileViTImageProcessor) for processing images).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** `BaseModelOutputWithPoolingAndNoAttention` or `tuple(torch.FloatTensor)`
+**Returns:** `BaseModelOutputWithPoolingAndNoAttention` or `tuple(torch.Tensor)`
 
 A `BaseModelOutputWithPoolingAndNoAttention` or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MobileViTV2Config](/docs/transformers/v5.22.2/en/model_doc/mobilevitv2#transformers.MobileViTV2Config)) and inputs.
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([MobileViTV2Config](/docs/transformers/v5.23.0/en/model_doc/mobilevitv2#transformers.MobileViTV2Config)) and inputs.
 
-The [MobileViTV2Model](/docs/transformers/v5.22.2/en/model_doc/mobilevitv2#transformers.MobileViTV2Model) forward method, overrides the `__call__` special method.
+The [MobileViTV2Model](/docs/transformers/v5.23.0/en/model_doc/mobilevitv2#transformers.MobileViTV2Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, num_channels, height, width)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state after a pooling operation on the spatial dimensions.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) -- Sequence of hidden-states at the output of the last layer of the model.
+- **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state after a pooling operation on the spatial dimensions.
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, num_channels, height, width)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
@@ -168,16 +168,16 @@ Example:
 transformers.MobileViTV2ForImageClassification(config: MobileViTV2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/mobilevitv2/modeling_mobilevitv2.py#L669)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/mobilevitv2/modeling_mobilevitv2.py#L669)
 
 **Parameters:**
 
-config ([MobileViTV2Config](/docs/transformers/v5.22.2/en/model_doc/mobilevitv2#transformers.MobileViTV2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MobileViTV2Config](/docs/transformers/v5.23.0/en/model_doc/mobilevitv2#transformers.MobileViTV2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 MobileViTV2 model with an image classification head on top (a linear layer on top of the pooled features), e.g. for
 ImageNet.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -191,33 +191,33 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, labels: typing.Optional[torch.Tensor] = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/mobilevitv2/modeling_mobilevitv2.py#L687)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/mobilevitv2/modeling_mobilevitv2.py#L687)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileViTImageProcessor](/docs/transformers/v5.22.2/en/model_doc/mobilevit#transformers.MobileViTImageProcessor). See [MobileViTImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [MobileViTImageProcessor](/docs/transformers/v5.22.2/en/model_doc/mobilevit#transformers.MobileViTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileViTImageProcessor](/docs/transformers/v5.23.0/en/model_doc/mobilevit#transformers.MobileViTImageProcessor). See [MobileViTImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [MobileViTImageProcessor](/docs/transformers/v5.23.0/en/model_doc/mobilevit#transformers.MobileViTImageProcessor) for processing images).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or `tuple(torch.FloatTensor)`
+**Returns:** [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or `tuple(torch.Tensor)`
 
-A [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MobileViTV2Config](/docs/transformers/v5.22.2/en/model_doc/mobilevitv2#transformers.MobileViTV2Config)) and inputs.
+A [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([MobileViTV2Config](/docs/transformers/v5.23.0/en/model_doc/mobilevitv2#transformers.MobileViTV2Config)) and inputs.
 
-The [MobileViTV2ForImageClassification](/docs/transformers/v5.22.2/en/model_doc/mobilevitv2#transformers.MobileViTV2ForImageClassification) forward method, overrides the `__call__` special method.
+The [MobileViTV2ForImageClassification](/docs/transformers/v5.23.0/en/model_doc/mobilevitv2#transformers.MobileViTV2ForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Classification (or regression if config.num_labels==1) loss.
-- **logits** (`torch.FloatTensor` of shape `(batch_size, config.num_labels)`) -- Classification (or regression if config.num_labels==1) scores (before SoftMax).
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Classification (or regression if config.num_labels==1) loss.
+- **logits** (`torch.Tensor` of shape `(batch_size, config.num_labels)`) -- Classification (or regression if config.num_labels==1) scores (before SoftMax).
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each stage) of shape `(batch_size, num_channels, height, width)`. Hidden-states (also
   called feature maps) of the model at the output of each stage.
 
@@ -253,15 +253,15 @@ Example:
 transformers.MobileViTV2ForSemanticSegmentation(config: MobileViTV2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/mobilevitv2/modeling_mobilevitv2.py#L838)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/mobilevitv2/modeling_mobilevitv2.py#L838)
 
 **Parameters:**
 
-config ([MobileViTV2Config](/docs/transformers/v5.22.2/en/model_doc/mobilevitv2#transformers.MobileViTV2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MobileViTV2Config](/docs/transformers/v5.23.0/en/model_doc/mobilevitv2#transformers.MobileViTV2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 MobileViTV2 model with a semantic segmentation head on top, e.g. for Pascal VOC.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -275,32 +275,32 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.22.2/src/transformers/models/mobilevitv2/modeling_mobilevitv2.py#L849)
+[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/mobilevitv2/modeling_mobilevitv2.py#L849)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileViTImageProcessor](/docs/transformers/v5.22.2/en/model_doc/mobilevit#transformers.MobileViTImageProcessor). See [MobileViTImageProcessor.__call__()](/docs/transformers/v5.22.2/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [MobileViTImageProcessor](/docs/transformers/v5.22.2/en/model_doc/mobilevit#transformers.MobileViTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileViTImageProcessor](/docs/transformers/v5.23.0/en/model_doc/mobilevit#transformers.MobileViTImageProcessor). See [MobileViTImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details (`processor_class` uses [MobileViTImageProcessor](/docs/transformers/v5.23.0/en/model_doc/mobilevit#transformers.MobileViTImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Ground truth semantic segmentation maps for computing the loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels > 1`, a classification loss is computed (Cross-Entropy).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [SemanticSegmenterOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [SemanticSegmenterOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or `tuple(torch.Tensor)`
 
-A [SemanticSegmenterOutput](/docs/transformers/v5.22.2/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or a tuple of
-`torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MobileViTV2Config](/docs/transformers/v5.22.2/en/model_doc/mobilevitv2#transformers.MobileViTV2Config)) and inputs.
+A [SemanticSegmenterOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or a tuple of
+`torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
+elements depending on the configuration ([MobileViTV2Config](/docs/transformers/v5.23.0/en/model_doc/mobilevitv2#transformers.MobileViTV2Config)) and inputs.
 
-The [MobileViTV2ForSemanticSegmentation](/docs/transformers/v5.22.2/en/model_doc/mobilevitv2#transformers.MobileViTV2ForSemanticSegmentation) forward method, overrides the `__call__` special method.
+The [MobileViTV2ForSemanticSegmentation](/docs/transformers/v5.23.0/en/model_doc/mobilevitv2#transformers.MobileViTV2ForSemanticSegmentation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Classification (or regression if config.num_labels==1) loss.
-- **logits** (`torch.FloatTensor` of shape `(batch_size, config.num_labels, logits_height, logits_width)`) -- Classification scores for each pixel.
+- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Classification (or regression if config.num_labels==1) loss.
+- **logits** (`torch.Tensor` of shape `(batch_size, config.num_labels, logits_height, logits_width)`) -- Classification scores for each pixel.
 
   
 
@@ -309,11 +309,11 @@ the latter silently ignores them.
   original image size as post-processing. You should always check your logits shape and resize as needed.
 
   
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, patch_size, hidden_size)`.
 
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, patch_size,
+- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, patch_size,
   sequence_length)`.
 
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
@@ -345,4 +345,4 @@ Examples:
 ```
 
 ### Ernie 4.5
-https://huggingface.co/docs/transformers/v5.22.2/model_doc/ernie4_5.md
+https://huggingface.co/docs/transformers/v5.23.0/model_doc/ernie4_5.md

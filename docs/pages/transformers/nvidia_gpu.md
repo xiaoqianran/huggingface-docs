@@ -71,7 +71,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 ## Run inference
 
-Pass `device_map="auto"` to [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to split a model that doesn't fit on one GPU across the available GPUs, or `device_map="cuda"` to load it on a single GPU. [pipeline()](/docs/transformers/v5.22.2/en/main_classes/pipelines#transformers.pipeline) picks a GPU automatically when you don't pass `device`.
+Pass `device_map="auto"` to [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to split a model that doesn't fit on one GPU across the available GPUs, or `device_map="cuda"` to load it on a single GPU. [pipeline()](/docs/transformers/v5.23.0/en/main_classes/pipelines#transformers.pipeline) picks a GPU automatically when you don't pass `device`.
 
 ```py
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -88,7 +88,7 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
 
 ## Use Hub kernels
 
-Set `use_kernels=True` in [from_pretrained()](/docs/transformers/v5.22.2/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to replace supported layers with optimized kernels from the Hub. NVIDIA GPUs have the widest coverage, including activations, RMSNorm, rotary embeddings, MegaBlocks mixture-of-experts layers, and Mamba state-space ops. Install the `kernels` extra to use them.
+Set `use_kernels=True` in [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to replace supported layers with optimized kernels from the Hub. NVIDIA GPUs have the widest coverage, including activations, RMSNorm, rotary embeddings, MegaBlocks mixture-of-experts layers, and Mamba state-space ops. Install the `kernels` extra to use them.
 
 ```py
 model = AutoModelForCausalLM.from_pretrained(
@@ -96,7 +96,7 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
-Hub kernels apply to training too. Calling `model.train()` or `model.eval()` swaps in the kernels for that mode. To choose a kernel yourself, pass a [KernelConfig](/docs/transformers/v5.22.2/en/main_classes/kernels#transformers.KernelConfig) and use `"cuda"` as the device key for NVIDIA-specific mappings. See [Loading kernels](./kernel_doc/loading_kernels) for the full mapping.
+Hub kernels apply to training too. Calling `model.train()` or `model.eval()` swaps in the kernels for that mode. To choose a kernel yourself, pass a [KernelConfig](/docs/transformers/v5.23.0/en/main_classes/kernels#transformers.KernelConfig) and use `"cuda"` as the device key for NVIDIA-specific mappings. See [Loading kernels](./kernel_doc/loading_kernels) for the full mapping.
 
 ## Quantize models
 
@@ -106,7 +106,7 @@ To fine-tune a model that doesn't fit in GPU memory, load it in 4-bit with [bits
 
 ## Train with Trainer
 
-[TrainingArguments](/docs/transformers/v5.22.2/en/main_classes/trainer#transformers.TrainingArguments) detects NVIDIA GPUs and sets the device to `cuda`, so [Trainer](/docs/transformers/v5.22.2/en/main_classes/trainer#transformers.Trainer) trains on them without any device settings. Use bf16 mixed precision on Ampere or newer GPUs, and fp16 on older ones.
+[TrainingArguments](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.TrainingArguments) detects NVIDIA GPUs and sets the device to `cuda`, so [Trainer](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.Trainer) trains on them without any device settings. Use bf16 mixed precision on Ampere or newer GPUs, and fp16 on older ones.
 
 ```py
 from transformers import TrainingArguments
@@ -137,4 +137,4 @@ See [DDP](./ddp), [FSDP2](./fsdp), [DeepSpeed ZeRO](./deepspeed), and [Tensor pa
 - Read [Attention backends](./attention_interface) to learn how `attn_implementation` selects an attention function.
 
 ### Intel GPU
-https://huggingface.co/docs/transformers/v5.22.2/intel_gpu.md
+https://huggingface.co/docs/transformers/v5.23.0/intel_gpu.md

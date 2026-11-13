@@ -17,5 +17,5 @@ You can browse and try every route interactively at
 [`/api/docs`](https://endpoints.huggingface.co/api/docs), or fetch the raw specification from
 [`/api/openapi.json`](https://endpoints.huggingface.co/api/openapi.json).
 
-### About Inference Endpoints
-https://huggingface.co/docs/inference-endpoints/about.md
+### Build an embedding pipeline with datasets
+https://huggingface.co/docs/inference-endpoints/tutorials/embedding.md
