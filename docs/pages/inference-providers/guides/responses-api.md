@@ -1264,7 +1264,7 @@ Find out more about Chat Completion (VLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=image-text-to-text
-    providersMapping={ {"deepinfra":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"Qwen/Qwen3.8-27B"} } }
+    providersMapping={ {"deepinfra":{"modelId":"deepseek-ai/DeepSeek-V4.1-Flash-1017","providerModelId":"deepseek-ai/DeepSeek-V4.1-Flash-1017"} } }
 conversational />
 
 ### Feature Extraction
@@ -1663,7 +1663,7 @@ Find out more about Chat Completion (VLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=image-text-to-text
-    providersMapping={ {"baseten":{"modelId":"meta-models/Muse-Spark-Open-816B-A42B","providerModelId":"meta-models/muse-spark-open"} } }
+    providersMapping={ {"baseten":{"modelId":"deepseek-ai/DeepSeek-V4.1-Flash-1017","providerModelId":"deepseek-ai/DeepSeek-V4.1-Flash-1017"} } }
 conversational />
 
 ### Template
@@ -1710,7 +1710,7 @@ Find out more about Chat Completion (LLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"featherless-ai":{"modelId":"meta-llama/Llama-3.1-8B-Instruct","providerModelId":"meta-llama/Llama-3.1-8B-Instruct"} } }
+    providersMapping={ {"featherless-ai":{"modelId":"meta-llama/Meta-Llama-3-8B-Instruct","providerModelId":"meta-llama/Meta-Llama-3-8B-Instruct"} } }
 conversational />
 
 ### Chat Completion (VLM)

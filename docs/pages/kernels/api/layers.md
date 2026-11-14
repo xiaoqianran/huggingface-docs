@@ -10,7 +10,7 @@
 kernels.use_kernel_forward_from_hub(layer_name: str, condition: Callable[['nn.Module'], bool] | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L400)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L394)
 
 **Parameters:**
 
@@ -145,7 +145,7 @@ model = MyModel()
 kernels.use_kernelized_func(*args: Callable)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L530)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L524)
 
 **Parameters:**
 
@@ -201,7 +201,7 @@ model = LayerUsingIdentity()
 kernels.replace_kernel_forward_from_hub(layer_name: str, condition: Callable[['nn.Module'], bool] | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L368)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L362)
 
 **Parameters:**
 
