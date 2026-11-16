@@ -37,8 +37,8 @@
       "translatedAt": "2026-11-06T14:56:09.570Z"
     },
     "hub/agents-local.md": {
-      "hash": "22e661ffe885f3beace8d675c96e990e0f1ebaab",
-      "translatedAt": "2026-10-29T14:06:01.631Z"
+      "hash": "a18c5cba60e47ac2fba1e21fa34459b1891fe393",
+      "translatedAt": "2026-11-16T16:55:46.056Z"
     },
     "hub/agents-sdk.md": {
       "hash": "3ee8a20d1774090c3d8ad5e45f48c99a5f886640",
@@ -85,8 +85,8 @@
       "translatedAt": "2026-11-05T15:20:25.831Z"
     },
     "hub/billing.md": {
-      "hash": "ff11022017171ea681f98a56dd78e0d2069dd085",
-      "translatedAt": "2026-10-29T14:06:14.104Z"
+      "hash": "dfae472c0373237960c43447bf2430c16b68b7eb",
+      "translatedAt": "2026-11-16T16:55:49.196Z"
     },
     "hub/collections.md": {
       "hash": "7f2e8b60c2531fce165e79e81e432b5c083992b3",
@@ -321,8 +321,8 @@
       "translatedAt": "2026-10-29T14:07:24.654Z"
     },
     "hub/enterprise-service-accounts.md": {
-      "hash": "11dd065ef03c08f2fb0f90da8564179b092a6f50",
-      "translatedAt": "2026-11-12T15:55:09.106Z"
+      "hash": "cbeed061b0aa3f336655e5b622bbce0d46b7c8b6",
+      "translatedAt": "2026-11-16T16:55:49.700Z"
     },
     "hub/enterprise-network-security.md": {
       "hash": "de16800dfa1ded7dd20556eb80264cfec03211bd",
@@ -337,8 +337,8 @@
       "translatedAt": "2026-10-29T14:07:31.214Z"
     },
     "hub/enterprise-scim.md": {
-      "hash": "058805128bcd94f92a6accfa9b121070a2c76318",
-      "translatedAt": "2026-10-29T14:07:29.394Z"
+      "hash": "f5f47ede26a9ce56c810132fd64dc9bc053eb717",
+      "translatedAt": "2026-11-16T16:55:47.307Z"
     },
     "hub/espnet.md": {
       "hash": "11b263cfc3b5e4fac9a5537e841ff89d59282efd",
@@ -781,8 +781,8 @@
       "translatedAt": "2026-10-29T14:10:01.607Z"
     },
     "hub/security-tokens.md": {
-      "hash": "223a91a429e8ccfd6a28ef56cb727db534e2b4c6",
-      "translatedAt": "2026-11-12T15:55:06.702Z"
+      "hash": "f201f4efb41896e9a556be5ce12001641c901263",
+      "translatedAt": "2026-11-16T16:55:51.971Z"
     },
     "hub/spaces-circleci.md": {
       "hash": "e75ec2ec9b821899c4bd58104b762c3a9dfe103a",
@@ -2053,10 +2053,10 @@
       "translatedAt": "2026-11-11T15:02:31.316Z"
     }
   },
-  "updatedAt": "2026-11-15T14:39:43.490Z",
+  "updatedAt": "2026-11-16T16:55:51.971Z",
   "stats": {
-    "translated": 0,
-    "skipped": 400,
+    "translated": 5,
+    "skipped": 395,
     "failed": 0,
     "total": 400
   }

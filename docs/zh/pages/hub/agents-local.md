@@ -2,9 +2,27 @@
 
 # 带有 llama.cpp 的本地代理
 
-您可以完全在自己的硬件上运行编码代理。多个开源代理可以连接到本地 [llama.cpp](https://github.com/ggerganov/llama.cpp) 服务器，为您提供类似于 Claude Code 或 Codex 的体验 - 但一切都在您的计算机上运行。
+您可以完全在您自己的硬件上本地运行编码代理。多个开源代理可以连接到本地 [llama.cpp](https://llama.app/) 服务器，为您提供类似于 Claude Code 或 Codex 的体验 - 但一切都在您的计算机上运行。
 
-## 开始使用
+## 它是如何工作的
+
+该设置有两个本地运行的组件：
+
+1. **llama.cpp 服务器** — 在 `localhost` 上将模型作为 OpenAI 兼容 API 提供服务。
+2. **您的代理** — 向本地服务器发送提示、任务原因并执行操作。
+
+```shell
+┌─────────┐     API calls     ┌───────────────────┐
+│  Agent  │ ───────────────▶  │  llama.cpp server │
+│         │ ◀───────────────  │  (local model)    │
+└─────────┘    responses      └───────────────────┘
+     │
+     ▼
+  Your files,
+  terminal, etc.
+```
+
+## 设置 llama.cpp 服务器
 
 ### 1. 设置本地硬件
 
@@ -14,47 +32,66 @@
 
 ### 2. 寻找兼容型号
 
-浏览[Llama.cpp-compatible models](https://huggingface.co/models?apps=llama.cpp&sort=trending)。
+浏览[GGUF models compatible with Llama](https://huggingface.co/models?apps=llama-app&sort=trending)。选择后，将模型下载到您的硬件上。
 
-### 3.启动 llama.cpp 服务器
+如果您需要灵感，Llama 应用程序会建议一些适合您的硬件设备的模型（请参阅步骤 3）。
 
-在模型页面上，单击**“使用此模型”**按钮并选择`llama.cpp`。它将向您显示设置的确切命令。第一步是启动 llama.cpp 服务器，例如
+### 3.安装Llama应用程序
+
+您可以轻松地在您的计算机上安装 llama.cpp：- **Mac 和 Windows**：安装 [Llama app](https://llama.app)，一个位于系统托盘上的极简桌面应用程序
+     安装应用程序后，请按照以下步骤开始使用为您的系统推荐的您最喜欢的模型。
+     ![llama app](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/decision/llama-app.png)
+- **Linux（或者如果您只需要命令行）**：一行安装命令：
+     ```bash
+     curl -LsSf https://llama.app/install.sh | sh
+     ```
+
+验证安装：
 
 ```bash
-llama-server -hf ggml-org/gemma-4-26b-a4b-it-GGUF:Q4_K_M
+llama --version
 ```
 
-这将下载模型并在您的计算机上启动兼容 OpenAI 的 API 服务器。有关安装说明，请参阅[llama.cpp guide](./gguf-llamacpp)。
+### 4.启动路由器
 
-### 4. 连接您的代理
+如果您安装了桌面应用程序，`llama serve` 已经在运行。您可以通过浏览[localhost:9931](http://localhost:9931/#/models)上的型号列表来查看。
+
+如果没有，请启动`llama serve`。传递模型会启动单模型模式而不是路由器模式。路由器配置请参见[llama.cpp server guide](https://llama.app/docs/serve#serving-multiple-models-router-mode)。
+
+您有两个选择：
+- 自动加载：默认情况下，模型按需加载。
+- 手动加载：添加`--no-models-autoload`，然后使用`/llama`加载模型，然后再选择模型。
+
+对于自动加载，只需启动：
+
+```bash
+llama serve
+```
+
+在大多数情况下，您不需要任何额外的标志，因为默认值应该是合理的。对于高级用法，以下是您可能感兴趣的可能标志的示例：- `-ngl all` 将所有层卸载到 GPU。省略它以使用自动 GPU 卸载。
+- `-c 32768` 设置标记中的上下文大小。使用 `-c 0` 作为模型的完整上下文窗口，这可能需要更多的内存。上下文在并行服务器插槽之间共享。
+- `--models-dir ~/models` 从自定义本地目录发现本地 GGUF 文件。
+
+虽然上面的命令应该是您所需要的，但这里有一些与 `llama serve` 一起使用的常见标志：
+
+|旗帜|它有什么作用 |
+| :--: | :--: |
+| `-ngl all` |将所有层卸载到 GPU |
+| `-c 32768` |设置标记中的上下文大小 |
+| `--models-dir ~/models` |从自定义本地目录发现本地 GGUF 文件 |
+
+### 5. 连接您的代理
 
 选择下面的代理之一并按照设置说明进行操作。
 
 ## 圆周率
 
-[Pi](https://pi.dev) 是[OpenClaw](https://github.com/openclaw) 背后的代理，现在直接集成到 Hugging Face 中，让您可以访问数千种兼容模型。
+[Pi](https://pi.dev) 是 [OpenClaw](https://github.com/openclaw) 背后的代理，现在直接集成到 Hugging Face 中，让您可以访问数千种兼容型号。
 
 安装树莓派：
 
 ```bash
 npm install -g --ignore-scripts @earendil-works/pi-coding-agent
-```然后将本地模型添加到 Pi 的配置文件`~/.pi/agent/models.json`：
-
-```json
-{
-  "providers": {
-    "llama-cpp": {
-      "baseUrl": "http://localhost:8080/v1",
-      "api": "openai-completions",
-      "apiKey": "none",
-      "models": [
-        {
-          "id": "ggml-org-gemma-4-26b-4b-gguf"
-        }
-      ]
-    }
-  }
-}
 ```
 
 在项目目录中启动 Pi：
@@ -63,45 +100,24 @@ npm install -g --ignore-scripts @earendil-works/pi-coding-agent
 pi
 ```
 
-Pi 连接到您的本地 llama.cpp 服务器并为您提供交互式代理会话。
+配置llama.cpp：
 
-![Demo](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/pi-llama-cpp-demo.gif)
-
-### 启用视觉支持
-
-对于支持视觉的模型，将 `"input": ["text", "image"]` 添加到 `~/.pi/agent/models.json` 中的模型条目：
-
-```json
-"models": [
-  {
-    "id": "unsloth/Qwen3.6-35B-A3B-GGUF:Q4_K_XL",
-    "input": ["text", "image"]
-  }
-]
+```bash
+/login llama.cpp
 ```
 
-浏览[vision-language models compatible with Pi](https://huggingface.co/models?pipeline_tag=image-text-to-text&apps=pi)。
+运行`/llama`加载模型，然后运行`/model`为当前会话选择加载的模型。
 
 ## 开爪
 
 [OpenClaw](https://github.com/openclaw) 在本地与 llama.cpp 一起工作。您可以通过板载命令设置模型：
 
 ```bash
-openclaw onboard --non-interactive \
-  --auth-choice custom-api-key \
-  --custom-base-url "http://127.0.0.1:8080/v1" \
-  --custom-model-id "ggml-org-gemma-4-26b-a4b-gguf" \
-  --custom-api-key "llama.cpp" \
-  --secret-input-mode plaintext \
-  --custom-compatibility openai \
-  --accept-risk
+openclaw plugins install @openclaw/llama-cpp-provider
+openclaw onboard
 ```
 
-您还可以交互运行`openclaw onboard`，使用`openai`选择`custom-compatibility`，并传递相同的配置。
-
-### OpenClaw 的本地内存搜索
-
-您可以使用 Llama.cpp 运行本地嵌入模型以进行代理的内存搜索。为此，请确保拥有 node-llama-cpp。 
+### OpenClaw 的本地内存搜索您可以使用 Llama.cpp 运行本地嵌入模型以进行代理的内存搜索。为此，请确保拥有 node-llama-cpp。
 
 ```bash
 npm i node-llama-cpp 
@@ -126,23 +142,17 @@ openclaw memory status
 
 ## 爱马仕代理
 
-[Hermes Agent](https://hermes-agent.nousresearch.com/) 在本地与 llama.cpp 一起工作。将默认配置定义为：
+[Hermes Agent](https://hermes-agent.nousresearch.com/) 在本地与 llama.cpp 一起工作。在`~/.hermes/config.yaml`中添加以下内容。
 
 ```yaml
-model:
-  provider: custom
-  default: ggml-org/gemma-4-26B-A4B-it-GGUF:Q4_K_M
-  base_url: http://127.0.0.1:8080/v1
-  api_key: llama.cpp
-
 custom_providers:
-  - name: Local (127.0.0.1:8080)
+  - name: llama cpp (127.0.0.1:8080)
     base_url: http://127.0.0.1:8080/v1
-    api_key: llama.cpp
-    model: ggml-org/gemma-4-26B-A4B-it-GGUF:Q4_K_M
 ```
 
-### 本地内存搜索 Hermes 代理Hermes Agent 通过端点使用语义搜索模型。使用 llama.cpp 或您选择的推理引擎在端点 8080 上获得首选嵌入模型后，请将以下内容添加到 `~/.hermes/config.yaml`。
+### 本地内存搜索 Hermes 代理
+
+Hermes Agent 通过端点使用语义搜索模型。使用 llama.cpp 或您选择的推理引擎在端点 8080 上获得首选嵌入模型后，请将以下内容添加到 `~/.hermes/config.yaml`。
 
 ```bash
 auxiliary:
@@ -192,24 +202,6 @@ $ hermes memory status
 }
 ```
 
-## 它是如何工作的
-
-该设置有两个本地运行的组件：
-
-1. **llama.cpp 服务器** — 在 `localhost` 上将模型作为 OpenAI 兼容 API 提供服务。
-2. **您的代理** — 向本地服务器发送提示、任务原因并执行操作的代理进程。
-
-```
-┌─────────┐     API calls     ┌──────────────────┐
-│  Agent  │ ───────────────▶  │  llama.cpp server │
-│         │ ◀───────────────  │  (local model)    │
-└─────────┘    responses      └──────────────────┘
-     │
-     ▼
-  Your files,
-  terminal, etc.
-```
-
 ## 替代方案：llama-agent
 
 [llama-agent](https://github.com/gary149/llama-agent) 采用了不同的方法 - 它将代理循环直接构建到 [llama.cpp](https://github.com/ggerganov/llama.cpp) 作为具有零外部依赖性的单个二进制文件。没有 Node.js，没有 Python，只需编译并运行：
@@ -224,11 +216,11 @@ cmake --build build --target llama-agent
 
 # Run (downloads the model automatically)
 ./build/bin/llama-agent -hf ggml-org/gemma-4-26b-a4b-it-GGUF:Q4_K_M
-```
+```由于工具调用发生在进程内而不是通过 HTTP，因此模型和代理之间没有网络开销。它还支持子代理、MCP 服务器和 HTTP API 服务器模式。
 
-由于工具调用发生在进程内而不是通过 HTTP，因此模型和代理之间没有网络开销。它还支持子代理、MCP 服务器和 HTTP API 服务器模式。
+## 后续步骤
 
-## 后续步骤- [Use AI Models Locally](./local-apps) — 了解有关在机器上运行模型的更多信息
+- [Use AI Models Locally](./local-apps) — 了解有关在机器上运行模型的更多信息
 - [llama.cpp Guide](./gguf-llamacpp)——llama.cpp安装及使用详解
 - [Agents on the Hub](./agents-overview) — 将代理连接到 Hugging Face 生态系统
 
