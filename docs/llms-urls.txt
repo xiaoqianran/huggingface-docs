@@ -936,6 +936,7 @@ https://huggingface.co/docs/inference-providers/guides/function-calling.md
 https://huggingface.co/docs/inference-providers/guides/github-actions-code-review.md
 https://huggingface.co/docs/inference-providers/guides/gpt-oss.md
 https://huggingface.co/docs/inference-providers/guides/image-editor.md
+https://huggingface.co/docs/inference-providers/guides/messages-api.md
 https://huggingface.co/docs/inference-providers/guides/responses-api.md
 https://huggingface.co/docs/inference-providers/guides/structured-output.md
 https://huggingface.co/docs/inference-providers/hub-api.md
@@ -953,6 +954,9 @@ https://huggingface.co/docs/inference-providers/integrations/pi.md
 https://huggingface.co/docs/inference-providers/integrations/visionagents.md
 https://huggingface.co/docs/inference-providers/integrations/vscode.md
 https://huggingface.co/docs/inference-providers/pricing.md
+https://huggingface.co/docs/inference-providers/prompt-caching.md
+https://huggingface.co/docs/inference-providers/providers.md
+https://huggingface.co/docs/inference-providers/routing.md
 https://huggingface.co/docs/inference-providers/security.md
 https://huggingface.co/docs/inference-providers/tasks/index.md
 https://huggingface.co/docs/kernels/api/kernels.md
@@ -1251,6 +1255,7 @@ https://huggingface.co/docs/text-embeddings-inference/intel_container.md
 https://huggingface.co/docs/text-embeddings-inference/local_cpu.md
 https://huggingface.co/docs/text-embeddings-inference/local_gpu.md
 https://huggingface.co/docs/text-embeddings-inference/local_metal.md
+https://huggingface.co/docs/text-embeddings-inference/metrics.md
 https://huggingface.co/docs/text-embeddings-inference/private_models.md
 https://huggingface.co/docs/text-embeddings-inference/quick_tour.md
 https://huggingface.co/docs/text-embeddings-inference/supported_models.md

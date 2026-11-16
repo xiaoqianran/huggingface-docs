@@ -100,5 +100,5 @@ To use the prebuilt image optimized for Intel® HPUs (Gaudi), run:
 docker pull ghcr.io/huggingface/text-embeddings-inference:hpu-latest
 ```
 
-### Example uses
-https://huggingface.co/docs/text-embeddings-inference/examples.md
+### Prometheus metrics
+https://huggingface.co/docs/text-embeddings-inference/metrics.md

@@ -314,7 +314,7 @@ hf models ls --warm --pipeline-tag feature-extraction --sort trending_score
 
 <InferenceSnippet
     pipeline=feature-extraction
-    providersMapping={ {"deepinfra":{"modelId":"Qwen/Qwen3-Embedding-0.6B","providerModelId":"Qwen/Qwen3-Embedding-0.6B"},"hf-inference":{"modelId":"perplexity-ai/pplx-embed-v2-late-0.6b","providerModelId":"perplexity-ai/pplx-embed-v2-late-0.6b"},"scaleway":{"modelId":"Qwen/Qwen3-Embedding-8B","providerModelId":"qwen3-embedding-8b"}} }
+    providersMapping={ {"deepinfra":{"modelId":"Qwen/Qwen3-Embedding-0.6B","providerModelId":"Qwen/Qwen3-Embedding-0.6B"},"hf-inference":{"modelId":"BAAI/bge-small-en-v1.5","providerModelId":"BAAI/bge-small-en-v1.5"},"scaleway":{"modelId":"Qwen/Qwen3-Embedding-8B","providerModelId":"qwen3-embedding-8b"}} }
 />
 
 ### API specification
@@ -781,30 +781,6 @@ https://huggingface.co/docs/inference-providers/tasks/chat-completion.md
 Generate a response given a list of messages in a conversational context, supporting both conversational Language Models (LLMs) and conversational Vision-Language Models (VLMs).
 This is a subtask of [`text-generation`](https://huggingface.co/docs/inference-providers/tasks/text-generation) and [`image-text-to-text`](https://huggingface.co/docs/inference-providers/tasks/image-text-to-text).
 
-### Recommended models
-
-#### Conversational Large Language Models (LLMs)
-
-- [google/gemma-2-2b-it](https://huggingface.co/google/gemma-2-2b-it): A text-generation model trained to follow instructions.
-- [Qwen/Qwen3-Coder-480B-A35B-Instruct](https://huggingface.co/Qwen/Qwen3-Coder-480B-A35B-Instruct): Powerful text generation model for coding.
-- [openai/gpt-oss-120b](https://huggingface.co/openai/gpt-oss-120b): Great text generation model with top-notch tool calling capabilities.
-- [zai-org/GLM-4.5](https://huggingface.co/zai-org/GLM-4.5): Powerful text generation model.
-- [Qwen/Qwen3-4B-Thinking-2507](https://huggingface.co/Qwen/Qwen3-4B-Thinking-2507): A powerful small model with reasoning capabilities.
-- [Qwen/Qwen2.5-7B-Instruct-1M](https://huggingface.co/Qwen/Qwen2.5-7B-Instruct-1M): Strong conversational model that supports very long instructions.
-- [Qwen/Qwen2.5-Coder-32B-Instruct](https://huggingface.co/Qwen/Qwen2.5-Coder-32B-Instruct): Text generation model used to write code.
-- [deepseek-ai/DeepSeek-R1](https://huggingface.co/deepseek-ai/DeepSeek-R1): Powerful reasoning based open large language model.
-
-#### Conversational Vision-Language Models (VLMs)
-
-- [zai-org/GLM-4.5V](https://huggingface.co/zai-org/GLM-4.5V): Cutting-edge reasoning vision language model.
-- [Qwen/Qwen2.5-VL-3B-Instruct](https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct): Small yet powerful model.
-
-Explore all available models and find the one that suits you best [here](https://huggingface.co/models?inference=warm&pipeline_tag=image-text-to-text&sort=trending), or from the terminal with the [`hf` CLI](https://huggingface.co/docs/huggingface_hub/package_reference/cli#hf-models-list):
-
-```bash
-hf models ls --warm --pipeline-tag image-text-to-text --sort trending_score
-```
-
 ### API Playground
 
 For Chat Completion models, we provide an interactive UI Playground for easier testing:
@@ -830,7 +806,7 @@ The API supports:
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"baseten":{"modelId":"reflection/Beam-1.0-501B-A23B","providerModelId":"reflection/Beam-1.0"},"cerebras":{"modelId":"openai/gpt-oss-120b","providerModelId":"gpt-oss-120b"},"cohere":{"modelId":"CohereLabs/tiny-aya-global","providerModelId":"tiny-aya-global"},"deepinfra":{"modelId":"meta-llama/Llama-3.1-8B-Instruct","providerModelId":"meta-llama/Meta-Llama-3.1-8B-Instruct"},"featherless-ai":{"modelId":"meta-llama/Meta-Llama-3-8B-Instruct","providerModelId":"meta-llama/Meta-Llama-3-8B-Instruct"},"fireworks-ai":{"modelId":"zai-org/GLM-5.3","providerModelId":"accounts/fireworks/models/glm-5p3"},"groq":{"modelId":"openai/gpt-oss-20b","providerModelId":"openai/gpt-oss-20b"},"novita":{"modelId":"meta-llama/Llama-3.1-8B-Instruct","providerModelId":"meta-llama/llama-3.1-8b-instruct"},"nscale":{"modelId":"zai-org/GLM-5.3","providerModelId":"zai-org/GLM-5.3"},"ovhcloud":{"modelId":"openai/gpt-oss-20b","providerModelId":"gpt-oss-20b"},"publicai":{"modelId":"speakleash/Bielik-11B-v3.0-Instruct","providerModelId":"speakleash/Bielik-11B-v3.0-Instruct"},"scaleway":{"modelId":"zai-org/GLM-5.3","providerModelId":"glm-5.3"},"together":{"modelId":"zai-org/GLM-5.3","providerModelId":"zai-org/GLM-5.3"},"zai-org":{"modelId":"zai-org/GLM-5.3","providerModelId":"glm-5.3"}} }
+    providersMapping={ {"baseten":{"modelId":"reflection/Beam-1.0-501B-A23B","providerModelId":"reflection/Beam-1.0"},"cerebras":{"modelId":"openai/gpt-oss-120b","providerModelId":"gpt-oss-120b"},"cohere":{"modelId":"CohereLabs/tiny-aya-global","providerModelId":"tiny-aya-global"},"deepinfra":{"modelId":"meta-llama/Llama-3.1-8B-Instruct","providerModelId":"meta-llama/Meta-Llama-3.1-8B-Instruct"},"featherless-ai":{"modelId":"meta-llama/Meta-Llama-3-8B-Instruct","providerModelId":"meta-llama/Meta-Llama-3-8B-Instruct"},"fireworks-ai":{"modelId":"zai-org/GLM-5.3","providerModelId":"accounts/fireworks/models/glm-5p3"},"groq":{"modelId":"openai/gpt-oss-120b","providerModelId":"openai/gpt-oss-120b"},"novita":{"modelId":"meta-llama/Llama-3.1-8B-Instruct","providerModelId":"meta-llama/llama-3.1-8b-instruct"},"nscale":{"modelId":"zai-org/GLM-5.3","providerModelId":"zai-org/GLM-5.3"},"ovhcloud":{"modelId":"openai/gpt-oss-120b","providerModelId":"gpt-oss-120b"},"publicai":{"modelId":"speakleash/Bielik-11B-v3.0-Instruct","providerModelId":"speakleash/Bielik-11B-v3.0-Instruct"},"scaleway":{"modelId":"zai-org/GLM-5.3","providerModelId":"glm-5.3"},"together":{"modelId":"zai-org/GLM-5.3","providerModelId":"zai-org/GLM-5.3"},"zai-org":{"modelId":"zai-org/GLM-5.3","providerModelId":"glm-5.3"}} }
 conversational />
 
 #### Code snippet example for conversational VLMs

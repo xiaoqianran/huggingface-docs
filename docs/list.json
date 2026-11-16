@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-11-15T14:39:43.358030+00:00",
+  "fetchedAt": "2026-11-16T16:55:43.415305+00:00",
   "method": "llms-full-split",
-  "ok": 2323,
+  "ok": 2328,
   "failed": 0,
   "pages": [
     {
@@ -5853,7 +5853,7 @@
     },
     {
       "rel": "hub/enterprise-scim.md",
-      "bytes": 7894,
+      "bytes": 7874,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/enterprise-scim.md",
       "track": "Hub",
@@ -6834,7 +6834,7 @@
     },
     {
       "rel": "hub/enterprise-service-accounts.md",
-      "bytes": 7289,
+      "bytes": 7960,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/enterprise-service-accounts.md",
       "track": "Hub",
@@ -7140,7 +7140,7 @@
     },
     {
       "rel": "hub/billing.md",
-      "bytes": 11133,
+      "bytes": 11952,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/billing.md",
       "track": "Hub",
@@ -7176,7 +7176,7 @@
     },
     {
       "rel": "hub/security-tokens.md",
-      "bytes": 9046,
+      "bytes": 9627,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/security-tokens.md",
       "track": "Hub",
@@ -7266,7 +7266,7 @@
     },
     {
       "rel": "hub/agents-local.md",
-      "bytes": 7901,
+      "bytes": 8461,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/agents-local.md",
       "track": "Hub",
@@ -8391,7 +8391,7 @@
     },
     {
       "rel": "inference-providers/index.md",
-      "bytes": 26180,
+      "bytes": 21804,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/index.md",
       "track": "Inference Providers",
@@ -8399,8 +8399,17 @@
       "title": "Inference Providers"
     },
     {
+      "rel": "inference-providers/routing.md",
+      "bytes": 2287,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/inference-providers/routing.md",
+      "track": "Inference Providers",
+      "package": "inference-providers",
+      "title": "Routing and Providers"
+    },
+    {
       "rel": "inference-providers/hub-integration.md",
-      "bytes": 2171,
+      "bytes": 2317,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/hub-integration.md",
       "track": "Inference Providers",
@@ -8408,8 +8417,26 @@
       "title": "Hub Integration"
     },
     {
+      "rel": "inference-providers/providers.md",
+      "bytes": 2598,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/inference-providers/providers.md",
+      "track": "Inference Providers",
+      "package": "inference-providers",
+      "title": "Providers"
+    },
+    {
+      "rel": "inference-providers/prompt-caching.md",
+      "bytes": 1559,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/inference-providers/prompt-caching.md",
+      "track": "Inference Providers",
+      "package": "inference-providers",
+      "title": "Prompt Caching"
+    },
+    {
       "rel": "inference-providers/pricing.md",
-      "bytes": 13590,
+      "bytes": 10196,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/pricing.md",
       "track": "Inference Providers",
@@ -8436,7 +8463,7 @@
     },
     {
       "rel": "inference-providers/guides/first-api-call.md",
-      "bytes": 8764,
+      "bytes": 8728,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/first-api-call.md",
       "track": "Inference Providers",
@@ -8444,8 +8471,17 @@
       "title": "Your First Inference Provider Call"
     },
     {
+      "rel": "inference-providers/guides/messages-api.md",
+      "bytes": 6553,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/inference-providers/guides/messages-api.md",
+      "track": "Inference Providers",
+      "package": "inference-providers",
+      "title": "Messages API"
+    },
+    {
       "rel": "inference-providers/guides/structured-output.md",
-      "bytes": 15181,
+      "bytes": 15176,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/structured-output.md",
       "track": "Inference Providers",
@@ -8490,7 +8526,7 @@
     },
     {
       "rel": "inference-providers/guides/function-calling.md",
-      "bytes": 16298,
+      "bytes": 16293,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/function-calling.md",
       "track": "Inference Providers",
@@ -8508,7 +8544,7 @@
     },
     {
       "rel": "inference-providers/guides/evaluation-inspect-ai.md",
-      "bytes": 13669,
+      "bytes": 13568,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/evaluation-inspect-ai.md",
       "track": "Inference Providers",
@@ -8517,7 +8553,7 @@
     },
     {
       "rel": "inference-providers/guides/responses-api.md",
-      "bytes": 63717,
+      "bytes": 18370,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/responses-api.md",
       "track": "Inference Providers",
@@ -8526,7 +8562,7 @@
     },
     {
       "rel": "inference-providers/tasks/index.md",
-      "bytes": 107654,
+      "bytes": 105846,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/tasks/index.md",
       "track": "Inference Providers",
@@ -8571,7 +8607,7 @@
     },
     {
       "rel": "inference-providers/integrations/codex.md",
-      "bytes": 3924,
+      "bytes": 3962,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/integrations/codex.md",
       "track": "Inference Providers",
@@ -8580,7 +8616,7 @@
     },
     {
       "rel": "inference-providers/integrations/claude-code.md",
-      "bytes": 4711,
+      "bytes": 4861,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/integrations/claude-code.md",
       "track": "Inference Providers",
@@ -8778,7 +8814,7 @@
     },
     {
       "rel": "kernels/builder-cli.md",
-      "bytes": 11618,
+      "bytes": 11257,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder-cli.md",
       "track": "Kernels",
@@ -8787,7 +8823,7 @@
     },
     {
       "rel": "kernels/kernel-requirements.md",
-      "bytes": 20126,
+      "bytes": 19832,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/kernel-requirements.md",
       "track": "Kernels",
@@ -11217,7 +11253,7 @@
     },
     {
       "rel": "text-embeddings-inference/index.md",
-      "bytes": 1674,
+      "bytes": 1687,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/text-embeddings-inference/index.md",
       "track": "TEI",
@@ -11235,12 +11271,21 @@
     },
     {
       "rel": "text-embeddings-inference/intel_container.md",
-      "bytes": 2661,
+      "bytes": 2666,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/text-embeddings-inference/intel_container.md",
       "track": "TEI",
       "package": "text-embeddings-inference",
       "title": "Using TEI Container with Intel\u00ae Hardware"
+    },
+    {
+      "rel": "text-embeddings-inference/metrics.md",
+      "bytes": 9660,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/text-embeddings-inference/metrics.md",
+      "track": "TEI",
+      "package": "text-embeddings-inference",
+      "title": "Prometheus metrics"
     },
     {
       "rel": "text-embeddings-inference/examples.md",
@@ -11271,7 +11316,7 @@
     },
     {
       "rel": "text-embeddings-inference/quick_tour.md",
-      "bytes": 6368,
+      "bytes": 6678,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/text-embeddings-inference/quick_tour.md",
       "track": "TEI",
@@ -20964,7 +21009,7 @@
       "toc": 281,
       "found": 280,
       "written": 280,
-      "full_bytes": 1622950
+      "full_bytes": 1625560
     },
     {
       "pkg": "huggingface_hub",
@@ -20982,17 +21027,17 @@
     },
     {
       "pkg": "inference-providers",
-      "toc": 65,
-      "found": 27,
-      "written": 27,
-      "full_bytes": 387494
+      "toc": 51,
+      "found": 31,
+      "written": 31,
+      "full_bytes": 344659
     },
     {
       "pkg": "kernels",
       "toc": 41,
       "found": 41,
       "written": 41,
-      "full_bytes": 257740
+      "full_bytes": 257089
     },
     {
       "pkg": "lerobot",
@@ -21031,10 +21076,10 @@
     },
     {
       "pkg": "text-embeddings-inference",
-      "toc": 13,
-      "found": 13,
-      "written": 13,
-      "full_bytes": 61348
+      "toc": 14,
+      "found": 14,
+      "written": 14,
+      "full_bytes": 71423
     },
     {
       "pkg": "text-generation-inference",
