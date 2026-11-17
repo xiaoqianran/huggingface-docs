@@ -6,7 +6,7 @@ Unofficial mirror from official `llms.txt` + `llms-full.txt`.
 
 | Package | Track | Pages | Full |
 |---------|-------|------:|------|
-| [`accelerate`](https://huggingface.co/docs/accelerate) | Accelerate | 58 | [full](accelerate/_full.md) |
+| [`accelerate`](https://huggingface.co/docs/accelerate) | Accelerate | 57 | [full](accelerate/_full.md) |
 | [`autotrain`](https://huggingface.co/docs/autotrain) | AutoTrain | 19 | [full](autotrain/_full.md) |
 | [`bitsandbytes`](https://huggingface.co/docs/bitsandbytes) | BitsAndBytes | 25 | [full](bitsandbytes/_full.md) |
 | [`cli`](https://huggingface.co/docs/cli) | CLI | 1 | [full](cli/_full.md) |

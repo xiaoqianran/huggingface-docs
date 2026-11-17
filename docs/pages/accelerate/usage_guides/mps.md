@@ -34,5 +34,5 @@ This means that currently only single GPU of `mps` device type can be used.
 Finally, please, remember that, `Accelerate` only integrates MPS backend, therefore if you
 have any problems or questions with regards to MPS backend usage, please, file an issue with [PyTorch GitHub](https://github.com/pytorch/pytorch/issues).
 
-### Start Here!
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/explore.md
+### Experiment trackers
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/tracking.md

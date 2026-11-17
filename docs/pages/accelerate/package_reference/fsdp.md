@@ -8,7 +8,7 @@
 accelerate.utils.enable_fsdp_ram_efficient_loading()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/fsdp_utils.py#L40)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/fsdp_utils.py#L40)
 
 Enables RAM efficient loading of Hugging Face models for FSDP in the environment.
 
@@ -20,7 +20,7 @@ Enables RAM efficient loading of Hugging Face models for FSDP in the environment
 accelerate.utils.disable_fsdp_ram_efficient_loading()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/fsdp_utils.py#L50)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/fsdp_utils.py#L50)
 
 Disables RAM efficient loading of Hugging Face models for FSDP in the environment.
 
@@ -32,7 +32,7 @@ Disables RAM efficient loading of Hugging Face models for FSDP in the environmen
 accelerate.utils.merge_fsdp_weights(checkpoint_dir: str, output_path: str, safe_serialization: bool = True, remove_checkpoint_dir: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/fsdp_utils.py#L473)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/fsdp_utils.py#L486)
 
 **Parameters:**
 
@@ -55,10 +55,10 @@ Note: this is a CPU-bound process.
 #### accelerate.FullyShardedDataParallelPlugin[[accelerate.FullyShardedDataParallelPlugin]]
 
 ```python
-accelerate.FullyShardedDataParallelPlugin(fsdp_version: int = None, sharding_strategy: typing.Union[str, ForwardRef('torch.distributed.fsdp.ShardingStrategy')] = None, reshard_after_forward: typing.Union[str, ForwardRef('torch.distributed.fsdp.ShardingStrategy'), bool] = None, backward_prefetch: typing.Union[str, ForwardRef('torch.distributed.fsdp.BackwardPrefetch'), NoneType] = None, mixed_precision_policy: typing.Union[dict, str, ForwardRef('torch.distributed.fsdp.MixedPrecision'), ForwardRef('torch.distributed.fsdp.MixedPrecisionPolicy'), NoneType] = None, auto_wrap_policy: typing.Union[typing.Callable, typing.Literal['transformer_based_wrap', 'size_based_wrap', 'no_wrap'], NoneType] = None, cpu_offload: typing.Union[bool, ForwardRef('torch.distributed.fsdp.CPUOffload'), ForwardRef('torch.distributed.fsdp.CPUOffloadPolicy')] = None, ignored_modules: typing.Union[collections.abc.Iterable[torch.nn.Module], str, NoneType] = None, state_dict_type: typing.Union[str, ForwardRef('torch.distributed.fsdp.StateDictType')] = None, state_dict_config: typing.Union[ForwardRef('torch.distributed.fsdp.FullStateDictConfig'), ForwardRef('torch.distributed.fsdp.ShardedStateDictConfig'), NoneType] = None, optim_state_dict_config: typing.Union[ForwardRef('torch.distributed.fsdp.FullOptimStateDictConfig'), ForwardRef('torch.distributed.fsdp.ShardedOptimStateDictConfig'), NoneType] = None, limit_all_gathers: bool = True, use_orig_params: typing.Optional[bool] = None, param_init_fn: typing.Optional[typing.Callable[[torch.nn.Module], NoneType]] = None, sync_module_states: typing.Optional[bool] = None, forward_prefetch: bool = None, activation_checkpointing: bool = None, activation_checkpointing_offload: bool = None, cpu_ram_efficient_loading: bool = None, transformer_cls_names_to_wrap: typing.Optional[list[str]] = None, min_num_params: typing.Optional[int] = None)
+accelerate.FullyShardedDataParallelPlugin(fsdp_version: int = None, sharding_strategy: str | ForwardRef('torch.distributed.fsdp.ShardingStrategy') = None, reshard_after_forward: str | ForwardRef('torch.distributed.fsdp.ShardingStrategy') | bool = None, backward_prefetch: str | ForwardRef('torch.distributed.fsdp.BackwardPrefetch') | None = None, mixed_precision_policy: dict | str | ForwardRef('torch.distributed.fsdp.MixedPrecision') | ForwardRef('torch.distributed.fsdp.MixedPrecisionPolicy') | None = None, auto_wrap_policy: typing.Callable | typing.Literal['transformer_based_wrap', 'size_based_wrap', 'no_wrap'] | None = None, cpu_offload: bool | ForwardRef('torch.distributed.fsdp.CPUOffload') | ForwardRef('torch.distributed.fsdp.CPUOffloadPolicy') = None, ignored_modules: collections.abc.Iterable[torch.nn.Module] | str | None = None, state_dict_type: str | ForwardRef('torch.distributed.fsdp.StateDictType') = None, state_dict_config: ForwardRef('torch.distributed.fsdp.FullStateDictConfig') | ForwardRef('torch.distributed.fsdp.ShardedStateDictConfig') | None = None, optim_state_dict_config: ForwardRef('torch.distributed.fsdp.FullOptimStateDictConfig') | ForwardRef('torch.distributed.fsdp.ShardedOptimStateDictConfig') | None = None, limit_all_gathers: bool = True, use_orig_params: bool | None = None, param_init_fn: typing.Callable[[torch.nn.Module], NoneType] | None = None, sync_module_states: bool | None = None, forward_prefetch: bool = None, activation_checkpointing: bool = None, activation_checkpointing_offload: bool = None, cpu_ram_efficient_loading: bool = None, transformer_cls_names_to_wrap: list[str] | None = None, min_num_params: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L1586)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1465)
 
 **Parameters:**
 
@@ -110,7 +110,7 @@ This plugin is used to enable fully sharded data parallelism.
 set_auto_wrap_policy(model)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L2075)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1941)
 
 Given `model`, creates an `auto_wrap_policy` based on the passed in policy and if we can use the
 `transformer_cls_to_wrap`
@@ -121,7 +121,7 @@ Given `model`, creates an `auto_wrap_policy` based on the passed in policy and i
 set_mixed_precision(mixed_precision, buffer_autocast = False, override = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L2109)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1981)
 
 Sets the mixed precision policy for FSDP
 
@@ -131,7 +131,7 @@ Sets the mixed precision policy for FSDP
 set_state_dict_type(state_dict_type = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L2030)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1896)
 
 Set the state dict config based on the `StateDictType`.
 
@@ -141,7 +141,7 @@ Set the state dict config based on the `StateDictType`.
 validate_mixed_precision_policy()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L2161)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L2029)
 
 Validates the mixed precision policy, abstracted away to not bring in the imports if not needed.
 
@@ -153,7 +153,7 @@ Validates the mixed precision policy, abstracted away to not bring in the import
 accelerate.utils.fsdp2_load_full_state_dict(accelerator, model: Module, full_sd: dict, cpu_offload: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/fsdp_utils.py#L574)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/fsdp_utils.py#L584)
 
 **Parameters:**
 
@@ -163,7 +163,7 @@ model (`torch.nn.Module`) : The model to load the state dict into, expected to b
 
 full_sd (`dict`) : The full state dict to load, can only be on rank 0
 
-cpu_offload (`bool`, defaults to `False`) : If True, move sharded parameters to CPU after distribution. Required when FSDP CPU offloading is enabled.
+cpu_offload (`bool`, defaults to `False`) : If True, move sharded parameters to CPU after distribution. Required when FSDP CPU offloading is enabled. Buffers and ignored parameters remain on the accelerator device.
 
 Loads the full state dict (could be only on rank 0) into the sharded model. This is done by broadcasting the
 parameters from rank 0 to all other ranks. This function modifies the model in-place.
@@ -176,13 +176,13 @@ parameters from rank 0 to all other ranks. This function modifies the model in-p
 accelerate.utils.fsdp2_switch_optimizer_parameters(optimizer: Optimizer, mapping: dict)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/fsdp_utils.py#L670)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/fsdp_utils.py#L658)
 
 **Parameters:**
 
 optimizer (`torch.optim.Optimizer`) : Optimizer instance which contains the original model parameters
 
-mapping (`dict`) : Mapping from the original parameter (specified by `data_ptr`) to the sharded parameter
+mapping (`dict`) : Mapping from the original parameter's data pointer (or identity for meta parameters) to the sharded parameter.
 
 **Raises:** ``KeyError``
 
@@ -202,7 +202,7 @@ optimizer in-place.
 accelerate.utils.fsdp2_prepare_model(accelerator, model: Module)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/fsdp_utils.py#L751)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/fsdp_utils.py#L740)
 
 **Parameters:**
 
@@ -218,5 +218,5 @@ Prepares the model for FSDP2 in-place. Also returns the model to avoid misuse of
 
 ## fsdp2_prepare_auto_wrap_policy
 
-### Working with large models
-https://huggingface.co/docs/accelerate/v1.15.0/package_reference/big_modeling.md
+### FP8
+https://huggingface.co/docs/accelerate/v1.16.0/package_reference/fp8.md

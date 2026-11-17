@@ -177,5 +177,5 @@ For more information on these options, please refer to the PyTorch [FullySharded
 
     For those interested in the similarities and differences between FSDP and DeepSpeed, please check out the [concept guide here](../concept_guides/fsdp_and_deepspeed)!
 
-### Distributed inference
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/distributed_inference.md
+### Training on Intel CPU
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/intel_cpu.md

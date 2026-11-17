@@ -6,7 +6,7 @@
 trl.experimental.merge_model_callback.MergeModelCallback(merge_config: MergeConfig | None = None, merge_at_every_checkpoint: bool = False, push_to_hub: bool = False)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/experimental/merge_model_callback.py#L294)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/experimental/merge_model_callback.py#L294)
 
 **Parameters:**
 
@@ -30,4 +30,4 @@ Example:
 ```
 
 ### Examples
-https://huggingface.co/docs/trl/v1.18.0/example_overview.md
+https://huggingface.co/docs/trl/v1.18.1/example_overview.md

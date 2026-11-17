@@ -7,10 +7,10 @@
 #### accelerate.init_empty_weights[[accelerate.init_empty_weights]]
 
 ```python
-accelerate.init_empty_weights(include_buffers: typing.Optional[bool] = None)
+accelerate.init_empty_weights(include_buffers: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/big_modeling.py#L61)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/big_modeling.py#L57)
 
 **Parameters:**
 
@@ -31,8 +31,8 @@ with init_empty_weights():
 ```
 
 Any model created under this context manager has no weights. As such you can't do something like
-`model.to(some_device)` with it. To load weights inside your empty model, see [load_checkpoint_and_dispatch()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch).
-Make sure to overwrite the default device_map param for [load_checkpoint_and_dispatch()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch), otherwise dispatch is not
+`model.to(some_device)` with it. To load weights inside your empty model, see [load_checkpoint_and_dispatch()](/docs/accelerate/v1.16.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch).
+Make sure to overwrite the default device_map param for [load_checkpoint_and_dispatch()](/docs/accelerate/v1.16.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch), otherwise dispatch is not
 called.
 
 ### cpu_offload[[accelerate.cpu_offload]]
@@ -40,10 +40,10 @@ called.
 #### accelerate.cpu_offload[[accelerate.cpu_offload]]
 
 ```python
-accelerate.cpu_offload(model: Module, execution_device: typing.Optional[torch.device] = None, offload_buffers: bool = False, state_dict: typing.Optional[dict[str, torch.Tensor]] = None, preload_module_classes: typing.Optional[list[str]] = None)
+accelerate.cpu_offload(model: Module, execution_device: torch.device | None = None, offload_buffers: bool = False, state_dict: dict[str, torch.Tensor] | None = None, preload_module_classes: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/big_modeling.py#L179)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/big_modeling.py#L175)
 
 **Parameters:**
 
@@ -66,10 +66,10 @@ state dict and put on the execution device passed as they are needed, then offlo
 #### accelerate.cpu_offload_with_hook[[accelerate.cpu_offload_with_hook]]
 
 ```python
-accelerate.cpu_offload_with_hook(model: Module, execution_device: typing.Union[int, str, torch.device, NoneType] = None, prev_module_hook: typing.Optional[accelerate.hooks.UserCpuOffloadHook] = None)
+accelerate.cpu_offload_with_hook(model: Module, execution_device: int | str | torch.device | None = None, prev_module_hook: accelerate.hooks.UserCpuOffloadHook | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/big_modeling.py#L225)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/big_modeling.py#L221)
 
 **Parameters:**
 
@@ -80,7 +80,7 @@ execution_device(`str`, `int` or `torch.device`, *optional*) : The device on whi
 prev_module_hook (`UserCpuOffloadHook`, *optional*) : The hook sent back by this function for a previous model in the pipeline you are running. If passed, its offload method will be called just before the forward of the model to which this hook is attached.
 
 Offloads a model on the CPU and puts it back to an execution device when executed. The difference with
-[cpu_offload()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.cpu_offload) is that the model stays on the execution device after the forward and is only offloaded again when
+[cpu_offload()](/docs/accelerate/v1.16.0/en/package_reference/big_modeling#accelerate.cpu_offload) is that the model stays on the execution device after the forward and is only offloaded again when
 the `offload` method of the returned `hook` is called. Useful for pipelines running a model in a loop.
 
 Example:
@@ -106,10 +106,10 @@ hook_3.offload()
 #### accelerate.disk_offload[[accelerate.disk_offload]]
 
 ```python
-accelerate.disk_offload(model: Module, offload_dir: typing.Union[str, os.PathLike], execution_device: typing.Optional[torch.device] = None, offload_buffers: bool = False, preload_module_classes: typing.Optional[list[str]] = None)
+accelerate.disk_offload(model: Module, offload_dir: str | os.PathLike, execution_device: torch.device | None = None, offload_buffers: bool = False, preload_module_classes: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/big_modeling.py#L269)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/big_modeling.py#L265)
 
 **Parameters:**
 
@@ -132,10 +132,10 @@ put on the execution device passed as they are needed, then offloaded again.
 #### accelerate.dispatch_model[[accelerate.dispatch_model]]
 
 ```python
-accelerate.dispatch_model(model: Module, device_map: dict, main_device: typing.Optional[torch.device] = None, state_dict: typing.Optional[dict[str, torch.Tensor]] = None, offload_dir: typing.Union[str, os.PathLike, NoneType] = None, offload_index: typing.Optional[dict[str, str]] = None, offload_buffers: bool = False, skip_keys: typing.Union[str, list[str], NoneType] = None, preload_module_classes: typing.Optional[list[str]] = None, force_hooks: bool = False)
+accelerate.dispatch_model(model: Module, device_map: dict[str, str | int | torch.device], main_device: torch.device | None = None, state_dict: dict[str, torch.Tensor] | None = None, offload_dir: str | os.PathLike | None = None, offload_index: dict[str, str] | None = None, offload_buffers: bool = False, skip_keys: str | list[str] | None = None, preload_module_classes: list[str] | None = None, force_hooks: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/big_modeling.py#L315)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/big_modeling.py#L311)
 
 **Parameters:**
 
@@ -167,10 +167,10 @@ the CPU or even the disk.
 #### accelerate.load_checkpoint_and_dispatch[[accelerate.load_checkpoint_and_dispatch]]
 
 ```python
-accelerate.load_checkpoint_and_dispatch(model: Module, checkpoint: typing.Union[str, os.PathLike], device_map: typing.Union[str, dict[str, typing.Union[int, str, torch.device]], NoneType] = None, max_memory: typing.Optional[dict[typing.Union[int, str], typing.Union[int, str]]] = None, no_split_module_classes: typing.Optional[list[str]] = None, offload_folder: typing.Union[str, os.PathLike, NoneType] = None, offload_buffers: bool = False, dtype: typing.Union[str, torch.dtype, NoneType] = None, offload_state_dict: typing.Optional[bool] = None, skip_keys: typing.Union[str, list[str], NoneType] = None, preload_module_classes: typing.Optional[list[str]] = None, force_hooks: bool = False, strict: bool = False, full_state_dict: bool = True, broadcast_from_rank0: bool = False)
+accelerate.load_checkpoint_and_dispatch(model: Module, checkpoint: str | os.PathLike, device_map: str | dict[str, int | str | torch.device] | None = None, max_memory: dict[int | str, int | str] | None = None, no_split_module_classes: list[str] | None = None, offload_folder: str | os.PathLike | None = None, offload_buffers: bool = False, dtype: str | torch.dtype | None = None, offload_state_dict: bool | None = None, skip_keys: str | list[str] | None = None, preload_module_classes: list[str] | None = None, force_hooks: bool = False, strict: bool = False, full_state_dict: bool = True, broadcast_from_rank0: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/big_modeling.py#L520)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/big_modeling.py#L500)
 
 **Parameters:**
 
@@ -178,7 +178,7 @@ model (`torch.nn.Module`) : The model in which we want to load a checkpoint.
 
 checkpoint (`str` or `os.PathLike`) : The folder checkpoint to load. It can be: - a path to a file containing a whole model state dict - a path to a `.json` file containing the index to a sharded checkpoint - a path to a folder containing a unique `.index.json` file and the shards of a checkpoint.
 
-device_map (`Dict[str, Union[int, str, torch.device]]`, *optional*) : A map that specifies where each submodule should go. It doesn't need to be refined to each parameter/buffer name, once a given module name is inside, every submodule of it will be sent to the same device.  To have Accelerate compute the most optimized `device_map` automatically, set `device_map="auto"`. For more information about each option see [here](../concept_guides/big_model_inference#designing-a-device-map). Defaults to None, which means [dispatch_model()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.dispatch_model) will not be called.
+device_map (`Dict[str, Union[int, str, torch.device]]`, *optional*) : A map that specifies where each submodule should go. It doesn't need to be refined to each parameter/buffer name, once a given module name is inside, every submodule of it will be sent to the same device.  To have Accelerate compute the most optimized `device_map` automatically, set `device_map="auto"`. For more information about each option see [here](../concept_guides/big_model_inference#designing-a-device-map). Defaults to None, which means [dispatch_model()](/docs/accelerate/v1.16.0/en/package_reference/big_modeling#accelerate.dispatch_model) will not be called.
 
 max_memory (`Dict`, *optional*) : A dictionary device identifier to maximum memory. Will default to the maximum memory available for each GPU and the available CPU RAM if unset.
 
@@ -234,10 +234,10 @@ Example:
 #### accelerate.load_checkpoint_in_model[[accelerate.load_checkpoint_in_model]]
 
 ```python
-accelerate.load_checkpoint_in_model(model: Module, checkpoint: typing.Union[str, os.PathLike], device_map: typing.Optional[dict[str, typing.Union[int, str, torch.device]]] = None, offload_folder: typing.Union[str, os.PathLike, NoneType] = None, dtype: typing.Union[str, torch.dtype, NoneType] = None, offload_state_dict: bool = False, offload_buffers: bool = False, keep_in_fp32_modules: typing.Optional[list[str]] = None, offload_8bit_bnb: bool = False, strict: bool = False, full_state_dict: bool = True, broadcast_from_rank0: bool = False)
+accelerate.load_checkpoint_in_model(model: Module, checkpoint: str | os.PathLike, device_map: dict[str, int | str | torch.device] | None = None, offload_folder: str | os.PathLike | None = None, dtype: str | torch.dtype | None = None, offload_state_dict: bool = False, offload_buffers: bool = False, keep_in_fp32_modules: list[str] | None = None, offload_8bit_bnb: bool = False, strict: bool = False, full_state_dict: bool = True, broadcast_from_rank0: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L1817)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L1786)
 
 **Parameters:**
 
@@ -268,18 +268,18 @@ broadcast_from_rank0 (`False`, *optional*, defaults to `False`) : when the optio
 Loads a (potentially sharded) checkpoint inside a model, potentially sending weights to a given device as they are
 loaded.
 
-Once loaded across devices, you still need to call [dispatch_model()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.dispatch_model) on your model to make it able to run. To
-group the checkpoint loading and dispatch in one single call, use [load_checkpoint_and_dispatch()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch).
+Once loaded across devices, you still need to call [dispatch_model()](/docs/accelerate/v1.16.0/en/package_reference/big_modeling#accelerate.dispatch_model) on your model to make it able to run. To
+group the checkpoint loading and dispatch in one single call, use [load_checkpoint_and_dispatch()](/docs/accelerate/v1.16.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch).
 
 ### infer_auto_device_map[[accelerate.infer_auto_device_map]]
 
 #### accelerate.infer_auto_device_map[[accelerate.infer_auto_device_map]]
 
 ```python
-accelerate.infer_auto_device_map(model: Module, max_memory: typing.Optional[dict[typing.Union[int, str], typing.Union[int, str]]] = None, no_split_module_classes: typing.Optional[list[str]] = None, dtype: typing.Union[str, torch.dtype, NoneType] = None, special_dtypes: typing.Optional[dict[str, typing.Union[str, torch.dtype]]] = None, verbose: bool = False, clean_result: bool = True, offload_buffers: bool = False, fallback_allocation: bool = False)
+accelerate.infer_auto_device_map(model: Module, max_memory: dict[int | str, int | str] | None = None, no_split_module_classes: list[str] | None = None, dtype: str | torch.dtype | None = None, special_dtypes: dict[str, str | torch.dtype] | None = None, verbose: bool = False, clean_result: bool = True, offload_buffers: bool = False, fallback_allocation: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L1307)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L1278)
 
 **Parameters:**
 
@@ -323,7 +323,7 @@ meta device (as it would if initialized within the `init_empty_weights` context 
 accelerate.hooks.ModelHook()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L58)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L51)
 
 A hook that contains callbacks to be executed just before and after the forward method of a model. The difference
 with PyTorch existing hooks is that they get passed along the kwargs.
@@ -338,7 +338,7 @@ Class attribute:
 detach_hook(module)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L106)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L99)
 
 **Parameters:**
 
@@ -352,7 +352,7 @@ To be executed when the hook is detached from a module.
 init_hook(module)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L70)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L63)
 
 **Parameters:**
 
@@ -366,7 +366,7 @@ To be executed when the hook is attached to the module.
 post_forward(module, output)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L93)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L86)
 
 **Parameters:**
 
@@ -386,7 +386,7 @@ To be executed just after the forward method of the model.
 pre_forward(module, *args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L79)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L72)
 
 **Parameters:**
 
@@ -407,10 +407,10 @@ To be executed just before the forward method of the model.
 #### accelerate.hooks.AlignDevicesHook[[accelerate.hooks.AlignDevicesHook]]
 
 ```python
-accelerate.hooks.AlignDevicesHook(execution_device: typing.Union[int, str, torch.device, NoneType] = None, offload: bool = False, io_same_device: bool = False, weights_map: typing.Optional[collections.abc.Mapping] = None, offload_buffers: bool = False, place_submodules: bool = False, skip_keys: typing.Union[str, list[str], NoneType] = None, tied_params_map: typing.Optional[dict[int, dict[torch.device, torch.Tensor]]] = None)
+accelerate.hooks.AlignDevicesHook(execution_device: int | str | torch.device | None = None, offload: bool = False, io_same_device: bool = False, weights_map: collections.abc.Mapping | None = None, offload_buffers: bool = False, place_submodules: bool = False, skip_keys: str | list[str] | None = None, tied_params_map: dict[int, dict[torch.device, torch.Tensor]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L242)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L238)
 
 **Parameters:**
 
@@ -437,7 +437,7 @@ associated module, potentially offloading the weights after the forward pass.
 accelerate.hooks.SequentialHook(*hooks)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L116)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L109)
 
 A hook that can contain several hooks and iterates through them at each event.
 
@@ -449,7 +449,7 @@ A hook that can contain several hooks and iterates through them at each event.
 accelerate.hooks.LayerwiseCastingHook(storage_dtype: dtype, compute_dtype: dtype, non_blocking: bool)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L784)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L781)
 
 A hook that casts the weights of a module to a high precision dtype for computation, and to a low precision dtype
 for storage. This process may lead to quality loss in the output, but can significantly reduce the memory
@@ -465,7 +465,7 @@ footprint.
 accelerate.hooks.add_hook_to_module(module: Module, hook: ModelHook, append: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L147)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L140)
 
 **Parameters:**
 
@@ -491,10 +491,10 @@ together, pass `append=True`, so it chains the current and new hook into an inst
 #### accelerate.hooks.attach_execution_device_hook[[accelerate.hooks.attach_execution_device_hook]]
 
 ```python
-accelerate.hooks.attach_execution_device_hook(module: Module, execution_device: typing.Union[int, str, torch.device], skip_keys: typing.Union[str, list[str], NoneType] = None, preload_module_classes: typing.Optional[list[str]] = None, tied_params_map: typing.Optional[dict[int, dict[torch.device, torch.Tensor]]] = None)
+accelerate.hooks.attach_execution_device_hook(module: Module, execution_device: int | str | torch.device, skip_keys: str | list[str] | None = None, preload_module_classes: list[str] | None = None, tied_params_map: dict[int, dict[torch.device, torch.Tensor]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L443)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L440)
 
 **Parameters:**
 
@@ -516,10 +516,10 @@ execution device
 #### accelerate.hooks.attach_align_device_hook[[accelerate.hooks.attach_align_device_hook]]
 
 ```python
-accelerate.hooks.attach_align_device_hook(module: Module, execution_device: typing.Optional[torch.device] = None, offload: bool = False, weights_map: typing.Optional[collections.abc.Mapping] = None, offload_buffers: bool = False, module_name: str = '', skip_keys: typing.Union[str, list[str], NoneType] = None, preload_module_classes: typing.Optional[list[str]] = None, tied_params_map: typing.Optional[dict[int, dict[torch.device, torch.Tensor]]] = None)
+accelerate.hooks.attach_align_device_hook(module: Module, execution_device: torch.device | None = None, offload: bool = False, weights_map: collections.abc.Mapping | None = None, offload_buffers: bool = False, module_name: str = '', skip_keys: str | list[str] | None = None, preload_module_classes: list[str] | None = None, tied_params_map: dict[int, dict[torch.device, torch.Tensor]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L491)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L488)
 
 **Parameters:**
 
@@ -549,10 +549,10 @@ buffers.
 #### accelerate.hooks.attach_align_device_hook_on_blocks[[accelerate.hooks.attach_align_device_hook_on_blocks]]
 
 ```python
-accelerate.hooks.attach_align_device_hook_on_blocks(module: Module, execution_device: typing.Union[torch.device, dict[str, torch.device], NoneType] = None, offload: typing.Union[bool, dict[str, bool]] = False, weights_map: typing.Optional[collections.abc.Mapping] = None, offload_buffers: bool = False, module_name: str = '', skip_keys: typing.Union[str, list[str], NoneType] = None, preload_module_classes: typing.Optional[list[str]] = None, tied_params_map: typing.Optional[dict[int, dict[torch.device, torch.Tensor]]] = None)
+accelerate.hooks.attach_align_device_hook_on_blocks(module: Module, execution_device: torch.device | dict[str, torch.device] | None = None, offload: bool | dict[str, bool] = False, weights_map: collections.abc.Mapping | None = None, offload_buffers: bool = False, module_name: str = '', skip_keys: str | list[str] | None = None, preload_module_classes: list[str] | None = None, tied_params_map: dict[int, dict[torch.device, torch.Tensor]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L586)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L583)
 
 **Parameters:**
 
@@ -581,10 +581,10 @@ Attaches `AlignDevicesHook` to all blocks of a given model as needed.
 #### accelerate.big_modeling.attach_layerwise_casting_hooks[[accelerate.big_modeling.attach_layerwise_casting_hooks]]
 
 ```python
-accelerate.big_modeling.attach_layerwise_casting_hooks(module: Module, storage_dtype: dtype, compute_dtype: dtype, skip_modules_pattern: typing.Union[str, tuple[str, ...], NoneType] = None, skip_modules_classes: typing.Optional[tuple[type[torch.nn.Module], ...]] = None, non_blocking: bool = False)
+accelerate.big_modeling.attach_layerwise_casting_hooks(module: Module, storage_dtype: dtype, compute_dtype: dtype, skip_modules_pattern: str | tuple[str, ...] | None = None, skip_modules_classes: tuple[type[torch.nn.Module], ...] | None = None, non_blocking: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/big_modeling.py#L661)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/big_modeling.py#L641)
 
 **Parameters:**
 
@@ -640,7 +640,7 @@ Users can also pass modules they want to avoid from getting downcasted.
 accelerate.hooks.remove_hook_from_module(module: Module, recurse = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L205)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L198)
 
 **Parameters:**
 
@@ -663,7 +663,7 @@ Removes any hook attached to a module via `add_hook_to_module`.
 accelerate.hooks.remove_hook_from_submodules(module: Module)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L574)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L571)
 
 **Parameters:**
 
@@ -681,7 +681,7 @@ Recursively removes all hooks attached on the submodules of a given model.
 accelerate.utils.has_offloaded_params(module: Module)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L2162)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L2119)
 
 **Parameters:**
 
@@ -699,10 +699,10 @@ offloading enabled
 #### accelerate.utils.align_module_device[[accelerate.utils.align_module_device]]
 
 ```python
-accelerate.utils.align_module_device(module: Module, execution_device: typing.Optional[torch.device] = None)
+accelerate.utils.align_module_device(module: Module, execution_device: torch.device | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L2178)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L2135)
 
 **Parameters:**
 
@@ -712,5 +712,5 @@ execution_device (`torch.device`, *optional*) : If provided, overrides the modul
 
 Context manager that moves a module's parameters to the specified execution device.
 
-### Launchers
-https://huggingface.co/docs/accelerate/v1.15.0/package_reference/launchers.md
+### Kwargs handlers
+https://huggingface.co/docs/accelerate/v1.16.0/package_reference/kwargs.md

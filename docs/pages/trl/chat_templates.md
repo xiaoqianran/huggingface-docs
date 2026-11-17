@@ -250,13 +250,17 @@ Patched Qwen3.8 template. Diff vs `qwen3_8.jinja`: drop the `preserve_thinking` 
 
 ### `smolvlm_training.jinja`
 
-Patched SmolVLM template (also used for SmolVLM2, which ships a byte-identical template). Diff vs `smolvlm.jinja`:
+Patched SmolVLM template (also used for SmolVLM2-500M-Video-Instruct, and SmolVLM2-2.2B-Instruct before [be92141](https://huggingface.co/HuggingFaceTB/SmolVLM2-2.2B-Instruct/commit/be92141c8d), which ship a byte-identical template). Diff vs `smolvlm.jinja`:
 
 Split the assistant message into its own branch so the `{% generation %}` / `{% endgeneration %}` markers wrap the assistant content. This enables `return_assistant_tokens_mask=True` to produce correct masks for SFT assistant-only loss.
 
+### `smolvlm_v2_training.jinja`
+
+Patched SmolVLM2 template. Same diff as `smolvlm_training.jinja`, applied to `smolvlm_v2.jinja`.
+
 ## Related utilities
 
-See [Chat Template Utilities](chat_template_utils) for the helper functions ([clone_chat_template()](/docs/trl/v1.18.0/en/chat_template_utils#trl.clone_chat_template), `is_chat_template_prefix_preserving`, [get_training_chat_template()](/docs/trl/v1.18.0/en/chat_template_utils#trl.get_training_chat_template)) that operate on these templates.
+See [Chat Template Utilities](chat_template_utils) for the helper functions ([clone_chat_template()](/docs/trl/v1.18.1/en/chat_template_utils#trl.clone_chat_template), `is_chat_template_prefix_preserving`, [get_training_chat_template()](/docs/trl/v1.18.1/en/chat_template_utils#trl.get_training_chat_template)) that operate on these templates.
 
 ### Training on AWS Trainium
-https://huggingface.co/docs/trl/v1.18.0/aws_trainium.md
+https://huggingface.co/docs/trl/v1.18.1/aws_trainium.md

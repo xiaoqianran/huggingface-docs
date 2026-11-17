@@ -455,7 +455,7 @@ Composed transforms or tuple thereof
 timm.data.rand_augment_transform(config_str: str, hparams: typing.Optional[typing.Dict] = None, transforms: typing.Union[str, typing.Dict, typing.List, NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/data/auto_augment.py#L762)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/data/auto_augment.py#L766)
 
 **Parameters:**
 
@@ -480,7 +480,7 @@ Examples:
 timm.data.auto_augment_transform(config_str: str, hparams: typing.Optional[typing.Dict] = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/data/auto_augment.py#L586)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/data/auto_augment.py#L590)
 
 **Parameters:**
 
@@ -503,7 +503,7 @@ Examples:
 timm.data.auto_augment.augment_and_mix_transform(config_str: str, hparams: typing.Optional[typing.Dict] = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/data/auto_augment.py#L948)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/data/auto_augment.py#L952)
 
 **Parameters:**
 

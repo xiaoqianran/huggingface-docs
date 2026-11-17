@@ -112,7 +112,7 @@ accelerate launch [arguments] {training_script} --{training_script-argument-1} -
 * `-m`, `--module` (`bool`) -- Change each process to interpret the launch script as a Python module, executing with the same behavior as 'python -m'.
 * `--no_python` (`bool`) -- Skip prepending the training script with 'python' - just execute it directly. Useful when the script is not a Python script.
 * `--debug` (`bool`) -- Whether to print out the torch.distributed stack trace when something fails.
-* `-q`, `--quiet` (`bool`) -- Silence subprocess errors from the launch stack trace to only show the relevant tracebacks. (Only applicable to DeepSpeed and single-process configurations).
+* `-q`, `--quiet` (`bool`) -- Show training errors without the launcher traceback, even with `--debug`. Applies to single-process, multi-GPU, and DeepSpeed launches.
 
 The rest of these arguments are configured through `accelerate config` and are read in from the specified `--config_file` (or default configuration) for their 
 values. They can also be passed in manually.
@@ -219,7 +219,7 @@ The following arguments are only useful when `use_megatron_lm` is passed or Mega
 
 **FP8 Arguments**:
 
-* `--fp8_backend` (`str`) -- Choose a backend to train with FP8 (`te` or `msamp`)
+* `--fp8_backend` (`str`) -- Choose a backend to train with FP8 (`ao` or `te`)
 * `--fp8_use_autocast_during_eval` (`bool`) -- Whether to use FP8 autocast during eval mode (useful only when `--fp8_backend=te` is passed). Generally better metrics are found when this is not passed.
 * `--fp8_margin` (`int`) -- The margin to use for the gradient scaling (useful only when `--fp8_backend=te` is passed).
 * `--fp8_interval` (`int`) -- The interval to use for how often the scaling factor is recomputed (useful only when `--fp8_backend=te` is passed).
@@ -227,7 +227,6 @@ The following arguments are only useful when `use_megatron_lm` is passed or Mega
 * `--fp8_amax_history_len` (`int`) -- The length of the history to use for the scaling factor computation (useful only when `--fp8_backend=te` is passed).
 * `--fp8_amax_compute_algo` (`str`) -- The algorithm to use for the scaling factor computation. (useful only when `--fp8_backend=te` is passed).
 * `--fp8_override_linear_precision` (`Tuple[bool, bool, bool]`) -- Whether or not to execute `fprop`, `dgrad`, and `wgrad` GEMMS in higher precision.
-* `--fp8_opt_level` (`str`) -- What level of 8-bit collective communication should be used with MS-AMP (useful only when `--fp8_backend=msamp` is passed)
 
 **AWS SageMaker Arguments**:
 
@@ -311,5 +310,5 @@ accelerate test [arguments]
                         (`~/.cache` or the content of `XDG_CACHE_HOME`) suffixed with `huggingface`.
 * `-h`, `--help` (`bool`) -- Show a help message and exit
 
-### FP8
-https://huggingface.co/docs/accelerate/v1.15.0/package_reference/fp8.md
+### Stateful Classes
+https://huggingface.co/docs/accelerate/v1.16.0/package_reference/state.md

@@ -719,5 +719,5 @@ have any problems or questions with regards to DeepSpeed usage, please, file an 
 
     For those interested in the similarities and differences between FSDP and DeepSpeed, please check out the [concept guide here](../concept_guides/fsdp_and_deepspeed)!
 
-### Compilation
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/compilation.md
+### Accelerated PyTorch Training on Mac
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/mps.md

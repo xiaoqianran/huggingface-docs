@@ -284,5 +284,5 @@ for data, targets in data_loader:
 
 For more advanced usage and additional hooks, refer to the [PyTorch DDP Communication Hooks documentation](https://pytorch.org/docs/stable/ddp_comm_hooks.html).
 
-### Megatron-LM
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/megatron_lm.md
+### Example Zoo
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/training_zoo.md

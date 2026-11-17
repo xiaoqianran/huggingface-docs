@@ -4,7 +4,7 @@
 
 ## Overview
 
-[AsyncGRPOTrainer](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer) implements the same [GRPO](grpo_trainer) algorithm but decouples rollout generation from training. A background worker continuously streams completions from a vLLM server while the training loop consumes them, so generation and gradient updates overlap instead of alternating.
+[AsyncGRPOTrainer](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.AsyncGRPOTrainer) implements the same [GRPO](grpo_trainer) algorithm but decouples rollout generation from training. A background worker continuously streams completions from a vLLM server while the training loop consumes them, so generation and gradient updates overlap instead of alternating.
 
 This trainer was contributed by [Amine Dirhoussi](https://huggingface.co/aminediroHF) and [Quentin Gallouédec](https://huggingface.co/qgallouedec).
 
@@ -56,7 +56,7 @@ CUDA_VISIBLE_DEVICES=1 python train_async_grpo.py
 
 ## Compatibility and constraints
 
-Some argument combinations are intentionally restricted in the current [AsyncGRPOTrainer](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer) implementation:
+Some argument combinations are intentionally restricted in the current [AsyncGRPOTrainer](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.AsyncGRPOTrainer) implementation:
 
 - Generation always runs on a separate vLLM server, started with `vllm serve`. There is no colocate mode.
 - Prompts from the dataset must be in [conversational](dataset_formats#conversational) format. With an `environment_factory`, the dataset may have no `prompt` column, and `reset()` provides it.
@@ -72,7 +72,7 @@ Training loads its attention kernel from the Hub through the [`kernels`](https:/
 
 ## Looking deeper into the Asynchronous GRPO method
 
-In [GRPOTrainer](/docs/trl/v1.18.0/en/grpo_trainer#trl.GRPOTrainer), generation and training are sequential: generate a batch, compute the loss, update the weights, repeat. Even in [colocate mode](grpo_trainer#option-1-colocate-mode), one phase must finish before the other begins. In [AsyncGRPOTrainer](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer), a rollout worker generates and scores completions in a background process while the training loop computes the loss and updates the model. To understand how it works, it can be broken down into three main steps: **Generating completions**, **computing the advantage**, and **computing the loss**. There is no reference model, so there is no KL divergence term (GRPO's default, `beta=0.0`).
+In [GRPOTrainer](/docs/trl/v1.18.1/en/grpo_trainer#trl.GRPOTrainer), generation and training are sequential: generate a batch, compute the loss, update the weights, repeat. Even in [colocate mode](grpo_trainer#option-1-colocate-mode), one phase must finish before the other begins. In [AsyncGRPOTrainer](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.AsyncGRPOTrainer), a rollout worker generates and scores completions in a background process while the training loop computes the loss and updates the model. To understand how it works, it can be broken down into three main steps: **Generating completions**, **computing the advantage**, and **computing the loss**. There is no reference model, so there is no KL divergence term (GRPO's default, `beta=0.0`).
 
 ### Generating completions
 
@@ -467,7 +467,7 @@ vLLM loads adapters from disk rather than over the network, so the trainer write
 
 ### Using a custom reward function
 
-The [AsyncGRPOTrainer](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer) supports using custom reward functions. To ensure compatibility, your reward function must satisfy the following requirements:
+The [AsyncGRPOTrainer](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.AsyncGRPOTrainer) supports using custom reward functions. To ensure compatibility, your reward function must satisfy the following requirements:
 
 Reward functions can be either synchronous Python callables or asynchronous `async def` coroutines. When you provide multiple reward functions, they run concurrently: asynchronous ones are awaited together and synchronous ones run in threads, so their latency overlaps.
 
@@ -484,7 +484,7 @@ Reward functions can be either synchronous Python callables or asynchronous `asy
 2. **Return value**: The function must return a list of floats. Each float represents the reward corresponding to a single completion.
 
 > [!WARNING]
-> Reward functions run in the rollout worker, a separate process, so everything passed to it is **pickled**. Each reward function, tool, and `environment_factory` (and anything they close over) must be picklable: use a module-level function, [`functools.partial`](https://docs.python.org/3/library/functools.html#functools.partial), or a **callable class instance**. Lambdas and closures raise a `TypeError` at `trainer.train()`. This is a difference from [GRPOTrainer](/docs/trl/v1.18.0/en/grpo_trainer#trl.GRPOTrainer), where reward functions are called in-process and closures work.
+> Reward functions run in the rollout worker, a separate process, so everything passed to it is **pickled**. Each reward function, tool, and `environment_factory` (and anything they close over) must be picklable: use a module-level function, [`functools.partial`](https://docs.python.org/3/library/functools.html#functools.partial), or a **callable class instance**. Lambdas and closures raise a `TypeError` at `trainer.train()`. This is a difference from [GRPOTrainer](/docs/trl/v1.18.1/en/grpo_trainer#trl.GRPOTrainer), where reward functions are called in-process and closures work.
 >
 > The rollout process also runs with `CUDA_VISIBLE_DEVICES=""`, so it cannot use the GPU. A GPU-backed reward model (e.g. an `AutoModelForSequenceClassification` scorer) loads without error but silently falls back to the CPU. Keep reward functions lightweight (verifiers like `accuracy_reward`, format or length checks). If you need a GPU reward model, serve it behind its own inference engine (vLLM, TGI, ...) on separate GPUs and have a picklable reward function call it over HTTP.
 
@@ -572,7 +572,7 @@ You can test this function as follows:
 
 #### Example 4: Multi-task reward functions
 
-Below is an example of using multiple reward functions in the [AsyncGRPOTrainer](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer). In this example, we define two task-specific reward functions: `math_reward_func` and `coding_reward_func`. The `math_reward_func` rewards math problems based on their correctness, while the `coding_reward_func` rewards coding problems based on whether the solution works.
+Below is an example of using multiple reward functions in the [AsyncGRPOTrainer](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.AsyncGRPOTrainer). In this example, we define two task-specific reward functions: `math_reward_func` and `coding_reward_func`. The `math_reward_func` rewards math problems based on their correctness, while the `coding_reward_func` rewards coding problems based on whether the solution works.
 
 ```python
 from datasets import Dataset
@@ -627,13 +627,13 @@ if __name__ == "__main__":
     trainer.train()
 ```
 
-In this example, the `math_reward_func` and `coding_reward_func` are designed to work with a mixed dataset that contains both math and coding problems. The `task` column in the dataset is used to determine which reward function to apply to each problem. If there is no relevant reward function for a sample in the dataset, the reward function will return `None`, and the [AsyncGRPOTrainer](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer) will continue with the valid functions and tasks. This allows the [AsyncGRPOTrainer](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer) to handle multiple reward functions with different applicability.
+In this example, the `math_reward_func` and `coding_reward_func` are designed to work with a mixed dataset that contains both math and coding problems. The `task` column in the dataset is used to determine which reward function to apply to each problem. If there is no relevant reward function for a sample in the dataset, the reward function will return `None`, and the [AsyncGRPOTrainer](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.AsyncGRPOTrainer) will continue with the valid functions and tasks. This allows the [AsyncGRPOTrainer](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.AsyncGRPOTrainer) to handle multiple reward functions with different applicability.
 
-Note that the [AsyncGRPOTrainer](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer) will ignore the `None` rewards returned by the reward functions and only consider the rewards returned by the relevant functions. This ensures that the model is trained on the relevant tasks and ignores the tasks for which there is no relevant reward function.
+Note that the [AsyncGRPOTrainer](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.AsyncGRPOTrainer) will ignore the `None` rewards returned by the reward functions and only consider the rewards returned by the relevant functions. This ensures that the model is trained on the relevant tasks and ignores the tasks for which there is no relevant reward function.
 
 #### Example 5: Asynchronous reward functions
 
-Custom reward functions can also be defined as `async def` coroutines. This is useful if your reward depends on slow I/O (for example, calling a remote service). When you pass multiple async reward functions, [AsyncGRPOTrainer](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer) executes them concurrently so their latency overlaps.
+Custom reward functions can also be defined as `async def` coroutines. This is useful if your reward depends on slow I/O (for example, calling a remote service). When you pass multiple async reward functions, [AsyncGRPOTrainer](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.AsyncGRPOTrainer) executes them concurrently so their latency overlaps.
 
 Below is a minimal example of an async reward function that simulates an I/O-bound operation:
 
@@ -649,7 +649,7 @@ async def async_reward_func(prompts, completions, **kwargs):
 
 #### Passing the reward function to the trainer
 
-To use your custom reward function, pass it to the [AsyncGRPOTrainer](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer) as follows:
+To use your custom reward function, pass it to the [AsyncGRPOTrainer](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.AsyncGRPOTrainer) as follows:
 
 ```python
 from trl import AsyncGRPOTrainer
@@ -675,7 +675,7 @@ and the reward will be computed as the sum of the rewards from each function.
 
 ### Customizing the rollout loop
 
-Generation, rewards, advantages and filtering run in the rollout process, in [AsyncRolloutLoop](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop). To change one of them, subclass the loop, override the method for that step, and set the subclass as `loop_cls` on a trainer subclass. The trainer's constructor doesn't change.
+Generation, rewards, advantages and filtering run in the rollout process, in [AsyncRolloutLoop](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop). To change one of them, subclass the loop, override the method for that step, and set the subclass as `loop_cls` on a trainer subclass. The trainer's constructor doesn't change.
 
 | Method | Called | Default |
 |---|---|---|
@@ -716,7 +716,7 @@ class CurriculumTrainer(AsyncGRPOTrainer):
     loop_cls = CurriculumRolloutLoop
 ```
 
-Rewards are summed over `reward_funcs`, environments that define `get_reward`, and the `reward` a custom `generate_one` sets on its [Rollout](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.Rollout): to score with a judge, pass an async reward function, or score inside `generate_one`. `compute_advantages` runs for every group, including one that is then dropped because all its scored rewards are equal; the drop looks at the rewards, not at the advantages. The loop is built in a spawned process, so define the subclass at module level and keep the training code under `if __name__ == "__main__":`. Create clients in `setup`, which runs on the loop's event loop, rather than overriding `__init__`. A prompt that `filter_prompt` rejects is skipped for that epoch and counts toward it, like a dropped group. If it rejects every prompt of an epoch, the loop raises.
+Rewards are summed over `reward_funcs`, environments that define `get_reward`, and the `reward` a custom `generate_one` sets on its [Rollout](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.Rollout): to score with a judge, pass an async reward function, or score inside `generate_one`. `compute_advantages` runs for every group, including one that is then dropped because all its scored rewards are equal; the drop looks at the rewards, not at the advantages. The loop is built in a spawned process, so define the subclass at module level and keep the training code under `if __name__ == "__main__":`. Create clients in `setup`, which runs on the loop's event loop, rather than overriding `__init__`. A prompt that `filter_prompt` rejects is skipped for that epoch and counts toward it, like a dropped group. If it rejects every prompt of an epoch, the loop raises.
 
 ### Resuming from a checkpoint
 
@@ -752,7 +752,7 @@ The model calls a tool by its name, so each tool is registered under its `__name
 > [!TIP]
 > The tool call loop requires the chat template to be *prefix-preserving* (appending a tool message must not change how earlier messages are rendered). For known model families (e.g. Qwen3, DeepSeek-V3), TRL automatically swaps in a patched training template when tools are enabled. See [Chat Templates](chat_templates#training-templates) for the full list.
 
-Use `max_tool_calling_iterations` in the [AsyncGRPOConfig](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOConfig) to cap the number of tool-calling turns. By default there is no limit, and generation stops when the model produces a response turn with no tool calls.
+Use `max_tool_calling_iterations` in the [AsyncGRPOConfig](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.AsyncGRPOConfig) to cap the number of tool-calling turns. By default there is no limit, and generation stops when the model produces a response turn with no tool calls.
 
 Example:
 
@@ -793,7 +793,7 @@ trainer = AsyncGRPOTrainer(
 
 ### Environments
 
-You can also provide tools through `environment_factory`. In this mode, [AsyncGRPOTrainer](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer) creates one environment instance per rollout and exposes the environment's public methods as tools.
+You can also provide tools through `environment_factory`. In this mode, [AsyncGRPOTrainer](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.AsyncGRPOTrainer) creates one environment instance per rollout and exposes the environment's public methods as tools.
 
 When you use an `environment_factory`, the environment owns the data: there is no external `train_dataset`. On each rollout, `reset()` produces the task — self-sampling from a corpus the environment holds, or generating a state procedurally — and returns the prompt. `max_steps` sets the training length. The following is a minimal example of an environment that self-samples a target and exposes an `increment` method (exposed as a tool).
 
@@ -982,15 +982,15 @@ Vision-language models (Qwen3.5, Qwen3.6, Qwen3-VL, ...) can be trained on **tex
 trl.AsyncGRPOTrainer(model: str | PreTrainedModel, reward_funcs: collections.abc.Callable[..., list[float]] | list[collections.abc.Callable[..., list[float]]] | None = None, args: trl.trainer.async_grpo_config.AsyncGRPOConfig | None = None, train_dataset: datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset | None = None, processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | None = None, callbacks: list[transformers.trainer_callback.TrainerCallback] | None = None, optimizers: tuple[typing.Optional[torch.optim.Optimizer], typing.Optional[torch.optim.lr_scheduler.LambdaLR]] = (None, None), peft_config: PeftConfig | None = None, tools: list[collections.abc.Callable] | None = None, environment_factory: collections.abc.Callable[[], trl.trainer.async_grpo_trainer._SupportsReset] | dict[str, collections.abc.Callable[[], trl.trainer.async_grpo_trainer._SupportsReset]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/trainer/async_grpo_trainer.py#L2805)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/trainer/async_grpo_trainer.py#L2805)
 
 **Parameters:**
 
 model (`str` or [PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel)) : Model to be trained. Can be either:  - A string, being the *model id* of a pretrained model hosted inside a model repo on huggingface.co, or a path to a *directory* containing model weights saved using [save_pretrained](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), e.g., `'./my_model_directory/'`. The model is loaded with the architecture declared in its config: [AutoModelForImageTextToText](https://huggingface.co/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoModelForImageTextToText) for a vision-language checkpoint (whose vision tower is loaded but frozen, see [Training Vision Language Models](async_grpo_trainer#training-vision-language-models)), [AutoModelForCausalLM](https://huggingface.co/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoModelForCausalLM) otherwise. - A [PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel) object. Its attention implementation is switched to the trainer's tree attention backend for packed training.  The model name from the config is used to identify the model on the vLLM server used for generation.
 
-reward_funcs (`RewardFunc | list[RewardFunc]`, *optional*) : Reward functions to be used for computing the rewards. To compute the rewards, we call all the reward functions with the prompts and completions and sum the rewards. May be omitted when the reward is supplied by the environment through `environment_factory` (see below). Can be either:  - A single reward function: The function is provided with the prompts and the generated completions, plus any additional columns in the dataset. It should return a list of rewards. Reward functions can be either synchronous or asynchronous and can also return `None` when the reward is not applicable to those samples. This is useful for multi-task training where different reward functions apply to different types of samples. When a reward function returns `None` for a sample, that reward function is excluded from the reward calculation for that sample. For more details, see [Using a custom reward function](#using-a-custom-reward-function). - A list of reward functions, where each item is a reward function as described above. Rewards from all functions are summed.  Unlike [GRPOTrainer](/docs/trl/v1.18.0/en/grpo_trainer#trl.GRPOTrainer), rewards are computed in a spawned child process, so each reward function (along with `tools` and `environment_factory`) must be picklable: use a module-level function, `functools.partial`, or a callable class instance — lambdas and closures will fail at startup. Tools are registered under their `__name__`, so they must be module-level functions. The child process also runs with `CUDA_VISIBLE_DEVICES=""`, so a GPU-backed reward model runs on CPU (slow), not the trainer's GPU.
+reward_funcs (`RewardFunc | list[RewardFunc]`, *optional*) : Reward functions to be used for computing the rewards. To compute the rewards, we call all the reward functions with the prompts and completions and sum the rewards. May be omitted when the reward is supplied by the environment through `environment_factory` (see below). Can be either:  - A single reward function: The function is provided with the prompts and the generated completions, plus any additional columns in the dataset. It should return a list of rewards. Reward functions can be either synchronous or asynchronous and can also return `None` when the reward is not applicable to those samples. This is useful for multi-task training where different reward functions apply to different types of samples. When a reward function returns `None` for a sample, that reward function is excluded from the reward calculation for that sample. For more details, see [Using a custom reward function](#using-a-custom-reward-function). - A list of reward functions, where each item is a reward function as described above. Rewards from all functions are summed.  Unlike [GRPOTrainer](/docs/trl/v1.18.1/en/grpo_trainer#trl.GRPOTrainer), rewards are computed in a spawned child process, so each reward function (along with `tools` and `environment_factory`) must be picklable: use a module-level function, `functools.partial`, or a callable class instance — lambdas and closures will fail at startup. Tools are registered under their `__name__`, so they must be module-level functions. The child process also runs with `CUDA_VISIBLE_DEVICES=""`, so a GPU-backed reward model runs on CPU (slow), not the trainer's GPU.
 
-args ([AsyncGRPOConfig](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOConfig), *optional*) : Configuration for this trainer. If `None`, a default configuration is used.
+args ([AsyncGRPOConfig](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.AsyncGRPOConfig), *optional*) : Configuration for this trainer. If `None`, a default configuration is used.
 
 train_dataset ([Dataset](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) or [IterableDataset](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset), *optional*) : Dataset to use for training. It must include a column `"prompt"`. Any additional columns in the dataset are ignored. The samples must be in [conversational](dataset_formats#conversational) format: each sample contains structured messages (e.g., role and content).  May be omitted only when an `environment_factory` is provided and the environment owns (or procedurally generates) the data, returning the prompt from its `reset()` method. In that case, `max_steps` must be set to define the training length.
 
@@ -1030,7 +1030,7 @@ Example:
 ```
 
 To customize which prompts are sampled, how a rollout is generated or how advantages are computed, subclass
-[AsyncRolloutLoop](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop) and set it as the trainer's `loop_cls`. TRL builds the loop in the
+[AsyncRolloutLoop](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop) and set it as the trainer's `loop_cls`. TRL builds the loop in the
 
 rollout process:
 
@@ -1045,7 +1045,7 @@ rollout process:
 train(resume_from_checkpoint: str | bool | None = None, trial: optuna.Trial | dict[str, Any] | None = None, ignore_keys_for_eval: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/transformers/trainer.py#L1450)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/transformers/trainer.py#L1450)
 
 **Parameters:**
 
@@ -1067,7 +1067,7 @@ Main training entry point.
 save_model(output_dir: str | None = None, _internal_call: bool = False)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/transformers/trainer.py#L4077)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/transformers/trainer.py#L4077)
 
 Will save the model, so you can reload it using `from_pretrained()`.
 
@@ -1079,7 +1079,7 @@ Will only save from the main process.
 push_to_hub(commit_message: str | None = 'End of training', blocking: bool = True, token: str | None = None, revision: str | None = None, private: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/transformers/trainer.py#L4337)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/transformers/trainer.py#L4337)
 
 **Parameters:**
 
@@ -1107,10 +1107,10 @@ Upload `self.model` and `self.processing_class` to the 🤗 model hub on the rep
 #### trl.AsyncGRPOConfig[[trl.AsyncGRPOConfig]]
 
 ```python
-trl.AsyncGRPOConfig(output_dir: str | None = None, per_device_train_batch_size: int = 8, num_train_epochs: float = 3.0, max_steps: int = -1, learning_rate: float = 1e-06, lr_scheduler_type: str = 'constant', lr_scheduler_kwargs: dict | str | None = None, warmup_steps: float = 0, optim: transformers.training_args.OptimizerNames | str = 'adamw_torch_fused', optim_args: str | None = None, weight_decay: float = 0.0, adam_beta1: float = 0.9, adam_beta2: float = 0.999, adam_epsilon: float = 1e-08, optim_target_modules: None | str | list[str] = None, gradient_accumulation_steps: int = 1, average_tokens_across_devices: bool = True, max_grad_norm: float = 1.0, label_smoothing_factor: float = 0.0, bf16: bool | None = None, fp16: bool = False, bf16_full_eval: bool = False, fp16_full_eval: bool = False, tf32: bool | None = None, activation_checkpointing: bool | None = None, activation_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, gradient_checkpointing: bool = True, gradient_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, torch_compile: bool = False, torch_compile_backend: str | None = None, torch_compile_mode: str | None = None, use_liger_kernel: bool = False, liger_kernel_config: dict[str, bool] | None = None, use_cache: bool = False, neftune_noise_alpha: float | None = None, torch_empty_cache_steps: int | None = None, auto_find_batch_size: bool = False, logging_strategy: transformers.trainer_utils.IntervalStrategy | str = 'steps', logging_steps: float = 1, logging_first_step: bool = False, log_on_each_node: bool = True, logging_nan_inf_filter: bool = True, include_num_input_tokens_seen: str | bool = 'no', log_level: str = 'passive', log_level_replica: str = 'warning', disable_tqdm: bool | None = None, report_to: None | str | list[str] = 'none', run_name: str | None = None, project: str = 'huggingface', trackio_space_id: str | None = None, trackio_bucket_id: str | None = None, trackio_static_space_id: typing.Union[str, NoneType, typing.Literal[False]] = None, eval_strategy: transformers.trainer_utils.IntervalStrategy | str = 'no', eval_steps: float | None = None, eval_delay: float = 0, per_device_eval_batch_size: int = 8, prediction_loss_only: bool = False, eval_on_start: bool = False, eval_do_concat_batches: bool = True, eval_use_gather_object: bool = False, eval_accumulation_steps: int | None = None, include_for_metrics: list[str] = <factory>, batch_eval_metrics: bool = False, save_only_model: bool = False, save_strategy: transformers.trainer_utils.SaveStrategy | str = 'steps', save_steps: float = 500, save_on_each_node: bool = False, save_total_limit: int | None = None, enable_jit_checkpoint: bool = False, push_to_hub: bool = False, hub_token: str | None = None, hub_private_repo: bool | None = None, hub_model_id: str | None = None, hub_strategy: transformers.trainer_utils.HubStrategy | str = 'every_save', hub_always_push: bool = False, hub_revision: str | None = None, load_best_model_at_end: bool = False, metric_for_best_model: str | None = None, greater_is_better: bool | None = None, ignore_data_skip: bool = True, restore_callback_states_from_checkpoint: bool = False, full_determinism: bool = False, seed: int = 42, data_seed: int | None = None, use_cpu: bool = False, accelerator_config: dict | str | None = None, parallelism_config: accelerate.parallelism_config.ParallelismConfig | None = None, dataloader_drop_last: bool = False, dataloader_num_workers: int = 0, dataloader_pin_memory: bool = True, dataloader_persistent_workers: bool = False, dataloader_prefetch_factor: int | None = None, dataloader_multiprocessing_context: str | None = None, dataloader_in_order: bool = True, remove_unused_columns: bool = False, label_names: list[str] | None = None, train_sampling_strategy: str = 'random', length_column_name: str = 'length', ddp_find_unused_parameters: bool | None = None, ddp_bucket_cap_mb: int | None = None, ddp_broadcast_buffers: bool | None = None, ddp_static_graph: bool | None = None, ddp_backend: str | None = None, ddp_timeout: int = 1800, fsdp: str | None = None, fsdp_config: dict[str, typing.Any] | str | None = None, deepspeed: dict | str | None = None, debug: str | list[transformers.debug_utils.DebugOption] = '', skip_memory_metrics: bool = True, do_train: bool = False, do_eval: bool = False, do_predict: bool = False, resume_from_checkpoint: str | None = None, local_rank: int = -1, model_init_kwargs: dict[str, typing.Any] | str | None = None, dtype: str = 'float32', trust_remote_code: bool = False, router_aux_loss_coef: float | None = None, num_generations: int = 8, max_completion_length: int = 2048, temperature: float = 1.0, top_p: float = 1.0, top_k: int = 0, min_p: float | None = None, chat_template_kwargs: dict | str | None = None, max_tool_calling_iterations: int | None = None, vllm_server_base_url: str = 'http://localhost:8000', vllm_server_timeout: float = 1800.0, epsilon: float = 0.2, epsilon_high: float | None = None, score_centering: bool = True, vllm_importance_sampling_clip_min: float = 0.5, vllm_importance_sampling_clip_max: float = 5.0, num_sampler_logprobs: int = 8, token_budget: int | None = None, max_concurrent_rollouts: int = 512, max_staleness: int = 4, weight_sync_steps: int = 1, rollout_worker_timeout: float = 300.0, log_completions: bool = False, num_completions_to_print: int | None = None)
+trl.AsyncGRPOConfig(output_dir: str | None = None, per_device_train_batch_size: int = 8, num_train_epochs: float = 3.0, max_steps: int = -1, learning_rate: float = 1e-06, lr_scheduler_type: str = 'constant', lr_scheduler_kwargs: dict | str | None = None, warmup_steps: float = 0, optim: transformers.training_args.OptimizerNames | str = 'adamw_torch_fused', optim_args: str | None = None, weight_decay: float = 0.0, adam_beta1: float = 0.9, adam_beta2: float = 0.999, adam_epsilon: float = 1e-08, optim_target_modules: None | str | list[str] = None, gradient_accumulation_steps: int = 1, average_tokens_across_devices: bool = True, max_grad_norm: float = 1.0, label_smoothing_factor: float = 0.0, bf16: bool | None = None, fp16: bool = False, bf16_full_eval: bool = False, fp16_full_eval: bool = False, tf32: bool | None = None, activation_checkpointing: bool | None = None, activation_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, gradient_checkpointing: bool | None = None, gradient_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, torch_compile: bool = False, torch_compile_backend: str | None = None, torch_compile_mode: str | None = None, use_liger_kernel: bool = False, liger_kernel_config: dict[str, bool] | None = None, use_cache: bool = False, neftune_noise_alpha: float | None = None, torch_empty_cache_steps: int | None = None, auto_find_batch_size: bool = False, logging_strategy: transformers.trainer_utils.IntervalStrategy | str = 'steps', logging_steps: float = 1, logging_first_step: bool = False, log_on_each_node: bool = True, logging_nan_inf_filter: bool = True, include_num_input_tokens_seen: str | bool = 'no', log_level: str = 'passive', log_level_replica: str = 'warning', disable_tqdm: bool | None = None, report_to: None | str | list[str] = 'none', run_name: str | None = None, project: str = 'huggingface', trackio_space_id: str | None = None, trackio_bucket_id: str | None = None, trackio_static_space_id: typing.Union[str, NoneType, typing.Literal[False]] = None, eval_strategy: transformers.trainer_utils.IntervalStrategy | str = 'no', eval_steps: float | None = None, eval_delay: float = 0, per_device_eval_batch_size: int = 8, prediction_loss_only: bool = False, eval_on_start: bool = False, eval_do_concat_batches: bool = True, eval_use_gather_object: bool = False, eval_accumulation_steps: int | None = None, include_for_metrics: list[str] = <factory>, batch_eval_metrics: bool = False, save_only_model: bool = False, save_strategy: transformers.trainer_utils.SaveStrategy | str = 'steps', save_steps: float = 500, save_on_each_node: bool = False, save_total_limit: int | None = None, enable_jit_checkpoint: bool = False, push_to_hub: bool = False, hub_token: str | None = None, hub_private_repo: bool | None = None, hub_model_id: str | None = None, hub_strategy: transformers.trainer_utils.HubStrategy | str = 'every_save', hub_always_push: bool = False, hub_revision: str | None = None, load_best_model_at_end: bool = False, metric_for_best_model: str | None = None, greater_is_better: bool | None = None, ignore_data_skip: bool = True, restore_callback_states_from_checkpoint: bool = False, full_determinism: bool = False, seed: int = 42, data_seed: int | None = None, use_cpu: bool = False, accelerator_config: dict | str | None = None, parallelism_config: accelerate.parallelism_config.ParallelismConfig | None = None, dataloader_drop_last: bool = False, dataloader_num_workers: int = 0, dataloader_pin_memory: bool = True, dataloader_persistent_workers: bool = False, dataloader_prefetch_factor: int | None = None, dataloader_multiprocessing_context: str | None = None, dataloader_in_order: bool = True, remove_unused_columns: bool = False, label_names: list[str] | None = None, train_sampling_strategy: str = 'random', length_column_name: str = 'length', ddp_find_unused_parameters: bool | None = None, ddp_bucket_cap_mb: int | None = None, ddp_broadcast_buffers: bool | None = None, ddp_static_graph: bool | None = None, ddp_backend: str | None = None, ddp_timeout: int = 1800, fsdp: str | None = None, fsdp_config: dict[str, typing.Any] | str | None = None, deepspeed: dict | str | None = None, debug: str | list[transformers.debug_utils.DebugOption] = '', skip_memory_metrics: bool = True, do_train: bool = False, do_eval: bool = False, do_predict: bool = False, resume_from_checkpoint: str | None = None, local_rank: int = -1, model_init_kwargs: dict[str, typing.Any] | str | None = None, dtype: str = 'float32', trust_remote_code: bool = False, router_aux_loss_coef: float | None = None, num_generations: int = 8, max_completion_length: int = 2048, temperature: float = 1.0, top_p: float = 1.0, top_k: int = 0, min_p: float | None = None, chat_template_kwargs: dict | str | None = None, max_tool_calling_iterations: int | None = None, vllm_server_base_url: str = 'http://localhost:8000', vllm_server_timeout: float = 1800.0, epsilon: float = 0.2, epsilon_high: float | None = None, score_centering: bool = True, vllm_importance_sampling_clip_min: float = 0.5, vllm_importance_sampling_clip_max: float = 5.0, num_sampler_logprobs: int = 8, token_budget: int | None = None, max_concurrent_rollouts: int = 512, max_staleness: int = 4, weight_sync_steps: int = 1, rollout_worker_timeout: float = 300.0, log_completions: bool = False, num_completions_to_print: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/trainer/async_grpo_config.py#L22)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/trainer/async_grpo_config.py#L22)
 
 **Parameters that control the model:**
 
@@ -1178,7 +1178,7 @@ log_completions (`bool`, *optional*, defaults to `False`) : Whether to log a sam
 
 num_completions_to_print (`int`, *optional*) : Number of completions to print with `rich`. If `None`, all completions are logged.
 
-Configuration class for the [AsyncGRPOTrainer](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer).
+Configuration class for the [AsyncGRPOTrainer](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.AsyncGRPOTrainer).
 
 This class includes only the parameters that are specific to asynchronous GRPO training. For a full list of
 training arguments, please refer to the [TrainingArguments](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.TrainingArguments) documentation. Note that default values
@@ -1217,23 +1217,23 @@ in this class may differ from those in [TrainingArguments](https://huggingface.c
 trl.trainer.async_grpo_trainer.AsyncRolloutLoop(config: AsyncGRPOConfig, model_name: str, dataset: Dataset, reward_funcs: list[collections.abc.Callable[..., list[float]]], processing_class: PreTrainedTokenizerBase, eos_token_ids: list[int], rollout_buffer: Queue, model_version_value: Synchronized, token_allowance: Synchronized, heartbeat_value: Synchronized, failed_event: Event, exception_info_queue: Queue, metrics_queue: Queue, tools: list[collections.abc.Callable] | None = None, environment_factory: collections.abc.Callable[[], object] | dict[str, collections.abc.Callable[[], object]] | None = None, score_queue_maxsize: int = 16, lora_name: str | None = None, dataset_start_index: int = 0)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/trainer/async_grpo_trainer.py#L755)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/trainer/async_grpo_trainer.py#L755)
 
-Generates and scores rollouts for [AsyncGRPOTrainer](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer), in a spawned rollout process.
+Generates and scores rollouts for [AsyncGRPOTrainer](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.AsyncGRPOTrainer), in a spawned rollout process.
 
 The default implements GRPO. To customize a run, subclass it, override only the methods that change, and set the
 subclass as the trainer's `loop_cls`. Each prompt goes through, in order:
 
-- [filter_prompt()](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop.filter_prompt): whether to generate for the prompt at all.
-- [generate_one()](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop.generate_one): one full rollout, which calls
-  [generate_one_turn()](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop.generate_one_turn) for each sampling request.
+- [filter_prompt()](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop.filter_prompt): whether to generate for the prompt at all.
+- [generate_one()](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop.generate_one): one full rollout, which calls
+  [generate_one_turn()](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop.generate_one_turn) for each sampling request.
 - The group of `num_generations` rollouts is scored: its rewards are the sum of the trainer's `reward_funcs`, of
-  environments that define `get_reward`, and of [Rollout](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.Rollout)`.reward`. Then
-  [compute_advantages()](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop.compute_advantages) runs once per group.
+  environments that define `get_reward`, and of [Rollout](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.Rollout)`.reward`. Then
+  [compute_advantages()](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop.compute_advantages) runs once per group.
 
-[setup()](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop.setup) and [close()](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop.close)
+[setup()](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop.setup) and [close()](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop.close)
 create and release resources on the loop's event loop, like an HTTP client. A hook can read `self.config` (a
-subclass of [AsyncGRPOConfig](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOConfig) can carry its own fields) and `self.tokenizer`. Since the loop is built in a
+subclass of [AsyncGRPOConfig](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.AsyncGRPOConfig) can carry its own fields) and `self.tokenizer`. Since the loop is built in a
 spawned process, the subclass must be importable (defined at module level).
 
 #### filter_prompt[[trl.trainer.async_grpo_trainer.AsyncRolloutLoop.filter_prompt]]
@@ -1242,7 +1242,7 @@ spawned process, the subclass must be importable (defined at module level).
 filter_prompt(row_index: int, row: dict[str, typing.Any], epoch: int)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/trainer/async_grpo_trainer.py#L1486)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/trainer/async_grpo_trainer.py#L1486)
 
 **Parameters:**
 
@@ -1266,7 +1266,7 @@ can reach the trainer after that.
 generate_one(prompt: list[dict[str, str]], tools: list[collections.abc.Callable], group_id: int = 0)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/trainer/async_grpo_trainer.py#L1532)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/trainer/async_grpo_trainer.py#L1532)
 
 **Parameters:**
 
@@ -1276,14 +1276,14 @@ tools (`list[Callable]`) : Tools available to this rollout: the trainer's `tools
 
 group_id (`int`, *optional*, defaults to `0`) : Identifier of the group the rollout belongs to.
 
-**Returns:** [Rollout](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.Rollout)
+**Returns:** [Rollout](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.Rollout)
 
 The finished rollout.
 
 Generate one rollout for a prompt.
 
 By default, a multi-turn tool loop: each turn renders the whole conversation with the chat template, samples a
-reply with [generate_one_turn()](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop.generate_one_turn) and runs the tool calls it
+reply with [generate_one_turn()](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop.generate_one_turn) and runs the tool calls it
 contains, until the model stops calling tools or `max_tool_calling_iterations` is reached. Override it to
 generate differently, for example with an agent framework. Return every sampling request in `Rollout.turns`,
 since the training sequences are built from them, and set `Rollout.reward` to score the rollout here.
@@ -1294,7 +1294,7 @@ since the training sequences are built from them, and set `Rollout.reward` to sc
 generate_one_turn(prompt_ids: list[int])
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/trainer/async_grpo_trainer.py#L1649)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/trainer/async_grpo_trainer.py#L1649)
 
 **Parameters:**
 
@@ -1315,11 +1315,11 @@ Sample one reply from the vLLM server, with the config's sampling settings (`tem
 compute_advantages(group: RolloutGroup)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/trainer/async_grpo_trainer.py#L1782)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/trainer/async_grpo_trainer.py#L1782)
 
 **Parameters:**
 
-group ([RolloutGroup](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.RolloutGroup)) : The `num_generations` rollouts of one prompt, with their total rewards in `group.rewards`.
+group ([RolloutGroup](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.RolloutGroup)) : The `num_generations` rollouts of one prompt, with their total rewards in `group.rewards`.
 
 **Returns:** `np.ndarray`
 
@@ -1337,7 +1337,7 @@ returns.
 setup()
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/trainer/async_grpo_trainer.py#L1004)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/trainer/async_grpo_trainer.py#L1004)
 
 Create the resources the other hooks need, such as an HTTP client. Runs on the loop's event loop before the
 first prompt. Does nothing by default.
@@ -1348,9 +1348,9 @@ first prompt. Does nothing by default.
 close()
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/trainer/async_grpo_trainer.py#L1010)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/trainer/async_grpo_trainer.py#L1010)
 
-Release what [setup()](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop.setup) created. Runs when the loops stop,
+Release what [setup()](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop.setup) created. Runs when the loops stop,
 including on failure. Does nothing by default.
 
 ## Rollout[[trl.trainer.async_grpo_trainer.Rollout]]
@@ -1361,7 +1361,7 @@ including on failure. Does nothing by default.
 trl.trainer.async_grpo_trainer.Rollout(completion: list[dict[str, str]], completion_ids: list[int], turns: list[trl.trainer.async_grpo_trainer.TurnRecord], tool_call_count: int = 0, tool_failure_count: int = 0, reward: float | None = None, rollout_id: str = <factory>)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/trainer/async_grpo_trainer.py#L558)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/trainer/async_grpo_trainer.py#L558)
 
 **Parameters:**
 
@@ -1379,7 +1379,7 @@ reward (`float`, *optional*) : Reward computed while generating, for example by 
 
 rollout_id (`str`, *optional*) : Identifies the rollout in its training rows, for debugging. Defaults to a new random hex id.
 
-One finished rollout, as returned by [generate_one()](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop.generate_one).
+One finished rollout, as returned by [generate_one()](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop.generate_one).
 
 ## TurnRecord[[trl.trainer.async_grpo_trainer.TurnRecord]]
 
@@ -1389,7 +1389,7 @@ One finished rollout, as returned by [generate_one()](/docs/trl/v1.18.0/en/async
 trl.trainer.async_grpo_trainer.TurnRecord(prompt_ids: list[int], output_ids: list[int], output_log_probs: list[float] = <factory>, output_mask: list[int] | None = None, output_sampling_mask: list[list[int]] | None = None, output_sampler_logprobs: list[dict[int, float]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/trainer/async_grpo_trainer.py#L424)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/trainer/async_grpo_trainer.py#L424)
 
 **Parameters:**
 
@@ -1415,7 +1415,7 @@ One sampling request: the prompt sent to the sampler and the tokens it generated
 trl.trainer.async_grpo_trainer.RolloutGroup(prompts: list[list[dict[str, str]]], reward_kwargs: dict[str, list[typing.Any]], completions: list[list[dict[str, str]]], completions_ids: list[list[int]], completions_sequences: list[list[trl.trainer.async_grpo_trainer.TrainingSequence]], tool_call_counts: list[int], tool_failure_counts: list[int], model_version: int, group_id: int, row_index: int, env_rewards: list[tuple[type, float] | None], rollout_rewards: list[float | None], queued_at: float = 0.0, rewards: numpy.ndarray | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/trainer/async_grpo_trainer.py#L592)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/trainer/async_grpo_trainer.py#L592)
 
 **Parameters:**
 
@@ -1441,13 +1441,13 @@ row_index (`int`) : Index of the prompt's row in the training dataset.
 
 env_rewards (`list[tuple[type, float] or None]`) : For a rollout whose environment defines `get_reward`, the environment class and its reward; else `None`.
 
-rollout_rewards (`list[float or None]`) : [Rollout](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.Rollout)`.reward` of each rollout.
+rollout_rewards (`list[float or None]`) : [Rollout](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.Rollout)`.reward` of each rollout.
 
 queued_at (`float`, *optional*, defaults to `0.0`) : `time.monotonic()` when the group was queued for scoring.
 
-rewards (`np.ndarray`, *optional*) : Total reward of each rollout, summed over every reward source, NaN when no source scored it. Set before [compute_advantages()](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop.compute_advantages) is called.
+rewards (`np.ndarray`, *optional*) : Total reward of each rollout, summed over every reward source, NaN when no source scored it. Set before [compute_advantages()](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.trainer.async_grpo_trainer.AsyncRolloutLoop.compute_advantages) is called.
 
 The `num_generations` rollouts of one prompt, scored together. Each list has one entry per rollout.
 
 ### Community Tutorials
-https://huggingface.co/docs/trl/v1.18.0/community_tutorials.md
+https://huggingface.co/docs/trl/v1.18.1/community_tutorials.md

@@ -28,7 +28,7 @@ trainer.train()
 trl.DPOTrainer(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/experimental/bema_for_ref_model/dpo_trainer.py#L19)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/experimental/bema_for_ref_model/dpo_trainer.py#L19)
 
 #### train[[trl.DPOTrainer.train]]
 
@@ -36,7 +36,7 @@ trl.DPOTrainer(*args, **kwargs)
 train(resume_from_checkpoint: str | bool | None = None, trial: optuna.Trial | dict[str, Any] | None = None, ignore_keys_for_eval: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/transformers/trainer.py#L1450)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/transformers/trainer.py#L1450)
 
 **Parameters:**
 
@@ -58,7 +58,7 @@ Main training entry point.
 save_model(output_dir: str | None = None, _internal_call: bool = False)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/transformers/trainer.py#L4077)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/transformers/trainer.py#L4077)
 
 Will save the model, so you can reload it using `from_pretrained()`.
 
@@ -70,7 +70,7 @@ Will only save from the main process.
 push_to_hub(commit_message: str | None = 'End of training', blocking: bool = True, token: str | None = None, revision: str | None = None, private: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/transformers/trainer.py#L4337)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/transformers/trainer.py#L4337)
 
 **Parameters:**
 
@@ -101,7 +101,7 @@ Upload `self.model` and `self.processing_class` to the 🤗 model hub on the rep
 trl.BEMACallback(update_freq: int = 400, ema_power: float = 0.5, bias_power: float = 0.2, lag: int = 10, update_after: int = 0, multiplier: float = 1.0, min_ema_multiplier: float = 0.0, device: str = 'cpu', update_ref_model: bool = False, ref_model_update_freq: int = 400, ref_model_update_after: int = 0)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/experimental/bema_for_ref_model/callback.py#L59)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/experimental/bema_for_ref_model/callback.py#L59)
 
 **Parameters:**
 
@@ -166,4 +166,4 @@ Example:
 ```
 
 ### RapidFire AI Integration
-https://huggingface.co/docs/trl/v1.18.0/rapidfire_integration.md
+https://huggingface.co/docs/trl/v1.18.1/rapidfire_integration.md

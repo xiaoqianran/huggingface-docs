@@ -8,7 +8,7 @@
 trl.RichProgressCallback()
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/trainer/callbacks.py#L157)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/trainer/callbacks.py#L157)
 
 A [TrainerCallback](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/callback#transformers.TrainerCallback) that displays the progress of training or evaluation using Rich.
 
@@ -20,7 +20,7 @@ A [TrainerCallback](https://huggingface.co/docs/transformers/v5.23.0/en/main_cla
 trl.LogCompletionsCallback(trainer: Trainer, generation_config: transformers.generation.configuration_utils.GenerationConfig | None = None, num_prompts: int | None = None, freq: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/trainer/callbacks.py#L268)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/trainer/callbacks.py#L268)
 
 **Parameters:**
 
@@ -49,7 +49,7 @@ Usage:
 trl.BEMACallback(update_freq: int = 400, ema_power: float = 0.5, bias_power: float = 0.2, lag: int = 10, update_after: int = 0, multiplier: float = 1.0, min_ema_multiplier: float = 0.0, device: str = 'cpu')
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/trainer/callbacks.py#L590)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/trainer/callbacks.py#L590)
 
 **Parameters:**
 
@@ -115,7 +115,7 @@ Example:
 trl.WeaveCallback(trainer: Trainer, project_name: str | None = None, scorers: dict[str, callable] | None = None, generation_config: transformers.generation.configuration_utils.GenerationConfig | None = None, num_prompts: int | None = None, dataset_name: str = 'eval_dataset', model_name: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/trainer/callbacks.py#L361)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/trainer/callbacks.py#L361)
 
 **Parameters:**
 
@@ -177,9 +177,9 @@ trainer.add_callback(weave_callback)
 on_train_begin(args, state, control, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.0/trl/trainer/callbacks.py#L491)
+[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/trainer/callbacks.py#L491)
 
 Initialize Weave when training begins.
 
 ### Scripts Utilities
-https://huggingface.co/docs/trl/v1.18.0/script_utils.md
+https://huggingface.co/docs/trl/v1.18.1/script_utils.md

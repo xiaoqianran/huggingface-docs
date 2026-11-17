@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-11-16T16:55:43.415305+00:00",
+  "fetchedAt": "2026-11-17T16:49:37.774641+00:00",
   "method": "llms-full-split",
-  "ok": 2328,
+  "ok": 2327,
   "failed": 0,
   "pages": [
     {
@@ -12,525 +12,516 @@
     },
     {
       "rel": "accelerate/index.md",
-      "bytes": 6177,
+      "bytes": 8654,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/index.md",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/index.md",
       "track": "Accelerate",
       "package": "accelerate",
       "title": "Accelerate"
     },
     {
       "rel": "accelerate/quicktour.md",
-      "bytes": 14943,
+      "bytes": 12365,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/quicktour.md",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/quicktour.md",
       "track": "Accelerate",
       "package": "accelerate",
       "title": "Quicktour"
     },
     {
-      "rel": "accelerate/package_reference/fsdp.md",
-      "bytes": 14223,
+      "rel": "accelerate/concept_guides/deferring_execution.md",
+      "bytes": 4472,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/package_reference/fsdp.md",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/concept_guides/deferring_execution.md",
       "track": "Accelerate",
       "package": "accelerate",
-      "title": "Fully Sharded Data Parallel utilities"
-    },
-    {
-      "rel": "accelerate/package_reference/big_modeling.md",
-      "bytes": 40669,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/package_reference/big_modeling.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Working with large models"
-    },
-    {
-      "rel": "accelerate/package_reference/launchers.md",
-      "bytes": 4143,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/package_reference/launchers.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Launchers"
-    },
-    {
-      "rel": "accelerate/package_reference/cli.md",
-      "bytes": 18077,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/package_reference/cli.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "The Command Line"
-    },
-    {
-      "rel": "accelerate/package_reference/fp8.md",
-      "bytes": 3009,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/package_reference/fp8.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "FP8"
-    },
-    {
-      "rel": "accelerate/package_reference/logging.md",
-      "bytes": 1528,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/package_reference/logging.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Logging[[accelerate.logging.get_logger]]"
-    },
-    {
-      "rel": "accelerate/package_reference/megatron_lm.md",
-      "bytes": 11095,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/package_reference/megatron_lm.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Megatron-LM utilities"
-    },
-    {
-      "rel": "accelerate/package_reference/accelerator.md",
-      "bytes": 60049,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/package_reference/accelerator.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Accelerator"
-    },
-    {
-      "rel": "accelerate/package_reference/kwargs.md",
-      "bytes": 10017,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/package_reference/kwargs.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Kwargs handlers"
-    },
-    {
-      "rel": "accelerate/package_reference/state.md",
-      "bytes": 17595,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/package_reference/state.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Stateful Classes"
-    },
-    {
-      "rel": "accelerate/package_reference/torch_wrappers.md",
-      "bytes": 17972,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/package_reference/torch_wrappers.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "DataLoaders, Optimizers, and Schedulers"
-    },
-    {
-      "rel": "accelerate/package_reference/inference.md",
-      "bytes": 2265,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/package_reference/inference.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Pipeline parallelism"
-    },
-    {
-      "rel": "accelerate/package_reference/tracking.md",
-      "bytes": 14343,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/package_reference/tracking.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Experiment Trackers"
-    },
-    {
-      "rel": "accelerate/package_reference/deepspeed.md",
-      "bytes": 7725,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/package_reference/deepspeed.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "DeepSpeed utilities"
-    },
-    {
-      "rel": "accelerate/package_reference/utilities.md",
-      "bytes": 91528,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/package_reference/utilities.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Utility functions and classes"
-    },
-    {
-      "rel": "accelerate/basic_tutorials/execution.md",
-      "bytes": 4068,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/execution.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Execution process"
-    },
-    {
-      "rel": "accelerate/basic_tutorials/install.md",
-      "bytes": 2887,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/install.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Installation"
-    },
-    {
-      "rel": "accelerate/basic_tutorials/tpu.md",
-      "bytes": 2005,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/tpu.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "TPU training"
-    },
-    {
-      "rel": "accelerate/basic_tutorials/troubleshooting.md",
-      "bytes": 10508,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/troubleshooting.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Troubleshoot"
-    },
-    {
-      "rel": "accelerate/basic_tutorials/launch.md",
-      "bytes": 8587,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/launch.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Launching Accelerate scripts"
-    },
-    {
-      "rel": "accelerate/basic_tutorials/overview.md",
-      "bytes": 641,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/overview.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Overview"
-    },
-    {
-      "rel": "accelerate/basic_tutorials/notebook.md",
-      "bytes": 16936,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/notebook.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Launching distributed training from Jupyter Notebooks"
-    },
-    {
-      "rel": "accelerate/basic_tutorials/migration.md",
-      "bytes": 12532,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/migration.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Add Accelerate to your code"
-    },
-    {
-      "rel": "accelerate/usage_guides/fsdp.md",
-      "bytes": 10615,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/fsdp.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Fully Sharded Data Parallel"
-    },
-    {
-      "rel": "accelerate/usage_guides/distributed_inference.md",
-      "bytes": 9746,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/distributed_inference.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Distributed inference"
-    },
-    {
-      "rel": "accelerate/usage_guides/big_modeling.md",
-      "bytes": 5469,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/big_modeling.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Big Model Inference"
-    },
-    {
-      "rel": "accelerate/usage_guides/intel_cpu.md",
-      "bytes": 5982,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/intel_cpu.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Training on Intel CPU"
-    },
-    {
-      "rel": "accelerate/usage_guides/gradient_accumulation.md",
-      "bytes": 20709,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/gradient_accumulation.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Performing gradient accumulation with Accelerate"
-    },
-    {
-      "rel": "accelerate/usage_guides/model_size_estimator.md",
-      "bytes": 5440,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/model_size_estimator.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Model memory estimator"
-    },
-    {
-      "rel": "accelerate/usage_guides/mps.md",
-      "bytes": 2384,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/mps.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Accelerated PyTorch Training on Mac"
-    },
-    {
-      "rel": "accelerate/usage_guides/explore.md",
-      "bytes": 1114,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/explore.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Start Here!"
-    },
-    {
-      "rel": "accelerate/usage_guides/low_precision_training.md",
-      "bytes": 9454,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/low_precision_training.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Low Precision Training Methods"
-    },
-    {
-      "rel": "accelerate/usage_guides/sagemaker.md",
-      "bytes": 7097,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/sagemaker.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Amazon SageMaker"
-    },
-    {
-      "rel": "accelerate/usage_guides/checkpoint.md",
-      "bytes": 3761,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/checkpoint.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Checkpointing"
-    },
-    {
-      "rel": "accelerate/usage_guides/training_zoo.md",
-      "bytes": 16639,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/training_zoo.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Example Zoo"
-    },
-    {
-      "rel": "accelerate/usage_guides/ddp_comm_hook.md",
-      "bytes": 9561,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/ddp_comm_hook.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "DDP Communication Hooks"
-    },
-    {
-      "rel": "accelerate/usage_guides/megatron_lm.md",
-      "bytes": 30701,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/megatron_lm.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Megatron-LM"
-    },
-    {
-      "rel": "accelerate/usage_guides/deepspeed_multiple_model.md",
-      "bytes": 9174,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/deepspeed_multiple_model.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Using multiple models with DeepSpeed"
-    },
-    {
-      "rel": "accelerate/usage_guides/local_sgd.md",
-      "bytes": 4342,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/local_sgd.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Using Local SGD with Accelerate"
-    },
-    {
-      "rel": "accelerate/usage_guides/quantization.md",
-      "bytes": 6275,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/quantization.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Model quantization"
-    },
-    {
-      "rel": "accelerate/usage_guides/gaudi.md",
-      "bytes": 1933,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/gaudi.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Intel Gaudi"
-    },
-    {
-      "rel": "accelerate/usage_guides/tracking.md",
-      "bytes": 8911,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/tracking.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Experiment trackers"
-    },
-    {
-      "rel": "accelerate/usage_guides/deepspeed.md",
-      "bytes": 30519,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/deepspeed.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "DeepSpeed"
-    },
-    {
-      "rel": "accelerate/usage_guides/compilation.md",
-      "bytes": 4717,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/compilation.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Compilation"
-    },
-    {
-      "rel": "accelerate/usage_guides/profiler.md",
-      "bytes": 12977,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/profiler.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Profiler"
-    },
-    {
-      "rel": "accelerate/concept_guides/big_model_inference.md",
-      "bytes": 17631,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/big_model_inference.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Loading big models into memory"
-    },
-    {
-      "rel": "accelerate/concept_guides/context_parallelism.md",
-      "bytes": 14551,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/context_parallelism.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Context Parallel in \ud83e\udd17`accelerate`"
-    },
-    {
-      "rel": "accelerate/concept_guides/low_precision_training.md",
-      "bytes": 5786,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/low_precision_training.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Low precision training methods"
-    },
-    {
-      "rel": "accelerate/concept_guides/training_tpu.md",
-      "bytes": 7157,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/training_tpu.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "Training on TPUs"
-    },
-    {
-      "rel": "accelerate/concept_guides/fsdp1_vs_fsdp2.md",
-      "bytes": 6627,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/fsdp1_vs_fsdp2.md",
-      "track": "Accelerate",
-      "package": "accelerate",
-      "title": "FSDP1 vs FSDP2"
+      "title": "Executing and deferring jobs"
     },
     {
       "rel": "accelerate/concept_guides/performance.md",
-      "bytes": 4019,
+      "bytes": 4034,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/performance.md",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/concept_guides/performance.md",
       "track": "Accelerate",
       "package": "accelerate",
       "title": "Comparing performance across distributed setups"
     },
     {
+      "rel": "accelerate/concept_guides/internal_mechanism.md",
+      "bytes": 4838,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/concept_guides/internal_mechanism.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Accelerate's internal mechanisms"
+    },
+    {
+      "rel": "accelerate/concept_guides/fsdp1_vs_fsdp2.md",
+      "bytes": 6604,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/concept_guides/fsdp1_vs_fsdp2.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "FSDP1 vs FSDP2"
+    },
+    {
       "rel": "accelerate/concept_guides/fsdp_and_deepspeed.md",
       "bytes": 10513,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/fsdp_and_deepspeed.md",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/concept_guides/fsdp_and_deepspeed.md",
       "track": "Accelerate",
       "package": "accelerate",
       "title": "FSDP vs DeepSpeed"
     },
     {
       "rel": "accelerate/concept_guides/sequence_parallelism.md",
-      "bytes": 13590,
+      "bytes": 14296,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/sequence_parallelism.md",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/concept_guides/sequence_parallelism.md",
       "track": "Accelerate",
       "package": "accelerate",
       "title": "Sequence parallel in \ud83e\udd17`accelerate`"
     },
     {
-      "rel": "accelerate/concept_guides/internal_mechanism.md",
-      "bytes": 4858,
+      "rel": "accelerate/concept_guides/context_parallelism.md",
+      "bytes": 14604,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/internal_mechanism.md",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/concept_guides/context_parallelism.md",
       "track": "Accelerate",
       "package": "accelerate",
-      "title": "Accelerate's internal mechanisms"
+      "title": "Context Parallel in \ud83e\udd17`accelerate`"
     },
     {
       "rel": "accelerate/concept_guides/gradient_synchronization.md",
-      "bytes": 9153,
+      "bytes": 9134,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/gradient_synchronization.md",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/concept_guides/gradient_synchronization.md",
       "track": "Accelerate",
       "package": "accelerate",
       "title": "Gradient synchronization"
     },
     {
-      "rel": "accelerate/concept_guides/deferring_execution.md",
-      "bytes": 4342,
+      "rel": "accelerate/concept_guides/training_tpu.md",
+      "bytes": 7219,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/deferring_execution.md",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/concept_guides/training_tpu.md",
       "track": "Accelerate",
       "package": "accelerate",
-      "title": "Executing and deferring jobs"
+      "title": "Training on TPUs"
+    },
+    {
+      "rel": "accelerate/concept_guides/big_model_inference.md",
+      "bytes": 17640,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/concept_guides/big_model_inference.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Loading big models into memory"
+    },
+    {
+      "rel": "accelerate/concept_guides/low_precision_training.md",
+      "bytes": 3247,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/concept_guides/low_precision_training.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Low precision training methods"
+    },
+    {
+      "rel": "accelerate/usage_guides/profiler.md",
+      "bytes": 12986,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/profiler.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Profiler"
+    },
+    {
+      "rel": "accelerate/usage_guides/deepspeed_multiple_model.md",
+      "bytes": 9156,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/deepspeed_multiple_model.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Using multiple models with DeepSpeed"
+    },
+    {
+      "rel": "accelerate/usage_guides/megatron_lm.md",
+      "bytes": 30697,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/megatron_lm.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Megatron-LM"
+    },
+    {
+      "rel": "accelerate/usage_guides/compilation.md",
+      "bytes": 4716,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/compilation.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Compilation"
+    },
+    {
+      "rel": "accelerate/usage_guides/ddp_comm_hook.md",
+      "bytes": 9562,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/ddp_comm_hook.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "DDP Communication Hooks"
+    },
+    {
+      "rel": "accelerate/usage_guides/training_zoo.md",
+      "bytes": 16618,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/training_zoo.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Example Zoo"
+    },
+    {
+      "rel": "accelerate/usage_guides/local_sgd.md",
+      "bytes": 4343,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/local_sgd.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Using Local SGD with Accelerate"
+    },
+    {
+      "rel": "accelerate/usage_guides/fsdp.md",
+      "bytes": 10603,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/fsdp.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Fully Sharded Data Parallel"
+    },
+    {
+      "rel": "accelerate/usage_guides/intel_cpu.md",
+      "bytes": 5931,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/intel_cpu.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Training on Intel CPU"
+    },
+    {
+      "rel": "accelerate/usage_guides/deepspeed.md",
+      "bytes": 30535,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/deepspeed.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "DeepSpeed"
+    },
+    {
+      "rel": "accelerate/usage_guides/mps.md",
+      "bytes": 2393,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/mps.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Accelerated PyTorch Training on Mac"
+    },
+    {
+      "rel": "accelerate/usage_guides/tracking.md",
+      "bytes": 8923,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/tracking.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Experiment trackers"
+    },
+    {
+      "rel": "accelerate/usage_guides/quantization.md",
+      "bytes": 6277,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/quantization.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Model quantization"
+    },
+    {
+      "rel": "accelerate/usage_guides/explore.md",
+      "bytes": 1093,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/explore.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Start Here!"
+    },
+    {
+      "rel": "accelerate/usage_guides/big_modeling.md",
+      "bytes": 5114,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/big_modeling.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Big Model Inference"
+    },
+    {
+      "rel": "accelerate/usage_guides/sagemaker.md",
+      "bytes": 7085,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/sagemaker.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Amazon SageMaker"
+    },
+    {
+      "rel": "accelerate/usage_guides/checkpoint.md",
+      "bytes": 3807,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/checkpoint.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Checkpointing"
+    },
+    {
+      "rel": "accelerate/usage_guides/gradient_accumulation.md",
+      "bytes": 21247,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/gradient_accumulation.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Performing gradient accumulation with Accelerate"
+    },
+    {
+      "rel": "accelerate/usage_guides/model_size_estimator.md",
+      "bytes": 5444,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/model_size_estimator.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Model memory estimator"
+    },
+    {
+      "rel": "accelerate/usage_guides/distributed_inference.md",
+      "bytes": 5609,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/distributed_inference.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Distributed inference"
+    },
+    {
+      "rel": "accelerate/usage_guides/low_precision_training.md",
+      "bytes": 7185,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/low_precision_training.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Low Precision Training Methods"
+    },
+    {
+      "rel": "accelerate/usage_guides/gaudi.md",
+      "bytes": 1964,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/gaudi.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Intel Gaudi"
+    },
+    {
+      "rel": "accelerate/package_reference/torch_wrappers.md",
+      "bytes": 18068,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/package_reference/torch_wrappers.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "DataLoaders, Optimizers, and Schedulers"
+    },
+    {
+      "rel": "accelerate/package_reference/megatron_lm.md",
+      "bytes": 10997,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/package_reference/megatron_lm.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Megatron-LM utilities"
+    },
+    {
+      "rel": "accelerate/package_reference/cli.md",
+      "bytes": 17913,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/package_reference/cli.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "The Command Line"
+    },
+    {
+      "rel": "accelerate/package_reference/state.md",
+      "bytes": 17580,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/package_reference/state.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Stateful Classes"
+    },
+    {
+      "rel": "accelerate/package_reference/fsdp.md",
+      "bytes": 14087,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/package_reference/fsdp.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Fully Sharded Data Parallel utilities"
+    },
+    {
+      "rel": "accelerate/package_reference/fp8.md",
+      "bytes": 6035,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/package_reference/fp8.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "FP8"
+    },
+    {
+      "rel": "accelerate/package_reference/accelerator.md",
+      "bytes": 60133,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/package_reference/accelerator.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Accelerator"
+    },
+    {
+      "rel": "accelerate/package_reference/deepspeed.md",
+      "bytes": 7319,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/package_reference/deepspeed.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "DeepSpeed utilities"
+    },
+    {
+      "rel": "accelerate/package_reference/logging.md",
+      "bytes": 4284,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/package_reference/logging.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Logging[[accelerate.logging.get_logger]]"
+    },
+    {
+      "rel": "accelerate/package_reference/tracking.md",
+      "bytes": 14136,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/package_reference/tracking.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Experiment Trackers"
+    },
+    {
+      "rel": "accelerate/package_reference/big_modeling.md",
+      "bytes": 39949,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/package_reference/big_modeling.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Working with large models"
+    },
+    {
+      "rel": "accelerate/package_reference/kwargs.md",
+      "bytes": 8657,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/package_reference/kwargs.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Kwargs handlers"
+    },
+    {
+      "rel": "accelerate/package_reference/utilities.md",
+      "bytes": 88652,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/package_reference/utilities.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Utility functions and classes"
+    },
+    {
+      "rel": "accelerate/package_reference/launchers.md",
+      "bytes": 4148,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/package_reference/launchers.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Launchers"
+    },
+    {
+      "rel": "accelerate/basic_tutorials/execution.md",
+      "bytes": 4110,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/basic_tutorials/execution.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Execution process"
+    },
+    {
+      "rel": "accelerate/basic_tutorials/notebook.md",
+      "bytes": 16916,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/basic_tutorials/notebook.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Launching distributed training from Jupyter Notebooks"
+    },
+    {
+      "rel": "accelerate/basic_tutorials/overview.md",
+      "bytes": 616,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/basic_tutorials/overview.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Overview"
+    },
+    {
+      "rel": "accelerate/basic_tutorials/migration.md",
+      "bytes": 12534,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/basic_tutorials/migration.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Add Accelerate to your code"
+    },
+    {
+      "rel": "accelerate/basic_tutorials/troubleshooting.md",
+      "bytes": 10508,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/basic_tutorials/troubleshooting.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Troubleshoot"
+    },
+    {
+      "rel": "accelerate/basic_tutorials/launch.md",
+      "bytes": 8586,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/basic_tutorials/launch.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Launching Accelerate scripts"
+    },
+    {
+      "rel": "accelerate/basic_tutorials/tpu.md",
+      "bytes": 1997,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/basic_tutorials/tpu.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "TPU training"
+    },
+    {
+      "rel": "accelerate/basic_tutorials/install.md",
+      "bytes": 2800,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/accelerate/v1.16.0/basic_tutorials/install.md",
+      "track": "Accelerate",
+      "package": "accelerate",
+      "title": "Installation"
     },
     {
       "rel": "autotrain/support.md",
@@ -6789,7 +6780,7 @@
     },
     {
       "rel": "hub/publisher-analytics.md",
-      "bytes": 4233,
+      "bytes": 4414,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/publisher-analytics.md",
       "track": "Hub",
@@ -7419,7 +7410,7 @@
     },
     {
       "rel": "hub/storage-buckets-s3.md",
-      "bytes": 14418,
+      "bytes": 15154,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/storage-buckets-s3.md",
       "track": "Hub",
@@ -8490,7 +8481,7 @@
     },
     {
       "rel": "inference-providers/guides/building-first-app.md",
-      "bytes": 18494,
+      "bytes": 18628,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/building-first-app.md",
       "track": "Inference Providers",
@@ -8526,7 +8517,7 @@
     },
     {
       "rel": "inference-providers/guides/function-calling.md",
-      "bytes": 16293,
+      "bytes": 16294,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/function-calling.md",
       "track": "Inference Providers",
@@ -9030,7 +9021,7 @@
     },
     {
       "rel": "kernels/builder/security.md",
-      "bytes": 3543,
+      "bytes": 3436,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/security.md",
       "track": "Kernels",
@@ -20336,34 +20327,34 @@
       "rel": "trl/index.md",
       "bytes": 4479,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/index.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/index.md",
       "track": "TRL",
       "package": "trl",
       "title": "TRL - Transformers Reinforcement Learning"
     },
     {
       "rel": "trl/a2po_trainer.md",
-      "bytes": 17182,
+      "bytes": 17189,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/a2po_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/a2po_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "A2PO"
     },
     {
       "rel": "trl/gold_trainer.md",
-      "bytes": 38276,
+      "bytes": 38283,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/gold_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/gold_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "General Online Logit Distillation (GOLD) Trainer"
     },
     {
       "rel": "trl/gkd_trainer.md",
-      "bytes": 21276,
+      "bytes": 21283,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/gkd_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/gkd_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "Generalized Knowledge Distillation Trainer"
@@ -20372,7 +20363,7 @@
       "rel": "trl/lora_without_regret.md",
       "bytes": 14409,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/lora_without_regret.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/lora_without_regret.md",
       "track": "TRL",
       "package": "trl",
       "title": "LoRA Without Regret"
@@ -20381,7 +20372,7 @@
       "rel": "trl/merge_model_callback.md",
       "bytes": 1466,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/merge_model_callback.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/merge_model_callback.md",
       "track": "TRL",
       "package": "trl",
       "title": "MergeModelCallback[[trl.experimental.merge_model_callback.MergeModelCallback]]"
@@ -20390,34 +20381,34 @@
       "rel": "trl/example_overview.md",
       "bytes": 18255,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/example_overview.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/example_overview.md",
       "track": "TRL",
       "package": "trl",
       "title": "Examples"
     },
     {
       "rel": "trl/cpo_trainer.md",
-      "bytes": 29472,
+      "bytes": 29479,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/cpo_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/cpo_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "CPO Trainer"
     },
     {
       "rel": "trl/sdft_trainer.md",
-      "bytes": 28401,
+      "bytes": 28408,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/sdft_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/sdft_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "SDFT"
     },
     {
       "rel": "trl/async_grpo_trainer.md",
-      "bytes": 115133,
+      "bytes": 115140,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/async_grpo_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/async_grpo_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "Asynchronous GRPO Trainer"
@@ -20426,7 +20417,7 @@
       "rel": "trl/community_tutorials.md",
       "bytes": 11014,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/community_tutorials.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/community_tutorials.md",
       "track": "TRL",
       "package": "trl",
       "title": "Community Tutorials"
@@ -20435,16 +20426,16 @@
       "rel": "trl/chat_template_utils.md",
       "bytes": 7367,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/chat_template_utils.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/chat_template_utils.md",
       "track": "TRL",
       "package": "trl",
       "title": "Chat template utilities"
     },
     {
       "rel": "trl/chat_templates.md",
-      "bytes": 21789,
+      "bytes": 22063,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/chat_templates.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/chat_templates.md",
       "track": "TRL",
       "package": "trl",
       "title": "Chat Templates"
@@ -20453,7 +20444,7 @@
       "rel": "trl/aws_trainium.md",
       "bytes": 4669,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/aws_trainium.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/aws_trainium.md",
       "track": "TRL",
       "package": "trl",
       "title": "Training on AWS Trainium"
@@ -20462,7 +20453,7 @@
       "rel": "trl/harbor.md",
       "bytes": 13860,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/harbor.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/harbor.md",
       "track": "TRL",
       "package": "trl",
       "title": "Harbor Integration for Training LLMs with Environments"
@@ -20471,7 +20462,7 @@
       "rel": "trl/unsloth_integration.md",
       "bytes": 5309,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/unsloth_integration.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/unsloth_integration.md",
       "track": "TRL",
       "package": "trl",
       "title": "Unsloth Integration"
@@ -20480,7 +20471,7 @@
       "rel": "trl/paper_index.md",
       "bytes": 101724,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/paper_index.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/paper_index.md",
       "track": "TRL",
       "package": "trl",
       "title": "Paper Index"
@@ -20489,7 +20480,7 @@
       "rel": "trl/quickstart.md",
       "bytes": 3824,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/quickstart.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/quickstart.md",
       "track": "TRL",
       "package": "trl",
       "title": "Quickstart"
@@ -20498,7 +20489,7 @@
       "rel": "trl/openenv.md",
       "bytes": 40062,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/openenv.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/openenv.md",
       "track": "TRL",
       "package": "trl",
       "title": "OpenEnv Integration for Training LLMs with Environments"
@@ -20507,7 +20498,7 @@
       "rel": "trl/customization.md",
       "bytes": 7533,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/customization.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/customization.md",
       "track": "TRL",
       "package": "trl",
       "title": "Training customization"
@@ -20516,7 +20507,7 @@
       "rel": "trl/speeding_up_training.md",
       "bytes": 5445,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/speeding_up_training.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/speeding_up_training.md",
       "track": "TRL",
       "package": "trl",
       "title": "Speeding Up Training"
@@ -20525,7 +20516,7 @@
       "rel": "trl/installation.md",
       "bytes": 801,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/installation.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/installation.md",
       "track": "TRL",
       "package": "trl",
       "title": "Installation"
@@ -20534,7 +20525,7 @@
       "rel": "trl/jobs_training.md",
       "bytes": 17468,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/jobs_training.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/jobs_training.md",
       "track": "TRL",
       "package": "trl",
       "title": "Training with Jobs"
@@ -20543,7 +20534,7 @@
       "rel": "trl/callbacks.md",
       "bytes": 9010,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/callbacks.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/callbacks.md",
       "track": "TRL",
       "package": "trl",
       "title": "Callbacks"
@@ -20552,16 +20543,16 @@
       "rel": "trl/script_utils.md",
       "bytes": 11269,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/script_utils.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/script_utils.md",
       "track": "TRL",
       "package": "trl",
       "title": "Scripts Utilities"
     },
     {
       "rel": "trl/rewards.md",
-      "bytes": 12549,
+      "bytes": 12550,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/rewards.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/rewards.md",
       "track": "TRL",
       "package": "trl",
       "title": "Reward Functions"
@@ -20570,34 +20561,34 @@
       "rel": "trl/clis.md",
       "bytes": 13161,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/clis.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/clis.md",
       "track": "TRL",
       "package": "trl",
       "title": "Command Line Interfaces (CLIs)"
     },
     {
       "rel": "trl/sft_trainer.md",
-      "bytes": 44138,
+      "bytes": 44145,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/sft_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/sft_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "SFT Trainer"
     },
     {
       "rel": "trl/online_dpo_trainer.md",
-      "bytes": 36298,
+      "bytes": 36305,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/online_dpo_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/online_dpo_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "Online DPO Trainer"
     },
     {
       "rel": "trl/async_distillation_trainer.md",
-      "bytes": 59866,
+      "bytes": 59873,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/async_distillation_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/async_distillation_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "Async Distillation"
@@ -20606,16 +20597,16 @@
       "rel": "trl/experimental_overview.md",
       "bytes": 3111,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/experimental_overview.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/experimental_overview.md",
       "track": "TRL",
       "package": "trl",
       "title": "Experimental"
     },
     {
       "rel": "trl/rloo_trainer.md",
-      "bytes": 69175,
+      "bytes": 69182,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/rloo_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/rloo_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "RLOO Trainer"
@@ -20624,7 +20615,7 @@
       "rel": "trl/amd_gpus.md",
       "bytes": 1426,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/amd_gpus.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/amd_gpus.md",
       "track": "TRL",
       "package": "trl",
       "title": "Training on AMD GPUs"
@@ -20633,16 +20624,16 @@
       "rel": "trl/vllm_integration.md",
       "bytes": 8991,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/vllm_integration.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/vllm_integration.md",
       "track": "TRL",
       "package": "trl",
       "title": "vLLM Integration"
     },
     {
       "rel": "trl/sdpo_trainer.md",
-      "bytes": 35912,
+      "bytes": 35919,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/sdpo_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/sdpo_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "SDPO"
@@ -20651,7 +20642,7 @@
       "rel": "trl/peft_integration.md",
       "bytes": 22574,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/peft_integration.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/peft_integration.md",
       "track": "TRL",
       "package": "trl",
       "title": "PEFT Integration"
@@ -20660,16 +20651,16 @@
       "rel": "trl/data_utils.md",
       "bytes": 7421,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/data_utils.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/data_utils.md",
       "track": "TRL",
       "package": "trl",
       "title": "Data Utilities"
     },
     {
       "rel": "trl/iw_opd_trainer.md",
-      "bytes": 21836,
+      "bytes": 21843,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/iw_opd_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/iw_opd_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "IW-OPD"
@@ -20678,7 +20669,7 @@
       "rel": "trl/trackio_integration.md",
       "bytes": 2002,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/trackio_integration.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/trackio_integration.md",
       "track": "TRL",
       "package": "trl",
       "title": "Trackio Integration"
@@ -20687,16 +20678,16 @@
       "rel": "trl/dataset_formats.md",
       "bytes": 36909,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/dataset_formats.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/dataset_formats.md",
       "track": "TRL",
       "package": "trl",
       "title": "Dataset formats and types"
     },
     {
       "rel": "trl/gmpo.md",
-      "bytes": 14111,
+      "bytes": 14118,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/gmpo.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/gmpo.md",
       "track": "TRL",
       "package": "trl",
       "title": "GMPO"
@@ -20705,16 +20696,16 @@
       "rel": "trl/long_context_training.md",
       "bytes": 13386,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/long_context_training.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/long_context_training.md",
       "track": "TRL",
       "package": "trl",
       "title": "Training Beyond 1M Tokens"
     },
     {
       "rel": "trl/distillation_trainer.md",
-      "bytes": 41245,
+      "bytes": 41252,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/distillation_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/distillation_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "Distillation Trainer"
@@ -20723,7 +20714,7 @@
       "rel": "trl/usage_stats.md",
       "bytes": 2610,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/usage_stats.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/usage_stats.md",
       "track": "TRL",
       "package": "trl",
       "title": "Usage Stats Collection"
@@ -20732,7 +20723,7 @@
       "rel": "trl/bema_for_reference_model.md",
       "bytes": 7407,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/bema_for_reference_model.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/bema_for_reference_model.md",
       "track": "TRL",
       "package": "trl",
       "title": "BEMA for Reference Model"
@@ -20741,7 +20732,7 @@
       "rel": "trl/rapidfire_integration.md",
       "bytes": 17854,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/rapidfire_integration.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/rapidfire_integration.md",
       "track": "TRL",
       "package": "trl",
       "title": "RapidFire AI Integration"
@@ -20750,16 +20741,16 @@
       "rel": "trl/distributing_training.md",
       "bytes": 3920,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/distributing_training.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/distributing_training.md",
       "track": "TRL",
       "package": "trl",
       "title": "Distributing Training"
     },
     {
       "rel": "trl/grpo_trainer.md",
-      "bytes": 116220,
+      "bytes": 116227,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/grpo_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/grpo_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "GRPO Trainer"
@@ -20768,7 +20759,7 @@
       "rel": "trl/deepspeed_integration.md",
       "bytes": 2117,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/deepspeed_integration.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/deepspeed_integration.md",
       "track": "TRL",
       "package": "trl",
       "title": "DeepSpeed Integration"
@@ -20777,34 +20768,34 @@
       "rel": "trl/kernels_hub.md",
       "bytes": 5034,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/kernels_hub.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/kernels_hub.md",
       "track": "TRL",
       "package": "trl",
       "title": "Kernels Hub Integration and Usage"
     },
     {
       "rel": "trl/reward_trainer.md",
-      "bytes": 32004,
+      "bytes": 32011,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/reward_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/reward_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "Reward Modeling"
     },
     {
       "rel": "trl/dpo_trainer.md",
-      "bytes": 46937,
+      "bytes": 46944,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/dpo_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/dpo_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "DPO Trainer"
     },
     {
       "rel": "trl/kto_trainer.md",
-      "bytes": 42422,
+      "bytes": 42429,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/kto_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/kto_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "KTO Trainer"
@@ -20813,7 +20804,7 @@
       "rel": "trl/openreward.md",
       "bytes": 13067,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/openreward.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/openreward.md",
       "track": "TRL",
       "package": "trl",
       "title": "OpenReward Integration for Training LLMs with Environments"
@@ -20822,16 +20813,16 @@
       "rel": "trl/reducing_memory_usage.md",
       "bytes": 12564,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/reducing_memory_usage.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/reducing_memory_usage.md",
       "track": "TRL",
       "package": "trl",
       "title": "Reducing Memory Usage"
     },
     {
       "rel": "trl/orpo_trainer.md",
-      "bytes": 24077,
+      "bytes": 24084,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/orpo_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/orpo_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "ORPO Trainer"
@@ -20840,7 +20831,7 @@
       "rel": "trl/use_model.md",
       "bytes": 2432,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.18.0/use_model.md",
+      "url": "https://huggingface.co/docs/trl/v1.18.1/use_model.md",
       "track": "TRL",
       "package": "trl",
       "title": "Use model after training"
@@ -20957,10 +20948,10 @@
   "packageStats": [
     {
       "pkg": "accelerate",
-      "toc": 58,
-      "found": 58,
-      "written": 58,
-      "full_bytes": 708620
+      "toc": 57,
+      "found": 57,
+      "written": 57,
+      "full_bytes": 698295
     },
     {
       "pkg": "autotrain",
@@ -21009,7 +21000,7 @@
       "toc": 281,
       "found": 280,
       "written": 280,
-      "full_bytes": 1625560
+      "full_bytes": 1626477
     },
     {
       "pkg": "huggingface_hub",
@@ -21030,14 +21021,14 @@
       "toc": 51,
       "found": 31,
       "written": 31,
-      "full_bytes": 344659
+      "full_bytes": 344794
     },
     {
       "pkg": "kernels",
       "toc": 41,
       "found": 41,
       "written": 41,
-      "full_bytes": 257089
+      "full_bytes": 256982
     },
     {
       "pkg": "lerobot",
@@ -21121,7 +21112,7 @@
       "toc": 57,
       "found": 57,
       "written": 57,
-      "full_bytes": 1325821
+      "full_bytes": 1326229
     },
     {
       "pkg": "xet",

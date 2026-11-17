@@ -26,7 +26,7 @@ with init_empty_weights():
 
 Next, the weights are loaded into the model for inference.
 
-The [load_checkpoint_and_dispatch()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch) method loads a checkpoint inside your empty model and dispatches the weights for each layer across all available devices, starting with the fastest devices (GPU, MPS, XPU, NPU, MLU, SDAA, MUSA) first before moving to the slower ones (CPU and hard drive).
+The [load_checkpoint_and_dispatch()](/docs/accelerate/v1.16.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch) method loads a checkpoint inside your empty model and dispatches the weights for each layer across all available devices, starting with the fastest devices (GPU, MPS, XPU, NPU, MLU, SDAA, MUSA) first before moving to the slower ones (CPU and hard drive).
 
 Setting `device_map="auto"` automatically fills all available space on the GPU(s) first, then the CPU, and finally, the hard drive (the absolute slowest option) if there is still not enough memory.
 
@@ -58,9 +58,6 @@ Each time an input is passed through a layer, it is sent from the CPU to the GPU
 
 Multiple GPUs, or "model parallelism", can be utilized but only one GPU will be active at any given moment. This forces the GPU to wait for the previous GPU to send it the output. You should launch your script normally with Python instead of other tools like torchrun and accelerate launch.
 
-> [!TIP]
-> You may also be interested in *pipeline parallelism* which utilizes all available GPUs at once, instead of only having one GPU active at a time. This approach is less flexible though. For more details, refer to the [Memory-efficient pipeline parallelism](./distributed_inference#memory-efficient-pipeline-parallelism-experimental) guide.
-
 Take a look at a full example of Big Model Inference below.
 
 ```py
@@ -82,9 +79,9 @@ output = model(input)
 
 ## Hugging Face ecosystem
 
-Other libraries in the Hugging Face ecosystem, like Transformers or Diffusers, supports Big Model Inference in their [from_pretrained](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) constructors.
+Other libraries in the Hugging Face ecosystem, like Transformers or Diffusers, supports Big Model Inference in their [from_pretrained](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) constructors.
 
-You just need to add `device_map="auto"` in [from_pretrained](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to enable Big Model Inference.
+You just need to add `device_map="auto"` in [from_pretrained](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to enable Big Model Inference.
 
 For example, load Big Sciences T0pp 11 billion parameter model with Big Model Inference.
 
@@ -106,5 +103,5 @@ model = AutoModelForSeq2SeqLM.from_pretrained("bigscience/T0pp", device_map="aut
 
 For a more detailed explanation of Big Model Inference, make sure to check out the [conceptual guide](../concept_guides/big_model_inference)!
 
-### Training on Intel CPU
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/intel_cpu.md
+### Amazon SageMaker
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/sagemaker.md

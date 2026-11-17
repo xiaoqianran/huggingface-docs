@@ -5,8 +5,8 @@ where you should be careful and why, as well as the best practices in general.
 
 ## Training in a Notebook
 
-The main carepoint when training on TPUs comes from the [notebook_launcher()](/docs/accelerate/v1.15.0/en/package_reference/launchers#accelerate.notebook_launcher). As mentioned in the [notebook tutorial](../usage_guides/notebook), you need to 
-restructure your training code into a function that can get passed to the [notebook_launcher()](/docs/accelerate/v1.15.0/en/package_reference/launchers#accelerate.notebook_launcher) function and be careful about not declaring any tensors on the GPU.
+The main carepoint when training on TPUs comes from the [notebook_launcher()](/docs/accelerate/v1.16.0/en/package_reference/launchers#accelerate.notebook_launcher). As mentioned in the [notebook tutorial](../basic_tutorials/notebook), you need to 
+restructure your training code into a function that can get passed to the [notebook_launcher()](/docs/accelerate/v1.16.0/en/package_reference/launchers#accelerate.notebook_launcher) function and be careful about not declaring any tensors on the GPU.
 
 While on a TPU that last part is not as important, a critical part to understand is that when you launch code from a notebook you do so through a process called **forking**. 
 When launching from the command-line, you perform **spawning**, where a python process is not currently running and you *spawn* a new process in. Since your Jupyter notebook is already 
@@ -17,7 +17,7 @@ training function. This is different than training on GPUs where you create `n` 
 model instance is shared between all the nodes and it is passed back and forth. This is important especially when training on low-resource TPUs such as those provided in Kaggle kernels or
 on Google Colaboratory. 
 
-Below is an example of a training function passed to the [notebook_launcher()](/docs/accelerate/v1.15.0/en/package_reference/launchers#accelerate.notebook_launcher) if training on CPUs or GPUs:
+Below is an example of a training function passed to the [notebook_launcher()](/docs/accelerate/v1.16.0/en/package_reference/launchers#accelerate.notebook_launcher) if training on CPUs or GPUs:
 
     This code snippet is based off the one from the `simple_nlp_example` notebook found [here](https://github.com/huggingface/notebooks/blob/main/examples/accelerate_examples/simple_nlp_example.ipynb) with slight 
     modifications for the sake of simplicity
@@ -101,7 +101,7 @@ And finally calling the training function with:
 
 ## Mixed Precision and Global Variables 
 
-As mentioned in the [mixed precision tutorial](../usage_guides/mixed_precision), Accelerate supports fp16 and bf16, both of which can be used on TPUs.
+As mentioned in the [mixed precision section of the migration tutorial](../basic_tutorials/migration#mixed-precision), Accelerate supports fp16 and bf16, both of which can be used on TPUs.
 That being said, ideally `bf16` should be utilized as it is extremely efficient to use.
 
 There are two "layers" when using `bf16` and Accelerate on TPUs, at the base level and at the operation level. 
@@ -135,5 +135,5 @@ new batch size after the first few iterations.
 
     Just because the memory is allocated does not mean it will be used or that the batch size will increase when going back to your training dataloader.
 
-### FSDP1 vs FSDP2
-https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/fsdp1_vs_fsdp2.md
+### Loading big models into memory
+https://huggingface.co/docs/accelerate/v1.16.0/concept_guides/big_model_inference.md

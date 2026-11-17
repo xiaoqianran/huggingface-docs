@@ -63,7 +63,7 @@ You could also use the `accelerate.utils.compile_regions` utility directly the s
 
 ### Benefits of Regional Compilation
 
-We have conducted extensive benchmarks comparing full compilation and regional compilation using the `torch.compile` feature in PyTorch. The full results are available in the [accelerate repository](https://github.com/huggingface/accelerate/tree/main/benchmarks/torch.compile/regional_compilation). The key findings from our benchmarks are:
+We have conducted extensive benchmarks comparing full compilation and regional compilation using the `torch.compile` feature in PyTorch. The full results are available in the [accelerate repository](https://github.com/huggingface/accelerate/tree/main/benchmarks/torch.compile). The key findings from our benchmarks are:
 
 1. **Comparable Performance**: Regional compilation delivers performance speedups similar to full compilation, especially for larger models.
 2. **Faster Compilation**: Regional compilation significantly reduces the time taken to compile models, making it a more efficient choice for deployment.
@@ -75,5 +75,5 @@ We have conducted extensive benchmarks comparing full compilation and regional c
 
 Both full and regional compilation can significantly speed up your models. Regional compilation offers a practical balance between compilation time and runtime performance, especially for training large models with substantial batch sizes.
 
-### Profiler
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/profiler.md
+### DDP Communication Hooks
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/ddp_comm_hook.md

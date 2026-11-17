@@ -6,7 +6,7 @@ Below are a variety of utility functions that 🤗 Accelerate provides, broken d
 
 Constants used throughout 🤗 Accelerate for reference
 
-The following are constants used when utilizing [Accelerator.save_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.save_state)
+The following are constants used when utilizing [Accelerator.save_state()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.save_state)
 
 `utils.MODEL_NAME`: `"pytorch_model"`
 `utils.OPTIMIZER_NAME`: `"optimizer"`
@@ -14,7 +14,7 @@ The following are constants used when utilizing [Accelerator.save_state()](/docs
 `utils.SCALER_NAME`: `"scaler.pt`
 `utils.SCHEDULER_NAME`: `"scheduler`
 
-The following are constants used when utilizing [Accelerator.save_model()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.save_model)
+The following are constants used when utilizing [Accelerator.save_model()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.save_model)
 
 `utils.WEIGHTS_NAME`: `"pytorch_model.bin"`
 `utils.SAFE_WEIGHTS_NAME`: `"model.safetensors"`
@@ -32,10 +32,10 @@ These are standalone dataclasses used for checks, such as the type of distribute
 #### accelerate.utils.ComputeEnvironment[[accelerate.utils.ComputeEnvironment]]
 
 ```python
-accelerate.utils.ComputeEnvironment(value, names = None, module = None, qualname = None, type = None, start = 1)
+accelerate.utils.ComputeEnvironment(*values)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L675)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L595)
 
 Represents a type of the compute environment.
 
@@ -47,10 +47,10 @@ Values:
 #### accelerate.DistributedType[[accelerate.DistributedType]]
 
 ```python
-accelerate.DistributedType(value, names = None, module = None, qualname = None, type = None, start = 1)
+accelerate.DistributedType(*values)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L602)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L524)
 
 Represents a type of distributed environment.
 
@@ -74,10 +74,10 @@ Values:
 #### accelerate.utils.DynamoBackend[[accelerate.utils.DynamoBackend]]
 
 ```python
-accelerate.utils.DynamoBackend(value, names = None, module = None, qualname = None, type = None, start = 1)
+accelerate.utils.DynamoBackend(*values)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L690)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L610)
 
 Represents a dynamo backend (see https://pytorch.org/docs/stable/torch.compiler.html).
 
@@ -114,10 +114,10 @@ Values:
 #### accelerate.utils.LoggerType[[accelerate.utils.LoggerType]]
 
 ```python
-accelerate.utils.LoggerType(value, names = None, module = None, qualname = None, type = None, start = 1)
+accelerate.utils.LoggerType(*values)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L745)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L665)
 
 Represents a type of supported experiment tracker
 
@@ -136,10 +136,10 @@ Values:
 #### accelerate.utils.PrecisionType[[accelerate.utils.PrecisionType]]
 
 ```python
-accelerate.utils.PrecisionType(value, names = None, module = None, qualname = None, type = None, start = 1)
+accelerate.utils.PrecisionType(*values)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L773)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L693)
 
 Represents a type of precision used on floating point values
 
@@ -152,20 +152,18 @@ Values:
 #### accelerate.utils.RNGType[[accelerate.utils.RNGType]]
 
 ```python
-accelerate.utils.RNGType(value, names = None, module = None, qualname = None, type = None, start = 1)
+accelerate.utils.RNGType(*values)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L789)
-
-An enumeration.
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L709)
 
 #### accelerate.utils.SageMakerDistributedType[[accelerate.utils.SageMakerDistributedType]]
 
 ```python
-accelerate.utils.SageMakerDistributedType(value, names = None, module = None, qualname = None, type = None, start = 1)
+accelerate.utils.SageMakerDistributedType(*values)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L641)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L563)
 
 Represents a type of distributed environment.
 
@@ -182,12 +180,12 @@ These are configurable arguments for specific interactions throughout the PyTorc
 #### accelerate.AutocastKwargs[[accelerate.AutocastKwargs]]
 
 ```python
-accelerate.AutocastKwargs(enabled: bool = True, cache_enabled: typing.Optional[bool] = None)
+accelerate.AutocastKwargs(enabled: bool = True, cache_enabled: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L115)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L104)
 
-Use this object in your [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) to customize how `torch.autocast` behaves. Please refer to the
+Use this object in your [Accelerator](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator) to customize how `torch.autocast` behaves. Please refer to the
 documentation of this [context manager](https://pytorch.org/docs/stable/amp.html#torch.autocast) for more
 information on each argument.
 
@@ -207,16 +205,12 @@ accelerator = Accelerator(kwargs_handlers=[kwargs])
 accelerate.DistributedDataParallelKwargs(dim: int = 0, broadcast_buffers: bool = True, bucket_cap_mb: int = 25, find_unused_parameters: bool = False, check_reduction: bool = False, gradient_as_bucket_view: bool = False, static_graph: bool = False, comm_hook: DDPCommunicationHookType = <DDPCommunicationHookType.NO: 'no'>, comm_wrapper: typing.Literal[<DDPCommunicationHookType.NO: 'no'>, <DDPCommunicationHookType.FP16: 'fp16'>, <DDPCommunicationHookType.BF16: 'bf16'>] = <DDPCommunicationHookType.NO: 'no'>, comm_state_option: dict = <factory>)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L157)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L146)
 
-Use this object in your [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) to customize how your model is wrapped in a
+Use this object in your [Accelerator](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator) to customize how your model is wrapped in a
 `torch.nn.parallel.DistributedDataParallel`. Please refer to the documentation of this
 [wrapper](https://pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html) for more
 information on each argument.
-
-`gradient_as_bucket_view` is only available in PyTorch 1.7.0 and later versions.
-
-`static_graph` is only available in PyTorch 1.11.0 and later versions.
 
 Example:
 
@@ -228,31 +222,17 @@ kwargs = DistributedDataParallelKwargs(find_unused_parameters=True)
 accelerator = Accelerator(kwargs_handlers=[kwargs])
 ```
 
-#### accelerate.utils.FP8RecipeKwargs[[accelerate.utils.FP8RecipeKwargs]]
-
-```python
-accelerate.utils.FP8RecipeKwargs(opt_level: typing.Literal['O1', 'O2'] = None, use_autocast_during_eval: typing.Optional[bool] = None, margin: typing.Optional[int] = None, interval: typing.Optional[int] = None, fp8_format: typing.Literal['HYBRID', 'E4M3', 'E5M2'] = None, amax_history_len: typing.Optional[int] = None, amax_compute_algo: typing.Literal['max', 'most_recent'] = None, override_linear_precision: tuple = None, use_mxfp8_block_scaling: typing.Optional[bool] = None, backend: typing.Literal['MSAMP', 'TE'] = None)
-```
-
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L457)
-
-Deprecated. Please use one of the proper FP8 recipe kwargs classes such as `TERecipeKwargs` or `MSAMPRecipeKwargs`
-instead.
-
 #### accelerate.GradScalerKwargs[[accelerate.GradScalerKwargs]]
 
 ```python
 accelerate.GradScalerKwargs(init_scale: float = 65536.0, growth_factor: float = 2.0, backoff_factor: float = 0.5, growth_interval: int = 2000, enabled: bool = True)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L243)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L224)
 
-Use this object in your [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) to customize the behavior of mixed precision, specifically how the
+Use this object in your [Accelerator](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator) to customize the behavior of mixed precision, specifically how the
 `torch.amp.GradScaler` or `torch.cuda.amp.GradScaler` used is created. Please refer to the documentation of this
 [scaler](https://pytorch.org/docs/stable/amp.html?highlight=gradscaler) for more information on each argument.
-
-`torch.cuda.amp.GradScaler` is only available in PyTorch 1.5.0 and later versions, and `torch.amp.GradScaler` is
-only available in PyTorch 2.4.0 and later versions.
 
 Example:
 
@@ -267,12 +247,12 @@ accelerator = Accelerator(kwargs_handlers=[kwargs])
 #### accelerate.InitProcessGroupKwargs[[accelerate.InitProcessGroupKwargs]]
 
 ```python
-accelerate.InitProcessGroupKwargs(backend: typing.Optional[str] = 'nccl', init_method: typing.Optional[str] = None, timeout: typing.Optional[datetime.timedelta] = None)
+accelerate.InitProcessGroupKwargs(backend: str | None = 'nccl', init_method: str | None = None, timeout: datetime.timedelta | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L275)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L249)
 
-Use this object in your [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) to customize the initialization of the distributed processes. Please refer
+Use this object in your [Accelerator](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator) to customize the initialization of the distributed processes. Please refer
 to the documentation of this
 [method](https://pytorch.org/docs/stable/distributed.html#torch.distributed.init_process_group) for more
 information on each argument.
@@ -294,7 +274,7 @@ accelerator = Accelerator(kwargs_handlers=[kwargs])
 accelerate.utils.KwargsHandler()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L70)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L59)
 
 Internal mixin that implements a `to_kwargs()` method for a dataclass.
 
@@ -304,22 +284,22 @@ Internal mixin that implements a `to_kwargs()` method for a dataclass.
 to_kwargs()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L78)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L67)
 
 Returns a dictionary containing the attributes with values different from the default of this class.
 
 ## Plugins[[accelerate.DeepSpeedPlugin]]
 
-These are plugins that can be passed to the [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) object. While they are defined elsewhere in the documentation, 
+These are plugins that can be passed to the [Accelerator](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator) object. While they are defined elsewhere in the documentation, 
 for convenience all of them are available to see here:
 
 #### accelerate.DeepSpeedPlugin[[accelerate.DeepSpeedPlugin]]
 
 ```python
-accelerate.DeepSpeedPlugin(hf_ds_config: typing.Any = None, gradient_accumulation_steps: int = None, gradient_clipping: float = None, zero_stage: int = None, is_train_batch_min: bool = True, offload_optimizer_device: str = None, offload_param_device: str = None, offload_optimizer_nvme_path: str = None, offload_param_nvme_path: str = None, zero3_init_flag: bool = None, zero3_save_16bit_model: bool = None, transformer_moe_cls_names: str = None, enable_msamp: bool = None, msamp_opt_level: typing.Optional[typing.Literal['O1', 'O2']] = None)
+accelerate.DeepSpeedPlugin(hf_ds_config: Any = None, gradient_accumulation_steps: int = None, gradient_clipping: float = None, zero_stage: int = None, is_train_batch_min: bool = True, offload_optimizer_device: str = None, offload_param_device: str = None, offload_optimizer_nvme_path: str = None, offload_param_nvme_path: str = None, zero3_init_flag: bool = None, zero3_save_16bit_model: bool = None, transformer_moe_cls_names: str = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L1122)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1042)
 
 **Parameters:**
 
@@ -347,10 +327,6 @@ zero3_save_16bit_model (`bool`, defaults to `None`) : Flag to indicate whether t
 
 transformer_moe_cls_names (`str`, defaults to `None`) : Comma-separated list of Transformers MoE layer class names (case-sensitive). For example, `MixtralSparseMoeBlock`, `Qwen2MoeSparseMoeBlock`, `JetMoEAttention`, `JetMoEBlock`, etc.
 
-enable_msamp (`bool`, defaults to `None`) : Flag to indicate whether to enable MS-AMP backend for FP8 training.
-
-msamp_opt_level (`Optional[Literal["O1", "O2"]]`, defaults to `None`) : Optimization level for MS-AMP (defaults to 'O1'). Only applicable if `enable_msamp` is True. Should be one of ['O1' or 'O2'].
-
 This plugin is used to integrate DeepSpeed.
 
 #### deepspeed_config_process[[accelerate.DeepSpeedPlugin.deepspeed_config_process]]
@@ -359,7 +335,7 @@ This plugin is used to integrate DeepSpeed.
 deepspeed_config_process(prefix = '', mismatches = None, config = None, must_match = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L1392)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1278)
 
 Process the DeepSpeed config with the values from the kwargs.
 
@@ -369,17 +345,17 @@ Process the DeepSpeed config with the values from the kwargs.
 select(_from_accelerator_state: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L1554)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1433)
 
 Sets the HfDeepSpeedWeakref to use the current deepspeed plugin configuration
 
 #### accelerate.FullyShardedDataParallelPlugin[[accelerate.FullyShardedDataParallelPlugin]]
 
 ```python
-accelerate.FullyShardedDataParallelPlugin(fsdp_version: int = None, sharding_strategy: typing.Union[str, ForwardRef('torch.distributed.fsdp.ShardingStrategy')] = None, reshard_after_forward: typing.Union[str, ForwardRef('torch.distributed.fsdp.ShardingStrategy'), bool] = None, backward_prefetch: typing.Union[str, ForwardRef('torch.distributed.fsdp.BackwardPrefetch'), NoneType] = None, mixed_precision_policy: typing.Union[dict, str, ForwardRef('torch.distributed.fsdp.MixedPrecision'), ForwardRef('torch.distributed.fsdp.MixedPrecisionPolicy'), NoneType] = None, auto_wrap_policy: typing.Union[typing.Callable, typing.Literal['transformer_based_wrap', 'size_based_wrap', 'no_wrap'], NoneType] = None, cpu_offload: typing.Union[bool, ForwardRef('torch.distributed.fsdp.CPUOffload'), ForwardRef('torch.distributed.fsdp.CPUOffloadPolicy')] = None, ignored_modules: typing.Union[collections.abc.Iterable[torch.nn.Module], str, NoneType] = None, state_dict_type: typing.Union[str, ForwardRef('torch.distributed.fsdp.StateDictType')] = None, state_dict_config: typing.Union[ForwardRef('torch.distributed.fsdp.FullStateDictConfig'), ForwardRef('torch.distributed.fsdp.ShardedStateDictConfig'), NoneType] = None, optim_state_dict_config: typing.Union[ForwardRef('torch.distributed.fsdp.FullOptimStateDictConfig'), ForwardRef('torch.distributed.fsdp.ShardedOptimStateDictConfig'), NoneType] = None, limit_all_gathers: bool = True, use_orig_params: typing.Optional[bool] = None, param_init_fn: typing.Optional[typing.Callable[[torch.nn.Module], NoneType]] = None, sync_module_states: typing.Optional[bool] = None, forward_prefetch: bool = None, activation_checkpointing: bool = None, activation_checkpointing_offload: bool = None, cpu_ram_efficient_loading: bool = None, transformer_cls_names_to_wrap: typing.Optional[list[str]] = None, min_num_params: typing.Optional[int] = None)
+accelerate.FullyShardedDataParallelPlugin(fsdp_version: int = None, sharding_strategy: str | ForwardRef('torch.distributed.fsdp.ShardingStrategy') = None, reshard_after_forward: str | ForwardRef('torch.distributed.fsdp.ShardingStrategy') | bool = None, backward_prefetch: str | ForwardRef('torch.distributed.fsdp.BackwardPrefetch') | None = None, mixed_precision_policy: dict | str | ForwardRef('torch.distributed.fsdp.MixedPrecision') | ForwardRef('torch.distributed.fsdp.MixedPrecisionPolicy') | None = None, auto_wrap_policy: typing.Callable | typing.Literal['transformer_based_wrap', 'size_based_wrap', 'no_wrap'] | None = None, cpu_offload: bool | ForwardRef('torch.distributed.fsdp.CPUOffload') | ForwardRef('torch.distributed.fsdp.CPUOffloadPolicy') = None, ignored_modules: collections.abc.Iterable[torch.nn.Module] | str | None = None, state_dict_type: str | ForwardRef('torch.distributed.fsdp.StateDictType') = None, state_dict_config: ForwardRef('torch.distributed.fsdp.FullStateDictConfig') | ForwardRef('torch.distributed.fsdp.ShardedStateDictConfig') | None = None, optim_state_dict_config: ForwardRef('torch.distributed.fsdp.FullOptimStateDictConfig') | ForwardRef('torch.distributed.fsdp.ShardedOptimStateDictConfig') | None = None, limit_all_gathers: bool = True, use_orig_params: bool | None = None, param_init_fn: typing.Callable[[torch.nn.Module], NoneType] | None = None, sync_module_states: bool | None = None, forward_prefetch: bool = None, activation_checkpointing: bool = None, activation_checkpointing_offload: bool = None, cpu_ram_efficient_loading: bool = None, transformer_cls_names_to_wrap: list[str] | None = None, min_num_params: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L1586)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1465)
 
 **Parameters:**
 
@@ -431,7 +407,7 @@ This plugin is used to enable fully sharded data parallelism.
 set_auto_wrap_policy(model)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L2075)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1941)
 
 Given `model`, creates an `auto_wrap_policy` based on the passed in policy and if we can use the
 `transformer_cls_to_wrap`
@@ -442,7 +418,7 @@ Given `model`, creates an `auto_wrap_policy` based on the passed in policy and i
 set_mixed_precision(mixed_precision, buffer_autocast = False, override = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L2109)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1981)
 
 Sets the mixed precision policy for FSDP
 
@@ -452,7 +428,7 @@ Sets the mixed precision policy for FSDP
 set_state_dict_type(state_dict_type = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L2030)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1896)
 
 Set the state dict config based on the `StateDictType`.
 
@@ -462,7 +438,7 @@ Set the state dict config based on the `StateDictType`.
 validate_mixed_precision_policy()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L2161)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L2029)
 
 Validates the mixed precision policy, abstracted away to not bring in the imports if not needed.
 
@@ -472,7 +448,7 @@ Validates the mixed precision policy, abstracted away to not bring in the import
 accelerate.utils.GradientAccumulationPlugin(num_steps: int = None, adjust_scheduler: bool = True, sync_with_dataloader: bool = True, sync_each_batch: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L981)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L901)
 
 **Parameters:**
 
@@ -485,7 +461,7 @@ sync_with_dataloader (`bool`, *optional*, defaults to `True`) : Whether to synch
 sync_each_batch (`bool`, *optional*) : Whether to synchronize setting the gradients at each data batch. Setting to `True` may reduce memory requirements when using gradient accumulation with distributed training, at expense of speed.
 
 A plugin to configure gradient accumulation behavior. You can only pass one of `gradient_accumulation_plugin` or
-`gradient_accumulation_steps` to [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator). Passing both raises an error.
+`gradient_accumulation_steps` to [Accelerator](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator). Passing both raises an error.
 
 Example:
 
@@ -499,10 +475,10 @@ accelerator = Accelerator(gradient_accumulation_plugin=gradient_accumulation_plu
 #### accelerate.utils.MegatronLMPlugin[[accelerate.utils.MegatronLMPlugin]]
 
 ```python
-accelerate.utils.MegatronLMPlugin(tp_degree: int = None, pp_degree: int = None, use_custom_fsdp: bool = None, overlap_cpu_optimizer_d2h_h2d: bool = None, no_load_optim: bool = None, eod_mask_loss: bool = None, no_save_optim: bool = None, optimizer_cpu_offload: bool = None, use_precision_aware_optimizer: bool = None, decoder_last_pipeline_num_layers: int = None, recompute_granularity: str = None, recompute_method: str = None, recompute_num_layers: int = None, attention_backend: bool = None, expert_model_parallel_size: int = None, context_parallel_size: int = None, attention_dropout: float = None, hidden_dropout: float = None, attention_softmax_in_fp32: bool = None, expert_tensor_parallel_size: int = None, calculate_per_token_loss: bool = None, use_rotary_position_embeddings: bool = None, num_micro_batches: int = None, gradient_clipping: float = None, sequence_parallelism: bool = None, recompute_activations: bool = None, use_distributed_optimizer: bool = None, pipeline_model_parallel_split_rank: int = None, num_layers_per_virtual_pipeline_stage: int = None, is_train_batch_min: str = True, train_iters: int = None, train_samples: int = None, weight_decay_incr_style: str = 'constant', start_weight_decay: float = None, end_weight_decay: float = None, lr_decay_style: str = 'linear', lr_decay_iters: int = None, lr_decay_samples: int = None, lr_warmup_iters: int = None, lr_warmup_samples: int = None, lr_warmup_fraction: float = None, min_lr: float = 0, consumed_samples: list = None, no_wd_decay_cond: typing.Optional[typing.Callable] = None, scale_lr_cond: typing.Optional[typing.Callable] = None, lr_mult: float = 1.0, megatron_dataset_flag: bool = False, seq_length: int = None, encoder_seq_length: int = None, decoder_seq_length: int = None, tensorboard_dir: str = None, set_all_logging_options: bool = False, eval_iters: int = 100, eval_interval: int = 1000, return_logits: bool = False, custom_train_step_class: typing.Optional[typing.Any] = None, custom_train_step_kwargs: typing.Optional[dict[str, typing.Any]] = None, custom_model_provider_function: typing.Optional[typing.Callable] = None, custom_prepare_model_function: typing.Optional[typing.Callable] = None, custom_megatron_datasets_provider_function: typing.Optional[typing.Callable] = None, custom_get_batch_function: typing.Optional[typing.Callable] = None, custom_loss_function: typing.Optional[typing.Callable] = None, other_megatron_args: typing.Optional[dict[str, typing.Any]] = None)
+accelerate.utils.MegatronLMPlugin(tp_degree: int = None, pp_degree: int = None, use_custom_fsdp: bool = None, overlap_cpu_optimizer_d2h_h2d: bool = None, no_load_optim: bool = None, eod_mask_loss: bool = None, no_save_optim: bool = None, optimizer_cpu_offload: bool = None, use_precision_aware_optimizer: bool = None, decoder_last_pipeline_num_layers: int = None, recompute_granularity: str = None, recompute_method: str = None, recompute_num_layers: int = None, attention_backend: bool = None, expert_model_parallel_size: int = None, context_parallel_size: int = None, attention_dropout: float = None, hidden_dropout: float = None, attention_softmax_in_fp32: bool = None, expert_tensor_parallel_size: int = None, calculate_per_token_loss: bool = None, use_rotary_position_embeddings: bool = None, num_micro_batches: int = None, gradient_clipping: float = None, sequence_parallelism: bool = None, recompute_activations: bool = None, use_distributed_optimizer: bool = None, pipeline_model_parallel_split_rank: int = None, num_layers_per_virtual_pipeline_stage: int = None, is_train_batch_min: str = True, train_iters: int = None, train_samples: int = None, weight_decay_incr_style: str = 'constant', start_weight_decay: float = None, end_weight_decay: float = None, lr_decay_style: str = 'linear', lr_decay_iters: int = None, lr_decay_samples: int = None, lr_warmup_iters: int = None, lr_warmup_samples: int = None, lr_warmup_fraction: float = None, min_lr: float = 0, consumed_samples: list[int] = None, no_wd_decay_cond: typing.Callable | None = None, scale_lr_cond: typing.Callable | None = None, lr_mult: float = 1.0, megatron_dataset_flag: bool = False, seq_length: int = None, encoder_seq_length: int = None, decoder_seq_length: int = None, tensorboard_dir: str = None, set_all_logging_options: bool = False, eval_iters: int = 100, eval_interval: int = 1000, return_logits: bool = False, custom_train_step_class: typing.Any | None = None, custom_train_step_kwargs: dict[str, typing.Any] | None = None, custom_model_provider_function: typing.Callable | None = None, custom_prepare_model_function: typing.Callable | None = None, custom_megatron_datasets_provider_function: typing.Callable | None = None, custom_get_batch_function: typing.Callable | None = None, custom_loss_function: typing.Callable | None = None, other_megatron_args: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L2335)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L2211)
 
 **Parameters:**
 
@@ -598,10 +574,10 @@ activation recomputation and optimized fused kernels.
 #### accelerate.utils.TorchDynamoPlugin[[accelerate.utils.TorchDynamoPlugin]]
 
 ```python
-accelerate.utils.TorchDynamoPlugin(backend: DynamoBackend = None, mode: str = None, fullgraph: bool = None, dynamic: bool = None, options: typing.Any = None, disable: bool = False, use_regional_compilation: bool = None)
+accelerate.utils.TorchDynamoPlugin(backend: DynamoBackend = None, mode: str = None, fullgraph: bool = None, dynamic: bool = None, options: Any = None, disable: bool = False, use_regional_compilation: bool = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L1033)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L953)
 
 **Parameters:**
 
@@ -628,10 +604,10 @@ These are classes which can be configured and passed through to the appropriate 
 #### accelerate.utils.BnbQuantizationConfig[[accelerate.utils.BnbQuantizationConfig]]
 
 ```python
-accelerate.utils.BnbQuantizationConfig(load_in_8bit: bool = False, llm_int8_threshold: float = 6.0, load_in_4bit: bool = False, bnb_4bit_quant_type: str = 'fp4', bnb_4bit_use_double_quant: bool = False, bnb_4bit_compute_dtype: str = 'fp16', torch_dtype: dtype = None, skip_modules: list = None, keep_in_fp32_modules: list = None)
+accelerate.utils.BnbQuantizationConfig(load_in_8bit: bool = False, llm_int8_threshold: float = 6.0, load_in_4bit: bool = False, bnb_4bit_quant_type: str = 'fp4', bnb_4bit_use_double_quant: bool = False, bnb_4bit_compute_dtype: str = 'fp16', torch_dtype: dtype = None, skip_modules: list[str] = None, keep_in_fp32_modules: list[str] = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L3074)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L2950)
 
 **Parameters:**
 
@@ -661,7 +637,7 @@ A plugin to enable BitsAndBytes 4bit and 8bit quantization
 accelerate.DataLoaderConfiguration(split_batches: bool = False, dispatch_batches: bool = None, even_batches: bool = True, use_seedable_sampler: bool = False, data_seed: int = None, non_blocking: bool = False, use_stateful_dataloader: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L823)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L743)
 
 **Parameters:**
 
@@ -671,7 +647,7 @@ dispatch_batches (`bool`, defaults to `None`) : If set to `True`, the dataloader
 
 even_batches (`bool`, defaults to `True`) : If set to `True`, in cases where the total batch size across all processes does not exactly divide the dataset, samples at the start of the dataset will be duplicated so the batch can be divided equally among all workers.
 
-use_seedable_sampler (`bool`, defaults to `False`) : Whether or not use a fully seedable random sampler (`data_loader.SeedableRandomSampler`). Ensures training results are fully reproducible using a different sampling technique. While seed-to-seed results may differ, on average the differences are negligible when using multiple different seeds to compare. Should also be ran with [set_seed()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.set_seed) for the best results.
+use_seedable_sampler (`bool`, defaults to `False`) : Whether or not use a fully seedable random sampler (`data_loader.SeedableRandomSampler`). Ensures training results are fully reproducible using a different sampling technique. While seed-to-seed results may differ, on average the differences are negligible when using multiple different seeds to compare. Should also be ran with [set_seed()](/docs/accelerate/v1.16.0/en/package_reference/utilities#accelerate.utils.set_seed) for the best results.
 
 data_seed (`int`, defaults to `None`) : The seed to use for the underlying generator when using `use_seedable_sampler`. If `None`, the generator will use the current default seed from torch.
 
@@ -687,7 +663,7 @@ Configuration for dataloader-related items when calling `accelerator.prepare`.
 accelerate.utils.ProjectConfiguration(project_dir: str = None, logging_dir: str = None, automatic_checkpoint_naming: bool = False, total_limit: int = None, iteration: int = 0, save_on_each_node: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L918)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L838)
 
 **Parameters:**
 
@@ -708,10 +684,10 @@ Configuration for the Accelerator object based on inner-project needs.
 #### set_directories[[accelerate.utils.ProjectConfiguration.set_directories]]
 
 ```python
-set_directories(project_dir: typing.Optional[str] = None)
+set_directories(project_dir: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L970)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L890)
 
 Sets `self.project_dir` and `self.logging_dir` to the appropriate values.
 
@@ -731,7 +707,7 @@ These include data operations that mimic the same `torch` ops but can be used on
 accelerate.utils.broadcast(tensor, from_process: int = 0)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/operations.py#L600)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/operations.py#L583)
 
 **Parameters:**
 
@@ -751,7 +727,7 @@ Recursively broadcast tensor in a nested list/tuple/dictionary of tensors to all
 accelerate.utils.broadcast_object_list(object_list, from_process: int = 0)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/operations.py#L675)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/operations.py#L658)
 
 **Parameters:**
 
@@ -771,7 +747,7 @@ Broadcast a list of picklable objects from one process to the others.
 accelerate.utils.concatenate(data, dim = 0)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/operations.py#L719)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/operations.py#L702)
 
 **Parameters:**
 
@@ -792,7 +768,7 @@ If there is only a single batch of data, it is returned as-is.
 accelerate.utils.convert_outputs_to_fp32(model_forward)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/operations.py#L939)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/operations.py#L922)
 
 #### accelerate.utils.convert_to_fp32[[accelerate.utils.convert_to_fp32]]
 
@@ -800,7 +776,7 @@ accelerate.utils.convert_outputs_to_fp32(model_forward)
 accelerate.utils.convert_to_fp32(tensor)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/operations.py#L889)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/operations.py#L872)
 
 **Parameters:**
 
@@ -818,7 +794,7 @@ Recursively converts the elements nested list/tuple/dictionary of tensors in FP1
 accelerate.utils.gather(tensor)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/operations.py#L424)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/operations.py#L414)
 
 **Parameters:**
 
@@ -833,10 +809,10 @@ Recursively gather tensor in a nested list/tuple/dictionary of tensors from all 
 #### accelerate.utils.gather_object[[accelerate.utils.gather_object]]
 
 ```python
-accelerate.utils.gather_object(object: typing.Any)
+accelerate.utils.gather_object(object: Any)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/operations.py#L505)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/operations.py#L495)
 
 **Parameters:**
 
@@ -854,7 +830,7 @@ Recursively gather object in a nested list/tuple/dictionary of objects from all 
 accelerate.utils.get_grad_scaler(distributed_type: DistributedType = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L2120)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L2089)
 
 **Parameters:**
 
@@ -871,7 +847,7 @@ it.
 accelerate.utils.get_mixed_precision_context_manager(native_amp: bool = False, autocast_kwargs: AutocastKwargs = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L2078)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L2047)
 
 **Parameters:**
 
@@ -885,7 +861,7 @@ Return a context manager for autocasting mixed precision
 accelerate.utils.listify(data)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/operations.py#L284)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/operations.py#L270)
 
 **Parameters:**
 
@@ -903,7 +879,7 @@ Recursively finds tensors in a nested list/tuple/dictionary and converts them to
 accelerate.utils.pad_across_processes(tensor, dim = 0, pad_index = 0, pad_first = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/operations.py#L749)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/operations.py#L732)
 
 **Parameters:**
 
@@ -921,10 +897,10 @@ can safely be gathered.
 #### accelerate.utils.recursively_apply[[accelerate.utils.recursively_apply]]
 
 ```python
-accelerate.utils.recursively_apply(func, data, *args, test_type = <function is_torch_tensor at 0x7f64df3f9e10>, error_on_other_type = False, **kwargs)
+accelerate.utils.recursively_apply(func, data, *args, test_type = <function is_torch_tensor at 0x7f7be94c4460>, error_on_other_type = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/operations.py#L85)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/operations.py#L85)
 
 **Parameters:**
 
@@ -952,7 +928,7 @@ Recursively apply a function on a data structure that is a nested list/tuple/dic
 accelerate.utils.reduce(tensor, reduction = 'mean', scale = 1.0)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/operations.py#L845)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/operations.py#L828)
 
 **Parameters:**
 
@@ -975,7 +951,7 @@ mean of a given operation.
 accelerate.utils.send_to_device(tensor, device, non_blocking = False, skip_keys = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/operations.py#L136)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/operations.py#L136)
 
 **Parameters:**
 
@@ -999,7 +975,7 @@ Recursively sends the elements in a nested list/tuple/dictionary of tensors to a
 accelerate.utils.slice_tensors(data, tensor_slice, process_index = None, num_processes = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/operations.py#L699)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/operations.py#L682)
 
 **Parameters:**
 
@@ -1023,7 +999,7 @@ These functionalities check the state of the current working environment includi
 accelerate.utils.is_bf16_available(ignore_tpu = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/imports.py#L164)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/imports.py#L157)
 
 Checks if bf16 is supported, optionally ignoring the TPU
 
@@ -1033,7 +1009,7 @@ Checks if bf16 is supported, optionally ignoring the TPU
 accelerate.utils.is_mps_available(min_version = '1.12')
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/imports.py#L334)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/imports.py#L325)
 
 Checks if MPS device is available. The minimum version required is 1.12.
 
@@ -1051,7 +1027,7 @@ Checks if `torch_npu` is installed and potentially if a NPU is in the environmen
 accelerate.utils.is_torch_version(operation: str, version: str)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/versions.py#L46)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/versions.py#L46)
 
 **Parameters:**
 
@@ -1087,7 +1063,7 @@ potentially if a XPU is in the environment
 accelerate.utils.patch_environment(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/environment.py#L416)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/environment.py#L380)
 
 A context manager that will add each keyword argument passed to `os.environ` and remove them when exiting.
 
@@ -1110,7 +1086,7 @@ Example:
 accelerate.utils.clear_environment()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/environment.py#L381)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/environment.py#L345)
 
 A context manager that will temporarily clear environment variables.
 
@@ -1140,7 +1116,7 @@ bar
 accelerate.commands.config.default.write_basic_config(mixed_precision = 'no', save_location: str = '/home/runner/.cache/huggingface/accelerate/default_config.yaml')
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/commands/config/default.py#L37)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/commands/config/default.py#L27)
 
 **Parameters:**
 
@@ -1156,7 +1132,7 @@ When setting up 🤗 Accelerate for the first time, rather than running `acceler
 #### accelerate.utils.set_numa_affinity[[accelerate.utils.set_numa_affinity]]
 
 ```python
-accelerate.utils.set_numa_affinity(local_process_index: int, verbose: typing.Optional[bool] = None)
+accelerate.utils.set_numa_affinity(local_process_index: int, verbose: bool | None = None)
 ```
 
 **Parameters:**
@@ -1173,10 +1149,10 @@ This result is cached between calls. If you want to override it, please use
 #### accelerate.utils.environment.override_numa_affinity[[accelerate.utils.environment.override_numa_affinity]]
 
 ```python
-accelerate.utils.environment.override_numa_affinity(local_process_index: int, verbose: typing.Optional[bool] = None)
+accelerate.utils.environment.override_numa_affinity(local_process_index: int, verbose: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/environment.py#L298)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/environment.py#L262)
 
 **Parameters:**
 
@@ -1193,7 +1169,7 @@ affinity to set, ideally you should use `utils.environment.set_numa_affinity` in
 accelerate.utils.purge_accelerate_environment(func_or_cls)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/environment.py#L453)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/environment.py#L417)
 
 Decorator to clean up accelerate environment variables set by the decorated class or function.
 
@@ -1217,10 +1193,10 @@ decorating the parent class.
 #### accelerate.find_executable_batch_size[[accelerate.find_executable_batch_size]]
 
 ```python
-accelerate.find_executable_batch_size(function: typing.Optional[<built-in function callable>] = None, starting_batch_size: int = 128, reduce_batch_size_fn: typing.Optional[<built-in function callable>] = None)
+accelerate.find_executable_batch_size(function: callable | None = None, starting_batch_size: int = 128, reduce_batch_size_fn: callable | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/memory.py#L120)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/memory.py#L94)
 
 **Parameters:**
 
@@ -1257,17 +1233,17 @@ These utilities relate to interacting with PyTorch models
 accelerate.utils.calculate_maximum_sizes(model: Module)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L1079)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L1048)
 
 Computes the total size of the model and its largest layer
 
 #### accelerate.utils.compute_module_sizes[[accelerate.utils.compute_module_sizes]]
 
 ```python
-accelerate.utils.compute_module_sizes(model: Module, dtype: typing.Union[str, torch.device, NoneType] = None, special_dtypes: typing.Optional[dict[str, typing.Union[str, torch.device]]] = None, buffers_only: bool = False)
+accelerate.utils.compute_module_sizes(model: Module, dtype: str | torch.device | None = None, special_dtypes: dict[str, str | torch.device] | None = None, buffers_only: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L664)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L675)
 
 Compute the size of each submodule of a given model.
 
@@ -1277,7 +1253,7 @@ Compute the size of each submodule of a given model.
 accelerate.utils.extract_model_from_parallel(model, keep_fp32_wrapper: bool = True, keep_torch_compile: bool = True, recursive: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/other.py#L274)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/other.py#L286)
 
 **Parameters:**
 
@@ -1298,10 +1274,10 @@ Extract a model from its distributed containers.
 #### accelerate.utils.get_balanced_memory[[accelerate.utils.get_balanced_memory]]
 
 ```python
-accelerate.utils.get_balanced_memory(model: Module, max_memory: typing.Optional[dict[typing.Union[int, str], typing.Union[int, str]]] = None, no_split_module_classes: typing.Optional[list[str]] = None, dtype: typing.Union[str, torch.dtype, NoneType] = None, special_dtypes: typing.Optional[dict[str, typing.Union[str, torch.device]]] = None, low_zero: bool = False)
+accelerate.utils.get_balanced_memory(model: Module, max_memory: dict[int | str, int | str] | None = None, no_split_module_classes: list[str] | None = None, dtype: str | torch.dtype | None = None, special_dtypes: dict[str, str | torch.device] | None = None, low_zero: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L934)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L916)
 
 **Parameters:**
 
@@ -1317,7 +1293,7 @@ special_dtypes (`Dict[str, Union[str, torch.device]]`, *optional*) : If provided
 
 low_zero (`bool`, *optional*) : Minimizes the number of weights on GPU 0, which is convenient when it's used for other operations (like the Transformers generate function).
 
-Compute a `max_memory` dictionary for [infer_auto_device_map()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.infer_auto_device_map) that will balance the use of each available GPU.
+Compute a `max_memory` dictionary for [infer_auto_device_map()](/docs/accelerate/v1.16.0/en/package_reference/big_modeling#accelerate.infer_auto_device_map) that will balance the use of each available GPU.
 
 All computation is done analyzing sizes and dtypes of the model parameters. As a result, the model can be on the
 meta device (as it would if initialized within the `init_empty_weights` context manager).
@@ -1325,10 +1301,10 @@ meta device (as it would if initialized within the `init_empty_weights` context 
 #### accelerate.utils.get_max_layer_size[[accelerate.utils.get_max_layer_size]]
 
 ```python
-accelerate.utils.get_max_layer_size(modules: list, module_sizes: dict, no_split_module_classes: list)
+accelerate.utils.get_max_layer_size(modules: list[tuple[str, torch.nn.Module]], module_sizes: dict[str, int], no_split_module_classes: list[str])
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L718)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L729)
 
 **Parameters:**
 
@@ -1350,10 +1326,10 @@ definition of a layer being:
 #### accelerate.infer_auto_device_map[[accelerate.infer_auto_device_map]]
 
 ```python
-accelerate.infer_auto_device_map(model: Module, max_memory: typing.Optional[dict[typing.Union[int, str], typing.Union[int, str]]] = None, no_split_module_classes: typing.Optional[list[str]] = None, dtype: typing.Union[str, torch.dtype, NoneType] = None, special_dtypes: typing.Optional[dict[str, typing.Union[str, torch.dtype]]] = None, verbose: bool = False, clean_result: bool = True, offload_buffers: bool = False, fallback_allocation: bool = False)
+accelerate.infer_auto_device_map(model: Module, max_memory: dict[int | str, int | str] | None = None, no_split_module_classes: list[str] | None = None, dtype: str | torch.dtype | None = None, special_dtypes: dict[str, str | torch.dtype] | None = None, verbose: bool = False, clean_result: bool = True, offload_buffers: bool = False, fallback_allocation: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L1307)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L1278)
 
 **Parameters:**
 
@@ -1390,10 +1366,10 @@ meta device (as it would if initialized within the `init_empty_weights` context 
 #### accelerate.load_checkpoint_in_model[[accelerate.load_checkpoint_in_model]]
 
 ```python
-accelerate.load_checkpoint_in_model(model: Module, checkpoint: typing.Union[str, os.PathLike], device_map: typing.Optional[dict[str, typing.Union[int, str, torch.device]]] = None, offload_folder: typing.Union[str, os.PathLike, NoneType] = None, dtype: typing.Union[str, torch.dtype, NoneType] = None, offload_state_dict: bool = False, offload_buffers: bool = False, keep_in_fp32_modules: typing.Optional[list[str]] = None, offload_8bit_bnb: bool = False, strict: bool = False, full_state_dict: bool = True, broadcast_from_rank0: bool = False)
+accelerate.load_checkpoint_in_model(model: Module, checkpoint: str | os.PathLike, device_map: dict[str, int | str | torch.device] | None = None, offload_folder: str | os.PathLike | None = None, dtype: str | torch.dtype | None = None, offload_state_dict: bool = False, offload_buffers: bool = False, keep_in_fp32_modules: list[str] | None = None, offload_8bit_bnb: bool = False, strict: bool = False, full_state_dict: bool = True, broadcast_from_rank0: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L1817)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L1786)
 
 **Parameters:**
 
@@ -1424,8 +1400,8 @@ broadcast_from_rank0 (`False`, *optional*, defaults to `False`) : when the optio
 Loads a (potentially sharded) checkpoint inside a model, potentially sending weights to a given device as they are
 loaded.
 
-Once loaded across devices, you still need to call [dispatch_model()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.dispatch_model) on your model to make it able to run. To
-group the checkpoint loading and dispatch in one single call, use [load_checkpoint_and_dispatch()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch).
+Once loaded across devices, you still need to call [dispatch_model()](/docs/accelerate/v1.16.0/en/package_reference/big_modeling#accelerate.dispatch_model) on your model to make it able to run. To
+group the checkpoint loading and dispatch in one single call, use [load_checkpoint_and_dispatch()](/docs/accelerate/v1.16.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch).
 
 #### accelerate.utils.load_offloaded_weights[[accelerate.utils.load_offloaded_weights]]
 
@@ -1433,7 +1409,7 @@ group the checkpoint loading and dispatch in one single call, use [load_checkpoi
 accelerate.utils.load_offloaded_weights(model, index, offload_folder)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L893)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L875)
 
 **Parameters:**
 
@@ -1451,7 +1427,7 @@ Loads the weights from the offload folder into the model.
 accelerate.utils.load_state_dict(checkpoint_file, device_map = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L1649)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L1620)
 
 **Parameters:**
 
@@ -1465,10 +1441,10 @@ weights can be fast-loaded directly on the GPU.
 #### accelerate.utils.offload_state_dict[[accelerate.utils.offload_state_dict]]
 
 ```python
-accelerate.utils.offload_state_dict(save_dir: typing.Union[str, os.PathLike], state_dict: dict)
+accelerate.utils.offload_state_dict(save_dir: str | os.PathLike, state_dict: dict[str, torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/offload.py#L94)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/offload.py#L94)
 
 **Parameters:**
 
@@ -1484,7 +1460,7 @@ Offload a state dict in a given folder.
 accelerate.utils.retie_parameters(model, tied_params)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L622)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L633)
 
 **Parameters:**
 
@@ -1497,10 +1473,10 @@ Reties tied parameters in a given model if the link was broken (for instance whe
 #### accelerate.utils.set_module_tensor_to_device[[accelerate.utils.set_module_tensor_to_device]]
 
 ```python
-accelerate.utils.set_module_tensor_to_device(module: Module, tensor_name: str, device: typing.Union[int, str, torch.device], value: typing.Optional[torch.Tensor] = None, dtype: typing.Union[str, torch.dtype, NoneType] = None, fp16_statistics: typing.Optional[torch.HalfTensor] = None, tied_params_map: typing.Optional[dict[int, dict[torch.device, torch.Tensor]]] = None, non_blocking: bool = False, clear_cache: bool = True)
+accelerate.utils.set_module_tensor_to_device(module: Module, tensor_name: str, device: int | str | torch.device, value: torch.Tensor | None = None, dtype: str | torch.dtype | None = None, fp16_statistics: torch.HalfTensor | None = None, tied_params_map: dict[int, dict[torch.device, torch.Tensor]] | None = None, non_blocking: bool = False, clear_cache: bool = True)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L227)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L226)
 
 **Parameters:**
 
@@ -1531,7 +1507,7 @@ A helper function to set a given tensor (parameter of buffer) of a module on a s
 accelerate.utils.get_module_children_bottom_up(model: Module, return_fqns: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/other.py#L592)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/other.py#L605)
 
 **Parameters:**
 
@@ -1554,7 +1530,7 @@ These include general utilities that should be used when working in parallel.
 accelerate.utils.extract_model_from_parallel(model, keep_fp32_wrapper: bool = True, keep_torch_compile: bool = True, recursive: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/other.py#L274)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/other.py#L286)
 
 **Parameters:**
 
@@ -1578,7 +1554,7 @@ Extract a model from its distributed containers.
 accelerate.utils.save(obj, f, save_on_each_node: bool = False, safe_serialization: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/other.py#L410)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/other.py#L424)
 
 **Parameters:**
 
@@ -1598,7 +1574,7 @@ Save the data to disk. Use in place of `torch.save()`.
 accelerate.utils.load(f, map_location = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/other.py#L460)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/other.py#L474)
 
 **Parameters:**
 
@@ -1619,7 +1595,7 @@ Will also add (and then remove) an exception for numpy arrays
 accelerate.utils.wait_for_everyone()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/other.py#L362)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/other.py#L376)
 
 Introduces a blocking point in the script, making sure all processes have reached this point before continuing.
 
@@ -1635,7 +1611,7 @@ These utilities relate to setting and synchronizing of all the random states.
 accelerate.utils.set_seed(seed: int, device_specific: bool = False, deterministic: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/random.py#L40)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/random.py#L34)
 
 **Parameters:**
 
@@ -1650,18 +1626,20 @@ Helper function for reproducible behavior to set the seed in `random`, `numpy`, 
 #### accelerate.utils.synchronize_rng_state[[accelerate.utils.synchronize_rng_state]]
 
 ```python
-accelerate.utils.synchronize_rng_state(rng_type: typing.Optional[accelerate.utils.dataclasses.RNGType] = None, generator: typing.Optional[torch.Generator] = None)
+accelerate.utils.synchronize_rng_state(rng_type: str | accelerate.utils.dataclasses.RNGType, generator: torch.Generator | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/random.py#L81)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/random.py#L63)
+
+Synchronize a built-in RNG or the current accelerator's RNG, identified by its device type.
 
 #### accelerate.synchronize_rng_states[[accelerate.synchronize_rng_states]]
 
 ```python
-accelerate.synchronize_rng_states(rng_types: list, generator: typing.Optional[torch.Generator] = None)
+accelerate.synchronize_rng_states(rng_types: list[str | accelerate.utils.dataclasses.RNGType], generator: torch.Generator | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/random.py#L163)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/random.py#L127)
 
 ## PyTorch XLA[[accelerate.utils.install_xla]]
 
@@ -1673,7 +1651,7 @@ These include utilities that are useful while using PyTorch with XLA.
 accelerate.utils.install_xla(upgrade: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/torch_xla.py#L20)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/torch_xla.py#L20)
 
 **Parameters:**
 
@@ -1696,10 +1674,10 @@ These include utilities that are useful to load checkpoints.
 #### accelerate.load_checkpoint_in_model[[accelerate.load_checkpoint_in_model]]
 
 ```python
-accelerate.load_checkpoint_in_model(model: Module, checkpoint: typing.Union[str, os.PathLike], device_map: typing.Optional[dict[str, typing.Union[int, str, torch.device]]] = None, offload_folder: typing.Union[str, os.PathLike, NoneType] = None, dtype: typing.Union[str, torch.dtype, NoneType] = None, offload_state_dict: bool = False, offload_buffers: bool = False, keep_in_fp32_modules: typing.Optional[list[str]] = None, offload_8bit_bnb: bool = False, strict: bool = False, full_state_dict: bool = True, broadcast_from_rank0: bool = False)
+accelerate.load_checkpoint_in_model(model: Module, checkpoint: str | os.PathLike, device_map: dict[str, int | str | torch.device] | None = None, offload_folder: str | os.PathLike | None = None, dtype: str | torch.dtype | None = None, offload_state_dict: bool = False, offload_buffers: bool = False, keep_in_fp32_modules: list[str] | None = None, offload_8bit_bnb: bool = False, strict: bool = False, full_state_dict: bool = True, broadcast_from_rank0: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L1817)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L1786)
 
 **Parameters:**
 
@@ -1730,8 +1708,8 @@ broadcast_from_rank0 (`False`, *optional*, defaults to `False`) : when the optio
 Loads a (potentially sharded) checkpoint inside a model, potentially sending weights to a given device as they are
 loaded.
 
-Once loaded across devices, you still need to call [dispatch_model()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.dispatch_model) on your model to make it able to run. To
-group the checkpoint loading and dispatch in one single call, use [load_checkpoint_and_dispatch()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch).
+Once loaded across devices, you still need to call [dispatch_model()](/docs/accelerate/v1.16.0/en/package_reference/big_modeling#accelerate.dispatch_model) on your model to make it able to run. To
+group the checkpoint loading and dispatch in one single call, use [load_checkpoint_and_dispatch()](/docs/accelerate/v1.16.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch).
 
 ## Quantization[[accelerate.utils.load_and_quantize_model]]
 
@@ -1740,10 +1718,10 @@ These include utilities that are useful to quantize model.
 #### accelerate.utils.load_and_quantize_model[[accelerate.utils.load_and_quantize_model]]
 
 ```python
-accelerate.utils.load_and_quantize_model(model: Module, bnb_quantization_config: BnbQuantizationConfig, weights_location: typing.Union[str, os.PathLike, NoneType] = None, device_map: typing.Optional[dict[str, typing.Union[int, str, torch.device]]] = None, no_split_module_classes: typing.Optional[list[str]] = None, max_memory: typing.Optional[dict[typing.Union[int, str], typing.Union[int, str]]] = None, offload_folder: typing.Union[str, os.PathLike, NoneType] = None, offload_state_dict: bool = False)
+accelerate.utils.load_and_quantize_model(model: Module, bnb_quantization_config: BnbQuantizationConfig, weights_location: str | os.PathLike | None = None, device_map: dict[str, int | str | torch.device] | None = None, no_split_module_classes: list[str] | None = None, max_memory: dict[int | str, int | str] | None = None, offload_folder: str | os.PathLike | None = None, offload_state_dict: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/bnb.py#L44)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/bnb.py#L44)
 
 **Parameters:**
 
@@ -1771,5 +1749,5 @@ This function will quantize the input model with the associated config passed in
 model is in the meta device, we will load and dispatch the weights according to the `device_map` passed. If the
 model is already loaded, we will quantize the model and put the model on the GPU,
 
-### Execution process
-https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/execution.md
+### Launchers
+https://huggingface.co/docs/accelerate/v1.16.0/package_reference/launchers.md

@@ -76,9 +76,9 @@ This can scale your context size to 1M+ sequence length potentially. Below, we s
   Figure 1: Memory usage and speed of context parallelism for up-to 256k context size.
 
 > [!Tip]
-> These examples were created with a script you can find [in the examples folder](https://github.com/huggingface/accelerate/blob/main/examples/fsdp2/nd_parallel.py). To run the example on 8 H100 GPUs (128k sequence length), you can use the following command:
+> These examples were created with a script you can find [in the examples folder](https://github.com/huggingface/accelerate/blob/main/examples/torch_native_parallelism/nd_parallel.py). To run the example on 8 H100 GPUs (128k sequence length), you can use the following command:
 > ```bash
-> accelerate launch --use-fsdp --fsdp-activation-checkpointing=TRUE examples/fsdp2/nd_parallel.py --cp-size=8 --sequence-length=128000
+> accelerate launch --use-fsdp --fsdp-activation-checkpointing=TRUE examples/torch_native_parallelism/nd_parallel.py --cp-size=8 --sequence-length=128000
 > ```
 
 ## Accelerate's interface
@@ -109,7 +109,7 @@ Accelerate provides only a single option to configure context parallelism (excep
 Context parallel size is rather self-explanatory, it's the number of ranks across which the inputs are to be-sharded.
 Context parallel shard rotation defines how the shards of the inputs are rotated across ranks. We'll cover the 2 options in more detail in the next section.
 
-You can see an end-to-end example in the [ND parallel example](https://github.com/huggingface/accelerate/blob/main/examples/fsdp2/nd_parallel.py) file, where you can train an 8B model with up-to 128k context length on a single 8xH100 node. Using multi-node training, you can scale this to 1M+ sequence length on multiple GPUs. You can also seamlessly combine it with other parallelism strategies to fit your needs.
+You can see an end-to-end example in the [ND parallel example](https://github.com/huggingface/accelerate/blob/main/examples/torch_native_parallelism/nd_parallel.py) file, where you can train an 8B model with up-to 128k context length on a single 8xH100 node. Using multi-node training, you can scale this to 1M+ sequence length on multiple GPUs. You can also seamlessly combine it with other parallelism strategies to fit your needs.
 
 ## Technical details
 
@@ -179,5 +179,5 @@ Imagine it like this:
 ... and so on.
 ```
 
-### Low precision training methods
-https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/low_precision_training.md
+### Gradient synchronization
+https://huggingface.co/docs/accelerate/v1.16.0/concept_guides/gradient_synchronization.md

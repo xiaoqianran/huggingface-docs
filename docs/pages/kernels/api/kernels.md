@@ -118,7 +118,7 @@ If the kernel has any (transitive) dependencies, they will be checked as well.
 kernels.get_kernel_variants(repo_id: str, revision: str | None = None, version: int | None = None, backend: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/variants.py#L849)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/variants.py#L938)
 
 **Parameters:**
 
@@ -280,7 +280,7 @@ The metadata includes the following properties that describe a kernel:
 kernels.RepoInfo(repo_id: str, revision: Oid)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/hf_hub.py#L82)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/hf_hub.py#L83)
 
 This dataclass stores the origin of the kernel.
 

@@ -10,7 +10,7 @@
 accelerate.utils.get_active_deepspeed_plugin(state)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L100)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/deepspeed.py#L100)
 
 **Raises:** ``ValueError``
 
@@ -21,10 +21,10 @@ Returns the currently active DeepSpeedPlugin.
 #### accelerate.DeepSpeedPlugin[[accelerate.DeepSpeedPlugin]]
 
 ```python
-accelerate.DeepSpeedPlugin(hf_ds_config: typing.Any = None, gradient_accumulation_steps: int = None, gradient_clipping: float = None, zero_stage: int = None, is_train_batch_min: bool = True, offload_optimizer_device: str = None, offload_param_device: str = None, offload_optimizer_nvme_path: str = None, offload_param_nvme_path: str = None, zero3_init_flag: bool = None, zero3_save_16bit_model: bool = None, transformer_moe_cls_names: str = None, enable_msamp: bool = None, msamp_opt_level: typing.Optional[typing.Literal['O1', 'O2']] = None)
+accelerate.DeepSpeedPlugin(hf_ds_config: Any = None, gradient_accumulation_steps: int = None, gradient_clipping: float = None, zero_stage: int = None, is_train_batch_min: bool = True, offload_optimizer_device: str = None, offload_param_device: str = None, offload_optimizer_nvme_path: str = None, offload_param_nvme_path: str = None, zero3_init_flag: bool = None, zero3_save_16bit_model: bool = None, transformer_moe_cls_names: str = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L1122)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1042)
 
 **Parameters:**
 
@@ -52,10 +52,6 @@ zero3_save_16bit_model (`bool`, defaults to `None`) : Flag to indicate whether t
 
 transformer_moe_cls_names (`str`, defaults to `None`) : Comma-separated list of Transformers MoE layer class names (case-sensitive). For example, `MixtralSparseMoeBlock`, `Qwen2MoeSparseMoeBlock`, `JetMoEAttention`, `JetMoEBlock`, etc.
 
-enable_msamp (`bool`, defaults to `None`) : Flag to indicate whether to enable MS-AMP backend for FP8 training.
-
-msamp_opt_level (`Optional[Literal["O1", "O2"]]`, defaults to `None`) : Optimization level for MS-AMP (defaults to 'O1'). Only applicable if `enable_msamp` is True. Should be one of ['O1' or 'O2'].
-
 This plugin is used to integrate DeepSpeed.
 
 #### deepspeed_config_process[[accelerate.DeepSpeedPlugin.deepspeed_config_process]]
@@ -64,7 +60,7 @@ This plugin is used to integrate DeepSpeed.
 deepspeed_config_process(prefix = '', mismatches = None, config = None, must_match = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L1392)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1278)
 
 Process the DeepSpeed config with the values from the kwargs.
 
@@ -74,7 +70,7 @@ Process the DeepSpeed config with the values from the kwargs.
 select(_from_accelerator_state: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L1554)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1433)
 
 Sets the HfDeepSpeedWeakref to use the current deepspeed plugin configuration
 
@@ -84,7 +80,7 @@ Sets the HfDeepSpeedWeakref to use the current deepspeed plugin configuration
 accelerate.utils.DummyScheduler(optimizer, total_num_steps = None, warmup_num_steps = 0, lr_scheduler_callable = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L362)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/deepspeed.py#L362)
 
 **Parameters:**
 
@@ -109,7 +105,7 @@ loop when scheduler config is specified in the deepspeed config file.
 accelerate.utils.DeepSpeedEngineWrapper(engine)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L253)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/deepspeed.py#L253)
 
 **Parameters:**
 
@@ -123,7 +119,7 @@ Internal wrapper for deepspeed.runtime.engine.DeepSpeedEngine. This is used to f
 get_global_grad_norm()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L286)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/deepspeed.py#L286)
 
 Get the global gradient norm from DeepSpeed engine.
 
@@ -135,7 +131,7 @@ Get the global gradient norm from DeepSpeed engine.
 accelerate.utils.DeepSpeedOptimizerWrapper(optimizer)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L295)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/deepspeed.py#L295)
 
 **Parameters:**
 
@@ -151,7 +147,7 @@ Internal wrapper around a deepspeed optimizer.
 accelerate.utils.DeepSpeedSchedulerWrapper(scheduler, optimizers)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L322)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/deepspeed.py#L322)
 
 **Parameters:**
 
@@ -169,7 +165,7 @@ Internal wrapper around a deepspeed scheduler.
 accelerate.utils.DummyOptim(params, lr = 0.001, weight_decay = 0, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L339)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/deepspeed.py#L339)
 
 **Parameters:**
 
@@ -186,5 +182,5 @@ loop when optimizer config is specified in the deepspeed config file.
 
 ## DummyScheduler
 
-### Utility functions and classes
-https://huggingface.co/docs/accelerate/v1.15.0/package_reference/utilities.md
+### Logging[[accelerate.logging.get_logger]]
+https://huggingface.co/docs/accelerate/v1.16.0/package_reference/logging.md

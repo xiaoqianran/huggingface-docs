@@ -312,5 +312,5 @@ PyTorch Profiler is a powerful tool for analyzing the performance of your models
 
 For more detailed information, refer to the [PyTorch Profiler documentation](https://pytorch.org/docs/stable/profiler.html).
 
-### Loading big models into memory
-https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/big_model_inference.md
+### Using multiple models with DeepSpeed
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/deepspeed_multiple_model.md

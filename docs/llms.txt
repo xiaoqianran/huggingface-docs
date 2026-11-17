@@ -1,6 +1,6 @@
 # Hugging Face Docs
 
-- [Accelerate](https://huggingface.co/docs/accelerate) — 58 pages
+- [Accelerate](https://huggingface.co/docs/accelerate) — 57 pages
 - [AutoTrain](https://huggingface.co/docs/autotrain) — 19 pages
 - [BitsAndBytes](https://huggingface.co/docs/bitsandbytes) — 25 pages
 - [CLI](https://huggingface.co/docs/cli) — 1 pages

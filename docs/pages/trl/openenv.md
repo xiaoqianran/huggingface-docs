@@ -9,7 +9,7 @@ This guide covers **how to integrate OpenEnv with TRL**. For more on OpenEnv its
 
 ## When to use environments
 
-[GRPOTrainer](/docs/trl/v1.18.0/en/grpo_trainer#trl.GRPOTrainer) can be used to train agents. For agentic tasks, it supports two modes: **tools**, where the model can call external functions but each call is stateless and independent, and **environments**, which maintain state across turns, enabling genuine multi-turn interaction where the agent's actions shape future observations. Use environments when continuity matters — for example, navigating a game, browsing a web page, or any task where what the agent sees next depends on what it did before.
+[GRPOTrainer](/docs/trl/v1.18.1/en/grpo_trainer#trl.GRPOTrainer) can be used to train agents. For agentic tasks, it supports two modes: **tools**, where the model can call external functions but each call is stateless and independent, and **environments**, which maintain state across turns, enabling genuine multi-turn interaction where the agent's actions shape future observations. Use environments when continuity matters — for example, navigating a game, browsing a web page, or any task where what the agent sees next depends on what it did before.
 
 ## Choosing an environment integration
 
@@ -134,7 +134,7 @@ Below is the reward curve from training:
 
 ## How `environment_factory` works
 
-TRL's [GRPOTrainer](/docs/trl/v1.18.0/en/grpo_trainer#trl.GRPOTrainer) supports interactive environment training through the `environment_factory` argument. When provided, the trainer automatically handles the multi-turn tool-calling loop: it generates completions, parses tool calls, executes them against the environment, and feeds the results back to the model. All without custom rollout code.
+TRL's [GRPOTrainer](/docs/trl/v1.18.1/en/grpo_trainer#trl.GRPOTrainer) supports interactive environment training through the `environment_factory` argument. When provided, the trainer automatically handles the multi-turn tool-calling loop: it generates completions, parses tool calls, executes them against the environment, and feeds the results back to the model. All without custom rollout code.
 
 ### Environment class requirements
 
@@ -612,7 +612,7 @@ app = create_app(
 
 ## `environment_factory` vs `rollout_func`
 
-[GRPOTrainer](/docs/trl/v1.18.0/en/grpo_trainer#trl.GRPOTrainer) supports two approaches for environment-based training:
+[GRPOTrainer](/docs/trl/v1.18.1/en/grpo_trainer#trl.GRPOTrainer) supports two approaches for environment-based training:
 
 - **`environment_factory`** (recommended): You define an environment class with tool methods, and the trainer handles generation, tool-call parsing, and the multi-turn loop automatically. This is the approach used throughout this guide.
 - **`rollout_func`**: You write the entire generation and environment interaction loop yourself. This gives full control over how completions are produced, how tools are executed, and how rewards are computed.
@@ -625,7 +625,7 @@ The integrations above are **white-box**: TRL drives the multi-turn loop itself.
 
 Some agents cannot be driven this way because they own their own loop. A production coding agent harness like [`opencode`](https://opencode.ai) or [`claude-code`](https://github.com/anthropics/claude-code) has its own planner, tool set, context management, and stop condition. You want to train that exact agent, not a reimplementation of it.
 
-For this, TRL provides an experimental **black-box (loop-owning)** path built on [AsyncGRPOTrainer](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer): `HarnessAsyncGRPOTrainer` drives an OpenEnv session factory. The agents and their sandboxes come from [Harbor](https://huggingface.co/docs/openenv/environments/harbor), served through OpenEnv with `openenv harbor serve`, so every agent Harbor installs is trainable the same way: you pick one with `--harness`. See [`examples/async_grpo_harbor`](https://github.com/huggingface/trl/tree/main/examples/async_grpo_harbor) for a complete example, including a Hugging Face Jobs launcher.
+For this, TRL provides an experimental **black-box (loop-owning)** path built on [AsyncGRPOTrainer](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.AsyncGRPOTrainer): `HarnessAsyncGRPOTrainer` drives an OpenEnv session factory. The agents and their sandboxes come from [Harbor](https://huggingface.co/docs/openenv/environments/harbor), served through OpenEnv with `openenv harbor serve`, so every agent Harbor installs is trainable the same way: you pick one with `--harness`. See [`examples/async_grpo_harbor`](https://github.com/huggingface/trl/tree/main/examples/async_grpo_harbor) for a complete example, including a Hugging Face Jobs launcher.
 
 > [!NOTE]
 > This path requires `openenv>=0.7.0`, the first release with the `TrainingTrace` capture API: `pip install "openenv>=0.7.0"`.
@@ -642,7 +642,7 @@ Each rollout runs in its own isolated session, with its own sandbox and its own 
 
 ### Wiring
 
-`HarnessAsyncGRPOTrainer` takes the model, config and dataset like [AsyncGRPOTrainer](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer), with a session factory in place of `reward_funcs`, `tools` and `environment_factory`. Without a `harness_adapter`, the agent owns its loop. The trainer builds the session factory with its own sampling policy, so you pass it a callable such as `partial(HarborSessionFactory, ...)` rather than a built factory. Each session returns an OpenEnv `TrainingTrace` containing exact engine tokens, behavior logprobs and prefilled masks. `rollout_reward_fn` is optional; without it, TRL uses the session's verifier reward.
+`HarnessAsyncGRPOTrainer` takes the model, config and dataset like [AsyncGRPOTrainer](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.AsyncGRPOTrainer), with a session factory in place of `reward_funcs`, `tools` and `environment_factory`. Without a `harness_adapter`, the agent owns its loop. The trainer builds the session factory with its own sampling policy, so you pass it a callable such as `partial(HarborSessionFactory, ...)` rather than a built factory. Each session returns an OpenEnv `TrainingTrace` containing exact engine tokens, behavior logprobs and prefilled masks. `rollout_reward_fn` is optional; without it, TRL uses the session's verifier reward.
 
 ```python
 from functools import partial
@@ -706,7 +706,7 @@ Malformed captures fail at the OpenEnv boundary and stop training. Transport fai
 
 ### Metrics
 
-The harness trainer logs the [tool metrics](async_grpo_trainer#tool-metrics) of [AsyncGRPOTrainer](/docs/trl/v1.18.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer) under the same names, with these differences:
+The harness trainer logs the [tool metrics](async_grpo_trainer#tool-metrics) of [AsyncGRPOTrainer](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.AsyncGRPOTrainer) under the same names, with these differences:
 
 - When the agent owns its loop (no `harness_adapter`), failures are estimated from the tool results in the last request: a result counts as failed when its text contains `error`, `failed`, `traceback` or `exception` (case-insensitive), and results with the same tool and the same first 200 characters count once. `tools/latency_s` and `tools/<name>/latency_s` aren't logged, because OpenEnv's trace has no timestamps.
 - With a `harness_adapter`, a tool call counts as failed when the harness reports an error for it. The time between one model reply and the next request is split evenly across that turn's tool calls and logged as their `tools/latency_s`, so it includes the harness's own overhead. The last turn isn't timed.
@@ -736,4 +736,4 @@ vllm serve <model> \
 > Loop-owning training lives under `trl.experimental` and its API may change. The example pins the OpenEnv revision it was tested with; see its [README](https://github.com/huggingface/trl/tree/main/examples/async_grpo_harbor) for the exact setup.
 
 ### Training customization
-https://huggingface.co/docs/trl/v1.18.0/customization.md
+https://huggingface.co/docs/trl/v1.18.1/customization.md

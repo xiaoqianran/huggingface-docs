@@ -81,5 +81,5 @@ accelerate to-fsdp2 --config_file config.yaml --output_file new_config.yaml
 
 This will automatically convert all FSDP1 settings to their FSDP2 equivalents. Use `--overwrite` to update the existing file instead of creating a new one.
 
-### Comparing performance across distributed setups
-https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/performance.md
+### FSDP vs DeepSpeed
+https://huggingface.co/docs/accelerate/v1.16.0/concept_guides/fsdp_and_deepspeed.md

@@ -24,7 +24,6 @@ https://huggingface.co/docs/accelerate/package_reference/cli.md
 https://huggingface.co/docs/accelerate/package_reference/deepspeed.md
 https://huggingface.co/docs/accelerate/package_reference/fp8.md
 https://huggingface.co/docs/accelerate/package_reference/fsdp.md
-https://huggingface.co/docs/accelerate/package_reference/inference.md
 https://huggingface.co/docs/accelerate/package_reference/kwargs.md
 https://huggingface.co/docs/accelerate/package_reference/launchers.md
 https://huggingface.co/docs/accelerate/package_reference/logging.md

@@ -32,5 +32,5 @@ for batch in dataloader:
         height="1600"
     >
 
-### Low Precision Training Methods
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/low_precision_training.md
+### Big Model Inference
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/big_modeling.md

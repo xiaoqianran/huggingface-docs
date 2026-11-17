@@ -1,17 +1,17 @@
 # DataLoaders, Optimizers, and Schedulers
 
 The internal classes Accelerate uses to prepare objects for distributed training
-when calling [prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare).
+when calling [prepare()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.prepare).
 
 ## DataLoader utilities[[accelerate.data_loader.prepare_data_loader]]
 
 #### accelerate.data_loader.prepare_data_loader[[accelerate.data_loader.prepare_data_loader]]
 
 ```python
-accelerate.data_loader.prepare_data_loader(dataloader: DataLoader, device: typing.Optional[torch.device] = None, num_processes: typing.Optional[int] = None, process_index: typing.Optional[int] = None, split_batches: bool = False, put_on_device: bool = False, rng_types: typing.Optional[list[typing.Union[str, accelerate.utils.dataclasses.RNGType]]] = None, dispatch_batches: typing.Optional[bool] = None, even_batches: bool = True, slice_fn_for_dispatch: typing.Optional[typing.Callable] = None, use_seedable_sampler: bool = False, data_seed: typing.Optional[int] = None, non_blocking: bool = False, use_stateful_dataloader: bool = False, torch_device_mesh = None)
+accelerate.data_loader.prepare_data_loader(dataloader: DataLoader, device: torch.device | None = None, num_processes: int | None = None, process_index: int | None = None, split_batches: bool = False, put_on_device: bool = False, rng_types: list[str | accelerate.utils.dataclasses.RNGType] | None = None, dispatch_batches: bool | None = None, even_batches: bool = True, slice_fn_for_dispatch: typing.Callable | None = None, use_seedable_sampler: bool = False, data_seed: int | None = None, non_blocking: bool = False, use_stateful_dataloader: bool = False, torch_device_mesh = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/data_loader.py#L1016)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/data_loader.py#L1003)
 
 **Parameters:**
 
@@ -19,21 +19,21 @@ dataloader (`torch.utils.data.dataloader.DataLoader`) : The data loader to split
 
 device (`torch.device`) : The target device for the returned `DataLoader`.
 
-num_processes (`int`, *optional*) : The number of processes running concurrently. Will default to the value given by [PartialState](/docs/accelerate/v1.15.0/en/package_reference/state#accelerate.PartialState).
+num_processes (`int`, *optional*) : The number of processes running concurrently. Will default to the value given by [PartialState](/docs/accelerate/v1.16.0/en/package_reference/state#accelerate.PartialState).
 
-process_index (`int`, *optional*) : The index of the current process. Will default to the value given by [PartialState](/docs/accelerate/v1.15.0/en/package_reference/state#accelerate.PartialState).
+process_index (`int`, *optional*) : The index of the current process. Will default to the value given by [PartialState](/docs/accelerate/v1.16.0/en/package_reference/state#accelerate.PartialState).
 
 split_batches (`bool`, *optional*, defaults to `False`) : Whether the resulting `DataLoader` should split the batches of the original data loader across devices or yield full batches (in which case it will yield batches starting at the `process_index`-th and advancing of `num_processes` batches at each iteration).  Another way to see this is that the observed batch size will be the same as the initial `dataloader` if this option is set to `True`, the batch size of the initial `dataloader` multiplied by `num_processes` otherwise.  Setting this option to `True` requires that the batch size of the `dataloader` is a round multiple of `batch_size`.
 
 put_on_device (`bool`, *optional*, defaults to `False`) : Whether or not to put the batches on `device` (only works if the batches are nested list, tuples or dictionaries of tensors).
 
-rng_types (list of `str` or [RNGType](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.RNGType)) : The list of random number generators to synchronize at the beginning of each iteration. Should be one or several of:  - `"torch"`: the base torch random number generator - `"cuda"`: the CUDA random number generator (GPU only) - `"xla"`: the XLA random number generator (TPU only) - `"generator"`: the `torch.Generator` of the sampler (or batch sampler if there is no sampler in your dataloader) or of the iterable dataset (if it exists) if the underlying dataset is of that type. 
+rng_types (list of `str` or [RNGType](/docs/accelerate/v1.16.0/en/package_reference/utilities#accelerate.utils.RNGType)) : The list of random number generators to synchronize at the beginning of each iteration. Should be one or several of:  - `"torch"`: the base torch random number generator - `"cuda"`: the CUDA random number generator (GPU only) - Any registered PyTorch accelerator's device type: its device random number generator. - `"xla"`: the XLA random number generator (TPU only) - `"generator"`: the `torch.Generator` of the sampler (or batch sampler if there is no sampler in your dataloader) or of the iterable dataset (if it exists) if the underlying dataset is of that type. 
 
 dispatch_batches (`bool`, *optional*) : If set to `True`, the dataloader prepared is only iterated through on the main process and then the batches are split and broadcast to each process. Will default to `True` when the underlying dataset is an `IterableDataset`, `False` otherwise.
 
 even_batches (`bool`, *optional*, defaults to `True`) : If set to `True`, in cases where the total batch size across all processes does not exactly divide the dataset, samples at the start of the dataset will be duplicated so the batch can be divided equally among all workers.
 
-slice_fn_for_dispatch (`Callable`, *optional*`) : If passed, this function will be used to slice tensors across `num_processes`. Will default to [slice_tensors()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.slice_tensors). This argument is used only when `dispatch_batches` is set to `True` and will be ignored otherwise.
+slice_fn_for_dispatch (`Callable`, *optional*`) : If passed, this function will be used to slice tensors across `num_processes`. Will default to [slice_tensors()](/docs/accelerate/v1.16.0/en/package_reference/utilities#accelerate.utils.slice_tensors). This argument is used only when `dispatch_batches` is set to `True` and will be ignored otherwise.
 
 use_seedable_sampler (`bool`, *optional*, defaults to `False`) : Whether to use the `SeedableRandomSampler` instead of a `RandomSampler` for better reproducibility. Comes at a cost of potentially different performances due to different shuffling algorithms but ensures results will be the *exact* same. Should be paired with `set_seed()` at every `self.set_epoch`
 
@@ -63,7 +63,7 @@ equal to `False`
 accelerate.skip_first_batches(dataloader, num_batches = 0)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/data_loader.py#L1395)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/data_loader.py#L1379)
 
 Creates a `torch.utils.data.DataLoader` that will efficiently skip the first `num_batches`. Should not be used if
 the original dataloader is a `StatefulDataLoader`.
@@ -76,7 +76,7 @@ the original dataloader is a `StatefulDataLoader`.
 accelerate.data_loader.BatchSamplerShard(batch_sampler: BatchSampler, num_processes: int = 1, process_index: int = 0, split_batches: bool = False, even_batches: bool = True)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/data_loader.py#L110)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/data_loader.py#L101)
 
 **Parameters:**
 
@@ -106,7 +106,7 @@ equal to `False`
 accelerate.data_loader.IterableDatasetShard(dataset: IterableDataset, batch_size: int = 1, drop_last: bool = False, num_processes: int = 1, process_index: int = 0, split_batches: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/data_loader.py#L274)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/data_loader.py#L265)
 
 **Parameters:**
 
@@ -136,7 +136,7 @@ be too small or loop with indices from the beginning.
 accelerate.data_loader.DataLoaderShard(dataset, device = None, rng_types = None, synchronized_generator = None, skip_batches = 0, use_stateful_dataloader = False, _drop_last: bool = False, _non_blocking: bool = False, torch_device_mesh = None, iteration = 0, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/data_loader.py#L510)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/data_loader.py#L497)
 
 **Parameters:**
 
@@ -144,7 +144,7 @@ dataset (`torch.utils.data.dataset.Dataset`) : The dataset to use to build this 
 
 device (`torch.device`, *optional*) : If passed, the device to put all batches on.
 
-rng_types (list of `str` or [RNGType](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.RNGType)) : The list of random number generators to synchronize at the beginning of each iteration. Should be one or several of:  - `"torch"`: the base torch random number generator - `"cuda"`: the CUDA random number generator (GPU only) - `"xla"`: the XLA random number generator (TPU only) - `"generator"`: an optional `torch.Generator`
+rng_types (list of `str` or [RNGType](/docs/accelerate/v1.16.0/en/package_reference/utilities#accelerate.utils.RNGType)) : The list of random number generators to synchronize at the beginning of each iteration. Should be one or several of:  - `"torch"`: the base torch random number generator - `"cuda"`: the CUDA random number generator (GPU only) - Any registered PyTorch accelerator's device type: its device random number generator. - `"xla"`: the XLA random number generator (TPU only) - `"generator"`: an optional `torch.Generator`
 
 synchronized_generator (`torch.Generator`, *optional*) : A random number generator to keep synchronized across processes.
 
@@ -172,7 +172,7 @@ Subclass of `DataLoaderAdapter` that will deal with device placement and current
 accelerate.data_loader.DataLoaderDispatcher(dataset, split_batches: bool = False, skip_batches = 0, use_stateful_dataloader = False, _drop_last: bool = False, _non_blocking: bool = False, slice_fn = None, torch_device_mesh = None, iteration = 0, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/data_loader.py#L723)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/data_loader.py#L714)
 
 **Parameters:**
 
@@ -201,7 +201,7 @@ their part of the batch.
 accelerate.optimizer.AcceleratedOptimizer(optimizer, device_placement = True, scaler = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/optimizer.py#L38)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/optimizer.py#L38)
 
 **Parameters:**
 
@@ -222,7 +222,7 @@ accumulation.
 eval()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/optimizer.py#L138)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/optimizer.py#L138)
 
 Sets the optimizer to "eval" mode. Useful for optimizers like `schedule_free`
 
@@ -232,7 +232,7 @@ Sets the optimizer to "eval" mode. Useful for optimizers like `schedule_free`
 train()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/optimizer.py#L124)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/optimizer.py#L124)
 
 Sets the optimizer to "train" mode. Useful for optimizers like `schedule_free`
 
@@ -244,7 +244,7 @@ Sets the optimizer to "train" mode. Useful for optimizers like `schedule_free`
 accelerate.scheduler.AcceleratedScheduler(scheduler, optimizers, step_with_optimizer: bool = True, split_batches: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/scheduler.py#L25)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/scheduler.py#L25)
 
 **Parameters:**
 
@@ -263,5 +263,5 @@ precision training)
 When performing gradient accumulation scheduler lengths should not be changed accordingly, Accelerate will always
 step the scheduler to account for it.
 
-### Pipeline parallelism
-https://huggingface.co/docs/accelerate/v1.15.0/package_reference/inference.md
+### Megatron-LM utilities
+https://huggingface.co/docs/accelerate/v1.16.0/package_reference/megatron_lm.md

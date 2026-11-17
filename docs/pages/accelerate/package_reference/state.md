@@ -14,13 +14,13 @@ states.
 accelerate.PartialState(cpu: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/state.py#L123)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/state.py#L120)
 
 **Parameters:**
 
 cpu (`bool`, *optional*) : Whether or not to force the script to execute on CPU. Will ignore any accelerators available if set to `True` and force the execution on the CPU.
 
-kwargs (additional keyword arguments, *optional*) : Additional keyword arguments to pass to the relevant `init_process_group` function. Valid `kwargs` can be found in [utils.InitProcessGroupKwargs](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.InitProcessGroupKwargs). See the example section for detailed usage.
+kwargs (additional keyword arguments, *optional*) : Additional keyword arguments to pass to the relevant `init_process_group` function. Valid `kwargs` can be found in [utils.InitProcessGroupKwargs](/docs/accelerate/v1.16.0/en/package_reference/kwargs#accelerate.InitProcessGroupKwargs). See the example section for detailed usage.
 
 Singleton class that has information about the current training environment and functions to help with process
 control. Designed to be used when only process control and device execution states are needed. Does *not* need to
@@ -29,7 +29,7 @@ be initialized from `Accelerator`.
 **Available attributes:**
 
 - **device** (`torch.device`) -- The device to use.
-- **distributed_type** ([DistributedType](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.DistributedType)) -- The type of distributed environment currently
+- **distributed_type** ([DistributedType](/docs/accelerate/v1.16.0/en/package_reference/utilities#accelerate.DistributedType)) -- The type of distributed environment currently
   in use.
 - **local_process_index** (`int`) -- The index of the current process on the current server.
 - **mixed_precision** (`str`) -- Whether or not the current script will use mixed precision, and if so the type
@@ -56,7 +56,7 @@ state = PartialState(**kwargs)
 destroy_process_group(group = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/state.py#L847)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/state.py#L808)
 
 Destroys the process group. If one is not specified, the default process group is destroyed.
 
@@ -66,7 +66,7 @@ Destroys the process group. If one is not specified, the default process group i
 local_main_process_first()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/state.py#L534)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/state.py#L538)
 
 Lets the local main process go inside a with block.
 
@@ -90,7 +90,7 @@ Example:
 main_process_first()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/state.py#L513)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/state.py#L517)
 
 Lets the main process go first inside a with block.
 
@@ -114,7 +114,7 @@ Example:
 on_last_process(function: Callable[..., Any])
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/state.py#L616)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/state.py#L620)
 
 **Parameters:**
 
@@ -143,7 +143,7 @@ print_something()
 on_local_main_process(function: Callable[..., Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/state.py#L585)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/state.py#L589)
 
 **Parameters:**
 
@@ -175,7 +175,7 @@ print_something()
 on_local_process(function: Callable[..., Any] | None = None, local_process_index: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/state.py#L677)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/state.py#L681)
 
 **Parameters:**
 
@@ -209,7 +209,7 @@ print_something()
 on_main_process(function: Callable[..., Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/state.py#L555)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/state.py#L559)
 
 **Parameters:**
 
@@ -238,7 +238,7 @@ Example:
 on_process(function: Callable[..., Any] | None = None, process_index: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/state.py#L644)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/state.py#L648)
 
 **Parameters:**
 
@@ -269,7 +269,7 @@ print_something()
 set_device()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/state.py#L819)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/state.py#L780)
 
 Sets the device in `self.device` to the current distributed environment.
 
@@ -279,7 +279,7 @@ Sets the device in `self.device` to the current distributed environment.
 split_between_processes(inputs: list | tuple | dict | torch.Tensor, apply_padding: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/state.py#L425)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/state.py#L425)
 
 **Parameters:**
 
@@ -320,7 +320,7 @@ with state.split_between_processes(["A", "B", "C"], apply_padding=True) as input
 wait_for_everyone()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/state.py#L377)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/state.py#L374)
 
 Will stop the execution of the current process until every other process has reached that point (so this does
 nothing when the script is only run in one process). Useful to do before saving a model.
@@ -350,14 +350,14 @@ Example:
 accelerate.state.AcceleratorState(mixed_precision: str | None = None, cpu: bool = False, dynamo_plugin = None, deepspeed_plugin = None, fsdp_plugin = None, torch_tp_plugin = None, megatron_lm_plugin = None, parallelism_config = None, _from_accelerator: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/state.py#L870)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/state.py#L831)
 
 Singleton class that has information about the current training environment.
 
 **Available attributes:**
 
 - **device** (`torch.device`) -- The device to use.
-- **distributed_type** ([DistributedType](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.DistributedType)) -- The type of distributed environment currently
+- **distributed_type** ([DistributedType](/docs/accelerate/v1.16.0/en/package_reference/utilities#accelerate.DistributedType)) -- The type of distributed environment currently
   in use.
 - **parallelism_config** (`ParallelismConfig`) -- The parallelism configuration for the
   current training environment. This is used to configure the distributed training environment.
@@ -378,7 +378,7 @@ Singleton class that has information about the current training environment.
 destroy_process_group(group = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/state.py#L1083)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/state.py#L1044)
 
 Destroys the process group. If one is not specified, the default process group is destroyed.
 
@@ -390,7 +390,7 @@ If `self.fork_launched` is `True` and `group` is `None`, nothing happens.
 get_deepspeed_plugin(name: str)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/state.py#L1200)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/state.py#L1161)
 
 Returns the DeepSpeedPlugin with the given plugin_key.
 
@@ -400,7 +400,7 @@ Returns the DeepSpeedPlugin with the given plugin_key.
 local_main_process_first()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/state.py#L1176)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/state.py#L1137)
 
 Lets the local main process go inside a with block.
 
@@ -412,7 +412,7 @@ The other processes will enter the with block after the main process exits.
 main_process_first()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/state.py#L1166)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/state.py#L1127)
 
 Lets the main process go first inside a with block.
 
@@ -424,7 +424,7 @@ The other processes will enter the with block after the main process exits.
 select_deepspeed_plugin(name: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/state.py#L1207)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/state.py#L1168)
 
 Activates the DeepSpeedPlugin with the given `name`, and will disable all other plugins.
 
@@ -434,7 +434,7 @@ Activates the DeepSpeedPlugin with the given `name`, and will disable all other 
 split_between_processes(inputs: list | tuple | dict | torch.Tensor, apply_padding: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/state.py#L1124)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/state.py#L1085)
 
 **Parameters:**
 
@@ -477,7 +477,7 @@ with state.split_between_processes(["A", "B", "C"], apply_padding=True) as input
 accelerate.state.GradientState(gradient_accumulation_plugin: GradientAccumulationPlugin | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/state.py#L1233)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/state.py#L1194)
 
 Singleton class that has information related to gradient synchronization for gradient accumulation
 
@@ -499,5 +499,5 @@ Singleton class that has information related to gradient synchronization for gra
   after each step, the flag is reset to false. FSDP will always synchronize the gradients, hence
   is_xla_gradients_synced is always true.
 
-### DataLoaders, Optimizers, and Schedulers
-https://huggingface.co/docs/accelerate/v1.15.0/package_reference/torch_wrappers.md
+### Fully Sharded Data Parallel utilities
+https://huggingface.co/docs/accelerate/v1.16.0/package_reference/fsdp.md

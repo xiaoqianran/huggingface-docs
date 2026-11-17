@@ -10,7 +10,7 @@ Functions for launching training on distributed processes.
 accelerate.notebook_launcher(function, args = (), num_processes = None, mixed_precision = 'no', use_port = '29500', master_addr = '127.0.0.1', node_rank = 0, num_nodes = 1, rdzv_backend = 'static', rdzv_endpoint = '', rdzv_conf = None, rdzv_id = 'none', max_restarts = 0, monitor_interval = 0.1, log_line_prefix_template = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/launchers.py#L43)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/launchers.py#L41)
 
 **Parameters:**
 
@@ -74,7 +74,7 @@ notebook_launcher(train, args=(arg1, arg2), num_processes=2, mixed_precision="fp
 accelerate.debug_launcher(function, args = (), num_processes = 2)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/launchers.py#L287)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/launchers.py#L282)
 
 **Parameters:**
 
@@ -89,5 +89,5 @@ Launches a training function using several processes on CPU for debugging purpos
 This function is provided for internal testing and debugging, but it's not intended for real trainings. It will
 only use the CPU.
 
-### The Command Line
-https://huggingface.co/docs/accelerate/v1.15.0/package_reference/cli.md
+### Execution process
+https://huggingface.co/docs/accelerate/v1.16.0/basic_tutorials/execution.md

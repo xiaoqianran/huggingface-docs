@@ -1,6 +1,6 @@
 # Installation
 
-Before you start, you will need to setup your environment, install the appropriate packages, and configure Accelerate. Accelerate is tested on **Python 3.8+**.
+Before you start, you will need to setup your environment, install the appropriate packages, and configure Accelerate. Accelerate is tested on **Python 3.11+**.
 
 Accelerate is available on pypi and conda, as well as on GitHub. Details to install from each are below:
 
@@ -96,6 +96,3 @@ An example output is shown below, which describes two GPUs on a single machine w
         - tpu_use_sudo: False
         - tpu_env: []
 ```
-
-### TPU training
-https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/tpu.md
